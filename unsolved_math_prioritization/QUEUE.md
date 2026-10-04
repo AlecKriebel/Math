@@ -667,7 +667,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 656 | 30000492 / OWR-1274-008 | Settled Quadratic Polynomials and Markov Factorization Models | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 657 | 30000510 / OWR-1275-010 | Topology of Baby Teichmüller Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 658 | 30000576 / OWR-1323-013 | Chaos of Individual Operators in Chaotic Semigroups | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 659 | 30000700 / OWR-1460-004 | IM-Sharing Variants of Theorem H for Entire Functions | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 659 | 30000700 / OWR-1460-004 | IM-Sharing Variants of Theorem H for Entire Functions | 0.1053 | 5.5 | 3 | 2007 | claimed_solved | 1/5 |  | Negative answer to the literal printed universal IM statement through its permitted a=0 case: f=z^2/2, b=1, k=2; polynomial classification and transcendental zero-value family included. Independent AI audit passed; strengthened nonzero-a problem, historical intention, and novelty unestablished. |  |
 | 660 | 30000704 / OWR-1460-010 | Boundary Regularity for Complete Conformal Metrics | 0.1053 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 661 | 30000930 / OWR-1790-007 | Ext-Algebra Models for Crossingless Matchings | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 662 | 30001017 / OWR-2049-004 | Intersection Numbers on First Voronoi Compactifications | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
