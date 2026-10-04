@@ -584,7 +584,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 573 | 2303032 / AMR-022-3032 | Research Problems in Function Theory — Problem 3.32 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 574 | 2304009 / AMR-022-4009 | Research Problems in Function Theory — Problem 4.9 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 575 | 2305046 / AMR-022-5046 | Research Problems in Function Theory — Problem 5.46 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 576 | 2305055 / AMR-022-5055 | Research Problems in Function Theory — Problem 5.55 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 576 | 2305055 / AMR-022-5055 | Research Problems in Function Theory — Problem 5.55 | 0.1125 | 6.0 | 3 | unknown | already_solved | 1/5 |  |  | Prior disk proof: DannyExperiments (2026), AI-assisted/unrefereed, commit-pinned manuscript; independent AI audit passed. Plane-domain extension under compact escape separately proved; no originality claim. |
 | 577 | 2305060 / AMR-022-5060 | Research Problems in Function Theory — Problem 5.60 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 578 | 2305065 / AMR-022-5065 | Research Problems in Function Theory — Problem 5.65 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 579 | 2305066 / AMR-022-5066 | Research Problems in Function Theory — Problem 5.66 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
