@@ -552,7 +552,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 541 | 30004773 / OWR-8415341-012 | Character Degrees of Graph-Defined Exponent-$p$ Groups | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 542 | 5200008 / AMR-051-0008 | Open Problems on Billiards and Geometric Optics | 0.1191 | 6.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 543 | 30005558 / OWR-13750339-002 | Hodge Integrals over Genus-One Admissible Covers | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 544 | 30005598 / OWR-14297736-004 | de Gennes Bound for Magnetic Neumann Eigenvalues | 0.1176 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 544 | 30005598 / OWR-14297736-004 | de Gennes Bound for Magnetic Neumann Eigenvalues | 0.1176 | 6.0 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-04: Independently reviewed partials: strict bound for ellipses with 1 <= a/b <= 101/100 and 0 < beta*a*b <= 131. Published half-line enclosure is an external input; its numerical run was not repeated. Universal smooth-domain problem remains unresolved; no novelty claim. [Proof and audit](attempts/30005598/PUBLICATION.md). |  |
 | 545 | 5300049 / AMR-052-0049 | Accessibility of positive-exponent boundary points | 0.1171 | 6.0 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 546 | 6000015 / AMR-059-0015 | Stein Tangent Bundles of Complete Hessian Manifolds | 0.1165 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 547 | 30003571 / OWR-15582-005 | Relative Kähler–Ricci Flow on Projective-Space Fibrations | 0.1161 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
