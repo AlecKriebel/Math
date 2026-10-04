@@ -597,7 +597,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 586 | 2306065 / AMR-022-6065 | Research Problems in Function Theory — Problem 6.65 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 587 | 2306072 / AMR-022-6072 | Research Problems in Function Theory — Problem 6.72 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 588 | 2306080 / AMR-022-6080 | Research Problems in Function Theory — Problem 6.80 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 589 | 2306088 / AMR-022-6088 | Research Problems in Function Theory — Problem 6.88 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 589 | 2306088 / AMR-022-6088 | Research Problems in Function Theory — Problem 6.88 | 0.1125 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Same published minimum-area theorem as [PR 503](https://github.com/AlecKriebel/Math/pull/503): sharp c = sqrt(27*pi/8); perimeter existence with c1 = pi*sqrt(27/2), not asserted sharp. [Proof and audit](attempts/2306088/submission/PROOF.md). |  |
 | 590 | 2306111 / AMR-022-6111 | Research Problems in Function Theory — Problem 6.111 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 591 | 2307017 / AMR-022-7017 | Research Problems in Function Theory — Problem 7.17 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 592 | 2746 / KP-1.87 | Kirby Problem 1.87 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
