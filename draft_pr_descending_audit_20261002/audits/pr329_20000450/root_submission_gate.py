@@ -19,11 +19,13 @@ def pin(p):
     assert p.is_file() and not p.is_symlink(),p
     b=p.read_bytes()
     return dict(bytes=len(b),sha256=sha(b),mode=f'{stat.S_IMODE(p.stat().st_mode):04o}')
-def inventory(d):
+def inventory(d,excluded_roots=()):
     files={};dirs={'.':f'{stat.S_IMODE(d.stat().st_mode):04o}'}
     for p in sorted(d.rglob('*')):
+        rel=str(p.relative_to(d))
+        if any(rel==n or rel.startswith(n+'/') for n in excluded_roots):continue
         assert not p.is_symlink(),p
-        n=str(p.relative_to(d))
+        n=rel
         if p.is_file():files[n]=pin(p)
         else:
             assert p.is_dir(),p
@@ -77,7 +79,18 @@ def current_clearance():
         assert pin(O/n)=={k:q['inputs'][qn][k] for k in ['bytes','sha256','mode']}
     closed=load(A/'ROOT_FINAL_CLOSED_EVIDENCE.json')
     assert closed['status']=='ALL_CURRENT_SCIENTIFIC_AND_REVIEW_NAMESPACES_EXTERNALLY_BOUND'
-    for n,e in closed['namespaces'].items():assert inventory(A/n)==e,n
+    for n,e in closed['namespaces'].items():
+        # Only the preexisting third-party interpreter is outside the geometry
+        # scientific namespace. No mathematical or review artifact is excluded.
+        exclusions=e['excluded_roots']
+        assert exclusions==(['.runtime'] if n=='geometry' else []),n
+        assert inventory(A/n,exclusions)==e['inventory'],n
+    for n,e in closed['external_files'].items():assert pin(Path(n))==e,n
+    original=load(A/'snapshot_manifest.json')
+    assert original['head']==ORIGINAL_HEAD and len(original['files'])==22
+    for e in original['files']:
+        p=A/'snapshot'/e['path'];b=p.read_bytes()
+        assert len(b)==e['bytes'] and sha(b)==e['sha256']
     return c
 
 def queue_binding(cap,base,tree):
