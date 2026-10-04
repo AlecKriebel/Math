@@ -1,0 +1,60 @@
+--- current_preparation_family/prepare_current_packet.py
++++ current_execution_revision/prepare_current_packet.py
+@@ -120,8 +120,9 @@
+             require(re.fullmatch(r"[0-9a-f]{64}", value) is not None, "Explicit SHA256 required: " + key)
+     require(bool(args.root_support_manifest) == bool(args.root_support_manifest_sha256), "Optional support path/hash must be paired")
+     script = Path(__file__).resolve()
+-    require(script.parent.name == "current_preparation_family" and script.parent.parent.name == "pr38_2765", "Keep builder at its dedicated audit anchor")
++    require(script.parent.name == "current_execution_revision" and script.parent.parent.name == "pr38_2765", "Keep revised builder at its dedicated audit anchor")
+     audit, repo = script.parent.parent, script.parent.parent.parents[2]
++    preparation_prefix = script.parent.relative_to(audit).as_posix()
+     destination = audit / "reviewed_candidate"
+     require(git(repo, "branch", "--show-current").strip() == b"main", "Stay on main")
+     require(not destination.exists() and not destination.is_symlink(), "Never overwrite an existing candidate")
+@@ -258,7 +259,7 @@
+         for member in entries(manifest):
+             path = relative(member["path"])
+             require(path not in names and path != "ROOT_SUPPORT_MANIFEST.json", "Duplicate/self-included retention member")
+-            require(PurePosixPath(path).suffix in {".py", ".json", ".jsonl", ".stdout", ".stderr", ".patch", ".md", ".txt"} or PurePosixPath(path).name == ".gitignore", "Unsupported first-party retention capability: " + path)
++            require(PurePosixPath(path).suffix in {".py", ".json", ".jsonl", ".stdin", ".stdout", ".stderr", ".patch", ".md", ".txt"} or PurePosixPath(path).name == ".gitignore", "Unsupported first-party retention capability: " + path)
+             names.add(path)
+             data = bind(support_directory + "/" + path, "retained_actual_first_party_code_stream_receipt_failure_revision", member["sha256"])
+             require(len(data) == member.get("bytes", member.get("size")), "Retained evidence size differs")
+@@ -284,11 +285,19 @@
+         require(row["script_sha256"] in hashes, "Every actual outer program source must be retained")
+         for channel in ["stdout", "stderr"]:
+             artifact_record(row[channel])
++    original_stdin_names = set()
+     for row in root["actual_nested_program_runs"]:
+         if row.get("script"):
+             require(row["script"]["sha256"] in hashes, "Every actual nested program source must be retained")
+         for channel in ["stdout", "stderr"]:
+             artifact_record(row[channel])
++        if "stdin" in row:
++            stdin = artifact_record(row["stdin"])
++            require(row["outer_label"] == "current_measure_original_code_and_prose_controls" and row["argv"] == ["git", "hash-object", "--stdin"], "Only exact original-input Git stdin capability is authorized")
++            matched = [member for member in snapshot["files"] if stdin == original[member["path"]]]
++            require(matched and row["exit_code"] == 0 and artifact_record(row["stdout"]).strip() in {member["git_blob"].encode() for member in matched}, "Whole retained stdin input and returned Git blob must match immutable original source")
++            original_stdin_names.update(member["path"] for member in matched)
++    require(original_stdin_names == set(original), "Every original16 whole stdin input must be retained and checked")
+     for comparison in root["full_structured_receipt_comparisons"]:
+         artifact_record(comparison["actual"])
+         artifact_record(comparison["saved"], False)
+@@ -312,7 +321,7 @@
+     if args.root_support_manifest:
+         optional = retention_manifest(relative(args.root_support_manifest), args.root_support_manifest_sha256, "optional_additional_root_retention_manifest")
+     for path in regular_inventory(script.parent):
+-        bind("current_preparation_family/" + path, "static_builder_contract_and_closure_source")
++        bind(preparation_prefix + "/" + path, "static_builder_contract_and_closure_source")
+ 
+     queue_path = repo / "unsolved_math_prioritization/QUEUE.md"
+     queue_raw = queue_path.read_bytes()
+@@ -347,7 +356,7 @@
+     for revision, data in historical_states.items():
+         outputs["historical_native_state/" + revision + ".json"] = data
+     for name, record in dependencies.items():
+-        if name.startswith("current_preparation_family/"):
++        if name.startswith(preparation_prefix + "/"):
+             outputs["build/" + name.split("/", 1)[1]] = (audit / name).read_bytes()
+     summary = """# PR38 / 2765 / KP-2.17: partial reductions; complete target unsolved
+ 

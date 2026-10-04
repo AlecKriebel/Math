@@ -1,0 +1,6 @@
+# UTC research log
+
+- 2026-10-03T11:25:55.857281+00:00: source-first baseline sealed (40d1ee281889781f4ea5e1712ee72d236a1954e4bc7a6410dc86366d1935d3cd); independent primary source retrieval all seven expected hashes match; completion estimate 25%. Candidate mathematics and outputs unread. No Git mutation.
+- 2026-10-03T11:28:07.652753+00:00: independent mathematical verdict sealed (5098f7fbf2c3d35a471ce9cf105fb224510cf17b0432e4620b8d281d2c8fa49c); literal all-AF counterexample valid, physical-class chain valid under explicit hypotheses. Completion estimate 65%; verifier code and outputs remain unread.
+- 2026-10-03T11:34:44.149895+00:00: exact author/review/publication replays passed; every output JSON field inspected; 23 distinct named controls passed. Snapshot hashes verified for all 19 files. Completion estimate 95%. Failed QUEUE root-path assumption corrected and preserved in REPRODUCTION_VALIDATION.json; recoverable primary-PDF text extraction warning recorded.
+- 2026-10-03T11:34:44.149895+00:00: report completed with PASS, no mandatory mathematical fix, exact residual scope retained. Completion estimate 100% of assigned audit. No exact full-mass or historical-novelty certification. All own-root deliverables ready for explicit manifest; no Git mutation or external individual communication.

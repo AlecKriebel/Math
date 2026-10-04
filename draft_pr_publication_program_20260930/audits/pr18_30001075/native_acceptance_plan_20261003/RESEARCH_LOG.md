@@ -1,0 +1,2 @@
+2026-10-03T21:49:15.902323+00:00 — Read-only PR18 mapping/merge mechanism preparation; plan completion estimate10%. Original15/source custody retained.
+2026-10-03T21:49:20.302581+00:00 — Exact15 tree/custody identities and fresh PR metadata mapped; native target absent, queued0/5. Current priority decision resolves historical access hold; fixed package/DOI remain future. Foreign index preserved, proposed exclusive-window main mechanism documented. Plan preparation100%, actual native acceptance0%, new discovery0%. No live mutations.

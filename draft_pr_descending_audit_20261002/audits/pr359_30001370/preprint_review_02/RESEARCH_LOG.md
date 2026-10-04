@@ -1,0 +1,4 @@
+# Research log - independent whole-preprint review 02
+
+- 2026-10-03T23:30:03Z - Source intake observed and dedicated namespace created. Completion estimate: 5% of this independent audit. Strongest verified claim: the supplied bytes and source versions are identified by observed hashes. Exact gap: primary read, candidate-free plan, then whole submission review.
+- 2026-10-03T23:34:50Z - Primary-first baseline completed; full author text, including appendix/references, read; relevant PDF layouts and OWR contribution inspected. Completion estimate: 20% of the audit. Strongest verified claim: source trichotomy and open noncentral basins hold on all D, while author Proposition 4 only gives both boundaries on W0 intersect the canonical class; OWR leaves all-D equality conjectural. Exact gap: independently examine the released submission's claimed all-D mechanism and verify all artifacts. The checkpoint time is the observed initial sealing command time.

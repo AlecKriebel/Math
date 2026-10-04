@@ -1,0 +1,247 @@
+{
+  "checks": [
+    {
+      "evidence": null,
+      "name": "initial_live_exact_pins",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "negative_live_head_drift_rejected",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "negative_live_main_drift_rejected",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "negative_live_body_drift_rejected",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "negative_live_draft_drift_rejected",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "review_checkout_remains_main",
+      "pass": true
+    },
+    {
+      "evidence": "https://github.com/AlecKriebel/Math.git",
+      "name": "origin_repository_binding",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "head": "af92cfc40bbd781fd9a2367214745f6f53a0b12e",
+        "parents": "567c2e493854b32d0cd325ad96e4c5b69c9c1e1b 81185c796181151e49dcf7299a6567ad2abc9695",
+        "tree": "a5c0a7d1f9229935f56355a302f7dadb551d087c"
+      },
+      "name": "local_head_tree_parent_pins",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "virtual_merge_base_is_current_main",
+      "pass": true
+    },
+    {
+      "evidence": {
+        "mechanism": "base is an ancestor of head, so a merge into that pinned base fast-forwards to the exact head tree; no merge-tree write or object mutation is needed",
+        "tree": "a5c0a7d1f9229935f56355a302f7dadb551d087c"
+      },
+      "name": "virtual_merge_is_exact_head_tree",
+      "pass": true
+    },
+    {
+      "evidence": null,
+      "name": "literal_api_commit_tree_parents",
+      "pass": true
+    }
+  ],
+  "commands": {
+    "api_git_commit": {
+      "argv": [
+        "gh",
+        "api",
+        "-H",
+        "Cache-Control: no-cache",
+        "repos/AlecKriebel/Math/git/commits/af92cfc40bbd781fd9a2367214745f6f53a0b12e"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "97ed47d133dd443ed0c03d4ad8c004f86ac912c0f581bb53a0fe16425de0dced"
+    },
+    "base_is_ancestor": {
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "81185c796181151e49dcf7299a6567ad2abc9695",
+        "af92cfc40bbd781fd9a2367214745f6f53a0b12e"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "checkout_branch": {
+      "argv": [
+        "git",
+        "branch",
+        "--show-current"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01"
+    },
+    "initial_local_main": {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b6c3e2f06857838390dea8208e97866ad40b535bfdc51614e497a27f0825b173"
+    },
+    "initial_main": {
+      "argv": [
+        "gh",
+        "api",
+        "-H",
+        "Cache-Control: no-cache",
+        "repos/AlecKriebel/Math/git/ref/heads/main"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "e294a3e55138ae651b21e7e42b51d0741b7a4abebf6532cb72fd1837c452dcef"
+    },
+    "initial_pr": {
+      "argv": [
+        "gh",
+        "api",
+        "-H",
+        "Cache-Control: no-cache",
+        "repos/AlecKriebel/Math/pulls/370"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "bd4cd93b795242c63ad7c82572e3f91dca1a84265796e714c5813ebfcfe64f4d"
+    },
+    "initial_remote_refs": {
+      "argv": [
+        "git",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/heads/math/30004811-capacity-volume-wip"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "94c848f8a843e1dd91e4192e7631c73bac6758c4613146fe879fc6f941fe0ac9"
+    },
+    "local_head_metadata": {
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format={\"head\":\"%H\",\"tree\":\"%T\",\"parents\":\"%P\"}",
+        "af92cfc40bbd781fd9a2367214745f6f53a0b12e"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "19eebeb99062aa7bfe89790f5486513fdff0fb2c8a47d5cc4115cbc9ee95a395"
+    },
+    "merge_base": {
+      "argv": [
+        "git",
+        "merge-base",
+        "81185c796181151e49dcf7299a6567ad2abc9695",
+        "af92cfc40bbd781fd9a2367214745f6f53a0b12e"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "b6c3e2f06857838390dea8208e97866ad40b535bfdc51614e497a27f0825b173"
+    },
+    "origin_url": {
+      "argv": [
+        "git",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "returncode": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "35ad7785edda4489518c0b01f58f1bcb3155e19dc7c3b3471c18288984c32c43"
+    }
+  },
+  "completed_utc": "2026-10-03T12:39:37.424913+00:00",
+  "failure": "OSError(28, 'No space left on device')",
+  "initial_live_projection": {
+    "base": "81185c796181151e49dcf7299a6567ad2abc9695",
+    "body_sha256": "8f4ed19165b1d32c5f89f0359f5a8c6e3d0259e1f847bf4ad59d4ec703dfeca3",
+    "draft": false,
+    "head": "af92cfc40bbd781fd9a2367214745f6f53a0b12e",
+    "local_main": "81185c796181151e49dcf7299a6567ad2abc9695",
+    "main": "81185c796181151e49dcf7299a6567ad2abc9695",
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "merged": false,
+    "pr": 370,
+    "remote": {
+      "refs/heads/main": "81185c796181151e49dcf7299a6567ad2abc9695",
+      "refs/heads/math/30004811-capacity-volume-wip": "af92cfc40bbd781fd9a2367214745f6f53a0b12e"
+    },
+    "state": "open",
+    "title": "30004811: credited capacity\u2013volume mass equality and literal scope correction (1/5)",
+    "updated_at": "2026-10-03T12:19:08Z"
+  },
+  "label": "root_replay_01",
+  "pins": {
+    "author_parent": "1901d52ea8b47b4dd3c843cb2e02be2c520da7cb",
+    "base": "81185c796181151e49dcf7299a6567ad2abc9695",
+    "body_sha256": "8f4ed19165b1d32c5f89f0359f5a8c6e3d0259e1f847bf4ad59d4ec703dfeca3",
+    "branch": "math/30004811-capacity-volume-wip",
+    "families": {
+      "asymptotic_normalization_review": {
+        "manifest_path": "draft_pr_descending_audit_20261002/audits/pr370_30004811/asymptotic_normalization_review/PUBLIC_MANIFEST.json",
+        "manifest_sha256": "4706b91e204b5593d9eb81307ad483547d2ea79af9e8ae2dba3a98848de8c815"
+      },
+      "clean_final_adversary": {
+        "manifest_path": "draft_pr_descending_audit_20261002/audits/pr370_30004811/clean_final_adversary/PUBLIC_MANIFEST.json",
+        "manifest_sha256": "22edd0d732aa3dfc7a54717c518c6628f5799a4cd17342e9d45008e4c8ad0aca"
+      },
+      "priority_hypotheses_review": {
+        "manifest_path": "draft_pr_descending_audit_20261002/audits/pr370_30004811/priority_hypotheses_review/PUBLIC_MANIFEST.json",
+        "manifest_sha256": "a7330247610505b2ccbf909061a19dd2cb11dcbc95d99234a7ece963a31b3c02"
+      }
+    },
+    "head": "af92cfc40bbd781fd9a2367214745f6f53a0b12e",
+    "original_head": "567c2e493854b32d0cd325ad96e4c5b69c9c1e1b",
+    "pr": 370,
+    "prior_current_main": "6466f4a301c94d513435401bf772c285bc7b4c42",
+    "prior_current_queue_sha256": "814ec3de9614a9cdb602794cfd39b3b3980fc9fcb3ad340a9c356597fe92c2d9",
+    "queue_cells": [
+      8,
+      9
+    ],
+    "queue_line": 410,
+    "queue_path": "unsolved_math_prioritization/QUEUE.md",
+    "queue_status": "already_solved",
+    "queue_turns": "1/5",
+    "repaired_queue_sha256": "c191748daab0e8fda7e634f7c2cbb1821098105a136036452d559fd3945f4871",
+    "repository": "AlecKriebel/Math",
+    "tree": "a5c0a7d1f9229935f56355a302f7dadb551d087c"
+  },
+  "pins_file_sha256": "ca01d39c4cab56f11d81bba884a115305a13020b2ec0609709a0b338a6b456d7",
+  "private_run_relative": "private/root_replay_01",
+  "program_sha256": "da6d0ac1b33698612337f2018d088309546d34bcbb6709cb8e965e5208eb87f2",
+  "reproduction": {},
+  "sources": [],
+  "started_utc": "2026-10-03T12:39:35.112699+00:00",
+  "status": "REJECTED"
+}

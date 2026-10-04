@@ -1,0 +1,131 @@
+{
+  "created_utc": "2026-10-04T01:12:39.823147+00:00",
+  "scope": "Bounded priority audit; source first, candidate after release, primary proof comparisons, own published metadata only. No universal novelty certificate.",
+  "steps": [
+    {
+      "step": "Original source gate",
+      "status": "complete",
+      "artifacts": [
+        "source_first_baseline.md",
+        "source_first_gate.json",
+        "candidate_release.json"
+      ]
+    },
+    {
+      "step": "Exact candidate mechanism and immutable16binding",
+      "status": "complete",
+      "artifacts": [
+        "candidate_pins.json"
+      ]
+    },
+    {
+      "step": "Primary source/version/access/mechanism comparison",
+      "status": "complete bounded scope",
+      "artifacts": [
+        "REPORT.md",
+        "sources_private/inspection_inventory.json",
+        "retrieval_inventory.jsonl",
+        "query_log.jsonl"
+      ],
+      "query_rows": 53
+    },
+    {
+      "step": "Independent equivalent formulation controls",
+      "status": "Complete explicit comparison execution; saved native evidence, no implicit replay in default verifier",
+      "artifacts": [
+        "mechanism_comparison.md",
+        "comparison_check.py",
+        "comparison_preexecution_pins.json",
+        "comparison.stdout",
+        "comparison.stderr",
+        "comparison_receipt.json",
+        "verification_private/run_comparison.py",
+        "verification_private/comparison_preexecution_private.json",
+        "verification_private/comparison_receipt_private.json"
+      ],
+      "coverage": "Every involution of 3 letters, every word of lengths 1\u20137, every p <= length; numeric thresholds p,q <= 50. Algebra separately documented.",
+      "finite_controls_are_not_universal_proof_or_priority_certificate": true
+    },
+    {
+      "step": "Own published duplication metadata",
+      "status": "bounded complete with author-index403gap",
+      "artifacts": [
+        "metadata_private/verified_recent_records.json",
+        "metadata_private/github_release_metadata.json",
+        "metadata_private/repository_alias_scan.json"
+      ]
+    },
+    {
+      "step": "Curated inventories and revised native evidence-only checks",
+      "status": "Prepared for one captured full/public execution; receipts supply actual executed status",
+      "artifacts": [
+        "PUBLIC_MANIFEST.json",
+        "verification_private/PRIVATE_MANIFEST.json",
+        "verify_priority.py",
+        "verification_private/run_integrity.py",
+        "verification_private/integrity_runs/full.receipt.json",
+        "verification_private/integrity_runs/public.receipt.json"
+      ],
+      "historical_version": "Version1 verifier and genuine original streams/receipts remain unchanged under verification_private/historical_v1/preservation_index.json and its recorded paths."
+    },
+    {
+      "step": "Adversarial root read then single seal",
+      "status": "awaiting explicit root approval",
+      "rule": "Seal once only after root reads concrete artifacts; no post-closure writes. No Git writes by auditor."
+    }
+  ],
+  "verification_commands": [
+    [
+      "python3",
+      "verify_priority.py",
+      "--include-external"
+    ],
+    [
+      "python3",
+      "verify_priority.py",
+      "--public-only"
+    ]
+  ],
+  "read_only_verifier": "Version2 default full/public checks only inventories, pins and saved comparison/native evidence; no network, subprocesses, filesystem writes or mathematical comparison loops. Explicit comparison_check.py is separate. Private orchestration preserves exact code, argv, pre-execution pins, stdout/stderr and complete before/after priority-folder inventories.",
+  "public_artifacts": [
+    "AUDIT_PLAN.json",
+    "PUBLIC_MANIFEST.json",
+    "REPORT.md",
+    "candidate_pins.json",
+    "candidate_release.json",
+    "comparison.stderr",
+    "comparison.stdout",
+    "comparison_check.py",
+    "comparison_preexecution_pins.json",
+    "comparison_receipt.json",
+    "mechanism_comparison.md",
+    "priority_evidence.json",
+    "query_log.jsonl",
+    "research_log.md",
+    "retrieval_inventory.jsonl",
+    "source_first_baseline.md",
+    "source_first_gate.json",
+    "verify_priority.py"
+  ],
+  "private_artifacts": "All sources_private/, search_private/, metadata_private/, verification_private/ directories; raw copyrighted PDFs/extracted text/renders and web response payloads excluded from public package.",
+  "native_capture_limits": "All 53 exact query inputs are dated with explicit retrospective execution windows. The first 16 source-stage and intermediate 16 released-stage query responses remain tool-history outputs, not falsely claimed saved native payloads. Six later batches (21 queries) are saved as exact returned tool objects. Retrieval_inventory preserves actual URL/UTC/error/byte/hash outcomes; extraction/OCR limits and incomplete proof inspection levels are explicit. Original version1 native captures are preserved unchanged, including their former combined comparison/integrity behavior and former private-directory omission.",
+  "revised_utc": "2026-10-04T01:24:38.092488+00:00",
+  "verification_version": 2,
+  "explicit_comparison_command": [
+    "python3",
+    "comparison_check.py"
+  ],
+  "private_directories": [
+    "sources_private",
+    "search_private",
+    "metadata_private",
+    "verification_private"
+  ],
+  "public_provenance_omissions": [
+    "Raw copyrighted PDF/text/render files and access payloads",
+    "Saved native web response payloads and publication metadata/status receipts",
+    "Private orchestration, full-tree inventories and revised native integrity streams",
+    "Optional external original source and candidate16 file readbacks"
+  ],
+  "manifest_protocol": "PUBLIC_MANIFEST.json pins every explicitly curated public file except itself; the terminal closure pins that manifest. A separate PRIVATE_MANIFEST.json pins every static private artifact except itself and six named terminal full/public integrity streams/receipts. Those terminal native captures are internally checked when available and all are pinned in the final closure; excluding them from the pre-run static manifest avoids a self-reference cycle. Exact public filenames and exact static private filenames are checked, including rejection of extra public or unplanned private files. Public-only never requires verification_private. No seal until explicit root approval; closure is the final write."
+}

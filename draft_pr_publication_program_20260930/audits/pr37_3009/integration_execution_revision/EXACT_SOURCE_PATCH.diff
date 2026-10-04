@@ -1,0 +1,506 @@
+--- integration_preparation_family/pr37_guards.py
++++ integration_execution_revision/pr37_guards.py
+@@ -43,12 +43,29 @@
+     'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/commands.tsv',
+     'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/full_transcript.log',
+ }
+-SCRATCH = {'tmp', '__pycache__', 'private_tmp', 'private_sources', 'foreign_sources', 'foreign_downloads'}
++SCRATCH = {'tmp', '__pycache__', 'private_tmp', 'private_sources', 'foreign_sources', 'foreign_downloads', 'primary'}
+ 
+ 
+ def require(condition, message):
+     if not condition:
+         raise ValueError(message)
++
++
++def strict_equal(actual, expected):
++    """JSON equality without Python's bool/int coercion, recursively."""
++    if type(actual) is not type(expected):
++        return False
++    if isinstance(expected, dict):
++        return actual.keys() == expected.keys() and all(strict_equal(actual[key], value) for key, value in expected.items())
++    if isinstance(expected, list):
++        return len(actual) == len(expected) and all(strict_equal(left, right) for left, right in zip(actual, expected))
++    return actual == expected
++
++
++def required_values(actual, expected, context):
++    require(type(actual) is dict, context + ': require JSON object')
++    for key, value in expected.items():
++        require(key in actual and strict_equal(actual[key], value), context + ': missing/wrong type/value for ' + key)
+ 
+ 
+ def sha(data):
+@@ -130,8 +147,10 @@
+     return path
+ 
+ 
+-def regular(base, name):
+-    relative(name)
++def regular(base, name, foreign=False):
++    path_name = relative(name, scratch=foreign)
++    if foreign:
++        require(len(path_name.parts) == 2 and path_name.parts[0] == 'primary' and path_name.suffix in {'.pdf', '.txt'}, 'Only exact root primary PDF/text may be foreign')
+     base = Path(base)
+     path = base / name
+     require(base.is_dir() and not base.is_symlink(), 'Unsafe package root')
+@@ -144,12 +163,14 @@
+     return path
+ 
+ 
+-def rows(value):
++def rows(value, foreign=False):
+     require(isinstance(value, list), 'Binding rows must be explicit ordered list')
+     names = []
+     for row in value:
+         require(isinstance(row, dict), 'Malformed binding row')
+-        relative(row['path'])
++        path = relative(row['path'], scratch=foreign)
++        if foreign:
++            require(len(path.parts) == 2 and path.parts[0] == 'primary' and path.suffix in {'.pdf', '.txt'}, 'Foreign binding must be root primary PDF/text')
+         digest(row['sha256'])
+         require(type(row['bytes']) is int and row['bytes'] >= 0, 'Invalid byte count')
+         names.append(row['path'])
+@@ -157,24 +178,34 @@
+     return value
+ 
+ 
+-def check_rows(base, value):
+-    for row in rows(value):
+-        raw = regular(base, row['path']).read_bytes()
++def check_rows(base, value, foreign=False):
++    for row in rows(value, foreign):
++        raw = regular(base, row['path'], foreign).read_bytes()
+         require(len(raw) == row['bytes'] and sha(raw) == row['sha256'], 'Bound member changed: ' + row['path'])
+ 
+ 
+-def inventory(base, exclusions=()):
++def inventory(base, exclusions=(), foreign_members=()):
+     """Complete recursive file/directory closure; canonical has no exclusions."""
+     base = Path(base)
+     require(base.is_dir() and not base.is_symlink(), 'Unsafe closure root')
+     allowed = set(exclusions)
+     require(allowed <= {'tmp', '__pycache__'}, 'Only exact whole-family scratch components can be qualified')
++    foreign = {row['path'] for row in rows(list(foreign_members), foreign=True)}
+     files, directories = set(), set()
+     for path in base.rglob('*'):
+         name = str(path.relative_to(base))
+-        parts = set(PurePosixPath(name).parts)
++        path_name = PurePosixPath(name)
++        parts = set(path_name.parts)
+         # Even ignored scratch may not redirect traversal through a symlink.
+         require(not path.is_symlink(), 'Symlink in recursive closure: ' + name)
++        if 'primary' in path_name.parts:
++            require(name == 'primary' and path.is_dir() or name in foreign and path.is_file(), 'Unqualified primary entry: ' + name)
++            if name == 'primary':
++                require(foreign, 'Unqualified foreign primary directory')
++                directories.add(name)
++            else:
++                files.add(name)
++            continue
+         if parts & allowed:
+             continue
+         relative(name)
+@@ -186,9 +217,9 @@
+     return files, directories
+ 
+ 
+-def exact_closure(base, expected, exclusions=()):
+-    expected = set(expected)
+-    actual, directories = inventory(base, exclusions)
++def exact_closure(base, expected, exclusions=(), foreign_members=()):
++    expected = set(expected) | {row['path'] for row in foreign_members}
++    actual, directories = inventory(base, exclusions, foreign_members)
+     require(actual == expected, 'Complete recursive file membership differs: ' + str(sorted(actual ^ expected)))
+     parents = {str(parent) for name in expected for parent in PurePosixPath(name).parents if str(parent) != '.'}
+     require(directories == parents, 'Extra/missing recursive directories: ' + str(sorted(directories ^ parents)))
+@@ -211,20 +242,24 @@
+         require(len(value) == count, 'Manifest count differs')
+     for key in ['files_count', 'member_count']:
+         if key in obj:
+-            require(obj[key] == len(value), 'Declared manifest count differs')
+-    exclusions, malformed = [], {}
++            require(type(obj[key]) is int and obj[key] == len(value), 'Declared manifest count/type differs')
++    exclusions, malformed, foreign = [], {}, []
+     if scope is not None:
+         require(base.resolve() == (A / 'whole_current_source_first_family').resolve(), 'Whole qualification restricted to exact PR37 whole family')
+-        require(scope['authored_members'] == [{'path': row['path'], 'bytes': row['bytes'], 'sha256': row['sha256']} for row in value], 'Reviewed first-party authored member bindings differ')
++        require(strict_equal(scope['authored_members'], [{'path': row['path'], 'bytes': row['bytes'], 'sha256': row['sha256']} for row in value]), 'Reviewed first-party authored member bindings differ')
+         exclusions = scope['scratch_components_excluded']
+-        require(isinstance(exclusions, list) and len(exclusions) == len(set(exclusions)) and set(exclusions) <= {'tmp', '__pycache__'}, 'No arbitrary whole scratch exclusion')
+-        require(obj.get('foreign_scratch_excluded', []) == [name + '/' for name in exclusions], 'Manifest/scope exact scratch exclusions differ')
++        required_values(obj, {'schema': 'strict_recursive_self_excluding_first_party_v1', 'self_excluded': ['FIRST_PARTY_MANIFEST.json'], 'foreign_excluded_prefixes': ['primary/'], 'bytecode_excluded_component': '__pycache__'}, 'Actual closed whole manifest')
++        require(path.name == 'FIRST_PARTY_MANIFEST.json', 'Require actual whole manifest filename')
++        required_values(scope, {'scratch_components_excluded': ['__pycache__'], 'foreign_excluded_prefixes': ['primary/']}, 'Exact whole exclusions')
++        require('foreign_scratch_excluded' not in obj, 'Do not invent alternate exclusions for actual whole schema')
++        foreign = whole_foreign_members(base, scope, value)
+         exceptions = rows(scope['malformed_json_exceptions'])
+         malformed = {row['path']: row for row in exceptions}
+         require(set(malformed) <= {row['path'] for row in value}, 'Malformed exceptions must be reviewed authored members')
+         require(all(PurePosixPath(name).suffix == '.json' for name in malformed), 'Only exact malformed JSON fixtures may be qualified')
+     else:
+         require(obj.get('foreign_scratch_excluded', []) == [], 'Current/canonical permits zero scratch exclusions')
++        require(obj.get('foreign_excluded_prefixes', []) == [] and obj.get('bytecode_excluded_component') is None, 'Current/canonical permits no foreign/bytecode exclusions')
+     check_rows(base, value)
+     for row in value:
+         data = (base / row['path']).read_bytes()
+@@ -246,8 +281,39 @@
+             require(not data or data.endswith(b'\n'), 'Incomplete JSONL member')
+             for line in data.splitlines():
+                 json.loads(line)
+-    exact_closure(base, {row['path'] for row in value} | {path.name}, exclusions)
++    exact_closure(base, {row['path'] for row in value} | {path.name}, exclusions, foreign)
+     return value
++
++
++def whole_foreign_members(base, scope, authored):
++    """Imported PDFs/text are individually bound, never first-party evidence."""
++    provenance_names = {'SOURCE_AND_READ_COVERAGE.json', 'INITIAL_SOURCE_ACQUISITION_TOOL_BODY.txt', 'fetch_primary_supplement.py'}
++    provenance = [row for row in authored if row['path'] in provenance_names or row['path'].startswith('receipts/')]
++    require(provenance_names <= {row['path'] for row in provenance}, 'Whole acquisition/read provenance absent')
++    require(strict_equal(scope['foreign_inventory_sources'], provenance), 'Complete authored acquisition/read receipt bindings differ')
++    check_rows(base, provenance)
++    coverage = load(base / 'SOURCE_AND_READ_COVERAGE.json')
++    sources = coverage['sources']
++    require(type(sources) is list and sources, 'Actual source/read PDF inventory required')
++    pdfs = []
++    for source in sources:
++        required_values(source, {'foreign_import': True}, 'Imported PDF source qualification')
++        pin = {key: source[key] for key in ['path', 'bytes', 'sha256']}
++        rows([pin], foreign=True)
++        require(strict_equal(source, {**pin, 'foreign_import': True}), 'Actual read coverage PDF entry shape differs')
++        require(PurePosixPath(pin['path']).suffix == '.pdf', 'Coverage source must be exact PDF')
++        pdfs.append(pin)
++    require({row['path'] for row in pdfs} == {'primary/' + name + '.pdf' for name in ['boronski_v1', 'hamilton1954', 'k3', 'kolev_v3', 'pardon_v3']} and len(pdfs) == 5, 'Only actual five imported primary PDFs qualified')
++    foreign = rows(scope['foreign_members'], foreign=True)
++    require([row['path'] for row in foreign] == sorted({row['path'] for row in pdfs} | {str(PurePosixPath(row['path']).with_suffix('.txt')) for row in pdfs}), 'Full exact root primary PDF/text inventory required')
++    foreign_by_path = {row['path']: row for row in foreign}
++    for pdf in pdfs:
++        require(strict_equal(foreign_by_path[pdf['path']], pdf), 'Foreign PDF differs from actual read coverage')
++        receipt_name = 'receipts/' + PurePosixPath(pdf['path']).stem + '.fetch.json'
++        require(receipt_name in {row['path'] for row in provenance}, 'Actual fetch receipt omitted from provenance')
++        required_values(load(base / receipt_name), {'bytes': pdf['bytes'], 'sha256': pdf['sha256'], 'http_status': 200, 'extract_exit': 0}, 'Actual imported PDF fetch/extraction')
++    check_rows(base, foreign, foreign=True)
++    return foreign
+ 
+ 
+ def add_gate_args(parser):
+@@ -276,6 +342,40 @@
+     obj = json.loads(ledger)
+     require(obj['problem_id'] == int(ID) and obj['problem_number'] == CODE and obj['substantive_turns_used'] == 1 and obj['turn_limit'] == 5 and obj['outcome'] == 'unsolved', 'Native authored budget changed')
+     require([z['turn'] for z in obj['responses']] == [1] and obj['responses'][0]['artifact'] == 'PARTIAL.md', 'Authored response changed')
++
++
++def acceptance_invariants(acceptance, pins, pre):
++    """Explicit accepted scope/budget/runtime; matching rehashed copies cannot bless it."""
++    required = {'schema': 'pr37-accepted-current-partial/v1', 'pr': PR, 'id': int(ID), 'problem_id': int(ID), 'problem_number': CODE,
++                'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
++                'original_head': HEAD, 'original_base': ORIGINAL_BASE, 'merge_parents': [pre['main_before'], HEAD], 'remote_state': 'MERGED', 'remote_isDraft': False,
++                'canonical_scientific_artifact_sha256': PARTIAL_SHA, 'original_partial_sha256': next(row['sha256'] for row in load(A / 'snapshot_manifest.json')['files'] if row['path'] == 'PARTIAL.md'),
++                'source_record_sha256': SOURCE_SHA, 'root_pinned_problem_sha256': PINNED_SOURCE_SHA, 'original_ledger_sha256': LEDGER_SHA,
++                'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'substantive_attempts_used': 1, 'substantive_attempt_limit': 5, 'verification_attempts_added': 0,
++                'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False, 'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
++                'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True,
++                'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json',
++                'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
++    required_values(acceptance, {**required, **pins}, 'Accepted PR37 invariant')
++    for key in ['merge_commit', 'merge_tree']:
++        require(type(acceptance.get(key)) is str and re.fullmatch(r'[0-9a-f]{40}', acceptance[key]), 'Accepted real merge binding absent/invalid: ' + key)
++    require(type(acceptance.get('merged_at')) is str and acceptance['merged_at'], 'Accepted actual merge date absent/invalid')
++    source_and_ledger(K)
++    for name in ['readiness.json', 'status.json']:
++        value = load(K / name)
++        frozen = load(C / name)
++        required_values(value, {'id': int(ID), 'code': CODE, 'pr': PR, 'status': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved',
++                               'current_gate': 'PASS_NEW_complete_source_first_and_actual_root_reproduction', 'merge_commit': acceptance['merge_commit'], 'merge_tree': acceptance['merge_tree'],
++                               'remote_merged_at': acceptance['merged_at'], 'current_workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
++                               'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'full_problem_solved': False,
++                               'positive_novelty_claim': False, 'paper_or_new_doi_or_tracker': False, 'source_record_sha256': SOURCE_SHA,
++                               'root_pinned_problem_sha256': PINNED_SOURCE_SHA, 'original_turns_sha256': LEDGER_SHA, 'current_partial_sha256': PARTIAL_SHA,
++                               'native_queue_lifecycle_claimed': False, 'native_historical_readiness_or_proof_event_claimed': False,
++                               'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True,
++                               'budget': frozen['budget'], **pins}, 'Accepted administration ' + name)
++        required_values(value['budget'], {'original_substantive_attempts': 1, 'used_substantive_attempts': 1, 'maximum_substantive_attempts': 5,
++                                         'cumulative_attempts': '1/5', 'new_substantive_attempts': 0, 'verification_attempts': 0,
++                                         'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_only': True}, 'Original archival budget ' + name)
+ 
+ 
+ def gates(args):
+@@ -293,8 +393,8 @@
+         require(sha(path.read_bytes()) == digest(getattr(args, name + '_sha256')), 'Explicit final gate pin changed: ' + name)
+         paths[name] = path
+     scope = load(paths['whole_scope_contract'])
+-    require(scope['schema'] == 'pr37-root-reviewed-final-whole-scope/v1' and scope['pr'] == PR and scope['problem_id'] == int(ID), 'Wrong final whole contract')
+-    require(scope['whole_manifest_sha256'] == args.whole_manifest_sha256 and scope['root_final_receipt_sha256'] == args.root_final_receipt_sha256, 'Contract/final gate pins differ')
++    required_values(scope, {'schema': 'pr37-root-reviewed-final-whole-scope/v1', 'pr': PR, 'problem_id': int(ID)}, 'Final whole contract')
++    required_values(scope, {'whole_manifest_sha256': args.whole_manifest_sha256, 'root_final_receipt_sha256': args.root_final_receipt_sha256}, 'Contract/final gate pins')
+     whole = manifest(paths['whole_manifest'].parent, paths['whole_manifest'], args.whole_manifest_sha256, scope=scope)
+     root = load(paths['root_final_receipt'])
+     required = {'schema': 'pr37-actual-final-whole-reproduction/v1', 'status': 'PASS', 'pr': PR, 'problem_id': int(ID), 'original_head': HEAD,
+@@ -303,22 +403,22 @@
+                 'mandatory_corrections': [], 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
+                 'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'verification_attempts_added': 0,
+                 'paper_or_new_doi_or_tracker': False, 'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None}
+-    require(all(root.get(key) == value for key, value in required.items()), 'Root final receipt scope missing; never fabricate pass fields')
++    required_values(root, required, 'Root final receipt; never fabricate pass fields')
+     replay = rows(scope['root_replay_bindings'])
+-    require(replay and root['root_replay_bindings'] == replay, 'Bind every actual root replay authored source/receipt/stream')
++    require(replay and strict_equal(root['root_replay_bindings'], replay), 'Bind every actual root replay authored source/receipt/stream')
+     for row in replay:
+         bound_repository(row)
+     wrapper = scope['root_wrapper']
+-    require(wrapper in replay and root['root_wrapper'] == wrapper, 'Root actual wrapper source not explicitly pinned')
++    require(wrapper in replay and strict_equal(root['root_wrapper'], wrapper), 'Root actual wrapper source not explicitly pinned')
+     bound_repository(wrapper)
+     expected_snapshots = {'reviewed_candidate': [{'path': z['path'], 'bytes': z['bytes'], 'sha256': z['sha256']} for z in frozen] + [{'path': 'MANIFEST.json', 'bytes': len((C / 'MANIFEST.json').read_bytes()), 'sha256': CURRENT_SHA}],
+                           'dependencies': dependency['files'], 'whole_authored_members': scope['authored_members']}
+-    require(root['bindings_before'] == expected_snapshots == root['bindings_after'], 'Require every current97/dependency443/final authored member exact before/after actual replay')
++    require(strict_equal(root['bindings_before'], expected_snapshots) and strict_equal(root['bindings_after'], expected_snapshots), 'Require every current97/dependency443/final authored member exact before/after actual replay')
+     executions = root['actual_outer_executions']
+     require(isinstance(executions, list) and executions and [z['label'] for z in executions] == scope['required_outer_execution_labels'], 'All actual outer execution labels required')
+     require(len({z['label'] for z in executions}) == len(executions), 'Duplicate outer execution')
+     replay_by_path = {z['path']: z for z in replay}
+-    require(root['actual_outer_executions'] == scope['actual_outer_execution_specs'], 'Root-reviewed entire actual outer execution specs differ')
++    require(strict_equal(root['actual_outer_executions'], scope['actual_outer_execution_specs']), 'Root-reviewed entire actual outer execution specs differ')
+     for execution in executions:
+         require(execution['actual_execution'] is True and type(execution['returncode']) is int and execution['returncode'] == 0, 'Actual outer execution must return0')
+         require(isinstance(execution['argv'], list) and execution['argv'] and execution['started_at_utc'] and execution['finished_at_utc'], 'Recorded actual command/time required')
+@@ -328,15 +428,15 @@
+             require(replay_by_path.get(pin['path']) == pin, 'Execution stream/receipt omitted from final replay closure')
+             bound_repository(pin)
+         receipt = json.loads(bound_repository(execution['receipt']))
+-        require(receipt == execution['parsed_receipt'], 'Compare complete parsed actual outer receipt')
++        require(strict_equal(receipt, execution['parsed_receipt']), 'Compare complete parsed actual outer receipt')
+     comparisons = root['structured_comparisons']
+     require(isinstance(comparisons, list) and comparisons and [z['label'] for z in comparisons] == scope['required_comparison_labels'], 'Complete required parsed comparisons missing')
+     require(len({z['label'] for z in comparisons}) == len(comparisons), 'Duplicate comparison label')
+-    require(comparisons == scope['structured_comparison_specs'], 'Root-reviewed full comparison specifications differ')
++    require(strict_equal(comparisons, scope['structured_comparison_specs']), 'Root-reviewed full comparison specifications differ')
+     coverage = scope['required_comparison_coverage']
+     require(set(coverage) == {'original_complete_controls31', 'independent_complete_controls8462', 'all_three_closed_families', 'whole_positive_and_mutant_receipts'}, 'Require complete original/independent/closed-family/whole comparison coverage')
+     require(all(isinstance(labels, list) and labels and set(labels) <= {z['label'] for z in comparisons} for labels in coverage.values()), 'Every complete comparison coverage group needs exact labels')
+-    require(root['comparison_coverage'] == coverage, 'Actual complete comparison coverage differs')
++    require(strict_equal(root['comparison_coverage'], coverage), 'Actual complete comparison coverage differs')
+     reviewed_bindings = dict(replay_by_path)
+     for base, values in [(C, frozen), (A, dependency['files']), (paths['whole_manifest'].parent, whole)]:
+         for pin in values:
+@@ -350,9 +450,9 @@
+         actual, expected = bound_repository(actual_pin), bound_repository(expected_pin)
+         kind = comparison['kind']
+         if kind == 'full_parsed_json':
+-            require(json.loads(actual) == json.loads(expected), 'Complete JSON differs: ' + comparison['label'])
++            require(strict_equal(json.loads(actual), json.loads(expected)), 'Complete JSON differs: ' + comparison['label'])
+         elif kind == 'full_parsed_jsonl':
+-            require([json.loads(x) for x in actual.splitlines()] == [json.loads(x) for x in expected.splitlines()], 'Complete JSONL differs')
++            require(strict_equal([json.loads(x) for x in actual.splitlines()], [json.loads(x) for x in expected.splitlines()]), 'Complete JSONL differs')
+         elif kind == 'byte_exact':
+             require(actual == expected, 'Complete byte comparison differs')
+         else:
+@@ -387,6 +487,8 @@
+     return frozen, {'reviewed_candidate_manifest_sha256': CURRENT_SHA, 'current_proof_dependencies_sha256': DEPENDENCIES_SHA,
+                     **{key: getattr(args, key) for key in ['whole_manifest', 'whole_manifest_sha256', 'root_final_receipt', 'root_final_receipt_sha256', 'whole_scope_contract', 'whole_scope_contract_sha256']},
+                     'root_wrapper': wrapper, 'whole_scratch_components_excluded': scope['scratch_components_excluded'],
++                    'whole_foreign_excluded_prefixes': scope['foreign_excluded_prefixes'], 'whole_foreign_members': scope['foreign_members'],
++                    'whole_foreign_inventory_sources': scope['foreign_inventory_sources'],
+                     'whole_malformed_json_exceptions': scope['malformed_json_exceptions']}
+ 
+ 
+@@ -425,7 +527,13 @@
+     for name in sorted(FOREIGN_TRACKED_EXCLUSIONS):
+         require(git_bytes('ls-files', '--error-unmatch', '--', name).decode().strip() == name, 'Foreign exception must already be tracked')
+         raw = regular(R, name).read_bytes()
+-        records.append({'path': name, 'bytes': len(raw), 'sha256': sha(raw), 'head_sha256': sha(git_bytes('show', 'HEAD:' + name)), 'dirty_at_preflight': name in dirty, 'integration_and_checkpoint_excluded': True})
++        entries = [entry for entry in git_bytes('ls-tree', '-z', 'HEAD', '--', name).decode().split('\0') if entry]
++        require(len(entries) == 1, 'Foreign HEAD tree entry must be unique')
++        fields, literal = entries[0].split('\t', 1)
++        mode, kind, blob = fields.split()
++        require(literal == name and kind == 'blob' and mode in {'100644', '100755'}, 'Foreign HEAD entry must be exact regular blob')
++        records.append({'path': name, 'bytes': len(raw), 'sha256': sha(raw), 'head_sha256': sha(git_bytes('show', 'HEAD:' + name)), 'head_mode': mode, 'head_blob': blob,
++                        'index_mode': mode, 'index_blob': blob, 'dirty_at_preflight': name in dirty, 'integration_and_checkpoint_excluded': True})
+     foreign_tracked_unchanged({'foreign_tracked_exclusions': records})
+     return records
+ 
+@@ -437,11 +545,13 @@
+         raw = regular(R, row['path']).read_bytes()
+         require(row['integration_and_checkpoint_excluded'] is True and len(raw) == row['bytes'] and sha(raw) == row['sha256'], 'Foreign writer changed bytes; inspect, never checkpoint or overwrite')
+         require(sha(git_bytes('show', 'HEAD:' + row['path'])) == row['head_sha256'], 'Foreign HEAD bytes accidentally committed')
++        head_entries = [entry for entry in git_bytes('ls-tree', '-z', 'HEAD', '--', row['path']).decode().split('\0') if entry]
++        require(len(head_entries) == 1 and head_entries[0] == row['head_mode'] + ' blob ' + row['head_blob'] + '\t' + row['path'], 'Foreign exact HEAD mode/blob changed')
+         stages = [z for z in git_bytes('ls-files', '--stage', '-z', '--', row['path']).decode().split('\0') if z]
+         require(len(stages) == 1, 'Foreign index conflicted/ambiguous')
+         fields, name = stages[0].split('\t', 1)
+         mode, blob, stage = fields.split()
+-        require(name == row['path'] and stage == '0' and mode in {'100644', '100755'} and sha(git_bytes('show', ':' + name)) == row['head_sha256'], 'Foreign dirty bytes staged/index mode changed')
++        require(name == row['path'] and stage == '0' and mode == row['index_mode'] == row['head_mode'] and blob == row['index_blob'] == row['head_blob'] and sha(git_bytes('show', ':' + name)) == row['head_sha256'], 'Foreign dirty bytes staged/exact index mode/blob changed')
+ 
+ 
+ def binding(path):
+@@ -497,6 +607,8 @@
+     foreign_tracked_unchanged(pre)
+     for row in pre['foreign_tracked_exclusions']:
+         require(sha(git_bytes('show', merge + ':' + row['path'])) == row['head_sha256'], 'Real merge committed foreign dirty bytes')
++        entries = [entry for entry in git_bytes('ls-tree', '-z', merge, '--', row['path']).decode().split('\0') if entry]
++        require(entries == [row['head_mode'] + ' blob ' + row['head_blob'] + '\t' + row['path']], 'Real merge changed exact foreign mode/blob')
+     # A full-tree diff whitelist prevents unrelated tracked or untracked files
+     # being swept into this merge by broad staging, even outside canonical scope.
+     changed = set(git_bytes('diff-tree', '-r', '--no-commit-id', '--name-only', '-z', pre['main_before'], merge).decode().split('\0')) - {''}
+--- integration_preparation_family/integrate_reviewed_partial.py
++++ integration_execution_revision/integrate_reviewed_partial.py
+@@ -210,13 +210,15 @@
+         value.update(status='unsolved_accepted_partial_merged', remote_acceptance='MERGED_exact_original_head_parents_and_real_tree_verified', remote_merged_at=observation['mergedAt'], merge_commit=merge, merge_tree=tree)
+         g.dump(g.K / name, value)
+     g.write(g.K / 'RESEARCH_LOG.md', (g.K / 'RESEARCH_LOG.md').read_bytes() + ('\n## ' + now + ' — Actual remote acceptance verified\n\nAcceptance workflow100%; full-resolution estimate0%. Actual MERGED/nondraft/date/body and exact two-parent original-head merge/real tree checked against prepush capture. Present mirror pending. Original1/5,new0,audit0; no paper/newDOI/tracker/release.\n').encode())
+-    acceptance = {'utc': now, **pins, 'pr': g.PR, 'id': int(g.ID), 'problem_id': int(g.ID), 'problem_number': g.CODE, 'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
++    acceptance = {'schema': 'pr37-accepted-current-partial/v1', 'utc': now, **pins, 'pr': g.PR, 'id': int(g.ID), 'problem_id': int(g.ID), 'problem_number': g.CODE, 'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
+                   'original_head': g.HEAD, 'original_base': g.ORIGINAL_BASE, 'merge_commit': merge, 'merge_parents': [pre['main_before'], g.HEAD], 'merge_tree': tree, 'merged_at': observation['mergedAt'], 'remote_state': 'MERGED', 'remote_isDraft': False,
+                   'canonical_scientific_artifact_sha256': g.PARTIAL_SHA, 'original_partial_sha256': next(z['sha256'] for z in g.load(g.A / 'snapshot_manifest.json')['files'] if z['path'] == 'PARTIAL.md'), 'original_ledger_sha256': g.LEDGER_SHA,
++                  'source_record_sha256': g.SOURCE_SHA, 'root_pinned_problem_sha256': g.PINNED_SOURCE_SHA,
+                   'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'substantive_attempts_used': 1, 'substantive_attempt_limit': 5, 'verification_attempts_added': 0,
+                   'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False, 'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
+                   'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True, 'separate_prior_report_present': False,
+                   'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json', 'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
++    g.acceptance_invariants(acceptance, pins, pre)
+     g.dump(g.K / 'acceptance.json', acceptance, exclusive=True)
+     g.write(g.K / 'ACCEPTANCE.md', ('# Accepted UNSOLVED partial: 3009 / KP-5.2\n\n' + BODY + '\nActual original-head merge ' + merge + ', parents ' + ','.join(acceptance['merge_parents']) + ', tree ' + tree + '. Final whole ' + pins['whole_manifest_sha256'] + '; final actual root ' + pins['root_final_receipt_sha256'] + '. Both source serializations, empty fallback qualification, entire original ledger/diagnostics and three source-only PARTIAL replacements remain exactly bound. Original base/head native target state/history absent; mirror is a later present acceptance.\n').encode(), exclusive=True)
+     g.exact_closure(g.K, g.canonical_names(frozen, True) - {'MANIFEST.json'})
+@@ -225,6 +227,9 @@
+     g.manifest(g.K, g.K / 'MANIFEST.json')
+     g.canonical_unchanged(frozen, True)
+     g.dump(g.A / 'acceptance.json', {**acceptance, 'canonical_manifest_sha256': g.sha((g.K / 'MANIFEST.json').read_bytes()), 'canonical_manifest_entries': len(member_rows)}, exclusive=True)
++    g.acceptance_invariants(g.load(g.K / 'acceptance.json'), pins, pre)
++    g.acceptance_invariants(g.load(g.A / 'acceptance.json'), pins, pre)
++    g.require(g.strict_equal({key: value for key, value in g.load(g.A / 'acceptance.json').items() if key not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}}, g.load(g.K / 'acceptance.json')), 'Final accepted copies differ in value/type')
+     before_guard(pre)
+     g.dump(g.B / 'inventory.json', inventory)
+     g.unselected_inventory(inventory_before, g.load(g.B / 'inventory.json'))
+--- integration_preparation_family/state_mirror_reconciliation.py
++++ integration_execution_revision/state_mirror_reconciliation.py
+@@ -25,8 +25,9 @@
+     g.foreign_tracked_unchanged(pre)
+     acceptance = g.load(g.K / 'acceptance.json')
+     audit = g.load(g.A / 'acceptance.json')
+-    g.require({k: v for k, v in audit.items() if k not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}} == acceptance, 'Audit/canonical acceptance mismatch')
+-    g.require(all(acceptance[k] == v for k, v in pins.items()), 'Final acceptance/gate pins differ')
++    g.acceptance_invariants(acceptance, pins, pre)
++    g.acceptance_invariants(audit, pins, pre)
++    g.require(g.strict_equal({k: v for k, v in audit.items() if k not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}}, acceptance), 'Audit/canonical acceptance value/type mismatch')
+     g.require(g.sha((g.K / 'MANIFEST.json').read_bytes()) == audit['canonical_manifest_sha256'], 'Canonical accepted manifest changed')
+     g.manifest(g.K, g.K / 'MANIFEST.json', audit['canonical_manifest_sha256'], audit['canonical_manifest_entries'])
+     for z in frozen:
+--- integration_preparation_family/verify_post_acceptance.py
++++ integration_execution_revision/verify_post_acceptance.py
+@@ -19,8 +19,10 @@
+     g.require('acceptance.json' in literal and 'ACCEPTANCE.json' not in literal, 'Require actual literal lowercase canonical acceptance.json')
+     acceptance = g.load(g.K / 'acceptance.json')
+     audit = g.load(g.A / 'acceptance.json')
+-    g.require({key: value for key, value in audit.items() if key not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}} == acceptance, 'Complete audit/canonical acceptance differ')
+-    g.require(all(acceptance[key] == value for key, value in pins.items()), 'Final gate pins differ')
++    pre = g.load(g.A / 'integration_preflight.json')
++    g.acceptance_invariants(acceptance, pins, pre)
++    g.acceptance_invariants(audit, pins, pre)
++    g.require(g.strict_equal({key: value for key, value in audit.items() if key not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}}, acceptance), 'Complete audit/canonical acceptance value/type differ')
+     members = g.manifest(g.K, g.K / 'MANIFEST.json', audit['canonical_manifest_sha256'], audit['canonical_manifest_entries'])
+     g.canonical_unchanged(frozen, True)
+     g.require(g.sha((g.K / 'PARTIAL.md').read_bytes()) == acceptance['canonical_scientific_artifact_sha256'] == g.PARTIAL_SHA, 'Reviewed current partial receipt differs')
+@@ -39,7 +41,6 @@
+     saved_remote = g.load(g.A / 'remote_merge_receipt.json')
+     g.require(remote == saved_remote and remote['state'] == 'MERGED' and remote['isDraft'] is False and remote['mergedAt'] == acceptance['merged_at'] and remote['mergeCommit']['oid'] == acceptance['merge_commit'], 'Fresh actual GitHub acceptance differs')
+     g.require(remote['body'] == (g.K / 'pr_body.md').read_text() == (g.A / 'accepted_pr_body.md').read_text(), 'Full remote/canonical/reviewed body differs')
+-    pre = g.load(g.A / 'integration_preflight.json')
+     prepush = g.load(g.A / 'integration_prepush.json')
+     overlay = g.load(g.A / 'integration_check.json')
+     g.require(all(prepush[key] == value == overlay[key] for key, value in pins.items()), 'Prepush/overlay pins differ')
+--- integration_preparation_family/CONTRACT.md
++++ integration_execution_revision/CONTRACT.md
+@@ -1,6 +1,7 @@
+ # PR37 future root execution contract
+ 
+-Prepared 2026-10-02 UTC. These sources are ROOT-ONLY future administrative
++Revised 2026-10-02 UTC from the preserved sealed integration preparation.
++These sources are ROOT-ONLY future administrative
+ helpers, statically prepared and never imported or executed by this family.
+ Preparation does not establish an actual integration, remote merge, source-first
+ verdict, root replay or mathematical resolution. Complete KP-5.2 remains
+@@ -42,12 +43,32 @@
+ - `authored_members`: ordered list of every normalized final whole manifest
+   member, each `{path, bytes, sha256}`. It must equal the manifest's complete
+   self-excluding authored membership, with no future count inferred here.
+-- `scratch_components_excluded`: explicit unique list, possibly empty,
+-  containing only literal `tmp` and/or `__pycache__`. Manifest
+-  `foreign_scratch_excluded` must be the identical ordered list with `/`
+-  suffixes. This qualification applies only to the exact final whole family.
+-  Current/canonical packages permit no exclusions; every symlink fails,
+-  including scratch symlinks. Extra empty authored directories also fail.
++- `scratch_components_excluded`: exactly `["__pycache__"]`, matching actual
++  closed manifest `bytecode_excluded_component` `__pycache__`. The actual whole
++  schema is `strict_recursive_self_excluding_first_party_v1`, literal manifest
++  `FIRST_PARTY_MANIFEST.json`, self-excluding itself. The closed manifest is
++  preserved byte-exact; no alternate `foreign_scratch_excluded` field is added.
++- `foreign_excluded_prefixes`: exactly `["primary/"]`, equal to the actual
++  closed manifest's declaration and restricted to the literal root directory.
++- `foreign_members`: ordered lexical list of the complete five retained PDF
++  and five derived text files under literal root `primary/`, each exact
++  `{path, bytes, sha256}`. Only the five coverage source names `boronski_v1`,
++  `hamilton1954`, `k3`, `kolev_v3`, `pardon_v3` with `.pdf`/`.txt` qualify.
++  Every imported PDF must exactly equal its complete source/read coverage row
++  `{path, bytes, sha256, foreign_import:true}` and its first-party fetch receipt's
++  byte/hash, HTTP200 and extraction exit0. The paired text pins are explicit
++  root-reviewed foreign derived artifacts, qualified by the retained acquisition
++  sources and receipts. Binding these bytes does not independently prove that
++  extraction ran or that a theorem was read; actual retained evidence and read
++  qualifications remain authoritative. No foreign artifact is first-party proof.
++- `foreign_inventory_sources`: exact ordered authored-manifest rows for
++  `SOURCE_AND_READ_COVERAGE.json`, `INITIAL_SOURCE_ACQUISITION_TOOL_BODY.txt`,
++  `fetch_primary_supplement.py`, and every `receipts/` authored member. They bind
++  the actual source/read/acquisition/extraction qualifications. Foreign inventory
++  is checked completely, including expected directories; extra files, empty or
++  nested directories and any other `primary` component fail. Every symlink is
++  rejected before exclusions, including foreign and bytecode symlinks.
++  Current/canonical packages permit zero foreign or scratch exclusions.
+ - `malformed_json_exceptions`: explicit list, possibly empty, of exact reviewed
+   JSON authored fixture `{path, bytes, sha256, qualification}` bindings.
+   Every listed file must still fail JSON parsing; its bytes/hash must match
+@@ -90,6 +111,10 @@
+ `new_substantive_attempts`0, `verification_attempts_added`0,
+ `paper_or_new_doi_or_tracker` false; `current_model`,
+ `current_reasoning_effort`, `current_deadline_utc` null.
++Every required key must be explicitly present, even when its value is null.
++Every required value must have the exact JSON type; booleans cannot replace
++integers or conversely. Nested complete receipt and comparison equality uses
++the same recursive type-strict rule.
+ 
+ Required `root_replay_bindings`, `root_wrapper`, `comparison_coverage`,
+ `actual_outer_executions`, `structured_comparisons` must exactly equal their
+@@ -140,8 +165,9 @@
+ Only two already-tracked foreign logs may be dirty:
+ `paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/commands.tsv`
+ and `paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/full_transcript.log`.
+-Both worktree byte count/hash and HEAD hash are captured dynamically. Each
+-index entry must remain a unique regular stage0 blob equal to captured HEAD;
++Both worktree byte count/hash, HEAD hash, and exact HEAD/index modes and blob
++IDs are captured dynamically. Each index entry must remain a unique regular
++stage0 blob with its captured mode/blob equal to captured HEAD;
+ both logs remain excluded from integration and all checkpoints. Untracked
+ foreign work is never an exception or a staging input. Parallel byte changes
+ cause failure and manual inspection, never an automatic retry or rewrite.
+@@ -181,6 +207,20 @@
+ unrelated selected attributes are checked before and after. Completed27/180.
+ Literal directory-name sets are used for filename-case checks on macOS.
+ 
++Acceptance schema is `pr37-accepted-current-partial/v1`. A shared strict
++validator runs on the constructed acceptance before write, on both actual
++acceptance files after finalization, and on both files before mirror and
++postvalidation. It requires explicit correct-type PR37/3009/KP-5.2 identity,
++original head/base, both exact source serialization hashes, original whole
++ledger hash, current partial hash, merge bindings, unsolved/full-false/novelty-
++false/no-paper scope, original1/new0/verification0 and used1/limit5, all three
++current runtime fields explicitly null, historical-only metadata, and the exact
++gate pins. It also checks canonical source/ledger bytes and both accepted
++administration files, including the entire frozen budget object byte-derived
++JSON values and every explicit archival runtime/budget requirement. Matching
++audit/canonical copies and a rehashed manifest cannot bless changed invariants.
++The original budget is preserved; no new proof attempt or implicit reset occurs.
++
+ The mirror requires all accepted bindings and fresh remote verification first.
+ It preserves the exact PR36 base proposal and every prior primary/duplicate
+ entry, dynamically binds the accepted flat source, appends exactly one present

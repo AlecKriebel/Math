@@ -1,0 +1,229 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\title{An alternating antimorphic Fine--Wilf theorem}
+\author{Alec Kriebel\\\small Independent researcher\\
+  \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{3 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $\theta$ be an antimorphic involution of a free monoid. If a finite
+word $w$ has alternating $\theta$-periods $p,q$ and
+$|w|\ge p+q-\gcd(p,q)$, then $\gcd(p,q)$ is an alternating
+$\theta$-period of $w$. This proves the unnumbered conjecture stated
+after Theorem 23 in Nowotka's contribution, joint with Bischoff, to
+\emph{Mini-Workshop: Combinatorics on Words} (2010). The proof applies
+the classical Fine--Wilf theorem to the common reflected extension
+$\theta(w)w$ and recovers the alternating phase at its center.
+The length formula cannot be decreased by one uniformly.
+\end{abstract}
+
+\section{The statement}
+Let $A$ be an arbitrary alphabet, and let $A^*$ be its free monoid,
+with empty word $\varepsilon$. An \emph{antimorphic involution} is a map
+$\theta:A^*\to A^*$ such that $\theta(xy)=\theta(y)\theta(x)$ and
+$\theta^2=\mathrm{id}$. A positive integer $p$ is an
+\emph{alternating $\theta$-period} of a finite word $w$ if there is a
+word $u\in A^p$ such that $w$ is a prefix of $(u\theta(u))^\omega$.
+The periods need not be minimal. This definition prescribes alternating
+blocks; it differs from a prefix of an arbitrary concatenation of $u$
+and $\theta(u)$.
+
+\begin{theorem}\label{thm:main}
+Suppose that $w$ has alternating $\theta$-periods $p$ and $q$, and put
+$d=\gcd(p,q)$. If $L=|w|\ge p+q-d$, then, for the length-$d$ prefix
+$v$ of $w$, the word $w$ is a prefix of $(v\theta(v))^\omega$.
+\end{theorem}
+
+This is the exact alternating conclusion in the unnumbered conjecture
+following Theorem 23 on printed page 2220 of \cite{OWR}; it is distinct
+from numbered Conjecture 27 there. Theorem 23 gives the sufficient
+bound $p+q$. Bischoff's thesis \cite[Lemma 3.9 and Satz 3.11]{Bischoff}
+also develops reflection and doubled ordinary periods and proves that
+longer bound. We use those classical symmetries with a common extension
+of the entire finite prefix. Fixed letters of $\theta$ are allowed;
+in particular, ordinary reversal is included.
+
+\section{The common extension}
+For a word of length $n$, an \emph{ordinary period} $h>0$ means that
+letters in positions $i$ and $i+h$ agree whenever both positions occur.
+We use the classical Fine--Wilf theorem \cite{FW}: a word with ordinary
+periods $h,k$ and length at least $h+k-\gcd(h,k)$ has ordinary period
+$\gcd(h,k)$.
+
+\begin{lemma}\label{lem:letters}
+There is an involutive permutation $\sigma:A\to A$ such that
+\[
+\theta(a_0\cdots a_{n-1})=\sigma(a_{n-1})\cdots\sigma(a_0).
+\]
+\end{lemma}
+\begin{proof}
+The identity $\theta(\varepsilon)=\theta(\varepsilon)^2$ forces
+$\theta(\varepsilon)=\varepsilon$. Since $\theta$ is bijective,
+nonempty words have nonempty images. If the image of a letter were
+$xy$ with both factors nonempty, applying $\theta$ would factor that
+letter as the two nonempty words $\theta(y)\theta(x)$, a contradiction.
+Thus letters map to letters. Involutivity and the antimorphism rule
+give the assertion.
+\end{proof}
+
+\begin{lemma}\label{lem:extension}
+If $L=|w|\ge p$ and $p$ is an alternating $\theta$-period of $w$,
+then $\theta(w)w$ has ordinary period $2p$.
+\end{lemma}
+\begin{proof}
+Write $u=w_0\cdots w_{p-1}$ and extend the block $u\theta(u)$
+periodically to a sequence $(s_i)_{i\in\Z}$ of period $2p$, with
+$s_i=w_i$ for $0\le i<L$. If $r$ is the residue of $i$ in
+$\{0,\ldots,2p-1\}$, then
+\[
+ s_i=\begin{cases}u_r,&0\le r<p,\\
+       \sigma(u_{2p-1-r}),&p\le r<2p.
+       \end{cases}
+\]
+The residue of $-1-i$ is $2p-1-r$, so
+$s_{-1-i}=\sigma(s_i)$ in both cases. Hence, on the negative positions
+$-L\le j<0$, we have $s_j=\sigma(w_{-1-j})$.
+The restriction to $[-L,L-1]$ is therefore exactly $\theta(w)w$,
+indexed with $w_0$ at position $0$. As a restriction of a $2p$-periodic
+sequence, it has ordinary period $2p$.
+\end{proof}
+
+The extension in Lemma~\ref{lem:extension} is determined by $w$ alone.
+In particular, applying it with $p$ and $q$ yields ordinary periods
+on the \emph{same finite word}. No equality of two unseen infinite
+extensions is being assumed, and no condition on the last incomplete
+block of $w$ is needed.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Since $d\le\min(p,q)$, the hypothesis gives $L\ge\max(p,q)$.
+Lemma~\ref{lem:extension} shows that the word $W=\theta(w)w$, of
+length $2L$, has ordinary periods $2p$ and $2q$. Moreover,
+\[
+ 2L\ge 2p+2q-2d,\qquad \gcd(2p,2q)=2d.
+\]
+Fine--Wilf therefore gives ordinary period $2d$ for $W$.
+Continue to index $W$ on $[-L,L-1]$. Its central restriction to
+$[-d,d-1]$ is $\theta(v)v$, where $v=w_0\cdots w_{d-1}$.
+
+For $0\le i<L$, let $r\in\{0,\ldots,2d-1\}$ be the residue
+of $i$ modulo $2d$. If $r<d$, choose $j=r$. Otherwise choose
+$j=r-2d\in[-d,-1]$. In each case $j$ and $i$ are in $[-L,L-1]$
+and differ by a multiple of $2d$. All intermediate positions between
+them remain in that interval, so ordinary period $2d$ gives $W_i=W_j$.
+Consequently
+\[
+ w_i=\begin{cases}v_r,&0\le r<d,\\
+       \sigma(v_{2d-1-r}),&d\le r<2d.
+       \end{cases}
+\]
+These are precisely the letters of $(v\theta(v))^\omega$.
+\end{proof}
+
+\begin{proposition}\label{prop:sharp}
+The sufficient formula $p+q-\gcd(p,q)$ cannot be replaced uniformly
+by $p+q-\gcd(p,q)-1$.
+\end{proposition}
+\begin{proof}
+Take distinct letters $a,b$, let $\theta$ be reversal, and set
+$w=abb$, $p=2$, $q=3$. The word $abb$ is a prefix of
+$(ab\,ba)^\omega$ and of $(abb\,bba)^\omega$, so both alternating
+periods occur. Its length is $3=2+3-1-1$, but alternating period $1$
+would force the constant word $aaa\cdots$. It does not occur.
+\end{proof}
+This example establishes only the stated uniform obstruction. It does
+not assert a sharp minimum length for each pair $(p,q)$, alphabet,
+or involution. Theorem~\ref{thm:main} also covers $p=q$ and divisibility
+of one period by the other.
+
+\section{Related results and verification}
+The ordinary Fine--Wilf threshold and reflection/doubled-period
+mechanisms are prior work \cite{FW,OWR,Bischoff}. Theorems 25 and 26
+of Czeizler--Kari--Seki \cite{CKS} concern a $\theta$-palindromic
+base word and common $\theta$-primitive roots. Their Theorem 28 doubles
+a base block to $u\theta(u)$; Corollary 32 treats more general block
+powers at the longer bound $2p+q-d$. Kari--Seki \cite{KS} improve
+that general sufficient bound to $2p+q-d-\lfloor d/2\rfloor$ for
+$p>q\ge2d$. These hypotheses and conclusions differ from the
+alternating-prefix assertion proved here.
+
+Simpson's published Theorem 3.4 \cite{Simpson} concerns palindromic
+periodicities with half-periods $h_1,h_2$ and reflection offsets
+$r_1,r_2$, and requires length at least
+$2h_1+2h_2-D$, where
+$D=\gcd(2(r_2-r_1),2h_1,2h_2)$; its conclusion is an ordinary
+period $D$. At the common alternating phase, $h_1=p,h_2=q$ and
+$D=2d$, so that condition is $2p+2q-2d$, twice the length threshold
+in Theorem~\ref{thm:main}. Thus this close prior result does not
+directly give the short bound on $w$.
+
+A bounded priority audit inspected these primary results, related
+proofs, bibliographies, equivalent formulations, and 53 recorded
+literature queries. It found no earlier exact theorem in that scope.
+This finding does not certify first discovery or universal novelty.
+The accompanying audit records its specific access and version gaps,
+including the unavailable Kari--Seki publisher full text and an
+unrecovered earlier conference version on palindromes and local
+periodicity. The cited Kari--Seki comparison uses its dated author
+manuscript; the Czeizler--Kari--Seki comparison uses the actual
+2010 journal-layout version, separately from the MFCS 2008 version.
+
+The verification supplement preserves the submitted proof and
+programs, three independent mathematical audit families, the bounded
+priority record, complete finite-control outputs, and checksums.
+The families use signed constraints and a reflection lift, direct
+word-overlap checks, and definition/counterexample tests with
+canonical finite models. They include fixed letters, swapped letters,
+short truncations, divisibility cases, and below-threshold failures.
+These computations supplement the universal proof above; they do not
+replace it or certify priority. Public verification explicitly omits
+private source downloads and execution histories.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in solving, proof checking, literature
+research, drafting, computation, and independent adversarial agent
+reviews. This is an unrefereed research note. Those automated reviews
+are not independent external human peer review; no such human review
+is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{FW}
+N. J. Fine and H. S. Wilf,
+Uniqueness theorems for periodic functions,
+\emph{Proc. Amer. Math. Soc.} \textbf{16}(1) (1965), 109--114.
+\href{https://doi.org/10.1090/S0002-9939-1965-0174934-9}{doi:10.1090/S0002-9939-1965-0174934-9}.
+\bibitem{OWR}
+D. Nowotka (joint work with B. Bischoff), Word periods under involution,
+in \emph{Mini-Workshop: Combinatorics on Words},
+\emph{Oberwolfach Reports} \textbf{7}(3), Report 37/2010,
+2195--2244 (contribution 2219--2222; published 2011).
+\href{https://doi.org/10.4171/OWR/2010/37}{doi:10.4171/OWR/2010/37}.
+\bibitem{Bischoff}
+B. Bischoff, \emph{Wortbegrenzung unter Involution},
+Diplomarbeit 3095, Universit\"at Stuttgart, 18 November 2010, Chapter 3.
+\href{https://www2.informatik.uni-stuttgart.de/bibliothek/ftp/medoc_restrict.ustuttgart_fi/DIP-3095/DIP-3095.pdf}{Institutional full text}.
+\bibitem{CKS}
+E. Czeizler, L. Kari and S. Seki,
+On a special class of primitive words,
+\emph{Theoret. Comput. Sci.} \textbf{411}(3) (2010), 617--630.
+\href{https://doi.org/10.1016/j.tcs.2009.09.037}{doi:10.1016/j.tcs.2009.09.037}.
+\bibitem{KS}
+L. Kari and S. Seki,
+An improved bound for an extension of Fine and Wilf's theorem
+and its optimality,
+\emph{Fund. Inform.} \textbf{101}(3) (2010), 215--236.
+\href{https://doi.org/10.3233/FI-2010-285}{doi:10.3233/FI-2010-285}.
+\bibitem{Simpson}
+J. Simpson, Palindromic periodicities,
+\emph{Australas. J. Combin.} \textbf{92}(3) (2025), 450--462.
+\href{https://ajc.maths.uq.edu.au/pdf/92/ajc_v92_p450.pdf}{Published full text}.
+\end{thebibliography}
+\end{document}

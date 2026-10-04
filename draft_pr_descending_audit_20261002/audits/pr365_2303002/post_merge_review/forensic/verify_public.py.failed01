@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+"""Read-only exact inventories, recorded integration semantics, and receipt replay.
+
+Private evidence is optional only as complete groups; public-only verification
+does not reproduce omitted API/source/ROOT streams. No acquisition driver runs.
+"""
+import argparse,base64,copy,gzip,hashlib,json,os,pathlib,subprocess,sys
+sys.dont_write_bytecode=True
+R=pathlib.Path(__file__).resolve().parent;A=R.parent;F=A/'clean_final_adversary'
+BASE='728b48109a11e83769b24ec5b30978c1c5ed7ec9';HEAD='47dbe2c144a77f590faf144b950f1e759db92e75';MERGE='904d63bba0651c8f7364144c617e2b66f5d14256';CURRENT='08adf9cb444d365fd148a2bb3e2951a7f49c6808';TREE='c95a909fed27e9af7954f82ce216d34f305d91a2';ORIGINAL='4245f1af53840a07f43c05c928c4783bc6c3a467'
+P='unsolved_math_prioritization/attempts/2303002/';Q='unsolved_math_prioritization/QUEUE.md'
+CLOSURES=[
+('path_geometry_review','PUBLIC_MANIFEST.json','44d334caa6835c18388a67f58f5d8756637c76c355268cddfd5160569f61c80c','d27fb0fabce2459ade5afdf28586f0831d7d16815f04b8306c9dd6da4dfa74e9',105,38),
+('poisson_components_review','PUBLIC_MANIFEST.json','5a6ef2af64d435ecce35a305a7de91295ea6ccd02c2290edfab0c7c7fa70be9d','082d6d7886f5d9b50903020a0f4698589f27bc7a66df2a9668146466100314a3',19,122),
+('poisson_components_corrections','SUPPLEMENT_MANIFEST.json','66c0589d7cf86634850201c04a6016a3fdd24f2a94e5789d134036841884ab1c','eb94d2c623d6ee2d542d690393216468b3391158c04577d1686c09a318aa8d9b',4,4),
+('clean_final_adversary','PUBLIC_MANIFEST.json','3cbb5c58f9ba3a879882d0c9c7d4813adce2a2b0180cb478b73fa99b45ea7954','13febe54f43886b1f2bbaeeab7b056fce6437469b4bc368feec6ebc5c8a2cd08',236,588)]
+parser=argparse.ArgumentParser();parser.add_argument('--preseal',action='store_true');parser.add_argument('--require-private',action='store_true');parser.add_argument('--replay',action='store_true');args=parser.parse_args()
+count=0
+def check(c,msg):
+    global count
+    if not c:raise AssertionError(msg)
+    count+=1
+def sha(b):return hashlib.sha256(b).hexdigest()
+def blob(b):return hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+def data(p):
+    b=p.read_bytes();return gzip.decompress(b) if p.suffix=='.gz' else b
+def j(p):return json.loads(data(p))
+def identity(p,row):
+    b=p.read_bytes()
+    if 'stored_bytes' in row:
+        check(len(b)==row['stored_bytes'] and sha(b)==row['stored_sha256'],str(p)+' stored')
+        d=gzip.decompress(b) if row['encoding']=='gzip' else b
+        check(len(d)==row['logical_bytes'] and sha(d)==row['logical_sha256'],str(p)+' logical')
+    else:
+        check(len(b)==row['bytes'] and sha(b)==row['sha256'],str(p)+' bytes')
+        if 'logical_bytes' in row:
+            d=gzip.decompress(b);check(len(d)==row['logical_bytes'] and sha(d)==row['logical_sha256'],str(p)+' logical')
+def group(d,rows,label):
+    present=[(d/p).is_file() for p in rows]
+    check(all(present) or not any(present),label+' collectively complete or absent')
+    exists=all(present)
+    if args.require_private:check(exists,label+' required')
+    if exists:
+        for p,row in rows.items():identity(d/p,row)
+    return exists
+def namespace(d,public,private,excluded,label):
+    present=group(d,private,label+' private')
+    expected=set(public)|set(excluded)|(set(private) if present else set())
+    check({p.relative_to(d).as_posix() for p in d.rglob('*') if p.is_file()}==expected,label+' exact namespace')
+    for p,row in public.items():identity(d/p,row)
+    return present
+m=j(R/'PUBLIC_MANIFEST.json');check(m['self_exclusions']==['PUBLIC_MANIFEST.json','FINAL_SEAL.json'],'precise two exclusions')
+excluded=['PUBLIC_MANIFEST.json']
+if (R/'FINAL_SEAL.json').exists():
+    s=j(R/'FINAL_SEAL.json');check(s['manifest']=='PUBLIC_MANIFEST.json' and s['manifest_sha256']==sha((R/'PUBLIC_MANIFEST.json').read_bytes()) and s['verifier_sha256']==sha((R/'verify_public.py').read_bytes()),'seal binds complete manifest and verifier')
+    check(s['public_files']==len(m['files']) and s['private_files']==len(m['private_files']) and s['self_exclusions']==m['self_exclusions'],'seal counts/exclusions');excluded.append('FINAL_SEAL.json')
+else:check(args.preseal,'seal required')
+private_states=[namespace(R,m['files'],m['private_files'],excluded,'postmerge')]
+for directory,mf,mhash,seahash,pubcount,privcount in CLOSURES:
+    d=A/directory;old=j(d/mf)
+    check(sha((d/mf).read_bytes())==mhash and sha((d/'FINAL_SEAL.json').read_bytes())==seahash,directory+' frozen manifest/seal pins')
+    if directory=='clean_final_adversary':pub=old['public_files'];priv=old['private_files']
+    else:
+        pub={r['path']:r for r in old['files']} if isinstance(old['files'],list) else old['files']
+        priv={r['path']:r for r in old['private_inventory']} if directory=='path_geometry_review' else j(d/('receipts/private_inventory.json' if directory=='poisson_components_review' else 'PRIVATE_INVENTORY.json'))['files']
+    check(len(pub)==pubcount and len(priv)==privcount,directory+' exact counts')
+    private_states.append(namespace(d,pub,priv,[mf,'FINAL_SEAL.json'],directory))
+external=j(R/'EXTERNAL_PRIVATE.json')['files'];private_states.append(group(A,external,'ROOT captured evidence'))
+check(all(private_states) or not any(private_states),'all six private evidence groups complete or absent')
+full_private=all(private_states)
+commands=j(R/'COMMANDS.json');records={c['name']:c for c in commands}
+check(len(records)==len(commands)==m['command_count'] and sum(c['readonly'] for c in commands)==m['readonly_commands'],'all command accounting')
+writing={'integration_driver','integration_driver_v2','repair_audit_driver','create_v2_driver','prepare_packet_driver'}
+for c in commands:
+    check(c['readonly']==(c['name'] not in writing),c['name']+' accurate writing/read-only label')
+    check(c['cwd']=='/Users/alec/Documents/Math' and c['started_utc']<=c['finished_utc'] and c['argv'],c['name']+' whole recipe')
+    if c['name']=='integration_driver':
+        check(c['exit_code']==1 and c['readonly'] is False,'original wrong main pin failure retained')
+    else:check(c['exit_code']==0,c['name']+' exit')
+    for stream,row in c['streams'].items():
+        p=R/row['path']
+        if not p.exists():check(not full_private and row['path'].startswith('private/'),'only explicitly private streams absent');continue
+        b=p.read_bytes();d=gzip.decompress(b)
+        check(len(b)==row['stored_bytes'] and sha(b)==row['stored_sha256'] and len(d)==row['logical_bytes'] and sha(d)==row['logical_sha256'],c['name']+' '+stream+' complete stored/logical')
+        if stream=='stderr':
+            check((b'AssertionError: begin main exact' in d) if c['name']=='integration_driver' else d==b'',c['name']+' exact failure/full stderr policy')
+def stream(name,which='stdout'):return data(R/records[name]['streams'][which]['path'])
+def tree(name):
+    rows={}
+    for line in stream(name).split(b'\0'):
+        if line:
+            h,p=line.split(b'\t',1);check(p.decode() not in rows,name+' unique paths');rows[p.decode()]=h.decode().split()
+    return rows
+def commit(name,oid,parents,tree_oid=None):
+    b=stream(name);check(hashlib.sha1(b'commit '+str(len(b)).encode()+b'\0'+b).hexdigest()==oid,name+' complete commit object')
+    headers=b.split(b'\n\n',1)[0].splitlines()
+    check([r[7:].decode() for r in headers if r.startswith(b'parent ')]==parents,name+' parents')
+    t=[r[5:].decode() for r in headers if r.startswith(b'tree ')];check(len(t)==1,name+' one tree')
+    if tree_oid:check(t==[tree_oid],name+' tree')
+    return t[0]
+commit('v2_actual_commit_raw',MERGE,[BASE,HEAD],TREE);commit('post_head_raw',HEAD,[ORIGINAL,BASE],TREE);current_tree_oid=commit('post_current_raw',CURRENT,[MERGE])
+for phase in ['begin','end']:
+    check(stream('v2_'+phase+'_branch')==b'main\n' and stream('v2_'+phase+'_main')==(CURRENT+'\n').encode(),phase+' main/branch literal')
+    check(stream('v2_'+phase+'_remote_main')==(CURRENT+'\trefs/heads/main\n').encode(),phase+' remote main')
+check(stream('v2_remote_url')==b'https://github.com/AlecKriebel/Math.git\n' or stream('v2_remote_url')==b'git@github.com:AlecKriebel/Math.git\n','configured remote exact project')
+bt=tree('v2_base_tree');ht=tree('v2_head_tree');mt=tree('v2_merge_tree');ct=tree('v2_current_main_tree');rt=tree('v2_merge_root_tree')
+check(mt==ht,'whole head/merge leaf tree equality')
+original=j(F/'03_reproduction_bindings.json');bindings=j(R/'INTEGRATION.json')['bindings'];prepared=j(F/'05_prepared_gate.json')['bindings']
+expected={b['path']:b for b in prepared};check(len(expected)==len(prepared)==len(bindings)==19,'exact19 prepared/current bindings')
+delta={p for p in set(bt)|set(mt) if bt.get(p)!=mt.get(p)}
+check(delta==set(expected) and {p for p in mt if p.startswith(P)}==delta-{Q},'whole19 scope and all18 target namespace')
+blobs={}
+for i,b in enumerate(bindings):
+    p=b['path'];d=stream('v2_actual_blob_'+str(i).zfill(2));blobs[p]=d
+    check(b==expected[p] and p in delta and mt[p]==ct[p]==['100644','blob',blob(d)] and b['git_blob']==blob(d) and b['bytes']==len(d) and b['sha256']==sha(d),'full binding/mode/blob '+p)
+    if p!=Q:check(d==(A/'snapshot'/p).read_bytes() and p not in bt,'identical18 mathematics '+p)
+def valid_queue(old,new):
+    a=old.splitlines(keepends=True);b=new.splitlines(keepends=True)
+    if len(a)!=1966 or len(b)!=1966 or [i for i,(x,y) in enumerate(zip(a,b)) if x!=y]!=[404]:return False
+    c=a[404].split(b'|');d=b[404].split(b'|')
+    if len(c)!=len(d) or c[2].strip()!=b'2303002 / AMR-022-3002' or c[8].strip()!=b'queued' or c[9].strip()!=b'0/5':return False
+    edited=c.copy();edited[8]=b' already_solved ';a[404]=b'|'.join(edited)
+    return b''.join(a)==new and d[9].strip()==b'0/5'
+queue=blobs[Q];oldqueue=stream('v2_base_queue');check(valid_queue(oldqueue,queue),'entire1966 exact405cell8 only/0turns')
+check(len(original['nested_manifest_bindings'])==29,'29 nested bindings')
+for b in original['nested_manifest_bindings']:
+    d=blobs[P+b['path']];check(len(d)==b['bytes'] and sha(d)==b['sha256'],b['manifest']+'/'+b['path'])
+for name,expected_output in [('v2_author_replay',blobs[P+'SOURCE_CHECKS.json']),('v2_source_review_replay',blobs[P+'final_review/INDEPENDENT_CHECKS.json']),('v2_math_only_replay',blobs[P+'final_review/INDEPENDENT_CHECKS.json'].replace(b'1667',b'1665'))]:
+    check(stream(name)==expected_output,name+' entire historical receipt')
+# Adversarial controls concern integration invariants, never theorem truth.
+def valid_scope(rows):return len(rows)==19 and len({b['path'] for b in rows})==19 and all(b==expected.get(b['path']) for b in rows)
+check(valid_scope(bindings),'positive scope control')
+check(not valid_queue(oldqueue,queue.replace(b'| already_solved | 0/5 |',b'| already_solved | 1/5 |')) and not valid_queue(oldqueue,queue.replace(b'2303002 / AMR-022-3002',b'2303003 / AMR-022-3003')) and not valid_queue(oldqueue,queue+b'\n') and not valid_queue(oldqueue,oldqueue),'turn/identity/queue scope negative controls')
+wrong=copy.deepcopy(bindings);wrong[1]['mode']='100755';check(not valid_scope(wrong),'mode negative control')
+wrong=copy.deepcopy(bindings);wrong[1]=copy.deepcopy(wrong[0]);check(not valid_scope(wrong) and not valid_scope(bindings[:-1]) and not valid_scope(bindings+[bindings[0]]),'duplicate/omitted/extra scope controls')
+neg=json.loads(stream('integration_negatives'));check(neg['negative_controls']==len(neg['rejected_integration_overclaims'])==12 and neg['finite_controls_prove_theorem'] is False,'original12 finite controls accurately delimited')
+pins=j(R/'root_review/ACQUISITION_PINS.json')
+for name,pin in pins.items():
+    b=data(R/pin['path']);check(len(b)==pin['bytes'] and sha(b)==pin['sha256'],'exact acquired/relocated '+name)
+if full_private:
+    def api(name):return json.loads(stream(name))
+    for phase in ['begin','end']:
+        o=api('v2_'+phase+'_pr_api');check(o['merged'] is True and o['state']=='closed' and o['draft'] is False and o['merge_commit_sha']==MERGE and o['merged_at']=='2026-10-03T19:39:40Z' and o['head']['sha']==HEAD and o['body'].encode()==(F/'accepted_body.md').read_bytes(),phase+' complete merged PR state/body')
+        check(api('v2_'+phase+'_main_api')['object']['sha']==CURRENT,phase+' API main')
+    for name,oid,parents,t in [('v2_merge_api',MERGE,[BASE,HEAD],TREE),('v2_head_api',HEAD,[ORIGINAL,BASE],TREE),('post_current_api',CURRENT,[MERGE],current_tree_oid)]:
+        o=api(name);check(o['sha']==oid and [p['sha'] for p in o['parents']]==parents and o['tree']['sha']==t,name+' complete parents/tree/object')
+    o=api('v2_merge_root_api');check(o['sha']==TREE and o['truncated'] is False and {x['path']:[x['mode'],x['type'],x['sha']] for x in o['tree']}==rt and len(o['tree'])==len(rt),'complete shallow API root tree')
+    fs=api('v2_merged_pr_files');check(len(fs)==19 and {x['filename'] for x in fs}==delta,'complete PR19 API scope');by={x['filename']:x for x in fs}
+    for i,b in enumerate(bindings):
+        p=b['path'];d=blobs[p];check(by[p]['sha']==b['git_blob'] and by[p]['status']==('modified' if p==Q else 'added'),'list status/blob '+p)
+        for label in ['head','merge']:
+            o=api('v2_'+label+'_remote_content_'+str(i).zfill(2));check(o['path']==p and o['type']=='file' and o['size']==len(d) and o['sha']==blob(d) and base64.b64decode(o['content'])==d,'full remote '+label+' '+p)
+    # Read and validate every ROOT historical/fresh/failed reported subset entry
+    # against complete immutable Git tree, including dirs and sizes.
+    fixed={}
+    for row in stream('fixed_base_tree').split(b'\0'):
+        if row:
+            h,path=row.split(b'\t',1);mode,kind,oid,size=h.decode().split();fixed[path.decode()]=dict(mode=mode,type=kind,sha=oid,size=None if size=='-' else int(size))
+    root=j(R/'root_review/root_whole_verification_receipt.json.gz');prior={r['name']:r for r in j(F/'COMMANDS.json')}
+    expected_names=[r['name'] for r in j(F/'COMMANDS.json') if r['readonly'] and r['name'].startswith('prepared_')]
+    check(len(root['captures'])==len(expected_names)==96 and [r['name'] for r in root['captures']]==root['every_prepared_readonly_command'] and set(root['every_prepared_readonly_command'])==set(expected_names),'ROOT actual96 complete literal command set')
+    allowed={(end,'repo',field) for end in ['head','base'] for field in ['open_issues_count','open_issues','pushed_at','updated_at']};differences=[]
+    def walk(x,y,label,path=()):
+        if isinstance(x,dict) and isinstance(y,dict):
+            check(x.keys()==y.keys(),label+' keyset')
+            for k in x:walk(x[k],y[k],label,path+(k,))
+        elif isinstance(x,list) and isinstance(y,list):
+            check(len(x)==len(y),label+' list length')
+            for i,(a,b) in enumerate(zip(x,y)):walk(a,b,label,path+(i,))
+        elif x!=y:
+            check(path in allowed and type(x) is type(y),label+' precise typed repository metadata')
+            differences.append(dict(capture=label,path=list(path),before=x,after=y))
+    def subset(o,label):
+        check(o['sha']=='2ef2e883ac42114d7ad82ca7248a1e0d90d52c2b' and o['truncated'] is True and len(o['tree'])==len({x['path'] for x in o['tree']}),label+' fixed root/partial/unique')
+        for x in o['tree']:
+            check(set(x) in [set(['path','mode','type','sha','url']),set(['path','mode','type','sha','url','size'])],label+' exact supported keys')
+            ref=fixed[x['path']];check(all(x[k]==ref[k] for k in ['mode','type','sha']) and ('size' not in x or x['size']==ref['size']) and x['url']=='https://api.github.com/repos/AlecKriebel/Math/git/'+('trees/' if x['type']=='tree' else 'blobs/')+x['sha'],label+' EVERY reported entry')
+    for c in root['captures']:
+        check(c['name'] in prior,'ROOT historical command binding');old=prior[c['name']]
+        fresh={}
+        for label,row in c['streams'].items():
+            raw=(A/row['path']).read_bytes();decoded=gzip.decompress(raw)
+            check(len(raw)==row['stored_bytes'] and sha(raw)==row['stored_sha256'] and len(decoded)==row['bytes'] and sha(decoded)==row['sha256'],c['name']+' '+label+' ROOT complete stored/logical receipt')
+            fresh[label]=decoded
+        check(set(fresh)=={'stdout','stderr'} and c['argv']==old['argv'] and c['cwd']==old['cwd'],c['name']+' literal recipe and two whole streams')
+        historic={s:data(F/old['streams'][s]['path']) for s in ['stdout','stderr']}
+        check(c['exit']==old['exit_code'] and fresh['stderr']==historic['stderr'],c['name']+' entire exit/stderr')
+        if c['name']=='prepared_base_api_tree':
+            x=json.loads(historic['stdout']);y=json.loads(fresh['stdout']);z=j(A/'root_replay_private/whole_prepared.failed01/prepared_base_api_tree.stdout.gz')
+            check({k:v for k,v in x.items() if k!='tree'}=={k:v for k,v in y.items() if k!='tree'}=={k:v for k,v in z.items() if k!='tree'},'all three truncated root metadata exact')
+            subset(x,'original');subset(y,'successful repair');subset(z,'failed first replay')
+            aux=c['complete_fixed_local_tree_capture'];b=data(A/aux['path']);check(b==stream('fixed_base_tree') and len(b)==aux['bytes'] and sha(b)==aux['sha256'],'ROOT auxiliary whole fulltree equals fresh fullcapture')
+        elif c['name'].endswith(('_begin_pr','_end_pr')) and fresh['stdout']!=historic['stdout']:walk(json.loads(historic['stdout']),json.loads(fresh['stdout']),c['name'])
+        else:check(fresh['stdout']==historic['stdout'],c['name']+' entire stdout')
+    check(differences==root['allowed_repository_metadata_differences'],'exact ROOT typed metadata differences')
+    failure=j(R/'root_review/ROOT_TRUNCATED_API_REPLAY_FAILURE.json.gz')
+    for old,row in failure['lossless_relocation_map'].items():identity(A/row['new_path'],row)
+    check(b'AssertionError: prepared_base_api_tree entirestdout' in (A/'root_whole_verification.stderr.failed01').read_bytes(),'honest original API replay failure')
+if args.replay:
+    env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1',GIT_OPTIONAL_LOCKS='0',GIT_NO_LAZY_FETCH='1')
+    def run(argv,expected=None):
+        p=subprocess.run(argv,cwd=R,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        check(p.returncode==0 and not p.stderr,'read-only replay exit/full stderr '+argv[-1])
+        if expected is not None:check(p.stdout==expected,'read-only replay entire stdout')
+    source=R/'private/candidate' if full_private else A/'snapshot'/P
+    run([sys.executable,str(source/'verify_source_alignment.py')],blobs[P+'SOURCE_CHECKS.json'])
+    run([sys.executable,str(source/'final_review/run_portable.py'),'--math-only'],blobs[P+'final_review/INDEPENDENT_CHECKS.json'].replace(b'1667',b'1665'))
+    if full_private:run([sys.executable,str(source/'final_review/run_portable.py'),'--sources',str(R/'private/sources')],blobs[P+'final_review/INDEPENDENT_CHECKS.json'])
+    run([sys.executable,str(F/'verify_public.py'),'--replay']+(['--require-private'] if full_private else []))
+    # Revalidate every namespace after all read-only subprocesses.
+    namespace(R,m['files'],m['private_files'],excluded,'postmerge after replay')
+    for directory,mf,_,_,_,_ in CLOSURES:
+        d=A/directory;old=j(d/mf)
+        if directory=='clean_final_adversary':pub=old['public_files'];priv=old['private_files']
+        else:
+            pub={x['path']:x for x in old['files']} if isinstance(old['files'],list) else old['files'];priv={x['path']:x for x in old['private_inventory']} if directory=='path_geometry_review' else j(d/('receipts/private_inventory.json' if directory=='poisson_components_review' else 'PRIVATE_INVENTORY.json'))['files']
+        namespace(d,pub,priv,[mf,'FINAL_SEAL.json'],directory+' after replay')
+print(json.dumps(dict(passed=True,checks=count,private_evidence='complete' if full_private else 'collectively absent',omitted_API_primary_source_ROOT_streams_reproduced=False if not full_private else True,receipt_replay=args.replay,actual_merge=MERGE,observed_main=CURRENT,mathematical_credited_resolution_percent=100,new_theorems=0),indent=2))

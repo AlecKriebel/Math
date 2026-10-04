@@ -1,0 +1,237 @@
+{
+  "schema": "pr40-geodesic-exact-controls/v1",
+  "status": "PASS",
+  "arithmetic": "stdlib Fraction and exact integer polynomial/circle arithmetic",
+  "checks": [
+    {
+      "check": "strict exponent boundary",
+      "pass": true,
+      "evidence": [
+        {
+          "n": 3,
+          "kappa": "22/7",
+          "exponent": "-1/7",
+          "sign": -1
+        },
+        {
+          "n": 3,
+          "kappa": "3",
+          "exponent": "0",
+          "sign": 0
+        },
+        {
+          "n": 3,
+          "kappa": "20/7",
+          "exponent": "1/7",
+          "sign": 1
+        },
+        {
+          "n": 4,
+          "kappa": "23/14",
+          "exponent": "-2/7",
+          "sign": -1
+        },
+        {
+          "n": 4,
+          "kappa": "3/2",
+          "exponent": "0",
+          "sign": 0
+        },
+        {
+          "n": 4,
+          "kappa": "19/14",
+          "exponent": "2/7",
+          "sign": 1
+        },
+        {
+          "n": 5,
+          "kappa": "8/7",
+          "exponent": "-3/7",
+          "sign": -1
+        },
+        {
+          "n": 5,
+          "kappa": "1",
+          "exponent": "0",
+          "sign": 0
+        },
+        {
+          "n": 5,
+          "kappa": "6/7",
+          "exponent": "3/7",
+          "sign": 1
+        },
+        {
+          "n": 8,
+          "kappa": "9/14",
+          "exponent": "-6/7",
+          "sign": -1
+        },
+        {
+          "n": 8,
+          "kappa": "1/2",
+          "exponent": "0",
+          "sign": 0
+        },
+        {
+          "n": 8,
+          "kappa": "5/14",
+          "exponent": "6/7",
+          "sign": 1
+        }
+      ]
+    },
+    {
+      "check": "dimension2 mechanism does not decay",
+      "pass": true,
+      "evidence": "n=2 exponent3 for every kappa"
+    },
+    {
+      "check": "primitive-shortcut exact matrix witness",
+      "pass": true,
+      "evidence": [
+        [
+          5,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    {
+      "check": "proper translated-axis intersection",
+      "pass": true,
+      "evidence": {
+        "axis_center": 1,
+        "translate_center": 3,
+        "radius_squared": 2,
+        "intersection": [
+          2,
+          1
+        ],
+        "tangent_slopes": [
+          -1,
+          1
+        ]
+      }
+    },
+    {
+      "check": "endpoint root polynomials differ",
+      "pass": true,
+      "evidence": {
+        "axis_polynomial": [
+          1,
+          -2,
+          -1
+        ],
+        "translated_polynomial": [
+          1,
+          -6,
+          7
+        ],
+        "A_not_axis_stabilizer": true
+      }
+    },
+    {
+      "check": "Gamma2 trace0 elliptic obstruction",
+      "pass": true,
+      "evidence": "trace0 with odd diagonal a,-a and even off-diagonals would give a²+bc=−1, impossible mod4"
+    },
+    {
+      "check": "toral transverse coordinate margin",
+      "pass": true,
+      "evidence": {
+        "transverse": "2/5",
+        "error": "1/100",
+        "lower": "19/50",
+        "upper": "21/50"
+      }
+    },
+    {
+      "check": "symmetric cusp midpoint half-lattice separation",
+      "pass": true,
+      "evidence": {
+        "distance": "1/5",
+        "perturbed_minimum": "19/100",
+        "valid_for_all_integer_n": true
+      }
+    },
+    {
+      "check": "nonsymmetric cusp midpoint excludes all half-lattice axes",
+      "pass": true,
+      "evidence": {
+        "midpoint": "1/15",
+        "minimum_gap_after_error": "17/300"
+      }
+    },
+    {
+      "check": "nonsymmetric cusp excludes translations",
+      "pass": true,
+      "evidence": {
+        "transverse_difference": "8/15",
+        "error": "1/100"
+      }
+    },
+    {
+      "check": "negative control actual glide collision",
+      "pass": true,
+      "evidence": {
+        "P": [
+          "1/2",
+          "-1/10"
+        ],
+        "Q": [
+          "3/2",
+          "1/10"
+        ],
+        "height_squared": "89/50",
+        "glide": "(x+1,−y)"
+      }
+    },
+    {
+      "check": "negative control projected glide identification has unequal heights",
+      "pass": true,
+      "evidence": {
+        "P": [
+          "11/10",
+          "-1/16"
+        ],
+        "Q": [
+          "21/10",
+          "1/16"
+        ],
+        "height_squared_P": "5427/1280",
+        "height_squared_Q": "6467/1280",
+        "not_an_actual_hyperbolic_arc_collision": true
+      }
+    },
+    {
+      "check": "pointed-loop nontriviality and uniform long-half constant",
+      "pass": true,
+      "evidence": {
+        "length_lower_bound": "97/100",
+        "applicable_L": "1/2",
+        "endpoint_error": "1/50"
+      }
+    },
+    {
+      "check": "corrected interior witness margin",
+      "pass": true,
+      "evidence": "[ell/4,3ell/4] plus bounded flow shift lies inside [r/10,9r/10] for large r"
+    },
+    {
+      "check": "Banach boundary-map loxodromic margin",
+      "pass": true,
+      "evidence": "for K>3, displacement-map and inverse are contractions on disjoint unit balls, with derivative≤1/(K−1)²"
+    }
+  ],
+  "new_substantive_attempts": 0,
+  "verification_attempts_added": 0,
+  "limitations": [
+    "Finite mechanism controls do not prove the full target.",
+    "Matrix witness is an infinite-volume example, not a target counterexample.",
+    "Boundary-map derivative and free-group facts are proved in the authored audit; sampled arithmetic alone does not certify them."
+  ]
+}
