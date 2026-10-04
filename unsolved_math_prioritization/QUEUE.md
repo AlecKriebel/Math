@@ -572,7 +572,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | queued | 0/5 |  |  |  |
 | 562 | 30005215 / OWR-11101919-002 | Norm Estimation from Asymmetric Black-Box Linear Operators | 0.1136 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 563 | 20001587 / AIM-GEOMETRIC_GROUP_THEORY-0096 | A finite-gluing obstruction for amenable clopen restrictions | 0.1125 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
-| 564 | 2301039 / AMR-022-1039 | Research Problems in Function Theory — Problem 1.39 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 564 | 2301039 / AMR-022-1039 | Research Problems in Function Theory — Problem 1.39 | 0.1125 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 565 | 2302004 / AMR-022-2004 | Research Problems in Function Theory — Problem 2.4 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 566 | 2302069 / AMR-022-2069 | Research Problems in Function Theory — Problem 2.69 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 567 | 2302073 / AMR-022-2073 | Research Problems in Function Theory — Problem 2.73 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
