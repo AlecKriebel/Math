@@ -93,7 +93,7 @@ def closed_reviews(capture):
  assert len(output.read_bytes())==e['stdout']['bytes'] and sha(output.read_bytes())==e['stdout']['sha256'];specs.append(('priority_review',n,e['argv'],output,inventory(n)))
  for k in (1,2):
   v=load(A/f'ROOT_PREPRINT_REVIEW0{k}_VERIFICATION.json');n=A/f'preprint_review_0{k}';assert inventory(n)==v['whole_namespace']
-  e=next(e for e in v['native_runs'] if '--full' in e['argv']);output=Path(e['stdout_path']);assert len(output.read_bytes())==e['stdout_bytes'] and sha(output.read_bytes())==e['stdout_sha256']
+  e=next(e for e in v['native_runs'] if '--full' in e['argv'] or e.get('mode')=='full');output=Path(e['stdout_path']);assert len(output.read_bytes())==e['stdout_bytes'] and sha(output.read_bytes())==e['stdout_sha256']
   specs.append((f'preprint_review_0{k}',n,e['argv'],output,inventory(n)))
  results=[]
  for name,n,args,output,before in specs:
