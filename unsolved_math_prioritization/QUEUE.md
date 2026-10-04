@@ -663,7 +663,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 652 | 30005479 / OWR-12697711-015 | Equality of Tropical and Matroidal Amoeba-Dimension Formulas | 0.1066 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 653 | 4400005 / AMR-043-0005 | Pingree open problems — Ledrappier problem 1 | 0.1065 | 6.0 | 4 | 2010 | queued | 0/5 |  |  |  |
 | 654 | 30001988 / OWR-11575-015 | Splitting Sets Under Differential-Transcendental Extensions | 0.1061 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 655 | 30000403 / OWR-1188-004 | Optimal Descent Degrees in Reduced Hurwitz Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 655 | 30000403 / OWR-1188-004 | Optimal Descent Degrees in Reduced Hurwitz Spaces | 0.1055 | 5.5 | 3 | 2006 | claimed_solved | 3/5 |  | Sharp universal coarse inner Hurwitz lifting bound 2 in characteristic zero, r >= 3; V4 stabilizer bound 1; explicit six-branch C2 example over Q attains 2. Independent AI audit passed; not pointwise optimality, actual-cover descent, or novelty certification. |  |
 | 656 | 30000492 / OWR-1274-008 | Settled Quadratic Polynomials and Markov Factorization Models | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 657 | 30000510 / OWR-1275-010 | Topology of Baby Teichmüller Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 658 | 30000576 / OWR-1323-013 | Chaos of Individual Operators in Chaotic Semigroups | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
