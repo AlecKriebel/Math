@@ -15,3 +15,15 @@ Cleared formal artifacts:
 - pentagonal-torsion-note.pdf: 92256 bytes; SHA256 0325be9bc4b754ad1d94baadf2f1b88af587e9443b9d242a2d7af7b2dda79420
 - pentagonal-torsion-verification.zip: 206380 bytes; SHA256 e916946b6ffaaec2dae08b4a3622d19293d087ced789297ee38b86c671d76dab
 - zenodo-deposit.json: 3244 bytes; SHA256 b4d99b620320f9a0a46eac60f9e61308cbc859364fadd632fd9976e9e942b863
+
+## Actual publication
+
+Published 2026-10-04T14:02:06.111077+00:00 after exact merged-tree and held-review verification.
+
+Preprint: https://doi.org/10.5281/zenodo.23137834
+
+Record: https://zenodo.org/records/23137834
+
+The seven-page PDF and the 50-payload verification package plus manifest match the reviewed files byte for byte in complete unauthenticated public downloads. All eleven metadata fields match. The DOI resolves with HTTP 200. Exactly one row was appended to the specified Math Puzzles sheet, A21:D21, and read back exactly. No chat was shared and no individual was contacted.
+
+Mathematical verification 100%; bounded priority audit 100%; this PR review/merge/publication workflow 100%. Two successive new whole-preprint reviews completed; the first attribution finding was repaired globally and the final review has zero unresolved findings. This is an unrefereed preprint with extensive AI use, without independent external human peer review or a first-priority certificate. The original author count 1/5 and all 21 original attempt files are preserved. The persistent descending program remains active.
