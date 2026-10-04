@@ -624,7 +624,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 613 | 30001211 / OWR-3396-010 | Uniform Recurrence Rates for Minimal Interval Exchanges | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 614 | 30001232 / OWR-3471-006 | Lower Bounds for Seshadri Constants on Minimal Surfaces | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 615 | 30001388 / OWR-4137-004 | Escaping Boundary Points of Baker Domains | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 616 | 30001391 / OWR-4137-007 | Degree Bounds for Degenerate Herman Rings | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 616 | 30001391 / OWR-4137-007 | Degree Bounds for Degenerate Herman Rings | 0.1116 | 5.5 | 3 | 2009 | unsolved | 5/5 |  | Audited individually invariant bound N <= d-1 (Julia set; excludes rotation-domain boundaries); unrestricted periodic target unresolved. |  |
 | 617 | 30001393 / OWR-4137-010 | Complete Invariance of Singular-Value Basins | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 618 | 30003790 / OWR-16161-003 | Consistent Noisy Single-Index Regression | 0.1114 | 4.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 619 | 30001672 / OWR-4791-032 | High Influence Small Sets in Boolean Functions | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
