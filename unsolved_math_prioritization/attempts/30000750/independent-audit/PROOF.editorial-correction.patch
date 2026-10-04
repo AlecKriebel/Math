@@ -1,0 +1,61 @@
+--- frozen/PROOF.md
++++ corrected/PROOF.md
+@@ -11,19 +11,19 @@
+ For a polynomial $F(x)=\sum_{j=0}^d a_jx^j$, put
+ 
+ \[
+-L$F$=\sum_{j=0}^d|a_j|.
++L(F)=\sum_{j=0}^d|a_j|.
+ \]
+ 
+ For nonzero $F=a_d\prod_{j=1}^d(x-\alpha_j)$, define the multiplicative Mahler measure
+ 
+ \[
+-M$F$=|a_d|\prod_{j=1}^d\max\{1,|\alpha_j|\}.
++M(F)=|a_d|\prod_{j=1}^d\max\{1,|\alpha_j|\}.
+ \]
+ 
+ Empty products have value 1. Thus $M(c)=|c|$ for constants $c\ne0$. Extend the convention by $M(0)=0$. The real reduced length is
+ 
+ \[
+-\ell_{\mathbb R}$F$=\inf\{L(FQ):Q\in\mathbb R[x]\text{ is monic}\}.
++\ell_{\mathbb R}(F)=\inf\{L(FQ):Q\in\mathbb R[x]\text{ is monic}\}.
+ \]
+ 
+ The degree-zero monic polynomial $Q=1$ is allowed. We prove that, for every real $t\in[-2,2]$ and every $P\in\mathbb R[x]$,
+@@ -40,7 +40,7 @@
+ Dobrowolski's Theorem 2.1 states that a nonzero complex polynomial $F$ with a zero of modulus 1 satisfies
+ 
+ \[
+-L$F$\ge 2M$F$.\tag{D}
++L(F)\ge 2M(F).\tag{D}
+ \]
+ 
+ Reference: E. Dobrowolski, “On a question of Schinzel about the length and Mahler's measure of polynomials that have a zero on the unit circle,” *Acta Arithmetica* **155** (2012), no. 4, 453–463, Theorem 2.1 on p. 454. [DOI](https://doi.org/10.4064/aa155-4-8); [publisher PDF](https://www.impan.pl/shop/en/publication/transaction/download/product/82795).
+@@ -59,13 +59,13 @@
+ At $t=-2$, $A_t=(x-1)^2$; at $t=2$, $A_t=(x+1)^2$. Thus in every case $A_t$ is monic and both zeros have modulus 1, counting multiplicity. In particular,
+ 
+ \[
+-M$A_t$=1.\tag{1}
++M(A_t)=1.\tag{1}
+ \]
+ 
+ Mahler measure is multiplicative: $M(UV)=M(U)M(V)$ for nonzero polynomials $U,V$. Indeed, their leading coefficients multiply and the multiset of zeros of their product is the union of their zero multisets. Also, if $Q$ is monic, the defining root product gives
+ 
+ \[
+-M$Q$=\prod_\beta\max\{1,|\beta|\}\ge1,\tag{2}
++M(Q)=\prod_\beta\max\{1,|\beta|\}\ge1,\tag{2}
+ \]
+ 
+ including $Q=1$.
+@@ -74,8 +74,8 @@
+ 
+ \[
+ L(A_tPQ)\ge2M(A_tPQ)
+-=2M$A_t$M(P)M$Q$
+-=2M(P)M$Q$\ge2M(P).
++=2M(A_t)M(P)M(Q)
++=2M(P)M(Q)\ge2M(P).
+ \]
+ 
+ The right-hand side does not depend on $Q$. Every member of the nonempty set over which the reduced length is defined has this lower bound, so its infimum has the same lower bound. This proves (T). No minimizing multiplier or bound on its degree is assumed. If $P=0$, then $L(A_tPQ)=0$ for all $Q$, so both sides of (T) are zero. ∎
