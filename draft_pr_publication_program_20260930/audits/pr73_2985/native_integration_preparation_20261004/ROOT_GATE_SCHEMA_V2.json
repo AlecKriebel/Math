@@ -1,0 +1,655 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "audited_outcome": {
+            "const": "claimed_solved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "already_solved_gates": {
+            "type": "null"
+          },
+          "claimed_solved_gates": {
+            "additionalProperties": false,
+            "properties": {
+              "publication": {
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "path": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "type": "object"
+              },
+              "tracker": {
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "path": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "type": "object"
+              },
+              "whole_package": {
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "path": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "publication",
+              "tracker",
+              "whole_package"
+            ],
+            "type": "object"
+          },
+          "partial_gates": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "audited_outcome": {
+            "const": "already_solved"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "already_solved_gates": {
+            "additionalProperties": false,
+            "properties": {
+              "certified_credited_prior_disposition": {
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "path": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "type": "object"
+              },
+              "no_new_paper": {
+                "const": true
+              },
+              "no_publication_action": {
+                "const": true
+              },
+              "no_tracker_append": {
+                "const": true
+              }
+            },
+            "required": [
+              "certified_credited_prior_disposition",
+              "no_new_paper",
+              "no_publication_action",
+              "no_tracker_append"
+            ],
+            "type": "object"
+          },
+          "claimed_solved_gates": {
+            "type": "null"
+          },
+          "partial_gates": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "audited_outcome": {
+            "const": "partial"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "already_solved_gates": {
+            "type": "null"
+          },
+          "claimed_solved_gates": {
+            "type": "null"
+          },
+          "partial_gates": {
+            "additionalProperties": false,
+            "properties": {
+              "certified_attributed_partial_disposition": {
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "path": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "sha256": {
+                    "pattern": "^[0-9a-f]{64}$",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "path",
+                  "bytes",
+                  "sha256"
+                ],
+                "type": "object"
+              },
+              "no_new_paper": {
+                "const": true
+              },
+              "no_novelty_clearance": {
+                "const": true
+              },
+              "no_publication_action": {
+                "const": true
+              },
+              "no_tracker_append": {
+                "const": true
+              }
+            },
+            "required": [
+              "certified_attributed_partial_disposition",
+              "no_novelty_clearance",
+              "no_new_paper",
+              "no_publication_action",
+              "no_tracker_append"
+            ],
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "description": "Structural schema only. Runtime also verifies full pins, exact scope equality, typed native schema, successful branch-specific receipts, and a fresh actual writer acknowledgment.",
+  "properties": {
+    "PR": {
+      "const": 73
+    },
+    "ROOT_authorizes_sequential_native_integration": {
+      "const": true
+    },
+    "ROOT_personally_read_required_reports": {
+      "const": true
+    },
+    "ROOT_reviewed_frozen_exact_plan": {
+      "const": true
+    },
+    "UTC": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "already_solved_gates": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "certified_credited_prior_disposition": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "no_new_paper": {
+              "const": true
+            },
+            "no_publication_action": {
+              "const": true
+            },
+            "no_tracker_append": {
+              "const": true
+            }
+          },
+          "required": [
+            "certified_credited_prior_disposition",
+            "no_new_paper",
+            "no_publication_action",
+            "no_tracker_append"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "audited_outcome": {
+      "enum": [
+        "claimed_solved",
+        "already_solved",
+        "partial"
+      ]
+    },
+    "authorizer": {
+      "const": "ROOT"
+    },
+    "bound_evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "bound_operators": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "minItems": 5,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "claimed_solved_gates": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "publication": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "tracker": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "whole_package": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "publication",
+            "tracker",
+            "whole_package"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "current_readiness_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "exact_plan": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "bytes",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "expected_submitted_head": {
+      "const": "6f82e81631fd43abc0140a831acfb43c150f4210"
+    },
+    "explicit_scope_interpretation_approved": {
+      "const": true
+    },
+    "final_adversarial_review_clean": {
+      "const": true
+    },
+    "historical_classification_certified": {
+      "const": true
+    },
+    "historical_classification_meaning": {
+      "const": "precise_bounded_classification_without_inferred_prior_target_resolution"
+    },
+    "mathematics_validated": {
+      "const": true
+    },
+    "minimum_writer_ack_utc": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "new_original_proof_turns": {
+      "const": 0
+    },
+    "original_proof_turns": {
+      "const": "1/5"
+    },
+    "partial_gates": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "certified_attributed_partial_disposition": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "no_new_paper": {
+              "const": true
+            },
+            "no_novelty_clearance": {
+              "const": true
+            },
+            "no_publication_action": {
+              "const": true
+            },
+            "no_tracker_append": {
+              "const": true
+            }
+          },
+          "required": [
+            "certified_attributed_partial_disposition",
+            "no_novelty_clearance",
+            "no_new_paper",
+            "no_publication_action",
+            "no_tracker_append"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "problem_id": {
+      "const": "2985"
+    },
+    "schema": {
+      "const": "pr73-root-scientific-native-gate/v2"
+    },
+    "scope_interpretation": {
+      "additionalProperties": false,
+      "properties": {
+        "excluded_scopes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "excluded_scopes"
+      ],
+      "type": "object"
+    },
+    "stage": {
+      "const": "FRESH_FINAL_ROOT_SCIENTIFIC_GATE"
+    }
+  },
+  "required": [
+    "schema",
+    "stage",
+    "UTC",
+    "authorizer",
+    "PR",
+    "problem_id",
+    "expected_submitted_head",
+    "audited_outcome",
+    "historical_classification_meaning",
+    "ROOT_authorizes_sequential_native_integration",
+    "ROOT_personally_read_required_reports",
+    "mathematics_validated",
+    "historical_classification_certified",
+    "final_adversarial_review_clean",
+    "explicit_scope_interpretation_approved",
+    "ROOT_reviewed_frozen_exact_plan",
+    "scope_interpretation",
+    "original_proof_turns",
+    "new_original_proof_turns",
+    "exact_plan",
+    "bound_evidence",
+    "bound_operators",
+    "current_readiness_evidence",
+    "minimum_writer_ack_utc",
+    "claimed_solved_gates",
+    "already_solved_gates",
+    "partial_gates"
+  ],
+  "title": "PR73 fresh ROOT scientific gate",
+  "type": "object"
+}

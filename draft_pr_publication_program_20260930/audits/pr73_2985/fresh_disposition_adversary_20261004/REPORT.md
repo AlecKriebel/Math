@@ -1,0 +1,87 @@
+# Final fresh adversarial scientific/disposition audit: PR73 / 2985 / K3 Problem 4.109
+
+Report UTC: 2026-10-04T18:57:04.456758+00:00. Assigned submitted head `6f82e81631fd43abc0140a831acfb43c150f4210`.
+
+## Verdict
+
+**PASS_REPAIRED_PARTIAL_DISPOSITION__NO_NOVELTY_CERTIFICATION.** The submitted connected prescribed-surface theorem is mathematically valid. The repaired version-2 scientific disposition is defensible as a verified, attributed partial research record. Here `partial` records incomplete historical novelty and target-priority determination; it is not a statement that the theorem is partly proved. There is no remaining essential mathematical or scientific-wording repair in the version-2 packet actually read.
+
+This does not certify earliest priority, first connected four-dimensional example, conventional human peer review, formal proof certification, or a novel open-problem resolution. It does not establish an operational merge/import/acceptance. ROOT must separately bind the reviewed bytes and establish actual execution using its final gate and receipts. This audit did not perform any such operation or choose a publication exception.
+
+The reviewed version-2 packet is `attributed_result_preparation_v2_complete_20261004`, including CURRENT_RESULT.md, CURRENT_PRIORITY.md, PR_BODY.md, DISPOSITION_PROPOSAL.json, MANIFEST.json and README.md. Preparation CAPTURE.json was also read. `packet_v2_read.process.json` preserves each whole-byte pin, the actual reading child PID 53850, cwd/argv, UTC interval, exit zero and full private stdout/stderr. The four content pins are:
+
+| File | Bytes | SHA-256 |
+|---|---:|---|
+| CURRENT_RESULT.md | 6378 | `139ab32118cfafea96987c4e9a6cb882bca9288d87d6872f75af5bc5e103ae43` |
+| CURRENT_PRIORITY.md | 7864 | `ea01308c22397d4c4c6a34287cc8848cedff6832120b77a248a5219fce01c6cb` |
+| PR_BODY.md | 2187 | `f4f1d147d9f8833a24d2967018eaa8e697f80ae9345713eeffb619eb1bfd6a7f` |
+| DISPOSITION_PROPOSAL.json | 2763 | `cab13ff3f0c8dc99f4aa20a3616d989a3907212be15216747eb21c498be96e09` |
+
+## Independent phase and preserved FIRST
+
+Before any proposal, ROOT/sibling report, legacy review, original source background or existing diagnostic script was read, I authenticated and read the entire restricted candidate and target. The candidate is 10731 bytes with SHA-256 `78ab061c9c0c6c16f2e6b249e764001361933782d7381982c733f92cefda3c8f`; the target is 691 bytes with SHA-256 `7ba75791dfd27212171c1eadb12b6889a7d0d203ce634a25436d3424cf382a56`.
+
+FIRST.md was sealed at **2026-10-04T18:45:51.173747+00:00**, 9799 bytes, SHA-256 **`b41e2071dfb30e86456fb7188404e6deffad557fb8136c8106bdf78ac0192ee8`**. Its independent mathematical PASS and unestablished historical priority remain unchanged. The seal preceded packet exposure at 18:47:18 UTC and completed-audit exposure at 18:47:52 UTC. Later exposure intentionally informs this synthesis and is not claimed to be an additional independent approach family. FIRST's initial statement that this reviewer had not inspected the thesis remains a true historical exposure statement; post-FIRST thesis reading is recorded separately.
+
+Pre-FIRST inputs were restricted to the two mathematical files, applicable AGENTS instructions, PDF skill instructions, owned audit outputs, and independently retrieved primary sources. Parent messages before sealing concerned the assignment and private-source storage only. Seven bounded fresh web queries were used. Search snippets included irrelevant/secondary sources, treated only as leads. The independent argument is preserved in FIRST rather than retroactively rewritten after agreement with other reviewers.
+
+## Strongest verified theorem and boundary tests
+
+The construction gives a closed connected symplectic four-manifold (X,Omega), a closed connected embedded symplectic genus-three surface Sigma, integral real equality PD[Sigma]=[Omega], and Sigma squared equal to four. The complement has no homotopy model of CW dimension at most two and admits no Weinstein structure for any symplectic form.
+
+The independent affine/orientation checks passed. The two tori meet transversely at exactly two positive nodes; every cross-pair with the involution image is disjoint by conflicting constants. The involution is free, symplectic, and order two modulo the lattice. Exact standard-library exterior algebra independently verified the two class squares, zero mixed product, class sum, involution action, normal determinant, genus, and degree-two volume factor. The script and actual execution receipts are preserved. Finite algebra checks are supplementary evidence; they do not certify the smooth or topological assertions.
+
+The original candidate's local smoothing is sound: in normal complex coordinates alpha is positive Kahler and beta is Re(dz wedge dw). On the central complex annulus beta vanishes and omega0 is positive. Compact cutoff transitions converge in C1 to positive axes, so sufficiently small parameter gives positivity, smooth matching, embeddedness and homologous local replacement. The second node uses a modular normal lift with constant 5/4, not a false global-coordinate equality. The two local replacements stay in a neighborhood disjoint from its image. Defining the second surface as the involution image guarantees the required exchange symmetry.
+
+The quotient restriction to the first surface is a diffeomorphism onto the connected embedded quotient surface. Finite-cover real transfer proves the class equality. It does not require integral pullback injectivity or cancellation of torsion. The actual integral Poincare dual supplies an integral lift. The invariant torus with coordinates p(t/2,u,0,0) has Omega period one; an integral class taking value one on an integral cycle is primitive, even if the ambient cohomology has torsion. Thus the version-2 stronger primitive-class assertion is justified.
+
+The cover complement is connected by general position for paths, and retracts onto the compact exterior. The oriented Thom map takes the ambient fundamental class to (1,1) in Z squared. Its primitive cokernel Z injects into ordinary third homology. Normal Euler class/self-intersection does not alter this top-degree coefficient. Covers of a two-dimensional CW homotopy model retain that dimension bound; alternatively a finite cover lifts the Weinstein data and its proper exhaustion. The nonzero upstairs ordinary H3 therefore obstructs every Weinstein structure downstairs. The argument works for both compact-domain interiors and conventional proper open Weinstein structures and does not use a finite-volume/completeness objection.
+
+After FIRST, I checked the topology family's stronger derivation. Multiplication by alpha from degree one to degree three is rationally invertible because alpha is a nondegenerate linear symplectic form; its displayed determinant is four. Consequently degree-one cohomology restriction from T4 to S is injective. The pair degree-zero cokernel then gives upstairs H3 exactly Z, with deck action minus one. If a degree-one integral cohomology class downstairs restricts trivially to Sigma, its pullback restricts trivially to S; transfer kills twice the class, and degree-one integral cohomology is torsion-free. Hence restriction downstairs is injective and the connected-pair sequence gives downstairs ordinary H3 equal to zero. These claims are correct and show why the cover is essential; they do not expose a defect in the original obstruction.
+
+Symplectic area forces positive k for a nonempty surface satisfying the class condition. The constructed choice Omega=2baromega is allowed by the universal quantifiers and yields k=1. The theorem does not assert the result for every normalization or every ambient manifold. It does not decide CP2, existence of a different good degree-one representative, or effective degrees for choosing suitable representatives.
+
+## Original-source interpretation and chronology
+
+I independently fetched, extracted and visually inspected the entire relevant K3 printed p.281, including both remarks and scribes; the section's definitions on p.263 and chapter introduction pp.189-190 were also checked within the declared scope. The displayed problem does not expressly add connectedness. No explicit convention settling it was found in that inspected scope. This is not a whole-volume absence claim. The present counterexample is connected and therefore survives the stricter interpretation.
+
+The prescribed-surface universal assertion differs from the existence assertion in the second remark, which concerns choosing some good representative and effective degrees. A negative example for one prescribed surface cannot show that no other degree-one representative works. Version 2 preserves these boundaries.
+
+I independently inspected Giroux's arXiv Proposition 9 and complete proof on pp.8-10 before FIRST. It attributes the disconnected four-torus construction to Auroux, including the orthogonal integral classes and local smoothing. The generic unequal-offset disjointness sentence is overbroad; the specific candidate offsets give a checkable correction to the needed existence construction. That defect does not erase the prior existence mechanism.
+
+After packet/audit exposure I independently fetched and visually checked the currently hosted Harvard thesis title and printed p.7/PDF p.11. The title page bears defense date January 22, 1999. The retained example gives two disjoint components, each genus 2k^2+1, in the class dual to 2k[omega0] under the 4pi omega0 normalization; it sketches orthogonal forms and smoothing flat tori. Four explicit affine equations are absent from that passage. This confirms the corrected final priority-family account and prevents overinterpreting the later comment about details cut from the thesis. I did not certify contemporary public availability of those exact current bytes or read a full thesis proof.
+
+I also independently fetched and visually checked the official publisher title page and printed pp.376-377. The nominal journal year is 2017 and the title page records receipt January 9, 2018. The arXiv manuscript's December 2017 dateline is an internal date; arXiv records secure public submission on March 15, 2018 at 18:11:56 UTC. No earliest journal public-release or discovery date is certified. My publisher fetch has different whole-file bytes from earlier family fetches; the watermarked body was independently inspected and no byte-identity claim is made.
+
+Rescaling the older disconnected degree-two example to ambient form 2omega0 yields degree one mathematically. That is a checked deduction, not documentation that an earlier author printed the degree-one formulation. Likewise the candidate's free quotient is a short additional corollary of explicit formulas and standard topology, but derivability does not establish a dated historical statement of that connected result. The bare existential disconnected theorem does not alone provide the symmetry needed for the quotient.
+
+The 2020 author post/comment concerns a connected smooth example in ambient dimension six. It is prior evidence against broad claims that all connected such complements are new; it does not supply the same four-dimensional target. The completed priority families examined additional primary source families and maintained their exclusions and residual gaps. I read their full reports and bibliography/scope ledgers, not all of those additional source bodies myself. Thus this audit does not turn those bounded scopes into an exhaustive literature proof. The earlier connected four-dimensional theorem was not located in the inspected corpus; its novelty and firstness remain unestablished.
+
+## V1 rejection and verified V2 repairs
+
+Version 1 was not acceptable as written. Its unconditional `already_solved` machine status attached a target historical classification to an implication verified only under the disconnected-permitting reading. A prose qualification could be dropped by downstream consumers and did not settle the intended convention. The target-status objection is scientific, not merely stylistic.
+
+All four essential repairs in ESSENTIAL_REPAIRS.json are implemented in version 2:
+
+1. **R1, status:** `partial` replaces unconditional `already_solved`, with explicit explanation that the connected theorem is completely verified and the incomplete part is novelty/target-priority determination.
+2. **R2, predicate scope:** `disconnected_surface_version_prior_verified=true` is separated from `original_target_historical_already_solved_certified=false`. No earlier connected primary statement or original-target historical resolution is certified.
+3. **R3, new cutoff exposition:** the positive-real epsilon choice, fixed 0<a<b, epsilon<a squared, smooth [0,1]-valued monotone cutoff and constant collars are explicit. Under that choice the density formula and beta vanishing are correct. For arbitrary complex epsilon beta need not vanish on a cutoff arm, so the restriction matters. This was a repair to strengthened exposition, not a missing mechanism in the original theorem.
+4. **R4, scientific/execution separation:** the future native result/priority prose states the scientific disposition, while README and proposal metadata preserve the preparation boundary and require actual acceptance/merge/import receipts separately. A document prepared in advance is not execution evidence.
+
+The repaired record is appropriate without a human scope decision: conservative attributed partial acceptance does not impose an unverified source interpretation. A stronger resolved/novel classification would need additional evidence and an explicit scope choice. This report does not request or authorize such a classification.
+
+Optional editorial refinement only: CURRENT_RESULT's phrase referring to the original proof checking the offsets could identify the submitted candidate explicitly, to avoid ambiguity with Giroux's overbroad sentence. Mixing representative forms and their cohomology classes in the alpha+beta line is conventional shorthand; brackets could be made consistent. Neither is an essential repair.
+
+## Custody, operational limits and reproducibility
+
+After FIRST and explicit release, I read every listed completed mathematical/priority report, verdict, bibliography, exposure ledger and final seal, plus ROOT's original authentication, original replay/readback, bounded-priority and completed-priority readback records. The large audit stdout was initially truncated by tool presentation, then semantically reread in four bounded chunks spanning the entire retained stream. Exact file pins are in completed_audits_read.process.json and root_records_read.process.json.
+
+ROOT's custody records authenticate the head/source correspondence and report original 13,236/10,403 assertion replays with matching retained outputs. I reviewed those records; I did not independently read or replay the original scripts or re-authenticate the complete Git graph. Their assertion totals are reported ROOT evidence, not this reviewer's assertion totals. Original native separate-prior field present as null, raw lookup absent, and SQL empty object are distinct metadata states, not historical novelty evidence. Original status.json absence, readiness presence and one substantive turn out of five remain dated source facts; a current disposition must not reconstruct old workflow transitions from them.
+
+All work in this audit namespace is original analysis, owned exact-check code and metadata. Copyrighted primary bodies, extracts, pixels and source-bearing fullstreams are private outside Git in `/private/tmp/pr73_fresh_disposition_adversary_20261004_icxm8_0c`. Measured children retain actual PID/cwd/argv, launch/completion UTC, exit, fullstdout/stderr and available prelaunch input pins. Process/source/exposure manifests explicitly disclose the initial failed directory launch, uninstrumented administrative/tool calls, missing host/tool internal metadata, and closure/self exclusions. Requested web screenshots returned text references only and were not counted as pixel inspection; actual visual claims use local Poppler plus view_image.
+
+No outside individual was contacted, no outreach was prepared, no new central proof-search turn occurred, and no Git/index/ref, native record, PR, paper/editor, upload/release/DOI or tracker mutation was performed by this reviewer. The final audit deliverable's separate byte readback and seal establish artifact integrity; they do not establish mathematical formal certification or operational acceptance.
+
+Completion estimate: **100% of the assigned fresh scientific/disposition audit**. Novelty-discovery goal achieved: **no**. Strongest verified result: the complete connected theorem. Exact remaining research gap: historical novelty of its connected four-dimensional quotient extension and the original source's intended connectedness convention for prior-status interpretation.
+
+Primary sources: [K3 author PDF](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), [Giroux arXiv primary source](https://arxiv.org/abs/1803.05929), [official publisher Giroux PDF](https://intlpress.com/api/bgcloud-front/resource/pdf/volume/1806164162696916994-1806164162696916994-81adc96e8c20b5a15ee58b5d30edbc95.pdf), [Auroux currently hosted thesis](https://people.math.harvard.edu/~auroux/papers/these.pdf), [Roux divisors primary post/comment](https://symplectosaurus.wordpress.com/2020/03/06/roux-divisors/).
