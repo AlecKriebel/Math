@@ -165,12 +165,15 @@ def closed_reviews(capture):
                         'whole_output_identical': True, 'closed_namespace_unchanged': True})
     for n in (1, 2):
         c = load(A/f'ROOT_PREPRINT_REVIEW0{n}_CONTROL_REPRODUCTION.json')
-        expected = Path(c['stdout_path']) if 'stdout_path' in c else A/'root_replay_private'/f'preprint_review0{n}_closed_001/controls.stdout'
         v = A/f'preprint_review_0{n}'
         before = inventory(v)
-        z = capture.run('fresh_adversary_controls_'+str(n), c['execution']['argv'], cwd=A)
-        assert z.stdout == expected.read_bytes() and not z.stderr
-        assert json.loads(z.stdout) == c['complete_stdout'] and inventory(v) == before
+        controls = c.get('control_runs', [c])
+        for i, control in enumerate(controls):
+            expected = Path(control['stdout_path']) if 'stdout_path' in control else A/'root_replay_private'/f'preprint_review0{n}_closed_001/controls.stdout'
+            z = capture.run('fresh_adversary_controls_'+str(n)+'_'+str(i), control['execution']['argv'], cwd=A)
+            assert z.stdout == expected.read_bytes() and not z.stderr
+            assert json.loads(z.stdout) == control['complete_stdout']
+        assert inventory(v) == before
     return results
 
 
