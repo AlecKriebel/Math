@@ -24,3 +24,5 @@ records remain private; public custody records identify their exact hashes.
 
 Completion at the mathematical checkpoint: mathematics 100%, bounded priority
 0%, complete PR workflow 30%. The descending persistent goal remains active.
+
+Current priority-progress checkpoint: ROOT recent-publication route closed with three full primary-text comparisons and exact pre-submission public-record file/date maps. The two independent historical-literature families remain active. Mathematics100%; bounded priority35%; PR workflow35%. See ROOT_PRIORITY_RECENT_COMPARISON.md.
