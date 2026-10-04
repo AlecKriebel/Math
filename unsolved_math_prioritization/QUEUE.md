@@ -561,7 +561,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 550 | 30004064 / OWR-16766-003 | Dual Recovery of Binary Tomography Solution Intersections | 0.1153 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 552 | 30001065 / OWR-2090-018 | Universal Optimality of Exceptional Spherical Codes | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | unsolved | 5/5 |  |  |  |
 | 554 | 30006272 / OWR-14299283-013 | Catalan Formulas for Ekedahl-Oort Intersection Cohomology | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 555 | 30006308 / OWR-14299288-014 | Deformation Spaces of Smooth Complete Toric Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 556 | 30006359 / OWR-14299511-008 | Irreducible Forest Decomposition of Consistency-Equation Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
