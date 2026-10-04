@@ -1,0 +1,13 @@
+# PR370 priority and hypotheses audit log
+
+- 2026-10-03 11:22:48 UTC — Created isolated audit workspace. Estimated audit completion: 0%. Candidate content and sibling/prior conclusions are unexamined. Scope: independently retrieve original OWR problem and exact primary resolution versions; seal source-first assumptions and falsification criteria before opening candidate mathematical content.
+
+- 2026-10-03T11:28:27.236975+00:00 — Independent source-first baseline sealed. Estimated audit completion: 30%. Primary exact versions and theorem hypotheses checked; standard interpretation has a literature proof chain, while a negative-mass offset-ball construction falsifies a literal curvature/boundary-free generalization. No candidate mathematical content or prior/sibling conclusions read.
+
+- 2026-10-03T11:31:20.186816+00:00 — Independent mathematical reconstruction and verdict sealed before programs/checks/state/final/prior-review access. Estimated audit completion: 60%. Smooth complete negative-mass fill-in, metric capacity, nested shifted exhaustion, full volume error control, and strict1/4 gap verified. Primary-source equation(41) is valid before the source imposes m≥0 on its separate volume bound.
+
+- 2026-10-03 11:40:00 UTC — Packet/source/status inspection and all four frozen programs completed. Estimated audit completion: 85%. Author and original review receipts are byte-exact; all manifest entries and all seven source hashes match; portable source counts0 and7 both reproduced. A distinct exact radial integration recovers the full volume-tail remainder and local boundary flux. Its first run failed because an auxiliary sign control omitted r>1; the failure is preserved and the corrected exterior-domain control passes15 checks. No candidate defect arose.
+
+- 2026-10-03T11:44:15.541905+00:00 — Detailed final priority/hypotheses report completed. Estimated audit completion: 95%. Exact literature versions, source hashes, frozen bytes/parents, scope/status claims, programs, distinct controls, and partly reproducible historical searches checked. No mandatory candidate fixes found; exact global negative-example m_CV and historical novelty remain unclaimed. Preparing final own-root manifest and seal validation.
+
+- 2026-10-03T11:45:09.794331+00:00 — Audit completed, estimated completion: 100% of the scoped independent verification task. Verdict: PASS, no mandatory candidate fixes. Own-root public manifest prepared; raw sources, private packet copy, and execution scratch remain ignored. Main unchanged; no Git or service mutations. Historical novelty and the exact negative-example global mass remain unestablished, as expressly excluded from the claim.

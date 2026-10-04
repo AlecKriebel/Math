@@ -1,0 +1,49 @@
+--- original-unclosed/pr49_guards.py
++++ reviewed-V2/pr49_guards.py
+@@ -144,15 +144,17 @@
+     known={
+         'pr48-acceptance-source-closure/v1':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
+         'pr48-acceptance-source-closure/v2':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
++        'pr48-acceptance-source-closure/v3':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
+         'pr46-acceptance-source-closure/v1':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
+         'pr49-acceptance-source-closure/v1':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
++        'pr49-acceptance-source-closure/v2':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
+         'pr49-strict-current-packet/v1':{'schema','self_excluded','files_count','files','current_gate','status','full_problem_solved','project_solved','novelty_claimed','original_substantive_attempts','new_substantive_attempts','audit_turns','full_permission_mode','turn_limit'},
+         'pr49-final-root-two-member-closure/v1':{'schema','utc','self_excluded','files_count','files'},
+         'pr49-accepted-strict-self-excluding-closure/v1':{'schema','utc','self_excluded','files_count','files','foreign_excluded_prefixes'},
+     }
+     require(type(obj) is dict and obj.get('schema') in known,'Unknown critical closure schema')
+     keyset(obj,known[obj['schema']],'Exact recognized closure schema')
+-    if obj['schema'] in {'pr49-acceptance-source-closure/v1','pr48-acceptance-source-closure/v2','pr48-acceptance-source-closure/v1','pr46-acceptance-source-closure/v1'}:
++    if obj['schema'] in {'pr49-acceptance-source-closure/v2','pr48-acceptance-source-closure/v3','pr49-acceptance-source-closure/v1','pr48-acceptance-source-closure/v2','pr48-acceptance-source-closure/v1','pr46-acceptance-source-closure/v1'}:
+         required(obj,{'status':'CLOSED_SOURCE_ONLY','source_only':True,'proposed_helpers_imported_compiled_executed':False,'future_acceptance_or_ROOT_approval_claimed':False},'Closed preparation, not future execution')
+     rr=rows(obj['files'])
+     declarations=[obj[k] for k in ['excluded','self_excluded'] if k in obj]
+@@ -277,9 +279,10 @@
+ 
+ def predecessor48(o,clock):
+     p48=B/'audits/pr48_2961';cp=R/o['previous_post_contract']['path'];sm=R/o['previous_preparation_manifest']['path']
+-    require(cp==p48/'acceptance_preparation_family_v2/ROOT_POST_CONTRACT.json' and sm==cp.parent/'PREPARATION_MANIFEST.json','Actual repaired48 V2 closure/contract required')
+-    require(stat.S_IMODE(cp.stat().st_mode)==0o444 and sha(cp.read_bytes())=='26f89f5ebf8444f96394ca5050c503920de1b9adb7417489241fcbe04885b410','Exact known source contract; unfinished V2 never pins or readiness')
++    require(cp==p48/'acceptance_preparation_family_v3/ROOT_POST_CONTRACT.json' and sm==cp.parent/'PREPARATION_MANIFEST.json','Actual repaired48 V3 closure/contract required')
++    require(stat.S_IMODE(cp.stat().st_mode)==0o444 and sha(cp.read_bytes())=='26f89f5ebf8444f96394ca5050c503920de1b9adb7417489241fcbe04885b410','Exact known source contract; unfinished V3 never pins or readiness')
+     manifest(cp.parent,'PREPARATION_MANIFEST.json',o['previous_preparation_manifest']['sha256'],frozen=True)
++    require(load(sm)['schema']=='pr48-acceptance-source-closure/v3','Exact repaired48 V3 predecessor schema; V1/V2 never transfer')
+     contract=load(cp);require(contract['schema']=='pr48-future-ROOT-whole-post-contract/v1' and contract['source_only'] is True and contract['future_ROOT_post_completed'] is False,'Source contract alone asserts no completion')
+     previous=load(R/o['previous_mirror']['path']);post=load(R/o['previous_post']['path']);rootpost=load(R/o['previous_root_post']['path'])
+     for k,n in [('previous_mirror','state_mirror_bindings.json'),('previous_post','post_acceptance_verification.json'),('previous_root_post','ROOT_ACTUAL_POST_INSPECTION.json')]:require(R/o[k]['path']==p48/n,'Genuine actual48 adjacent evidence')
+--- original-unclosed/capture_root_final_operation.py
++++ reviewed-V2/capture_root_final_operation.py
+@@ -29,7 +29,11 @@
+     assert args.capture_name and '/' not in args.capture_name and args.capture_name not in ('.', '..')
+     script = Path(args.script)
+     assert script.is_absolute() and script.is_file() and not script.is_symlink()
+-    assert script.parent == A / 'acceptance_preparation_family' and script.name == 'seal_final_evidence.py'
++    for ancestor in [script.parent,*script.parent.parents]:
++        assert not ancestor.is_symlink()
++        if ancestor==R:break
++    assert script.is_relative_to(R)
++    assert script.parent == A / 'acceptance_preparation_family_v2' and script.name == 'seal_final_evidence.py'
+     source = script.read_bytes()
+     assert sha(source) == args.script_sha256
+     dest = A / args.capture_name

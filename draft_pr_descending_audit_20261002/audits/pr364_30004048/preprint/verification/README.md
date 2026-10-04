@@ -1,0 +1,15 @@
+# Biconstrained reachability verification supplement
+
+The accompanying research note proves that the universal function is not symmetric, with absolute gap at least 1/108 at the rational pair (13/27,14/27). Its proof works for all finite admissible graphs. Exact values, their ordering and the two integer minima are unevaluated.
+
+Run `python3 -B verify_package.py` from this directory, after reading the supplied programs. Python 3.10 or later and its standard library suffice. No Git repository, network, optimization solver or additional library is needed. The verifier checks the exact package inventory, all 41 original files and 135 nested manifest instances, and reexecutes six programs with entire expected stdout, empty stderr and zero exits. It writes no files. The four original receipts contain 29,175, 12,749, 1,831 and 2,552 checks. The two independent families add 122,568 and 357 exact controls. These counts include arithmetic and bookkeeping; they are not counts of independent proofs.
+
+The original reference records preserve the three research checkpoints and original reviewer without altering their bytes. Their historical searches and provenance claims are not established just by repeating JSON assertions. Current mathematical and priority assessments appear in the manuscript and audits. Turn 1 and turn 2 are supplementary method results; the complete resolution uses the boundary theorem from turn 3.
+
+The controls test the prior seven-type matrix and complement, all sixteen integer gaps, both ordinary 162-vertex upper-bound graphs, repeated-neighborhood grouping, positive middle support, residual A mass, endpoint cases and false reverse-graph/global-bound inferences. The unequal ordinary graphs give upper bounds only. The universal rigidity and integer-minimum proof, rather than those examples alone, establish non-symmetry.
+
+The audit folders preserve the exact public reports, independent source-first mechanisms, later analytic assessments and manifest-bound review code. Their repository-oriented verifiers require the separately described repository/snapshot/private evidence and are not invoked by this portable package. Raw PDFs, extracted primary text, renders, API responses and private captures are omitted. SOURCE_RECEIPTS.json and the original source manifest give official retrieval URLs, editions, sizes and hashes. Omitted evidence is not reported as freshly reproduced.
+
+PRIORITY_REPORT.md records the dated bounded primary literature audit and access gaps. Earlier graph constructions and the finite weighted framework are credited. A negative search is not a guarantee of historical originality. AI tools were used extensively; the note is unrefereed and has not received external human peer review.
+
+MANIFEST.json inventories every distributed file except itself by complete byte size and SHA-256. These hashes detect corruption and bind reviewed artifacts; mathematical soundness rests on the proof and exact comparisons. The package contains no credentials or third-party primary PDFs.

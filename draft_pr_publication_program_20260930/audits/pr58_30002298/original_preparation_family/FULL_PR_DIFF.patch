@@ -1,0 +1,1526 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..3b61165e6 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -80,7 +80,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+ | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+-| 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
++| 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | already_solved | 0/5 |  | 2026-09-30: Exact reduced-Fantappie-denominator characterization follows from credited2017 algebraic-vertex/line-cone results. Separate audit verified the pole implication, finite cone criterion, triangulation-vertex inclusion and necessary origin exception;284author and6463independent checks. Original reviewed snapshot preserved across metadata-only status update; zero new discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/58. |  |
+ | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+ | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30002298/README.md b/unsolved_math_prioritization/attempts/30002298/README.md
+new file mode 100644
+index 000000000..ab5aa5131
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/README.md
+@@ -0,0 +1,14 @@
++# Fantappiè denominators: prior geometric characterization
++
++The reduced denominator consists precisely of the affine factors associated with nonzero algebraic vertices. Thus the original vertex-product equality holds exactly when every nonzero mandatory triangulation vertex has a tangent cone that is not a signed sum of line-cones.
++
++This characterization is credited to Akopyan–Bárány–Robins, *Advances in Mathematics* (2017), with the transform identities of Gravin–Pasechnik–Shapiro–Shapiro. It is not a new discovery.
++
++- [Exact criterion, source match and pole argument](SOURCE_STATUS.md)
++- [Source audit and qualifications](SOURCE_AUDIT.md)
++- [Exact checker](check_denominators.py) and [284-assertion receipt](check_results.json)
++- [Pinned statement](source_record.json), [source hashes](source_checksums.json), [readiness](readiness.json), [research log](RESEARCH_LOG.md)
++
++Run python check_denominators.py with SymPy installed. The checker uses exact arithmetic and writes check_results.json beside itself. It verifies finite examples, not the general theorem.
++
++Recommend already_solved with no new substantive attempts. [Separate adversarial review](review/REVIEW.md) passed, with 6,463 independent exact controls and no required correction. The origin factor, denominator reduction, unit density and original vertex convention are retained explicitly.
+diff --git a/unsolved_math_prioritization/attempts/30002298/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30002298/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..e667c27e4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/RESEARCH_LOG.md
+@@ -0,0 +1,21 @@
++# Research log: 30002298
++
++Actual model: gpt-6-astra, xhigh reasoning. Assigned window: 2026-09-30, 06:29:15–08:29:15 UTC. Maximum five new substantive proof attempts.
++
++## 06:29–06:32 UTC: readiness and original scope
++
++No prior project attempt or exact duplicate was found. Read the full original contribution and isolated Question 1. The source's denominator is reduced and can lose a nonconvex vertex factor. Located the later algebraic-vertex paper and its explicit Fantappiè connection. Source-status completion estimate: 70%; no fresh proof-search route was started.
++
++## 06:32–06:39 UTC: published criterion and exact interpretation
++
++Read the complete 2017 author manuscript and checked Definition 1, Lemma 6 and Remark 10. The requested criterion is already present in the literature. Wrote out the rational-pole argument and finite cone-flipping interpretation to make the source match reviewable. The literal formula requires excluding the origin from the nonconstant factors. The note retains the original triangulation vertex set and uses only unit Lebesgue density.
++
++Source-status completion estimate: 90%. The explanation is a verification of published results, not a new discovery.
++
++## 06:40–06:43 UTC: modest exact checks and freeze
++
++The final 14-example checker passes 284 exact assertions in dimensions 1–3, including the cancellation example and its origin exception. The source package is ready for separate review, with source-status completion estimate 95%. Recommend already_solved, zero new substantive attempts. No claim is made about the separate decomposition questions or a new reconstruction algorithm.
++
++## 07:01 UTC: separate review passed
++
++Source-status completion is 100%. The independent reviewer confirmed the published criterion, all-points pole argument, original vertex convention and origin unit-factor exception. All 284 author assertions reproduced byte for byte; 6,463 independent controls passed. Six supplied review files were copied unchanged. Only review-status metadata changed. The status is already_solved by prior work, with zero new proof attempts and no campaign novelty claim.
+diff --git a/unsolved_math_prioritization/attempts/30002298/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/30002298/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..78c428a24
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/SOURCE_AUDIT.md
+@@ -0,0 +1,46 @@
++# Source audit: 30002298 / OWR-12339-004
++
++Checked 2026-09-30 with gpt-6-astra at xhigh reasoning.
++
++## Prior-attempt gate
++
++The assigned row was rank 72, queued, 0/5. No earlier project attempt, matching branch or all-state pull request was found. The attempt path's git history, the repository histories and assessment/reset records, and the related-target groups were checked. A search of the pinned dataset for Fantappiè and related moment/polytope questions found no exact duplicate. The pinned report dictionary has no report for this problem code.
++
++The public problem page could not be retrieved. The full pinned statement and the complete official source contribution were nevertheless read. No shared queue, state, catalog, or historical review was edited.
++
++## Full original source
++
++[Structured Function Systems and Applications, OWR 11/2013](https://ems.press/content/serial-article-files/46446), DOI [10.4171/OWR/2013/11](https://doi.org/10.4171/OWR/2013/11), pp.579–655. Dmitrii Pasechnik's contribution, “Rational moment generating functions and nonconvex compact polyhedra,” occupies pp.637–640. Question 1 is on p.638. The complete contribution, its references and the rendered question page were inspected.
++
++The important source conventions are:
++
++- Unit Lebesgue density and the normalized exponent $d+1$, not an arbitrary density or the unmodified exponent-one transform
++- A compact polyhedron is a finite union of convex polytopes
++- $V(P)$ is the intersection of triangulation vertex sets
++- The denominator is reduced, as confirmed by the explicit cancellation example
++
++Questions 2–3 on signed decompositions and spanning assumptions are separate questions. This package does not claim to resolve them.
++
++## Published characterization
++
++Akopyan–Bárány–Robins, [“Algebraic vertices of non-convex polyhedra”](https://arxiv.org/abs/1508.07594v2), *Advances in Mathematics* 308 (2017), 627–644, DOI [10.1016/j.aim.2016.12.026](https://doi.org/10.1016/j.aim.2016.12.026). The complete 13-page author manuscript was read, including Definition 1, Theorem 1, the proof of Lemma 6, and Remark 10. The latter explicitly links the Fantappiè denominator vertices to the local algebraic-vertex definition. Its page was inspected visually.
++
++The arXiv record verifies the authors, version dated 5 January 2017, journal reference and DOI. The publisher's indexed abstract and the author's [research bibliography](https://sites.google.com/site/sinairobins/research) corroborate publication. Direct publisher access returned 403; no publisher PDF is presented as read. The open author manuscript supplies the full mathematical text used here.
++
++The source distinguishes several notions of nonconvex vertex. The package consequently proves the needed inclusion $A(P)\subseteq V(P)$ directly for the original triangulations; it does not silently equate triangulations, non-face-to-face dissections, convex-hull vertices, and algebraic vertices.
++
++## Transform identities
++
++Gravin–Pasechnik–Shapiro–Shapiro, [“On moments of a polytope”](https://link.springer.com/article/10.1007/s13324-018-0226-8), *Analysis and Mathematical Physics* 8 (2018), 255–287, DOI 10.1007/s13324-018-0226-8. The full publisher HTML and the [open author manuscript](https://arxiv.org/pdf/1210.3193v2) were consulted, particularly Theorem 2, equation (1.9), Corollary 3, and the discussion of vertex conventions and cancellation.
++
++Equation (1.9) fixes the sign convention in the cone coefficient used in SOURCE_STATUS.md. The package uses the unit-density simplex identities, and does not infer higher-density multiplicities from an abstract or extend the assigned target to polynomial densities.
++
++## Normalization, scope and checks
++
++The published identification is unpacked with an explicit rational-pole calculation. It treats the origin separately because its nominal affine factor is the unit 1. Thus literal equality of denominator polynomials does not detect an invisible origin vertex. The exact checker verifies this through the source's pair of opposite tetrahedra, both centered at zero and translated away from zero.
++
++All 284 assertions in the final checker pass using SymPy 1.14.0 and exact integer/rational algebra. No floating-point tolerances are used. These are 14 small examples in dimensions 1–3; they do not substitute for the general published valuation result. The code writes its receipt beside itself.
++
++Title and topic searches found no correction invalidating the cited characterization. This is a bounded current-source search, not a claim to have exhausted the bibliography.
++
++The exact characterization is credited to prior published work. No new substantive proof-search attempt or historical-priority claim is recorded. Separate adversarial review is required before a draft PR.
+diff --git a/unsolved_math_prioritization/attempts/30002298/SOURCE_STATUS.md b/unsolved_math_prioritization/attempts/30002298/SOURCE_STATUS.md
+new file mode 100644
+index 000000000..39fb11571
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/SOURCE_STATUS.md
+@@ -0,0 +1,152 @@
++# Fantappiè denominator vertices: a published geometric characterization
++
++**The requested characterization follows from Akopyan–Bárány–Robins, published in 2017.** Their Definition 1 and Remark 10 identify denominator vertices with algebraic vertices, defined by a local condition on tangent cones. This note supplies the explicit pole argument and the origin convention needed to match the exact 2013 question. It claims no new discovery. Separate adversarial source and mathematical review passed; see [the report](review/REVIEW.md).
++
++## 1. Exact source and denominator convention
++
++The target is Question 1 on printed p.638 of Dmitrii Pasechnik's contribution to [Oberwolfach Report 11/2013](https://ems.press/content/serial-article-files/46446), pp.637–640. The measure has **unit Lebesgue density**, and the normalized transform is
++$$
++F_P(u)=d!\int_P(1-\langle x,u\rangle)^{-d-1}\,dx.
++\tag{1}
++$$
++Here $P\subset\mathbb R^d$ is compact and is a finite union of convex polytopes. The source defines $V(P)$ as the intersection of the vertex sets of its triangulations. We retain this definition, rather than substituting the vertices of the convex hull or those of one chosen triangulation.
++
++Write $F_P=N_P/\Omega_P$ in lowest terms and normalize $\Omega_P(0)=1$. The transform is analytic near zero, so this normalization is available. For $F_P=0$, take $\Omega_P=1$. The question is when
++$$
++\Omega_P(u)=\prod_{v\in V(P)}(1-\langle v,u\rangle).
++\tag{2}
++$$
++The reduced-denominator interpretation is essential: the source's explicit cancellation example would make no sense if arbitrary unreduced presentations were permitted.
++
++All indicator-function and tangent-cone identities below hold up to sets of ambient Lebesgue measure zero. Thus lower-dimensional pieces carry no mass; no atomic or surface measure is being substituted. The argument concerns $d\geq1$; the zero-dimensional case has constant denominator and is immediate.
++
++## 2. The geometric criterion and its prior source
++
++Translate the tangent cone of $P$ at $v$ to the origin and call it $C_v(P)$. A **line-cone** is a polyhedral cone, possibly a finite union of convex cones, invariant under translation in some nonzero direction, equivalently a union of parallel lines. Different line-cones in a sum may have different invariant directions.
++
++Let $A(P)$ consist of those points $v$ for which there is **no** representation
++$$
++\mathbf1_{C_v(P)}=\sum_{j=1}^{m}c_j\mathbf1_{D_j}
++\quad\text{almost everywhere},
++\tag{3}
++$$
++where $m$ is finite, $c_j\in\mathbb R$, and the $D_j$ are line-cones. These are the algebraic vertices of Akopyan–Bárány–Robins.
++
++The exact answer is:
++$$
++\boxed{\quad
++\text{Equation (2) holds if and only if every }
++v\in V(P)\setminus\{0\}\text{ belongs to }A(P).
++\quad}
++\tag{4}
++$$
++More precisely, the entire reduced denominator is
++$$
++\boxed{\qquad
++\Omega_P(u)=\prod_{v\in A(P)\setminus\{0\}}(1-\langle v,u\rangle).
++\qquad}
++\tag{5}
++$$
++Every factor in this product has multiplicity one. No general-position, convexity, connectedness, or vertex-only triangulation hypothesis is required.
++
++The published source is Arseniy Akopyan, Imre Bárány and Sinai Robins, **“Algebraic vertices of non-convex polyhedra,” Advances in Mathematics 308 (2017), 627–644**, DOI [10.1016/j.aim.2016.12.026](https://doi.org/10.1016/j.aim.2016.12.026). The complete [author manuscript, arXiv:1508.07594v2](https://arxiv.org/pdf/1508.07594v2), was inspected. Definition 1 introduces (3); Lemma 6 characterizes the kernel of the cone Fourier–Laplace valuation; Theorem 1 gives minimality under signed simplex decompositions; and Remark 10 explicitly identifies the Fantappiè denominator vertices with these algebraic vertices.
++
++The source's phrase “geometric characterization” is therefore realized by the local line-cone condition. It is not enough to require that the tangent cone itself fail to be a line-cone, nor can signed linear combinations in (3) be replaced by disjoint unions.
++
++## 3. Why the published criterion gives the exact reduced denominator
++
++The following details explain (5), including cancellation and multiplicities, without asserting additional novelty.
++
++Choose any finite triangulation, and use its full-dimensional simplices to represent $\mathbf1_P$ almost everywhere. Let $W$ be its vertex set. For a $d$-simplex $\Delta$,
++$$
++F_\Delta(u)=\frac{d!\operatorname{Vol}(\Delta)}
++                 {\prod_{w\in\operatorname{Vert}(\Delta)}(1-\langle w,u\rangle)}.
++\tag{6}
++$$
++Consequently $\Omega_P$ divides the squarefree product over $W\setminus\{0\}$. This already excludes higher multiplicities and any additional factors.
++
++For $w\in W$, define the rational homogeneous function
++$$
++c_w(u)=(-1)^d
++\sum_{\substack{\Delta\\w\in\operatorname{Vert}(\Delta)}}
++\frac{d!\operatorname{Vol}(\Delta)}
++{\prod_{z\in\operatorname{Vert}(\Delta)\setminus\{w\}}\langle z-w,u\rangle}.
++\tag{7}
++$$
++It has degree $-d$. The simplex partial-fraction identity gives
++$$
++F_P(u)=\sum_{w\in W}\frac{c_w(u)}{1-\langle w,u\rangle}.
++\tag{8}
++$$
++For example, (6) and the identity used in (8) appear as Corollary 3 and Theorem 2, equation (1.9), of [Gravin–Pasechnik–Shapiro–Shapiro](https://arxiv.org/pdf/1210.3193v2). Applying that identity to each simplex requires no simplicity assumption on $P$.
++
++The coefficient $c_w$ is the Fourier–Laplace valuation of $C_w(P)$, using the convention with kernel $e^{\langle u,x\rangle}$. A simplicial cone with generators $q_1,\ldots,q_d$ has valuation
++$$
++(-1)^d\frac{|\det(q_1,\ldots,q_d)|}
++               {\prod_i\langle q_i,u\rangle}.
++$$
++Contributions from simplices containing $w$ on a positive-dimensional face are line-cones and have zero valuation. Thus (7) indeed describes the local tangent cone, independently of the chosen triangulation. By Akopyan–Bárány–Robins, Lemma 6,
++$$
++c_w\ne0\quad\Longleftrightarrow\quad w\in A(P).
++\tag{9}
++$$
++
++Fix a nonzero $v\in W$ and set $L_v=1-\langle v,u\rangle$. The affine hyperplane $L_v=0$ differs from all $L_w=0$ for $w\ne v$ and from every homogeneous edge-denominator hyperplane in (7). At a generic point of it, multiplying (8) by $L_v$ and restricting gives precisely $c_v|_{L_v=0}$. Hence $L_v$ occurs in the reduced denominator if and only if this restriction is not identically zero.
++
++Homogeneity makes the last condition equivalent to $c_v\ne0$. Indeed, if $c_v$ vanished on $\langle v,u\rangle=1$, scaling $u$ by $1/\langle v,u\rangle$ would make it vanish on a nonempty open set, and hence as a rational function. There is no hidden cancellation between the distinct affine vertex factors. Equations (9) and the squarefree divisibility prove (5).
++
++Finally, $A(P)\subseteq V(P)$. If an algebraic vertex were absent from some triangulation's vertex set, the tangent cone of every simplex at that point would be either empty or a line-cone. Summing those tangent indicators would contradict (3). This argument works directly with the triangulations in the source and does not require identifying different conventions for non-face-to-face dissections. Comparing the distinct normalized factors in (2) and (5) proves (4).
++
++## 4. A finite local geometric version
++
++The line-cone condition can be checked without computing a rational transform. This is the cone-flipping argument in the proof of Lemma 6 of Akopyan–Bárány–Robins.
++
++Partition $C_v(P)$, up to null boundaries, into internally disjoint full-dimensional simplicial cones $K_i=\operatorname{pos}(q_{i1},\ldots,q_{id})$. Choose a vector $\eta$ having nonzero scalar product with every generator. Replace each generator by
++$$
++q_{ij}^{+}=\operatorname{sign}\langle\eta,q_{ij}\rangle\,q_{ij},
++\qquad
++\varepsilon_i=\prod_j\operatorname{sign}\langle\eta,q_{ij}\rangle,
++$$
++and put $K_i^+=\operatorname{pos}(q_{i1}^+,\ldots,q_{id}^+)$. The criterion is
++$$
++v\in A(P)\quad\Longleftrightarrow\quad
++\sum_i\varepsilon_i\mathbf1_{K_i^+}\ne0
++\quad\text{on a set of positive measure}.
++\tag{10}
++$$
++Equivalently, after overlaying the finitely many facet hyperplanes, some full-dimensional chamber has nonzero signed coverage count.
++
++Flipping one generator changes a cone indicator, modulo line-cones, by a minus sign. All flipped cones lie in the common pointed cone generated by their finitely many generators; away from its apex this cone is contained in $\langle\eta,x\rangle>0$. On such cones the Fourier–Laplace transform is injective on signed indicator functions; equivalently, Lemma 5 followed by the overlay decomposition in Lemma 6 gives this injectivity. Thus the flipped signed function is zero exactly when the original cone is a signed sum of line-cones. The outcome is independent of the chosen triangulation and generic vector.
++
++This is a local geometric characterization with a finite certificate of nonvanishing, not a generic-position assumption on the vertices of $P$.
++
++## 5. The origin and the source's cancellation example
++
++For $v=0$, the nominal factor $1-\langle v,u\rangle$ is the unit polynomial 1. Thus the literal equality (2) cannot test whether the origin is an algebraic vertex. After choosing an origin outside the finite vertex set, condition (4) simply says $A(P)=V(P)$. For a fixed origin, the exclusion in (4) is necessary.
++
++The source takes two opposite tetrahedra meeting at their common vertex. With standard basis vectors $e_i$, let
++$$
++P_\pm=\operatorname{conv}(v,v\pm e_1,v\pm e_2,v\pm e_3),
++\qquad P=P_+\cup P_-.
++$$
++Writing $L=1-\langle v,u\rangle$ gives
++$$
++F_P(u)=
++\frac{2(L^2+u_1u_2+u_1u_3+u_2u_3)}
++     {(L^2-u_1^2)(L^2-u_2^2)(L^2-u_3^2)}.
++\tag{11}
++$$
++The nonzero common-apex factor cancels. Locally its two opposite orthants have indicator
++$$
++h_1h_2h_3+(1-h_1)(1-h_2)(1-h_3)
++=1-h_1-h_2-h_3+h_1h_2+h_1h_3+h_2h_3,
++$$
++where $h_i=\mathbf1_{\{x_i>0\}}$. Every term on the right is a line-cone indicator, including the whole-space term. This explicitly exhibits the signed geometric cancellation.
++
++For the standard example with $v=0$, all six nonzero vertices still supply their factors, and (2) holds because the missing apex factor is already 1. Translating the same configuration to, for example, $v=(2,3,4)$ makes that canceled factor nonconstant and (2) fails. This explains why omitting the origin convention would state a stronger, false criterion.
++
++## 6. Disposition
++
++The exact Question 1 has a prior published characterization. Recommend **already_solved**, with credit to Akopyan–Bárány–Robins and the transform identities of Gravin–Pasechnik–Shapiro–Shapiro. The explanatory pole calculation is not promoted as a discovery.
++
++The finite checker passes 284 exact assertions. It verifies rational identities, squarefree reduced denominators, artificial-vertex cancellation, a nonconvex example with a surviving reentrant vertex, the opposite-simplex parity control, and the literal origin exception. It does not replace the cited general theorem. No claim is made about the report's separate Questions 2–3, arbitrary polynomial densities, or reconstruction algorithms.
+diff --git a/unsolved_math_prioritization/attempts/30002298/check_denominators.py b/unsolved_math_prioritization/attempts/30002298/check_denominators.py
+new file mode 100644
+index 000000000..88f62116d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/check_denominators.py
+@@ -0,0 +1,136 @@
++#!/usr/bin/env python3
++"""Exact controls for the credited Fantappie/algebraic-vertex characterization.
++
++Uses SymPy. This checks finite rational identities and geometric examples;
++it does not replace the published general polyhedral valuation theorem.
++"""
++from collections import Counter
++from itertools import product
++from pathlib import Path
++import json
++import sys
++import sympy as s
++
++counts = Counter()
++cases = []
++
++def check(condition, category):
++    assert bool(condition), category
++    counts[category] += 1
++
++def dot(v, u):
++    return sum(a*b for a, b in zip(v, u))
++
++def transformed(simplices, d):
++    u = s.symbols('u0:' + str(d))
++    terms = []
++    cone = {}
++    for simplex in simplices:
++        origin = s.Matrix(simplex[0])
++        det = abs(s.det(s.Matrix.hstack(
++            *(s.Matrix(v)-origin for v in simplex[1:]))))
++        check(det > 0, 'nondegenerate_simplex')
++        terms.append(det/s.prod(1-dot(v, u) for v in simplex))
++        for v in simplex:
++            edges = [tuple(b-a for a, b in zip(v, w))
++                     for w in simplex if w != v]
++            coefficient = (-1)**d * det/s.prod(dot(w, u) for w in edges)
++            cone[v] = cone.get(v, 0) + coefficient
++    F = s.cancel(sum(terms))
++    cone = {v: s.cancel(c) for v, c in cone.items()}
++    check(s.cancel(F-sum(c/(1-dot(v, u)) for v, c in cone.items())) == 0,
++          'simplex_to_cone_identity')
++    numerator, denominator = s.fraction(F)
++    constant = denominator.subs(dict.fromkeys(u, 0))
++    check(constant != 0, 'denominator_regular_at_zero')
++    omega = s.expand(denominator/constant)
++    surviving = []
++    for v, c in cone.items():
++        if all(a == 0 for a in v):
++            check(1-dot(v, u) == 1, 'origin_factor_is_a_unit')
++            continue
++        L = 1-dot(v, u)
++        appears = s.rem(s.Poly(omega, *u), s.Poly(L, *u)).is_zero
++        check(appears == (c != 0), 'pole_matches_tangent_coefficient')
++        j = next(i for i, a in enumerate(v) if a)
++        substitution = (s.Integer(1)-sum(v[i]*u[i] for i in range(d) if i != j))/v[j]
++        restriction = s.cancel(c.subs(u[j], substitution))
++        check((restriction != 0) == (c != 0), 'homogeneous_residue_restriction')
++        if appears:
++            surviving.append(v)
++            check(s.gcd(s.Poly(omega, *u), s.Poly(L**2, *u)).total_degree() == 1,
++                  'simple_pole_multiplicity')
++    predicted = s.prod(1-dot(v, u) for v in surviving)
++    check(s.expand(omega-predicted) == 0, 'complete_reduced_denominator')
++    check(s.gcd(s.Poly(numerator, *u), s.Poly(denominator, *u)).total_degree() == 0,
++          'coprime_reduced_fraction')
++    return u, F, cone, omega
++
++def run(name, simplices, d, expected_vertices):
++    print('Checking ' + name, file=sys.stderr, flush=True)
++    u, F, cone, omega = transformed(simplices, d)
++    nonzero = [v for v in expected_vertices if any(v)]
++    expected = s.prod(1-dot(v, u) for v in nonzero)
++    check(s.expand(omega-expected) == 0, 'expected_geometric_denominator')
++    cases.append({'name': name, 'dimension': d, 'simplices': len(simplices),
++                  'triangulation_vertices': len(cone),
++                  'nonzero_pole_vertices': len(nonzero)})
++    return u, F, cone, omega
++
++for d in (1, 2, 3):
++    for shift in (tuple(0 for _ in range(d)), tuple(i+2 for i in range(d))):
++        simplex = [shift] + [tuple(shift[j]+int(i == j) for j in range(d))
++                             for i in range(d)]
++        run('simplex_'+str(d)+'_'+str(shift), [simplex], d, simplex)
++
++# A convex square with an artificial center vertex in its triangulation.
++square = [(1, 1), (3, 1), (3, 3), (1, 3)]
++center = (2, 2)
++triangles = [[center, square[i], square[(i+1) % 4]] for i in range(4)]
++_, _, cone, _ = run('square_with_Steiner_center', triangles, 2, square)
++check(cone[center] == 0, 'artificial_vertex_cancels')
++
++# Three unit squares form an L-shaped polygon. Straight-edge subdivision
++# points cancel, while the reentrant corner remains a pole vertex.
++triangles = []
++for x, y in ((2, 3), (3, 3), (2, 4)):
++    a, b, c, d = (x, y), (x+1, y), (x+1, y+1), (x, y+1)
++    triangles.extend([[a, b, c], [a, c, d]])
++boundary = [(2, 3), (4, 3), (4, 4), (3, 4), (3, 5), (2, 5)]
++_, _, cone, _ = run('nonconvex_L_shape', triangles, 2, boundary)
++check(cone[(3, 4)] != 0, 'reentrant_vertex_survives')
++
++# Opposite simplices: the common-apex tangent coefficient cancels exactly
++# in odd dimensions. Dimension 3 is the original source's example.
++for d in (1, 2, 3):
++    for shift in (tuple(0 for _ in range(d)), tuple(i+2 for i in range(d))):
++        plus = [shift] + [tuple(shift[j]+int(i == j) for j in range(d))
++                         for i in range(d)]
++        minus = [shift] + [tuple(shift[j]-int(i == j) for j in range(d))
++                          for i in range(d)]
++        expected = plus[1:] + minus[1:] + ([] if d % 2 else [shift])
++        u, F, cone, omega = run('opposite_'+str(d)+'_'+str(shift),
++                                [plus, minus], d, expected)
++        check((cone[shift] == 0) == bool(d % 2), 'opposite_cone_parity')
++        if d == 3:
++            L = 1-dot(shift, u)
++            explicit = 2*(L**2+sum(u[i]*u[j] for i in range(3)
++                                  for j in range(i+1, 3)))/s.prod(L**2-x*x for x in u)
++            check(s.cancel(F-explicit) == 0, 'source_tetrahedra_formula')
++            vertex_product = s.prod(1-dot(v, u) for v in set(plus+minus))
++            check((s.expand(omega-vertex_product) == 0) == (not any(shift)),
++                  'literal_origin_exception')
++
++# A signed line-cone decomposition of positive plus negative orthants in R^3.
++# Each proper subset of coordinate halfspaces is invariant in a missing direction.
++for signs in product((0, 1), repeat=3):
++    h1, h2, h3 = signs
++    lhs = h1*h2*h3 + (1-h1)*(1-h2)*(1-h3)
++    rhs = 1-h1-h2-h3+h1*h2+h1*h3+h2*h3
++    check(lhs == rhs, 'signed_line_cone_indicator_identity')
++
++result = {'status': 'PASS', 'exact_assertions': sum(counts.values()),
++          'sympy_version': s.__version__, 'categories': dict(counts), 'cases': cases,
++          'scope': 'Finite exact diagnostics; the general characterization is credited to published work.'}
++Path(__file__).with_name('check_results.json').write_text(json.dumps(result, indent=2)+'\n')
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30002298/check_results.json b/unsolved_math_prioritization/attempts/30002298/check_results.json
+new file mode 100644
+index 000000000..6288a1be3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/check_results.json
+@@ -0,0 +1,124 @@
++{
++  "status": "PASS",
++  "exact_assertions": 284,
++  "sympy_version": "1.14.0",
++  "categories": {
++    "nondegenerate_simplex": 28,
++    "simplex_to_cone_identity": 14,
++    "denominator_regular_at_zero": 14,
++    "origin_factor_is_a_unit": 6,
++    "pole_matches_tangent_coefficient": 55,
++    "homogeneous_residue_restriction": 55,
++    "simple_pole_multiplicity": 50,
++    "complete_reduced_denominator": 14,
++    "coprime_reduced_fraction": 14,
++    "expected_geometric_denominator": 14,
++    "artificial_vertex_cancels": 1,
++    "reentrant_vertex_survives": 1,
++    "opposite_cone_parity": 6,
++    "source_tetrahedra_formula": 2,
++    "literal_origin_exception": 2,
++    "signed_line_cone_indicator_identity": 8
++  },
++  "cases": [
++    {
++      "name": "simplex_1_(0,)",
++      "dimension": 1,
++      "simplices": 1,
++      "triangulation_vertices": 2,
++      "nonzero_pole_vertices": 1
++    },
++    {
++      "name": "simplex_1_(2,)",
++      "dimension": 1,
++      "simplices": 1,
++      "triangulation_vertices": 2,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "simplex_2_(0, 0)",
++      "dimension": 2,
++      "simplices": 1,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "simplex_2_(2, 3)",
++      "dimension": 2,
++      "simplices": 1,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 3
++    },
++    {
++      "name": "simplex_3_(0, 0, 0)",
++      "dimension": 3,
++      "simplices": 1,
++      "triangulation_vertices": 4,
++      "nonzero_pole_vertices": 3
++    },
++    {
++      "name": "simplex_3_(2, 3, 4)",
++      "dimension": 3,
++      "simplices": 1,
++      "triangulation_vertices": 4,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "square_with_Steiner_center",
++      "dimension": 2,
++      "simplices": 4,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "nonconvex_L_shape",
++      "dimension": 2,
++      "simplices": 6,
++      "triangulation_vertices": 8,
++      "nonzero_pole_vertices": 6
++    },
++    {
++      "name": "opposite_1_(0,)",
++      "dimension": 1,
++      "simplices": 2,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "opposite_1_(2,)",
++      "dimension": 1,
++      "simplices": 2,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "opposite_2_(0, 0)",
++      "dimension": 2,
++      "simplices": 2,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "opposite_2_(2, 3)",
++      "dimension": 2,
++      "simplices": 2,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 5
++    },
++    {
++      "name": "opposite_3_(0, 0, 0)",
++      "dimension": 3,
++      "simplices": 2,
++      "triangulation_vertices": 7,
++      "nonzero_pole_vertices": 6
++    },
++    {
++      "name": "opposite_3_(2, 3, 4)",
++      "dimension": 3,
++      "simplices": 2,
++      "triangulation_vertices": 7,
++      "nonzero_pole_vertices": 6
++    }
++  ],
++  "scope": "Finite exact diagnostics; the general characterization is credited to published work."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/readiness.json b/unsolved_math_prioritization/attempts/30002298/readiness.json
+new file mode 100644
+index 000000000..639e59665
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/readiness.json
+@@ -0,0 +1,43 @@
++{
++  "id": 30002298,
++  "problem_number": "OWR-12339-004",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "time_window_utc": [
++    "2026-09-30T06:29:15Z",
++    "2026-09-30T08:29:15Z"
++  ],
++  "maximum_substantive_attempts": 5,
++  "used_substantive_attempts": 0,
++  "status": "already_solved",
++  "recommended_queue_status": "already_solved",
++  "our_new_discovery": false,
++  "artifact": "SOURCE_STATUS.md",
++  "artifact_sha256": "fc9b927d0755ca48a61e4d2e90f5189c9d896e00a417ff8f1c10ec880bc8ec3e",
++  "independent_review": {
++    "verdict": "PASS_CREDITED_KNOWN_CHARACTERIZATION",
++    "report": "review/REVIEW.md",
++    "report_sha256": "0a6c0c26ab4cf5ed9e0879951328a8e11f8590a02a01db25a7392b2f26276365",
++    "required_corrections": [],
++    "independent_exact_assertions": 6463,
++    "final_artifact_change": "Review-status sentence only"
++  },
++  "source_status_completion_percent": 100,
++  "published_characterization": "Akopyan-Barany-Robins, AdvMath308(2017)627-644, Definition1,Lemma6,Remark10",
++  "doi": "10.1016/j.aim.2016.12.026",
++  "exact_original_location": "OWR11/2013 p638 Question1",
++  "source_scope": "Unit Lebesgue density; normalized transform exponent d+1; reduced denominator; V(P) intersection of triangulation vertex sets",
++  "criterion": "Every nonzero source vertex is algebraic; tangent indicator not in finite real span of line-cone indicators",
++  "origin_factor": "constant1; excluded from nonconstant factors",
++  "exact_diagnostic_assertions": 284,
++  "prior_attempt_found": false,
++  "exact_duplicate_found": false,
++  "reviewed_mathematical_snapshot_sha256": "457559b700340e08ab2402629685c961b15327f74a21a354be198c561fd601e0",
++  "reviewed_snapshot_path": "review/source_snapshot.md",
++  "final_metadata_change": {
++    "before": "Separate adversarial review is pending.",
++    "after": "Separate adversarial source and mathematical review passed; see [the report](review/REVIEW.md).",
++    "byte_replacement_recovers_final": true,
++    "reviewer_signoff": "Original snapshot; final metadata-only change checked during publication"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/REVIEW.md b/unsolved_math_prioritization/attempts/30002298/review/REVIEW.md
+new file mode 100644
+index 000000000..345b239a3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/REVIEW.md
+@@ -0,0 +1,93 @@
++# Independent review of the Fantappie denominator characterization
++
++## Verdict
++
++**PASS for a credited known characterization. Recommend already_solved for the exact unit-density Question 1 in 30002298 / OWR-12339-004.** No mandatory mathematical correction is required.
++
++The reduced denominator consists precisely of the distinct affine factors associated with the nonzero algebraic vertices. Comparing those vertices with the original triangulation-intersection vertex set gives the requested geometric criterion. The origin exception, signed line-cone condition, and prescribed normalization are all necessary and correctly handled.
++
++This is a review of previously published coverage and the submitted explanatory argument, with no campaign discovery or priority claim. It does not certify any answer to the neighboring questions about signed coefficients, spanning hypotheses, or reconstruction algorithms.
++
++Reviewed on 2026-09-30 by a separate gpt-6-astra reviewer with xhigh reasoning. Frozen artifact: SOURCE_STATUS.md, SHA-256:
++
++457559b700340e08ab2402629685c961b15327f74a21a354be198c561fd601e0
++
++No author artifact or source file was edited.
++
++## Exact primary scope
++
++I read Pasechnik's complete original contribution, printed pp.637–640, and visually inspected p.638. Question 1 uses the unit-density transform with the normalization \(d!\) and exponent \(d+1\). The compact set is a finite union of convex polytopes. The vertex set in the question is the intersection of the vertex sets of triangulations, not the convex-hull vertices or the vertices of an arbitrarily fixed triangulation. The preceding cancellation example establishes the intended reduced-denominator interpretation. [Original OWR report](https://ems.press/content/serial-article-files/46446)
++
++The package's constant-term normalization removes the scalar ambiguity in a denominator. Its separate treatment of the zero transform and of measure-zero pieces is consistent with the ambient Lebesgue measure. It does not replace that measure by an atomic or surface measure.
++
++I read the full 13-page [Akopyan–Bárány–Robins author manuscript, arXiv:1508.07594v2](https://arxiv.org/abs/1508.07594v2), especially Definition 1, Theorem 1 and its minimality argument, the cone transform and kernel proof in Sections 4–5, and Remark 10. The latter explicitly states the identification of Fantappiè denominator vertices with algebraic vertices, referring to the preceding transform argument. The local definition uses finite real linear combinations of line-cone indicators, modulo null sets. It is not a condition merely on whether the tangent cone itself contains a line.
++
++The [ISTA publication record](https://research-explorer.ista.ac.at/record/1180) independently confirms *Advances in Mathematics* **308** (2017), 627–644, DOI 10.1016/j.aim.2016.12.026. The mathematical text inspected is the complete January 2017 author version, not a claimed inspection of the publisher's typeset PDF. The arXiv version history and institutional publication metadata agree.
++
++For the normalization and simplex identity, I checked Theorem 2, equation (1.9), and Corollary 3 in the full [Gravin–Pasechnik–Shapiro–Shapiro publisher text](https://link.springer.com/article/10.1007/s13324-018-0226-8), alongside the supplied manuscript. Equation (1.9) is stated for simple convex polytopes; using it separately on each simplex, as the artifact does, is legitimate without assuming that the entire nonconvex set is simple.
++
++## Reduced poles and cancellation
++
++The submitted argument establishes more than a denominator divisor bound.
++
++A triangulation gives a finite sum of simplex transforms. For each simplex the denominator is a product of distinct normalized affine factors \(1-\langle w,u\rangle\). Distinct nonzero vertices give distinct nonassociate factors, and the zero vertex gives the unit polynomial. A common squarefree denominator therefore exists. Reduction cannot introduce new factors or increase their multiplicities.
++
++Regrouping the simplex partial fractions at a vertex \(w\) gives the coefficient \(c_w\) in the artifact. Its degree is \(-d\), and all of its possible denominator hyperplanes pass through the origin. The determinant and sign are correct: with kernel \(\exp(\langle u,x\rangle)\), integration over a simplicial cone gives \((-1)^d|\det(q_1,\ldots,q_d)|/\prod_i\langle q_i,u\rangle\) in its convergence region. In dimension one this reduces to the elementary integral \(-1/u\) on the positive ray. The uniform sign convention does not alter the cone-kernel criterion.
++
++For a nonzero \(v\), the hyperplane \(H_v=\{\langle v,u\rangle=1\}\) cannot equal a homogeneous edge-denominator hyperplane. Nor can it equal \(H_w\) for another vertex. Thus there is a relatively open dense part of \(H_v\) on which all the other factors in the partial-fraction expression are regular. Multiplication by \(1-\langle v,u\rangle\) and restriction there yields exactly \(c_v|_{H_v}\).
++
++The key noncancellation step is sound. If \(c_v|_{H_v}\) vanished identically, then for generic \(u\) with \(\langle v,u\rangle\ne0\), homogeneity and the substitution \(u/\langle v,u\rangle\) would force \(c_v(u)=0\). A rational function vanishing on a nonempty open set is identically zero. Conversely, a zero coefficient contributes no pole. Therefore the affine factor survives exactly when \(c_v\ne0\).
++
++This argument handles cancellations between all incident simplices and excludes hidden cancellations between different affine vertex factors. It does not assume that a single chosen simplex contributes an uncancelled residue.
++
++## Tangent cones and the original vertex set
++
++The local coefficient is the cone Fourier–Laplace valuation of the tangent cone. Tangent-cone indicators add almost everywhere under the simplex decomposition. At a point lying on a positive-dimensional face of a simplex, that simplex's tangent cone is invariant in a nonzero direction and has zero valuation. Only simplex-vertex contributions can remain.
++
++The kernel characterization identifies zero cone valuation with expressibility as a finite signed sum of line-cone indicators. Hence \(c_v\ne0\) is precisely the algebraic-vertex condition used in the artifact.
++
++The inclusion \(A(P)\subseteq V(P)\) is correctly justified directly. If a point were absent from the vertex set of one triangulation, every simplex would have empty tangent cone there, or a tangent cone with lineality. Adding those local indicators would express the tangent cone of the union as a sum of line-cones. Such a point is not algebraic. This argument applies to each original triangulation and avoids any unproved equivalence between triangulations and non-face-to-face dissections.
++
++It also proves finiteness: the algebraic vertices lie in the finite vertex set of any one triangulation. Thus the product in the proposed complete denominator is finite. Together with the pole argument, this gives equation (5), and comparison with the original vertex product gives equation (4).
++
++## Finite cone flipping
++
++The finite geometric version is valid and retains the signed nature of the condition.
++
++Flipping one generator replaces a simplicial cone by the negative of the flipped cone modulo a cone invariant in that generator direction. Iterating gives the product of the generator signs. Choosing the vector used for flipping to avoid the finitely many orthogonal hyperplanes is always possible.
++
++All resulting generators have strictly positive scalar product with that vector. Their finite positive hull is pointed, and its nonzero directions lie in a common open halfspace. Overlaying all cone facets gives finitely many full-dimensional chambers on which the signed coverage is constant. Boundaries have zero ambient measure.
++
++The needed injectivity has no positivity assumption on the signed coefficients. For clarity, it can also be seen analytically: after exponential damping by a vector strictly positive on every generator, the signed cone function is integrable. Its ordinary Laplace integral agrees with the rational cone expression in the convergence tube. A zero rational expression then gives a zero Fourier transform of the damped integrable function, so Fourier uniqueness makes that function zero almost everywhere. This confirms that the signed chamber function vanishes exactly in the line-cone kernel.
++
++Consequently the finite coverage test is equivalent to the local algebraic-vertex condition, independent of the generic flipping vector. Requiring a disjoint union of line-cones instead, or merely checking whether the original cone is itself a line-cone, would change the criterion.
++
++## Origin and edge cases
++
++At the origin the nominal factor is 1. Therefore literal denominator equality cannot detect whether that point is algebraic. The exception is not cosmetic.
++
++For the two opposite tetrahedra, the common-apex coefficient vanishes because the two three-dimensional cone contributions have opposite signs. The six other vertices survive. The displayed rational formula and the signed line-cone indicator decomposition both check out. In the centered example, the omitted factor is already a unit, so the original denominator equality still holds. After a translation making the common apex nonzero, the same geometric cancellation removes a nonconstant factor and the equality fails.
++
++The common apex is indeed unavoidable in triangulations of this example: a full-dimensional simplex contained in the union cannot cross both sides of the separating plane, since the union meets that plane only at the apex. Covering either tetrahedron near its extreme apex therefore forces the apex to be a simplex vertex. The six outer points are convex-hull extreme points and are likewise unavoidable. The original vertex set really contains the cancelled apex; it has not been silently replaced by the algebraic vertex set.
++
++Lower-dimensional components vanish under the stated measure and tangent-indicator convention. The zero-transform denominator convention is therefore consistent. No connectedness, general-position, or convexity hypothesis on the entire union has been introduced.
++
++## Reproduction and independent controls
++
++The submitted verifier was copied and executed separately. Its **284** exact assertions pass, and its regenerated receipt is byte-identical to the submitted receipt.
++
++The independent verifier passes **6,463** exact assertions, including:
++
++- All **256** unions of the eight coordinate orthants in dimension three, with all eight generic sign choices for the flipping direction
++- **255** nonempty common-apex pole models, comparing the homogeneous cone coefficient with exact cancellation of the common affine apex factor and the presence of each outer vertex factor
++- Opposite-cone parity controls in dimensions one through seven
++- Six boxes in dimensions one through three, comparing permutation-triangulation transforms with a separate repeated-integration formula, normalized reduced denominators, and exact low-degree moments
++- Centered and translated opposite-tetrahedron controls and the signed indicator identity on every open orthant
++
++These are finite exact algebraic checks using SymPy 1.14.0. They do not replace the general cone-kernel theorem or establish new publication priority. One variable-shadowing error in the reviewer-only harness was corrected before the final successful run; no author code or mathematical assertion changed.
++
++## Disposition
++
++Recommend **already_solved, zero new substantive proof-search attempts**, credited to Akopyan–Bárány–Robins and the cited transform identities. The exact original characterization is covered. Keep the explicit origin convention and the author-manuscript versus publisher-PDF distinction.
++
++There are no mandatory changes to the frozen artifact. The six publication files are REVIEW.md, review_summary.json, submitted_check_denominators.py, submitted_check_results.json, independent_checks.py, and independent_results.json. Local replay and source-reference files are not part of that package.
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/independent_checks.py b/unsolved_math_prioritization/attempts/30002298/review/independent_checks.py
+new file mode 100644
+index 000000000..5c1a44722
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/independent_checks.py
+@@ -0,0 +1,111 @@
++#!/usr/bin/env python3
++"""Exact independent controls; no replacement for the cone kernel theorem."""
++from itertools import product, permutations
++from collections import Counter
++from pathlib import Path
++import json
++import sympy as s
++counts=Counter()
++def ck(v,key):
++    assert bool(v),key
++    counts[key]+=1
++
++# All 256 unions of coordinate orthants, with all eight generic sign chambers
++# for the flipping direction. Each full orthant has coefficient +/- 1/prod(u).
++signs=list(product((-1,1),repeat=3))
++fan_masks=[]
++for mask in range(256):
++    selected=[z for j,z in enumerate(signs) if mask & (1<<j)]
++    alternating=sum(s.prod(z) for z in selected)
++    for eta in signs:
++        eps=[s.prod(eta[i]*z[i] for i in range(3)) for z in selected]
++        signed_coverage=sum(eps)
++        ck(signed_coverage==s.prod(eta)*alternating,'flipped_chamber_weight')
++        ck((signed_coverage==0)==(alternating==0),'generic_direction_zero_invariance')
++    fan_masks.append(int(alternating))
++
++# Finite affine-pole controls at the common apex of unions of orthant tetrahedra.
++# Work before imposing L=1-v.u: the common numerator is elementary and exact.
++L,x,y,z=s.symbols('L x y z')
++variables=(x,y,z)
++for mask in range(1,256):
++    selected=[a for j,a in enumerate(signs) if mask & (1<<j)]
++    N=s.Poly(s.expand(sum(s.prod(L+a[i]*variables[i] for i in range(3))
++                             for a in selected)),L,x,y,z)
++    constant=s.expand(N.as_expr().subs(L,0))
++    ck(constant==s.prod(variables)*fan_masks[mask],'common_apex_residue_numerator')
++    ck((constant==0)==(fan_masks[mask]==0),'apex_cancellation_iff_cone_zero')
++    # Each used outer axis vertex survives its corresponding factor.
++    for i in range(3):
++        for a in (-1,1):
++            used=any(q[i]==a for q in selected)
++            restricted=s.expand(N.as_expr().subs(L,a*variables[i]))
++            ck((restricted!=0)==used,'outer_vertex_factor_presence')
++
++# Opposite-orthant parity, including dimensions outside the author's examples.
++for d in range(1,8):
++    for signs_d in product((-1,1),repeat=d):
++        total=s.prod(signs_d)+s.prod([-a for a in signs_d])
++        ck((total==0)==bool(d%2),'opposite_cone_dimension_parity')
++
++def dot(v,u):return sum(a*b for a,b in zip(v,u))
++def simplex_F(V,u):
++    B=s.Matrix.hstack(*(s.Matrix(w)-s.Matrix(V[0]) for w in V[1:]))
++    return abs(B.det())/s.prod(1-dot(w,u) for w in V)
++
++# Independent box integration formula from repeated one-dimensional primitives,
++# checked against a standard permutation triangulation and exact moments.
++box_cases=[]
++for d in (1,2,3):
++    u=s.symbols('u0:'+str(d))
++    for a,b in [(tuple(0 for _ in range(d)),tuple(i+1 for i in range(d))),
++                (tuple(i+2 for i in range(d)),tuple(2*i+4 for i in range(d)))]:
++        corners=[tuple(b[i] if e[i] else a[i] for i in range(d)) for e in product((0,1),repeat=d)]
++        finite_difference=sum((-1)**(d-sum(e))/(1-dot(tuple(b[i] if e[i] else a[i] for i in range(d)),u))
++                              for e in product((0,1),repeat=d))/s.prod(u)
++        simplices=[]
++        for perm in permutations(range(d)):
++            V=[a];cur=list(a)
++            for j in perm:
++                cur=cur.copy();cur[j]=b[j];V.append(tuple(cur))
++            simplices.append(V)
++        F=s.cancel(sum(simplex_F(V,u) for V in simplices))
++        ck(s.cancel(F-finite_difference)==0,'box_direct_integration_identity')
++        numerator,denominator=s.fraction(F)
++        D=s.expand(denominator/denominator.subs(dict.fromkeys(u,0)))
++        expected=s.expand(s.prod(1-dot(v,u) for v in corners))
++        ck(s.expand(D-expected)==0,'box_exact_reduced_denominator')
++        ck(s.gcd(s.Poly(numerator,*u),s.Poly(denominator,*u)).total_degree()==0,'box_reduced_coprimality')
++        for I in product(range(3),repeat=d):
++            if sum(I)>2:continue
++            derivative=F
++            for q,n in zip(u,I):derivative=s.diff(derivative,q,n)
++            coefficient=derivative.subs(dict.fromkeys(u,0))/s.prod(s.factorial(n) for n in I)
++            moment=s.prod(s.Rational(b[j]**(I[j]+1)-a[j]**(I[j]+1),I[j]+1) for j in range(d))
++            predicted=s.factorial(sum(I)+d)/s.prod(s.factorial(n) for n in I)*moment
++            ck(s.simplify(coefficient-predicted)==0,'box_exact_low_moments')
++        box_cases.append({'dimension':d,'lower':a,'upper':b,'simplices':len(simplices)})
++
++# Origin exception in d=3, independently obtained from the signed-orthant numerator.
++for v in [(0,0,0),(2,3,5),(-2,1,4)]:
++    U=(x,y,z);lv=1-dot(v,U)
++    F=s.cancel((s.prod(lv+q for q in U)+s.prod(lv-q for q in U))
++               /(lv*s.prod(lv*lv-q*q for q in U)))
++    n,d=s.fraction(F);omega=s.expand(d/d.subs({x:0,y:0,z:0}))
++    outer=[tuple(v[j]+a*int(i==j) for j in range(3)) for i in range(3) for a in (-1,1)]
++    product_outer=s.expand(s.prod(1-dot(w,U) for w in outer))
++    ck(s.expand(omega-product_outer)==0,'opposite_tetrahedra_outer_factors')
++    ck((s.expand(omega-lv*product_outer)==0)==(v==(0,0,0)),'origin_unit_exception')
++    ck(s.cancel(F-2*(lv**2+x*y+x*z+y*z)/s.prod(lv**2-q**2 for q in U))==0,
++       'explicit_tetrahedra_formula')
++# The signed indicator identity on all open coordinate orthants.
++for h in product((0,1),repeat=3):
++    h1,h2,h3=h
++    ck(h1*h2*h3+(1-h1)*(1-h2)*(1-h3)==1-h1-h2-h3+h1*h2+h1*h3+h2*h3,
++       'explicit_signed_line_cone_identity')
++out={'status':'PASS','exact_assertions':sum(counts.values()),'failed':0,
++     'categories':dict(counts),'orthant_union_masks':256,'flip_directions_per_mask':8,
++     'nonempty_apex_pole_models':255,'direct_integral_box_cases':box_cases,
++     'sympy_version':s.__version__,'scope':'Finite exact cone-flipping, cancellation, integration and normalization controls. The general geometric theorem is audited in REVIEW.md.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps({k:v for k,v in out.items() if k not in ['categories','direct_integral_box_cases']},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/independent_results.json b/unsolved_math_prioritization/attempts/30002298/review/independent_results.json
+new file mode 100644
+index 000000000..8a547ea04
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/independent_results.json
+@@ -0,0 +1,100 @@
++{
++  "status": "PASS",
++  "exact_assertions": 6463,
++  "failed": 0,
++  "categories": {
++    "flipped_chamber_weight": 2048,
++    "generic_direction_zero_invariance": 2048,
++    "common_apex_residue_numerator": 255,
++    "apex_cancellation_iff_cone_zero": 255,
++    "outer_vertex_factor_presence": 1530,
++    "opposite_cone_dimension_parity": 254,
++    "box_direct_integration_identity": 6,
++    "box_exact_reduced_denominator": 6,
++    "box_reduced_coprimality": 6,
++    "box_exact_low_moments": 38,
++    "opposite_tetrahedra_outer_factors": 3,
++    "origin_unit_exception": 3,
++    "explicit_tetrahedra_formula": 3,
++    "explicit_signed_line_cone_identity": 8
++  },
++  "orthant_union_masks": 256,
++  "flip_directions_per_mask": 8,
++  "nonempty_apex_pole_models": 255,
++  "direct_integral_box_cases": [
++    {
++      "dimension": 1,
++      "lower": [
++        0
++      ],
++      "upper": [
++        1
++      ],
++      "simplices": 1
++    },
++    {
++      "dimension": 1,
++      "lower": [
++        2
++      ],
++      "upper": [
++        4
++      ],
++      "simplices": 1
++    },
++    {
++      "dimension": 2,
++      "lower": [
++        0,
++        0
++      ],
++      "upper": [
++        1,
++        2
++      ],
++      "simplices": 2
++    },
++    {
++      "dimension": 2,
++      "lower": [
++        2,
++        3
++      ],
++      "upper": [
++        4,
++        6
++      ],
++      "simplices": 2
++    },
++    {
++      "dimension": 3,
++      "lower": [
++        0,
++        0,
++        0
++      ],
++      "upper": [
++        1,
++        2,
++        3
++      ],
++      "simplices": 6
++    },
++    {
++      "dimension": 3,
++      "lower": [
++        2,
++        3,
++        4
++      ],
++      "upper": [
++        4,
++        6,
++        8
++      ],
++      "simplices": 6
++    }
++  ],
++  "sympy_version": "1.14.0",
++  "scope": "Finite exact cone-flipping, cancellation, integration and normalization controls. The general geometric theorem is audited in REVIEW.md."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/review_summary.json b/unsolved_math_prioritization/attempts/30002298/review/review_summary.json
+new file mode 100644
+index 000000000..479446931
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/review_summary.json
+@@ -0,0 +1,67 @@
++{
++  "problem_id": 30002298,
++  "problem_code": "OWR-12339-004",
++  "review_date_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_CREDITED_KNOWN_CHARACTERIZATION",
++  "mandatory_corrections": [],
++  "artifact": "SOURCE_STATUS.md",
++  "artifact_sha256": "457559b700340e08ab2402629685c961b15327f74a21a354be198c561fd601e0",
++  "review_sha256": "0a6c0c26ab4cf5ed9e0879951328a8e11f8590a02a01db25a7392b2f26276365",
++  "recommended_queue_status": "already_solved",
++  "substantive_attempts": 0,
++  "new_discovery_claim": false,
++  "verified_scope": "Exact reduced denominator for unit-density compact finite polytope unions, with the original triangulation-intersection vertex set and the origin unit-factor exception",
++  "excluded_scope": [
++    "arbitrary densities",
++    "neighboring signed-decomposition coefficient question",
++    "neighboring spanning question",
++    "reconstruction algorithms"
++  ],
++  "submitted_assertions_passed": 284,
++  "submitted_receipt_byte_identical": true,
++  "independent_assertions_passed": 6463,
++  "orthant_union_masks": 256,
++  "flip_directions_per_mask": 8,
++  "nonempty_apex_pole_models": 255,
++  "direct_integral_box_cases": 6,
++  "full_2017_author_manuscript_read": true,
++  "publisher_typeset_pdf_claimed_read": false,
++  "original_question_page_visually_inspected": 638,
++  "remark10_page_visually_inspected": 12,
++  "source_hashes_verified": [
++    {
++      "name": "original.pdf",
++      "url": "https://ems.press/content/serial-article-files/46446",
++      "version": "OWR11/2013, contribution pp637-640, Question1 p638",
++      "sha256": "6fde48610f234ceea41c2853e3e26eda91ac2fe4df0d6bfb1edbaa22101edd33",
++      "bytes": 689765
++    },
++    {
++      "name": "algebraic-vertices.pdf",
++      "url": "https://arxiv.org/pdf/1508.07594v2",
++      "version": "v2,5Jan2017, 13-page author manuscript; published AdvMath308(2017)627-644",
++      "sha256": "9e58855472948b831505579d466d1be6cc020628da9a5892652461841b6a356f",
++      "bytes": 211831
++    },
++    {
++      "name": "moments.pdf",
++      "url": "https://arxiv.org/pdf/1210.3193v2",
++      "version": "v2 author manuscript; published AnalysisMathPhys8(2018)255-287",
++      "sha256": "65273ef169b5fc701a0f2c89077a0c0789c747df63a5c9bef37c318541e2a228",
++      "bytes": 423556
++    }
++  ],
++  "packaged_record_matches_pinned_dataset": true,
++  "author_artifact_edited": false,
++  "review_scope_completion_percent": 100,
++  "publication_files": [
++    "REVIEW.md",
++    "review_summary.json",
++    "submitted_check_denominators.py",
++    "submitted_check_results.json",
++    "independent_checks.py",
++    "independent_results.json"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/source_snapshot.md b/unsolved_math_prioritization/attempts/30002298/review/source_snapshot.md
+new file mode 100644
+index 000000000..64f81b706
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/source_snapshot.md
+@@ -0,0 +1,152 @@
++# Fantappiè denominator vertices: a published geometric characterization
++
++**The requested characterization follows from Akopyan–Bárány–Robins, published in 2017.** Their Definition 1 and Remark 10 identify denominator vertices with algebraic vertices, defined by a local condition on tangent cones. This note supplies the explicit pole argument and the origin convention needed to match the exact 2013 question. It claims no new discovery. Separate adversarial review is pending.
++
++## 1. Exact source and denominator convention
++
++The target is Question 1 on printed p.638 of Dmitrii Pasechnik's contribution to [Oberwolfach Report 11/2013](https://ems.press/content/serial-article-files/46446), pp.637–640. The measure has **unit Lebesgue density**, and the normalized transform is
++$$
++F_P(u)=d!\int_P(1-\langle x,u\rangle)^{-d-1}\,dx.
++\tag{1}
++$$
++Here $P\subset\mathbb R^d$ is compact and is a finite union of convex polytopes. The source defines $V(P)$ as the intersection of the vertex sets of its triangulations. We retain this definition, rather than substituting the vertices of the convex hull or those of one chosen triangulation.
++
++Write $F_P=N_P/\Omega_P$ in lowest terms and normalize $\Omega_P(0)=1$. The transform is analytic near zero, so this normalization is available. For $F_P=0$, take $\Omega_P=1$. The question is when
++$$
++\Omega_P(u)=\prod_{v\in V(P)}(1-\langle v,u\rangle).
++\tag{2}
++$$
++The reduced-denominator interpretation is essential: the source's explicit cancellation example would make no sense if arbitrary unreduced presentations were permitted.
++
++All indicator-function and tangent-cone identities below hold up to sets of ambient Lebesgue measure zero. Thus lower-dimensional pieces carry no mass; no atomic or surface measure is being substituted. The argument concerns $d\geq1$; the zero-dimensional case has constant denominator and is immediate.
++
++## 2. The geometric criterion and its prior source
++
++Translate the tangent cone of $P$ at $v$ to the origin and call it $C_v(P)$. A **line-cone** is a polyhedral cone, possibly a finite union of convex cones, invariant under translation in some nonzero direction, equivalently a union of parallel lines. Different line-cones in a sum may have different invariant directions.
++
++Let $A(P)$ consist of those points $v$ for which there is **no** representation
++$$
++\mathbf1_{C_v(P)}=\sum_{j=1}^{m}c_j\mathbf1_{D_j}
++\quad\text{almost everywhere},
++\tag{3}
++$$
++where $m$ is finite, $c_j\in\mathbb R$, and the $D_j$ are line-cones. These are the algebraic vertices of Akopyan–Bárány–Robins.
++
++The exact answer is:
++$$
++\boxed{\quad
++\text{Equation (2) holds if and only if every }
++v\in V(P)\setminus\{0\}\text{ belongs to }A(P).
++\quad}
++\tag{4}
++$$
++More precisely, the entire reduced denominator is
++$$
++\boxed{\qquad
++\Omega_P(u)=\prod_{v\in A(P)\setminus\{0\}}(1-\langle v,u\rangle).
++\qquad}
++\tag{5}
++$$
++Every factor in this product has multiplicity one. No general-position, convexity, connectedness, or vertex-only triangulation hypothesis is required.
++
++The published source is Arseniy Akopyan, Imre Bárány and Sinai Robins, **“Algebraic vertices of non-convex polyhedra,” Advances in Mathematics 308 (2017), 627–644**, DOI [10.1016/j.aim.2016.12.026](https://doi.org/10.1016/j.aim.2016.12.026). The complete [author manuscript, arXiv:1508.07594v2](https://arxiv.org/pdf/1508.07594v2), was inspected. Definition 1 introduces (3); Lemma 6 characterizes the kernel of the cone Fourier–Laplace valuation; Theorem 1 gives minimality under signed simplex decompositions; and Remark 10 explicitly identifies the Fantappiè denominator vertices with these algebraic vertices.
++
++The source's phrase “geometric characterization” is therefore realized by the local line-cone condition. It is not enough to require that the tangent cone itself fail to be a line-cone, nor can signed linear combinations in (3) be replaced by disjoint unions.
++
++## 3. Why the published criterion gives the exact reduced denominator
++
++The following details explain (5), including cancellation and multiplicities, without asserting additional novelty.
++
++Choose any finite triangulation, and use its full-dimensional simplices to represent $\mathbf1_P$ almost everywhere. Let $W$ be its vertex set. For a $d$-simplex $\Delta$,
++$$
++F_\Delta(u)=\frac{d!\operatorname{Vol}(\Delta)}
++                 {\prod_{w\in\operatorname{Vert}(\Delta)}(1-\langle w,u\rangle)}.
++\tag{6}
++$$
++Consequently $\Omega_P$ divides the squarefree product over $W\setminus\{0\}$. This already excludes higher multiplicities and any additional factors.
++
++For $w\in W$, define the rational homogeneous function
++$$
++c_w(u)=(-1)^d
++\sum_{\substack{\Delta\\w\in\operatorname{Vert}(\Delta)}}
++\frac{d!\operatorname{Vol}(\Delta)}
++{\prod_{z\in\operatorname{Vert}(\Delta)\setminus\{w\}}\langle z-w,u\rangle}.
++\tag{7}
++$$
++It has degree $-d$. The simplex partial-fraction identity gives
++$$
++F_P(u)=\sum_{w\in W}\frac{c_w(u)}{1-\langle w,u\rangle}.
++\tag{8}
++$$
++For example, (6) and the identity used in (8) appear as Corollary 3 and Theorem 2, equation (1.9), of [Gravin–Pasechnik–Shapiro–Shapiro](https://arxiv.org/pdf/1210.3193v2). Applying that identity to each simplex requires no simplicity assumption on $P$.
++
++The coefficient $c_w$ is the Fourier–Laplace valuation of $C_w(P)$, using the convention with kernel $e^{\langle u,x\rangle}$. A simplicial cone with generators $q_1,\ldots,q_d$ has valuation
++$$
++(-1)^d\frac{|\det(q_1,\ldots,q_d)|}
++               {\prod_i\langle q_i,u\rangle}.
++$$
++Contributions from simplices containing $w$ on a positive-dimensional face are line-cones and have zero valuation. Thus (7) indeed describes the local tangent cone, independently of the chosen triangulation. By Akopyan–Bárány–Robins, Lemma 6,
++$$
++c_w\ne0\quad\Longleftrightarrow\quad w\in A(P).
++\tag{9}
++$$
++
++Fix a nonzero $v\in W$ and set $L_v=1-\langle v,u\rangle$. The affine hyperplane $L_v=0$ differs from all $L_w=0$ for $w\ne v$ and from every homogeneous edge-denominator hyperplane in (7). At a generic point of it, multiplying (8) by $L_v$ and restricting gives precisely $c_v|_{L_v=0}$. Hence $L_v$ occurs in the reduced denominator if and only if this restriction is not identically zero.
++
++Homogeneity makes the last condition equivalent to $c_v\ne0$. Indeed, if $c_v$ vanished on $\langle v,u\rangle=1$, scaling $u$ by $1/\langle v,u\rangle$ would make it vanish on a nonempty open set, and hence as a rational function. There is no hidden cancellation between the distinct affine vertex factors. Equations (9) and the squarefree divisibility prove (5).
++
++Finally, $A(P)\subseteq V(P)$. If an algebraic vertex were absent from some triangulation's vertex set, the tangent cone of every simplex at that point would be either empty or a line-cone. Summing those tangent indicators would contradict (3). This argument works directly with the triangulations in the source and does not require identifying different conventions for non-face-to-face dissections. Comparing the distinct normalized factors in (2) and (5) proves (4).
++
++## 4. A finite local geometric version
++
++The line-cone condition can be checked without computing a rational transform. This is the cone-flipping argument in the proof of Lemma 6 of Akopyan–Bárány–Robins.
++
++Partition $C_v(P)$, up to null boundaries, into internally disjoint full-dimensional simplicial cones $K_i=\operatorname{pos}(q_{i1},\ldots,q_{id})$. Choose a vector $\eta$ having nonzero scalar product with every generator. Replace each generator by
++$$
++q_{ij}^{+}=\operatorname{sign}\langle\eta,q_{ij}\rangle\,q_{ij},
++\qquad
++\varepsilon_i=\prod_j\operatorname{sign}\langle\eta,q_{ij}\rangle,
++$$
++and put $K_i^+=\operatorname{pos}(q_{i1}^+,\ldots,q_{id}^+)$. The criterion is
++$$
++v\in A(P)\quad\Longleftrightarrow\quad
++\sum_i\varepsilon_i\mathbf1_{K_i^+}\ne0
++\quad\text{on a set of positive measure}.
++\tag{10}
++$$
++Equivalently, after overlaying the finitely many facet hyperplanes, some full-dimensional chamber has nonzero signed coverage count.
++
++Flipping one generator changes a cone indicator, modulo line-cones, by a minus sign. All flipped cones lie in the common pointed cone generated by their finitely many generators; away from its apex this cone is contained in $\langle\eta,x\rangle>0$. On such cones the Fourier–Laplace transform is injective on signed indicator functions; equivalently, Lemma 5 followed by the overlay decomposition in Lemma 6 gives this injectivity. Thus the flipped signed function is zero exactly when the original cone is a signed sum of line-cones. The outcome is independent of the chosen triangulation and generic vector.
++
++This is a local geometric characterization with a finite certificate of nonvanishing, not a generic-position assumption on the vertices of $P$.
++
++## 5. The origin and the source's cancellation example
++
++For $v=0$, the nominal factor $1-\langle v,u\rangle$ is the unit polynomial 1. Thus the literal equality (2) cannot test whether the origin is an algebraic vertex. After choosing an origin outside the finite vertex set, condition (4) simply says $A(P)=V(P)$. For a fixed origin, the exclusion in (4) is necessary.
++
++The source takes two opposite tetrahedra meeting at their common vertex. With standard basis vectors $e_i$, let
++$$
++P_\pm=\operatorname{conv}(v,v\pm e_1,v\pm e_2,v\pm e_3),
++\qquad P=P_+\cup P_-.
++$$
++Writing $L=1-\langle v,u\rangle$ gives
++$$
++F_P(u)=
++\frac{2(L^2+u_1u_2+u_1u_3+u_2u_3)}
++     {(L^2-u_1^2)(L^2-u_2^2)(L^2-u_3^2)}.
++\tag{11}
++$$
++The nonzero common-apex factor cancels. Locally its two opposite orthants have indicator
++$$
++h_1h_2h_3+(1-h_1)(1-h_2)(1-h_3)
++=1-h_1-h_2-h_3+h_1h_2+h_1h_3+h_2h_3,
++$$
++where $h_i=\mathbf1_{\{x_i>0\}}$. Every term on the right is a line-cone indicator, including the whole-space term. This explicitly exhibits the signed geometric cancellation.
++
++For the standard example with $v=0$, all six nonzero vertices still supply their factors, and (2) holds because the missing apex factor is already 1. Translating the same configuration to, for example, $v=(2,3,4)$ makes that canceled factor nonconstant and (2) fails. This explains why omitting the origin convention would state a stronger, false criterion.
++
++## 6. Disposition
++
++The exact Question 1 has a prior published characterization. Recommend **already_solved**, with credit to Akopyan–Bárány–Robins and the transform identities of Gravin–Pasechnik–Shapiro–Shapiro. The explanatory pole calculation is not promoted as a discovery.
++
++The finite checker passes 284 exact assertions. It verifies rational identities, squarefree reduced denominators, artificial-vertex cancellation, a nonconvex example with a surviving reentrant vertex, the opposite-simplex parity control, and the literal origin exception. It does not replace the cited general theorem. No claim is made about the report's separate Questions 2–3, arbitrary polynomial densities, or reconstruction algorithms.
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/submitted_check_denominators.py b/unsolved_math_prioritization/attempts/30002298/review/submitted_check_denominators.py
+new file mode 100644
+index 000000000..88f62116d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/submitted_check_denominators.py
+@@ -0,0 +1,136 @@
++#!/usr/bin/env python3
++"""Exact controls for the credited Fantappie/algebraic-vertex characterization.
++
++Uses SymPy. This checks finite rational identities and geometric examples;
++it does not replace the published general polyhedral valuation theorem.
++"""
++from collections import Counter
++from itertools import product
++from pathlib import Path
++import json
++import sys
++import sympy as s
++
++counts = Counter()
++cases = []
++
++def check(condition, category):
++    assert bool(condition), category
++    counts[category] += 1
++
++def dot(v, u):
++    return sum(a*b for a, b in zip(v, u))
++
++def transformed(simplices, d):
++    u = s.symbols('u0:' + str(d))
++    terms = []
++    cone = {}
++    for simplex in simplices:
++        origin = s.Matrix(simplex[0])
++        det = abs(s.det(s.Matrix.hstack(
++            *(s.Matrix(v)-origin for v in simplex[1:]))))
++        check(det > 0, 'nondegenerate_simplex')
++        terms.append(det/s.prod(1-dot(v, u) for v in simplex))
++        for v in simplex:
++            edges = [tuple(b-a for a, b in zip(v, w))
++                     for w in simplex if w != v]
++            coefficient = (-1)**d * det/s.prod(dot(w, u) for w in edges)
++            cone[v] = cone.get(v, 0) + coefficient
++    F = s.cancel(sum(terms))
++    cone = {v: s.cancel(c) for v, c in cone.items()}
++    check(s.cancel(F-sum(c/(1-dot(v, u)) for v, c in cone.items())) == 0,
++          'simplex_to_cone_identity')
++    numerator, denominator = s.fraction(F)
++    constant = denominator.subs(dict.fromkeys(u, 0))
++    check(constant != 0, 'denominator_regular_at_zero')
++    omega = s.expand(denominator/constant)
++    surviving = []
++    for v, c in cone.items():
++        if all(a == 0 for a in v):
++            check(1-dot(v, u) == 1, 'origin_factor_is_a_unit')
++            continue
++        L = 1-dot(v, u)
++        appears = s.rem(s.Poly(omega, *u), s.Poly(L, *u)).is_zero
++        check(appears == (c != 0), 'pole_matches_tangent_coefficient')
++        j = next(i for i, a in enumerate(v) if a)
++        substitution = (s.Integer(1)-sum(v[i]*u[i] for i in range(d) if i != j))/v[j]
++        restriction = s.cancel(c.subs(u[j], substitution))
++        check((restriction != 0) == (c != 0), 'homogeneous_residue_restriction')
++        if appears:
++            surviving.append(v)
++            check(s.gcd(s.Poly(omega, *u), s.Poly(L**2, *u)).total_degree() == 1,
++                  'simple_pole_multiplicity')
++    predicted = s.prod(1-dot(v, u) for v in surviving)
++    check(s.expand(omega-predicted) == 0, 'complete_reduced_denominator')
++    check(s.gcd(s.Poly(numerator, *u), s.Poly(denominator, *u)).total_degree() == 0,
++          'coprime_reduced_fraction')
++    return u, F, cone, omega
++
++def run(name, simplices, d, expected_vertices):
++    print('Checking ' + name, file=sys.stderr, flush=True)
++    u, F, cone, omega = transformed(simplices, d)
++    nonzero = [v for v in expected_vertices if any(v)]
++    expected = s.prod(1-dot(v, u) for v in nonzero)
++    check(s.expand(omega-expected) == 0, 'expected_geometric_denominator')
++    cases.append({'name': name, 'dimension': d, 'simplices': len(simplices),
++                  'triangulation_vertices': len(cone),
++                  'nonzero_pole_vertices': len(nonzero)})
++    return u, F, cone, omega
++
++for d in (1, 2, 3):
++    for shift in (tuple(0 for _ in range(d)), tuple(i+2 for i in range(d))):
++        simplex = [shift] + [tuple(shift[j]+int(i == j) for j in range(d))
++                             for i in range(d)]
++        run('simplex_'+str(d)+'_'+str(shift), [simplex], d, simplex)
++
++# A convex square with an artificial center vertex in its triangulation.
++square = [(1, 1), (3, 1), (3, 3), (1, 3)]
++center = (2, 2)
++triangles = [[center, square[i], square[(i+1) % 4]] for i in range(4)]
++_, _, cone, _ = run('square_with_Steiner_center', triangles, 2, square)
++check(cone[center] == 0, 'artificial_vertex_cancels')
++
++# Three unit squares form an L-shaped polygon. Straight-edge subdivision
++# points cancel, while the reentrant corner remains a pole vertex.
++triangles = []
++for x, y in ((2, 3), (3, 3), (2, 4)):
++    a, b, c, d = (x, y), (x+1, y), (x+1, y+1), (x, y+1)
++    triangles.extend([[a, b, c], [a, c, d]])
++boundary = [(2, 3), (4, 3), (4, 4), (3, 4), (3, 5), (2, 5)]
++_, _, cone, _ = run('nonconvex_L_shape', triangles, 2, boundary)
++check(cone[(3, 4)] != 0, 'reentrant_vertex_survives')
++
++# Opposite simplices: the common-apex tangent coefficient cancels exactly
++# in odd dimensions. Dimension 3 is the original source's example.
++for d in (1, 2, 3):
++    for shift in (tuple(0 for _ in range(d)), tuple(i+2 for i in range(d))):
++        plus = [shift] + [tuple(shift[j]+int(i == j) for j in range(d))
++                         for i in range(d)]
++        minus = [shift] + [tuple(shift[j]-int(i == j) for j in range(d))
++                          for i in range(d)]
++        expected = plus[1:] + minus[1:] + ([] if d % 2 else [shift])
++        u, F, cone, omega = run('opposite_'+str(d)+'_'+str(shift),
++                                [plus, minus], d, expected)
++        check((cone[shift] == 0) == bool(d % 2), 'opposite_cone_parity')
++        if d == 3:
++            L = 1-dot(shift, u)
++            explicit = 2*(L**2+sum(u[i]*u[j] for i in range(3)
++                                  for j in range(i+1, 3)))/s.prod(L**2-x*x for x in u)
++            check(s.cancel(F-explicit) == 0, 'source_tetrahedra_formula')
++            vertex_product = s.prod(1-dot(v, u) for v in set(plus+minus))
++            check((s.expand(omega-vertex_product) == 0) == (not any(shift)),
++                  'literal_origin_exception')
++
++# A signed line-cone decomposition of positive plus negative orthants in R^3.
++# Each proper subset of coordinate halfspaces is invariant in a missing direction.
++for signs in product((0, 1), repeat=3):
++    h1, h2, h3 = signs
++    lhs = h1*h2*h3 + (1-h1)*(1-h2)*(1-h3)
++    rhs = 1-h1-h2-h3+h1*h2+h1*h3+h2*h3
++    check(lhs == rhs, 'signed_line_cone_indicator_identity')
++
++result = {'status': 'PASS', 'exact_assertions': sum(counts.values()),
++          'sympy_version': s.__version__, 'categories': dict(counts), 'cases': cases,
++          'scope': 'Finite exact diagnostics; the general characterization is credited to published work.'}
++Path(__file__).with_name('check_results.json').write_text(json.dumps(result, indent=2)+'\n')
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30002298/review/submitted_check_results.json b/unsolved_math_prioritization/attempts/30002298/review/submitted_check_results.json
+new file mode 100644
+index 000000000..6288a1be3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/review/submitted_check_results.json
+@@ -0,0 +1,124 @@
++{
++  "status": "PASS",
++  "exact_assertions": 284,
++  "sympy_version": "1.14.0",
++  "categories": {
++    "nondegenerate_simplex": 28,
++    "simplex_to_cone_identity": 14,
++    "denominator_regular_at_zero": 14,
++    "origin_factor_is_a_unit": 6,
++    "pole_matches_tangent_coefficient": 55,
++    "homogeneous_residue_restriction": 55,
++    "simple_pole_multiplicity": 50,
++    "complete_reduced_denominator": 14,
++    "coprime_reduced_fraction": 14,
++    "expected_geometric_denominator": 14,
++    "artificial_vertex_cancels": 1,
++    "reentrant_vertex_survives": 1,
++    "opposite_cone_parity": 6,
++    "source_tetrahedra_formula": 2,
++    "literal_origin_exception": 2,
++    "signed_line_cone_indicator_identity": 8
++  },
++  "cases": [
++    {
++      "name": "simplex_1_(0,)",
++      "dimension": 1,
++      "simplices": 1,
++      "triangulation_vertices": 2,
++      "nonzero_pole_vertices": 1
++    },
++    {
++      "name": "simplex_1_(2,)",
++      "dimension": 1,
++      "simplices": 1,
++      "triangulation_vertices": 2,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "simplex_2_(0, 0)",
++      "dimension": 2,
++      "simplices": 1,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "simplex_2_(2, 3)",
++      "dimension": 2,
++      "simplices": 1,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 3
++    },
++    {
++      "name": "simplex_3_(0, 0, 0)",
++      "dimension": 3,
++      "simplices": 1,
++      "triangulation_vertices": 4,
++      "nonzero_pole_vertices": 3
++    },
++    {
++      "name": "simplex_3_(2, 3, 4)",
++      "dimension": 3,
++      "simplices": 1,
++      "triangulation_vertices": 4,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "square_with_Steiner_center",
++      "dimension": 2,
++      "simplices": 4,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "nonconvex_L_shape",
++      "dimension": 2,
++      "simplices": 6,
++      "triangulation_vertices": 8,
++      "nonzero_pole_vertices": 6
++    },
++    {
++      "name": "opposite_1_(0,)",
++      "dimension": 1,
++      "simplices": 2,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "opposite_1_(2,)",
++      "dimension": 1,
++      "simplices": 2,
++      "triangulation_vertices": 3,
++      "nonzero_pole_vertices": 2
++    },
++    {
++      "name": "opposite_2_(0, 0)",
++      "dimension": 2,
++      "simplices": 2,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 4
++    },
++    {
++      "name": "opposite_2_(2, 3)",
++      "dimension": 2,
++      "simplices": 2,
++      "triangulation_vertices": 5,
++      "nonzero_pole_vertices": 5
++    },
++    {
++      "name": "opposite_3_(0, 0, 0)",
++      "dimension": 3,
++      "simplices": 2,
++      "triangulation_vertices": 7,
++      "nonzero_pole_vertices": 6
++    },
++    {
++      "name": "opposite_3_(2, 3, 4)",
++      "dimension": 3,
++      "simplices": 2,
++      "triangulation_vertices": 7,
++      "nonzero_pole_vertices": 6
++    }
++  ],
++  "scope": "Finite exact diagnostics; the general characterization is credited to published work."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/source_checksums.json b/unsolved_math_prioritization/attempts/30002298/source_checksums.json
+new file mode 100644
+index 000000000..4367ff9c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/source_checksums.json
+@@ -0,0 +1,25 @@
++{
++  "sources": [
++    {
++      "name": "original.pdf",
++      "url": "https://ems.press/content/serial-article-files/46446",
++      "version": "OWR11/2013, contribution pp637-640, Question1 p638",
++      "sha256": "6fde48610f234ceea41c2853e3e26eda91ac2fe4df0d6bfb1edbaa22101edd33",
++      "bytes": 689765
++    },
++    {
++      "name": "algebraic-vertices.pdf",
++      "url": "https://arxiv.org/pdf/1508.07594v2",
++      "version": "v2,5Jan2017, 13-page author manuscript; published AdvMath308(2017)627-644",
++      "sha256": "9e58855472948b831505579d466d1be6cc020628da9a5892652461841b6a356f",
++      "bytes": 211831
++    },
++    {
++      "name": "moments.pdf",
++      "url": "https://arxiv.org/pdf/1210.3193v2",
++      "version": "v2 author manuscript; published AnalysisMathPhys8(2018)255-287",
++      "sha256": "65273ef169b5fc701a0f2c89077a0c0789c747df63a5c9bef37c318541e2a228",
++      "bytes": 423556
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/source_record.json b/unsolved_math_prioritization/attempts/30002298/source_record.json
+new file mode 100644
+index 000000000..58c2b1385
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002298/source_record.json
+@@ -0,0 +1,70 @@
++{
++  "dataset": "ulamai/UnsolvedMath",
++  "license": "CC BY 4.0",
++  "revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "record": {
++    "id": 30002298,
++    "problem_number": "OWR-12339-004",
++    "title": "Polyhedra with Vertex-Factored Fantappi\u00e8 Denominators",
++    "statement": "Give a geometric characterization of compact polyhedra $P$ whose Fantappi\u00e8-transform denominator is $\\Omega(u)=\\prod_{v\\in V(P)}(1-\\langle v,u\\rangle)$.",
++    "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Structured Function Systems and Applications (2013), Oberwolfach Reports, DOI 10.4171/owr/2013/11, pp. 579--655](https://doi.org/10.4171/owr/2013/11)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** open\n\n**Assessment.** The extracted record asks for a geometric characterization of a moment-generating-function case and supplies contextual polyhedral observations, but no complete characterization is stated or verified.\n\n**Sources checked.**\n\n- [Oberwolfach Report 2013](https://doi.org/10.4171/owr/2013/11)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++    "difficulty_level_id": 3,
++    "status": "open",
++    "proposed_by": null,
++    "proposed_year": 2013,
++    "category_id": 6,
++    "set_id": 15,
++    "source_url": "https://doi.org/10.4171/owr/2013/11",
++    "source_citation": "Structured Function Systems and Applications (2013), Oberwolfach Reports, DOI 10.4171/owr/2013/11, pp. 579--655",
++    "literature_assessment": "The extracted record asks for a geometric characterization of a moment-generating-function case and supplies contextual polyhedral observations, but no complete characterization is stated or verified.",
++    "literature_sources": [
++      {
++        "url": "https://doi.org/10.4171/owr/2013/11",
++        "label": "Oberwolfach Report 2013"
++      }
++    ],
++    "literature_checked_at": "2026-08-21",
++    "tags": [
++      "owr",
++      "oberwolfach-reports",
++      "OWR-12339-004",
++      "literature-status:open",
++      "owr-year:2013"
++    ],
++    "view_count": 0,
++    "favorite_count": 0,
++    "created_at": "2026-08-25T00:00:00Z",
++    "updated_at": "2026-09-16T12:06:53Z",
++    "published": true,
++    "category": {
++      "id": 6,
++      "name": "geometry",
++      "display_name": "Geometry",
++      "description": "Euclidean and non-Euclidean geometry, geometric structures.",
++      "slug": "geometry",
++      "order_index": 6,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "difficulty": {
++      "id": 3,
++      "level": 3,
++      "name": "L3: Advanced",
++      "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++      "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++    },
++    "set": {
++      "id": 15,
++      "name": "oberwolfach_reports_open_problems",
++      "display_name": "Oberwolfach Reports Open Problems",
++      "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++      "slug": "oberwolfach-reports-open-problems",
++      "order_index": 15,
++      "created_at": "2026-08-25T00:00:00Z"
++    },
++    "original_statement": "Give a geometric characterization of compact polyhedra P for which the Fantappie\u0300-transform denominator satisfies \\Omega(u)=\\prod_{v\\in V(P)}(1-\\langle v,u\\rangle).",
++    "clean_statement": "Give a geometric characterization of compact polyhedra $P$ whose Fantappi\u00e8-transform denominator is $\\Omega(u)=\\prod_{v\\in V(P)}(1-\\langle v,u\\rangle)$.",
++    "statement_status": "corrected_verified",
++    "statement_verification": "The mathematical content was checked against the cited official Oberwolfach report; notation, context, and question form were normalized without changing the source-level claim."
++  },
++  "research_result_for_code": null
++}
+diff --git a/unsolved_math_prioritization/attempts/30002298/turns.jsonl b/unsolved_math_prioritization/attempts/30002298/turns.jsonl
+new file mode 100644
+index 000000000..e69de29bb

@@ -1,0 +1,265 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Leb}{\mathcal L}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\intt}{int}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\title{The spatial locus of common tangents to three disjoint convex sets is null}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{3 October 2026\\\small Unrefereed preprint}
+\begin{document}
+\maketitle
+\begin{abstract}
+The union of complete affine lines tangent to three pairwise disjoint convex subsets of $\R^3$ has Lebesgue outer measure zero. Tangency means meeting the set while lying in a supporting plane. The sets may be nonclosed, unbounded, lower dimensional or nonsmooth. For compact sets, two tangency constraints admit countably many Lipschitz two-parameter covers after contact localization. At almost every tritangent parameter, the transverse derivative at each of three distinct contacts has rank at most one. A quadratic determinant then vanishes identically along the line, and the area formula makes its swept locus null. Countably many compact caps give the arbitrary-set statement. This proves the measure-zero formulation of Goaoc's Conjecture~4 in Oberwolfach Report~44/2008; it does not prove the stronger countable-union-of-$2$-manifolds formulation.
+\end{abstract}
+
+\section{Statement, conventions and analytic inputs}
+A plane $H$ supports a convex set $K$ if $K$ is contained in a closed halfspace bounded by $H$ and $K\cap H\ne\varnothing$. An affine line $L$ is \emph{tangent} to $K$ if $L\cap K\ne\varnothing$ and some supporting plane contains $L$. Contacts and supporting planes need not be unique. In particular, contact may be a segment. Write
+\[
+\mathcal T(K_1,K_2,K_3)=\bigcup\{L:L\text{ is tangent to each }K_i\}.
+\]
+\begin{theorem}\label{thm:main}
+For any three pairwise disjoint convex subsets $K_1,K_2,K_3\subset\R^3$,
+\[
+\Leb^{3,*}\bigl(\mathcal T(K_1,K_2,K_3)\bigr)=0.
+\]
+Equivalently, the locus is contained in a Lebesgue-measurable null set.
+\end{theorem}
+If a set is empty, there are no common tangents and the assertion is immediate. No other nondegeneracy assumption is made.
+
+The source is Goaoc's problem in \cite[section~13, p.~2552]{goaoc2008}. Its Conjecture~3 asks for containment in a countable union of $2$-manifolds; Conjecture~4 is the weaker nullness statement. Neither empty interior nor nowhere density alone proves nullness. An official-author-host manuscript preserved in an archive capture of 1~April~2011 again asks the compact-convex nullness question on printed p.~11 \cite{demouthgoaoc}. The capture date is not a publication date, and identity with the manuscript cited in September~2008 has not been established. Cheong, Goaoc and Holmsen \cite{cheong2024} study acyclicity of open sets of meeting transversals and finite existence results. Those conclusions differ from spatial nullness of the union of supporting tangent lines. A bounded documented literature audit found no prior resolution of the full statement proved here. This is not a claim of first proof, exhaustive priority coverage, or current openness based on the historical sources.
+
+We use the standard Lebesgue density theorem, Rademacher's theorem and the equal-dimensional area formula. In particular, if $G:W\to\R^3$ is locally Lipschitz on an open $W\subset\R^3$ and $D\subset W$ is measurable, then
+\begin{equation}\label{eq:area}
+\Leb^{3,*}(G(D))\le\int_D |\det DG|\,d\Leb^3.
+\end{equation}
+These inputs, including measurable subsets and multiplicity without injectivity, are given in \cite[Ch.~1, Cor.~3.10; Ch.~2, Thms.~1.4 and~3.3]{simon}; see also \cite{federer,evansgariepy}. The one-variable inversion and fixed-point estimates below are elementary forms of standard Lipschitz inversion and the contraction principle. The quadratic determinant calculation is the elementary focal-polynomial mechanism for a two-parameter family of lines; the algebra itself is not a novelty claim. All geometric and quantitative steps needed here are proved below.
+
+\section{Compact reduction and support coordinates}
+Fix once and for all a countable collection of closed balls with rational centers and positive rational radii in the \emph{original ambient Cartesian coordinates}. Given any point, such balls contain it in their interiors and can have arbitrarily small diameter.
+
+Suppose a common tangent $L$ to arbitrary $K_i$ meets them at $a_i$. The contacts are distinct. Choose pairwise disjoint balls $B_i$ from this fixed collection with $a_i\in\intt B_i$, and put
+\[
+C_i=\overline{K_i}\cap B_i.
+\]
+They are nonempty, compact, convex and disjoint, even if the original closures intersect. A supporting halfspace for $K_i$ also contains $\overline{K_i}$; its plane contains $a_i$ and $L$. Thus $L$ is tangent to $C_i$. Countably many triples of balls suffice. It remains to prove the theorem for nonempty compact convex sets. This reduction makes no measurability assumption on the original sets.
+
+An open chart in the four-dimensional space of unoriented affine lines is
+\begin{equation}\label{eq:lines}
+L(u,v)=\{(u+zv,z):z\in\R\},\qquad u,v\in\R^2.
+\end{equation}
+Three choices of ambient coordinate axis give such charts covering line space, which is consequently second countable. Around any chosen line, an orthonormal change of coordinates makes it $L(0,0)$.
+
+For compact convex $C$, define
+\[
+\pi_v(x,z)=x-zv,\quad
+h_C(\xi,\tau)=\max_{(x,z)\in C}(\xi\cdot x+\tau z),\quad
+g_C(u,v)=\max_{n\in S^1}\bigl(n\cdot u-h_C(n,-n\cdot v)\bigr).
+\]
+If $Z=\max_C|z|$, each summand has increment bounded in absolute value by $|\delta u|+Z|\delta v|$. Hence $g_C$ is Lipschitz. For the summand $\psi_n$, the difference-of-maxima estimate gives the more useful signed bounds
+\begin{equation}\label{eq:increment}
+\min_C n\cdot(\delta u+z\delta v)
+\le\psi_n(u+\delta u,v+\delta v)-\psi_n(u,v)
+\le\max_C n\cdot(\delta u+z\delta v).
+\end{equation}
+This uses no differentiability of a support function.
+
+When $\pi_v(C)$ has interior, its support inequalities show that $g_C$ is negative in that interior, zero on its boundary, and positive outside. Strict separation gives the last assertion; an interior disk gives the first uniformly over unit normals. Thus
+\begin{equation}\label{eq:zero}
+g_C(u,v)=0\quad\Longleftrightarrow\quad
+u\in\partial\pi_v(C)\quad\Longleftrightarrow\quad L(u,v)\text{ is tangent to }C.
+\end{equation}
+A supporting line to the projection lifts to a supporting plane containing $L$, and membership in the projection supplies an actual contact. Conversely, a plane containing $L$ has normal proportional to $(n,-n\cdot v)$ with $n\ne0$, giving a supporting projection line.
+
+A full-dimensional set has projection interior for every $v$. A planar set has projection interior exactly when the line direction is transverse to its affine plane. A line meeting that plane is either transverse or contained in it. The union of all contained lines lies in that plane and is null; we discard such lines when needed.
+
+\section{Two tangencies: a countable Lipschitz cover}
+\begin{lemma}\label{lem:charts}
+Let $A,B$ be disjoint compact convex sets of affine dimension at least two. Exclude lines contained in the affine plane of either planar set. The remaining common tangent lines are covered by countably many Lipschitz maps from open subsets of $\R^2$ into line space. A map is permitted to contain extra lines.
+\end{lemma}
+\begin{proof}
+Fix a retained common tangent $L_0=L(0,0)$ and contacts $a=(0,s)\in A$, $b=(0,t)\in B$. Reverse the height axis if necessary so $d=t-s>0$. The projections at $v=0$ have interior and contain $0$ on their boundaries. Let $N_A,N_B\subset S^1$ be their outward supporting normals at $0$.
+
+For either projection choose an interior disk of center $w$ and radius $r>0$. Every contact normal satisfies $n\cdot w+r\le0$. Therefore, with $e=-w/|w|$ and $\alpha=r/|w|>0$, all contact normals satisfy $n\cdot e\ge\alpha$. Denote these choices by $e_i,\alpha_i$, $i=A,B$, and choose
+\begin{equation}\label{eq:epsilon}
+0<\eps<\min(1/4,\alpha_A/16,\alpha_B/16).
+\end{equation}
+Take rational ambient balls $D_A,D_B$ containing $a,b$ strictly in their interiors and small enough that the caps $A'=A\cap D_A$, $B'=B\cap D_B$ have heights in
+\[
+[s-\eps d,s+\eps d],\qquad [t-\eps d,t+\eps d],
+\]
+respectively. Rationality refers to the fixed original coordinates, not the rotated coordinates.
+
+The caps have exactly the original projected supporting normals at $L_0$. One inclusion follows from containment. For the reverse, if a functional supports a cap at the line but is positive at an original point $p$, short positive segments from its contact toward $p$ lie inside the ball, contradicting support. The strict interior condition on the contact is essential. Likewise, choose an affine basis consisting of the contact and points of the original set; short segments toward those points remain in the cap and retain affine independence. Hence cap and original have the same affine hull and dimension. Projection interior is preserved.
+
+Two line-coordinate motions, described by displacement at height $z$, are
+\[
+V_A(z)=\frac{t-z}{d}e_A,\qquad V_B(z)=\frac{z-s}{d}e_B.
+\]
+Evaluation at $s,t$ gives respectively $(e_A,0)$ and $(0,e_B)$, so these motions are independent, even when the two unit vectors are equal or opposite. Complete them to linear coordinates
+\begin{equation}\label{eq:coordinates}
+(u,v)=a_0V_A+b_0V_B+R(r),\qquad r\in\R^2,
+\end{equation}
+where each $V_i$ on the right denotes its intercept-slope pair.
+
+Near zero, every maximizing normal for $g_{A'}$ has $n\cdot e_A\ge\alpha_A/2$, and similarly for $B'$. Indeed, otherwise a converging sequence of nearby parameters and a convergent subsequence of maximizing unit normals would give a maximizing normal at zero outside the prescribed hemisphere, by continuity and compactness. Shrink an open coordinate box so these facts and projection interior hold throughout it.
+
+For $h>0$, whenever the compared points lie in that box, \eqref{eq:increment}, applied to an initial maximizing normal, yields
+\begin{align}
+g_{A'}(a_0+h,b_0,r)-g_{A'}(a_0,b_0,r)&\ge m_Ah,\label{eq:own}\\
+g_{B'}(a_0,b_0+h,r)-g_{B'}(a_0,b_0,r)&\ge m_Bh,\notag
+\end{align}
+with $m_i=\alpha_i/4$. For example, $(t-z)/d\ge1-\eps>1/2$ on $A'$, and $n\cdot e_A\ge\alpha_A/2$. Cross coefficients have absolute value at most $\eps$ on the opposite cap. Applying the bound to all unit normals and taking maxima gives
+\begin{align}
+|g_{A'}(a_0,b_0+h,r)-g_{A'}(a_0,b_0,r)|&\le\eps|h|,\label{eq:cross}\\
+|g_{B'}(a_0+h,b_0,r)-g_{B'}(a_0,b_0,r)|&\le\eps|h|.\notag
+\end{align}
+There are finite residual Lipschitz constants $K_i>0$ in the $r$ coordinates. No lower bound on $\alpha_i$ or $d$ is required uniformly over all lines.
+
+Here are the root-domain details. Choose $\delta>0$ so the closed square $|a_0|,|b_0|\le\delta$ lies in the good box, and then $\eta>0$ so the residual ball also lies there and
+\[
+K_i\eta<(m_i-\eps)\delta/2\quad(i=A,B).
+\]
+Since both gap functions vanish at zero, \eqref{eq:own}--\eqref{eq:cross} give, for $|b_0|\le\delta$, $|r|<\eta$,
+\[
+g_{A'}(\delta,b_0,r)>0,\qquad g_{A'}(-\delta,b_0,r)<0.
+\]
+For instance the positive value is at least $(m_A-\eps)\delta-K_A\eta>0$. Continuity and strict monotonicity give a unique root $a_0=\rho_A(b_0,r)$ on this entire domain. Similarly $b_0=\rho_B(a_0,r)$. Comparing two roots using the same bounds gives
+\begin{equation}\label{eq:rootlip}
+|\rho_A(b,r)-\rho_A(b',r')|
+\le\frac{\eps}{m_A}|b-b'|+\frac{K_A}{m_A}|r-r'|,
+\end{equation}
+and the analogous inequality for $\rho_B$. Put $\kappa=\max_i\eps/m_i<1/4$. Since the roots vanish at zero,
+\[
+|\rho_A(b,r)|\le\kappa\delta+(K_A/m_A)\eta<3\delta/4,
+\]
+and likewise for $\rho_B$: the first summand is less than $\delta/4$ and the second is less than $(1-\eps/m_A)\delta/2<\delta/2$. Consequently
+\[
+(a_0,b_0)\longmapsto(\rho_A(b_0,r),\rho_B(a_0,r))
+\]
+is a self-map of the closed square and a contraction in its maximum norm, with constant $\kappa$. Iteration is Cauchy in this complete square and has a unique fixed point $p(r)$. Applying \eqref{eq:rootlip} at fixed points gives
+\[
+|p(r)-p(r')|_\infty
+\le\frac{\max_i(K_i/m_i)}{1-\kappa}|r-r'|.
+\]
+Thus the simultaneous zero set near $L_0$ is a Lipschitz graph on the open residual ball. By \eqref{eq:zero}, it contains all common tangents to these two fixed caps in a suitably shrunk open line-space neighborhood.
+
+Finally, countability must respect the fixed caps. A nearby tangent to the original set can miss a cap chosen at $L_0$. For each fixed rational cap pair $P$, let $T_P$ consist of its common tangents at which the preceding construction is available for that same pair. Each $L\in T_P$ has an open neighborhood $U_L$ and a graph $\Gamma_L$ with
+\[
+T_P\cap U_L\subset\Gamma_L.
+\]
+Second countability gives a countable subcover of $T_P$ by the $U_L$. Every point of $T_P$ in a selected neighborhood is still a tangent to the same caps and hence belongs to its selected graph. There are only countably many rational cap pairs. Every original retained tangent belongs to at least one $T_P$ by the contact localization already proved. Taking these countable unions proves the lemma.
+\end{proof}
+
+\section{Density-point rank restrictions and null sweeps}
+Tangency to a compact set is closed in line space. To see this, from a convergent sequence of tangent lines select subsequential limits of contact points in the compact set and of unit supporting-plane normals. The limiting point is on the limiting line; the limiting normal is perpendicular to its direction and its supporting inequality persists. These data witness tangency.
+
+Let $F:q\mapsto(u(q),v(q))$ be a Lipschitz line-family map on an open $U\subset\R^2$. Let $E\subset U$ select tangency to three disjoint compact convex sets. Exclude lines contained in the plane of a planar set and lines identical to the affine line of a one-dimensional set. The exclusions are closed line-space conditions, so $E$ is Borel. Their complete swept loci are contained in finitely many planes or lines and can be added later.
+
+Almost every $q_0\in E$ is both a density-one point of $E$ and a differentiability point of $F$. For each $h\in\R^2$, density one implies
+\begin{equation}\label{eq:density}
+q_j\in E,\quad \tau_j\downarrow0,\quad
+q_j=q_0+\tau_jh+o(\tau_j).
+\end{equation}
+Indeed, $\operatorname{dist}(q_0+\tau h,E)=o(\tau)$: a hole of radius proportional to $\tau$ would remove a fixed proportion of a ball about $q_0$, contradicting density one. Approximating that distance gives \eqref{eq:density}.
+
+Apply a fixed affine shear $x\mapsto x-u(q_0)-zv(q_0)$ so the line at $q_0$ becomes $L(0,0)$. This preserves convexity, supporting tangency and nullness. Write $A=Du(q_0)$, $B=Dv(q_0)$ in the resulting coordinates. Choose any contact $(0,z_i)$ with set $C_i$.
+\begin{lemma}\label{lem:rank}
+At each such contact, $\rank(A+z_iB)\le1$.
+\end{lemma}
+\begin{proof}
+We cover all four affine dimensions.
+
+\emph{Dimension three.} Suppose $A+z_iB$ is onto. Choose an interior ball of center $c=(w,c_z)$ and radius $r>0$ in $C_i$, and an $h$ with $(A+z_iB)h=w$. Use \eqref{eq:density}. On $F(q_j)$ take height $z_i+\tau_j(c_z-z_i)$. Differentiability gives transverse coordinates $\tau_jw+o(\tau_j)$; the extra product of a height increment and slope is $O(\tau_j^2)$. Convexity puts in $C_i$ the open ball of radius $\tau_jr$ centered at $(1-\tau_j)(0,z_i)+\tau_jc$. For large $j$, the chosen line point lies in this ball, contradicting supporting tangency.
+
+\emph{Dimension two.} Put $H=\aff C_i$. The retained line is transverse to $H$. Choose a relative interior disk of center $c=(w,c_z)$ and radius $r$ in $C_i$. If $A+z_iB$ is onto, choose the same $h$ and density sequence. Write
+\[
+H=\{(x,z):N_x\cdot x+N_z(z-z_i)=0\},\qquad N_z\ne0.
+\]
+The intersection height of a nearby line is the smooth function
+\[
+z(q)=\frac{N_zz_i-N_x\cdot u(q)}{N_z+N_x\cdot v(q)}.
+\]
+Its derivative along $h$ is $-N_x\cdot w/N_z=c_z-z_i$. The intersection point therefore equals $(1-\tau_j)(0,z_i)+\tau_jc+o(\tau_j)$ and lies in the relative disk of radius $\tau_jr$. A supporting plane through a relative interior point of $C_i$ must be $H$: its functional vanishes on the tangent space of $H$. It cannot contain a transverse line. This is the required contradiction.
+
+\emph{Dimension one.} Write the affine line of $C_i$ as $(0,z_i)+\lambda(d_x,d_z)$. Since it meets but is not identical to $L(0,0)$, $d_x\ne0$. For every nearby $q\in E$, incidence gives
+\begin{equation}\label{eq:interval}
+\nu(q):=u(q)+z_iv(q)=(d_x-d_zv(q))\lambda(q).
+\end{equation}
+Dotting with $d_x$ gives a denominator $|d_x|^2-d_zd_x\cdot v(q)$, bounded away from zero near $q_0$. Hence $\lambda(q)=O(|q-q_0|)$. For $n\perp d_x$, \eqref{eq:interval} implies $n\cdot\nu(q)=-d_z(n\cdot v(q))\lambda(q)$. Along \eqref{eq:density} this is $O(\tau_j^2)$, so $n\cdot(A+z_iB)h=0$ for every $h$. The image lies in the line spanned by $d_x$.
+
+\emph{Dimension zero.} The contact is a fixed point; every $q\in E$ satisfies $u(q)+z_iv(q)=0$. Differentiating along \eqref{eq:density} gives $A+z_iB=0$.
+\end{proof}
+
+The contacts have distinct heights, since the sets are disjoint. The polynomial
+\[
+P(z)=\det(A+zB)
+\]
+has degree at most two and vanishes at these three distinct heights by Lemma~\ref{lem:rank}. Thus $P$ vanishes identically. Now sweep the line family by
+\[
+G(q,z)=(u(q)+zv(q),z).
+\]
+On a bounded parameter ball $V$ with closure in $U$ and a bounded height interval, this map is Lipschitz: $v$ is bounded there and
+\[
+|u(q)+zv(q)-u(q')-z'v(q')|
+\le (\operatorname{Lip}u+M\operatorname{Lip}v)|q-q'|+\sup_V|v|\,|z-z'|.
+\]
+At every good parameter $q_0$ and every finite $z$, its derivative has block form
+\[
+DG(q_0,z)=\begin{pmatrix}A+zB&v(q_0)\\0\quad0&1\end{pmatrix},
+\qquad\det DG(q_0,z)=P(z)=0.
+\]
+The bad parameter set has two-dimensional measure zero. Its product with a bounded height interval has three-dimensional measure zero. Applying \eqref{eq:area} to the Borel tritangent subset of each parameter-height patch gives zero outer measure of its image. A countable cover of $U$ by bounded balls with closure inside $U$, followed by integer height intervals, proves:
+\begin{proposition}\label{prop:sweep}
+The tritangent portion of any Lipschitz two-parameter line family on an open domain sweeps a null subset of $\R^3$, after adding the discarded planes and lines. No open set of tritangent parameters or injectivity of the map is assumed.
+\end{proposition}
+
+\section{All compact dimensional cases and completion}
+For three nonempty disjoint compact convex sets, discard the lines in planar affine hulls and those identical to one-dimensional affine hulls. Their spatial union lies in finitely many null planes and lines. The remaining common tangents fall into the following cases.
+
+If at least two sets have affine dimension at least two, apply Lemma~\ref{lem:charts} to that pair, then Proposition~\ref{prop:sweep} to the tritangent parameters of each countable chart.
+
+If a set is a point, all common lines pass through it. Ordinary direction charts give smooth two-parameter maps on open domains: in \eqref{eq:lines}, a fixed point $(x_0,z_0)$ means $u=x_0-z_0v$. The three ambient-axis choices cover all directions. Apply Proposition~\ref{prop:sweep}, including the zero-dimensional rank case.
+
+In the remaining case there is no point and at most one set has dimension at least two. At least two sets are nondegenerate compact intervals on affine lines. Parameterize their points by $a(s),b(t)$ for compact intervals of $s,t$. Disjoint compactness bounds $|b(t)-a(s)|$ away from zero. At each parameter pair some ambient coordinate of this difference is nonzero. On a sufficiently small \emph{open} parameter rectangle, extend both affine parameterizations and keep that coordinate bounded away from zero. The line through $a(s),b(t)$ then has smooth intercept-slope coordinates with bounded derivatives on a smaller rectangle, hence a Lipschitz map. Countably many such bounded open rectangles cover all actual endpoint and interior parameter pairs. They can include extra lines; their tritangent parameters are still selected by compact tangency. Proposition~\ref{prop:sweep} applies unchanged.
+
+These cases exhaust affine dimensions zero through three. Countably many null swept images and the discarded planes and lines prove the compact assertion. The countable rational-ball reduction proves Theorem~\ref{thm:main}. A set of outer measure zero is contained in a measurable null set by outer regularity.\hfill$\square$
+
+\section{Boundary controls, reproducibility and status}
+Three \emph{distinct} contacts are essential to this argument. Two can sweep positive volume. Let
+\[
+A=[0,1]\times[-1,1]\times\{0\},\qquad
+B=[-1,1]\times[0,1]\times\{1\}.
+\]
+For $s,t\in(-1,1)$, the line with $u=(0,s)$ and $v=(t,-s)$ is tangent to both rectangles, in supporting planes $x-tz=0$ and $y+s(z-1)=0$. Its sweep is $(zt,(1-z)s,z)$, with determinant $z(z-1)$. For $0<z<1$ its image has volume $4\int_0^1 z(1-z)\,dz=2/3$. Three identical singleton sets also show that disjointness cannot be removed: their tangent-line union is all of $\R^3$.
+
+Density is indispensable in Lemma~\ref{lem:rank}. For vertical lines $u=q,v=0$ tangent to the unit ball, the tangent parameter set is the unit circle, while $Du=I$. This set has no density-one points in $\R^2$. Likewise, intersecting the interiors of three disjoint balls is not supporting tangency and gives no contact rank restriction.
+
+For nonclosed inputs the spatial locus need not be closed. The sets $K_i=\{(i,y,0):0<y<1\}$, $i=0,1,2$, have common horizontal tangents at every $y\in(0,1)$. Points $(0,1/n,0)$ lie in the locus and tend to $(0,0,0)$, which is absent: a line from that point to a contact with $K_0$ would have $x=0$ and could not meet $K_1$. Thus compact tangency closedness must not be exported to the arbitrary-set statement. The rational-cap reduction avoids that error.
+
+The accompanying standard-library Python package performs exact polynomial, rational determinant, support-increment, contraction-constant and boundary-control checks. It explicitly rejects optimized execution, retains genuine execution streams, and provides a reproducible archive manifest and builder. These finite controls are not a proof oracle for arbitrary convex sets, density or measure theory; the universal proof is the argument above. No third-party primary PDF is redistributed.
+
+\paragraph{AI assistance and review status.}
+Extensive artificial-intelligence assistance was used in solving, drafting and internal verification, including adversarial mathematical examinations. Alec Kriebel is the sole author. This is an unrefereed preprint and has not undergone conventional external human peer review; internal AI examinations do not constitute such review.
+
+\begin{thebibliography}{9}
+\bibitem{goaoc2008} X.~Goaoc, Union of lines tangent to three convex sets in $\R^3$, in \emph{Discrete Geometry}, Oberwolfach Report~44/2008, p.~2552, Conjectures~3--4. \href{https://doi.org/10.4171/OWR/2008/44}{doi:10.4171/OWR/2008/44}. \href{https://ems.press/content/serial-article-files/46191}{Official report}.
+\bibitem{demouthgoaoc} J.~Demouth and X.~Goaoc, \emph{Topological changes in the apparent contour of convex sets}, historical manuscript, section~7, printed p.~11. \href{https://web.archive.org/web/20110401122240id_/http://www.loria.fr/~goaoc/papers/TopVE.pdf}{Official-author-host archive capture, 1 April 2011}. Undated version; neither PDF creation metadata nor archive capture establishes its publication date or identity with the September~2008 cited version.
+\bibitem{cheong2024} O.~Cheong, X.~Goaoc and A.~F.~Holmsen, Some New Results on Geometric Transversals, \emph{Discrete \& Computational Geometry} \textbf{72} (2024), 674--703. \href{https://doi.org/10.1007/s00454-023-00573-2}{doi:10.1007/s00454-023-00573-2}. Published online 16 November 2023.
+\bibitem{simon} L.~Simon, \emph{Introduction to Geometric Measure Theory}, 2018 NTU lecture notes, Ch.~1, Cor.~3.10; Ch.~2, Thms.~1.4 and~3.3. \url{https://math.stanford.edu/~lms/ntu-gmt-text.pdf}.
+\bibitem{federer} H.~Federer, \emph{Geometric Measure Theory}, Springer, 1969, section~3.2.3.
+\bibitem{evansgariepy} L.~C.~Evans and R.~F.~Gariepy, \emph{Measure Theory and Fine Properties of Functions}, revised edition, CRC Press, 2015, chapters~1 and~3.
+\end{thebibliography}
+\end{document}

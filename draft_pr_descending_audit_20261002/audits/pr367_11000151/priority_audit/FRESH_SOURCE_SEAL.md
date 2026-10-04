@@ -1,0 +1,9 @@
+# Fresh original-source seal
+
+2026-10-03 13:56:26 UTC; completion estimate 15%.
+
+Before opening candidate TURN or FINAL_RESULT files, independently opened Wajnryb, *Relations in the mapping class group*, Chapter 8 of Farb (ed.), *Problems on Mapping Class Groups and Related Topics*, primary University of Chicago PDF: https://www.math.uchicago.edu/~farb/papers/mcgbook.pdf . Read Section 3, printed pp.124–127, especially printed p.126 (zero-based PDF p.132, one-based p.133). Web extraction receipt: view turn446view1, lines 5664–5818. The source uses A5 for B6 and asks about positive words in the quotient with relation c=h, where c=(a1a2a3a4)^5 and h=a5a4a3a2 a1^2 a2a3a4a5. The target is c^2, equivalently the fourth power of the A4 Garside element. It asks both the length restriction {20,30,40} and equivalence to three displayed models h^2, (a1a2a3a4a5)^6, c^2. It refers to Auroux's chapter for Hurwitz equivalence, making the distinction between strict moves and moves with global conjugation material rather than cosmetic.
+
+The broader Section 3 questions concern positive Dehn-twist boundary factorizations, including arbitrary curves and pairwise 0/1 intersection restrictions. This finite fixed-generator quotient question is narrower. The adjacent paragraph credits Siebert–Tian on the closed genus-two setting under irreducibility/transitive monodromy and explicitly cautions that the boundary setting has finer equivalence.
+
+Audit claim and success criteria: seek an already published theorem with matching quotient, fixed-generator positivity, target, permitted equivalence, lengths, and class count; otherwise identify proved general machinery and precise hypotheses that do or do not subsume this result. A search failure is not evidence of novelty. Separate the original question's present mathematical truth/status from bibliographic priority.

@@ -1,0 +1,3 @@
+# Fifth and final substantive author turn
+
+Replaced the purely abstract-ring obstruction with an actual three-entry matrix over Z[F2 times F2]. Its non-finitely-generated kernel follows from an explicitly calculated infinite-rank H_2 of a three-generator height kernel and faithful induction. Proved separately that the ambient group satisfies the original finite-generation conclusion. Thus coherence is not necessary and arbitrary matrix realization is the exact failed shortcut. The final finite checker supplies 237,015 exact controls. The original remains unresolved after all five turns; no sixth author search is taken.
