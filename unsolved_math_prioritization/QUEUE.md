@@ -558,7 +558,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 547 | 30003571 / OWR-15582-005 | Relative Kähler–Ricci Flow on Projective-Space Fibrations | 0.1161 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 548 | 6200007 / AMR-061-0007 | Boundaries of Groups and Kleinian Groups — Problem 7 | 0.1155 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 549 | 30000552 / OWR-1319-022 | Asymptotically Equivalent Cocompact Metrics | 0.1154 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 550 | 30004064 / OWR-16766-003 | Dual Recovery of Binary Tomography Solution Intersections | 0.1153 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 550 | 30004064 / OWR-16766-003 | Dual Recovery of Binary Tomography Solution Intersections | 0.1153 | 5.0 | 3 | 2019 | claimed_solved | 1/5 |  | 2026-10-04: audited negative answer to the literal exact-minimizer formulation. The dual optimizer is zero for all noiseless binary data; a genuine full-row-rank 3x3 tomography example has two solutions and five common pixels but returns zero. The source already acknowledges the scalar obstruction; no novelty claim. Finite-iterate algorithms, smoothing and auxiliary-primal variants are excluded. [Proof and audit](attempts/30004064/PUBLICATION_STATUS.md). |  |
 | 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 552 | 30001065 / OWR-2090-018 | Universal Optimality of Exceptional Spherical Codes | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
