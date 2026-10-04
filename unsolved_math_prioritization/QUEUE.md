@@ -626,7 +626,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 615 | 30001388 / OWR-4137-004 | Escaping Boundary Points of Baker Domains | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 616 | 30001391 / OWR-4137-007 | Degree Bounds for Degenerate Herman Rings | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 617 | 30001393 / OWR-4137-010 | Complete Invariance of Singular-Value Basins | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 618 | 30003790 / OWR-16161-003 | Consistent Noisy Single-Index Regression | 0.1114 | 4.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 618 | 30003790 / OWR-16161-003 | Consistent Noisy Single-Index Regression | 0.1114 | 4.5 | 3 | 2018 | unsolved | 5/5 |  | 2026-10-04: Independently checked safeguard establishes fixed-D noisy consistency for arbitrary Borel designs, bounded continuous regression and conditionally centered uniformly finite-variance noise. Full original-model coverage remains unverified; dimension-efficient geometric rates are separate and unproved. No novelty claim; see [audited findings](attempts/30003790/release-v2/FINDINGS.md). |  |
 | 619 | 30001672 / OWR-4791-032 | High Influence Small Sets in Boolean Functions | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 620 | 30001687 / OWR-4793-001 | Spectral Thickness of Fibonacci Hamiltonians | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 621 | 30001721 / OWR-4800-012 | Tree Modules for Roots of Acyclic Quivers | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
