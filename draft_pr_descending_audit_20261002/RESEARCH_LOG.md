@@ -427,3 +427,15 @@ Native main and remote both fab787f7df8b481cc95df2be593b6f64a4818585; entire ind
 ### 2026-10-04T05:57:31.955365+00:00 — Final classical mechanism accepted
 
 Root complete final report/control/verifier/manifest review and native144-file replay pass; all71 assertions and four exact negative-control streams reproduce; previous Honda audit unchanged. Scientific priority review95%, mathematics100%, workflow32%. Final priority-family documentation/closure pending; no paper or merge/publication yet. Six unrelated dirty foreign files and empty main index independently verified after PR65 checkpoint fab787f7; failed overbroad first resumption check retained and corrected without a prior tracked write.
+
+### 2026-10-04T05:59:35.492866+00:00 — PR344 closed classical mechanism checkpoint pushed
+
+Owned commit f16021ccc3f12e1e757f6ff6b565a14f3081ae4a pushed after exact scoped Git/disk body/mode and remote verification. All foreign index and dirty tracked bodies/modes preserved. Mathematics100%, scientific priority review95%, workflow32%; final priority-family record closure remains pending; historical first priority uncertified. No PR344 merge or publication.
+
+### 2026-10-04T06:08:43.091720+00:00 — Four-page draft note compiled and viewed
+
+Concise exact counterexample note written using fully verified module flag, delta invariant and finite Honda complement. Native editor reports compile success; existing terminal runtime exported4-page PDF; all4 original rendered pages viewed and clear. Old classical module/completion credited and no first-priority claim; AI/unrefereed disclosure explicit. Supporting builder is gated on final priority acceptance, pending final family record readback. Mathematics100%, scientific priority95%, workflow40%; no fresh full-package review yet, no merge/deposit/tracker mutation.
+
+### 2026-10-04T06:15:30.267963+00:00 — Priority closed; corrected complete preprint packet ready for fresh review
+
+Final priority accepted100% at06:12:39.095261Z with established-theory attribution and13 historical/source limits; no first certificate. Root native public+whole replay passes all667 scientific/archive payloads+17externalpins; allpriornamespace bodies/modes preserved with sole authorized runtime seal. Corrected local upload files strings to structured path entries after actualcheckexit1; rebuilt ZIPv02 and extracted integrity/full replay exit0/emptyerrors/fullstreams unchanged. Localproduction kitcheck exit0; metadata fields/paper unchanged. Math100%, priority100%, workflow50%; publication not yet authorized by reviews. Sequential NEW preprint reviews next.
