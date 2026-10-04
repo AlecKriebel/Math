@@ -1,0 +1,101 @@
+{
+  "utc": "2026-10-02T10:18:00.486082+00:00",
+  "verdict": "CHANGES_REQUIRED_BEFORE_ROOT_EXECUTION",
+  "review_mode": "STATIC_ONLY",
+  "helpers_imported": false,
+  "helpers_executed": false,
+  "Git_or_remote_or_index_mutation": false,
+  "closed_sources_modified": false,
+  "findings": [
+    {
+      "id": "SA-1",
+      "priority": "P1",
+      "status": "MANDATORY_SOURCE_INTERFACE_REVISION",
+      "title": "Valid closed whole packet cannot pass final manifest closure",
+      "source": "pr37_guards.py",
+      "lines": [
+        166,
+        171,
+        178,
+        189,
+        194,
+        215,
+        221,
+        249,
+        298
+      ],
+      "mechanism": "manifest()/inventory() only support tmp and __pycache__ components. The actual sealed whole manifest has foreign_excluded_prefixes:[primary/] and bytecode_excluded_component:__pycache__, with no foreign_scratch_excluded field. Ten imported PDF/text files therefore become unlisted under exact_closure. Putting primary into scratch_components_excluded fails the allowed-set check. Every future phase calls gates, so actual acceptance is blocked.",
+      "actual_closed_whole_manifest_sha256": "859ee278297d08853fcdbc1eefe2d6cf675e5d89c02e756a23ca1eb959dafd48",
+      "static_counterexample": "Use the actual sealed whole manifest and any permitted scope scratch list [] or [__pycache__]. Existing primary/k3.pdf and nine other imported members are outside authored rows and are not excluded; exact membership must fail. No helper was executed.",
+      "repair": "Preserve closed sources and whole packet. In a separately attributable source revision, support only the exact manifest-pinned ROOT primary/ exclusion plus declared bytecode component; bind all live imported PDF/text bytes by an explicit root-reviewed foreign-source ledger. Retain symlink checks before exclusions, enumerate exact imported file/directory closure, forbid arbitrary or nested primary holes, and enforce strict authored file/directory closure. Keep current/canonical zero-exclusion behavior."
+    },
+    {
+      "id": "SA-2",
+      "priority": "P2",
+      "status": "MANDATORY_SCHEMA_HARDENING",
+      "title": "Required NULL fields can be absent; required scalar types are loose",
+      "source": "pr37_guards.py",
+      "lines": [
+        300,
+        305,
+        306
+      ],
+      "mechanism": "The required root receipt predicate is all(root.get(key)==value). For the three required None values, missing keys return None and pass. Equality also permits booleans for required counts and integers for boolean flags. Actual outer returncode already has a strict type check, but the root receipt invariant fields do not.",
+      "static_counterexample": "Remove current_model, current_reasoning_effort and current_deadline_utc from an otherwise conforming root receipt and pin that receipt in the root-reviewed contract. All three get-comparisons still evaluate as missing None equals required None. Likewise original_substantive_attempts:true compares equal to1. This is a logical trace of the source predicate, not an executed guard test.",
+      "repair": "Require every schema key explicitly. Check nullable runtime fields with key presence and is None; check count/pr/problem_id values with exact int type; check invariant boolean flags with identity or exact bool type. Preserve all fixed unsolved1/new0/audit0 requirements."
+    },
+    {
+      "id": "SA-3",
+      "priority": "P2",
+      "status": "MANDATORY_ACCEPTANCE_INVARIANT_VALIDATION",
+      "title": "Acceptance runtime and attempts can be rehashed before mirror without semantic rejection",
+      "sources": [
+        {
+          "path": "state_mirror_reconciliation.py",
+          "lines": [
+            26,
+            31,
+            44,
+            61,
+            87
+          ]
+        },
+        {
+          "path": "verify_post_acceptance.py",
+          "lines": [
+            20,
+            37,
+            77,
+            82,
+            98
+          ]
+        },
+        {
+          "path": "draft_pr_publication_program_20260930/infrastructure/accepted_state_sync/revision2/accepted_state_sync_v2.py",
+          "lines": [
+            251,
+            260
+          ]
+        }
+      ],
+      "mechanism": "Canonical/audit equality and canonical manifest hashing establish consistency but do not constrain acceptance current_model/current_reasoning_effort/current_deadline_utc or its PR37 original_substantive_attempts,new_substantive_attempts,verification_attempts_added,substantive_attempts_used,substantive_attempt_limit. Postvalidation checks NULL and budget fields in readiness/status, not those acceptance fields. The pinned mirror engine checks only legacy acceptance keys original_attempts_used/attempts_used/turn_limit and otherwise uses the entry budget/ledger.",
+      "static_counterexample": "Between finalize and first mirror, change acceptance.current_model to gpt-6-astra or acceptance.new_substantive_attempts to1, identically in canonical and audit acceptance; recompute acceptance member binding in canonical MANIFEST and audit canonical_manifest_sha256. Keep all actual original/source/ledger/readiness/queue/tree/gate/inventory values exact. Mirror newly binds these consistent acceptance bytes. None of the mirror/post source predicates reads the changed acceptance field; fresh plan evidence is stable because it was created from those bytes. Post emits new_substantive_attempts0 while this accepted receipt says1. No mutation or helper execution was performed to demonstrate this static flow.",
+      "repair": "Introduce a shared strict canonical/audit acceptance validator matching every fixed PR37 semantic invariant, runtime NULL, original1/5/new0/audit0, unsolved/fullfalse/noveltyfalse/no-paper flags, source/fallback and original head/base. Invoke after finalize creates receipts, before mirror proposes/writes, and during postvalidation. Do not rely on mutually consistent rehashes as semantic validation."
+    },
+    {
+      "id": "SA-4",
+      "priority": "P3",
+      "status": "NARROW_INDEX_MODE_GAP",
+      "title": "Foreign index mode is regular but not exact captured HEAD mode",
+      "source": "pr37_guards.py",
+      "lines": [
+        428,
+        433,
+        444
+      ],
+      "mechanism": "Foreign records capture byte/HEAD hashes but no HEAD/index mode. Later guard accepts either100644 or100755. A mode-only staged change to a foreign log with the same blob therefore satisfies foreign_tracked_unchanged even though the claimed index preimage changed. Full prepush index cleanliness and merge-path whitelist protect the initial merge; this observation is narrower than an end-to-end dirty-log publication bypass.",
+      "static_counterexample": "After capture, replace the foreign stage0 index mode100644 by100755 while leaving the blob and worktree bytes identical. The unique regular stage0 and SHA predicates remain true. Root manual exact-path checkpoint requirements remain an independent guard.",
+      "repair": "Capture literal HEAD/index modes and blob identities during preflight; require exact equality on every foreign guard and inspect staged foreign diffs immediately before each root checkpoint/push."
+    }
+  ]
+}

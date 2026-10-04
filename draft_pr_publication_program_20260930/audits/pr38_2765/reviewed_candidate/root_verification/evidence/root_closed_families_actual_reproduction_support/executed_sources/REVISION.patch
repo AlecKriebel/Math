@@ -1,0 +1,1018 @@
+--- root_replay_preparation_family/collect_root_replays.py
++++ root_replay_execution_revision/collect_root_replays.py
+@@ -2,8 +2,9 @@
+ """Root-owned ACTUAL PR38 reproduction. Preparation alone proves no run succeeded.
+ 
+ Read this entire source and the companion sources before root execution.
+-All writer helpers execute in a private exact hierarchy. Complete first-party
+-inputs/results/streams survive; corpus, SQL, foreign sources and scratch do not.
++All writer helpers execute in a private exact hierarchy. Retained support holds
++first-party evidence only. Private attempts survive for failure inspection and
++are never automatically deleted or used as CURRENT dependency anchors.
+ """
+ import argparse
+ import datetime
+@@ -28,7 +29,9 @@
+     'cache/problems.json', 'cache/research_results.json', 'cache/catalog.sqlite',
+     'review_v2/related_target_groups.json']} | {'draft_pr_publication_program_20260930/inventory.json'}
+ SOURCE_NAMES = ['collect_root_replays.py', 'capture_runner.py', 'inspect_source_native.py',
+-                'reconstructed_controls.py', 'INPUT_PINS.json', 'README.md', 'RESEARCH_LOG.md']
++                'reconstructed_controls.py', 'INPUT_PINS.json', 'README.md', 'RESEARCH_LOG.md',
++                'REVISION_CONTRACT.md', 'REVISION.patch']
++SOURCE_MANIFEST_NAME = 'REVISION_MANIFEST.json'
+ 
+ 
+ def sha(data):
+@@ -84,9 +87,9 @@
+ 
+ 
+ def strict_preparation():
+-    manifest = HERE/'PREPARATION_MANIFEST.json'
++    manifest = HERE/SOURCE_MANIFEST_NAME
+     packet = load(manifest)
+-    assert packet['excluded'] == ['PREPARATION_MANIFEST.json']
++    assert packet['excluded'] == [SOURCE_MANIFEST_NAME]
+     records = packet['files']
+     assert sorted(x['path'] for x in records) == sorted(SOURCE_NAMES)
+     for record in records: require(record, HERE)
+@@ -107,57 +110,20 @@
+     parser.add_argument('--output', type=Path, default=AUDIT/'ROOT_CLOSED_FAMILIES_ACTUAL_REPRODUCTION.json')
+     parser.add_argument('--support-directory', type=Path, default=AUDIT/'root_closed_families_actual_reproduction_support')
+     args = parser.parse_args()
+-    assert not sys.flags.optimize
+-    sys.dont_write_bytecode = True
+-    pins = load(HERE/'INPUT_PINS.json')
+-    assert pins['repository_root'] == str(REPO) and pins['audit_relative_path'] == str(AUDIT.relative_to(REPO))
+-    current_path, root_script, read_ledger = [path.resolve() for path in
+-                                           [args.current_input_manifest, args.root_script_path, args.root_primary_read_ledger]]
+-    for path in [current_path, root_script, read_ledger]:
+-        assert path.parent == AUDIT and path.is_file() and not path.is_symlink()
+-    assert sha(root_script.read_bytes()) == args.root_script_sha256
+-    assert sha(read_ledger.read_bytes()) == args.root_primary_read_ledger_sha256
+-    # The separate ledger is root's prerequisite. This preparation and this
+-    # finite reproduction neither infer nor attest actual primary proof reading.
+-    current = load(current_path)
+-    assert current['approved_by_root'] is True and current['reason'] and current['current_head']
+-    inputs = current['files']
+-    assert {x['path'] for x in inputs} == REQUIRED_CURRENT and len(inputs) == len(REQUIRED_CURRENT)
+-    for record in inputs:
+-        require(record, REPO)
+-    assert current['runtimes']['system_python'] == PYTHON
+-    default_runtime = current['runtimes']['historical_default_failure_python']
+-    assert default_runtime == load(AUDIT/'primary_scope_family/ORIGINAL_VERIFY_EXECUTION.json')[0]['runtime_path']
+-    assert Path(default_runtime).is_file()
+-    assert not (REPO/(NATIVE+'cache/catalog.sqlite-wal')).exists()
+-    assert not (REPO/(NATIVE+'cache/catalog.sqlite-shm')).exists()
+-    for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]:
+-        require(record, AUDIT)
+-    for record in pins['snapshot_files']:
+-        require({'path': record['path'], 'size': record['size'], 'sha256': record['sha256']}, AUDIT/'source_snapshot')
+-    closure_before = strict_closed(pins, AUDIT)
+-    preparation_manifest_sha = strict_preparation()
+-    own = {name: sha((HERE/name).read_bytes()) for name in SOURCE_NAMES}
+-    root_bound = {str(path): sha(path.read_bytes()) for path in [root_script, read_ledger, current_path]}
+     output, support = args.output.resolve(), args.support_directory.resolve()
++    # Destination safety is the only setup outside the protected attempt.
+     assert output.parent == AUDIT and support.parent == AUDIT and not output.exists() and not support.exists()
+-    assert support.name not in pins['families'] and support != HERE
+-    support.mkdir()
+-    (AUDIT/'tmp').mkdir(exist_ok=True)
+-    private = Path(tempfile.mkdtemp(prefix='root_pr38_actual_', dir=AUDIT/'tmp'))
+-    private_audit = private/pins['audit_relative_path']
+-    runs, comparisons, exceptions = [], [], []
+-    out = {'schema': 1, 'status': 'INCOMPLETE', 'head': pins['head'], 'base': pins['base'],
+-           'exact_original_file_count': 16, 'changed_diff_path_count': 17, 'closed_family_count': 3,
+-           'original_substantive_turns': 2, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0,
+-           'root_script_path': root_script.relative_to(AUDIT).as_posix(), 'root_script_sha256': args.root_script_sha256,
+-           'executed_collector_path': Path(__file__).relative_to(AUDIT).as_posix(), 'executed_collector_sha256': own['collect_root_replays.py'],
+-           'root_primary_read_ledger': row(read_ledger, AUDIT), 'root_primary_read_attestation_by_preparer': False,
+-           'current_input_manifest': row(current_path, AUDIT), 'root_current_preimage_reason': current['reason'],
+-           'family_manifests': closure_before, 'actual_outer_program_runs': runs,
++    assert support != HERE and support.name not in ['primary_scope_family', 'current_measure_family', 'trace_geometry_family', 'root_replay_preparation_family']
++    private = private_audit = pins = current = closure_before = preparation_manifest_sha = None
++    support_created = output_owned = False
++    current_path = root_script = read_ledger = None
++    inputs, own, root_bound = [], {}, {}
++    runs, administrative_runs, comparisons, exceptions, retention_errors = [], [], [], [], []
++    out = {'schema': 1, 'status': 'INCOMPLETE', 'setup_completed': False,
++           'actual_outer_program_runs': runs, 'actual_administrative_command_runs': administrative_runs,
+            'full_structured_receipt_comparisons': comparisons, 'recorded_qualified_differences': exceptions,
+-           'support_directory': support.relative_to(AUDIT).as_posix(),
+-           'scope': 'Actual original and closed-family diagnostic/provenance reproduction only. Mathematical/source-scope and publication verdict remain root responsibilities.'}
++           'retention_errors': retention_errors, 'support_directory': support.relative_to(AUDIT).as_posix(),
++           'original_substantive_turns': 2, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0}
+ 
+     def copy(source, destination):
+         destination.parent.mkdir(parents=True, exist_ok=True)
+@@ -201,20 +167,120 @@
+ 
+     environment = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', GIT_OPTIONAL_LOCKS='0')
+ 
++    def failure(error):
++        return {'type': type(error).__name__, 'message': str(error),
++                'traceback': ''.join(traceback.format_exception(type(error), error, error.__traceback__)),
++                'errno': getattr(error, 'errno', None), 'filename': str(error.filename) if getattr(error, 'filename', None) else None}
++
++    def data_bytes(value):
++        if value is None: return b''
++        if isinstance(value, str): return value.encode()
++        return bytes(value)
++
++    def best_effort(stage, action):
++        try: return True, action()
++        except BaseException as error:
++            retention_errors.append({'stage': stage, **failure(error)})
++            out['status'] = 'FAIL'
++            return False, None
++
++    def write_owned_output():
++        nonlocal output_owned
++        data = (json.dumps(out, indent=2, ensure_ascii=False)+'\n').encode()
++        if output_owned:
++            output.write_bytes(data)
++        else:
++            with output.open('xb') as handle:
++                output_owned = True
++                handle.write(data)
++
++    def launch_artifact(path, data):
++        try:
++            path.parent.mkdir(parents=True, exist_ok=True)
++            path.write_bytes(data)
++            return row(path, AUDIT)
++        except OSError as error:
++            retention_errors.append({'stage': 'launch_artifact_primary', 'path': str(path), **failure(error)})
++            # If support retention fails, preserve the available bytes in the
++            # known private attempt. This is failed-attempt scratch, not support.
++            if private is None: raise
++            fallback = private/'root_retention_fallback'/path.relative_to(support)
++            fallback.parent.mkdir(parents=True, exist_ok=True)
++            fallback.write_bytes(data)
++            return row(fallback, AUDIT)
++
++    def save_run_ledgers():
++        for name, collection in [('outer_runs.json', runs), ('administrative_runs.json', administrative_runs)]:
++            launch_artifact(support/name, (json.dumps(collection, indent=2)+'\n').encode())
++
++    def launch(label, command, cwd, script=None, administrative=False, env=None):
++        record = {'label': label, 'argv': list(map(str, command)), 'cwd': str(cwd),
++                  'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
++                  'launch_attempted': False, 'actual_execution': False, 'completed': False,
++                  'exit_code': None, 'exit': None, 'returncode': None, 'failure_type': None, 'error': None}
++        (administrative_runs if administrative else runs).append(record)
++        original_error, original_traceback, process, popen_called = None, None, None, False
++        try:
++            if script is not None:
++                record['script_path'] = str(script)
++                record['source_available'] = script.is_file() and not script.is_symlink()
++                if record['source_available']:
++                    source = script.read_bytes()
++                    record['script_sha256'] = sha(source)
++                    record['prelaunch_source'] = launch_artifact(support/'launch_sources'/(label+'.py'), source)
++            else:
++                record['source_not_applicable'] = 'Readonly administrative Git command; collector implementation is retained separately.'
++            for channel in ['stdout', 'stderr']:
++                record[channel] = launch_artifact(support/(label+'.'+channel), b'')
++            record['stdio_capture'] = {'kind': 'prelaunch_empty_placeholder', 'stdout_available': False, 'stderr_available': False}
++            save_run_ledgers()
++            assert not retention_errors, 'Prelaunch retention failed; do not launch'
++            record['launch_attempted'] = True
++            save_run_ledgers()
++            assert not retention_errors, 'Prelaunch ledger retention failed; do not launch'
++            try:
++                popen_called = True
++                process = subprocess.run(command, cwd=cwd, capture_output=True, timeout=600, env=env or environment)
++                record.update(actual_execution=True, completed=True, exit_code=process.returncode,
++                              exit=process.returncode, returncode=process.returncode)
++                values = {'stdout': process.stdout, 'stderr': process.stderr}
++                kind = 'complete_child_streams'
++            except subprocess.TimeoutExpired as error:
++                original_error, original_traceback = error, error.__traceback__
++                record.update(actual_execution=True, completed=False)
++                values = {'stdout': error.stdout, 'stderr': error.stderr}
++                kind = 'partial_timeout'
++            except OSError as error:
++                original_error, original_traceback = error, error.__traceback__
++                record.update(actual_execution=False, completed=False)
++                values = {'stdout': None, 'stderr': None}
++                kind = 'no_child_launched'
++            if original_error:
++                record['failure_type'], record['error'] = type(original_error).__name__, failure(original_error)
++            record['stdio_capture'] = {'kind': kind, **{channel+'_available': value is not None for channel, value in values.items()}}
++            for channel, value in values.items():
++                record[channel] = launch_artifact(support/(label+'.'+channel), data_bytes(value))
++        except BaseException as error:
++            if not popen_called:
++                record['launch_attempted'] = False
++                record['failure_stage'] = 'prelaunch_retention'
++            if original_error is None:
++                original_error, original_traceback = error, error.__traceback__
++                record['failure_type'], record['error'] = type(error).__name__, failure(error)
++            else:
++                retention_errors.append({'stage': 'outer_stream_retention', 'label': label, **failure(error)})
++        finally:
++            record['ended_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
++            best_effort('outer_run_ledger_final_'+label, save_run_ledgers)
++        if original_error: raise original_error.with_traceback(original_traceback)
++        if retention_errors: raise RuntimeError('Launch evidence retention failed; attempted run and available bytes preserved')
++        return process
++
+     def run(label, script, *arguments, runtime=PYTHON, instrument=True):
+         command = [runtime, str(script), *map(str, arguments)]
+         if instrument:
+             command = [runtime, str(HERE/'capture_runner.py'), str(script), str(support/(label+'_nested')), *map(str, arguments)]
+-        started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+-        process = subprocess.run(command, cwd=private, capture_output=True, timeout=600, env=environment)
+-        record = {'label': label, 'argv': command, 'cwd': str(private), 'script_sha256': sha(script.read_bytes()),
+-                  'started_utc': started, 'exit_code': process.returncode, 'exit': process.returncode, 'returncode': process.returncode}
+-        for channel in ['stdout', 'stderr']:
+-            path = support/(label+'.'+channel)
+-            path.write_bytes(getattr(process, channel))
+-            record[channel] = row(path, AUDIT)
+-        runs.append(record)
+-        write(support/'outer_runs.json', runs)
++        process = launch(label, command, private, script)
+         assert process.returncode == 0, 'Actual outer run failed; full streams retained: '+label
+         return process
+ 
+@@ -246,12 +312,65 @@
+         return qualified
+ 
+     try:
+-        for name in SOURCE_NAMES:
++        support.mkdir()
++        support_created = True
++        # Retain the reviewed revision before any preflight/private setup can fail.
++        for name in SOURCE_NAMES+[SOURCE_MANIFEST_NAME]:
+             copy(HERE/name, support/'executed_sources'/name)
+-        copy(HERE/'PREPARATION_MANIFEST.json', support/'executed_sources/PREPARATION_MANIFEST.json')
++        assert not sys.flags.optimize
++        sys.dont_write_bytecode = True
++        pins = load(HERE/'INPUT_PINS.json')
++        assert pins['repository_root'] == str(REPO) and pins['audit_relative_path'] == str(AUDIT.relative_to(REPO))
++        current_path, root_script, read_ledger = [path.resolve() for path in
++                                               [args.current_input_manifest, args.root_script_path, args.root_primary_read_ledger]]
++        for path in [current_path, root_script, read_ledger]:
++            assert path.parent == AUDIT and path.is_file() and not path.is_symlink()
+         copy(root_script, support/'executed_sources/root_entrypoint.py')
+         for path in [read_ledger, current_path]:
+             copy(path, support/'root_prerequisites'/path.name)
++        assert sha(root_script.read_bytes()) == args.root_script_sha256
++        assert sha(read_ledger.read_bytes()) == args.root_primary_read_ledger_sha256
++        # The separate ledger is root's prerequisite. This preparation and this
++        # finite reproduction neither infer nor attest actual primary proof reading.
++        current = load(current_path)
++        assert current['approved_by_root'] is True and current['reason'] and current['current_head']
++        inputs = current['files']
++        assert {x['path'] for x in inputs} == REQUIRED_CURRENT and len(inputs) == len(REQUIRED_CURRENT)
++        for record in inputs:
++            require(record, REPO)
++        assert current['runtimes']['system_python'] == PYTHON
++        default_runtime = current['runtimes']['historical_default_failure_python']
++        assert default_runtime == load(AUDIT/'primary_scope_family/ORIGINAL_VERIFY_EXECUTION.json')[0]['runtime_path']
++        assert Path(default_runtime).is_file()
++        assert not (REPO/(NATIVE+'cache/catalog.sqlite-wal')).exists()
++        assert not (REPO/(NATIVE+'cache/catalog.sqlite-shm')).exists()
++        for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]:
++            require(record, AUDIT)
++        for record in pins['snapshot_files']:
++            require({'path': record['path'], 'size': record['size'], 'sha256': record['sha256']}, AUDIT/'source_snapshot')
++        closure_before = strict_closed(pins, AUDIT)
++        preparation_manifest_sha = strict_preparation()
++        own = {name: sha((HERE/name).read_bytes()) for name in SOURCE_NAMES}
++        root_bound = {str(path): sha(path.read_bytes()) for path in [root_script, read_ledger, current_path]}
++        out.update({'schema': 1, 'status': 'INCOMPLETE', 'head': pins['head'], 'base': pins['base'],
++               'exact_original_file_count': 16, 'changed_diff_path_count': 17, 'closed_family_count': 3,
++               'original_substantive_turns': 2, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0,
++               'root_script_path': root_script.relative_to(AUDIT).as_posix(), 'root_script_sha256': args.root_script_sha256,
++               'executed_collector_path': Path(__file__).relative_to(AUDIT).as_posix(), 'executed_collector_sha256': own['collect_root_replays.py'],
++               'root_primary_read_ledger': row(read_ledger, AUDIT), 'root_primary_read_attestation_by_preparer': False,
++               'current_input_manifest': row(current_path, AUDIT), 'root_current_preimage_reason': current['reason'],
++               'family_manifests': closure_before, 'actual_outer_program_runs': runs,
++               'full_structured_receipt_comparisons': comparisons, 'recorded_qualified_differences': exceptions,
++               'support_directory': support.relative_to(AUDIT).as_posix(),
++               'scope': 'Actual original and closed-family diagnostic/provenance reproduction only. Mathematical/source-scope and publication verdict remain root responsibilities.'})
++        assert support.name not in pins['families']
++        copy(root_script, support/'executed_sources/root_entrypoint.py')
++        for path in [read_ledger, current_path]:
++            copy(path, support/'root_prerequisites'/path.name)
++        (AUDIT/'tmp').mkdir(exist_ok=True)
++        private = Path(tempfile.mkdtemp(prefix='root_pr38_actual_', dir=AUDIT/'tmp'))
++        private_audit = private/pins['audit_relative_path']
++        out['setup_completed'] = True
+         for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]:
+             copy(AUDIT/record['path'], private_audit/record['path'])
+             copy(AUDIT/record['path'], support/'frozen/original'/record['path'])
+@@ -275,7 +394,7 @@
+         git.write_text('#!/usr/bin/python3\nimport os,sys\nallowed={"ls-tree","cat-file","diff","show","rev-parse","branch","hash-object"}\nassert sys.argv[1] in allowed\nassert sys.argv[1]!="branch" or sys.argv[2:]==["--show-current"]\nassert sys.argv[1]!="hash-object" or sys.argv[2:]==["--stdin"]\nos.environ["GIT_OPTIONAL_LOCKS"]="0"\nos.execv("/usr/bin/git",["/usr/bin/git",*sys.argv[1:]])\n')
+         git.chmod(0o755)
+         environment['PATH'] = str(bindir)+os.pathsep+os.environ.get('PATH', '')
+-        head_process = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=private, capture_output=True, env=environment)
++        head_process = launch('current_head_preimage_readonly_git', ['git', 'rev-parse', 'HEAD'], private, administrative=True)
+         (support/'current_head.stdout').write_bytes(head_process.stdout); (support/'current_head.stderr').write_bytes(head_process.stderr)
+         assert head_process.returncode == 0 and not head_process.stderr and head_process.stdout.decode().strip() == current['current_head']
+         out['current_head'] = current['current_head']
+@@ -418,65 +537,132 @@
+         out['status'] = 'PASS'
+     except BaseException as error:
+         out['status'] = 'FAIL'
+-        out['failure'] = {'type': type(error).__name__, 'message': str(error), 'traceback': traceback.format_exc()}
++        out['failure'] = failure(error)
+     finally:
+-        # A failed helper's partial first-party outputs and exact source inputs
+-        # survive too. Foreign/cache trees and manifest-case clone trees never
+-        # become retention evidence; their actual changed inputs were saved
+-        # before each run by reconstructed_controls.py.
+-        for family in pins['families']:
+-            directory = private_audit/family
+-            if directory.exists():
+-                for path in directory.rglob('*'):
+-                    relative = path.relative_to(directory)
+-                    allowed_case = family == 'primary_scope_family' and relative.as_posix().startswith(('ignoredtmp/verify_runs/', 'ignoredtmp/review_runs/'))
+-                    if path.is_file() and not path.is_symlink() and (allowed_case or not {'tmp', 'ignoredtmp', '__pycache__'}.intersection(relative.parts)):
+-                        retained(path, 'final_partial_or_complete/'+family+'/'+relative.as_posix())
+-        controls_directory = private_audit/'ROOT_RECONSTRUCTED_CONTROLS'
+-        if controls_directory.exists():
+-            for path in controls_directory.rglob('*'):
+-                relative = path.relative_to(controls_directory)
+-                if path.is_file() and not path.is_symlink() and 'manifest_cases' not in relative.parts:
+-                    retained(path, 'final_partial_or_complete/reconstructed_controls/'+relative.as_posix())
++        def finalize_available_evidence():
++            assert support_created, 'This attempt does not own the support destination'
++            # Each secondary retention operation is isolated. It must never replace
++            # the original setup/launch/helper failure or trigger private cleanup.
++            for name in SOURCE_NAMES+[SOURCE_MANIFEST_NAME]:
++                source = HERE/name
++                if source.is_file() and not source.is_symlink():
++                    best_effort('available_revision_source_'+name, lambda source=source: copy(source, support/'executed_sources'/source.name))
++            for source in [root_script, read_ledger, current_path]:
++                if source is not None and source.parent == AUDIT and source.is_file() and not source.is_symlink():
++                    best_effort('available_root_prerequisite_'+source.name, lambda source=source: copy(source, support/'available_root_prerequisites'/source.name))
++            directories = []
++            if private_audit is not None and pins is not None:
++                for family in pins['families']:
++                    directories.append((private_audit/family, 'final_partial_or_complete/'+family, family))
++                directories.append((private_audit/'ROOT_RECONSTRUCTED_CONTROLS', 'final_partial_or_complete/reconstructed_controls', 'controls'))
++                source = private_audit/'ROOT_SOURCE_NATIVE_REPRODUCTION.json'
++                if source.is_file(): best_effort('available_source_native_receipt', lambda: retained(source, 'final_partial_or_complete/ROOT_SOURCE_NATIVE_REPRODUCTION.json'))
++            if private is not None:
++                directories.extend([(private/'root_tools', 'final_partial_or_complete/root_tools', 'tools'),
++                                    (private/'root_retention_fallback', 'failed_retention_fallback', 'fallback')])
++            for directory, destination, kind in directories:
++                ok, paths = best_effort('available_tree_inventory_'+destination, lambda directory=directory: list(directory.rglob('*')) if directory.exists() else [])
++                if not ok: continue
++                for source in paths:
++                    relative = source.relative_to(directory)
++                    allowed_case = kind == 'primary_scope_family' and relative.as_posix().startswith(('ignoredtmp/verify_runs/', 'ignoredtmp/review_runs/'))
++                    excluded = {'tmp', 'ignoredtmp', '__pycache__', 'manifest_cases'}.intersection(relative.parts)
++                    if source.is_file() and not source.is_symlink() and (allowed_case or not excluded):
++                        best_effort('available_file_'+destination+'/'+relative.as_posix(),
++                                    lambda source=source, name=destination+'/'+relative.as_posix(): retained(source, name))
++            if out['setup_completed']:
++                try:
++                    closure_after = strict_closed(pins, AUDIT)
++                    assert closure_after == closure_before
++                    for record in inputs: require(record, REPO)
++                    assert own == {name: sha((HERE/name).read_bytes()) for name in SOURCE_NAMES}
++                    assert strict_preparation() == preparation_manifest_sha
++                    assert root_bound == {str(path): sha(path.read_bytes()) for path in [root_script, read_ledger, current_path]}
++                    final_head = launch('current_head_final_readonly_git', ['/usr/bin/git', 'rev-parse', 'HEAD'], REPO,
++                                        administrative=True, env=dict(os.environ, GIT_OPTIONAL_LOCKS='0'))
++                    assert final_head.returncode == 0 and not final_head.stderr and final_head.stdout.decode().strip() == current['current_head']
++                    for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]: require(record, AUDIT)
++                    for record in pins['snapshot_files']:
++                        require({'path': record['path'], 'size': record['size'], 'sha256': record['sha256']}, AUDIT/'source_snapshot')
++                    out['authored_members_verified_before_and_after'] = 169
++                    out['strict_root_closure_before_and_after'] = {'before': closure_before, 'after': closure_after, 'equal': True}
++                    out['strict_root_exact_recursive_closure_verified'] = True
++                    out['native_full_file_preimages_before_and_after'] = inputs
++                    out['current_head_unchanged'] = current['current_head']
++                    out['root_and_preparation_sources_unchanged'] = own
++                    out['preparation_manifest_sha256_before_and_after'] = preparation_manifest_sha
++                except BaseException as error:
++                    out['status'] = 'FAIL'
++                    out['integrity_failure'] = failure(error)
++            else:
++                out['integrity_check_not_run_reason'] = 'Preflight/private setup did not complete; no before/after success is fabricated.'
++            nested = []
++            ok, ledgers = best_effort('nested_ledger_inventory', lambda: sorted(support.glob('*_nested/nested_runs.json')))
++            for path in ledgers or []:
++                ok, records = best_effort('nested_ledger_read_'+str(path), lambda path=path: load(path))
++                if ok:
++                    nested.extend({'outer_label': path.parent.name[:-7], 'nested_index': index, **item} for index, item in enumerate(records))
++            out['actual_nested_program_runs'] = nested
++            out['comparison_exclusion_policy'] = {'clock_keys': sorted(CLOCK_KEYS),
++                'single_private_path_prefix': {'actual': str(private) if private is not None else None, 'saved': str(REPO)},
++                'qualified_differences_remain_in_full_JSON': True, 'broad_runtime_or_native_ignoring': False}
++            out['private_attempt_preserved'] = private is not None and private.exists()
++            out['private_attempt_locator'] = {'audit_tmp_directory_name': private.name if private is not None else None,
++                'meaning': 'Administrative scratch locator only, never a CURRENT dependency anchor or retained support artifact.',
++                'cleanup_policy': 'No automatic deletion. Root may clean only after independently inspecting complete retained evidence. Failed retention keeps all available private evidence.'}
++            out['finished_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
++            if retention_errors: out['status'] = 'FAIL'
++    
++            def publish_retained_receipt():
++                write_owned_output()
++                records = []
++                for path in sorted(support.rglob('*')):
++                    assert not path.is_symlink(), 'No retained support symlinks'
++                    if path.is_file() and path.relative_to(support).as_posix() != 'ROOT_SUPPORT_MANIFEST.json':
++                        records.append(row(path, support))
++                packet = {'schema': 1, 'status': out['status'], 'self_excluding': True,
++                    'excluded': ['ROOT_SUPPORT_MANIFEST.json'], 'files': records,
++                    'path_base': 'support_directory', 'support_directory': support.relative_to(AUDIT).as_posix(),
++                    'root_reproduction_receipt': row(output, AUDIT), 'root_reproduction_receipt_sha256': sha(output.read_bytes()),
++                    'foreign_corpus_SQL_PDF_OCR_cache_or_private_scratch_retained': False}
++                write(support/'ROOT_SUPPORT_MANIFEST.json', packet)
++                for record in records: require(record, support)
++                actual = sorted(path.relative_to(support).as_posix() for path in support.rglob('*')
++                                if path.is_file() and path.relative_to(support).as_posix() != 'ROOT_SUPPORT_MANIFEST.json')
++                assert actual == sorted(record['path'] for record in records)
++                assert packet['root_reproduction_receipt_sha256'] == sha(output.read_bytes())
++            ok, unused = best_effort('final_receipt_and_strict_support_manifest', publish_retained_receipt)
++            if not ok:
++                # Retry only failure reporting, never a scientific program. Keep
++                # the private attempt even if the report itself remains unwritable.
++                ok, unused = best_effort('failure_receipt_and_support_manifest_retry', publish_retained_receipt)
++            if not ok and private is not None:
++                best_effort('private_finalization_failure_receipt', lambda: write(private/'ROOT_FINALIZATION_FAILURE.json', out))
++            if out['status'] != 'PASS':
++                print(json.dumps({'status': 'FAIL', 'original_failure': out.get('failure'),
++                    'integrity_failure': out.get('integrity_failure'), 'retention_errors': retention_errors,
++                    'private_attempt_locator': out['private_attempt_locator']}), file=sys.stderr)
+         try:
+-            closure_after = strict_closed(pins, AUDIT)
+-            assert closure_after == closure_before
+-            for record in inputs: require(record, REPO)
+-            assert own == {name: sha((HERE/name).read_bytes()) for name in SOURCE_NAMES}
+-            assert strict_preparation() == preparation_manifest_sha
+-            assert root_bound == {str(path): sha(path.read_bytes()) for path in [root_script, read_ledger, current_path]}
+-            final_head = subprocess.run(['/usr/bin/git', 'rev-parse', 'HEAD'], cwd=REPO, capture_output=True,
+-                                        env=dict(os.environ, GIT_OPTIONAL_LOCKS='0'))
+-            assert final_head.returncode == 0 and not final_head.stderr and final_head.stdout.decode().strip() == current['current_head']
+-            for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]: require(record, AUDIT)
+-            for record in pins['snapshot_files']:
+-                require({'path': record['path'], 'size': record['size'], 'sha256': record['sha256']}, AUDIT/'source_snapshot')
+-            out['authored_members_verified_before_and_after'] = 169
+-            out['strict_root_closure_before_and_after'] = {'before': closure_before, 'after': closure_after, 'equal': True}
+-            out['strict_root_exact_recursive_closure_verified'] = True
+-            out['native_full_file_preimages_before_and_after'] = inputs
+-            out['current_head_unchanged'] = current['current_head']
+-            out['root_and_preparation_sources_unchanged'] = own
+-            out['preparation_manifest_sha256_before_and_after'] = preparation_manifest_sha
++            finalize_available_evidence()
+         except BaseException as error:
+-            out['status'] = 'FAIL'; out['integrity_failure'] = traceback.format_exc()
+-        nested = []
+-        for path in sorted(support.glob('*_nested/nested_runs.json')):
+-            for index, item in enumerate(load(path)):
+-                nested.append({'outer_label': path.parent.name[:-7], 'nested_index': index, **item})
+-        out['actual_nested_program_runs'] = nested
+-        out['comparison_exclusion_policy'] = {'clock_keys': sorted(CLOCK_KEYS), 'single_private_path_prefix': {'actual': str(private), 'saved': str(REPO)},
+-                                               'qualified_differences_remain_in_full_JSON': True, 'broad_runtime_or_native_ignoring': False}
+-        out['finished_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+-        shutil.rmtree(private)
+-        write(output, out)
+-        support_rows = [row(path, support) for path in sorted(support.rglob('*')) if path.is_file()]
+-        write(support/'ROOT_SUPPORT_MANIFEST.json', {'schema': 1, 'status': out['status'], 'self_excluding': True,
+-              'excluded': ['ROOT_SUPPORT_MANIFEST.json'], 'files': support_rows,
+-              'path_base': 'support_directory', 'support_directory': support.relative_to(AUDIT).as_posix(),
+-              'root_reproduction_receipt': row(output, AUDIT), 'root_reproduction_receipt_sha256': sha(output.read_bytes()),
+-              'foreign_corpus_SQL_PDF_OCR_cache_or_private_scratch_retained': False})
+-    print(json.dumps({'status': out['status'], 'receipt': str(output), 'support': str(support)}, indent=2))
++            # This outer guard also covers unexpected filesystem/metadata
++            # errors in the finalizer itself, without replacing a prior failure.
++            out['status'] = 'FAIL'
++            out['unexpected_finalization_failure'] = failure(error)
++            retention_errors.append({'stage': 'unexpected_finalization_failure', **failure(error)})
++            out['private_attempt_preserved'] = private is not None
++            out['private_attempt_locator'] = {'audit_tmp_directory_name': private.name if private is not None else None,
++                'meaning': 'Administrative scratch locator only; never a CURRENT dependency anchor.',
++                'cleanup_policy': 'No automatic deletion; failed finalization keeps the private attempt.'}
++            out['finished_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
++            best_effort('emergency_failure_receipt', write_owned_output)
++            if private is not None:
++                best_effort('emergency_private_failure_receipt', lambda: write(private/'ROOT_FINALIZATION_FAILURE.json', out))
++            print(json.dumps({'status': 'FAIL', 'original_failure': out.get('failure'),
++                'unexpected_finalization_failure': out['unexpected_finalization_failure'],
++                'retention_errors': retention_errors, 'private_attempt_locator': out['private_attempt_locator']}), file=sys.stderr)
++    print(json.dumps({'status': out['status'], 'receipt': str(output) if output_owned else None,
++                      'support': str(support), 'private_attempt_preserved': out['private_attempt_preserved']}, indent=2))
+     if out['status'] != 'PASS': raise SystemExit(1)
+ 
+ 
+--- root_replay_preparation_family/capture_runner.py
++++ root_replay_execution_revision/capture_runner.py
+@@ -1,9 +1,8 @@
+ #!/usr/bin/env python3
+-"""Root-reviewed instrumentation; no execution at import time.
+-
+-Execute an unchanged private helper with runpy, capture every subprocess.run
+-(including check_output), and retain complete streams and first-party file
+-deltas. This is instrumentation, not a reconstruction of historical runs.
++"""Root-reviewed capture revision: persist intended launches before launching.
++
++No execution at import time. OSError is a launch failure, never a child exit.
++Timeout partial streams are bytes. Original failures survive retention errors.
+ """
+ import datetime
+ import hashlib
+@@ -12,113 +11,209 @@
+ import runpy
+ import subprocess
+ import sys
++import traceback
+ 
+ 
+ def main():
+     assert not sys.flags.optimize
+     target, destination, *arguments = sys.argv[1:]
+     target, destination = Path(target).resolve(), Path(destination).resolve()
+-    destination.mkdir(parents=True, exist_ok=False)
+-    rows = []
++    rows, retention_errors = [], []
+     real_run = subprocess.run
+     digest = lambda data: hashlib.sha256(data).hexdigest()
++    original_failure = None
++    original_traceback = None
++    initial = None
++    destination_created = False
++    invocation = {'target': str(target), 'argv': [str(target), *arguments], 'cwd': str(Path.cwd()),
++                  'helper_invocation_started': False, 'helper_invocation_completed': False}
++
++    def failure(error):
++        return {'type': type(error).__name__, 'message': str(error), 'traceback': ''.join(traceback.format_exception(type(error), error, error.__traceback__)),
++                'errno': getattr(error, 'errno', None), 'filename': str(error.filename) if getattr(error, 'filename', None) else None}
++
++    def data_bytes(value):
++        if value is None: return b''
++        if isinstance(value, str): return value.encode()
++        return bytes(value)
++
++    def write_json(path, value):
++        artifact(path, (json.dumps(value, indent=2)+'\n').encode())
+ 
+     def save():
+-        (destination/'nested_runs.json').write_text(json.dumps(rows, indent=2)+'\n')
++        write_json(destination/'nested_runs.json', rows)
++
++    def artifact(path, data):
++        try:
++            path.write_bytes(data)
++            actual = path
++        except OSError as error:
++            retention_errors.append({'stage': 'primary_capture_artifact', 'path': str(path), **failure(error)})
++            # The orchestrator supplies only private targets. A failed support
++            # write may preserve bytes there, never in a live closed family.
++            audit_tmp = Path(__file__).resolve().parent.parent/'tmp'
++            assert target.is_relative_to(audit_tmp), 'Private-only retention fallback'
++            actual = target.parent/'root_capture_retention_fallback'/destination.name/path.relative_to(destination)
++            actual.parent.mkdir(parents=True, exist_ok=True)
++            actual.write_bytes(data)
++        return {'path': str(actual), 'size': len(data), 'sha256': digest(data)}
+ 
+     def inventory(root):
+-        # Helpers write only first-party artifacts here. Foreign/cache material
+-        # is never copied. A script inside ignoredtmp is an actual first-party
+-        # original/mutant case; its own directory is retained independently.
+         result = {}
+         for path in sorted(root.rglob('*')):
+             relative = path.relative_to(root)
+-            if {'tmp', 'ignoredtmp', '__pycache__'}.intersection(relative.parts):
++            if {'tmp', 'ignoredtmp', '__pycache__'}.intersection(relative.parts) or path.is_symlink():
+                 continue
+-            if path.is_symlink():
+-                # An actual negative-control input may be a symlink. Its
+-                # definition is separately retained; never follow or copy it.
+-                continue
+-            if path.is_file():
+-                result[relative.as_posix()] = path.read_bytes()
++            if path.is_file(): result[relative.as_posix()] = path.read_bytes()
+         return result
+ 
+     def retain_delta(before, after, label):
+         result = {'removed': sorted(set(before)-set(after)), 'created_or_changed': []}
+         for name, data in after.items():
+-            if before.get(name) == data:
+-                continue
++            if before.get(name) == data: continue
+             path = destination/label/name
+             path.parent.mkdir(parents=True, exist_ok=True)
+-            path.write_bytes(data)
+-            result['created_or_changed'].append({'path': str(path), 'original_relative_path': name,
+-                                                'size': len(data), 'sha256': digest(data)})
++            result['created_or_changed'].append({**artifact(path, data), 'original_relative_path': name})
+         return result
+ 
+     def captured_run(argv, *positional, **keywords):
+         assert isinstance(argv, (list, tuple)) and not keywords.get('shell')
+-        started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+-        # Preserve inherited-output behavior while retaining full bytes.
++        index = len(rows)
++        row = {'argv': list(map(str, argv)), 'cwd': str(keywords.get('cwd') or Path.cwd()),
++               'started_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
++               'launch_attempted': False, 'actual_execution': False, 'completed': False,
++               'exit_code': None, 'failure_type': None, 'error': None}
++        rows.append(row)
++        child_failure, child_traceback, result, before, script, popen_called = None, None, None, None, None, False
++        partial_available = None
+         inherit_stdout = not keywords.get('capture_output') and keywords.get('stdout') is None
+         inherit_stderr = not keywords.get('capture_output') and keywords.get('stderr') is None
+-        if inherit_stdout:
+-            keywords['stdout'] = subprocess.PIPE
+-        if inherit_stderr:
+-            keywords['stderr'] = subprocess.PIPE
+-        assert keywords.get('stderr') != subprocess.STDOUT, 'Separate streams required'
+-        script = next((Path(str(x)).resolve() for x in argv[1:]
+-                       if str(x).endswith('.py') and Path(str(x)).is_file()), None)
+-        before = inventory(script.parent) if script else {}
+-        failure = None
+         try:
+-            result = real_run(argv, *positional, **keywords)
+-        except subprocess.CalledProcessError as error:
+-            result = subprocess.CompletedProcess(argv, error.returncode, error.stdout, error.stderr)
+-            failure = error
+-        except subprocess.TimeoutExpired as error:
+-            result = subprocess.CompletedProcess(argv, None, error.stdout or b'', error.stderr or b'')
+-            failure = error
+-        index = len(rows)
+-        row = {'argv': list(map(str, argv)), 'cwd': str(keywords.get('cwd') or Path.cwd()),
+-               'started_utc': started, 'exit_code': result.returncode,
+-               'failure_type': type(failure).__name__ if failure else None}
+-        if keywords.get('input') is not None:
+-            content = keywords['input']
+-            data = content.encode() if isinstance(content, str) else content
+-            path = destination/('%03d.stdin' % index)
+-            path.write_bytes(data)
+-            row['stdin'] = {'path': str(path), 'size': len(data), 'sha256': digest(data)}
+-        for channel in ['stdout', 'stderr']:
+-            stream = getattr(result, channel)
+-            assert stream is not None, 'Every stream must be available'
+-            data = stream.encode() if isinstance(stream, str) else stream
+-            path = destination/('%03d.%s' % (index, channel))
+-            path.write_bytes(data)
+-            row[channel] = {'path': str(path), 'size': len(data), 'sha256': digest(data)}
+-            if (channel == 'stdout' and inherit_stdout) or (channel == 'stderr' and inherit_stderr):
+-                getattr(sys, channel).write(stream if isinstance(stream, str) else stream.decode())
+-        if script:
+-            source_copy = destination/('%03d_executed_source.py' % index)
+-            source_copy.write_bytes(script.read_bytes())
+-            row['script'] = {'path': str(script), 'size': script.stat().st_size,
+-                             'sha256': digest(script.read_bytes()), 'retained_full_source': str(source_copy)}
+-            row['generated_files'] = retain_delta(before, inventory(script.parent), '%03d_generated' % index)
+-        rows.append(row)
++            # Every available intended input and source precedes Popen. A
++            # prelaunch-retention failure prevents launch and remains explicit.
++            if Path(str(argv[0])).name.startswith('python'):
++                script = next((Path(str(x)).resolve() for x in argv[1:] if str(x).endswith('.py')), None)
++            if script:
++                row['script_path'] = str(script)
++                row['source_available'] = script.is_file() and not script.is_symlink()
++                if row['source_available']:
++                    source = script.read_bytes()
++                    source_copy = destination/('%03d_prelaunch_source.py' % index)
++                    retained_source = artifact(source_copy, source)
++                    row['script'] = {'path': str(script), 'size': len(source), 'sha256': digest(source),
++                                     'retained_full_source': retained_source['path']}
++                    before = inventory(script.parent)
++            if keywords.get('input') is not None:
++                row['stdin'] = artifact(destination/('%03d.stdin' % index), data_bytes(keywords['input']))
++            for channel in ['stdout', 'stderr']:
++                row[channel] = artifact(destination/('%03d.%s' % (index, channel)), b'')
++            row['stdio_capture'] = {'kind': 'prelaunch_empty_placeholder', 'stdout_available': False, 'stderr_available': False}
++            save()
++            assert not retention_errors, 'Prelaunch retention failed; do not launch'
++            if inherit_stdout: keywords['stdout'] = subprocess.PIPE
++            if inherit_stderr: keywords['stderr'] = subprocess.PIPE
++            assert keywords.get('stderr') != subprocess.STDOUT, 'Separate streams required'
++            row['launch_attempted'] = True
++            save()
++            assert not retention_errors, 'Prelaunch ledger retention failed; do not launch'
++            try:
++                popen_called = True
++                result = real_run(argv, *positional, **keywords)
++                row.update(actual_execution=True, completed=True, exit_code=result.returncode)
++            except subprocess.CalledProcessError as error:
++                result = subprocess.CompletedProcess(argv, error.returncode, error.stdout, error.stderr)
++                row.update(actual_execution=True, completed=True, exit_code=error.returncode)
++                child_failure, child_traceback = error, error.__traceback__
++            except subprocess.TimeoutExpired as error:
++                partial_available = {channel: getattr(error, channel) is not None for channel in ['stdout', 'stderr']}
++                result = subprocess.CompletedProcess(argv, None, data_bytes(error.stdout), data_bytes(error.stderr))
++                row.update(actual_execution=True, completed=False, exit_code=None)
++                child_failure, child_traceback = error, error.__traceback__
++            except OSError as error:
++                # No CompletedProcess and no fake child exit for an OS launch failure.
++                row.update(actual_execution=False, completed=False, exit_code=None)
++                child_failure, child_traceback = error, error.__traceback__
++            if child_failure:
++                row['failure_type'] = type(child_failure).__name__
++                row['error'] = failure(child_failure)
++            if result is not None:
++                row['stdio_capture'] = {'kind': 'partial_timeout' if isinstance(child_failure, subprocess.TimeoutExpired) else 'complete_child_streams',
++                                        'stdout_available': partial_available['stdout'] if partial_available else result.stdout is not None,
++                                        'stderr_available': partial_available['stderr'] if partial_available else result.stderr is not None}
++                for channel in ['stdout', 'stderr']:
++                    value = getattr(result, channel)
++                    data = data_bytes(value)
++                    row[channel] = artifact(destination/('%03d.%s' % (index, channel)), data)
++                    if (channel == 'stdout' and inherit_stdout) or (channel == 'stderr' and inherit_stderr):
++                        getattr(sys, channel).buffer.write(data)
++            else:
++                row['stdio_capture'] = {'kind': 'no_child_launched', 'stdout_available': False, 'stderr_available': False}
++            save()
++        except BaseException as error:
++            if not popen_called:
++                row['launch_attempted'] = False
++                row['failure_stage'] = 'prelaunch_retention'
++            if child_failure is None:
++                child_failure, child_traceback = error, error.__traceback__
++                row['failure_type'], row['error'] = type(error).__name__, failure(error)
++            else:
++                retention_errors.append({'stage': 'nested_stream_or_ledger_retention', 'index': index, **failure(error)})
++        finally:
++            try:
++                if before is not None:
++                    row['generated_files'] = retain_delta(before, inventory(script.parent), '%03d_generated' % index)
++                row['ended_utc'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
++                save()
++            except BaseException as error:
++                retention_errors.append({'stage': 'nested_final_retention', 'index': index, **failure(error)})
++        if child_failure: raise child_failure.with_traceback(child_traceback)
++        if retention_errors: raise RuntimeError('Capture retention failed; original outcome and available evidence preserved')
++        return result
++
++    try:
++        destination.mkdir(parents=True, exist_ok=False)
++        destination_created = True
++        assert target.is_file() and not target.is_symlink()
++        source = target.read_bytes()
++        invocation['source'] = artifact(destination/'outer_prelaunch_source.py', source)
++        write_json(destination/'outer_helper_attempt.json', invocation)
+         save()
+-        if failure:
+-            raise failure
+-        return result
+-
+-    initial = inventory(target.parent)
+-    subprocess.run = captured_run
+-    sys.dont_write_bytecode = True
+-    sys.argv = [str(target), *arguments]
+-    try:
++        initial = inventory(target.parent)
++        assert not retention_errors, 'Outer prelaunch retention failed; do not invoke helper'
++        subprocess.run = captured_run
++        sys.dont_write_bytecode = True
++        sys.argv = [str(target), *arguments]
++        invocation['helper_invocation_prepared'] = True
++        write_json(destination/'outer_helper_attempt.json', invocation)
++        assert not retention_errors, 'Outer invocation ledger retention failed; do not invoke helper'
++        invocation['helper_invocation_started'] = True
+         runpy.run_path(str(target), run_name='__main__')
++        invocation['helper_invocation_completed'] = True
++    except BaseException as error:
++        original_failure, original_traceback = error, error.__traceback__
++        invocation['original_failure'] = failure(error)
+     finally:
+-        save()
+-        delta = retain_delta(initial, inventory(target.parent), 'outer_generated')
+-        (destination/'outer_generated_files.json').write_text(json.dumps(delta, indent=2)+'\n')
++        if not destination_created:
++            # A setup failure must not overwrite a preexisting destination.
++            print(json.dumps({'original_failure': invocation.get('original_failure'), 'retention_errors': retention_errors,
++                              'destination_created': False}), file=sys.stderr)
++            if original_failure: raise original_failure.with_traceback(original_traceback)
++        for stage, action in [
++            ('nested_ledger_final', save),
++            ('outer_attempt_final', lambda: write_json(destination/'outer_helper_attempt.json', invocation)),
++            ('outer_generated_final', lambda: write_json(destination/'outer_generated_files.json',
++                retain_delta(initial, inventory(target.parent), 'outer_generated') if initial is not None else {'not_run': 'Initial inventory unavailable'}))]:
++            try: action()
++            except BaseException as error: retention_errors.append({'stage': stage, **failure(error)})
++        try:
++            write_json(destination/'CAPTURE_STATUS.json', {'status': 'FAIL' if original_failure or retention_errors else 'PASS',
++                'original_failure': invocation.get('original_failure'), 'retention_errors': retention_errors,
++                'helper_invocation': invocation, 'nested_attempt_count': len(rows)})
++        except BaseException as error:
++            retention_errors.append({'stage': 'capture_status_final', **failure(error)})
++            print(json.dumps({'original_failure': invocation.get('original_failure'), 'retention_errors': retention_errors}), file=sys.stderr)
++    if original_failure: raise original_failure.with_traceback(original_traceback)
++    if retention_errors: raise RuntimeError('Capture finalization failed; available evidence and original outcome remain retained')
+ 
+ 
+ if __name__ == '__main__':
+--- root_replay_preparation_family/README.md
++++ root_replay_execution_revision/README.md
+@@ -1,14 +1,21 @@
+-# Root PR38 actual replay: static preparation and execution contract
+-
+-This folder is STATIC PREPARATION ONLY. Its preparer read the root and native
++# Root PR38 actual replay: static S2 execution revision
++
++This separately sealed revision is STATIC PREPARATION ONLY. It addresses S2
++of the closed static transport/builder adversary without changing the closed
++root_replay_preparation_family package. REVISION_CONTRACT.md specifies the
++failure-retention revision; REVISION.patch preserves the exact source/doc delta.
++REVISION_MANIFEST.json excludes only its own exact root path. This folder has
++nine first-party members plus that manifest. Its preparer read the root and native
+ AGENTS instructions, the exact original schemas, the three closed-family
+ runner sources and receipts, and the PR37 replay/capture examples. No proposed
+ source was imported or executed, no verifier or mathematical program was run,
+ and no scientific verdict or ACTUAL success claim is made. Static AST parsing
+ is syntax inspection only. All preparation writes remain in this folder.
+ 
+-Root must read all four complete Python sources, INPUT_PINS.json and this
+-contract before execution. Root's genuine imported-primary proof reading is a
++Root must read all four complete Python sources, INPUT_PINS.json, this README,
++RESEARCH_LOG.md, REVISION_CONTRACT.md, REVISION.patch and REVISION_MANIFEST.json
++before execution. Its audit-root entrypoint must explicitly select this exact
++revision code path and hash after independent static review. Root's genuine imported-primary proof reading is a
+ separate prerequisite. The required ROOT_PRIMARY_READ_LEDGER.json is copied
+ and hash-bound; this preparation and the finite collector do not attest that
+ reading or borrow a family's source-read claims. The final scientific and
+@@ -63,7 +70,10 @@
+ preserve every previous failed attempt. Root entrypoint, read ledger,
+ current-input manifest, preparation source bytes, original source bytes,
+ current HEAD and every complete native input are checked before/after. A
+-failed execution remains FAIL with complete captured evidence.
++failed execution remains FAIL with the attempted-launch records and available
++first-party evidence. If support retention itself fails, the original failure
++and secondary retention errors remain explicit, and the private attempt is
++preserved for root inspection; no complete-retention success is fabricated.
+ 
+ ## Exact frozen and current claims
+ 
+@@ -182,13 +192,18 @@
+ current-state or inventory normalization.
+ 
+ Failed/partial outputs, actual source inputs and exact changed manifest inputs
+-are retained even when a helper or comparison fails. Only first-party evidence
+-survives cleanup: all frozen originals/families, complete helper source and
+-revisions, native first-party preimages, streams, stdout-materialized JSON,
+-generated results/prose/mutants and control definitions. Raw corpus/SQL copies,
+-PDFs, OCR, foreign cache contents and private manifest clone/scratch trees are
+-removed or never copied to support. Foreign-source metadata ledgers remain
+-first-party records; no foreign document content is retained.
++remain available even when a helper or comparison fails. Retained support holds
++first-party evidence: frozen originals/families, full helper source and revisions,
++native first-party preimages, streams, stdout-materialized JSON, generated
++results/prose/mutants and control definitions. Raw corpus/SQL copies, PDFs, OCR,
++foreign cache contents and private clone/scratch trees are never copied to
++support. Foreign-source metadata ledgers remain first-party records. This
++revision never automatically deletes its private attempt, including after PASS.
++The audit tmp directory name is an administrative failure-inspection locator,
++never a CURRENT dependency anchor. Root may remove the private attempt only
++after independently establishing that all available first-party evidence has
++been successfully retained; a retention failure keeps the attempt available.
++The existing root tmp ignore rule is unchanged; no Git staging occurs.
+ 
+ Support ROOT_SUPPORT_MANIFEST.json is strictly self-excluding. Its files rows
+ are `{path,size,sha256}`, with paths relative to the declared support directory;
+--- root_replay_preparation_family/RESEARCH_LOG.md
++++ root_replay_execution_revision/RESEARCH_LOG.md
+@@ -9,3 +9,12 @@
+ - 2026-10-02T09:50:01.534855Z — collect_root_replays.py first created; retrospective estimate 90% of static preparation, 0% additional full-target discovery. Root's independently completed primary reading remains a separate prerequisite. Primary nested basename/ignoredtmp exclusion controls distinguish original-validator acceptance from strict-root rejection. Receipt/retention schema coordinated with current-packet preparer under root authorization. No outside communication.
+ - 2026-10-02T10:01:12Z — Static preparation closing checkpoint, estimated 100% of this source-preparation assignment, 0% additional full-target discovery. Four sources and complete contract prepared; AST parsed only for syntax. Strict self-excluding preparation manifest is written after this checkpoint. Exact169 members plus three original manifest bytes pinned. Actual execution, failure assessment, primary-reading attestation, scientific verdict, Git publication and packet promotion remain root-owned. Every preparation write stayed in this folder; no closed/shared/Git/remote/inventory/canonical state changed.
+ - 2026-10-02T10:08:34Z — Final static review and seal checkpoint, 100% of static preparation, 0% additional target discovery. Added exact expected manifest rejection mechanisms, complete stdin/executed-source capture, explicit stdout-materialized receipt behavior, retained actual-runtime/default-failure contract, and packet-builder schema alignment. Syntax is checked by AST parsing only; no ACTUAL run or success claim exists. PREPARATION_MANIFEST.json is generated last and excludes only itself.
++
++## Separately preserved S2 execution revision
++
++The preceding entries are the unchanged predecessor log copied as provenance;
++their old folder-only write statements refer to that original preparation.
++This revision writes only root_replay_execution_revision, preserves the closed
++predecessor, and makes no new substantive research attempt.
++
++- 2026-10-02T10:46:40Z — Static S2 closing checkpoint:100% of this revision assignment,0% additional full-target discovery. Prelaunch source/argv/cwd/stdin, byte-normalized partial timeouts, explicit OSError launch failures with null exits, protected setup/finalization, original-versus-secondary failure retention and permanent private-attempt preservation prepared. Corrected the outer runpy prelaunch ledger guard before seal. INPUT_PINS/inspector/reconstructed controls remain byte-identical; current-measure label and exact Git stdin request stay compatible with sealed S1 revision. Four Python sources are AST-parsed only; none imported, compiled or executed. No mathematical/manifest helper, native/Git/remote/shared/canonical mutation, ACTUAL run or verdict. Exact patch/docs and strict nine-member self-excluding manifest are generated last; root and independent adversary must fully review before actual execution. Root's15% partial-progress heuristic is unchanged, not discovery credit or solution probability.
+--- /dev/null
++++ root_replay_execution_revision/REVISION_CONTRACT.md
+@@ -0,0 +1,130 @@
++# S2 static execution revision contract
++
++This package is a proposed, independently reviewable source revision. It has
++not been imported, compiled or executed. Its static seal makes no ACTUAL run,
++retention success, scientific verdict, CURRENT packet or publication claim.
++The closed seven-member predecessor and its manifest remain byte-identical.
++
++## Exact scope and root prerequisites
++
++The revision addresses S2 in static_replay_builder_adversary_family/
++STATIC_ADVERSARIAL_REPORT.md and STATIC_REVIEW_RECEIPT.json: setup outside the
++protected collector attempt, outer TimeoutExpired/OSError evidence loss, nested
++OSError evidence loss, and premature private deletion. inspect_source_native.py,
++reconstructed_controls.py and INPUT_PINS.json are copied byte-identically.
++Original source/Git/corpus/importer/accounting/math/control predicates remain as
++in the sealed predecessor. Original16/17 and all169 members plus their three
++manifests keep the same pins. Authored accounting stays2/5, new0 and audit0.
++
++Root must fully read the complete revised sources, exact patch, docs, input pins
++and strict manifest, and obtain independent static adversarial review before
++an actual invocation. Root's imported-primary reading ledger is a separate
++prerequisite. Root later changes its audit-root entrypoint to allow exactly
++root_replay_execution_revision/collect_root_replays.py and the reviewed source
++hash, keeping repository/audit-root anchor derivation. No private-attempt path
++belongs in the CURRENT dependency anchor.
++
++SOURCE_NAMES is exactly collect_root_replays.py, capture_runner.py,
++inspect_source_native.py, reconstructed_controls.py, INPUT_PINS.json, README.md,
++RESEARCH_LOG.md, REVISION_CONTRACT.md and REVISION.patch. The collector's exact
++source manifest is REVISION_MANIFEST.json with files rows {path,size,sha256},
++excluded exactly ["REVISION_MANIFEST.json"], and full recursive coverage of all
++nine regular files. Symlinks and nested same-basename extras are rejected.
++The seal and all nine source members are retained before protected preflight.
++
++## Attempt and failure semantics
++
++Each outer and nested attempted process gets a record before Popen. Available
++intended Python source bytes/SHA, exact argv, cwd, supplied stdin, empty separate
++stdout/stderr placeholders and the intended-launch ledger precede launching.
++The placeholders are labeled prelaunch_empty_placeholder; they never represent
++observed empty child streams. A prelaunch retention failure prevents launch.
++launch_attempted is true only when the actual process-launch call is attempted.
++Actual source absence is recorded explicitly without inventing a source hash.
++Administrative readonly Git commands have separate records and no invented
++Python child source. The collector and wrapper implementations are retained.
++
++A normal child return records actual_execution:true, completed:true and its
++real exit code. CalledProcessError in the nested wrapper retains the real child
++exit and full streams before rethrowing the original error. TimeoutExpired
++records actual_execution:true, completed:false, exit_code:null, type/message/
++traceback and normalized byte partial stdout/stderr, with separate availability
++flags for absent streams. OSError records actual_execution:false,
++completed:false, exit_code:null and the actual OS exception subtype, errno,
++filename, message and traceback. It never fabricates a CompletedProcess or
++child exit. Exceptions during prelaunch or retention have a separate stage.
++The original child/setup failure is preserved when secondary retention fails.
++
++The wrapper separately records its intended outer helper source/argv/cwd and
++helper invocation flags before runpy. It confirms successful prelaunch retention
++before invoking the helper. Its setup, generated-file delta capture, nested
++ledger, helper-attempt record and CAPTURE_STATUS finalization are protected.
++If destination creation fails, the attempt does not overwrite a preexisting
++capture destination; the original failure reaches retained outer stderr.
++
++The collector begins its protected attempt with creation of a new owned support
++destination and source retention. Root prerequisite preimages are retained
++before hash assertions when available. Output creation is exclusive; a raced
++foreign output/support destination is never treated as owned. Setup failures
++remain FAIL without fabricated before/after closure. Finalization isolates
++secondary file/tree/ledger/integrity/publication errors and keeps the original
++failure; an unexpected-finalizer guard also records its own failure separately.
++Available failure reports can be retried once; programs are never rerun by the
++failure-report retry. stderr and an available private failure receipt preserve
++original and secondary errors if final publication cannot finish.
++
++A failed support artifact write attempts to preserve available bytes in the
++known private attempt, with explicit retention_errors and status FAIL. Nested
++capture fallback is allowed only for targets within this audit's private tmp
++hierarchy, never in a closed live family. Available fallback records/full bytes
++are retained as first-party evidence where possible. Private fallback ledger
++paths on a failed attempt are not evidence that the successful support/CURRENT
++contract was satisfied. The preserved scratch and failure receipt permit root
++to inspect any incomplete or unwritable support retention independently.
++
++## Retention and cleanup
++
++No private attempt is automatically deleted, including after successful helper
++execution. The existing root tmp ignore rule remains unchanged and no Git
++staging/rollback/native mutation occurs. private_attempt_locator contains only
++an audit tmp directory name for administrative failure inspection. It is never
++used to bind source or CURRENT validity. Root may clean it only after separately
++checking that every available first-party input/result/stream/source/failure has
++been retained successfully. A failed retention keeps all private evidence.
++
++Support copies only known first-party sources, frozen family members, generated
++results/streams/control inputs, native first-party preimages, revision code/docs,
++root prerequisites and first-party fallback evidence. Complete foreign raw
++corpus, SQL, PDFs/OCR/cache contents and private clone trees stay outside support.
++The preserved private attempt may contain raw/SQL input copies and the readonly
++.git symlink; these are scratch, never promoted retained artifacts. The strict
++support manifest excludes only its exact root self path, covers every retained
++regular file recursively, binds final root receipt bytes/SHA and sets status to
++the actual receipt status. A failed or incomplete attempt cannot pass the
++packet builder. No arbitrary cleanup or rollback is added.
++
++## Compatibility with the separately sealed S1 builder revision
++
++The successful ACTUAL receipt retains the predecessor schema and predicates:
++ROOT_CLOSED_FAMILIES_ACTUAL_REPRODUCTION.json, exact16/17/head/base, inline
++provenance, source_native_inspection_receipt, both whole30/72 stdout/materialized
++BYTE/JSON comparisons, actual outer/nested full-source/full-stream records,
++strict169 before/after closure, explicit old-primary nested-extra findings and
++whole structured comparisons with only the original clock/private-prefix
++exclusions. New failure/attempt/administrative metadata is descriptive.
++
++The current-measure outer label remains exactly
++current_measure_original_code_and_prose_controls. Each nested Git request
++remains argv ["git", "hash-object", "--stdin"], with complete .stdin bytes retained
++and artifact rows. The sealed current_execution_revision builder explicitly
++admits .stdin, checks each whole payload against an immutable original input,
++checks its returned pinned Git blob and requires all16 coverage. It independently
++checks exact recursive support coverage and every source/stream/result artifact.
++Its source SHA is db8b6cff2ad17befb6f1f6124c7550a9cfc220da4b6558f9b5df14465f55d99f;
++its revision manifest SHA is
++6fd08960480abe592b0e6a28b6c32f60eb983e8a84a8b2bdfe08172e4f21b4d9.
++
++Static preparation is100% complete for this source assignment. Actual failure
++paths and success replay remain unobserved until root executes reviewed sources.
++The whole-current source-first gate remains pending and no scientific discovery
++credit or extra proof response is claimed.

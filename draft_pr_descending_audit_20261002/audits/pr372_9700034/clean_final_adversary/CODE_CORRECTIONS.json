@@ -1,0 +1,20 @@
+{
+  "utc": "2026-10-03T10:10:27.820339+00:00",
+  "corrections": [
+    {
+      "file": "audit_frozen_packet.py",
+      "issue": "Uncached tree(prev) in per-path comprehension repeatedly rescanned the entire 56,956-leaf repository. Own stalled process was stopped; v1 preserved.",
+      "correction": "Memoize immutable Git trees by commit."
+    },
+    {
+      "file": "exact_live_gate.py",
+      "issue": "GitHub recursive tree endpoint was truncated; initial live failure honestly preserved and never accepted.",
+      "correction": "Use complete local immutable raw Git tree, anchored to API commit/tree/parents and complete nonrecursive API root; recompute all subtree and root Git hashes. No Git writes."
+    },
+    {
+      "file": "exact_live_gate.py",
+      "issue": "A direct-parent guard would reject an otherwise valid main ancestor after an additive correction commit.",
+      "correction": "Require immutable API merge-base ancestry exactly current main instead."
+    }
+  ]
+}

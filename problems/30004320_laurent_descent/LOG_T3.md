@@ -1,0 +1,3 @@
+# Additive turn-3 log
+
+2026-10-02 15:42 UTC. The full Puiseux union, including p-power roots of the parameter, gives H1 invariance for every constant torus. Smooth lifting over power-series rings replaces the initial tame-degree averaging idea. A quasitrivial-torus resolution gives H2 injectivity for all multiplicative-type groups. Together these prove the original implication for all torus stabilizers, plus orbit matching after the full Puiseux union, with arbitrary smooth affine acting group. Wild finite and infinitesimal torsor-object counterexamples prevent an automatic extension. 15,690 exact controls pass, total71,705. Original unresolved3/5; two substantive turns remain. Estimated progress40%, no priority claim. All prior frozen bytes preserved.

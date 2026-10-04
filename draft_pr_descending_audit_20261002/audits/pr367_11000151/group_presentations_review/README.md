@@ -1,0 +1,7 @@
+# Independent PR367 group-presentation audit
+
+Read REPORT.md, INDEPENDENT_MATHEMATICS.md and FAILURE_LEDGER.md. SOURCE_FIRST_SEAL.json and MATHEMATICS_SEAL.json bind the immutable pre-candidate and pre-program baselines. FINAL_RECEIPT.json identifies the report; PUBLIC_MANIFEST.json is self-excluded and binds all intended public audit files.
+
+The candidate is the adjacent frozen snapshot at ../snapshot/problems/11000151_artin_a5_quotient, head d977c9564f079cde975a7b4261776eb9061c5f5f. Reproduce new finite controls with `python independent_finite_controls.py`; this requires ordinary Python and an existing C++17 g++ compiler. It regenerates all810 F4 records and the full rank1–6 action records in the ignored private_streams folder, and compares complete streamed candidate C++ records exactly. `python negative_merging_control.py` reproduces the explicit invalid-merging counterexample. `python verify_identity_history.py` requires existing Git objects and authenticated read-only GitHub access; it repeats subtree-mode, manifest and checkpoint checks without modifying any service.
+
+Original primary PDFs, downloaded raw API responses, generated full records, the incomplete first duplicate C++ stream and compiled temporary binary are private/ignored. Their retained metadata is explicit; PRIVATE_STREAM_RETENTION.json binds compressed raw record files with lossless round-trip checks. No compressed or partial asset is silently substituted for a completed exact comparison.

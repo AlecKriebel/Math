@@ -1,0 +1,409 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\D}{\mathcal D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\R}{\mathbb R}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\one}{\mathbf 1}
+\DeclareMathOperator{\id}{id}
+\title{Common $L^1$ basin boundaries for a bistable mean-field interval map}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{3 October 2026\quad (version 1.0; unrefereed preprint)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the common-basin-boundary conjecture stated by Keller in the 2009
+Oberwolfach mini-workshop report on the spectrum of transfer operators. For the prescribed
+two-branch M\"obius interval maps with feedback
+$G(m)=A\tanh(Bm/A)$, $0<A\le2/5$ and $6<B\le16$, the basin of the constant
+density equals the boundary of each noncentral stable basin in the relative
+$L^1$ topology of all probability densities. We prove the stronger intermediate
+statement that the central basin is the $L^1$ closure of the finite preimages
+of the constant density. A terminal cumulative transport is lifted backward
+with self-consistent feedback. A probability-space inverse contraction and
+uniform distortion bound make this construction valid for arbitrary
+integrable densities, including unbounded densities and densities with zeros.
+The global three-limit theorem and boundary seed are prior results of
+Bardet, Keller and Zweim\"uller.
+\end{abstract}
+
+\section{The original question}
+Let $I=[-1/2,1/2]$, with Lebesgue measure $dx$, and let
+\[
+ \D=\{u\in L^1(I):u\ge0\text{ a.e.},\ \int_Iu\,dx=1\},
+ \qquad \phi(u)=\int_I xu(x)\,dx.
+\]
+All closures and boundaries below are relative to $\D$ with its $L^1$ metric.
+Fix $0<A\le2/5$ and $6<B\le16$. For $|r|\le2/5$ define
+\[
+ f_r(x)=\frac{(r+4)x+r+1}{2rx+2},\qquad
+ T_r(x)=\begin{cases}f_r(x),&x<-r/4,\\ f_r(x)-1,&x>-r/4.\end{cases}
+\]
+The value at the cut is immaterial for densities. Write $P_r$ for the density
+transfer operator of $T_r$, so $(T_r)_*(u\,dx)=(P_ru)\,dx$, and set
+\[
+ G(m)=A\tanh(Bm/A),\qquad F(u)=P_{G(\phi(u))}u.
+\]
+The question in \cite[pp.~2713--2715, especially p.~2715]{OWR} concerns exactly
+this parameter range and the full space $\D$.
+
+We use the following established facts from
+\cite[Theorem~2, Propositions~3 and~4]{BKZ}; they are also stated in
+\cite[Theorem~2 and the discussion following it]{OWR}.
+There are three fixed densities $\one,u_+,u_-$, every orbit in $\D$ converges
+in $L^1$ to one of them, and the basins of $u_+$ and $u_-$ are open. Moreover,
+$\one$ is in both basin boundaries. The last fact follows from the earlier
+boundary theorem on the analytic integral-representation class. Put
+\[
+ W=\{u:F^nu\longrightarrow\one\text{ in }L^1\},\qquad
+ B_\pm=\{u:F^nu\longrightarrow u_\pm\text{ in }L^1\}.
+\]
+The cited theorem supplies $\D=W\sqcup B_+\sqcup B_-$. In particular $W$ is
+closed. The earlier analytic-core boundary theorem does not itself give a
+boundary theorem on all $\D$: that core is compact and is not $L^1$ dense.
+
+\begin{theorem}\label{thm:main}
+For the model and parameters above,
+\[
+ W=\overline{\bigcup_{n\ge0}F^{-n}(\{\one\})}^{\,\D}
+   =\partial_\D B_+=\partial_\D B_-.
+\]
+No boundedness, bounded variation, or positive lower bound on the densities
+is assumed.
+\end{theorem}
+
+The new step is the full-density finite-preimage closure. The inverse
+expansion mechanism and invariant integral representations originate in
+\cite[Sections~3--4]{BKZ}; we extend the inverse construction to an arbitrary
+probability space and give a simple exact continuous estimate. Sections~2--5
+prove the theorem. No differentiable stable-manifold theorem on $L^1$ is used.
+
+\section{An open map on all densities}
+For $h_r(x)=(x+r/4)/(1+rx)$, direct algebra gives
+$h_r^{-1}=h_{-r}$ and $T_r=T_0\circ h_r$ away from the cut. Let $Q_r$ be
+pushforward of densities by $h_r$. It is a signed-$L^1$ isometry, with inverse
+$Q_{-r}$. The map $(r,u)\mapsto Q_ru$ is jointly strongly continuous:
+this follows first for continuous functions from the smooth Jacobians, then
+for $L^1$ functions by approximation and the isometry.
+
+\begin{lemma}\label{lem:open}
+$F:\D\to\D$ is a continuous open surjection. For either stable basin,
+\[
+ F^{-1}(\partial_\D B_\pm)=\partial_\D B_\pm.
+\]
+\end{lemma}
+\begin{proof}
+Write $F=P_0K$ with $K(u)=Q_{G(\phi(u))}u$. For $v\in\D$ put
+$M_v(r)=\int_I h_{-r}(x)v(x)\,dx$. This decreases in $r$, since
+\[
+ \partial_r h_{-r}(x)=\frac{x^2-1/4}{(1-rx)^2}\le0.
+\]
+Thus $r-G(M_v(r))$ increases by at least the parameter increment and changes
+sign between $-A$ and $A$. Its unique zero $\rho(v)$ satisfies
+$|\rho(v)-\rho(w)|\le(B/2)\norm{v-w}_1$, since $|h_{-r}|\le1/2$ and
+$\norm{G'}_\infty\le B$. Consequently
+$K^{-1}(v)=Q_{-\rho(v)}v$ is continuous. Checking the mean and scalar equation
+in both directions proves this is the inverse of $K$; hence $K$ is a
+homeomorphism.
+
+For a prescribed $w\in\D$ let $v=P_0w$. On fibers with $v(T_0x)>0$ put
+$q(x)=w(x)/v(T_0x)$, and put $q(x)=1$ on the other fibers. Since
+\[
+ (P_0w)(y)=\tfrac12\bigl(w(y/2-1/4)+w(y/2+1/4)\bigr),
+\]
+both branch values vanish on almost every zero fiber. It follows that
+$0\le q\le2$ and $P_0q=\one$, including there. For $z\in\D$ define
+$R_w(z)(x)=q(x)z(T_0x)$. Then
+\[
+ P_0R_w(z)=z,\quad R_w(v)=w,\quad
+ \norm{R_w(z)-w}_1=\norm{z-v}_1.
+\]
+These positive sections show that $P_0$ is open and onto, in the relative
+topology. This proves the first assertion for $F$.
+
+For $B=B_+$ or $B_-$, tail convergence gives $F^{-1}B=B$.
+If $x\in\partial B$, continuity puts $F(x)$ in $\overline B$, while
+$x\notin B$ implies $F(x)\notin B$. Thus $F(x)\in\partial B$.
+Conversely, if $F(x)\in\partial B$, every relative neighborhood $U$ of $x$
+has open image $F(U)$ containing $F(x)$, hence meets $B$. Therefore $U$
+meets $F^{-1}B=B$; since $x\notin B$, it is a boundary point.
+\end{proof}
+
+\section{A self-consistent inverse contraction}
+Put $J=[-1/2,3/2]$. The inverse of the lifted branch is
+\[
+ b_r(z)=f_r^{-1}(z)=\frac{2z-r-1}{r+4-2rz},\qquad
+ f'_r(x)=\frac{4-r^2}{2(1+rx)^2},\qquad
+ \partial_r b_r(z)=-\frac{1-4b_r(z)^2}{4-r^2}.
+\]
+On any probability space, for a bounded $J$-valued random variable $Z$, solve
+\[
+ r=G(\E b_r(Z)),\qquad V(Z)=b_r(Z).                 \tag{1}\label{eq:V}
+\]
+The residual is increasing by at least the parameter increment, because
+$b_r$ decreases in $r$, and has opposite signs at $\pm A$. Thus the root
+exists uniquely. In particular its scalar derivative is at least~1.
+
+\begin{lemma}\label{lem:contract}
+On every real probability-space $L^2$, for bounded $J$-valued $Z,Z'$,
+\[
+ \norm{V(Z)-V(Z')}_2\le\frac{21}{25}\norm{Z-Z'}_2.
+\]
+The constant is uniform over the stated $A,B$ range.
+\end{lemma}
+\begin{proof}
+Interpolate $Z_t=(1-t)Z+tZ'$, and set $X_t=V(Z_t)$, with root $r_t$.
+For each fixed $A>0$, scalar implicit differentiation and differentiation
+under expectation are valid: all derivatives of $b_r$ are bounded on the
+compact rectangle $J\times[-2/5,2/5]$, the feedback is smooth, and the residual
+derivative is at least~1. Put $q=1-4X_t^2$, $g=G'(\E X_t)$,
+$\beta=g/(4-r_t^2)$ and let $D$ multiply by $f'_{r_t}(X_t)$. Differentiating
+(1) gives the identity
+\[
+ \dot X_t=\left(\id-\frac{\beta q\E}{1+\beta\E q}\right)D^{-1}\dot Z_t.
+                                                               \tag{2}
+\]
+This differentiates a bounded path, not a map on an unrestricted Banach-space
+neighborhood.
+
+We first show that the rank-one factor in (2) has squared norm at most
+$C=1+\beta/4$. Let $m=\E q$, $s=\E q^2$; then $m^2\le s\le m$.
+When $s>m^2$, in the orthonormal basis $\one,(q-m)/\sqrt{s-m^2}$ the factor
+has matrix
+\[
+ L=\begin{pmatrix}(1+\beta m)^{-1}&0\\
+ -\beta\sqrt{s-m^2}/(1+\beta m)&1\end{pmatrix}.
+\]
+It is the identity on the orthogonal complement. The lower diagonal entry
+of $C\id-L^*L$ is $\beta/4$, and direct expansion gives
+\[
+ \det(C\id-L^*L)=
+ \frac{\beta^2\bigl[(Cm-1/4)^2+C(m-s)\bigr]}{(1+\beta m)^2}\ge0.
+\]
+For $\beta>0$ these imply positive semidefiniteness. For $\beta=0$ the factor
+is the identity; constant $q$ gives a scalar contraction on constants and
+identity on their orthogonal complement. This proves the claimed bound.
+
+Set $a=|r_t|\le2/5$. The self-consistent tanh relation yields
+\[
+ 0\le g=B(1-r_t^2/A^2)\le16-100a^2,\qquad
+ \norm{D^{-1}}\le\frac{2+a}{2(2-a)}.
+\]
+Consequently the squared norm of the derivative in (2) is bounded by
+\[
+ U(a)=\frac{(2+a)^2}{4(2-a)^2}
+       \left(1+\frac{16-100a^2}{4(4-a^2)}\right)
+     =\frac{(2+a)(4-13a^2)}{2(2-a)^3}<\frac7{10}.
+\]
+The strict inequality on the entire closed interval follows from
+\[
+ 7(2-a)^3-5(2+a)(4-13a^2)
+   =172(a-13/43)^2+12/43+58a^3>0.
+\]
+Integrate (2) along the path and use $7/10<(21/25)^2$.
+\end{proof}
+
+We also need elementary uniform branch sensitivities, valid throughout the
+same rectangle:
+\begin{align}
+ 0<\partial_z b_r&\le\tfrac34,&|\partial_r b_r|&\le\tfrac{25}{96},\notag\\
+ |\partial_x\log f'_r(x)|&\le1,&
+ |\partial_r\log f'_r(x)|&\le\tfrac{35}{24}.          \tag{3}\label{eq:sens}
+\end{align}
+Indeed $1+rx\ge4/5$, $f'_r\ge4/3$, and
+$|\partial_r b_r|=(1-4b_r^2)/(4-r^2)\le25/96$.
+The last two logarithmic derivatives are $-2r/(1+rx)$ and
+$-2r/(4-r^2)-2x/(1+rx)$, respectively.
+
+\section{Backward correction of a central orbit}
+\begin{proposition}\label{prop:closure}
+Every $u\in W$ is an $L^1$ limit of densities $v_n$ with $F^nv_n=\one$.
+\end{proposition}
+\begin{proof}
+Work on the original probability space $(I,u(x)dx)$; write $\E$ for its
+expectation. Let $X_0(x)=x$, $X_{j+1}=T_{r_j}(X_j)$,
+$r_j=G(\E X_j)$ and $u_j=F^ju$, the density of $X_j$.
+Let $a_j\in\{0,1\}$ be its branch label, so
+$f_{r_j}(X_j)=X_{j+1}+a_j$. All $X_j$ are bounded; $u$ need not be in $L^2$.
+Fix $n\ge1$ and set $\epsilon=\norm{u_n-\one}_1$. Define
+\[
+ H_n(y)=-\tfrac12+\int_{-1/2}^y u_n(t)\,dt,\qquad Y_n=H_n(X_n).
+\]
+$H_n$ is absolutely continuous, nondecreasing, onto $I$, fixes both endpoints,
+and $\norm{H_n-\id}_\infty\le\epsilon$.
+The cumulative transform sends the nonatomic law of $X_n$ to uniform law,
+even if $H_n$ has flat intervals.
+
+Recursively for $j=n-1,\ldots,0$ define
+\[
+ Y_j=V(Y_{j+1}+a_j),\qquad \rho_j=G(\E Y_j).
+                                                               \tag{4}\label{eq:back}
+\]
+The branch-event sublaw of $Y_{j+1}$ is dominated by its total law. If the
+latter is absolutely continuous, each such sublaw is too, and its smooth
+inverse-branch pushforward is absolutely continuous. Starting from uniform
+$Y_n$, induction proves that every $Y_j$ has a density. The parameter in
+(4) is exactly its feedback, and $T_{\rho_j}(Y_j)=Y_{j+1}$ almost surely:
+away from endpoints, $b_{\rho_j}(Y_{j+1}+a_j)$ belongs to the branch $a_j$.
+Thus the density $v_n$ of $Y_0$ satisfies $F^nv_n=\one$. No independence of
+branch labels and later variables is assumed.
+
+Uniqueness in (1) also gives $X_j=V(X_{j+1}+a_j)$. The same labels cancel
+in the input difference, so Lemma~\ref{lem:contract}, with $\kappa=21/25$,
+gives
+\[
+ \norm{Y_j-X_j}_2\le\kappa^{n-j}\epsilon,
+ \quad\Delta_j:=|\rho_j-r_j|\le16\kappa^{n-j}\epsilon,
+ \quad \sum_{j<n}\Delta_j\le84\epsilon.              \tag{5}\label{eq:delta}
+\]
+The terminal estimate holds because $H_n$ displaces by at most $\epsilon$;
+the feedback estimate uses Cauchy--Schwarz on a probability space.
+
+Define deterministic maps backward on each old branch by
+\[
+ H_j(x)=b_{\rho_j}\bigl(H_{j+1}(T_{r_j}(x))+a_j(x)\bigr).
+                                                               \tag{6}\label{eq:H}
+\]
+Here $a_j(x)$ is the label for $T_{r_j}$ at a point in $I$, not a new random
+label; evaluated at $X_j$ it is the label used in (4).
+Since $H_{j+1}$ fixes the endpoints, the two limits at the old cut in (6)
+are both $b_{\rho_j}(1/2)=-\rho_j/4$. Each $H_j$ is therefore continuous,
+nondecreasing and onto, fixes the endpoints, and $Y_j=H_j(X_j)$.
+It is absolutely continuous: on each branch the inner old map is smooth
+bi-Lipschitz, the later map is absolutely continuous, and the outer inverse
+branch is smooth Lipschitz. The finitely many branches glue continuously.
+This argument permits flats and does not assume that arbitrary compositions
+of absolutely continuous maps are absolutely continuous.
+
+Put $d_j=\norm{H_j-\id}_\infty$. Equations (3) and (6) give
+\[
+ d_j\le\tfrac34d_{j+1}+\tfrac{25}{96}\Delta_j,\qquad d_n\le\epsilon.
+\]
+Iterating and then summing, using (5), yields
+\[
+ d_0\le\tfrac{183}{8}\epsilon,\qquad
+ \sum_{j<n}d_j\le3\epsilon+\tfrac{25}{24}\sum_{j<n}\Delta_j
+                  \le\tfrac{181}{2}\epsilon.          \tag{7}\label{eq:d}
+\]
+Every fixed finite old cylinder map is smooth bi-Lipschitz onto its image,
+so it pulls exceptional derivative-null sets back to null sets. The chain
+rule applied on these cylinders gives, for Lebesgue-a.e. $x$,
+\[
+ H_0'(x)=u_n(X_n(x))R_n(x),\qquad
+ R_n(x)=\prod_{j<n}
+   \frac{f'_{r_j}(X_j(x))}{f'_{\rho_j}(H_j(X_j(x)))}.
+\]
+This makes sense for merely integrable $u_n$; it divides by no density.
+Equations (3), (5), and (7) show
+\[
+ |\log R_n|\le\sum_{j<n}d_j+\tfrac{35}{24}\sum_{j<n}\Delta_j
+                 \le213\epsilon.                     \tag{8}\label{eq:log}
+\]
+
+The integral required next is against Lebesgue measure, not against $u\,dx$.
+For the external sequence of old parameters let
+$c_n=P_{r_{n-1}}\cdots P_{r_0}\one$. Then $c_n\le2$. For completeness, the
+source integral-representation identities \cite[Section~4.1]{BKZ} give
+\[
+ w_y(x)=\frac{1-y^2/4}{(1-xy)^2},\quad |y|\le2/3,\qquad
+ P_rw_y=p_r(y)w_{\sigma_r(y)}+(1-p_r(y))w_{\tau_r(y)},
+\]
+where
+\[
+ p_r(y)=\tfrac12-\frac{r+y}{4+ry},\quad
+ \sigma_r(y)=\frac{2(y+r)}{(r+1)y+r+4},\quad
+ \tau_r(y)=\frac{2(y+r)}{(r-1)y-r+4}.
+\]
+Direct substitution in the two inverse branches proves the identity.
+For $|r|\le2/5$, $|y|\le2/3$ the weight is in $[0,1]$, both images remain
+in $[-2/3,2/3]$, and $1/2\le w_y\le2$.
+Since $\one=w_0$, induction gives $c_n\le2$.
+Transfer duality and monotone truncation therefore imply
+\[
+ \int_I|u_n(X_n(x))-1|\,dx
+   =\int_I|u_n(y)-1|c_n(y)\,dy\le2\epsilon.
+\]
+Together with (8) this proves
+\[
+ \norm{H_0'-\one}_1\le2\epsilon e^{213\epsilon}+e^{213\epsilon}-1.
+                                                               \tag{9}\label{eq:derivative}
+\]
+
+Finally, any absolutely continuous nondecreasing onto map $H:I\to I$
+satisfies $H_*(H'dx)=dx$, by applying the fundamental theorem of calculus to
+antiderivatives of continuous test functions. Flat intervals are allowed.
+Write $\norm{\cdot}_{\rm TV}$ for the full variation norm of a finite signed
+measure, equal to the $L^1$ norm for its density. Pushforward contracts this
+norm. For continuous $g$, comparison with $g(H)H'dx$ gives
+\[
+ \norm{H_*(g\,dx)-g\,dx}_{\rm TV}
+ \le\omega_g(\norm{H-\id}_\infty)+\norm{g}_\infty\norm{H'-\one}_1,
+                                                               \tag{10}
+\]
+where $\omega_g$ is its modulus of continuity. Although $H_*(g\,dx)$ may
+have atoms, (10) is a measure inequality and remains valid. The actual
+$H_{0*}(u\,dx)=v_n\,dx$ is already absolutely continuous by (4).
+For any continuous approximation $g$ to the fixed $u$, (7), (9), and (10)
+yield
+\[
+ \norm{v_n-u}_1\le2\norm{u-g}_1+
+ \omega_g(183\epsilon/8)+\norm{g}_\infty
+                  (2\epsilon e^{213\epsilon}+e^{213\epsilon}-1).
+\]
+As $u\in W$, $\epsilon\to0$. First fix $g$ and let $n\to\infty$, then let
+its approximation error tend to zero. This proves $v_n\to u$ in $L^1$,
+without any attraction-rate hypothesis.
+\end{proof}
+
+\section{Completion, scope and verification}
+Every finite preimage of $\one$ belongs to $W$, and $W$ is closed; together
+with Proposition~\ref{prop:closure} this proves the closure identity.
+The cited boundary seed and Lemma~\ref{lem:open} place every such preimage in
+both basin boundaries. Boundary closedness then gives
+$W\subseteq\partial_\D B_\pm$. Conversely, no point of either disjoint open
+stable basin can be in either boundary, and global three-limit convergence
+exhausts $\D$. Thus $\partial_\D B_\pm\subseteq W$, completing
+Theorem~\ref{thm:main}.
+
+The result concerns the specified feedback and rectangle; it does not resolve
+the separate finite-particle limiting-mixture question, extend to $A=0$ or
+$B=6$, or assert a nonlinear $L^1$ differentiable stable manifold.
+The proof is analytic. The accompanying verification supplement retains the
+submitted exact identities and interval certificate, the sharper polynomial
+certificate above, rough-density/zero-fiber controls, source identities,
+and a dated bounded priority audit. Numerical controls are labeled
+corroboration and are not used to prove the infinite-dimensional theorem.
+The source audit distinguishes accessible preprint versions from the final
+journal version, whose proof text was not obtained. The original OWR statement
+postdates the journal publication and explicitly formulates this conjecture.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively for proof development, verification,
+literature research, manuscript preparation, and adversarial review.
+The independent adversarial reviews were performed by AI agents.
+This is an unrefereed preprint and has not undergone independent external
+human peer review. Responsibility for its contents rests with the author.
+
+\begin{thebibliography}{9}
+\bibitem{BKZ}
+J.-B. Bardet, G. Keller, and R. Zweim\"uller,
+\emph{Stochastically stable globally coupled maps with bistable thermodynamic
+limit}, Communications in Mathematical Physics \textbf{292} (2009),
+237--270, \href{https://doi.org/10.1007/s00220-009-0854-9}{doi:10.1007/s00220-009-0854-9}.
+Accessible proof version: \href{https://arxiv.org/abs/0812.4040v1}{arXiv:0812.4040v1};
+also \href{https://mat.univie.ac.at/~zweimueller/MyPub/bkz.pdf}{author-hosted manuscript}.
+\bibitem{OWR}
+\emph{Mini-Workshop: Spectrum of Transfer Operators---Recent Developments and Applications},
+Oberwolfach Reports \textbf{6} (2009), no.~4, report~49,
+\href{https://doi.org/10.4171/OWR/2009/49}{doi:10.4171/OWR/2009/49}.
+G. Keller, \emph{Self-consistent Perron-Frobenius operators for globally coupled maps},
+pp.~2713--2715.
+\end{thebibliography}
+\end{document}

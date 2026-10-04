@@ -1,0 +1,17 @@
+{
+  "original_collector_sha256": "9cfeaa5d0bcfda4f659e0b9746a66fc4a9519f29fd8afcc01709630e6d9f3299",
+  "revised_collector_sha256": "05ad1f7f935f88708a6d17bc7a075c01e6b42007b618591aa69cfd5ea2f6f047",
+  "replacements": [
+    {
+      "before": "value = value.replace(str(private), str(REPO))",
+      "after": "value = value.replace(str(private), str(REPO))\n            value = value.replace(str(REPO), '/Users/alec/Documents/Math')"
+    },
+    {
+      "before": "execution['stderr_tail'].replace(str(private), str(REPO))",
+      "after": "normalize(execution['stderr_tail'])"
+    }
+  ],
+  "original_wrapper_sha256": "57ff03108f0409a2d80a6b924cc4c881f869f686218dd620b2655a4c21602dce",
+  "revised_wrapper_sha256": "54d8adeaa8ba517f60e7ebec14a9968e4690b3bd3229222d669504ea9f18fa62",
+  "purpose": "Restore original repository absolute paths symmetrically for full dated receipt comparison after nested private hierarchy transport; every comparison remains equality, no failure outcome excluded."
+}

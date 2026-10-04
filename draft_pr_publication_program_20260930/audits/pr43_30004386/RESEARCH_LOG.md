@@ -1,0 +1,1 @@
+2026-10-02T23:10:13.989021+00:00 — Begin PR43 source-first review of exact original cube-projection LDP/limit-set target and prior published resolution. Status hypothesis already_solved; discovery0%, audit0%, originalbudget unknown until full ledger inspection. Main branch; no outside human contact. Original Git objects not local; readonly original-head fetch required.

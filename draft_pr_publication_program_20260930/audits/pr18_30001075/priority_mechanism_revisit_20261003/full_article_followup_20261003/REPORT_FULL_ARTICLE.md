@@ -1,0 +1,64 @@
+# PR18: full published-article priority follow-up
+
+2026-10-03 UTC. This report supersedes the combined-article access limitation in the dated parent `REPORT.md` for the current decision. That report and its SOURCE_RECEIPT remain unchanged as historical records. This is continuing priority verification, with new attempt/audit/novelty credit0; it is not another blind proof review. ROOT remains responsible for priority adjudication and publication.
+
+**Result:** I personally read all30 pages of the actual published article, including every proof presented there, its additional constructions, remarks and bibliography. No exact prior resolution of the spatial tritangent nullness claim, or complete dependency adapter to it, was found in this article. The previously unresolved full-article access concern is now resolved by direct reading. This finding does not assert exhaustive worldwide priority or reconstruct all imported background theorems.
+
+## Actual source and reading
+
+The human supplied `/Users/alec/Downloads/Some-New-Results-on-Geometric-Transversals.pdf`:596169 bytes, SHA256 `478c879b6fea91b1aa17b0ea90172c10e01432b90e11c0873881f864151fdafc`, full mode077770644. The source identifies Cheong–Goaoc–Holmsen, *Some New Results on Geometric Transversals*, Discrete & Computational Geometry72 (2024),674–703, [DOI10.1007/s00454-023-00573-2](https://link.springer.com/article/10.1007/s00454-023-00573-2). Printed p674 records online publication16November2023. The local body was measured before and after extraction/rendering and remained identical. PDF metadata dates are not substituted for these publication facts.
+
+Owned operator95874 ran pdfinfo child95884 and pdftotext child95889. Both exited0 with complete saved stdout807/94676 bytes respectively and empty stderr. Their genuine UTC intervals, executable/source pins, complete prelaunch operator bodies, full streams and30 per-page extracted-body pins are recorded in `EXTRACTION_RECEIPT.json` and the excluded private capture files. This is extraction provenance, not a claim that extraction itself performs personal reading.
+
+I then read complete extracted pages1–30, printed674–703, in six untruncated five-page tool reads. All statements, proofs, further remarks, acknowledgements and references were included. I visually inspected PDF pages5,11,15,17,20,21,24,25,28 (printed678,684,688,690,693,694,697,698,701). This resolved extraction loss of nonempty-intersection signs and verified the exact k-flat and Mnëv statements. Operator97274 rendered these pages with actual children97275–97279 and97282–97285, all exit0/stdout0/stderr0; `RENDER_RECEIPT.json` binds each image and full stream. Personal reading was complete by21:19:47 UTC. No all-page pixel inspection is claimed.
+
+The supplied PDF stays in Downloads; it is not copied into a public package. Bulk text, page text, PNGs and full extraction/render captures remain under ignored `private_inputs/`. Only authored reports/code and provenance metadata are handoff material. Neither the corpus nor copyrighted publication bodies are redistributed. The full published article is no longer an unseen-body qualification; reading limits below concern imported background and wider literature.
+
+## Exact comparison with PR18
+
+The target is Conjecture4, §13, printed2552 of official Oberwolfach Report44/2008: the spatial union of entire lines, each meeting three disjoint convex sets in R^3 and contained in a supporting plane of each, lies in a measure-zero set. Supporting planes need not agree. Current candidate SHA256 remains `8ac19b70bd9081107e903ca47bb9dd6ad05274f604d03000a7fd18e3cfb3bf12`. Nonclosed, unbounded, lower-dimensional, nonsmooth and prescribed exceptional configurations are included. This differs from existence of a meeting flat and from measure/topology in four-dimensional line space.
+
+The independently checkable comparison uses the parent report's three dependencies: countable Lipschitz bitangent charts; almost-everywhere rank<=1 at three distinct actual contact heights on a measurable parameter subset; and the null three-dimensional spatial sweep through the quadratic determinant/area formula. This is an adapter criterion, not an assertion that every possible proof must have that form.
+
+The publication's substantive mechanisms are fully accounted for:
+
+| Published locator | Mechanism actually read | Relation to the required conclusion |
+|---|---|---|
+| Theorem1.1, p676; all §2, pp681–684 | Finite weak-net counterexamples; hyperbolic-paraboloid selection; coloring compactness; finite inflation/perturbation; higher-dimensional and k-flat lifts. | Finite meeting/missing information has no control of the continuum of three support-contact lines or its spatial measure. |
+| Proposition1.2, p677; all §3, pp684–689 | Stable red/blue line-selection obstruction, using planar separated rays, triangles and diagonal projections. | It constrains which finite line collections a convex set can meet. It is not a tritangent-locus bound. |
+| Theorem1.3, p678; all §4 proof, pp689–692 | For disjoint open convex sets, path-connected non-transversal directions; contractible direction components; projection with convex fibers; Vietoris–Begle yields acyclic meeting-line components. | The locus is interior-meeting transversals. Neither the path construction nor its homology transfer estimates contact derivatives or spatial sweep volume. |
+| Further remarks, pp692–693, including Conjecture4.5 and the Mnëv sketch | Compact-Cantor line/direction examples; openness/compactness warning; higher-dimensional line conjecture; homotopy universality for higher k-flats. | These are topological scope results. The explicit universal range excludes lines in R^3. |
+| Theorem1.4, p679; all §5, pp694–696 | Optimal-dimensional colorful existence, Radon/separation lemmas, a join of spheres and a Borsuk–Ulam contradiction. | Colorful intersection hypotheses give existence of some meeting flat. They impose no support-contact or swept-volume conclusion for a fixed disjoint triple. |
+| Theorem1.5, pp680–681; all §6, pp697–700; Theorem6.2 and remarks, p701 | Order-type/Radon conditions; finite witness polytopes; homogenization; equivariant simplicial maps; colorful/matroid hyperplane existence. | The conclusion is a meeting hyperplane. Finite witnesses and this existential conclusion do not preserve the target tangency locus. Theorem6.2 is stated without proof in this publication; its referenced preliminary version was already inspected in the parent revisit. |
+
+No presented theorem concludes tangent-line rectifiability, almost-everywhere contact rank, or a null spatial tritangent union. The fact that hyperplane tangency occurs in the proof's cell-decomposition discussion (p699) does not change the quantified conclusion of that proof: it identifies which finite polytopes lie strictly to one side of a moving hyperplane, in order to construct a continuous equivariant map.
+
+## Exact published additions and attempted adapters
+
+**General k-flats:** pp683–684 take R^(k+2)=V×W, V=R^3, W=R^(k-1), and lift chosen ruling lines to k-flats by products. A suitable three-dimensional affine slice reduces a finite red/blue selection instance back to Lemma2.1. Compactness and perturbation then extend the finite weak-net construction. The geometric slice selection concerns finitely many specified flats. It does not parametrize every common tangent of any prescribed convex pair, nor constrain a family of support contacts. An attempted application to PR18 would need precisely the additional continuous-family/contact estimates absent from the conclusion. The occurrence of an almost-everywhere slice choice does not supply an almost-everywhere contact-rank theorem.
+
+**Mnëv:** p693, immediately after Conjecture4.5, explicitly states universality for 3<=k<=d-3: spaces of k-transversals can be homotopy equivalent to any given semialgebraic set. The sketch uses affine dependencies, orthants sliced into disjoint open simplices, and oriented-matroid realization spaces. It is an existence/construction statement about possible homotopy types in higher-dimensional flat spaces. PR18 has k=1,d=3, outside that stated range. Even in the universal range, a homotopy equivalence gives no metric derivative, Hausdorff-size or spatial-volume control. Projecting or slicing this construction down to PR18 would require a new theorem preserving simultaneous meeting/supporting-plane contacts and the relevant sweep; no such theorem or adapter is presented.
+
+The publication also corrects a detail visible in the inspected HTML topology preprint: p693 uses the plane z=4x+1 in the compact construction. For its point (x,y,z)=(1/(c-4),c,c/(c-4)), direct algebra gives z-4x=1. The prior HTML's z=4y+1 wording is not used for this follow-up. This is a reason to read the actual body, not to claim that all remaining published/preprint bytes are equivalent. It does not add a nullness theorem.
+
+## Scope controls and the central distinction
+
+The parent report's exact controls remain valid authored deductions, and the existing actual finite control is preserved as historical rather than rerun or credited as new proof:
+
+- A smooth contractible two-parameter family of vertical lines sweeps all R^3; an equally smooth contractible two-parameter family of lines contained in y=0 sweeps only that plane. In the same coordinates their determinant polynomials are1 and0. Thus line-space dimension, rectifiability and topology alone do not determine spatial measure.
+- Three disjoint open balls have an open four-dimensional set of meeting-line transversals whose union contains an open cylinder. Their meeting/supporting-plane tangent-line locus is empty. Theorem1.3 therefore cannot be applied by replacing the two loci with each other.
+- Three separated unit balls admit a vertical common tangent with different normals and no common supporting plane containing it. A hyperplane-transversal theorem is not a common-support-line theorem.
+
+There is a further direct obstruction to using §6's finite witness reduction as a tangency-preserving reduction. Let P=[-1/4,1/4]^3 lie inside the unit ball C. The vertical line x=1/4,y=0 meets P and lies in its supporting plane x=1/4. It crosses the interior of C. Consequently an inner witness polytope's tangent line need not be tangent to the original body. Meeting transversality passes upward under inclusion; tangency does not. This elementary deduction is independent of finite tests and does not dispute the publication's legitimate meeting-transversal reduction.
+
+Openness cannot be silently removed from the topology theorem either. Its own compact construction on p693 explains that taking interiors can remove all transversals, while inflation changes the direction/transversal space. Approximation would need a separate estimate controlling the limit of spatial null sets; nullness of approximants alone would not be enough.
+
+These observations do not prove that the publication can never inspire a different proof. They establish that the actual stated results and proof operations do not already imply the exact target through the suggested adapters. Reopening a priority concern requires a concrete additional implication with matching contact and spatial quantifiers.
+
+## Scientific recommendation and remaining limits
+
+The old full30-page article concern is now resolved: this family has directly inspected the supplied published body and both previously documented additions. No material prior-resolution conflict was found there. The earlier bounded search also found no complete adapter in the selected2026 existence theorem or previously inspected rectifiability/hyperplane/congruence results. Established analytic, focal and measure-theoretic ingredients remain attributed.
+
+The historical problem provenance remains official OWR2008 Conjecture4 plus the archived author-hosted2011 manuscript's explicit compact-convex measure question on p11. These establish a genuine historical open problem. They do not certify current openness or earliest priority. The original and current candidate bodies are unchanged.
+
+I recommend that ROOT remove the combined-article access hold when making its new priority decision, while retaining a bounded literature qualification and avoiding a worldwide-first or exhaustive-search claim. Confidence is high in this full-article scope comparison and its explicit non-adapters. Wider inaccessible/uninspected literature remains a normal bounded-priority limit, not a verified scientific conflict. Imported Mnëv, Vietoris–Begle, Borsuk–Ulam and oriented-matroid theorems were read as dependencies used by this article; their entire original proofs were not independently recertified here. No publication clearance, native acceptance, new attempt, or ROOT approval is asserted by this report.

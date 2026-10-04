@@ -318,12 +318,25 @@ def verify(deposit: dict, metadata: dict, files: list[dict]) -> list[dict]:
             and re.fullmatch(r"(?:<p>[^<>]*</p>)+", value) is not None
             and remote_value == value.replace("\u2019", "'")
         )
-        if remote_value != value and not (escaped_plain_text or paragraph_apostrophes):
+        # The deposition API adds null for an omitted creator affiliation.
+        # Preserve supplied fields and order; accept only that exact addition.
+        creator_null_affiliation = (
+            key == "creators" and isinstance(value, list)
+            and isinstance(remote_value, list) and len(remote_value) == len(value)
+            and all(isinstance(wanted, dict) and isinstance(actual, dict)
+                    and (actual == wanted or
+                         ("affiliation" not in wanted
+                          and actual == {**wanted, "affiliation": None}))
+                    for wanted, actual in zip(value, remote_value))
+        )
+        if remote_value != value and not (escaped_plain_text or paragraph_apostrophes
+                                         or creator_null_affiliation):
             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
         if remote_value != value:
             normalizations.append({"field": key, "kind": (
                 "plain_text_html_entities" if escaped_plain_text
-                else "paragraph_apostrophes_u2019_to_ascii")})
+                else "paragraph_apostrophes_u2019_to_ascii" if paragraph_apostrophes
+                else "omitted_creator_affiliation_to_null")})
     remote_files = server_files(deposit)
     expected = {f["name"] for f in files}
     if set(remote_files) != expected:

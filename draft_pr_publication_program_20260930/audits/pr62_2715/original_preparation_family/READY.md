@@ -1,0 +1,13 @@
+# PR62 original SOURCE handoff conditions
+
+2715/KP1.56: **unsolved1/5**, original substantive attempts1, new0/audit0/novelty0, no paper/DOI. Literal endpoint-isotopy question and both remarks were read in the pinned private K3 text LF2867-2893. Original17 bodies remain unchanged. Current precision is mandatory in SOURCE_PRECISION_QUALIFICATION.md: endpoint isotopy is the target, not product isotopy of a particular annulus; Boninger's page range is81-95. Original dated triage/bibliography are archived verbatim.
+
+Head98cc2821e9376507caf2d2c57414f7c7e7719c1b; base/common merge-basec6975ca76f9f667f1250ba403d0e6da2aafe14d0. Complete GitHub scientific tree/17blob bodies and18diff paths were authenticated with full actual command streams. Raw prior ABSENT/selectednull differs from SQL TEXT `{}` through its measured missing-report default; the unsolved1/5 historical ledger is not reset. No native/Git/ref/index/PR/remote mutation.
+
+Original564 and historical20223 finite diagnostics reproduced exact archived bytes. First successful captures have unmeasured historical optimization/debug state. Separate later exact-body guarded replays use-E-B/no-O, with actual separate same-flags optimize0/debugtrue probes; full sources, streams, PIDs and UTC are retained. These are finite algebra/logical checks, not knot Floer computations or universal geometric proof. Known imported rigidity cases are credited; the arbitrary-successor endpoint-isotopy gap remains.
+
+Primary reading is bounded exactly by PRIMARY_READING_RECEIPT.json; inaccessible Boninger publisher-PDF and Agol DOI attempts are preserved as access limitations. No underlying imported-theorem/TQFT reconstruction, exhaustive priority, figure reading or full-publication comparison is certified. Private corpus/cache references stay external and are not part of fixed SOURCE custody. No third-party full papers or images are redistributed.
+
+SOURCE.json is self-excluded and binds complete bytes, SHA256, full07777 modes and exact regular-file/directory topology. Only a successful separate own final reader confirms the finished freeze; its genuine capture lies outside this fixed packet within A62. Preseal ENOSPC events are recorded, including the observed unchanged helper and absent SOURCE/READY at that checkpoint. No historical seal was rewritten.
+
+ROOT_verify_original.py, ROOT_close_original.py and ROOT_readback_original.py are unexecuted and unimported by the preparer; source/syntax was read only. Invoke under separate ROOT-owned captures with-E-B/no-O. The closer enforces an outside-packet receipt within A62. Their future use establishes custody only, and remains pending here. No ROOT scientific adjudication, native acceptance, merge, publication or DOI is inferred or created.

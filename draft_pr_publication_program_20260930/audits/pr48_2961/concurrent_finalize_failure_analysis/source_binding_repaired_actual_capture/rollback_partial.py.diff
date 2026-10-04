@@ -1,0 +1,83 @@
+--- historical_v1/rollback_partial.py
++++ operative/rollback_partial.py
+@@ -1,6 +1,7 @@
+ """UNEXECUTED ROOT-only exact selected rollback; never runs original helpers."""
+ from pathlib import Path, PurePosixPath
+ import argparse
++import base64
+ import datetime as dt
+ import hashlib
+ import json
+@@ -93,7 +94,8 @@
+     start = dt.datetime.now(dt.timezone.utc).isoformat()
+     child = subprocess.Popen(argv, cwd=R, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
+     out, err = child.communicate()
+-    COMMANDS.append(dict(argv=argv, cwd=str(R), pid=child.pid, started_utc=start, finished_utc=dt.datetime.now(dt.timezone.utc).isoformat(), exit_code=child.returncode, actual_execution=True, completed=True, stdout_utf8=out.decode(), stderr_utf8=err.decode(), stdout_bytes=len(out), stdout_sha256=sha(out), stderr_bytes=len(err), stderr_sha256=sha(err)))
++    # Raw-reversible recording precedes any strict interpretation of returned bytes.
++    COMMANDS.append(dict(argv=argv, cwd=str(R), pid=child.pid, started_utc=start, finished_utc=dt.datetime.now(dt.timezone.utc).isoformat(), exit_code=child.returncode, actual_execution=True, completed=True, stream_encoding='base64-of-entire-raw-stream', stdout_base64=base64.b64encode(out).decode('ascii'), stderr_base64=base64.b64encode(err).decode('ascii'), stdout_bytes=len(out), stdout_sha256=sha(out), stderr_bytes=len(err), stderr_sha256=sha(err)))
+     need(child.returncode == 0 and not err, 'Actual readonly command failure retained')
+     return out
+ 
+@@ -273,7 +275,7 @@
+         for row in plan['fixed_failed_evidence']:
+             checked(row)
+         put(D / 'COMMANDS.json', encode(COMMANDS))
+-        receipt = dict(schema='pr48-genuine-exact-partial-V6-rollback/v1', status='PASS_EXACT_SELECTED_ROLLBACK_ONLY', actual_execution=True, actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), source=source_before, plan=ref(P / 'PLAN.json'), quarantine_receipt=ref(D / 'QUARANTINE_RECEIPT.json'), complete_operations=operations, retained_count=11, original_failed_capture_rewritten=False, other1951_canonical_bodies_unchanged_and_full0444=True, restored4_ADMIN_full0644=True, inventory_restored_exact=True, original1955_pending_topology_restored=True, current_head=BASELINE['current_head'], current_index=BASELINE['current_index'], runtime_outside_baseline=ref(A / 'root_partial_finalize_v6_rollback_lock_evidence/CURRENT_OUTSIDE_BASELINE.json'), complete_current_outside_rows=BASELINE['protected_rows'], unrelated_native12=plan['unrelated_native12'], original_known_protected_paths=[z['path'] for z in plan['foreign_rows']], owned_logs=plan['owned_logs'], readonly_commands=ref(D / 'COMMANDS.json'), Git_index_body_or_ref_or_staging_mutated=False, V7_execution_or_acceptance_approved=False)
++        receipt = dict(schema='pr48-genuine-exact-partial-V6-rollback/v1', status='PASS_NATIVE_CRITICAL_CHECKS_PENDING_LOCK_RELEASE', overall_rollback_success_claimed=False, lock_release_pending=True, actual_execution=True, actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), source=source_before, plan=ref(P / 'PLAN.json'), quarantine_receipt=ref(D / 'QUARANTINE_RECEIPT.json'), complete_operations=operations, retained_count=11, original_failed_capture_rewritten=False, other1951_canonical_bodies_unchanged_and_full0444=True, restored4_ADMIN_full0644=True, inventory_restored_exact=True, original1955_pending_topology_restored=True, current_head=BASELINE['current_head'], current_index=BASELINE['current_index'], runtime_outside_baseline=ref(A / 'root_partial_finalize_v6_rollback_lock_evidence/CURRENT_OUTSIDE_BASELINE.json'), complete_current_outside_rows=BASELINE['protected_rows'], unrelated_native12=plan['unrelated_native12'], original_known_protected_paths=[z['path'] for z in plan['foreign_rows']], owned_logs=plan['owned_logs'], readonly_commands=ref(D / 'COMMANDS.json'), Git_index_body_or_ref_or_staging_mutated=False, V7_execution_or_acceptance_approved=False)
+         environment()
+         canonical(expected)
+         return receipt
+@@ -305,6 +307,8 @@
+     exclusive_create_returned = False
+     written = 0
+     result = None
++    critical_result_retained = False
++    commands_retained = False
+     error = None
+     release = None
+     try:
+@@ -325,9 +329,18 @@
+         put(directory / 'LOCK_OWNERSHIP.json', encode(dict(schema='pr48-actual-owned-index-coordination-lock/v1', actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), path=str(lock), device=owned[0], inode=owned[1], full_mode=0o600, body_bytes=len(token), body_sha256=sha(token), body=ref(directory / 'PROPOSED_LOCK_BODY.bin'), exclusive_creation_completed=True)))
+         # All current HEAD/index baseline reads in main occur after exclusive acquisition.
+         result = main()
++        # Retain the actual completed native checks before release; this is not overall success.
++        put(directory / 'NATIVE_CRITICAL_RESULT.json', encode(result))
++        critical_result_retained = True
+     except BaseException:
+         error = traceback.format_exc()
+     finally:
++        # Includes prequarantine failures and the final commands after D/COMMANDS was written.
++        try:
++            put(directory / 'READONLY_COMMANDS.json', encode(dict(schema='pr48-actual-rollback-entire-entry-readonly-commands/v1', actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), complete_commands=COMMANDS, native_critical_result_retained=critical_result_retained, overall_rollback_success_claimed=False)))
++            commands_retained = True
++        except BaseException:
++            error = (error or '') + traceback.format_exc()
+         if owned is None:
+             release = dict(released=False, exclusive_create_returned=exclusive_create_returned, ownership_identity_obtained=False, unproved_or_existing_lock_not_removed=True)
+         else:
+@@ -341,13 +354,20 @@
+             except BaseException:
+                 release = dict(released=False, own_lock_created=True, foreign_or_altered_lock_not_removed=True, error=traceback.format_exc())
+                 error = (error or '') + release['error']
+-        put(directory / 'LOCK_RELEASE_RECEIPT.json', encode(release))
++        try:
++            put(directory / 'LOCK_RELEASE_RECEIPT.json', encode(release))
++        except BaseException:
++            error = (error or '') + traceback.format_exc()
+     if error is not None:
+-        put(directory / 'RUN_FAILURE.json', encode(dict(schema='pr48-actual-rollback-and-lock-failure/v1', actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), error=error, lock_release=release, index_body_or_ref_or_staging_written=False, native_restore_success_claimed=False)))
++        put(directory / 'RUN_FAILURE.json', encode(dict(schema='pr48-actual-rollback-and-lock-failure/v1', actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), error=error, lock_release=release, index_body_or_ref_or_staging_written=False, overall_rollback_success_claimed=False, completed_native_critical_result=result, completed_native_critical_result_retained=critical_result_retained, entire_readonly_commands_retained=commands_retained, entire_readonly_commands=COMMANDS if not commands_retained else None)))
+         raise ValueError('Actual rollback/lock failure retained; ROOT inspection required: ' + error)
+-    need(result is not None and release['released'] is True and ref(Path(__file__))['sha256'] == sha(source), 'Actual rollback and exact owned-lock release completed')
+-    result.update(coordination_lock_metadata_created_and_removed=True, lock_ownership=ref(directory / 'LOCK_OWNERSHIP.json'), lock_release=ref(directory / 'LOCK_RELEASE_RECEIPT.json'), source_prelaunch=ref(directory / 'PRELAUNCH_SOURCE.py'), index_identity_interval='entire owned-lock critical section; no promise about later background refresh')
+-    put(A / 'ROOT_PARTIAL_FINALIZE_V6_ROLLBACK_RECEIPT.json', encode(result))
++    try:
++        need(result is not None and release['released'] is True and commands_retained and critical_result_retained and ref(Path(__file__))['sha256'] == sha(source), 'Actual rollback, retained critical result/commands and exact owned-lock release completed')
++        result.update(status='PASS_EXACT_SELECTED_ROLLBACK_ONLY', overall_rollback_success_claimed=True, lock_release_pending=False, native_critical_result=ref(directory / 'NATIVE_CRITICAL_RESULT.json'), readonly_commands=ref(directory / 'READONLY_COMMANDS.json'), coordination_lock_metadata_created_and_removed=True, lock_ownership=ref(directory / 'LOCK_OWNERSHIP.json'), lock_release=ref(directory / 'LOCK_RELEASE_RECEIPT.json'), source_prelaunch=ref(directory / 'PRELAUNCH_SOURCE.py'), index_identity_interval='entire owned-lock critical section; no promise about later background refresh')
++        put(A / 'ROOT_PARTIAL_FINALIZE_V6_ROLLBACK_RECEIPT.json', encode(result))
++    except BaseException:
++        put(directory / 'FINAL_RECEIPT_PUBLICATION_FAILURE.json', encode(dict(schema='pr48-actual-rollback-final-publication-failure/v1', actual_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), error=traceback.format_exc(), native_critical_result=ref(directory / 'NATIVE_CRITICAL_RESULT.json'), readonly_commands=ref(directory / 'READONLY_COMMANDS.json'), lock_release=release, overall_rollback_success_receipt_publication_completed=False, index_body_or_ref_or_staging_written=False)))
++        raise
+     print(json.dumps(dict(status=result['status'], receipt=ref(A / 'ROOT_PARTIAL_FINALIZE_V6_ROLLBACK_RECEIPT.json'), quarantine_count=11, own_coordination_lock_released=True, V7_execution_or_acceptance_approved=False)))
+ 
+ if __name__ == '__main__':

@@ -1,0 +1,4 @@
+# Frozen first candidate research log
+
+- 2026-10-04T14:19:46Z: After explicit proof-only release, read all of TURN_1.md and pinned its SHA256. Independently checked the literal all-normalizer lemma using tightness and deterministic cluster points, including zero, finite-positive, infinity, oscillatory and atom-at-zero alternatives. Reconstructed the candidate probability dependencies and truncated-mean identity algebraically. No mathematical defect found in this first proof-level read; author-code consistency remains uninspected. Best-guess audit completion: 65%. Original author turn count: 1/5.
+- 2026-10-04T14:19:46Z: Froze FIRST_CANDIDATE_ASSESSMENT.md and this log before author-code or inherited-review access. Source-first checkpoint bytes/modes left unchanged. No Git mutation, external communication or failed actual execution occurred. Awaiting further explicit release.

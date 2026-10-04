@@ -98,3 +98,7 @@ This is a precise unresolved gap, not a counterexample to those targets.
 Current workflow remains pending independent-family closure, corrected
 current administration, and a NEW whole-package adversarial gate. No paper,
 new DOI, tracker row, external human review or outside outreach is claimed.
+
+## ROOT_FINAL_CURRENT_ADDENDUM — 2026-10-02T08:24:04.068101+00:00
+
+Root has now read the complete three-page primary Hamilton1954 proof, printed pp522–524, PDF SHA256d5078dc430f11464abea5bee8e3b72a1b50958b9fd1aee185dbabc7c461a2fbd. The earlier dated statement that this reading awaited completion is preserved as historical evidence. The fixed-point argument imports the stated planar/Jordan foundations; this audit does not claim to recertify all their underlying theory. Root also independently read the complete operative Kolev–Pérouème2009v3 theorem/proof and applicable Boroński argument. The1998 journal printed corollary passage remains unverified, so current wording must identify the directly inspected2009v3 source precisely. These are source-verification clarifications, with zero new substantive proof attempts.

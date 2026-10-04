@@ -1,0 +1,13 @@
+Sealed 2026-10-02T09:48:38.476304+00:00, before reading original PARTIAL/code/reviews.
+
+# Independent primary-target and mechanism seal
+
+Primary Problem 8 defines two-sided Brownian motion by the existence of a random time S for which the two outward increment processes are independent standard Brownian motions. A scaling limit at deterministic 0 is strictly a partial result and does not supply such S. The source imposes independent pairs (T_k,B^k stopped on [0,T_k]), no identical distribution, 0<=T_k<infinity, divergent positive and negative sums, and deterministic T_k<c for all integers. Source endpoint S_0=0, S_{k+1}-S_k=T_k, X_0=0. Zero durations do not contribute paths; divergent sums supply finite-index coverage of every compact time interval.
+
+Before candidate exposure, independently derived candidate mechanism: preserve the forward positive concatenation and replace each negative piece read backward from its right endpoint by minus its original forward stopped Brownian path, taking original indices -1,-2,... . The replacement W(u)=Y(-u) is a one-sided Brownian concatenation by strong Markov and independence, independent of the positive half. X and Y agree at all S_k. Within a negative piece of duration T and reversed local coordinate v, X-Y=B(T-v)-B(T)+B(v). Its magnitude is at most twice the oscillation of W over that piece, and hence bounded by twice a Brownian modulus over a deterministic time interval enlarged by c to include the final partial piece.
+
+A union bound over pieces is invalid without a count bound. Instead cover W's physical time axis by deterministic intervals of length 2c. Reflection yields a Gaussian tail per interval; a union bound over O(R/c) windows, followed by Borel-Cantelli along integer/dyadic R, yields sup_{|t|<=R}|X(t)-Y(t)|=O(sqrt(log(2+R))) almost surely. The implied multiplicative constant may be chosen deterministic eventually, with a random finite exceptional-scale cutoff; an all-R big-O constant may be sample-dependent.
+
+Thus lambda^(-1/2)X(lambda .) has two-sided Brownian weak limit in compact-uniform C_loc(R). The scaled comparison lambda^(-1/2)Y(lambda .) has the Brownian law for every lambda but does not thereby converge pathwise. This mechanism makes no claim that X itself has a Brownian random origin.
+
+Potential falsifiers sealed: relying on iid/positive lower durations; counting random pieces by O(R); treating negative original endpoints as stopping times in chronological forward time; omitting the boundary partial piece; using nonuniform per-piece errors to claim global error; claiming an almost-sure limiting Brownian path from scaling invariance; turning the partial result into the exact random-origin target.

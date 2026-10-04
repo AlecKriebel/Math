@@ -1,0 +1,11 @@
+# Literal intake formed before historical review/checkers
+
+The head's unwrapped source_record.json identifies 10300025 / AMR-102-0025, Calegari 2002 Question 8.2. Target: an R-covered foliation of an atoroidal 3-manifold, with leaf-line holonomy action, one common topological conjugacy, and a positive finite additive distortion constant C(alpha) for each group element alpha, uniformly over its two point arguments. No single constant uniform across alpha is required by the displayed inequality.
+
+KNOWN_RESULT.md claims a credited consequence of existing line-action conjugacy results, with two deterministic arguments: a finite-generator dominating homeomorphism and a countable-family compact exhaustion that also permits orientation reversal. The claimed extension places each conjugated map within bounded distance of u or -u. No checker or proof has been independently validated by this SOURCE task. All control counts and historic PASS strings are original author/reviewer claims.
+
+Original metadata says already_solved, 1 substantive attempt of limit 5. turns.json contains one numbered entry, explicitly discovery_credit false. The original remaining_gap text still says independent review pending, whereas attempt.json claims a later PASS. The intended historical geometric restriction is explicitly unreconstructed. This is an unresolved interpretation boundary, not a newly established mathematical defect.
+
+Independent primary question intake on 2026-10-03: web PDF reader at https://arxiv.org/pdf/math/0209081v1, printed p.16 / PDF page 15 (zero-based), lines 705–716. The displayed quantifiers match the catalog target. Remark (1) discusses stronger group-independent bounds and ambient leaf uniformity; Remark (2) states toroidal actions can fail the preceding condition. The candidate retains this tension. Source receipts are locators/paraphrases only: no primary PDF copied, no independently verified PDF byte hash, no layout or complete primary-paper review credit, and web process PID is unavailable.
+
+Exact question intake is now formed. The historical review/checker bodies can be authenticated as opaque original bytes without execution or mathematical endorsement. Fresh adversarial verification, attribution/theorem audit, and resolution of the source-scope warning are future work, with zero new SOURCE research attempts or discovery credit.
