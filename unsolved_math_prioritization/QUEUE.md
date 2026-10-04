@@ -569,7 +569,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 558 | 30001242 / OWR-3472-013 | Uniform Generic Degree Bounds for Ideal Membership | 0.1149 | 4.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 559 | 30001182 / OWR-3392-009 | Ambient-Algebra Independence of Exchangeable Independence | 0.1149 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 560 | 30004637 / OWR-4990379-007 | Fast Algorithms for Branching Brownian Unbalanced Transport | 0.1143 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | queued | 0/5 |  |  |  |
+| 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | already_solved | 1/5 |  | 2026-10-04: Literature-known unrestricted non-isentropic full-Euler Gaussian; specific entropy is spatially unbounded. Literal existential statement only; no isentropic, bounded-entropy, near-constant-entropy Sobolev, or compact-support resolution. No novelty claim. [Scope and independent audit](attempts/2700004/PUBLICATION_SCOPE.md). |  |
 | 562 | 30005215 / OWR-11101919-002 | Norm Estimation from Asymmetric Black-Box Linear Operators | 0.1136 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 563 | 20001587 / AIM-GEOMETRIC_GROUP_THEORY-0096 | A finite-gluing obstruction for amenable clopen restrictions | 0.1125 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 564 | 2301039 / AMR-022-1039 | Research Problems in Function Theory — Problem 1.39 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
