@@ -672,7 +672,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 661 | 30000930 / OWR-1790-007 | Ext-Algebra Models for Crossingless Matchings | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 662 | 30001017 / OWR-2049-004 | Intersection Numbers on First Voronoi Compactifications | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 663 | 4000018 / AMR-039-0018 | L2 Bonnet–Myers and dimension | 0.1052 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 664 | 30003322 / OWR-15181-014 | Set-Sized Models of Initial Surreal Substructures | 0.1051 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 664 | 30003322 / OWR-15181-014 | Set-Sized Models of Initial Surreal Substructures | 0.1051 | 6.0 | 3 | 2016 | unsolved | 5/5 |  |  |  |
 | 665 | 30001132 / OWR-3384-004 | Admissible Gelfand–Zetlin Faces Representing Smooth Schubert Cycles | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 666 | 30001138 / OWR-3385-009 | Linked Skeletons of Convex Four-Polytopes | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 667 | 30001155 / OWR-3389-006 | Area-Refined Spectral Gap Bounds for Convex Domains | 0.1050 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
