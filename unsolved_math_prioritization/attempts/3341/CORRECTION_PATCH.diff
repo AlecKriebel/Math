@@ -1,0 +1,31 @@
+--- release/PARTIAL_RESULTS.md
++++ corrected-release/PARTIAL_RESULTS.md
+@@ -8,7 +8,7 @@
+ 
+ Σ_k consists of sentences in monadic prenex form with at most k alternating blocks of set quantifiers, starting existentially, followed by an arbitrary first-order matrix. Π_k is its dual. Σ_0=Π_0=FO. The finite number of variables and the matrix may depend on the sentence, never on picture size. Classes are semantic relative to the stated domain of pictures. A separator at level k is one fixed Σ_{k+1} sentence with no equivalent Σ_k sentence on the entire domain.
+ 
+-Write Sq for square pictures. For fixed C≥1 and integer d≥1, write B(C,d) for pictures satisfying max(h,w)≤C min(h,w)^d. B(C,1) is linear balance; d>1 permits polynomial imbalance. The constants are fixed for the whole class/language. Allowing a different C for each individual picture makes the condition vacuous. In particular, the union of B(C,1) over all constants C is all finite rectangles, and is not the intended balanced problem. Requiring exactly w=P(h) is a different convention from a uniform polynomial upper bound. The source does not fully specify this distinction. We preserve the square, fixed-linear-bound, and fixed-polynomial-bound questions; none is declared resolved.
++Write Sq for square pictures. For fixed C≥1 and integer d≥1, write B(C,d) for pictures satisfying max(h,w)≤C min(h,w)^d. B(C,1) is linear balance; d>1 permits polynomial imbalance. The constants are fixed for the whole class/language. Allowing a different C for each individual picture makes the condition vacuous. In particular, the union of B(C,1) over all constants C is all finite rectangles, and is not the intended balanced problem. Requiring exactly w=P(h) is a different convention from a uniform polynomial upper bound. The original OPG question states linear/polynomial relatedness informally. Gardy’s slide 22 explicitly gives exact-format language conditions w=c h and w=P(h), with one fixed c or P for the language. Those are separate from the uniform upper-bound domains B(C,d) used here. Slide 23 states a folding/unfolding equivalence in the linear setting; this write-up does not invoke that claim as a proved transfer theorem. We preserve the square, fixed-linear-bound, and fixed-polynomial-bound questions; none is declared resolved.
+ 
+ **Target:** establish every level separation on balanced pictures, or establish an actual collapse/refutation, including the polynomial and linear regimes requested in the original question. Proving only Σ_1≠Π_1 does not do this.
+ 
+@@ -89,7 +89,9 @@
+ 
+ ### 4.2 Mirror is not EMSO definable on Sq
+ 
+-We use one established theorem: on pixel pictures EMSO languages are exactly projections of finite local tiling languages (Giammarresi–Restivo–Seibert–Thomas; also Theorem 2.5/2.6 of Grandjean–Olive–Richard). Fix a tiling presentation using a finite lift alphabet Γ, allowed 2×2 blocks on bordered pictures, and a letter projection. Domino presentations are a special case, or can be converted by finite blocking.
++We use one established theorem: on pixel pictures EMSO languages are exactly projections of finite local tiling languages (Giammarresi–Restivo–Seibert–Thomas; also Theorem 2.5/2.6 of Grandjean–Olive–Richard). The cited preprint uses cyclic successors with boundary predicates. For the direction used here, replace H(x,y) by succ_h(x)=y ∧ ¬Right(x), and similarly for V. This turns any EMSO sentence in our nonwrapping adjacency signature into an EMSO sentence in that source’s signature, with the same set prefix. Its recognizability theorem therefore supplies the needed tiling presentation; no converse FO definition of wraparound is required.
++
++Fix a tiling presentation using a finite lift alphabet Γ, allowed 2×2 blocks on bordered pictures, and a letter projection. Domino presentations are a special case, or can be converted by finite blocking.
+ 
+ Suppose an EMSO sentence agreed with Mirror on every square. Its corresponding tiling system may do anything on nonsquares; this will not matter. Let g=|Γ|. For an even side n=2r and every binary n×r array A, the square P_A=[A | reverse_columns(A)] is symmetric. Choose one accepting lift Q_A over Γ.
+ 
+@@ -153,7 +155,7 @@
+ 
+ 111 / 101 / 111
+ 
+-in rows and columns 1,2,3, and the ℓ code bits in row 6, columns 2,4,...,2ℓ. The ring's center is a unique FO-recognizable marker. Payload bits are isolated, blocks have zero margins, and no other 3×3 ring exists. The marker centers form a grid with each successor at distance c, which is FO definable by a fixed H- or V-path. Each original letter is read at fixed offsets from its marker. A c t×c t square remains square.
++in rows and columns 1,2,3, and the ℓ code bits in row 6, columns 2,4,...,2ℓ. The ring's center is a unique FO-recognizable marker. Payload bits are isolated. The zero strips between neighboring blocks separate their nonzero regions, and no other 3×3 ring exists. The marker centers form a grid with each successor at distance c, which is FO definable by a fixed H- or V-path. Each original letter is read at fixed offsets from its marker. A c t×c t square remains square.
+ 
+ Relativizing first-order variables to markers and replacing original predicates by these fixed FO formulas translates each Σ_k sentence to Σ_k over binary pictures. As with Proposition 2, restriction of a monadic set to marker cells is surjective and preserves both quantifier polarities. The reduction only produces valid encodings, so no global recognition theorem for all valid code pictures is required. The translated sentence may accept arbitrary other binary pictures without affecting reduction correctness.
+ 
