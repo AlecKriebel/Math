@@ -567,7 +567,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 556 | 30006359 / OWR-14299511-008 | Irreducible Forest Decomposition of Consistency-Equation Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 557 | 30006363 / OWR-14299512-001 | Topological Invariance of Helicity | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 558 | 30001242 / OWR-3472-013 | Uniform Generic Degree Bounds for Ideal Membership | 0.1149 | 4.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 559 | 30001182 / OWR-3392-009 | Ambient-Algebra Independence of Exchangeable Independence | 0.1149 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 559 | 30001182 / OWR-3392-009 | Ambient-Algebra Independence of Exchangeable Independence | 0.1149 | 6.0 | 3 | 2009 | claimed_solved | 1/5 |  | 2026-10-04: Independently audited counterexample: distinct proper B,C in C^4 become independent after a state-preserving embedding into M4, with extremality among ALL exchangeable states. All-candidate GNS obstruction and pure full-law witness; separate algebraic non-lifting example. Known pure-folding mechanism credited; no novelty claim. Fixed-marginal-extremality, tracial and faithful variants excluded. [Proof and audit](attempts/30001182/DISPOSITION.md). |  |
 | 560 | 30004637 / OWR-4990379-007 | Fast Algorithms for Branching Brownian Unbalanced Transport | 0.1143 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | queued | 0/5 |  |  |  |
 | 562 | 30005215 / OWR-11101919-002 | Norm Estimation from Asymmetric Black-Box Linear Operators | 0.1136 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
