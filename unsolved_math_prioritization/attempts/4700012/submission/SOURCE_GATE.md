@@ -1,0 +1,13 @@
+# Source gate, 4 October 2026
+
+1. The catalogue URL https://www.unsolvedmath.com/problems/4700012 was attempted first. The web reader could not access it; a direct read returned a forbidden response. No catalogue-page text is claimed to have been inspected.
+2. Both pinned upstream corpora were locally available. Their complete hashes were checked. The record selected by numeric ID 4700012 and its complete prior report under AMR-046-0012 were read. The old report missed the 2023 paper and was treated as a research lead, not a proof certificate.
+3. Gasull's primary arXiv v1 PDF was read; page 13 was extracted and visually checked for Problem 12, the period-function definitions, and the historical degree range. The PDF remains excluded from the public packet.
+4. The Springer primary publisher page was read in full at https://link.springer.com/article/10.1007/s12346-023-00786-z. The abstract explicitly identifies Gasull Problem 12, and the publisher identifies a version of record dated 24 April 2023.
+5. A request to the publisher's PDF URL returned the article/access HTML rather than PDF bytes. It is recorded as an unsuccessful full-text retrieval. No full-paper PDF hash is claimed. ResearchGate's publisher-provided preview exposes the opening page only; it contains the same explicit resolution attribution. It was corroboration, not the principal source.
+6. Exact-title, DOI, author, manuscript, correction and erratum searches found no readable author manuscript or correction. OpenAlex reports closed access, no open-access URL and no repository full text. Crossref supplies the same publication date and no update-to or relation entry. These bounded checks do not establish that no correction exists. A Crossmark read failed, so no current Crossmark status is claimed.
+7. Repository README and applicable AGENTS instructions were read. The live queue row was rank 636, queued, 0/5. No state entry, existing own-ID attempt directory, own-ID PR or Hamiltonian-period PR was found. The related-target group list did not include this ID. A narrow local corpus title/topic duplicate scan found no other record with the identified two-quasi-homogeneous title.
+
+## Interpretation and limitations
+
+The proposed status is published prior-resolution attribution. The full result has not been independently reproduced or proof-audited. The five-approach proof budget was not consumed: prior resolution was located before a new substantive proof attempt. No source text, article PDF, extracted full text, screenshot, upstream corpus, or private coordination material is included in the publication packet.
