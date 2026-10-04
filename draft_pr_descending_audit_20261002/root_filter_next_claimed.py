@@ -18,8 +18,13 @@ live=json.loads(run(['gh','pr','list','--state','open','--limit','500','--json',
 remaining=sorted([x for x in live if x['number'] in initial and x['number']<cursor and x['number']!=8 and x['isDraft']],key=lambda x:-x['number'])
 eligible=None
 for item in remaining:
- n=item['number'];head=item['headRefOid'];ids=set(re.findall(r'(?<!\d)\d{8}(?!\d)',item['title']+' '+item['headRefName']));assert len(ids)==1,('Cannot authenticate one target problem from title/branch',n,ids)
- problem=ids.pop();obj=json.loads(run(['gh','api','-X','GET','repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md','-f','ref='+head]));assert obj['encoding']=='base64' and obj['type']=='file'
+ n=item['number'];head=item['headRefOid']
+ branch_ids=set(re.findall(r'(?<!\d)\d+(?!\d)',item['headRefName']))
+ first_title_id=re.search(r'\d+',item['title'])
+ if len(branch_ids)==1:problem=next(iter(branch_ids))
+ elif first_title_id and (not branch_ids or first_title_id.group() in branch_ids):problem=first_title_id.group()
+ else:raise AssertionError(('Cannot authenticate one primary target ID from branch/title',n,branch_ids,item['title']))
+ obj=json.loads(run(['gh','api','-X','GET','repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md','-f','ref='+head]));assert obj['encoding']=='base64' and obj['type']=='file'
  b=base64.b64decode(obj['content']);assert len(b)==obj['size'];assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==obj['sha']
  rows=[(i+1,x) for i,x in enumerate(b.decode().splitlines()) if len(x.split('|'))>11 and x.split('|')[2].strip().split(' / ')[0]==problem];assert len(rows)==1,(n,problem,len(rows))
  line,row=rows[0];status=row.split('|')[8].strip();turns=row.split('|')[9].strip()
