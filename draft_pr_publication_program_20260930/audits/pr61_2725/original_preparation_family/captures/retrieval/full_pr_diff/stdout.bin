@@ -1,0 +1,333 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..779b0b13a 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -89,7 +89,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Known negative answer by Dimitroglou Rizell-Golovko: distinct stabilized Legendrian knot types in standardR3 admit exact Lagrangian concordances both ways. Separate original-source/applicability audit passed exactness, ends, mutuality and smooth-type distinction. Accepted publication with October2026issue metadata; full h-principle proof not independently certified, no campaign discovery. Draft PR: https://github.com/AlecKriebel/Math/pull/61. |  |
+ | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2725/KNOWN_RESULT.md b/unsolved_math_prioritization/attempts/2725/KNOWN_RESULT.md
+new file mode 100644
+index 000000000..abc0b9f02
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/KNOWN_RESULT.md
+@@ -0,0 +1,31 @@
++# KP-1.66: failure of antisymmetry is already established
++
++Status: source-corrected known negative answer; independent source review pending. No new mathematical discovery is claimed.
++
++## Target and source correction
++
++Problem 2725 / KP-1.66 asks whether exact Lagrangian cobordism defines a partial order on Legendrian links in standard contact three-space. The relevant equivalence is Legendrian isotopy, as is conventional for this question. Even on knots, antisymmetry fails.
++
++The pinned database labels this open and its August 2026 literature note says no resolution was verified. That assessment is stale. The original problem is confirmed on page 63 of the [K3 problem list](https://bpb-us-e2.wpmucdn.com/websites.umass.edu/dist/b/22144/files/2026/04/K3-problem-list-watermarked.pdf). The dataset's AIM URL points to a four-page workshop report rather than the full problem list.
++
++## Existing theorem and direct consequence
++
++Dimitroglou Rizell and Golovko's [paper, arXiv:2409.00290v4](https://arxiv.org/html/2409.00290v4), Theorem 1.4 / 5.7 and Corollary 1.5, provides mutually Lagrangian-concordant knots in standard contact R³ with different smooth knot types. One endpoint is a sufficiently positively and negatively stabilized decomposably fillable representative of the mirror of 9_46; the other is the correspondingly stabilized standard unknot. The first version dates to 2024. The arXiv record reports acceptance in Advances in Mathematics; the author's [publication list](https://sites.google.com/site/ragolovko/publications) lists volume 502 (2026), article 111133, DOI 10.1016/j.aim.2026.111133. Publisher full text was not independently retrieved.
++
++Here is the precise logical implication for the queued target. Let A and B be that pair. A concordance is a cobordism, so the two concordances give A≼B and B≼A. Stabilization leaves the underlying smooth knot type unchanged. Consequently A remains a nontrivial smooth knot and B remains an unknot. A Legendrian isotopy would be a smooth isotopy, which is impossible. Thus [A]≠[B] as Legendrian isotopy classes and antisymmetry fails. Since knots are one-component links, this already disproves the relation's partial-order property on the larger link class.
++
++There is no exactness loophole in passing from these concordances to the problem's relation. The existence theorem expressly gives exact Lagrangian concordances. Independently, for a Lagrangian cylinder L in the symplectization, the pullback of e^tα is closed. Its period on an end circle vanishes because the end is Legendrian. That circle generates H₁(L), hence all periods vanish and the form has a primitive on L. On a cylindrical end the form vanishes pointwise, so the primitive is constant on each connected end. This is the required exact-cobordism boundary behavior.
++
++## Boundaries of this conclusion
++
++- The examples use stabilizations of both signs and a nonregular direction. No assertion about a restricted relation requiring regular or decomposable cobordisms is made.
++- The conclusion is existential. The cited construction requires sufficiently many stabilizations; this note does not calculate a smallest or explicit numeric stabilization count.
++- This is an applicability check of an existing theorem, not an independent reconstruction of its h-principle dependencies or a new explicit parametrized concordance.
++- Failure of symmetry alone would not disprove a partial order. The argument uses mutual comparability of distinct isotopy classes, which is the relevant failure of antisymmetry.
++- The result is already in the literature. A campaign classification should credit the authors and use `already_solved`, subject to independent source review.
++
++## Reproducible evidence
++
++The sibling source manifest records primary URLs, PDF hashes, theorem locations, the pinned record, and access limitations. The complete paper was downloaded outside the public-safe attempt folder. Only this original audit, metadata, checks and the supplied dataset record belong in the proposed repository package.
++
++Research completion: 100% of the source-status audit and theorem-to-target implication; no novel-solution claim. Independent review remains pending before a PR.
+diff --git a/unsolved_math_prioritization/attempts/2725/README.md b/unsolved_math_prioritization/attempts/2725/README.md
+new file mode 100644
+index 000000000..2b1490d87
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/README.md
+@@ -0,0 +1,7 @@
++# KP-1.66: credited known negative answer
++
++Publication checkpoint, 2026-09-30: **already_solved; zero new proof attempts**.
++
++The unchanged `KNOWN_RESULT.md` is the frozen pre-review source audit; its references to review being pending describe that earlier checkpoint. The separate `independent_review/REVIEW.md` now passes its exact-source implication. The theorem belongs to Georgios Dimitroglou Rizell and Roman Golovko, arXiv:2409.00290v4. Their paper is accepted in Advances in Mathematics, with assigned October 2026 issue details: volume 502, article 111133. No independently verified online-publication date is asserted.
++
++The mutually exact-Lagrangian-concordant stabilized knots have distinct smooth knot types, disproving antisymmetry for the original link relation. This package audits applicability and credits the known result; it does not independently certify the entire h-principle construction, claim novelty, or claim human peer review of this audit. No numerical stabilization threshold is provided.
+diff --git a/unsolved_math_prioritization/attempts/2725/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2725/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..9bc4e4ed0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/RESEARCH_LOG.md
+@@ -0,0 +1,9 @@
++# Research log — 2725 / KP-1.66
++
++- 2026-09-30 07:05 UTC: Started rank 81. Exact pinned record recovered: Legendrian-link exact Lagrangian cobordism partial-order question. Read repository root and queue-specific instructions, README, target row and prior source record. Row is queued 0/5; no existing attempt folder or campaign PR for this ID found. Completion estimate: 10%.
++- 2026-09-30 07:06 UTC: Primary literature identifies the negative antisymmetry theorem by Dimitroglou Rizell–Golovko; began exact dimension/exactness/isotopy-class checks. Completion estimate: 50%.
++- 2026-09-30 07:08 UTC: Downloaded and read K3 page 63 and arXiv2409.00290v4 Corollary1.5/Theorems1.4,5.7. Verified the pair lies in R³ and supplies both directions. Stabilization preserves distinct smooth knot types. Source audit indicates already-solved status; no fresh proof-search attempt required. Completion estimate: 100% for applicability/source audit, independent review pending.
++
++Model disclosure: this worker inherited its runtime configuration; no reliable introspection of its exact model identifier was supplied to this task. No switch of model or reasoning configuration was requested or performed. Do not infer a model label from other campaign workers.
++
++No public repository mutations, external outreach, releases, or PRs performed. Parent controls queue updates and PR authorization. Local source PDFs are outside the public-safe attempt folder.
+diff --git a/unsolved_math_prioritization/attempts/2725/SHA256SUMS b/unsolved_math_prioritization/attempts/2725/SHA256SUMS
+new file mode 100644
+index 000000000..b21845a44
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/SHA256SUMS
+@@ -0,0 +1,5 @@
++af59561f9c977412d0e95c382cd36e6fb339f35baea777bc4dfd4d3d3afc6de1  KNOWN_RESULT.md
++d546e8de9d6568eaf7f6dfb7635c167b9fd76eef6fd571d8f0efe959dfbadae9  RESEARCH_LOG.md
++4dd0b642fd02cf24b80c5188e7f5b2c4c4edf5c3e1a5eda7442c7d1ac3f42db0  prior_report.json
++0680f6e40a82d66fcae20df06214c13712ab7393f16b5d62cb4f49d9c7fc5f05  source_manifest.json
++a9367e70c8bf65cc902e2e94df9de7a800c01c8de378bcef4d0584eee7d5dc30  source_record.json
+diff --git a/unsolved_math_prioritization/attempts/2725/independent_review/REVIEW.md b/unsolved_math_prioritization/attempts/2725/independent_review/REVIEW.md
+new file mode 100644
+index 000000000..213d407f9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/independent_review/REVIEW.md
+@@ -0,0 +1,57 @@
++# Independent source audit: 2725 / KP-1.66
++
++**Verdict: PASS for the credited known negative answer. Antisymmetry fails for the exact relation asked in KP-1.66, already on knots. No mandatory correction is required.**
++
++Reviewed on 2026-09-30 using gpt-6-astra with xhigh reasoning. The frozen KNOWN_RESULT.md has SHA-256:
++
++af59561f9c977412d0e95c382cd36e6fb339f35baea777bc4dfd4d3d3afc6de1.
++
++This is an independent source-match and theorem-to-target audit. It does not independently certify the full construction or its h-principle dependencies, and it gives no campaign discovery credit.
++
++## Original target
++
++I read and visually inspected [K3, printed p.63](https://bpb-us-e2.wpmucdn.com/websites.umass.edu/dist/b/22144/files/2026/04/K3-problem-list-watermarked.pdf), Problem 1.66, and read the remarks continuing onto p.64. The relation is existence of an **exact Lagrangian cobordism in the symplectization of standard contact three-space** between Legendrian links.
++
++The conventional equivalence is Legendrian isotopy, as made explicit in the current result's formulation. The original source already distinguishes failure of symmetry from the question of being a partial order. The submitted note correctly targets antisymmetry.
++
++No regularity, decomposability, absence of stabilizations, or higher-dimensional restriction is imposed on the original relation. A pair of knots is an admissible pair of one-component links.
++
++## Exact current theorem
++
++The inspected full source is the [versioned author manuscript arXiv:2409.00290v4](https://arxiv.org/pdf/2409.00290v4), by Georgios Dimitroglou Rizell and Roman Golovko. I checked Theorem 1.4, Corollary 1.5, the end conventions in Section 2.1, Theorem 5.7 and its proof, Example 5.8, and the relevant statements in Section 5 and Appendix A.
++
++Theorem 1.4, restated as Theorem 5.7, requires a **decomposable Lagrangian disc filling**, not merely a filling of arbitrary genus. It gives an exact Lagrangian concordance in
++$$
++(\mathbb R_t\times\mathbb R^3,\ d(e^t\alpha_0))
++$$
++from the sufficiently stabilized knot to the standard unknot stabilized the same number of times, with stabilizations of both signs. Example 5.8 and Corollary 1.5 identify a disc-fillable representative of the **mirror of $9_{46}$** as an example. The overbar in this knot notation was visually checked.
++
++Corollary 1.5 expressly supplies concordances in both directions for the same stabilized pair. The forward direction from the unknot comes from puncturing the disc filling and preserving concordance under simultaneous stabilization. The reverse direction is the new construction. This is not an inference from the paper's separate high-dimensional front-spinning isotopy.
++
++The ends are the concave/negative and convex/positive Legendrian boundaries defined in Section 2.1. The cobordisms used here are cylinders, hence orientable; no nonorientable cobordism is substituted. The corollary's mutuality is already a statement about the same Legendrian endpoints. Distinct underlying unoriented smooth knot types also exclude isotopy regardless of any additional orientation labels.
++
++## Antisymmetry and exactness
++
++Let $A$ be the sufficiently both-sign-stabilized mirror-$9_{46}$ representative, and $B$ the correspondingly stabilized standard unknot. The cited concordances imply $A\preceq B$ and $B\preceq A$ for the question's more general cobordism relation.
++
++Legendrian stabilization changes the Legendrian representative but preserves the smooth knot type. Therefore $A$ remains smoothly knotted and $B$ remains smoothly unknotted. They cannot be Legendrian isotopic. This is a failure of antisymmetry, and passing from knots to links cannot remove it.
++
++The existence theorem explicitly asserts exactness. The note's supplementary cylinder argument is also correct: on a Lagrangian cylinder $L$, the restricted Liouville form is closed. Its period on a cylindrical Legendrian end circle is zero, and that circle generates $H_1(L;\mathbb Z)$. All periods therefore vanish, giving a smooth global primitive. The form vanishes on each cylindrical end, so the primitive is constant on each connected end. These constants need not equal each other; the standard exact-cobordism condition allows this. No stronger common-constant convention is silently imposed.
++
++This cylinder observation does not make arbitrary positive-genus Lagrangian cobordisms automatically exact. The restriction to the cited concordances is essential.
++
++## Version and publication status
++
++The [arXiv record](https://arxiv.org/abs/2409.00290v4) reports first submission on 30 August 2024, v4 on 8 July 2026, and acceptance in *Advances in Mathematics*. The [author's publication list](https://sites.google.com/site/ragolovko/publications) gives volume 502 (2026), article 111133, DOI [10.1016/j.aim.2026.111133](https://doi.org/10.1016/j.aim.2026.111133). The publisher's indexed record and Crossref metadata corroborate those details.
++
++The assigned print issue is October 2026, which is later than this audit date. Crossref's DOI creation date is 20 July 2026; it is not treated here as a separately verified online-publication date. “Accepted, with assigned journal bibliographic details” is the conservative current description. Direct publisher access returned 403, so no publisher-typeset full-text inspection is claimed.
++
++I also checked the [arXiv record of the approximation input, 2408.16614v2](https://arxiv.org/abs/2408.16614v2). Its March 2025 correction preserves a smooth isotopy class rather than necessarily a totally real isotopy class. The audited v4 paper's Theorem 5.3 uses the corrected smooth-isotopy wording. This source check does not reconstruct that input's full proof.
++
++## Integrity and limitations
++
++Both cached primary PDF hashes match the source manifest. The packaged source record matches numeric ID 2725 in the pinned dataset, and the frozen note hash matches the handoff. No numerical experiment or symbolic identity is offered as a substitute for the cited existence theorem.
++
++The report's exact-source conclusion requires no smallest stabilization count. It does not settle a different relation requiring regular or decomposable cobordisms. The submitted note preserves these limits and attributes the mathematical result to its authors.
++
++**Disposition: already_solved, known negative answer, zero campaign proof attempts.** Keep the explicit limits on full-proof verification and publisher access. No author file was changed during this review.
+diff --git a/unsolved_math_prioritization/attempts/2725/independent_review/review_summary.json b/unsolved_math_prioritization/attempts/2725/independent_review/review_summary.json
+new file mode 100644
+index 000000000..7a856d455
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/independent_review/review_summary.json
+@@ -0,0 +1,21 @@
++{
++  "problem_id": 2725,
++  "problem_code": "KP-1.66",
++  "reviewed_utc": "2026-09-30T07:18:13.178136+00:00",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_KNOWN_NEGATIVE_ANSWER",
++  "recommended_status": "already_solved",
++  "substantive_attempts": 0,
++  "artifact_sha256": "af59561f9c977412d0e95c382cd36e6fb339f35baea777bc4dfd4d3d3afc6de1",
++  "report_sha256": "b9f584ba29444fca53553c1ed9f42eaad535884991e67d02bef268831433af86",
++  "mandatory_corrections": [],
++  "full_h_principle_proof_independently_certified": false,
++  "novel_discovery_claim": false,
++  "author_files_edited": false,
++  "publication_files": [
++    "REVIEW.md",
++    "review_summary.json",
++    "source_verification.json"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/2725/independent_review/source_verification.json b/unsolved_math_prioritization/attempts/2725/independent_review/source_verification.json
+new file mode 100644
+index 000000000..d85f8de6e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/independent_review/source_verification.json
+@@ -0,0 +1,44 @@
++{
++  "artifact_sha256": "af59561f9c977412d0e95c382cd36e6fb339f35baea777bc4dfd4d3d3afc6de1",
++  "source_pdfs": [
++    {
++      "file": "drg_v4.pdf",
++      "sha256": "914bdd4c1a503561d9066c3443aa0d66876d0ebdffea84bf4f026cc43f8df102",
++      "matches": true
++    },
++    {
++      "file": "kirby.pdf",
++      "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++      "matches": true
++    }
++  ],
++  "pinned_record_matches": true,
++  "original_page_visually_checked": 63,
++  "theorem_pages_visually_checked": [
++    6,
++    31
++  ],
++  "scope_checks": {
++    "exact_lagrangian": true,
++    "concordance_cylinders": true,
++    "standard_contact_R3": true,
++    "same_stabilized_pair_both_directions": true,
++    "different_smooth_types": true,
++    "mirror_notation_verified": true,
++    "knots_are_one_component_links": true,
++    "primitive_constant_on_each_end": true
++  },
++  "publication_metadata": {
++    "arxiv_version": "2409.00290v4",
++    "version_date": "2026-07-08",
++    "arxiv_status": "accepted for publication in Advances in Mathematics",
++    "journal_volume": "502",
++    "article_number": "111133",
++    "doi": "10.1016/j.aim.2026.111133",
++    "print_issue": "2026-10",
++    "crossref_doi_created": "2026-07-20",
++    "online_publication_date_independently_verified": false,
++    "publisher_full_text_retrieved": false
++  },
++  "approximation_input": "2408.16614v2 corrects preservation to smooth isotopy; audited theorem5.3 has this wording"
++}
+diff --git a/unsolved_math_prioritization/attempts/2725/prior_report.json b/unsolved_math_prioritization/attempts/2725/prior_report.json
+new file mode 100644
+index 000000000..eb4c6c970
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/prior_report.json
+@@ -0,0 +1,3 @@
++{
++  "note": "No exact KP-1.66 key found; pinned background contains dated literature triage."
++}
+diff --git a/unsolved_math_prioritization/attempts/2725/source_manifest.json b/unsolved_math_prioritization/attempts/2725/source_manifest.json
+new file mode 100644
+index 000000000..0d05b7a0c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/source_manifest.json
+@@ -0,0 +1,42 @@
++{
++  "problem_id": 2725,
++  "problem_number": "KP-1.66",
++  "status_recommendation": "already_solved",
++  "answer": "negative: antisymmetry fails",
++  "review": "pending",
++  "sources": [
++    {
++      "url": "https://arxiv.org/html/2409.00290v4",
++      "pdf_url": "https://arxiv.org/pdf/2409.00290v4",
++      "sha256_pdf": "914bdd4c1a503561d9066c3443aa0d66876d0ebdffea84bf4f026cc43f8df102",
++      "locations": [
++        "Theorem 1.4",
++        "Corollary 1.5",
++        "Theorem 5.7",
++        "Example 5.8"
++      ],
++      "scope": "Legendrian knots in standard contact R3, exact Lagrangian concordances, sufficiently many stabilizations of both signs"
++    },
++    {
++      "url": "https://bpb-us-e2.wpmucdn.com/websites.umass.edu/dist/b/22144/files/2026/04/K3-problem-list-watermarked.pdf",
++      "sha256_pdf": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++      "location": "page 63, Problem 1.66"
++    },
++    {
++      "url": "https://sites.google.com/site/ragolovko/publications",
++      "observation": "lists Advances in Mathematics502(2026),111133, DOI10.1016/j.aim.2026.111133"
++    }
++  ],
++  "limitations": [
++    "publisher full text not independently retrieved",
++    "not an independent h-principle proof audit",
++    "numeric stabilization threshold not supplied",
++    "no new discovery"
++  ],
++  "access": [
++    "unsolvedmath.com/problems/2725 inaccessible via web tool; authorized pinned dataset fallback used",
++    "dataset AIM link is workshop report, not complete question source"
++  ],
++  "queue_check": "rank81 queued0/5 in inspected repository; no prior campaign publication or attempt folder found",
++  "source_record_sha256": "a9367e70c8bf65cc902e2e94df9de7a800c01c8de378bcef4d0584eee7d5dc30"
++}
+diff --git a/unsolved_math_prioritization/attempts/2725/source_record.json b/unsolved_math_prioritization/attempts/2725/source_record.json
+new file mode 100644
+index 000000000..f6bed09c9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2725/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2725,
++  "problem_number": "KP-1.66",
++  "title": "Kirby Problem 1.66",
++  "statement": "For Legendrian links $\\Lambda_{1}, \\Lambda_{2} \\subset (\\mathbb{R}^{3}, \\xi_{std})$, write $\\Lambda_{1} \\preceq \\Lambda_{2}$ if\nthere is an exact Lagrangian cobordism in the symplectization $\\mathbb{R} \\times \\mathbb{R}^{3}$ from $\\Lambda_{1}$ to\n$\\Lambda_{2}$. Is $\\preceq$ a partial order?",
++  "background": "Source: Kirby's Problems in Low-Dimensional Topology notes. Original problem number: KP-1.66.\n\nLiterature notes:\n(1) One can ask an analogous question in any contact 3-manifold, as well as\nin higher dimensions.\n(2) The fact that $\\preceq$ is not symmetric was first shown by Chantraine [Cha15].\n\n(3) As for ribbon concordance in the smooth setting, many invariants of Leg-\nendrian knots are monotone under $\\preceq$. For example, the behavior of rul-\nings [CNS16], contact homology [Pan17a] and the contact invariant in\nmonopole Floer homology [BS18a] support this conjecture.\n(4) One can ask an analogous question about symplectic concordances be-\ntween transverse knots.\n\nReferences cited:\n- [Cha15] Baptiste Chantraine. Lagrangian concordance is not a symmetric relation. Quantum Topol., 6(3):451\u2013474, 2015. doi:10.4171/QT/68.\n- [CNS16] Christopher Cornwell, Lenhard Ng, and Steven Sivek. Obstructions to Lagrangian concordance. Algebr. Geom. Topol., 16(2):797\u2013824, 2016. doi:10.2140/agt.2016.16.797.\n- [Pan17a] Yu Pan. The augmentation category map induced by exact Lagrangian cobordisms. Algebr. Geom. Topol., 17(3):1813\u20131870, 2017. doi:10.2140/agt.2017.17.1813.\n- [BS18a] John A. Baldwin and Steven Sivek. Invariants of Legendrian and transverse knots in monopole knot homology. J. Symplectic Geom., 16(4):959\u20131000, 2018. doi:10.4310/JSG.2018.v16.n4.a3.\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** partially_solved  \n**Classification:** PARTIAL-PROGRESS\n\n**Current literature assessment.** Lagrangian concordance is known not to be symmetric, and several invariants are monotone, but antisymmetry and hence partial-order status remain open.\n\n**Verified partial progress.**\n\n- Chantraine proved nonsymmetry.\n- Rulings, contact homology and Floer invariants provide monotonicity evidence.\n\n**Full solution or refutation.**\n\nNo proof of antisymmetry was verified.\n\n**What remains.**\n\nProve or disprove antisymmetry of exact Lagrangian concordance.\n\n**Sources checked.**\n\n- K3: A New Problem List in Low-Dimensional Topology, Problem 1.66 (2026). (authoritative_secondary): https://aimath.org/pastworkshops/kirbylistrep.pdf\n  Evidence used: States nonsymmetry and evidence for the remaining partial-order conjecture.\n\n**Review notes.** No source alteration.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "category_id": 7,
++  "set_id": 11,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-05-13T00:00:00Z",
++  "updated_at": "2026-05-13T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 11,
++    "name": "kirby_low_dimensional_topology",
++    "display_name": "Kirby's Problems in Low-Dimensional Topology",
++    "description": "Problems from Kirby-style notes on low-dimensional topology, including knot theory, 3-manifolds, 4-manifolds, and related invariants.",
++    "slug": "kirby-low-dimensional-topology",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}

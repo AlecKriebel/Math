@@ -1,0 +1,3 @@
+# Additive turn-2 log
+
+2026-10-02 15:24 UTC. The full Galois section gives neutrality descent for every finite étale gerbe and hence the homogeneous-space assertion for H1-trivial acting groups with finite étale stabilizers, including wild p-groups. An explicit smooth wound-unipotent torsor over F_p(a,b), empty over k, splits over a finite separable extension of k((t)) with purely inseparable residue field. A compatible section therefore gives a fixed field where constant-torsor injection fails. This precisely blocks the naive imperfect extension of the perfect-field proof; it is not an original counterexample. 4,325 exact controls pass, total56,015. Original unresolved2/5, three turns remain, estimated progress25%. All turn-1 bytes preserved; no independent audit yet.

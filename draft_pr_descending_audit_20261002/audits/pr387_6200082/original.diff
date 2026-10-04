@@ -1,0 +1,487 @@
+diff --git a/problems/6200082_schottky_dimension/CHECKS.json b/problems/6200082_schottky_dimension/CHECKS.json
+new file mode 100644
+index 000000000..bb03bf0d4
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/CHECKS.json
+@@ -0,0 +1,4 @@
++{
++  "assertions": 58717,
++  "scope": "Exact spectral quadratic equivalence and rational Mayer-Vietoris inequality controls; no numerical Cheeger constant or analytic theorem certified by finite tests"
++}
+diff --git a/problems/6200082_schottky_dimension/CORRECTED_APPLICATION.md b/problems/6200082_schottky_dimension/CORRECTED_APPLICATION.md
+new file mode 100644
+index 000000000..3da11f1b0
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/CORRECTED_APPLICATION.md
+@@ -0,0 +1,58 @@
++# The corrected approximation dependency in the free-H4 application
++
++This is a hypothesis audit of the established prior resolution, not a new author-search turn. Bowen's published Theorem4.1 should not be invoked with its original incomplete random-net continuity proof. ABBG, arXiv1811.02520v3 §2.3, pp16–18, explains the problem and replaces it by Theorem2.9, proved in §2.4. The replacement uses finitely many Poisson stages and a uniform small completion error. We use that theorem as the credited analytic input. The account below verifies its application without assuming that intersections with a reentrant boundary are convex.
++
++## 1. The hypothetical Følner sequence
++
++Suppose the uniform free-group Cheeger gap in H4 were false. The smoothing step in Bowen's Lemma7.3 and the residual-cover step in Lemma7.2 yield complete quotients E_i=H4/Γ_i and positive-volume compact connected subsets K_i such that:
++
++- Γ_i is free, hence H_2(E_i;Q)=0;
++- for every fixed R, vol(N_R(∂K_i))/vol(K_i) tends to zero;
++- the covering radius along K_i tends to infinity.
++
++These are the precise inputs extracted from Bowen §7, preprint pp27–35. Residual finiteness removes the finitely many short conjugacy classes meeting a compact set; passage to the chosen subgroup preserves freeness. The fixed-radius boundary estimates are preserved by the finite covers. The smoothing constants depend only on curvature and dimension, fixed here. We rely on these stated prior lemmas, not on the flawed approximation theorem, for this reduction.
++
++Put M_i=N_10(K_i), with the ambient metric restricted to M_i and ambient Riemannian volume restricted to it. Use the extended metric-measure space (M_i,vol,E_i), as in ABBG. Its volume is asymptotic to vol(K_i): the extra region lies in N_10(∂K_i). Also
++
++    N_R(∂M_i) ⊂ N_{R+10}(∂K_i).
++
++For the inclusion, a point on ∂M_i lies at distance10 from K_i and thus from its boundary; apply the triangle inequality. Therefore all fixed-radius boundary-to-volume ratios still vanish. Covering radii along M_i also tend to infinity. The volumes tend to infinity: otherwise the boundary estimate at increasingly large fixed R, together with the diverging covering radius, would force embedded hyperbolic R-balls inside a uniformly bounded-volume K_i. More explicitly, if K_i had no point farther than R from its boundary, its whole volume would lie in N_R(∂K_i), contradicting that ratio tending to zero; an interior point farther than R supplies the embedded ball.
++
++## 2. All volume and convergence hypotheses
++
++Fix the ABBG parameters r_0=1, r_1=2, r_2=4, r_3=5. A ball of radius1/2 in M_i has a uniform positive volume lower bound for all sufficiently large i. If p∈M_i is at distance at least1/4 from a nearest q∈K_i, move1/4 toward q; the radius1/4 ball there lies both in M_i and in B_{E_i}(p,1/2). If dist(p,K_i)<1/4, use the radius1/4 ball at q instead. These balls are embedded for large i, giving v_min=vol_{H4}(B(1/4)). Open-ball endpoint equalities can be handled by using radius1/8 instead, with the same conclusion.
++
++For every r>0, vol(B_{M_i}(p,r))≤vol_{H4}(B(r)); quotient balls have at most the universal-cover volume. Thus the replacement theorem's stronger all-radius upper-bound requirement is satisfied, not merely a single-radius bound.
++
++Each M_i is compact and path connected. Its measure is non-atomic, fully supported, and gives zero mass to metric spheres, since the distance is the ambient distance and ambient spheres have volume zero. Full support also follows from the inward-ball argument. Thus it is a special finite-volume mm-space. Outside a fraction tending to zero near the boundary, any fixed-radius pointed ball of the pair (M_i,E_i) is exactly the corresponding hyperbolic ball, because the covering radius diverges. Hence the extended spaces BS-converge to the pointed pair(H4,H4). These facts verify the topological, measure and convergence inputs of ABBG Theorem2.9.
++
++## 3. Uniform control of the nerve for EVERY allowed net
++
++Take any [4,5]-weighted (1,4)-net S_i in M_i, and let U_i be the union of its ambient open balls. These balls cover M_i. For large i, all of them and their finite nonempty intersections are strongly convex in E_i; their radii are bounded and the local covering radius diverges. Thus their nerve K_i^U is homotopy equivalent to U_i.
++
++Extend this to a locally finite good cover of E_i using small strongly convex balls contained in E_i\M_i. This is possible because U_i is an open neighborhood of the compact M_i; after leaving a sufficiently small positive neighborhood of M_i, choose a locally finite refinement in the complement. Every added ball can be chosen to have radius at most1. The resulting full nerve K_i is homotopy equivalent to E_i, so b_2(K_i)=0.
++
++Let K_i^V be the subcomplex on the added vertices together with those original vertices whose balls meet an added ball. Every mixed simplex lies in K_i^V, so K_i=K_i^U∪K_i^V. The intersection consists only of original net vertices whose radius-at-most5 balls leave M_i; such centers lie in N_5(∂M_i).
++
++Because the centers are1-separated, their ambient radius1/2 balls are disjoint (up to null boundaries) and embedded. The number of intersection vertices is at most
++
++    vol(N_6(∂M_i))/vol_{H4}(B(1/2))=o(vol(M_i)).
++
++Any two adjacent original vertices are at distance at most10, so packing gives a uniform degree bound Δ, independent of the net and of i. The number of2-simplices in the intersection is at most its vertex count times binom(Δ,2). Mayer–Vietoris therefore gives
++
++    b_2(K_i^U)≤b_2(K_i)+b_2(K_i^U∩K_i^V)
++                ≤o(vol(M_i)).
++
++This is uniform for ALL permitted nets and weights. In particular ABBG's nerve-approximation hypothesis holds with B_i=1, since vol(M_i) tends to infinity. We do not claim that balls cut by ∂M_i form a convex good cover; every nerve here uses AMBIENT balls, exactly as allowed by the extended-space theorem.
++
++## 4. The interleaving contradiction
++
++Fix a torsion-free cocompact residually finite lattice Λ in Isom(H4), and take a nested normal tower Λ_j with trivial intersection. The compact quotients Y_j=H4/Λ_j have injectivity radius tending to infinity and BS-converge to H4. Lück approximation and positivity of the middle L²-Betti number give
++
++    b_2(Y_j)/vol(Y_j) → b_2^(2)(Λ)/vol(H4/Λ)>0.
++
++For each Y_j regarded as (Y_j,vol,Y_j), the same parameters, lower volumes and all-radius upper bounds work for large j. Every allowed weighted net has a convex-ball good cover of the entire Y_j, so its nerve has exactly b_2(Y_j). Take B_j=b_2(Y_j)+1 to ensure positivity; the error1/vol(Y_j) vanishes.
++
++Now interleave (M_i,vol,E_i) and (Y_j,vol,Y_j). This one sequence satisfies every hypothesis of ABBG Theorem2.9 with common constants and the same extended BS-limit. The theorem says its B/volume ratios converge. Along the first subsequence they tend to zero, and along the second to the positive constant above, a contradiction.
++
++This verifies the replacement theorem in the exact free-H4 application. The conclusion is the uniform Cheeger gap used in PRIOR_RESOLUTION.md. It preserves Bowen's result with the later ABBG repair credited; it does not claim the original general metric-measure theorem was correct without qualification, nor that we have supplied a new independent proof of all background analytic theorems.
+diff --git a/problems/6200082_schottky_dimension/PACKET_MANIFEST.json b/problems/6200082_schottky_dimension/PACKET_MANIFEST.json
+new file mode 100644
+index 000000000..80a1e0fb0
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/PACKET_MANIFEST.json
+@@ -0,0 +1,46 @@
++{
++  "problem_id": 6200082,
++  "author_turns": 0,
++  "files": [
++    {
++      "path": "CHECKS.json",
++      "bytes": 202,
++      "sha256": "a73a267a8e802f460b29a1db20caf3b257ae1c4d4d9af6e0f2e58ca6bf770315"
++    },
++    {
++      "path": "CORRECTED_APPLICATION.md",
++      "bytes": 7379,
++      "sha256": "0a8f5fc6600e2447b85999b765ca1a58ef866913d488831610f5c5efc43ab0fc"
++    },
++    {
++      "path": "PRIOR_RESOLUTION.md",
++      "bytes": 3410,
++      "sha256": "75c7dcd37fdd9c87a0041e08baf9b147c189b3d965bb0c349a9a66b3869b9518"
++    },
++    {
++      "path": "REVIEW_REQUEST.md",
++      "bytes": 2493,
++      "sha256": "cbb810b0f8e5caca97dd3e17412d8959f604f800842240dd76a0db9e03174e41"
++    },
++    {
++      "path": "SOURCE_GATE.md",
++      "bytes": 3089,
++      "sha256": "42228449a22d5ca90ea4a437afbd603947ebc2c57fe557197bf5ebde601bec1b"
++    },
++    {
++      "path": "SOURCE_MANIFEST.json",
++      "bytes": 1168,
++      "sha256": "a5fb0c26feedf929f96325160f4d5af8855d610e0f7e2502454f9717e298ef98"
++    },
++    {
++      "path": "STATE.json",
++      "bytes": 201,
++      "sha256": "cb7aeef3f8561dedbe915d9188c5c775e0ec1765d6b908aff1e52d4b77afc130"
++    },
++    {
++      "path": "check.py",
++      "bytes": 1556,
++      "sha256": "3d7a9412db3dc14061a1aa9e69480f0f2eace849e3c84bdf6532b47a3f81dc82"
++    }
++  ]
++}
+diff --git a/problems/6200082_schottky_dimension/PRIOR_RESOLUTION.md b/problems/6200082_schottky_dimension/PRIOR_RESOLUTION.md
+new file mode 100644
+index 000000000..644a3b3c7
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/PRIOR_RESOLUTION.md
+@@ -0,0 +1,27 @@
++# Credited negative answer to Problem82
++
++The answer is no. There is a constant D<3, independent of the free group's rank and its representation, such that every free convex-cocompact subgroup of Isom(H4) has limit-set Hausdorff dimension at most D.
++
++Credit belongs to Bowen's published2015 result, with the metric-measure approximation dependency repaired by Abért–Bergeron–Biringer–Gelander2021/2023. See SOURCE_GATE.md and CORRECTED_APPLICATION.md. No new discovery, optimal D, or quantitative evaluation of D is claimed. Proposed status already_solved0/5; independent review pending.
++
++## Exact reduction to the established theorem
++
++Let G be as in the original question. Convex cocompactness gives discreteness and finite generation. A free group is torsion-free, so its discrete action on H4 is free: a point stabilizer is a discrete subgroup of a compact orthogonal group, hence finite, and is therefore trivial. Thus the quotient is a complete hyperbolic manifold, as required by Bowen's geometric-action convention.
++
++Free groups are residually finite. Every finitely generated subgroup, and each of its finite-index subgroups, is free and has a graph as a classifying space. Its ordinary second Betti number is zero. Consequently the full free-group family lies in Bowen's class G_2. A fixed torsion-free cocompact lattice in Isom(H4) is residually finite and has positive second L²-Betti number; these are precisely the lattice input and even-dimensional fact used by Bowen's Theorem1.2 and Lemma8.1. This checks the free-group case directly, without needing the more general hyperbolic3-manifold-subgroup application.
++
++The resulting uniform Cheeger bound is h(H4/G)≥h_*>0. Cheeger's inequality gives λ_0(H4/G)≥h_*²/4. Choose c=min(h_*²/4,1)>0. Convex cocompactness has no cusps, and its full limit set equals its conical limit set. The Patterson–Sullivan spectral formula quoted and applied on Bowen's printed572 gives, whenever δ=dim_H Λ(G)≥3/2,
++
++    λ_0=δ(3-δ).
++
++Hence δ(3-δ)≥c and
++
++    δ≤D=(3+sqrt(9-4c))/2<3.
++
++If δ<3/2, the same bound is automatic because D≥(3+sqrt5)/2>3/2. Elementary trivial/cyclic groups have dimension0 and also cause no exception. The bound uses the standard round/visual metric on the sphere at infinity; changing the basepoint gives a smooth Möbius map on this compact sphere and preserves Hausdorff dimension. Arbitrary snowflake choices of a visual parameter are not being substituted.
++
++The conclusion covers the broader free convex-cocompact clause, so no ambiguity about classical versus nonclassical Schottky terminology affects the answer. It does not assert a full-limit-set gap for arbitrary geometrically infinite free groups; the convex-cocompact hypothesis is essential to this exact application of the dimension formula.
++
++## Proof-history and verification limits
++
++The primary published corollary is the prior result being credited. This packet checks its application, the repaired approximation bridge and the elementary spectral algebra. It does not reproduce every proof of residual finiteness, L² approximation, Cheeger's inequality or Patterson–Sullivan theory from first principles. These classical dependencies are explicitly identified. The finite checker verifies only exact rational algebra and the combinatorial homology estimate used in the bridge; it is not a numerical proof of any analytic existence constant.
+diff --git a/problems/6200082_schottky_dimension/README.md b/problems/6200082_schottky_dimension/README.md
+new file mode 100644
+index 000000000..a88306a44
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/README.md
+@@ -0,0 +1,11 @@
++# Problem82: credited negative resolution
++
++Current reviewed disposition: **already_solved, 0/5 new author turns**. Bowen's2015 theorem gives a uniform gap below Hausdorff dimension3 for all free convex-cocompact groups in Isom(H4), independent of rank. The later Abért–Bergeron–Biringer–Gelander2021/2023 repair of the approximation dependency is essential and prominently audited here. This is a credited prior resolution, not a new discovery or an optimal numerical gap.
++
++Read PRIOR_RESOLUTION.md, CORRECTED_APPLICATION.md and review/REVIEW.md. The latter full independent AI-assisted review passed the exact source, corrected all-net ambient nerve argument and spectral implication. Earlier STATE.json/review-request references to pending review are immutable checkpoint history; this additive README records the accepted current disposition.
++
++All nine source-verification artifacts and five review files are preserved byte-exact. Raw source PDFs, images and imported records are intentionally excluded. They can be retrieved from the primary links in SOURCE_GATE.md and checked against SOURCE_MANIFEST.json when needed. No full-limit-set claim for geometrically infinite groups is inferred.
++
++## Reproduce compact controls
++
++From this directory run `python VERIFY_PUBLIC.py`. Python3 standard library only; no downloads or optional packages. It verifies both manifests, replays58,717 author assertions and80,000 separate reviewer assertions. The finite checks supplement the analytical theorem-chain review and do not evaluate a Cheeger constant. Optional local source verification is `python review/verify_review.py --author . --sources`, which requires placing all seven exact PDF/image inputs at the paths bound by SOURCE_MANIFEST.json; the plain public checkout does not contain them.
+diff --git a/problems/6200082_schottky_dimension/REVIEW_REQUEST.md b/problems/6200082_schottky_dimension/REVIEW_REQUEST.md
+new file mode 100644
+index 000000000..18392be19
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/REVIEW_REQUEST.md
+@@ -0,0 +1,18 @@
++# Independent review request: credited prior resolution
++
++Proposed disposition: already_solved0/5, exact negative answer, no new author theorem. Read SOURCE_GATE.md, PRIOR_RESOLUTION.md and CORRECTED_APPLICATION.md in full. The final file is an explicit audit of the later repaired approximation theorem, not permission to ignore the known gap.
++
++Exact primary sources, local sources/:
++- kapovich.pdf printed21, visually checked problem82.png; the broader free convex-cocompact clause is essential.
++- bowen-published.pdf printed571–572, Theorem1.2/Corollaries1.3–1.4, images bowen-page-03.png and -04.png. Published Duke2015 version. bowen2013.pdf is the arXiv version; §7 pp27–35 supplies the residual-cover and smoothing lemmas, and §8 Lemma8.1 supplies positive middle L²-Betti number.
++- abbg.pdf arXiv1811.02520v3, §§2.3–2.4, especially pp16–18 Theorem2.9. This version is June2021, later published Duke2023; source chronology must stay qualified. It explicitly diagnoses Bowen's continuity gap and gives the replacement.
++
++High-risk review obligations:
++1. Geometric action, no cusps, full versus conical limit sets and correct ambient dimension; rank is not fixed.
++2. All-radius volume bound, positive lower balls after thickening, extended BS-convergence and diverging covering radii in the corrected bridge.
++3. EVERY weighted net must satisfy the normalized nerve condition. Use ambient good covers, not false convexity of a reentrant-boundary intersection; check the locally finite extension, bounded-degree boundary packing and Mayer–Vietoris inequality.
++4. Interleave with a residual compact H4 lattice tower and verify positive normalized b2, including the harmless +1 for positive B_i.
++5. Spectral formula branch δ≥3/2, Cheeger sign/normalization, small-δ case, and why no numerical optimal gap is claimed.
++6. Prior-result attribution versus imported catalog 'open' status. No author turn should be counted for this source/hypothesis audit; no duplicate substantive campaign attempt was found.
++
++Run python check.py; its stdout must match CHECKS.json exactly. Standard-library only. The finite algebra/homology controls are supplementary, not a numerical verification of the analytic existence theorem. Source hashes are optional for public reproduction and raw sources must not be uploaded. SOURCE_MANIFEST binds four PDFs and three page images. PACKET_MANIFEST binds the compact public packet except itself. Publication remains gated on this independent review.
+diff --git a/problems/6200082_schottky_dimension/SOURCE_GATE.md b/problems/6200082_schottky_dimension/SOURCE_GATE.md
+new file mode 100644
+index 000000000..3de808277
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/SOURCE_GATE.md
+@@ -0,0 +1,11 @@
++# Source and prior-attempt gate: 6200082 / AMR-061-0082
++
++The complete item is Lewis Bowen's Problem82 in Misha Kapovich, Problems on Boundaries of Groups and Kleinian Groups, printed/PDF page21, https://www.math.ucdavis.edu/~kapovich/EPR/problems.pdf . The first page says most problems were collected at the AIM2005 workshop. The exact typeset item and surrounding Kleinian section were read, and page21 was visually checked. It asks whether free convex-cocompact groups in Isom(H4), including the narrower Schottky case, can have limit-set Hausdorff dimension approaching3. The ambient space is real hyperbolic four-space. No rank bound or prescribed generators appear.
++
++The pinned catalog and research record say open but provide no verified construction or proof. They are imported triage, not a substantive prior attempt and not authoritative current status. Exact ID/alias and semantic Schottky GitHub branch, commit and all-PR searches were empty; a Hausdorff/Bowen commit search was empty. Commit messages across499 locally mirrored refs were also searched. This does not claim an exhaustive content search of every historical blob or private conversation.
++
++The later primary literature supplies a negative answer. Lewis Bowen, Cheeger constants and L²-Betti numbers, Duke Mathematical Journal164(3)(2015),569–615, DOI10.1215/00127094-2871415, proves the relevant free-group uniform Cheeger gap in Corollary1.3, printed571, and the dimension consequence in Corollary1.4, printed572. Published PDF read at https://math.uchicago.edu/~shmuel/L%5E2%20cohomology%20readings/Bowen,%20Cheeger%20constants%20and%20L2-Betti%20numbers.pdf ; author's publication list https://web.ma.utexas.edu/users/lpbowen/research.html independently confirms the bibliographic data. Preprint https://arxiv.org/abs/1303.5963 began2013 and was revised2015; it is distinguished from the published version.
++
++Important proof-history qualification: the random-net continuity argument in Bowen's Theorem4.1 was incomplete. Abért–Bergeron–Biringer–Gelander, Convergence of normalized Betti numbers in nonpositive curvature, Duke Mathematical Journal172(4)(2023),633–700, DOI10.1215/00127094-2022-0029, give the replacement argument. The author version https://arxiv.org/pdf/1811.02520v3 (June2021) §2.3, pp16–18, explicitly discusses the gap and states that its Theorem2.9 applies to all Bowen applications. Its institutional record is https://real.mtak.hu/163252/ . The corrected theorem is not identical to the flawed original: it requires ball-volume bounds at every radius and an explicit nerve approximation hypothesis. CORRECTED_APPLICATION.md checks those hypotheses in the exact free-H4 application, including the boundary issue.
++
++Proposed disposition is credited already_solved0/5, subject to independent full source/proof review. This is verification of a published prior resolution and its later repaired dependency, not a new author theorem or a new proof-search turn. No numerical optimal dimension or sharp gap is claimed. Raw PDFs, page images and imported records remain local-only.
+diff --git a/problems/6200082_schottky_dimension/SOURCE_MANIFEST.json b/problems/6200082_schottky_dimension/SOURCE_MANIFEST.json
+new file mode 100644
+index 000000000..4b85c00aa
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/SOURCE_MANIFEST.json
+@@ -0,0 +1,40 @@
++{
++  "raw_sources_local_only": true,
++  "files": [
++    {
++      "path": "sources/abbg.pdf",
++      "bytes": 637373,
++      "sha256": "329e2b07a723508b60316e1dfd5c54fe4a6fcdea00c466460e65e12a6cb50d7b"
++    },
++    {
++      "path": "sources/bowen-page-03.png",
++      "bytes": 358745,
++      "sha256": "b5ea35983d2397828a5dff3a0e51993fcc66203484a286702f83ad347a932148"
++    },
++    {
++      "path": "sources/bowen-page-04.png",
++      "bytes": 392650,
++      "sha256": "dc269feae73a9fda26305db5f23363bb818c5a7d59a30e8f608b7db3d234c033"
++    },
++    {
++      "path": "sources/bowen-published.pdf",
++      "bytes": 443805,
++      "sha256": "b7e4aadcb47c9a2d69b45ff0412fb4443e691f91e183bb54fcd41ee081e7f928"
++    },
++    {
++      "path": "sources/bowen2013.pdf",
++      "bytes": 444767,
++      "sha256": "3ef037a8b133405777edd806bb0fa8c90fd8b8af50589f82045a53a36e25b325"
++    },
++    {
++      "path": "sources/kapovich.pdf",
++      "bytes": 282065,
++      "sha256": "49b8b9298e534cc947799c4fe134bbb1cdb2d27773828ad4f3e56cbbc1ed0dfc"
++    },
++    {
++      "path": "sources/problem82.png",
++      "bytes": 323769,
++      "sha256": "7b4f8cf92708f2b2210a6f7dc7a1bb87055709caffbfc6624993f72b50819ee4"
++    }
++  ]
++}
+diff --git a/problems/6200082_schottky_dimension/STATE.json b/problems/6200082_schottky_dimension/STATE.json
+new file mode 100644
+index 000000000..5faa86886
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/STATE.json
+@@ -0,0 +1,7 @@
++{
++  "problem_id": 6200082,
++  "author_turns": 0,
++  "proposed_disposition": "already_solved",
++  "review_status": "pending",
++  "credit": "Bowen2015 with ABBG2021/2023 repaired approximation dependency"
++}
+diff --git a/problems/6200082_schottky_dimension/VERIFY_PUBLIC.py b/problems/6200082_schottky_dimension/VERIFY_PUBLIC.py
+new file mode 100644
+index 000000000..206c1c9af
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/VERIFY_PUBLIC.py
+@@ -0,0 +1,10 @@
++from pathlib import Path
++import json,hashlib,subprocess,sys
++p=Path(__file__).resolve().parent
++bindings=0
++for base,m in [(p,'PACKET_MANIFEST.json'),(p/'review','REVIEW_MANIFEST.json')]:
++ for e in json.loads((base/m).read_text())['files']:
++  b=(base/e['path']).read_bytes();assert len(b)==e['bytes'] and hashlib.sha256(b).hexdigest()==e['sha256'];bindings+=1
++r=subprocess.check_output([sys.executable,str(p/'check.py')]);assert r==(p/'CHECKS.json').read_bytes()
++s=json.loads(subprocess.check_output([sys.executable,str(p/'review/verify_review.py'),'--author',str(p)]));assert s['independent_algebra_assertions']==80000 and s['local_source_bindings']==0
++print(json.dumps({'author_assertions':json.loads(r)['assertions'],'independent_assertions':s['independent_algebra_assertions'],'manifest_bindings':bindings,'raw_sources_required':False,'result':'PASS'},indent=2))
+diff --git a/problems/6200082_schottky_dimension/check.py b/problems/6200082_schottky_dimension/check.py
+new file mode 100644
+index 000000000..19ffdbf28
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/check.py
+@@ -0,0 +1,40 @@
++from fractions import Fraction as F
++from itertools import combinations
++import json
++count=0
++def ck(x):
++ global count
++ count+=1;assert x
++for q in range(1,101):
++ for a in range(0,3*q+1):
++  delta=F(a,q)
++  if delta<F(3,2):continue
++  for c in [F(1,100),F(1,4),F(1,2),F(1)]:
++   ck((delta*(3-delta)>=c)==((2*delta-3)**2<=9-4*c))
++   if delta*(3-delta)>=c:ck(delta<3)
++tri=list(combinations(range(5),3));edges=list(combinations(range(5),2))
++def rank(M):
++ M=[[F(x) for x in r] for r in M];r=0
++ if not M:return 0
++ for j in range(len(M[0])):
++  pivot=next((i for i in range(r,len(M)) if M[i][j]),None)
++  if pivot is None:continue
++  M[r],M[pivot]=M[pivot],M[r];z=M[r][j];M[r]=[x/z for x in M[r]]
++  for i in range(r+1,len(M)):
++   z=M[i][j]
++   if z:M[i]=[x-z*y for x,y in zip(M[i],M[r])]
++  r+=1
++  if r==len(M):break
++ return r
++def complex_of(mask):
++ T={tri[j] for j in range(10) if mask>>j&1};E=set(e for t in T for e in combinations(t,2));return T,E
++def b2(T,E):
++ cols=[]
++ for t in sorted(T):cols.append({tuple(t[:j]+t[j+1:]):(-1)**j for j in range(3)})
++ return len(T)-rank([[col.get(e,0) for col in cols] for e in sorted(E)])
++for seed in range(1024):
++ A,EA=complex_of(seed);B,EB=complex_of((seed*713+157)%1024)
++ ck(b2(A,EA)<=b2(A|B,EA|EB)+b2(A&B,EA&EB))
++ck(F(1,1)<F(2,1) and F(4,1)>=2*F(2,1) and F(5,1)>F(4,1))
++ck(F(1,4)+F(1,4)<=F(1,2))
++print(json.dumps({'assertions':count,'scope':'Exact spectral quadratic equivalence and rational Mayer-Vietoris inequality controls; no numerical Cheeger constant or analytic theorem certified by finite tests'},indent=2,sort_keys=True))
+diff --git a/problems/6200082_schottky_dimension/review/AUTHOR_REPLAY.json b/problems/6200082_schottky_dimension/review/AUTHOR_REPLAY.json
+new file mode 100644
+index 000000000..bb03bf0d4
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/review/AUTHOR_REPLAY.json
+@@ -0,0 +1,4 @@
++{
++  "assertions": 58717,
++  "scope": "Exact spectral quadratic equivalence and rational Mayer-Vietoris inequality controls; no numerical Cheeger constant or analytic theorem certified by finite tests"
++}
+diff --git a/problems/6200082_schottky_dimension/review/INDEPENDENT_CHECKS.json b/problems/6200082_schottky_dimension/review/INDEPENDENT_CHECKS.json
+new file mode 100644
+index 000000000..2652ed83c
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/review/INDEPENDENT_CHECKS.json
+@@ -0,0 +1,7 @@
++{
++  "artifact_bindings": 8,
++  "local_source_bindings": 7,
++  "independent_algebra_assertions": 80000,
++  "result": "PASS",
++  "scope": "Source/hypothesis review establishes the analytic application; finite controls do not compute a Cheeger constant"
++}
+diff --git a/problems/6200082_schottky_dimension/review/REVIEW.md b/problems/6200082_schottky_dimension/review/REVIEW.md
+new file mode 100644
+index 000000000..e44a06a43
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/review/REVIEW.md
+@@ -0,0 +1,45 @@
++# Independent review: credited prior resolution of Problem 82
++
++PASS. Proposed disposition already_solved, zero new author turns. The negative answer is credited to Lewis Bowen's published 2015 theorem, with the later Abért–Bergeron–Biringer–Gelander approximation repair explicitly retained. This is a verification of that prior-result chain, not a new discovery or a complete reproof of every classical analytic dependency.
++
++Frozen author packet manifest SHA-256: 5c448076b5c26a9aa790eb5cd06720f1597193e89ebc693b160e9b1f6019d466. WIP: 7bd98e077a854ada800178bbf3ead4f9932d7ca2. Read SOURCE_GATE.md, PRIOR_RESOLUTION.md and the entire CORRECTED_APPLICATION.md. No mandatory correction is required.
++
++## Exact source and result
++
++Visually inspected original printed page 21. Problem 82 asks whether Schottky, or more generally free convex-cocompact, subgroups of Isom(H4) can have limit-set Hausdorff dimension arbitrarily close to three. There is no fixed-rank restriction. Visually checked Bowen's published printed page 572 and read Theorem 1.2 and Corollary 1.3 on page 571. They give the required uniform Cheeger gap and the dimension corollary. The full versus conical limit-set distinction is harmless precisely because convex cocompactness excludes cusps and all limit points are conical. No statement for arbitrary geometrically infinite free groups is inferred.
++
++The free group acts freely: a discrete point stabilizer is finite, and the group is torsion-free. Thus the quotient meets the geometric-action convention. Every finitely generated subgroup and each finite-index subgroup is free, with zero ordinary second Betti number, so it satisfies Bowen's G_2 hypothesis. A residual compact H4 lattice supplies positive middle L2-Betti number. This checks the free-group case directly rather than silently importing a stronger three-manifold-subgroup classification.
++
++Cheeger's inequality has the right sign and normalization, lambda_0>=h^2/4. With c=min(h_*^2/4,1), the spectral branch delta>=3/2 gives delta(3-delta)>=c and hence delta<=(3+sqrt(9-4c))/2<3. The small-delta branch and elementary groups automatically satisfy that upper bound. No numerical value or optimality of the gap is asserted. The metric is the usual round/visual sphere metric, not an arbitrarily snowflaked visual parameter.
++
++## Known proof gap and the corrected theorem
++
++Read ABBG arXiv:1811.02520v3, Section 2.3, including its diagnosis of the random-net continuity problem and Theorem 2.9's complete hypotheses. The authors explicitly say the replacement applies to Bowen's applications, while noting it does not formally imply every version of the original statement. The packet correctly retains this qualification and distinguishes the June 2021 manuscript from the 2023 publication.
++
++The repair requires all-radius upper volume bounds and approximation of the Betti numbers of the ambient-ball nerve for EVERY permitted weighted net. Those strengthened hypotheses cannot be replaced by one convenient discretization. The packet's application checks them as follows.
++
++Bowen's Lemmas 7.2 and 7.3 were read in the preprint, including the residual-cover construction, boundary ratios for every fixed radius and diverging covering radius along the compact sets. These supply connected compact Følner domains in free quotients if the asserted gap failed. The free-group second homology vanishes for these quotients. These particular lemmas are credited dependencies; the faulty approximation theorem is not used to infer their conclusions.
++
++Thickening by ten preserves negligible fixed-radius boundary neighborhoods and asymptotic volume. Covering radius on each fixed thickening diverges as well, by the displacement triangle inequality. The volumes must diverge: otherwise interior hyperbolic balls of each fixed radius, obtained outside the negligible boundary region, would have unbounded required volume in a bounded-volume set.
++
++The inward-ball argument gives a uniform positive lower half-ball volume even at the thickened boundary, while every ambient quotient ball has volume bounded above by the H4 ball for that radius. The parameters 1,2,4,5 meet the exact r_3>r_2>=2r_1>2r_0 restrictions. Ambient restricted metrics and volumes are non-atomic, fully supported, have null spheres and are compact/path connected as required. Away from a negligible boundary portion the pointed extended pair agrees on each fixed radius with (H4,H4). This establishes the stated extended BS-convergence, not just convergence of unmarked manifolds.
++
++## The all-net nerve estimate
++
++For every allowed separated weighted net, use ambient balls of radii between four and five. The diverging local covering radius makes these balls and their relevant finite intersections strongly convex. They cover M_i and give its ambient open neighborhood U_i. Crucially, the argument never assumes that cutting a ball by a possibly reentrant boundary preserves convexity.
++
++The finite original collection can be extended to a locally finite good cover of E_i by sufficiently small convex balls outside M_i. Since U_i is an open neighborhood of compact M_i, a locally finite complementary refinement can be chosen away from a smaller neighborhood. The full nerve models E_i and therefore has zero second Betti number. The subcomplex containing added vertices and all original vertices meeting them covers every mixed simplex. Its intersection with the original nerve has only original centers within distance five of the boundary. Separation, embedded half-balls and the fixed-radius boundary estimate bound the number of these centers by o(vol M_i). Uniform degree follows from hyperbolic packing at radius ten. Thus the intersection's number of two-simplices is o(vol M_i), uniformly over every net and weights.
++
++Mayer–Vietoris gives b_2(original nerve)<=b_2(full nerve)+b_2(intersection), and hence the required uniform negligible ratio. The intersection estimate does not require the complementary cover to have a global injectivity-radius bound. Local small convex balls suffice there; all original balls lie in the diverging-injectivity neighborhood. Taking B_i=1 meets the positivity hypothesis and has negligible normalized error.
++
++## Interleaving and conclusion
++
++A nested residual normal tower of a fixed compact torsion-free H4 lattice has diverging injectivity radius and the same extended BS-limit. Its weighted nets have nerves homotopy equivalent to the whole compact quotient. Lück approximation and the positive middle L2-Betti number give a positive limiting normalized b_2. Taking B_j=b_2+1 again meets positivity with a vanishing normalized extra term.
++
++Interleaving the two sequences preserves the common constants, all-radius bounds, convergence and every-net approximation. ABBG Theorem 2.9 forces convergence of the resulting B/volume sequence, contradicting its zero and positive subsequential limits. This validates the replacement theorem in the precise free-H4 application. The known continuity gap is not ignored or treated as repaired merely by changing a citation.
++
++## Verification and publication
++
++All 58,717 author controls reproduce byte-for-byte. The complete eight manifest entries and seven local source bindings (four PDFs and three images) verify. Separate exact rational controls pass 80,000 assertions checking the spectral quadratic equivalence and monotonicity. These computations do not prove existence or evaluate the Cheeger constant; the analytic conclusion rests on the audited theorem chain and hypotheses.
++
++Approve publication as already_solved, zero new author turns, with Bowen and ABBG credit and the proof-history note prominent. Preserve all nine frozen author files and the review whitelist. Only the target queue status/turn cells should change. No raw source redistribution, novelty claim, merge or release is authorized by this review.
+diff --git a/problems/6200082_schottky_dimension/review/REVIEW_MANIFEST.json b/problems/6200082_schottky_dimension/review/REVIEW_MANIFEST.json
+new file mode 100644
+index 000000000..c25ce7cf5
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/review/REVIEW_MANIFEST.json
+@@ -0,0 +1,28 @@
++{
++  "problem_id": 6200082,
++  "verdict": "PASS_CREDITED_PRIOR_RESOLUTION_WITH_CORRECTED_DEPENDENCY",
++  "author_manifest_sha256": "5c448076b5c26a9aa790eb5cd06720f1597193e89ebc693b160e9b1f6019d466",
++  "author_wip": "7bd98e077a854ada800178bbf3ead4f9932d7ca2",
++  "files": [
++    {
++      "path": "REVIEW.md",
++      "bytes": 7861,
++      "sha256": "913b4f5e95f5a1de299f9d0efe72f131c18b84d03c29f7cf25b71293616a79e0"
++    },
++    {
++      "path": "AUTHOR_REPLAY.json",
++      "bytes": 202,
++      "sha256": "a73a267a8e802f460b29a1db20caf3b257ae1c4d4d9af6e0f2e58ca6bf770315"
++    },
++    {
++      "path": "INDEPENDENT_CHECKS.json",
++      "bytes": 249,
++      "sha256": "948ea10c85efe024ec65425decfaa9c8a8b28e9a611810fb1035645ea029c8cd"
++    },
++    {
++      "path": "verify_review.py",
++      "bytes": 1216,
++      "sha256": "15163f3d4504967f8ad09a429ad602e1ecfe041016174fdf7d0dcd06dcbe1693"
++    }
++  ]
++}
+diff --git a/problems/6200082_schottky_dimension/review/verify_review.py b/problems/6200082_schottky_dimension/review/verify_review.py
+new file mode 100644
+index 000000000..92fb1b30d
+--- /dev/null
++++ b/problems/6200082_schottky_dimension/review/verify_review.py
+@@ -0,0 +1,22 @@
++from pathlib import Path
++from fractions import Fraction as Q
++import argparse,hashlib,json
++p=argparse.ArgumentParser();p.add_argument('--author',required=True);p.add_argument('--sources',action='store_true');a=p.parse_args();root=Path(a.author);count=0
++m=json.loads((root/'PACKET_MANIFEST.json').read_text())
++for e in m['files']:
++ b=(root/e['path']).read_bytes();assert len(b)==e['bytes'] and hashlib.sha256(b).hexdigest()==e['sha256'];count+=1
++sources=0
++if a.sources:
++ for e in json.loads((root/'SOURCE_MANIFEST.json').read_text())['files']:
++  b=(root/e['path']).read_bytes();assert len(b)==e['bytes'] and hashlib.sha256(b).hexdigest()==e['sha256'];sources+=1
++n=0
++# Direct rational monotonicity and spectral root transformation.
++for v in range(1,201):
++ c=Q(v,200)
++ for w in range(300,601):
++  delta=Q(w,200)
++  assert (delta*(3-delta)>=c)==((2*delta-3)**2<=9-4*c);n+=1
++ for w in range(1,100):
++  x=Q(w,100)+Q(3,2);y=x+Q(1,100)
++  assert x*(3-x)>y*(3-y);n+=1
++print(json.dumps({'artifact_bindings':count,'local_source_bindings':sources,'independent_algebra_assertions':n,'result':'PASS','scope':'Source/hypothesis review establishes the analytic application; finite controls do not compute a Cheeger constant'},indent=2))
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 3259aaa7c..56b70f926 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -427,7 +427,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 416 | 30004865 / OWR-8415352-007 | Completeness of Realignment and SIC-POVM Entanglement Tests | 0.1333 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+ | 417 | 6200004 / AMR-061-0004 | Boundaries of Groups and Kleinian Groups — Problem 4 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+ | 418 | 6200043 / AMR-061-0043 | Boundaries of Groups and Kleinian Groups — Problem 43 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+-| 419 | 6200082 / AMR-061-0082 | Boundaries of Groups and Kleinian Groups — Problem 82 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
++| 419 | 6200082 / AMR-061-0082 | Boundaries of Groups and Kleinian Groups — Problem 82 | 0.1321 | 6.0 | 3 | 2005 | already_solved | 0/5 |  |  |  |
+ | 420 | 30005804 / OWR-14298163-008 | Dolnikov’s Colorful Transversal Conjecture | 0.1321 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+ | 421 | 11000020 / AMR-109-0020 | Problem 2.19 — (Canonical basepoints for Mg). | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 422 | 11000158 / AMR-109-0158 | Problem 2.1 — Assume, for this problem, that M is a 3-manifold with non-empty boundary. | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |

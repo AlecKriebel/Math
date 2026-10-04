@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr45_9900007/acceptance_source_adversary_family/independent_static_controls.py", line 176, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr45_9900007/acceptance_source_adversary_family/independent_static_controls.py", line 92, in main
+    elif v.mutant=='duplicate_json':parse(b'{"approval":false,"approval":true}')
+                                    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr45_9900007/acceptance_source_adversary_family/independent_static_controls.py", line 22, in parse
+    return json.loads(b,object_pairs_hook=pairs,parse_float=floating,parse_constant=lambda x:(_ for _ in ()).throw(ValueError('nonfinite JSON')))
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/__init__.py", line 365, in loads
+    return cls(**kw).decode(s)
+           ~~~~~~~~~~~~~~~~^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/json/decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr45_9900007/acceptance_source_adversary_family/independent_static_controls.py", line 15, in pairs
+    if k in o:raise ValueError('duplicate JSON key')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: duplicate JSON key

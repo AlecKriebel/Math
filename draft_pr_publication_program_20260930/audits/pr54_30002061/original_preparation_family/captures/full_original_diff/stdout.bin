@@ -1,0 +1,1763 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..71e20099d 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -79,7 +79,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+-| 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
++| 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | unsolved | 1/5 |  | 2026-09-30: Separate adversarial review passed the exact relative-simplex reduction and dimension-at-most-two collapse certificate preserving the prescribed boundary target. The higher-dimensional linear-subdivision problem remains unresolved.4200author and59718independent assertions; one bounded route and no full-resolution or novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/54. |  |
+ | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+ | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+ | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30002061/PARTIAL.md b/unsolved_math_prioritization/attempts/30002061/PARTIAL.md
+new file mode 100644
+index 000000000..df10277cb
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/PARTIAL.md
+@@ -0,0 +1,113 @@
++# Relative collapse under subdivision: exact local reduction and a planar certificate
++
++**Status: the general problem remains unresolved.** This note records an elementary reduction and a constructive low-dimensional case, with no novelty claim. The known theorem after an additional barycentric subdivision is credited separately. Independent scoped review passed; see review/REVIEW.md.
++
++Target: 30002061 / OWR-11786-016, Hudson's relative subdivision problem.
++
++## 1. Conventions and the exact remaining question
++
++All complexes here are finite simplicial complexes. An elementary collapse deletes a maximal simplex τ and a codimension-one face σ contained in no other maximal simplex. Neither σ nor τ belongs to the retained target. A collapse is a finite sequence of such moves. The empty face is not deleted in a move.
++
++A subdivision is **linear/geometric on every original simplex**. This is the explicit convention immediately before Problem 2 on printed p. 1460 of the original OWR report [1]. It is not an arbitrary triangulation of a homeomorphic ball and does not mean only a regular/coherent subdivision. Write D|A for the subcomplex consisting of simplices of D contained in a specified original subcomplex or geometric set A.
++
++The question asks whether
++
++\[
++ C\searrow C',\qquad D\text{ a linear subdivision of }C,
++ \qquad D'=D|\,|C'|
++ \quad\Longrightarrow\quad D\searrow D'.
++ \tag{1}
++\]
++
++The target D' is prescribed. A collapse of D to some other subcomplex or to a point does not establish (1).
++
++Adiprasito–Benedetti [2, Theorem 4.3] prove instead
++
++\[
++ \operatorname{sd}D\searrow\operatorname{sd}D'.
++ \tag{2}
++\]
++
++This is a published, credited theorem, not a new result of this attempt. A sequence on sd(D) is not already a sequence on D. The original report states the same extra-subdivision conclusion in its Corollary 2. The present note does not remove that subdivision in general.
++
++## 2. Reduction to one subdivided simplex with a protected boundary part
++
++For a d-simplex Δ, d≥1, and a facet F of Δ, define the retained boundary subcomplex
++
++\[
++ L(\Delta,F)=\partial\Delta\setminus\{F\}.
++\]
++
++Only the simplex F itself is removed from the boundary face set; all its proper faces remain. Geometrically, |L(Δ,F)| is the boundary of Δ minus the relative interior of F.
++
++Consider the following local condition in every dimension up to d:
++
++> For every simplex Δ of dimension between 1 and d, every facet F, and every linear triangulation T of Δ, there is a collapse
++> \[
++> T\searrow T|\,|L(\Delta,F)|.
++> \tag{3}
++> \]
++
++**Proposition 1.** The universal statement (1) for complexes of dimension at most d is equivalent to this local condition.
++
++**Proof.** Necessity follows by taking C to be the face complex of Δ and C'=L(Δ,F). Deleting the free facet F together with Δ is one elementary collapse.
++
++For sufficiency, take an elementary step C_i↘C_{i+1} deleting (σ,τ), and put D_i=D|\,|C_i|. The restriction T=D_i|τ is a linear triangulation of τ. Because σ is free,
++
++\[
++ T\cap D_{i+1}=T|\,|L(\tau,\sigma)|=:K,
++ \qquad D_i=T\cup D_{i+1}.
++ \tag{4}
++\]
++
++Use (3) to collapse T onto K. Each pair removed in this local sequence remains a free pair after adjoining D_{i+1}. To see this explicitly, suppose a removed free face a had an additional coface b in D_{i+1}. Since D_{i+1} is a subcomplex, it would also contain a. Then a would lie in T∩D_{i+1}=K, contradicting that the local collapse retains K. No new obstructing coface can therefore occur outside T. The local sequence gives D_i↘D_{i+1}.
++
++Apply this to every elementary step of C↘C'. The final restriction is exactly D', proving (1). ∎
++
++This reduction also identifies why an absolute collapsibility theorem for every subdivided simplex is not, by itself, the missing argument: (3) must retain the whole specified boundary subcomplex K throughout.
++
++## 3. Every triangulated disk collapses to a proper boundary path
++
++**Proposition 2.** Let T be a finite triangulated closed 2-disk, and let K be a nonempty connected proper subcomplex of its boundary. Then T collapses to K. Here K is a path or a single vertex.
++
++**Proof.** Choose a boundary edge e not in K and let τ0 be its unique incident triangle. The dual graph of the triangles, joining triangles that share an interior edge, is connected. Indeed, an interior path between two triangle interiors can be chosen to avoid all vertices and cross edges transversely; it then gives a dual walk. Choose a spanning tree of this dual graph rooted at τ0.
++
++Process the triangles in an order with each parent before its children. Delete τ0 paired with e. For a later triangle τ, pair it with its shared edge e_τ with its parent. At that time the parent triangle has been removed, while τ remains. An interior edge of a triangulated disk has exactly two incident triangles, so e_τ is now a free edge. It has not been removed earlier: a previous move removed only its own triangle and the edge to its own parent, whereas e_τ joins the present triangle to its parent. No pair removes a face of K. The root edge was chosen outside K and all later paired edges are interior.
++
++After all triangles have been removed, the remaining complex G is a finite graph containing K. Every move was an elementary collapse, so G is connected and contractible. A finite connected graph is contractible exactly when it is a tree. Thus G is a tree containing the connected subtree K.
++
++If G differs from K, it has a leaf outside K. One way to see this is to take a vertex outside K of maximum graph distance from K; in a tree it has no neighbor farther from K, hence is a leaf. Pair that vertex with its sole edge. Repeating this pruning retains K and ends exactly at K. ∎
++
++The argument gives an explicit certificate: a parent-first dual spanning tree for the triangle removals, followed by ordinary leaf pruning. It does not presume a shelling or use a barycentric refinement.
++
++**Corollary 3.** For dim(C)≤2, the exact relative statement (1) holds.
++
++For dimension one, a subdivided interval collapses onto either prescribed original endpoint by pruning from the opposite end. For dimension two, the retained part of the boundary of a triangle is the path consisting of the other two sides, with their subdivisions. Proposition 2 supplies (3), and Proposition 1 passes this local sequence through every collapse step of C. Dimension-zero complexes have no nontrivial elementary moves under the stated convention.
++
++This is a classical low-dimensional case, included as a checkable reconstruction and not advertised as a new theorem. Chillingworth's stronger three-dimensional convex-collapse results and their later developments belong to the existing literature; the present elementary certificate proves only the case explicitly stated above.
++
++## 4. The exact higher-dimensional gap
++
++The parent-first dual-tree procedure can remove top-dimensional simplices through selected codimension-one faces in a triangulated ball. In dimension two, its remaining complex is a graph, and contractibility forces that graph to be a tree that can be pruned relative to K. In higher dimensions the residual complex has dimension at least two. Connectedness and contractibility do not provide an analogous relative free-face sequence. This method supplies no such sequence and stops there.
++
++In particular, none of the following fills the gap:
++
++- Replacing the desired target K by an unspecified point
++- Treating contractibility or simple-homotopy equivalence as a sequence of collapses without expansions
++- Importing (2) and pretending its subdivided faces were already faces of D
++- Using a noncollapsible PL ball without proving it is a linear subdivision of the relevant original simplex
++- Using a nonshellable example, such as Rudin's ball, as if nonshellability implied noncollapsibility
++
++The outstanding local requirement is exactly (3) in the higher-dimensional cases not covered by a verified existing theorem, or a genuine linear triangulation violating it. No such proof or counterexample has been produced here. The original record remains **unsolved in this attempt**.
++
++## 5. Finite controls and source precision
++
++The accompanying checker constructs exact rational planar triangulations, produces the dual-tree/pruning certificates, and verifies each removed pair directly against the current face set. It also checks that protected faces survive, that the final face set equals the specified target, and that local certificates remain valid after adjoining a second triangulated region along protected faces. These checks support the finite algorithm; they are not a search over arbitrary high-dimensional subdivisions.
++
++The full original OWR passage and the relevant published Adiprasito–Benedetti proof were read. The published Theorem 4.3 reduces to one original elementary collapse, then uses endo-collapsibility after derived subdivision. That source proof explicitly keeps the extra subdivision and cannot simply be reused without it.
++
++## References
++
++1. K. A. Adiprasito, joint work with B. Benedetti, *Barycentric Subdivisions, Shellability and Collapsibility*, in *Triangulations*, OWR24/2012, printed pp. 1459–1462; Problem 2 and Corollary 2 p. 1460. [Full report](https://ems.press/content/serial-article-files/46393?nt=1), DOI [10.4171/OWR/2012/24](https://doi.org/10.4171/owr/2012/24)
++2. K. Adiprasito and B. Benedetti, *Barycentric Subdivisions of Convex Complexes are Collapsible*, Discrete & Computational Geometry **64** (2020), 608–626, [DOI 10.1007/s00454-019-00137-3](https://doi.org/10.1007/s00454-019-00137-3), [full published article](https://par.nsf.gov/servlets/purl/10169029). Theorem 4.3 corresponds to Theorem 4.0.3 in [arXiv:1709.07930v1](https://arxiv.org/abs/1709.07930v1).
++3. D. R. J. Chillingworth, *Collapsing three-dimensional convex polyhedra*, Math. Proc. Cambridge Philos. Soc. **63** (1967), 353–357, [DOI 10.1017/S0305004100041268](https://doi.org/10.1017/S0305004100041268); correction **88** (1980), 307–310. These are credited background, not a new three-dimensional proof in this note.
+diff --git a/unsolved_math_prioritization/attempts/30002061/README.md b/unsolved_math_prioritization/attempts/30002061/README.md
+new file mode 100644
+index 000000000..99f7d387d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/README.md
+@@ -0,0 +1,13 @@
++# 30002061: collapse preservation under linear subdivision
++
++**General target unresolved.** One substantive family, stopped at a precise higher-dimensional relative-collapse gap. No novelty claim; independent scoped review passed.
++
++`PARTIAL.md` gives the exact reduction to one subdivided simplex with a protected boundary target and reconstructs a planar dual-tree/pruning certificate. It proves the dimension ≤2 case, already covered by known planar theory, without claiming the full Hudson problem solved.
++
++The original source uses linear subdivisions. Adiprasito–Benedetti's published Theorem 4.3 adds one barycentric subdivision to both complexes; that established result is credited and not substituted for the original target.
++
++Run `python3 verify.py` with Python 3's standard library. All 4,200 exact assertions pass across 27 rational planar triangulations and 6 relative gluing controls. It writes `verification.json` and the explicit small `sample_certificate.json`. These are finite controls, not a high-dimensional census or proof.
++
++Model: gpt-6-astra, xhigh. Recommended queue status: **unsolved**, 1/5. The coordinator owns shared queue updates.
++
++The separate review in `review/` adds 59,718 exact invariant checks across 387 disk-target cases, 387 relative gluing cases and 30 interval cases. These counts include repeated move invariants and are not counts of independent theorems.
+diff --git a/unsolved_math_prioritization/attempts/30002061/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30002061/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..67033a7bf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/RESEARCH_LOG.md
+@@ -0,0 +1,10 @@
++# Research log
++
++- 2026-09-30 06:25 UTC: Assigned rank 71 / 30002061. Deadline08:25 UTC, five-attempt maximum. Read pinned full record and null prior report. Prior attempt/branch/all-state PR and related-target checks found no exact or descriptive match; main queue remains queued 0/5.
++- 06:29 UTC: Retrieved full OWR 2012 and Adiprasito–Benedetti 1709.07930v1. This is Hudson's relative-collapse problem. OWR printed 1460 explicitly defines subdivision to mean linear triangulation. Arbitrary PL-homeomorphic triangulations, ordinary collapsibility without the prescribed target, and an extra barycentric subdivision do not answer it. The current source gives the credited result sd(D) collapses to sd(D'), leaving removal of that extra subdivision unresolved. No full solution claimed.
++- 06:30 UTC: Pausing at the source checkpoint for the separately assigned reflection-criterion audit. Current branch remains isolated; no queue edits. The next mathematical checkpoint will isolate the elementary relative-simplex condition and its low-dimensional constructive verification, with all known results credited.
++
++- 06:37 UTC, substantive family 1/5: froze PARTIAL.md SHA 1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9. Exact relative-simplex reduction and constructive planar case are proved; the higher-dimensional residual is the precise stall. No novelty claim. Full-target completion estimate: 5%.
++- 06:41 UTC: 4,200 exact assertions pass across 27 planar cases and 6 glued-target controls; sample certificate saved. Separate reviewer is auditing the frozen proof. Full-target estimate remains 5%.
++- 06:46 UTC: separate review PASS_PARTIAL with no mandatory correction. Author receipts reproduced exactly; 59,718 independent invariant checks passed. Only the proof review-status sentence changed for final-hash coverage. Full-target estimate remains 5%, with no full resolution or novelty claim.
++- 06:52 UTC: Published the independently reviewed scoped partial record as draft PR54: https://github.com/AlecKriebel/Math/pull/54. The original problem remains unsolved; the parent owns its queue-row update.
+diff --git a/unsolved_math_prioritization/attempts/30002061/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/30002061/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..046e6b844
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/SOURCE_AUDIT.md
+@@ -0,0 +1,31 @@
++# Exact source and current-literature scope
++
++Checked 30 September 2026. The general target remains **unsolved in this attempt**. No novelty is claimed for the local reduction or planar proof.
++
++## Original and published source
++
++The full [OWR 24/2012 report](https://ems.press/content/serial-article-files/46393?nt=1) was retrieved. Adiprasito's contribution, joint with Benedetti, begins on printed p. 1459. Page 1460 was rendered and visually inspected. Immediately before Problem 2, the source says that subdivision means linear triangulation. Problem 2 retains the prescribed subcomplex, and Corollary 2 adds barycentric subdivisions to both complexes. The target cannot be settled by an arbitrary topological or PL ball with no verified linear realization, an absolute collapse to some point, or the existing subdivided statement.
++
++The full published [Adiprasito–Benedetti article](https://par.nsf.gov/servlets/purl/10169029), Discrete & Computational Geometry 64 (2020), 608–626, DOI [10.1007/s00454-019-00137-3](https://doi.org/10.1007/s00454-019-00137-3), was retrieved. Definitions in Section 2 specify finite geometric/intrinsic polytopal complexes and subdivisions face by face. Theorem 4.3 gives sd(D) collapsing to sd(D'). Its proof reduces to one original elementary collapse, then uses the previous endo-collapsibility corollary on the derived subdivision. It does not remove the extra subdivision.
++
++The [arXiv version 1709.07930v1](https://arxiv.org/abs/1709.07930v1), posted 22 September 2017, numbers the result 4.0.3. Its displayed manuscript date is 2015, and its results previously belonged to a longer paper. These dates and theorem numbers are not conflated with the 2020 journal publication. The historical OWR statements are not automatically substituted for the final published wording.
++
++## The reconstructed low-dimensional result is already known
++
++The planar certificate in PARTIAL.md is elementary and carries no novelty claim. As an additional prior-art check identified during independent review, Adiprasito–Benedetti, [*Tight complexes in 3-space admit perfect discrete Morse functions*, arXiv:1202.3390v2](https://arxiv.org/abs/1202.3390v2), Lemma 2.5, states a stronger fact: a planar complex collapses to a subcomplex which is a deformation retract. The relevant statement and surrounding argument were read in the full downloaded preprint. The paper appeared in European Journal of Combinatorics 45 (2015), 71–84; the journal version numbers the corresponding planar lemma 2.9. The local disk-to-boundary-path case reconstructed here is subsumed by that known result.
++
++Chillingworth's 1967 convex 3-dimensional work and its 1980 correction are credited background. The original article's primary bibliographic record and correction were located; its complete corrected proof is not re-audited in this package. The supplied certificate makes only its explicitly proved dimension ≤2 assertion. Existing three-dimensional results are not advertised as discoveries or confused with an all-dimensional relative theorem.
++
++## Precise stalled mechanism
++
++The elementary local-to-global reduction preserves the protected target by a direct coface argument. In the planar case a dual-tree order removes triangles and leaves a contractible graph, which is a tree and can be pruned relative to the protected path. In higher dimensions the leftover contractible complex is no longer a graph. No relative collapsing certificate for it is provided. Further proof search stopped after one substantive family rather than relabeling this known low-dimensional case as a general solution.
++
++The proof does not infer noncollapsibility from nonshellability. In particular, Rudin's nonshellable tetrahedron triangulation is not a counterexample to the target. Nor is a general noncollapsible PL ball automatically a linear subdivision of one original simplex.
++
++Bounded current searches for Hudson's problem, collapse preservation under subdivision, and the Lickorish/Chillingworth formulations located the credited extra-barycentric theorem and later citations, but no verified general resolution. This is not an exhaustive literature or priority certificate.
++
++## Repository and source gates
++
++The main row was rank 71, queued 0/5 at entry. Exact-ID and descriptive all-state PR searches returned no prior campaign attempt. The exact remote branch was absent. Local prior-attempt paths and related-target groups had no duplicate. The full pinned record joins uniquely on OWR-11786-016; its prior research-results report is null. The upstream 2026 triage is historical context rather than a proof certificate.
++
++Full PDFs and rendered pages are retained outside the repository. Source hashes and URLs are recorded separately. No outside author contact or shared queue/state edits occurred.
+diff --git a/unsolved_math_prioritization/attempts/30002061/attempt.json b/unsolved_math_prioritization/attempts/30002061/attempt.json
+new file mode 100644
+index 000000000..03a0650fd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/attempt.json
+@@ -0,0 +1,27 @@
++{
++  "id": "30002061",
++  "problem_number": "OWR-11786-016",
++  "rank_at_start": 71,
++  "status": "unsolved_scoped_partial",
++  "recommended_queue_status": "unsolved",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "started_at": "2026-09-30T06:25:00Z",
++  "deadline": "2026-09-30T08:25:00Z",
++  "substantive_attempts_used": 1,
++  "substantive_attempt_limit": 5,
++  "novel_result_claimed": false,
++  "full_target_resolved": false,
++  "artifact_sha256": "2d8b599378ff784446a35ec84a28bbd2555f67b2da7f11853eb7d775ac61c6a8",
++  "independent_review": "PASS_PARTIAL",
++  "author_assertions_passed": 4200,
++  "precise_gap": "No relative collapse of the higher-dimensional residual complex onto the prescribed protected boundary; the extra-barycentric theorem does not remove its own subdivision.",
++  "scope": "Finite complexes; linear facewise subdivisions; exact target D restricted to original C-prime.",
++  "prior_attempt_found": false,
++  "shared_queue_modified": false,
++  "remote_branch": "dot/math-30002061",
++  "pull_request": "https://github.com/AlecKriebel/Math/pull/54",
++  "full_target_completion_estimate_percent": 5,
++  "reviewed_original_sha256": "1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9",
++  "independent_assertions_passed": 59718
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/pr_body.md b/unsolved_math_prioritization/attempts/30002061/pr_body.md
+new file mode 100644
+index 000000000..a424bdb86
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/pr_body.md
+@@ -0,0 +1,13 @@
++## Partial result; original Hudson problem remains unsolved
++
++This package preserves the exact source's linear-subdivision and prescribed-target conditions. It gives an elementary equivalence with the protected-boundary problem for one subdivided simplex, and reconstructs a constructive relative-collapse certificate in dimensions at most two. These are credited low-dimensional/reduction facts, with no novelty claim.
++
++The general higher-dimensional problem is not solved. The dual-tree method leaves a higher-dimensional contractible residual for which no relative free-face sequence is supplied. Adiprasito–Benedetti's published theorem adds a barycentric subdivision to both complexes; it is credited and not substituted for the original target. A general PL ball or a nonshellable triangulation is not asserted to be a counterexample.
++
++## Independent review and exact certificates
++
++A separate adversarial review passed the frozen partial result, with no required mathematical corrections. The author checker passes 4,200 exact rational/face-set assertions over 27 disk meshes and six gluing controls. Independent verification passes 59,718 invariant assertions over 387 disk-target cases, 387 external-gluing cases and 30 interval cases. Counts include repeated invariants at successive moves; these are not high-dimensional search results.
++
++An explicit small certificate and both review receipts are included. Run `python3 unsolved_math_prioritization/attempts/30002061/verify.py` with the Python standard library.
++
++Actual model: gpt-6-astra, xhigh. One substantive family, stopped at the precise relative-collapse gap. Recommended queue status: unsolved, 1/5. The coordinator owns queue edits.
+diff --git a/unsolved_math_prioritization/attempts/30002061/prior_report.json b/unsolved_math_prioritization/attempts/30002061/prior_report.json
+new file mode 100644
+index 000000000..19765bd50
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/prior_report.json
+@@ -0,0 +1 @@
++null
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/REVIEW.md b/unsolved_math_prioritization/attempts/30002061/review/REVIEW.md
+new file mode 100644
+index 000000000..8345cbea7
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/REVIEW.md
+@@ -0,0 +1,102 @@
++# Independent review of relative collapse under subdivision
++
++## Verdict and scope
++
++**PASS for the stated partial result. No mandatory correction is required.** The local protected-boundary reduction is exact, and the constructive argument proves the prescribed-target statement for finite complexes of dimension at most two. The higher-dimensional linear-subdivision problem remains unresolved. The package makes no novelty claim, and this review does not promote it to a solution of the original problem.
++
++Reviewed on 2026-09-30 by a separate gpt-6-astra reviewer with xhigh reasoning. The frozen artifact is PARTIAL.md, SHA-256:
++
++1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9
++
++The reviewer made no changes to the author artifact or its checks.
++
++## Original statement and credited results
++
++I read the complete relevant OWR contribution and visually inspected printed p.1460. The sentence immediately before Problem 2 explicitly adopts *linear triangulation* as the subdivision convention. Problem 2 asks for collapse to the induced subdivision of the **specified** target. Corollary 2 inserts a barycentric subdivision on both sides. The same page expressly warns that ordinary collapsibility of subdivisions of convex balls does not immediately settle the relative question. The candidate preserves all of these distinctions. [Original report, pp.1459–1462](https://ems.press/content/serial-article-files/46393?nt=1)
++
++I also read the definitions, Lemma 2.3, and the complete proof of Theorem 4.3 in the published Adiprasito–Benedetti paper, and visually inspected its theorem page (PDF page 17). The theorem's conclusion is precisely sd(D) collapsing to sd(D′). Its proof reduces to an elementary original collapse and uses the derived-subdivision endo-collapsibility result. It does not furnish an unsubdivided sequence on D. The source's geometric-complex and restriction conventions match those used in the partial result. [Published article, DOI 10.1007/s00454-019-00137-3](https://doi.org/10.1007/s00454-019-00137-3), [accessible full text](https://par.nsf.gov/servlets/purl/10169029)
++
++As additional prior-art context, Adiprasito–Benedetti's earlier paper states that a planar complex collapses to any subcomplex whose realization is a deformation retract: Lemma 2.5 in [arXiv:1202.3390v2](https://arxiv.org/abs/1202.3390v2). The lemma there has its proof left to the reader. It is broader corroborating context for the elementary planar case, not a substitute for auditing the submitted constructive proof.
++
++The bounded source check supplies no new full resolution of Hudson's question. The package's explicitly partial disposition is appropriate.
++
++## Exact local reduction
++
++Proposition 1 has both directions, with the target retained.
++
++For necessity, the face complex of a simplex collapses by deleting the simplex and the chosen free facet. Removing that facet from the boundary face set retains all its proper faces. Consequently the target is a subcomplex, not the set-theoretic complement of the closed facet. This matters at the endpoints and lower-dimensional boundary intersections.
++
++For sufficiency, at an original elementary step, the realization of the removed region consists of the simplex interior and the relative interior of its free facet. Every other part lies in the next original subcomplex. Because the subdivision respects the original faces, restricting it gives both asserted identities:
++\[
++D_i=T\cup D_{i+1},\qquad T\cap D_{i+1}=K.
++\]
++The intersection is exactly the prescribed subdivided protected boundary part.
++
++Consider any pair removed by a relative collapse of T to K. Neither member lies in K, since collapses delete faces without subsequently restoring them. If an additional coface of the pair's lower face lay in the adjoined complex \(D_{i+1}\), closure under faces would put that lower face in \(D_{i+1}\), hence in \(T\cap D_{i+1}=K\), a contradiction. This also excludes an outside coface of the upper simplex, since such a coface would contain the lower face. Thus maximality and freeness survive gluing, not merely the homotopy type.
++
++Applying these sequences along the finite original collapse ends at the restriction to the original prescribed target, exactly D′. No compatibility of arbitrarily chosen local sequences beyond this fixed overlap condition is required.
++
++The dimension-zero convention is coherent: a vertex cannot be deleted using the empty face, so no nontrivial elementary step arises there.
++
++## Disk certificate
++
++Proposition 2 is valid for every finite triangulated closed disk with a nonempty connected proper boundary subcomplex K. Such a subcomplex is a path or a vertex. Since it is proper, some boundary edge is outside it.
++
++The key points were checked individually:
++
++1. The triangle dual graph using interior edges is connected. A path between triangle interiors can be chosen in the disk interior, avoiding the finite vertex set and meeting edges transversely.
++2. The chosen outside boundary edge has exactly one incident triangle, so the initial edge-triangle pair is free and does not meet the target.
++3. At a later triangle, its parent triangle has already been removed. The shared interior edge originally has exactly two incident triangles; therefore only the current triangle still contains it.
++4. That shared edge has not previously been deleted. Earlier moves delete only their selected edge and their triangle. In a simplicial disk, the edge joining a triangle to its parent cannot simultaneously be another triangle's selected parent edge.
++5. All subsequent paired edges are interior. Hence no boundary face of K is deleted.
++6. After the triangles are removed, the remainder is a connected contractible finite graph. A connected graph is contractible only if it is a tree; contractibility here follows from genuine elementary collapses of the disk.
++7. K is a connected subtree of that tree. If anything remains outside K, there is an outside vertex: an additional edge between vertices of K would create a cycle. A vertex of greatest distance from K is a leaf, because every edge other than its unique edge toward K would increase the distance in a tree.
++8. Deleting this leaf with its sole incident edge preserves K. Iteration terminates at K exactly, including when K is a single vertex.
++
++The proof does not assume a shelling. Its triangle order is a parent-first order in a spanning tree, and the final pruning is a separate one-dimensional procedure.
++
++For a subdivided original triangle, the protected part consists of the two retained original sides and their subdivisions, a connected proper boundary path. For an interval it is the prescribed retained endpoint. These facts justify Corollary 3 from the local reduction.
++
++## Why the higher-dimensional gap is real
++
++The disk proof uses the implication that a connected contractible graph is a tree. After top-dimensional peeling in higher dimensions, the residual complex can have dimension at least two. Contractibility alone no longer provides the required free-face sequence relative to its protected subcomplex.
++
++The candidate stops at this exact gap. In particular, it does not infer relative collapsibility from absolute collapsibility, use shellability and collapsibility interchangeably, remove a barycentric subdivision from a known theorem, or treat an arbitrary PL ball as a linear triangulation of a simplex. No statement beyond the verified low-dimensional scope follows from the finite controls below.
++
++## Reproduction and independent controls
++
++The submitted checker was copied into an isolated replay directory before execution. It passes all **4,200** assertions for **27** rational disk triangulations and **6** glued-region cases. Both regenerated files, verification.json and sample_certificate.json, are byte-identical to the submitted versions.
++
++I inspected its pair predicate, construction, and output. It requires exactly one proper coface of the lower face, codimension one, and exclusion of both deleted faces from the target. The regular triangular grids and interior stellar insertions construct genuine planar subdivisions. Its negative control rejects a topologically free pair when that pair would delete a protected target face.
++
++The separate checker passes **59,718** assertions. Its inputs and checks include:
++
++- Thirteen rational disk meshes constructed with boundary-edge splits and weighted interior stellar insertions
++- All singleton targets and all proper connected boundary arcs of those meshes, giving **387** disk-target cases
++- A cone over each protected target, joined using a new vertex, giving **387** external-gluing cases with intersection exactly equal to the protected target
++- **30** interval cases testing both prescribed endpoints
++- Independent replay of the explicitly listed submitted sample certificate
++- Negative controls for deleting a protected face, introducing an obstructing outside coface, retaining the entire disk boundary, and deleting the empty face
++
++For each emitted move, the independent checker tests the full proper-coface set, preservation of every protected face, downward closure of the remaining face set, and final equality with the specified target. Empty faces are uniformly omitted from the computational encoding and are never collapsed. All coordinates used to generate the planar meshes are rational.
++
++These assertion counts include repeated invariants at successive moves; they are not counts of independent theorems or high-dimensional examples. The finite checks support the algorithms and edge cases. The general propositions rest on the arguments audited above.
++
++## Disposition and publication files
++
++Retain **unsolved, one substantive route used**, with no novelty claim. The proven partial scope is the local equivalence and the exact relative statement in dimensions zero, one, and two.
++
++The six publication files are:
++
++- REVIEW.md
++- review_summary.json
++- independent_checks.py
++- independent_results.json
++- submitted_verification.json
++- submitted_sample_certificate.json
++
++The independent checker uses only the Python standard library and the accompanying submitted sample certificate. Source PDFs, page images, and the isolated author replay directory are local review materials, not part of the publication package.
++
++## Final administrative hash addendum
++
++At 06:47 UTC on 2026-09-30, I verified that the only artifact change replaces the pending-review sentence with a passed-review sentence linking this report. Reversing that exact replacement recovers the original frozen bytes. The final artifact SHA-256 is 2d8b599378ff784446a35ec84a28bbd2555f67b2da7f11853eb7d775ac61c6a8. The verifier and sample certificate are unchanged; the final author receipt differs only in its artifact-hash field. The archived submitted receipt retains the original audited hash. Mathematical content and the PASS_PARTIAL verdict are unchanged, and this review covers the final artifact.
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/independent_checks.py b/unsolved_math_prioritization/attempts/30002061/review/independent_checks.py
+new file mode 100644
+index 000000000..ada44ec60
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/independent_checks.py
+@@ -0,0 +1,161 @@
++#!/usr/bin/env python3
++"""Independent finite controls of protected relative collapse; no high-dimensional certificate."""
++from fractions import Fraction as Q
++from itertools import combinations
++from collections import Counter, defaultdict, deque
++from pathlib import Path
++import json
++
++counts=Counter()
++def check(x,label):
++    assert x,label
++    counts[label]+=1
++
++def faces(facets):
++    return {frozenset(c) for f in facets for n in range(1,len(f)+1) for c in combinations(sorted(f),n)}
++
++def admissible(C,a,b,K):
++    return (bool(a) and a in C and b in C and a < b and len(a)+1==len(b)
++            and a not in K and b not in K and {f for f in C if a<f}=={b})
++
++def validate(initial,target,moves):
++    C=set(initial)
++    check(target<=C,'target_in_initial')
++    for a,b in moves:
++        check(admissible(C,a,b,target),'valid_free_pair')
++        C.difference_update((a,b))
++        check(target<=C,'protected_faces_survive')
++        check(all(g in C for f in C for g in faces([f])),'downward_closed_after_move')
++    check(C==target,'exact_final_target')
++    return C
++
++def boundary(tri):
++    e=Counter(frozenset(x) for t in tri for x in combinations(sorted(t),2))
++    check(all(n in (1,2) for n in e.values()),'manifold_edge_incidence')
++    b={f for f,n in e.items() if n==1}
++    adj=defaultdict(list)
++    for u,v in map(tuple,b):adj[u].append(v);adj[v].append(u)
++    check(all(len(x)==2 for x in adj.values()),'boundary_cycle_degree')
++    first=min(adj);cycle=[first];prev=None;cur=first
++    while True:
++        nxt=min(v for v in adj[cur] if v!=prev)
++        if nxt==first:break
++        cycle.append(nxt);prev,cur=cur,nxt
++    check(len(cycle)==len(b),'one_boundary_cycle')
++    return cycle,b
++
++def certificate(tri,K,reverse=False):
++    incid=defaultdict(list)
++    for t in tri:
++        for e in combinations(sorted(t),2):incid[frozenset(e)].append(t)
++    rootedge=sorted((e for e,v in incid.items() if len(v)==1 and e not in K),
++                    key=lambda e:tuple(sorted(e)),reverse=reverse)[0]
++    root=incid[rootedge][0];parent={root:rootedge};todo=[root]
++    # Depth-first traversal, distinct from the submitted breadth-first traversal.
++    stack=[root]
++    while stack:
++        t=stack.pop()
++        for e in sorted(faces([t]),key=lambda f:(len(f),tuple(sorted(f))),reverse=reverse):
++            if len(e)!=2:continue
++            for u in incid[e]:
++                if u not in parent:
++                    parent[u]=e;todo.append(u);stack.append(u)
++    check(len(parent)==len(tri),'dual_tree_spans')
++    C=faces(tri);moves=[]
++    for t in todo:
++        e=parent[t];check(admissible(C,e,t,K),'generator_triangle_pair')
++        C.remove(e);C.remove(t);moves.append((e,t))
++    check(all(len(f)<=2 for f in C),'residual_is_graph')
++    vertices={next(iter(f)) for f in C if len(f)==1}
++    edges=[f for f in C if len(f)==2]
++    check(len(edges)==len(vertices)-1,'residual_tree_euler')
++    while C!=K:
++        adj=defaultdict(list)
++        for e in C:
++            if len(e)==2:
++                for v in e:adj[v].append(e)
++        opts=[v for v in vertices if frozenset([v]) not in K and len(adj[v])==1]
++        check(bool(opts),'unprotected_leaf_exists')
++        v=max(opts) if reverse else min(opts);a=frozenset([v]);b=adj[v][0]
++        C.remove(a);C.remove(b);vertices.remove(v);moves.append((a,b))
++    return moves
++
++def area2(P,t):
++    a,b,c=(P[i] for i in t)
++    return abs((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))
++
++def mesh(stage):
++    P=[(Q(0),Q(0)),(Q(1),Q(0)),(Q(0),Q(1))]
++    T={frozenset([0,1,2])}
++    for k in range(stage):
++        ordered=sorted(T,key=lambda t:tuple(sorted(t)))
++        if k%3==0:
++            edgecounts=Counter(e for t in T for e in combinations(sorted(t),2))
++            bd=sorted(e for e,n in edgecounts.items() if n==1)
++            a,b=bd[(5*k+1)%len(bd)]
++            v=len(P);P.append(tuple((2*P[a][j]+P[b][j])/3 for j in (0,1)))
++            t=next(t for t in T if {a,b}<=t);c=next(iter(t-{a,b}))
++            T.remove(t);T.update([frozenset([a,v,c]),frozenset([v,b,c])])
++        else:
++            t=ordered[(7*k+2)%len(ordered)];a,b,c=sorted(t);v=len(P)
++            P.append(tuple((P[a][j]+2*P[b][j]+3*P[c][j])/6 for j in (0,1)))
++            T.remove(t);T.update(frozenset([v,*e]) for e in combinations(sorted(t),2))
++    check(all(area2(P,t)>0 for t in T),'nondegenerate_rational_triangles')
++    check(sum(area2(P,t) for t in T)==1,'exact_total_area')
++    return P,T
++
++stats=[]
++for stage in range(0,13):
++    P,T=mesh(stage);C=faces(T);cyc,bedges=boundary(T);n=len(cyc)
++    # Every singleton and every proper connected boundary arc, not only two original sides.
++    targets=[]
++    for start in range(n):
++        targets.append(faces([(cyc[start],)]))
++        for length in range(1,n):
++            targets.append(faces([(cyc[(start+j)%n],cyc[(start+j+1)%n]) for j in range(length)]))
++    for num,K in enumerate(targets):
++        moves=certificate(T,K,reverse=bool(num%2))
++        validate(C,K,moves)
++        # Glue an abstract cone over the entire protected path using one new vertex.
++        # It may have many triangles, but meets the original disk precisely in K.
++        apex=len(P)
++        external=faces([tuple(f|{apex}) for f in K])
++        check(C&external==K,'exact_gluing_intersection')
++        validate(C|external,external,moves)
++    stats.append({'stellar_steps':stage,'triangles':len(T),'boundary_vertices':n,'targets':len(targets)})
++
++# One-dimensional endpoints, including the unsplit interval.
++interval_cases=0
++for n in range(1,16):
++    C=faces([(i,i+1) for i in range(n)])
++    for endpoint in [0,n]:
++        K=faces([(endpoint,)])
++        order=list(range(n,0,-1)) if endpoint==0 else list(range(n))
++        moves=[(frozenset([v]),frozenset([v,v-1 if endpoint==0 else v+1])) for v in order]
++        validate(C,K,moves);interval_cases+=1
++
++# Independent replay of the author's small, explicitly listed rational certificate.
++root=Path(__file__).resolve().parent
++s=json.loads((root/'submitted_sample_certificate.json').read_text())
++C={frozenset(f) for f in s['initial_faces']};K={frozenset(f) for f in s['protected_faces']}
++moves=[(frozenset(m['free_face']),frozenset(m['coface'])) for m in s['collapse_pairs']]
++validate(C,K,moves)
++
++# Adversarial controls: preservation and external cofaces are real requirements.
++C=faces([(0,1,2)]);a=frozenset([0,1]);b=frozenset([0,1,2])
++K=faces([(0,2),(1,2)])
++check(admissible(C,a,b,K),'unprotected_free_pair_is_legal')
++check(not admissible(C,frozenset([0,2]),b,K),'reject_target_destroying_pair')
++bad_union=C|faces([(0,1,3)])
++check(not admissible(bad_union,a,b,K),'reject_new_external_coface')
++full_boundary=faces([(0,1),(1,2),(0,2)])
++check(not any(admissible(C,f,g,full_boundary) for f in C for g in C),'reject_entire_boundary_target')
++check(not admissible(C,frozenset(),frozenset([0]),set()),'reject_empty_face_collapse')
++
++out={'passed':sum(counts.values()),'failed':0,'checks_by_kind':dict(sorted(counts.items())),
++     'meshes':stats,'disk_target_cases':sum(x['targets'] for x in stats),
++     'gluing_cases':sum(x['targets'] for x in stats),'interval_cases':interval_cases,
++     'submitted_sample_certificate_replayed':True,
++     'scope':'Finite exact relative-collapse controls in dimensions one and two; no higher-dimensional result.'}
++(root/'independent_results.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps({k:v for k,v in out.items() if k not in ('checks_by_kind','meshes')},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/independent_results.json b/unsolved_math_prioritization/attempts/30002061/review/independent_results.json
+new file mode 100644
+index 000000000..739b17699
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/independent_results.json
+@@ -0,0 +1,112 @@
++{
++  "passed": 59718,
++  "failed": 0,
++  "checks_by_kind": {
++    "boundary_cycle_degree": 13,
++    "downward_closed_after_move": 16175,
++    "dual_tree_spans": 387,
++    "exact_final_target": 805,
++    "exact_gluing_intersection": 387,
++    "exact_total_area": 13,
++    "generator_triangle_pair": 5181,
++    "manifold_edge_incidence": 13,
++    "nondegenerate_rational_triangles": 13,
++    "one_boundary_cycle": 13,
++    "protected_faces_survive": 16175,
++    "reject_empty_face_collapse": 1,
++    "reject_entire_boundary_target": 1,
++    "reject_new_external_coface": 1,
++    "reject_target_destroying_pair": 1,
++    "residual_is_graph": 387,
++    "residual_tree_euler": 387,
++    "target_in_initial": 805,
++    "unprotected_free_pair_is_legal": 1,
++    "unprotected_leaf_exists": 2784,
++    "valid_free_pair": 16175
++  },
++  "meshes": [
++    {
++      "stellar_steps": 0,
++      "triangles": 1,
++      "boundary_vertices": 3,
++      "targets": 9
++    },
++    {
++      "stellar_steps": 1,
++      "triangles": 2,
++      "boundary_vertices": 4,
++      "targets": 16
++    },
++    {
++      "stellar_steps": 2,
++      "triangles": 4,
++      "boundary_vertices": 4,
++      "targets": 16
++    },
++    {
++      "stellar_steps": 3,
++      "triangles": 6,
++      "boundary_vertices": 4,
++      "targets": 16
++    },
++    {
++      "stellar_steps": 4,
++      "triangles": 7,
++      "boundary_vertices": 5,
++      "targets": 25
++    },
++    {
++      "stellar_steps": 5,
++      "triangles": 9,
++      "boundary_vertices": 5,
++      "targets": 25
++    },
++    {
++      "stellar_steps": 6,
++      "triangles": 11,
++      "boundary_vertices": 5,
++      "targets": 25
++    },
++    {
++      "stellar_steps": 7,
++      "triangles": 12,
++      "boundary_vertices": 6,
++      "targets": 36
++    },
++    {
++      "stellar_steps": 8,
++      "triangles": 14,
++      "boundary_vertices": 6,
++      "targets": 36
++    },
++    {
++      "stellar_steps": 9,
++      "triangles": 16,
++      "boundary_vertices": 6,
++      "targets": 36
++    },
++    {
++      "stellar_steps": 10,
++      "triangles": 17,
++      "boundary_vertices": 7,
++      "targets": 49
++    },
++    {
++      "stellar_steps": 11,
++      "triangles": 19,
++      "boundary_vertices": 7,
++      "targets": 49
++    },
++    {
++      "stellar_steps": 12,
++      "triangles": 21,
++      "boundary_vertices": 7,
++      "targets": 49
++    }
++  ],
++  "disk_target_cases": 387,
++  "gluing_cases": 387,
++  "interval_cases": 30,
++  "submitted_sample_certificate_replayed": true,
++  "scope": "Finite exact relative-collapse controls in dimensions one and two; no higher-dimensional result."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/review_summary.json b/unsolved_math_prioritization/attempts/30002061/review/review_summary.json
+new file mode 100644
+index 000000000..78a27c502
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/review_summary.json
+@@ -0,0 +1,58 @@
++{
++  "problem_id": 30002061,
++  "problem_code": "OWR-11786-016",
++  "review_date_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_PARTIAL",
++  "mandatory_corrections": [],
++  "artifact": "PARTIAL.md",
++  "artifact_sha256": "2d8b599378ff784446a35ec84a28bbd2555f67b2da7f11853eb7d775ac61c6a8",
++  "review_sha256": "d4bf15b5962c9015ae82fd809e6b549cddbc22995e44059035237743ac6e40df",
++  "recommended_queue_status": "unsolved",
++  "substantive_routes_used": 1,
++  "new_discovery_claim": false,
++  "verified_scope": [
++    "exact protected-boundary local reduction",
++    "relative collapse in dimensions at most two"
++  ],
++  "unresolved_scope": "general higher-dimensional linear-subdivision relative collapse to the prescribed target",
++  "submitted_assertions_passed": 4200,
++  "submitted_disk_meshes": 27,
++  "submitted_gluing_cases": 6,
++  "submitted_receipts_byte_identical": true,
++  "independent_assertions_passed": 59718,
++  "independent_disk_target_cases": 387,
++  "independent_gluing_cases": 387,
++  "independent_interval_cases": 30,
++  "author_artifact_edited": false,
++  "review_scope_completion_percent": 100,
++  "sources": [
++    {
++      "url": "https://ems.press/content/serial-article-files/46393?nt=1",
++      "sha256": "54ae757af04584062a30548693a2b861fe0e41503992f9703d602f5917028b74",
++      "location": "printed1460/PDF56; full contribution1459-1462 read"
++    },
++    {
++      "url": "https://par.nsf.gov/servlets/purl/10169029",
++      "sha256": "584b7cb14c50fc7394b77813ece511a29696c771fa319c25241910feaa4ab7e5",
++      "location": "published Theorem4.3 and full proof/PDF17; definitions and Lemma2.3"
++    },
++    {
++      "url": "https://arxiv.org/abs/1202.3390v2",
++      "sha256": "2fe6eba829d4052bc7c5c56305e8748021c07f0a2e59779f551fe3e426c95f95",
++      "location": "Lemma2.5; supplementary prior-art context, not a proof dependency"
++    }
++  ],
++  "publication_files": [
++    "REVIEW.md",
++    "review_summary.json",
++    "independent_checks.py",
++    "independent_results.json",
++    "submitted_verification.json",
++    "submitted_sample_certificate.json"
++  ],
++  "original_artifact_sha256": "1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9",
++  "final_metadata_only_change_verified": true,
++  "final_verification_receipt_delta": "partial_sha256 only"
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/submitted_sample_certificate.json b/unsolved_math_prioritization/attempts/30002061/review/submitted_sample_certificate.json
+new file mode 100644
+index 000000000..5e0653ae5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/submitted_sample_certificate.json
+@@ -0,0 +1,192 @@
++{
++  "vertices": [
++    [
++      "0",
++      "0"
++    ],
++    [
++      "0",
++      "1/2"
++    ],
++    [
++      "0",
++      "1"
++    ],
++    [
++      "1/2",
++      "0"
++    ],
++    [
++      "1/2",
++      "1/2"
++    ],
++    [
++      "1",
++      "0"
++    ]
++  ],
++  "initial_faces": [
++    [
++      0
++    ],
++    [
++      1
++    ],
++    [
++      2
++    ],
++    [
++      3
++    ],
++    [
++      4
++    ],
++    [
++      5
++    ],
++    [
++      0,
++      1
++    ],
++    [
++      0,
++      3
++    ],
++    [
++      1,
++      2
++    ],
++    [
++      1,
++      3
++    ],
++    [
++      1,
++      4
++    ],
++    [
++      2,
++      4
++    ],
++    [
++      3,
++      4
++    ],
++    [
++      3,
++      5
++    ],
++    [
++      4,
++      5
++    ],
++    [
++      0,
++      1,
++      3
++    ],
++    [
++      1,
++      2,
++      4
++    ],
++    [
++      1,
++      3,
++      4
++    ],
++    [
++      3,
++      4,
++      5
++    ]
++  ],
++  "protected_faces": [
++    [
++      0
++    ],
++    [
++      1
++    ],
++    [
++      2
++    ],
++    [
++      3
++    ],
++    [
++      5
++    ],
++    [
++      0,
++      1
++    ],
++    [
++      0,
++      3
++    ],
++    [
++      1,
++      2
++    ],
++    [
++      3,
++      5
++    ]
++  ],
++  "collapse_pairs": [
++    {
++      "free_face": [
++        2,
++        4
++      ],
++      "coface": [
++        1,
++        2,
++        4
++      ]
++    },
++    {
++      "free_face": [
++        1,
++        4
++      ],
++      "coface": [
++        1,
++        3,
++        4
++      ]
++    },
++    {
++      "free_face": [
++        1,
++        3
++      ],
++      "coface": [
++        0,
++        1,
++        3
++      ]
++    },
++    {
++      "free_face": [
++        3,
++        4
++      ],
++      "coface": [
++        3,
++        4,
++        5
++      ]
++    },
++    {
++      "free_face": [
++        4
++      ],
++      "coface": [
++        4,
++        5
++      ]
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/review/submitted_verification.json b/unsolved_math_prioritization/attempts/30002061/review/submitted_verification.json
+new file mode 100644
+index 000000000..81a1526eb
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/review/submitted_verification.json
+@@ -0,0 +1,199 @@
++{
++  "passed": 4200,
++  "failed": 0,
++  "cases": [
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 0,
++      "triangles": 1,
++      "moves": 1,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 0,
++      "triangles": 4,
++      "moves": 5,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 0,
++      "triangles": 9,
++      "moves": 12,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 0,
++      "triangles": 16,
++      "moves": 22,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 0,
++      "triangles": 25,
++      "moves": 35,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 6,
++      "stellar_insertions": 0,
++      "triangles": 36,
++      "moves": 51,
++      "target_faces": 25
++    },
++    {
++      "grid_denominator": 7,
++      "stellar_insertions": 0,
++      "triangles": 49,
++      "moves": 70,
++      "target_faces": 29
++    },
++    {
++      "grid_denominator": 8,
++      "stellar_insertions": 0,
++      "triangles": 64,
++      "moves": 92,
++      "target_faces": 33
++    },
++    {
++      "grid_denominator": 9,
++      "stellar_insertions": 0,
++      "triangles": 81,
++      "moves": 117,
++      "target_faces": 37
++    },
++    {
++      "grid_denominator": 10,
++      "stellar_insertions": 0,
++      "triangles": 100,
++      "moves": 145,
++      "target_faces": 41
++    },
++    {
++      "grid_denominator": 11,
++      "stellar_insertions": 0,
++      "triangles": 121,
++      "moves": 176,
++      "target_faces": 45
++    },
++    {
++      "grid_denominator": 12,
++      "stellar_insertions": 0,
++      "triangles": 144,
++      "moves": 210,
++      "target_faces": 49
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 5,
++      "triangles": 11,
++      "moves": 16,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 10,
++      "triangles": 21,
++      "moves": 31,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 15,
++      "triangles": 31,
++      "moves": 46,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 5,
++      "triangles": 14,
++      "moves": 20,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 10,
++      "triangles": 24,
++      "moves": 35,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 15,
++      "triangles": 34,
++      "moves": 50,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 5,
++      "triangles": 19,
++      "moves": 27,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 10,
++      "triangles": 29,
++      "moves": 42,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 15,
++      "triangles": 39,
++      "moves": 57,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 5,
++      "triangles": 26,
++      "moves": 37,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 10,
++      "triangles": 36,
++      "moves": 52,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 15,
++      "triangles": 46,
++      "moves": 67,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 5,
++      "triangles": 35,
++      "moves": 50,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 10,
++      "triangles": 45,
++      "moves": 65,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 15,
++      "triangles": 55,
++      "moves": 80,
++      "target_faces": 21
++    }
++  ],
++  "glued_region_cases": 6,
++  "arithmetic": "exact rational coordinates and finite face-set checks",
++  "scope": "Planar certificates and relative gluing controls only; no universal higher-dimensional proof or counterexample.",
++  "partial_sha256": "1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9"
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/sample_certificate.json b/unsolved_math_prioritization/attempts/30002061/sample_certificate.json
+new file mode 100644
+index 000000000..5e0653ae5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/sample_certificate.json
+@@ -0,0 +1,192 @@
++{
++  "vertices": [
++    [
++      "0",
++      "0"
++    ],
++    [
++      "0",
++      "1/2"
++    ],
++    [
++      "0",
++      "1"
++    ],
++    [
++      "1/2",
++      "0"
++    ],
++    [
++      "1/2",
++      "1/2"
++    ],
++    [
++      "1",
++      "0"
++    ]
++  ],
++  "initial_faces": [
++    [
++      0
++    ],
++    [
++      1
++    ],
++    [
++      2
++    ],
++    [
++      3
++    ],
++    [
++      4
++    ],
++    [
++      5
++    ],
++    [
++      0,
++      1
++    ],
++    [
++      0,
++      3
++    ],
++    [
++      1,
++      2
++    ],
++    [
++      1,
++      3
++    ],
++    [
++      1,
++      4
++    ],
++    [
++      2,
++      4
++    ],
++    [
++      3,
++      4
++    ],
++    [
++      3,
++      5
++    ],
++    [
++      4,
++      5
++    ],
++    [
++      0,
++      1,
++      3
++    ],
++    [
++      1,
++      2,
++      4
++    ],
++    [
++      1,
++      3,
++      4
++    ],
++    [
++      3,
++      4,
++      5
++    ]
++  ],
++  "protected_faces": [
++    [
++      0
++    ],
++    [
++      1
++    ],
++    [
++      2
++    ],
++    [
++      3
++    ],
++    [
++      5
++    ],
++    [
++      0,
++      1
++    ],
++    [
++      0,
++      3
++    ],
++    [
++      1,
++      2
++    ],
++    [
++      3,
++      5
++    ]
++  ],
++  "collapse_pairs": [
++    {
++      "free_face": [
++        2,
++        4
++      ],
++      "coface": [
++        1,
++        2,
++        4
++      ]
++    },
++    {
++      "free_face": [
++        1,
++        4
++      ],
++      "coface": [
++        1,
++        3,
++        4
++      ]
++    },
++    {
++      "free_face": [
++        1,
++        3
++      ],
++      "coface": [
++        0,
++        1,
++        3
++      ]
++    },
++    {
++      "free_face": [
++        3,
++        4
++      ],
++      "coface": [
++        3,
++        4,
++        5
++      ]
++    },
++    {
++      "free_face": [
++        4
++      ],
++      "coface": [
++        4,
++        5
++      ]
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/source_provenance.json b/unsolved_math_prioritization/attempts/30002061/source_provenance.json
+new file mode 100644
+index 000000000..32db01413
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/source_provenance.json
+@@ -0,0 +1,27 @@
++{
++  "date": "2026-09-30",
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "sources": [
++    {
++      "file": "owr2012.pdf",
++      "url": "https://ems.press/content/serial-article-files/46393?nt=1",
++      "sha256": "54ae757af04584062a30548693a2b861fe0e41503992f9703d602f5917028b74"
++    },
++    {
++      "file": "adiprasito-benedetti.pdf",
++      "url": "https://arxiv.org/pdf/1709.07930v1",
++      "sha256": "d9c3a69487dae19aeb3cfc38dfd285bbc171b6ece05bce609c4ffefa3a41f0d8"
++    },
++    {
++      "file": "published-ab.pdf",
++      "url": "https://par.nsf.gov/servlets/purl/10169029",
++      "sha256": "584b7cb14c50fc7394b77813ece511a29696c771fa319c25241910feaa4ab7e5"
++    },
++    {
++      "file": "tight2015.pdf",
++      "url": "https://arxiv.org/pdf/1202.3390v2",
++      "sha256": "2fe6eba829d4052bc7c5c56305e8748021c07f0a2e59779f551fe3e426c95f95"
++    }
++  ],
++  "pdf_redistribution": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/source_record.json b/unsolved_math_prioritization/attempts/30002061/source_record.json
+new file mode 100644
+index 000000000..b4ed17132
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/source_record.json
+@@ -0,0 +1,68 @@
++{
++  "id": 30002061,
++  "problem_number": "OWR-11786-016",
++  "title": "Collapse Preservation under Subdivision",
++  "statement": "If a simplicial complex $C$ collapses to a subcomplex $C'$, and $D$ is a subdivision of $C$ restricting to a subdivision $D'$ of $C'$, must $D$ collapse to $D'$?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Triangulations (2013), Oberwolfach Reports, DOI 10.4171/owr/2012/24, pp. 1405--1486](https://doi.org/10.4171/owr/2012/24)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** partially solved\n\n**Assessment.** The subdivision question is open in its stated form, but a barycentric subdivision of D is proved to collapse to the corresponding barycentric subdivision of D-prime, with further low-dimensional positive cases.\n\n**Sources checked.**\n\n- [Adiprasito--Benedetti](https://arxiv.org/abs/1709.07930)\n- [original OWR report](https://doi.org/10.4171/owr/2012/24)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "partially_solved",
++  "proposed_by": null,
++  "proposed_year": 2012,
++  "category_id": 7,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2012/24",
++  "source_citation": "Triangulations (2013), Oberwolfach Reports, DOI 10.4171/owr/2012/24, pp. 1405--1486",
++  "literature_assessment": "The subdivision question is open in its stated form, but a barycentric subdivision of D is proved to collapse to the corresponding barycentric subdivision of D-prime, with further low-dimensional positive cases.",
++  "literature_sources": [
++    {
++      "url": "https://arxiv.org/abs/1709.07930",
++      "label": "Adiprasito--Benedetti"
++    },
++    {
++      "url": "https://doi.org/10.4171/owr/2012/24",
++      "label": "original OWR report"
++    }
++  ],
++  "literature_checked_at": "2026-08-21",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-11786-016",
++    "literature-status:partially-solved",
++    "owr-year:2012"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "If a simplicial complex C collapses to a subcomplex C-prime, and D is a subdivision of C restricting to a subdivision D-prime of C-prime, does D collapse to D-prime?",
++  "clean_statement": "If a simplicial complex $C$ collapses to a subcomplex $C'$, and $D$ is a subdivision of $C$ restricting to a subdivision $D'$ of $C'$, must $D$ collapse to $D'$?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "Manual semantic, typographic, and LaTeX review confirmed that this meaning-preserving cleanup is self-contained and adds no unsupported source-dependent content."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/turns.json b/unsolved_math_prioritization/attempts/30002061/turns.json
+new file mode 100644
+index 000000000..30b8ff777
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/turns.json
+@@ -0,0 +1,12 @@
++[
++  {
++    "turn": 1,
++    "started_at": "2026-09-30T06:29:00Z",
++    "completed_at": "2026-09-30T06:37:00Z",
++    "interruption": "Separate source audit06:30-06:34",
++    "mechanism": "Relative-simplex reduction and parent-first dual-tree certificate",
++    "outcome": "scoped_partial_stalled",
++    "novelty": false,
++    "gap": "No relative collapse of the higher-dimensional residual complex onto the prescribed protected boundary; the extra-barycentric theorem does not remove its own subdivision."
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/30002061/verification.json b/unsolved_math_prioritization/attempts/30002061/verification.json
+new file mode 100644
+index 000000000..b9218e7eb
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/verification.json
+@@ -0,0 +1,199 @@
++{
++  "passed": 4200,
++  "failed": 0,
++  "cases": [
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 0,
++      "triangles": 1,
++      "moves": 1,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 0,
++      "triangles": 4,
++      "moves": 5,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 0,
++      "triangles": 9,
++      "moves": 12,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 0,
++      "triangles": 16,
++      "moves": 22,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 0,
++      "triangles": 25,
++      "moves": 35,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 6,
++      "stellar_insertions": 0,
++      "triangles": 36,
++      "moves": 51,
++      "target_faces": 25
++    },
++    {
++      "grid_denominator": 7,
++      "stellar_insertions": 0,
++      "triangles": 49,
++      "moves": 70,
++      "target_faces": 29
++    },
++    {
++      "grid_denominator": 8,
++      "stellar_insertions": 0,
++      "triangles": 64,
++      "moves": 92,
++      "target_faces": 33
++    },
++    {
++      "grid_denominator": 9,
++      "stellar_insertions": 0,
++      "triangles": 81,
++      "moves": 117,
++      "target_faces": 37
++    },
++    {
++      "grid_denominator": 10,
++      "stellar_insertions": 0,
++      "triangles": 100,
++      "moves": 145,
++      "target_faces": 41
++    },
++    {
++      "grid_denominator": 11,
++      "stellar_insertions": 0,
++      "triangles": 121,
++      "moves": 176,
++      "target_faces": 45
++    },
++    {
++      "grid_denominator": 12,
++      "stellar_insertions": 0,
++      "triangles": 144,
++      "moves": 210,
++      "target_faces": 49
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 5,
++      "triangles": 11,
++      "moves": 16,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 10,
++      "triangles": 21,
++      "moves": 31,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 1,
++      "stellar_insertions": 15,
++      "triangles": 31,
++      "moves": 46,
++      "target_faces": 5
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 5,
++      "triangles": 14,
++      "moves": 20,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 10,
++      "triangles": 24,
++      "moves": 35,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 2,
++      "stellar_insertions": 15,
++      "triangles": 34,
++      "moves": 50,
++      "target_faces": 9
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 5,
++      "triangles": 19,
++      "moves": 27,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 10,
++      "triangles": 29,
++      "moves": 42,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 3,
++      "stellar_insertions": 15,
++      "triangles": 39,
++      "moves": 57,
++      "target_faces": 13
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 5,
++      "triangles": 26,
++      "moves": 37,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 10,
++      "triangles": 36,
++      "moves": 52,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 4,
++      "stellar_insertions": 15,
++      "triangles": 46,
++      "moves": 67,
++      "target_faces": 17
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 5,
++      "triangles": 35,
++      "moves": 50,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 10,
++      "triangles": 45,
++      "moves": 65,
++      "target_faces": 21
++    },
++    {
++      "grid_denominator": 5,
++      "stellar_insertions": 15,
++      "triangles": 55,
++      "moves": 80,
++      "target_faces": 21
++    }
++  ],
++  "glued_region_cases": 6,
++  "arithmetic": "exact rational coordinates and finite face-set checks",
++  "scope": "Planar certificates and relative gluing controls only; no universal higher-dimensional proof or counterexample.",
++  "partial_sha256": "2d8b599378ff784446a35ec84a28bbd2555f67b2da7f11853eb7d775ac61c6a8"
++}
+diff --git a/unsolved_math_prioritization/attempts/30002061/verify.py b/unsolved_math_prioritization/attempts/30002061/verify.py
+new file mode 100644
+index 000000000..e6b41eea9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002061/verify.py
+@@ -0,0 +1,106 @@
++#!/usr/bin/env python3
++"""Exact planar collapse certificates; not a higher-dimensional search."""
++from fractions import Fraction as F
++from itertools import combinations
++from collections import defaultdict,deque
++from pathlib import Path
++import hashlib,json
++checks=0
++stats=[]
++def ck(v):
++    global checks
++    assert v
++    checks+=1
++def closure(triangles):
++    faces=set()
++    for tri in triangles:
++        V=sorted(tri)
++        for n in range(1,len(V)+1):faces.update(frozenset(c) for c in combinations(V,n))
++    return faces
++def area(tri):
++    a,b,c=sorted(tri)
++    return abs((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))/2
++def grid(n):
++    P=lambda i,j:(F(i,n),F(j,n))
++    tr=[]
++    for i in range(n):
++        for j in range(n-i):
++            tr.append(frozenset([P(i,j),P(i+1,j),P(i,j+1)]))
++            if i+j<=n-2:tr.append(frozenset([P(i+1,j),P(i+1,j+1),P(i,j+1)]))
++    return tr
++def refine(triangles,steps):
++    tr=list(triangles)
++    for k in range(steps):
++        i=(7*k+3)%len(tr);tri=tr.pop(i);c=tuple(sum(p[j] for p in tri)/3 for j in range(2))
++        tr.extend(frozenset([*edge,c]) for edge in combinations(sorted(tri),2))
++    return tr
++def key(face):return tuple(sorted(face))
++def target(faces):return {f for f in faces if all(p[0]==0 for p in f) or all(p[1]==0 for p in f)}
++def admissible_pair(faces,small,big,K):
++    return small in faces and big in faces and small not in K and big not in K and len(big)==len(small)+1 and small<big and {f for f in faces if small<f}=={big}
++def remove(faces,small,big,K):
++    ck(admissible_pair(faces,small,big,K));faces.remove(small);faces.remove(big);ck(K<=faces)
++def certificate(triangles):
++    faces=closure(triangles);K=target(faces);start=set(faces)
++    ck(all(area(T)>0 for T in triangles));ck(sum(area(T) for T in triangles)==F(1,2))
++    edges=defaultdict(list)
++    for T in triangles:
++        for e in combinations(sorted(T),2):edges[frozenset(e)].append(T)
++    ck(all(len(v) in (1,2) for v in edges.values()))
++    rootedge=min((e for e,v in edges.items() if len(v)==1 and e not in K),key=key)
++    root=edges[rootedge][0];parentedge={root:rootedge};order=[root];queue=deque([root]);adj=defaultdict(list)
++    for e,ts in edges.items():
++        if len(ts)==2:adj[ts[0]].append((ts[1],e));adj[ts[1]].append((ts[0],e))
++    while queue:
++        T=queue.popleft()
++        for U,e in sorted(adj[T],key=lambda v:key(v[0])):
++            if U not in parentedge:parentedge[U]=e;order.append(U);queue.append(U)
++    ck(len(order)==len(triangles));moves=[]
++    for T in order:
++        e=parentedge[T];remove(faces,e,T,K);moves.append((e,T))
++    ck(all(len(f)<=2 for f in faces))
++    vertices={next(iter(f)) for f in faces if len(f)==1};E=[f for f in faces if len(f)==2]
++    ck(len(E)==len(vertices)-1)
++    nbr=defaultdict(set)
++    for e in E:
++        a,b=tuple(e);nbr[a].add(b);nbr[b].add(a)
++    reached={next(iter(vertices))};queue=deque(reached)
++    while queue:
++        for u in nbr[queue.popleft()]-reached:reached.add(u);queue.append(u)
++    ck(reached==vertices)
++    while faces!=K:
++        E=[f for f in faces if len(f)==2];degree=defaultdict(int)
++        for e in E:
++            for v in e:degree[v]+=1
++        leaves=[v for v,deg in degree.items() if deg==1 and frozenset([v]) not in K]
++        ck(bool(leaves));v=min(leaves);small=frozenset([v]);big=next(e for e in E if v in e)
++        remove(faces,small,big,K);moves.append((small,big))
++    ck(faces==K)
++    return start,K,moves
++sample=None
++for n in range(1,13):
++    T=grid(n);C,K,moves=certificate(T)
++    stats.append({'grid_denominator':n,'stellar_insertions':0,'triangles':len(T),'moves':len(moves),'target_faces':len(K)})
++    if n==2:sample=(C,K,moves)
++    # Glue an independently triangulated lower triangle along the protected axis.
++    if n<=6:
++        outside=closure([frozenset((x,-y) for x,y in tri) for tri in T])
++        ck(C&outside<=K);G=C|outside;protected=K|outside
++        for small,big in moves:remove(G,small,big,protected)
++        ck(G==protected)
++for n in range(1,6):
++    for steps in [5,10,15]:
++        T=refine(grid(n),steps);C,K,moves=certificate(T)
++        stats.append({'grid_denominator':n,'stellar_insertions':steps,'triangles':len(T),'moves':len(moves),'target_faces':len(K)})
++# A topologically free pair that destroys the prescribed target must be rejected.
++T=grid(1);C=closure(T);K=target(C);bad=min((f for f in K if len(f)==2),key=key)
++ck({f for f in C if bad<f}=={T[0]});ck(not admissible_pair(C,bad,T[0],K))
++# Publish one small explicit certificate with rational coordinate labels.
++C,K,moves=sample;vertices=sorted({v for face in C for v in face});index={v:i for i,v in enumerate(vertices)}
++enc=lambda face:sorted(index[v] for v in face)
++cert={'vertices':[[str(x),str(y)] for x,y in vertices],'initial_faces':sorted([enc(f) for f in C],key=lambda f:(len(f),f)),'protected_faces':sorted([enc(f) for f in K],key=lambda f:(len(f),f)),'collapse_pairs':[{'free_face':enc(a),'coface':enc(b)} for a,b in moves]}
++root=Path(__file__).resolve().parent
++(root/'sample_certificate.json').write_text(json.dumps(cert,indent=2)+'\n')
++result={'passed':checks,'failed':0,'cases':stats,'glued_region_cases':6,'arithmetic':'exact rational coordinates and finite face-set checks','scope':'Planar certificates and relative gluing controls only; no universal higher-dimensional proof or counterexample.','partial_sha256':hashlib.sha256((root/'PARTIAL.md').read_bytes()).hexdigest()}
++(root/'verification.json').write_text(json.dumps(result,indent=2)+'\n')
++print(json.dumps({'passed':checks,'failed':0,'cases':len(stats),'glued_region_cases':6,'partial_sha256':result['partial_sha256']}))
