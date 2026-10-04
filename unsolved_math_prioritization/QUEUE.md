@@ -556,7 +556,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 545 | 5300049 / AMR-052-0049 | Accessibility of positive-exponent boundary points | 0.1171 | 6.0 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 546 | 6000015 / AMR-059-0015 | Stein Tangent Bundles of Complete Hessian Manifolds | 0.1165 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 547 | 30003571 / OWR-15582-005 | Relative Kähler–Ricci Flow on Projective-Space Fibrations | 0.1161 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 548 | 6200007 / AMR-061-0007 | Boundaries of Groups and Kleinian Groups — Problem 7 | 0.1155 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 548 | 6200007 / AMR-061-0007 | Boundaries of Groups and Kleinian Groups — Problem 7 | 0.1155 | 6.0 | 3 | 2005 | unsolved | 5/5 |  |  |  |
 | 549 | 30000552 / OWR-1319-022 | Asymptotically Equivalent Cocompact Metrics | 0.1154 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 550 | 30004064 / OWR-16766-003 | Dual Recovery of Binary Tomography Solution Intersections | 0.1153 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
