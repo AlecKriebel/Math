@@ -96,7 +96,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | partial | 1/5 |  | Verified connected genus-three quotient counterexample; Auroux-Giroux ingredients credited; novelty and intended connectedness priority unestablished; partial disposition, no paper. |  |
 | 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 90 | 3088 / OPG-56328 | Partitioning the Projective Plane | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
