@@ -620,7 +620,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 611 | 30004404 / OWR-17471-010 | Free Subgroups Avoiding All Dehn-Surgery Kernels | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 612 | 30004456 / OWR-1703863-005 | $L^2$ Euler Characteristics and HNN Splittings | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 612 | 30004456 / OWR-1703863-005 | $L^2$ Euler Characteristics and HNN Splittings | 0.1116 | 6.0 | 3 | 2020 | already_solved | 1/5 |  | Prior arXiv:2606.31774v2, Cor. 1.5 / Thm. 3.3: normalized nonzero-character target; preprint/theorem-dependent verification. |  |
 | 613 | 30001211 / OWR-3396-010 | Uniform Recurrence Rates for Minimal Interval Exchanges | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 614 | 30001232 / OWR-3471-006 | Lower Bounds for Seshadri Constants on Minimal Surfaces | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 615 | 30001388 / OWR-4137-004 | Escaping Boundary Points of Baker Domains | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
