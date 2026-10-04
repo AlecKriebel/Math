@@ -570,7 +570,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 559 | 30001182 / OWR-3392-009 | Ambient-Algebra Independence of Exchangeable Independence | 0.1149 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 560 | 30004637 / OWR-4990379-007 | Fast Algorithms for Branching Brownian Unbalanced Transport | 0.1143 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | queued | 0/5 |  |  |  |
-| 562 | 30005215 / OWR-11101919-002 | Norm Estimation from Asymmetric Black-Box Linear Operators | 0.1136 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 562 | 30005215 / OWR-11101919-002 | Norm Estimation from Asymmetric Black-Box Linear Operators | 0.1136 | 5.0 | 3 | 2022 | already_solved | 1/5 |  | 2026-10-04: Credited prior random-plane methods of Bresch, Lorenz, Schneppe, and Winkler; complete compact-SVD proof bypasses the inspected mismatch preprint's rank-one and probability-bound errors. Almost-sure norm-value convergence with constant-vector storage, finite-dimensional exact oracles only; no deterministic stopping, floating-point stability, infinite-dimensional, or novelty claim. Independent audit PASS. [Proof and audit](attempts/30005215/README.md). |  |
 | 563 | 20001587 / AIM-GEOMETRIC_GROUP_THEORY-0096 | A finite-gluing obstruction for amenable clopen restrictions | 0.1125 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 564 | 2301039 / AMR-022-1039 | Research Problems in Function Theory — Problem 1.39 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 565 | 2302004 / AMR-022-2004 | Research Problems in Function Theory — Problem 2.4 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
