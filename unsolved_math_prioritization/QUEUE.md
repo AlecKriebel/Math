@@ -559,7 +559,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 548 | 6200007 / AMR-061-0007 | Boundaries of Groups and Kleinian Groups — Problem 7 | 0.1155 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 549 | 30000552 / OWR-1319-022 | Asymptotically Equivalent Cocompact Metrics | 0.1154 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 550 | 30004064 / OWR-16766-003 | Dual Recovery of Binary Tomography Solution Intersections | 0.1153 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 551 | 30000679 / OWR-1453-013 | Solvability of Rank-Two NIP Groups | 0.1152 | 6.0 | 3 | 2007 | already_solved | 1/5 |  | Already solved by Ealy–Krupiński–Pillay Theorem 2 and Remark 3.3: both original conjectures hold in the rosy NIP setting with hereditary fsg and thorn U-rank 2; no novelty claim. |  |
 | 552 | 30001065 / OWR-2090-018 | Universal Optimality of Exceptional Spherical Codes | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 554 | 30006272 / OWR-14299283-013 | Catalan Formulas for Ekedahl-Oort Intersection Cohomology | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
