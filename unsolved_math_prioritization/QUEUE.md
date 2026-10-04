@@ -623,7 +623,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 612 | 30004456 / OWR-1703863-005 | $L^2$ Euler Characteristics and HNN Splittings | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 613 | 30001211 / OWR-3396-010 | Uniform Recurrence Rates for Minimal Interval Exchanges | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 614 | 30001232 / OWR-3471-006 | Lower Bounds for Seshadri Constants on Minimal Surfaces | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 615 | 30001388 / OWR-4137-004 | Escaping Boundary Points of Baker Domains | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 615 | 30001388 / OWR-4137-004 | Escaping Boundary Points of Baker Domains | 0.1116 | 5.5 | 3 | 2009 | unsolved | 5/5 |  |  |  |
 | 616 | 30001391 / OWR-4137-007 | Degree Bounds for Degenerate Herman Rings | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 617 | 30001393 / OWR-4137-010 | Complete Invariance of Singular-Value Basins | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 618 | 30003790 / OWR-16161-003 | Consistent Noisy Single-Index Regression | 0.1114 | 4.5 | 3 | 2018 | queued | 0/5 |  |  |  |
