@@ -52,6 +52,25 @@ class Capture:
         return run
     def git(self,*args,input=None,ok=(0,)):
         return self.run('git_'+str(len(self.entries)),['/usr/bin/git',*args],input=input,ok=ok).stdout
+    def persist_foreign_snapshot(self,label,excluded=()):
+        """Retain the actual baseline even if a later observation guard fails."""
+        directory = self.directory/(label+'_foreign_baseline')
+        directory.mkdir(exist_ok=False)
+        args = ['ls-files','--stage','-z','--','.']+[':(exclude)'+n for n in sorted(excluded)]
+        index = self.git(*args)
+        (directory/'index.bin').write_bytes(index)
+        bodies = dirty_tracked(self,excluded)
+        entries = {}
+        for n,(exists,body,mode) in bodies.items():
+            entry = {'exists':exists,'mode':mode,'body_file':None,'bytes':None,'sha256':None}
+            if body is not None:
+                name = sha(n.encode())+'.body'
+                (directory/name).write_bytes(body)
+                entry.update(body_file=name,bytes=len(body),sha256=sha(body))
+            entries[n] = entry
+        (directory/'manifest.json').write_text(json.dumps({'recorded_utc':utc(),'excluded_paths':sorted(excluded),
+            'index_bytes':len(index),'index_sha256':sha(index),'dirty_tracked_bodies':entries},indent=2)+'\n')
+        return index,bodies
 
 def current_clearance():
     # Written only after ROOT reads and independently adjudicates a NEW clean

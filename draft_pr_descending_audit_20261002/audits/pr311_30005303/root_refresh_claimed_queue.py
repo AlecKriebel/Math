@@ -15,7 +15,7 @@ if not index.is_absolute():
     index = R/index
 index_before = index.read_bytes()
 local = cap.git('rev-parse','HEAD').decode().strip()
-dirty_before = dirty_tracked(cap)
+foreign_index_before,dirty_before = cap.persist_foreign_snapshot('before_branch_refresh')
 pr = json.loads(cap.run('pr_before',['/opt/homebrew/bin/gh','api','repos/AlecKriebel/Math/pulls/311']).stdout)
 assert pr['state'] == 'open' and pr['draft'] and pr['head']['sha'] == ORIGINAL_HEAD and pr['head']['ref'] == BRANCH
 files = json.loads(cap.run('original_files',['/opt/homebrew/bin/gh','api','repos/AlecKriebel/Math/pulls/311/files?per_page=100']).stdout)

@@ -17,8 +17,7 @@ assert not cap.git('diff','--name-only','--',*sorted(expected))
 assert not cap.git('diff','--name-only','--',*[str((O/n).relative_to(R)) for n in FORMAL])
 assert cap.git('rev-parse','HEAD').decode().strip() == base
 foreign_args = ['ls-files','--stage','-z','--','.']+[':(exclude)'+n for n in sorted(expected)]
-foreign_before = cap.git(*foreign_args)
-dirty_before = dirty_tracked(cap,expected)
+foreign_before,dirty_before = cap.persist_foreign_snapshot('before_actual_merge',expected)
 pr = json.loads(cap.run('pr_before',['/opt/homebrew/bin/gh','api','repos/AlecKriebel/Math/pulls/311']).stdout)
 assert pr['state'] == 'open' and pr['head']['sha'] == head and pr['base']['ref'] == 'main'
 files = json.loads(cap.run('pr_files',['/opt/homebrew/bin/gh','api','repos/AlecKriebel/Math/pulls/311/files?per_page=100']).stdout)
@@ -73,8 +72,11 @@ assert parents == [base,head]
 assert cap.git('show','-s','--format=%T',merge).decode().strip() == tree
 actual = tree_binding(cap,base,merge)
 cap.git('merge-base','--is-ancestor',merge,'origin/main')
+# Sync only the exact reviewed merge; a concurrently advanced main must be
+# independently reconciled before any wider checkout update.
+assert cap.git('rev-parse','origin/main').decode().strip() == merge
 window()
-cap.git('merge','--ff-only','origin/main')
+cap.git('merge','--ff-only',merge)
 assert cap.git('branch','--show-current') == b'main\n'
 assert cap.git(*foreign_args) == foreign_before and dirty_tracked(cap,expected) == dirty_before
 assert not cap.git('diff','--cached','--raw','-z')
