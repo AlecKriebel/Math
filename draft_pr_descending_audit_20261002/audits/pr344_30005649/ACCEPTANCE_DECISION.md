@@ -1,8 +1,3 @@
-# PR344 acceptance audit
-
-Mathematical validation is complete (100%): the root and three independent families verified the exact special-fiber qss counterexample, its finite Honda lift, the all-field duality obstruction, and the all-n extension. Actual native reproductions and complete closed evidence inventories passed. The submitted status and turn count remain claimed_solved,1/5.
-
-Full acceptance/publication workflow:30%. Priority audit, paper/package preparation, sequential new preprint adversaries, exact live merge and publication/tracker steps remain pending. No PR merge or external publication has occurred. See ROOT_MATHEMATICAL_ACCEPTANCE.json and the dated root report/log for scope, evidence and provenance limits.
 
 2026-10-04T08:19:15.352096+00:00: PR344 actual acceptance `5960059f8c7908a06602db6b3a4485c8171908da` at 2026-10-04T08:19:12Z; all21 paths and20 target hashes exact. Only own queue line382 cells[8, 9, 11]; every other queue byte preserved. Statusclaimed_solved,1/5;mathematical resolution100%, acceptance/publication workflow90%. Three successive NEW full preprint reviews completed: historical B1 and F01/root B2 retained, globally repaired public package, final third review clean. Zenodo/DOI/tracker and fresh post-merge checks pending. Current goal processes only submitted claimed_solved; historic other-status completions are retained as history.
 
