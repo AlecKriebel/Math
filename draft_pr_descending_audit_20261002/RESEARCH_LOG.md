@@ -455,3 +455,15 @@ Main and remote 1420ead077d1fd3055e97a03f25486b8f4d606ba; thirty owned ascending
 ### 2026-10-04T06:34:54.159317+00:00 — First package adversary exposed portability blocker
 
 The independent core proof assessment passes, but the frozen public ZIP is not ready: complete intrinsic stdout includes runtime-specific interpreter provenance. Root independently reproduced the system success/bundled failure and identical normalized mathematical JSON; native receipts and original inputs retained. Scoped public derivative repair is planned only after full frozen review completion. Mathematics100%, bounded priority100%, publication workflow50%; no merge, deposit or tracker action.
+
+### 2026-10-04T06:35:52.483463+00:00 — PR344 portability review progress checkpoint pushed
+
+Owned commit 642e59ea2f6ad2e72920c4e6f57f23c600bfac35 pushed after exact scoped Git/disk body/mode and remote verification. All foreign index and dirty tracked bodies/modes preserved. Mathematics100%, bounded priority review100%, workflow50%; first NEW full-package reviewer active; actual interpreter-output portability blocker reproduced, repair pending frozen review completion; successive NEW review still required; historical first priority uncertified. No PR344 merge or publication.
+
+### 2026-10-04T06:53:55.109603+00:00 — Historical first review closed and public portability repair reproduced
+
+Root fully read adverse report, independent proof/controls, final verifier/reading ledger/closure/result/log and native outcomes; all346 manifest payloads+manifest/18directory modes and51 native receipt relationships independently verified. Four actual external review replays passed on both runtimes, retaining B1 and publication_ready:false. External closure at06:48:24.871136Z left the historical namespace unchanged. Public derivatives now remove interpreter stdout provenance and repair missing-document references; original sealed family source bytes remain unchanged. ZIPv03 is32 members/88343 bytes/SHA256d3c3245e136ee008f2cd48907bebd9b1039eb3e5843790a6f4583c6e884e8845. Fresh extracted integrity/full runs both exit0 on both interpreters, complete outputs identical; local production kitcheck actualexit0. Note/PDF/metadata/wrapper unchanged. Mathematics100%, bounded priority100%, workflow60%; a NEW full-package review remains required before merge/upload/tracker.
+
+### 2026-10-04T06:56:56.796445+00:00 — New second full-preprint adversary dispatched
+
+NEW fork-none /root/pr344_preprint_02 dispatched against exact six v03 inputs, with primary-source-first and pre-ZIP mathematical freezes, full32-member/whole-proof/classical-mechanism/code/metadata review, two-runtime reproduction, independent controls, honest native evidence and no self-seal. Original first adverse review and all prior sealed families remain unchanged. Current progress metadata reconciled to mathematics100%, bounded priority100%, publication workflow60%. No submission clearance, PR merge, Zenodo deposit or tracker row.

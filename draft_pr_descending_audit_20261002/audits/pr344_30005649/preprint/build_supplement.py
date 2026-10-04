@@ -35,6 +35,27 @@ for name,(family,relative) in sources.items():
 add('controls/check_integral_flag.py',A/'priority_supersingular_mechanism/check_integral_flag.py')
 assert bind(payload['controls/check_integral_flag.py'])==dict(bytes=7484,sha256='093d25fe237716fe0facb021afb9ffb6fa6117b8bf34f020eed6dad33504eabf')
 control_pins['controls/check_integral_flag.py']=bind(payload['controls/check_integral_flag.py'])
+reviewed_original_control_pins=dict(control_pins)
+control_derivations={}
+def derive_control(name,edits):
+    original=payload[name]
+    text=original.decode()
+    for old,new,count in edits:
+        assert text.count(old)==count,(name,old,'Unexpected source revision')
+        text=text.replace(old,new)
+    payload[name]=text.encode()
+    control_pins[name]=bind(payload[name])
+    control_derivations[name]=dict(reviewed_original=bind(original),public_derivative=bind(payload[name]),
+        edits=[dict(literal_old=old,literal_new=new,occurrences=count) for old,new,count in edits],
+        scope='Only runtime provenance output and included-document references; mathematical code/assertions/input data unchanged.')
+# Preserve the sealed originals. Public output must not depend on interpreter identity.
+derive_control('controls/verify_intrinsic.py',[
+    (', "interpreter":{"executable":sys.executable,"version":sys.version}','',1),
+    ('report.md','manuscript.tex',2)])
+derive_control('controls/verify_semilinear.py',[
+    ('The mathematical universal coefficient proof is in semilinear_proof.md;',
+     'The universal duality argument is in manuscript.tex;',1)])
+derive_control('controls/check_integral_flag.py',[('REPORT.md','CLASSICAL_MECHANISM.md',1)])
 priority=A/'priority_audit/public_report'
 manifest_path=priority/'PUBLIC_MANIFEST.json'
 assert bind(manifest_path.read_bytes())['sha256']==decision['family_public_manifest_sha256']
@@ -58,7 +79,8 @@ payload['SOURCE_IDENTITY.json']=dump(dict(problem_id=30005649,catalogue_alias='O
     exact_question='Unnumbered higher-n self-duality question following Takao Proposition2, printed2479, OWR42/2023; special-fiber qss hypothesis.',
     source_doi='10.4171/OWR/2023/42',source_pdf_url='https://ems.press/content/serial-article-files/47479?nt=1',
     source_pdf_sha256='3145acc3558489bc818125001721a4c7a26f458f187697a81c18fb8c18706d0a',
-    control_source_pins=control_pins,raw_primary_source_bodies_included=False))
+    control_source_pins=control_pins,reviewed_original_control_pins=reviewed_original_control_pins,
+    control_derivations=control_derivations,raw_primary_source_bodies_included=False))
 payload['PRIORITY_DECISION.json']=dump({key:decision[key] for key in ('status','priority_percent','first_priority_certified','exact_result','historical_scope_limits','family_public_manifest_sha256')})
 payload['README.md']=b'''# Verification supplement: Takao's self-duality question
 
@@ -88,7 +110,13 @@ and wrong-twist mutants; the intrinsic control uses dual annihilators,
 odd-degree semilinearity and a self-dual rank-four comparison; the integral
 flag control checks the stronger classical supersingular realization and
 71 formal Laurent identities. construction.json is a reviewed input to
-the intrinsic control. Each source is pinned in SOURCE_IDENTITY.json.
+the intrinsic control. Each public source and its reviewed original are
+pinned in SOURCE_IDENTITY.json, with exact literal derivations recorded.
+The intrinsic public derivative omits interpreter identity from its
+deterministic mathematical stdout; actual execution provenance is retained
+separately in native build receipts. Public document references point to
+the included manuscript or classical mechanism. Sealed originals remain
+unchanged, and all mathematical code, assertions and input data are preserved.
 
 manuscript.tex is the standalone source. CLASSICAL_MECHANISM.md gives
 the supplemental saturated integral flag and its mathematical scope.
