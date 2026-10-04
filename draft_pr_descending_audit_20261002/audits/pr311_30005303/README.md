@@ -1,0 +1,9 @@
+# Provisional descending audit: PR311 / 30005303
+
+Original submitted head895f2ba037e71bac054b58f1a4be7bb4d5dbd53a is claimed_solved, author2/5. The source asks two finite binary graphical-model questions: closure of MTP2 edge-factorizing laws, and clique factorization of all global-Markov MTP2 laws. The separate Gaussian conjecture is outside this entry. Original30 Git/API/disk objects and four manifests agree. Original EMS pages3125–3127 were visually read; primary copyrighted files remain private.
+
+Root analytical review provisionally finds a valid C4 counterexample to the second conjecture and a finite real max-flow/residual-factor compactness proof of the first. Two independent source-first families froze their own criteria and separate controls before reading candidate prose; both first assessments pass. Their final author-code consistency reports remain pending. A later extra summary read by the lattice reviewer is transparently disclosed, after its independent first verdict and controls were frozen; inherited aggregate claims are excluded from its evidence.
+
+Root reproduced all564189 author assertions and89324 inherited assertions byte-identically. Three independently designed source/prose programs also reproduce exactly, including C6 global independence, support reconstruction, equality aggregation, isolated/empty cases, normalization bounds and ordinary non-MTP2 closure countercontrols. Exact finite checks supplement analytical proofs. Evidence and contemporaneous actual command-stream hashes are recorded in the bound receipts.
+
+Mathematical audit estimate70%, workflow25%; mathematical acceptance, priority audit and publication clearance remain pending. No merge, preprint, Zenodo record, DOI, tracker row or GitHub release. The overall persistent goal remains active. Only submitted claimed_solved draft PRs are processed; PR315–312 were skipped by status alone, and PR8 is excluded. No outside individual was contacted.
