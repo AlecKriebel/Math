@@ -46,7 +46,7 @@ merge. PR18 completed rigorous review, the full named 2024 source check, two
 fresh whole-package reviews, publication at DOI `10.5281/zenodo.23127955`, exact
 public file readbacks, merge and native acceptance. Its Google Workspace CLI
 tracker entry is independently verified at `Math Puzzles!A14:D14`. PR18 workflow
-estimate: 100%. PR50 is now under active review: the mathematical theorem passes the fresh adversary, and a new v2 package credits Nencka's related 1996 announcement. Exact earlier ordinary-closure priority remains unresolved pending fuller 1998/1999 sources. A new whole-package reviewer is checking v2 from scratch. No PR50 publication, DOI, tracker entry or merge has occurred. The next eligible PR after completing PR50 is PR55. See `CURRENT_PROGRESS.json`.
+estimate: 100%. PR50 is now under active review: the mathematical theorem passes the fresh adversary, and a new v3 package credits Nencka's related 1996 announcement and identified fuller texts, and adds source-bound left-exchange controls to repair a diagnostic common-mode weakness. Exact earlier ordinary-closure priority remains unresolved pending fuller 1998/1999 sources. A NEW whole-package reviewer completed v3 from scratch with no further mathematics or payload repairs; its actual 7,114-check reproduction matches exactly, and the strengthened controls reject an actual zero-shift mutant. This is mathematical/package clearance only: publication and novelty remain held pending fuller Nencka source assessment. No PR50 publication, DOI, tracker entry or merge has occurred. The next eligible PR after completing PR50 is PR55. See `CURRENT_PROGRESS.json`.
 
 ## Historical checkpoints under the superseded broader scope
 
