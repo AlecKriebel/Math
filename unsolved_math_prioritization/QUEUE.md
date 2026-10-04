@@ -651,7 +651,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 640 | 20000190 / AIM-ALGEBRAIC_GEOMETRY-0190 | A root-free focal-positivity certificate for a seven-point pencil | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 641 | 20002720 / AIM-PROBABILITY-0162 | Units, central splitting, and filtration for multivariable boxed convolution | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 642 | 2639 / KOU-21.130 | Kourovka Notebook Problem 21.130 | 0.1080 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 643 | 4200010 / AMR-041-0010 | The good, the bad, and the ugly | 0.1079 | 6.0 | 3 | 2000 | queued | 0/5 |  |  |  |
+| 643 | 4200010 / AMR-041-0010 | The good, the bad, and the ugly | 0.1079 | 6.0 | 3 | 2000 | claimed_solved | 2/5 |  | Compact smooth nonexact symplectic Hamiltonian: invariant Liouville-volume 1/4 band with all exponents zero and no positive-measure Koopman-almost-periodic region; independently AI-audited candidate, unrefereed; no novelty or Euclidean/analytic/natural/weak-mixing claim. |  |
 | 644 | 30004609 / OWR-4990374-015 | Supersolvability of Low-Exponent Free Hyperplane Arrangements | 0.1079 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 645 | 30004996 / OWR-9790354-007 | Hyper-Aperiodic Colorings from Aperiodic SFT Colorings | 0.1073 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 646 | 6200025 / AMR-061-0025 | Boundaries of Groups and Kleinian Groups — Problem 25 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
