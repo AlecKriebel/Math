@@ -563,7 +563,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 552 | 30001065 / OWR-2090-018 | Universal Optimality of Exceptional Spherical Codes | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 553 | 4000010 / AMR-039-0010 | Functional inequalities | 0.1150 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 554 | 30006272 / OWR-14299283-013 | Catalan Formulas for Ekedahl-Oort Intersection Cohomology | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 555 | 30006308 / OWR-14299288-014 | Deformation Spaces of Smooth Complete Toric Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 555 | 30006308 / OWR-14299288-014 | Deformation Spaces of Smooth Complete Toric Varieties | 0.1150 | 6.0 | 3 | 2025 | unsolved | 5/5 |  |  |  |
 | 556 | 30006359 / OWR-14299511-008 | Irreducible Forest Decomposition of Consistency-Equation Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 557 | 30006363 / OWR-14299512-001 | Topological Invariance of Helicity | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 558 | 30001242 / OWR-3472-013 | Uniform Generic Degree Bounds for Ideal Membership | 0.1149 | 4.5 | 3 | 2009 | queued | 0/5 |  |  |  |
