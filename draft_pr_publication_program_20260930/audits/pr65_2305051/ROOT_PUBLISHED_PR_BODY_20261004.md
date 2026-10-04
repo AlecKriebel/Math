@@ -1,0 +1,9 @@
+The mathematical construction is verified, but the priority audit shows that Holland's Problem5.51 already has a sufficient construction in earlier work. Accept this as attributed progress with outcome `already_solved`; withdraw the claim to newly resolve an open problem.
+
+AAN1999 Theorem2 gives a pure interpolating Blaschke covering with a quadratic derivative bound. Normalizing at a preimage of0 gives B(0)=0 and a Bloch bound8 for(1+B)/(1-B). Their pp.328-329 explicitly print the Cayley/Bloch application. Hayman-Lingham2019 Update5.51 credits their construction as explicit, superseding the no-progress wording of the retained2018v2. The checked normalization deduction is distinguished from the literal earlier text.
+
+Credit Kahane's absorbed four-adic mechanism as printed by Piranian1966 pp.260-261, and DSS1966 pp.248-250 for the periodic Zygmund/Herglotz bridge. PR65 changes the child ordering; no assertion of identical construction or earliest recognition is made. The verified proof and reproducible checks remain useful attributed exposition.
+
+The original submitted bodies and2/5 proof ledger remain dated inputs. CURRENT_RESULT.md, CURRENT_PRIORITY_SPECIALIZATION.md and acceptance.json govern the corrected current acceptance after the exact reviewed-head merge. The former unpublished note is superseded; no new paper, Zenodo record, DOI or tracker row is created for this prior-result acceptance. Extensive AI assistance; unrefereed and without conventional human peer review.
+
+Validation: universal analytic and factorization audits, reproduction of exact recursion diagnostics, full primary1966 bodies and decisive2019/AAN pages, three independent renewed source families and fresh final priority adversary. Finite controls support transcription and implementation checks; they do not certify universal analytic statements or worldwide earliest priority.
