@@ -1,0 +1,85 @@
+--- a/PROOF.md
++++ b/PROOF.md
+@@ -138,11 +138,12 @@
+ induce two automorphisms of K, denoted σ_x and σ_y, inverting the indicated
+ coordinate while fixing the other.
+ 
+-## 3. Radical saturation of the monomial group
++## 3. Saturation modulo constants of the monomial group
+ 
+ **Proposition 3.1.** For every prime p, the radical inside K of
+-G=⟨x,y⟩ is F_p^*G. In particular, distinct monomials are independent
+-multiplicatively modulo constants.
++G=⟨x,y⟩ is F_p^*G. In particular, x and y are multiplicatively independent
++modulo constants, and distinct exponent pairs give monomials with nonconstant
++quotient.
+ 
+ For odd p, on the smooth model of the curve there is a geometric valuation
+ with v(x)=1 and v(y)=0, at a point (0,β) with β²=−1. Indeed f_y=2β there.
+@@ -155,7 +156,8 @@
+ \]
+ 
+ forces N|a and N|b. Dividing h by x^{a/N}y^{b/N} leaves an element algebraic
+-over F_p, hence a constant. This proves saturation in odd characteristic.
++over F_p, hence a constant. This proves saturation modulo constants in odd
++characteristic.
+ 
+ For p=2, the point (0,1) is smooth since f_x=1 there, and
+ f(0,y)=(y+1)². Its valuation has v(x)=2, v(y)=0. At (1,0) the curve is
+@@ -177,7 +179,7 @@
+ monomial gives a+bR=0, where a and b are reduced modulo 2. The three
+ possibilities R, 1, and 1+R are nonzero. Hence a and b are even. Taking out
+ the corresponding monomial square leaves h²=1, so h is constant. Peeling
+-off prime factors of N proves saturation. The same valuations imply that
++off prime factors of N proves saturation modulo constants. The same valuations imply that
+ x^a y^b constant forces a=b=0. ∎
+ 
+ **Corollary 3.2 (exact sparse-multiple reduction).** If w_p is the least
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -6,7 +6,7 @@
+ approach families. The submitted partial theorem is:
+ 
+ - The defining seven-term polynomial is absolutely irreducible for every prime.
+-- Its monomial group is radical-saturated in its function field.
++- The group F_p^*⟨x,y⟩ is radical-saturated in its function field.
+ - For every prime p, **5 ≤ M_p ≤ 6**.
+ - For **p=2, M_2=6**.
+ 
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -9,7 +9,7 @@
+   "full_target_resolved": false,
+   "partial_results": [
+     "Absolute irreducibility for every prime",
+-    "Radical saturation and exact minimum-support reduction",
++    "Radical saturation modulo constants and exact minimum-support reduction",
+     "5 <= M_p <= 6 for every prime",
+     "M_2 = 6",
+     "Necessary congruences for odd-prime six-term witnesses"
+--- a/RESEARCH_LOG.md
++++ b/RESEARCH_LOG.md
+@@ -32,7 +32,7 @@
+ 
+ Mechanism: regard f as a primitive quadratic in y. Factor its discriminant, handle
+ p=3 and p=5 explicitly, and use an Artin–Schreier pole at p=2. At odd p, simple
+-coordinate divisors force radical saturation. At p=2, coordinate orders 2 and 4
++coordinate divisors force saturation modulo constants. At p=2, coordinate orders 2 and 4
+ control odd radical factors and logarithmic differentiation controls square roots.
+ 
+ Outcome: f is absolutely irreducible for every prime, with constant field F_p.
+--- a/SHA256SUMS
++++ b/SHA256SUMS
+@@ -1,8 +1,8 @@
+ 8d5ae66fc5edb9a8d6740bf02a0da76ccb5827fb29b534e4f3c579231f5c1ac2  ENVIRONMENT.json
+-a184e8f7d7682cb645e1fd32a05100ff71e8deb57ea5454da42b74a74e85f0b4  PROOF.md
+-1910ec4024e44c06ab802f1cb8d0ec314f529edfa17112546e7f38958d92004e  REPORT.md
+-0385e8ae9110fcbd8a4a46bd014aa9bca3d5485a3f3962737da54c9629f01aa6  RESEARCH_LOG.md
++68847700cb0c2c4efe7d51da310cdde158b06b2cc0daaf8997501130e49577a9  PROOF.md
++87e0b2fd1a3a3146149ea4a829f42ef32fe8f0ed79caab30d4cad2b705429bce  REPORT.md
++1c32afe3865d0320598a7d659a90c0004d5170906d0d7d4563cd980dcf7ba9a4  RESEARCH_LOG.md
+ 80ceda38e140ef55df1c24a061cd59a69f7443de49aaf943b2576ff6ecdc140d  SOURCE_PROVENANCE.json
+-444a4b21c529d9e4c378e0be4f0709eb4882e656d6916cdbb21d757fe10f26ac  STATUS.json
++bd123a0fd3ee347a19ce6d6c4ae99eff10f7411d135c24089bd48fd3c98dadb4  STATUS.json
+ 6afd818dec204e7ec402fa2401179d97a9ef67ec1829437b8cd4715bf319131d  check.py
+ 4c77df577606141fdfaf5b696476145cfc69c98fa5f68812e46e3ee5a0262135  control-results.json
