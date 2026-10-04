@@ -19,3 +19,7 @@ Root finished all13 published Pries–Ulmer2022 pages and read23 selected Oort a
 ### 2026-10-04T05:30:15.613003+00:00 — expanded priority checkpoint logging repaired
 
 Mathematics100%, priority estimated65%, workflow30%. Root note ROOT_PRIORITY_COMPARISON_003.md records newly read classical balanced-word and supersingular-factor sources, MFO comparison, main priority inventories, and focused adversarial review still pending. The initial notes write at2026-10-04T05:29:54.378570+00:00 created the note/progress and appended ROOT_PRIORITY_WORK_LOG, then failed before the remaining log appends because it used the nonexistent name ROOT_RESEARCH_LOG.md. This correction appends the two actual research logs; no original note or scientific result was altered. No paper, merge, deposit or tracker write for PR344.
+
+### 2026-10-04T05:57:31.955365+00:00 — Final classical mechanism accepted
+
+Root complete final report/control/verifier/manifest review and native144-file replay pass; all71 assertions and four exact negative-control streams reproduce; previous Honda audit unchanged. Scientific priority review95%, mathematics100%, workflow32%. Final priority-family documentation/closure pending; no paper or merge/publication yet. Six unrelated dirty foreign files and empty main index independently verified after PR65 checkpoint fab787f7; failed overbroad first resumption check retained and corrected without a prior tracked write.

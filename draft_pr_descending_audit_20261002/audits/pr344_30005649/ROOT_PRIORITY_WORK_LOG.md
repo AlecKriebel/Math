@@ -11,3 +11,7 @@ Root finished all13 published Pries–Ulmer2022 pages and read23 selected Oort a
 ### 2026-10-04T05:29:54.378570+00:00 — stronger classical coverage under focused adversarial review
 
 Root expanded primary reading and independently verified MFO question chronology/body equivalence. Classical balanced-word supersingular realization is expressly prior. The exact saturated-factor application is under an additional adversarial audit; first assessment preserved before later source exposure. Main priority report and complete inventories read; two factual inventory repairs requested. Mathematics100%, priority estimated65%, workflow30%; no PR344 publication. SeeROOT_PRIORITY_COMPARISON_003.md for exact reading boundaries and historical gaps.
+
+### 2026-10-04T05:57:31.955365+00:00 — Final classical mechanism accepted
+
+Root complete final report/control/verifier/manifest review and native144-file replay pass; all71 assertions and four exact negative-control streams reproduce; previous Honda audit unchanged. Scientific priority review95%, mathematics100%, workflow32%. Final priority-family documentation/closure pending; no paper or merge/publication yet. Six unrelated dirty foreign files and empty main index independently verified after PR65 checkpoint fab787f7; failed overbroad first resumption check retained and corrected without a prior tracked write.

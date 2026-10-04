@@ -411,3 +411,19 @@ Native main and remote both 5884f4fd1237f66ba6759d59b245f8cdbf0c8afa; entire ind
 ### 2026-10-04T05:30:15.613003+00:00 — expanded priority checkpoint logging repaired
 
 Mathematics100%, priority estimated65%, workflow30%. Root note ROOT_PRIORITY_COMPARISON_003.md records newly read classical balanced-word and supersingular-factor sources, MFO comparison, main priority inventories, and focused adversarial review still pending. The initial notes write at2026-10-04T05:29:54.378570+00:00 created the note/progress and appended ROOT_PRIORITY_WORK_LOG, then failed before the remaining log appends because it used the nonexistent name ROOT_RESEARCH_LOG.md. This correction appends the two actual research logs; no original note or scientific result was altered. No paper, merge, deposit or tracker write for PR344.
+
+### 2026-10-04T05:31:37.103199+00:00 — preliminary PR344 priority checkpoint pushed
+
+Owned commit ca87f7aee2c4bcdc4db69864c0110af677a95bbc pushed after exact scoped Git/disk body/mode and remote verification. All foreign index and dirty tracked bodies/modes preserved. Mathematics100%, priority estimated65%, workflow30%; exact application priority remains open. No PR344 merge or publication.
+
+### 2026-10-04T05:43:35.398548+00:00 — PR65 mathematical audit checkpoint window acknowledged
+
+Native main and remote both ca87f7aee2c4bcdc4db69864c0110af677a95bbc; entire index empty with SHA-256 15ef273830fc3cf4ffe92d5cff8e649211c22ac3e4c1d7918075db56a31afbcb. Shared Git/index/queue/history writers paused, and dirty tracked bodies/modes held stable after this acknowledgement. PR344 read-only priority review and own new untracked evidence continue. Mathematics100%, priority estimated65%, workflow30%. No outbound chat message sent.
+
+### 2026-10-04T05:55:31.996867+00:00 — PR65 mathematical audit checkpoint window released and independently verified
+
+Native main and remote both fab787f7df8b481cc95df2be593b6f64a4818585; entire index empty; all six prior dirty foreign tracked bodies/modes preserved. Shared owned writes resumed. PR344 mathematics100%, publication workflow30%, and deep priority review remains open. No outbound chat message sent.
+
+### 2026-10-04T05:57:31.955365+00:00 — Final classical mechanism accepted
+
+Root complete final report/control/verifier/manifest review and native144-file replay pass; all71 assertions and four exact negative-control streams reproduce; previous Honda audit unchanged. Scientific priority review95%, mathematics100%, workflow32%. Final priority-family documentation/closure pending; no paper or merge/publication yet. Six unrelated dirty foreign files and empty main index independently verified after PR65 checkpoint fab787f7; failed overbroad first resumption check retained and corrected without a prior tracked write.
