@@ -609,7 +609,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 598 | 30006605 / OWR-14299911-007 | Weighted Centers on Bounded-Dimensional Median Graphs | 0.1125 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 599 | 3341 / OPG-37448 | MSO alternation hierarchy over pictures | 0.1125 | 6.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 600 | 30000080 / OWR-734-005 | Powers of Linearly Presented Primary Ideals | 0.1124 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
-| 601 | 30000203 / OWR-793-006 | Minimal Subdegrees of Twisted-Wreath Permutation Groups | 0.1122 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 601 | 30000203 / OWR-793-006 | Minimal Subdegrees of Twisted-Wreath Permutation Groups | 0.1122 | 5.5 | 3 | 2005 | unsolved | 5/5 |  |  |  |
 | 602 | 30004319 / OWR-17295-003 | Alternativity of Parameters for $A_2$-Graded Groups | 0.1121 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 603 | 30000583 / OWR-1326-004 | Projective Subspaces with Trivial Normal Bundle in Fano Manifolds | 0.1121 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 604 | 4300001 / AMR-042-0001 | Order of mixing | 0.1121 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
