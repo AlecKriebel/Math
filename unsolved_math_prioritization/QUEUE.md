@@ -603,7 +603,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 592 | 2746 / KP-1.87 | Kirby Problem 1.87 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 593 | 2807 / KP-3.9 | Kirby Problem 3.9 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 594 | 2831 / KP-3.33 | Kirby Problem 3.33 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 595 | 2887 / KP-4.11 | Kirby Problem 4.11 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 595 | 2887 / KP-4.11 | Kirby Problem 4.11 | 0.1125 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 596 | 2927 / KP-4.51 | Kirby Problem 4.51 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 597 | 2995 / KP-4.119 | Kirby Problem 4.119 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 598 | 30006605 / OWR-14299911-007 | Weighted Centers on Bounded-Dimensional Median Graphs | 0.1125 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
