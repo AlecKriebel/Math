@@ -148,7 +148,7 @@ def closed_reviews(capture):
                   'CLOSURE.json', priority['review_closure_sha256']))
     for n in (1, 2):
         e = load(A/f'ROOT_PREPRINT_REVIEW0{n}_VERIFICATION.json')
-        full = next(r for r in e['captures'] if '--public-only' not in r['argv'] and any(str(x).endswith('verify_review.py') for x in r['argv']))
+        full = next(r for r in e['captures'] if '--public-only' not in r['argv'] and any(str(x).endswith(('verify_review.py', 'verify_namespace.py')) for x in r['argv']))
         specs.append((f'preprint_review_0{n}', full['argv'],
                       Path(full['stdout_path']) if 'stdout_path' in full else A/'root_replay_private'/f'preprint_review0{n}_closed_001/full.stdout',
                       e['review_seal_path'], e['review_seal_sha256']))
