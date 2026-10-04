@@ -618,7 +618,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 608 | 30000750 / OWR-1537-002 | Reduced Length and Mahler-Measure Inequality | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | unsolved | 5 |  |  |  |
 | 611 | 30004404 / OWR-17471-010 | Free Subgroups Avoiding All Dehn-Surgery Kernels | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 612 | 30004456 / OWR-1703863-005 | $L^2$ Euler Characteristics and HNN Splittings | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 613 | 30001211 / OWR-3396-010 | Uniform Recurrence Rates for Minimal Interval Exchanges | 0.1116 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
