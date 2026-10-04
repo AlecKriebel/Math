@@ -1,0 +1,18 @@
+[
+  {
+    "utc": "2026-10-03T13:03:02.985231+00:00",
+    "failure": "Actual GitHub recursive root tree marked truncated; gate rejected before any API target blob or program replay was accepted.",
+    "failed_program_sha256": "fbfcf2034816de7363b1c7cef48886a27e38e8549c9d7b8f0cdeb9025ee7e19c",
+    "failed_program_bytes": 12372,
+    "repair": "Fetch tree chunks using nonrecursive parent inventories whenever a recursive child is truncated; combine all leaf paths and compare complete map to actual Git.",
+    "candidate_changed": false
+  },
+  {
+    "utc": "2026-10-03T13:04:02.335136+00:00",
+    "failure": "GitHub git/trees accepts a commit identifier and returns that identifier in top-level sha; the gate incorrectly demanded a tree object there and rejected. Complete leaf map comparison had already passed.",
+    "failed_program_sha256": "22bf2c7df49c6aba8d785239bee218b7388b690cc9bdb06aded8f02dce865d2b",
+    "failed_program_bytes": 13080,
+    "repair": "Resolve actual root tree from Git commit, query API by the tree object itself, then compare top-level sha to that tree object.",
+    "candidate_changed": false
+  }
+]

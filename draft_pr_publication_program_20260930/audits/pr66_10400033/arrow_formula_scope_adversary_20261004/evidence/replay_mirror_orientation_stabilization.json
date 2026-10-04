@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import pathlib,sys,json; sys.path.insert(0,str(pathlib.Path(\"replay\").resolve())); import verify_jones as v; cases=[(2,[1]*3),(2,[-1]*3),(2,[1]*5),(2,[-1]*5),(3,[1,1,1,2]),(3,[1,1,1,-2]),(3,[1,2]*4),(3,[-1,-2]*4),(3,[1,-2,1,-2])]; results=[]; [(results.append({\"strands\":m,\"word\":w,\"arrow\":str(v.pv(*v.gauss(m,w))[0]),\"Jones\":str(v.jones_v3(m,w)),\"circle_reversed\":str(v.pv([(2*len(w)-1-a,2*len(w)-1-b) for a,b in v.gauss(m,w)[0]],v.gauss(m,w)[1])[0])})) for m,w in cases]; assert all(r[\"arrow\"]==r[\"Jones\"]==r[\"circle_reversed\"] for r in results); print(json.dumps({\"status\":\"PASS\",\"cases\":results},indent=2))"
+  ],
+  "pid": 43874,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004",
+  "utc_start": "2026-10-04T16:28:01.324460+00:00",
+  "utc_end": "2026-10-04T16:28:01.366191+00:00",
+  "exit_code": 0,
+  "stdout": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004/evidence/replay_mirror_orientation_stabilization.stdout",
+    "bytes": 1692,
+    "sha256": "d5c8eddeed05b9c081d0ea8d501539b6233776e2e741700bd32dfd050a749503"
+  },
+  "stderr": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004/evidence/replay_mirror_orientation_stabilization.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

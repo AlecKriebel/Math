@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import independent_tl_calibration as c,json; from fractions import Fraction; print(\"cyclic_symmetry_counts\", {\"P\":sum(tuple(sorted(((t+r)%6,(h+r)%6) for t,h in c.P))==tuple(sorted(c.P)) for r in range(6)),\"T\":sum(tuple(sorted(((t+r)%6,(h+r)%6) for t,h in c.T))==tuple(sorted(c.T)) for r in range(6))}); r=json.load(open(\"independent_results.json\")); rows=r[\"rows\"]; p_rows=[x for x in rows if int(x[\"counts\"][\"P_signed\"])!=0]; mixed=[x for x in rows if any(y<0 for y in x[\"word\"]) and any(y>0 for y in x[\"word\"])]; print(\"nonzero_P_rows\",len(p_rows),\"mixed_sign_rows\",len(mixed)); print(\"smallest_nonzero_P\",min(p_rows,key=lambda x:x[\"crossings\"])); print(\"all_even_P_signed\",all(x[\"counts\"][\"P_signed\"]%2==0 for x in rows)); print(\"degrees\",sorted({x[\"crossings\"] for x in rows})); print(\"strands\",sorted({x[\"strands\"] for x in rows})); J=c.jones(2,(1,1,1)); M=c.jones(2,(-1,-1,-1)); print(\"connected_sum_polynomial_checks\", c.jones(3,(1,1,1,2,2,2))==c.mul(J,J),c.jones(3,(1,1,1,-2,-2,-2))==c.mul(J,M))"
+  ],
+  "pid": 41093,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/jones_algebraic_calibration_adversary_20261004",
+  "utc_started": "2026-10-04T16:24:49.386330+00:00",
+  "utc_ended": "2026-10-04T16:24:49.431791+00:00",
+  "exit_code": 0,
+  "stdout": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/jones_algebraic_calibration_adversary_20261004/receipts/first_derivation_support/stdout.txt",
+    "bytes": 532,
+    "sha256": "a2aab81dc812be45ff40ec46eee59f12afe37fa5cb17502a2103ad42ca2de892"
+  },
+  "stderr": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/jones_algebraic_calibration_adversary_20261004/receipts/first_derivation_support/stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

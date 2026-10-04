@@ -1,0 +1,54 @@
+{
+  "all_expected_outcomes_observed": true,
+  "controls": [
+    {
+      "control": "baseline",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/check_family_manifest.py",
+        "verify",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/actual_manifest_controls/baseline"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"first_party_members\": 103,\n  \"foreign_materials\": 8,\n  \"exact_root_self_only\": true,\n  \"nested_basename_exemptions\": false\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "nested_manifest_same_basename",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/check_family_manifest.py",
+        "verify",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/actual_manifest_controls/nested_manifest_same_basename"
+      ],
+      "returncode": 1,
+      "stdout": "{\n  \"passed\": false,\n  \"reason\": \"Exact membership mismatch: {\\\"extra\\\": [\\\"nested/PRIMARY_SCOPE_FAMILY_MANIFEST.json\\\"], \\\"missing\\\": []}\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "missing_first_party_checker",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/check_family_manifest.py",
+        "verify",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/actual_manifest_controls/missing_first_party_checker"
+      ],
+      "returncode": 1,
+      "stdout": "{\n  \"passed\": false,\n  \"reason\": \"Exact membership mismatch: {\\\"extra\\\": [], \\\"missing\\\": [\\\"check_original_packet.py\\\"]}\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "control": "foreign_pdf_corrupted",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/check_family_manifest.py",
+        "verify",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/actual_manifest_controls/foreign_pdf_corrupted"
+      ],
+      "returncode": 1,
+      "stdout": "{\n  \"passed\": false,\n  \"reason\": \"Byte seal mismatch: foreign_sources/1302.6958v4.pdf\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Actual own-root exact-membership and byte-seal controls; nested manifest basenames are never exempt."
+}

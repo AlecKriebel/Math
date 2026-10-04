@@ -1,0 +1,11 @@
+--- integration_execution_revision/verify_post_acceptance.py
++++ integration_post_revision/verify_post_acceptance.py
+@@ -17,7 +17,7 @@
+     audit = g.load(g.A / 'acceptance.json')
+     g.require({k: v for k, v in audit.items() if k not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}} == acceptance, 'Audit/canonical receipts differ')
+     g.require(all(acceptance[k] == v for k, v in pins.items()), 'Final gate pins differ')
+-    g.require(not (g.K / 'ACCEPTANCE.json').exists(), 'Uppercase canonical receipt prohibited')
++    g.require('ACCEPTANCE.json' not in {p.name for p in g.K.iterdir()} and 'acceptance.json' in {p.name for p in g.K.iterdir()}, 'Canonical receipt literal filename must be lowercase acceptance.json')
+     rows = g.manifest(g.K, g.K / 'MANIFEST.json', audit['canonical_manifest_sha256'], audit['canonical_manifest_entries'])
+     for z in frozen:
+         path = g.K / ('reviewed_pending_administration' if z['path'] in g.ADMIN else '') / z['path']

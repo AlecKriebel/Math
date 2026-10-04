@@ -1,0 +1,15 @@
+# Pre-candidate historical addendum: older qualifying law
+
+This addendum was reached before reading any released candidate material, after the root released named TURN/source files but while continuing the independently initiated primary citation-chain search.
+
+Primary: Alberto Gandolfi and Pietro Lenarda, *A note on Gibbs and Markov random fields with constraints and their moments*, Mathematics and Mechanics of Complex Systems 4(3–4) (2016 issue), pp.407–422, DOI 10.2140/memocs.2016.4.407. Publisher PDF https://msp.org/memocs/2016/4-3/memocs-v4-n3-p13-p.pdf . The full paper's final metadata records received14 September2016 and accepted12 January2017. Do not infer first public availability from the volume-year label; a precise online publication date remains to be authenticated. It unambiguously precedes the 2022 source problem and the 2024 KS paper.
+
+Lemma5.2 on printed415–417 supplies a C4-global-Markov law with support x3=x4, p1111=2/9, and the other seven supported masses1/9; all other masses are zero. It proves an even stronger failure of constrained Gibbs representation with interaction graph fixed and arbitrary constraints. Example6.3 on printed418 points out that even when the support constraints use the edge34, the probability does not factor on C4.
+
+**Complete qualifying specialization.** Define w1111=2, wx=1 if x3=x4 and x≠1111, wx=0 otherwise; p=w/9. Support is a Boolean sublattice. For two supported comparable states, MTP2 holds with equality. For incomparable supported states, neither can be top, so their product is1/9², while meet/join product is1/9² or2/9². Off-support right sides are zero. Thus all MTP2 inequalities hold in the source's coordinate order. Global Markov follows because X3 is determined by the conditioned X4 for 1⊥3|24, and X4 by conditioned X3 for 2⊥4|13. The exact verifier enumerated all256 MTP2 pairs and all4 ordered nontrivial C4 separations, with zero failures.
+
+The edge-balanced identity is p0000p0111p1011p1100=p0011p0100p1000p1111, GMS's f34_same. Each edge has identical configuration multiplicities in its left and right four-state lists. Substitution into any finite real clique factorization therefore forces the identity. On this primary law the two products are1/9⁴ and2/9⁴; difference−1/6561. Hence no exact finite real clique factorization, or pointwise limit thereof, exists.
+
+**Updated independent priority conclusion:** both authenticated source Conjectures2 and3 already have a qualifying counterexample in the Gandolfi–Lenarda primary paper, older than2022. The paper does not need to label its example MTP2: the exact displayed probability table meets that property by the proof above. The first frozen KS conclusion remains valid as a later occurrence but its earliest-bound inference is superseded by this older positive identification. This is not a negative-search novelty assertion.
+
+Remaining gap: exact publisher first-publication date; comparison of explicitly released candidate witness, C6 extension and full-resolution claim; older primary sources might move earliest occurrence still earlier. Completion estimate:60%.

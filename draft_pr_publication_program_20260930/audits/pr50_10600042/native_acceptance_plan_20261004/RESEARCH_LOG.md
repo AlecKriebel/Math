@@ -1,0 +1,5 @@
+# PR50 native acceptance preparation log
+
+- 2026-10-04T00:51:49.006529+00:00: Read-only selected observation started. Scope limited to prospective PR50 acceptance. Current goal's exact claimed_solved filter and both AGENTS files read. Plan preparation estimate 30%; actual native acceptance 0%; new scientific approval 0%.
+- 2026-10-04T00:51:51.574279+00:00: Genuine capture completed under PID 54132, with all 28 command streams retained. Exact fifteen original bodies, one-turn ledger, current source identity and native absence verified. GitHub reports QUEUE-related conflict; index empty at observation, foreign unstaged work preserved. Plan preparation estimate 70%; actual native acceptance 0%; new scientific approval 0%.
+- 2026-10-04T00:57:53.893823+00:00: Authored minimal five-path administrative plan, exact original blob table and source/schema recommendations. Publication/review/DOI/tracker gates remain prospective; no fabricated lifecycle or merge hash. Two-commit ordering supplies real original merge evidence without circular hashes. Plan preparation estimate 100%; actual native acceptance 0%; new scientific approval 0%.

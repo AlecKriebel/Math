@@ -1,0 +1,164 @@
+{
+  "utc": "2026-10-04T18:01:55.466467+00:00",
+  "status": "PASS_MUTANT_NEGATIVE_AND_DENSITY_CONTROLS",
+  "mutants_and_runner_negatives": [
+    {
+      "case": "missing_reverse_residual",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/missing_reverse_residual.py\", line 174, in <module>\n    if __name__ == '__main__': main()\n                               ^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/missing_reverse_residual.py\", line 154, in main\n    assignments += gauge(n,edges,h,j); networks += 1\n                   ^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/missing_reverse_residual.py\", line 69, in gauge\n    assert residual == cut-value == energy-minimum\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "overwrite_aggregate_coupling",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/overwrite_aggregate_coupling.py\", line 174, in <module>\n    if __name__ == '__main__': main()\n                               ^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/overwrite_aggregate_coupling.py\", line 156, in main\n    density(3,[(0,1),(0,2),(1,2)],{},[(0,1),(1,0)],[-2,1,0],[0,-3,5]),\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/overwrite_aggregate_coupling.py\", line 133, in density\n    assert all(L(x) == logw(x) for x in S)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "wrong_minimum_energy_shift",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/wrong_minimum_energy_shift.py\", line 174, in <module>\n    if __name__ == '__main__': main()\n                               ^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/wrong_minimum_energy_shift.py\", line 154, in main\n    assignments += gauge(n,edges,h,j); networks += 1\n                   ^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/wrong_minimum_energy_shift.py\", line 75, in gauge\n    assert max(weights.values()) == 1 and 1 <= sum(weights.values()) <= 2**n\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "mtp2_check_always_true",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/mtp2_check_always_true.py\", line 174, in <module>\n    if __name__ == '__main__': main()\n                               ^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/mtp2_check_always_true.py\", line 167, in main\n    assert not mtp2(smoothed)\n           ^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "altered_expected_rejected",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/mutants_v02/tampered_expected_package/REPRODUCE.py\", line 22, in <module>\n    assert json.loads(r.stdout)==json.loads((P/'expected/boundary.json').read_bytes())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "optimization_rejected",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Assertions must be enabled; remove -O/PYTHONOPTIMIZE.\n"
+    },
+    {
+      "case": "existing_output_rejected",
+      "exit": 1,
+      "caught": true,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/fresh_external_copy/REPRODUCE.py\", line 9, in <module>\n    O=args.out_dir.resolve();O.mkdir(parents=True,exist_ok=False)\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileExistsError: [Errno 17] File exists: '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_01/private/fresh_external_results'\n"
+    }
+  ],
+  "additional_density_cases": [
+    {
+      "support_size": 4,
+      "classes": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "aggregate_couplings": {
+        "(0, 1)": 3
+      },
+      "l1_errors_exact": [
+        "3/2",
+        "66/289",
+        "1026/66049",
+        "262146/4295098369"
+      ]
+    },
+    {
+      "support_size": 6,
+      "classes": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "aggregate_couplings": {
+        "(1, 2)": 4
+      },
+      "l1_errors_exact": [
+        "7371/3995",
+        "3186/6545",
+        "93582/2582215",
+        "23814702/166173454615"
+      ]
+    },
+    {
+      "support_size": 8,
+      "classes": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          4
+        ]
+      ],
+      "aggregate_couplings": {},
+      "l1_errors_exact": [
+        "3/2",
+        "66/289",
+        "1026/66049",
+        "262146/4295098369"
+      ]
+    },
+    {
+      "support_size": 4,
+      "classes": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "aggregate_couplings": {},
+      "l1_errors_exact": [
+        "2/9",
+        "2/129",
+        "2/2049",
+        "2/524289"
+      ]
+    },
+    {
+      "support_size": 4,
+      "classes": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "aggregate_couplings": {},
+      "l1_errors_exact": [
+        "1",
+        "2/17",
+        "2/257",
+        "2/65537"
+      ]
+    }
+  ],
+  "facial_assumption_essential_control": {
+    "lattice_support_size": 4,
+    "edge_projection_intersection_size": 8
+  },
+  "limitations": "Additional density examples invoke released density code and independently selected inputs. All finite controls remain illustrative."
+}

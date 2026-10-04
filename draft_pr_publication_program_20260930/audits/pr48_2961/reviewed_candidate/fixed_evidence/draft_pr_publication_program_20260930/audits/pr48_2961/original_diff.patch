@@ -1,0 +1,1221 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..bc83ee169 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -66,7 +66,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the ambient commutator-length bound for product-supported surface diffeomorphisms and the precise obstruction to extending surface quasimorphism arguments. The full closed4-manifold uniform-perfectness target remains unresolved.6570author and228independent checks; duplicate30004403 shares the target and budget. Draft PR: https://github.com/AlecKriebel/Math/pull/48. |  |
+ | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2961/PARTIAL.md b/unsolved_math_prioritization/attempts/2961/PARTIAL.md
+new file mode 100644
+index 000000000..30c0cc93d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/PARTIAL.md
+@@ -0,0 +1,164 @@
++# Four-manifold diffeomorphism groups: transfer obstructions
++
++**KP-4.85 remains unresolved.** This note gives a source correction and two concrete obstructions to transferring known quasimorphisms to the required group. Its main estimate is a consequence of classical commutator compression, not a claimed new discovery. Separate adversarial AI review passed; see [the report](review/REVIEW.md). This has not undergone human peer review.
++
++## 1. The full target
++
++The question asks for a closed orientable smooth four-manifold \(X\) such that
++\[
++\sup_{f\in G}\operatorname{cl}_G(f)=\infty,
++\qquad G=\operatorname{Diff}^{\infty}_0(X).
++\tag{1}
++\]
++Here \(G\) is the full identity component, and \(\operatorname{cl}_G\) counts commutators whose two factors lie in \(G\). By Mather–Thurston perfectness, every element has finite commutator length; the question is whether the lengths have a uniform bound. We use \([a,b]=aba^{-1}b^{-1}\), with composition acting on the rightmost argument first.
++
++The target is stated in K3, Problem 4.85, pp.259–260 [K3]. It is also exactly Question 3 on p.489 of Webb's Oberwolfach report [W20], corresponding to the duplicate dataset record 30004403 / OWR-17471-009. These are one mathematical target, not two independent problems.
++
++If disconnected manifolds are admitted by the word “manifold,” it suffices to consider a connected component: a compact manifold has finitely many components, its identity component of diffeomorphisms is the product of their identity components, and commutator length in a finite direct product of perfect groups is the maximum of the component lengths. The reverse inequality follows by padding shorter factorizations with trivial commutators.
++
++Neither an unbounded norm on a subgroup, nor unbounded commutator length in a universal covering group, is by itself (1). The same caution applies to fragmentation length.
++
++## 2. A known four-dimensional class omitted by an overbroad remark
++
++Tsuboi's published Theorem 1.1(2) states that an even-dimensional compact manifold admitting a handle decomposition without middle-index handles has commutator width at most four in the smooth identity component [T12, p.142]. It applies in dimension four whenever there are no 2-handles. The regularity restriction \(r\ne\dim X+1\) poses no issue for \(r=\infty\).
++
++For example, \(S^1\times S^3\) has a Morse function with one critical point in each of indices \(0,1,3,4\), obtained by summing Morse functions with two critical points on the two factors. Thus
++\[
++\operatorname{cl}_{\operatorname{Diff}_0(S^1\times S^3)}(f)\le4
++\quad\text{for every }f.
++\tag{2}
++\]
++The standard connected-sum handle construction similarly gives \(\#_k(S^1\times S^3)\) a decomposition with counts \((1,k,0,k,1)\), so the same theorem applies.
++
++Consequently, the K3 remark that only \(S^4\) is understood in dimension four needs qualification. The original Oberwolfach discussion already explicitly records the no-2-handle class [W20, p.488]. This is a correction to the breadth of that remark, not a resolution of the existence question. We do not infer a no-2-handle decomposition merely from the vanishing of \(H_2(X)\).
++
++## 3. Classical compression on a product with an open disk
++
++We recall the algebra behind the portable-manifold bound of Burago–Ivanov–Polterovich [BIP, Theorems 1.18 and 2.2(i)]. This also makes the precise ambient groups in the next section explicit.
++
++**Lemma 1 (commutator compression).** Let \(H\le G\), and suppose the subgroups \(H,FHF^{-1},\ldots,F^mHF^{-m}\) commute pairwise. If
++\[
++h=c_1\cdots c_m,\qquad c_i=[a_i,b_i],\quad a_i,b_i\in H,
++\]
++then \(\operatorname{cl}_G(h)\le2\).
++
++**Proof.** Write \(T(g)=FgF^{-1}\) and
++\[
++A=\prod_{i=1}^mT^i(a_i),\quad
++B=\prod_{i=1}^mT^i(b_i),\quad
++s_i=c_{i+1}\cdots c_m\ (0\le i<m),\quad
++C=\prod_{i=0}^{m-1}T^i(s_i).
++\]
++All products are in increasing index order. Different conjugate subgroups commute, so
++\[
++[A,B]=\prod_{i=1}^mT^i(c_i).
++\]
++Computing \(C\,T(C^{-1})\) component by component gives \(s_0=h\) in \(H\), \(s_i s_{i-1}^{-1}=c_i^{-1}\) in component \(T^i(H)\) for \(1\le i<m\), and \(s_{m-1}^{-1}=c_m^{-1}\) in the last component. Therefore
++\[
++[C,F]=h\prod_{i=1}^mT^i(c_i^{-1}),\qquad
++h=[C,F][A,B].
++\tag{3}
++\]
++For the identity element no commutators are needed. \(\square\)
++
++**Lemma 2.** Let \(M\) be a closed connected smooth manifold. Every element of
++\(\operatorname{Diff}^{\infty}_{c,0}(M\times\mathbb R^2)\), where the subscript denotes isotopy to the identity through an isotopy with compact total support, is a product of at most two commutators in that group.
++
++**Proof.** Perfectness of this compactly supported smooth isotopy group is the standard Mather–Thurston input; see [T12, introduction] and [BIP]. Express the given element as a finite product of \(m\) commutators. The supports of all their factors lie in \(M\times B_R\), for some planar disk \(B_R\).
++
++Choose \(L>2R\). A compactly supported smooth vector field on \(\mathbb R^2\) can be chosen equal to \(L\partial_x\) on a neighborhood of the whole compact corridor
++\(\bigcup_{0\le t\le m}(B_R+(Lt,0))\). Its time-one map \(u\) satisfies
++\(u^j(B_R)=B_R+(jL,0)\) for \(0\le j\le m\). These disks are pairwise disjoint. The map \(F=\operatorname{id}_M\times u\) belongs to the same compactly supported isotopy group. The subgroup generated by the finitely many commutator factors and its first \(m\) conjugates by \(F\) have disjoint supports, hence commute pairwise. Lemma 1 applies. \(\square\)
++
++This is the standard portable-product case of [BIP], reproduced here for scope clarity. It does not assert that the closed product \(M\times S^2\) is a portable manifold.
++
++## 4. Surface stabilization cannot transfer the known lower bound
++
++**Proposition 3.** Let \(M\) be closed and connected, and let \(f\in\operatorname{Diff}^{\infty}_0(M)\). Then
++\[
++\operatorname{cl}_{\operatorname{Diff}_0(M\times S^2)}
++   (f\times\operatorname{id}_{S^2})\le4.
++\tag{4}
++\]
++
++**Proof.** Choose a smooth isotopy \(f_t\) from the identity to \(f\). Cover \(S^2\) by two open disks \(U,V\) and choose a smooth function \(\chi:S^2\to[0,1]\) such that
++\(\operatorname{supp}\chi\) is compactly contained in \(U\) and
++\(\operatorname{supp}(1-\chi)\) is compactly contained in \(V\).
++For example take slightly enlarged northern and southern hemispheres and a latitude cutoff with plateaus near the two poles.
++
++Define
++\[
++a(x,y)=(f_{\chi(y)}(x),y),\qquad
++b(x,y)=(f\circ f_{\chi(y)}^{-1}(x),y).
++\]
++Both maps are smooth diffeomorphisms because their second coordinate is unchanged and each first-coordinate map is a diffeomorphism depending smoothly on \(y\). They satisfy
++\[
++b\circ a=f\times\operatorname{id}_{S^2}.
++\]
++The paths
++\[
++a_s(x,y)=(f_{s\chi(y)}(x),y),\qquad
++b_s(x,y)=(f_s\circ f_{s\chi(y)}^{-1}(x),y)
++\]
++are compactly supported isotopies inside \(M\times U\) and \(M\times V\), respectively. Thus \(a\) and \(b\) belong to their compactly supported identity components. Since each disk is diffeomorphic to \(\mathbb R^2\), Lemma 2 expresses each factor as two commutators. Extending those compactly supported factors by the identity places all four commutators in \(\operatorname{Diff}_0(M\times S^2)\). \(\square\)
++
++In particular (4) holds for all powers of each stabilized element, so its ambient stable commutator length is zero. The result concerns this particular subgroup, not all of \(\operatorname{Diff}_0(M\times S^2)\).
++
++There are two useful exact consequences when \(M=\Sigma_g\) has positive genus.
++
++**Corollary 4.** Every homogeneous quasimorphism on
++\(G=\operatorname{Diff}_0(\Sigma_g\times S^2)\) vanishes on
++\(\{f\times\operatorname{id}:f\in\operatorname{Diff}_0(\Sigma_g)\}\).
++
++Indeed, a homogeneous quasimorphism \(q\) of defect \(D\) is conjugation invariant, satisfies \(|q([a,b])|\le D\), and hence satisfies
++\(|q(h)|\le(2k-1)D\) on products of \(k\ge1\) commutators. Applying (4) to \(f^n\) gives \(|nq(f\times\operatorname{id})|\le7D\), so the value is zero. Conjugation invariance follows directly by applying the defect inequality to a conjugate of \(h^n\) and dividing by \(n\); the commutator estimate then follows by writing \([a,b]=(aba^{-1})b^{-1}\).
++
++**Corollary 5.** There is no abstract group retraction from \(G\) to
++\(\operatorname{Diff}_0(\Sigma_g)\) whose restriction to \(f\mapsto f\times\operatorname{id}\) is the identity.
++
++If such a retraction existed, applying it to the four-commutator factorization would give a uniform bound of four in \(\operatorname{Diff}_0(\Sigma_g)\), contradicting Bowden–Hensel–Webb [BHW, Corollary 1.3]. Thus the known surface non-uniform perfectness cannot simply be pulled through this product inclusion, even by an abstract retraction. No historical-priority claim is made for these consequences of the classical compression argument.
++
++### Why the same cutoff does not handle arbitrary diffeomorphisms
++
++The proof uses preservation of the second coordinate. For a general isotopy \(F_t\), the point-dependent-time map \(z\mapsto F_{\chi(z)}(z)\) need not be a diffeomorphism.
++
++For an explicit failure, let \(F_t\) be rotation of \(S^2\subset\mathbb R^3\) through angle \(t\) about the third axis, and set \(\tau(x,y,z)=(1+2xy)/2\). This is smooth with values in \([0,1]\). At \(w=(0,1,0)\), the tangent vector \(v=(-1,0,0)\) is the rotation vector field and \(d\tau_w(v)=-1\). The derivative of \(w\mapsto F_{\tau(w)}(w)\) annihilates \(v\), since before applying the invertible rotation matrix it is \(v+v\,d\tau_w(v)=0\). Thus even this elementary isotopy fails the naive general cutoff construction. The same example acts on the sphere factor of a four-manifold product. Proposition 3 therefore supplies no uniform factorization of arbitrary ambient diffeomorphisms.
++
++## 5. Why invariant-measure averaging does not automatically extend
++
++Another possible route starts with a group-valued cocycle \(c(f,x)\) satisfying
++\(c(fg,x)=c(f,gx)c(g,x)\), and a quasimorphism \(\psi\) on its target. Assuming all the following integrals exist, define
++\[
++Q(f)=\int_X\psi(c(f,x))\,d\mu(x).
++\]
++If \(\mu\) is a probability measure invariant under the acting group, the cocycle identity bounds the defect of \(Q\) by the defect of \(\psi\). Without invariance the same calculation gives only
++\[
++Q(fg)-Q(f)-Q(g)
++=\int_X\psi(c(f,y))\,d(g_*\mu-\mu)(y)+E(f,g),
++\quad |E(f,g)|\le D_\psi.
++\tag{5}
++\]
++The extra integral has not been bounded uniformly in \(f,g\). Omitting it is not a valid extension from a volume-preserving subgroup to the full identity component.
++
++There is no invariant Borel probability measure for the full \(\operatorname{Diff}_0(X)\) action on a positive-dimensional closed connected smooth manifold. To see this, take a coordinate ball with closure inside a larger coordinate ball. For every integer \(N\), local smooth diffeomorphisms isotopic to the identity can shrink and move it into \(N\) pairwise disjoint small balls in that larger chart. Invariance would imply its measure is at most \(1/N\), hence zero. A finite cover by such coordinate balls then contradicts total mass one.
++
++This excludes the direct invariant-probability implementation of the route. It does not prove that every possible averaging construction fails, and it does not prove the absence of quasimorphisms on \(\operatorname{Diff}_0(X)\). A replacement for the missing uniformly bounded defect term in (5) would be substantive new input.
++
++## 6. Other scope distinctions and the remaining gap
++
++For an inclusion \(H\le G\), one has \(\operatorname{cl}_G(h)\le\operatorname{cl}_H(h)\), not a lower bound in the ambient group. Proposition 3 is a concrete instance where a known unbounded subgroup commutator length becomes uniformly bounded in the ambient group.
++
++For a central extension \(1\to Z\to\widetilde G\to G\to1\), a homogeneous quasimorphism on \(\widetilde G\) descends precisely when it vanishes on \(Z\). The sufficiency uses additivity on commuting elements, proved by homogenizing the defect inequality for \((az)^n=a^nz^n\). Nonzero values on the central kernel obstruct descent. A universal-cover construction therefore requires this additional check.
++
++Finally, the usual disk fragmentation estimate has the direction
++\(\operatorname{cl}_G(f)\le2\operatorname{frag}(f)\), by the two-commutator bound on an open disk [BIP; W20, p.488]. Unbounded fragmentation alone supplies no lower bound on commutator length. Vanishing stable commutator length on a subgroup also does not prove uniformly bounded ordinary commutator length on the full group.
++
++After two substantive routes, the exact missing result is still (1): a sequence of elements in the **full** identity component of one closed orientable smooth four-manifold with ambient commutator lengths tending to infinity. We have produced no such sequence, no nonzero homogeneous quasimorphism on that full group, and no universal uniform bound. The package remains an unresolved partial and source audit.
++
++## References
++
++- **[K3]** R. İ. Baykur, R. C. Kirby and D. Ruberman, *K3: A New Problem List in Low-Dimensional Topology*, [author version](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), Problem 4.85, pp.259–260.
++- **[W20]** R. Webb, *Quasimorphisms on homeomorphism groups*, in [Oberwolfach Report 8/2020](https://ems.press/content/serial-article-files/46844), pp.487–489, especially Question 3 on p.489, DOI 10.4171/OWR/2020/8.
++- **[BIP]** D. Burago, S. Ivanov and L. Polterovich, *Conjugation-invariant norms on groups of geometric origin*, Adv. Stud. Pure Math. **52** (2008), 221–250, [author manuscript](https://arxiv.org/abs/0710.1412), Theorems 1.18 and 2.2(i).
++- **[T12]** T. Tsuboi, *On the uniform perfectness of the groups of diffeomorphisms of even-dimensional manifolds*, Comment. Math. Helv. **87** (2012), 141–185, [published full text](https://ems.press/content/serial-article-files/43279?nt=1), Theorem 1.1(2). This theorem summarizes earlier joint and independent work; the paper's new general even-dimensional theorem assumes dimension at least six.
++- **[BHW]** J. Bowden, S. Hensel and R. Webb, *Quasi-morphisms on surface diffeomorphism groups*, J. Amer. Math. Soc. **35** (2022), 211–231, [author manuscript](https://www.math.lmu.de/~hensel/papers/dagger_arxiv.pdf), Theorem 1.2 and Corollary 1.3.
+diff --git a/unsolved_math_prioritization/attempts/2961/README.md b/unsolved_math_prioritization/attempts/2961/README.md
+new file mode 100644
+index 000000000..e148649ce
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/README.md
+@@ -0,0 +1,11 @@
++# KP-4.85: unresolved after two approaches
++
++The problem still asks for a closed orientable smooth four-manifold whose **full** identity component of diffeomorphisms has unbounded commutator length. This package does not supply one.
++
++[PARTIAL.md](PARTIAL.md) explains why the familiar surface examples do not transfer by taking a product with S2: every stabilized element f×id has ambient commutator length at most four. This follows from classical commutator compression. The note also identifies the missing defect term in direct invariant-measure averaging and distinguishes subgroup, covering-group and fragmentation conclusions.
++
++[SOURCE_AUDIT.md](SOURCE_AUDIT.md) records two useful corrections: known uniform-perfectness results include S1×S3 and other four-manifolds without 2-handles, and record **30004403 / OWR-17471-009** is the exact same target and must not receive a duplicate attempt.
++
++Run `python check_algebra.py` to reproduce 6,570 exact finite assertions. These diagnostics support the displayed identities and negative control; they do not solve the original problem.
++
++[Separate adversarial AI review](review/REVIEW.md) passed, with 228 independent exact controls and no mandatory correction. This has not undergone human peer review. This is a source-qualified unresolved partial with no novelty claim. The actual model was gpt-6-astra at xhigh reasoning.
+diff --git a/unsolved_math_prioritization/attempts/2961/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2961/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..c33920d88
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# Research log: full four-manifold diffeomorphism commutator length
++
++Actual model: gpt-6-astra, xhigh. Start: 30 September 2026, 05:35:53 UTC. Deadline: 07:35:53 UTC. At most five substantive attempts.
++
++## 05:36–05:38 UTC: exact source, duplicate and status gate
++
++Completion estimate: 5% toward the original existence question. The complete K3 source confirms the full smooth identity component and ordinary commutator length. The supplied AIM link is only a workshop report. An exact duplicate, 30004403 / OWR-17471-009, was found; no prior project attempt was found for either record. Tsuboi's published theorem already includes four-manifolds with no 2-handles, giving a correction to the K3 background remark without resolving its question.
++
++## Attempt 1: transferring surface examples through a product
++
++Completion estimate remains 5%; the target is unresolved. The attempted use of known surface non-uniform perfectness on a product Σg×S2 fails in a particularly concrete way. A two-cutoff factorization and the classical portable-product bound give cl(f×id) ≤ 4 for every surface diffeomorphism in its identity component. Consequently all homogeneous ambient quasimorphisms vanish on this included subgroup, and no abstract retraction onto it can exist for positive genus. The construction does not factor arbitrary ambient diffeomorphisms: point-dependent-time cutoffs can have singular derivatives. A complete argument and a negative control were written.
++
++## Attempt 2: extending cocycle averages from conservative subgroups
++
++Completion estimate remains 5%. The averaging defect acquires an additional integral against g_*μ−μ when μ is not invariant. The full identity component preserves no Borel probability measure, by shrinking and packing coordinate balls. This blocks the direct invariant-measure argument; no alternative uniformly bounded-defect extension was established. It does not prove that all possible averaging mechanisms or all ambient quasimorphisms fail.
++
++## 05:52 UTC: package prepared for separate adversarial review
++
++Completion estimate remains 5%; the full problem is unresolved. The complete primary BIP, Tsuboi and surface papers were retrieved, and the exact duplicate's full original report was checked. All 6,570 finite exact assertions pass. The proved partial claims are consequences and scope checks for known techniques, with no historical-priority claim. Both selected approaches now have precise gaps, so the research stops early rather than repeating them without a new mechanism. No PR has been opened.
++
++## 06:23 UTC: separate adversarial review passed
++
++Completion toward the original problem remains 5%; the full target is unresolved. The independent reviewer confirmed the scoped claims and source corrections, reproduced all 6,570 author assertions byte for byte, and passed 228 further exact controls. Six supplied review/replay files are preserved unchanged. Only review-status metadata was updated. The duplicate 30004403 remains linked to this same attempt.
+diff --git a/unsolved_math_prioritization/attempts/2961/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/2961/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..579259544
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/SOURCE_AUDIT.md
+@@ -0,0 +1,48 @@
++# Source and status audit: KP-4.85
++
++Checked 30 September 2026. Numeric ID **2961**, problem **KP-4.85**. The full target remains unresolved in this attempt. The note's useful claims are a correction to a background remark and explicit obstructions to two transfer routes, with no novelty claim.
++
++## Exact source and duplicate
++
++The upstream problem page could not be retrieved through the web tool. The complete pinned record is preserved in `source_record.json`; its research-results entry is null and its background contains a dated OPEN-TRIAGE report. These data came from the verified ulamai/UnsolvedMath cache at revision `37e53eabe540fb458758e198be61634bd02ee008`, with attribution under CC BY 4.0.
++
++The pinned triage's AIM URL, `https://aimath.org/pastworkshops/kirbylistrep.pdf`, is a four-page workshop report and is not the complete K3 problem list. The complete [K3 author PDF](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf) was available in the shared source cache. Problem 4.85 and all its remarks on printed pp.259–260 were read and visually inspected. It asks for a closed orientable smooth four-manifold whose full smooth identity component is not uniformly perfect, and is attributed to Hokuto Konno. The PDF and page images are research inputs, not republication artifacts.
++
++An exact duplicate was found in the full pinned dataset: **30004403 / OWR-17471-009**, preserved in `related_source_record.json`. Its original source was independently recovered in full: [Oberwolfach Report 8/2020](https://ems.press/content/serial-article-files/46844), Richard Webb's report *Quasimorphisms on homeomorphism groups*, pp.487–489, Question 3 on p.489. The workshop took place in February 2020; the dataset's title mentions 2021, but the report number and DOI are 2020/8. The two records ask the same mathematical question and must share the outcome and attempt budget.
++
++## Scope that cannot be weakened
++
++- The group is the identity component of **all smooth diffeomorphisms**, with no symplectic, volume-preserving, fiber-preserving or boundary condition imposed.
++- The obstruction sought is unbounded **ordinary commutator length in that full group**. Positive stable commutator length or a nonzero homogeneous quasimorphism on it would suffice, but was not constructed here.
++- A subgroup inclusion only decreases possible commutator length. A quasimorphism on a subgroup requires a justified extension, and a quasimorphism on a central covering group requires descent through the kernel.
++- Unbounded fragmentation has the wrong inequality direction to imply unbounded commutator length by itself.
++- Smooth means C-infinity. Results with the exceptional differentiability exponent r=dim(X)+1 do not create a counterexample in this problem.
++
++## Primary literature actually inspected
++
++1. **Burago–Ivanov–Polterovich**, [*Conjugation-invariant norms on groups of geometric origin*](https://arxiv.org/abs/0710.1412), published in Adv. Stud. Pure Math. 52 (2008), 221–250. A complete author manuscript was recovered. The group convention is stated near the beginning. Section 1.3, Definition 1.16, the product examples, Theorem 1.18, and the algebra and proof of Theorem 2.2(i) were inspected. Products of a closed manifold with Euclidean space are portable and their compactly supported smooth identity groups have commutator width at most two. `PARTIAL.md` reproduces the needed finite compression identity and product case, importing the classical perfectness theorem explicitly.
++2. **Tsuboi**, [*On the uniform perfectness of the groups of diffeomorphisms of even-dimensional manifolds*](https://ems.press/content/serial-article-files/43279?nt=1), Comment. Math. Helv. 87 (2012), 141–185. The complete **published** PDF was recovered. Theorem 1.1(2), p.142, includes compact four-manifolds with a handle decomposition without 2-handles, with bound four. Its new general theorem, Theorem 1.2, assumes dimension at least six. The introduction also explains the role of disjoint Whitney disks and records corrections to earlier formulations of auxiliary general-position statements. The source audit therefore relies on the published theorem, not on the earlier 2009 preprint alone.
++3. **Bowden–Hensel–Webb**, [*Quasi-morphisms on surface diffeomorphism groups*](https://www.math.lmu.de/~hensel/papers/dagger_arxiv.pdf), J. Amer. Math. Soc. 35 (2022), 211–231. A complete author manuscript was recovered. Theorem 1.2 and Corollary 1.3 establish non-uniform perfectness of the full identity component of a closed orientable surface of positive genus. Its introduction already recalls the no-middle-handle four-commutator theorem. Its fine curve graph construction uses actual curves rather than isotopy classes. No unproved four-dimensional analogue of that graph or its quasimorphisms is used here.
++4. **Webb, OWR8/2020**, as above. The complete surrounding discussion on pp.487–489 gives the estimate cl ≤ 2 frag and explicitly lists four-manifolds without 2-handles among the understood cases, before posing the remaining four-dimensional question.
++
++These sources show that the K3 remark asserting that only S4 is understood in dimension four is too broad as written. S1×S3 already has a handle decomposition with indices 0,1,3,4 and is covered by Tsuboi's theorem. The same applies to standard connected sums of such products. This observation credits existing literature and does not turn the original existence question into a solved problem.
++
++The duplicate OWR record labels the linked Tsuboi paper as “Fukui and Rybicki.” The linked EMS publication is authored by Takashi Tsuboi; our citations use the publisher's correct attribution.
++
++## Current-literature boundary
++
++Searches covered the exact question, four-dimensional commutator length, uniform perfectness, product stabilization and quasimorphism extension, with current results through the search date. Later results encountered included nonorientable **surface** diffeomorphism groups, Hamiltonian-group perfectness and quasimorphisms, bounded cohomology of spheres and certain three-manifolds, and bundle or submanifold-preserving groups. Their objects or conclusions do not automatically answer this question. No claimed resolution for the required full smooth four-dimensional identity component was verified.
++
++For example, [Edtmair's 2025 smooth-perfectness preprint](https://arxiv.org/abs/2509.16327) concerns Hamiltonian diffeomorphisms and locally bounded smooth commutator factorizations. It does not assert global uniform perfectness or non-uniform perfectness of the full Diff0 in dimension four. [Monod–Nariman](https://arxiv.org/abs/2111.04365) studies particular homeomorphism/diffeomorphism groups and bounded cohomology in specified degrees; its stated results do not supply the desired example. These abstract-level exclusions are not claimed to be complete audits of those papers.
++
++The explicit K3 2026 question and this bounded literature search support retaining an unresolved status, but absence of a located resolution is not a guarantee about all unindexed literature. No current-best-bound or historical-priority claim is made for our partial consequences.
++
++## Prior-attempt gate and research outcome
++
++The queue row for 2961 was queued at 0/5. Numeric-ID, problem-code and descriptive searches of state, attempt histories, assessment histories, update/reset histories, related-target groups, all-ref attempt-path history, repository paths, and all-state PRs found no previous project attempt for 2961 or its exact duplicate 30004403. Exact branch and PR checks also found no pre-existing work on either assigned problem branch. Desk-review notes and external papers were treated as prior context, not as proof certificates.
++
++Two substantive approaches were attempted and recorded locally. Surface-product transfer is blocked by an explicit ambient bound of four on f×id; direct cocycle averaging loses its bounded-defect proof when the measure is not invariant, and the full identity component preserves no probability measure. Neither obstruction settles the original existence question.
++
++All 6,570 exact finite checks pass. They check the commutator-compression word in finite permutation groups, including noncommuting commutator controls; the pointwise factorization; and a singular derivative showing why a general point-dependent-time cutoff is invalid. They do not certify the imported perfectness theorem, an infinite-dimensional group conclusion on their own, or novelty.
++
++The actual model was gpt-6-astra at xhigh reasoning. Separate adversarial review is pending; no PR will be opened before that review. Shared queue/state files were not regenerated or edited here.
+diff --git a/unsolved_math_prioritization/attempts/2961/check_algebra.py b/unsolved_math_prioritization/attempts/2961/check_algebra.py
+new file mode 100644
+index 000000000..728603497
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/check_algebra.py
+@@ -0,0 +1,147 @@
++"""Exact finite diagnostics for the compression and cutoff formulas.
++
++These checks do not prove Mather--Thurston perfectness, the smooth support
++constructions, or unbounded commutator length for a four-manifold.
++"""
++from itertools import permutations, product
++from pathlib import Path
++import hashlib
++import json
++import random
++
++assertions = 0
++
++
++def check(condition):
++    global assertions
++    assertions += 1
++    assert condition
++
++
++def compose(p, q):
++    """p after q."""
++    return tuple(p[q[i]] for i in range(len(p)))
++
++
++def inverse(p):
++    q = [0] * len(p)
++    for i, j in enumerate(p):
++        q[j] = i
++    return tuple(q)
++
++
++def multiply(values, degree):
++    r = tuple(range(degree))
++    for value in values:
++        r = compose(r, value)
++    return r
++
++
++def commutator(p, q):
++    return multiply([p, q, inverse(p), inverse(q)], len(p))
++
++
++def power(p, n):
++    return multiply([p] * n, len(p))
++
++
++def conjugate(p, q):
++    return multiply([p, q, inverse(p)], len(p))
++
++
++def block_permutation(p, block, number):
++    width = len(p)
++    q = list(range(width * number))
++    for i in range(width):
++        q[block * width + i] = block * width + p[i]
++    return tuple(q)
++
++
++def verify_compression(pairs):
++    m, width = len(pairs), len(pairs[0][0])
++    degree = width * (m + 1)
++    one = tuple(range(degree))
++    shift = tuple(((i // width + 1) % (m + 1)) * width + i % width
++                  for i in range(degree))
++    factors = [(block_permutation(a, 0, m + 1), block_permutation(b, 0, m + 1))
++               for a, b in pairs]
++    cs = [commutator(a, b) for a, b in factors]
++    h = multiply(cs, degree)
++    T = lambda value, exponent: conjugate(power(shift, exponent), value)
++    A = multiply([T(a, i + 1) for i, (a, b) in enumerate(factors)], degree)
++    B = multiply([T(b, i + 1) for i, (a, b) in enumerate(factors)], degree)
++    suffixes = [multiply(cs[i:], degree) for i in range(m)]
++    C = multiply([T(suffix, i) for i, suffix in enumerate(suffixes)], degree)
++    K = multiply([T(c, i + 1) for i, c in enumerate(cs)], degree)
++    check(commutator(A, B) == K)
++    check(commutator(C, shift) == compose(h, inverse(K)))
++    check(compose(commutator(C, shift), commutator(A, B)) == h)
++    # The product can be nontrivial, and within-block factors are not assumed to commute.
++    return any(commutator(a, b) != one for a, b in factors)
++
++
++S3 = list(permutations(range(3)))
++exhaustive_cases = 0
++for a, b in product(S3, repeat=2):
++    verify_compression([(a, b)])
++    exhaustive_cases += 1
++for a, b, c, d in product(S3, repeat=4):
++    verify_compression([(a, b), (c, d)])
++    exhaustive_cases += 1
++
++# Random S5 factors permit genuinely noncommuting commutators, testing word order.
++rng = random.Random(485)
++S5 = list(permutations(range(5)))
++sampled_cases = 0
++noncommuting_commutator_controls = 0
++for m in range(1, 8):
++    for _ in range(70):
++        pairs = [(rng.choice(S5), rng.choice(S5)) for _ in range(m)]
++        verify_compression(pairs)
++        if m >= 2:
++            c1, c2 = (commutator(*pairs[i]) for i in [0, 1])
++            if compose(c1, c2) != compose(c2, c1):
++                noncommuting_commutator_controls += 1
++        sampled_cases += 1
++check(noncommuting_commutator_controls > 0)
++
++# Pointwise endpoint factorization does not require f_t to be a one-parameter group.
++cutoff_cases = 0
++one5 = tuple(range(5))
++for _ in range(100):
++    family = [one5] + [rng.choice(S5) for _ in range(8)]
++    final = family[-1]
++    for middle in family:
++        a = middle
++        b = compose(final, inverse(middle))
++        check(compose(b, a) == final)
++        cutoff_cases += 1
++    check(family[0] == one5)
++    check(compose(final, inverse(final)) == one5)
++
++# Exact differential calculation for the point-dependent-time counterexample.
++w = (0, 1, 0)
++v = (-1, 0, 0)
++rotation_field = (-w[1], w[0], 0)
++gradient_tau = (w[1], w[0], 0)
++directional = sum(a * b for a, b in zip(gradient_tau, v))
++check(directional == -1)
++check(v != (0, 0, 0))
++check(tuple(v[i] + directional * rotation_field[i] for i in range(3)) == (0, 0, 0))
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": assertions,
++    "exhaustive_S3_wreath_cases": exhaustive_cases,
++    "sampled_S5_wreath_cases": sampled_cases,
++    "maximum_number_of_input_commutators": 7,
++    "noncommuting_commutator_controls": noncommuting_commutator_controls,
++    "pointwise_cutoff_factorizations": cutoff_cases,
++    "singular_time_cutoff_differential_checked": True,
++    "arithmetic": "exact permutations and integer tangent vectors",
++    "partial_sha256": hashlib.sha256((root / "PARTIAL.md").read_bytes()).hexdigest(),
++    "scope": "Finite algebra and derivative diagnostics only; KP-4.85 remains unresolved.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2961/check_results.json b/unsolved_math_prioritization/attempts/2961/check_results.json
+new file mode 100644
+index 000000000..6df2396c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/check_results.json
+@@ -0,0 +1,13 @@
++{
++  "all_passed": true,
++  "assertions": 6570,
++  "exhaustive_S3_wreath_cases": 1332,
++  "sampled_S5_wreath_cases": 490,
++  "maximum_number_of_input_commutators": 7,
++  "noncommuting_commutator_controls": 357,
++  "pointwise_cutoff_factorizations": 900,
++  "singular_time_cutoff_differential_checked": true,
++  "arithmetic": "exact permutations and integer tangent vectors",
++  "partial_sha256": "0036b78ba3164a52c15a7a24ea73fe4438a3db3c9a206f2882070c23e91cd3b2",
++  "scope": "Finite algebra and derivative diagnostics only; KP-4.85 remains unresolved."
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/readiness.json b/unsolved_math_prioritization/attempts/2961/readiness.json
+new file mode 100644
+index 000000000..c2f5d7e15
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/readiness.json
+@@ -0,0 +1,42 @@
++{
++  "id": 2961,
++  "problem_number": "KP-4.85",
++  "exact_duplicate_ids": [
++    30004403
++  ],
++  "exact_duplicate_codes": [
++    "OWR-17471-009"
++  ],
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "time_window_utc": [
++    "2026-09-30T05:35:53Z",
++    "2026-09-30T07:35:53Z"
++  ],
++  "maximum_substantive_attempts": 5,
++  "used_substantive_attempts": 2,
++  "status": "unresolved_stalled",
++  "full_target_resolved": false,
++  "completion_estimate_percent": 5,
++  "artifact": "PARTIAL.md",
++  "artifact_sha256": "196568d2029fd378dfa43919efbf49dcbd11244a2de8c525483f84484f00e5fa",
++  "independent_review": {
++    "verdict": "PASS_PARTIAL",
++    "report": "review/REVIEW.md",
++    "report_sha256": "aea629b11de39358ca130bf7024457aae395bf394e76fa85d2d48daa0c2ee560",
++    "required_corrections": [],
++    "independent_exact_assertions": 228,
++    "final_artifact_change": "Review-status sentence only"
++  },
++  "prior_attempt_gate": "No prior project attempt or exact duplicate attempt found for 2961 or 30004403 in checked histories, repository paths, branches, or all-state PRs.",
++  "source_scope": "Closed orientable smooth four-manifold; ordinary commutator length in the full smooth identity component, not a subgroup or universal cover.",
++  "primary_source_read": "Full K3 author PDF, pp.259-260; original duplicate OWR8/2020, pp.487-489.",
++  "source_corrections": [
++    "The AIM triage link is only a workshop report.",
++    "Known four-commutator theorem also covers S1 x S3 and manifolds without 2-handles.",
++    "The duplicate literature link is Tsuboi, not Fukui and Rybicki."
++  ],
++  "exact_finite_assertions": 6570,
++  "novelty": "not claimed",
++  "reviewed_mathematical_snapshot_sha256": "0036b78ba3164a52c15a7a24ea73fe4438a3db3c9a206f2882070c23e91cd3b2"
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/related_source_record.json b/unsolved_math_prioritization/attempts/2961/related_source_record.json
+new file mode 100644
+index 000000000..122a970bc
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/related_source_record.json
+@@ -0,0 +1,68 @@
++{
++  "id": 30004403,
++  "problem_number": "OWR-17471-009",
++  "title": "Uniform Perfectness of Four-Manifold Diffeomorphism Groups",
++  "statement": "Are there closed orientable smooth $4$-manifolds $M$ for which the identity component $\\operatorname{Diff}_0(M)$ is not uniformly perfect?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Low-dimensional Topology (2021), Oberwolfach Reports, DOI 10.4171/owr/2020/8, pp. 465--516](https://doi.org/10.4171/owr/2020/8)\n\n## Literature review (checked 2026-08-22)\n\n**Status:** open\n\n**Assessment.** Uniform perfectness is proved in broad dimensions but the four-dimensional identity component remains an explicit unresolved exception in the literature.\n\n**Sources checked.**\n\n- [Fukui and Rybicki, uniform perfectness in even dimensions](https://ems.press/journals/cmh/articles/10844)\n- [Oberwolfach Report 8/2020](https://doi.org/10.4171/owr/2020/8)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2020,
++  "category_id": 7,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2020/8",
++  "source_citation": "Low-dimensional Topology (2021), Oberwolfach Reports, DOI 10.4171/owr/2020/8, pp. 465--516",
++  "literature_assessment": "Uniform perfectness is proved in broad dimensions but the four-dimensional identity component remains an explicit unresolved exception in the literature.",
++  "literature_sources": [
++    {
++      "url": "https://ems.press/journals/cmh/articles/10844",
++      "label": "Fukui and Rybicki, uniform perfectness in even dimensions"
++    },
++    {
++      "url": "https://doi.org/10.4171/owr/2020/8",
++      "label": "Oberwolfach Report 8/2020"
++    }
++  ],
++  "literature_checked_at": "2026-08-22",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-17471-009",
++    "literature-status:open",
++    "owr-year:2020"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "Are there closed, orientable, smooth 4-manifolds M for which the identity component \\operatorname{Diff}_0(M) is not uniformly perfect?",
++  "clean_statement": "Are there closed orientable smooth $4$-manifolds $M$ for which the identity component $\\operatorname{Diff}_0(M)$ is not uniformly perfect?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The mathematical content was preserved while notation, typography, omitted definitions, or duplicate clauses were repaired for self-contained publication."
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/review/REVIEW.md b/unsolved_math_prioritization/attempts/2961/review/REVIEW.md
+new file mode 100644
+index 000000000..58a945b08
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/REVIEW.md
+@@ -0,0 +1,119 @@
++# Independent review: KP-4.85 / 2961
++
++**Verdict: PASS for the partial results and source correction. The full four-manifold problem remains unresolved.**
++
++Reviewed on 2026-09-30 by a separate GPT-6 Astra agent at xhigh reasoning. This is an adversarial AI review, not external peer review. No historical-priority claim is made for the classical consequences.
++
++Frozen PARTIAL.md SHA-256:
++
++0036b78ba3164a52c15a7a24ea73fe4438a3db3c9a206f2882070c23e91cd3b2
++
++The author artifact was not edited. The review examined the full partial argument, source audit, original questions, cited theorem hypotheses, exact checker and recorded results.
++
++## 1. Exact target and source correction
++
++The original K3 Problem 4.85, printed pp. 259–260, asks for a closed orientable smooth four-manifold whose **full smooth identity component** is not uniformly perfect. The question and remarks were checked visually. Webb's Oberwolfach Question 3 on p. 489 is the same target; record 30004403 is therefore a duplicate, not another independent attempt.
++
++The note correctly distinguishes ordinary ambient commutator length from subgroup commutator length, stable commutator length, fragmentation and lengths in a covering group. Mather–Thurston perfectness applies at smooth regularity, so the question is unboundedness of finite ordinary lengths, not failure of perfectness.
++
++For disconnected closed manifolds, the stated finite-product reduction is valid. The identity component cannot permute the finitely many components, and commutator length in a finite direct product of perfect groups is the maximum of the coordinate lengths, by projection in one direction and simultaneous padding in the other.
++
++Sources: [K3 author version](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), [Webb, OWR 8/2020, pp. 487–489](https://ems.press/content/serial-article-files/46844).
++
++Tsuboi's **published** Theorem 1.1(2), p. 142, gives the bound four for a compact even-dimensional manifold with a handle decomposition lacking middle-index handles. It includes dimension four and smooth regularity. The exceptional finite differentiability exponent is irrelevant here. The general new theorem in that paper, Theorem 1.2, starts in dimension six; the package does not apply it to dimension four.
++
++The sum of two-critical-point Morse functions on \(S^1\) and \(S^3\) has exactly the required four critical points, of indices \(0,1,3,4\). The usual connected-sum handle construction gives the stated \((1,k,0,k,1)\) counts. Thus these are genuine examples in the cited class; no implication from \(H_2=0\) to a handle decomposition is being assumed. The K3 remark claiming no understood four-dimensional example besides \(S^4\) is too broad, as the older Webb report itself confirms.
++
++Source: [Tsuboi, Comment. Math. Helv. 87 (2012), Theorem 1.1](https://ems.press/content/serial-article-files/43279?nt=1).
++
++## 2. Compression identity
++
++Lemma 1 is correct, including the order of noncommuting factors within each copy of \(H\).
++
++Write \(T(g)=FgF^{-1}\) and \(s_i=c_{i+1}\cdots c_m\). The decisive relation is
++\[
++ s_{i-1}=c_i s_i,\qquad
++ s_i s_{i-1}^{-1}=c_i^{-1}.
++\]
++There is no illicit commutation of \(c_i\) with the later factors.
++
++In the product \(C\,T(C^{-1})\), different subgroup indices may be regrouped because those subgroups commute. The index-zero factor is \(h\), the intermediate factors are \(T^i(c_i^{-1})\), and the last factor is \(T^m(c_m^{-1})\). Meanwhile \([A,B]\) is the product of \(T^i(c_i)\). Their product is \(h\).
++
++This reasoning does not need the conjugate subgroups to form an injectively embedded direct product. Pairwise commutation suffices to validate the word identity. No direct-product uniqueness is implicitly required.
++
++The statement agrees with Burago–Ivanov–Polterovich's strong-displacement bound, Theorem 2.2(i). The proof in the note gives the needed algebra explicitly.
++
++Source: [Burago–Ivanov–Polterovich, §2](https://arxiv.org/abs/0710.1412).
++
++## 3. Compact support and the portable product
++
++Lemma 2 legitimately applies to the group defined using isotopies with compact total support. The imported smooth perfectness theorem supplies a finite commutator decomposition in that group. There are only finitely many factor supports, and \(M\) is compact, so they fit inside \(M\times B_R\).
++
++For a fixed finite number \(m\) of factors, the corridor through the first \(m\) translated planar disks is compact. A smooth vector field equal to \(L\partial_x\) on a neighborhood of that corridor and cut off outside a larger compact set exists. Its flow is complete and compactly supported. On the specified disks, its first \(m\) iterates really are translations, because their full trajectories remain in the region where the field is constant.
++
++The resulting \(F=\operatorname{id}_M\times u\) has a compactly supported isotopy; compactness of \(M\) is essential here and is assumed. The subgroup generated by the original factors is supported in the original disk product. Its required conjugates have disjoint supports and commute. The factors' own isotopies need not remain inside \(B_R\) for this displacement argument; only their map supports are used at that stage.
++
++The proof therefore gives at most two commutators in the stipulated ambient compact-isotopy group. BIP's product example and Theorem 1.18 give the same conclusion. No portability claim for the closed product \(M\times S^2\) is made.
++
++Sources: [BIP, Definition 1.16 and Theorem 1.18](https://arxiv.org/abs/0710.1412), [Tsuboi, introduction, smooth perfectness convention](https://ems.press/content/serial-article-files/43279?nt=1).
++
++## 4. Two sphere cutoffs give the stated ambient bound
++
++Proposition 3 is valid for every specified \(f\).
++
++Choose enlarged hemispherical disks and a smooth latitude cutoff equal to zero near one pole and one near the other. Both support inclusions can be compact containments, even though neither disk is compact.
++
++A smooth isotopy \(f_t\) from the identity to \(f\) has a smoothly parameterized inverse. Since the second coordinate is unchanged, both displayed maps \(a,b\) are smooth diffeomorphisms, with pointwise inverses. The identity \(b\circ a=f\times\operatorname{id}\) has the stated composition order and does not require \(f_t\) to be a one-parameter subgroup.
++
++The isotopies in the note start at the identity. Outside \(\operatorname{supp}\chi\), \(a_s\) is the identity for every \(s\). Outside \(\operatorname{supp}(1-\chi)\), \(\chi=1\), so
++\[
++ b_s(x,y)=(f_s f_s^{-1}(x),y)=(x,y)
++\]
++for every \(s\). Their total supports are consequently compact subsets of \(M\times U\) and \(M\times V\), respectively.
++
++Applying Lemma 2 in disk charts gives two commutators for each factor. Each commutator factor and its isotopy can be extended smoothly by the identity, because its total support is compactly contained in the chart. All four commutators belong to the full \(\operatorname{Diff}_0(M\times S^2)\). Thus the estimate is genuinely ambient and its smooth-isotopy requirements are satisfied.
++
++The bound concerns the product subgroup only. The explicit rotation example correctly prevents applying the same construction to an arbitrary isotopy: at the specified sphere point the point-dependent-time map kills a nonzero tangent vector. An independent symbolic Jacobian calculation finds tangent rank one, rather than two.
++
++## 5. Quasimorphism and transfer consequences
++
++For a homogeneous quasimorphism of defect \(D\), conjugation invariance and inversion give a bound \(D\) on a single commutator. Adding the \(k-1\) product errors gives \((2k-1)D\) on a product of \(k\) commutators. Applying the four-commutator bound to all powers yields the stated \(7D/n\) bound and hence vanishing on the stabilized surface subgroup. This is a direct argument, not an appeal to an unproved converse of Bavard duality.
++
++A retraction would send the ambient four-commutator factorization to one in the surface group, giving a uniform bound four. Bowden–Hensel–Webb Corollary 1.3 excludes that bound for every closed orientable surface of positive genus. The obstruction is to an abstract group retraction, so it does not depend on continuity of the proposed retraction.
++
++Source: [Bowden–Hensel–Webb, Theorem 1.2 and Corollary 1.3](https://www.math.lmu.de/~hensel/papers/dagger_arxiv.pdf).
++
++The averaging calculation is also correct. With the stated integrability assumptions, changing variables sends the first cocycle term to an integral against \(g_*\mu\). Subtracting \(Q(f)\) leaves precisely the displayed signed-measure error. The quasimorphism defect alone bounds only the separate error \(E(f,g)\). The note does not falsely claim that every possible noninvariant averaging construction must fail.
++
++There is no invariant Borel probability measure for the full group in the stated positive-dimensional closed connected setting. A coordinate ball can be shrunk and moved by local smooth isotopies to arbitrarily many disjoint smaller balls in a larger chart. Invariance and disjointness force its measure to vanish. A finite such cover contradicts total mass one. This reasoning applies to atomic and singular measures as well as smooth densities.
++
++Finally, homogeneous quasimorphisms are additive on commuting elements, so vanishing on the central kernel is exactly the condition for descent in the displayed central extension. The note preserves the required subgroup/ambient inequality direction. The fragmentation comparison is used in the standard isotopy-fragmentation setting and only as an upper bound. The main product proof supplies its local isotopies explicitly; it needs no assertion that an arbitrary ball-supported mapping class is locally isotopic to the identity.
++
++## 6. Independent exact checks
++
++The author's **6,570 assertions** were replayed in an isolated copy. The output receipt is byte-identical to the frozen check_results.json.
++
++A separate checker passes **228 exact assertions**, including:
++
++- Freely reduced normal forms in a free-group wreath product with \(\mathbb Z\), for up to nine input commutators. This avoids accidental identities in finite permutation quotients. Reversing the commutator or using prefix products instead of suffix products fails the negative controls.
++- A smooth determinant-one matrix family that is not a one-parameter subgroup, checking the cutoff factorization and endpoint cancellations symbolically.
++- The sphere example's exact Jacobian, nonzero surviving tangent direction and rank-one restriction.
++- An exact additive cocycle on a finite action with noninvariant rational measures. The extra pushforward term matches the defect in all 108 cases; invariant measures give zero, while 43 noninvariant cases give nonzero defects.
++
++Reproduce from this directory:
++
++    python independent_checks.py > independent_results.json
++
++The independent checker uses Python exact arithmetic and SymPy 1.14.0. These controls verify algebraic and differential diagnostics; they do not replace the support proofs or the imported smooth perfectness theorem.
++
++## 7. Final disposition
++
++No mathematical correction is required for the frozen partial package. Publish it, if desired, with status **unsolved**, the exact duplicate linkage, existing literature credit and the review.
++
++The missing result is still an unbounded sequence of ordinary commutator lengths in the **full** smooth identity component of one closed orientable four-manifold, or a theorem ruling out such an example. This package supplies neither. Its ambient bound on a specific subgroup is an obstruction to one proposed transfer method, not a solution of the original question.
++
++## Final artifact hash coverage
++
++On 2026-09-30, exact byte replacement confirmed that the only change to PARTIAL.md updates the pending-review sentence with the completed AI-review link and an explicit human-peer-review qualification. All mathematics and the unresolved status are unchanged. This PASS_PARTIAL verdict also covers final SHA-256:
++
++196568d2029fd378dfa43919efbf49dcbd11244a2de8c525483f84484f00e5fa
+diff --git a/unsolved_math_prioritization/attempts/2961/review/author_replay/check_algebra.py b/unsolved_math_prioritization/attempts/2961/review/author_replay/check_algebra.py
+new file mode 100644
+index 000000000..728603497
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/author_replay/check_algebra.py
+@@ -0,0 +1,147 @@
++"""Exact finite diagnostics for the compression and cutoff formulas.
++
++These checks do not prove Mather--Thurston perfectness, the smooth support
++constructions, or unbounded commutator length for a four-manifold.
++"""
++from itertools import permutations, product
++from pathlib import Path
++import hashlib
++import json
++import random
++
++assertions = 0
++
++
++def check(condition):
++    global assertions
++    assertions += 1
++    assert condition
++
++
++def compose(p, q):
++    """p after q."""
++    return tuple(p[q[i]] for i in range(len(p)))
++
++
++def inverse(p):
++    q = [0] * len(p)
++    for i, j in enumerate(p):
++        q[j] = i
++    return tuple(q)
++
++
++def multiply(values, degree):
++    r = tuple(range(degree))
++    for value in values:
++        r = compose(r, value)
++    return r
++
++
++def commutator(p, q):
++    return multiply([p, q, inverse(p), inverse(q)], len(p))
++
++
++def power(p, n):
++    return multiply([p] * n, len(p))
++
++
++def conjugate(p, q):
++    return multiply([p, q, inverse(p)], len(p))
++
++
++def block_permutation(p, block, number):
++    width = len(p)
++    q = list(range(width * number))
++    for i in range(width):
++        q[block * width + i] = block * width + p[i]
++    return tuple(q)
++
++
++def verify_compression(pairs):
++    m, width = len(pairs), len(pairs[0][0])
++    degree = width * (m + 1)
++    one = tuple(range(degree))
++    shift = tuple(((i // width + 1) % (m + 1)) * width + i % width
++                  for i in range(degree))
++    factors = [(block_permutation(a, 0, m + 1), block_permutation(b, 0, m + 1))
++               for a, b in pairs]
++    cs = [commutator(a, b) for a, b in factors]
++    h = multiply(cs, degree)
++    T = lambda value, exponent: conjugate(power(shift, exponent), value)
++    A = multiply([T(a, i + 1) for i, (a, b) in enumerate(factors)], degree)
++    B = multiply([T(b, i + 1) for i, (a, b) in enumerate(factors)], degree)
++    suffixes = [multiply(cs[i:], degree) for i in range(m)]
++    C = multiply([T(suffix, i) for i, suffix in enumerate(suffixes)], degree)
++    K = multiply([T(c, i + 1) for i, c in enumerate(cs)], degree)
++    check(commutator(A, B) == K)
++    check(commutator(C, shift) == compose(h, inverse(K)))
++    check(compose(commutator(C, shift), commutator(A, B)) == h)
++    # The product can be nontrivial, and within-block factors are not assumed to commute.
++    return any(commutator(a, b) != one for a, b in factors)
++
++
++S3 = list(permutations(range(3)))
++exhaustive_cases = 0
++for a, b in product(S3, repeat=2):
++    verify_compression([(a, b)])
++    exhaustive_cases += 1
++for a, b, c, d in product(S3, repeat=4):
++    verify_compression([(a, b), (c, d)])
++    exhaustive_cases += 1
++
++# Random S5 factors permit genuinely noncommuting commutators, testing word order.
++rng = random.Random(485)
++S5 = list(permutations(range(5)))
++sampled_cases = 0
++noncommuting_commutator_controls = 0
++for m in range(1, 8):
++    for _ in range(70):
++        pairs = [(rng.choice(S5), rng.choice(S5)) for _ in range(m)]
++        verify_compression(pairs)
++        if m >= 2:
++            c1, c2 = (commutator(*pairs[i]) for i in [0, 1])
++            if compose(c1, c2) != compose(c2, c1):
++                noncommuting_commutator_controls += 1
++        sampled_cases += 1
++check(noncommuting_commutator_controls > 0)
++
++# Pointwise endpoint factorization does not require f_t to be a one-parameter group.
++cutoff_cases = 0
++one5 = tuple(range(5))
++for _ in range(100):
++    family = [one5] + [rng.choice(S5) for _ in range(8)]
++    final = family[-1]
++    for middle in family:
++        a = middle
++        b = compose(final, inverse(middle))
++        check(compose(b, a) == final)
++        cutoff_cases += 1
++    check(family[0] == one5)
++    check(compose(final, inverse(final)) == one5)
++
++# Exact differential calculation for the point-dependent-time counterexample.
++w = (0, 1, 0)
++v = (-1, 0, 0)
++rotation_field = (-w[1], w[0], 0)
++gradient_tau = (w[1], w[0], 0)
++directional = sum(a * b for a, b in zip(gradient_tau, v))
++check(directional == -1)
++check(v != (0, 0, 0))
++check(tuple(v[i] + directional * rotation_field[i] for i in range(3)) == (0, 0, 0))
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": assertions,
++    "exhaustive_S3_wreath_cases": exhaustive_cases,
++    "sampled_S5_wreath_cases": sampled_cases,
++    "maximum_number_of_input_commutators": 7,
++    "noncommuting_commutator_controls": noncommuting_commutator_controls,
++    "pointwise_cutoff_factorizations": cutoff_cases,
++    "singular_time_cutoff_differential_checked": True,
++    "arithmetic": "exact permutations and integer tangent vectors",
++    "partial_sha256": hashlib.sha256((root / "PARTIAL.md").read_bytes()).hexdigest(),
++    "scope": "Finite algebra and derivative diagnostics only; KP-4.85 remains unresolved.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2961/review/author_replay/check_results.json b/unsolved_math_prioritization/attempts/2961/review/author_replay/check_results.json
+new file mode 100644
+index 000000000..6df2396c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/author_replay/check_results.json
+@@ -0,0 +1,13 @@
++{
++  "all_passed": true,
++  "assertions": 6570,
++  "exhaustive_S3_wreath_cases": 1332,
++  "sampled_S5_wreath_cases": 490,
++  "maximum_number_of_input_commutators": 7,
++  "noncommuting_commutator_controls": 357,
++  "pointwise_cutoff_factorizations": 900,
++  "singular_time_cutoff_differential_checked": true,
++  "arithmetic": "exact permutations and integer tangent vectors",
++  "partial_sha256": "0036b78ba3164a52c15a7a24ea73fe4438a3db3c9a206f2882070c23e91cd3b2",
++  "scope": "Finite algebra and derivative diagnostics only; KP-4.85 remains unresolved."
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/review/independent_checks.py b/unsolved_math_prioritization/attempts/2961/review/independent_checks.py
+new file mode 100644
+index 000000000..0f97b19f8
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/independent_checks.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python3
++"""Independent exact free-group, matrix, differential and averaging controls.
++Run: python independent_checks.py > independent_results.json
++These diagnostics do not prove smooth perfectness or resolve KP-4.85.
++"""
++from collections import Counter
++from itertools import permutations
++from fractions import Fraction as Q
++import json
++import sympy as s
++
++counts=Counter()
++def check(ok,name):
++    assert bool(ok),name
++    counts[name]+=1
++
++# The restricted wreath product of a free group with Z.
++# Elements are (finitely supported coordinate dictionary, shift exponent).
++# Coordinate words are freely reduced tuples of nonzero signed letters.
++def reduced(word):
++    out=[]
++    for x in word:
++        if out and out[-1]==-x: out.pop()
++        else: out.append(x)
++    return tuple(out)
++def inverse_word(w):
++    return tuple(-x for x in reversed(w))
++def mul(g,h):
++    a,n=g; b,k=h
++    out=dict(a)
++    for j,w in b.items():
++        i=j+n
++        v=reduced(out.get(i,())+w)
++        if v: out[i]=v
++        elif i in out: del out[i]
++    return out,n+k
++def inv(g):
++    a,n=g
++    return {i-n:inverse_word(w) for i,w in a.items()},-n
++def product(seq):
++    out=({},0)
++    for g in seq: out=mul(out,g)
++    return out
++def comm(g,h):
++    return product([g,h,inv(g),inv(h)])
++def base(letter):
++    return {0:(letter,)},0
++def translate(g,n):
++    return {j+n:w for j,w in g[0].items()},g[1]
++F=({},1); one=({},0)
++for m in range(1,10):
++    aa=[base(2*i+1) for i in range(m)]
++    bb=[base(2*i+2) for i in range(m)]
++    cc=[comm(a,b) for a,b in zip(aa,bb)]
++    h=product(cc)
++    A=product(translate(a,i+1) for i,a in enumerate(aa))
++    B=product(translate(b,i+1) for i,b in enumerate(bb))
++    C=product(translate(product(cc[i:]),i) for i in range(m))
++    transported=product(translate(c,i+1) for i,c in enumerate(cc))
++    check(comm(A,B)==transported,'free_wreath_parallel_commutator')
++    check(comm(C,F)==mul(h,inv(transported)),'free_wreath_suffix_identity')
++    check(mul(comm(C,F),comm(A,B))==h,'free_wreath_two_commutator_identity')
++    check(h!=one,'nontrivial_free_word_control')
++    check(mul(comm(F,C),comm(A,B))!=h,'reversed_commutator_negative_control')
++    if m>=2:
++        check(mul(cc[0],cc[1])!=mul(cc[1],cc[0]),'noncommuting_input_commutators')
++        wrong_C=product(translate(product(cc[:i+1]),i) for i in range(m))
++        check(mul(comm(wrong_C,F),comm(A,B))!=h,'prefix_instead_of_suffix_negative_control')
++    # Adjacent transported subgroups commute independently of their internal words.
++    check(comm(translate(aa[0],0),translate(bb[0],m))==one,'different_coordinates_commute')
++
++# A smooth determinant-one family which is not a one-parameter subgroup.
++t,u,chi=s.symbols('t u chi',real=True)
++def family(t):
++    return s.Matrix([[1,t],[t*t,1+t**3]])
++M=family(t); f=family(1)
++check(s.expand(M.det())==1,'smooth_family_invertibility')
++check(family(0)==s.eye(2),'smooth_family_initial_identity')
++check(s.simplify(family(t+u)-family(t)*family(u))!=s.zeros(2),
++      'non_one_parameter_family_control')
++a=family(t*chi); b=family(t)*a.inv()
++check(s.simplify(b*a-family(t))==s.zeros(2),'parameter_dependent_factorization')
++check(a.subs(chi,0)==s.eye(2),'first_factor_cutoff_zero')
++check(s.simplify(b.subs(chi,1))==s.eye(2),'second_factor_cutoff_one')
++check(s.simplify(b.subs(t,0))==s.eye(2),'second_factor_isotopy_initial_identity')
++check(s.simplify(b.det())==1,'second_factor_invertibility')
++
++# Exact smooth point-dependent-time singularity on the sphere.
++x,y,z=s.symbols('x y z',real=True)
++tau=(1+2*x*y)/2
++mapF=s.Matrix([x*s.cos(tau)-y*s.sin(tau),x*s.sin(tau)+y*s.cos(tau),z])
++J=mapF.jacobian([x,y,z]).subs({x:0,y:1,z:0})
++v=s.Matrix([-1,0,0]); other=s.Matrix([0,0,1])
++check(J*v==s.zeros(3,1),'singular_tangent_direction')
++check(J*other==other,'nonzero_other_tangent_direction')
++check(s.Matrix.hstack(J*v,J*other).rank()==1,'sphere_tangent_rank_one')
++check(tau.subs({x:0,y:1,z:0})==Q(1,2),'cutoff_time_is_interior')
++# |2xy| <= x^2+y^2 <= 1 on the unit sphere follows from (x +/- y)^2 >= 0.
++check(s.expand((x+y)**2+(x-y)**2)==2*(x*x+y*y),'global_cutoff_range_certificate')
++
++# Direct cocycle pushforward calculations on a finite action.
++# c(f,x)=h(f(x))-h(x) is an exact additive cocycle; target defect is zero.
++perms=list(permutations(range(3)))
++def compose(p,q): return tuple(p[q[i]] for i in range(3))
++measures=[(Q(1),Q(0),Q(0)),(Q(1,2),Q(1,3),Q(1,6)),(Q(1,3),)*3]
++height=(0,1,100)
++nonzero=0
++for mu in measures:
++    def average(f):
++        return sum((mu[i]*(height[f[i]]-height[i]) for i in range(3)),Q(0))
++    for f in perms:
++        for g in perms:
++            defect=average(compose(f,g))-average(f)-average(g)
++            push=[Q(0)]*3
++            for i in range(3): push[g[i]]+=mu[i]
++            extra=sum(((push[i]-mu[i])*(height[f[i]]-height[i]) for i in range(3)),Q(0))
++            check(defect==extra,'noninvariant_measure_exact_defect')
++            if mu==(Q(1,3),)*3:
++                check(defect==0,'invariant_measure_defect_control')
++            elif defect: nonzero+=1
++check(nonzero>0,'noninvariance_obstruction_is_nonvacuous')
++
++print(json.dumps({
++ 'status':'PASS','assertions':sum(counts.values()),'checks':dict(counts),
++ 'sympy_version':s.__version__,'free_group_cases':9,
++ 'maximum_input_commutators':9,'finite_cocycle_action_pairs':108,
++ 'nonzero_noninvariant_defects':nonzero,
++ 'scope':'Exact free-word and symbolic smooth-parameter controls, plus finite cocycle calculations. '
++         'The support constructions and imported smooth perfectness theorem require the written audit. '
++         'The full four-manifold problem remains unresolved.'
++},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2961/review/independent_results.json b/unsolved_math_prioritization/attempts/2961/review/independent_results.json
+new file mode 100644
+index 000000000..0f8ab8918
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/independent_results.json
+@@ -0,0 +1,36 @@
++{
++  "status": "PASS",
++  "assertions": 228,
++  "checks": {
++    "free_wreath_parallel_commutator": 9,
++    "free_wreath_suffix_identity": 9,
++    "free_wreath_two_commutator_identity": 9,
++    "nontrivial_free_word_control": 9,
++    "reversed_commutator_negative_control": 9,
++    "different_coordinates_commute": 9,
++    "noncommuting_input_commutators": 8,
++    "prefix_instead_of_suffix_negative_control": 8,
++    "smooth_family_invertibility": 1,
++    "smooth_family_initial_identity": 1,
++    "non_one_parameter_family_control": 1,
++    "parameter_dependent_factorization": 1,
++    "first_factor_cutoff_zero": 1,
++    "second_factor_cutoff_one": 1,
++    "second_factor_isotopy_initial_identity": 1,
++    "second_factor_invertibility": 1,
++    "singular_tangent_direction": 1,
++    "nonzero_other_tangent_direction": 1,
++    "sphere_tangent_rank_one": 1,
++    "cutoff_time_is_interior": 1,
++    "global_cutoff_range_certificate": 1,
++    "noninvariant_measure_exact_defect": 108,
++    "invariant_measure_defect_control": 36,
++    "noninvariance_obstruction_is_nonvacuous": 1
++  },
++  "sympy_version": "1.14.0",
++  "free_group_cases": 9,
++  "maximum_input_commutators": 9,
++  "finite_cocycle_action_pairs": 108,
++  "nonzero_noninvariant_defects": 43,
++  "scope": "Exact free-word and symbolic smooth-parameter controls, plus finite cocycle calculations. The support constructions and imported smooth perfectness theorem require the written audit. The full four-manifold problem remains unresolved."
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/review/review_summary.json b/unsolved_math_prioritization/attempts/2961/review/review_summary.json
+new file mode 100644
+index 000000000..15a3b4636
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/review/review_summary.json
+@@ -0,0 +1,64 @@
++{
++  "problem_id": 2961,
++  "problem_code": "KP-4.85",
++  "duplicate_target": 30004403,
++  "reviewed_at_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reviewer_reasoning": "xhigh",
++  "verdict": "PASS_PARTIAL",
++  "project_status": "unsolved",
++  "author_artifact": "PARTIAL.md",
++  "author_sha256": "196568d2029fd378dfa43919efbf49dcbd11244a2de8c525483f84484f00e5fa",
++  "required_corrections": [],
++  "novelty": "No claim",
++  "validated_claims": [
++    "Classical compression identity and two-commutator bound on the compact-isotopy group of a closed manifold times R^2",
++    "Ambient commutator length at most four for f times identity on M times S^2",
++    "Vanishing of homogeneous quasimorphisms on the stabilized surface subgroup and nonexistence of the stated retraction",
++    "Invariant-measure averaging obstruction and central-kernel descent criterion",
++    "Tsuboi published no-middle-handle theorem covers the stated four-dimensional examples"
++  ],
++  "remaining_gap": "No unbounded ordinary commutator-length sequence in a full closed orientable smooth four-manifold identity component; no universal uniform bound either.",
++  "author_assertions_reproduced": 6570,
++  "author_receipt_byte_identical": true,
++  "independent_exact_assertions": 228,
++  "sources_verified": [
++    {
++      "filename": "K3-book.pdf",
++      "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
++      "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++      "verified": true
++    },
++    {
++      "filename": "owr-2020-8.pdf",
++      "url": "https://ems.press/content/serial-article-files/46844",
++      "sha256": "bd93a75e1b159bb7685d1f123c305513df3d5f2db37f7741c128c74548625a21",
++      "verified": true
++    },
++    {
++      "filename": "bip.pdf",
++      "url": "https://arxiv.org/pdf/0710.1412",
++      "sha256": "8d127abfaa9511a566424212d16a750662d5d97d98a16e8175ce70e70ef330c4",
++      "verified": true
++    },
++    {
++      "filename": "tsuboi-2012-published.pdf",
++      "url": "https://ems.press/content/serial-article-files/43279?nt=1",
++      "sha256": "112b94da2f9912f2605e86cac8b859032203202e31bcb2eb2cf7fc3e39aca077",
++      "verified": true
++    },
++    {
++      "filename": "bhw.pdf",
++      "url": "https://www.math.lmu.de/~hensel/papers/dagger_arxiv.pdf",
++      "sha256": "5eda3c6692d4972cef2d2bf81ac79ea1a05cce45459f9c1b0b269abf1ddb463a",
++      "verified": true
++    }
++  ],
++  "files": {
++    "REVIEW.md": "aea629b11de39358ca130bf7024457aae395bf394e76fa85d2d48daa0c2ee560",
++    "independent_checks.py": "98826f2906fd09390173aa07e8d6d13745282ea8f855174aae3e6cc66e3be73a",
++    "independent_results.json": "9d064761d3763ef3c0fbe1f95dd91983407a10a4711a2f095043dbc684018e56"
++  },
++  "original_author_sha256": "0036b78ba3164a52c15a7a24ea73fe4438a3db3c9a206f2882070c23e91cd3b2",
++  "final_hash_verification": "Exact review-status sentence replacement only; mathematics and unresolved status unchanged"
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/source_checksums.json b/unsolved_math_prioritization/attempts/2961/source_checksums.json
+new file mode 100644
+index 000000000..3f9649813
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/source_checksums.json
+@@ -0,0 +1,37 @@
++[
++  {
++    "cache_filename": "K3-book.pdf",
++    "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
++    "description": "K3 complete author PDF reused from shared source cache",
++    "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++    "bytes": 6578041
++  },
++  {
++    "cache_filename": "owr-2020-8.pdf",
++    "url": "https://ems.press/content/serial-article-files/46844",
++    "description": "Complete original report, duplicate target Question3 p489",
++    "sha256": "bd93a75e1b159bb7685d1f123c305513df3d5f2db37f7741c128c74548625a21",
++    "bytes": 780013
++  },
++  {
++    "cache_filename": "bip.pdf",
++    "url": "https://arxiv.org/pdf/0710.1412",
++    "description": "Complete BIP author manuscript",
++    "sha256": "8d127abfaa9511a566424212d16a750662d5d97d98a16e8175ce70e70ef330c4",
++    "bytes": 287308
++  },
++  {
++    "cache_filename": "tsuboi-2012-published.pdf",
++    "url": "https://ems.press/content/serial-article-files/43279?nt=1",
++    "description": "Published full paper; supersedes earlier preprint",
++    "sha256": "112b94da2f9912f2605e86cac8b859032203202e31bcb2eb2cf7fc3e39aca077",
++    "bytes": 412864
++  },
++  {
++    "cache_filename": "bhw.pdf",
++    "url": "https://www.math.lmu.de/~hensel/papers/dagger_arxiv.pdf",
++    "description": "Complete BHW author manuscript",
++    "sha256": "5eda3c6692d4972cef2d2bf81ac79ea1a05cce45459f9c1b0b269abf1ddb463a",
++    "bytes": 432668
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/2961/source_record.json b/unsolved_math_prioritization/attempts/2961/source_record.json
+new file mode 100644
+index 000000000..6ca5b6195
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2961,
++  "problem_number": "KP-4.85",
++  "title": "Kirby Problem 4.85",
++  "statement": "Is there a closed orientable smooth 4-manifold X for which the identity component $Diff_{0}(X)$ of the diffeomorphism group is not uniformly perfect?",
++  "background": "Source: Kirby's Problems in Low-Dimensional Topology notes. Original problem number: KP-4.85.\n\nLiterature notes:\n(1) By Mather and Thurston [Mat71, Mat74,Thu74a], the group $Diff_{0}(X)$ is perfect for every closed orientable manifold X.\n\n(2) For a given group G, the commutator length of an element $g \\in$ [G, G] is defined to be the minimal number of factors in expressions of g as products of commutators. The commutator length has been studied for Lie groups, groups of automorphisms of (topological, smooth, or symplectic) manifolds, and mapping class groups in contexts of dynamics and bounded cohomology. It is known to be difficult to compute the commutator length of a given element in general, which leads us to consider the following qualitative property for a perfect group (a group that is equal to its commutator subgroup). Given a perfect group G, we say that G is uniformly perfectif the commutator lengths of elements of Gare uniformly bounded.\n\n(3) For dim $X \\ne$ 2,4, $Diff_{0}(X)$ is known to be uniformly perfect due to work by Burago\u2013Ivanov\u2013Polterovich [BIP08] and Tsuboi [Tsu08, Tsu12]. Their works also show that $Diff_{0}(X)$ is uniformly perfect for $X = S^{2}$ and $S^{4}$. On the other hand, Bowden\u2013Hensel\u2013Webb [BHW22] proved that, for dim $X =$ 2, $Diff_{0}(X)$ is not uniformly perfect if the genus of X is positive. Nothing is known in dimension 4 except for $X =S^{4}$.\n\nReferences cited:\n- [Mat71] John N. Mather. The vanishing of the homology of certain groups of homeomorphisms. Topology, 10:297\u2013298, 1971. doi:10.1016/0040-9383(71)90022-X.\n- [Mat74] John N. Mather. Commutators of diffeomorphisms. Comment. Math. Helv., 49:512\u2013 528, 1974. doi:10.1007/BF02566746.\n- [Thu74a] William Thurston. Foliations and groups of diffeomorphisms. Bull. Amer. Math. Soc., 80:304\u2013307, 1974. doi:10.1090/S0002-9904-1974-13475-0.\n- [BIP08] Dmitri Burago, Sergei Ivanov, and Leonid Polterovich. Conjugation-invariant norms on groups of geometric origin. In Groups of diffeomorphisms, volume 52 of Adv. Stud. Pure Math., pages 221\u2013250. Math. Soc. Japan, Tokyo, 2008. doi:10.2969/aspm/05210221.\n- [Tsu08] Takashi Tsuboi. On the uniform perfectness of diffeomorphism groups. In Groups of diffeomorphisms, volume 52 of Adv. Stud. Pure Math., pages 505\u2013524. Math. Soc. Japan, Tokyo, 2008. doi:10.2969/aspm/05210505.\n- [Tsu12] Takashi Tsuboi. On the uniform perfectness of the groups of diffeomorphisms of even-dimensional manifolds. Comment. Math. Helv., 87(1):141\u2013185, 2012. doi:10.4171/CMH/251.\n- [BHW22] Jonathan Bowden, Sebastian Wolfgang Hensel, and Richard Webb. Quasi-morphisms on surface diffeomorphism groups. J. Amer. Math. Soc., 35(1):211\u2013231, 2022. doi:10.1090/jams/981.\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** open  \n**Classification:** OPEN-TRIAGE\n\n**Current literature assessment.** Diff_0(X) is perfect for every closed orientable X, but non-uniform perfectness for a closed orientable 4-manifold was not verified.\n\n**Verified partial progress.**\n\n- Mather--Thurston give perfectness.\n- Uniform perfectness is the stronger commutator-length condition.\n\n**Full solution or refutation.**\n\nThe requested example remains open.\n\n**What remains.**\n\nProduce unbounded commutator length or prove uniform bounds.\n\n**Sources checked.**\n\n- K3: A New Problem List in Low-Dimensional Topology, Problem KP-4.85 (2026). (authoritative_secondary): https://aimath.org/pastworkshops/kirbylistrep.pdf\n  Evidence used: Contrasts known perfectness with the question.\n\n**Review notes.** No source alteration.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "category_id": 7,
++  "set_id": 11,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-05-13T00:00:00Z",
++  "updated_at": "2026-05-13T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 11,
++    "name": "kirby_low_dimensional_topology",
++    "display_name": "Kirby's Problems in Low-Dimensional Topology",
++    "description": "Problems from Kirby-style notes on low-dimensional topology, including knot theory, 3-manifolds, 4-manifolds, and related invariants.",
++    "slug": "kirby-low-dimensional-topology",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2961/turns.jsonl b/unsolved_math_prioritization/attempts/2961/turns.jsonl
+new file mode 100644
+index 000000000..e611b9d77
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2961/turns.jsonl
+@@ -0,0 +1,2 @@
++{"turn": 1, "outcome": "partial_stalled", "mechanism": "Surface-product transfer", "result": "Ambient commutator length of f x id on M x S2 is at most four; homogeneous ambient quasimorphisms vanish on this subgroup", "gap": "No lower bound or uniform factorization for arbitrary ambient diffeomorphisms", "completion_estimate_percent": 5}
++{"turn": 2, "outcome": "partial_stalled", "mechanism": "Cocycle averaging beyond conservative subgroups", "result": "Exact extra defect term and nonexistence of full-Diff0 invariant probability measure", "gap": "No alternative bounded-defect construction on the full group", "completion_estimate_percent": 5}

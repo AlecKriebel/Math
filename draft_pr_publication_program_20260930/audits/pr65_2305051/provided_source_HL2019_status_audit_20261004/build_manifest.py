@@ -1,0 +1,8 @@
+import datetime,hashlib,json,os,pathlib,sys
+R=pathlib.Path(__file__).resolve().parent
+D=pathlib.Path('/Users/alec/.cache/codex-pr65-priority-20261004/status_family_20261004')
+def inventory(root,excluded):
+    return [{'path':str(p.relative_to(root)), 'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(root.rglob('*')) if p.is_file() and p.name not in excluded and '__pycache__' not in p.parts]
+manifest={'schema':'pr65-status-family-manifest-v1','created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='microseconds'),'owner_folder':str(R),'private_cache_root':str(D),'generator_actual_pid':os.getpid(),'generator_argv':sys.argv,'generator_cwd':os.getcwd(),'source_body_policy':'All full primary bodies, source text, page renders and complete execution streams are private. Repository folder contains original findings, source/run metadata and scripts.','reading_scope':'Entire HL2019 Chapter 5 printed97-131/PDF103-137; cited context, tables, bibliography and bounded other primary pages as explicitly itemized in REPORT.md. Not the complete288-page book.','repository_inventory':inventory(R,{'MANIFEST.json'}),'private_inventory':inventory(D,set()),'manifest_self_hash':'intentionally excluded to avoid recursive hashing'}
+(R/'MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
+print(json.dumps({'manifest_path':str(R/'MANIFEST.json'),'manifest_sha256':hashlib.sha256((R/'MANIFEST.json').read_bytes()).hexdigest(),'actual_pid':os.getpid(),'cwd':os.getcwd(),'argv':sys.argv,'completed_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='microseconds'),'repository_files':len(manifest['repository_inventory']),'private_files':len(manifest['private_inventory'])},indent=2))

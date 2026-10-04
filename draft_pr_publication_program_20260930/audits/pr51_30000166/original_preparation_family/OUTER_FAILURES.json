@@ -1,0 +1,27 @@
+{
+  "schema": "pr51-preparation-outer-failure-qualifications/v1",
+  "failures": [
+    {
+      "capture_name": "native_target_queue_locator",
+      "phase": "original capturer Popen launch failed before child creation",
+      "literal_child_argv": ["/usr/bin/rg", "-n", "-C", "3", "30000166", "/Users/alec/Documents/Math/unsolved_math_prioritization/QUEUE.md"],
+      "child_pid": null,
+      "outer_tool_exit_code": 1,
+      "observed_error": "FileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/rg'",
+      "outer_wrapper_stderr_transcribed_from_actual_tool_result": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr51_30000166/original_preparation_family/capture_private.py\", line 93, in <module>\n    sys.exit(main())\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr51_30000166/original_preparation_family/capture_private.py\", line 69, in main\n    child = subprocess.Popen(argv, cwd=str(cwd), stdin=subprocess.DEVNULL,\n  File \"/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py\", line 951, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py\", line 1821, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: '/usr/bin/rg'\n",
+      "transcription_qualification": "This preserves the actual outer tool traceback, not nonexistent child streams or a retrospectively invented completed capture.",
+      "evidence": "Original PRELAUNCH.json and OPERATOR_PRELAUNCH.py preserved; full wrapper traceback appears in actual tool result. No STARTED/COMPLETE or child-stream capture existed in that original failure.",
+      "repair": "Observed rg location used in distinct completed native_target_queue_locator_repaired capture. Capturer separately improved to record subsequent launch failures."
+    },
+    {
+      "intended_capture_name": "science_directory",
+      "phase": "zsh argument globbing before capturer invocation",
+      "unquoted_endpoint": "repos/AlecKriebel/Math/contents/unsolved_math_prioritization/attempts/30000166?ref=8006dd5f134ad0a2fa930e7278d3cb17945f4201",
+      "child_pid": null,
+      "outer_tool_exit_code": 1,
+      "observed_error": "zsh:1: no matches found: repos/AlecKriebel/Math/contents/unsolved_math_prioritization/attempts/30000166?ref=8006dd5f134ad0a2fa930e7278d3cb17945f4201",
+      "evidence": "Actual tool result only; capturer was never launched and no science_directory capture directory was created.",
+      "repair": "Use proper single-argument shell quoting in a distinct science_directory_quoted capture. No invented launch PID, UTC or receipt."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# PR62 original source handoff
+
+Original intake for 2715/KP1.56, proposed **unsolved1/5**, new0/audit0/novelty0. Original17 are unchanged under original/. The current interpretation and exact remaining mathematical gap are in ORIGINAL_INTAKE_REPORT.md and SOURCE_PRECISION_QUALIFICATION.md. SOURCE_ACCOUNTING.json distinguishes absent raw prior from SQL TEXT `{}`. ORIGINAL_AUTHENTICATION.json and complete API streams pin the actual head/base/scientific domain.
+
+REPRODUCTION_RECEIPT.json points to genuine own captures for original564 and historical20223 finite controls. They are not knot Floer computations. Historical author/reviewer claims remain historical. PRIMARY_READING_RECEIPT.json records actual bounded fresh textual primary reading and access limitations; whole published papers/private corpora were not copied into this handoff. External cache pins are dated references only. PR_QUEUE_SELECTED.json's `whole_body_not_copied` means no standalone second queue-body copy: the sole complete queue-blob API response is retained within the full original retrieval stream to preserve actual evidence.
+
+The first successful captures do not measure historical optimization or establish environment isolation. The separately retained guarded replays use -E -B/no-O and actual same-flags runtime probes, reproduce both original outputs, and receive no new mathematical credit.
+
+The fixed SOURCE will index every prepared regular file except itself, with full07777 file0444 and directory0755 topology, no symlinks or multiple links. ROOT_verify_original.py, ROOT_close_original.py and ROOT_readback_original.py are source-only helpers, syntax-read by the preparer but never executed or imported. ROOT should run them in separate owned captures; closure receipt must be outside the fixed packet. These helpers verify custody only. No ROOT scientific decision, native acceptance, merge, Git/PR write, paper, DOI or external individual communication is created here.

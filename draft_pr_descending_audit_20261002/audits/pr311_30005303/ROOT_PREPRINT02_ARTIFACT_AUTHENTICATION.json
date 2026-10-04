@@ -1,0 +1,772 @@
+{
+  "recorded_utc": "2026-10-04T19:30:23.572606+00:00",
+  "status": "PASS_ROOT_AUTHENTICATION_AND_FRESH_PREPRINT02_REPRODUCTION",
+  "final_pins": {
+    "FINAL_REVIEW_REPORT.md": "ffb4c0ffe9fdbe9870e37c53e1cecc271695be2eaa7914d44fb503a38854acab",
+    "FINAL_SEAL_MANIFEST.json": "15a25f31d96f838f1c46e8879572b108a0ad4c610e253e940d57422446a75c8d",
+    "FINAL_SEAL_VERIFICATION.json": "0914802ba647ce1a79c69bf1fa2e54478dab4028c860a5b4c393337e4ceb2abb",
+    "FINAL_CLOSURE_RECORD.json": "984099dc58bea6f22e0d87da2b1ca4fbcaa25c11f3dc17c0029a7c23b684c16a"
+  },
+  "sealed_body_files": 457,
+  "terminal_files_authenticated": 9,
+  "all466_review_files_0444_unchanged": true,
+  "source_gate_27_entries_and_four_pins_unchanged": true,
+  "all31_named_released_inputs_unchanged": true,
+  "native_review_captures_authenticated": [
+    {
+      "path": "private/extract_gl.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "gl.pdf",
+        "gl.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.876955+00:00",
+      "end_utc": "2026-10-04T18:53:12.979374+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/review_final_checkpoint.command.json",
+      "argv": [
+        "python3",
+        "private/final_checkpoint.py"
+      ],
+      "start_utc": "2026-10-04T19:22:29.274413+00:00",
+      "end_utc": "2026-10-04T19:22:29.301765+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-f",
+        "5",
+        "-l",
+        "7",
+        "-r",
+        "140",
+        "-png",
+        "EMS_OWR_2022_55_original.pdf",
+        "Lauritzen"
+      ],
+      "start_utc": "2026-10-04T18:32:35.027326+00:00",
+      "end_utc": "2026-10-04T18:32:35.773828+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_kz.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "kz.pdf",
+        "kz.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.883047+00:00",
+      "end_utc": "2026-10-04T18:53:12.982083+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_ks.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "ks.headers",
+        "--output",
+        "ks.pdf",
+        "https://arxiv.org/pdf/2411.03139v1"
+      ],
+      "start_utc": "2026-10-04T18:52:31.661613+00:00",
+      "end_utc": "2026-10-04T18:52:31.778588+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_pdfinfo.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdfinfo",
+        "EMS_OWR_2022_55_original.pdf"
+      ],
+      "start_utc": "2026-10-04T18:32:35.027326+00:00",
+      "end_utc": "2026-10-04T18:32:35.065883+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_fallat.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "fallat.headers",
+        "--output",
+        "fallat.pdf",
+        "https://discovery.ucl.ac.uk/id/eprint/10058843/1/Total-positivity-in-Markov-structures.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.681661+00:00",
+      "end_utc": "2026-10-04T18:52:33.430756+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/independent_exact.command.json",
+      "argv": [
+        "python3",
+        "../INDEPENDENT_CHECKS.py",
+        "--expected",
+        "released_package/expected",
+        "--output",
+        "../INDEPENDENT_CHECK_RESULTS.json"
+      ],
+      "start_utc": "2026-10-04T19:00:13.420908+00:00",
+      "end_utc": "2026-10-04T19:00:14.113558+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_kr.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "kr.headers",
+        "--output",
+        "kr.pdf",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2007/01/PAMI07-QPBO.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.692435+00:00",
+      "end_utc": "2026-10-04T18:52:32.530932+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/final_verify.command.json",
+      "argv": [
+        "python3",
+        "VERIFY_FINAL_SEAL.py"
+      ],
+      "start_utc": "2026-10-04T19:22:35.853312+00:00",
+      "end_utc": "2026-10-04T19:22:35.941469+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/rebuild_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "110",
+        "-png",
+        "fresh_latex_build/mtp2_edge_closure.pdf",
+        "rebuild"
+      ],
+      "start_utc": "2026-10-04T19:05:04.207204+00:00",
+      "end_utc": "2026-10-04T19:05:05.189713+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_pq.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "pq.pdf",
+        "pq.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.886327+00:00",
+      "end_utc": "2026-10-04T18:53:12.961771+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/gl_lemma_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-f",
+        "10",
+        "-l",
+        "12",
+        "-r",
+        "130",
+        "-png",
+        "gl.pdf",
+        "gl_lemma"
+      ],
+      "start_utc": "2026-10-04T19:07:44.914690+00:00",
+      "end_utc": "2026-10-04T19:07:45.576151+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/final_scope_record.command.json",
+      "argv": [
+        "python3",
+        "BUILD_SCOPE_RECORD.py"
+      ],
+      "start_utc": "2026-10-04T19:18:58.993356+00:00",
+      "end_utc": "2026-10-04T19:18:59.074466+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/rebuild_extract.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "fresh_latex_build/mtp2_edge_closure.pdf",
+        "rebuilt_manuscript.txt"
+      ],
+      "start_utc": "2026-10-04T19:05:04.207439+00:00",
+      "end_utc": "2026-10-04T19:05:04.262146+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_gms.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "gms.pdf",
+        "gms.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.865720+00:00",
+      "end_utc": "2026-10-04T18:53:13.029296+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/rebuild_pdfinfo.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdfinfo",
+        "fresh_latex_build/mtp2_edge_closure.pdf"
+      ],
+      "start_utc": "2026-10-04T19:05:04.207322+00:00",
+      "end_utc": "2026-10-04T19:05:04.249254+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_gms.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "gms.headers",
+        "--output",
+        "gms.pdf",
+        "https://arxiv.org/pdf/math/0608054"
+      ],
+      "start_utc": "2026-10-04T18:52:31.671627+00:00",
+      "end_utc": "2026-10-04T18:52:31.787386+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_verify.command.json",
+      "argv": [
+        "python3",
+        "verify_source_freeze.py"
+      ],
+      "start_utc": "2026-10-04T18:37:11.147980+00:00",
+      "end_utc": "2026-10-04T18:37:11.193805+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_extract.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-f",
+        "5",
+        "-l",
+        "7",
+        "-layout",
+        "EMS_OWR_2022_55_original.pdf",
+        "Lauritzen_pages_5_7.txt"
+      ],
+      "start_utc": "2026-10-04T18:32:35.027373+00:00",
+      "end_utc": "2026-10-04T18:32:35.078374+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_pq.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "pq.headers",
+        "--output",
+        "pq.pdf",
+        "https://publications.polymtl.ca/5993/1/EP-R-79-15_Picard.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.695364+00:00",
+      "end_utc": "2026-10-04T18:52:32.875615+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/pq_crossref.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "pq_crossref.headers",
+        "--output",
+        "pq_crossref.json",
+        "https://api.crossref.org/works/10.1007%2FBFb0120902"
+      ],
+      "start_utc": "2026-10-04T19:04:32.277663+00:00",
+      "end_utc": "2026-10-04T19:04:32.603121+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/manuscript_pdfinfo.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdfinfo",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/released_package/output/pdf/mtp2_edge_closure.pdf"
+      ],
+      "start_utc": "2026-10-04T18:53:12.909023+00:00",
+      "end_utc": "2026-10-04T18:53:12.937190+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_luz.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "luz.pdf",
+        "luz.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.865702+00:00",
+      "end_utc": "2026-10-04T18:53:13.006962+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_kr.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "kr.pdf",
+        "kr.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.886765+00:00",
+      "end_utc": "2026-10-04T18:53:12.969678+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/release_import.command.json",
+      "argv": [
+        "python3",
+        "import_release.py"
+      ],
+      "start_utc": "2026-10-04T18:48:19.289570+00:00",
+      "end_utc": "2026-10-04T18:48:19.352590+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/negative_controls.command.json",
+      "argv": [
+        "python3",
+        "../NEGATIVE_CONTROLS.py",
+        "--private-dir",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private"
+      ],
+      "start_utc": "2026-10-04T19:02:00.092591+00:00",
+      "end_utc": "2026-10-04T19:02:01.736508+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/pq_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-f",
+        "8",
+        "-l",
+        "9",
+        "-r",
+        "130",
+        "-png",
+        "pq.pdf",
+        "pq_relevant"
+      ],
+      "start_utc": "2026-10-04T18:56:08.524148+00:00",
+      "end_utc": "2026-10-04T18:56:09.620918+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_seal.command.json",
+      "argv": [
+        "python3",
+        "seal_source_only.py"
+      ],
+      "start_utc": "2026-10-04T18:36:35.437811+00:00",
+      "end_utc": "2026-10-04T18:36:35.484047+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/ks_example_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-f",
+        "13",
+        "-l",
+        "13",
+        "-r",
+        "130",
+        "-png",
+        "ks.pdf",
+        "ks_example"
+      ],
+      "start_utc": "2026-10-04T19:07:44.914677+00:00",
+      "end_utc": "2026-10-04T19:07:45.195853+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_gl.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "gl.headers",
+        "--output",
+        "gl.pdf",
+        "https://msp.org/memocs/2016/4-3/memocs-v4-n3-p13-p.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.664383+00:00",
+      "end_utc": "2026-10-04T18:52:31.857526+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_kz.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "kz.headers",
+        "--output",
+        "kz.pdf",
+        "https://www.cs.cornell.edu/~rdz/Papers/KZ-PAMI04.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.687813+00:00",
+      "end_utc": "2026-10-04T18:52:32.812883+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_gl_html.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "gl_html.headers",
+        "--output",
+        "gl.html",
+        "https://msp.org/memocs/2016/4-3/p13.xhtml"
+      ],
+      "start_utc": "2026-10-04T18:56:08.288044+00:00",
+      "end_utc": "2026-10-04T18:56:08.359003+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_ks.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "ks.pdf",
+        "ks.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.865743+00:00",
+      "end_utc": "2026-10-04T18:53:12.987661+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/fresh_reproduce.command.json",
+      "argv": [
+        "python3",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/different_location/portable_package/REPRODUCE.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/different_location/fresh_results"
+      ],
+      "start_utc": "2026-10-04T18:52:31.703985+00:00",
+      "end_utc": "2026-10-04T18:52:32.170477+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/provenance_check.command.json",
+      "argv": [
+        "python3",
+        "../AUDIT_PROVENANCE.py"
+      ],
+      "start_utc": "2026-10-04T19:02:00.093329+00:00",
+      "end_utc": "2026-10-04T19:02:00.138624+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/kr_crossref.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "kr_crossref.headers",
+        "--output",
+        "kr_crossref.json",
+        "https://api.crossref.org/works/10.1109%2FTPAMI.2007.1031"
+      ],
+      "start_utc": "2026-10-04T19:04:32.277583+00:00",
+      "end_utc": "2026-10-04T19:04:32.552986+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/download_luz.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "luz.headers",
+        "--output",
+        "luz.pdf",
+        "https://web.math.ku.dk/~lauritzen/papers/AOS2007.pdf"
+      ],
+      "start_utc": "2026-10-04T18:52:31.663883+00:00",
+      "end_utc": "2026-10-04T18:52:34.091187+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/final_seal.command.json",
+      "argv": [
+        "python3",
+        "SEAL_REVIEW.py"
+      ],
+      "start_utc": "2026-10-04T19:22:29.398672+00:00",
+      "end_utc": "2026-10-04T19:22:29.613415+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/manuscript_extract.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/released_package/output/pdf/mtp2_edge_closure.pdf",
+        "manuscript_full.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.913359+00:00",
+      "end_utc": "2026-10-04T18:53:12.954922+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/extract_fallat.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "fallat.pdf",
+        "fallat.txt"
+      ],
+      "start_utc": "2026-10-04T18:53:12.881922+00:00",
+      "end_utc": "2026-10-04T18:53:12.990920+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_fingerprint.command.json",
+      "argv": [
+        "python3",
+        "-c",
+        "import pathlib,hashlib,json,shutil; p=pathlib.Path(\"EMS_OWR_2022_55_original.pdf\"); b=p.read_bytes(); d={\"bytes\":len(b),\"sha256\":hashlib.sha256(b).hexdigest(),\"pdftoppm\":shutil.which(\"pdftoppm\"),\"pdfinfo\":shutil.which(\"pdfinfo\"),\"pdftotext\":shutil.which(\"pdftotext\")}; assert d[\"bytes\"]==600619; assert d[\"sha256\"]==\"56e4555409c330099d6ff15cdda3f8b3d5415af067c1800b0aac846ca5701b65\"; pathlib.Path(\"source_pin.json\").write_text(json.dumps(d,indent=2)+\"\\n\"); print(json.dumps(d))"
+      ],
+      "start_utc": "2026-10-04T18:32:19.461495+00:00",
+      "end_utc": "2026-10-04T18:32:19.500540+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/gl_final_lemma_page.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-f",
+        "13",
+        "-l",
+        "13",
+        "-r",
+        "100",
+        "-png",
+        "private/gl.pdf",
+        "private/gl_final"
+      ],
+      "start_utc": "2026-10-04T19:12:08.715049+00:00",
+      "end_utc": "2026-10-04T19:12:08.918010+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/source_download.command.json",
+      "argv": [
+        "curl",
+        "--fail",
+        "--location",
+        "--silent",
+        "--show-error",
+        "--dump-header",
+        "source_download.headers",
+        "--output",
+        "EMS_OWR_2022_55_original.pdf",
+        "https://ems.press/content/serial-article-files/46992"
+      ],
+      "start_utc": "2026-10-04T18:31:52.842711+00:00",
+      "end_utc": "2026-10-04T18:31:54.664306+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/manuscript_render.command.json",
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "110",
+        "-png",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/released_package/output/pdf/mtp2_edge_closure.pdf",
+        "manuscript"
+      ],
+      "start_utc": "2026-10-04T18:52:31.721759+00:00",
+      "end_utc": "2026-10-04T18:52:32.769585+00:00",
+      "exit_code": 0
+    },
+    {
+      "path": "private/fresh_latex_compile.command.json",
+      "argv": [
+        "/opt/homebrew/bin/tectonic",
+        "--keep-logs",
+        "--outdir",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/preprint_review_02/private/fresh_latex_build",
+        "mtp2_edge_closure.tex"
+      ],
+      "start_utc": "2026-10-04T19:04:30.469462+00:00",
+      "end_utc": "2026-10-04T19:04:32.201385+00:00",
+      "exit_code": 0
+    }
+  ],
+  "root_native_capture_directory": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609",
+  "root_native_jobs": [
+    {
+      "started_utc": "2026-10-04T19:30:20.578350+00:00",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/INDEPENDENT_CHECKS.py",
+        "--expected",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private/different_location/portable_package/expected",
+        "--output",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/INDEPENDENT_CHECK_RESULTS.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy",
+      "program_pins": {
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/INDEPENDENT_CHECKS.py": {
+          "bytes": 13557,
+          "sha256": "0bf2966b6059f206c6a4bcfd1c8bc35a934baad854314eb5b139ff5af2769680",
+          "mode": "0644"
+        }
+      },
+      "ended_utc": "2026-10-04T19:30:21.312110+00:00",
+      "exit_code": 0,
+      "streams": {
+        "stdout": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_independent_exact.stdout",
+          "bytes": 2495,
+          "sha256": "b568f8aeeab19da94d321a1d0eb64aec57508e41e77e907506b204fdd2871202",
+          "mode": "0644"
+        },
+        "stderr": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_independent_exact.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0644"
+        }
+      }
+    },
+    {
+      "started_utc": "2026-10-04T19:30:21.312440+00:00",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private/different_location/portable_package/REPRODUCE.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private/different_location/fresh_results"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private/different_location",
+      "program_pins": {
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private/different_location/portable_package/REPRODUCE.py": {
+          "bytes": 2061,
+          "sha256": "915f0b449fc383c43b5cdbe7a08675542684d1ecd558f416c2c9f2c861049c4b",
+          "mode": "0644"
+        }
+      },
+      "ended_utc": "2026-10-04T19:30:21.854761+00:00",
+      "exit_code": 0,
+      "streams": {
+        "stdout": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_portable_reproduction.stdout",
+          "bytes": 295,
+          "sha256": "1843514030e5fc25371ad06f77dc588961d21bf860b426bb794cd54624be42b7",
+          "mode": "0644"
+        },
+        "stderr": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_portable_reproduction.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0644"
+        }
+      }
+    },
+    {
+      "started_utc": "2026-10-04T19:30:21.855231+00:00",
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/NEGATIVE_CONTROLS.py",
+        "--private-dir",
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/private"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy",
+      "program_pins": {
+        "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/fresh_reviewer_copy/NEGATIVE_CONTROLS.py": {
+          "bytes": 3967,
+          "sha256": "421178300881723837eb6cc3297a7fc9d92cbbc0748cba8e1148ada71aab62c4",
+          "mode": "0644"
+        }
+      },
+      "ended_utc": "2026-10-04T19:30:23.537898+00:00",
+      "exit_code": 0,
+      "streams": {
+        "stdout": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_negative_cases.stdout",
+          "bytes": 3485,
+          "sha256": "cea1bee954a7afba92bc72c61605f936b77349ebbd5881f101bc36b1b5a89a7d",
+          "mode": "0644"
+        },
+        "stderr": {
+          "path": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr311_30005303/root_integration_private/root_preprint02_reproduction_20261004T193020572609/new_negative_cases.stderr",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "mode": "0644"
+        }
+      }
+    }
+  ],
+  "entire_independent_result_bytes_equal": true,
+  "portable_boundary_semantics_and_priority_bytes_equal": true,
+  "all_nine_native_negative_outcomes_and_malformed_pin_control_equal": true,
+  "root_read_scope_recorded_separately": true,
+  "publication_clearance_created": false,
+  "workflow_percent": 70
+}

@@ -1,0 +1,9 @@
+# PR329 priority evidence: portable public subset
+
+PRIORITY_REPORT.md states the exact problem, positive prior results, contribution scope and bounded historical conclusion. MORTON_PRIOR_COMPARISON.md and VERDURE_PRIOR_COMPARISON.md give the direct old formula/criterion comparisons. SOURCE_INVENTORY.json, SEARCH_INVENTORY.json, READING_LEDGER.json and VERSION_CHRONOLOGY.md disclose the actual corpus and limits; GAPS_AND_LIMITS.md lists retained historical qualifications.
+
+Copy only the eleven filenames listed in PUBLIC_MANIFEST.json and that manifest into a separate export folder. Do not copy the surrounding namespace, early baseline transcription, imported reports, private_evidence, source PDFs, scans, raw responses, receipt details or private manifests. Public ledgers give canonical source URLs, hashes and brief read scopes, not full copyrighted source material.
+
+Run `python3 verify_public_package.py` from that folder. It uses only Python's standard library, verifies every public payload body and mode, rejects paths outside the allowlist, and runs the guarded25-comparison checker. It writes no files and needs no network or private sources. Assertions must be enabled; an optimized `-O` interpreter is rejected explicitly. A successful run verifies the public byte pins and exact formula conventions. It does not certify first discovery/application, continuing openness, historical completeness or the entire mathematical proof.
+
+The full local namespace verifier is private and verifies the early freezes, original/candidate external pins, all raw retrieval evidence and public subset. Genuine native replay receipts are distinct from computed inventory metadata. This final draft is held unsealed for external parent reading/replay. It grants no publication, Git/PR write or closure authorization.

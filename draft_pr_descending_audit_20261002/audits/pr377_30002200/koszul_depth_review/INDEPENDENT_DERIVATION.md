@@ -1,0 +1,46 @@
+# Sealed independent derivation: Koszul modules, depth, and sharpness
+
+Written before any candidate/history/root/sibling material was opened. Primary sources: Matthias Franz's literal OWR49/2012 contribution, printed pp. 2954–2956; Allday–Franz–Puppe arXiv:1111.0957v2; Franz arXiv:1403.4485v4 (12 June 2023); Franz–Huang, AGT 20 (2020), 2657–2675. Raw copies and rendered pages are private ignored evidence under raw_sources/.
+
+## Exact claim and source qualifications
+
+For a rank-r torus, a rational Poincare duality space satisfying AFP's standing topology assumptions has free equivariant cohomology if its syzygy order is at least ceil(r/2). Hence nonfree cohomology has order at most floor((r-1)/2). Franz's big polygon spaces realize this bound for every r, including r>=5. This is a literature result, not a novel solution. OWR prints n rather than r in its bound but defines no relevant n there; AFP Proposition 5.12(2), including its proof, establishes that the parameter is torus rank r, not manifold dimension.
+
+AFP hypotheses: Hausdorff, second-countable, locally compact, locally contractible; finite-dimensional ordinary cohomology over a characteristic-zero field; finite-dimensional X; finitely many identity components of isotropy groups; each orbit skeleton locally contractible (Assumptions 3.2 and 4.1). A k-PD orientation gives H_T^*(X)=H_*^T(X)[n]. Ordinary Borel homology is not this H_*^T. AFP Theorem 5.1 identifies AB cohomology with Ext of equivariant homology; Theorem 5.7 identifies j-syzygies with initial AB exactness; Lemma 5.6 uses the cone filtration spectral sequence converging to zero. If projective dimension is <=j, AB is exact except possibly adjacent columns j-1,j; the cone spectral sequence forces these to vanish. A j-syzygy has depth>=j at the homogeneous maximal ideal, so projective dimension<=r-j. For j>=r/2 this is <=j. These are the actual mechanisms of the upper bound.
+
+Franz v4 explicitly works over any characteristic-zero field unless specified otherwise (p.3), so Q is directly within scope, not merely inferred from a real-coefficient statement. FH AGT introduction says real, but Section 2 explicitly works over any characteristic-zero field. Its Lemma 3.1 corroborates the kernel/cokernel sequence and syzygy order, while its Theorem 3.2 gives the exact order mu(ell)-1. Integer ordinary cohomology being free does not by itself establish an integer equivariant-syzygy theorem; no such extension is claimed here.
+
+## Universal Koszul proof
+
+Let k be a field, R=k[t_1,...,t_r], deg(t_i)=2, b>=1, f_i=t_i^b, A=R/(f_1,...,f_r), and F_j=R[2bj]^{binom(r,j)}. Define d_j(e_{i_1} wedge ... wedge e_{i_j})=sum_{h=1}^j (-1)^{h-1} f_{i_h} e_{I\{i_h}}. Thus d_{j-1}d_j=0: removing a pair in opposite orders gives opposite signs. The f_i are regular: in each successive quotient, monomials with previous exponents <b form a free basis over the remaining polynomial variables, so multiplication by f_i is injective. Tensoring the two-term resolutions one variable at a time proves the Koszul complex exact except H_0=A. This is an all-r, all-b proof.
+
+Define K_{b,0}=A; for 1<=j<=r, K_{b,j}=im(d_j)[-2bj], and K_{b,r+1}=0. Each K is generated in degree zero. The Koszul tail gives a minimal graded free resolution of K_{b,j} with term in homological degree i equal to R[2bi]^{binom(r,j+i)}, for 0<=i<=r-j. All entries lie in the homogeneous maximal ideal, and the last rank is one. Therefore pd(K_{b,j})=r-j, depth at m=(t_1,...,t_r) equals j by Auslander–Buchsbaum. Localizing at any prime p other than m makes at least one f_i invertible, yielding a contracting homotopy and free localized syzygies. Consequently K_{b,j} satisfies depth(K_p)>=min(j,height p) at every prime, but fails it for j+1 at m when j<r. Thus its exact syzygy order is j. K_r=R is free, K_0=A has depth0; the zero module must be treated separately.
+
+Dualizing the tail and using Koszul self-duality gives, for 0<=j<r and i>0, Ext_R^i(K_{b,j},R)=A[-2b(r-j)] when i=r-j, and zero otherwise. For 1<=j<r, Hom_R(K_{b,j},R)=K_{b,r-j+1}[2b]. Hom(A,R)=0 and Hom(K_r,R)=R are boundary exceptions. The nonzero top Ext is an independent nonfreeness witness, and contains the powers b and the exact degree shift.
+
+For degree-zero extensions 0->R[l]->E->K_{b,j}[l']->0, Ext^1 is zero unless j=r-1. In that case it is A[-2b+l-l']; an extension can be nonzero exactly when 2b-l+l' is a degree of A, whose degrees range from 0 to 2r(b-1). Thus the blanket assertion that splitting follows whenever l-l'!=2b is valid at b=1 but is not valid for arbitrary b>1 without extra restrictions. A concrete algebraic counterexample is r=3,b=2,j=2,l=l'=0: Ext^1 degree zero is A_4, of dimension 3, represented by t_1*t_2, t_1*t_3, t_2*t_3. In the actual r=5 Proposition 5.1 shifts, choose a=1,b=5,d=11,dbar=1. The quotient summand is K_{5,4}[41], and C contains R[11]. Their Ext^1 degree-zero term is A_40, of dimension one, so parity and the printed general splitting assertion do not suffice. This is NOT evidence that the actual topological sequence is nonsplit: the v4 footnote refers to a separate Puppe splitting argument, not independently checked here. At b=1 the primary proof suffices; for all b the depth proof below proves sharpness without splitting.
+
+## Primary topological sequence and the robust depth route
+
+Set d=2a+2b-1, dbar=2a-1. For a,b>=1 and generic ell, X_{a,b}(ell) is cut out by ||u_j||^2+||z_j||^2=1 and sum ell_j u_j=0. It is compact, smooth, connected, orientable; dim X=rd-2a. Let V=S^d. Primary PAL duality gives
+0 -> (coker iota_*^T)[rd] -> H_T^*(X) -> (ker iota_*^T)[rd-1] -> 0.
+Both source and target of iota_*^T are finite free R-modules, with source bases V_J,W_J for short J and target bases V_J for all J. On these bases,
+iota(V_J)=V_J; iota(W_J)=sum_{j notin J} (-1)^{#{x in J:x>j}} t_j^b V_{J union j}.
+The powers arise from the Euler class of b copies of the standard circle character. Killing the short V_J leaves the truncated wedge Koszul matrix. Its complement basis identifies it with the ordinary Koszul contraction complex up to orientation signs; scalar signs do not affect kernels/cokernels but an omitted boundary sign can destroy d^2=0.
+
+For r=2m+1 and ell=(1,...,1), short means |J|<=m. The independent kernel/cokernel calculation gives
+C=(coker iota)[rd]=K_{b,m}[md] plus free R[|J|d] for |J|<m,
+Q=(ker iota)[rd-1]=K_{b,m+2}[(m+2)d-2*dbar-1] plus free R[|J|d-dbar-1] for |J|>m+1.
+These are the corrected 2023 Proposition 5.1 shifts. The low free summands arise by complementing the surviving high V_J; the high free summands arise by complementing low W_J. The two Koszul shifts have opposite parity because d is odd, so graded extensions between those two terms vanish. The free quotient terms split automatically. A possible remaining extension involving Q and a free term of C must never be suppressed without the relevant Ext calculation.
+
+Fortunately the exact order m is robust even for a nonsplit middle E. At every p, C_p and Q_p have depth at least min(m,height p), so the depth lemma gives the same lower bound for E_p. At p=m_R, depth(C)=m and depth(Q)>=min(m+2,r)>m. The depth lemma then forces depth(E)=m. Thus E is exactly an m-syzygy and nonfree for m<r, with no splitting assumption whatsoever. The same argument works for the general four-term free presentation: Q is a second syzygy of C, so any middle extension has the exact order of nonfree C. This is a universal algebra proof, not a finite-rank check.
+
+## Even-rank factor and local depth
+
+For r=2m+2 choose ell=(0,1,...,1), with 2m+1 ones. It is generic because an odd number of ones cannot split evenly. The first zero removes u_0 from the closing equation, so X(ell)=S^{2a+2b-1} times X(1,...,1), equivariantly for a separate circle. The sphere is the unit sphere in C^a_trivial plus C^b_standard. Its Borel construction is the sphere bundle of the associated complex vector bundle with nonzero trivial summand. Its Euler class vanishes and the Gysin sequence gives the free k[s]-module k[s] plus k[s][d]. Therefore equivariant cohomology of the product is a sum of two shifts of the polynomial extension of the odd-rank cohomology.
+
+Extension S=R[s] preserves the exact syzygy order of a nonfree R-module M. The lower bound follows by extending the free partial resolution. For the upper bound localize at p=m_R*S, which has height 2m+1 and does not contain s. The coefficient field becomes k(s), so the minimal Koszul tail persists and depth remains m, failing the (m+1)-syzygy criterion. At the full homogeneous maximal ideal (m_R,s), depth instead rises to m+1. This is an essential warning: homogeneous maximal depth alone cannot compute syzygy order after adjoining variables. For ranks 5 and 6 the exact order is 2 in both cases, while full-maximal depth is respectively 2 and 3.
+
+## Remaining independent gap before comparison
+
+The universal sharpness argument is established. The exact split-module formula in v4 is provisionally source-qualified because the printed extension assertion for general b requires a finer Ext check; nonsplit-depth verification suffices for the discovery goal. No claim of candidate correctness or novel discovery is made before frozen-head comparison.

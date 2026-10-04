@@ -1,0 +1,154 @@
+--- closed_V1/prepare_current_packet.py
++++ SOURCE_V2/prepare_current_packet.py
+@@ -199,21 +199,23 @@
+         require(rec['completed'] is True and type(rec['exit_code']) is int and rec['exit_code']==0, 'Actual read-only Git failed; retained')
+         require(not regular(directory/(str(index)+'.stderr')), 'Unexpected Git stderr; retained')
+         return regular(directory/(str(index)+'.stdout'))
+-    prep_raw=bind('current_preparation_family/PREPARATION_MANIFEST.json','closed_source_preparation')
++    prep_raw=bind('current_preparation_family_v2/PREPARATION_MANIFEST.json','closed_source_preparation')
+     prep=load(prep_raw)
+-    require(prep['schema']=='PR46_CURRENT_SOURCE_ONLY_CLOSURE_v1' and prep['status']=='CLOSED_SOURCE_ONLY_CURRENT_PREPARATION'
++    require(prep['schema']=='PR46_CURRENT_SOURCE_ONLY_CLOSURE_v2' and prep['status']=='CLOSED_SOURCE_ONLY_CURRENT_PREPARATION'
+       and prep['self_excluded']==['PREPARATION_MANIFEST.json'] and type(prep['files_count']) is int
+       and prep['files_count']==len(prep['files']), 'Closed SOURCE-only preparation required')
+     names=rows(prep['files'])
+     require(inventory(script.parent)==names|{'PREPARATION_MANIFEST.json'}, 'Exact SOURCE closure changed')
+     for row in prep['files']:
+         require(stat.S_IMODE((script.parent/row['path']).stat().st_mode)==0o444, 'SOURCE member full0444 required')
+-        outputs['build/source_preparation/'+row['path']]=checked(dict(row,path='current_preparation_family/'+row['path']), 'reviewed_SOURCE_preparation')
++        outputs['build/source_preparation/'+row['path']]=checked(dict(row,path='current_preparation_family_v2/'+row['path']), 'reviewed_SOURCE_preparation')
+     require(stat.S_IMODE((script.parent/'PREPARATION_MANIFEST.json').stat().st_mode)==0o444, 'SOURCE manifest full0444 required')
+     outputs['build/source_preparation/PREPARATION_MANIFEST.json']=prep_raw
+-    pins=load(bind('current_preparation_family/STATIC_INPUT_BINDINGS.json','fixed_input_contract'))
++    pins=load(bind('current_preparation_family_v2/STATIC_INPUT_BINDINGS.json','fixed_input_contract'))
+     require(pins['schema']=='PR46_FIXED_CURRENT_SOURCE_INPUTS_v1' and pins['status']=='SOURCE_ONLY_ROOT_PREREQUISITES_PENDING', 'SOURCE-only fixed input status required')
+     require(git('branch','--show-current').strip()==b'main','Stay on main')
++    for row in pins['superseded_v1_closed_source_rows']:
++        checked(row,'dated_superseded_V1_source_mistaken_chronology_attribution_only')
+     original_preparation_raw=checked(pins['original_preparation_manifest'],'original_scoped_preparation_manifest')
+     original_preparation=load(original_preparation_raw)
+     require(original_preparation['schema']=='pr46-original-preparation-self-only-manifest/v1'
+@@ -305,8 +307,8 @@
+       ('ROOT_CURRENT_INPUT_PREIMAGES.json','root_current_input_manifest_sha256'),('ROOT_EVIDENCE_BINDINGS.json','root_evidence_bindings_sha256')]:
+         future[name]=bind(name,'genuine_separate_ROOT_prerequisite',getattr(args,option))
+     evidence=load(future['ROOT_EVIDENCE_BINDINGS.json'])
+-    require(set(evidence)=={'schema','approved_by_root','created_utc','notes','manifest','proof_notes','summary','raw_audit','source_adversary'}
+-      and evidence['schema']=='PR46_ROOT_EVIDENCE_BINDINGS_v1' and evidence['approved_by_root'] is True
++    require(set(evidence)=={'schema','approved_by_root','created_utc','notes','manifest','proof_notes','summary','raw_audit','source_adversary','operative_preparation_directory'}
++      and evidence['operative_preparation_directory']=='current_preparation_family_v2' and evidence['schema']=='PR46_ROOT_EVIDENCE_BINDINGS_v1' and evidence['approved_by_root'] is True
+       and type(evidence['notes']) is str and len(evidence['notes'].strip())>=40
+       and clock(prep['utc'])<=clock(evidence['created_utc'])<=dt.datetime.now(dt.timezone.utc),'Genuine actual ROOT evidence required; drafts rejected')
+     require(evidence['manifest']['path']=='root_original_actual_reproduction_v2/MANIFEST.json'
+@@ -404,9 +406,9 @@
+       'Novelty: false','Khazhgali Kozhasov','Mario Kummer','2020 preprint','NEW whole-current review: PENDING','Paper/new DOI/tracker: false']:
+         require(literal in certificate,'Missing literal actual ROOT scope: '+literal)
+     reading=load(future['ROOT_PRIMARY_READ_LEDGER.json']); science=load(future['ROOT_SCIENCE_CARD.json'])
+-    qualification=bind('current_preparation_family/SOURCE_PRECISION_QUALIFICATIONS.md','global_current_qualification')
++    qualification=bind('current_preparation_family_v2/SOURCE_PRECISION_QUALIFICATIONS.md','global_current_qualification')
+     for obj,schema in [(reading,'PR46_ROOT_PRIMARY_READ_LEDGER_v1'),(science,'PR46_ROOT_SCIENCE_CARD_v1')]:
+-        require(obj['schema']==schema and obj['reading_completed'] is True and equal(obj['root_flags'],{flag:True for flag in FLAGS})
++        require(obj['operative_preparation_directory']=='current_preparation_family_v2' and obj['schema']==schema and obj['reading_completed'] is True and equal(obj['root_flags'],{flag:True for flag in FLAGS})
+           and type(obj['reading_notes']) is str and len(obj['reading_notes'].strip())>=40
+           and clock(prep['utc'])<=clock(obj['created_utc'])<=dt.datetime.now(dt.timezone.utc),'Completed actual ROOT full reading required')
+         require(obj['scope_certificate_sha256']==args.root_scope_certificate_sha256 and obj['preparation_manifest_sha256']==sha(prep_raw)
+@@ -422,8 +424,8 @@
+       and science['read_ledger_sha256']==args.root_read_ledger_sha256 and science['current_input_manifest_sha256']==args.root_current_input_manifest_sha256
+       and science['new_whole_current_gate']=='PENDING' and all(science[k] is None for k in ['current_model','current_reasoning_effort','current_deadline_utc','current_verdict']), 'Only exact credited known-result acceptance with unknown current runtime')
+     current=load(future['ROOT_CURRENT_INPUT_PREIMAGES.json'])
+-    require(set(current)=={'schema','approved_by_root','created_utc','reason','current_head','files'}
+-      and current['schema']=='PR46_ROOT_FRESH13_INPUT_PREIMAGES_v1' and current['approved_by_root'] is True
++    require(set(current)=={'schema','approved_by_root','created_utc','reason','current_head','files','operative_preparation_directory'}
++      and current['operative_preparation_directory']=='current_preparation_family_v2' and current['schema']=='PR46_ROOT_FRESH13_INPUT_PREIMAGES_v1' and current['approved_by_root'] is True
+       and type(current['reason']) is str and len(current['reason'].strip())>=40
+       and clock(prep['utc'])<=clock(current['created_utc'])<=dt.datetime.now(dt.timezone.utc)
+       and type(current['current_head']) is str and re.fullmatch('[0-9a-f]{40}',current['current_head'])
+@@ -448,9 +450,9 @@
+         require(git('show',current['current_head']+':'+native)==regular(repo/native),'Dated native4 committed body differs from approved current live bytes')
+         git('ls-tree',current['current_head'],'--',native)
+     outer_name=relative(os.environ.get('PR46_ROOT_OUTER_CAPTURE',''))
+-    require(re.fullmatch(r'tmp/root_pr46_current_outer_[0-9]{8}T[0-9]{6}\.[0-9]{6}Z',outer_name),'Genuine outer prelaunch required')
++    require(re.fullmatch(r'tmp/root_pr46_current_v2_outer_[0-9]{8}T[0-9]{6}\.[0-9]{6}Z',outer_name),'Genuine outer prelaunch required')
+     outer_raw=bind(outer_name+'/OPERATION_PRELAUNCH.json','actual_ROOT_outer_prelaunch'); outer=load(outer_raw)
+-    require(outer['schema']=='PR46_ROOT_BUILDER_PRELAUNCH_v1' and type(outer['operator_pid']) is int and outer['operator_pid']==os.getppid()
++    require(outer['schema']=='PR46_ROOT_BUILDER_PRELAUNCH_v2' and type(outer['operator_pid']) is int and outer['operator_pid']==os.getppid()
+       and outer['builder_sha256']==sha(regular(script)) and outer['operator_sha256']==sha(regular(script.parent/'capture_root_builder_operation.py'))
+       and outer['argv']==['/usr/bin/python3','-B',str(script),*sys.argv[1:]] and outer['cwd']==str(repo)
+       and clock(outer['started_utc'])<=dt.datetime.now(dt.timezone.utc),'Actual outer parent/source/argv/cwd differ')
+@@ -460,7 +462,10 @@
+     outputs['CURRENT_EXECUTION_REFERENCE.json']=encode({'audit_relative_outer_capture':outer_name,'outer_parent_pid':os.getppid(),
+       'audit_relative_inner_attempt':attempt.relative_to(audit).as_posix(),'actual_builder_pid':os.getpid(),
+       'outer_prelaunch_sha256':sha(outer_raw),'complete_outer_capture_written_only_after_child_exit':True,
+-      'final_inner_GIT_COMMANDS_written_only_after_builder_exit':True,'ROOT_must_read_final_actual_outer_and_inner_at_original_paths':True,
++      'final_inner_GIT_COMMANDS_written_incrementally_by_builder_before_exit':True,
++      'frozen_inner_command_copy_is_prepublication_prefix':True,
++      'outer_operator_does_not_write_inner_GIT_COMMANDS':True,
++      'ROOT_final_original_inner_commands_inspection_required_AFTER_child_exit':True,'ROOT_must_read_final_actual_outer_and_inner_at_original_paths':True,
+       'already_complete_outer_receipt_or_whole_PASS_certified':False})
+     queue=regular(repo/'unsolved_math_prioritization/QUEUE.md'); lines=queue.splitlines(keepends=True)
+     require(sum(line.startswith(b'|') and [v.strip() for v in line.decode().split('|')[1:-1]]==HEADER for line in lines)==1,'Unique named queue header required')
+@@ -476,7 +481,7 @@
+     require(all(left==right for index,(left,right) in enumerate(zip(fields,after_fields)) if index not in allowed),'Other target columns/Chat/DOI must remain byte-exact')
+     after='|'.join(after_fields).encode(); prospective=b''.join(after if line==before else line for line in lines)
+     notice=b'Historical literal body follows. Model/reasoning/deadline, access/PDF hashes, review PASS and publication-state prose are dated attributions. Read SOURCE_PRECISION_QUALIFICATIONS.md with every presentation. NEW whole-current review PENDING.\n\n'
+-    overview=bind('current_preparation_family/CURRENT_OVERVIEW.md','current_overview')
++    overview=bind('current_preparation_family_v2/CURRENT_OVERVIEW.md','current_overview')
+     outputs.update({'original_archive/'+name:body for name,body in original.items()})
+     outputs.update({name:original[name] for name in IMMUTABLE})
+     outputs.update({'README.md':overview+b'\n'+qualification,'PR_DRAFT.md':overview+b'\n'+qualification,
+@@ -534,7 +539,7 @@
+       'stable9_live_required_by_later_whole_review':True,'fresh13_new_authority_required_again_before_final_acceptance':True,
+       'foreign_original_PDF_hashes_are_attributed_unautheticated_records_only':True})
+     trees=[]
+-    for previous in sorted((audit/'tmp').glob('root_pr46_current_build_*')):
++    for previous in sorted((audit/'tmp').glob('root_pr46_current_v2_build_*')):
+         require(previous.is_dir() and not previous.is_symlink(),'Regular retained actual attempt required')
+         previous_files=[]; previous_dirs=[]
+         for path in sorted(previous.rglob('*')):
+@@ -584,11 +589,11 @@
+     require(args.execute and all(hex64(v) for k,v in vars(args).items() if k.endswith('sha256')),'Explicit ROOT execution/five actual prerequisite SHA pins required')
+     require(not sys.flags.optimize and os.environ.get('PYTHONOPTIMIZE','') in ('','0'),'No optimization may suppress guards')
+     script=Path(__file__).absolute(); regular(script)
+-    require(script.parent.name=='current_preparation_family' and script.parent.parent.name=='pr46_30004438','Exact PR46 anchor required')
++    require(script.parent.name=='current_preparation_family_v2' and script.parent.parent.name=='pr46_30004438','Exact PR46 anchor required')
+     audit=script.parent.parent; repo=audit.parents[2]
+     require(repo==Path('/Users/alec/Documents/Math'),'Exact repository root required')
+     (audit/'tmp').mkdir(exist_ok=True); require(not (audit/'tmp').is_symlink(),'Regular audit-local tmp required')
+-    attempt=audit/'tmp'/('root_pr46_current_build_'+dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
++    attempt=audit/'tmp'/('root_pr46_current_v2_build_'+dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
+     attempt.mkdir(exist_ok=False); (attempt/'PRELAUNCH_BUILDER_SOURCE.py').write_bytes(regular(script))
+     (attempt/'INVOCATION.json').write_bytes(encode({'argv':sys.argv,'cwd':str(Path.cwd()),'pid':os.getpid(),
+       'parent_pid':os.getppid(),'utc':utc(),'source_sha256':sha(regular(script)),'administrative_only':True}))
+--- closed_V1/capture_root_builder_operation.py
++++ SOURCE_V2/capture_root_builder_operation.py
+@@ -55,7 +55,7 @@
+     script = Path(__file__).absolute()
+     family, audit = script.parent, script.parent.parent
+     repo = audit.parents[2]
+-    require(family.name == 'current_preparation_family' and audit.name == 'pr46_30004438' and
++    require(family.name == 'current_preparation_family_v2' and audit.name == 'pr46_30004438' and
+             repo == Path('/Users/alec/Documents/Math'), 'Exact PR46 ROOT audit anchor required')
+     builder = family / 'prepare_current_packet.py'
+     source, operator = regular(builder), regular(script)
+@@ -64,19 +64,19 @@
+             'Never launch over an existing candidate')
+     (audit / 'tmp').mkdir(exist_ok=True)
+     require(not (audit / 'tmp').is_symlink(), 'Regular tmp required')
+-    capture = audit / 'tmp' / ('root_pr46_current_outer_' + dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
++    capture = audit / 'tmp' / ('root_pr46_current_v2_outer_' + dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'))
+     capture.mkdir(exist_ok=False)
+     (capture / 'PRELAUNCH_BUILDER_SOURCE.py').write_bytes(source)
+     (capture / 'PRELAUNCH_OPERATOR.py').write_bytes(operator)
+     argv = ['/usr/bin/python3', '-B', str(builder), '--execute']
+     for name in ['root_scope_certificate', 'root_read_ledger', 'root_science_card', 'root_current_input_manifest', 'root_evidence_bindings']:
+         argv.extend(['--' + name.replace('_', '-') + '-sha256', getattr(args, name + '_sha256')])
+-    prelaunch = {'schema': 'PR46_ROOT_BUILDER_PRELAUNCH_v1', 'operator_pid': os.getpid(),
++    prelaunch = {'schema': 'PR46_ROOT_BUILDER_PRELAUNCH_v2', 'operator_pid': os.getpid(),
+                  'started_utc': stamp(), 'argv': argv, 'cwd': str(repo),
+                  'builder_sha256': digest(source), 'operator_sha256': digest(operator),
+                  'administrative_only': True, 'scientific_helpers_run': False}
+     (capture / 'OPERATION_PRELAUNCH.json').write_bytes(dump(prelaunch))
+-    record = dict(prelaunch, schema='PR46_ROOT_ACTUAL_BUILDER_OPERATION_v1',
++    record = dict(prelaunch, schema='PR46_ROOT_ACTUAL_BUILDER_OPERATION_v2',
+                   actual_execution=False, completed=False, pid=None, exit_code=None, stdin_supplied=False)
+     child = None
+     try:

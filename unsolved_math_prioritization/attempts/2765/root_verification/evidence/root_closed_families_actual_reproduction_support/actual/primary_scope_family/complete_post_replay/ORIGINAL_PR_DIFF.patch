@@ -1,0 +1,1038 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..8a394056c 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -62,7 +62,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+ | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed closed-surface compact-fiber and simple-reference rigidity partial results, with a scoped three-punctured-sphere counterexample under the full finite-area cusp convention. Intended closed genus-at-least-two self-intersecting-reference problem remains unresolved; source-scope qualification retained. Draft PR: https://github.com/AlecKriebel/Math/pull/38. |  |
+ | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2765/README.md b/unsolved_math_prioritization/attempts/2765/README.md
+new file mode 100644
+index 000000000..a534af9b5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/README.md
+@@ -0,0 +1,21 @@
++# 2765 / KP-2.17: geodesic-current scope and reductions
++
++**Unsolved for the substantive closed-surface problem; source-scope hold.**
++
++[RESULTS.md](RESULTS.md) records:
++
++- Exact all-metric length-function fiber and its compact convex structure
++- Classical reduction to measured-lamination intersection data, with the
++  important failure of the converse
++- Rigidity when the reference geodesic is a multiple of a simple curve
++- A non-atomic Liouville counterexample for the explicitly different
++  complete finite-area thrice-punctured-sphere convention
++
++The general self-intersecting closed-reference case on a closed surface
++remains unresolved. No novel-solution or historical-priority credit is
++claimed. The punctured example does not apply to a varying-boundary-length
++pair of pants or to the different compact-core current convention.
++
++See SOURCE_AUDIT.md, source records/provenance, and the separate review
++(PASS for the scoped partial results, 72 independent exact checks). Finite matrix tests supplement the source/normalization
++checks; they do not test equality on all of Teichmüller space.
+diff --git a/unsolved_math_prioritization/attempts/2765/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2765/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..c3f4d8c21
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/RESEARCH_LOG.md
+@@ -0,0 +1,33 @@
++# Research log
++
++UTC 2026-09-30; gpt-6-astra, selected effort xhigh.
++Two-hour bound: 05:12–07:12; at most five substantive proof attempts.
++
++- **05:12 — 0%:** accepted rank54, read full pinned statement/background,
++  checked all-state PRs, branches, paths and related targets. No prior
++  attempt found. The supplied AIM URL is only a workshop summary.
++- **05:15 — 10%:** located and read the numbered original book question,
++  its remarks and chapter conventions. Distinguished arbitrary from
++  simple reference curves and all metrics from finite test sets. Checked
++  current Leininger/Jyothis equivalence results.
++- **05:19 — 15%, substantive attempt 1/5:** the closed-surface route gives
++  measured-lamination intersection equality, compact convex fibers and
++  rigidity for a simple reference. It does not establish finite support
++  for self-intersecting references. Recorded this exact obstruction.
++- **05:23 — 15%, substantive attempt 2/5:** developed a scoped negative
++  example under the complete finite-area punctured convention, using the
++  one-point Teichmüller space of the thrice-punctured sphere and its
++  non-atomic Liouville current. Checked that the compact-core current
++  convention and variable geodesic-boundary lengths do not satisfy the
++  same setup. No closed-surface resolution is claimed.
++- **05:24 — 15%:** froze the scoped mathematical/source record for separate
++  adversarial review. Stopped fresh proof search at the unproved positive
++  fiber atomicity/finite convex-decomposition step. Queue remains unsolved.
++
++Estimates concern the full substantive closed-surface target, not the
++completeness of this source/partial-result package. No large search,
++external contact, or shared queue editing was performed.
++
++- **05:55 — 15%:** separate adversarial review passed the scoped partial results and source hold, with 72 independent assertions and byte-identical replay of all 30 author controls. No mathematical correction required. Changed only the review-status sentence in RESULTS.md and requested narrow final-hash coverage before draft publication.
++
++- **06:00 — 15%:** final header-only hash confirmed independently; the scoped package and unchanged review checks were pushed. Opened the single draft PR: https://github.com/AlecKriebel/Math/pull/38. Full target remains unsolved.
+diff --git a/unsolved_math_prioritization/attempts/2765/RESULTS.md b/unsolved_math_prioritization/attempts/2765/RESULTS.md
+new file mode 100644
+index 000000000..57b146958
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/RESULTS.md
+@@ -0,0 +1,225 @@
++# Length-function fibers of geodesic currents: scope and reductions
++
++**Status: source-scope hold; the substantive closed-surface problem remains unresolved.**
++The statements below are scoped results and classical reductions, not a new
++solution of the general closed-surface problem. Independent scoped review passed; see review/REVIEW.md.
++AI-assisted and unrefereed; no historical-priority claim.
++
++Target: **2765 / KP-2.17**, K3, Problem 2.17, printed pp. 98–99 [1].
++
++## 1. Conventions and the exact closed-surface target
++
++For Sections 2–4, S is a closed connected oriented surface of genus at least
++two. A geodesic current is a nonnegative, invariant Radon measure on the
++space of unoriented complete geodesics of the universal cover. A closed
++curve denotes its counting current, with traversal multiplicity when
++applicable. Signed measures are not allowed.
++
++Let L_X be the Liouville current of a marked hyperbolic metric X. With the
++standard intersection form i, the length function of a current μ is
++
++\[
++ \ell_X(\mu)=i(\mu,L_X).
++\]
++
++For an arbitrary closed geodesic γ, the fiber in question is
++
++\[
++ F_\gamma=\{\mu\ge0:
++   i(\mu,L_X)=i(\gamma,L_X)\ \text{for every }X\in\mathcal T(S)\}.
++ \tag{1.1}
++\]
++
++The original target asks whether every point in this fiber is a **finite
++convex combination** of closed-curve currents. Neither testing finitely
++many metrics nor replacing γ by a simple curve answers that question.
++Even finite atomicity alone would require attention to the stated convex
++normalization; it should not silently be replaced by an arbitrary positive
++linear-combination conclusion.
++
++Length-twin curves already show that the map μ↦(ell_X(μ))_X is not
++injective. The source itself records their permitted convex combinations.
++It does not say every summand of any possible decomposition must itself
++be a length twin. The stronger assertion that F_γ equals the convex hull
++of the length twins is therefore not assumed here.
++
++## 2. What metric equality really gives at the Thurston boundary
++
++**Proposition 1.** If μ∈F_γ, then
++
++\[
++ i(\mu,\lambda)=i(\gamma,\lambda)
++ \qquad\text{for every measured lamination }\lambda.
++ \tag{2.1}
++\]
++
++For any nonzero λ, Bonahon's current description of Thurston's boundary
++supplies positive numbers a_n and hyperbolic metrics X_n with
++`a_n L_{X_n} → λ` in the current topology. Multiply the equality in
++(1.1) by a_n and use continuity of the intersection form. The case λ=0
++is immediate. This proves (2.1).
++
++For **two closed curves**, Leininger [2, Theorem 1.4 and Section 5] proves
++that hyperbolic-length equivalence implies simple-intersection equivalence,
++but constructs filling pairs showing that the converse fails. His theorem
++also relates hyperbolic equivalence to trace equivalence; that relation is
++a theorem about curves, not a definition of traces for arbitrary currents.
++Jyothis [3, Theorem 1.3 and Remark 1.4] gives further examples with the
++same simple-intersection data and self-intersection number which are not
++hyperbolically equivalent. Thus replacing all Liouville tests by (2.1)
++loses information and cannot complete the argument.
++
++## 3. The simple reference case is rigid
++
++**Proposition 2.** If γ is a positive integer multiple of an essential
++simple closed curve α and μ∈F_γ, then μ=γ as currents.
++
++Here is a support proof, included to delimit the easy case. Cut S along
++α. Every component has positive genus: a separating essential curve in a
++closed surface cuts off positive genus on both sides, and a nonseparating
++cut lowers genus by one and creates two boundary circles. In each cut
++component choose finitely many simple closed curves filling it relative
++to its boundary, meaning that the complementary regions are disks and
++boundary-parallel annuli. Such a system is obtained from an interior pants
++decomposition by adding simple dual curves across its interior cuffs.
++The curves can all be chosen disjoint from α in S. Let A be their union
++together with α, realized geodesically in a fixed hyperbolic metric.
++
++Equation (2.1) gives i(μ,δ)=0 for every selected curve δ, including α.
++Positivity of the current implies that no geodesic in its support crosses
++any lift of δ transversely: a transverse crossing has a small open box of
++nearby crossing geodesics, and positive μ-mass in that box would give a
++positive contribution to the intersection number.
++
++The relative filling system now forces every supported geodesic to be a
++lift of α. Indeed, a complete hyperbolic geodesic cannot remain in a lift
++of a compact disk. A lift of a compact boundary-parallel annulus lies in
++a bounded-width neighborhood of the corresponding α-axis; a complete
++geodesic contained there has the same two ideal endpoints and hence is
++that axis. A geodesic following one of the selected interior curves meets
++another member of the filling system transversely, so is excluded as well.
++
++The measure μ is consequently supported on the discrete orbit of lifts
++of α. Invariance gives one common weight, so μ=bα for some b≥0. Evaluating
++at one hyperbolic metric, where α has positive length, gives b equal to the
++multiplicity in γ. Hence μ=γ.
++
++This proposition does not cover an arbitrary self-intersecting γ. In
++particular, if γ fills S, there is no collection of simple curves disjoint
++from γ with which to repeat the zero-intersection support argument.
++
++## 4. Compactness is not the missing atomicity theorem
++
++**Proposition 3.** For closed S, F_γ is a nonempty compact convex set.
++
++Fix X_0. Every μ in the fiber has the same positive X_0-length as γ.
++The set of currents with this fixed length is compact: equivalently one
++uses flow-invariant, flip-invariant finite measures of fixed mass on the
++compact unit tangent bundle, or the standard Liouville-normalized current
++compactness theorem [4, Proposition 2.6(1)]. Each condition in (1.1) is
++closed and affine by continuity and bilinearity of i. Their intersection
++is therefore compact and convex, and contains γ.
++
++This conclusion does not say its extreme points are closed curves.
++Krein–Milman alone supplies no such classification. Nor would a limiting
++approximation by weighted curves prove finite convex representability.
++The unproved step is precisely exclusion of non-atomic, or more general
++non-finitely-supported, positive currents in this fiber for a
++self-intersecting reference curve. The argument above stops there.
++
++## 5. A counterexample under the complete finite-area punctured convention
++
++The K3 chapter's general surface conventions include finite-type
++punctured surfaces, while Problem 2.17 itself does not explicitly say
++closed. Current conventions on noncompact surfaces require care.
++The following observation is a **scoped counterexample**, not a solution
++of the substantive closed genus-at-least-two formulation.
++
++**Proposition 4.** Let S be the thrice-punctured sphere, let metrics mean
++complete finite-area hyperbolic metrics, and let currents be Radon
++currents on that cusped surface, allowing its Liouville current. Then
++there is a non-atomic current with the same length function as a closed
++geodesic; it is not a finite convex combination of closed curves.
++
++There is only one marked complete finite-area hyperbolic structure X on
++S. This follows, for example, by the classification of the three marked
++points on the Riemann sphere under Möbius maps and uniformization;
++equivalently, an ideal hyperbolic pair of pants has no length or twist
++parameters. All permutations of the three cusps are realized by its
++isometries, so allowing an unlabelled marking does not introduce a metric
++parameter.
++
++Let L be its Liouville current. It is nonzero and non-atomic, since on
++boundary-pair charts it is a smooth measure with density proportional
++to `da db / |a-b|²`. It has finite positive X-length. One direct way to
++see finiteness is to use its associated invariant measure on T¹X: this
++is a constant multiple of Liouville volume, whose total mass is
++`2π area(X)=4π²` in the usual oriented-bundle normalization [5, Section
++3.1]. The current/flow correspondence normalizes the length of a closed
++counting current to its closed-orbit length; the harmless universal
++normalization factor does not affect finiteness or the scaling below.
++Equivalently, i(L,L) is a finite positive constant proportional to area(X).
++
++Choose a nonperipheral closed geodesic γ and put
++
++\[
++ c=\frac{\ell_X(\gamma)}{\ell_X(L)}L.
++ \tag{5.1}
++\]
++
++The scalar is finite and strictly positive. Since T(S) has just the point
++X, (5.1) is equality of the entire metric-length functions, not equality
++at a few sampled metrics. A concrete standard model is H²/Γ(2): with
++
++\[
++ A=\begin{pmatrix}1&2\\0&1\end{pmatrix},\qquad
++ B=\begin{pmatrix}1&0\\2&1\end{pmatrix},
++\]
++
++the element AB has trace 6 and gives a closed geodesic of length
++`2 arcosh(3)>0`.
++
++Every finite combination of closed counting currents is atomic on a
++countable union of lift orbits. The current c is a nonzero non-atomic
++measure, so no such combination represents it. This proves the scoped
++counterexample.
++
++There is an essential convention boundary. A compact hyperbolic pair of
++pants whose three geodesic-boundary lengths are allowed to vary has a
++three-parameter metric space, not the singleton used here. Moreover,
++working with currents on a compact core with geodesic boundary instead
++of currents on its cusped interior changes the current space. Trin
++[5, Proposition 2.2] explains why the cusped metric's length function is
++not represented by a Liouville current in that compact-core space.
++Neither variant is silently identified with Proposition 4.
++
++## 6. Disposition
++
++The broad finite-area punctured reading needs an explicit low-complexity
++exclusion or a different current convention. For the closed-surface
++version, we have only classical boundary-data reductions, the simple
++reference case, and a compact-fiber formulation. No finite-support or
++convex-decomposition theorem for an arbitrary closed geodesic was proved.
++Retain **unsolved / source-scope hold**, with no novel-solution credit.
++
++## References
++
++1. R. İ. Baykur, R. C. Kirby, D. Ruberman, *K3: A New Problem List in
++   Low-Dimensional Topology*, author-hosted preliminary book, Chapter 2
++   conventions p. 84 and Problem 2.17 pp. 98–99. Proposed/scribed by
++   T. Aougab and P. Patel.
++   https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf
++2. C. J. Leininger, *Equivalent curves in surfaces*, Geometriae Dedicata
++   102 (2003), 151–177, Theorems 1.4, 5.1–5.2 and Corollary 5.4.
++   https://arxiv.org/abs/math/0302280
++3. M. Jyothis, *Towards Ivanov's meta-conjecture for geodesic currents*,
++   arXiv:2309.14532v3, 19 February 2025, Theorem 1.3 and Remark 1.4.
++   https://arxiv.org/abs/2309.14532v3
++4. M. Burger, A. Iozzi, A. Parreau, M. B. Pozzetti, *Currents, systoles,
++   and compactifications of character varieties*, Proc. London Math.
++   Soc. 123 (2021), 565–596, especially Section 2 and Proposition 2.6.
++   https://people.math.ethz.ch/~burger/pub/2021_Currents_systoles.pdf
++5. M. Trin, *Thurston's compactification via geodesic currents: the case
++   of non-compact finite area surfaces*, Ann. Inst. Fourier 74 (2024),
++   2461–2486; arXiv:2208.10763, Sections 2 and 3.1.
++   https://aif.centre-mersenne.org/item/10.5802/aif.3625.pdf
+diff --git a/unsolved_math_prioritization/attempts/2765/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/2765/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..ec753726e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/SOURCE_AUDIT.md
+@@ -0,0 +1,51 @@
++# Source audit and exact scope
++
++Checked 2026-09-30 for 2765 / KP-2.17.
++
++The pinned record and its full background were read. Its cited AIM URL
++https://aimath.org/pastworkshops/kirbylistrep.pdf
++currently gives a four-page workshop summary, not the actual numbered
++problem list. The full author-hosted K3 book was located independently:
++https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf
++
++The exact problem is on printed p. 98, with its explanatory length-twin
++example and attribution on p. 99. Both pages were visually checked.
++Chapter 2's conventions, printed p. 84, say surfaces are oriented and
++finite type by default, allowing boundary and punctures. Section 2.4
++introduces hyperbolic metrics and Teichmüller space. Problem 2.17 does
++not explicitly say closed or exclude the thrice-punctured sphere. The
++book's source PDFs are not redistributed; the author-hosted copy expressly
++restricts reposting. Only URLs, individual source records and hashes are
++included in the repository package.
++
++For the mathematically substantive closed genus-at-least-two version,
++we fix the usual nonnegative Radon-current convention and the length
++pairing against every marked hyperbolic metric. The reference curve may
++self-intersect. It is not restricted to simple curves.
++
++Leininger's full introductory theorem and current/compactification
++Section 5 were read. Hyperbolic equivalence is stronger than simple
++intersection equivalence; the converse fails even for filling closed
++curves. Jyothis's current v3 (19 February 2025), Theorem 1.3 and Remark
++1.4, was checked rather than relying on older-version abstract snippets.
++It reinforces this distinction and does not classify the current fiber
++of one hyperbolic length function.
++
++Burger–Iozzi–Parreau–Pozzetti's Section 2 was checked for positivity,
++Liouville examples, intersection and compact normalized slices. Trin's
++published/author version was checked for finite-area conventions,
++Liouville-flow volume, and the compact-core current-space obstruction.
++The latter distinction is necessary for the scoped punctured example.
++
++The simple-reference support argument and punctured singleton example
++are not promoted as novel resolutions. The remaining closed-surface
++atomicity/convex-decomposition step is unproved. A bounded search found
++no full resolution, but no exhaustive open-status or priority claim is
++made. No researchers were contacted.
++
++Prior-attempt gate: all-state PR searches by numeric ID, KP code and
++geodesic-current wording, remote branch search, repository path search,
++queue row and related-target groups were checked. No earlier attempt
++was found. Initial row: rank 54, queued, 0/5. There is no prior report
++for KP-2.17 in the pinned research_results dataset; prior_report.json
++therefore records null. The problem code has a unique source-record join.
+diff --git a/unsolved_math_prioritization/attempts/2765/attempt.json b/unsolved_math_prioritization/attempts/2765/attempt.json
+new file mode 100644
+index 000000000..a8e12a6e4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/attempt.json
+@@ -0,0 +1,28 @@
++{
++  "id": "2765",
++  "problem_number": "KP-2.17",
++  "queue_rank_at_start": 54,
++  "status": "unsolved_source_scope_hold",
++  "recommended_queue_status": "unsolved",
++  "model_selected": "gpt-6-astra",
++  "reasoning_effort_selected": "xhigh",
++  "started_at": "2026-09-30T05:12:00Z",
++  "deadline": "2026-09-30T07:12:00Z",
++  "substantive_attempts_used": 2,
++  "substantive_attempt_limit": 5,
++  "full_closed_surface_resolution_claimed": false,
++  "novel_result_claimed": false,
++  "exact_remaining_gap": "Exclude non-finitely-supported positive currents and prove finite convex decomposition for an arbitrary self-intersecting reference geodesic on a closed surface.",
++  "scope_warning": "Complete finite-area thrice-punctured surfaces admit a scaled non-atomic Liouville example; different from compact-core currents or variable geodesic-boundary metrics.",
++  "previous_attempt_found": false,
++  "prior_report_present": false,
++  "source_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "results_sha256": "d3c44c82d2ffb2d20080288821381c8fe4e4e79b6d632bfe5c93b94c71716115",
++  "shared_queue_modified": false,
++  "remote_branch": "dot/math-2765",
++  "pull_request": "https://github.com/AlecKriebel/Math/pull/38",
++  "completion_estimate_percent_full_target": 15,
++  "independent_review": "PASS_PARTIAL_SOURCE_SCOPE",
++  "reviewed_original_sha256": "45784cd0addcd047c60dd9f6dc6b7f7a031fdef595c5293ac1c91c7937a35d59",
++  "independent_assertions_passed": 72
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/pr_body.md b/unsolved_math_prioritization/attempts/2765/pr_body.md
+new file mode 100644
+index 000000000..61422a214
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/pr_body.md
+@@ -0,0 +1,15 @@
++## Scope clarification and partial reductions
++
++The substantive closed genus-at-least-two version of KP2.17 remains **unsolved**. This package does not classify currents having the full hyperbolic length function of an arbitrary self-intersecting closed geodesic.
++
++It records the exact all-metric Liouville-intersection fiber, the classical reduction to measured-lamination intersection data (whose converse fails), compact convex fibers, and rigidity for a simple reference curve. Compactness and finite matrix tests are not substituted for a finite-support theorem.
++
++There is a scoped counterexample under the complete finite-area punctured-surface convention: the thrice-punctured sphere has singleton Teichmüller space, and a scaled non-atomic Liouville current matches any chosen nonperipheral closed-geodesic length. This convention must be distinguished from a compact-core current space or a pair of pants with variable boundary lengths. The K3 book's broad chapter conventions and the problem's unstated closedness make this a source-scope issue; no campaign closed-surface solution or historical-priority credit is claimed.
++
++The actual original question is in the K3 book, printed pp.98–99. The dataset's AIM URL points only to a four-page workshop summary. Full source pointers, the current Leininger/Jyothis equivalence distinctions and the noncompact-current caveat are included.
++
++## Review and checks
++
++Separate adversarial mathematical/source review passed for this explicitly partial scope, with 72 independent exact assertions. It is included before this draft opens. Run `python3 unsolved_math_prioritization/attempts/2765/verify.py` (SymPy1.14.0). It passes 30 exact matrix/free-word controls, including the explicit hyperbolic Γ(2) element and a generic trace-reversal identity. These are not finite tests of the full all-Teichmüller-space current condition.
++
++Actual model: gpt-6-astra xhigh. Two substantive attempts, then a precise stop at the closed-surface finite-support/convex-decomposition gap. The coordinator owns the QUEUE update to unsolved.
+diff --git a/unsolved_math_prioritization/attempts/2765/prior_report.json b/unsolved_math_prioritization/attempts/2765/prior_report.json
+new file mode 100644
+index 000000000..19765bd50
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/prior_report.json
+@@ -0,0 +1 @@
++null
+diff --git a/unsolved_math_prioritization/attempts/2765/review/REVIEW.md b/unsolved_math_prioritization/attempts/2765/review/REVIEW.md
+new file mode 100644
+index 000000000..a07f4f5e6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/review/REVIEW.md
+@@ -0,0 +1,140 @@
++# Independent review of KP-2.17 / 2765
++
++**Verdict: PASS for the explicitly scoped partial results and source-scope hold. The general closed-surface problem remains unresolved.**
++
++Reviewed on 2026-09-30 by a separate GPT-6 Astra agent at xhigh reasoning. This is an adversarial AI review, not external peer review, and it establishes no historical priority.
++
++The frozen artifact is RESULTS.md, SHA-256:
++
++45784cd0addcd047c60dd9f6dc6b7f7a031fdef595c5293ac1c91c7937a35d59
++
++Both initially supplied copies had this hash. The reviewer did not edit the author artifact. The review also examined SOURCE_AUDIT.md, the source manifest, the exact checker and its recorded output.
++
++## 1. Exact source and scope
++
++The author-hosted K3 book was inspected at Chapter 2's conventions, printed p. 84; the opening of §2.4, p. 96; and Problem 2.17 with its remarks, pp. 98–99. The last two pages were checked visually. The pinned record agrees with the actual numbered problem. The linked AIM workshop report is not the numbered problem list.
++
++K3 uses oriented finite-type surfaces by default, allowing punctures and boundary. Section 2.4 discusses complete hyperbolic metrics; it does **not explicitly add finite area** there. Problem 2.17 neither restricts its reference geodesic to be simple nor expressly fixes a noncompact current convention. Its conclusion concerns a convex combination of closed curves. The length-twin example illustrates an allowed phenomenon, without asserting that every possible summand must itself be a length twin.
++
++Accordingly, Proposition 4 is a correct counterexample to the **separately stated complete finite-area, cusped, Radon-current interpretation**. It is not a convention-free answer to the source question. The package already makes this distinction and appropriately retains its unresolved status.
++
++Source: [K3, author-hosted preliminary book](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf).
++
++## 2. All metrics imply lamination data, but the converse is unavailable
++
++For a closed oriented surface of genus at least two, Bonahon's realization of the Thurston boundary in projective current space permits a sequence of positive rescalings of Liouville currents to converge to any nonzero measured lamination. Applying the continuous intersection pairing to the fixed current difference proves Proposition 1. This does not require defining a trace function for an arbitrary current.
++
++Leininger's Theorem 1.4 explicitly distinguishes hyperbolic equivalence from simple-intersection equivalence, with filling-curve counterexamples to the reverse implication. Theorems 5.1–5.2 give the current and compactification facts used here. Equality against simple curves extends to measured laminations by density and continuity, so those counterexamples also obstruct reversing the package's lamination-data implication. Jyothis's Theorem 1.3 and Remark 1.4 add equal-self-intersection examples; they do not repair the reverse implication.
++
++No step in the package substitutes equality against measured laminations for equality against all Liouville currents. The latter is retained in the definition of the fiber and in the final unresolved target.
++
++Sources: [Leininger, *Equivalent curves in surfaces*](https://arxiv.org/abs/math/0302280), [Jyothis, v3](https://arxiv.org/abs/2309.14532v3).
++
++## 3. Simple-reference rigidity
++
++Proposition 2 is valid for every positive integral multiple of an essential simple closed curve on the specified closed surface.
++
++The relevant topology has no hidden pair-of-pants exception. Cutting along a separating essential simple curve gives components of positive genus with one boundary component each. Cutting along a nonseparating curve gives genus \(g-1\geq1\) and two boundary components. On each such component, a pants decomposition together with simple dual curves gives a finite relative filling system disjoint from the original curve. Interior cuffs are crossed by their duals; the duals are themselves crossed by cuffs. The system can be chosen so that its complementary regions are disks and collars of the original boundary components.
++
++The support argument needs positivity, which is part of the stated current convention. If a support geodesic crossed a chosen test curve, the crossing would persist in an open neighborhood in geodesic space. A small crossing box, projected to a fundamental segment of the test curve, would contribute strictly positive intersection. Thus zero intersection excludes every such support geodesic, not merely almost every chosen representative.
++
++After realizing the finite system geodesically:
++
++- A different complete geodesic cannot touch an edge and then turn along it. Tangency of hyperbolic geodesics forces coincidence.
++- A geodesic avoiding the arrangement lies in a single complementary lift. A disk lift is bounded, so contains no complete hyperbolic geodesic.
++- A lift of a compact boundary collar lies at bounded distance from the associated boundary axis. A complete geodesic contained there must have that axis's two ideal endpoints and must equal the axis.
++- The chosen interior axes are excluded because another selected curve crosses them.
++
++Consequently, the support consists only of lifts of the reference simple curve. This is a discrete orbit in geodesic space; Radon local finiteness and invariance give a common finite atomic weight. Equality at one metric determines that weight. In particular, a diffuse current, or a positive measure on spiraling geodesics, cannot evade the support argument.
++
++This reasoning fundamentally uses the simple reference's zero-intersection tests. A filling self-intersecting reference has no analogous disjoint simple filling system. The proposition does not address that case.
++
++## 4. Compact fiber
++
++Proposition 3 is correct under the closed-surface hypotheses.
++
++Burger–Iozzi–Parreau–Pozzetti, Proposition 2.6(1), gives compactness of a fixed positive Liouville-length slice when the carrier lies in a fixed compact set. Here that compact set is the entire closed surface. Their Theorem 2.4 supplies the needed continuity. A nonconstant closed geodesic has positive length, so rescaling reduces the asserted slice to the normalized one. Intersecting with all the closed affine equations defining the fiber preserves compactness and convexity; the reference current ensures nonemptiness.
++
++Equivalently, the current/flow correspondence identifies the fixed length with a fixed mass, up to a universal convention factor, on the compact unit tangent bundle. This alternative agrees with the directly cited compactness theorem.
++
++No extreme-point classification follows. Compactness permits limits with new support, and Krein–Milman does not identify extreme points with closed curves. Even a prospective finite-support theorem would still need to address the exact convex conclusion. The package correctly preserves both limitations.
++
++Source: [Burger–Iozzi–Parreau–Pozzetti, §2](https://people.math.ethz.ch/~burger/pub/2021_Currents_systoles.pdf).
++
++## 5. The thrice-punctured example
++
++Under the explicit conventions in Proposition 4, all parts of the example are correct.
++
++### The metric family really is a singleton
++
++Three distinct marked punctures on the Riemann sphere can be moved to \(0,1,\infty\) by a unique Möbius transformation; uniformization gives the unique complete finite-area hyperbolic metric. The pure mapping class group introduces no additional marked parameter, and cusp permutations are realized by isometries. Thus scaling the Liouville current to match one nonperipheral geodesic does match the entire stated metric-length function.
++
++This is stronger than checking finitely many points in a positive-dimensional Teichmüller space. The zero-dimensional parameter count alone would not establish uniqueness; the uniformization argument does.
++
++### The current and its length are admissible
++
++The Liouville density on pairs of distinct ideal endpoints is smooth and positive. It is locally finite on the geodesic space, since compact sets stay away from the diagonal. It is therefore a nonzero, nonatomic invariant Radon current.
++
++The passage from finite Liouville flow volume to finite current length is legitimate, without assuming continuity of the full intersection form in the cusped current space. A direct verification uses the intersection point and the two unoriented tangent directions as coordinates for a transverse pair of geodesics. The product Liouville measure in these coordinates is a fixed positive multiple of
++
++\[
++ |\sin(\theta-\phi)|\,d\operatorname{Area}\,d\theta\,d\phi .
++\]
++
++The angular integral over \([0,\pi)^2\) equals \(2\pi\). Tonelli's theorem therefore makes the self-intersection a finite positive multiple of hyperbolic area. This is also the local Crofton/current-flow identification underlying the length normalization. The precise universal factor is immaterial to the ratio in equation (5.1).
++
++Trin's published §3.1 records total oriented Liouville flow volume \(4\pi^2|\chi(S)|\), which is \(4\pi^2\) here. No assertion that this whole oriented volume equals the author's normalized current length is required.
++
++### The concrete geodesic and nonatomic obstruction
++
++In the principal level-two subgroup, the matrices in the package give
++
++\[
++ AB=\begin{pmatrix}5&2\\2&1\end{pmatrix},
++ \qquad \operatorname{tr}(AB)=6,\qquad
++ \lambda_{\pm}=3\pm2\sqrt2 .
++\]
++
++The element is hyperbolic, with translation length \(2\operatorname{arcosh}(3)>0\). It supplies a nonperipheral closed geodesic on the thrice-punctured sphere.
++
++Any finite positive combination of closed counting currents is supported on a countable union of lift orbits and is atomic. A nonzero scalar multiple of the Liouville current assigns zero mass to every such countable set, so cannot equal that combination. This excludes finite convex combinations in particular.
++
++### Convention controls
++
++The three cusp lengths are fixed at zero in this construction. Allowing positive geodesic-boundary lengths produces a three-parameter pair-of-pants family. Attaching funnels to the geodesic boundaries gives a complete infinite-area surface homeomorphic to the thrice-punctured sphere, so “complete” alone does not imply the finite-area singleton convention.
++
++Trin's Proposition 2.2 concerns currents on a compact surface with geodesic boundary. It rules out representing all cusped metric lengths by one current in that different compact-core space. Her example of discontinuous intersection on cusped currents also prevents importing closed-surface continuity indiscriminately. The package uses neither identification; its closed arguments and its cusped example are properly separated.
++
++Source: [Trin, published 2024 version, §§2–3.1](https://aif.centre-mersenne.org/item/10.5802/aif.3625.pdf).
++
++## 6. Independent exact controls
++
++The author's checker was rerun with SymPy 1.14.0. Its 30-assertion JSON receipt reproduced byte for byte.
++
++The separate independent_checks.py passes **72 exact assertions**. It independently:
++
++1. Constructs the full six-element \(\mathrm{SL}_2(\mathbb F_2)\) quotient and its regular coset permutations. The elliptic generators have no fixed cosets; the parabolic has three cycles of width two. The usual modular-surface signature calculation gives genus zero and three cusps.
++2. Checks the level-two matrices, three distinct cusp fixed points, the hyperbolic word, reciprocal eigenvalues, and the exact trace recurrence for its powers.
++3. Verifies the two word classes are distinct even up to unoriented cyclic conjugacy and are not proper powers.
++4. Expands the trace-reversal identity in eight independent matrix-entry variables, rather than adopting the author's diagonal determinant-one parametrization. A different-word negative control does not satisfy the polynomial identity.
++5. Checks the finite angular factor, Gauss–Bonnet area, and oriented tangent-volume normalization.
++
++These controls do not certify a theorem about an infinite-dimensional current space or a continuum of metrics. The topological support and analytic compactness arguments were audited separately above.
++
++Reproduce from this review directory:
++
++    python independent_checks.py > independent_results.json
++
++All six local source PDFs match the author's frozen provenance hashes. The relevant published Trin theorem and Burger–Iozzi–Parreau–Pozzetti compactness statement were also checked through their public primary sources. A bounded current literature check identified no basis to promote this package to a full closed-surface solution; no exhaustive priority claim is made.
++
++## 7. Publication disposition
++
++The reviewed mathematical claims may be published as **partial results with an unresolved/source-scope-hold status**, accompanied by this review and the precise conventions. No source-artifact correction is required for this verdict.
++
++The remaining full target is to control the positive current fiber of an arbitrary, potentially self-intersecting closed reference geodesic on a closed surface of genus at least two, including the finite convex-combination conclusion. Neither the simple-reference theorem, compactness, equality against measured laminations, nor the conditional \(S_{0,3}\) example resolves it.
++
++## Final artifact hash coverage
++
++On 2026-09-30, the final repository copy of RESULTS.md was checked against the original reviewed bytes. Its only change replaces the pending-review sentence with a statement that the scoped review passed and a link to this report. Exact byte replacement reproduces the complete final file; all mathematical statements and scope qualifications are unchanged. The PASS_PARTIAL_SOURCE_SCOPE verdict therefore also covers final SHA-256:
++
++d3c44c82d2ffb2d20080288821381c8fe4e4e79b6d632bfe5c93b94c71716115
+diff --git a/unsolved_math_prioritization/attempts/2765/review/independent_checks.py b/unsolved_math_prioritization/attempts/2765/review/independent_checks.py
+new file mode 100644
+index 000000000..b670ffa06
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/review/independent_checks.py
+@@ -0,0 +1,147 @@
++#!/usr/bin/env python3
++"""Exact controls for review of KP-2.17; not a test of all current length functions.
++
++Run: python independent_checks.py > independent_results.json
++Python standard library plus SymPy are used. All checks are exact.
++"""
++from collections import Counter, deque
++from itertools import product
++import json
++import sympy as sp
++
++counts = Counter()
++def check(condition, category):
++    assert bool(condition), category
++    counts[category] += 1
++
++I = (1, 0, 0, 1)
++S = (0, -1, 1, 0)
++T = (1, 1, 0, 1)
++A = (1, 2, 0, 1)
++B = (1, 0, 2, 1)
++def mul(x,y):
++    a,b,c,d=x; e,f,g,h=y
++    return (a*e+b*g,a*f+b*h,c*e+d*g,c*f+d*h)
++def inv(x):
++    a,b,c,d=x
++    return (d,-b,-c,a)
++def det(x):
++    a,b,c,d=x
++    return a*d-b*c
++def tr(x):
++    return x[0]+x[3]
++def mod2(x):
++    return tuple(z%2 for z in x)
++def power(x,k):
++    out=I
++    for _ in range(k): out=mul(out,x)
++    return out
++def cycles(permutation):
++    remaining=set(permutation)
++    result=[]
++    while remaining:
++        start=min(remaining); c=[]; at=start
++        while at not in c:
++            c.append(at); remaining.remove(at); at=permutation[at]
++        check(at==start, 'permutation_cycles_close')
++        result.append(c)
++    return result
++
++# Independently construct SL(2,F_2), rather than assuming Gamma(2)'s index.
++group={mod2(I)}; queue=deque(group)
++while queue:
++    x=queue.popleft()
++    for y in [S,T]:
++        z=mod2(mul(x,y))
++        if z not in group:
++            group.add(z); queue.append(z)
++all_sl2={x for x in product(range(2),repeat=4) if det(x)%2==1}
++check(group==all_sl2, 'mod_two_quotient_generated')
++check(len(group)==6, 'principal_level_two_index')
++for x in group:
++    check(mod2(mul(x,inv(x)))==I, 'mod_two_group_inverses')
++perms=[]
++for generator in [S,mul(S,T),T]:
++    perm={x:mod2(mul(x,generator)) for x in group}
++    check(set(perm.values())==group, 'regular_coset_permutations')
++    perms.append(cycles(perm))
++check(sorted(map(len,perms[0]))==[2,2,2], 'no_order_two_elliptic_fixed_cosets')
++check(sorted(map(len,perms[1]))==[3,3], 'no_order_three_elliptic_fixed_cosets')
++check(sorted(map(len,perms[2]))==[2,2,2], 'three_cusps_width_two')
++index=len(group); cusps=len(perms[2])
++orbifold_area_over_pi=sp.Rational(index,3)
++genus=(orbifold_area_over_pi/2 + 2 - cusps)/2
++check(orbifold_area_over_pi==2 and genus==0, 'thrice_punctured_sphere_signature')
++check(6*genus-6+2*cusps==0, 'finite_area_teichmuller_dimension_only')
++check(6*genus-6+3*cusps==3, 'variable_geodesic_boundary_dimension_control')
++
++# Matrices belonging to Gamma(2), with the three different cusp fixed points.
++C=mul(A,inv(B)); H=mul(A,B)
++for x in [A,B,C,H]:
++    check(det(x)==1, 'exact_determinants')
++    check(mod2(x)==I, 'exact_level_two_membership')
++check(tr(A)==2 and tr(B)==2 and tr(C)==-2, 'parabolic_cusp_traces')
++for matrix,point in [(A,(1,0)),(B,(0,1)),(C,(1,1))]:
++    a,b,c,d=matrix; p,q=point
++    check((a*p+b*q)*q-(c*p+d*q)*p==0, 'projective_cusp_fixed_points')
++check(len({(1,0),(0,1),(1,1)})==3, 'distinct_mod_two_cusp_classes')
++check(H==(5,2,2,1) and tr(H)==6, 'closed_geodesic_matrix')
++z=sp.symbols('z')
++check(z*z-tr(H)*z+det(H)==z*z-6*z+1, 'closed_geodesic_characteristic_polynomial')
++lam=3+2*sp.sqrt(2)
++check(sp.expand(lam**2-6*lam+1)==0, 'exact_expanding_eigenvalue')
++check(lam>1 and sp.simplify(lam*(3-2*sp.sqrt(2)))==1, 'positive_hyperbolic_translation_length')
++trace_sequence=[tr(power(H,k)) for k in range(10)]
++for k in range(2,10):
++    check(trace_sequence[k]==6*trace_sequence[k-1]-trace_sequence[k-2], 'closed_word_powers_recurrence')
++    check(trace_sequence[k]>trace_sequence[k-1]>2, 'closed_word_powers_hyperbolic')
++
++# Universal polynomial control in eight unconstrained matrix entries.
++# This differs from testing a generic diagonal SL2 pair.
++entries=sp.symbols('a b c d e f g h')
++M=sp.Matrix(2,2,entries[:4]); N=sp.Matrix(2,2,entries[4:])
++word='aababb'; reverse=word[::-1]
++def evaluate(w,first,second):
++    out=sp.eye(2)
++    for letter in w:
++        out=out*{'a':first,'b':second}[letter]
++    return out
++difference=sp.expand(sp.trace(evaluate(word,M,N))-sp.trace(evaluate(reverse,M,N)))
++check(difference==0, 'universal_two_matrix_trace_reversal_polynomial')
++def rotations(w):
++    return {w[k:]+w[:k] for k in range(len(w))}
++inverse=''.join(c.swapcase() for c in word[::-1])
++check(reverse not in rotations(word), 'distinct_free_conjugacy_classes')
++check(reverse not in rotations(inverse), 'distinct_unoriented_free_conjugacy_classes')
++for w in [word,reverse]:
++    for period in [1,2,3]:
++        check(w != w[:period]*(len(w)//period), 'primitive_free_words')
++# Demonstrate that reversal cannot just be substituted with an arbitrary word.
++other='aaabbb'
++check(sp.expand(sp.trace(evaluate(word,M,N))-sp.trace(evaluate(other,M,N)))!=0,
++      'nonidentity_trace_negative_control')
++
++# The finite angle factor in the local Liouville self-intersection integral.
++theta,phi=sp.symbols('theta phi',real=True)
++angle_factor=2*sp.integrate(sp.integrate(sp.sin(theta-phi),(phi,0,theta)),(theta,0,sp.pi))
++check(sp.simplify(angle_factor-2*sp.pi)==0, 'positive_finite_liouville_angle_factor')
++# Gauss--Bonnet and oriented unit tangent volume; no arbitrary normalization fixed.
++chi=2-2*genus-cusps
++check(chi==-1, 'surface_euler_characteristic')
++check(-2*sp.pi*chi==2*sp.pi, 'finite_area_gauss_bonnet')
++check(2*sp.pi*(-2*sp.pi*chi)==4*sp.pi**2, 'oriented_unit_tangent_liouville_volume')
++
++print(json.dumps({
++    'status':'PASS',
++    'sympy_version':sp.__version__,
++    'assertions':sum(counts.values()),
++    'checks':dict(counts),
++    'mod_two_quotient_order':len(group),
++    'cusp_widths':sorted(map(len,perms[2])),
++    'closed_word_matrix':list(H),
++    'closed_word_trace':tr(H),
++    'trace_control_words':[word,reverse],
++    'scope':'Finite exact quotient, matrix, word, polynomial and normalization controls. '
++            'They do not prove compactness, relative filling, the current/flow correspondence, '
++            'or equality against all hyperbolic metrics. Those are audited in REVIEW.md.'
++},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2765/review/independent_results.json b/unsolved_math_prioritization/attempts/2765/review/independent_results.json
+new file mode 100644
+index 000000000..4aa2aa842
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/review/independent_results.json
+@@ -0,0 +1,56 @@
++{
++  "status": "PASS",
++  "sympy_version": "1.14.0",
++  "assertions": 72,
++  "checks": {
++    "mod_two_quotient_generated": 1,
++    "principal_level_two_index": 1,
++    "mod_two_group_inverses": 6,
++    "regular_coset_permutations": 3,
++    "permutation_cycles_close": 8,
++    "no_order_two_elliptic_fixed_cosets": 1,
++    "no_order_three_elliptic_fixed_cosets": 1,
++    "three_cusps_width_two": 1,
++    "thrice_punctured_sphere_signature": 1,
++    "finite_area_teichmuller_dimension_only": 1,
++    "variable_geodesic_boundary_dimension_control": 1,
++    "exact_determinants": 4,
++    "exact_level_two_membership": 4,
++    "parabolic_cusp_traces": 1,
++    "projective_cusp_fixed_points": 3,
++    "distinct_mod_two_cusp_classes": 1,
++    "closed_geodesic_matrix": 1,
++    "closed_geodesic_characteristic_polynomial": 1,
++    "exact_expanding_eigenvalue": 1,
++    "positive_hyperbolic_translation_length": 1,
++    "closed_word_powers_recurrence": 8,
++    "closed_word_powers_hyperbolic": 8,
++    "universal_two_matrix_trace_reversal_polynomial": 1,
++    "distinct_free_conjugacy_classes": 1,
++    "distinct_unoriented_free_conjugacy_classes": 1,
++    "primitive_free_words": 6,
++    "nonidentity_trace_negative_control": 1,
++    "positive_finite_liouville_angle_factor": 1,
++    "surface_euler_characteristic": 1,
++    "finite_area_gauss_bonnet": 1,
++    "oriented_unit_tangent_liouville_volume": 1
++  },
++  "mod_two_quotient_order": 6,
++  "cusp_widths": [
++    2,
++    2,
++    2
++  ],
++  "closed_word_matrix": [
++    5,
++    2,
++    2,
++    1
++  ],
++  "closed_word_trace": 6,
++  "trace_control_words": [
++    "aababb",
++    "bbabaa"
++  ],
++  "scope": "Finite exact quotient, matrix, word, polynomial and normalization controls. They do not prove compactness, relative filling, the current/flow correspondence, or equality against all hyperbolic metrics. Those are audited in REVIEW.md."
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/review/review_summary.json b/unsolved_math_prioritization/attempts/2765/review/review_summary.json
+new file mode 100644
+index 000000000..07612339c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/review/review_summary.json
+@@ -0,0 +1,35 @@
++{
++  "problem_id": 2765,
++  "problem_code": "KP-2.17",
++  "reviewed_at_utc": "2026-09-30",
++  "verdict": "PASS_PARTIAL_SOURCE_SCOPE",
++  "author_artifact": "RESULTS.md",
++  "author_sha256": "d3c44c82d2ffb2d20080288821381c8fe4e4e79b6d632bfe5c93b94c71716115",
++  "reviewer_model": "gpt-6-astra",
++  "reviewer_reasoning": "xhigh",
++  "independent_assertions": 72,
++  "author_assertions_reproduced": 30,
++  "author_receipt_byte_identical": true,
++  "full_closed_surface_target": "unresolved",
++  "scoped_counterexample": "Complete finite-area S_0,3 with cusped Radon currents admitting Liouville current only",
++  "novelty": "No claim",
++  "required_corrections": [],
++  "scope_qualifications": [
++    "K3 explicitly says complete metrics but does not itself impose finite area or a unique noncompact current convention.",
++    "The conditional S_0,3 example does not settle the closed genus >= 2 target.",
++    "All-metric equality implies measured-lamination tests; the converse cannot be used.",
++    "Compactness is not a finite-support or finite-convex-decomposition theorem.",
++    "Finite exact controls do not certify continuum current or metric claims."
++  ],
++  "files": {
++    "REVIEW.md": "8f02671b88b1cdf6e887d087780d3b191672db35e67a8320be3601cbe3834896",
++    "independent_checks.py": "3218205615b86eae0f62b428af7e2718f05c34d13d8c59feea2db06ebefbd70c",
++    "independent_results.json": "863573822215b96c505034148b25a1d02084fb5de6a5bb64e0d718ce469669bc"
++  },
++  "original_author_sha256": "45784cd0addcd047c60dd9f6dc6b7f7a031fdef595c5293ac1c91c7937a35d59",
++  "final_hash_verification": {
++    "date_utc": "2026-09-30",
++    "method": "Exact byte replacement of the single review-status sentence; no other changes",
++    "mathematics_unchanged": true
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/source_provenance.json b/unsolved_math_prioritization/attempts/2765/source_provenance.json
+new file mode 100644
+index 000000000..f4929decc
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/source_provenance.json
+@@ -0,0 +1,41 @@
++{
++  "checked_at": "2026-09-30",
++  "sources": [
++    {
++      "local_basename": "K3-book.pdf",
++      "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
++      "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++      "bytes": 6578041
++    },
++    {
++      "local_basename": "k3.pdf",
++      "url": "https://aimath.org/pastworkshops/kirbylistrep.pdf",
++      "sha256": "02aebaf8acf36d227ce25409680d1b4d2a596da71eaa687e1be251f64c9ed2c1",
++      "bytes": 96371
++    },
++    {
++      "local_basename": "leininger.pdf",
++      "url": "https://arxiv.org/pdf/math/0302280",
++      "sha256": "9e4ca833c72bd47c4c175200c5f7d4bb4f2d19a965237e0c8e0b0a936a415215",
++      "bytes": 321891
++    },
++    {
++      "local_basename": "jyothis.pdf",
++      "url": "https://arxiv.org/pdf/2309.14532v3",
++      "sha256": "98f4a1c7cf3d3bd6f785f68b5c763258f89b2f961dfa341f8346c69fdf9bae0f",
++      "bytes": 1484968
++    },
++    {
++      "local_basename": "trin.pdf",
++      "url": "https://arxiv.org/pdf/2208.10763v2",
++      "sha256": "673875ba255d3c9c16c1ecdddff1b60078d1320e8584c37d8fed5c46285bd0ad",
++      "bytes": 837917
++    },
++    {
++      "local_basename": "burger-et-al.pdf",
++      "url": "https://people.math.ethz.ch/~burger/pub/2021_Currents_systoles.pdf",
++      "sha256": "98ec447b6b52977938553ce82987f63efff65f26da9463020dd19b444ea87be9",
++      "bytes": 662570
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/source_record.json b/unsolved_math_prioritization/attempts/2765/source_record.json
+new file mode 100644
+index 000000000..efa321caf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2765,
++  "problem_number": "KP-2.17",
++  "title": "Kirby Problem 2.17",
++  "statement": "Suppose that $c$ is a geodesic current on a hyperbolic surface,\nand suppose that, on the space of hyperbolic metrics on the surface, $c$ has the same\nlength function as a closed geodesic.\nMust $c$ be a convex combination of closed\ncurves?",
++  "background": "Source: Kirby's Problems in Low-Dimensional Topology notes. Original problem number: KP-2.17.\n\nLiterature notes:\n(1) For an introduction to the theory of geodesic currents in general, see the\nfoundational work of Bonahon [Bon86, Bon88], as well as the contem-\nporary book of Erlandsson\u2013Souto [ES22].\n(2) As an example, suppose that $c_{1}$ and $c_{2}$ are so-called \u201clength-twins,\u201d i.e.,\nnon-homotopic closed curves that have the same length in any hyperbolic\nmetric. Then the geodesic current $\\frac{1}{2}c_{1}+\\frac{1}{2}c_{2}$ is not a closed curve, but it\nwill also have the same length as $c_{1}$ and $c_{2}$. It is a convex combination of\n$c_{1}$ and $c_{2}$; thus, the question asks whether there exists some more exotic\ntype of current (for example one whose support in $\\mathbb{H}^{2}$ is not a discrete set\nof geodesics) that can also have the same length as either $c_{1}$ or $c_{2}$.\n\nReferences cited:\n- [Bon86] Francis Bonahon. Bouts des vari\u00e9t\u00e9s hyperboliques de dimension 3. Annals of Mathematics, 124(1):71\u2013158, 1986. URL: http://www.jstor.org/stable/1971388.\n- [Bon88] Francis Bonahon. The geometry of Teichm\u00fcller space via geodesic currents. Inventiones mathematicae, 92(1):139\u2013162, 1988. doi:10.1007/BF01393996.\n- [ES22] Viveka Erlandsson and Juan Souto. Mirzakhani\u2019s curve counting and geodesic currents, volume 345 of Progress in Mathematics. Birkh\u00e4user/Springer, Cham, [2022] \u00a92022. doi:10.1007/978-3-031-08705-9.\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** open  \n**Classification:** OPEN-TRIAGE\n\n**Current literature assessment.** Length-twin convex combinations demonstrate the permitted phenomenon, but no classification excluding or constructing exotic geodesic currents was verified.\n\n**Verified partial progress.**\n\n- Convex combinations of length-twin closed curves have the same metric length function.\n\n**Full solution or refutation.**\n\nThe existence of more exotic currents is open.\n\n**What remains.**\n\nClassify all currents with a closed-geodesic length function.\n\n**Sources checked.**\n\n- K3: A New Problem List in Low-Dimensional Topology, Problem 2.17 (2026). (authoritative_secondary): https://aimath.org/pastworkshops/kirbylistrep.pdf\n  Evidence used: Explains length twins and poses the exotic-current question.\n\n**Review notes.** No source alteration.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "category_id": 7,
++  "set_id": 11,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-05-13T00:00:00Z",
++  "updated_at": "2026-05-13T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 11,
++    "name": "kirby_low_dimensional_topology",
++    "display_name": "Kirby's Problems in Low-Dimensional Topology",
++    "description": "Problems from Kirby-style notes on low-dimensional topology, including knot theory, 3-manifolds, 4-manifolds, and related invariants.",
++    "slug": "kirby-low-dimensional-topology",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/turns.json b/unsolved_math_prioritization/attempts/2765/turns.json
+new file mode 100644
+index 000000000..d020d3a64
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/turns.json
+@@ -0,0 +1,20 @@
++[
++  {
++    "turn": 1,
++    "timestamp_utc": "2026-09-30T05:19:00Z",
++    "route": "Liouville intersection and Thurston boundary reduction",
++    "outcome": "partial",
++    "artifact": "RESULTS.md, Sections 1-4",
++    "result": "Measured-lamination intersection equality, compact fiber, simple-reference rigidity",
++    "gap": "No finite-support or finite convex-decomposition theorem for a self-intersecting reference."
++  },
++  {
++    "turn": 2,
++    "timestamp_utc": "2026-09-30T05:23:00Z",
++    "route": "Finite-area punctured-surface convention audit",
++    "outcome": "scoped_counterexample_source_hold",
++    "artifact": "RESULTS.md, Section 5",
++    "result": "Scaled non-atomic Liouville current on the thrice-punctured sphere matches an entire closed-geodesic length function on the singleton Teichmuller space.",
++    "gap": "Different surface/current convention; does not settle the closed-surface problem."
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/2765/verification.json b/unsolved_math_prioritization/attempts/2765/verification.json
+new file mode 100644
+index 000000000..182820dd2
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/verification.json
+@@ -0,0 +1,25 @@
++{
++  "status": "PASS",
++  "sympy_version": "1.14.0",
++  "checks": {
++    "SL2_determinants": 4,
++    "principal_level_two_congruences": 4,
++    "cusp_generators": 1,
++    "third_cusp_trace": 1,
++    "hyperbolic_closed_word_trace": 1,
++    "hyperbolic_characteristic_polynomial": 1,
++    "positive_translation_length": 1,
++    "different_cyclic_words": 1,
++    "different_unoriented_cyclic_words": 1,
++    "not_proper_powers": 6,
++    "generic_SL2_pair": 1,
++    "generic_trace_reversal_identity": 1,
++    "integer_trace_controls": 7
++  },
++  "assertions": 30,
++  "trace_control_words": [
++    "aababb",
++    "bbabaa"
++  ],
++  "scope": "Exact matrix and free-word controls only. The one-point Teichmuller scope, nonatomic current, compactness, and simple-reference theorem require the written argument and source audit; no finite all-metric test is claimed."
++}
+diff --git a/unsolved_math_prioritization/attempts/2765/verify.py b/unsolved_math_prioritization/attempts/2765/verify.py
+new file mode 100644
+index 000000000..fabd04f9f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2765/verify.py
+@@ -0,0 +1,50 @@
++#!/usr/bin/env python3
++"""Exact matrix/word controls; not a verifier for the full current problem."""
++import sympy as s
++from collections import Counter
++import json
++
++counts=Counter()
++def check(ok,name):
++    assert bool(ok), name
++    counts[name]+=1
++A=s.Matrix([[1,2],[0,1]]);B=s.Matrix([[1,0],[2,1]])
++for M in [A,B,A*B,A*B.inv()]:
++    check(M.det()==1,'SL2_determinants')
++    check(all((M[i,j]-(1 if i==j else 0))%2==0 for i in range(2) for j in range(2)),
++          'principal_level_two_congruences')
++check(A.trace()==2 and B.trace()==2,'cusp_generators')
++check((A*B.inv()).trace()==-2,'third_cusp_trace')
++check((A*B).trace()==6,'hyperbolic_closed_word_trace')
++check((A*B).charpoly().as_expr().subs(s.Symbol('lambda'),s.Symbol('t'))==s.Symbol('t')**2-6*s.Symbol('t')+1,
++      'hyperbolic_characteristic_polynomial')
++check(3+2*s.sqrt(2)>1,'positive_translation_length')
++
++# A classical trace-reversal control in the rank-two free group.
++word='aababb'; reverse=word[::-1]
++def rotations(w):return {w[k:]+w[:k] for k in range(len(w))}
++inverse=''.join(c.swapcase() for c in word[::-1])
++check(reverse not in rotations(word),'different_cyclic_words')
++check(reverse not in rotations(inverse),'different_unoriented_cyclic_words')
++for w in [word,reverse]:
++    for period in [1,2,3]:
++        check(w!=w[:period]*(len(w)//period),'not_proper_powers')
++
++z,p,q,r=s.symbols('z p q r',nonzero=True)
++M=s.diag(z,1/z);N=s.Matrix([[p,q],[r,(1+q*r)/p]])
++check(s.cancel(M.det())==1 and s.cancel(N.det())==1,'generic_SL2_pair')
++def evaluate(w,A,B):
++    out=s.eye(2)
++    for letter in w: out=out*({'a':A,'b':B}[letter])
++    return out
++check(s.cancel(s.trace(evaluate(word,M,N))-s.trace(evaluate(reverse,M,N)))==0,
++      'generic_trace_reversal_identity')
++for k in range(1,8):
++    Ap=s.Matrix([[1,k],[0,1]]);Bp=s.Matrix([[1,0],[k+1,1]])
++    check(s.trace(evaluate(word,Ap,Bp))==s.trace(evaluate(reverse,Ap,Bp)),
++          'integer_trace_controls')
++
++print(json.dumps({'status':'PASS','sympy_version':s.__version__,
++ 'checks':dict(counts),'assertions':sum(counts.values()),
++ 'trace_control_words':[word,reverse],
++ 'scope':'Exact matrix and free-word controls only. The one-point Teichmuller scope, nonatomic current, compactness, and simple-reference theorem require the written argument and source audit; no finite all-metric test is claimed.'},indent=2))
