@@ -24,19 +24,18 @@ From this directory, run:
     sha256sum -c RELEASE_SHA256SUMS
 
 The author controls contain 37 checks. The historical independent audit
-contains 45: 36 mathematical checks plus nine integrity checks against a
-private original freeze. The unchanged historical script and its result
-are retained in audit/controls; that script alone requires its historical
-sibling layout, including excluded orchestration metadata.
+contains 45: 36 mathematical checks plus nine provenance checks against a
+private original freeze. That complete historical audit is retained
+privately. The public audit script/result omit only those nine provenance
+checks and their private metadata. Every mathematical test statement and
+all 36 mathematical result records are unchanged.
 
-The separate public-layout runner verifies the strict public payload
-inventory, pins the historical audit script and result, and executes the
-same 36 mathematical checks in a temporary directory. It explicitly
-replaces only the nine private-freeze integrity checks with the public
-inventory check. Mathematical test statements are not edited or skipped,
-and all 36 result records must match the preserved audit result exactly.
-The preserved historical files are not overwritten. The resulting counts
-must not be reported as a second run of all 45 historical checks.
+The public-layout runner verifies a strict safe-payload inventory, pins
+the projected audit script/result, and executes all 36 mathematical checks
+in a temporary directory. Those result records must match the safe audit
+result exactly. It does not overwrite the shipped records. Counts must
+not be reported as a second run of all 45 historical checks. See
+[SANITIZATION.md](SANITIZATION.md) for the projection boundary.
 
 A corrupted corrected-proof payload was tested separately and rejected
 before any mathematical test ran. Public replay evidence is in
