@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\F}{\mathcal F_2(G)}
+\newcommand{\A}{\mathcal A(G)}
+\title{Closedness and attractive approximation\newline of binary MTP$_2$ edge models}
+\author{Alec Kriebel\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{October 4, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For any fixed finite graph, the binary MTP$_2$ distributions admitting finite nonnegative unary and edge factors are exactly the pointwise limits of strictly positive attractive Ising distributions on that same graph. In particular, the finite-factor class is closed, answering Conjecture~1 in Lauritzen's 2022 problem statement. The proof handles zero cells by contracting deterministic equalities and aggregating interactions, then uses a classical residual-flow representation to bound local factors without losing normalization. We distinguish this characterization from earlier natural-lattice factorization results and from a previously published counterexample to the accompanying factorization conjectures.
+\end{abstract}
+
+\section{Statement and relation to prior work}
+Fix a finite simple graph $G=(V,E)$ and $\Omega=\{0,1\}^V$ with its coordinate order. A probability mass function $p$ is MTP$_2$ if
+\[
+ p(x\wedge y)p(x\vee y)\geq p(x)p(y)\qquad(x,y\in\Omega).
+\]
+Zeros are allowed. Define $\F$ to consist of these mass functions having a representation
+\begin{equation}\label{eq:finite}
+ p(x)=\prod_{i\in V}\phi_i(x_i)\prod_{ij\in E}\psi_{ij}(x_i,x_j),
+ \qquad \phi_i,\psi_{ij}\text{ finite and nonnegative}.
+\end{equation}
+The product itself is normalized; any normalizing scalar can be incorporated into a factor, except on the empty vertex set, where the unique mass is~1. Define the strictly positive attractive family
+\begin{equation}\label{eq:attractive}
+ \A=\left\{\frac{1}{Z}\exp\left(\sum_i h_i x_i+\sum_{ij\in E}J_{ij}x_ix_j\right):
+ h_i\in\mathbb R,\ J_{ij}\geq0\right\}.
+\end{equation}
+All closures below are in the finite-dimensional probability simplex.
+
+\begin{theorem}\label{thm:main}
+For every finite $G$, $\F=\overline{\A}$. Consequently $\F$ is closed.
+\end{theorem}
+
+Finite local products are globally $G$-Markov, including at zeros: conditioning on a separator of positive probability separates the remaining product into component products with finite positive normalizers. Null conditioning events impose no constraint. The theorem concerns finite factors on the original edges; it introduces no hidden variables or additional edges. Finite signed real factors producing a nonnegative $p$ can be replaced by their absolute values, so allowing such signs does not enlarge the class.
+
+Lauritzen~\cite[pp.~3125--3126]{Lauritzen2022} defines $M_I(G)$ by an \emph{edge-only} product of finite real factors, and $M_2(G)$ by global Markov and MTP$_2$. Its Conjecture~1 asks whether $M_I(G)\cap M_2(G)$ is closed. Section~\ref{sec:literal} reduces that exact convention to Theorem~\ref{thm:main}.
+
+Geiger, Meek and Sturmfels~\cite[Theorems~3.1--3.2]{GMS2006} distinguish finite nonnegative factorization from toric closure by a local support-feasibility condition. Lauritzen, Uhler and Zwiernik~\cite[Lemma~4.9 and Section~4.4]{LUZ2021} give all-pair reconstruction of binary lattice supports and compactness of an \emph{extended} MTP$_2$ graphical family. Those statements do not alone produce finite factors on the original edges. Fallat et al.~\cite[Theorem~7.5]{Fallat2017} identify attraction with MTP$_2$ when pair potentials are strictly positive; cancellation cannot be used indiscriminately at zeros.
+
+Kahle and Sullivant~\cite[Proposition~4.1, Lemma~5.4 and Theorem~5.5]{KS2024} prove a closely related limit-factorization theorem for \emph{natural} lattice supports, using clique factors. Pins and repeated equal coordinates violate that naturality assumption. Their proof framework also gives the closure consequence here after contraction, connectedness of tied coordinate classes, and an adaptation to the edge design. We therefore make no claim that the underlying toric or lattice-support method is new. Theorem~\ref{thm:main} additionally identifies every zero-containing edge-MTP$_2$ law as a limit of positive attractive laws on the unchanged graph; the proof below supplies that approximation explicitly. The cut representation and residual-flow reparameterization used in the reverse inclusion are classical~\cite{KZ2004,PQ1979,KR2007}. The inspected prior statements do not explicitly state the complete characterization above; this is a bounded literature comparison, not a claim that all earlier literature has been exhausted.
+
+\section{Attractive approximation at zero cells}
+\begin{lemma}\label{lem:density}
+Every $p\in\F$ is a pointwise limit of distributions in $\A$.
+\end{lemma}
+\begin{proof}
+Let $S=\{x:p(x)>0\}$. MTP$_2$ implies that $S$ is closed under meet and join. Moreover, finite factorization gives
+\begin{equation}\label{eq:support}
+ S=\{x:x_i\in S_i\ (i\in V),\ (x_i,x_j)\in S_{ij}\ (ij\in E)\},
+\end{equation}
+where $S_i,S_{ij}$ are the actual projections of $S$. Indeed, each local cell occurring in $S$ has a positive factor entry. An assignment meeting every actual projection therefore has a positive product. The reverse inclusion is immediate.
+
+Delete coordinates pinned throughout $S$. Its meet and join are respectively 0 and 1 on the remaining active coordinates. Thus each active edge projection contains $00$ and $11$; it is the full square, one of the two implication supports, or $\{00,11\}$. Write $i\Rightarrow j$ for the constraint $x_i\leq x_j$, and use both directions for equality. Equation~\eqref{eq:support} says that pins and these original-edge implications describe $S$ exactly. Contract the strongly connected classes of the directed implication graph. Their variables $y_K$ form a poset; support states are precisely its upsets.
+
+On $S$, take finite logarithms of the positive local factor cells. Extend those logarithms arbitrarily to missing cells. Every extended two-bit function has the form $c+a x_i+b x_j+d x_ix_j$. Substituting the pins and equalities, and using $y_Ky_L=y_K$ whenever $K\Rightarrow L$, gives
+\begin{equation}\label{eq:quotient}
+ \log p(x)=c+\sum_K H_K y_K+
+ \sum_{\substack{\{K,L\}\text{ incomparable}}} B_{KL}y_Ky_L\qquad(x\in S).
+\end{equation}
+Here $B_{KL}=0$ if no original edge joins the two classes. For incomparable $K,L$, take the upset comprising all their strict successors, with $K,L$ absent. Adding either or both classes gives four permitted support states. The logarithmic MTP$_2$ inequality on this square yields $B_{KL}\geq0$. This is an assertion about the \emph{aggregate} coefficient between classes, not about each originally supplied potential.
+
+Put each $H_K$ on one coordinate in its class and each nonzero $B_{KL}$ on one original edge joining $K,L$. The resulting finite quadratic polynomial $L(x)$ has nonnegative pair coefficients and agrees with $\log p(x)-c$ on $S$. Let $D(x)$ be the sum of unary pin violations and directed original-edge implication violations $x_i(1-x_j)$. Equality uses both directions. By~\eqref{eq:support}, $S=\{D=0\}$, and $D\geq1$ outside $S$. For finite $t\geq0$,
+\[
+ p_t(x)=\frac{\exp(L(x)-tD(x))}{\sum_{z\in\Omega}\exp(L(z)-tD(z))}
+\]
+belongs to $\A$: an implication penalty contributes $+t x_ix_j$ and a unary term. On $S$ the unnormalized weights are $e^{-c}p(x)$; outside $S$ they tend to zero. The finite sum normalizer tends to $e^{-c}>0$, proving $p_t\to p$. If no coordinates are active, this same pin-penalty construction applies directly. The empty vertex set is immediate.
+\end{proof}
+
+\section{Bounded factors for attractive limits}
+\begin{lemma}\label{lem:compact}
+Every pointwise limit of distributions in $\A$ belongs to $\F$.
+\end{lemma}
+\begin{proof}
+We give the classical cut gauge explicitly, since bounding factors without controlling normalization would not suffice. For a distribution~\eqref{eq:attractive}, set
+\[
+ E(x)=-\sum_i h_i x_i-\sum_{ij\in E}J_{ij}x_ix_j.
+\]
+Orient each original edge arbitrarily and use
+$-J_{ij}x_ix_j=J_{ij}x_i(1-x_j)-J_{ij}x_i$.
+After collecting unary terms $b_i x_i$, add an arc $i\to t$ of capacity $b_i$ if $b_i\geq0$, and an arc $s\to i$ of capacity $-b_i$ if $b_i<0$. The nonterminal arc $i\to j$ has capacity $J_{ij}$. With $x_i=1$ denoting the source side, the cut cost is $C(x)=E(x)+\kappa$ for a scalar $\kappa$. This is a graph on the original vertices and the two terminals only~\cite{KZ2004}.
+
+Choose a maximum flow $f$ of value $v$. Finite real capacities cause no problem: the feasible-flow polytope is compact and the max-flow/min-cut theorem applies. Include zero capacities for absent reverse arcs, and define
+\[
+ r_{uv}=c_{uv}-f_{uv}+f_{vu}\geq0.
+\]
+For every source--sink cut $U$, flow conservation gives
+\begin{equation}\label{eq:residual}
+ \sum_{u\in U,\,w\notin U}r_{uw}=C(U)-v
+ =E(x)-\min_z E(z).
+\end{equation}
+This is the residual-flow energy reparameterization~\cite{PQ1979,KR2007}. Nonterminal residual arcs still use original edges. Terminal arcs give unary functions; the two orientations on an edge give
+\[
+ \psi_{ij}(a,b)=\exp\{-r_{ij}a(1-b)-r_{ji}b(1-a)\}.
+\]
+All local entries lie in $(0,1]$. Their product, including the terminal factors, is
+\[
+ W(x)=e^{-E(x)+\min E},\qquad 0<W(x)\leq1,
+ \quad 1\leq\sum_x W(x)\leq2^{|V|}.
+\]
+Apply this representation separately to each term of a convergent sequence in $\A$. Finitely many factor entries lie in $[0,1]$, so some subsequence has entrywise limits. Its product $W_*$ satisfies $Z_*:=\sum_xW_*(x)\geq1$. The given probability limit equals $W_*/Z_*$, hence has finite nonnegative unary and original-edge factors. For nonempty $V$ absorb $Z_*^{-1}$ into any unary factor; the empty case has mass~1. MTP$_2$ passes to the limit because its defining inequalities are polynomial. This proves membership in $\F$.
+\end{proof}
+
+Positive attractive laws are MTP$_2$ and have finite factors, so $\A\subseteq\F$. Lemmas~\ref{lem:density} and~\ref{lem:compact} prove Theorem~\ref{thm:main}.
+
+\section{The literal source convention}\label{sec:literal}
+\begin{corollary}
+For every finite $G$, Lauritzen's $M_I(G)\cap M_2(G)$ is closed.
+\end{corollary}
+\begin{proof}
+If $E\ne\varnothing$, an edge-only product is independent of each isolated coordinate; normalization makes those coordinates jointly uniform and independent of the others. Limits retain this property. Apply Theorem~\ref{thm:main} on the subgraph of nonisolated vertices. Absorb each unary factor into an incident original edge, and absorb the scalar for the uniform isolated law into any original edge. Replace signed factors by absolute values at the outset. Global Markov and MTP$_2$ are closed finite polynomial conditions, so the resulting limit is in the required intersection.
+
+With the displayed source definition taken literally, if $E=\varnothing$ and $V\ne\varnothing$, the empty product is~1 at every configuration, so there are no normalized laws in $M_I(G)$; the closure assertion is vacuous. If a tacit scalar normalization is intended instead, that family is the single uniform law and is also closed. If $V=\varnothing$, the sole mass is~1.
+\end{proof}
+
+\section{The accompanying counterexample and verification}
+The factorization conjectures in the same source are separate from the closure statement. Their negative answers already follow from Gandolfi--Lenarda~\cite[Lemma~5.2]{GL2017}. On the cycle $12,23,34,41$, their law is supported on $x_3=x_4$, with mass $2/9$ at $1111$ and $1/9$ at each other supported point. Equality support is a lattice. Comparable MTP$_2$ pairs give equality; incomparable supported pairs have weights $1\cdot1$ and meet--join weights at least~1; off-support right sides vanish. Its global Markov conditions hold because the appropriate conditioned coordinates determine one side. Yet every finite edge product must satisfy
+\[
+ p_{0000}p_{0111}p_{1011}p_{1100}
+ =p_{0011}p_{0100}p_{1000}p_{1111},
+\]
+whose products for this law are $1/9^4$ and $2/9^4$. The identity follows by balancing each edge's cell multiplicities, without division, so also covers signed factors and their limits~\cite{GMS2006}. Rotating the coordinates gives the counterexample in the audited problem packet. We claim no new counterexample here. Kahle--Sullivant~\cite[Example~6.5]{KS2024} subsequently give the same equality-support obstruction with different weights.
+
+The accompanying verification package contains exact rational checks of these laws, support and coefficient examples, residual gauges, and failure controls for invalid zero-cell shortcuts. Finite calculations illustrate and falsify checks; the all-graph result is established by the proofs above.
+
+\paragraph{Disclosure.} AI tools were used extensively in developing the arguments, searching primary literature, writing code and conducting independent adversarial reviews. This is an unrefereed preprint. AI review and exact computation are not human peer review or formal proof-assistant certification. No claim of human peer review is made.
+
+\begin{thebibliography}{9}
+\bibitem{Lauritzen2022} S. Lauritzen, Two open problems in graphical models of algebraic nature, in \emph{Oberwolfach Reports} 19 (2022), Report 55/2022, pp.~3125--3127. \href{https://doi.org/10.4171/OWR/2022/55}{doi:10.4171/OWR/2022/55}.
+\bibitem{GMS2006} D. Geiger, C. Meek and B. Sturmfels, On the toric algebra of graphical models, \emph{Ann. Statist.} 34 (2006), 1463--1492. \href{https://doi.org/10.1214/009053606000000263}{doi:10.1214/009053606000000263}.
+\bibitem{LUZ2021} S. Lauritzen, C. Uhler and P. Zwiernik, Total positivity in exponential families with application to binary variables, \emph{Ann. Statist.} 49 (2021), 1436--1459. \href{https://doi.org/10.1214/20-AOS2007}{doi:10.1214/20-AOS2007}.
+\bibitem{Fallat2017} S. Fallat, S. Lauritzen, K. Sadeghi, C. Uhler, N. Wermuth and P. Zwiernik, Total positivity in Markov structures, \emph{Ann. Statist.} 45 (2017), 1152--1184. \href{https://doi.org/10.1214/16-AOS1478}{doi:10.1214/16-AOS1478}.
+\bibitem{KS2024} T. Kahle and S. Sullivant, Lattice supported distributions and graphical models, arXiv:2411.03139v1 (2024). \href{https://arxiv.org/abs/2411.03139}{arxiv.org/abs/2411.03139}.
+\bibitem{KZ2004} V. Kolmogorov and R. Zabih, What energy functions can be minimized via graph cuts?, \emph{IEEE Trans. Pattern Anal. Mach. Intell.} 26 (2004), 147--159. \href{https://doi.org/10.1109/TPAMI.2004.1262177}{doi:10.1109/TPAMI.2004.1262177}.
+\bibitem{PQ1979} J.-C. Picard and M. Queyranne, On the structure of all minimum cuts in a network and applications, technical report EP-R-79-15, March 1979. Published in \emph{Math. Programming Study} 13 (1980), 8--16. \href{https://doi.org/10.1007/BFb0120902}{doi:10.1007/BFb0120902}.
+\bibitem{KR2007} V. Kolmogorov and C. Rother, Minimizing nonsubmodular functions with graph cuts---a review, \emph{IEEE Trans. Pattern Anal. Mach. Intell.} 29 (2007), 1274--1279. \href{https://doi.org/10.1109/TPAMI.2007.1031}{doi:10.1109/TPAMI.2007.1031}.
+\bibitem{GL2017} A. Gandolfi and P. Lenarda, A note on Gibbs and Markov random fields with constraints and their moments, \emph{Math. Mech. Complex Syst.} 4 (nominal 2016), 407--422; published April 13, 2017. \href{https://doi.org/10.2140/memocs.2016.4.407}{doi:10.2140/memocs.2016.4.407}.
+\end{thebibliography}
+\end{document}
