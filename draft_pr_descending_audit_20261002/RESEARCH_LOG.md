@@ -395,3 +395,19 @@ Native main and remote both d6bf1f8bd45c786d786a8f2dce3bb4002964ceb1; entire ind
 ### 2026-10-04T05:01:28.557190+00:00 — exact classical attribution and expanded priority comparison
 
 Root finished all13 published Pries–Ulmer2022 pages and read23 selected Oort author-manuscript pages and28 selected Muller–Yu2026v2 pages. Native portable convention comparison passed all six maps and complement/rotation checks. Exact2020 Chai–Oort word/filtration lead remains under investigation; actualHTTP403 failures preserved and no fullreading claimed. Classical object/non-self-duality attribution is required; exact qss filtration/Witt lift priority remains open. Mathematics100%, priority estimated40%, workflow30%. No paper, merge or publication. Shared PR55 follow-up released and exact d6bf1f8bd45c786d786a8f2dce3bb4002964ceb1 main/remote and all six foreign bodies/modes independently verified.
+
+### 2026-10-04T05:03:01.736535+00:00 — preliminary PR344 priority checkpoint pushed
+
+Owned commit 436579b932d5da49666d7d3aac169477583397f0 pushed after exact scoped Git/disk body/mode and remote verification. All foreign index and dirty tracked bodies/modes preserved. Mathematics100%, priority estimated40%, workflow30%; exact application priority remains open. No PR344 merge or publication.
+
+### 2026-10-04T05:08:24.280327+00:00 — PR57 integration window acknowledged
+
+Native main and remote both 436579b932d5da49666d7d3aac169477583397f0; entire index empty with SHA-256 67f4abaac226c22be166b467533eeace21ee149706df1479775d0ba38ab598e3. Shared Git/index/queue/history writers paused, and dirty tracked bodies/modes held stable after this acknowledgement. PR344 read-only priority review and own new untracked evidence continue. Mathematics100%, priority estimated40%, workflow30%. No outbound chat message sent.
+
+### 2026-10-04T05:25:35.850301+00:00 — PR57 ordered publication integration window released and independently verified
+
+Native main and remote both 5884f4fd1237f66ba6759d59b245f8cdbf0c8afa; entire index empty; all six prior dirty foreign tracked bodies/modes preserved. Shared owned writes resumed. PR344 mathematics100%, publication workflow30%, and deep priority review remains open. No outbound chat message sent.
+
+### 2026-10-04T05:30:15.613003+00:00 — expanded priority checkpoint logging repaired
+
+Mathematics100%, priority estimated65%, workflow30%. Root note ROOT_PRIORITY_COMPARISON_003.md records newly read classical balanced-word and supersingular-factor sources, MFO comparison, main priority inventories, and focused adversarial review still pending. The initial notes write at2026-10-04T05:29:54.378570+00:00 created the note/progress and appended ROOT_PRIORITY_WORK_LOG, then failed before the remaining log appends because it used the nonexistent name ROOT_RESEARCH_LOG.md. This correction appends the two actual research logs; no original note or scientific result was altered. No paper, merge, deposit or tracker write for PR344.

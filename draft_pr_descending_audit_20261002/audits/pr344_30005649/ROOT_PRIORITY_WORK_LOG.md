@@ -7,3 +7,7 @@ Read the full Pries–Ulmer 2021 paper, its complete 2024 correction and the com
 ### 2026-10-04T05:01:28.557190+00:00 — exact classical attribution and expanded priority comparison
 
 Root finished all13 published Pries–Ulmer2022 pages and read23 selected Oort author-manuscript pages and28 selected Muller–Yu2026v2 pages. Native portable convention comparison passed all six maps and complement/rotation checks. Exact2020 Chai–Oort word/filtration lead remains under investigation; actualHTTP403 failures preserved and no fullreading claimed. Classical object/non-self-duality attribution is required; exact qss filtration/Witt lift priority remains open. Mathematics100%, priority estimated40%, workflow30%. No paper, merge or publication. Shared PR55 follow-up released and exact d6bf1f8bd45c786d786a8f2dce3bb4002964ceb1 main/remote and all six foreign bodies/modes independently verified.
+
+### 2026-10-04T05:29:54.378570+00:00 — stronger classical coverage under focused adversarial review
+
+Root expanded primary reading and independently verified MFO question chronology/body equivalence. Classical balanced-word supersingular realization is expressly prior. The exact saturated-factor application is under an additional adversarial audit; first assessment preserved before later source exposure. Main priority report and complete inventories read; two factual inventory repairs requested. Mathematics100%, priority estimated65%, workflow30%; no PR344 publication. SeeROOT_PRIORITY_COMPARISON_003.md for exact reading boundaries and historical gaps.
