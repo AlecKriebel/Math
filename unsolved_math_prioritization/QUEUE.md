@@ -391,7 +391,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 380 | 30000660 / OWR-1452-024 | Étale-Local Equivalence of Fiberwise Isomorphic Families | 0.1449 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 381 | 30001014 / OWR-2048-009 | Realizing Compact Spectra of Pathological Masas | 0.1446 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 382 | 30001202 / OWR-3394-018 | Optimal Feasible Sets from Quantized Trajectory Observations | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | claimed_solved | 3/5 |  |  Verified common L1 basin boundaries; six-page research note and verification supplement ready; bounded priority and two fresh AI preprint reviews passed (unrefereed). |  |
 | 384 | 30001552 / OWR-4425-007 | Fine–Wilf Bounds for Antimorphic Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 385 | 30001554 / OWR-4425-009 | Unbordered Factors and Alternating Involution Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
