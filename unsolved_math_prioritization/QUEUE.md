@@ -360,7 +360,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 349 | 10400230 / AMR-103-0230 | Problem 12.25 — (A. | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 350 | 159 / GREEN-071 | Uniform Random Variables with Uniform Sum | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 351 | 20000207 / AIM-ALGEBRAIC_GEOMETRY-0207 | Extended-Kruppa constraints, realized conic ambiguity, and invariant eliminants for algebraic silhouettes | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 352 | 20000450 / AIM-ALGEBRAIC_NUMBER_THEORY-0102 | The infinity 5-torsion line and Kummer quotient of the pentagonal quintic | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 352 | 20000450 / AIM-ALGEBRAIC_NUMBER_THEORY-0102 | The infinity 5-torsion line and Kummer quotient of the pentagonal quintic | 0.1560 | 5.0 | 3 | unknown | claimed_solved | 1/5 |  |  Accepted exact full 25-point fifth-torsion and division-field computation for the specified regular-pentagon pencil over Q(sqrt(5)); research note and verification package ready after successive new full AI reviews and global source-attribution repair. Classical Fisher/Verdure/Morton inputs credited; bounded priority, unrefereed. |  |
 | 353 | 20000700 / AIM-ANALYTIC_NUMBER_THEORY-0064 | A finite local prime model for the Bogomolny--Keating Type-II input | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 354 | 3000058 / AMR-029-0058 | Opposite vertices of base polyhedra | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 355 | 3048 / OPG-37226 | Sequence defined on multisets | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
