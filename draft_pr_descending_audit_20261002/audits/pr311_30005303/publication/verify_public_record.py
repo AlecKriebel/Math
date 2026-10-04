@@ -2,7 +2,8 @@
 from pathlib import Path
 from datetime import datetime,timezone
 from urllib.parse import urlsplit
-import hashlib,json,subprocess,sys
+import hashlib,json,sys
+from public_identity import identity, resolution_binding, public_request, resolve_exact
 
 D=Path(__file__).resolve().parent;A=D.parent
 label=sys.argv[1] if len(sys.argv)>1 else 'public_readback_001'
@@ -18,25 +19,19 @@ current_clearance()
 P.mkdir(parents=True)
 published=load(D/'inspect_published_receipt.json')
 assert published['state']=='published' and published['environment']=='production'
+identity(published)
+resolution_binding(published['doi_resolution'], published['id'])
 local=load(O/'zenodo-deposit.json')
 assert published['title']==local['metadata']['title']
 def fetch(label,url):
     parts=urlsplit(url)
     assert parts.scheme=='https' and parts.netloc=='zenodo.org' and not parts.query and not parts.fragment
-    args=['curl','--fail','--silent','--show-error','--location','--max-time','55',
-          '--user-agent','Math-Zenodo-Deposit-Tool/1.0',url]
-    start=utc();r=subprocess.run(args,capture_output=True)
-    for stream,b in [('stdout',r.stdout),('stderr',r.stderr)]:
-        (P/(label+'.'+stream)).write_bytes(b)
-    rec={'argv':args,'started_utc':start,'finished_utc':utc(),'exit_code':r.returncode,
-         'stdout_bytes':len(r.stdout),'stdout_sha256':sha(r.stdout),
-         'stderr_bytes':len(r.stderr),'stderr_sha256':sha(r.stderr),'automatic_retry':False}
-    (P/(label+'.execution.json')).write_text(json.dumps(rec,indent=2)+'\n')
-    assert r.returncode==0 and not r.stderr,rec
-    return r.stdout,rec
+    return public_request(P,label,url)
 api='https://zenodo.org/api/records/'+str(published['id'])
 body,api_rec=fetch('record',api);record=json.loads(body)
 assert record['id']==published['id'] and record['doi']==published['doi']
+identity({'id':record['id'],'doi':record['doi'],'doi_url':published['doi_url'],'record_url':published['record_url']})
+resolution=resolve_exact(P,record['id'])
 metadata=record['metadata'];checked=[]
 for key,value in local['metadata'].items():
     if key=='license':actual=metadata['license']['id']
@@ -64,7 +59,7 @@ receipt={'utc':utc(),'status':'PASS_PUBLIC_RECORD_EXACT_METADATA_AND_ALL_FILE_BY
          'record_id':record['id'],'doi':record['doi'],'public_api':api,
          'all_reviewed_metadata_keys_compared':checked,'metadata_semantics_changed':False,
          'only_public_schema_mapping':['license.id','resource_type.type','resource_type.subtype'],
-         'all_file_bytes':rows,'doi_resolution':published['doi_resolution'],
+         'all_file_bytes':rows,'doi_resolution':resolution,'exact_record_identity_bound':True,
          'public_record_native':api_rec,'private_capture_directory':str(P),
          'no_mutation_or_person_contact':True}
 (D/'PUBLIC_RECORD_VERIFICATION.json').write_text(json.dumps(receipt,indent=2)+'\n')

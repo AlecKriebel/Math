@@ -30,3 +30,15 @@ Cleared formal artifact fingerprints:
 - mtp2-edge-closure-verification.zip: 103495 bytes; SHA256 4db75ce0da0b35abb6e7734190b895a5966ec878e89d624a9891538730542ca5
 - zenodo-deposit.json: 3838 bytes; SHA256 d34ee53b05b73bcb704ad43de2fba47ac1b0822597cf6788f20c730452e557d6
 - SUBMISSION_MANIFEST.json: 2471 bytes; SHA256 043de76e326db5b5ba1af7fe2c7442bef1eed2d04de36654605045ce61f40383
+
+## Actual publication
+
+Published 2026-10-04T22:50:54.219627+00:00 after exact merged-tree and complete fresh-review verification.
+
+Preprint: https://doi.org/10.5281/zenodo.23146753
+
+Record: https://zenodo.org/records/23146753
+
+The five-page PDF and portable verification ZIP match the cleared submission byte for byte in complete unauthenticated public downloads. All eleven metadata fields match. The DOI resolves with HTTP 200. Exactly one row was appended to the specified Math Puzzles sheet, 'Math Puzzles'!A22:D22, and read back exactly. No chat was shared and no individual was contacted.
+
+Mathematical verification100%; bounded priority audit100%; this PR review/merge/publication workflow100%. Successive NEW whole-preprint reviews completed with global provenance/count corrections and final zero unresolved findings. The general binary MTP2 original-edge closure and attractive-approximation characterization answers source Conjecture1; the earlier Gandolfi–Lenarda witness for Conjectures2/3 is credited. This is an unrefereed preprint with extensive AI use, without external human peer review or a historical first-priority certificate. The author count2/5 and all29 original attempt files are preserved. The persistent descending program remains active.

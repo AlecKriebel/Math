@@ -2,6 +2,7 @@
 from root_submission_gate import *
 
 clear = current_clearance()
+operational_clearance()
 cap = Capture('post_merge_verification')
 m = load(A/'ACTUAL_MERGE_VERIFICATION.json')
 assert m['status'] == 'PASS_PR311_EXACT_MERGE'

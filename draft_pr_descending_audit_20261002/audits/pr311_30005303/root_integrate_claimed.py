@@ -2,8 +2,10 @@
 from root_submission_gate import *
 import time
 
+write_window = acquire_shared_write_window()
 window()
 clear = current_clearance()
+operational_clearance()
 assert not (A/'ACTUAL_MERGE_ATTEMPT.json').exists(), 'Inspect any earlier uncertain merge; never repeat blindly.'
 cap = Capture('actual_acceptance')
 m = load(A/'repaired_snapshot_manifest.json')

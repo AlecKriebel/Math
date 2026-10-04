@@ -1,7 +1,7 @@
 """Prepared guards for PR311. Importing this file grants no publishing clearance."""
 from pathlib import Path
 from datetime import datetime, timezone
-import hashlib, json, os, stat, subprocess, zipfile
+import hashlib, json, os, stat, subprocess, zipfile, fcntl
 
 A = Path(__file__).resolve().parent
 P = A.parents[1]
@@ -24,8 +24,35 @@ def pin(p):
     b = p.read_bytes()
     return {'bytes':len(b), 'sha256':sha(b), 'mode':format(stat.S_IMODE(p.stat().st_mode),'04o')}
 
+# Cooperative exclusive ownership is required of every shared-file/ref writer.
+# The released peer has promised read-only work. This lock serializes our own
+# operator processes; it does not exclude hostile/noncooperating writers.
+SHARED_LEASE_TOKEN = '1715fa04-3473-4b5b-b8a8-069dafc39882'
 def window():
-    assert not load(P/'SHARED_GIT_WINDOW_STATUS.json')['shared_git_writes_paused']
+    s = load(P/'SHARED_GIT_WINDOW_STATUS.json')
+    assert not s['shared_git_writes_paused']
+    assert s['descending_active_pr'] == s['descending_acceptance_pr'] == 311
+    assert s['descending_final_acceptance_preparing'] or s['descending_git_checkpoint_preparing']
+    lease = s['descending_shared_write_lease']
+    assert lease['owner_thread'] == '01a0ff30-7e80-7053-abb4-4a9c45f2fd62'
+    assert lease['pr'] == 311 and lease['token'] == SHARED_LEASE_TOKEN
+    assert lease['peer_readonly_release_verified'] and lease['cooperative_exclusive_window']
+    assert pin(A/'ROOT_SHARED_PR73_RELEASE_VERIFICATION.json') == lease['release_verification']
+
+def acquire_shared_write_window():
+    window()
+    directory = A/'root_integration_private'
+    directory.mkdir(exist_ok=True)
+    path = directory/'SHARED_WRITE_LEASE.lock'
+    fd = os.open(path, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    handle = os.fdopen(fd, 'r+b')
+    try:
+        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        window()
+    except BaseException:
+        handle.close()
+        raise
+    return handle
 
 class Capture:
     def __init__(self, purpose):
@@ -108,6 +135,24 @@ def current_clearance():
         for n,e in c['package_files'].items():
             assert sha(z.read(n)) == e['sha256'] and z.read(n) == (Q/n).read_bytes()
             assert stat.S_IMODE(z.getinfo(n).external_attr >> 16) == 0o644
+    return c
+
+def operational_clearance():
+    c = load(A/'OPERATIONAL_PUBLISHING_CLEARANCE.json')
+    assert c['status'] == 'READY_AFTER_OPERATIONAL_REPAIRS_AND_NEW_ADVERSARIAL_REVIEW'
+    assert c['global_repairs_applied'] and c['final_new_review'] >= 2
+    assert c['unresolved_findings'] == 0 and c['full_report_root_read']
+    assert c['independent_counterexamples_and_guards_verified']
+    for rel, e in c['operator_files'].items():
+        assert pin(R/rel) == e, rel
+    adjudication_path = c['root_adjudication_path']
+    assert Path(adjudication_path).name == adjudication_path
+    j = load(A/adjudication_path)
+    assert j['status'] == 'PASS_ROOT_NEW_CLEAN_OPERATIONS_ADVERSARIAL_REVIEW'
+    assert j['unresolved_findings'] == 0 and j['global_repairs_applied']
+    assert pin(A/adjudication_path) == c['root_adjudication']
+    for rel, e in c['final_review_artifacts'].items():
+        assert pin(A/rel) == e, rel
     return c
 
 def dirty_tracked(cap, excluded=()):

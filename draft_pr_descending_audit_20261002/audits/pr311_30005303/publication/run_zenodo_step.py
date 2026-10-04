@@ -2,16 +2,20 @@
 from pathlib import Path
 import sys, subprocess, json
 
+from public_identity import identity, resolution_binding
+
 D = Path(__file__).resolve().parent
 A = D.parent
 sys.path.insert(0,str(A))
-from root_submission_gate import current_clearance, load, pin, utc, sha, R, O, window
+from root_submission_gate import current_clearance, load, pin, utc, sha, R, O, window, operational_clearance, acquire_shared_write_window
 
 step = sys.argv[1]
 assert step in {'stage','inspect_draft','publish','inspect_published'}
+write_window = acquire_shared_write_window()
 if step in {'stage','publish'}:
     window()
 clear = current_clearance()
+operational_clearance()
 merged = load(A/'ACTUAL_MERGE_VERIFICATION.json')
 post = load(A/'ROOT_POST_MERGE_VERIFICATION.json')
 assert merged['status'] == 'PASS_PR311_EXACT_MERGE'
@@ -48,6 +52,9 @@ for kind,b in [('stdout',run.stdout),('stderr',run.stderr)]:
     'stderr_bytes':len(run.stderr),'stderr_sha256':sha(run.stderr),'automatic_mutation_retry':False},indent=2)+'\n')
 assert run.returncode == 0, (step,run.stderr.decode(errors='replace'))
 record = json.loads(run.stdout)
+identity(record, required=step in {'publish','inspect_published'})
+if step == 'inspect_published':
+    resolution_binding(record['doi_resolution'], record['id'])
 assert record['environment'] == 'production' and record['title'] == local['metadata']['title']
 assert isinstance(record['metadata_normalizations'],list)
 assert len(record['files']) == 2 and {x['name'] for x in record['files']} == {x['path'] for x in local['files']}
