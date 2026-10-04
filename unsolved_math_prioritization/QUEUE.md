@@ -643,7 +643,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 632 | 30003644 / OWR-15956-010 | Zero-Free Dirichlet Polynomials on the Unit Line | 0.1096 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 633 | 5300088 / AMR-052-0088 | Injectivity radius from the number of generators | 0.1089 | 6.0 | 4 | 1990 | queued | 0/5 |  |  |  |
 | 634 | 5900029 / AMR-058-0029 | Finite Total Scalar Curvature and Planarity | 0.1085 | 6.0 | 3 | 1995 | queued | 0/5 |  |  |  |
-| 635 | 4700001 / AMR-046-0001 | Low degree rigid systems | 0.1085 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 635 | 4700001 / AMR-046-0001 | Low degree rigid systems | 0.1085 | 5.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
 | 636 | 4700012 / AMR-046-0012 | A class of Hamiltonian systems | 0.1085 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 637 | 10400173 / AMR-103-0173 | Problem 9.9 — (N. | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 638 | 1200023 / AMR-011-0023 | Some Questions — Question 23 | 0.1080 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
