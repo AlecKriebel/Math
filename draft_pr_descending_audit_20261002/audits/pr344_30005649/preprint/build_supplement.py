@@ -37,7 +37,7 @@ assert bind(payload['controls/check_integral_flag.py'])==dict(bytes=7484,sha256=
 control_pins['controls/check_integral_flag.py']=bind(payload['controls/check_integral_flag.py'])
 reviewed_original_control_pins=dict(control_pins)
 control_derivations={}
-def derive_control(name,edits):
+def derive_control(name,edits,scope='Only runtime provenance output and included-document references; mathematical code/assertions/input data unchanged.'):
     original=payload[name]
     text=original.decode()
     for old,new,count in edits:
@@ -47,11 +47,17 @@ def derive_control(name,edits):
     control_pins[name]=bind(payload[name])
     control_derivations[name]=dict(reviewed_original=bind(original),public_derivative=bind(payload[name]),
         edits=[dict(literal_old=old,literal_new=new,occurrences=count) for old,new,count in edits],
-        scope='Only runtime provenance output and included-document references; mathematical code/assertions/input data unchanged.')
+        scope=scope)
 # Preserve the sealed originals. Public output must not depend on interpreter identity.
 derive_control('controls/verify_intrinsic.py',[
     (', "interpreter":{"executable":sys.executable,"version":sys.version}','',1),
-    ('report.md','manuscript.tex',2)])
+    ('report.md','manuscript.tex',2),
+    ('rank(join(transpose(f2),transpose(v2)),k)',
+     'rank(join(transpose(twist(twist(v2,k.sigma),k.sigma)),transpose(twist(twist(f2,k.tau),k.tau))),k)',1),
+    ('def main():',(HERE/'intrinsic_formula_regressions.txt').read_text()+'def main():',1),
+    ('    result={"status":"pass",',
+     '    dense_kernel_controls=check_dense_kernel_formulas(f,v)\n    result={"dense_kernel_formula_controls":dense_kernel_controls,"status":"pass",',1)],
+    scope='Runtime provenance/document-reference repair B1, plus mathematical helper correction B2: opposite squared Frobenius twists and actual-kernel/minimal/dense basis regression checks over F125, F343 and generic-formula-only F32. Historical original control and input data preserved; public mathematical code/assertions are intentionally corrected and extended.')
 derive_control('controls/verify_semilinear.py',[
     ('The mathematical universal coefficient proof is in semilinear_proof.md;',
      'The universal duality argument is in manuscript.tex;',1)])
@@ -71,6 +77,7 @@ payload['CLASSICAL_MECHANISM.md']=('# Classical supersingular mechanism\n\n'
     'This supporting derivation records an independently verified application of classical theory, with no claim of first priority. The main research note uses its simpler finite-module filtration.\n\n'
     +report[report.index('## 1.'):report.index('## 6.')]).encode()
 add('MECHANISM_SOURCES.json',A/'priority_supersingular_mechanism/SOURCES.json')
+add('CONTROL_FORMULA_CORRECTION.md',HERE/'CONTROL_FORMULA_CORRECTION.md')
 add('manuscript.tex',HERE/'qss-self-duality-note.tex')
 add('zenodo-deposit.json',HERE/'zenodo-deposit.json')
 add('verify_supplement.py',HERE/'verify_supplement.py')
@@ -80,7 +87,7 @@ payload['SOURCE_IDENTITY.json']=dump(dict(problem_id=30005649,catalogue_alias='O
     source_doi='10.4171/OWR/2023/42',source_pdf_url='https://ems.press/content/serial-article-files/47479?nt=1',
     source_pdf_sha256='3145acc3558489bc818125001721a4c7a26f458f187697a81c18fb8c18706d0a',
     control_source_pins=control_pins,reviewed_original_control_pins=reviewed_original_control_pins,
-    control_derivations=control_derivations,raw_primary_source_bodies_included=False))
+    control_derivations=control_derivations,mathematical_control_correction='CONTROL_FORMULA_CORRECTION.md',historical_audit_control_acceptance_qualified_for_generic_formula=True,raw_primary_source_bodies_included=False))
 payload['PRIORITY_DECISION.json']=dump({key:decision[key] for key in ('status','priority_percent','first_priority_certified','exact_result','historical_scope_limits','family_public_manifest_sha256')})
 payload['README.md']=b'''# Verification supplement: Takao's self-duality question
 
@@ -116,7 +123,13 @@ The intrinsic public derivative omits interpreter identity from its
 deterministic mathematical stdout; actual execution provenance is retained
 separately in native build receipts. Public document references point to
 the included manuscript or classical mechanism. Sealed originals remain
-unchanged, and all mathematical code, assertions and input data are preserved.
+unchanged. The corrected public intrinsic derivative also repairs a generic
+semilinear dual-kernel formula: opposite squared Frobenius twists are essential.
+CONTROL_FORMULA_CORRECTION.md derives the formula and its exact counterexample.
+New actual-kernel/minimal/dense controls cover F125, F343 and a Frobenius-order-five
+F32 sample. The latter checks only generic linear algebra and does not extend
+the group-scheme theorem beyond p>3. Its public mathematical code and assertions
+are intentionally corrected/extended, with original input data preserved.
 
 manuscript.tex is the standalone source. CLASSICAL_MECHANISM.md gives
 the supplemental saturated integral flag and its mathematical scope.
