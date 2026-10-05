@@ -1,0 +1,282 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Obs}{\mathcal O}
+\title{A complete negatively curved observation Gramian\protect\\with two-state ambiguity}
+\author{Alec Kriebel\protect\\Independent researcher\protect\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Version 1.0, 5 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a smooth autonomous observed system on a connected closed genus-three
+surface whose exact finite-time differential observation Gramian is complete
+and has constant negative sectional curvature, although every attained output
+history corresponds to exactly two initial states. The system has zero dynamics
+and a Euclidean-valued output obtained by composing a connected double cover of
+a closed hyperbolic surface with a smooth Nash isometric embedding into
+$\R^{17}$. For each fixed $T>0$ its Gramian is $P_T=T\pi^*g$ and its curvature is
+$-1/T$. Uniform positive upper and lower bounds hold in a fixed finite
+normalized atlas and relative to any fixed smooth background metric. This
+refutes the manifold implication printed in Krener's 2009 open problem under
+those coherent meanings of its coordinate bounds. The construction is an application of classical constructions. A bounded
+primary-source audit found no earlier explicit complete construction in the
+inspected corpus; no absolute historical firstness is asserted.
+\end{abstract}
+
+\section{The printed problem and the claim}
+Krener's contribution \cite{krener} considers $\dot x=f(x)$, $y=h(x)$,
+with local coordinates on a state manifold and output in $\R^p$. For a fixed
+$T>0$, global observability means injectivity of the initial-state history map
+\[
+ \Obs_T(x)(t)=h(\varphi_t(x)),\qquad 0\leq t<T,
+\]
+where $\varphi_t$ is the flow. Local observability in that contribution means
+local injectivity of this map. Its exact differential Gramian is
+\begin{equation}\label{eq:gramian}
+ P_{T,x}(v,w)=\int_0^T
+ \left\langle d(h\circ\varphi_t)_x v,
+ d(h\circ\varphi_t)_x w\right\rangle\,dt.
+\end{equation}
+In local coordinates this is the printed integral
+$\int_0^T\Phi(t)^\mathsf{T}H(t)^\mathsf{T}H(t)\Phi(t)\,dt$,
+where $\Phi=d\varphi_t$ and $H=dh$ along the trajectory. The conjectured
+implication is that uniform positive definiteness and boundedness of this
+Gramian, uniform negative curvature, and geodesic completeness imply global
+observability. The complete contribution, printed pp.~674--675, imposes no
+simple-connectivity assumption, global $\R^n$ state chart, nonzero-dynamics
+condition, or restriction on the finite output dimension.
+
+The source leaves normalization for the matrix bounds unspecified. We verify
+both common bounds in a fixed finite atlas and tensor bounds against any fixed
+smooth background metric. Common coefficient bounds over arbitrary rescalings
+of every possible chart cannot hold for any positive metric: under $z\mapsto az$
+its matrix scales by $a^{-2}$. Such an additional quantifier would make the
+hypothesis empty. Our claim concerns the printed manifold formulation with
+fixed normalization. It does not settle a separately strengthened question
+restricted to a single Euclidean state domain.
+
+\begin{theorem}\label{thm:counterexample}
+There exist a connected closed oriented genus-three smooth surface $M$, a
+complete smooth vector field $f$ on $M$, and a smooth map $h:M\to\R^{17}$ such
+that, for every fixed $T>0$:
+\begin{enumerate}
+\item $P_T$ in \eqref{eq:gramian} is a smooth positive definite, geodesically
+complete metric of constant sectional curvature $-1/T$;
+\item for any fixed smooth Riemannian metric $q$ on $M$ there are constants
+$0<c\leq C<\infty$ with $Tcq\leq P_T\leq TCq$;
+\item there is a fixed finite atlas in which
+$4T I_2\leq [P_T]\leq (64T/9)I_2$;
+\item $\Obs_T$ is locally injective, and every history in $\Obs_T(M)$ has exactly
+two distinct initial states.
+\end{enumerate}
+The same pair of states is indistinguishable for all real times.
+\end{theorem}
+
+\section{Construction and proof}
+\begin{proof}
+Let $(S,g)$ be a closed oriented hyperbolic genus-two surface with curvature
+$-1$. One concrete construction is a regular geodesic octagon of interior
+angle $\pi/4$, with opposite sides identified by orientation-preserving
+hyperbolic isometries reversing their boundary orientations. Number the corners
+$v_i$ and sides $[v_i,v_{i+1}]$ modulo eight. The pairing identifies
+$v_i$ with $v_{i+5}$ and $v_{i+1}$ with $v_{i+4}$ for $i=0,1,2,3$.
+The vertex link is the single cycle
+\[
+ 0\longrightarrow5\longrightarrow2\longrightarrow7\longrightarrow4
+ \longrightarrow1\longrightarrow6\longrightarrow3\longrightarrow0.
+\]
+The eight sectors have total angle $2\pi$. Developing them successively
+into the hyperbolic plane, the final transition fixes the vertex and has
+derivative the full $2\pi$ rotation. An isometry fixing a point and its tangent
+frame is the identity, so there is no residual vertex holonomy. The sectors
+therefore form an ordinary hyperbolic disk. Across a paired edge two half disks
+also form a smooth hyperbolic disk.
+Thus the quotient metric is smooth at edges and at the vertex, without a cone
+point. There is one vertex, four edges and one face, giving $\chi(S)=-2$ and
+genus two. For completeness, the octagon exists in the Poincar\'e disk with
+vertices $2^{-1/4}\exp(ik\pi/4)$: the right triangle from its center to a vertex
+and side midpoint has angles $\pi/8,\pi/8,\pi/2$ and circumradius $R$ with
+$\cosh R=\cot^2(\pi/8)=3+2\sqrt2$.
+
+The surface-group presentation is
+\[
+ \pi_1(S)=\langle a_1,b_1,a_2,b_2\mid[a_1,b_1][a_2,b_2]=1\rangle.
+\]
+These are abstract standard surface generators, not asserted to be the
+opposite-side polygon letters. Send $a_1$ to $1\in\mathbb Z/2$ and all other
+generators to zero. The relation is respected because its commutators vanish
+in this abelian group. The resulting homomorphism is surjective, with
+index-two kernel. Covering-space classification \cite[Prop.~1.32,
+Prop.~1.36 and Thm.~1.38]{hatcher} gives a connected two-sheeted cover
+$\pi:M\to S$. Lifting the smooth charts gives a smooth local diffeomorphism
+and the pulled-back orientation. This is an unramified cover, with two
+distinct points in every fiber, rather than two disconnected copies of $S$.
+
+The surface $M$ is compact. Indeed, finitely many compact sets lying inside
+evenly covered neighborhoods can be chosen with interiors covering $S$;
+the inverse image of each is the union of two compact copies. A lifted finite
+cell structure gives $\chi(M)=2\chi(S)=-4$, so $M$ has genus three. Put
+$\widetilde g=\pi^*g$. The map $\pi$ is a local isometry for this smooth metric,
+and hence $K(\widetilde g)=-1$.
+
+Nash's smooth compact isometric embedding theorem \cite[Thm.~2, p.~59]{nash}
+supplies a smooth embedding
+\[
+ e:(S,g)\hookrightarrow\R^{17},\qquad e^*\langle\ ,\ \rangle=g.
+\]
+Its stated bound $n(3n+11)/2$ is $17$ when $n=2$, and the theorem includes
+$C^\infty$ metrics and embeddings. We use the smooth embedding theorem,
+including global injectivity, rather than only a $C^1$ immersion theorem.
+
+Set $f\equiv0$ and $h=e\circ\pi$. The flow is $\varphi_t=\operatorname{id}_M$
+for all $t\in\R$, so $d\varphi_t=\operatorname{id}$ and
+\begin{align}
+ P_{T,x}(v,w)
+ &=T\langle dh_xv,dh_xw\rangle\notag\\
+ &=Tg_{\pi(x)}(d\pi_xv,d\pi_xw)
+ =T\widetilde g_x(v,w).\label{eq:identity}
+\end{align}
+In a fixed chart containing the constant trajectory, $Df=0$, $\Phi=I$ and
+$H=Dh(x)$, giving exactly the same printed Gramian. Thus the negatively curved
+metric is the actual observation metric, rather than an independently chosen
+auxiliary metric. The endpoint convention $[0,T)$ has no effect on this integral.
+
+Positive constant scaling leaves the Levi--Civita connection unchanged and
+divides sectional curvature by the scale. Hence $K(P_T)=-1/T$. Each $P_T$ is
+geodesically complete: on a compact Riemannian manifold a fixed-speed geodesic
+stays in a compact tangent sphere bundle; smooth geodesic-flow extension then
+prevents any finite-time endpoint. This also handles negative times; zero-speed
+geodesics are constant. At $T=1$ the curvature is identically $-1$.
+
+Fix a smooth background metric $q$. Its unit tangent bundle is compact, and
+$\widetilde g_x(v,v)$ is continuous and strictly positive on it. Its attained
+minimum $c>0$ and maximum $C<\infty$, followed by homogeneity, give
+$Tcq\leq P_T\leq TCq$. For the explicit coordinate bounds, center sufficiently
+small hyperbolic disk charts at the origin and restrict their coordinate radii
+to at most $1/2$. Compactness supplies a finite subcover. In each such chart,
+with $s=u^2+v^2\leq1/4$,
+\[
+ [P_T]=\frac{4T}{(1-s)^2}I_2,
+ \qquad 4T I_2\leq[P_T]\leq\frac{64T}{9}I_2.
+\]
+This is an all-point inequality in each selected chart; it does not require a
+radius-$1/2$ disk to inject at every point. The lower and upper differences at
+$T=1$ are respectively
+\[
+ \frac{4s(2-s)}{(1-s)^2},\qquad
+ \frac{4(1-4s)(7-4s)}{9(1-s)^2},
+\]
+both nonnegative throughout the stated interval.
+
+On one sheet above a sufficiently small evenly covered neighborhood, $\pi$ is
+injective, as is $e$. Thus $h$ and the constant-history map $\Obs_T$ are locally
+injective. Conversely, for $T>0$,
+\[
+ \Obs_T(x)=\Obs_T(x')
+ \quad\Longleftrightarrow\quad h(x)=h(x')
+ \quad\Longleftrightarrow\quad\pi(x)=\pi(x').
+\]
+Every fiber of $\pi$ has exactly two distinct points. Therefore every
+\emph{attained} history has exactly two initial states, while histories outside
+$\Obs_T(M)$ have none. This proves all assertions.
+\end{proof}
+
+Taking $T=1$ gives a counterexample to the printed geometric implication.
+Constants here are uniform over states for a fixed positive observation time.
+There is no bound uniform over all $T\downarrow0$ or $T\uparrow\infty$:
+$P_0=0$ and $K(P_T)\to0$ as $T\to\infty$.
+
+\section{Context, priority and verification}
+The proof is a classical synthesis of covering spaces, hyperbolic surface
+geometry and Nash's embedding theorem. The broader distinction between
+local differential tests and global state ambiguity is old. Hermann--Krener
+\cite[Ex.~3.3, p.~734]{hk} give $\dot x=u$, $y=(\cos x,\sin x)$ with full
+local rank and globally indistinguishable states $x+2k\pi$; their terminology
+for local observability should not be conflated with the history-injectivity
+definition above. Gauthier \cite[\S7.1, Thms.~9--10]{gauthier} treats covering
+realizations in a complete controllable analytic framework. That framework
+does not apply verbatim to our zero dynamics, and neither citation supplies
+the complete nonvacuous two-dimensional negative-Gramian construction.
+In dimension one, quantification over sectional two-planes can be empty; no
+claim about the literal one-dimensional reading is needed here.
+
+The original 2009 open-conjecture presentation has been authenticated. A
+bounded primary-source audit, including complete readings of the ECC 2009
+paper of Dirr--Helmke--Jordan \cite{dirr} and the 2013 survey coauthored by
+Krener \cite{survey}, found no earlier explicit complete construction in the
+inspected corpus. Neither complete source presents a resolution of the printed
+curvature question. Dirr--Helmke--Jordan's Theorem~1.2 assumes that different
+$\omega$-limit sets have different output-image sets (A3). For $f=0$ the limit
+sets are singletons, and two different lifts have the same output; thus A3
+fails. Their auxiliary complete metric is not the exact observation Gramian.
+The survey treats the nonlinear empirical Gramian as local sensitivity and
+uses additional injective-coordinate or system-structure hypotheses for
+observer designs. Neither result entails the printed curvature-only implication.
+
+Sussmann's 1974 quotient announcement \cite{sussmann} was also read in full;
+its quotient-regularity and fibre-map criteria contain no observation-Gramian
+curvature statement. A complete reading of Krishnaprasad's 1977 Allerton paper
+\cite{allerton} concerns metrics on parameter/realization spaces, rather than
+the state finite-history Gramian here. Later observation/bundle literature and
+other relevant sources were compared at the scopes recorded in
+\texttt{SOURCE\_AUDIT.md}. Some older realization originals and portions of the
+worldwide literature remain uninspected. These are disclosed coverage limits,
+and no identified source currently supplies affirmative evidence of the full
+two-dimensional result. The negative search finding does not establish
+worldwide continued openness, absolute firstness, or novelty of the covering,
+Nash or local/global ambiguity mechanism. In particular we make no claim to
+the first refutation of every literal dimensional reading of the conjecture.
+
+The accompanying standard-library verifier checks elementary exact polynomial,
+rational, monodromy and matrix identities, with a separate finite-precision
+decimal diagnostic. It rejects optimized Python execution. Its finite checks
+supplement the proof; they do not construct the Nash embedding or
+machine-certify covering existence, smoothness or completeness. Those global
+claims follow from the proof and the explicitly imported classical theorems.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in solving, drafting, reproducing and
+adversarially reviewing this work. This is an unrefereed preprint without conventional human peer review.
+Independent AI audits examined the proof and its source and priority scope;
+they do not replace conventional human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{krener} A.~J. Krener, Open Problem: Global Observability of Spaces of
+Negative Curvature, Oberwolfach Report 11/2009, pp.~674--675.
+\href{https://doi.org/10.4171/OWR/2009/11}{doi:10.4171/OWR/2009/11}.
+\bibitem{nash} J. Nash, The Imbedding Problem for Riemannian Manifolds,
+\emph{Annals of Mathematics} (2) \textbf{63} (1956), 20--63, Theorem~2, p.~59.
+\href{https://sites.math.rutgers.edu/~feehan/teaching/math866/nash.pdf}{Original paper}.
+\bibitem{hatcher} A. Hatcher, \emph{Algebraic Topology}, Cambridge University
+Press, 2002, pp.~51, 61, 66--67.
+\href{https://pi.math.cornell.edu/~hatcher/AT/AT.pdf}{Author's online version}.
+\bibitem{hk} R. Hermann and A.~J. Krener, Nonlinear Controllability and
+Observability, \emph{IEEE Transactions on Automatic Control} \textbf{22}
+(1977), 728--740. \href{https://doi.org/10.1109/TAC.1977.1101601}{doi:10.1109/TAC.1977.1101601}.
+\bibitem{gauthier} J.-P. Gauthier, Observability (deterministic systems) and
+realization theory, author manuscript dated
+29 June 2009, \S7.1. \href{https://pageperso.lis-lab.fr/jean-paul.gauthier/papers/115.pdf}{Author manuscript}.
+Its original public posting date has not been verified.
+\bibitem{dirr} G. Dirr, U. Helmke and J. Jordan, Global observability of real
+analytic systems, \emph{European Control Conference} (2009), 4582--4586.
+\href{https://doi.org/10.23919/ECC.2009.7075123}{doi:10.23919/ECC.2009.7075123}.
+
+\bibitem{survey} W. Kang, A.~J. Krener, M. Xiao and L. Xu, A Survey of Observers
+for Nonlinear Dynamical Systems, in \emph{Data Assimilation for Atmospheric,
+Oceanic and Hydrologic Applications}, Vol.~II (2013), 1--25.
+\href{https://doi.org/10.1007/978-3-642-35088-7_1}{doi:10.1007/978-3-642-35088-7\_1}.
+
+\bibitem{sussmann} H.~J. Sussmann, On quotients of manifolds: a generalization
+of the closed subgroup theorem, \emph{Bulletin of the American Mathematical
+Society} \textbf{80} (1974), 573--575.
+\href{https://doi.org/10.1090/S0002-9904-1974-13502-0}{doi:10.1090/S0002-9904-1974-13502-0}.
+\bibitem{allerton} P.~S. Krishnaprasad, Geometry of Parametric Models: Some
+Probabilistic Questions, \emph{Proceedings of the 15th Allerton Conference on
+Control, Communication and Computing} (1977), 661--670.
+\href{https://user.eng.umd.edu/~krishna/images/allerton_1977.pdf}{Author-hosted original}.
+\end{thebibliography}
+\end{document}
