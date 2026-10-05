@@ -694,7 +694,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 683 | 2306043 / AMR-022-6043 | Research Problems in Function Theory — Problem 6.43 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 685 | 2306047 / AMR-022-6047 | Research Problems in Function Theory — Problem 6.47 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 686 | 2306078 / AMR-022-6078 | Research Problems in Function Theory — Problem 6.78 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 686 | 2306078 / AMR-022-6078 | Research Problems in Function Theory — Problem 6.78 | 0.1050 | 6.0 | 3 | unknown | already_solved | 3/5 |  | 2026-10-05: Full target is a classical consequence of Dufresnoy (1941), Section 27: minimum spherical image area is half the sphere (2pi unit-sphere; pi/2 quarter-area), uniquely f(z)=z for normalized holomorphic injective maps. Independent audit passed; three approaches, no novelty claim. See [proof and full audit](attempts/2306078/README.md). |  |
 | 687 | 2306086 / AMR-022-6086 | Research Problems in Function Theory — Problem 6.86 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 688 | 2307004 / AMR-022-7004 | Research Problems in Function Theory — Problem 7.4 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 689 | 2307031 / AMR-022-7031 | Research Problems in Function Theory — Problem 7.31 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
