@@ -1,0 +1,113 @@
+{
+  "arithmetic": "Python arbitrary precision integers and Fraction only",
+  "checks": [
+    {
+      "gamma": "1233098745477727276595884117/28373059581825909092198628039",
+      "pass": true,
+      "test": "lacunary_constant_positive"
+    },
+    {
+      "H": 96,
+      "K": 226,
+      "pass": true,
+      "test": "analytic_zero_count_constant"
+    },
+    {
+      "degree_bounds": [
+        1,
+        8
+      ],
+      "pass": true,
+      "rational_parameters": 4,
+      "test": "exhaustive_arithmetic_and_pigeonhole_bounds"
+    },
+    {
+      "pass": true,
+      "test": "multi_digit_lacunary_separation"
+    },
+    {
+      "pass": true,
+      "test": "separated_product_identity_multiplicity_and_log_bound"
+    }
+  ],
+  "examples": [
+    {
+      "degree_bound": 8,
+      "minimum_nonzero_absolute_value": "68031/100000000",
+      "minimum_scaled_integer": 68031,
+      "p": 9,
+      "polynomials": 19683,
+      "q": 10
+    },
+    {
+      "degree_bound": 8,
+      "minimum_nonzero_absolute_value": "8963441/25600000000",
+      "minimum_scaled_integer": 8963441,
+      "p": 19,
+      "polynomials": 19683,
+      "q": 20
+    },
+    {
+      "degree_bound": 8,
+      "minimum_nonzero_absolute_value": "1401502988421/10000000000000000",
+      "minimum_scaled_integer": 1401502988421,
+      "p": 91,
+      "polynomials": 19683,
+      "q": 100
+    },
+    {
+      "degree_bound": 8,
+      "minimum_nonzero_absolute_value": "6365462582691/21435888100000000",
+      "minimum_scaled_integer": 6365462582691,
+      "p": 101,
+      "polynomials": 19683,
+      "q": 110
+    }
+  ],
+  "limitations": [
+    "No finite test proves the uniform all-degree/all-denominator count.",
+    "Analytic proof uses Jensen, maximum principle and Harnack; code checks constants, not those analytic theorems.",
+    "No floating-point minimum is used."
+  ],
+  "negative_controls": [
+    {
+      "detected": true,
+      "mutation": "remove_absolute_value_bars",
+      "negative_count_d1": 4,
+      "upper_bound_for_exp_0_01": "100/99"
+    },
+    {
+      "count": 1,
+      "detected": true,
+      "mutation": "include_d_zero_with_strict_target",
+      "required_strict_upper_bound": 1
+    },
+    {
+      "binary_d1": 4,
+      "detected": true,
+      "mutation": "replace_ternary_family_by_all_plus_minus_one",
+      "ternary_d1": 9
+    },
+    {
+      "coefficients": [
+        1,
+        -2,
+        1
+      ],
+      "detected": true,
+      "mutation": "drop_superincreasing_condition"
+    },
+    {
+      "detected": true,
+      "mutation": "replace_lacunary_L22_by_L21"
+    },
+    {
+      "comparison_denominator_cap": 20,
+      "detected": true,
+      "mutation": "treat_log_q_as_denominator_independent",
+      "q": 100
+    }
+  ],
+  "problem_id": 30003114,
+  "status": "finite_controls_passed_target_unresolved"
+}
