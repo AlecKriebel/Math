@@ -732,7 +732,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 724 | 30002653 / OWR-13109-004 | Indeterminacy Locus of the Perfect Cone Prym Map | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 724 | 30002653 / OWR-13109-004 | Indeterminacy Locus of the Perfect Cone Prym Map | 0.1040 | 5.5 | 3 | 2014 | unsolved | 5/5 |  |  |  |
 | 725 | 30002711 / OWR-13351-010 | Minimal Coefficient Rings for Cyclic Local Lifts | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 726 | 30002753 / OWR-13359-003 | Optimal Geodesic Curvature for Random Transpositions | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 727 | 30002829 / OWR-13500-010 | Rationality of Ueno-Type Varieties | 0.1038 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
