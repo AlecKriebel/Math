@@ -45,3 +45,7 @@ Same reviewed head merged as b7013d3d4b116e63b9ce1458c75da1d0115bbbde. The initi
 ## 2026-10-05T23:45:25.354246+00:00 — actual qualified scientific completion
 
 DOI 10.5281/zenodo.23174156 resolves; seven public files authenticated and exact metadata verified; unique tracker 'Math Puzzles'!A28:D28; unchanged source merged and current native acceptance pushed in main 96cd5de8676378df413e89626b19a15eaa04f842. Two fresh sequential whole-package reviews completed with required repair propagated. Incoming17 bodies, claimed_solved status and2/5 effort preserved; zero new central proof-search turns. Historical priority unresolved, Kuriya credited; human authorized qualified publication. AI use and unrefereed status disclosed. Workflow100%; program13/99 (13.13%); metadata checkpoint and coordination release precede next ordered status intake.
+
+## 2026-10-05T23:46:29.880093+00:00 — actual final metadata readback
+
+Metadata main 5d46f7980f89534f753f3b09c62ee4033f6724f5 is a strict child of accepted-source main 96cd5de8676378df413e89626b19a15eaa04f842 and exact remote readback passed. PR95 workflow100%, program13/99 (13.13%). All scientific/service/native gates completed; priority remains unresolved under PR95-specific human authorization. No shared index mutation or exclusive lease claim. Fresh ordered status-only intake authorized.
