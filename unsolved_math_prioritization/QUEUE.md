@@ -707,7 +707,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 696 | 30001408 / OWR-4199-001 | Invariant Homogeneous Valuations on Convex Bodies | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 697 | 30001599 / OWR-4527-003 | Alpha Bounds for Uniform Fat-Point Schemes | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 698 | 30001603 / OWR-4527-007 | Jet Spanning by Nef Toric Vector Bundles | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 699 | 30001631 / OWR-4535-006 | Curvature Negativity of the Takhtajan–Zograf Metric | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 699 | 30001631 / OWR-4535-006 | Curvature Negativity of the Takhtajan–Zograf Metric | 0.1048 | 5.5 | 3 | 2010 | unsolved | 5/5 |  |  |  |
 | 700 | 4400001 / AMR-043-0001 | Pingree open problems — Hochman problem 1 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 701 | 4400008 / AMR-043-0008 | Pingree open problems — Boyle problem 2 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 702 | 6700060 / AMR-066-0060 | Scalar Curvature Question [?64]: Are all extremal convex polyhedraP are mean convexly extremal | 0.1048 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
