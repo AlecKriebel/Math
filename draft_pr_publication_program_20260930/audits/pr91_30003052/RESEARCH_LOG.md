@@ -7,3 +7,13 @@ Full2016 contribution and thesis Section3.1 plus4.1.7–4.1.9 read; eight equati
 ## 2026-10-05T19:18:44.589301+00:00 UTC — independent proof checkpoint
 
 Two independent mathematical families pass all spectrum formulas. Six peripheral exact controls and573 full-spectrum controls passed; all original20bodies preserved. Reproduction family has reproduced473/907 and1340 additional controls, with final manifest/readback pending; repaired assertion checks reject deliberate false controls under-O. Bounded priority now comparing later author works and classical operator theorems; no novelty clearance. Source100%; math95%; priority50%; workflow30%; program11/99 (11.11%), seven published. Main audit checkpoint being prepared; no DOI or native acceptance forPR91.
+
+## 2026-10-05T19:22:19.018592+00:00 UTC — ROOT mathematical gate
+
+Analytic classification and exact source scope pass. ROOT authenticated20originals, all closed analytic-family artifacts,230 computational manifest files, full actual execution streams/source archives and473/907 traced true conditions. All finite controls are supplementary. Original-O assertion issue requires demonstrated minimal repair in public/native checker copies; originals remain unchanged. Math100%; source100%; priority ongoing50%; workflow35%; program11/99 (11.11%). No priority or publication clearance. Actual source/proof checkpoint cb8091dcfa69ed41defad72963836f5f8920648f pushed, remote verified.
+
+### 2026-10-05T19:31:42.916094+00:00 — bounded priority checkpoint (PR workflow50%)
+Both independent source families completed. The source expressly left the exact converse open; no examined source explicitly completes it. The missing factorization is a short classical JdLG specialization. The note must credit all prior interior/peripheral/nilpotent facts and the already immediate full-disk consequence. Narrow preparation clearance given; publication remains pending complete package and fresh reviews. Ordinary source gaps are disclosed, with no worldwide priority or firstness claim. No central proof-search budget used.
+
+### 2026-10-05T19:42:40.075330+00:00 — complete package prepared (PR workflow65%)
+Six-page standalone manuscript compiled successfully using the built-in compiler and actual Tectonic export. All six final PDF pages visually inspected without layout defects. Seven payloads and eleven archive members byte-compared; original PDFs/private audits excluded. Final runtime receipts bind current source fc7215e8...; 2720 distinct finite controls per mode (2154 exact/discrete,566 floating). Fresh whole-package round1 now running; no publication or merge yet.
