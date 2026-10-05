@@ -718,7 +718,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 707 | 30001860 / OWR-11129-006 | Asymptotic Proportion of $Q$ in Classical Groups | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 708 | 30001887 / OWR-11136-013 | Multiple Cover Decomposition Thresholds for Planar Sets | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 709 | 30001893 / OWR-11136-024 | Dimension of Convex Partition Spaces in Three Dimensions | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 710 | 30003703 / OWR-15987-013 | Equality of the Andreadakis and Representation-Ring Filtrations | 0.1045 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 710 | 30003703 / OWR-15987-013 | Equality of the Andreadakis and Representation-Ring Filtrations | 0.1045 | 6.0 | 3 | 2018 | claimed_solved | 1/5 |  | Independently audited counterexample: D_n(5) != A_n(5) for every n >= 4 and D_n(6) != A_n(6) for every n >= 3, for the rational SL(2,C) matrix-entry algebra and integral free-group lower central series. Universal Lie identities, filtered ideal bridge, explicit automorphisms and integral Magnus certificates proved. No degree-5 rank-3, every-degree, SL_m (m > 2), ordinary Andreadakis lower-central conjecture, or novelty claim. |  |
 | 711 | 10000069 / AMR-099-0069 | Distance exponent of random series-parallel graphs | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 712 | 30002003 / OWR-11580-009 | Stringy Euler Criteria for Smooth Spherical Varieties | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 713 | 30002046 / OWR-11784-003 | Real Fixed Points of the Minkowski Question-Mark Function | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
