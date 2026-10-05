@@ -788,7 +788,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 777 | 9500009 / AMR-094-0009 | Do peaks of random labelings repel each other? | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 778 | 30005356 / OWR-12697685-001 | Definable Endomorphisms of Generic Multiplicative Fields | 0.1019 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 779 | 30005664 / OWR-14297742-004 | Aubin–Talenti Optimizers for Critical Dirac Potentials | 0.1019 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 780 | 30004594 / OWR-4990373-008 | Survival Versus Percolation Thresholds in the Contact Process | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 780 | 30004594 / OWR-4990373-008 | Survival Versus Percolation Thresholds in the Contact Process | 0.1016 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  |  |
 | 781 | 30004618 / OWR-4990375-010 | Kodaira Dimension of Odd Minimal Strata | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 782 | 30004620 / OWR-4990375-013 | Effective Surface Cone of Principally Polarized Abelian Threefolds | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 783 | 30004730 / OWR-8415335-002 | Consistent Conical Bicombings in Metric Spaces | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
