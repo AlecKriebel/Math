@@ -1,0 +1,13 @@
+# Five substantive approaches and stopping points
+
+1. Arithmetic/algebraic classification. Compared exact reduced denominators using continued-fraction sums and Stern-Brocot Fibonacci bounds, then summed eventually periodic tails. Retained full proofs: rational fixed set {0,1/2,1}; no quadratic-irrational fixed points. Gap: no restriction on the number of nonquadratic irrational fixed points, and no transcendence proof.
+
+2. Global signs from self-similarity. Built a complete analytic partition proving F<0 on (0,2/5] and F>0 on [3/7,1/2), including both infinite endpoint tails. Retained full proofs: existence, compactness, reflection and reduction of the count to K in (2/5,3/7). Tested the branch-equation route; its explicit negative correction shows the diagonal is not invariant. Gap: no one-crossing invariant on the remaining interval.
+
+3. Rigorous continued-fraction/Stern-Brocot cylinders. Derived rectangle exclusion conditions and executed an exact depth-128 partition, retaining every terminal interval and its certificate. All roots below 1/2 lie in one width-1.23e-47 interval, but the interval's root count is unknown. Also proved computability of one selected root with rational sign bisection and retained a 160-step instance. Gap: finite common location or computability does not prove uniqueness or an infinite shrinking law for the full fixed set.
+
+4. Dynamics and derivatives. Proved that two fixed points force an intermediate attracting one-sided basin with secant slopes below 1. This yields a conditional uniqueness theorem if Q'=+infinity at all nontrivial fixed points. Proved Q'=0 at every interior rational, rejecting uniform expansion or monotonicity of F on an interval; retained an exact decrease inside the candidate interval. Gap: the necessary fixed-point-specific derivative statement is unproved.
+
+5. Diophantine separation. Proved a sufficient eventual rational-displacement bound with constant 1/q^2 using basin dynamics and convergents. Derived the unconditional integer-divisibility bound and identified why its denominator can be exponentially too large. Compared the published sharper 1/(2q^2) criterion, and checked 342090 reduced rational inputs exactly. Gap: neither eventual inequality was proved; the bounded test is not extrapolated.
+
+These are five mathematical routes within one bounded investigation, not five independent proofs and not five separate model invocations. No route produced a full proof, counterexample, or verified prior resolution of the intended exact-count problem. Known facts and the published conditional criterion are credited. The count of approaches does not imply a successful source-wording recovery for the inaccessible aggregator page.
