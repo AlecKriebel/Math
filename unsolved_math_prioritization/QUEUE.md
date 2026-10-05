@@ -710,7 +710,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 699 | 30001631 / OWR-4535-006 | Curvature Negativity of the Takhtajan–Zograf Metric | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 700 | 4400001 / AMR-043-0001 | Pingree open problems — Hochman problem 1 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 701 | 4400008 / AMR-043-0008 | Pingree open problems — Boyle problem 2 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 702 | 6700060 / AMR-066-0060 | Scalar Curvature Question [?64]: Are all extremal convex polyhedraP are mean convexly extremal | 0.1048 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 702 | 6700060 / AMR-066-0060 | Scalar Curvature Question [?64]: Are all extremal convex polyhedraP are mean convexly extremal | 0.1048 | 6.0 | 3 | 2017 | claimed_solved | 1/5 |  | 2026-10-05: Qualified credited preprint resolution via Bi2026 arXiv:2608.06320v1 Thm1.1; independent proof audit found no unresolved gap only for ambient-smooth face-preserving maps/inverses up to corners. Recent preprint, no verified journal acceptance; broader corner-singular maps unverified. No new discovery; see attempts/6700060/README.md. |  |
 | 703 | 6700077 / AMR-066-0077 | Scalar Curvature Question [?79]: C0-closeness of the spaces ofC0-metrics withVolumicallyPositiveScalarCurvatures | 0.1048 | 6.0 | 4 | 2017 | queued | 0/5 |  |  |  |
 | 704 | 30001658 / OWR-4791-015 | Functional Inequality on the Boolean Cube | 0.1047 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 705 | 30001678 / OWR-4792-006 | Smoothness on Products of Perfect Sets | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
