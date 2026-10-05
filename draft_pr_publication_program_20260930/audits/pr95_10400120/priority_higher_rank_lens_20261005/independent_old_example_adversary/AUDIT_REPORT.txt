@@ -1,0 +1,113 @@
+Bounded adversarial audit of Hansen--Takata Remark 5.3(a)
+2026-10-05 UTC. No PR95 proof-search, publication, Git mutation, UI operation,
+or external communication was performed. All outputs stay in this folder.
+
+VERDICT
+
+I could not falsify the supplied r=6 full A3 computation. Two new exact
+reconstructions confirm, in the paper's own conventions,
+
+  tau_6^{sl4}(L(64,9)) = tau_6^{sl4}(L(64,25))
+                     = -(zeta96^12 + zeta96^28)/3
+                     = -exp(5*pi*i/12)/sqrt(3).
+
+Thus |tau|^2=1/3, tau(S3)=1/sqrt(24), and
+|tau/tau(S3)|^2=8 for both spaces. These are equal COMPLEX invariants.
+The printed assertion that tau_6 distinguishes this pair conflicts with the
+printed formulas and the checked exact evaluations. This audit does not claim
+to identify the historical cause of that conflict or establish an erratum.
+
+SOURCE AND CONVENTION CHECKS
+
+Preserved PDF SHA256:
+a00c189a481c1c7f5ccb14968e4d3b29abe7e560d3bb416f13ba56ae795e609e.
+All designated scripts, prior records/captures, PDF, and extracted text were
+copied byte-for-byte into source_bytes and hashed in SOURCE_MANIFEST.json.
+The printed pp.39 and 44 were rendered and visually inspected; Remark 5.3(a)
+really says tau_6^{sl4(C)}. It is not an extraction error or a Psl4 subscript.
+
+1. Level: pp.6 and 26 give m=1 in simply laced A3 and r=m*kappa. Therefore
+   r=6 means kappa=6 and ordinary SU(4) level k=2. The shifted open alcove
+   has exactly ten labels. Reinterpreting the printed 6 as k would change
+   the source's explicitly defined invariant and is unsupported here.
+2. Lattice and scale: long roots have squared length 2; A3 coroots equal
+   roots, rho=(3,1,-1,-3)/2, |rho|^2=5, |Delta+|=6, rank=3. The A3 Gram
+   determinant is 4, so vol(Y^vee)=2. The parent simple-root coordinates
+   nu=(a,-a+b,-b+c,-c) are valid. The independent sine calculation instead
+   uses nu=(x,y,z,-x-y-z); its first-three-coordinate basis differs by an
+   integer matrix of determinant 1. Both enumerate all 64^3 coroot classes.
+3. Exponents: Theorem 5.1 gives zeta384 powers
+   18*q*|nu|^2 + 6*<nu,q*rho-w*rho> - <rho,w*rho>.
+   These match the supplied ht_old_example_exact.py exactly. The factor
+   i^6=-1, Dedekind phase zeta384^-315, and denominator
+   2*384^(3/2) also match. S(9/64)=S(25/64)=-63/32.
+4. Cyclotomic modulus: Phi384=x^128-x^64+1 and
+   Phi48=x^16-x^8+1 used by the parent are correct. Our separate generic
+   construction uses Phi96=x^32-x^16+1 and
+   Phi768=x^256-x^128+1, without hardcoding either reduction rule.
+5. Surgery and phase: p.26 defines L(p,q) by -p/q surgery. Our negative
+   chains produce matrices -[[9,8],[64,57]] and [[25,16],[64,41]],
+   with Rademacher Phi=3. Both are the required PSL(2,Z) elements. We use
+   equation (35), tau=omega^Phi(U)*R(U)_{rho,rho}, with omega=zeta96^20.
+   The parent's positive chains give the opposite orientation. Its corrected
+   polynomial (-zeta48^2+2*zeta48^10)/3 is the conjugate of the value above.
+   This is a convention difference between methods, not unequal values for
+   the two q's, and does not invalidate its magnitude calculation.
+6. Normalization: the independently checked S00=sqrt(6)/12 has square 1/24.
+   Common S3 normalization and orientation reversal preserve equality.
+   No omitted factor or phase in the printed formulas was found.
+
+NEW EXACT CHECKABLE ARTIFACTS
+
+independent_surgery.py uses strict-coordinate labels from 3-subsets of
+{1,...,5}, recursive determinant minors, generic polynomial long division
+in Q(zeta96), and negative surgery words. It imports neither supplied script.
+It checks sqrt6^2=6, S00=sqrt6/12, S^2=C, S S*=I, (S Theta)^3=C,
+the integer surgery matrices, Phi=3, full complex equality, and |tau|^2=1/3.
+
+independent_sine_product.py independently implements the SECOND formula of
+Theorem 5.1, expanding all six sine differences into 64 signed terms per
+coroot representative (16,777,216 terms per q). NumPy only vectorizes integer
+bincount arithmetic. No Weyl-permutation enumeration or floating arithmetic
+enters the certificate. For z=zeta768, the reduced signed product sum is
+
+  P = 6144*(z^54+z^118-z^182),  P*conjugate(P)=75497472.
+
+The theorem gives tau=-z^-630*P/(6144*sqrt6), which is checked exactly to
+equal -(z^96+z^224)/3. Both RAW histograms are equal and preserved; their
+SHA256 is 627ff2a7189f2d43e8f740d91c758bf67c1004df4ded1c8ebfa3254c2a55cc0e.
+This also reproduces the parent's reduced zeta384 polynomial after doubling
+its exponents, using a separate formula and a separate coroot basis.
+
+ACTUAL PROCESS RECORDS
+
+Run independent_surgery:
+  argv: ["python3", "independent_surgery.py"]
+  operator PID 17047; child PID 17055; exit 0.
+  UTC start 2026-10-05T21:00:43.673213+00:00
+  UTC finish 2026-10-05T21:00:43.790729+00:00
+  Full stdout: processes/independent_surgery.stdout (3141 bytes).
+  Full stderr: processes/independent_surgery.stderr (0 bytes).
+  Full record/hashes: processes/independent_surgery.json.
+  python3 resolves to /opt/homebrew/opt/python@3.14/bin/python3.14.
+
+Run independent_sine_product:
+  argv: ["/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3", "independent_sine_product.py"]
+  operator PID 18395; child PID 18403; exit 0.
+  UTC start 2026-10-05T21:02:31.042714+00:00
+  UTC finish 2026-10-05T21:02:31.569701+00:00
+  Full stdout: processes/independent_sine_product.stdout (1923 bytes).
+  Full stderr: processes/independent_sine_product.stderr (0 bytes).
+  Full record/hashes: processes/independent_sine_product.json.
+  NumPy version 2.3.5. Executed source bytes are separately preserved in
+  the matching processes/*.source_bytes folders.
+
+REMAINING GAP AND SCOPE
+
+The computational claim is fully resolved conditional on the printed
+definitions and formulas: this specific invariant does not distinguish this
+specific pair. The source's reason for claiming otherwise remains unknown.
+The audit does not settle whether another level, another rank, or another
+invariant distinguishes the pair. Such a replacement example would require
+its own exact certificate. No reinterpretation of r=6, unsupported correction,
+or central proof-search conclusion should be promoted from this discrepancy.
