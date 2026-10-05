@@ -1,0 +1,12 @@
+--- original_source_authentication_20261005/original_attempt/review/independent_checks.py
++++ exact_reproduction_adversary_20261005/workspaces/repair_review_normal/checker.py
+@@ -6,7 +6,8 @@
+ import sympy as S
+ checks={}
+ def ck(label,x):
+- assert bool(x),label
++ if not bool(x):
++  raise AssertionError(label)
+  checks[label]=checks.get(label,0)+1
+ def zero(M):return all(S.simplify(v)==0 for v in M)
+ # An adapted l1 norm, not the submitted l-infinity example.

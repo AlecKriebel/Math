@@ -10,7 +10,8 @@ from pathlib import Path
 import hashlib,json,math
 counts=Counter()
 def ck(k,v):
-    assert bool(v),k
+    if not bool(v):
+        raise AssertionError(k)
     counts[k]+=1
 def zero(M):return all(s.simplify(z)==0 for z in M)
 S=s.Matrix([[1,1,0,2,0],[0,1,1,0,1],[0,0,1,1,0],[0,0,0,1,1],[0,0,0,0,1]])

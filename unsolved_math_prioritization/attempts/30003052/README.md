@@ -1,12 +1,9 @@
-# 30003052: linear-map Koopman spectra
+# 30003052: verified linear-map Koopman spectrum classification
 
-The complete classification candidate is in [CLASSIFICATION.md](CLASSIFICATION.md). Its exact setting is the complex Banach space C(U), where U is the closed unit ball of any complex norm on finite-dimensional space and A is a contraction.
+The complete theorem in CLASSIFICATION.md has been independently verified in the exact arbitrary-complex-norm, closed-ball C(U) setting. The self-contained [research note](https://doi.org/10.5281/zenodo.23171212) explicitly completes the mixed point-spectrum converse from Küster 2015 Th3.1.14(i), using a short classical JdLG specialization. Known special cases and the already immediate full-disk row are credited. No worldwide firstness or continuing-openness claim is made; the public priority supplement documents bounded coverage and edition gaps.
 
-The central step forces every unimodular Koopman eigenfunction to factor through the peripheral spectral projection. Combined with credited known cases and a nilpotent splitting, this gives both point and full spectra, including all zero-eigenvalue cases. Separate adversarial AI review passed; see [the independent report](review/REVIEW.md). The frozen proof retains its submission-time status header. Historical priority has not been established; the work is not human-peer-reviewed.
+Two successive fresh whole-package AI adversarial reviews completed; first-round attribution wording was corrected before the new second review. AI tools were used extensively; this is an unrefereed preprint without conventional human peer review.
 
-- One substantive proof family, within the five-family ceiling
-- 473 exact submitted controls and 907 independent exact controls pass
-- Reproduce with Python3 and SymPy: run verify.py from this directory; its JSON receipt is printed to stdout
-- The controls support finite algebraic identities; the written proof supplies compactness, continuity, recurrence, Stone–Weierstrass density and spectral closure
-- Full source provenance: SOURCES.md and source_manifest.json
-- The coordinating task owns queue updates
+The [portable package](../../../draft_pr_publication_program_20260930/audits/pr91_30003052/publication_package_v1/publicfiles/README.md) contains current source, explicit optimization-safe verifiers, recorded results and provenance. It supplies 2720 distinct finite controls per mode: 2154 exact/discrete and 566 floating diagnostics. Finite controls supplement the written proof. Current native entry points also reproduce 473/907 counts under Python -O.
+
+Original submission/review bodies and their exact incoming hashes are retained in the audit archive. Original author budget 1/5 is preserved; no new central proof-search turns were used. DOI: 10.5281/zenodo.23171212; tracker: 'Math Puzzles'!A27:D27.

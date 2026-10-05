@@ -6,7 +6,8 @@ import hashlib,json,math
 import sympy as S
 checks={}
 def ck(label,x):
- assert bool(x),label
+ if not bool(x):
+  raise AssertionError(label)
  checks[label]=checks.get(label,0)+1
 def zero(M):return all(S.simplify(v)==0 for v in M)
 # An adapted l1 norm, not the submitted l-infinity example.

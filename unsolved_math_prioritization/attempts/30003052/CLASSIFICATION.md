@@ -1,6 +1,6 @@
 # Spectrum of a linear-map Koopman operator on the closed unit ball
 
-**Complete classification candidate for 30003052 / OWR-14215-004; separate adversarial review pending.** One proof family. Known cases from Kari Küster's 2015 thesis and 2016 OWR contribution are credited below. Historical priority of the completed classification is not established.
+**Verified full classification for 30003052 / OWR-14215-004; accepted after independent mathematical and publication-package reviews.** One proof family. Known cases from Kari Küster's 2015 thesis and 2016 OWR contribution are credited below. Historical priority of the completed classification is not established.
 
 ## 1. Exact space and statement
 
@@ -230,3 +230,9 @@ The primary OWR contribution states Theorem5(i)–(iii) and cites Küster's 2015
 The source's known all-peripheral, nilpotent-only and interior-eigenvalue results are credited, rather than recounted as discoveries. The classification's crucial extra step is (5), followed by the already familiar reversible-ball calculation. A bounded literature search did not verify an earlier complete statement of (1); this does not establish historical priority.
 
 The exact checker supplies finite algebraic controls for the spectral projection, nilpotent/peripheral splitting, monomial eigenvalue groups and explicit interior-eigenfunction identities. It does not approximate the infinite-dimensional spectrum by a finite matrix. No claim is made about other observable spaces, an open unit ball, an unbounded composition operator, or a matrix that does not map the specified ball into itself.
+
+## 8. Publication acceptance and priority scope (2026-10-05)
+
+The self-contained research note is [The mixed point spectrum of a matrix contraction on its closed unit ball](https://doi.org/10.5281/zenodo.23171212). It expressly answers the mixed point-spectrum converse left open in Küster 2015 Theorem 3.1.14(i); the 2016 contribution states only its inclusion. The missing factorization is a short specialization of the classical Jacobs–de Leeuw–Glicksberg mechanism, identified with composition by the contractive peripheral projection. The prior peripheral, interior and nilpotent point-spectrum cases are credited; the entire J-nonempty full-disk row already follows immediately from the 2015 interior inclusion and spectral closure. A bounded primary-source audit found no earlier explicit completion in inspected scope, with ordinary edition/coverage gaps disclosed. No firstness, new general mechanism, novel full-disk spectrum, or continuous 2015–2026 openness claim is made.
+
+Two sequential new whole-package adversarial AI reviews were completed. The first required a source-attribution precision repair, applied globally; the second reviewed the corrected bytes. Current native checkers use explicit guards that remain active under Python -O. Immutable incoming 20-file bodies and original 1/5 author history remain archived in the program audit. AI tools were used extensively; the work is unrefereed without conventional human peer review.

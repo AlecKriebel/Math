@@ -1,0 +1,11 @@
+# Independent judgment formed before prior-review comparison
+
+Mathematics: PASS for the exact arbitrary-complex-norm, full C(U), closed-ball claim. The complete current source resolves each independently derived obligation, including the unbounded n_j=m_{2j}-m_j recurrence, original norm contractivity of P, uniform-continuity factoring, Cesaro exclusion outside exact Gamma, nonzero complex stable eigenfunctions plus mu=0, and a closed invariant nilpotent direct sum for full operator spectra. No counterexample or hidden additional assumption identified. JdLG applicability and concrete idempotent identification are sound.
+
+Reproduction: freshly extracted ZIP root has run successfully using native /usr/bin/python3 -E -B; six child runs include -O and preserve 2720 controls per mode = 2154 exact/discrete plus 566 floating. Full process evidence is retained. Finite controls remain evidence about selected finite examples, not proof of the spectrum.
+
+Primary-source assessment: independently read Kuester2015 Section 3.1 printed35-43/PDF44-52, Pure Koopmanism complete contribution printed320-322/PDF24-26, EFHN printed308-313/PDF326-331 and dated front matter. The 2015 historical converse is expressly open, the 2016 mixed statement is inclusion only, and the classical JdLG mechanism predates this contribution. Thus an explicit solution of the historical mixed question by short classical specialization is supported. This does not establish global novelty or uninterrupted openness; the current manuscript explicitly disclaims those claims.
+
+Package integrity: current seven selected payloads and metadata agree with the frozen manifest; every ZIP member is byte-identical to the corresponding public source; all digest lines verify; digests appropriately exclude themselves. All six actual current-PDF pages were inspected as freshly rendered pixels and show no mandatory visual defects.
+
+This judgment was committed to audit artifacts before reading any old review reports or ROOT adjudications. Remaining work: private fail-closed mutations, original/repair/CLI source body comparison, complete supplementary priority factual cross-check, final custody closure, and only then previous mandatory-finding disposition comparison.
