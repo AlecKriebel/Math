@@ -740,7 +740,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 729 | 30003070 / OWR-14221-006 | Birational Sequences for Plabic Newton–Okounkov Bodies | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 730 | 30003114 / OWR-14603-013 | Exponential Small-Value Bounds for Littlewood Polynomials | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 731 | 30003229 / OWR-14754-016 | Stringy Euler Numbers under Mori Flips | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 732 | 30003230 / OWR-14754-017 | Stringy Euler Numbers under Divisorial Contractions | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 732 | 30003230 / OWR-14754-017 | Stringy Euler Numbers under Divisorial Contractions | 0.1035 | 5.5 | 3 | 2016 | unsolved | 5/5 |  |  |  |
 | 733 | 30003264 / OWR-15173-001 | Third Homology and Pre-Bloch Groups of $S$-Arithmetic $\operatorname{SL}_2$ | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 734 | 6600014 / AMR-065-0014 | A. Navas: A Conjecture on Delone Sets BL to Lattices (after P. Alestalo, D.A. Trotsenko and J. V\"ais\"al\"a). — Problem | 0.1035 | 5.5 | 4 | 2016 | queued | 0/5 |  |  |  |
 | 735 | 30003417 / OWR-15216-023 | Meager Ideal Equalities at Uncountable Regular Cardinals | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
