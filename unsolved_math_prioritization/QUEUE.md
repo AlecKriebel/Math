@@ -801,7 +801,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 790 | 30005114 / OWR-10252930-024 | Spread Bounds for the Random Triangle-Removal Process | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 791 | 30005140 / OWR-10252936-003 | Gaussian-Free-Field Maxima on Percolation Clusters | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 792 | 30006031 / OWR-14298590-001 | Little Three-Disks Actions on Operadic Homotopy Centers | 0.1010 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 793 | 5300080 / AMR-052-0080 | Boundary fixed points in rank-zero Hénon components | 0.1006 | 5.5 | 3 | 1990 | queued | 0/5 |  |  |  |
+| 793 | 5300080 / AMR-052-0080 | Boundary fixed points in rank-zero Hénon components | 0.1006 | 5.5 | 3 | 1990 | unsolved | 5/5 |  |  |  |
 | 794 | 5300014 / AMR-052-0014 | Non-equivalent compactifications of Blaschke-product space | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 795 | 5300056 / AMR-052-0056 | Bounded Jacobian cocycles and absolute continuity | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 796 | 5300062 / AMR-052-0062 | Smoothness of exponential-family parameter hairs | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
