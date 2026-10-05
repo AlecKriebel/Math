@@ -1,0 +1,13 @@
+# Read scope ledger
+
+- Complete initial mutable source, archived INITIAL_DRAFT_COMPLETE.py.gz; early independent derivation predates actual native completion/final plan.
+- Complete repaired source13297/22192198, archived REPAIRED_CANDIDATE_COMPLETE.py.gz. Mode-only freeze later0444 is qualified.
+- Complete unchanged capture framework0ea02436, archived EXACT_CAPTURE_FRAMEWORK_COMPLETE.py.gz; original enclosing project module was not imported or executed.
+- Frozen plan45508/3370ca73 and all six prerequisite bodies/modes read in full and gzip-archived in final_input_archives. Complete selected47 input bodies read/hash checked; distinct six prepared/old map bodies additionally archived.
+- Complete known-held41253 inventory read; each41250 nonowned full body/mode read/hash checked. This is a known inventory claim, not all possible ignored/untracked files.
+- Fourteen full read-only Git requests/starts/completions/streams/stdin/source captures in final_native_readback: actual branch/main/literal remote, parents, whole index/flags/dirty diff, complete34 native index/commit blobs via batch. Original28 independently compared to submitted snapshot hashes.
+- Full six reporting maps read. Machine-derived exact foreign inventory literal preservation and full log prefix preservation are checkable in audit_reporting_maps.py and INDEPENDENT_SIX_MAP_AUDIT.json; small JSON/README/log text was read in full. Full historical global log is prefix-hashed/preserved, with the new complete event inspected.
+- Five complete own_actual_captures: early_independent_derivation, synthetic_prefix_cases, synthetic_final_owned, independent_final_inputs, reporting_maps. All sources/request/start/full raw streams were reauthenticated at closure. All native outcomes0; nested config may have explicitly allowed1. Synthetic fixtures are labeled and cannot authorize actual writes.
+- Prior ROOT mathematical/priority/preprint/service/native/recovery acceptances are separately established prerequisites. This checkpoint review does not claim a new whole mathematical/priority audit, new service action, new human review, or independent reexecution of all516 prior native captures.
+- An unrecorded direct schema probe was truncated; OWN_SCHEMA_PROBE_LIMITATION.json prevents treating it as full raw custody. Initial estimated log retained and corrected from actual records.
+- Terminal sealer source/request/observation are self-observed before process exit. The immutable manifest is noncircular and excludes itself/seal. Final namespace mode changes are explicitly documented rather than used to infer historical launch modes. Root independently verifies closure after the sealer exits.
