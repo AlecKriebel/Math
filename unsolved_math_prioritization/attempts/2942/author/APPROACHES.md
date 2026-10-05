@@ -1,0 +1,15 @@
+# Five approaches and their stopping points
+
+Target: 2942 / KP-4.66, rank 694. These are five substantive mathematical routes, not five repetitions of a literature query. The investigation does not establish a resolution or claim novelty.
+
+1. Close the detected boundary traces. Inspected the exact 3-/4-handle maps and the general gluing setup, separated spherical 4-handle filling from arbitrary capping, proved a functional survival criterion, and constructed two exact algebraic countercontrols to automatic preservation of a module difference. A correct comparison must handle changes in H_2 and all possible reindexings induced by diffeomorphisms. Stopped because no cap kernel or surviving functional for a closed candidate was determined. PROOF Propositions 1–2.
+
+2. Force a zero/nonzero closed comparison. Derived the positive-sphere vanishing condition from the unknot trace bound with its correct sign, applied it to positive blowups and S^2 x S^2, and reconstructed the conditional positive-b_2^+ nonvanishing route. Worked out the intersection-form indices, oddness, Kirby–Siebenmann condition, and an optional second negative blowup that rules out orientation-reversing diffeomorphisms by nonzero signature. Stopped at the absence of a closed X with the required rigorously nonzero module. PROOF Propositions 3–4.
+
+3. Use the computable Lee theory. Constructed the basis transport under an oriented homeomorphism and checked every unfiltered grading, isolated the integer filtration as the potentially smooth information, and proved a sufficient nonvanishing test when a punctured candidate is a 2-handlebody with only a 4-handle to add. Tested the counterexample of a nonzero vector space with identically minus-infinite filtration. Stopped because neither a finite-filtration certificate nor a cap-survival result was obtained for a closed candidate. PROOF Propositions 5–6.
+
+4. Compute cable stages and certify the limit. Inspected the rational symmetrized filtered-colimit formula and its transition maps. Proved the eventual-death characterization, non-effective kernel stabilization for a finite stage, impossibility of deciding the limit from any finite prefix alone, and a compatible-functional alternative. Built explicit same-prefix continuations with opposite outcomes. Stopped because no tail-wide survival certificate was established. These abstract controls are not computations of a knot or manifold. PROOF Propositions 7–8.
+
+5. Seek candidates through stabilization and Gluck twists. Proved why zero-factor stabilization cannot be cancelled, constructed a nonzero infinite-dimensional tensor cancellation countercontrol, and checked the more recent Gluck-twist theorem including its nontrivial grading shifts. Restricted the grading-preserving obstruction to the null-homologous case and derived the S^4 consequence. Stopped because this route is blind on those candidates over Q; it gives no universal negative answer. PROOF Propositions 9–10.
+
+Publication status: ready for a fresh independent mathematical audit only. No remote branch, commit, pull request, or queue write was made by this investigation.
