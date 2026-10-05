@@ -1,0 +1,13 @@
+# Independent reconstruction before prior-suite consultation
+
+UTC checkpoint: 2026-10-05T01:48:00Z (record entered after reading complete five source programs, kit, kit README, exact candidate/submission manifest and native tracker captures). Review progress estimate: 20%.
+
+The five program bytes match the requested body sizes. `submission_gate` and `public_identity` reject actual `sys.flags.optimize` at import. Child kit invocation uses `-E -B`. The shared write window explicitly compares all three UTC timestamps across status and lease, bounds issue-to-expiry by 600 seconds, reserves 60 seconds before the 55-second child deadline, and rechecks after Git reads. `git()` is bounded to 30 seconds; the separate URL-rewrite `git config` read currently has no timeout. It cannot produce a writer before the final time recheck, so whether this matters is a progress/operability question rather than an established stale-write vulnerability.
+
+Closed scientific clearance pins the exact candidate manifest plus 23 read-only package entries and full package namespace; it pins all four exact submission files and supplied closed evidence. Operational clearance pins all five reviewed program bodies/modes and requires this review report/inventory as closed evidence. Four actual authority files are absent. No current write authority exists.
+
+The kit creates/stages through one create POST and upload/update steps, then publishes through a separate exact-confirm-id POST. It makes at most one publish POST and one readback, with uncertainty reporting. The operator records attempts before invoking the child and forbids retry of an existing label.
+
+Public verifier fetches public record JSON, separately resolves the exact DOI, compares every one of 11 metadata fields (only public schema mappings), and downloads both whole files, checking equality plus SHA-256/MD5/sizes and exact record paths. Tracker checks genuine file-entry names, hashes, sizes, required native fields, source hash, curl first options and URL, then scans the entire live formula-rendered grid before/after, making one RAW four-cell append with a dry-run first.
+
+Open test hypotheses (not findings): actual native optimized interpreter exclusion; expired/oversize/future/mismatched lease exclusion, and consumption of lease during Git reads; genuine public verifier-shaped entry rejection for wrong files/native binding; whether altered public record/DOI native evidence can improperly authorize append despite file entries being genuine; duplicate/trailing-column preservation; ambiguous child and append retry exclusion. No earlier report or suite has been read as of this checkpoint.
