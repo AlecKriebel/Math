@@ -1,0 +1,180 @@
+--- author-v1/MANIFEST.json
++++ author-v2/MANIFEST.json
+@@ -1,5 +1,5 @@
+ {
+-  "audit_status": "pending",
++  "audit_status": "v1 mathematical partials passed; M1 corrected; delta acceptance pending",
+   "excluded": [
+     "source PDFs",
+     "extracted source text",
+@@ -14,29 +14,29 @@
+       "sha256": "d5fa63a527a5c34402cdc8adcbd24c73a0ca25cc7cfdde0fc8ff66d7ce01fa90"
+     },
+     {
+-      "bytes": 1154,
++      "bytes": 1357,
+       "path": "README.md",
+-      "sha256": "070be39d44e4434c79cbae0c9cc43bbc511ce417d9dc855d965c766035dc6387"
++      "sha256": "e31ec8cf22d087e7cf5ed20aaba2f6e9884f73d42b7297d023466d7383de07ba"
+     },
+     {
+-      "bytes": 6634,
++      "bytes": 8111,
+       "path": "RESEARCH_LOG.md",
+-      "sha256": "efdc55e12c001d20ae8e2db3cb2d5fd96cdbe63ba54f6f5490e6bd9107e617ec"
++      "sha256": "9add3e5b7cfdb7c82e35382ec5dd5cf4db0211845cd43729cc23a667263db55f"
+     },
+     {
+-      "bytes": 5200,
++      "bytes": 5704,
+       "path": "RESULT.md",
+-      "sha256": "ed17490a68022a103612fa96eb89f2e7c2eaeea7f4f7706ff2ec18ed7819f6e5"
++      "sha256": "273edc4a5e79dea4b264dc1354f227c261aacf63350b8688a9e71bf1d5cb1607"
+     },
+     {
+-      "bytes": 8428,
++      "bytes": 9353,
+       "path": "SOURCE_AUDIT.md",
+-      "sha256": "e89c64834cfa4ac445b873f50568b59d8818d596daca2a40917e6f1a1f14cda0"
++      "sha256": "9d99277cf51580c75103348a0bc607d8059c26b8a0d898f2370aa9c4adc70323"
+     },
+     {
+-      "bytes": 6980,
++      "bytes": 7691,
+       "path": "SOURCE_MANIFEST.json",
+-      "sha256": "9fedff3f9e8752efe0a87f0806b68209536c1a78a1d96e5413cbda3cc2deb4dc"
++      "sha256": "634bcac139b7b07372ce4a297465022fbd74a95ed94abbba17bfaa5fa376c1ec"
+     },
+     {
+       "bytes": 977,
+@@ -44,9 +44,9 @@
+       "sha256": "6a7366938301148c33cff83de9e915402adf0563535bd55c94e07fa85882ac9a"
+     },
+     {
+-      "bytes": 1556,
++      "bytes": 1686,
+       "path": "readiness.json",
+-      "sha256": "8ad3664b8fc7e6fd613385f4ae366c727dd45f53a531d33243efb04d14aaac31"
++      "sha256": "f4c95ee9bc4c28f7560b400d9c4e2f4276c09d51da08f6065e31473665508d12"
+     },
+     {
+       "bytes": 5070,
+@@ -54,9 +54,11 @@
+       "sha256": "344870f203023d00422e0ec80d12934cccb93c1400477c3da6f7ade161678c05"
+     }
+   ],
+-  "freeze_id": "hodge_30004494-author-v1",
++  "freeze_id": "hodge_30004494-author-v2",
+   "original_target_status": "unsolved",
+   "problem_id": "30004494",
++  "supersedes": "hodge_30004494-author-v1",
+   "turns_used": 5,
+-  "verification_result": "18,549 exact finite assertions passed; replay matched byte for byte; not a proof of the original conjecture."
++  "v1_manifest_sha256": "1b384c58531496829886e4a0a96820dad434ea796a3c36b96f532e5b6c6a8571",
++  "verification_result": "18,549 exact finite assertions passed; replay matched v1 byte for byte; not a proof of the original conjecture."
+ }
+--- author-v1/README.md
++++ author-v2/README.md
+@@ -13,4 +13,4 @@
+ 
+ Reproduce with Python 3.10 or later: `python3 verify.py`. Compare standard output to VERIFICATION.json. No network, dependencies, secrets or raw source documents are required. Finite checks are not formal verification of the Hodge-theoretic or classical positivity inputs.
+ 
+-Independent audit status at author freeze: pending. Source PDFs, extracted text, images, raw public datasets and private coordination are deliberately outside the distributable packet. Remote publication is not performed by this packet's author.
++Independent audit status: v1 mathematical partials passed, with mandatory literature-scope correction M1. This v2 incorporates M1 and awaits the original reviewer's delta acceptance. PROOFS.md, verify.py and VERIFICATION.json remain byte-identical to v1. Source PDFs, extracted text, images, raw public datasets and private coordination are deliberately outside the distributable packet. Remote publication is not performed by this packet's author.
+--- author-v1/RESEARCH_LOG.md
++++ author-v2/RESEARCH_LOG.md
+@@ -65,3 +65,11 @@
+ The standard-library exact control runner passes 18,549 assertions over 2,200 positive-definite sign-controlled matrices, 1,000 curved-cone tests, weights 1 through 40 for determinant bookkeeping, the disconnected-matrix control, and finite feasibility/duality tests. An initial output-serialization variable-shadowing bug was fixed; the final runner and complete output were rerun successfully. These tests supplement the proofs and do not establish the conjecture.
+ 
+ The authored safe packet is to be frozen for an uninvolved audit. No remote repository changes, messages to researchers, releases or external submissions were made by the author. Independent review must check the whole written argument and current source qualifications, not only replay arithmetic.
++
++## Independent-review correction M1, 16:41 UTC
++
++The fresh audit passed all retained mathematical partials and required one literature-scope correction. The v1 suggestion that the generalized toroidal comparison necessarily changes the base omitted Deng-Tsimerman Theorem 2.11. Direct inspection now confirms Theorem 2.11 and Definition 4.6, as well as Definitions 4.1/4.3, Example 4.5 and Theorem 4.7; PDF pages 6 and 13 were visually crosschecked with HTML. GGR Lemma 3.11(ii) was inspected directly: logarithmic local Torelli forces independence of the local monodromy logarithms. In the integral/unipotent framework this identifies the combinatorial monodromy cone with an orthant, whose generator rays are faces. Thus the original-base case applies.
++
++RESULT.md and SOURCE_AUDIT.md now state that case explicitly. The remaining limitations are target projectivity (Conjecture 2.12) and the missing fixed effective boundary correction, not a necessarily modified base. The earlier Attempt 1 checkpoint above is retained as history, with this correction controlling its current interpretation. No additional substantive proof attempt was made. The original status remains unsolved, 5/5 exhausted, with the same 20% subjective target-completion estimate.
++
++A new v2 safe tree and archive preserve v1 unchanged. PROOFS.md, verify.py and VERIFICATION.json are byte-identical. All 18,549 exact controls replay with identical output. Original-reviewer delta acceptance is pending.
+--- author-v1/RESULT.md
++++ author-v2/RESULT.md
+@@ -2,7 +2,7 @@
+ 
+ ## Verdict
+ 
+-Five substantive approaches were completed. No proof or counterexample to the full boundary-corrected ampleness conjecture was obtained. The retained results are rigorous algebraic controls and a reconstruction of a known surface mechanism. They carry no novelty claim. Status for the original target: **unsolved after 5/5 attempts** (workflow state: exhausted), pending independent audit of this packet. AI-assisted, unrefereed.
++Five substantive approaches were completed. No proof or counterexample to the full boundary-corrected ampleness conjecture was obtained. The retained results are rigorous algebraic controls and a reconstruction of a known surface mechanism. They carry no novelty claim. Status for the original target: **unsolved after 5/5 attempts** (workflow state: exhausted). The v1 mathematical partials passed independent audit; this v2 corrects its one mandatory literature-scope issue and awaits delta acceptance. AI-assisted, unrefereed.
+ 
+ ## Exact target and conventions
+ 
+@@ -36,7 +36,7 @@
+ 
+ [BFMT, arXiv:2508.19215v2](https://arxiv.org/abs/2508.19215v2), Corollary 1.3, proves semiampleness for the **full Griffiths bundle** with unipotent local monodromy. Theorem 1.2 identifies an ample bundle on the new period-image compactification and its pullback. This is important progress but does not itself supply an effective boundary correction on X. Moreover the full product and the earlier upper-half augmented product are different in odd weight. [SOURCE_AUDIT.md](SOURCE_AUDIT.md) gives the exact comparison.
+ 
+-Two historical hazards were checked: [arXiv:2106.04691](https://arxiv.org/abs/2106.04691) is withdrawn because its Theorem 1.7 proof is incomplete; [arXiv:2010.06720v6](https://arxiv.org/abs/2010.06720v6) corrects previous determinant-descent assertions and exhibits an odd-weight failure of descent. Neither is used as an unconditional completion theorem. The 2025 generalized toroidal result also changes the base compactification and leaves projectivity of its target as Conjecture 2.12.
++Two historical hazards were checked: [arXiv:2106.04691](https://arxiv.org/abs/2106.04691) is withdrawn because its Theorem 1.7 proof is incomplete; [arXiv:2010.06720v6](https://arxiv.org/abs/2010.06720v6) corrects previous determinant-descent assertions and exhibits an odd-weight failure of descent. Neither is used as an unconditional completion theorem. The 2025 generalized toroidal construction allows a base modification in general, but Theorem 2.11 retains the original compactification under its simplicial condition. In the integral/unipotent framework here, logarithmic local Torelli implies independent local monodromy logarithms, which satisfy that condition. Thus a base change is not a necessary obstacle for this input. Projectivity of the generalized toroidal target remains Conjecture 2.12, and the construction does not supply the required fixed effective boundary correction.
+ 
+ ## Sharp remaining gap
+ 
+--- author-v1/SOURCE_AUDIT.md
++++ author-v2/SOURCE_AUDIT.md
+@@ -44,7 +44,7 @@
+ 
+ A sign control matters: (5.2) prints a positive sum of Q-script(M,N_j)[Z_j]; Corollary 5.4 prints a negative sum of Q-script(M,N_j) times the **conormal** bundle. These are consistent because a conormal is the negative of a normal in additive notation. They do not authorize replacing the displayed right side by a negative sum of [Z_j] without a separate coefficient-sign argument. Definition 5.3 and the last sentence of section 5.3 warrant care about signs and normalization. The PDF page 29 and HTML were both inspected; no global sign conclusion is extracted here.
+ 
+-[Deng-Tsimerman, *On the generalized toroidal completion of period mappings*, arXiv:2506.10109v4](https://arxiv.org/abs/2506.10109v4), Theorem 2.8, constructs a completion after a modification of the base; Conjecture 2.12 asks for projectivity of the completed target in general. An analytic completion on a modified base is not the fixed-boundary ampleness asserted here.
++[Deng-Tsimerman, *On the generalized toroidal completion of period mappings*, arXiv:2506.10109v4](https://arxiv.org/abs/2506.10109v4), Theorem 2.8, allows a logarithmic modification in general. However, Theorem 2.11 retains the original compactification under Definition 4.6: each combinatorial monodromy cone is simplicial and the generator rays are faces under the adjacency maps. In the integral/unipotent framework here, logarithmic local Torelli implies that the local monodromy logarithms N_i are linearly independent, by [GGR 2021, Lemma 3.11(ii)](https://arxiv.org/pdf/2102.06310v1). The map from the coordinate vector space sending its basis to the N_i then has zero kernel; its nonnegative orthant is the monodromy cone, and its coordinate rays are faces. Hence the simplicial condition holds and Theorem 2.11 applies on the original base. A necessary change of compactification is therefore not an obstacle for this input. Projectivity of the generalized toroidal target remains Conjecture 2.12, and these statements do not supply the fixed effective boundary correction. Theorem 2.11, Definitions 4.1/4.3/4.6, Example 4.5, Theorem 4.7 and GGR Lemma 3.11(ii) were inspected directly for this correction; the Deng-Tsimerman PDF pages 6 and 13 were also visually checked against the HTML.
+ 
+ ## 6. Prior-attempt checks
+ 
+--- author-v1/SOURCE_MANIFEST.json
++++ author-v2/SOURCE_MANIFEST.json
+@@ -41,6 +41,7 @@
+       "route": "GitHub recursive tree read"
+     }
+   ],
++  "revision_note": "v2 corrects source-scope omission M1 from the fresh independent audit; it does not alter any retained mathematical proof or the original unsolved status.",
+   "scope": "Public verification metadata only. Source PDFs, extracts and raw dataset records are excluded.",
+   "sources": [
+     {
+@@ -57,7 +58,7 @@
+     },
+     {
+       "id": "GGR2021",
+-      "inspection": "Sections 1, 2, 3.1-3.3, in particular (1.2), Conjecture 1.10, Proposition 1.11, Theorem 1.12 and Lemma 2.3; landing-page version status.",
++      "inspection": "Sections 1, 2, 3.1-3.3, in particular (1.2), Conjecture 1.10, Proposition 1.11, Theorem 1.12 and Lemma 2.3; landing-page version status. For M1 correction on 2026-10-05 at 16:41 UTC, Lemma 3.11(ii) directly re-inspected: logarithmic local Torelli implies linear independence of the local monodromy logarithms.",
+       "pdf": {
+         "bytes": 244381,
+         "sha256": "07aca9039c18fbb4bcf13bb6269bd01dfa5dd2f2f53cc0caf7e73c754625a693"
+@@ -105,13 +106,13 @@
+     },
+     {
+       "id": "DT2025",
+-      "inspection": "Introduction and section 2, Theorem 2.8 and Conjecture 2.12; fixed versus modified base and analytic versus projective target.",
++      "inspection": "Introduction and section 2, Theorems 2.8 and 2.11, Conjecture 2.12; section 4.1 Definitions 4.1/4.3; section 4.2 Example 4.5, Definition 4.6 and Theorem 4.7. For M1 correction on 2026-10-05 at 16:41 UTC, PDF pages 6 and 13 visually checked and HTML crosschecked. Independent monodromy logarithms yield the simplicial condition, so Theorem 2.11 permits the original base in the integral/unipotent local-Torelli comparison.",
+       "pdf": {
+         "bytes": 683235,
+         "sha256": "8ec595fe76dd43552b9f3874e2873e8fd3755374bca91d943838a606fb4fd4c4"
+       },
+       "retrieval_url": "https://arxiv.org/pdf/2506.10109",
+-      "status": "v4 submitted 17 October 2025; projectivity remains Conjecture 2.12 in inspected version.",
++      "status": "v4 submitted 17 October 2025. Original-base case in Theorem 2.11 under the simplicial condition. Projectivity remains Conjecture 2.12 in inspected version.",
+       "title": "On the generalized toroidal completion of period mappings",
+       "url": "https://arxiv.org/abs/2506.10109v4"
+     },
+--- author-v1/readiness.json
++++ author-v2/readiness.json
+@@ -1,5 +1,5 @@
+ {
+-  "audit_status": "pending",
++  "audit_status": "v1 mathematical partials passed; M1 corrected in v2; original-reviewer delta acceptance pending",
+   "budget": "Five substantive approach turns, exact finite controls, then uninvolved audit; no remote writes by author.",
+   "duplicate_check": "Exact ID/title, repository searches, current related-target groups; no exact matching prior result found.",
+   "exact_claim": "For the smooth projective SNC compactification of a pure polarized VHS with everywhere fibrewise injective logarithmic Gauss-Manin differential, find fixed nonnegative integers a_i and m0 for which m times the specified extended augmented Hodge line bundle minus sum a_i Z_i is ample on the original compactification for every integer m>=m0.",
+@@ -13,6 +13,7 @@
+   "prior_attempt_gap": "No matching upstream report or prior exact-ID repository attempt found in bounded searches. Modern full-Griffiths semiampleness is not the requested boundary-corrected ampleness; upper-half bundle parity matters.",
+   "problem_id": "30004494",
+   "review_hash": "8eb44447dc83387d5c502ee2cc2374a30453162d8331c8ffc85bac77fd78ba06",
++  "revision": "hodge_30004494-author-v2",
+   "statement_hash": "80b8b8605b31a90887e3b1b87709707d974cb3827d2015af575d0318e7b4be03",
+   "success_test": "Complete proof for all target inputs, or an explicit genuine VHS satisfying every target hypothesis and refuting all correction choices.",
+   "turn_limit": 5,
