@@ -1,0 +1,10 @@
+# Read order and scope boundary
+
+1. 2026-10-05 20:28:37 UTC: wrote `OBLIGATIONS.md`; no author proof/code or historical review/checker opened.
+2. 20:28–20:33 UTC: independently downloaded Hansen–Takata v2, read Sections2/4/5 relevant conventions and theorem/proof, derived character orthogonality and complete prefactors, and ran a fresh exact standard-library checker. Independently downloaded the Ohtsuki publisher source and read Chapter7 pp471–474. Rendered and visually checked HT p39.
+3. By 20:33:49 UTC: wrote `INDEPENDENT_DERIVATION.md`, containing the exact result, topology/scope, controls, limitations, and affirmative independent narrow judgment. Original submitted proof/code and historical review/checker remained unread.
+4. 20:33–20:35 UTC: read original `COUNTEREXAMPLE.md`, `verify.py`, `README.md`, `verification.json`, `source_record.json`, and `source_manifest.json` from adjacent `original_source_authentication_20261005/original_attempt`. Their full content and hashes are recorded in `executions/original_proof_and_code.stdout`.
+5. After that judgment/comparison, read `independent_review/REVIEW.md` and `independent_checks.py`; their content/hashes are in `executions/historical_review_post_judgment.stdout`. These were not run, imported, or used to alter the independent mathematical argument.
+6. Snapshotted those eight incoming files byte-for-byte inside `incoming_snapshots`; no writer ran in original directories. Final checker version rerun normal/-O with input hashes at execution. Explicit false guards tested both ways. Prepared report and closed evidence packet.
+
+All writes stayed within this dedicated audit directory. No Git/index/native state changes, commits, pushes, PR operations, external services, package/release/Zenodo actions, UI/editor operations, contact with an individual, or PR50 work occurred. The incoming-head-to-original authentication belongs to the adjacent parent audit; this audit records the supplied head and independently verifies the exact supplied proof's mathematics.

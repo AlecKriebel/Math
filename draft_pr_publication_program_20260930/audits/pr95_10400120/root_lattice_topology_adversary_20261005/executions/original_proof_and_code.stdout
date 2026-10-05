@@ -1,0 +1,567 @@
+
+PATH: COUNTEREXAMPLE.md SHA256: 9e412983afbec39f2db103b38e771c0e45d2f5c30b433bd6a92459e9aeb4b6a6 
+# A lens-space counterexample to Ohtsuki Conjecture 7.5 for SU(5)
+
+**Target:** 10400120 / AMR-103-0120. **Status:** complete counterexample candidate, independent review pending. **Substantive approaches:** 2/5. No novelty or human peer-review claim.
+
+## Statement
+
+For the standard SU(5) Witten–Reshetikhin–Turaev theory at WZW level k=5, hence shifted level r=k+5=10, use the normalization tau(S3)=1. Then
+
+    |tau_10^SU(5)(L(5,1))|^2 = 3475 + 1550 sqrt(5),
+    |tau_10^SU(5)(L(5,2))|^2 = 4025 + 1800 sqrt(5).             (1)
+
+Both numbers are strictly positive and unequal. Both closed connected oriented three-dimensional lens spaces have fundamental group Z/5. Thus the universal claim that the absolute value of a nonzero quantum G invariant depends only on the fundamental group is false. Reversing an orientation conjugates the invariant and does not affect this comparison. A common nonzero normalization depending only on the fixed theory also cannot restore equality.
+
+The source is Conjecture 7.5, printed p474 of [Ohtsuki's collection](https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf); Section7.1 specifies closed oriented three-manifolds, the quantum G invariant and r=k+h-dual. SU(5) is compact, simple and simply connected, so it lies within that scope. This is the ordinary unrefined invariant, with no boundary, inserted link, spin choice or retained manifold framing. Signature/framing correction factors below have modulus one. The nonvanishing qualification is met for both examples. This does not contradict the original authors' SU(2) lens-space theorem or their finite SU(3) numerical checks.
+
+## 1. Primary formulas used
+
+[Guadagnini–Pilo, Three-manifold invariants and their relation with the fundamental group](https://arxiv.org/abs/hep-th/9612090), equations(13),(16),(19),(20), express the invariant of rational unknot surgery p/q through the vacuum entry of
+
+    S T^(a1) S ... T^(ad) S,
+
+where p/q=a1-1/(a2-...-1/ad), divided by S00, up to a unit-modulus signature factor. Their invariant is normalized to one on S3. For our two spaces the words are S T^5 S and S T^3 S T^2 S, since 5/2=3-1/2. Reversing the order of the second chain transposes the vacuum matrix entry and leaves it unchanged.
+
+The unitary Lie-theoretic matrices are supplied by [Hansen–Takata](https://arxiv.org/abs/math/0209403), equation(12), with admissible root/shifted-weight conventions in Section4, pp26–27. In type A4 the rank is4, the number of positive roots is10, the dual Coxeter number is5 and the weight/root lattice volume ratio is1/5. The shifted level10 is permitted. Suppressing only a scalar phase in T, their formula becomes
+
+    S_(lambda,mu) = -1/(100 sqrt(5))
+        sum_(w in S5) sign(w) exp(-2 pi i <w(lambda+rho),mu+rho>/10),
+    T_lambda = exp(pi i (|lambda+rho|^2-|rho|^2)/10).             (2)
+
+The omitted scalar phase in T and the surgery signature phases multiply each answer by a phase and disappear from (1). We retain the normalization magnitude in S. The Weyl sum is exactly a determinant expansion; the minus sign is i^10. No semiclassical approximation is being used. These published modular/surgery formulas are imported mathematical inputs, rather than re-proved quantum-group construction theorems.
+
+## 2. Complete finite index set and exact arithmetic
+
+Index the 126 integrable highest weights by all four-tuples
+
+    a=(a1,a2,a3,a4), ai>=0, sum ai<=5.
+
+Lexicographic order places the vacuum a=0 first. Put
+
+    l_i = sum_(j=i)^4 a_j + 5-i       (i=1,...,5),
+    y_i(a) = 5 l_i - sum_(j=1)^5 l_j.
+
+(The empty sum for i=5 is zero.) Then lambda+rho=y(a)/5 in the standard Euclidean realization of A4, and y(0)=(10,5,0,-5,-10). Let zeta=exp(2 pi i/100). Define the integer cyclotomic quantities
+
+    D_ab = sum_(w in S5) sign(w) zeta^[-2 sum_i y_i(a)y_(w(i))(b)/5],
+    t_a  = [sum_i y_i(a)^2 - 250]/5  (mod100).                 (3)
+
+Every exponent is an integer: all y_i(a) have a common residue modulo5 and sum to zero, so their dot products are divisible by5; the squared-norm difference is likewise divisible by5. Equations(2) read S=-D/c and T_aa=zeta^(t_a), where c=100sqrt(5), c^2=50000.
+
+Define the two finite sums
+
+    A = sum_a D_0a D_a0 zeta^(5t_a),
+    B = sum_(a,b) D_0a D_ab D_b0 zeta^(3t_a+2t_b).              (4)
+
+The surgery formulas consequently give
+
+    |tau(L(5,1))|^2 = A conjugate(A)/(50000 D_00 conjugate(D_00)),
+    |tau(L(5,2))|^2 = B conjugate(B)/(50000^2 D_00 conjugate(D_00)). (5)
+
+All sums in(3)–(4) are finite, with explicitly given ranges. They can be checked by the short accompanying program using exact integers in Z[zeta].
+
+## 3. Exact finite-sum certificate
+
+Use the irreducible cyclotomic polynomial
+
+    Phi_100(X)=X^40-X^30+X^20-X^10+1.
+
+Reducing the sums(3)–(4) in the power basis 1,zeta,...,zeta^39 gives
+
+    D_00 = 5 - 10 zeta^20 + 10 zeta^30,
+    A = 12500 - 20000 zeta^10 + 10000 zeta^20 - 20000 zeta^30,
+    B = -3750000 - 2500000 zeta^20 + 2500000 zeta^30.           (6)
+
+The verifier enumerates all126weights and all120Weyl permutations; it computes the entries and the two sums, then asserts each equality in(6). It also multiplies by the conjugate, with conjugation zeta->zeta^(-1), and verifies
+
+    D_00 conjugate(D_00) = 125 - 200u,
+    A conjugate(A) = 406250000 + 125000000u,
+    B conjugate(B) = 20312500000000 + 12500000000000u,           (7)
+
+where u=zeta^20-zeta^30=2cos(2pi/5)=(sqrt(5)-1)/2. Substitution in(5), followed by u^2+u=1, yields(1).
+
+For an immediate nonzero/inequality check, 0<u<5/8, so 125-200u>0; all numerator expressions in(7) are positive. The difference between the second and first squared magnitudes is
+
+    550+250sqrt(5)>0.
+
+Equivalently the cross-multiplied cyclotomic difference is
+
+    50000 A conjugate(A) - B conjugate(B)
+       = -6250000000000 (zeta^20-zeta^30),
+
+which is nonzero. Thus the conclusion does not depend on floating-point error or the decimal approximations that first suggested it.
+
+## 4. Audit boundaries
+
+A numerical modular-matrix search first located this pair; those floating-point results are discovery evidence only. The proof uses the exact finite certificate above and the cited surgery/modular formulas. No SU(2) counterexample, homotopy-equivalent pair, all-group classification, or optimality/minimality claim is made. The group equality follows from the elementary lens-space construction, not an unproved three-manifold rigidity assertion. The two spaces need not be homeomorphic or homotopy equivalent for the conjecture to apply.
+
+Source and prior-attempt checks found no previous campaign attempt for this ID; the pinned imported report was open triage. A related keyword hit, Kirby3.5, concerns hyperbolic towers and is not a duplicate. Novelty of this particular counterexample has not been established. Independent review must verify source normalization, root/level admissibility, lens surgery words and the cyclotomic computation before a resolution status is adopted.
+
+Actual work used the inherited native runtime without a model or reasoning-setting change; the exact runtime model identifier was not exposed to this worker.
+
+
+PATH: verify.py SHA256: 608b10d88b1c57a05a230dd7b4ed954e6cc3305d810ccc804bd58754bcfebf1b 
+import numpy as np,itertools,json,hashlib
+from pathlib import Path
+# Phi_100 = x^40-x^30+x^20-x^10+1.
+def red(a):
+ a=list(map(int,a))+[0]*max(0,40-len(a))
+ for j in range(len(a)-1,39,-1):
+  c=a[j]
+  if c:
+   for d,s in [(10,1),(20,-1),(30,1),(40,-1)]:a[j-d]+=s*c
+ return np.array(a[:40],dtype=object)
+MON=[red([0]*i+[1]) for i in range(100)]
+def mul(a,b):return red(np.convolve(a,b))
+def shift(a,k):return mul(a,MON[k%100])
+def conj(a):
+ r=np.zeros(40,dtype=object)
+ for j,c in enumerate(a):r+=c*MON[-j%100]
+ return r
+labels=[x for x in itertools.product(range(6),repeat=4) if sum(x)<=5]
+X=[]
+for lab in labels:
+ y=[sum(lab[i:])+4-i for i in range(5)];X.append(tuple(5*a-sum(y) for a in y))
+perms=list(itertools.permutations(range(5)))
+signs=[(-1)**sum(p[i]>p[j] for i in range(5) for j in range(i+1,5)) for p in perms]
+def snum(x,y):
+ out=np.zeros(40,dtype=object)
+ for p,sgn in zip(perms,signs):
+  dot=sum(x[i]*y[p[i]] for i in range(5));assert dot%5==0
+  out+=sgn*MON[(-2*(dot//5))%100]
+ return out
+S=[[None]*126 for _ in X]
+for i,x in enumerate(X):
+ for j in range(i,126):S[i][j]=S[j][i]=snum(x,X[j])
+
+T=[]
+for x in X:
+ z=sum(a*a for a in x)-sum(a*a for a in X[0]);assert z%5==0;T.append((z//5)%100)
+A=np.zeros(40,dtype=object)
+for j in range(126):A+=shift(mul(S[0][j],S[0][j]),5*T[j])
+B=np.zeros(40,dtype=object)
+for i in range(126):
+ inner=np.zeros(40,dtype=object)
+ for j in range(126):inner+=shift(mul(S[i][j],S[j][0]),2*T[j])
+ B+=shift(mul(S[0][i],inner),3*T[i])
+AA=mul(A,conj(A));BB=mul(B,conj(B));DD=mul(S[0][0],conj(S[0][0]));diff=50000*AA-BB
+
+def expected(terms):
+ a=np.zeros(40,dtype=object)
+ for j,c in terms.items():a[j]=c
+ return a
+checks=[(S[0][0],{0:5,20:-10,30:10}),
+ (A,{0:12500,10:-20000,20:10000,30:-20000}),
+ (B,{0:-3750000,20:-2500000,30:2500000}),
+ (DD,{0:125,20:-200,30:200}),
+ (AA,{0:406250000,20:125000000,30:-125000000}),
+ (BB,{0:20312500000000,20:12500000000000,30:-12500000000000}),
+ (diff,{20:-6250000000000,30:6250000000000})]
+for actual,target in checks:assert list(actual)==list(expected(target))
+assert len(labels)==126 and len(perms)==120
+assert any(diff) and any(AA) and any(BB) and any(DD)
+r={k:list(map(int,v)) for k,v in dict(A=A,B=B,S00=S[0][0],AA=AA,BB=BB,DD=DD,difference=diff).items()}
+r.update({'weight_count':126,'weyl_permutation_count':120,'symmetric_entries_computed':8001,'final_polynomial_identities':7,'all_pass':True,'arithmetic':'Python arbitrary-precision integers in NumPy object arrays; no floating point in certificate','artifact_sha256':hashlib.sha256(Path('COUNTEREXAMPLE.md').read_bytes()).hexdigest()})
+Path('verification.json').write_text(json.dumps(r,indent=2)+'\n')
+print(json.dumps({k:r[k] for k in ['weight_count','final_polynomial_identities','all_pass','artifact_sha256']}))
+
+
+PATH: README.md SHA256: 4c5d74573139bd7c47abbfc631283ab5d31e94052d34a009e09d9ed8ae606441 
+# SU(5) lens-space counterexample
+
+The frozen proof and author receipt are unchanged. Its historical pending-review header predates the included independent PASS audit. At WZW level5, shifted level10, L(5,1) and L(5,2) have the same fundamental groupZ/5 but distinct nonzero squared normalized invariant magnitudes3475+1550sqrt(5) and4025+1800sqrt(5). The separate review gives a different five-term root-lattice Gauss-sum derivation and2,005exact checks. Intended status claimed_solved2/5; novelty unestablished and no human peer-review claim.
+
+Run `python verify.py` here; NumPy is used only with exact integer object arrays. Run `python independent_checks.py` inside independent_review for the independent standard-library certificate. Source PDFs, images and exploratory data are not redistributed.
+
+
+PATH: verification.json SHA256: 86c7ebdbc43b2bb1f1d2e52dd8b25f93441c7529ee4bf63bb1c17513671d54e5 
+{
+  "A": [
+    12500,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -20000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    10000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -20000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "B": [
+    -3750000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -2500000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2500000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "S00": [
+    5,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -10,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    10,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "AA": [
+    406250000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    125000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -125000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "BB": [
+    20312500000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    12500000000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -12500000000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "DD": [
+    125,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -200,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    200,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "difference": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -6250000000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6250000000000,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "weight_count": 126,
+  "weyl_permutation_count": 120,
+  "symmetric_entries_computed": 8001,
+  "final_polynomial_identities": 7,
+  "all_pass": true,
+  "arithmetic": "Python arbitrary-precision integers in NumPy object arrays; no floating point in certificate",
+  "artifact_sha256": "9e412983afbec39f2db103b38e771c0e45d2f5c30b433bd6a92459e9aeb4b6a6"
+}
+
+
+PATH: source_record.json SHA256: 5aea5177f73c9f3d9780da7b28c106c611fd50004344a80bbec7ef0880cb1c1a 
+{
+  "id": 10400120,
+  "problem_number": "AMR-103-0120",
+  "title": "Conjecture 7.5 \u2014 For non-vanishing $\\tau_r^G(M)$, the absolute value $|\\tau_r^G(M)|$ depends only on the fundamental group $\\pi_1(M)$.",
+  "statement": "For non-vanishing $\\tau_r^G(M)$, the absolute value $|\\tau_r^G(M)|$ depends only on the fundamental group $\\pi_1(M)$.",
+  "background": "The monograph's printed bold headings distinguish 231 numbered problems, conjectures, and questions from references to those items in its surrounding exposition.\n\nSource list: Ohtsuki - Problems on invariants of knots and 3-manifolds (2002)\nSource item: Conjecture 7.5, PDF page 102\nSource URL: https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf\nAccessed: 2026-07-29\nExtraction: pdf-font-structure\nStatus evidence: NEEDS_REVIEW; the source presents this as an open problem, but a current primary-literature status audit remains.\nRights note: NEEDS_REVIEW; publicly accessible author/publisher copy, redistribution terms require review.\nDifficulty assignment: default L3",
+  "difficulty_level_id": 3,
+  "status": "open",
+  "proposed_by": null,
+  "proposed_year": null,
+  "category_id": 7,
+  "set_id": 13,
+  "view_count": 0,
+  "favorite_count": 0,
+  "created_at": "2026-07-29T00:00:00Z",
+  "updated_at": "2026-08-06T00:00:00Z",
+  "published": true,
+  "category": {
+    "id": 7,
+    "name": "topology",
+    "display_name": "Topology",
+    "description": "Properties preserved under continuous deformations.",
+    "slug": "topology",
+    "order_index": 7,
+    "created_at": "2026-07-31T15:26:25.671Z"
+  },
+  "difficulty": {
+    "id": 3,
+    "level": 3,
+    "name": "L3: Advanced",
+    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
+    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
+  },
+  "set": {
+    "id": 13,
+    "name": "amr_open_problem_lists",
+    "display_name": "AMR Open Problem Lists",
+    "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
+    "slug": "amr-open-problem-lists",
+    "order_index": 13,
+    "created_at": "2026-07-31T15:26:25.671Z"
+  },
+  "research_classification": "OPEN-TRIAGE",
+  "research_summary": "Classification: OPEN-TRIAGE. Literature status: Source: Ohtsuki, \"Problems on invariants of knots and 3-manifolds\" (2002), as listed in the worklist. Conjecture that |tau_r^G(M)| depends only on pi_1(M). Not obviously resolved."
+}
+
+PATH: source_manifest.json SHA256: d3a34f7fa9dd640c6f7bcc031575413db578b6e4b50df2f3cb1c0505e7215bc1 
+{
+  "checked_at": "2026-09-30T08:55:00Z",
+  "sources": [
+    {
+      "url": "https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf",
+      "file": "ohtsuki.pdf",
+      "pages": "471\u2013474: scope, shifted level, target"
+    },
+    {
+      "url": "https://arxiv.org/pdf/hep-th/9612090",
+      "file": "gp.pdf",
+      "pages": "1,5\u20136: closed connected orientable scope, lens groups, surgery formula(19)\u2013(20)"
+    },
+    {
+      "url": "https://arxiv.org/pdf/math/0209403",
+      "file": "ht.pdf",
+      "pages": "9 equation12;26\u201327 admissibility and relation to modular category"
+    }
+  ],
+  "gates": {
+    "live_queue": "rank114 queued0/5 remote verified",
+    "all_state_numeric_pr_search": "none",
+    "local_all_ref_attempt_history": "none",
+    "related_groups": "no numeric ID match",
+    "prior_imported_report": "complete AMR-103-0120 OPEN-TRIAGE read",
+    "related_keyword_hit": "2803 Kirby3.5 is a hyperbolic tower question, not duplicate"
+  },
+  "source_sha256": {
+    "afw.pdf": "ca8e57b399bef1e1abfd876a7305fc99588bfa5d4fc9999fa6a99337ff287fbf",
+    "gp.pdf": "9dad5e47a2c787824e05cb97cd12c037c2a49dff9ea38bc7b22aee513aca29b0",
+    "ohtsuki.pdf": "33d9c18c9ab8403a4d88b978b366451383edd12dd24760a77b9e25b666d9a8fd",
+    "ht.pdf": "a00c189a481c1c7f5ccb14968e4d3b29abe7e560d3bb416f13ba56ae795e609e"
+  },
+  "novelty": "Not established; this is an exact counterexample candidate requiring independent source/proof review."
+}
+

@@ -1,0 +1,18 @@
+--- original/independent_review/independent_checks.py
++++ private_repair/independent_review/independent_checks.py
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python3
++def require(condition, message="explicit guard failed"):
++ if not condition: raise AssertionError(message)
+ """Independent A4 root-lattice Gauss-sum certificate via Hansen–Takata Thm 5.1.
+ No NumPy, floating point, author imports, or 126x126 modular matrix construction.
+ """
+@@ -8,7 +10,7 @@
+ import json
+ checks=Counter()
+ def ck(p,name):
+- assert p,name
++ require(p,name)
+  checks[name]+=1
+ # Independent degree-four ring: w=exp(pi*i/5), Phi_10=w^4-w^3+w^2-w+1.
+ def red(a):
