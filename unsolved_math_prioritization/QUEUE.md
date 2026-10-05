@@ -731,7 +731,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 720 | 30002692 / OWR-13347-011 | Hyperbolic Conformal Boundaries of Poincaré–Einstein Manifolds | 0.1040 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 721 | 30002468 / OWR-12861-019 | Biclique Partition Numbers of Random Graphs | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 722 | 30002507 / OWR-12866-017 | A Dirichlet Series with Exactly One Zero | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 723 | 30002533 / OWR-12870-003 | New Rational Lyapunov Exponents on Hilbert Modular Surfaces | 0.1040 | 5.5 | 3 | 2014 | already_solved | 1/5 |  | 2026-10-05: credited prior existential resolution from Moller-Torres-Teigell (2020) and cited Gothic/equidistribution/continuity inputs; AI-assisted audit PASS. Actual individual primitive component exponents are rational, converge to 3/13 and eventually lie in (14/65,16/65), outside the old set; not a disconnected weighted-average argument. No named fraction, attainment or fixed-surface claim. Original OWR source checked; live page/raw corpora unverified. See attempts/30002533/. |  |
 | 724 | 30002653 / OWR-13109-004 | Indeterminacy Locus of the Perfect Cone Prym Map | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 725 | 30002711 / OWR-13351-010 | Minimal Coefficient Rings for Cyclic Local Lifts | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 726 | 30002753 / OWR-13359-003 | Optimal Geodesic Curvature for Random Transpositions | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
