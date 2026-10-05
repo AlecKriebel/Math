@@ -746,7 +746,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 735 | 30003417 / OWR-15216-023 | Meager Ideal Equalities at Uncountable Regular Cardinals | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 736 | 30003442 / OWR-15219-012 | Largest Roots of Doubly Stochastic Stable Polynomials | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 737 | 30003649 / OWR-15957-002 | Rational and Integral Completely Positive Factorizations | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 738 | 30003676 / OWR-15962-002 | Sharp Virulence Thresholds for Stationary SIS Infection | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 738 | 30003676 / OWR-15962-002 | Sharp Virulence Thresholds for Stationary SIS Infection | 0.1032 | 5.5 | 3 | 2017 | unsolved | 5/5 |  |  |  |
 | 739 | 30003759 / OWR-16157-001 | Uniform Minimal Control Time for Advection–Diffusion | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 740 | 30003791 / OWR-16162-003 | Linkage and Vanishing in Kato–Milne Cohomology | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 741 | 30003859 / OWR-16169-001 | Rigidity of Hirzebruch–Kummer Coverings | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
