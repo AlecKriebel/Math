@@ -816,7 +816,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 805 | 30000120 / OWR-744-003 | Chern-Class Generators for Wonderful Compactifications | 0.0992 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 806 | 30000263 / OWR-1050-014 | Discrete Interaction-Matrix Inequalities in Three Dimensions | 0.0990 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 807 | 6200010 / AMR-061-0010 | Boundaries of Groups and Kleinian Groups — Problem 10 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 808 | 6200014 / AMR-061-0014 | Boundaries of Groups and Kleinian Groups — Problem 14 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 808 | 6200014 / AMR-061-0014 | Boundaries of Groups and Kleinian Groups — Problem 14 | 0.0990 | 6.0 | 3 | 2005 | already_solved | 2/5 |  | Full positive literature deduction in closed-manifold flag/no-square scope: Przytycki–Świątkowski (2009), Davis–Fowler–Lafont (2014), Świątkowski Theorem 2 (2020), and Martin–Świątkowski (2015); dimensions 0–1 and disconnected cases included. [Proof and independent AI audit](attempts/6200014/README.md). No novelty or human peer-review claim. |  |
 | 809 | 6200022 / AMR-061-0022 | Boundaries of Groups and Kleinian Groups — Problem 22 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 810 | 6200061 / AMR-061-0061 | Boundaries of Groups and Kleinian Groups — Problem 61 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 811 | 30000432 / OWR-1194-001 | Equal-Area Drawings of Plane Triangulations | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
