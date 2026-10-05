@@ -1,0 +1,15 @@
+from pathlib import Path
+import subprocess,json,hashlib,datetime,os
+A=Path(__file__).resolve().parent;C=A.parents[2];D=A/'original_source_authentication_20261005';D.mkdir(exist_ok=False);O=D/'original_attempt';O.mkdir();head='6534ad01e519c719628a18984b108e73cf2e8ead';prefix='unsolved_math_prioritization/attempts/10400120/';records=[]
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def require(c,m):
+ if not c:raise RuntimeError(m)
+def run(argv):
+ t=now();p=subprocess.Popen(argv,cwd=C,stdout=subprocess.PIPE,stderr=subprocess.PIPE);out,err=p.communicate();records.append({'argv':argv,'actual_PID':p.pid,'UTC_start':t,'UTC_end':now(),'exit_code':p.returncode,'stdout_bytes':len(out),'stdout_sha256':hashlib.sha256(out).hexdigest(),'stderr_bytes':len(err),'stderr_sha256':hashlib.sha256(err).hexdigest()});(D/'PROCESS_JOURNAL.json').write_text(json.dumps({'actual_operator_PID':os.getpid(),'records':records},indent=2)+'\n');require(p.returncode==0,err.decode()[:1000]);return out
+require(run(['git','symbolic-ref','--short','HEAD']).strip()==b'main','branch');require(run(['git','rev-parse','FETCH_HEAD']).strip().decode()==head,'fetched wrong head')
+pr=json.loads(run(['/opt/homebrew/bin/gh','pr','view','95','--repo','AlecKriebel/Math','--json','number,title,body,state,isDraft,headRefOid,baseRefName,url,files']));require(pr['headRefOid']==head and pr['state']=='OPEN' and pr['isDraft'],'PR head/state changed');(D/'PR_METADATA.json').write_text(json.dumps(pr,indent=2)+'\n')
+rows=run(['git','ls-tree','-r','--full-tree',head,'--',prefix]).decode().splitlines();files=[]
+for row in rows:
+ identity,path=row.split('\t');mode,typ,blob=identity.split();require(typ=='blob' and mode in ['100644','100755'] and path.startswith(prefix),'unexpected tree entry');b=run(['git','cat-file','blob',blob]);require(hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==blob,'Git blob mismatch');rel=path[len(prefix):];p=O/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b);files.append({'path':path,'relative_path':rel,'original_git_mode':mode,'git_blob_SHA1':blob,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'preserved_path':str(p)})
+require(files and {r['path'] for r in files}=={r['path'] for r in pr['files'] if r['path'].startswith(prefix)},'native tree/file metadata differs');q=run(['git','show',head+':unsolved_math_prioritization/QUEUE.md']).decode();s=[r for r in q.splitlines() if '| 10400120 /' in r];require(len(s)==1 and s[0].split('|')[8].strip()=='claimed_solved' and s[0].split('|')[9].strip()=='2/5','status/budget');(D/'SELECTED_QUEUE_ROW.txt').write_text(s[0]+'\n')
+x={'schema':'immutable-PR95-original-body-authentication/v1','UTC':now(),'actual_operator_PID':os.getpid(),'PR':95,'head':head,'literal_status':'claimed_solved','original_budget':'2/5','new_central_proof_search_turns':0,'files':files,'actual_commands':records,'main_branch_preserved':True};(D/'ORIGINAL_BLOB_MANIFEST.json').write_text(json.dumps(x,indent=2)+'\n');print(json.dumps({'PR':95,'head':head,'original_files':len(files),'bytes':sum(r['bytes'] for r in files),'original_budget':'2/5'}))
