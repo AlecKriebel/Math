@@ -321,7 +321,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 310 | 30004437 / OWR-17475-002 | The Real-Zero Polynomial Amalgamation Conjecture | 0.1701 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 311 | 30001994 / OWR-11578-001 | Variational Eddy Currents with Degenerate Conductivity | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 312 | 30002011 / OWR-11581-002 | Corruption-Parameter Choice in Empirical-Bayes Estimation | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 313 | 30002163 / OWR-12012-001 | Minimum Distance in Spherical Fibonacci Lattices | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 313 | 30002163 / OWR-12012-001 | Minimum Distance in Spherical Fibonacci Lattices | 0.1697 | 5.0 | 3 | 2012 | claimed_solved | 1/5 |  | Independently reviewed proof of exact chordal separation 2/sqrt(F_n) for every nontrivial unshifted rational-angle Fibonacci lattice; endpoint conventions and small sizes covered. |  |
 | 314 | 30002792 / OWR-13494-011 | Non-ACM Line Configurations with Minimal Symbolic Initial-Degree Gap | 0.1686 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 315 | 30000048 / OWR-722-001 | Positive Characters of Simply Connected Groups | 0.1686 | 7.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 316 | 2305038 / AMR-022-5038 | Research Problems in Function Theory — Problem 5.38 | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
