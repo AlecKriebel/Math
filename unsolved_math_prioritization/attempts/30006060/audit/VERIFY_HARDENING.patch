@@ -1,0 +1,12 @@
+--- a/verify.py
++++ b/verify.py
+@@ -14,7 +14,8 @@
+ 
+ def check(b):
+     global checks
+-    assert b
++    if not b:
++        raise AssertionError("verification check failed")
+     checks += 1
+ 
+ def trim(p):
