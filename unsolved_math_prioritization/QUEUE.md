@@ -807,7 +807,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 796 | 5300062 / AMR-052-0062 | Smoothness of exponential-family parameter hairs | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 797 | 30005418 / OWR-12697689-014 | Koszulness from the Kähler Package | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 798 | 30005453 / OWR-12697708-006 | Unique Equilibria for Subcritical Reinforcement on Infinite Graphs | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 799 | 30005519 / OWR-13750332-001 | Real Subspaces in Zeros of Elementary Symmetric Polynomials | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 799 | 30005519 / OWR-13750332-001 | Real Subspaces in Zeros of Elementary Symmetric Polynomials | 0.1003 | 5.5 | 3 | 2023 | already_solved | 1/5 |  | Credited prior resolution: Ferudun, unrefereed v1.0 (30 Sep 2026), DOI 10.5281/zenodo.23062557; all real n/even r, max dimension min(n,r-1); maximum-dimensional coordinate classification for r>=4. Independent audit PASS; no novelty/editorial acceptance claim; separate star-transform question not certified. See [audited packet](attempts/30005519/README.md). |  |
 | 800 | 30005613 / OWR-14297736-021 | Dense Pure Point Spectrum on Quasi-Conical Domains | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 801 | 30005755 / OWR-14298157-005 | Canonical Decomposition Cones and TF Equivalence | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 802 | 30005902 / OWR-14298370-002 | Vanishing Lie Brackets for Non-Quasitriangular Hopf Algebras | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
