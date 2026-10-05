@@ -1,0 +1,7 @@
+# Verification and publication checkpoint
+
+2026-10-05 UTC: The five-turn research pass established a family-independent-event all-k O(n^(-0.98)) bound and a conditional (4/n)^k bound under the explicit edge-shadow degree restriction. Exact negative-correlation and dense-potential controls identify failed methods, not a counterexample to the original problem. The original unrestricted target remains UNSOLVED; 5/5 attempts are exhausted.
+
+2026-10-05 UTC: Independent AI-assisted audit PASS found no required mathematical correction. It reconstructed the analytic arguments, checked 141,040 graph/family pairs, used an independent affine Steiner witness, and added SSS v2 inspection. BFL concentration is an imported result; full literature absence, novelty, human peer review, and formal certification are not claimed.
+
+2026-10-05 UTC: Publication preparation authenticated both immutable archives, the complete source-file identities, fresh main queue bytes, and bounded duplicate checks. Author and audit are preserved unchanged. Full-target completion estimate: 50% as a subjective research-progress estimate only; the decisive unrestricted C/n bound remains missing, so this is not a correctness probability or a solution percentage certified by the audit. Preparation of the scoped evidence packet is complete once its remote bytes and replays pass. No additional proof-search turn is undertaken.
