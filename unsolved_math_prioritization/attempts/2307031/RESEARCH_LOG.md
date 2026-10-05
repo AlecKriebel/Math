@@ -13,7 +13,12 @@ No novelty or historical-priority conclusion is drawn. Source-verification
 limits, including absence of an independent full-corpus recomputation, remain.
 
 Fresh repository preflight and byte-level queue preservation are recorded in
-BINDING.json. Only this target's Status, Turns, and Findings cells are changed.
+BINDING.json. Only this target's Status and Turns cells are changed; Findings stays blank.
 The queue's other bytes, existing links, and header are preserved; queue.py
 is not run. Publication is a draft PR only, with no merge, release, DOI,
 deployment, or outreach.
+
+2026-10-05 UTC publication correction: the initial draft also filled Findings.
+That addition was reverted in the same draft PR to honor the two-cell scope.
+The authored mathematics, complete audit, and controlling clarification are
+unchanged. Final queue verification checks Status and Turns only.
