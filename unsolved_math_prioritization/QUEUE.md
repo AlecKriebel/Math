@@ -122,7 +122,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 111 | 10300055 / AMR-102-0055 | Numerical invariants — Question 13.2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | claimed_solved | 2/5 |  | 2026-09-30: Complete exact SU5 shifted-level10 counterexample: lens spaces L(5,1) andL(5,2) have the same fundamental group and nonzero unequal quantum-invariant magnitudes. Separate source/level/surgery audit independently reproduces both via root-lattice Gauss sums;2005independent controls and author receipt replay pass. Exact cyclotomic proof, unrefereed, novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/95. |  |
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
