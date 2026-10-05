@@ -757,7 +757,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 746 | 30004324 / OWR-17296-007 | Characterizing Projective Space by Tangent Bundle Seshadri Constants | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 747 | 30004334 / OWR-17296-019 | Bounded Negativity for Root of Unity Blowups | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 748 | 7000003 / AMR-069-0003 | Geometry of Curves and Surfaces — Problem 1.3 | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 749 | 7000022 / AMR-069-0022 | Geometry of Curves and Surfaces — Problem 5.3 | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 749 | 7000022 / AMR-069-0022 | Geometry of Curves and Surfaces — Problem 5.3 | 0.1025 | 5.5 | 3 | 2019 | unsolved | 5/5 |  |  |  |
 | 750 | 30004425 / OWR-17473-001 | Wall Crossing Between Adjacent Tropical Toric Degenerations | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 751 | 30004429 / OWR-17474-001 | Discontinuities of Two-Sided Specifications | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 752 | 30004491 / OWR-1703871-006 | Infinite Transverse Actions on Codimension-One Foliations | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
