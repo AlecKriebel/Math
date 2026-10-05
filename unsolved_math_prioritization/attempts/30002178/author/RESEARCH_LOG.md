@@ -1,0 +1,14 @@
+# Research log
+
+All times UTC, 2026-10-05. Percentages are subjective estimates of progress toward a complete proof or counterexample of the full target, not calibrated probabilities or percentages of this administrative workflow. Every checkpoint remained at an estimated 5%: the retained results cover special cases and do not close the central gap.
+
+- 11:07–11:10. Read the public descriptor and relevant repository research policy. Checked exact-ID PR/branch searches and the default-branch attempts directory. Identified the primary OWR source. Direct numeric website failed; descriptor and primary-source match replace any unsupported claim of inspecting the website. Goal completion estimate: 5%.
+- 11:10–11:14. Visually verified OWR p.2574 and separated fixed m, common conductor, nonzero values, multiplicities, and ordinary modulus. Downloaded and inspected relevant primary papers privately. No complete prior resolution verified. Goal completion estimate: 5%.
+- Approach 1, completed by 11:17. Derived the paired-norm lower bound and multiplicity-sensitive prime Fourier-energy improvement. Both remain exponential in conductor. Blocked on converting average/product information into a pointwise polynomial bound. Goal completion estimate: 5%.
+- Approach 2, completed by 11:17. Proved explicit uniform lower bounds for m<=4 from pair geometry. Retained complete proofs and identified exactly why the induction to five terms fails. These cases are already known. Goal completion estimate: 5%.
+- Approach 3, completed by 11:17. Proved polynomial bounds for chord-product factorizations and constructed 2^r-term examples forcing E(2^r)>=r. No universal factorization theorem found or assumed. Goal completion estimate: 5%.
+- Approach 4, completed by 11:19. Derived the exact finite-field count/trace ratio with repetitions included. This transfers the prime-case problem to an unproved polynomial ratio estimate, so the route is marked blocked rather than solved. Goal completion estimate: 5%.
+- Approach 5, completed by 11:19. Proved sparse multiplicity control at x=1 and an explicit local Taylor bound. Its exponent-spread threshold fails for unrestricted exponent tuples; no uniform arithmetic substitute was established. Goal completion estimate: 5%.
+- 11:20. Exact checker passed 67,380 explicit checks on 46,803 normalized multisets, plus counting and sparse-polynomial controls. The source search distinguishes the two different Habegger exceptional-set theorems, 2024 Galois averages, and a 2026 existential-prime result. Full-target estimate remains 5%.
+
+Final disposition: unresolved, five approaches used. Stop this five-approach investigation rather than relabeling the same missing estimate as a new mechanism. Reopen only for a materially new mathematical idea or an independently verified full prior result. No remote writes, publication, release, DOI, or outreach occurred. Fresh independent audit is pending.
