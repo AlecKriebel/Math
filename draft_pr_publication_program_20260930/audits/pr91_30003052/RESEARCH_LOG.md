@@ -17,3 +17,6 @@ Both independent source families completed. The source expressly left the exact 
 
 ### 2026-10-05T19:42:40.075330+00:00 — complete package prepared (PR workflow65%)
 Six-page standalone manuscript compiled successfully using the built-in compiler and actual Tectonic export. All six final PDF pages visually inspected without layout defects. Seven payloads and eleven archive members byte-compared; original PDFs/private audits excluded. Final runtime receipts bind current source fc7215e8...; 2720 distinct finite controls per mode (2154 exact/discrete,566 floating). Fresh whole-package round1 now running; no publication or merge yet.
+
+### 2026-10-05T19:54:38.707986+00:00 — first whole-package review and repair (PR workflow75%)
+Round1 independently verifies theorem, primary attributions, reproducibility and package. Mandatory M1 corrected: 2015 expressly open,2016 inclusion only. Optional bibliography split polished with one page-break directive. No proof change; exact round1 bytes retained. Final compilation/current-input verification and refreshed archive precede new round2.
