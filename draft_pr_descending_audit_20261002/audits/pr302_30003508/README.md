@@ -1,27 +1,9 @@
-# PR302: smooth fixed-lag diffusion tensor consistency
+# PR302: published smooth fixed-lag diffusion-tensor consistency
 
-Original submitted PR head `eb6e0e999521d84a65f9857d338cad76b84d30db`, original
-status `claimed_solved`, author history2/5. The immutable original packet is
-under `snapshot/`. The current ROOT mathematical gate accepts the explicitly
-stated smooth stationary reversible conormal model after three independently
-frozen adversarial families and original-control reproduction. Mathematics100%,
-priority0%, workflow30%. Historical priority, preprint, publication and merge
-are still unaccepted.
+The eight-page unrefereed research note and portable verification archive are published at https://doi.org/10.5281/zenodo.23157237. The DOI is recorded in the selected Math Puzzles sheet at A26:D26, with every prior43-column row preserved. Original PR head eb6e0e999521d84a65f9857d338cad76b84d30db, original claimed_solved status and author2/5 history remain preserved in snapshot/. Native original-head integration is pending a fresh independent operational review.
 
-The result is almost-sure local uniform recovery of S and separately fitted
-div S, plus global L2 recovery of the clipped tensor, from exact fixed-positive-
-lag observations with unknown density on a known connected smooth domain and
-known positive class bounds. It is not a rate theorem or a rough-model,
-sensor-noise or approximate numerical implementation result. Finite controls
-supplement the analytic proof and do not prove its infinite-dimensional or
-probabilistic steps. ROOT_MATHEMATICAL_RECONSTRUCTION.md records the independent
-analytic reconstruction; ROOT_MATHEMATICAL_GATE_ACCEPTANCE.json closes its
-previously pending review gate.
+The analytic theorem proves almost-sure consistency of the specified empirical spectral-equation estimator for unknown smooth symmetric uniformly elliptic tensor and positive smooth stationary density on a known connected smooth bounded domain, from stationary exact known fixed-positive-lag observations with conormal reflection and known pointwise class bounds. It gives local uniform tensor and separately fitted divergence recovery, global L2 clipped-tensor recovery, and Borel formulas including rank loss, repeated/negative/zero modes and boundary conventions. It asserts no rates, sensor-noise, rough/nonreversible-model or computational-efficiency guarantee. Finite controls supplement the analytic proof.
 
-The committed review subset includes reports, proof/control programs, output
-receipts and whole-body inventories. Those inventories intentionally also
-bind local-only primary PDFs, extracted text, runtime inputs and complete
-native tapes; their presence in an inventory does not assert redistribution.
-Third-party primary PDFs and text extractions stay private. Historical failed
-helper runs and metadata corrections remain disclosed; no historical proof
-or closed review body is rewritten.
+ROOT reconstructed the proof and accepted three initial independent mathematical approaches, a deep bounded priority audit, and two sequential fresh whole-package adversarial reviews. Four optional clarifications were repaired globally before the clean second review. Earlier spectral fitting/power weights, identification, scalar inference, excitation and classical regularity are credited. Source edition/access gaps, including the inaccessible CV2011 publisher-final body, remain disclosed; worldwide firstness is not certified. AI tools were used extensively; no human peer review or proof-assistant certificate is claimed.
+
+The committed reports, proofs, source/expected controls, manifests and public metadata bind additional local-only full primary-source bodies and native streams without implying their redistribution. Third-party primary PDFs/extracted texts and private full tracker captures remain local. Genuine failed helpers and failed operator preparations remain identified truthfully. Math/priority/preprint/publication100%; total PR302 workflow85%, pending native merge and final acceptance.

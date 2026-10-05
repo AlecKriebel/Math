@@ -1,0 +1,17 @@
+{
+  "tool_chunk_id": "2332d8",
+  "tool_reported_exit_code": 1,
+  "actual_PID_not_supplied_by_tool": true,
+  "source_kind": "post-hoc exact tool-request excerpt, not a prelaunch archive",
+  "code": "p=Path('/Users/alec/.nvm/versions/node/v22.16.0/lib/node_modules/@googleworkspace/cli/bin/gws');b=p.read_bytes();print(json.dumps({'path':str(p),'resolved':str(p.resolve()),'is_symlink':p.is_symlink(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'mode':stat.S_IMODE(p.stat().st_mode)}));print(b.decode()[:12000])",
+  "complete_error": "UnicodeDecodeError: utf-8 codec cannot decode byte 0xcf in position 0: invalid continuation byte",
+  "known_stdout_binary_pin": {
+    "path": "/Users/alec/.nvm/versions/node/v22.16.0/lib/node_modules/@googleworkspace/cli/bin/gws",
+    "resolved": "/Users/alec/.nvm/versions/node/v22.16.0/lib/node_modules/@googleworkspace/cli/bin/gws",
+    "is_symlink": false,
+    "bytes": 15371280,
+    "sha256": "0f27b8b0815bf09cdf95da48d3c604f05ceb8f16bf5c9f0ba355b1f957cdd47e",
+    "mode": 493
+  },
+  "qualification": "Exploratory read wrongly tried to decode the native Mach-O CLI as UTF-8. It did not execute that binary. Retained here without invented PID, request time or prelaunch custody. Subsequent review treats CLI as a pinned native binary."
+}
