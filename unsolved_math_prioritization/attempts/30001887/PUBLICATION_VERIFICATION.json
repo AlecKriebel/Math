@@ -1,0 +1,97 @@
+{
+  "accepted_approaches": 5,
+  "all_actual_corruptions_rejected": true,
+  "audit_manifest_sha256": "7d2a8d49b6d425bd0ebee4075047916c98ba97466eca080487539d76899fd52a",
+  "author_manifest_sha256": "ff6abddb8c4dc94bd3ef7da776d88e42bfe41501e5f6de8bf9a5206b72f8fa64",
+  "corruption_controls": [
+    {
+      "actual_mutation": "same_length",
+      "expected_rejection": "SHA-256 mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "original_author/PROOF.md"
+    },
+    {
+      "actual_mutation": "same_length",
+      "expected_rejection": "SHA-256 mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "independent_audit/independent_results.json"
+    },
+    {
+      "actual_mutation": "same_length",
+      "expected_rejection": "SHA-256 mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "original_author/MANIFEST.json"
+    },
+    {
+      "actual_mutation": "append",
+      "expected_rejection": "byte-count mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "independent_audit/MANIFEST.json"
+    },
+    {
+      "actual_mutation": "remove",
+      "expected_rejection": "frozen inventory mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "original_author/verify.py"
+    },
+    {
+      "actual_mutation": "extra",
+      "expected_rejection": "frozen inventory mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "original_author/unlisted.txt"
+    },
+    {
+      "actual_mutation": "extra",
+      "expected_rejection": "publication inventory mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "unlisted.txt"
+    },
+    {
+      "actual_mutation": "same_length",
+      "expected_rejection": "SHA-256 mismatch",
+      "rejected": true,
+      "return_code": 1,
+      "target": "README.md"
+    }
+  ],
+  "date_utc": "2026-10-05",
+  "frozen_files_preserved": 21,
+  "no_claims": [
+    "complete solution",
+    "complete counterexample",
+    "verified prior resolution",
+    "novelty",
+    "global present-day openness",
+    "balancing-threshold optimality",
+    "CI success"
+  ],
+  "outcome": "unsolved",
+  "portable_replays": [
+    {
+      "relocated_stdout_byte_identical": true,
+      "return_code": 0,
+      "script": "original_author/verify.py",
+      "stderr_empty": true,
+      "stdout_bytes": 2198,
+      "stdout_sha256": "91315b5fc5bfdc64db6b5d10aef37db2412bd2f5919dc8f0a44d8459536abdf6"
+    },
+    {
+      "relocated_stdout_byte_identical": true,
+      "return_code": 0,
+      "script": "independent_audit/independent_controls.py",
+      "stderr_empty": true,
+      "stdout_bytes": 2787,
+      "stdout_sha256": "9ca53b091c9886c485da200a70f3192efe0faa1ba20e95761cc34a27d113f46d"
+    }
+  ],
+  "problem_id": "30001887",
+  "required_mathematical_corrections": [],
+  "scope": "Publication integrity and finite controls only. Universal retained claims are supported by the written proofs and independent audit."
+}
