@@ -1,0 +1,69 @@
+{
+  "problem_id": 2809,
+  "author_archive_sha256": "14809993ffccbb97cc3510d7a17df91ad375bc85cf02bd6a9c430c31c12673c3",
+  "verdict": "REQUIRES_V2_LITERATURE_CORRECTION; scoped mathematical propositions pass",
+  "mandatory_corrections": [
+    {
+      "id": "C1",
+      "kind": "known obstruction omitted; universal route described as merely unproved",
+      "changes": [
+        {
+          "file": "PROOFS.md",
+          "location": "Section 3, final paragraph; original line 81",
+          "find": "Producing a good pair universally remains an unproved extra assertion; existence of any essential spanning surface alone does not supply it.",
+          "replace": "Universal existence of such a pair is false: Dunfield's hyperbolic knot k6_36 has no nonorientable essential spanning surface (Theorem 1.3), so every essential spanning surface has the preferred-longitude slope and every pair has intersection zero. Burton–Kalfagianni explicitly note this obstruction in §5. The conditional certificates above remain valid where their hypotheses hold; this obstruction does not refute the meridian-length conjecture."
+        },
+        {
+          "file": "PROOFS.md",
+          "location": "Exact remaining gap; original line 115, first sentence",
+          "find": "No argument here turns the knot-in-S³ hypothesis into either a universal good pair of essential spanning surfaces, a uniformly adequate area-aware certificate, or a stronger exceptional-filling estimate at length 4.",
+          "replace": "A universal distinct-slope essential spanning-surface pair is ruled out by the cited example. Resolving the meridian-length conjecture therefore requires a route also covering knots without such pairs; the present area-aware pair certificate and exceptional-filling discussion do not provide it."
+        },
+        {
+          "file": "LITERATURE.md",
+          "location": "Append a seventh numbered source and add a cross-reference to item 4",
+          "append": "7. Nathan M. Dunfield, *A knot without a nonorientable essential spanning surface*, Illinois J. Math. 60 (2016), 179–184. [arXiv v2](https://arxiv.org/abs/1509.06653v2), Theorem 1.3. This is the obstruction discussed in Burton–Kalfagianni §5; its published computations were not independently rerun here."
+        },
+        {
+          "file": "RESEARCH_LOG.md",
+          "location": "Append a dated audit-correction section without rewriting historical approach entries",
+          "required_content": "State that the missing-pair discussion in approaches 2–3 is superseded by the known obstruction in corrected PROOFS §3. This is a literature correction, not a sixth proof attempt. Keep the original conjecture unresolved and the budget 5/5."
+        },
+        {
+          "file": "SOURCE_VERIFICATION.json",
+          "location": "Add the seventh source and an audit-correction record",
+          "required_content": "Record the exact Dunfield URL, public version/status, 99,015-byte PDF SHA-256 7ba4a3a9e37bf675114c01ca0caf984b9f281226c892d7ea9c19fe61e1cdd059, actual inspection and no computational rerun. Retain the original target scope and unresolved disposition."
+        },
+        {
+          "file": "README.md and MANIFEST.json",
+          "location": "Version identity and freeze",
+          "required_content": "Identify a v2 correction of the immutable original freeze, preserve the original archive/receipt, and rebuild all affected hashes. Do not claim v2 audit acceptance until the delta is checked."
+        }
+      ],
+      "source_links": [
+        "https://arxiv.org/pdf/1509.06653v2",
+        "https://arxiv.org/pdf/1608.05035v2#page=16",
+        "https://users.math.msu.edu/users/kalfagia/Meridianpaper.pdf#page=14"
+      ],
+      "effect": "No change to Propositions 2.1, 3.1, or 5.1, Corollary 2.2, numerical model, original conjecture status, or 5/5 budget."
+    }
+  ],
+  "nonblocking_hardening": [
+    {
+      "id": "H1",
+      "finding": "Author verify.py intentionally accepts an absent manifest and ignores nested extra files.",
+      "recommendation": "Retain the explicit exact-archive-member check; optionally make the author guard mandatory and recursive in v2. If modified, rerun and re-audit the code and mutations. This is not a mathematical failure."
+    }
+  ],
+  "v2_acceptance_gate": [
+    "Preserve the original 8-file freeze and receipt byte-for-byte.",
+    "Return v2 directory, ZIP, manifest, receipt, and an explicit changed-file list.",
+    "Recheck C1 in context, seventh-source bytes/status, and absence of an implied refutation of the original meridian conjecture.",
+    "Require ordinary and optimized controls, exact saved outputs, manifest and archive membership, and all relevant mutation checks.",
+    "If verify.py or RESULTS.json changes, audit those changes and do not inherit original execution acceptance.",
+    "Issue a separate v2 delta-acceptance record; the present original-freeze audit does not automatically accept future edits."
+  ],
+  "remote_writes": false,
+  "novelty_claim": false,
+  "human_or_editor_review_claim": false
+}
