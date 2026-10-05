@@ -722,7 +722,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 711 | 10000069 / AMR-099-0069 | Distance exponent of random series-parallel graphs | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 712 | 30002003 / OWR-11580-009 | Stringy Euler Criteria for Smooth Spherical Varieties | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 713 | 30002046 / OWR-11784-003 | Real Fixed Points of the Minkowski Question-Mark Function | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 714 | 30002129 / OWR-12007-009 | Refined Slippery Bounds for Positive-Word Rotation Numbers | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 714 | 30002129 / OWR-12007-009 | Refined Slippery Bounds for Positive-Word Rotation Numbers | 0.1044 | 5.5 | 3 | 2012 | unsolved | 5/5 |  |  |  |
 | 715 | 30002167 / OWR-12012-009 | Short Hamiltonian Cycles and Matchings in Convex Bodies | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 716 | 30002178 / OWR-12014-013 | Lower Bounds for Sums of Roots of Unity | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 717 | 30002180 / OWR-12015-001 | Jet Curvature and the First Chern Class | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
