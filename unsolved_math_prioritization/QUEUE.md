@@ -690,7 +690,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 679 | 2305020 / AMR-022-5020 | Research Problems in Function Theory — Problem 5.20 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 680 | 2305033 / AMR-022-5033 | Research Problems in Function Theory — Problem 5.33 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 682 | 2305073 / AMR-022-5073 | Research Problems in Function Theory — Problem 5.73 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 682 | 2305073 / AMR-022-5073 | Research Problems in Function Theory — Problem 5.73 | 0.1050 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 683 | 2306043 / AMR-022-6043 | Research Problems in Function Theory — Problem 6.43 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 685 | 2306047 / AMR-022-6047 | Research Problems in Function Theory — Problem 6.47 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
