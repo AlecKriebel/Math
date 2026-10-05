@@ -1,0 +1,105 @@
+#!/usr/bin/env python3
+"""Relocation and negative controls for the portable publication wrapper."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+
+ROOT = Path(__file__).resolve().parent
+
+
+def need(ok, label):
+    if not ok:
+        raise ValueError(label)
+
+
+def rebind(packet, changed):
+    manifest = packet / 'PUBLICATION_MANIFEST.json'
+    value = json.loads(manifest.read_text())
+    for row in value['files']:
+        if row['path'] == changed:
+            data = (packet / changed).read_bytes()
+            row.update(bytes=len(data), sha256=hashlib.sha256(data).hexdigest())
+    manifest.write_text(json.dumps(value, indent=2) + '\n')
+
+
+def main():
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1')
+    mutants = []
+    with tempfile.TemporaryDirectory(prefix='logarithmic-negative-') as temp:
+        base = Path(temp)
+        pristine = base / 'relocated packet'
+        shutil.copytree(ROOT, pristine)
+        positive = []
+        for flags in ([], ['-O']):
+            command = [sys.executable, *flags, str(pristine / 'verify_publication.py')]
+            result = subprocess.run(command, cwd=base, env=env, text=True,
+                                    capture_output=True, check=True)
+            positive.append(json.loads(result.stdout))
+        need(positive[0] == positive[1], 'relocated mode disagreement')
+        cases = ['content', 'missing', 'extra', 'extra-directory', 'symlink',
+                 'duplicate-path', 'unsafe-path', 'duplicate-json-key', 'frozen-identity',
+                 'false-solution', 'false-univalence', 'zero-index-extension',
+                 'false-source-inspection', 'wrong-queue-status']
+        for optimized in (False, True):
+            for kind in cases:
+                packet = base / ('mutant-' + str(optimized) + '-' + kind)
+                shutil.copytree(pristine, packet)
+                manifest = packet / 'PUBLICATION_MANIFEST.json'
+                value = json.loads(manifest.read_text())
+                if kind == 'content':
+                    (packet / 'README.md').write_bytes(b'altered\n')
+                elif kind == 'missing':
+                    (packet / 'README.md').unlink()
+                elif kind == 'extra':
+                    (packet / 'unexpected.txt').write_text('extra\n')
+                elif kind == 'extra-directory':
+                    (packet / 'unexpected-empty-directory').mkdir()
+                elif kind == 'symlink':
+                    (packet / 'README.md').unlink()
+                    (packet / 'README.md').symlink_to(pristine / 'README.md')
+                elif kind == 'duplicate-path':
+                    value['files'].append(value['files'][0])
+                    manifest.write_text(json.dumps(value))
+                elif kind == 'unsafe-path':
+                    value['files'][0]['path'] = '../outside.txt'
+                    manifest.write_text(json.dumps(value))
+                elif kind == 'duplicate-json-key':
+                    manifest.write_text('{"problem_id":"bad",' + manifest.read_text()[1:])
+                elif kind == 'frozen-identity':
+                    changed = 'freeze/public/FROZEN_MANIFEST.json'
+                    p = packet / changed
+                    p.write_bytes(p.read_bytes() + b' ')
+                    rebind(packet, changed)
+                else:
+                    changed = 'PUBLICATION_SCOPE.json'
+                    p = packet / changed
+                    scope = json.loads(p.read_text())
+                    key, item = {
+                        'false-solution': ('full_problem_solved', True),
+                        'false-univalence': ('relaxed_map_univalent', True),
+                        'zero-index-extension': ('zero_index_full_class_resolved', True),
+                        'false-source-inspection': ('hayman_original_construction_inspected', True),
+                        'wrong-queue-status': ('queue_status', 'exhausted'),
+                    }[kind]
+                    scope[key] = item
+                    p.write_text(json.dumps(scope))
+                    rebind(packet, changed)
+                run = subprocess.run([sys.executable, *(['-O'] if optimized else []),
+                                      str(packet / 'verify_publication.py')],
+                                     cwd=base, env=env, capture_output=True, text=True)
+                need(run.returncode != 0 and 'ValueError:' in run.stderr,
+                     'mutant not rejected: ' + kind)
+                mutants.append({'kind': kind, 'optimized': optimized, 'rejected': True,
+                                'diagnostic': run.stderr.strip().splitlines()[-1]})
+    print(json.dumps({'result': 'PASS', 'relocated_normal_and_optimized': positive[0],
+                      'rejected_mutants': len(mutants), 'mutants': mutants},
+                     indent=2, sort_keys=True))
+
+
+if __name__ == '__main__':
+    main()
