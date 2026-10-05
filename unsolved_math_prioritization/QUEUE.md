@@ -767,7 +767,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 756 | 1929 / EP-100 | Erdős Problem #100 | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 757 | 20000276 / AIM-ALGEBRAIC_GEOMETRY-0276 | Existence for Noetherian filtrations and monomial graded families | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 758 | 20000809 / AIM-ARITHMETIC_GEOMETRY-0055 | A tangent-weight criterion for rational Hilbert components | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 759 | 20000814 / AIM-ARITHMETIC_GEOMETRY-0060 | A bad-surface and Rao-module reduction for smooth limits of complete intersections | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 759 | 20000814 / AIM-ARITHMETIC_GEOMETRY-0060 | A bad-surface and Rao-module reduction for smooth limits of complete intersections | 0.1020 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 760 | 20000817 / AIM-ARITHMETIC_GEOMETRY-0063 | Monomial signatures distinguish components through affine length eight | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 761 | 20000826 / AIM-ARITHMETIC_GEOMETRY-0072 | Connected toric and square-zero classes in three variables | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 762 | 20001757 / AIM-GEOMETRY-0095 | Five-point Riesz phase-transition status and an explicit high-exponent competitor | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
