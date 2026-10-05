@@ -1,0 +1,1 @@
+2026-10-05T03:34:05.709254+00:00 — Fresh immutable-head eligibility after verified PR80 completion and explicit writer release. Next eligible 85; skipped [81, 82, 83, 84]. Only status/budget/identity columns examined; no excluded science or PR/native/publication mutation. Program10/99=10.1010101010101%; next mathematical workflow0%.

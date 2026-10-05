@@ -1,0 +1,37 @@
+# Descending audit: PR311 / 30005303
+
+The original submitted head895f2ba037e71bac054b58f1a4be7bb4d5dbd53a is claimed_solved, author2/5. Its original30 objects and four manifests are authenticated and preserved. The exact source asks two finite binary graphical-model questions; its separate Gaussian conjecture is outside this entry.
+
+Root and both fresh source-first mathematical families have accepted the two answers: finite edge-factor closure under MTP2, and a global-Markov MTP2 C4 counterexample to clique factorization (also refuting the stronger lattice-support statement). Root read and authenticated the complete proofs, code, input bindings, sealed final reports and execution streams. All564189 author and89324 inherited assertions and three fresh independent control programs reproduced byte-identically. The fresh lattice family also supplied a separate support/log-design closure proof. Its later extra summary exposure is disclosed and excluded from evidence; its initial verdict and controls were frozen first.
+
+This accepts mathematical correctness only. Two new independent primary-source priority families are active. Each froze source-only comparison criteria before candidate access; the factorization family also froze its first historical finding independently. Root fully read and authenticated both criteria before a named release of candidate prose. Potential qualifying prior counterexamples are under comparison. No priority verdict or publication clearance is granted by this checkpoint. Primary copyrighted PDFs, text, page images and private native captures are excluded from publication.
+
+Best estimates: mathematics100%, workflow35%, historical-priority audit20%. No merge, paper, Zenodo upload, DOI, tracker row or GitHub release for PR311. The persistent goal remains active. The current goal processes only originally submitted claimed_solved draft PRs in descending order, excluding PR8; other statuses are skipped by status alone. No outside individual was contacted.
+
+## Current qualification — 2026-10-04T18:33:21.621918+00:00
+
+The current submission version is [preprint_package_v02](preprint_package_v02/README.md), with the exact PDF/archive/metadata in [submission_v02](submission_v02/SUBMISSION_MANIFEST.json). [CURRENT_PACKAGE_STATUS.json](CURRENT_PACKAGE_STATUS.json) records the pending second new full review. [CURRENT_CORRECTIONS.json](CURRENT_CORRECTIONS.json) supersedes earlier build-hash and unique-minor labels while preserving their frozen history. The first full preprint review found no mathematical defect; its three required package repairs and an additional local-factor smoothing clarification are applied and reproduced. Math100%, boundedpriority100%, workflow65%; publication and merge remain pending.
+
+Current operational preparation (2026-10-04T18:59:40.407994+00:00): [ROOT_OPERATIONAL_PREPARATION_V02.json](ROOT_OPERATIONAL_PREPARATION_V02.json) records the prepared, gated merge and publication steps. The second fresh whole review is active after its independently frozen source-only gate. Publication readiness remains false; math100%, bounded priority100%, workflow65%.
+
+Current clearance (2026-10-04T19:33:23.783446+00:00): [PUBLISHING_CLEARANCE.json](PUBLISHING_CLEARANCE.json) binds the13-file v02 verification package, five formal submission files,1234readonly scientific/review files and the authentic historical build evidence. The NEW second whole reviewer closed with zero findings; ROOT fully read its report and independently reproduced its exact mathematical and negative-control outputs. Original2/5 author history is preserved. Math100%,boundedpriority100%,workflow75%; exact merge, production publication and tracker registration remain pending.
+
+## Current operational repair status
+
+2026-10-04T21:22:32.717742+00:00 — PR311 first operational adversary fully authenticated and freshly reproduced; D1–D3 globally repaired outside cleared v02 scientific package. Controlled unauthenticated HTTP, exact DOI/record/fresh landing bindings, selected live/staged/committed byte/mode pins and fixed-tree/CAS checkpoint protect publication custody. Exact GWS0.22.5 source audit completed; one invocation is not one transmission, and success requires a complete fresh pre/post tracker delta of exactly one row. No actual merge, production deposit, publication or tracker mutation yet. NEW full-operator adversary required before proceeding. Mathematical100%;bounded priority100%;PR311workflow80%; persistent goal active.
+
+2026-10-04T22:03:40.405644+00:00 — PR311 second operational review fully read/authenticated and independently reproduced. Shared QUEUE/inventory stale-capture checks now stop before overwriting; final completion marker is last. Shared-file/ref ownership is declared under the independently verified peer read-only release, and own operator processes use a nonblocking advisory lock. Reconciliation authenticates actual returned commit tree/parents/complete diff before pushing; checkpoint pushes the exact verified commit with an expected-old-ref lease. Lease updates are independently verified fast-forwards. An advisory lock does not exclude hostile/noncooperating writers. Original review02 findings retained; NEW independent whole-workflow review03 required. No actual PR311 merge, Zenodo production deposit/publication or tracker append. Cleared formal package and science unchanged. Math100%,boundedpriority100%,PR311workflow80%; persistent goal active.
+
+- 2026-10-04T22:47:55.665913+00:00: PR311 NEW independent operations R03 found zero required repairs under its stated assumptions. ROOT fully read report/control programs, authenticated 145804 payloads +3 terminals/11303 directories/12642 captures, freshly ran unchanged controls (28 matrix,12 native/custody groups,18 protocol boundaries), and granted separate operational clearance. Historical R01/R02 defects and failures retained; scientific package and all12 operator pins unchanged. Actual merge/Zenodo/tracker not yet performed. Pending ascending PR80 window remains unacknowledged until this PR311 publication checkpoint finishes. Completion estimate: mathematics100%, boundedpriority100%, workflow85%; overall goal active.
+
+## Current completed publication
+
+Published 2026-10-04T22:50:54.219627+00:00 after exact merged-tree and complete fresh-review verification.
+
+Preprint: https://doi.org/10.5281/zenodo.23146753
+
+Record: https://zenodo.org/records/23146753
+
+The five-page PDF and portable verification ZIP match the cleared submission byte for byte in complete unauthenticated public downloads. All eleven metadata fields match. The DOI resolves with HTTP 200. Exactly one row was appended to the specified Math Puzzles sheet, 'Math Puzzles'!A22:D22, and read back exactly. No chat was shared and no individual was contacted.
+
+Mathematical verification100%; bounded priority audit100%; this PR review/merge/publication workflow100%. Successive NEW whole-preprint reviews completed with global provenance/count corrections and final zero unresolved findings. The general binary MTP2 original-edge closure and attractive-approximation characterization answers source Conjecture1; the earlier Gandolfi–Lenarda witness for Conjectures2/3 is credited. This is an unrefereed preprint with extensive AI use, without external human peer review or a historical first-priority certificate. The author count2/5 and all29 original attempt files are preserved. The persistent descending program remains active.

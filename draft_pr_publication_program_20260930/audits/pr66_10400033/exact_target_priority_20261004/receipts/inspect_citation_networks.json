@@ -1,0 +1,26 @@
+{
+  "label": "inspect_citation_networks",
+  "kind": "executed_subprocess",
+  "started_at_utc": "2026-10-04T16:57:07.968296+00:00",
+  "finished_at_utc": "2026-10-04T16:57:08.010453+00:00",
+  "elapsed_seconds": 0.04194862500298768,
+  "recorder_pid": 66277,
+  "subprocess_pid": 66289,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/exact_target_priority_20261004",
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import json; b=Path('/Users/alec/.cache/pr66_exact_target_priority_20261004'); [(print(n),print(json.dumps({'meta':json.loads((b/(n+'.json')).read_text()).get('meta'),'works':[{k:w.get(k) for k in ['id','doi','title','publication_date','open_access','best_oa_location']} for w in json.loads((b/(n+'.json')).read_text()).get('results',[])]},indent=2))) for n in ['openalex_citers_abe','openalex_citers_willerton']]; d=json.loads((b/'crossref_inv.json').read_text())['message']; print('INV PUBLISHER METADATA',json.dumps({k:d.get(k) for k in ['title','author','published','published-print','container-title','page','link','is-referenced-by-count']},indent=2))"
+  ],
+  "returncode": 0,
+  "stdout": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/inspect_citation_networks.stdout",
+    "bytes": 20301,
+    "sha256": "765add9060767af5109c03a469d55ab85fc87f7a60f3b18fa774527f15e25acc"
+  },
+  "stderr": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/inspect_citation_networks.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,5 @@
+# Fifth and final substantive author turn
+
+This final search tested the triple-double-exponential surface suggested by the nonnilpotent monodromy obstruction. It proves that every bounded character-automorphic holomorphic function on that surface is constant, and zero for a nontrivial character. The proof descends after a fractional multiplier, removes coordinate divisors using strictly subunit exponents, and uses the complete common-translation lines in the Demailly surface product. It then proves finite-dimensional deck-orbit rigidity and excludes all ambient exponential-polynomial ansatzes.
+
+No arbitrary bounded nonconstant entire restriction has been constructed, and an arbitrary bounded holomorphic function need not have finite-dimensional translation orbit. The c_0 shift example isolates the invalid spectral-completeness inference without claiming an analytic counterexample. The full original remains unresolved at 5/5. Exact controls add 9,374 assertions, bringing the total to 38,066. Research stops here pending independent full review; no sixth author search.

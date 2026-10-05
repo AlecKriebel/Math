@@ -1,0 +1,61 @@
+# Root mathematical reconstruction before executable inspection
+
+Verdict: **PASS_SCOPED_ANALYTIC_ARGUMENTS**, conditional on forthcoming source/history/code/publication binding checks. The original construction question is unresolved. All five complete TURN proofs were read after the independent source baseline and before candidate code, saved checks, final result, prior review or sibling proof verdicts. This is written mathematical evidence; finite tests will be supplemental. No universal impossibility, historical novelty or human peer review is accepted.
+
+## Equiangular algebraic perimeter
+
+From3V=2E and V−E+1=2−2g, the cubic one-face counts are E=6g−3,V=4g−2,N=2E. Each edge contributes twice to perimeter. The positive length simplex has sum P/2 and connected dimension E−1. Its barycenter gives every side x=P/N, regardless of the pairing/order.
+
+Represent a tangent frame by the PSL2(R) image of the upward unit tangent at i. T(x)=diag(exp(x/2),exp(−x/2)) advances it. R(beta)=[[cos(beta/2),sin(beta/2)],[−sin(beta/2),cos(beta/2)]] fixes i with derivative exp(i beta), so right multiplication advances and turns the moving frame. A closed polygon, including its final turn, returns the initial frame. Thus its matrix product H must be±I in SL and satisfies(trace H)²−4=0. This is only necessary: trace±2 can also describe parabolic matrices, which merely enlarges the containing zero set.
+
+For beta=pi/3, A=T(x)R has determinant1 and trace z=sqrt3 cosh(P/(2N)). Cayley–Hamilton gives trace(A^n)=C_n(z), with C_0=2,C_1=z,C_n=zC_(n−1)−C_(n−2); C_n is a monic integral polynomial of degree n≥1. Classical Hermite–Lindemann makes q=exp(P/(2N)) transcendental for positive algebraic P. If its hyperbolic cosine were algebraic c, then q would solve q²−2cq+1=0 over the algebraic numbers, contradiction. Hence z is transcendental and the nonzero polynomial C_N(z)²−4 cannot vanish. F=(trace H)²−4 is not identically zero on the simplex.
+
+A nonzero analytic function on a connected open domain has a null zero set. Locally expand in one coordinate; by induction a nonzero coefficient function has a lower-dimensional null zero set. Off that exceptional set, the one-variable analytic function has discrete zeros. Fubini on countably many local boxes proves the assertion. Apply it in simplex coordinates; finite pairings/orderings retain nullity. Any absolutely continuous conditional length law, including the source Dirichlet law, assigns zero probability, even with adaptive combinatorial choices. Unrestricted real angles, altered lengths, changed curvature and different spines remain outside the conclusion.
+
+A regular equiangular N-gon exists for N>6 with ell=2arcosh(2cos(pi/N)/sqrt3)>0. Its exp(ell/2) is algebraic, so Hermite–Lindemann implies ell and perimeter N ell are nonalgebraic. This is a countercontrol to the false extension to all perimeters. Curvature−1 and fixed length units matter.
+
+## Algebraic side lengths and angle cosines
+
+For0<alpha_j<2pi, beta_j=pi−alpha_j∈(−pi,pi) gives c_j=cos(beta_j/2)>0. Algebraic cos(alpha_j) makes c_j²=(1−cos(alpha_j))/2 and s_j²=(1+cos(alpha_j))/2 algebraic, hence their real signed square roots algebraic. Straight corners alpha=pi cause no problem; zero/full angles, ideal vertices and zero sides are excluded.
+
+Expand trace(∏T(l_j)R_j) by cyclic binary indices. Every term is an algebraic coefficient times exp(sum epsilon_j l_j/2). Positive algebraic side lengths give algebraic exponents. The largest exponent sum l_j/2>0 occurs uniquely at the all-plus indices, with positive coefficient∏c_j. Moving trace±2 to the left adds only exponent0. Grouping equal exponents cannot cancel that extremal term. Lindemann–Weierstrass independence of exponentials of distinct algebraic numbers over algebraic numbers forbids closure. The primary Delaygue PDF1 was visually checked to confirm the overbar field that extraction loses. Neither a new E-function theorem nor a numerical transcendence test is used.
+
+At a positive algebraic fixed perimeter and fixed algebraic-cosine profile, the equal-length point makes trace H a Laurent polynomial in transcendental q=exp(P/(2N)); coefficient of q^N is∏c_j≠0. Both trace−2 and trace+2 are nonzero there. The analytic null-set argument applies. There are countably many such angle profiles because each algebraic cosine has at most two preimages in(0,2pi), so even length-adaptive selection from all profiles remains a null union. An unrestricted uncountable angle family is not excluded.
+
+Finite Janson–Louf edge lengths after scaling are integer multiples of the algebraic sqrt(12g/n). Peeling leaves and suppressing degree-two paths retains positive algebraic lengths. Equal-sharing2pi/d corners have algebraic cosines and are therefore excluded as an exact polygon prescription. This does not refute approximate constructions or the asymptotic conjecture.
+
+## Regular replacement and count-law obstruction
+
+Orientation-compatible pairing of the regular N-gon from a cubic map gives a connected closed orientable genus-g quotient. Edge neighborhoods are smooth; three corners at each vertex sum to2pi. Compactness gives a complete smooth curvature−1 surface. Area=(N−2)pi−2Npi/3=4pi(g−1), matching Gauss–Bonnet. Marked graph/rotation data recover the input; the unmarked pushforward can collapse inputs and is not asserted uniform.
+
+A fixed signed CFF correspondence preserves graph and has2^(E+1) copies per rooted map. Restricting to cubic graphs preserves that multiplicity, so uniform restricted C-trees project to uniform cubic maps. This credited existence theorem does not supply a naive rotation-choice inverse or a polynomial-time deterministic sampler. Source PDF8 explicitly distinguishes matching-based existence from an effective fractional correspondence. Finite fixed-genus support is singular to WP volume, but singularity alone would not prevent weak approximation as g increases.
+
+Subdividing edges gives a clean uniform dessin with N dessin edges, white degree2, black degree3 and unique face degreeN in the dessin half-perimeter convention. The polygon splits into2N triangles of angles pi/2,pi/3,pi/N. Its group is an index-N stabilizer in the orientation-preserving Δ(2,3,N). Each nontrivial elliptic power acts without fixed darts because generator cycles have uniform lengths2,3,N; the stabilizer is torsion free. It need not be normal. Orbifold area2pi(1−1/2−1/3−1/N) times N equals4pi(g−1), independently confirming the index. These are credited classical facts.
+
+Every nontrivial deck element of the closed surface is hyperbolic and lies in the parent triangle group. Philippe's published p=3 systole formula gives sys≥2arcosh(2cos²(pi/N)−1/2), with no assertion of equality in the subgroup. For N≥18 its argument exceeds(1+sqrt3)/2>4/3>cosh(1/2). The last inequality follows by bounding the positive Taylor tail after1/8 by ratio1/48, giving53/47<4/3. Thus sys>1 uniformly for all maps, genera g≥2 and sampling weights.
+
+The produced count Z of primitive geodesics in[1/2,1] is identically0. For WP surfaces the credited exact density(cosh(t)−1)/t yields a Poisson limit with mu>∫_.5^1 t/2 dt=3/16. Integer-valued weak convergence gives P(Z=0)→exp(−mu), using the interval(−1/2,1/2). Hence the one-dimensional count-law total variation gap tends to1−exp(−mu)>3/19. No full-surface or multivariate TV claim is needed. A deterministic scale bounded below by c>0 preserves a cutoff; a fixed interval below c retains the disagreement. This does not prove a general statement about Gromov–Hausdorff couplings or free polygon geometry.
+
+## Intrinsic perimeter and metric change
+
+Assume a finite one-face cellular embedding with positive piecewise geodesic embedded edges, disjoint interiors, and positive incident sectors in a smooth closed curvature−1 surface. Subdivide bends. The intrinsic completion of the cut unique face is a compact topological disk; repeated vertex and bridge incidences become distinct boundary occurrences. The interior has no cone points. A leaf gives a2pi boundary sector, allowed by Izmestiev's definition, as are reentrant corners. Injective development in the plane is unnecessary. The finite graph has zero surface area and every edge has two boundary copies, so A=4pi(g−1), P=2∑ell.
+
+The credited intrinsic inequality P²≥4piA+A² gives P≥4pi sqrt(g(g−1)). At P=12g this would require pi²(g−1)≤9g. With pi>157/50 the strict reverse holds at g=12; its difference increases with slope pi²−9>0, so allg≥12 are excluded. With pi<22/7 it holds at g=11 since10pi²<99, hence for2≤g≤11 by monotonicity. Those genera are only not excluded by this bound; existence is not established. Machin's identity and alternating arctangent estimates can certify the elementary pi bounds without numeric assumptions.
+
+For input∑ell=6g, put s=(pi/3)sqrt(1−1/g),delta=s−1. Necessarily∑ell'≥6g s, so signed total increase≥6g delta, relative total absolute change≥delta, and the positive input-weighted average output/input ratio≥s. At least one ratio≥s. For cubic E=6g−3, max absolute change≥6g delta/(6g−3). Negative delta bounds are vacuous; positive lower limits are pi/3−1. The exact squared comparison using pi>157/50 proves delta>1/25 for allg≥100. P_g/(12g)→1 gives the same limiting ratio. Weaker metric comparisons, multiple-face models, different curvature and cone area formulas remain outside this category.
+
+## Dirichlet sparse adaptive repairs
+
+The published BGL PDF5/25 explicitly identifies the one-face metric law as normalized independent exponentials, with edge sum P/2=6g. Conditional on any allowed graph, X_i=ell_i/(6g) is uniformDirichlet(1,…,1); arbitrary discrete or singular length laws would require other estimates.
+
+Let Y_i iidExp1,S=∑Y_i. The y=sx change has Jacobian s^(E−1); density factors into e^(−s)s^(E−1) and constant simplex density. Thus S and X are independent and ES=E. Memorylessness gives ascending spacings with means1/E,1/(E−1),…,1. The jth largest Y has expectation H_E−H_(j−1), and top-k sum has expectation k(1+H_E−H_k). Since normalization preserves ordering, top-k sum Y=S T_(E,k), giving ET=(k/E)(1+H_E−H_k). Cases E=k=1, k=E and k=0 are covered explicitly. Independently, translating r chosen simplex coordinates gives P(all r>t)=(1−rt)_+^(E−1); inclusion-exclusion and integration yield the candidate coefficient sum/(rE). The E=1 endpoint convention is irrelevant to the integral.
+
+For any adaptive chosen subset I of at most k edges with output unchanged off I and output≤C input on I, signed increase/(6g)≤(C−1)∑_I X≤(C−1)T_topk. This holds with decreases and every dependence on graph/lengths/angles/auxiliary randomness. For g≥12, success implies the measurable event(C−1)T≥delta>0. Markov and the exact expectation give the clipped probability bound. C=1 or k=0 forbids success. This measurable containing event also bounds outer probability of a possibly nonmeasurable geometric existence event.
+
+H_E−H_k≤log(E/k) by integration. Since delta→pi/3−1>0, the stated condition(C_g−1)(k/E)(1+log(E/k))→0 uniformly forces probability→0. Bounded C and k=o(g) satisfy it because rlog(1/r)→0. For almost-sure success without a deterministic cap, C(X)>1 and C≥1+delta/T; Jensen for1/t yields EC≥1+delta/ET even with infinite expectation and arbitrary joint dependence. These are necessary obstructions, not a sufficiency construction or WP law.
+
+## Remaining gap and audit boundary
+
+No mandatory mathematical repair was found. The exact common gap is a controlled geometric adaptation from tree/map data to the intended random hyperbolic law, with adequate metric freedom and measure analysis. The restricted routes are blocked at that unsupported central construction. Reweighting thick geometry or assuming closure/sufficiency merely transfers the difficulty; reopening needs materially new construction or evidence.
+
+Supported status: unsolved5/5 partial. No paper/Zenodo/DOI/sheet/release applies. Source pitfalls are recorded: MP's nearby small-epsilon coefficient and a published BGL discussion's missing square-root in a normalization are not used; actual Janson–Louf scaling and exact density were read directly. Cambridge historical PDF footer/hash still requires provenance reconciliation. Code, full streams, manifests, history and exact live integration remain pending. Audit45%, original general discovery0%.

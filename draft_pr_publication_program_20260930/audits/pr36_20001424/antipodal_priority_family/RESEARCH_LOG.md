@@ -1,0 +1,27 @@
+# PR36 antipodal primary-priority audit
+
+## 2026-10-02T06:26:03.584809+00:00 - Initial independent reconstruction (25% complete)
+
+Read repository root AGENTS.md and checked for nested AGENTS.md: none in the assigned audit ancestry. Remain on main. Work is confined to this family; no remote or shared-state writes and no outside individuals contacted. Original CANDIDATE.md read in full before external operative proofs. AIM literal live HTTP page independently retrieved, 2.6 exactly asks: Are all PCF maps defined over their field of moduli? No extra odd-divisor premise is present.
+
+BBM arXiv1512.01850v1 independently retrieved. The 2015-12-06 version has 54 pages, PDF SHA256 1d98998671daea361352692f460b5c559295ea2fc4a2ceed5af9e56e90767f9f. Equations (1)-(3), Lemmas 2.3-2.4, and their full operative proofs read. Sources from siblings and old review verdicts have not been read.
+
+Reconstructed mechanism: for q off both axes and only critical fixed points 0,infinity, the normal form f_q=z²(q-z)/(1+bar(q)z) has trivial holomorphic centralizer. A commuting Mobius map must preserve or swap the pair; scaling is identity by the remaining zero, and swapping lambda/z requires simultaneously lambda=-q/bar(q) and lambda=-bar(q)/q. Hence q²=bar(q)² would be necessary. Antipodal symmetry plus trivial centralizer then excludes any reflection. The missing priority premise is a rigorously established, algebraic nonaxis PCF center in printed work. Numerical figures alone do not prove it. This is established-source consequence checking, charged 0 new candidate turns.
+
+Initial browser AIM retrieval timed out; independent urllib retrieval succeeded HTTP200. A broad parent-directory find was curtailed, and repository-local rg found root plus unrelated unsolved_math_prioritization/AGENTS.md. Sympy absent from default Python; bundled-runtime path requested for reproducible controls.
+
+## 2026-10-02T06:40:57.701466+00:00 - Definitive earlier example (85% complete)
+
+Silverman 1995 primary original retrieved independently (3149856 bytes, SHA256 0a405ab1fbe4fc04e73439ecc31db4afaae3d8e38ce58bfd49f65442c6e88116). Printed p271, equation1, PDFpage4, visually confirms phi=i((z-1)/(z+1))³, Q fieldmoduli and no real fielddefinition. Printed p296, PDFpage29, visually confirms the all-odd-degree family. The missing PCF condition is an elementary exact consequence: criticalpoints +/-1 are on the six-cycle 1->0->-i->-1->infinity->i->1 for d3; allodd d have either this six-cycle or two3cycles depending on dmod4. Independently reconstructed trivial centralizer and unique fixed-point-free anti symmetry. No source theorem about arbitrary hyperbolic centers is needed for this decisive PRIOR_APPLICATION. This adds 0 candidate turns.
+
+Earlier BBM investigation was retained: author draftSec6fulloperative proof read, immutable LMv2pp33-34 cites the tongue theorem and gives uniquePCFcenter Prop8.1, Milnor underlying markedrationalmodelproof pp32-35 read. The offaxis1/4-center mechanism is valid source consequence logic, but its coefficient/algebraicity completion is unnecessary once the explicitly algebraic 1995 example is verified. Brief source-center elimination experiment produced a large polynomial; no new candidate route or repair was pursued, no scientific claim rests on it.
+
+Exact standard-library Gaussian-rational checker now executes four positive degreecases3,5,7,11 and seven mutated mathematical inputspecs. All positivecases pass; allmutants fail, including wrongorbit under python-O. The checker explicitly limits what it verifies: centralizer exhaustion, all antiholomorphic symmetries, no realmodel, and absolutefieldmoduli need the written proof. Independent adversarial source verifier was assigned under AGENTS.md; awaiting its independent seal/report before final family closure.
+
+## 2026-10-02T06:47:25.197231+00:00 - Complete authored priority proof (95% complete)
+
+PRIOR_APPLICATION.md completes a proof for the exact1995cubic: ramification, exactcriticalportrait, holomorphiccentralizerexhaustion, unique antipodalanti symmetry, no realmodel, and absoluteFOMQ. PRIMARY_READING_LEDGER.json preserves7primarysources withsourceversions,actualbytes,hashes,pagecoverage,limits andfailures. SEARCH_LEDGER.json recordsboundedqueries and theiruse; nohistoricalfirst claim. Actualexecutables with corruptedderivative, pole, and infinityevaluation allreject. Positive checker under-O emitsidenticalbytes. Remainingclosure: independent sourceverifier result and final authoredmanifest. No source/candidate/sciencechanges,0newcandidateattempts.
+
+## 2026-10-02T06:55:19.264628+00:00 - Family closure (100% complete)
+
+Independent source-first verifier PASS and unchanged exactcheckerreplayconfirmed. Its source PDF matches independentlydownloadedoriginalbytes; allforeignsource materialwasmovedintoignoredtmp, oldseal and correctedcontrolfailures preserved, refreshedchildmanifest8entriesverified. Ownsourceproofsealhashmatches; mainconfirmed; allforeignPDF/HTML/text/rendersignored. FINAL_INTEGRITY.json recordsactualchecks. VerdictPRIOR_APPLICATION: exactSilverman1995cubicwith bothcriticalpointsperiodic, FOMQ, noRmodel. No prioritygap remainsfor thisspecificsourceapplication. No earliest/worldwidefirstclaim, no explicitoldPCFassertionattributed, no wholepacketacceptance. Zero newcandidateattempts; no shared/remote/state/paper/DOIwrites. Final strictselfexcludingauthoredmanifest generated andverified next.

@@ -1,0 +1,1501 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..180ef8e2d 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -59,7 +59,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | [Degree-11 graph-defined PCF descent counterexample](attempts/20001424/CANDIDATE.md); [separate review PASS](attempts/20001424/review/REVIEW.md); real field of moduli but no real model; historical priority unconfirmed; [draft PR #36](https://github.com/AlecKriebel/Math/pull/36) |  |
+ | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+ | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/20001424/CANDIDATE.md b/unsolved_math_prioritization/attempts/20001424/CANDIDATE.md
+new file mode 100644
+index 000000000..1ae7bd8f4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/CANDIDATE.md
+@@ -0,0 +1,201 @@
++# 20001424: a graph-defined PCF counterexample to descent
++
++**Status: candidate counterexample awaiting independent adversarial review. No claim of historical novelty or independently verified resolution is made yet.**
++
++## 1. Exact proposed conclusion
++
++There exists a degree-11 rational map \(f\in\overline{\mathbb Q}(z)\) with the following properties:
++
++1. Every critical point of \(f\) is fixed, so \(f\) is postcritically finite.
++2. Its holomorphic dynamical automorphism group is trivial.
++3. Its conjugacy class is fixed by complex conjugation, but no map in that class has real coefficients.
++4. Consequently its absolute field of moduli \(K\) is a real number field and is **not** a field of definition.
++
++Here conjugacy means \(\operatorname{PGL}_2\)-conjugacy of self-maps, not independent coordinate changes on the source and target. The characteristic is zero. A graph plus a standard realization theorem defines the class exactly; coefficients and the precise number field \(K\) are not computed. Neither is needed for the proposed non-descent proof.
++
++This is intended as a negative answer to the original question, “Are all PCF maps defined over their field of moduli?” The extra odd-postcritical-divisor condition in the imported record's title is part of prior partial work, not an assumption in the original question. Our example has ten reduced postcritical points and does not contradict that condition.
++
++## 2. Established input and its precise use
++
++We use Hlushchanka, [*Tischler graphs of critically fixed rational maps and their applications*](https://arxiv.org/abs/1904.04759), Theorem2, Section5, Corollary6, and Lemma7. These provide a bijection between orientation-preserving isomorphism classes of connected loopless plane graphs and Möbius classes of critically fixed rational maps. A graph with \(e\) edges gives degree \(e+1\); a vertex of valence \(m\) gives a fixed critical point of local degree \(m+1\).
++
++The intrinsic Tischler graph consists of all fixed internal rays. Charge edges are chosen inside its complementary faces, joining the two critical boundary points. Any such choice gives the same embedded graph class; the charge graph is connected. Section5 gives the relevant realization and inverse constructions, not merely an abstract counting correspondence.
++
++The known criterion that a rational map admits a real model exactly when it has an antiholomorphic reflection is also discussed by Hidalgo–Quispe, [*On Real and Pseudo-Real Rational Maps*](https://arxiv.org/abs/1502.05306), Lemma4. We give the elementary direction needed below. General pseudo-real maps and antipode-preserving families are prior work; this construction does not claim those ideas as new.
++
++## 3. An exact embedded graph
++
++Let the four cycle vertices, in counterclockwise order on the unit circle, be
++
++\[
++v_0=1,\qquad v_1=i,\qquad v_2=-1,\qquad v_3=-i.
++\]
++
++The four cycle edges are the successive quarter-circle arcs. Attach the following radial pendant paths:
++
++\[
++v_0-\tfrac12,\qquad
++v_1-\tfrac i2-\tfrac i3,\qquad
++v_2-(-2),\qquad
++v_3-(-2i)-(-3i).
++\tag{1}
++\]
++
++The first two paths lie inside the unit circle and the last two outside. Their interiors are disjoint from each other and the cycle. Thus \(G\) is a connected simple plane graph with ten vertices, ten edges, two faces, and a unique cycle of length four. Its pendant lengths around the cycle are \((1,2,1,2)\).
++
++The map
++
++\[
++J(z)=-1/\overline z
++\tag{2}
++\]
++
++preserves \(G\), swaps \(v_j\) with \(v_{j+2}\), and pairs opposite pendant paths. It has no fixed point on the sphere, no fixed graph vertex, and no setwise-fixed edge. It reverses orientation and exchanges the two complementary faces.
++
++Equivalently, a complete combinatorial specification is the edge list and cyclic-order data in `graph_verification.json`. With \(a_j\) denoting the first pendant edge, \(e_j^+\) the next cycle edge, and \(e_j^-\) the preceding edge, the counterclockwise order is
++
++\[
++(e_j^-,e_j^+,a_j)\quad(j=0,1),
++\qquad
++(e_j^-,a_j,e_j^+)\quad(j=2,3).
++\tag{3}
++\]
++
++A [diagram of this embedding](graph.svg) is included for orientation; the exact coordinates and cyclic orders above are the definition.
++
++## 4. All graph automorphisms and their orientation types
++
++Every abstract automorphism preserves the unique cycle and the lengths of its attached paths. Its restriction to the cycle is therefore one of exactly four permutations:
++
++\[
++\mathrm{id},\qquad h:j\mapsto j+2,\qquad
++s_0:j\mapsto-j,\qquad s_2:j\mapsto2-j
++\quad(\bmod4).
++\tag{4}
++\]
++
++Each uniquely extends along the pendant paths. To see completeness, any automorphism of the four-cycle is dihedral, and preserving the alternating distinct lengths requires preserving the parity of \(j\). This leaves precisely (4).
++
++An orientation-preserving homeomorphism of the sphere must preserve the cyclic order at every valence-three vertex; an orientation-reversing one must reverse it at every such vertex. From (3):
++
++- identity preserves all four orders;
++- \(h\) reverses all four orders;
++- \(s_0\) reverses at \(v_0,v_2\) and preserves at \(v_1,v_3\);
++- \(s_2\) does the opposite.
++
++The last two therefore cannot be induced by any sphere homeomorphism preserving the embedded graph. It follows that the only orientation-preserving embedded graph automorphism is identity and the only orientation-reversing one is \(h\), realized by (2). These statements concern induced permutations, not arbitrary homeomorphisms supported away from the graph.
++
++The checker independently exhausts all \(4!\,2!\,4!=1152\) degree-compatible vertex permutations, finding exactly these four abstract automorphisms and their cyclic-order signs.
++
++## 5. Realization and naturality under complex conjugation
++
++Let \([f]\) be the Möbius class corresponding to \(G\) by the established classification. Then
++
++\[
++\deg f=11,\qquad
++\#\operatorname{Crit}(f)=10,
++\]
++
++and its critical local degrees are four copies of 2, two copies of 3, and four copies of 4. All ten critical points are fixed. Their ramification multiplicities sum to
++
++\[
++4(2-1)+2(3-1)+4(4-1)=20=2\deg f-2.
++\]
++
++No critical point is totally ramified, so this conjugacy class contains no polynomial.
++
++Write \(c(z)=\overline z\) and \(\overline f=c\circ f\circ c\). Conjugating an immediate basin and its fixed internal rays by \(c\) gives exactly the corresponding basin and rays of \(\overline f\). Thus
++
++\[
++\operatorname{Tisch}(\overline f)=c(\operatorname{Tisch}(f)),
++\]
++
++and a charge graph for \(\overline f\) is the mirror image of a charge graph for \(f\).
++Since \(J\) reverses orientation and preserves \(G\), the map \(cJ\) gives an orientation-preserving isomorphism from \(G\) to its mirror. The classification therefore gives a Möbius map \(L\) with
++
++\[
++\overline f=L f L^{-1}.
++\]
++
++Consequently
++
++\[
++A=L^{-1}c
++\tag{5}
++\]
++
++is an antiholomorphic automorphism commuting with \(f\).
++
++This step uses the naturality of the actual fixed-ray construction. An arbitrary bijection between two sets of isomorphism classes would not suffice.
++
++## 6. Triviality of the holomorphic automorphism group
++
++A Möbius transformation commuting with \(f\) permutes its critical immediate basins and their fixed internal rays. Hence it acts on the intrinsic Tischler graph, its faces, and the associated charge vertices and edges. In Böttcher coordinates a commuting basin isomorphism is a rotation commuting with a monomial; an antiholomorphic one is an anti-rotation. Both carry its fixed radial rays to fixed radial rays. Charge edges correspond to Tischler faces, and their cyclic order at a critical vertex is the order of the incident face sectors. Thus their induced incidence and cyclic-order action does not depend on the chosen arcs. The cyclic order on the resulting charge graph is preserved. Although individual charge arcs are chosen rather than intrinsic, their incidence and cyclic-order data are determined by the Tischler faces, so this induced combinatorial action is well defined.
++
++By Section4 the induced permutation of the charge graph is identity. In particular the transformation fixes all ten critical points. A Möbius transformation fixing three distinct points is identity. Thus
++
++\[
++\operatorname{Aut}(f)=1.
++\tag{6}
++\]
++
++An antiholomorphic automorphism similarly induces a uniformly orientation-reversing action, so it must induce \(h\). In particular it fixes no critical point and no charge edge. Since the square of (5) is holomorphic and commutes with \(f\), equation (6) gives \(A^2=1\). Any other antiholomorphic automorphism would differ from \(A\) by a holomorphic one, so \(A\) is unique.
++
++## 7. An actual invariant graph excludes a reflecting circle
++
++It is not enough to know only an isotopy class of graphs here. We now construct an actual \(A\)-invariant charge graph.
++
++The intrinsic Tischler graph is \(A\)-invariant. Its complementary faces are in bijection with charge edges. The action induced on charge edges is \(h\), which has no setwise-fixed edge. Therefore these Tischler faces are paired without fixed faces.
++
++For each paired pair \(Q,A(Q)\), choose one charge arc \(\gamma_Q\) in \(Q\), joining its two critical boundary points, and choose \(A(\gamma_Q)\) as the charge arc in \(A(Q)\). Since \(A^2=1\), these choices define a consistent \(A\)-invariant charge graph \(G_A\). Arcs in different open faces have disjoint interiors. By the charge-graph theorem, \(G_A\) is connected and belongs to the prescribed graph class. No vertex is fixed by \(A\), and every edge is carried to a different edge; hence no point of \(G_A\) is fixed.
++
++If \(A\) were an antiholomorphic reflection, its fixed set would be a circle separating the sphere into two disks exchanged by \(A\). A connected nonempty invariant graph disjoint from that circle would have to lie in one disk, while its image lies in the other. This is impossible. Thus \(A\) is a fixed-point-free antiholomorphic involution, rather than a reflection.
++
++Now suppose \(f\) had a real model \(g=M f M^{-1}\in\mathbb R(z)\). The transformation \(M^{-1}cM\) would be an antiholomorphic reflection commuting with \(f\), contradicting uniqueness of \(A\) and the preceding paragraph. Therefore
++
++\[
++[f]\text{ has no real model.}
++\tag{7}
++\]
++
++## 8. Algebraicity, with no flexible-Lattès assumption hidden
++
++For a fixed degree there are only finitely many critically fixed Möbius classes. This follows either from the finite plane-graph classification or from Thurston rigidity; in our case there are ten periodic critical points and the orbifold is hyperbolic, so no flexible-Lattès exception is relevant.
++
++Choose three distinct critical points and normalize them to \(0,1,\infty\). There are only finitely many resulting normalized degree-11 critically fixed maps: finitely many conjugacy classes, and finitely many ordered triples of distinct critical points in each class. A Möbius map sending a specified ordered triple to \(0,1,\infty\) is unique.
++
++The condition of being critically fixed and the normalization that \(0,1,\infty\) are critical are algebraic conditions over \(\mathbb Q\). For example, in homogeneous coordinates let \(W_f\) be the ramification form and let \(H_f(X,Y)=YF(X,Y)-XG(X,Y)\) be the fixed-point form. The condition that every zero of \(W_f\) is fixed is the algebraic divisibility condition
++
++\[
++W_f\mid H_f^{20},
++\]
++
++on the resultant-nonzero degree-11 locus. It can be expressed by introducing the coefficients of the quotient and then eliminating them. The three normalization conditions are algebraic as well. Thus the finite normalized locus is a constructible locus over \(\mathbb Q\); all its complex points have algebraic coordinates.
++
++Equivalently, every automorphism of \(\mathbb C\) over \(\mathbb Q\) permutes the finite normalized set, so each coefficient, after fixing a nonzero projective coefficient to 1, has finite orbit and is algebraic. Hence the class has a representative
++
++\[
++f\in\overline{\mathbb Q}(z).
++\tag{8}
++\]
++
++These statements concern the rational map obtained by realization, not the rational coordinates used to draw the original graph. Graph coordinates alone would not prove (8).
++
++## 9. The absolute field of moduli does not define the map
++
++For the algebraic representative in (8), let
++
++\[
++K=\overline{\mathbb Q}^{\{\sigma\in\operatorname{Gal}(\overline{\mathbb Q}/\mathbb Q):
++[{}^\sigma f]=[f]\}}.
++\]
++
++This is a number field: a finite field containing the coefficients of \(f\) is a field of definition, so the stabilizer contains an open subgroup and its fixed field is finite over \(\mathbb Q\). Complex conjugation lies in this stabilizer by Section5. Therefore \(K\subset\mathbb R\) in the chosen embedding.
++
++If \(K\) were a field of definition, a representative in \(K(z)\) would also be a real representative. This contradicts (7). Thus the PCF class is not defined over its field of moduli.
++
++## 10. What is and is not certified by the computation
++
++`verify_graph.py` uses only Python's standard library and exact combinatorics. It checks all abstract automorphisms, their local orientation signs, the fixed-point-free edge/vertex action, the face cycles and Euler characteristic, the radial/Tischler incidence model, and the degree/ramification counts. It does not numerically approximate \(f\), check an approximate critical orbit, or replace the realization, naturality, and algebraicity proofs.
++
++The proof depends on established graph realization and classification theorems and elementary descent logic. Independent review must challenge especially the induced symmetry action through the intrinsic Tischler graph, the equivariant choice of charge arcs, and the finite normalized algebraic locus. The exact field \(K\), explicit coefficients of \(f\), minimal counterexample degree, and historical novelty are not established by this package.
+diff --git a/unsolved_math_prioritization/attempts/20001424/README.md b/unsolved_math_prioritization/attempts/20001424/README.md
+new file mode 100644
+index 000000000..aadcc4c8f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/README.md
+@@ -0,0 +1,17 @@
++# 20001424: a graph-defined PCF descent counterexample
++
++**Complete negative answer to the pinned canonical question; independent adversarial review: PASS.**
++
++A ten-edge decorated four-cycle defines a degree-11 critically fixed rational-map class through the established graph realization theorem. The proof gives trivial holomorphic automorphisms and a unique fixed-point-free antiholomorphic involution. The class is algebraic, its field of moduli lies in the reals in the chosen embedding, and it has no real model. Thus it cannot be defined over its field of moduli.
++
++- [Complete proof and verification boundary](CANDIDATE.md)
++- [Independent review](review/REVIEW.md), including the algebraic-conjugator clarification in Section 6
++- [Review summary](review/review_summary.json) and [independent exact checks](review/independent_checks.py)
++- [Exact embedded graph](graph.svg)
++- [Graph verifier](verify_graph.py) and [receipt](graph_verification.json)
++- [Source/prior-art audit](SOURCES.md), [source hashes](source_manifest.json), [pinned record and prior report](source_record.json)
++- [Research log](RESEARCH_LOG.md), [turn ledger](turns.jsonl), [status](status.json)
++
++Run `python3 verify_graph.py`; only Python's standard library is required. It exhausts 1,152 possible degree-compatible vertex permutations. From `review/`, run `python3 independent_checks.py`; all 183 independent assertions pass. These finite checks do not replace the written realization, naturality, algebraicity, or descent arguments. The separate AI review is not formal verification or peer review.
++
++The class is specified combinatorially; its coefficients and exact number field are not computed. General graph realization and pseudo-real dynamics are prior work. Historical novelty and minimal degree remain unestablished. The live original AIM problem page could not be recovered; its wording is preserved in the authorized pinned record, with the source-access boundary detailed in the audit and review.
+diff --git a/unsolved_math_prioritization/attempts/20001424/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/20001424/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..ea58d4d9e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# 20001424 research log
++
++Date: 2026-09-30 UTC. Execution:gpt-6-astra,xhigh. Two-hour deadline:07:04UTC. At most five substantive proof attempts.
++
++## 05:04–05:05: source and prior-attempt gate
++
++The complete pinned source record and substantive third-party research report were read. Repository and all-state PR/branch/history/attempt-folder checks found no prior campaign attempt. The imported report is prior work, not a new result to claim. Its odd canonical-divisor lemma, under trivial dynamical automorphisms, must not be repeated as a discovery.
++
++The original question asks whether every PCF class descends to its field of moduli. The odd-cardinality condition appears in the imported partial report, not in the original question. The exact remaining question must be preserved.
++
++The 2024 Bresciani abstract cited in that report belongs to a withdrawn arXiv paper. The current landing page explicitly records withdrawal. No characterization from that abstract will be treated as established. Original-page retrieval and primary-source checks continue. Source-gate completion estimate:30%; original-target resolution estimate:0%.
++
++## 05:22: complete graph-defined counterexample candidate
++
++The first substantive approach constructs a decorated four-cycle with ten edges. The established critically fixed classifier supplies a degree11 PCF map. Exhausting all1,152 degree-compatible vertex permutations finds four abstract automorphisms but only identity as orientation-preserving and the antipodal pairing as orientation-reversing. The intrinsic Tischler graph supplies a natural symmetry action; paired faces permit an actual invariant charge-graph choice. A reflecting circle cannot preserve that connected graph without a fixed point, so the unique antiholomorphic automorphism is fixed-point-free. Finiteness of normalized critically fixed maps supplies algebraicity, and complex-conjugation invariance places the field of moduli in R, where no model exists.
++
++The critical symmetry step does not assume a bijection of unoriented graph classes, and does not assume a freely chosen charge graph is intrinsically invariant. It constructs an equivariant one after proving that the involution pairs every Tischler face.
++
++A degree19 version with a decorated six-cycle was considered within the same graph-symmetry family, then reduced to the explicit degree11 four-cycle before any candidate was frozen. This is one substantive approach, not a separate uncounted attempt. The complete candidate and exact graph checker are saved. Proof-manuscript completion estimate:100%, pending independent review; historical novelty is unestablished. No explicit rational-map coefficients or exact moduli number field are claimed. Budget used:1/5.
++
++## 05:45: independent review passed
++
++A separate adversarial review passed the complete negative answer for the unchanged frozen proof. The reviewer independently checked source scope, embedded-graph symmetry, intrinsic Tischler naturality, actual equivariant charge arcs, the reflection obstruction, algebraicity and the absolute field-of-moduli stabilizer. The review explicitly supplies the algebraic-conjugator clarification. All 183 independent exact checks passed, and the author receipt reproduced byte for byte. Proof and review completion estimate:100%; novelty unestablished. No coefficients or exact field are claimed. The complete reviewed package is ready for one draft PR.
+diff --git a/unsolved_math_prioritization/attempts/20001424/SOURCES.md b/unsolved_math_prioritization/attempts/20001424/SOURCES.md
+new file mode 100644
+index 000000000..6c0191dfd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/SOURCES.md
+@@ -0,0 +1,38 @@
++# Source and prior-art audit: PCF descent, 20001424
++
++Checked 2026-09-30. Historical novelty is not established by this audit.
++
++## Original question and precise scope
++
++The complete pinned record and its imported prior research report are in `source_record.json`. The canonical AIM entry is workshop `finitedynamics`, Section2 “Moduli Problems,” problem2.6:
++
++> Are all PCF maps defined over their field of moduli?
++
++The live [AIM problem-list page](http://aimpl.org/finitedynamics/2/) repeatedly returned errors/timeouts during this audit. No claim is made to have reread its full live page. The user-authorized pinned canonical statement was therefore used, and the official [2014 workshop announcement](https://aimath.org/pastworkshops/finitedynamics.html) was independently retrieved. It confirms the rational-self-map/conjugacy context and links to that problem list. Its [workshop report](https://aimath.org/pastworkshops/finitedynamicsrep.pdf) describes the rigidity discussion. No extra odd-cardinality hypothesis appears in the pinned original question.
++
++The candidate concerns characteristic-zero rational self-maps of P1, of degree11, over the algebraic numbers. It uses the usual absolute field of moduli of a PGL2-conjugacy class. This is stronger than producing a transcendental example whose moduli field is merely R. The graph, rather than a coefficient list, specifies the conjugacy class exactly.
++
++## Prior-attempt gate
++
++All-state numeric-ID/title PR searches, matching branches, ID-path history, existing attempt folders and repository code/title searches found no earlier attempt by this repository/campaign. The queue at the base commit was queued,0/5. Matches occurred only in QUEUE and SHORTLIST.
++
++The upstream AIM report does contain a substantive third-party attempt. It proves an odd canonical-divisor criterion under trivial dynamical automorphisms. That report is preserved as prior context and is not claimed as new work. No provenance linking it to an earlier attempt in this repository was found.
++
++## Established descent results and the imported report
++
++[Silverman, *The field of definition for dynamical systems on P1*](https://www.numdam.org/item/CM_1995__98_3_269_0/), Compositio Math.98(1995),269–304, was retrieved in full. Theorem2.1 and Corollary2.2 explain the conic obstruction in the trivial-automorphism case; Theorem5.1 handles even degree and polynomial classes. An odd-degree rational divisor on that conic forces a rational point. Applying this established mechanism to a reduced odd postcritical set is the imported report's partial criterion. Its required trivial-automorphism hypothesis cannot simply be dropped. The candidate has an even postcritical cardinality and does not challenge this criterion.
++
++The report's citation to a supposed general characterization by Bresciani must be corrected. [arXiv2405.03612](https://arxiv.org/abs/2405.03612) explicitly records withdrawal on May9,2024: a main argument confused ramification indices with vanishing orders. The original [v1](https://arxiv.org/pdf/2405.03612v1) was recovered, but its main theorem is not used as an established result. The missing v2 PDF is a withdrawal issue, not evidence of an inaccessible valid theorem.
++
++## Graph realization and symmetry sources
++
++1. **Hlushchanka**, [*Tischler graphs of critically fixed rational maps and their applications*](https://arxiv.org/abs/1904.04759), current PDF v2, posted October5,2025. The complete16-page source was read, with Theorem2 and the charge-graph construction visually checked. Relevant locations: Theorems1–2, definition of planar isomorphism in Section2, Corollary6, and Section5/Lemma7/Proposition8. The classifier uses orientation-preserving graph isomorphisms. Section5 gives degree as edge count plus one and local degree as valence plus one. The inverse is built from intrinsic fixed internal rays; this is essential to the symmetry argument.
++2. **Hlushchanka–Prochorov**, [*Critically fixed Thurston maps: classification, recognition, and twisting*](https://arxiv.org/abs/2212.14759), [PLMS132(2026),e70129](https://doi.org/10.1112/plms.70129). Section3.3 reviews the rational classification. The 2026 publication metadata and current description confirm that the graph framework is established prior work, not a new result of this attempt.
++3. **Hidalgo–Quispe**, [*On Real and Pseudo-Real Rational Maps*](https://arxiv.org/abs/1502.05306). Sections2.1/2.3, Lemma4 and Theorem6 explain real models, reflections, and the trivial-automorphism pseudo-real criterion. Their general families are not automatically PCF. The candidate supplies its own short no-real-model and field-of-moduli arguments.
++4. **Bonifant–Buff–Milnor**, [*Antipode Preserving Cubic Maps: the Fjord Theorem*](https://arxiv.org/abs/1512.01850), [PLMS116(2018),670–728](https://doi.org/10.1112/plms.12075). The antipode-preserving cubic family and its PCF hyperbolic centers are already studied there. This is an important prior-art warning against claiming novelty for antipodal dynamics or assuming degree11 is minimal. No theorem asserting that a particular cubic center is a field-of-moduli counterexample is imported without a separate check of its symmetry. The current candidate instead gives a completely specified plane graph and a complete symmetry calculation.
++
++## Novelty and verification boundary
++
++Exact searches combined “critically fixed,” “postcritically finite,” “pseudo-real,” “antipodal,” and “field of moduli,” along with the relevant authors. No exact prior appearance of the decorated degree11 graph or an explicit statement of this same descent counterexample was verified. The graph-realization method and pseudo-real obstruction are known, and relevant cubic families predate this attempt. A bounded negative search cannot establish priority or novelty.
++
++`CANDIDATE.md` is a proposed consequence of established results with a fully specified graph. The finite checker confirms the graph calculation only. A separate adversarial review is required before a draft PR. Source reference files remain outside the repository; links, locations and hashes are recorded rather than redistributing source PDFs.
+diff --git a/unsolved_math_prioritization/attempts/20001424/graph.svg b/unsolved_math_prioritization/attempts/20001424/graph.svg
+new file mode 100644
+index 000000000..1a3989387
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/graph.svg
+@@ -0,0 +1,26 @@
++<svg xmlns="http://www.w3.org/2000/svg" width="470" height="500" viewBox="0 0 470 500">
++<rect width="470" height="500" fill="white"/>
++<g font-family="sans-serif" fill="#17212b">
++<text x="24" y="28" font-size="19" font-weight="600">The degree-11 charge graph</text>
++<text x="24" y="50" font-size="12">Quarter-circle cycle, with pendant lengths 1, 2, 1, 2</text>
++<g stroke="#24384b" stroke-width="2.4" fill="none">
++<circle cx="270" cy="180" r="75"/>
++<path d="M345 180 L307.5 180 M270 105 L270 142.5 L270 155 M195 180 L120 180 M270 255 L270 330 L270 405"/>
++</g>
++<g fill="#155fa0" stroke="white" stroke-width="1.5">
++<circle cx="345" cy="180" r="5"/><circle cx="270" cy="105" r="5"/>
++<circle cx="195" cy="180" r="5"/><circle cx="270" cy="255" r="5"/>
++<circle cx="307.5" cy="180" r="4.5"/><circle cx="270" cy="142.5" r="4.5"/>
++<circle cx="270" cy="155" r="4.5"/><circle cx="120" cy="180" r="4.5"/>
++<circle cx="270" cy="330" r="4.5"/><circle cx="270" cy="405" r="4.5"/>
++</g>
++<g font-size="13">
++<text x="354" y="184">v0 = 1</text><text x="280" y="96">v1 = i</text>
++<text x="143" y="166">v2 = -1</text><text x="280" y="265">v3 = -i</text>
++<text x="298" y="200">1/2</text><text x="281" y="141">i/2</text>
++<text x="227" y="158">i/3</text><text x="95" y="200">-2</text>
++<text x="280" y="334">-2i</text><text x="280" y="411">-3i</text>
++</g>
++<text x="24" y="449" font-size="13">J(z) = -1 / conjugate(z) pairs opposite paths</text>
++<text x="24" y="470" font-size="12">The drawing specifies the embedded graph, not the rational map’s coordinates</text>
++</g></svg>
+diff --git a/unsolved_math_prioritization/attempts/20001424/graph_verification.json b/unsolved_math_prioritization/attempts/20001424/graph_verification.json
+new file mode 100644
+index 000000000..7b9aaa73c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/graph_verification.json
+@@ -0,0 +1,290 @@
++{
++  "pass": true,
++  "vertices": 10,
++  "edges": 10,
++  "faces": 2,
++  "candidate_degree": 11,
++  "permutations_checked": 1152,
++  "abstract_automorphisms": 4,
++  "orientation_preserving_automorphisms": 1,
++  "orientation_reversing_automorphisms": 1,
++  "automorphisms": [
++    {
++      "vertex_images": [
++        0,
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9
++      ],
++      "root_orientation_signs": [
++        1,
++        1,
++        1,
++        1
++      ]
++    },
++    {
++      "vertex_images": [
++        0,
++        3,
++        2,
++        1,
++        4,
++        8,
++        9,
++        7,
++        5,
++        6
++      ],
++      "root_orientation_signs": [
++        -1,
++        1,
++        -1,
++        1
++      ]
++    },
++    {
++      "vertex_images": [
++        2,
++        1,
++        0,
++        3,
++        7,
++        5,
++        6,
++        4,
++        8,
++        9
++      ],
++      "root_orientation_signs": [
++        1,
++        -1,
++        1,
++        -1
++      ]
++    },
++    {
++      "vertex_images": [
++        2,
++        3,
++        0,
++        1,
++        7,
++        8,
++        9,
++        4,
++        5,
++        6
++      ],
++      "root_orientation_signs": [
++        -1,
++        -1,
++        -1,
++        -1
++      ]
++    }
++  ],
++  "antipodal_vertex_images": [
++    2,
++    3,
++    0,
++    1,
++    7,
++    8,
++    9,
++    4,
++    5,
++    6
++  ],
++  "face_boundary_lengths": [
++    10,
++    10
++  ],
++  "rotation_system": {
++    "0": [
++      3,
++      1,
++      4
++    ],
++    "1": [
++      0,
++      2,
++      5
++    ],
++    "2": [
++      1,
++      7,
++      3
++    ],
++    "3": [
++      2,
++      8,
++      0
++    ],
++    "4": [
++      0
++    ],
++    "5": [
++      1,
++      6
++    ],
++    "6": [
++      5
++    ],
++    "7": [
++      2
++    ],
++    "8": [
++      3,
++      9
++    ],
++    "9": [
++      8
++    ]
++  },
++  "edges_list": [
++    [
++      0,
++      1
++    ],
++    [
++      1,
++      2
++    ],
++    [
++      2,
++      3
++    ],
++    [
++      3,
++      0
++    ],
++    [
++      0,
++      4
++    ],
++    [
++      1,
++      5
++    ],
++    [
++      5,
++      6
++    ],
++    [
++      2,
++      7
++    ],
++    [
++      3,
++      8
++    ],
++    [
++      8,
++      9
++    ]
++  ],
++  "face_boundaries": [
++    [
++      [
++        0,
++        1
++      ],
++      [
++        1,
++        2
++      ],
++      [
++        2,
++        7
++      ],
++      [
++        7,
++        2
++      ],
++      [
++        2,
++        3
++      ],
++      [
++        3,
++        8
++      ],
++      [
++        8,
++        9
++      ],
++      [
++        9,
++        8
++      ],
++      [
++        8,
++        3
++      ],
++      [
++        3,
++        0
++      ]
++    ],
++    [
++      [
++        0,
++        4
++      ],
++      [
++        4,
++        0
++      ],
++      [
++        0,
++        3
++      ],
++      [
++        3,
++        2
++      ],
++      [
++        2,
++        1
++      ],
++      [
++        1,
++        5
++      ],
++      [
++        5,
++        6
++      ],
++      [
++        6,
++        5
++      ],
++      [
++        5,
++        1
++      ],
++      [
++        1,
++        0
++      ]
++    ]
++  ],
++  "radial_vertices": 12,
++  "radial_edges_with_multiplicity": 20,
++  "radial_connected": true,
++  "critical_local_degrees": {
++    "4": 4,
++    "2": 4,
++    "3": 2
++  },
++  "ramification_total": 20,
++  "postcritical_cardinality": 10,
++  "scope": "Finite graph and rotation-system verification only. Rational realization, naturality, algebraicity, and field-of-moduli obstruction require the written proof."
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/readiness.json b/unsolved_math_prioritization/attempts/20001424/readiness.json
+new file mode 100644
+index 000000000..33f5c7be3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/readiness.json
+@@ -0,0 +1,29 @@
++{
++  "id": 20001424,
++  "code": "AIM-DYNAMICAL_SYSTEMS-0082",
++  "started_utc": "2026-09-30T05:04:00Z",
++  "deadline_utc": "2026-09-30T07:04:00Z",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "branch": "dot/math-20001424",
++  "turn_limit": 5,
++  "turns_used": 1,
++  "prior_attempt_gate": {
++    "all_state_numeric_prs": [],
++    "all_state_title_prs": [],
++    "matching_remote_branches": [],
++    "matching_attempt_folders": [],
++    "history_matching_id_paths": [],
++    "repo_code_and_title_matches": [
++      "QUEUE.md",
++      "SHORTLIST.md"
++    ],
++    "queue_status": "queued 0/5",
++    "upstream_prior_work": "Contains a substantive third-party imported attempt, retained as prior work. No evidence linking it to this repository or campaign; it is not a new lemma to repeat."
++  },
++  "source_question": "Are all PCF maps defined over their field of moduli?",
++  "scope_gate": "Characteristic-zero PGL2-conjugacy classes of rational self-maps of P1, degree at least two; original full context to verify.",
++  "original_source": "http://aimpl.org/finitedynamics/2/",
++  "prior_report_correction": "The arXiv2405.03612 landing page explicitly marks the claimed general characterization withdrawn; its abstract cannot establish a theorem.",
++  "source_scope": "Exact pinned original question plus independently retrieved official workshop context; live problem page failed. Candidate in characteristic zero over Qbar."
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/review/REVIEW.md b/unsolved_math_prioritization/attempts/20001424/review/REVIEW.md
+new file mode 100644
+index 000000000..3e9b6bd38
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/review/REVIEW.md
+@@ -0,0 +1,152 @@
++# Independent review: PCF field-of-moduli counterexample, 20001424
++
++**Verdict: PASS for the proposed full negative answer to the canonical question.** The specified plane graph gives a degree-11 critically fixed rational-map class over the algebraic numbers, with trivial holomorphic automorphism group, real field of moduli, and no real model. No fatal mathematical gap was identified.
++
++This is an independent adversarial AI review, not a formal proof certificate or a historical novelty finding. Reviewed on 2026-09-30 using GPT-6 Astra at xhigh reasoning.
++
++Frozen CANDIDATE.md SHA-256:
++
++aa598dc779b4115c9a7522335b364a5d9dcddf11ceec707fd46943984e8ffabf
++
++The candidate can remain unchanged. Section 6 below makes explicit one standard implication concerning algebraic conjugators that is implicit in its final field-of-moduli step.
++
++## 1. Target and source scope
++
++The pinned canonical AIM problem is the unqualified question:
++
++> Are all PCF maps defined over their field of moduli?
++
++It concerns conjugacy classes of rational self-maps of the projective line, with conjugacy by a single projective linear coordinate change. The odd-cardinality condition in the imported title belongs to the earlier partial criterion, not to the original question. The proposed example has ten reduced postcritical points and therefore does not contradict that odd-divisor criterion.
++
++**Source-access limitation:** I independently retried both HTTP and HTTPS versions of the AIM problem-list page, as well as its parent page; they returned errors. Thus the exact wording above was checked against the user-authorized pinned canonical record and its preserved original statement, not a newly recovered live copy. The official workshop announcement and report were accessible and confirm the rational-map, Möbius-conjugacy and rigidity context. The candidate's source audit already discloses this limitation accurately. [Official 2014 announcement](https://aimath.org/pastworkshops/finitedynamics.html), [official workshop report](https://aimath.org/pastworkshops/finitedynamicsrep.pdf)
++
++An algebraic counterexample in degree eleven suffices to disprove the universal question. The proof need not compute its coefficient field or its exact field of moduli, and it does not claim either. The graph specifies one Möbius class through an established injective realization correspondence, so this is an exact existence construction rather than an unresolved search for a rational map with a desired portrait.
++
++## 2. Established inputs and their hypotheses
++
++I read Hlushchanka's current version, especially Theorem 2, the orientation convention in Section 2, Corollary 6 and Section 5. The classification is for connected loopless plane graphs with at least one edge; multiple edges are allowed. Graph isomorphisms are induced by orientation-preserving sphere homeomorphisms. The blow-up realization has degree one plus the number of edges and critical local degree one plus the vertex valence. Its inverse uses the fixed internal rays, with one charge edge chosen in each complementary Tischler face. These faces have exactly two distinct critical boundary points; all charge graphs are connected. The candidate's graph satisfies these hypotheses. [Hlushchanka, Theorem 2 and Section 5](https://arxiv.org/pdf/1904.04759v2)
++
++The published Hlushchanka–Prochorov paper also explicitly describes the charge graph as unique up to isotopy relative to the critical set, and recalls the connected-graph realization. Its March 2026 publication metadata was independently verified. [Proceedings of the London Mathematical Society 132, e70129](https://londmathsoc.onlinelibrary.wiley.com/doi/full/10.1112/plms.70129)
++
++The real-model/reflection criterion is consistent with Hidalgo–Quispe's Lemma 4, and the trivial-automorphism case with an imaginary reflection is their Theorem 6. The candidate supplies the needed elementary argument instead of relying on a broader unproved descent assertion. [Hidalgo–Quispe, Sections 2.1, 2.5 and 4.2](https://arxiv.org/pdf/1502.05306v4)
++
++## 3. Exact graph and symmetry audit
++
++The graph has four cycle vertices, four leaves, and two intermediate pendant vertices. There are ten edges and ten vertices, and its cycle rank is one. The unique cycle is the four-cycle; its attached path lengths are \(1,2,1,2\).
++
++Every abstract automorphism must preserve this cycle and these lengths. The only possible actions on the cycle are the identity, the half-turn, and the two reflections preserving the length pattern. Each action uniquely determines the images of every pendant vertex. An independent adjacency-preserving backtracking search confirms that these are exactly the four automorphisms.
++
++I derived the rotation system from the actual rational coordinates and exact tangent vectors, rather than reading the candidate's rotation data into the checker. At a cycle vertex \(v\), the forward cycle tangent is \(iv\), the backward tangent is \(-iv\), and the pendant tangent is inward for the first two roots and outward for the last two. Exact angular ordering gives precisely the displayed cyclic orders.
++
++The four orientation-sign lists at the trivalent vertices are
++\[
++(+,+,+,+),\quad(-,+,-,+),\quad(+,-,+,-),\quad(-,-,-,-).
++\]
++A sphere homeomorphism has one global orientation sign. Hence only the identity can be induced by an orientation-preserving homeomorphism of this embedded graph, and only the half-turn \(h\) by an orientation-reversing one. The mixed-sign abstract reflections cannot occur.
++
++The latter action is genuinely realized, not merely combinatorially permissible:
++\[
++J(z)=-1/\overline z
++\]
++maps the specified coordinates, quarter-circle edges, and radial pendant edges to their prescribed partners. It exchanges interior and exterior. It is an involution with no fixed point on the sphere: a finite nonzero fixed point would satisfy \(|z|^2=-1\), while zero and infinity are exchanged. Its action fixes neither a graph vertex nor an edge setwise. The two complementary faces are exchanged.
++
++The distinction between the abstract graph and the embedding is essential. An independent negative control placing all four pendants on the same side gives two positive and two negative symmetries, including reflections with fixed vertices. Thus ignoring the inside/outside decoration would invalidate the argument; the actual candidate keeps it.
++
++Realization now gives degree eleven and local degrees
++\[
++2,2,2,2,\quad 3,3,\quad 4,4,4,4.
++\]
++Their ramification sum is twenty, equal to \(2\cdot11-2\). There are ten distinct critical points, all fixed, so the reduced postcritical set has size ten. No point has local degree eleven, which excludes a polynomial representative.
++
++## 4. Naturality and the automorphism group
++
++The proof does not infer equivariance from an arbitrary bijection of isomorphism classes. The actual inverse construction supplies the needed naturality.
++
++A Möbius transformation commuting with \(f\) carries a critical immediate basin to a critical immediate basin of the same local degree. In Böttcher coordinates the induced disk automorphism fixes zero, so it is a rotation. Commutation with \(z\mapsto z^m\) restricts the rotation to an \((m-1)\)-st root of unity. It consequently permutes all fixed internal rays, including their landing points. An antiholomorphic commuting map similarly becomes a disk anti-rotation and has the same permutation property.
++
++Therefore every holomorphic or antiholomorphic dynamical automorphism acts on the intrinsic Tischler graph and its complementary faces. A face determines the endpoints of its charge edge. At a critical vertex, the cyclic order of the charge edges is the order of the incident face sectors. This incidence-and-rotation information is independent of the actual arcs chosen inside the faces.
++
++This gives a well-defined combinatorial action on any charge graph class, preserving or reversing all cyclic orders according to the ambient orientation. There is no assertion that every graph automorphism automatically lifts to a dynamical automorphism. Only the necessary action of an already existing automorphism is used.
++
++For the graph at hand, a holomorphic automorphism must induce the identity. It thus fixes every critical point and, in particular, three distinct points of the sphere. It is the identity Möbius transformation. Hence \(\operatorname{Aut}(f)=1\).
++
++Complex conjugation carries the actual fixed rays of \(f\) to those of \(\overline f\), and carries its charge graph class to the mirror class. Since \(J\) reverses orientation and preserves \(G\), \(cJ\) is an orientation-preserving isomorphism from \(G\) to \(cG\). Classification gives a Möbius conjugacy
++\[
++\overline f=L f L^{-1}.
++\]
++Consequently \(A=L^{-1}c\) commutes with \(f\). It is antiholomorphic and must induce the unique negative graph action \(h\).
++
++The square \(A^2\) is a holomorphic dynamical automorphism, hence is identity. Any two antiholomorphic commuting transformations differ by a holomorphic one, so \(A\) is unique. This establishes the involution property before the equivariant arc choices are made; the dependency is not circular.
++
++## 5. Actual equivariant graph and exclusion of a real model
++
++This part closes the main potential gap.
++
++Charge edges correspond to Tischler faces. The action \(h\) has no setwise-fixed charge edge, so \(A\) has no fixed Tischler face. In this example the charge graph is simple, so even its endpoint action alone identifies each edge unambiguously. The ten Tischler faces therefore form five pairs.
++
++For a pair \(Q,A(Q)\), choose a charge arc in one face and its actual image under \(A\) in the other. Because \(A^2=1\), the choices are consistent. Distinct face interiors are disjoint, and each arc has the required two critical endpoints, so their union is a charge graph in the sense of the source. It is connected by the charge-graph theorem. The choices can be taken as tame arcs in the indicated face sectors; the resulting rotation data are the prescribed ones.
++
++This graph is setwise \(A\)-invariant. It contains no fixed point of \(A\): no vertex is fixed, and a fixed point in an edge interior would belong to two distinct edge interiors, which is impossible.
++
++If \(A\) had a fixed point, an antiholomorphic Möbius involution of that type is conjugate to complex conjugation. Its fixed circle separates the sphere into two components that it interchanges. A nonempty connected invariant graph disjoint from that circle cannot exist: connectedness puts the graph in one component, and invariance would put it in the other. Therefore \(A\) is fixed-point-free.
++
++Finally, a real representative \(g=MfM^{-1}\) would make \(M^{-1}cM\) a reflecting antiholomorphic dynamical automorphism of \(f\). It would have to equal \(A\), contradicting fixed-point-freeness. Thus the class has no real model.
++
++An isotopy class by itself would not prove the assertion about the fixed circle. The candidate explicitly constructs the actual invariant graph needed for that assertion.
++
++## 6. Algebraicity and the absolute field of moduli
++
++The passage from a complex realized class to an algebraic representative is valid.
++
++There are finitely many connected loopless plane graphs with ten edges up to planar isomorphism. Indeed, connectedness bounds the number of vertices by eleven, the edge multiplicities are bounded by ten, and a finite graph has only finitely many rotation systems. Classification therefore gives finitely many degree-eleven critically fixed Möbius classes.
++
++Normalize any ordered triple of distinct critical points to \(0,1,\infty\). Each class gives finitely many normalized maps: there are finitely many such triples, and the normalizing Möbius transformation for a specified triple is unique. The candidate class has ten critical points, so this normalization is available.
++
++In homogeneous coordinates, take the binary ramification form \(W_f\) and fixed-point form \(H_f=YF-XG\). Their degrees are twenty and twelve. On the nonzero-resultant characteristic-zero locus, \(W_f\) is nonzero, and the critical-fixed condition is equivalent to the support of \(W_f\) lying in the zero set of \(H_f\). Thus
++\[
++W_f\mid H_f^{20}
++\]
++is sufficient and necessary: every root multiplicity of \(W_f\) is at most twenty, while every root of \(H_f\) acquires multiplicity at least twenty in that power.
++
++The divisibility relation can be expressed by polynomial coefficient equations with an auxiliary homogeneous quotient of degree 220. Its projection is constructible over \(\mathbb Q\); resultant nonvanishing and the three critical-point conditions are also defined over \(\mathbb Q\). On each projective coefficient chart this gives a finite constructible set defined over \(\mathbb Q\). Its points have algebraic coordinates. This proves existence of a representative in \(\overline{\mathbb Q}(z)\). Rational coordinates in a drawing of the graph play no role in this argument.
++
++There is no flexible-Lattès issue. The graph finiteness proof already suffices. Alternatively, the ten fixed critical points all have infinite orbifold weights, so the orbifold Euler characteristic is \(2-10<0\).
++
++**Explicit algebraic-conjugator clarification.** After the algebraic representative is selected, both \(f\) and \(\overline f\) have algebraic critical points. Any complex Möbius conjugator between them maps an ordered triple of distinct critical points to another such algebraic triple. The unique Möbius transformation carrying one algebraic triple to the other has coefficients in \(\overline{\mathbb Q}\). Thus the complex conjugacy supplied above is also a conjugacy over \(\overline{\mathbb Q}\), as needed for the absolute Galois stabilizer. This elementary implication is implicit in the candidate and is made explicit here.
++
++Let \(E\) be a number field containing the coefficients. The stabilizer of the algebraic conjugacy class contains \(\operatorname{Gal}(\overline{\mathbb Q}/E)\), an open subgroup, so it is itself open and its fixed field \(K\) is a number field. Complex conjugation belongs to this stabilizer. Hence \(K\) lies in \(\mathbb R\) in the chosen embedding. This does not assert that \(K\) is totally real.
++
++A representative over \(K\) would then be a representative over \(\mathbb R\), already ruled out. Therefore \(K\) is not a field of definition. No computation of \(K\), quaternion algebra, or explicit coefficient list is missing from this implication.
++
++## 7. Independent diagnostics
++
++The original graph verifier was replayed separately and reproduced its receipt byte for byte. All source hashes in the supplied manifest were also checked.
++
++The independent standard-library checker does not load the candidate's rotation data. It derives local orders from exact rational coordinates and quarter-circle tangent vectors, exhausts adjacency-compatible vertex bijections by backtracking, and independently computes the face permutation. It then constructs the corner-labeled radial incidence graph, retaining bridge multiplicities, and verifies the pairing of its quadrilateral faces.
++
++All **183 exact assertions pass**, including:
++
++- Four abstract automorphisms, only one of each global orientation type
++- Exact coordinate action of the antipodal involution and no fixed vertex or edge
++- Two primal faces of boundary length ten, exchanged by the involution
++- Twelve radial vertices, twenty edges with multiplicity, and ten paired faces
++- The critical-degree and ramification counts
++- A negative embedding control that restores reflections if all pendants are placed on the same side
++
++These are finite graph diagnostics. They do not numerically construct or approximate the rational map, and they do not replace the realization, naturality, algebraicity or descent arguments.
++
++Reproduce the independent receipt from the review directory with:
++
++    python independent_checks.py > independent_results.json
++
++The review deliverables are REVIEW.md, review_summary.json, independent_checks.py and independent_results.json. Reference images and the author's replay directory are not publication deliverables.
++
++## 8. Prior work and limits of this verdict
++
++Silverman's descent theorems cover even-degree classes and polynomial classes. This odd-degree nonpolynomial example is consistent with them; the known odd canonical-divisor mechanism is also consistent with its even postcritical cardinality. [Silverman, Theorems 2.1 and 5.1](https://www.numdam.org/item/CM_1995__98_3_269_0/)
++
++The candidate correctly does not use the withdrawn Bresciani preprint as an established theorem. Its arXiv withdrawal notice explicitly identifies a gap confusing ramification degrees with vanishing orders. [Withdrawal notice](https://arxiv.org/abs/2405.03612)
++
++Pseudo-real rational maps, antipodal dynamics, and postcritically finite centers in antipode-preserving cubic families are prior work. The bounded search did not verify a prior occurrence of this precise decorated graph or this precise counterexample statement, but it cannot establish historical novelty or minimal degree. In particular, the existing cubic families must not be dismissed as irrelevant merely because the present example has degree eleven. [Bonifant–Buff–Milnor](https://arxiv.org/abs/1512.01850)
++
++The mathematical conclusion of the frozen candidate passes: a graph-defined algebraic PCF class has field of moduli contained in the reals and no real model, so not every PCF class is defined over its field of moduli. The precise number field, explicit coefficients, smallest possible degree, and novelty remain unclaimed.
+diff --git a/unsolved_math_prioritization/attempts/20001424/review/independent_checks.py b/unsolved_math_prioritization/attempts/20001424/review/independent_checks.py
+new file mode 100644
+index 000000000..f8552fec3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/review/independent_checks.py
+@@ -0,0 +1,199 @@
++#!/usr/bin/env python3
++"""Independent exact graph diagnostics for PCF candidate 20001424.
++Derives rotations from rational coordinates and tangent vectors, then searches
++all adjacency-compatible bijections by backtracking. Standard library only.
++Run: python independent_checks.py > independent_results.json
++No rational-map coefficients, realization theorem, or descent proof are tested.
++"""
++from collections import Counter
++from fractions import Fraction as Q
++from functools import cmp_to_key
++import json
++
++assertions=0
++def check(ok,label):
++    global assertions
++    assert ok,label
++    assertions+=1
++
++points=[(1,0),(0,1),(-1,0),(0,-1),(Q(1,2),0),(0,Q(1,2)),
++        (0,Q(1,3)),(-2,0),(0,-2),(0,-3)]
++points=[tuple(map(Q,z)) for z in points]
++edges={(0,1),(1,2),(2,3),(0,3),(0,4),(1,5),(5,6),(2,7),(3,8),(8,9)}
++E={frozenset(e) for e in edges}
++adj={i:set() for i in range(10)}
++for i,j in edges:adj[i].add(j);adj[j].add(i)
++check(len(set(points))==10,'all vertices distinct')
++check(len(E)==10 and all(len(e)==2 for e in E),'ten distinct loopless edges')
++seen={0};todo=[0]
++while todo:
++    for v in adj[todo.pop()]:
++        if v not in seen:seen.add(v);todo.append(v)
++check(len(seen)==10,'connected')
++check(len(E)-len(points)+1==1,'cycle rank one')
++check(Counter(map(len,adj.values()))==Counter({1:4,2:2,3:4}),'vertex degree multiset')
++
++def neg(z):return(-z[0],-z[1])
++def minus(a,b):return(a[0]-b[0],a[1]-b[1])
++def times_i(z):return(-z[1],z[0])
++def tangent(i,j):
++    if i<4 and j<4:
++        return times_i(points[i]) if j==(i+1)%4 else neg(times_i(points[i]))
++    return minus(points[j],points[i])
++def half(z):return 0 if z[1]>0 or (z[1]==0 and z[0]>=0) else 1
++def angular_compare(a,b):
++    if half(a)!=half(b):return -1 if half(a)<half(b) else 1
++    cross=a[0]*b[1]-a[1]*b[0]
++    return -1 if cross>0 else (1 if cross<0 else 0)
++rot={i:sorted(adj[i],key=cmp_to_key(lambda j,k:angular_compare(tangent(i,j),tangent(i,k)))) for i in range(10)}
++def cyclic(a,b):
++    return len(a)==len(b) and any(a==b[k:]+b[:k] for k in range(len(b)))
++expected={0:[3,1,4],1:[0,2,5],2:[1,7,3],3:[2,8,0]}
++for v in expected:check(cyclic(rot[v],expected[v]),'rotation derived from exact tangents')
++
++# Graph automorphisms: choose each unmapped source vertex by the number of
++# already mapped neighbors; test adjacency and nonadjacency against the whole
++# partial bijection. Completeness follows by exhausting every compatible image.
++solutions=[];search_nodes=0
++def search(g,used):
++    global search_nodes
++    search_nodes+=1
++    if len(g)==10:
++        solutions.append(tuple(g[i] for i in range(10)));return
++    remaining=[i for i in range(10) if i not in g]
++    v=max(remaining,key=lambda i:(len(adj[i]&g.keys()),len(adj[i]),-i))
++    for w in range(10):
++        if w in used or len(adj[w])!=len(adj[v]):continue
++        if any((u in adj[v])!=(g[u] in adj[w]) for u in g):continue
++        if Counter(len(adj[u]) for u in adj[v])!=Counter(len(adj[u]) for u in adj[w]):continue
++        g[v]=w;used.add(w);search(g,used);used.remove(w);del g[v]
++search({},set())
++check(len(solutions)==4,'exactly four abstract graph automorphisms')
++aut_records=[]
++for g in sorted(solutions):
++    check({frozenset((g[i],g[j])) for i,j in edges}==E,'full adjacency certificate')
++    signs=[]
++    for i in range(4):
++        transported=[g[j] for j in rot[i]]
++        p=cyclic(transported,rot[g[i]])
++        r=cyclic(transported,list(reversed(rot[g[i]])))
++        check(p!=r,'trivalent orientation sign is unambiguous')
++        signs.append(1 if p else -1)
++    aut_records.append({'vertex_images':g,'trivalent_signs':signs})
++pres=[r for r in aut_records if r['trivalent_signs']==[1]*4]
++reverse=[r for r in aut_records if r['trivalent_signs']==[-1]*4]
++check(len(pres)==1 and pres[0]['vertex_images']==tuple(range(10)),'only positive automorphism is identity')
++check(len(reverse)==1,'only one negative automorphism')
++h=reverse[0]['vertex_images']
++check(h==(2,3,0,1,7,8,9,4,5,6),'negative automorphism is prescribed half-turn on labels')
++for i in range(10):
++    check(h[h[i]]==i and h[i]!=i,'vertex action is a free involution')
++for e in E:check(frozenset(h[i] for i in e)!=e,'no edge is fixed setwise')
++
++# Verify the actual antiholomorphic involution on all rational coordinates.
++def J(z):
++    norm=z[0]**2+z[1]**2
++    return(-z[0]/norm,-z[1]/norm)
++for i,z in enumerate(points):
++    check(J(z)==points[h[i]],'exact coordinate antipode')
++    check(J(J(z))==z,'exact antipodal involution')
++# Homogeneous anti-Mobius matrix squares to -I (hence to the identity in PGL2).
++A=((0,-1),(1,0))
++square=tuple(tuple(sum(A[i][k]*A[k][j] for k in range(2)) for j in range(2)) for i in range(2))
++check(square==((-1,0),(0,-1)),'antipodal matrix cocycle sign')
++
++# Face cycles computed with the predecessor convention; each dart is used once.
++darts=sorted((u,v) for u in adj for v in adj[u])
++def sigma(d):
++    u,v=d;row=rot[u];return(u,row[(row.index(v)+1)%len(row)])
++def alpha(d):return(d[1],d[0])
++def phi(d):
++    u,v=d;row=rot[v];return(v,row[(row.index(u)-1)%len(row)])
++faces=[];visited=set();face_of={}
++for d in darts:
++    if d in visited:continue
++    cur=d;f=[]
++    while cur not in visited:
++        visited.add(cur);face_of[cur]=len(faces);f.append(cur);cur=phi(cur)
++    check(cur==d,'closed face orbit')
++    faces.append(f)
++check(len(faces)==2 and sorted(map(len,faces))==[10,10],'two faces of length ten')
++check(10-10+len(faces)==2,'sphere Euler characteristic')
++face_action=[]
++for f in faces:
++    transformed={(h[v],h[u]) for u,v in f}
++    image=[i for i,g in enumerate(faces) if set(g)==transformed]
++    check(len(image)==1,'negative symmetry induces a face permutation')
++    face_action+=image
++check(face_action==[1,0],'the two primal faces are exchanged')
++
++# Radial/Tischler incidence: each primal corner d gives one radial edge,
++# from its initial critical vertex to the pole in face(d). Corners remain
++# labeled, so bridge multiplicities are not lost.
++radial={d:(d[0],10+face_of[d]) for d in darts}
++rad_adj={v:set() for v in range(12)}
++for u,v in radial.values():rad_adj[u].add(v);rad_adj[v].add(u)
++seen={0};todo=[0]
++while todo:
++    for v in rad_adj[todo.pop()]:
++        if v not in seen:seen.add(v);todo.append(v)
++check(len(seen)==12,'radial incidence connected')
++check(len(radial)==20,'twenty radial edges with multiplicity')
++# Orientation reversal carries a corner between d and sigma(d) to the corner
++# beginning with h(sigma(d)), rather than just h(d).
++def radial_h(d):
++    u,v=sigma(d);return(h[u],h[v])
++h_vertices=dict(enumerate(h));h_vertices.update({10:11,11:10})
++for d,(u,v) in radial.items():
++    im=radial_h(d)
++    check(radial[im]==(h_vertices[u],h_vertices[v]),'corner action preserves radial endpoints')
++    check(radial_h(im)==d and im!=d,'radial edge action is a free involution')
++# Each primal edge corresponds to a quadrilateral face of the radial graph,
++# with repetitions allowed for the bigon-with-sticker case.
++quadrilaterals=[]
++for u,v in sorted(edges):
++    d=(u,v);b=alpha(d)
++    corners=[d,phi(d),b,phi(b)]
++    check(radial[corners[0]][0]==u and radial[corners[1]][0]==v,'first half-face endpoints')
++    check(radial[corners[2]][0]==v and radial[corners[3]][0]==u,'second half-face endpoints')
++    check(radial[corners[0]][1]==radial[corners[1]][1],'first face pole')
++    check(radial[corners[2]][1]==radial[corners[3]][1],'second face pole')
++    quadrilaterals.append(corners)
++counts=Counter(d for q in quadrilaterals for d in q)
++check(counts==Counter({d:2 for d in darts}),'each radial edge occurs twice in face boundaries')
++check(12-20+len(quadrilaterals)==2,'radial sphere Euler characteristic')
++qsets=[Counter(q) for q in quadrilaterals]
++qaction=[]
++for i,q in enumerate(quadrilaterals):
++    image=Counter(radial_h(d) for d in q)
++    js=[j for j,p in enumerate(qsets) if p==image]
++    check(len(js)==1 and js[0]!=i,'no radial face is fixed')
++    qaction+=js
++check(all(qaction[qaction[i]]==i for i in range(10)),'ten Tischler faces pair into five pairs')
++
++# Negative control: forgetting the inside/outside decoration changes the
++# embedding. Placing all four pendants inside admits genuine reflections.
++all_inside={i:[(i-1)%4,(i+1)%4,next(v for v in adj[i] if v>=4)] for i in range(4)}
++inside_pres=[];inside_rev=[]
++for g in solutions:
++    if all(cyclic([g[v] for v in all_inside[i]],all_inside[g[i]]) for i in range(4)):inside_pres.append(g)
++    if all(cyclic([g[v] for v in all_inside[i]],list(reversed(all_inside[g[i]]))) for i in range(4)):inside_rev.append(g)
++check(len(inside_pres)==2 and len(inside_rev)==2,'negative control: undecorated side choice changes symmetry types')
++check(all(any(g[i]==i for i in range(4)) for g in inside_rev),'negative control reflections have fixed cycle vertices')
++
++local=Counter(len(adj[v])+1 for v in adj)
++check(local==Counter({2:4,3:2,4:4}),'critical local degrees')
++check(sum((m-1)*count for m,count in local.items())==20,'Riemann-Hurwitz ramification total')
++check(len(edges)+1==11 and max(local)<11,'degree eleven and no totally ramified critical point')
++check(12-10==2,'two noncritical fixed-point vertices')
++# Algebraic-locus degree bookkeeping only; not a coefficient construction.
++check(2*11-2==20 and 20*(11+1)-20==220,'homogeneous divisibility has quotient degree 220')
++
++print(json.dumps({'pass':True,'assertions':assertions,'search_nodes':search_nodes,
++ 'exact_coordinate_rotations':rot,'automorphisms':aut_records,
++ 'antipodal_vertex_action':h,'face_action':face_action,
++ 'primal_face_lengths':list(map(len,faces)),
++ 'radial_vertices':12,'radial_edges':20,'radial_faces':10,
++ 'radial_face_action':qaction,'critical_local_degrees':dict(local),
++ 'degree':11,'ramification_total':20,
++ 'scope':'Exact finite embedding, graph and rotation-system diagnostics only. Rational realization, symmetry naturality, algebraicity and field-of-moduli obstruction are audited in REVIEW.md.'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/20001424/review/independent_results.json b/unsolved_math_prioritization/attempts/20001424/review/independent_results.json
+new file mode 100644
+index 000000000..609fa3208
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/review/independent_results.json
+@@ -0,0 +1,172 @@
++{
++  "pass": true,
++  "assertions": 183,
++  "search_nodes": 39,
++  "exact_coordinate_rotations": {
++    "0": [
++      1,
++      4,
++      3
++    ],
++    "1": [
++      0,
++      2,
++      5
++    ],
++    "2": [
++      1,
++      7,
++      3
++    ],
++    "3": [
++      0,
++      2,
++      8
++    ],
++    "4": [
++      0
++    ],
++    "5": [
++      1,
++      6
++    ],
++    "6": [
++      5
++    ],
++    "7": [
++      2
++    ],
++    "8": [
++      3,
++      9
++    ],
++    "9": [
++      8
++    ]
++  },
++  "automorphisms": [
++    {
++      "vertex_images": [
++        0,
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9
++      ],
++      "trivalent_signs": [
++        1,
++        1,
++        1,
++        1
++      ]
++    },
++    {
++      "vertex_images": [
++        0,
++        3,
++        2,
++        1,
++        4,
++        8,
++        9,
++        7,
++        5,
++        6
++      ],
++      "trivalent_signs": [
++        -1,
++        1,
++        -1,
++        1
++      ]
++    },
++    {
++      "vertex_images": [
++        2,
++        1,
++        0,
++        3,
++        7,
++        5,
++        6,
++        4,
++        8,
++        9
++      ],
++      "trivalent_signs": [
++        1,
++        -1,
++        1,
++        -1
++      ]
++    },
++    {
++      "vertex_images": [
++        2,
++        3,
++        0,
++        1,
++        7,
++        8,
++        9,
++        4,
++        5,
++        6
++      ],
++      "trivalent_signs": [
++        -1,
++        -1,
++        -1,
++        -1
++      ]
++    }
++  ],
++  "antipodal_vertex_action": [
++    2,
++    3,
++    0,
++    1,
++    7,
++    8,
++    9,
++    4,
++    5,
++    6
++  ],
++  "face_action": [
++    1,
++    0
++  ],
++  "primal_face_lengths": [
++    10,
++    10
++  ],
++  "radial_vertices": 12,
++  "radial_edges": 20,
++  "radial_faces": 10,
++  "radial_face_action": [
++    5,
++    3,
++    6,
++    1,
++    7,
++    0,
++    2,
++    4,
++    9,
++    8
++  ],
++  "critical_local_degrees": {
++    "4": 4,
++    "2": 4,
++    "3": 2
++  },
++  "degree": 11,
++  "ramification_total": 20,
++  "scope": "Exact finite embedding, graph and rotation-system diagnostics only. Rational realization, symmetry naturality, algebraicity and field-of-moduli obstruction are audited in REVIEW.md."
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/review/review_summary.json b/unsolved_math_prioritization/attempts/20001424/review/review_summary.json
+new file mode 100644
+index 000000000..451053def
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/review/review_summary.json
+@@ -0,0 +1,34 @@
++{
++  "problem_id": "20001424",
++  "verdict": "PASS",
++  "scope": "Complete negative answer to the pinned unqualified PCF field-of-moduli question: an algebraic degree-eleven critically fixed conjugacy class with trivial holomorphic automorphisms, real field of moduli in the chosen embedding, and no real model.",
++  "reviewed_sha256": "aa598dc779b4115c9a7522335b364a5d9dcddf11ceec707fd46943984e8ffabf",
++  "review_sha256": "481dcd9aaa4bdd1e8436c2af987f67b9fc58563a0db7f2326c9a4af30e319544",
++  "independent_check_sha256": "dc864433cc301810d08fdab4f224fa83c235527e8d5ecfed13cf94f13bc32017",
++  "independent_receipt_sha256": "e57cc0f4effaa1d2ac887096e54a177885c40830b89ff074e61fc45f5532fc92",
++  "date_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "required_corrections": [],
++  "clarification": "Review explicitly proves that conjugators between the algebraic realized map and its conjugate are algebraic, using three algebraic critical points.",
++  "independent_assertions": 183,
++  "author_receipt_reproduced_byte_for_byte": true,
++  "source_access_boundary": "Live AIM problem-list pages returned errors; exact wording checked in user-authorized pinned canonical record; official workshop announcement and report independently retrieved.",
++  "main_audit_points": [
++    "exact embedded graph and orientation signs",
++    "realization theorem hypotheses",
++    "intrinsic Tischler-ray naturality",
++    "actual equivariant charge arcs in paired faces",
++    "reflection exclusion",
++    "finite normalized algebraic locus",
++    "algebraic conjugators and absolute field-of-moduli stabilizer"
++  ],
++  "novelty": "Unestablished; known graph classification, pseudo-real obstruction and antipodal cubic families credited.",
++  "limits": [
++    "Independent AI review, not formal verification or peer review",
++    "No explicit rational-map coefficients",
++    "No exact field of moduli",
++    "No claim of total reality of that field",
++    "No minimal-degree or historical-priority claim"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/source_manifest.json b/unsolved_math_prioritization/attempts/20001424/source_manifest.json
+new file mode 100644
+index 000000000..19f3c3a03
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/source_manifest.json
+@@ -0,0 +1,10 @@
++{
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "reference_hashes": {
++    "aim-workshop.html": "a797c4278aa09987f120ff00ac44dcee04e552472ce692a2da1b2373ba2dfe24",
++    "silverman1995.pdf": "0a405ab1fbe4fc04e73439ecc31db4afaae3d8e38ce58bfd49f65442c6e88116",
++    "bresciani-withdrawn-v1.pdf": "efef2d5ef99ac1064790d8eeb86fcec37c051684214b90c23934521c7a23d57b",
++    "hlushchanka2019.pdf": "67890033472cb3bb4187936f4d34e6c59d0487cbf71eda9e8c98f6b887755950",
++    "bonifant-buff-milnor.pdf": "1d98998671daea361352692f460b5c559295ea2fc4a2ceed5af9e56e90767f9f"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/source_record.json b/unsolved_math_prioritization/attempts/20001424/source_record.json
+new file mode 100644
+index 000000000..b0ca3a5d0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/source_record.json
+@@ -0,0 +1,75 @@
++{
++  "problem": {
++    "id": 20001424,
++    "problem_number": "AIM-DYNAMICAL_SYSTEMS-0082",
++    "title": "PCF descent and an odd postcritical-divisor criterion",
++    "statement": "field of definition vs field of moduli\n\nAre all PCF maps defined over their field of moduli?",
++    "original_statement": "field of definition vs field of moduli\n\nAre all PCF maps defined over their field of moduli?",
++    "clean_statement": "field of definition vs field of moduli\n\nAre all PCF maps defined over their field of moduli?",
++    "statement_status": "exact",
++    "statement_verification": "The canonical record is **aim-dynamical-systems-notes.json**, zero-based index 81, from the AIM workshop *Postcritically finite maps in complex and arithmetic dynamics*, section \u201cModuli Problems,\u201d problem 2.6. Its exact mathematical text is:",
++    "background": "Collected from the canonical American Institute of Mathematics problem corpus and paired with a validated per-problem research attempt.\nSource collection: AIM Problem Lists\nSource type: AimPL\nAIM domain: Dynamical systems\nWorkshop: Postcritically finite maps in complex and arithmetic dynamics\nSection: Moduli Problems\nSource item: 2.6\nSource URL: http://aimpl.org/finitedynamics/2/\nCanonical location: aim-dynamical-systems-notes.json notes[81]\nCanonical tag: problem\nOriginal extracted problem text (JSON string): \"field of definition vs field of moduli\\n\\nAre all PCF maps defined over their field of moduli?\"\nOriginal remarks: []\nOriginal literature field (JSON string): \"\"\nResearch attempt: 1; result status: partial_result; problem status at run: unknown; rigor: proved; novelty confidence: low.\nResearch caveat: machine-generated research aid, not peer reviewed; independently verify before citation.",
++    "difficulty_level_id": 3,
++    "status": "partially_solved",
++    "proposed_by": null,
++    "proposed_year": null,
++    "category_id": 11,
++    "set_id": 14,
++    "source_url": "http://aimpl.org/finitedynamics/2/",
++    "tags": [
++      "aim",
++      "AIM-DYNAMICAL_SYSTEMS-0082",
++      "aim-domain:dynamical-systems",
++      "aim-workshop:finitedynamics",
++      "aim-source-tag:problem"
++    ],
++    "view_count": 0,
++    "favorite_count": 0,
++    "created_at": "2026-08-14T00:00:00Z",
++    "updated_at": "2026-08-14T00:00:00Z",
++    "published": true,
++    "category": {
++      "id": 11,
++      "name": "dynamical_systems",
++      "display_name": "Dynamical Systems",
++      "description": "Problems about long-term behavior of deterministic systems, Hamiltonian dynamics, and periodic orbits.",
++      "slug": "dynamical-systems",
++      "order_index": 11,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "difficulty": {
++      "id": 3,
++      "level": 3,
++      "name": "L3: Advanced",
++      "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++      "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++    },
++    "set": {
++      "id": 14,
++      "name": "aim_workshop_problem_lists",
++      "display_name": "AIM Workshop Problem Lists",
++      "description": "Canonical open-problem records from American Institute of Mathematics workshop lists, with one validated research report and complete attempt artifacts per record.",
++      "slug": "aim-workshop-problem-lists",
++      "order_index": 14,
++      "created_at": "2026-08-14T00:00:00Z"
++    },
++    "research_classification": "PARTIAL-PROGRESS",
++    "research_summary": "In characteristic zero, let a PCF conjugacy class on P1 have field of moduli K and trivial dynamical automorphism group. If its reduced postcritical set has odd cardinality, then the class has a K-defined representative. More generally, any finite conjugacy- and Galois-canonical set of odd cardinality splits the associated Brauer-Severi conic. The full odd-degree nonpolynomial PCF question remains unresolved in the literature verified during this run.\n\nCandidate contribution (criterion; novelty confidence low): A rigid PCF conjugacy class with odd reduced postcritical cardinality is defined over its field of moduli; the same holds if any finite canonical portrait stratum has odd cardinality."
++  },
++  "upstream_prior_report": {
++    "classification": "PARTIAL-PROGRESS",
++    "wording_corrected": "no",
++    "difficulty_suggested": null,
++    "problem": "The canonical record is **aim-dynamical-systems-notes.json**, zero-based index 81, from the AIM workshop *Postcritically finite maps in complex and arithmetic dynamics*, section \u201cModuli Problems,\u201d problem 2.6. Its exact mathematical text is:\n\n> field of definition vs field of moduli\n>\n> Are all PCF maps defined over their field of moduli?\n\nThe live AIM page was retrieved during this run and has the same wording, with no posted status or remarks. I interpret a \u201cmap\u201d here in the standard dynamical-moduli sense: a \\(\\operatorname{PGL}_2\\)-conjugacy class of degree-\\(d\\) rational self-maps of \\(\\mathbb P^1\\), in characteristic zero. A field \\(K\\) is a field of definition when the class has at least one representative in \\(K(z)\\). This is different from asking whether a particular displayed formula has coefficients in \\(K\\).",
++    "status_literature": "The complete PCF question was not resolved by the primary sources located in this run. The strongest verified general results are due to Silverman:\n\n1. Every even-degree rational-map conjugacy class is defined over its field of moduli.\n2. Every conjugacy class containing a polynomial is defined over its field of moduli, in every degree.\n3. For every odd \\(d\\geq 3\\), general nonpolynomial degree-\\(d\\) classes with trivial automorphism group can have a nontrivial field-of-moduli obstruction.\n\nThe first two assertions include classes with nontrivial automorphism group. Consequently every quadratic PCF map descends, as does every PCF polynomial. Silverman\u2019s odd-degree counterexamples are not asserted to be PCF, and I did not find a primary source verifying a PCF counterexample. Thus the remaining part of the AIM question is the odd-degree nonpolynomial PCF locus, especially where the postcritical set has even cardinality or the map has nontrivial automorphisms.\n\nA May 2024 arXiv abstract by Bresciani announces a complete characterization of descent for arbitrary dynamical systems on \\(\\mathbb P^1\\). The abstract does not state a PCF corollary, and the paper PDF/source endpoints returned 404 during this run. No theorem from that unavailable text is used here.\n\nAnderson--Bouw--Ejder--Girgin--Karemaker--Manes construct normalized dynamical Belyi maps. Their Proposition 2.3 gives a unique map over \\(\\mathbb Q\\) for every genus-zero single-cycle type\n\\[\n(d;e_1,e_2,e_3),\\qquad 2\\leq e_i\\leq d,\\qquad e_1+e_2+e_3=2d+1.\n\\]\nThese are useful explicit PCF test objects.",
++    "work_done": "### 3. Definitions and assumptions\n\nLet \\(K\\) be a characteristic-zero field with algebraic closure \\(\\overline K\\), and let\n\\[\n\\phi:\\mathbb P^1_{\\overline K}\\longrightarrow\\mathbb P^1_{\\overline K},\n\\qquad \\deg\\phi=d\\geq2.\n\\]\n\n- The dynamical automorphism group is\n  \\[\n  \\operatorname{Aut}(\\phi)=\n  \\{h\\in\\operatorname{PGL}_2(\\overline K):h^{-1}\\phi h=\\phi\\}.\n  \\]\n- The field of moduli of \\([\\phi]\\) is \\(K\\) when every \\(\\sigma\\in G_K\\) sends \\(\\phi\\) to a conjugate and \\(K\\) is the corresponding fixed field.\n- The critical set is the support of the ramification divisor. The reduced postcritical set is\n  \\[\n  P_\\phi=\\bigcup_{n\\geq1}\\phi^n(\\operatorname{Crit}(\\phi)).\n  \\]\n  The map is PCF precisely when \\(P_\\phi\\) is finite.\n- A finite reduced set \\(S_\\phi\\subset\\mathbb P^1(\\overline K)\\) is called *canonical for conjugacy and Galois* if\n  \\[\n  S_{h^{-1}\\phi h}=h^{-1}S_\\phi,\\qquad\n  S_{{}^{\\sigma}\\phi}={}^{\\sigma}S_\\phi .\n  \\]\n  The postcritical set is canonical in this sense.\n\nThe main new criterion below assumes \\(\\operatorname{Aut}(\\phi)=1\\). This hypothesis is not cosmetic: only then are the Galois conjugators unique and hence an honest \\(\\operatorname{PGL}_2\\)-cocycle.\n\n### 4. Approach map\n\nThe descent obstruction can be viewed in four equivalent ways in the trivial-automorphism case:\n\n\\[\n\\text{Galois conjugators}\n\\longrightarrow H^1(K,\\operatorname{PGL}_2)\n\\longrightarrow \\text{Brauer--Severi conic }X/K\n\\longrightarrow \\operatorname{Br}(K)[2].\n\\]\n\nThe class descends to a \\(K\\)-model on \\(\\mathbb P^1\\) exactly when the conic \\(X\\) has a \\(K\\)-point. The strategy is therefore to transport canonical dynamical data from \\(\\mathbb P^1_{\\overline K}\\) to \\(X_{\\overline K}\\). An odd-degree invariant divisor on \\(X\\) forces \\(X(K)\\neq\\varnothing\\). For a PCF map, the reduced postcritical set supplies just such a divisor when its cardinality is odd.\n\n### 7. Detailed proof, derivation, or heuristic\n\n#### 7.1 The cocycle and the conic\n\nFor each \\(\\sigma\\in G_K\\), choose \\(f_\\sigma\\in\\operatorname{PGL}_2(\\overline K)\\) satisfying\n\\[\n{}^\\sigma\\phi=f_\\sigma^{-1}\\phi f_\\sigma.\n\\]\nWhen \\(\\operatorname{Aut}(\\phi)=1\\), \\(f_\\sigma\\) is unique. Comparing the equations for\n\\(\\sigma\\), \\(\\tau\\), and \\(\\sigma\\tau\\) gives the cocycle relation\n\\[\nf_{\\sigma\\tau}=f_\\sigma\\,{}^\\sigma f_\\tau\n\\]\nfor the left Galois-action convention. Hence \\(f=(f_\\sigma)\\) defines\n\\[\nc_\\phi\\in H^1(G_K,\\operatorname{PGL}_2).\n\\]\n\nThe corresponding twist of \\(\\mathbb P^1\\) is a Brauer--Severi conic \\(X/K\\). There are an\n\\(\\overline K\\)-isomorphism\n\\[\ni:\\mathbb P^1_{\\overline K}\\overset{\\sim}{\\longrightarrow}X_{\\overline K}\n\\]\nand a \\(K\\)-morphism \\(\\Phi:X\\to X\\) with \\(i\\phi=\\Phi i\\). Silverman proves\n\\[\n[\\phi]\\text{ has a }K\\text{-model}\n\\quad\\Longleftrightarrow\\quad\nX(K)\\neq\\varnothing\n\\quad\\Longleftrightarrow\\quad\nc_\\phi=1.\n\\]\n\n#### 7.2 Why a canonical finite set descends\n\nWith the standard descent convention, \\({}^\\sigma i=i\\circ f_\\sigma\\). Canonicity gives\n\\[\n{}^\\sigma S_\\phi\n=S_{{}^\\sigma\\phi}\n=S_{f_\\sigma^{-1}\\phi f_\\sigma}\n=f_\\sigma^{-1}S_\\phi.\n\\]\nLet\n\\[\nD_S=i_*\\left(\\sum_{p\\in S_\\phi}[p]\\right)\n\\]\non \\(X_{\\overline K}\\). Then\n\\[\n{}^\\sigma D_S\n=({}^\\sigma i)_*\\left(\\sum_{p\\in{}^\\sigma S_\\phi}[p]\\right)\n=(i f_\\sigma)_*\n \\left(\\sum_{p\\in f_\\sigma^{-1}S_\\phi}[p]\\right)\n=D_S.\n\\]\nThus \\(D_S\\) is a \\(K\\)-rational divisor on \\(X\\), and\n\\(\\deg D_S=\\#S_\\phi\\).\n\n#### 7.3 Odd degree splits a conic\n\nThe index of a conic divides \\(2\\), since the anticanonical class gives a rational divisor of degree \\(2\\). It also divides the degree of every \\(K\\)-rational divisor. If \\(\\deg D_S\\) is odd, then\n\\[\n\\operatorname{ind}(X)\\mid\\gcd(2,\\deg D_S)=1.\n\\]\nTherefore \\(\\operatorname{ind}(X)=1\\). For a conic, index one is equivalent to a \\(K\\)-point, so \\(X\\simeq_K\\mathbb P^1\\). Transporting \\(\\Phi\\) along this \\(K\\)-isomorphism produces a rational map in \\(K(z)\\) conjugate to \\(\\phi\\). This proves the theorem.\n\nTaking \\(S_\\phi=P_\\phi\\) proves the PCF corollary: ramification and iteration commute with both Galois action and conjugation, so \\(P_\\phi\\) is canonical, and PCF makes it finite.\n\n#### 7.4 The \\(\\operatorname{PGL}_2\\) versus \\(\\operatorname{GL}_2\\) audit\n\nChoose arbitrary matrix lifts \\(F_\\sigma\\in\\operatorname{GL}_2(\\overline K)\\) of \\(f_\\sigma\\).\nThe projective cocycle identity says\n\\[\nF_\\sigma\\,{}^\\sigma F_\\tau\\,F_{\\sigma\\tau}^{-1}\n=a_{\\sigma,\\tau}I\n\\]\nfor scalars \\(a_{\\sigma,\\tau}\\in\\overline K^\\times\\). Their class lies in\n\\[\nH^2(G_K,\\overline K^\\times)=\\operatorname{Br}(K)\n\\]\nand is \\(2\\)-torsion; it is the quaternion/conic obstruction. Hilbert 90 applies to an actual\n\\(\\operatorname{GL}_2\\)-cocycle, not directly to \\(f_\\sigma\\). The odd divisor proves that this\nBrauer class vanishes; after scalar adjustment, Hilbert 90 supplies the desired coordinate change.\nThus the proof does not incorrectly lift a projective cocycle for free.\n\n#### 7.5 A genuinely odd-degree nonpolynomial PCF test class\n\nConsider the abstract single-cycle Belyi type\n\\[\n(d;e_1,e_2,e_3)=(7;4,5,6).\n\\]\nThe relation \\(4+5+6=2\\cdot7+1\\) meets the genus-zero condition. By Anderson et al.,\nthere is a unique normalized map \\(f\\in\\mathbb Q(z)\\) of this type. Its only critical points are\n\\(0,1,\\infty\\), they are fixed, and their local degrees are \\(4,5,6\\). Hence\n\\[\nP_f=\\{0,1,\\infty\\},\\qquad \\#P_f=3.\n\\]\nAny dynamical automorphism must permute critical points while preserving local degree. Since\n\\(4,5,6\\) are distinct, it fixes all three points and is the identity. No point is totally ramified\n(local degree \\(7\\)), so the class is not polynomial. This gives a concrete odd-degree,\nnonpolynomial, rigid PCF class to which the criterion applies.\n\nThis example is already defined over \\(\\mathbb Q\\); it is a test of the scope of the criterion,\nnot a counterexample to the AIM question.\n\n### 8. Verification and attempted falsification\n\n1. **Functoriality check.** If \\(\\psi=h^{-1}\\phi h\\), then\n   \\(\\operatorname{Crit}(\\psi)=h^{-1}\\operatorname{Crit}(\\phi)\\) with matching local degrees,\n   and induction gives \\(P_\\psi=h^{-1}P_\\phi\\).\n2. **Multiplicity check.** The theorem uses the reduced postcritical divisor, so its degree is\n   exactly \\(\\#P_\\phi\\). Collisions of critical orbits are intentionally counted once.\n3. **Parity check.** The ramification divisor has degree \\(2d-2\\), always even. Therefore merely\n   knowing that critical orbits are finite does not force a split conic. This identifies the exact\n   gap in the tempting argument \u201cPCF supplies a divisor, hence descent.\u201d\n4. **Even-degree consistency.** The fixed-point divisor has degree \\(d+1\\). For even \\(d\\) this is\n   odd, recovering Silverman\u2019s conic argument in the trivial-automorphism case.\n5. **Automorphism check.** If \\(\\operatorname{Aut}(\\phi)\\neq1\\), the conjugator \\(f_\\sigma\\) is\n   defined only modulo \\(\\operatorname{Aut}(\\phi)\\), and\n   \\(f_\\sigma{}^\\sigma f_\\tau f_{\\sigma\\tau}^{-1}\\) may be a non-scalar dynamical automorphism.\n   The asserted canonical conic is then unavailable without an additional lifting argument.\n6. **Boundary check.** The proof is stated in characteristic zero. In positive characteristic,\n   inseparability and wild automorphisms require separate hypotheses.\n\nNo heavy computation was used.",
++    "result": "### 5. Main result\n\n#### Theorem (odd canonical-divisor descent criterion)\n\nLet \\(K\\) have characteristic zero, let \\([\\phi]\\) have field of moduli \\(K\\), and assume\n\\(\\operatorname{Aut}(\\phi)=1\\). Suppose \\(S_\\phi\\) is a finite canonical reduced set for conjugacy and Galois. If\n\\[\n\\#S_\\phi\\quad\\text{is odd},\n\\]\nthen \\(K\\) is a field of definition for \\([\\phi]\\).\n\n#### PCF corollary\n\nIf \\(\\phi\\) is PCF, \\(\\operatorname{Aut}(\\phi)=1\\), and\n\\[\n\\#P_\\phi\\equiv1\\pmod 2,\n\\]\nthen \\([\\phi]\\) is defined over its field of moduli.\n\nMore generally, the same conclusion holds if any conjugacy-covariant portrait stratum (or invariant union of such strata) is finite and has odd cardinality. Examples include sets specified intrinsically by exact preperiod, period, and local ramification data.\n\n#### Previously known automatic cases\n\nIndependently of the automorphism group and independently of PCF:\n\n- if \\(d\\) is even, the fixed-point divisor has odd degree \\(d+1\\), and descent holds;\n- if the class contains a polynomial, descent holds.\n\nThe PCF corollary is therefore useful principally for odd-degree nonpolynomial classes.\n\n### 6. Candidate novel contribution\n\n**Candidate claim.** A rigid PCF conjugacy class with odd reduced postcritical cardinality is defined over its field of moduli; more generally, any odd finite canonical portrait divisor kills the Brauer--Severi obstruction.\n\n**Scope.** Characteristic zero, rational self-maps of \\(\\mathbb P^1\\), and trivial dynamical automorphism group. For marked portraits, the same argument applies when the marked object has trivial automorphism group.\n\n**Why it may be new.** Silverman explicitly applies the odd-divisor mechanism to the fixed-point divisor of degree \\(d+1\\), but the PCF postcritical divisor and portrait-stratum formulation were not located in the literature checked. The argument is short and close to Silverman\u2019s method, so it may be known implicitly.\n\n**Literature checked.** Silverman\u2019s 1995 paper; the AIM source page; Anderson et al. on dynamical Belyi maps; targeted searches for \u201cpostcritically finite field of moduli field of definition,\u201d \u201cPCF maps field of moduli,\u201d and related pseudoreal/descent terms. A 2024 abstract announcing a general characterization was found but its text was unavailable.\n\n**Novelty confidence:** low.",
++    "what_remains": "### 9. Limitations and unresolved gaps\n\n- This does not answer whether *all* odd-degree nonpolynomial PCF maps descend.\n- It says nothing when \\(\\#P_\\phi\\) is even and no other canonical odd divisor is available.\n- It does not handle a nontrivial dynamical automorphism group. Silverman can handle all\n  automorphism groups for even degree and polynomial classes, but the present PCF parity proof\n  cannot simply be copied to the remaining cases.\n- No verified odd-degree PCF counterexample was found. Silverman\u2019s general counterexamples\n  cannot be called PCF without a separate orbit computation.\n- The literature search was not exhaustive, and the inaccessible 2024 preprint may contain a\n  characterization relevant to the residual cases.\n\n#### Marked versus unmarked objects\n\nA map with marked critical/postcritical data is a different moduli problem. Its field of moduli\nmay be larger than that of the unmarked conjugacy class. If the marked object has trivial\nautomorphism group, the same cocycle construction applies. A Galois-compatible marked point\nthen becomes a \\(K\\)-point of the obstruction conic and forces descent immediately. Without\nrigidity, descent is a gerbe/automorphism problem, not automatically a single conic problem.\n\n### 10. Concrete next steps\n\n1. Recover and verify the theorem statements in Bresciani\u2019s 2024 preprint, then specialize its\n   characterization to PCF portrait strata.\n2. Search odd-degree PCF databases, beginning with cubic nonpolynomial maps, for classes with\n   even \\(\\#P_\\phi\\). Compute their automorphism groups and the associated conic when the group is\n   trivial.\n3. For a candidate class over a quadratic extension \\(L/K\\), solve\n   \\({}^\\tau\\phi=f^{-1}\\phi f\\), verify \\(f\\,{}^\\tau f=1\\) in\n   \\(\\operatorname{PGL}_2\\), and test the associated norm/quaternion class.\n4. Develop a version for nontrivial automorphism groups by marking enough portrait data to\n   rigidify, while tracking how the marked field of moduli compares with the unmarked one.\n\n### References\n\n1. Joseph H. Silverman, \u201cThe field of definition for dynamical systems on\n   \\(\\mathbb P^1\\),\u201d *Compositio Mathematica* **98** (1995), 269--304.\n   https://www.numdam.org/item/CM_1995__98_3_269_0/\n2. Jacqueline Anderson, Irene Bouw, Ozlem Ejder, Neslihan Girgin, Valentijn Karemaker,\n   and Michelle Manes, \u201cDynamical Belyi maps,\u201d arXiv:1703.08563v2 (2017).\n   https://arxiv.org/abs/1703.08563\n3. Giulio Bresciani, \u201cFields of definition of dynamical systems on\n   \\(\\mathbb P^1\\). Improvements on a result of Silverman,\u201d arXiv:2405.03612v2 (2024),\n   abstract only verified in this run. https://arxiv.org/abs/2405.03612\n4. AIM Problem Lists, \u201cPostcritically finite maps in complex and arithmetic dynamics:\n   Moduli Problems,\u201d problem 2.6. http://aimpl.org/finitedynamics/2/\n\n---",
++    "problem_original": "field of definition vs field of moduli\n\nAre all PCF maps defined over their field of moduli?",
++    "problem_clean": "field of definition vs field of moduli\n\nAre all PCF maps defined over their field of moduli?",
++    "statement_evidence": "The canonical record is **aim-dynamical-systems-notes.json**, zero-based index 81, from the AIM workshop *Postcritically finite maps in complex and arithmetic dynamics*, section \u201cModuli Problems,\u201d problem 2.6. Its exact mathematical text is:",
++    "statement_recovery_analysis": "canonical_text_retained_no_recovery_claim; clean_statement_source=canonical_problem_field",
++    "statement_status": "exact",
++    "verification_note": "Imported from effective validated AIM attempt 1; status=partial_result, rigor=proved, novelty_confidence=low. The validated report is included in this record."
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/status.json b/unsolved_math_prioritization/attempts/20001424/status.json
+new file mode 100644
+index 000000000..ddd9fbfbf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/status.json
+@@ -0,0 +1,22 @@
++{
++  "id": 20001424,
++  "code": "AIM-DYNAMICAL_SYSTEMS-0082",
++  "status": "claimed_solved_after_independent_review",
++  "turns_used": 1,
++  "turn_limit": 5,
++  "proof": "CANDIDATE.md",
++  "proof_sha256": "aa598dc779b4115c9a7522335b364a5d9dcddf11ceec707fd46943984e8ffabf",
++  "verifier_sha256": "958a4392cf3ec633104870a1e2c75ab69900385a604fd917ad37da357a999407",
++  "candidate_degree": 11,
++  "postcritical_cardinality": 10,
++  "holomorphic_automorphism_group": "trivial, independently reviewed proof",
++  "exact_coefficients_computed": false,
++  "exact_field_of_moduli_computed": false,
++  "full_source_solved": true,
++  "new_discovery_claim": false,
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "review": "PASS; review/REVIEW.md",
++  "novelty": "unestablished",
++  "review_sha256": "481dcd9aaa4bdd1e8436c2af987f67b9fc58563a0db7f2326c9a4af30e319544"
++}
+diff --git a/unsolved_math_prioritization/attempts/20001424/turns.jsonl b/unsolved_math_prioritization/attempts/20001424/turns.jsonl
+new file mode 100644
+index 000000000..0e8d27b35
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "at_utc": "2026-09-30T05:22:00Z", "family": "critically fixed plane-graph realization and pseudo-real symmetry obstruction", "outcome": "candidate", "artifact": "CANDIDATE.md", "claim": "A graph-defined degree11 PCF class over Qbar has real field of moduli but no real model.", "independent_review": "pending", "novelty": "unestablished"}
+diff --git a/unsolved_math_prioritization/attempts/20001424/verify_graph.py b/unsolved_math_prioritization/attempts/20001424/verify_graph.py
+new file mode 100644
+index 000000000..6674cf8c6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/20001424/verify_graph.py
+@@ -0,0 +1,103 @@
++#!/usr/bin/env python3
++"""Exhaustive finite graph/rotation-system checks; not a dynamics theorem proof."""
++from itertools import permutations,product
++from collections import Counter,defaultdict
++import json
++
++# Four-cycle; pendant path lengths 1,2,1,2. North at roots0,1; south2,3.
++roots=list(range(4)); edges=[(0,1),(1,2),(2,3),(3,0)]
++paths={0:[4],1:[5,6],2:[7],3:[8,9]}
++for v,path in paths.items():
++    prev=v
++    for w in path:edges.append((prev,w));prev=w
++E={frozenset(e) for e in edges};V=list(range(10));adj={v:set() for v in V}
++for u,v in edges:adj[u].add(v);adj[v].add(u)
++rot={}
++for i in roots:
++    prev,next_,pend=(i-1)%4,(i+1)%4,paths[i][0]
++    rot[i]=[prev,next_,pend] if i<2 else [prev,pend,next_]
++for v in V:
++    if v not in rot:rot[v]=sorted(adj[v])
++assert len(E)==10 and len(V)==10
++assert sorted(map(len,adj.values()))==[1,1,1,1,2,2,3,3,3,3]
++
++def cyclic(a,b):
++    return len(a)==len(b) and any(a==b[k:]+b[:k] for k in range(len(b)))
++def signs(g):
++    s=[]
++    for v in roots:
++        mapped=[g[w] for w in rot[v]];target=rot[g[v]]
++        if cyclic(mapped,target):s.append(1)
++        elif cyclic(mapped,list(reversed(target))):s.append(-1)
++        else:raise AssertionError('invalid cyclic order')
++    return s
++
++# Exhaust all permutations within degree classes: 4!*2!*4!=1152 possibilities.
++classes=[[v for v in V if len(adj[v])==d] for d in (1,2,3)]
++autos=[];tested=0
++for images in product(*(list(permutations(c)) for c in classes)):
++    g={v:w for c,im in zip(classes,images) for v,w in zip(c,im)}
++    tested+=1
++    if {frozenset((g[u],g[v])) for u,v in edges}==E:
++        autos.append(g)
++assert tested==1152 and len(autos)==4
++pres=[g for g in autos if signs(g)==[1]*4]
++rev=[g for g in autos if signs(g)==[-1]*4]
++assert len(pres)==len(rev)==1
++assert all(pres[0][v]==v for v in V)
++h=rev[0]
++assert [h[i] for i in roots]==[2,3,0,1]
++assert all(h[v]!=v and h[h[v]]==v for v in V)
++assert all(frozenset((h[u],h[v]))!=frozenset((u,v)) for u,v in edges)
++
++# Face boundary cycles of the orientable rotation system.
++darts=[(u,v) for u,v in edges]+[(v,u) for u,v in edges]
++def successor(d):
++    u,v=d;row=rot[v]
++    return (v,row[(row.index(u)+1)%len(row)])
++seen=set();faces=[]
++for d in darts:
++    if d in seen:continue
++    cur=d;face=[]
++    while cur not in seen:
++        seen.add(cur);face.append(cur);cur=successor(cur)
++    assert cur==d
++    faces.append(face)
++assert len(faces)==2 and len(V)-len(E)+len(faces)==2
++# Reversal transports directed face boundary with endpoint reversal.
++face_sets=[set(f) for f in faces]
++for i,f in enumerate(faces):
++    mirrored={(h[v],h[u]) for u,v in f}
++    assert mirrored==face_sets[1-i]
++
++# Radial/Tischler incidence has a vertex for each charge vertex and each face.
++# Every corner contributes one ray; bridge incidences retain multiplicity.
++radial_edges=[]
++for i,f in enumerate(faces):
++    radial_edges += [(u,10+i) for u,v in f]
++assert len(radial_edges)==20
++radial_counts=Counter(radial_edges)
++h2=dict(h);h2.update({10:11,11:10})
++assert Counter((h2[u],h2[v]) for u,v in radial_edges)==radial_counts
++assert all(h2[v]!=v for v in range(12))
++assert all(frozenset((h2[u],h2[v]))!=frozenset((u,v)) for u,v in radial_edges)
++radj=defaultdict(set)
++for u,v in radial_edges:radj[u].add(v);radj[v].add(u)
++reach={0};todo=[0]
++while todo:
++    for v in radj[todo.pop()]:
++        if v not in reach:reach.add(v);todo.append(v)
++assert len(reach)==12
++
++local=Counter(len(adj[v])+1 for v in V)
++assert local==Counter({2:4,3:2,4:4})
++assert sum((d-1)*n for d,n in local.items())==20==2*11-2
++print(json.dumps({'pass':True,'vertices':len(V),'edges':len(E),'faces':len(faces),
++ 'candidate_degree':11,'permutations_checked':tested,'abstract_automorphisms':len(autos),
++ 'orientation_preserving_automorphisms':len(pres),'orientation_reversing_automorphisms':len(rev),
++ 'automorphisms':[{'vertex_images':[g[v] for v in V],'root_orientation_signs':signs(g)} for g in autos],
++ 'antipodal_vertex_images':[h[v] for v in V],'face_boundary_lengths':[len(f) for f in faces],
++ 'rotation_system':rot,'edges_list':edges,'face_boundaries':faces,
++ 'radial_vertices':12,'radial_edges_with_multiplicity':20,'radial_connected':True,
++ 'critical_local_degrees':dict(local),'ramification_total':20,'postcritical_cardinality':10,
++ 'scope':'Finite graph and rotation-system verification only. Rational realization, naturality, algebraicity, and field-of-moduli obstruction require the written proof.'},indent=2))

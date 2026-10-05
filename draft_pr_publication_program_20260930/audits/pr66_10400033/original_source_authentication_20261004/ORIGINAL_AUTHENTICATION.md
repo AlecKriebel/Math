@@ -1,0 +1,13 @@
+# PR66 original source authentication
+
+Custody complete at head `78f4a7fadac0fd24e147a617956cb409eb6a579e` and root tree `ccc732fcdce90aa91c70bb4425a0112cc92d2206`. Fresh initial gate authenticated OPEN draft, required branch, literal QUEUE `claimed_solved`, and original budget `1/5` before opening the scientific source.
+
+All 25 original attempt bodies, full QUEUE, and tracked provenance inputs are retained under `original/`. The manifest records each path, regular Git mode, blob SHA1, full byte SHA256, and byte count. The complete incoming domain has 26 files and is exactly QUEUE plus the target attempt; it matches both paginated PR files and an immutable base/head compare. All 3547 recursive Git tree serializations matched. Exact original commit serialization recovered with matching full Git digest: True.
+
+CANDIDATE.md SHA256: `fc2be9794873073e6482e8dfe93ccfd6c5d6f8674c2058ba0a8fc900d906d698`. The complete source_record.json includes the original target prior report. TARGET_RECORD_SHAPES.json preserves source, report, status, ledger, absent, null, and empty states without substituting a SQLite cache row or inferring scientific conclusions. Exact original turn numbers: `[1, 1, 1]`; original status literal: `claimed_solved`.
+
+ACTUAL_COMMANDS.jsonl records actual argv, PID, cwd, UTC interval, exit status, and exact retained stdout/stderr with byte hashes for every custody-controller child. Bootstrap shell-tool observations precede this controller and have only tool-exposed metadata; their unavailable PID/UTC is explicitly recorded separately rather than invented. Immutable API JSON is original evidence; reconstructed Git bodies are claimed only when the original digest matches. External-document declarations, if present, do not imply external byte authentication.
+
+No submitted scientific code was executed; no mathematical review or new proof turn was performed. No Git/index/ref/native/PR/Zenodo/Sheets/editor mutation or external human contact occurred. Custody completion estimate: 100%. Mathematical verdict remains ROOT.
+
+The native prior-report key is `prior_upstream_report` (present object); `upstream_report` is absent. The original ledger has three JSON events, all with `turn: 1`; `status.json` reports `turns_used: 1`. These event and substantive-turn counts remain distinct. The status review hash matches original `review/REVIEW.md` SHA256 `454752a5c4160888c99e1960400f443b65c4a7df4504864097701ebb7a97362c`. The external PDF manifest has 6 declarations and no target PDF blobs. An initial literal-row parser failure was preserved and followed by a successful fresh gate; see RETRIEVAL_FAILURE.json and RESEARCH_LOG.md.

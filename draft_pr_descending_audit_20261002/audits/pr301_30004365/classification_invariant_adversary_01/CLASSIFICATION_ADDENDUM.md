@@ -1,0 +1,13 @@
+# Additive correction to the classification justification
+
+This addendum preserves the original submitted TURN_1.md bytes and comparison key. It replaces only the sufficiency appeal to the printed puncture-truncated APS Theorem7.4 range.
+
+The numerical key records a multiset of paired values(n(c),w(c)) for all b+p peripheral curves. Every original boundary has n(c)>0 and each puncture has n(c)=0, so a matching of those pairs separately matches original boundary circles and punctures. Equal marked counts and genus allow an orientation-preserving marked-surface homeomorphism implementing that matching.
+
+Remove small disjoint puncture collars to form the compact core S0, of genus g and with b+p boundary circles. Restrict the canonical APS line fields to that core. LP Theorem1.2.4 applies to arbitrary line fields on this surface and requires equality of winding numbers at **every** boundary circle. Its remaining conditions are exactly the candidate's genus-one gcd and genus-at-least-two parity/residue/Arf alternatives. Under the convention change from APS to LP, peripheral winding values are unchanged (both curve orientation and winding sign reverse); handle winding signs reverse, which preserves gcd, parity, and the even Arf expression modulo2.
+
+Thus equal candidate keys make the two restricted line fields lie in the same orbit of the mapping class group fixing all core boundary circles pointwise. The resulting diffeomorphism extends over the original and puncture collars, preserving all marks and punctures. Composing it with the initial marked-surface homeomorphism gives the line-field-preserving homeomorphism required by APS Theorem6.1/Remark7.2. Hence equality of the key is sufficient for derived equivalence. Conversely APS6.1 preserves all peripheral winding numbers, including punctures, and the LP invariants; thus equality of the key is necessary.
+
+The published APS7.4 winding equality limited to j=1,...,b is not itself a valid sufficient criterion when p>0. The exact gentle algebras formed by two full-relation oriented cycles of lengths(3,5) versus(4,4), joined by one bridge, have the same g=0,b=1,p=2, seven white marks on the boundary, and boundary winding6, but puncture winding multisets{-3,-5} and{-4,-4}; APS6.1 or their AG invariants separates them. This explains why the candidate's retained puncture records are necessary and why the all-end argument above must be explicit.
+
+All classification inputs here are credited existing results. The candidate's proposed addition remains its terminating geometric-basis extraction algorithm, whose construction and termination are outside this addendum.

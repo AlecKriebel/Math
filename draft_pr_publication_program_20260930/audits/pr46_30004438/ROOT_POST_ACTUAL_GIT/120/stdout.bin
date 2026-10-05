@@ -1,0 +1,42 @@
+def chronology_and_v2_anchor_controls(builder,operator):
+    # These are textual source-contract checks, not execution of the production guards.
+    function=builder.split('    def git(*argv):',1)[1].split('    prep_raw=',1)[0]
+    check('        finally:' in function and "(attempt/'GIT_COMMANDS.json').write_bytes(encode(commands))" in function,'inner command writes are inside live builder git finally')
+    check(function.index('        finally:')<function.index("(attempt/'GIT_COMMANDS.json').write_bytes")<function.index('        return regular'), 'incremental write precedes each git return')
+    check("'final_inner_GIT_COMMANDS_written_only_after_builder_exit':True" not in builder,'V1 mistaken emitted chronology absent from operative builder')
+    for literal in ["'final_inner_GIT_COMMANDS_written_incrementally_by_builder_before_exit':True",
+      "'frozen_inner_command_copy_is_prepublication_prefix':True",
+      "'outer_operator_does_not_write_inner_GIT_COMMANDS':True",
+      "'ROOT_final_original_inner_commands_inspection_required_AFTER_child_exit':True"]:
+        check(literal in builder,'truthful V2 emitted chronology '+literal)
+    check('GIT_COMMANDS' not in operator,'outer operator does not write original inner command records')
+    check(operator.index("record['exit_code'] = child.wait")<operator.index("(capture / 'CAPTURE.json').write_bytes"),'OUTER CAPTURE write follows actual child wait')
+    check("family.name == 'current_preparation_family_v2'" in operator and "script.parent.name=='current_preparation_family_v2'" in builder,'both operative source anchors are V2')
+    check("'PR46_ROOT_BUILDER_PRELAUNCH_v2'" in builder and "'PR46_ROOT_BUILDER_PRELAUNCH_v2'" in operator,'same V2 prelaunch schema')
+    check('PR46_ROOT_ACTUAL_BUILDER_OPERATION_v2' in operator,'V2 outer completed-capture schema')
+    check('root_pr46_current_v2_build_' in builder and 'root_pr46_current_v2_outer_' in builder and 'root_pr46_current_v2_outer_' in operator,'distinct V2 inner and outer prefixes')
+    check("os.environ.get('PR46_ROOT_OUTER_CAPTURE','')" in builder and 'PR46_ROOT_OUTER_CAPTURE=capture.relative_to(audit).as_posix()' in operator,'operator supplies exact inherited parent outer reference')
+    for literal in ["outer['operator_pid']==os.getppid()", "outer['builder_sha256']==sha(regular(script))",
+      "outer['operator_sha256']==sha(regular(script.parent/'capture_root_builder_operation.py'))",
+      "outer['argv']==['/usr/bin/python3','-B',str(script),*sys.argv[1:]]", "outer['cwd']==str(repo)"]:
+        check(literal in builder,'inherited actual parent guard '+literal)
+    check("clock(outer['started_utc'])<=dt.datetime.now" in builder,'actual prelaunch chronology boundary')
+    for name in ['DRAFT_ROOT_READ_LEDGER.json','DRAFT_ROOT_SCIENCE_CARD.json','DRAFT_ROOT_CURRENT_INPUT_PREIMAGES.json','DRAFT_ROOT_EVIDENCE_BINDINGS.json']:
+        check(json.loads((F/name).read_bytes())['operative_preparation_directory']=='current_preparation_family_v2','honest V2 draft anchor '+name)
+    expected={'unsolved_math_prioritization/'+n for n in ['QUEUE.md','state.json','history.jsonl','catalog.json','assessments.json','queue.py','policy.json','manifest.json','cache/problems.json','cache/research_results.json','cache/catalog.sqlite','review_v2/related_target_groups.json']}
+    expected.add('draft_pr_publication_program_20260930/inventory.json')
+    native_rows=[{'path':n,'bytes':0,'sha256':'a'*64,'full_mode':0o644} for n in sorted(expected)]
+    check(len(expected)==len(native_rows)==13 and all(native_row_valid(r) for r in native_rows),'private exact13 typed mode fixture')
+    def private_exact13(payload):
+        return type(payload) is list and len(payload)==13 and all(native_row_valid(r) for r in payload) and {r['path'] for r in payload}==expected
+    check(private_exact13(native_rows),'private exact13 positive')
+    negative('native13 missing row',private_exact13,native_rows[:-1])
+    negative('native13 duplicate row',private_exact13,[native_rows[0]]+native_rows[:-1])
+    for literal in ["raw_audit['selected_prior_key_present'] is False", "equal(raw_audit['selected_prior_fallback'],{})",
+      "raw_audit['raw_null_present'] is False", "'state_history_inventory_prospective':'UNCHANGED_BYTE_EXACT'",
+      "'QUEUE_named_changes':['Status','Turns','Findings']", "'PENDING_NATIVE_ACCEPTANCE_LOCAL_PROPOSAL_ONLY'",
+      "require(not destination.exists() and not destination.is_symlink()", "publish_absent(stage,destination)"]:
+        check(literal in builder,'unchanged absent-only/native proposal guard '+literal)
+    for name in ['CURRENT_OVERVIEW.md','SOURCE_PRECISION_QUALIFICATIONS.md','EXECUTION_CONTRACT.md','REPAIR_DECISION.md']:
+        text=(F/name).read_text()
+        check('incrementally' in text and 'AFTER' in text and ('OUTER CAPTURE' in text or 'OUTER CAPTURE.json' in text),'global corrected chronology '+name)

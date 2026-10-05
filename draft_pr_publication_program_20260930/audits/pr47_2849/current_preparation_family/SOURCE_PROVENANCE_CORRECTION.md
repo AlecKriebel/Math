@@ -1,0 +1,3 @@
+# Explicit source-location correction
+
+The preserved raw source_record.json historically labels https://aimath.org/pastworkshops/kirbylistrep.pdf as numbered K3 Problem3.51. That URL is an AIM workshop summary and does not contain the numbered problem. The operative source is [K3 author list, printed167–168](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf); the original recorded SHA256 is ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f. The candidate OBSTRUCTION already used that correct source. This explicit authored correction changes no raw record or target; the hash is attributed until genuine ROOT authentication/reading supplies its own evidence.

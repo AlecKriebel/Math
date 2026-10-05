@@ -1,0 +1,4 @@
+# Research log
+
+- 2026-10-02 05:14–05:17 UTC: Complete source, prior-attempt and current-literature gate. Verified exact pinned dataset checksums; no prior report or campaign attempt located. Read full Reiß contribution and visually checked p1509. Identified unspecified estimator/noise/K as analysis obligations. Current scalar-conductivity likelihood methods do not close anisotropic tensor target. Source-only0/5; estimate5%.
+- 2026-10-02 05:18–05:23 UTC: Substantive turn1. Constructed weighted positive-spectrum jet least squares with power4 weights. Proved basis-invariant deterministic convergence via continuous functional calculus, full spectral-jet identification, and interior coercivity; optional clipped L2 convergence. Eleven exact local algebra controls pass. Statistical empirical kernel/density convergence remains explicitly unproved. Original unresolved1/5; estimate30%.

@@ -1,0 +1,9 @@
+# Precision required in the current paper and public summary
+
+The submitted historical candidate says that the full-level coordinate has Kummer class `-1/(lambda+c)`, equivalently `lambda+c` **after inversion**. Root and the independent arithmetic family both tested this wording. The division-field equality and split criterion are correct; there is no demonstrated mathematical counterexample or need to alter the original historical author turn.
+
+For a fixed field containing a primitive fifth root and a fixed generator identification, put `a=lambda+c`. Since `-1=(-1)^5`, the literal class is `[-1/a]=[a]^{-1}` in `L*/L*^5`. A nontrivial class of order five is not equal to its inverse. The fields agree because if `theta^5=a`, then `u=-1/theta` satisfies `u^5=-1/a`. Inverting the generator identification or coordinate changes the representative description; this must be stated when discussing the oriented extension class.
+
+The current preprint, supplemental explanation and any current acceptance summary must use that explicit distinction. The normalized matrices may still be given after the stated basis and generator choices. This is a clarification of the submitted phrase, not an unsupported equality of fixed cohomology classes, an additional substantive author turn, or historical-priority certification. The frozen original21-file attempt and its1/5 count remain evidence of the submitted version.
+
+Root has fully read the independent arithmetic report and its cited operative Fisher/MIT content, independently replayed its portable checker and all four mutants on two interpreters, and directly checked the norm, lower field inclusions, disjointness, module and finite-etale-fiber argument. Final family evidence closure and the full mathematical gate remain pending; no priority, preprint, merge or publication clearance is issued by this precision note.

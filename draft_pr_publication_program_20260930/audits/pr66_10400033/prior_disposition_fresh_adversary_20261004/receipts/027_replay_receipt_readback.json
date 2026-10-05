@@ -1,0 +1,26 @@
+{
+  "label": "027_replay_receipt_readback",
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\nimport hashlib,json\nb=Path('/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr45_9900007')\nfor n in ['root_pr66_original_Jones_calibration_replay_20261004_actual_capture','root_pr66_original_tournament_replay_20261004_actual_capture','root_pr66_legacy_independent_checker_replay_20261004_actual_capture']:\n p=b/n; c=json.loads((p/'CAPTURE.json').read_text()); d=(p/'stdout.bin').read_bytes(); assert len(d)==c['stdout']['bytes'] and hashlib.sha256(d).hexdigest()==c['stdout']['sha256'];print(n);print(json.dumps(c,indent=2));print(d.decode())\n"
+  ],
+  "actual_child_pid": 78831,
+  "actual_controller_pid": 78829,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/prior_disposition_fresh_adversary_20261004",
+  "utc_start": "2026-10-04T17:13:33.180194+00:00",
+  "utc_end": "2026-10-04T17:13:33.214010+00:00",
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "path": "receipts/027_replay_receipt_readback.stdout.txt",
+      "bytes": 7383,
+      "sha256": "9ea3cd3f5e32089f9ea5399d0f783597b7a2216a040d77565d17a7c255bb682b"
+    },
+    "stderr": {
+      "path": "receipts/027_replay_receipt_readback.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

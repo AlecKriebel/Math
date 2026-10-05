@@ -1,0 +1,26 @@
+{
+  "label": "026_math_readback_structure",
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path\nimport json\nb=Path('/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033')\nr=json.loads((b/'ROOT_completed_math_family_readback_20261004'/'READBACK.json').read_text())\nfor v in r['families']:\n print(json.dumps({j:(x if not isinstance(x,list) or len(x)<3 else {'list_count':len(x),'first':x[0],'last':x[-1]}) for j,x in v.items()},indent=2))\n"
+  ],
+  "actual_child_pid": 78830,
+  "actual_controller_pid": 78829,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/prior_disposition_fresh_adversary_20261004",
+  "utc_start": "2026-10-04T17:13:33.149355+00:00",
+  "utc_end": "2026-10-04T17:13:33.179479+00:00",
+  "exit_code": 0,
+  "streams": {
+    "stdout": {
+      "path": "receipts/026_math_readback_structure.stdout.txt",
+      "bytes": 17170,
+      "sha256": "da014ede3afac938764038cd5d5f2a10301d9b89120a441017f5bd0e0e201b70"
+    },
+    "stderr": {
+      "path": "receipts/026_math_readback_structure.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

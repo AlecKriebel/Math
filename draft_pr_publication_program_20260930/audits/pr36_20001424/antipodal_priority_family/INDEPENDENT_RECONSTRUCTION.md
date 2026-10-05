@@ -1,0 +1,11 @@
+# Independent source reconstruction before exchange of priority opinions
+
+Recorded UTC: 2026-10-02T06:28:16.308118+00:00
+
+No sibling or root priority judgment has been read. This record fixes my independently reconstructed mechanism before any such exposure.
+
+For the BBM normal form q !=0, the critical points fixed by f are 0 and infinity; the others are not fixed (v1 Theorem2.1 discussion and equations2-3). A commuting Mobius map preserves the fixed-critical pair. If T=lambda*z, comparison of the sole nonzero finite zero q forces lambda=1. If T=lambda/z, comparison of the extra zero q with the extra pole -1/bar(q) gives lambda=-q/bar(q); comparison of leading terms at infinity in T f = f T gives lambda=-bar(q)/q. Thus a nonidentity automorphism would require q²=bar(q)². For q off both axes Aut(f)=1. Any antiholomorphic commuting symmetry differs from A=-1/bar(z) by a holomorphic one, so A is the only such symmetry. Since A has no fixed point, no reflection and no real model exist.
+
+Printed established family consequence under verification: BBM author's public combined PDF is a Draft of Feb15,2015,62pages, SHA256264d6f7197b55be3cb59e65e657659dd1dca89667848d51ee389b38b3ade2ff2. Section6 Theorem6.1 constructs each even-denominator tongue H(m/n), via Banerjee polynomial asymptotics, nonzero parabolic coefficient C, IFT periodic cycles, multiplier1-2n|C|a^n+O(a^(n+1))<1, and basin-accessibility ring; every map in the tongue has ring rotation m/n. Corollary2.2 gives a unique PCF center. Taking m/n=1/4 should exclude real s=q² by conjugation reversing the ring's orientation. Conjugation preserves the distinguished0, and for q real or imaginary bar(q)=±q with an optional rotation z->-z, hence would change1/4 to-1/4 on the same map, impossible.
+
+I have read the whole operative Section6 proof plus Corollary2.2 proof in this draft. This is source consequence checking, no new problem-solving turn. Still to check: underlying Milnor center theorem and real-form application; algebraicity; whether a date-stable peer-reviewed/arXiv primary source establishes the tongue existence used instead of merely the author-hosted dated draft. The 2015 arXiv Fjord paper prints nonaxis tricorn center approximately0.394-2.24i, but the decimal figure alone is insufficient.

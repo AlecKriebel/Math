@@ -1,0 +1,25 @@
+--- historical_v1/prepare_SOURCE.py
++++ operative/prepare_SOURCE.py
+@@ -72,7 +72,13 @@
+ dated_foreign = sorted([normalized(z['actual']) for z in footprint['protected_foreign7']], key=lambda z:z['path'])
+ foreign = sorted([ref(R / z['path']) for z in dated_foreign], key=lambda z:z['path'])
+ need(len(foreign) == len({z['path'] for z in foreign}) == 7 and [z['path'] for z in foreign] == [z['path'] for z in dated_foreign], 'Same seven known protection paths; dated bodies/modes are not runtime authority')
+-native = sorted([normalized(z['actual']) for z in footprint['protected_native12']], key=lambda z:z['path'])
++dated_native = sorted([normalized(z['actual']) for z in footprint['protected_native12']], key=lambda z:z['path'])
++queue_path = 'unsolved_math_prioritization/QUEUE.md'
++current_queue = dict(path=queue_path, bytes=383256, sha256='b93679ffbcf51aead7f34d82679c528d3157efdffe46ca16ea3118c8c4ba2826', full_mode=0o644)
++queue_checkpoint = '08adf9cb444d365fd148a2bb3e2951a7f49c6808'
++queue_body = git('show', queue_checkpoint + ':' + queue_path)
++need(len(queue_body) == current_queue['bytes'] and sha(queue_body) == current_queue['sha256'] and ref(R / queue_path) == current_queue, 'ROOT-directed exact current whole QUEUE equals genuine checkpoint blob; no exemption')
++native = [current_queue if z['path'] == queue_path else z for z in dated_native]
+ logs = sorted([normalized(z['actual']) for z in footprint['protected_owned_logs2']], key=lambda z:z['path'])
+ for row in foreign + native + logs:
+     need(ref(R / row['path']) == row, 'Whole current body/fullmode protection verified directly')
+@@ -121,6 +127,7 @@
+ for row in native + logs + partial:
+     need(ref(R / row['path']) == row, 'Strict fixed owned/native/log identity remains exact through SOURCE binding')
+ plan = dict(schema='pr48-exact-partial-V6-rollback-plan/v1', utc=dt.datetime.now(dt.timezone.utc).isoformat(), SOURCE_author_actual_pid=os.getpid(), actual_restore_performed=False, original_merge_commit=MERGE, historical_failed_epoch_HEAD=footprint['historical_failed_HEAD'], historical_failed_epoch_index=footprint['historical_failed_capture_index_before'], index_drift_causation_established=False, dated_preparation_HEAD_before=head, dated_preparation_HEAD_after=end_head, dated_preparation_index_before=indexrow, dated_preparation_index_after=end_indexrow, dated_preparation_HEAD_index_stable=(head == end_head and indexrow == end_indexrow), preparation_outside_observations_are_execution_prerequisites=False, runtime_outside_baseline_rule='Fresh complete tracked dirty domain plus seven known protected paths, whole body/full07777 mode, HEAD/index and clean cached scope, captured inside the owned index lock and preserved exactly throughout; no historical outside-body equality required', partial11=partial, partial_manifest=ref(manifest_path), original_overlay=ref(overlay_path), inventory_original=original_inventory, unrelated_native12=native, foreign_rows=foreign, foreign_rows_bodies_modes_are_dated_only_paths_define_known_protection=True, earlier_dated_independent_foreign_rows=dated_foreign, dated_preparation_foreign_dirty_paths=dirty, dated_preparation_outside_rows=dated_outside, owned_logs=logs, fixed_failed_evidence=[fixed[n] for n in sorted(fixed)], fixed_directory_modes=sorted(fixed_dirs, key=lambda z:z['path']), source_observation_from_independent_footprint=ref(footprint_path), independent_footprint_is_dated_provenance_not_runtime_mode_prerequisite=True, no_historical_native_or_foreign_snapshot_promoted_to_current=True, quarantine_count=11, other1951_canonical_full_mode_after=0o444, restored4_ADMIN_full_mode_after=0o644, Git_coordination_index_lock_metadata_create_and_remove_planned=True, actual_Git_index_body_ref_or_staging_write_planned=False, V7_SOURCE_or_acceptance_approved=False)
++plan.update(earlier_dated_independent_native12_rows=dated_native, ROOT_directed_fixed_current_QUEUE=dict(current=current_queue, authentic_checkpoint=queue_checkpoint, exact_change='Only unrelated2303002 status queued to already_solved; all other bytes and selected2961 row unchanged', no_QUEUE_mutation_or_exemption=True, authorization_source='ROOT direct task message; no manufactured ROOT certificate'))
+ put('PLAN.json', plan)
+ put('SOURCE_READS.json', dict(schema='pr48-rollback-preparer-actual-readonly-source-observations/v1', actual_own_source_author_pid=os.getpid(), utc=dt.datetime.now(dt.timezone.utc).isoformat(), complete_readonly_commands=reads, native_body_corpus_copied=False, complete_canonical1958_bodies_read_in_place=True, actual_index_whole_body_consumed_in_memory_not_retained=True, dated_index_before=indexrow, dated_index_after=end_indexrow, dated_HEAD_before=head, dated_HEAD_after=end_head, dated_outside_rows=dated_outside, preparation_outside_observations_are_execution_prerequisites=False, ROOT_approval_claimed=False, proposed_rollback_import_compile_execute=False))
+ names = sorted([q.name for q in P.iterdir() if q.is_file()] + ['SOURCE_READY.json'])

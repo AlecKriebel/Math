@@ -1,0 +1,25 @@
+# Source-first analytical and priority baseline
+
+Sealed before access to candidate content. UTC: 2026-10-03T22:21:01.556048+00:00.
+
+## Reconstructed original question
+
+The official OWR 49/2009 talk by Gerhard Keller (joint with Jean-Baptiste Bardet and Roland Zweimueller), pp. 2713-2715, defines X=[-1/2,1/2], f_r(x)=((r+4)x+r+1)/(2rx+2), T_r=f_r on x<-r/4 and f_r-1 on x>-r/4 (endpoint conventions do not affect densities), and F(u)=P_{G(phi(u))}u, phi(u)=integral_X x u(x) dx, G(m)=A tanh(Bm/A). The exact conjectured domain is D={u in L1(X):u>=0 a.e.,integral_X u=1}, with its relative L1 metric. Its parameter regime is 0<A<=2/5 and 6<B<=16. The target is W0={u in D:F^n u ->1 in L1}=boundary_D(W+)=boundary_D(W-), where W+ and W- are the basins of u_{r*} and u_{-r*}. This is not a finite-particle claim, a regular-density-only claim, or a statement only at u=1.
+
+OWR Theorem 2 already states the global three-limit alternative for every density in D and openness of both stable basins. OWR p.2715 still calls the full common-boundary statement a conjecture and states that W+ union W- is dense in D. Dated database triage (2026-08-21) is historical evidence about curation, not a current proof of openness or novelty.
+
+## Published foundation and exact scope limits
+
+The author-hosted complete BKZ manuscript and arXiv v1 are independent of the candidate; their identities and complete bytes are retained privately. BKZ Theorem 2 and Proposition 3 give global convergence on D and L1 openness. BKZ Proposition 4 explicitly gives W0 intersect D0 subset boundary_D(W+) intersect boundary_D(W-). Here D0 consists of Herglotz-Pick-Nevanlinna mixtures u=integral_Y w_y dmu(y), Y=[-2/3,2/3], w_y(x)=(1-y^2/4)/(1-xy)^2. It does not state W0 subset either boundary on all of D. D0 is uniformly analytic/positive/convex with quantitative regularity and cannot be presumed L1 dense in D. Prop.3 instead uses arbitrarily fine monotonicity partitions and shadowing along the original parameter sequence to lift convergence from D0; that is not itself the missing nonlinear basin-boundary lifting theorem.
+
+BKZ Prop.4's core seeds are convex-mixture perturbations of representing measures towards delta_{+2/3} and delta_{-2/3}, together with stochastic monotonicity and the classification of IFS limits. These seeds and the fractional-linear/IFS mechanism must be credited; perturbing the analytic core is already published. Source formulas furnish inverse branches, parameter dependence, and the elementary Perron-Frobenius branch pullback mechanism, so an inverse construction alone is not sufficient for originality.
+
+BKZ Section 5.3 does not establish Frechet differentiability on L1 or BV; it explicitly denies it in those same-space senses. It gives directional derivatives at C2 densities and BV-to-L1 differentiability there. Prop.5 calls u=1 hyperbolic in a restricted derivative sense. Its proof identifies Q=P0+B[x] tensor phi and unstable eigenvalue lambda=1/2+B/12. The displayed ker(phi) stable-subspace argument is not enough to justify a nonlinear strong stable manifold or a full-L1 boundary theorem: for arbitrary zero-mass f, phi(P0f) is generally not phi(f)/2, so ker(phi) need not be Q invariant. Any strong stable functional needs separate derivation and explicit function-space scope. This is an analytical caution, not a verdict on the candidate.
+
+## Independent analytical success criteria
+
+A successful candidate must obtain arbitrarily close points of each W+ and W- at every u in W0, using positivity-preserving and mass-preserving L1 perturbations, including densities with zero sets and no regularity. From global trichotomy and openness, both basin boundaries are subsets of W0, so that reverse inclusion is the central gap. A finite iterate/core approximation only suffices if a proved density-preserving local lifting/open-map mechanism transports the two basin signs back near every original u; surjectivity alone does not give that neighborhood property. Strong stable analysis in Ck/BV cannot silently replace all-L1 topology. Parameter checking must cover A approaching 0, A=2/5, B approaching 6 from above, and B=16, without claiming uniform constants if only parameter-dependent ones are established.
+
+## Priority test plan and independence
+
+After this seal, inspect the immutable candidate and its preexisting SOURCE_SCOPE.md, mapping every claimed contribution to the above sources. Conduct bounded primary-source searches through direct author/citation routes and later works named by the parent; distinguish exact matches from related stability/linear-response/cone results. Search absence will support only 'not located in the inspected corpus', never global novelty certification. The final journal PDF and exact ESI2075 PDF were not inspected before this baseline; document this gap and attempt primary mirrors. This review is agent-generated and has no human peer review. No sibling substantive verdicts were read. No outreach, Git mutation, PR write, publication, or installation is authorized for this review.
