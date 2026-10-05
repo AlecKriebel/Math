@@ -1,0 +1,3 @@
+# Third-turn checkpoint
+
+2026-10-01T16:15:46.866825+00:00: derived a finite birth–death Poisson corrector with monotone increments and applied its rate comparison pointwise to the exact six-rate chain. This gives negative drift in the majority/near-balanced-cohort sector for everyload, including the critical rays that defeated the quadratic family. Proved expected-exit and population-growth bounds for a complementary biased cone.6,032 exact checks pass. No stationary-mean substitution at a random stopping time is used. Global lambda>=2 recurrence remains unresolved;3/5 substantive turns consumed.

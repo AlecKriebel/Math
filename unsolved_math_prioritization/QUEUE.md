@@ -317,7 +317,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 307 | 30001557 / OWR-4425-012 | Pattern Characterization of Fractional Powers in Words | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 308 | 30001565 / OWR-4426-001 | Irreducible Coherent-Configuration Representations Without Polynomial Splitting | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 309 | 30001608 / OWR-4530-006 | Stability Beyond Unstable Population-Process Fluid Limits | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 309 | 30001608 / OWR-4530-006 | Stability Beyond Unstable Population-Process Fluid Limits | 0.1704 | 5.0 | 3 | 2010 | claimed_solved | 4/5 |  |  |  |
 | 310 | 30004437 / OWR-17475-002 | The Real-Zero Polynomial Amalgamation Conjecture | 0.1701 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 311 | 30001994 / OWR-11578-001 | Variational Eddy Currents with Degenerate Conductivity | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 312 | 30002011 / OWR-11581-002 | Corruption-Parameter Choice in Empirical-Bayes Estimation | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
