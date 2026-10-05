@@ -1,0 +1,36 @@
+[
+  {
+    "harness": "independent",
+    "flags": [],
+    "mutation": "Add one to a frozen reference pair count in memory",
+    "returncode": 1,
+    "rejected": true,
+    "message": "ValueError: n=2 mismatch in pair_counts"
+  },
+  {
+    "harness": "independent",
+    "flags": [
+      "-O"
+    ],
+    "mutation": "Add one to a frozen reference pair count in memory",
+    "returncode": 1,
+    "rejected": true,
+    "message": "ValueError: n=2 mismatch in pair_counts"
+  },
+  {
+    "harness": "author_temporary_copy",
+    "flags": [],
+    "mutation": "Add one to saved pair count; original freeze untouched",
+    "returncode": 1,
+    "rejected": true
+  },
+  {
+    "harness": "author_temporary_copy",
+    "flags": [
+      "-O"
+    ],
+    "mutation": "Add one to saved pair count; original freeze untouched",
+    "returncode": 0,
+    "rejected": false
+  }
+]
