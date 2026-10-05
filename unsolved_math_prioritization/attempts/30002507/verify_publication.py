@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Externally anchored byte integrity and finite replay, not a formal proof checker."""
 import argparse
+import base64
 import hashlib
 import json
 import os
@@ -17,7 +18,7 @@ sys.dont_write_bytecode = True
 MANIFEST = 'PUBLICATION_MANIFEST.json'
 ANCHORS = {
     'author/safe/MANIFEST.json': '5f892f30acb55e30ccfcf88932e933c55b76942583bca032bbc8339d95548791',
-    'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip': 'd3c1884b33f378a1289dcbd6eea175dd0e721964f478a6ceb6186d7990d77b1b',
+    'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip.b64': '842185613ceb47c5ed6cbca008816d80740c73abf695eb3ff21f45cd5f8691dd',
     'independent_audit/AUDIT_MANIFEST.json': '126d118347c7a95a3b1301b55af9576ae15d756c0b20231deaec90c3b0655255',
 }
 
@@ -89,9 +90,11 @@ def verify(root, expected_manifest):
         for name, row in rows.items():
             require(PurePosixPath(name).name == name, 'flat inner path')
             compare_file(root / folder / name, row)
-    archive = root / 'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip'
-    require(archive.stat().st_size == 29837, 'archive size')
-    with zipfile.ZipFile(archive) as z:
+    import io
+    encoded = (root / 'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip.b64').read_bytes()
+    archive = base64.b64decode(encoded.rstrip(b'\n'), validate=True)
+    require(len(archive) == 29837 and digest(archive) == 'd3c1884b33f378a1289dcbd6eea175dd0e721964f478a6ceb6186d7990d77b1b', 'decoded archive binding')
+    with zipfile.ZipFile(io.BytesIO(archive)) as z:
         safe = root / 'author/safe'
         require(len(z.infolist()) == 18 and set(z.namelist()) == {p.name for p in safe.iterdir()}, 'archive inventory')
         require(z.testzip() is None, 'archive CRC')
@@ -99,7 +102,7 @@ def verify(root, expected_manifest):
             require(z.read(name) == (safe/name).read_bytes(), 'archive equality')
     binding = read_json((root/'independent_audit/BINDING.json').read_bytes())
     require(binding['author_manifest_sha256'] == ANCHORS['author/safe/MANIFEST.json'], 'audit author binding')
-    require(binding['author_archive_sha256'] == ANCHORS['author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip'], 'audit archive binding')
+    require(binding['author_archive_sha256'] == 'd3c1884b33f378a1289dcbd6eea175dd0e721964f478a6ceb6186d7990d77b1b', 'audit archive binding')
     audit = read_json((root/'independent_audit/RESULTS.json').read_bytes())
     require(audit['original_target_status'] == 'unsolved' and audit['author_approaches_used'] == 5, 'audit disposition')
     require(audit['mandatory_mathematical_corrections'] == [], 'audit corrections')
@@ -118,6 +121,9 @@ def replay(root):
     with tempfile.TemporaryDirectory(prefix='dirichlet-portable-') as tmp:
         copied = Path(tmp)/'relocated'
         shutil.copytree(root, copied)
+        # Decode only into the disposable replay copy. Frozen archive bytes are unchanged.
+        encoded = (copied/'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip.b64').read_bytes()
+        (copied/'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip').write_bytes(base64.b64decode(encoded.rstrip(b'\n'),validate=True))
         results = {}
         for mode, flags in [('normal', []), ('optimized', ['-O'])]:
             def run(script, *args):

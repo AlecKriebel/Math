@@ -19,7 +19,7 @@ The other approaches give restricted recurrence and representation obstructions,
 - [Current publication status](PUBLICATION_STATUS.json) and [validation scope](VALIDATION.json).
 - [Primary-source verification metadata](author/safe/SOURCE_VERIFICATION.json) and [independent source binding](independent_audit/SOURCE_BINDING.json).
 
-The frozen author packet's pending-audit wording records its historical state. This wrapper and the included audit record completion of that review without rewriting either frozen input. The included author ZIP contains only the same 18 safe files and allows the independent frozen-archive checks to replay without source downloads.
+The frozen author packet's pending-audit wording records its historical state. This wrapper and the included audit record completion of that review without rewriting either frozen input. The included base64-encoded author ZIP contains only the same 18 safe files. The wrapper decodes it into a disposable replay copy and verifies its original 29,837 bytes and SHA-256 before running the independent frozen-archive checks. Text encoding permits byte-for-byte remote readback through the connector without source downloads.
 
 From any working directory, run:
 

@@ -58,7 +58,7 @@ def main():
         ('duplicate_json_key',lambda p:(p/v.MANIFEST).write_text('{"files":[],"files":[]}'),True),
         ('frozen_manifest_rehashed_outside',rehashed_anchor,True),
         ('unsupported_global_claim_rehashed_outside',altered_scope,True),
-        ('truncated_archive',lambda p:(p/'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip').write_bytes(b'PK'),False),
+        ('truncated_encoded_archive',lambda p:(p/'author/DIRICHLET_ZERO_30002507_AUTHOR_FREEZE.zip.b64').write_bytes(b'PK'),False),
     ]
     results = {}
     for label,mutate,reanchor in cases:
