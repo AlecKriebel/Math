@@ -1,0 +1,87 @@
+{
+  "problem_id": 2623,
+  "author_freeze_sha256": "d1f66407e8a7ff1c7aceaf7531b959085877de50c4198558d5d69dc33983f0f4",
+  "author_freeze_preserved": true,
+  "required": [
+    {
+      "id": "C1",
+      "severity": "provenance correction",
+      "reason": "An earlier equivalent question is verified in the 22 March 2022 v1 preprint. This updates the earliest identified source, not absolute priority.",
+      "changes": [
+        {
+          "path": "README.md",
+          "location": "Identity and literature, line 9 in the frozen file",
+          "operation": "replace_exact_string",
+          "old": "The same question already appears as Question A in their 2024 paper, so the catalogue's proposed year 2026 is an issue date rather than its earliest identified appearance.",
+          "new": "The same question appears in Lisi–Sabatini's 22 March 2022 preprint, titled Weakly-top groups, Section 3.3 (page 5), and as Question A in their 2024 article. The 2022 preprint is the earliest appearance identified in this audit, not a claim of absolute priority; the catalogue's proposed year 2026 labels the Notebook issue."
+        },
+        {
+          "path": "SOURCE_VERIFICATION.json",
+          "location": "/identity/earliest_identified_appearance, line 15 in the frozen file",
+          "operation": "replace_json_value",
+          "old": "Lisi–Sabatini, 2024 article, Question A (arXiv version 4 inspected).",
+          "new": "Lisi–Sabatini, Weakly-top groups, arXiv:2203.12021v1, 22 March 2022, Section 3.3, page 5; also Question A of the 2024 article. Earliest appearance identified in this audit, not absolute priority."
+        },
+        {
+          "path": "SOURCE_VERIFICATION.json",
+          "location": "/sources",
+          "operation": "append_source_metadata_object",
+          "old": "No entry for arXiv:2203.12021v1 exists in the frozen sources array.",
+          "new": {
+            "title": "Weakly-top groups",
+            "authors": [
+              "Francesca Lisi",
+              "Luca Sabatini"
+            ],
+            "url": "https://arxiv.org/pdf/2203.12021v1",
+            "abstract_url": "https://arxiv.org/abs/2203.12021v1",
+            "bytes": 134230,
+            "sha256": "4c41c1a9490899454616c1358486ea7eb3b9cffaa3b375bb32dc91dc3e9c16d6",
+            "version_inspected": "arXiv v1, 22 March 2022, 5 pages",
+            "locations": [
+              "Definition in Section 1, page 1",
+              "Section 3.3, page 5"
+            ],
+            "inspection": "Independently downloaded complete PDF and inspected the definition and derived-length question during the 5 October 2026 audit. The original author freeze inspected v4, not v1.",
+            "public_status": "Public arXiv preprint. The 2024 published article is the later version with a changed title.",
+            "relevance": "Earliest appearance identified in this audit of the equivalent bounded-derived-length question, under the term weakly-top. No absolute priority claim."
+          }
+        }
+      ]
+    }
+  ],
+  "recommended_editorial": [
+    {
+      "id": "C2",
+      "severity": "coset terminology only; no algorithmic or proof failure",
+      "reason": "The code removes xH={xh:h in H}, a left coset. Either side gives valid generator-equivalence; only the label is wrong.",
+      "changes": [
+        {
+          "path": "PROOFS.md",
+          "location": "Certification and logical boundary, line 150",
+          "operation": "replace_exact_string",
+          "old": "One representative from each right coset is enough because ⟨H,xh⟩=⟨H,x⟩ for h∈H.",
+          "new": "One representative from each left coset xH is enough because ⟨H,xh⟩=⟨H,x⟩ for h∈H."
+        },
+        {
+          "path": "verify_math.py",
+          "location": "Group.subgroups docstring, line 52",
+          "operation": "replace_exact_string",
+          "old": "Breadth-first adjoining one element, one representative per right coset.",
+          "new": "Breadth-first adjoining one element, one representative per left coset xH."
+        }
+      ]
+    }
+  ],
+  "release_gate": {
+    "state": "pending_separate_v2_and_delta_acceptance",
+    "requirements": [
+      "Do not rewrite or replace the original author freeze or receipt.",
+      "Produce a separately named corrected author v2 package and v2 manifest with fresh hashes.",
+      "Provide a delta listing every added, removed and changed file, old/new hashes, and the C1/C2 correction mapping.",
+      "Retain unresolved_after_five_approaches, five approaches, and the explicit no-novelty/no-solution boundary.",
+      "Replay the corrected author checker and the independent verifier; CHECK_RESULTS.json must remain byte-identical unless a separately reviewed change is proposed.",
+      "Independently check the final v2 delta and record acceptance before publication; this audit is not that acceptance."
+    ]
+  }
+}
