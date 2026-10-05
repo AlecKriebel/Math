@@ -803,7 +803,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 792 | 30006031 / OWR-14298590-001 | Little Three-Disks Actions on Operadic Homotopy Centers | 0.1010 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 793 | 5300080 / AMR-052-0080 | Boundary fixed points in rank-zero Hénon components | 0.1006 | 5.5 | 3 | 1990 | queued | 0/5 |  |  |  |
 | 794 | 5300014 / AMR-052-0014 | Non-equivalent compactifications of Blaschke-product space | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
-| 795 | 5300056 / AMR-052-0056 | Bounded Jacobian cocycles and absolute continuity | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
+| 795 | 5300056 / AMR-052-0056 | Bounded Jacobian cocycles and absolute continuity | 0.1004 | 5.5 | 3 | 1992 | unsolved | 5/5 |  |  |  |
 | 796 | 5300062 / AMR-052-0062 | Smoothness of exponential-family parameter hairs | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 797 | 30005418 / OWR-12697689-014 | Koszulness from the Kähler Package | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 798 | 30005453 / OWR-12697708-006 | Unique Equilibria for Subcritical Reinforcement on Infinite Graphs | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |

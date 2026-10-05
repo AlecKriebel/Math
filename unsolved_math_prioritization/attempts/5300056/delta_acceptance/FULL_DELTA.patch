@@ -1,0 +1,166 @@
+--- /dev/null
++++ v2/CORRECTION_DELTA.md
+@@ -0,0 +1,22 @@
++# Exact v1-to-v2 proof delta
++
++Only the three required edits from the independent audit correction were applied. No optional prose changes, theorem changes, new proof attempts, or code changes were made.
++
++```diff
++--- v1/PROOF.md
+++++ v2/PROOF.md
++@@ -133,11 +133,11 @@
++     M_x ≥ ∫_(B(x,r)∩X) |Df^n|^κ dν
++         ≥ (a_x/r)^κ ν(B(x,r)∩X).
++ 
++-Consequently ν(B(x,r))≤C_x r^κ for all sufficiently small r, with C_x=M_x/a_x^κ. One can replace X₀ by the countable union of sets E_j on which C_x≤j and r_x≥1/j. If A is H^κ-null, cover A by sets U_i of positive diameter d_i<1/(2j), with Σ_i d_i^κ arbitrarily small. For each U_i meeting A∩E_j choose x_i in that intersection. Then U_i⊂B(x_i,2d_i), and
+++Consequently ν(B(x,r))≤C_x r^κ for all sufficiently small r, with C_x=M_x/a_x^κ. One can replace X₀ by the countable union of sets E_j on which C_x≤j and r_x≥1/j. If A is H^κ-null, cover A by sets U_i of diameters 0≤d_i<1/(2j), with Σ_i d_i^κ arbitrarily small. For each positive-diameter U_i meeting A∩E_j choose x_i in that intersection. Then U_i⊂B(x_i,2d_i), and
++ 
++     ν*(A∩E_j) ≤ Σ_i ν(B(x_i,2d_i)) ≤ j 2^κ Σ_i d_i^κ.
++ 
++-Thus ν*(A∩E_j)=0. Singleton members can be replaced by arbitrarily small positive-diameter balls; the growth estimate rules out atoms on E_j. Countable union and the conull property give ν(A)=0, hence m(A)=0. ∎
+++Thus ν*(A∩E_j)=0. Any zero-diameter cover member meeting A∩E_j is a singleton {x} with x∈E_j, and ν({x})≤j r^κ for every 0<r<1/j, so ν({x})=0. There are at most countably many such members. Discard their zero-mass contribution and apply the preceding estimate to the positive-diameter members. Countable union and the conull property give ν(A)=0, hence m(A)=0. ∎
++ 
++ Here ν* is the outer measure induced by ν. Consequently no measurable selection of n(x,r), a_x, M_x, or r_x is needed, and the E_j need not themselves be measurable.
++ 
++```
+--- v1/MANIFEST.json
++++ v2/MANIFEST.json
+@@ -1,12 +1,17 @@
+ {
+   "schema": 1,
+   "hash_algorithm": "sha256",
+-  "purpose": "Frozen sanitized authored payload; excludes this manifest to avoid self-reference. Archive hash is recorded separately.",
++  "purpose": "Frozen sanitized v2 authored payload; excludes this manifest to avoid self-reference. Archive hash is recorded separately.",
+   "files": [
+     {
+       "path": "APPROACHES.md",
+       "bytes": 2301,
+       "sha256": "b09a0c2ac1e3db57ffa6df1fdc1aa8344f1f7bdb75f382edfcdb780afac81f7b"
++    },
++    {
++      "path": "CORRECTION_DELTA.md",
++      "bytes": 1957,
++      "sha256": "b6306f1538cbd44db356eb1661e8c2300bb83f6427f2fa555990354851058519"
+     },
+     {
+       "path": "LITERATURE.md",
+@@ -15,13 +20,18 @@
+     },
+     {
+       "path": "PROOF.md",
+-      "bytes": 11994,
+-      "sha256": "96c90264fa8c741818dac32abd6a4b203d1ee7e782699f55a28c61dbe3ae0014"
++      "bytes": 12169,
++      "sha256": "f0baa658ae1380777ba63c8d651dfd4c71bb2b39e4c6e9f4f1be3f8d5ef2dc50"
+     },
+     {
+       "path": "README.md",
+       "bytes": 2140,
+       "sha256": "7469204d87b36d2d104638900cf3829b13bf5baf84afc1130353afc5316f8f22"
++    },
++    {
++      "path": "REVISION_PROVENANCE.json",
++      "bytes": 3001,
++      "sha256": "94675e02f52ae62e7ce9af18e59ddb6d23b996f9ba88083531b35ffa1368556b"
+     },
+     {
+       "path": "source_metadata.json",
+--- v1/PROOF.md
++++ v2/PROOF.md
+@@ -133,11 +133,11 @@
+     M_x ≥ ∫_(B(x,r)∩X) |Df^n|^κ dν
+         ≥ (a_x/r)^κ ν(B(x,r)∩X).
+ 
+-Consequently ν(B(x,r))≤C_x r^κ for all sufficiently small r, with C_x=M_x/a_x^κ. One can replace X₀ by the countable union of sets E_j on which C_x≤j and r_x≥1/j. If A is H^κ-null, cover A by sets U_i of positive diameter d_i<1/(2j), with Σ_i d_i^κ arbitrarily small. For each U_i meeting A∩E_j choose x_i in that intersection. Then U_i⊂B(x_i,2d_i), and
++Consequently ν(B(x,r))≤C_x r^κ for all sufficiently small r, with C_x=M_x/a_x^κ. One can replace X₀ by the countable union of sets E_j on which C_x≤j and r_x≥1/j. If A is H^κ-null, cover A by sets U_i of diameters 0≤d_i<1/(2j), with Σ_i d_i^κ arbitrarily small. For each positive-diameter U_i meeting A∩E_j choose x_i in that intersection. Then U_i⊂B(x_i,2d_i), and
+ 
+     ν*(A∩E_j) ≤ Σ_i ν(B(x_i,2d_i)) ≤ j 2^κ Σ_i d_i^κ.
+ 
+-Thus ν*(A∩E_j)=0. Singleton members can be replaced by arbitrarily small positive-diameter balls; the growth estimate rules out atoms on E_j. Countable union and the conull property give ν(A)=0, hence m(A)=0. ∎
++Thus ν*(A∩E_j)=0. Any zero-diameter cover member meeting A∩E_j is a singleton {x} with x∈E_j, and ν({x})≤j r^κ for every 0<r<1/j, so ν({x})=0. There are at most countably many such members. Discard their zero-mass contribution and apply the preceding estimate to the positive-diameter members. Countable union and the conull property give ν(A)=0, hence m(A)=0. ∎
+ 
+ Here ν* is the outer measure induced by ν. Consequently no measurable selection of n(x,r), a_x, M_x, or r_x is needed, and the E_j need not themselves be measurable.
+ 
+--- /dev/null
++++ v2/REVISION_PROVENANCE.json
+@@ -0,0 +1,80 @@
++{
++  "problem_id": 5300056,
++  "revision": "v2",
++  "date_utc": "2026-10-05",
++  "purpose": "Apply exactly the three local covering-proof corrections; keep every other original authored byte unchanged except the regenerated manifest.",
++  "original_archive": {
++    "filename": "JACOBIAN_COCYCLE_5300056_AUTHOR_SAFE_FREEZE.zip",
++    "bytes": 17955,
++    "sha256": "f603686a4d0a3d22cb26b6f1dbb972a8dd37a746a0738ef43165e3d9ff6d66ed",
++    "preserved": true
++  },
++  "correction_source": {
++    "filename": "CORRECTIONS.md",
++    "sha256": "610270c5a44317e65f9691d629eb30903519951b1661b1f5f0fd0c79140c95cb",
++    "required_edits": 3,
++    "optional_edits_applied": false
++  },
++  "proof_delta": {
++    "old_bytes": 11994,
++    "old_sha256": "96c90264fa8c741818dac32abd6a4b203d1ee7e782699f55a28c61dbe3ae0014",
++    "new_bytes": 12169,
++    "new_sha256": "f0baa658ae1380777ba63c8d651dfd4c71bb2b39e4c6e9f4f1be3f8d5ef2dc50",
++    "unified_diff_file": "CORRECTION_DELTA.md",
++    "unified_diff_file_sha256": "b6306f1538cbd44db356eb1661e8c2300bb83f6427f2fa555990354851058519"
++  },
++  "unchanged_original_files": [
++    {
++      "path": "APPROACHES.md",
++      "bytes": 2301,
++      "sha256": "b09a0c2ac1e3db57ffa6df1fdc1aa8344f1f7bdb75f382edfcdb780afac81f7b"
++    },
++    {
++      "path": "LITERATURE.md",
++      "bytes": 6150,
++      "sha256": "d8a569c1375ebf60bc88db91a4e57d13864aa0a7e673518f884a1828ba03cdf8"
++    },
++    {
++      "path": "README.md",
++      "bytes": 2140,
++      "sha256": "7469204d87b36d2d104638900cf3829b13bf5baf84afc1130353afc5316f8f22"
++    },
++    {
++      "path": "source_metadata.json",
++      "bytes": 4565,
++      "sha256": "acf76f2f40284a9d441834327a99d62945463c96ada352d89e9cb72d793123e0"
++    },
++    {
++      "path": "verification_results.json",
++      "bytes": 1363,
++      "sha256": "812d2c07c2396148f488bcc5f8ba474fa5d5e3a3bc91ec8326dd4435b0d7377b"
++    },
++    {
++      "path": "verify.py",
++      "bytes": 5404,
++      "sha256": "fce78c6776af1bd7d2fe4de120df66468add8b807eb5c6bc1de5f9b17d6ab2c1"
++    },
++    {
++      "path": "verify_manifest.py",
++      "bytes": 1109,
++      "sha256": "6d4278ae48182e5c35bf68feaea9f3b654f842af32b55cf5ddd8fbd0627aede0"
++    }
++  ],
++  "manifest": {
++    "regenerated": true,
++    "original_sha256": "35f8cac15b62cb9a5b285020f6c7a25bba6448016647759464c301083105e6c9",
++    "new_hash_location": "Separate revision receipt, to avoid a self-referential manifest/provenance cycle."
++  },
++  "historical_labels": "The unchanged original README and metadata describe the v1 author freeze. This file records the correction revision; acceptance of these exact v2 bytes requires the original auditor.",
++  "mathematical_status": "Scoped partials only; original general target remains unresolved. Five approaches remain five.",
++  "code_and_results_unchanged": true,
++  "bounded_delta_audit": "pending original auditor acceptance",
++  "remote_writes_performed": false,
++  "archive_exclusions": [
++    "source PDFs",
++    "source text extracts",
++    "source images",
++    "raw datasets",
++    "private coordination"
++  ]
++}
