@@ -760,7 +760,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 749 | 7000022 / AMR-069-0022 | Geometry of Curves and Surfaces — Problem 5.3 | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 750 | 30004425 / OWR-17473-001 | Wall Crossing Between Adjacent Tropical Toric Degenerations | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 751 | 30004429 / OWR-17474-001 | Discontinuities of Two-Sided Specifications | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 752 | 30004491 / OWR-1703871-006 | Infinite Transverse Actions on Codimension-One Foliations | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 752 | 30004491 / OWR-1703871-006 | Infinite Transverse Actions on Codimension-One Foliations | 0.1021 | 5.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
 | 753 | 30004494 / OWR-1703871-010 | Boundary-Corrected Ampleness of Extended Hodge Bundles | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 754 | 30004541 / OWR-2654828-006 | Extinction Criteria for the Derrida–Retaux Process | 0.1021 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 755 | 1200005 / AMR-011-0005 | Some Questions — Question 5 | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
