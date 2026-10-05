@@ -9,3 +9,11 @@
 ## 2026-10-04T23:46:25.092107+00:00 — bounded recent-publication route closed
 
 Three complete primary texts and their exact published-PDF descriptor/date maps were inspected for E/M/C implications. Related methods and restricted results found, no full target theorem identified in these three texts. Current exact-ID repository/catalog observations remain explicitly bounded. Two independent literature routes remain active; no final priority or preprint/publication gate. Best guesses: mathematics100%; bounded priority35%; workflow35%. See ROOT_PRIORITY_RECENT_COMPARISON.md and native custody/seal.
+
+## 2026-10-04T23:57:26.253194+00:00 — classical negative implication checked
+
+Querret's signed triangle formula and Fierobe v5 Lemma4.1 imply nonconstant focal ratios in a noncircular triangular billiard family. Complete relevant primary statements/proofs and visual formulas checked; fresh arbitrary-triangle symbolic projection identity and exact PR305 circumcircle/power map pass. Negative claim will be credited as a classical implication, not independently novel or attributed as an old explicit target assertion. Initial TLS and checker API failures retained. Two priority families remain active, final E/M priority pending. Math100%; bounded priority45%; workflow35%.
+
+## 2026-10-05T00:19:07.074694+00:00 — Closed historical-route checkpoint; math100%,bounded priority85%,workflow40%
+
+Both independent priority routes were closed, fully read and authenticated by ROOT. Fresh general and focal controls pass. Exact old-results implications for negative constancy and restricted triangular E/M are recorded, the latter awaiting a NEW adversarial report. No integrated priority or paper/publication clearance. Known-held-file inventory is a dated snapshot only, not a peer writer ACK. Persistent descending goal remains active.
