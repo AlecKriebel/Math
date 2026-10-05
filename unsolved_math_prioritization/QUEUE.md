@@ -692,7 +692,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 681 | 2305044 / AMR-022-5044 | Research Problems in Function Theory — Problem 5.44 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 682 | 2305073 / AMR-022-5073 | Research Problems in Function Theory — Problem 5.73 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 683 | 2306043 / AMR-022-6043 | Research Problems in Function Theory — Problem 6.43 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Credited prior result: Leung (1978) proved the two-sided successive coefficient-modulus bound for all normalized starlike functions and every n >= 1. Original general proof uninspected; no new solution or equality classification claimed. [Independent audit](attempts/2306046/audit/AUDIT.md). |  |
 | 685 | 2306047 / AMR-022-6047 | Research Problems in Function Theory — Problem 6.47 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 686 | 2306078 / AMR-022-6078 | Research Problems in Function Theory — Problem 6.78 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 687 | 2306086 / AMR-022-6086 | Research Problems in Function Theory — Problem 6.86 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
