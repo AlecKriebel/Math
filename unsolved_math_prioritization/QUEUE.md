@@ -703,7 +703,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 692 | 2870 / KP-3.72 | Kirby Problem 3.72 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 693 | 2890 / KP-4.14 | Kirby Problem 4.14 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 694 | 2942 / KP-4.66 | Kirby Problem 4.66 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 695 | 2998 / KP-4.122 | Kirby Problem 4.122 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 695 | 2998 / KP-4.122 | Kirby Problem 4.122 | 0.1050 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 696 | 30001408 / OWR-4199-001 | Invariant Homogeneous Valuations on Convex Bodies | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 697 | 30001599 / OWR-4527-003 | Alpha Bounds for Uniform Fat-Point Schemes | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 698 | 30001603 / OWR-4527-007 | Jet Spanning by Nef Toric Vector Bundles | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
