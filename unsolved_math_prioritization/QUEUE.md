@@ -708,7 +708,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 697 | 30001599 / OWR-4527-003 | Alpha Bounds for Uniform Fat-Point Schemes | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 698 | 30001603 / OWR-4527-007 | Jet Spanning by Nef Toric Vector Bundles | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 699 | 30001631 / OWR-4535-006 | Curvature Negativity of the Takhtajan–Zograf Metric | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 700 | 4400001 / AMR-043-0001 | Pingree open problems — Hochman problem 1 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 700 | 4400001 / AMR-043-0001 | Pingree open problems — Hochman problem 1 | 0.1048 | 5.5 | 3 | 2010 | already_solved | 1/5 |  | Prior negative resolution: Salo (2023), Theorem 1, DOI 10.1112/plms.12567; two-sided free-part conjugacy would extend and contradict fixed-point counts 2 versus 0. |  |
 | 701 | 4400008 / AMR-043-0008 | Pingree open problems — Boyle problem 2 | 0.1048 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 702 | 6700060 / AMR-066-0060 | Scalar Curvature Question [?64]: Are all extremal convex polyhedraP are mean convexly extremal | 0.1048 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 703 | 6700077 / AMR-066-0077 | Scalar Curvature Question [?79]: C0-closeness of the spaces ofC0-metrics withVolumicallyPositiveScalarCurvatures | 0.1048 | 6.0 | 4 | 2017 | queued | 0/5 |  |  |  |
