@@ -783,7 +783,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 772 | 2623 / KOU-21.114 | Kourovka Notebook Problem 21.114 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 773 | 2809 / KP-3.11 | Kirby Problem 3.11 | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 774 | 30006556 / OWR-14299905-031 | Two Low-Multiplicity Distances in Planar Point Sets | 0.1020 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 775 | 3086 / OPG-37327 | Covering a square with unit squares | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 775 | 3086 / OPG-37327 | Covering a square with unit squares | 0.1020 | 5.5 | 1 | unknown | unsolved | 4/5 |  |  |  |
 | 776 | 5500031 / AMR-054-0031 | Trapping Light Rays with Segment Mirrors | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 777 | 9500009 / AMR-094-0009 | Do peaks of random labelings repel each other? | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 778 | 30005356 / OWR-12697685-001 | Definable Endomorphisms of Generic Multiplicative Fields | 0.1019 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
