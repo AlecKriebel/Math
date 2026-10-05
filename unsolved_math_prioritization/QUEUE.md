@@ -695,7 +695,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 684 | 2306046 / AMR-022-6046 | Research Problems in Function Theory — Problem 6.46 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 685 | 2306047 / AMR-022-6047 | Research Problems in Function Theory — Problem 6.47 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 686 | 2306078 / AMR-022-6078 | Research Problems in Function Theory — Problem 6.78 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 687 | 2306086 / AMR-022-6086 | Research Problems in Function Theory — Problem 6.86 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 687 | 2306086 / AMR-022-6086 | Research Problems in Function Theory — Problem 6.86 | 0.1050 | 6.0 | 3 | unknown | claimed_solved | 5/5 |  | 2026-10-05: Qualitative fixed-point improvement proved: each nonreal point admits a strictly smaller radius uniform over the real-coefficient univalent class; nonzero real points retain the sharp classical radius. Explicit/sharp quantitative formula undetermined; novelty/current literature unverified. Five approaches; independent audit passed. See [proof, scope and full audit](attempts/2306086/README.md). |  |
 | 688 | 2307004 / AMR-022-7004 | Research Problems in Function Theory — Problem 7.4 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 689 | 2307031 / AMR-022-7031 | Research Problems in Function Theory — Problem 7.31 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 690 | 2307045 / AMR-022-7045 | Research Problems in Function Theory — Problem 7.45 | 0.1050 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |

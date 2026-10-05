@@ -1,0 +1,7 @@
+# Publication research log
+
+- 2026-10-05 07:13-07:27 UTC: Five substantive approaches were completed in the authored freeze; see the complete timestamped `author/APPROACH_LOG.md`. Its completion estimates concern explicit quantitative resolution and are preserved as subjective planning estimates.
+- 2026-10-05 07:40 UTC: Fresh independent adversarial audit passed the qualitative theorem, equality rigidity, compactness quantifiers, covariance phase, exact lower bounds and convex-hull obstruction. It independently reproduced the four saved numerical controls without treating them as certified inequalities.
+- 2026-10-05 07:44 UTC: Publication preflight found no exact-target main attempt/state entry, matching branch, or PR in bounded searches. Both ZIP hashes matched the audited identities. The live queue's unusual pre-existing header is preserved literally.
+- 2026-10-05 07:53 UTC: Main advanced during packaging. Rebased the package onto the newly observed main commit, retained the other newly updated queue row, and reconfirmed no main attempt or PR for this target.
+- 2026-10-05: Publication scope fixed at qualitative `claimed_solved`, five approaches. Qualitative theorem completion: 100% as an audited candidate proof, not a novelty or formal-verification estimate. Explicit/sharp quantitative completion is not claimed; the five-route log retains its historical estimates and gaps. A separate scope note clarifies inverse composition and delta tending to zero while preserving both original freezes and the complete audit.
