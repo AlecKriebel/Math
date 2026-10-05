@@ -716,7 +716,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 705 | 30001678 / OWR-4792-006 | Smoothness on Products of Perfect Sets | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 706 | 30001694 / OWR-4798-010 | Large Inscribed Lattice Squares in Polyomino Boundaries | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 707 | 30001860 / OWR-11129-006 | Asymptotic Proportion of $Q$ in Classical Groups | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 708 | 30001887 / OWR-11136-013 | Multiple Cover Decomposition Thresholds for Planar Sets | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 708 | 30001887 / OWR-11136-013 | Multiple Cover Decomposition Thresholds for Planar Sets | 0.1047 | 5.5 | 3 | 2011 | unsolved | 5/5 |  |  |  |
 | 709 | 30001893 / OWR-11136-024 | Dimension of Convex Partition Spaces in Three Dimensions | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 710 | 30003703 / OWR-15987-013 | Equality of the Andreadakis and Representation-Ring Filtrations | 0.1045 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 711 | 10000069 / AMR-099-0069 | Distance exponent of random series-parallel graphs | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
