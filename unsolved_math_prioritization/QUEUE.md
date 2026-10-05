@@ -719,7 +719,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 708 | 30001887 / OWR-11136-013 | Multiple Cover Decomposition Thresholds for Planar Sets | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 709 | 30001893 / OWR-11136-024 | Dimension of Convex Partition Spaces in Three Dimensions | 0.1047 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 710 | 30003703 / OWR-15987-013 | Equality of the Andreadakis and Representation-Ring Filtrations | 0.1045 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 711 | 10000069 / AMR-099-0069 | Distance exponent of random series-parallel graphs | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 711 | 10000069 / AMR-099-0069 | Distance exponent of random series-parallel graphs | 0.1044 | 5.5 | 3 | 2012 | unsolved | 1/5 |  | Credited exact implicit spectral characterization audited with local erratum; full shape not claimed solved. See attempts/10000069/. |  |
 | 712 | 30002003 / OWR-11580-009 | Stringy Euler Criteria for Smooth Spherical Varieties | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 713 | 30002046 / OWR-11784-003 | Real Fixed Points of the Minkowski Question-Mark Function | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 714 | 30002129 / OWR-12007-009 | Refined Slippery Bounds for Positive-Word Rotation Numbers | 0.1044 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
