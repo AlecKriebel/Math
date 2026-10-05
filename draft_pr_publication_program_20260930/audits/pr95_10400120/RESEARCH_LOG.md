@@ -29,3 +29,15 @@ First fresh full-package adversary independently reconstructs the ordinary full 
 
 ### 2026-10-05T23:17:59.015470+00:00 — corrected V2 authenticated, second fresh review active; PR95 workflow65%, math100%, priority85% unresolved; program12/99 (12.12%)
 ROOT read repair report/scope/exact diff and authenticated2030 V2 file bodies, four intentional hostile fixture links, immutable693-file V1, public payload and110 archive members. All mathematical checkers, manuscript/PDF and exact deposit metadata remain unchanged. Fourteen hostile component/content/manifest/AST controls reject in both modes before output creation; two clean guards pass. Initial ROOT authentication mistakenly counted16 total as14 hostile; the captured failed administrative check remains preserved, and the corrected actual partition/authentication passes without relabeling or rerunning science. New round2 adversary is independent and active; no service action or primary mutation.
+
+## 2026-10-05T23:35:34.526490+00:00 — ROOT qualified publication gate
+
+Second fresh adversary passed corrected v2 with no required repairs. ROOT read complete reports and authenticated581 closed evidence files; minimum-runtime controls passed6 positive and6 intentional false cases. Seven upload files were rehashed and fresh PR head matched. Human-authorized qualified publication; priority remains unresolved, Kuriya credited; no firstness/current-openness claim. Workflow75%, mathematics100%, bounded priority85% with clearancefalse; program12/99 (12.12%). Publication, tracker, merge and native acceptance pending.
+
+## 2026-10-05T23:37:01.755949+00:00 — actual publication and tracker
+
+Production Zenodo record23174156, DOI10.5281/zenodo.23174156 published with exact intended metadata, no normalization exceptions, seven reviewed files. DOI resolvesHTTP200 and public downloads are byte-identical. GWS CLI appended exactly one row and full-tab readback confirmed 'Math Puzzles'!A28:D28. Workflow85%; program12/99 (12.12%) pending merge/native acceptance. Priority remains unresolved; no human peer review or firstness claim.
+
+## 2026-10-05T23:44:41.436724+00:00 — native acceptance prepared, workflow95%
+
+Same reviewed head merged as b7013d3d4b116e63b9ce1458c75da1d0115bbbde. The initial acceptance helper stopped on an incorrect independent-script path after only source materialization and two pinned author-code replacements; failed run and original operator source preserved. Corrected helper resumed after exact partial-state authentication; optimized current and historical-replay author checks passed7 polynomial identities, and independent route passed2005 finite checks. Native acceptance remains priority-unresolved; incoming17 bodies and2/5 effort preserved. Scoped main push and final metadata readback remain. Program12/99 completed (12.12%). No exclusive lease was received or claimed; primary untouched, strict descendant/remote-head guards protect competing main updates.

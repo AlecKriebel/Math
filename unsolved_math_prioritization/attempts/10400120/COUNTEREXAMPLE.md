@@ -1,6 +1,6 @@
 # A lens-space counterexample to Ohtsuki Conjecture 7.5 for SU(5)
 
-**Target:** 10400120 / AMR-103-0120. **Status:** complete counterexample candidate, independent review pending. **Substantive approaches:** 2/5. No novelty or human peer-review claim.
+**Target:** 10400120 / AMR-103-0120. **Status:** verified full counterexample to the printed claim; accepted as a qualified research note with historical priority unresolved. **Substantive approaches:** 2/5. No novelty or human peer-review claim.
 
 ## Statement
 
@@ -94,6 +94,14 @@ which is nonzero. Thus the conclusion does not depend on floating-point error or
 
 A numerical modular-matrix search first located this pair; those floating-point results are discovery evidence only. The proof uses the exact finite certificate above and the cited surgery/modular formulas. No SU(2) counterexample, homotopy-equivalent pair, all-group classification, or optimality/minimality claim is made. The group equality follows from the elementary lens-space construction, not an unproved three-manifold rigidity assertion. The two spaces need not be homeomorphic or homotopy equivalent for the conjecture to apply.
 
-Source and prior-attempt checks found no previous campaign attempt for this ID; the pinned imported report was open triage. A related keyword hit, Kirby3.5, concerns hyperbolic towers and is not a duplicate. Novelty of this particular counterexample has not been established. Independent review must verify source normalization, root/level admissibility, lens surgery words and the cyclotomic computation before a resolution status is adopted.
+Source and prior-attempt checks found no previous campaign attempt for this ID; the pinned imported report was open triage. A related keyword hit, Kirby3.5, concerns hyperbolic towers and is not a duplicate. Novelty of this particular counterexample has not been established. The source normalization, root/level admissibility, lens surgery words and cyclotomic computation have been independently verified; historical priority remains unresolved as detailed below.
 
 Actual work used the inherited native runtime without a model or reasoning-setting change; the exact runtime model identifier was not exposed to this worker.
+
+## 5. Qualified publication acceptance (2026-10-05)
+
+The checkable research note, [An explicit SU(5) lens-space counterexample to the printed Guadagnini-Pilo conjecture](https://doi.org/10.5281/zenodo.23174156), contains a short analytic A4 root-lattice reduction and portable exact certificates. The target is the claim printed as Ohtsuki Conjecture7.5, p474, not an assertion about the problem's current global status. Ohtsuki's volume is nominally2002 and was published1June2004; Guadagnini-Pilo appeared in CMP192(1998),47–65, DOI10.1007/s002200050290. The actual general-formula input is Hansen-Takata arXiv:math/0209403v2; its final journal full text was not compared. Established full ordinary modular-category and RT surgery foundations are imported mathematical inputs.
+
+Historical priority remains unresolved. Takahito Kuriya's directly relevant preprint, The LMO invariant and the Guadagnini-Pilo conjecture for lens spaces, is credited in the note and priority supplement. Its full text and complete hypotheses/conclusions could not be obtained; we cannot establish that it does not already contain or circumscribe this result. No first counterexample, exhaustive novelty clearance, continuing global openness, or new historical resolution is claimed. Other source and edition gaps are disclosed in the public supplement. No claim that Kuriya's language is Japanese or that it has a DOI is made.
+
+At least two sequential fresh whole-package adversarial AI reviews checked the final package; any required corrections were propagated before publication. Active native guards use explicit exceptions that remain enabled under Python -O. All seventeen incoming bodies, original review reports, original execution receipts and author effort2/5 remain in the immutable program archive. The author-replay proof stays a historical incoming proof and its refreshed receipt binds those historical bytes; it is distinguished from this current acceptance proof. AI tools were used extensively; this is an unrefereed preprint without conventional human peer review.

@@ -1,3 +1,5 @@
+def require(condition, message="explicit guard failed"):
+ if not condition: raise AssertionError(message)
 import numpy as np,itertools,json,hashlib
 from pathlib import Path
 # Phi_100 = x^40-x^30+x^20-x^10+1.
@@ -24,7 +26,7 @@ signs=[(-1)**sum(p[i]>p[j] for i in range(5) for j in range(i+1,5)) for p in per
 def snum(x,y):
  out=np.zeros(40,dtype=object)
  for p,sgn in zip(perms,signs):
-  dot=sum(x[i]*y[p[i]] for i in range(5));assert dot%5==0
+  dot=sum(x[i]*y[p[i]] for i in range(5));require(dot%5==0)
   out+=sgn*MON[(-2*(dot//5))%100]
  return out
 S=[[None]*126 for _ in X]
@@ -33,7 +35,7 @@ for i,x in enumerate(X):
 
 T=[]
 for x in X:
- z=sum(a*a for a in x)-sum(a*a for a in X[0]);assert z%5==0;T.append((z//5)%100)
+ z=sum(a*a for a in x)-sum(a*a for a in X[0]);require(z%5==0);T.append((z//5)%100)
 A=np.zeros(40,dtype=object)
 for j in range(126):A+=shift(mul(S[0][j],S[0][j]),5*T[j])
 B=np.zeros(40,dtype=object)
@@ -54,9 +56,9 @@ checks=[(S[0][0],{0:5,20:-10,30:10}),
  (AA,{0:406250000,20:125000000,30:-125000000}),
  (BB,{0:20312500000000,20:12500000000000,30:-12500000000000}),
  (diff,{20:-6250000000000,30:6250000000000})]
-for actual,target in checks:assert list(actual)==list(expected(target))
-assert len(labels)==126 and len(perms)==120
-assert any(diff) and any(AA) and any(BB) and any(DD)
+for actual,target in checks:require(list(actual)==list(expected(target)))
+require(len(labels)==126 and len(perms)==120)
+require(any(diff) and any(AA) and any(BB) and any(DD))
 r={k:list(map(int,v)) for k,v in dict(A=A,B=B,S00=S[0][0],AA=AA,BB=BB,DD=DD,difference=diff).items()}
 r.update({'weight_count':126,'weyl_permutation_count':120,'symmetric_entries_computed':8001,'final_polynomial_identities':7,'all_pass':True,'arithmetic':'Python arbitrary-precision integers in NumPy object arrays; no floating point in certificate','artifact_sha256':hashlib.sha256(Path('COUNTEREXAMPLE.md').read_bytes()).hexdigest()})
 Path('verification.json').write_text(json.dumps(r,indent=2)+'\n')

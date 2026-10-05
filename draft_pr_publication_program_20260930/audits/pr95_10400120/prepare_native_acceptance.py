@@ -79,7 +79,7 @@ for rel in ['verify.py','independent_review/author_replay/verify.py']:
     source=A/'repaired_certificate_sources_20261005/verify.py'
     require(sha(source)=='1294068a5202c9f05ededf864887b7ce7bcb979319bd8f32827df5c88191a6e8','repaired author pin')
     (N/rel).write_bytes(source.read_bytes())
-source=A/'repaired_certificate_sources_20261005/independent_checks.py'
+source=A/'repaired_certificate_sources_20261005/independent_review/independent_checks.py'
 require(sha(source)=='401a42f6295c482ba2b745d764558c08507ea1eed1dc0df38ef780d2e6966487','repaired independent pin')
 (N/'independent_review/independent_checks.py').write_bytes(source.read_bytes())
 for rel in ['verify.py','independent_review/author_replay/verify.py','independent_review/independent_checks.py']:

@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-05T23:14:55.960751+00:00: Created independent obligations before reading prior reviews; bounded review completion 5%. No target writes, external communication, Git or service actions.
+- 2026-10-05T23:16:55.580377+00:00: Independently reconstructed survivors, HT specialization, positive embedding, S00 and full-word scaling before any prior-review read; completion30%.
+- 2026-10-05T23:22:01.229170+00:00: Own finite-check script first invocation had a lexical SyntaxError (else9 token), not a scientific failure; preserved failed source and actual receipt, repaired whitespace. No candidate edits. Completion60%.
+- 2026-10-05T23:22:20.100273+00:00: Own auxiliary code initially encoded p1 exp(-2pi*i*dot/10) as t^(-2dot); direct guard exposed this erroneous map since t=exp(2pi*i/10). Preserved failed source/receipt, corrected exponent to-dot. Manuscript and written derivation use the correct exponent; no candidate defect or result repair. Completion remains60%.
+- 2026-10-05T23:23:54.262481+00:00: Both fresh outer runners completed with six positives/six false arithmetic controls each; twenty hostile payload invocations reject precisely. Original17 bodies and prepared/public provenance independently authenticated. All five PDF pages visually clean. Completion80%.
+- 2026-10-05T23:27:30.168520+00:00: Completed bounded math/package assessment, final report and machine verdict. R1 resolved; no candidate defects requiring repair found. Priority remains unresolved. Completion100% toward assigned review; transitive closure pending.
+- 2026-10-05T23:28:32.184508+00:00: Final Q2032 regular files/four intentional links and prior round1 transitive997 files unchanged; fresh child inputs/streams and reconstructed attack inputs verified; all55 controlled child PIDs absent. Assigned bounded review100% and closed.

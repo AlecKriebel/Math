@@ -1,0 +1,28 @@
+--- original_source_authentication_20261005/original_attempt/independent_review/independent_checks.py
++++ publicfiles/verification/independent_checks.py
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python3
++def require(condition, message="explicit guard failed"):
++ if not condition: raise AssertionError(message)
+ """Independent A4 root-lattice Gauss-sum certificate via Hansen–Takata Thm 5.1.
+ No NumPy, floating point, author imports, or 126x126 modular matrix construction.
+ """
+@@ -8,7 +10,7 @@
+ import json
+ checks=Counter()
+ def ck(p,name):
+- assert p,name
++ require(p,name)
+  checks[name]+=1
+ # Independent degree-four ring: w=exp(pi*i/5), Phi_10=w^4-w^3+w^2-w+1.
+ def red(a):
+@@ -84,7 +86,8 @@
+  ck(norm==expected,'closed_form_phase_norm')
+  out[q]={'sigma':list(sigma),'norm':list(norm),'survivors':survivors}
+ # The positive-root product has multiplicities 4,3,2,1 for root heights 1,2,3,4.
+-# (2sin(pi/5))^2=2-u, (2sin(2pi/5))^2=3+u, their product=sqrt5.
++# (2sin(pi/5))^2=2-u and (2sin(2pi/5))^2=3+u; their product is 5.
++# The two positive unsquared sine factors have product sqrt(5).
+ root_product=mul(mul(mul(u,u),add(scale(2,one),scale(-1,u))),sqrt5)
+ ck(root_product==add(scale(-5,one),scale(10,u)),'Weyl_denominator_product')
+ DD=mul(root_product,root_product)
