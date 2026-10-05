@@ -1,0 +1,7 @@
+# Publication checkpoint: 2026-10-05 UTC
+
+At 20:14–20:16 UTC the complete independent audit, authored proof, five-approach record and both exact checkers were read. The audit passes all five limited propositions and requires no mathematical correction. Its essential domain clarification is prominent in the current README and verdict: the sharp 4m/p constant belongs to the scalar closed Schur form, and the sharp witness's reconstructed lower component lies in L² exactly for p>3.
+
+Main advanced during preparation; fresh main was re-read at 20:25 UTC and is 8ea84d819c1e7012b122ac4e5210dc2f2914e03d. The 63-entry attempts directory omits this numeric ID; its exact target-path commit history is empty. Current numeric-ID and Aubin PR searches have no matches. The three Dirac matches concern distinct problems, numbered 2861, 30004022 and 30000999. No branch matches the critical-dirac-30005664 prefix. These bounded checks do not certify universal prior-art or historical absence.
+
+The original author and independent audit freezes are retained unchanged. The publication adds only this scope summary, metadata, a portable recursive integrity/replay wrapper and a manifest. Only the target queue row's Status and Turns change. Scoped work and independent review are 100% complete as a work-completion estimate; the original global problem remains unresolved, with no justified numerical proximity estimate. Verification and publication are not a sixth proof approach.
