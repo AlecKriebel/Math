@@ -850,7 +850,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 839 | 30002218 / OWR-12175-007 | Perturbation Stability of Jiang–Su Absorption for $C^*$-Algebras | 0.0979 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 840 | 30002288 / OWR-12336-004 | Representation and Limits of Fractional Infinity Eigenfunctions | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 841 | 30002364 / OWR-12495-004 | Lefschetz-Class Properties Under CM Reduction | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 842 | 30002439 / OWR-12725-016 | Height Counts for Closed Projective Immersions | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 842 | 30002439 / OWR-12725-016 | Height Counts for Closed Projective Immersions | 0.0977 | 5.5 | 3 | 2013 | unsolved | 4/5 |  |  |  |
 | 843 | 30002618 / OWR-13102-007 | Monodromy Exactness for Isocrystals on Semistable Curves | 0.0975 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 844 | 10300026 / AMR-102-0026 | Leaf spaces and transverse structures — Question 8.3 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 845 | 10300029 / AMR-102-0029 | Leaf spaces and transverse structures — Question 8.6 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
