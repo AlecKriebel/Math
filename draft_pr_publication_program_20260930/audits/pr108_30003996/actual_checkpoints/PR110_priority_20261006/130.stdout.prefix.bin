@@ -1,0 +1,35 @@
+# PR110 independent geometric and global-family adversarial review
+
+Result: **no required or optional mathematical correction found in the reviewed claim**. This is clearance for the geometric scope described below, not a novelty or publication certificate.
+
+PR110 / upstream ID5100032 / invariant k603. Review completed 2026-10-06 UTC. Original effort recorded by the parent: 2/5; this review consumed zero new central proof-search turns. It independently verified an existing complete candidate, without extending an unfinished approach.
+
+## Independence, materials, and target
+
+I read the complete original `PROOF.md` (6990 bytes, SHA256 `8478d2a792944c5fb9e8a53324e0c6bce8eba317de29c31a6fcbd6ca0205709d`) and `source_record.json` (3926 bytes, SHA256 `488f04aa9db8b1bb428d3331b96773786cfbd3cfe225192f5182941edfbef1c5`). I did not read, import, execute, or use the author's verifiers, submitted independent review, or any current reviewer's report. The exact rational linear solves and tangent-normal orbit reconstruction in `independent_geometric_controls.py` are separate implementations.
+
+I independently inspected the pinned primary PDFs supplied by the parent: Reznik-Garcia-Koiller arXiv:2004.12497v11 (3389610 bytes, SHA256 `c56bb4ea29734ed04ee153206bb8619286df544714fd3f77fe97bdc945dfe1da`) and the published 2021 paper (1836579 bytes, SHA256 `c2a2e644521fd03a15833a23bd57c2498b5644036f6bc8fe682c40581f640d42`). Relevant text was extracted independently. I visually read arXiv pages7 and9, including Figure3 and Table7, and published PDF page9 / printed349, including Table7 and Section3.7. The source introduction and preliminaries specify an outer ellipse and confocal elliptical caustic. Section3.5 defines antipedal intersections; Section3.7 uses ordinary Euclidean distances from each focus; Table7 k603 is the ratio of the sums of those antipedal distances, with value1 for allN. Signed areas elsewhere in the paper do not change these distance definitions. The table is evidence for the literal target and its historical conjectural status, not evidence of current priority.
+
+The source's informal word "rays" in Section3.5 does not specify a uniform choice of half-line. Figure3 shows the perpendicular supporting lines connecting neighboring antipedal vertices on their appropriate sides. I used the usual, and explicitly stated submitted, consecutive supporting-line intersection construction. Requiring a single common orientation of all perpendicular half-rays would generally fail even to define this antipedal polygon; that is not the illustrated construction. A cyclic reindexing of intersections has no effect on the sums.
+
+Exact reviewed claim: for a>b>0 and 0<lambda<b^2, every closed nondegenerate billiard/Poncelet orbit between x^2/a^2+y^2/b^2=1 and the strictly nested confocal ellipse with squared axes a^2-lambda,b^2-lambda has equal sums of the ordinary focal distances to consecutive antipedal intersections. Simple, self-intersecting/star, reversed, and repeated orbits are included. There is no claim of a nondegenerate orbit for every integerN, no hyperbolic-caustic or degenerate two-bounce extension, and no individual-sum constancy claim.
+
+## Independent normal-coordinate reconstruction
+
+This supplies a checkable derivation without relying on the submitted midpoint-angle parametrization. Write c^2=a^2-b^2. Orient one billiard edge from A to B with the caustic to its left. Let n=(n_x,n_y) be the outward unit normal to its supporting line, so n dot X=rho with rho>0, and put
+
+    H=a^2 n_x^2+b^2 n_y^2,
+    v=(-n_y,n_x),
+    rho^2=H-lambda.
+
+The last equality is precisely tangency to the confocal ellipse. Solving the outer-ellipse quadratic on this line gives its chord midpoint and positive half-length:
+
+    M=(a^2 rho n_x/H, b^2 rho n_y/H),
+    L=ab sqrt(lambda)/H,
+    A=M-Lv, B=M+Lv.
+
+Both foci are strictly inside the caustic: a^2-lambda>c^2 follows from lambda<b^2. More directly, with h_sigma=rho-sigma c n_x,
+
+    h_+ h_-=rho^2-c^2 n_x^2=b^2-lambda>0.
+
+Since rho>0, both h_sigma are strictly positive. They are the ordinary perpendicular f

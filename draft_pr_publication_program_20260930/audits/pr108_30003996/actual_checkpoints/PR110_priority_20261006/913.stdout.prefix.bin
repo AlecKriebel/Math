@@ -1,0 +1,52 @@
+from pathlib import Path
+import datetime,fnmatch,hashlib,json,os
+
+A=Path(__file__).resolve().parent
+D=A/'priority_exact_invariant_history_20261006'
+def require(condition,message):
+    if not condition: raise RuntimeError(message)
+def check(path,row):
+    require(path.is_file() and not path.is_symlink(),'regular body '+str(path))
+    body=path.read_bytes()
+    require(len(body)==row['bytes'] and hashlib.sha256(body).hexdigest()==row['sha256'],'body pin '+str(path))
+    return body
+manifest_body=(D/'OUTPUT_MANIFEST.json').read_bytes()
+require(hashlib.sha256(manifest_body).hexdigest()=='56a7a95b53a97916dc83ee9fce02b7034ef5ce37ba12781a7b49a385892a7122','manifest')
+m=json.loads(manifest_body);seen=set()
+for row in m['payload']:
+    relative=row['path'];p=D/relative
+    require(p.resolve().is_relative_to(D) and relative not in seen,'payload path')
+    require(not any(fnmatch.fnmatch(relative,x) for x in m['exclusions']),'excluded payload')
+    check(p,row);seen.add(relative)
+require(len(seen)==m['public_payload_files']==214,'payload count')
+require(sum(r['bytes'] for r in m['payload'])==m['public_payload_bytes']==300319,'payload bytes')
+seal=json.loads((D/'SEAL_RECEIPT.json').read_text())
+check(D/seal['OUTPUT_MANIFEST']['path'],seal['OUTPUT_MANIFEST'])
+for name,row in seal['key_pins'].items(): check(D/name,row)
+v=json.loads((D/'VERDICT.json').read_text())
+require(not v['required_findings'] and not v['earlier_full_cover_found'] and not v['reclassification_as_already_solved_supported'],'verdict')
+require(v['bounded_substantive_novelty_supported'] and not v['family_priority_clearance'] and not v['publication_authorized'],'bounded verdict')
+inputs=json.loads((D/'INPUT_PINS.json').read_text())['inputs']
+for row in inputs:check(A/row['relative_to_A'],row)
+private=json.loads((D/'PRIVATE_SOURCE_PINS.json').read_text())['rows']
+for row in private:
+    p=D/row['path'];require(p.resolve().is_relative_to(D),'private path');check(p,row)
+book=json.loads((D/'IMPA_AUTHOR_SOURCE_CUSTODY.json').read_text())
+require(len(book['body_rows'])==book['count']==145,'book body count')
+for row in book['body_rows']:
+    p=D/book['private_extraction_root']/row['path'];b=check(p,row)
+    require(hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==row['Git_blob_OID'],'book Git body')
+operations=[]
+for p in sorted((D/'actual_operations').glob('*/execution.json')):
+    r=json.loads(p.read_text())
+    for stream in ('stdout','stderr'):check(p.parent/r[stream]['path'],r[stream])
+    require(isinstance(r['child_PID'],int) and r['UTC_start']<=r['UTC_end'],'actual process metadata')
+    operations.append({'label':p.parent.name,'child_PID':r['child_PID'],'exit_code':r['exit_code'],'argv':r['argv']})
+closing=json.loads((D/'actual_operations/seal_public_audit_final/execution.json').read_text())
+require(closing['child_PID']==seal['actual_sealer_PID']==29372 and closing['exit_code']==0,'closing sealer')
+verify=json.loads((D/'actual_operations/verify_public_seal_final/execution.json').read_text())
+require(verify['child_PID']==29381 and verify['exit_code']==0,'closing verification')
+pins={}
+for name in ('REPORT.md','VERDICT.json','OUTPUT_MANIFEST.json','SEAL_RECEIPT.json','SOURCE_COVERAGE.json'):
+    b=(D/name).read_bytes();pins[name]={'path':str((D/name).relative_to(A)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+result={'schema':'pr110-root-exact-priority-custody/v1','UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'actual_operator_PID':os.getpid(),'root_complete_REPORT_VERDICT_read':True,'public_payload_count':len(seen),'private_source_pins_authenticated':len(private),'input_pins_authenticated':len(inputs),'book_source_Git_bodies_authenticated':145,'actual_operations_authenticated':operations,'nonzero_actual_operations_retained':[x for x in operations if x['exit_code']!=0],'pins':pins,'bounded_substantive_novelty_supported':True,'earlier_full_cover_found':False,'already_solved_disposition_supported':False,'priority_or_publication_clearance':False,'residual_reading_gaps':v['residual_reading_gaps'],'new_central_proof_search_turns':0,
