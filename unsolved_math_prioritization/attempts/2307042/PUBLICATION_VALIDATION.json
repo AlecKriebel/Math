@@ -1,0 +1,566 @@
+{
+  "all_original_archives_and_members_preserved": true,
+  "archives": [
+    {
+      "bytes": 11445,
+      "external_manifest": "FUNCTION_THEORY_2307042_AUTHOR_EXTERNAL_MANIFEST.json",
+      "external_manifest_sha256": "5c61737da81e41aae246c33ee3360a10ea71dfc75a48014cca3c2c519585f65d",
+      "members": 6,
+      "name": "FUNCTION_THEORY_2307042_AUTHOR_SAFE_FREEZE.zip",
+      "root": "author",
+      "sha256": "a23e5104041c2bd7aaf64e9da505a2d07dbd89b4ac599c23a8f008402cd49e3a"
+    },
+    {
+      "bytes": 27319,
+      "external_manifest": "FUNCTION_THEORY_2307042_INDEPENDENT_AUDIT_EXTERNAL_MANIFEST.json",
+      "external_manifest_sha256": "2c534e174a7de5d3b5fe2191350c91f4aed8a37283dea8da96114e13b8f1e663",
+      "members": 12,
+      "name": "FUNCTION_THEORY_2307042_INDEPENDENT_AUDIT_SAFE.zip",
+      "root": "independent_audit",
+      "sha256": "74c8026f97819c0f90644398fd1cd474a70b7dc029bfea7f0b287a1544747803"
+    },
+    {
+      "bytes": 13736,
+      "external_manifest": "FUNCTION_THEORY_2307042_SECOND_ADVERSARIAL_REVIEW_EXTERNAL_MANIFEST.json",
+      "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+      "members": 7,
+      "name": "FUNCTION_THEORY_2307042_SECOND_ADVERSARIAL_REVIEW_SAFE.zip",
+      "root": "second_review",
+      "sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1"
+    }
+  ],
+  "date_utc": "2026-10-06",
+  "first_audit_replay": {
+    "adaptation": "In a private replay copy only, copytree uses copy_function=shutil.copyfile so disposable synthetic fixture files are writable. The verifier, all 29 test cases, original data, and published artifacts are unchanged. Both complete 29-case runs then passed.",
+    "adapted_harness_sha256": "dbd0ad7cdb71ec6bf4adb89fa5645bc96415433ac8194c9b2213385bf3d3c8f4",
+    "initial_unmodified_harness_result": "Both normal and optimized attempts stopped while constructing the changed-file negative fixture: copytree preserved a frozen read-only mode, so writing the temporary README fixture raised PermissionError. No mathematical failure or verifier rejection occurred.",
+    "negative_cases": 50,
+    "normal": {
+      "all_expected_outcomes": true,
+      "optimized_python": false,
+      "scope": "Data integrity only. No theorem proved by execution.",
+      "test_count": 29,
+      "tests": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "author_original_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "author_relocated_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "audit_original_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "audit_relocated_pins_inventory_tree"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_missing_member",
+          "reason": "member count mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_extra_member",
+          "reason": "member count mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_duplicate_equal_count",
+          "reason": "duplicate ZIP member"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_traversal",
+          "reason": "unsafe path component"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_absolute",
+          "reason": "unsafe path component"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_backslash",
+          "reason": "nonportable path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_symlink",
+          "reason": "nonregular ZIP entry"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_executable",
+          "reason": "executable ZIP entry"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_same_size_content_change",
+          "reason": "content SHA mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "outer_archive_pin_changed_content",
+          "reason": "archive pin mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "external_pin_changed_even_with_updated_archive_hash",
+          "reason": "external manifest pin mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "archive_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "manifest_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_missing_file",
+          "reason": "extraction missing file"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_extra_file",
+          "reason": "unexpected extraction file"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_extra_empty_directory",
+          "reason": "extraction directory mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_changed_file",
+          "reason": "extraction byte mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_file_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_directory_symlink",
+          "reason": "directory symlink"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_executable_permissions",
+          "reason": "input has executable permissions"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_duplicate_keys",
+          "reason": "duplicate JSON key"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_nonfinite_constant",
+          "reason": "non-finite JSON constant"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_invalid_utf8",
+          "reason": "'utf-8' codec can't decode byte 0xff in position 6: invalid start byte"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "inner_manifest_changed_data",
+          "reason": "inner inventory mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "inner_manifest_extra_data",
+          "reason": "inner closed inventory mismatch"
+        }
+      ]
+    },
+    "optimized": {
+      "all_expected_outcomes": true,
+      "optimized_python": true,
+      "scope": "Data integrity only. No theorem proved by execution.",
+      "test_count": 29,
+      "tests": [
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "author_original_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "author_relocated_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "audit_original_pins_inventory_tree"
+        },
+        {
+          "actual": "PASS",
+          "expected": "PASS",
+          "name": "audit_relocated_pins_inventory_tree"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_missing_member",
+          "reason": "member count mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_extra_member",
+          "reason": "member count mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_duplicate_equal_count",
+          "reason": "duplicate ZIP member"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_traversal",
+          "reason": "unsafe path component"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_absolute",
+          "reason": "unsafe path component"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_backslash",
+          "reason": "nonportable path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_symlink",
+          "reason": "nonregular ZIP entry"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_executable",
+          "reason": "executable ZIP entry"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "structural_same_size_content_change",
+          "reason": "content SHA mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "outer_archive_pin_changed_content",
+          "reason": "archive pin mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "external_pin_changed_even_with_updated_archive_hash",
+          "reason": "external manifest pin mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "archive_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "manifest_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_missing_file",
+          "reason": "extraction missing file"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_extra_file",
+          "reason": "unexpected extraction file"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_extra_empty_directory",
+          "reason": "extraction directory mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_changed_file",
+          "reason": "extraction byte mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_file_symlink",
+          "reason": "symlink in path"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_directory_symlink",
+          "reason": "directory symlink"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "tree_executable_permissions",
+          "reason": "input has executable permissions"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_duplicate_keys",
+          "reason": "duplicate JSON key"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_nonfinite_constant",
+          "reason": "non-finite JSON constant"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "json_invalid_utf8",
+          "reason": "'utf-8' codec can't decode byte 0xff in position 6: invalid start byte"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "inner_manifest_changed_data",
+          "reason": "inner inventory mismatch"
+        },
+        {
+          "actual": "REJECT",
+          "expected": "REJECT",
+          "name": "inner_manifest_extra_data",
+          "reason": "inner closed inventory mismatch"
+        }
+      ]
+    },
+    "original_harness_sha256": "e03208cc6a7fd1d0f4fe79d0a0661b0bc203799ebdf4404614569ec04e7738c5",
+    "positive_cases": 8,
+    "total_cases": 58
+  },
+  "format": "function-theory-2307042-publication-validation-v1",
+  "limitations": [
+    "All three ZIP archives contain only authored UTF-8 mathematics, reviews, and bounded metadata.",
+    "The two external Python helpers perform integrity checking only and are not mathematical proof programs.",
+    "Synthetic structural controls are not accepted production archives.",
+    "Two AI mathematical reviews are not human peer review, a novelty check, or a proof-assistant certificate.",
+    "The local theorem does not settle isolated contact farther from the base.",
+    "No repository-wide test suite or CI pass is claimed by this local report."
+  ],
+  "proof_corrections_required": false,
+  "scope": "File identity, integrity, source-safe content boundary, and queue edit scope only; no machine proof certification.",
+  "second_author_replay": {
+    "exact_saved_replay_match": true,
+    "positive_replays": 6,
+    "production_negative_controls": 4,
+    "replay_sha256": "550a32027344edf34b3b27879f33ba1e733cfe8aa9f156209ecffe465ef56dc1",
+    "replayed_with": "Unchanged verifier and harness copied into a separate mirrored tree; original frozen files were not rewritten.",
+    "status": "PASS",
+    "structural_negative_controls": 15,
+    "total_checks": 28
+  },
+  "second_review_final_replay": {
+    "checks": [
+      {
+        "exit_code": 0,
+        "name": "normal",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "exit_code": 0,
+        "name": "optimized",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "exit_code": 0,
+        "name": "relocation_normal",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "exit_code": 0,
+        "name": "relocation_optimized",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "exit_code": 0,
+        "name": "hostile_normal",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "exit_code": 0,
+        "name": "hostile_optimized",
+        "outcome": "PASS",
+        "result": {
+          "archive_bytes": 13736,
+          "archive_sha256": "36a1f5b72b2bc03374f61959a338a135994a98113c8c586c1c33f5171c4691c1",
+          "expanded_bytes": 33445,
+          "external_manifest_sha256": "86911a7823c8b8dc595fa64d2390c4e8b509bc16e677404489028ebc3a4d9e6f",
+          "mathematics_machine_verified": false,
+          "member_count": 7,
+          "payload_executed": false,
+          "status": "PASS"
+        }
+      },
+      {
+        "name": "hostile_sentinel_absent",
+        "outcome": "PASS"
+      },
+      {
+        "exit_code": 1,
+        "name": "archive_byte_mutation",
+        "outcome": "REJECT_AS_EXPECTED",
+        "result": {
+          "error_type": "Reject",
+          "reason": "review-archive-pin",
+          "status": "REJECT"
+        }
+      },
+      {
+        "exit_code": 1,
+        "name": "manifest_byte_mutation",
+        "outcome": "REJECT_AS_EXPECTED",
+        "result": {
+          "error_type": "Reject",
+          "reason": "review-manifest-pin",
+          "status": "REJECT"
+        }
+      },
+      {
+        "exit_code": 1,
+        "name": "symlink_input",
+        "outcome": "REJECT_AS_EXPECTED",
+        "result": {
+          "error_type": "Reject",
+          "reason": "nonregular-input",
+          "status": "REJECT"
+        }
+      },
+      {
+        "name": "review_cannot_impersonate_author",
+        "outcome": "REJECT_AS_EXPECTED",
+        "reason": "author-archive-pin"
+      },
+      {
+        "name": "resealed_review_trailing_bytes",
+        "outcome": "REJECT_AS_EXPECTED",
+        "reason": "zip-wrapper-layout"
+      },
+      {
+        "member_count": 7,
+        "name": "review_safe_directory_exact_readback",
+        "outcome": "PASS"
+      }
+    ],
+    "mathematics_machine_verified": false,
+    "payload_executed": false,
+    "status": "PASS"
+  },
+  "status": "PASS_WITH_DISCLOSED_FIXTURE_ADAPTATION"
+}
