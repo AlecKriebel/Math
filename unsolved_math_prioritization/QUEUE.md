@@ -873,7 +873,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 862 | 3015 / KP-5.8 | Kirby Problem 5.8 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 863 | 30002888 / OWR-13682-010 | Forgetful Functors for Mixed Perverse Sheaves | 0.0973 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 864 | 30002904 / OWR-13687-003 | Generic Infinite Index Subgroups of Integral Special Linear Groups | 0.0973 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 865 | 30003060 / OWR-14218-004 | Koszulness from Vanishing Higher Koszul Homology | 0.0970 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 865 | 30003060 / OWR-14218-004 | Koszulness from Vanishing Higher Koszul Homology | 0.0970 | 5.5 | 3 | 2016 | claimed_solved | 1/5 |  | Unrestricted-field equivalence disproved by a free-algebra counterexample in every positive characteristic. The characteristic-zero vanishing-to-Koszulness converse remains unresolved in this investigation. Two independent AI-assisted audits accept the qualified literal result. One substantive approach; no novelty, human-referee, or formal-certification claim. See attempts/30003060/README.md. |  |
 | 866 | 30003245 / OWR-15170-007 | Bounded-House Finiteness for Totally Real Algebraic Integers | 0.0970 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 867 | 30003521 / OWR-15437-003 | NLS Approximation on Periodic Nonlinear Wave Graphs | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 868 | 30003570 / OWR-15582-004 | Heegner Divisors and the Pseudo-Effective Cone | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |

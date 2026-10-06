@@ -1,0 +1,101 @@
+{
+  "acceptance": {
+    "archive_member": "ACCEPTANCE.json",
+    "bytes": 3240,
+    "sha256": "c6010d681d5040978123392a640f5f595418561bab7a26a2693e5c0cfb740913"
+  },
+  "control_count": 10,
+  "controls": [
+    {
+      "actual_exit_code": 0,
+      "expected_success": true,
+      "name": "normal isolated no-site bytecode-disabled replay",
+      "passed": true,
+      "reported_error": null
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject nonisolated execution",
+      "passed": true,
+      "reported_error": "RuntimeError: isolated execution required"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject site-enabled execution",
+      "passed": true,
+      "reported_error": "RuntimeError: site initialization must be disabled"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject bytecode-enabled execution",
+      "passed": true,
+      "reported_error": "RuntimeError: bytecode writes must be disabled"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject optimized execution",
+      "passed": true,
+      "reported_error": "RuntimeError: optimized execution rejected"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject archive byte corruption before payload execution",
+      "passed": true,
+      "reported_error": "RuntimeError: archive hash mismatch"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject changed external manifest",
+      "passed": true,
+      "reported_error": "RuntimeError: external manifest mismatch"
+    },
+    {
+      "actual_exit_code": 1,
+      "expected_success": false,
+      "name": "reject substituted archive with self-consistent forged manifest",
+      "passed": true,
+      "reported_error": "RuntimeError: external manifest mismatch"
+    },
+    {
+      "actual_exit_code": 0,
+      "expected_success": true,
+      "name": "relocated hostile cwd PYTHONPATH startup and optimization ignored",
+      "passed": true,
+      "reported_error": null
+    },
+    {
+      "name": "hostile-import sentinel absent",
+      "passed": true
+    }
+  ],
+  "no_publication_performed": true,
+  "no_third_party_source_texts_packaged": true,
+  "original_author_pins_still_match": {
+    "HIGHER_KOSZUL_30003060_AUTHOR_BOOTSTRAP.py": true,
+    "HIGHER_KOSZUL_30003060_AUTHOR_EXTERNAL_MANIFEST.json": true,
+    "HIGHER_KOSZUL_30003060_AUTHOR_SAFE_FREEZE.zip": true
+  },
+  "pins": {
+    "HIGHER_KOSZUL_30003060_SECOND_REVIEW_BOOTSTRAP.py": {
+      "bytes": 3645,
+      "sha256": "b4973ebdaad3353a75883cfe38ef420d9026a5077d10c07771405d9b37142566"
+    },
+    "HIGHER_KOSZUL_30003060_SECOND_REVIEW_EXTERNAL_MANIFEST.json": {
+      "bytes": 2231,
+      "sha256": "6a919c2af4dc6b4e967b8a546287aa363883353a9efc0ae90bb0abc9bd30470c"
+    },
+    "HIGHER_KOSZUL_30003060_SECOND_REVIEW_SAFE.zip": {
+      "bytes": 25322,
+      "sha256": "066c731fb7616176ff660d0dfc37bcfc737d8188666b987b41899715da440235"
+    }
+  },
+  "review_date_utc": "2026-10-06",
+  "schema_version": 1,
+  "status": "PASS"
+}
