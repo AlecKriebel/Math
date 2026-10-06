@@ -1,0 +1,8 @@
+# Verification log
+
+1. Matched byte counts and SHA-256 values of all three supplied inherited corpus files; matched the complete target statement and record/report pair. Read the entire exact-ID record, including its background, and the keyed research report. The EP-584 report key was absent and the stipulated lookup returned {}; the background contained literature triage and sparse-range qualifications rather than a substantive authored proof/computation. The gate therefore cleared.
+2. Searched bounded repository history: default-branch code searches for 2193 and EP-584, all-state pull-request searches for those identifiers, commit searches for those identifiers, and one broader cycle-connected pull-request search. No exact-target substantive prior work was returned. The broader results concerned other problems. This is not exhaustive history and absence is not evidence of novelty.
+3. Attempted both exact public problem URLs using read tools and the cloud browser. These remained inaccessible. The statement scope is therefore pinned to the supplied record, without claiming a fresh live-page match.
+4. Inspected primary mathematical sources. Verified the known high-girth obstruction, original small-exponent quantifier, and the existence and explicitly different conventions of the June 2026 manuscript.
+5. Stopped at verified public prior refutation. No new approach to the repaired sparse-density problem was pursued. No computational experiment or finite graph enumeration was needed.
+6. Created an authored-only package and an external byte/hash manifest. Raw public PDFs, images, extracts and inherited dataset contents remain outside the package. Metadata integrity is not a mathematical proof certificate.
