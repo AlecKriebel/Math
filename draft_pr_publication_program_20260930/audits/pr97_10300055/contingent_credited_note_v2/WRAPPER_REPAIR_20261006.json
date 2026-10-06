@@ -1,0 +1,102 @@
+{
+  "schema": "pr97-output-custody-R1-repair/v2",
+  "utc": "2026-10-06T01:36:21.135771+00:00",
+  "required_finding": "All twelve round-one three-wrapper/link-type/optimization cases corrupted synthetic closed input through existing output-file leaves.",
+  "round1_manifest_sha256": "a92201a04ffa95ea2a64ccf6788923221ba5ed198a29f31c95effc428c0a8e42",
+  "original_manifest_sha256": "ca4ce63be4957fc836b9e0a5d30dc7049eb22e33cc50d15994444d8e4638adc3",
+  "coherent_fix": [
+    "Resolve ancestry before containment check",
+    "Require fresh non-existing disposable output, existing parent, exclusive directory creation before children",
+    "Exclusive first creation of stream/archive/fixture leaves, no-follow where available",
+    "Exclusive temporary initial journal publication and atomic replacement for updates",
+    "Raw failed/malformed child custody saved before parsing/rejection",
+    "Explicit checks stay active under optimized Python"
+  ],
+  "limits": "Local disposable-directory contract, without a guarantee against arbitrary concurrent hostile filesystem replacement.",
+  "sources": [
+    {
+      "path": "publicfiles/support/run_diagnostics.py",
+      "sha256": "b51fe48abe9412a645a3b44414a52df11f98c3909f0c11b71a54fc55e4c1524c",
+      "bytes": 5285,
+      "original_v1_sha256": "79727065596b6b8485485cf0fc805315dbbdb6acbffa0429b0aa7001543fca68"
+    },
+    {
+      "path": "publicfiles/support/test_integrity.py",
+      "sha256": "d323fcb8a5206f17a34168fc189c018be56d1b18c8d58551ef615ef087a33f9e",
+      "bytes": 6069,
+      "original_v1_sha256": "3d420f9363d7b7f1c0044908f1e1b128935dad9175569993040525fec889720d"
+    },
+    {
+      "path": "publicfiles/support/test_runner_custody.py",
+      "sha256": "ad556f668856c738cc5bd142db5fafbea4388f05ee8d53c6d5d91e94b985e9e3",
+      "bytes": 14009,
+      "original_v1_sha256": "a85f37e68bafa200b4fb2cf86914d77ab1576fb32e0a81309729b26c1e82938b"
+    },
+    {
+      "path": "publicfiles/support/safe_output.py",
+      "sha256": "43aa798496ee574055f3bc87ee994cb25136ae3e64e802e0ec0610ac34000d57",
+      "bytes": 2430
+    },
+    {
+      "path": "private/replay_process.py",
+      "sha256": "79eddd8b695fa825382e88d851c2509109b0af097f03b69ac12d7bf133934a42",
+      "bytes": 1869
+    },
+    {
+      "path": "private/build_portable_archive.py",
+      "sha256": "ba4a12d1ea1be35b8f43f0735b920c3a5e9361ecd7163eac15cfd65ce7885b76",
+      "bytes": 2721
+    },
+    {
+      "path": "private/check_actual_reuse.py",
+      "sha256": "0d278967fd88b58d821d896b7258ac64d24b1df231e6ee25193f88bb64bbeab6",
+      "bytes": 3914
+    },
+    {
+      "path": "private/check_preservation.py",
+      "sha256": "4cdfd5208c3c04973fabe5efe8def344924eb4c8327fd3c1de549730c39352b7",
+      "bytes": 3787
+    },
+    {
+      "path": "private/build_process_index.py",
+      "sha256": "97dc71257e4294c8c7a953c381cef1fbcf5cc6ecf75974db17427807c7396af8",
+      "bytes": 2850
+    },
+    {
+      "path": "private/close_snapshot.py",
+      "sha256": "73b38ce96db43954a0a9e54789cc0eb7fa5b7365a52f2f6f6f548949a9195263",
+      "bytes": 5095
+    }
+  ],
+  "static_byte_identity": "BYTE_IDENTITY.json",
+  "control_results": {
+    "diagnostics": 6,
+    "synthetic_custody": 50,
+    "linked_leaves": 12,
+    "plain_existing": 6,
+    "populated_existing": 6,
+    "ancestor_aliases": 6,
+    "failed_child_receipts": 8,
+    "helper_exclusive_atomic": 12,
+    "actual_successful_output_reuse": 6,
+    "integrity": 28
+  },
+  "all36_output_rejections_before_child_attempt": true,
+  "all_guarded_inputs_unchanged": true,
+  "process_index": "PROCESS_INDEX.json",
+  "preserved_original_failures": "v1 and entire R1 remain unchanged, including counterexamples and honest ENOSPC limits; original manifests and Root authentication are pinned.",
+  "preparation_failures": [
+    "Rejected combined delete/add apply_patch; no mutation",
+    "One process-index glob parsed a controlled non-JSON sentinel; no top-level writes; tool PID/stream separation limits preserved; corrected explicit selection passed",
+    "One functions.exec JavaScript parse error rejected a report-writing tool script before any nested call or process; corrected quoting succeeded."
+  ],
+  "new_ENOSPC": false,
+  "controlled_symlinks_retained": 10,
+  "hardlink_groups_retained": 10,
+  "normal_bounded_cleanup": "Control scripts remove six ancestor aliases, integrity synthetic archives/payload links, diagnostic temporary stages and journal temporary names after their actual checks. Source generators and all actual results/receipts are retained.",
+  "publication_authorized": false,
+  "strict_priority_clearance": false,
+  "whole_package_acceptance": false,
+  "PR95_exception_applies": false,
+  "new_central_proof_search_turns": 0
+}
