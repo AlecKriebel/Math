@@ -1,0 +1,79 @@
+{
+  "audit_helpers_used": false,
+  "author_negative_controls_rejected": 20,
+  "author_original_bytes_preserved": true,
+  "author_scientific_matches_frozen_results": true,
+  "blocking_mathematical_errors_found": 0,
+  "current_global_openness_verified": false,
+  "five_substantive_approaches_accepted": 5,
+  "full_source_solved": false,
+  "independent_check_count": 93,
+  "independent_local_incidence_dimension": 15,
+  "independent_negative_controls_rejected": 22,
+  "independent_weighted_polynomial_identity_verified": true,
+  "live_catalog_and_raw_records_verified": false,
+  "novelty_claimed": false,
+  "ordinary_optimized_author_freeze_match": true,
+  "ordinary_optimized_author_scientific_match": true,
+  "ordinary_optimized_independent_match": true,
+  "problem_id": "30001893",
+  "remote_writes_performed": false,
+  "replays": [
+    {
+      "command": "python3 -B verify.py --selftest",
+      "exit_code": 0,
+      "run": "author-scientific-normal",
+      "stdout_bytes": 960,
+      "stdout_sha256": "39a38d8499f41cdfea06a1a6b6ceba2b3ca24323ff0e966327e941106f37a9ed"
+    },
+    {
+      "command": "python3 -O -B verify.py --selftest",
+      "exit_code": 0,
+      "run": "author-scientific-optimized",
+      "stdout_bytes": 960,
+      "stdout_sha256": "39a38d8499f41cdfea06a1a6b6ceba2b3ca24323ff0e966327e941106f37a9ed"
+    },
+    {
+      "command": "python3 -B verify.py --selftest --verify-freeze",
+      "exit_code": 0,
+      "run": "author-normal",
+      "stdout_bytes": 1165,
+      "stdout_sha256": "d2a937d3782a728dc60f480101d6b28371d14c6949b39966f65de136f6aff846"
+    },
+    {
+      "command": "python3 -O -B verify.py --selftest --verify-freeze",
+      "exit_code": 0,
+      "run": "author-optimized",
+      "stdout_bytes": 1165,
+      "stdout_sha256": "d2a937d3782a728dc60f480101d6b28371d14c6949b39966f65de136f6aff846"
+    },
+    {
+      "command": "python3 -B independent_controls.py",
+      "exit_code": 0,
+      "run": "independent-normal",
+      "stdout_bytes": 9394,
+      "stdout_sha256": "5e1cdbc5116863f0a439681e1b7315e28b5b4e21b21ac8845c6219730b227347"
+    },
+    {
+      "command": "python3 -O -B independent_controls.py",
+      "exit_code": 0,
+      "run": "independent-optimized",
+      "stdout_bytes": 9394,
+      "stdout_sha256": "5e1cdbc5116863f0a439681e1b7315e28b5b4e21b21ac8845c6219730b227347"
+    }
+  ],
+  "required_qualifications": [
+    "All result use retains n>=4 target range and partial status.",
+    "No all-types affine upper bound of 4n-5 is proved.",
+    "Original OWR counts remain distinct from later regular theorem.",
+    "Author audit-pending status remains untouched inside its immutable freeze.",
+    "Source and current-literature coverage limits remain explicit."
+  ],
+  "retained_global_bound": "4n-5 <= dim C(R^3,n) <= 3*binomial(n,2), n>=4",
+  "retained_subclasses": [
+    "regular: 4n-5 (manuscript proof n>=4; inspected prior theorem n>=2)",
+    "pointed central fans: 4n-8 at fixed apex, 4n-5 moving, n>=4",
+    "cylindrical family: 4n-5, with nonregular examples, n>=4"
+  ],
+  "verdict": "PASS_PARTIAL_ONLY"
+}
