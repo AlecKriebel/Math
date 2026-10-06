@@ -1,0 +1,60 @@
+{
+  "applied_patch_matches_original_audit": true,
+  "bound_hashes": {
+    "MANIFEST.sha256": "15b87ed1e163d1f07d6d66dc8d32354b98aa3c62c6e218e8ee02790971099bb2",
+    "author/MANIFEST.sha256": "cba75811450e787073452b49549169d07316a5f4f5294de5524997236c017c63",
+    "author/PROOF.md": "697b031dfc8e7c65d83854d8dcf5bcbfc4f9000b6e8769166d6b38999f45f3f4",
+    "independent_review/MANIFEST.sha256": "8673ca5bd15366eaa567d101f8ee18026957d202bd3b4eac53bf761e11ec40e9",
+    "original_author/MANIFEST.sha256": "4a4a0478c91311606382e2ae00aa891d93272992593724e976589ab9ef65cf6c"
+  },
+  "changed_author_files_including_manifest": [
+    "MANIFEST.sha256",
+    "PROOF.md",
+    "ROUTES.md"
+  ],
+  "exact_C1_C2_only": true,
+  "full_target_resolved": false,
+  "full_target_status": "unsolved",
+  "generated_diff_matches_exact_content_changes": true,
+  "manifest_entry_counts": {
+    ".": 38,
+    "author": 10,
+    "independent_review": 10,
+    "original_author": 10
+  },
+  "preserved_file_counts": {
+    "independent_review": 11,
+    "original_author": 11
+  },
+  "release_unmodified": true,
+  "replays": [
+    {
+      "byte_exact": true,
+      "command": [
+        "verify.py"
+      ],
+      "expected_file": "author/results.json",
+      "output_sha256": "e37ca1501357df7094f28c5c73f5e8ed44ed74266787b12f1134d53af848848c"
+    },
+    {
+      "byte_exact": true,
+      "command": [
+        "crosscheck_sympy.py"
+      ],
+      "expected_file": "author/CROSSCHECK.txt",
+      "output_sha256": "964805d2c43d423ade9045cc39e7e08369ff96e5134ca47a5f88fff0d3a063a8"
+    },
+    {
+      "byte_exact": true,
+      "command": [
+        "independent_verify.py",
+        "--author-json",
+        "../author/results.json"
+      ],
+      "expected_file": "independent_review/independent_results.json",
+      "output_sha256": "45988b9bc23a8d64033f20c1f64320dc4d80f9bb020156b3b28faa04f6d96b0b"
+    }
+  ],
+  "substantive_routes": 5,
+  "verdict": "ACCEPT_CORRECTED_SCOPED_RELEASE"
+}
