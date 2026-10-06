@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "problem_id": 9600004,
+  "decision": "ACCEPT AS PROVED LOCAL PARTIAL ONLY",
+  "safe_zip": {
+    "path": "ASYMMETRIC_EXCLUSION_9600004_INDEPENDENT_AUDIT_SAFE.zip",
+    "bytes": 37349,
+    "sha256": "ea5d96f09003ea21bdc1ebef30e2cb3c8ed020794c0d35be6c2bd903091499ae"
+  },
+  "external_manifest": {
+    "path": "ASYMMETRIC_EXCLUSION_9600004_INDEPENDENT_AUDIT_EXTERNAL_MANIFEST.json",
+    "bytes": 4935,
+    "sha256": "2422de8763b36541b1455838ad174544bd50b1165d92694532de3250e0055fae"
+  },
+  "final_clean_archive_checks": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "original/asymmetric_exclusion_9600004/check_certificate.py",
+        "--cross-window"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "fca6b79f69b06f1c673f3a19fe788ead963064e3cc38e3ae3ee903dc692424c9"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "original/asymmetric_exclusion_9600004/test_mutations.py"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "73c4d575ac5e3a4ca34c44508952f7c65f8e6772b35a025be9cfb00b4162174a"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "audit/independent_recompute.py"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "95fbbc52b01b1470ba63b75642083aa71d9ab064a88011d4af5d2089d2decfd5"
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-S",
+        "-O",
+        "audit/test_independent.py"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "5ade117a2fd0cba78436025d028cc92a6c864a2d23dfd37c0d44b3450ded8699"
+    }
+  ],
+  "original_members_unchanged": true,
+  "github_writes": false,
+  "full_problem_solved": false,
+  "author_correction_required": false
+}
