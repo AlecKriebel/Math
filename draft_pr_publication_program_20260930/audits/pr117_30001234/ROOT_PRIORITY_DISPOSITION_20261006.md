@@ -1,0 +1,9 @@
+# PR117: final exact-prior disposition
+
+Mathematics and source scope PASS. Three distinct priority families and a fresh independent disposition adversary, all root-authenticated and reproduced in actual normal/optimized processes, establish already_solved for the exact original target. Takagi Example4.4 is in the actual30April2011 arXivv1 p19 and formal2013 Algebra & Number Theory7(4), p940, DOI10.2140/ant.2013.7.917. The c=0 ambient specialization and term permutation(0,3,1,4,5,2) preserve all constraints, objective and every augmented-image fiber; the third generator changes only by unit-1.
+
+The elementary full-face proof and checks are valid useful exposition. No substantively novel original-target resolution is established. Reasonable attribution/status and guard-only diagnostic repair cannot restore openness or newness of the same published negative answer. Apply an additive native already_solved assessment and the reviewed explanatory comment; close the same head without merging. No manuscript, Zenodo record, DOI or tracker row for117. Immutable20 originals/source/prior/ledger1/5 preserved; proof-search turns added0.
+
+Published p937 matrix is triangle-labelled; extraction-as4 citations in the sealed historical determinantal report are corrected additively here. Root rejected the out-of-scope Yuen2006 r>s>=3 lead and an unrelated guessed MSP URL. Exact earliest global discovery date is not asserted. The verified2011/2013 explicit prior suffices; no source-access question remains.
+
+Root actual custody receipts: ROOT_PRIORITY_FAMILY_AUTHENTICATION_20261006.json (99public members,12actual checker processes) and ROOT_FRESH_DISPOSITION_AUTHENTICATION_20261006.json (58public members,18actual checker processes). Closure/native/checkpoint/readback/release remain operational actions and are not claimed executed by this decision.
