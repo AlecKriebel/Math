@@ -1,0 +1,881 @@
+{
+  "schema": 1,
+  "checked_utc": "2026-10-06T18:07:31.302694+00:00",
+  "scope": "Independent replay of exact author archive, all three Python optimization levels; source/prose trust-boundary passes are deliberate diagnostics, not accepted modifications.",
+  "valid_runs": 6,
+  "negative_control_runs": 81,
+  "trust_boundary_expected_pass_runs": 9,
+  "all_expected_results": true,
+  "historical_author_validation": "All 3 positive and 15 negative claimed author cases were reproduced against final frozen bytes; additional controls below extend coverage.",
+  "important_limits": [
+    "The author checker takes its manifest as an unpinned trust input. It does not authenticate that manifest or check ZIP identity.",
+    "Rehashing altered source metadata or report prose in a replacement manifest is accepted by that checker. It does not independently hash source PDFs or interpret mathematical prose.",
+    "The independent acceptance verifier closes artifact identity ambiguity by pinning the exact author ZIP and exact original external manifest; it never turns finite arithmetic into theorem certification."
+  ],
+  "results": [
+    {
+      "case": "final_author_exact_extraction",
+      "optimization": 0,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 0, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "final_author_exact_extraction",
+      "optimization": 1,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 1, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "final_author_exact_extraction",
+      "optimization": 2,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 2, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "relocated_final_author",
+      "optimization": 0,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 0, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "relocated_final_author",
+      "optimization": 1,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 1, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "relocated_final_author",
+      "optimization": 2,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 2, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "same_size_change_APPROACHES.md",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_APPROACHES.md",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_APPROACHES.md",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "missing_APPROACHES.md",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_APPROACHES.md",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_APPROACHES.md",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_REPORT.md",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: REPORT.md\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_REPORT.md",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: REPORT.md\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_REPORT.md",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: REPORT.md\", \"ok\": false}"
+    },
+    {
+      "case": "missing_REPORT.md",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_REPORT.md",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_REPORT.md",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_STATUS.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: STATUS.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_STATUS.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: STATUS.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_STATUS.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: STATUS.json\", \"ok\": false}"
+    },
+    {
+      "case": "missing_STATUS.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_STATUS.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_STATUS.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VALIDATION_RESULTS.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VALIDATION_RESULTS.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VALIDATION_RESULTS.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VALIDATION_RESULTS.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VALIDATION_RESULTS.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VALIDATION_RESULTS.json\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VALIDATION_RESULTS.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VALIDATION_RESULTS.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VALIDATION_RESULTS.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VERIFICATION_METADATA.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VERIFICATION_METADATA.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VERIFICATION_METADATA.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VERIFICATION_METADATA.json\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_VERIFICATION_METADATA.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: VERIFICATION_METADATA.json\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VERIFICATION_METADATA.json",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VERIFICATION_METADATA.json",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "missing_VERIFICATION_METADATA.json",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_verify_bundle.py",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: verify_bundle.py\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_verify_bundle.py",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: verify_bundle.py\", \"ok\": false}"
+    },
+    {
+      "case": "same_size_change_verify_bundle.py",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: verify_bundle.py\", \"ok\": false}"
+    },
+    {
+      "case": "missing_verify_bundle.py",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 2,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python: can't open file '/tmp/2839-author-review-b1ds6g1f/11/safe/verify_bundle.py': [Errno 2] No such file or directory"
+    },
+    {
+      "case": "missing_verify_bundle.py",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 2,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python: can't open file '/tmp/2839-author-review-b1ds6g1f/11/safe/verify_bundle.py': [Errno 2] No such file or directory"
+    },
+    {
+      "case": "missing_verify_bundle.py",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 2,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python: can't open file '/tmp/2839-author-review-b1ds6g1f/11/safe/verify_bundle.py': [Errno 2] No such file or directory"
+    },
+    {
+      "case": "extra_file",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "extra_file",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "extra_file",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "extra_directory",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "extra_directory",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "extra_directory",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unexpected or missing package file\", \"ok\": false}"
+    },
+    {
+      "case": "symlink_report",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"nonregular member\", \"ok\": false}"
+    },
+    {
+      "case": "symlink_report",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"nonregular member\", \"ok\": false}"
+    },
+    {
+      "case": "symlink_report",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"nonregular member\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"duplicate JSON key\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"duplicate JSON key\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_key",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"duplicate JSON key\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_member",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_member",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_duplicate_member",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_traversal",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_traversal",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_traversal",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"invalid member set\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_bytes_type",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"byte-count mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_bytes_type",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"byte-count mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_bytes_type",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"byte-count mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_hash",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_hash",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "manifest_wrong_hash",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"hash mismatch: APPROACHES.md\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_solved_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_solved\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_solved_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_solved\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_solved_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_solved\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_refuted_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_refuted\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_refuted_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_refuted\", \"ok\": false}"
+    },
+    {
+      "case": "general_problem_refuted_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: general_problem_refuted\", \"ok\": false}"
+    },
+    {
+      "case": "novelty_claim_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: novelty_claim\", \"ok\": false}"
+    },
+    {
+      "case": "novelty_claim_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: novelty_claim\", \"ok\": false}"
+    },
+    {
+      "case": "novelty_claim_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: novelty_claim\", \"ok\": false}"
+    },
+    {
+      "case": "publication_performed_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: publication_performed\", \"ok\": false}"
+    },
+    {
+      "case": "publication_performed_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: publication_performed\", \"ok\": false}"
+    },
+    {
+      "case": "publication_performed_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"unsupported outcome claim: publication_performed\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_status_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"incorrect classification\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_status_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"incorrect classification\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_status_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"incorrect classification\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_dataset_pin_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"dataset identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_dataset_pin_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"dataset identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_dataset_pin_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"dataset identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_pair_pin_rehashed",
+      "optimization": 0,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"record identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_pair_pin_rehashed",
+      "optimization": 1,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"record identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "wrong_pair_pin_rehashed",
+      "optimization": 2,
+      "expected_accept": false,
+      "exit_code": 1,
+      "matches_expected": true,
+      "stdout": "",
+      "stderr": "{\"error\": \"record identity mismatch\", \"ok\": false}"
+    },
+    {
+      "case": "report_prose_change_rehashed_trust_boundary",
+      "optimization": 0,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 0, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "report_prose_change_rehashed_trust_boundary",
+      "optimization": 1,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 1, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "report_prose_change_rehashed_trust_boundary",
+      "optimization": 2,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 2, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "source_hash_change_rehashed_trust_boundary",
+      "optimization": 0,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 0, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "source_hash_change_rehashed_trust_boundary",
+      "optimization": 1,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 1, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "source_hash_change_rehashed_trust_boundary",
+      "optimization": 2,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 2, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "archive_metadata_change_trust_boundary",
+      "optimization": 0,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 0, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "archive_metadata_change_trust_boundary",
+      "optimization": 1,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 1, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    },
+    {
+      "case": "archive_metadata_change_trust_boundary",
+      "optimization": 2,
+      "expected_accept": true,
+      "exit_code": 0,
+      "matches_expected": true,
+      "stdout": "{\"ok\": true, \"optimization\": 2, \"scope\": \"integrity and finite arithmetic diagnostics only; no theorem certification\", \"stabilization_examples\": 4356}",
+      "stderr": ""
+    }
+  ]
+}
