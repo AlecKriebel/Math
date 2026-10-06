@@ -1,0 +1,88 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\title{A telescoping proof of the focal antipedal sum invariant}
+\author{Alec Kriebel\\Independent researcher\\
+  \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
+\date{6 October 2026\quad---\quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Reznik, Garcia and Koiller observed that the sums of the distances from
+the two foci of an ellipse to their respective antipedal vertices agree
+along every closed elliptic billiard orbit. We prove this equality for
+every regular closed orbit tangent to a strictly nested confocal ellipse,
+including odd primitive periods, star orbits and repeated traversals.
+The difference of the two ordinary positive antipedal distances on each
+edge is a fixed coefficient times the vertical displacement of that edge.
+Closure therefore gives the equality without a parity restriction.
+\end{abstract}
+
+\section{Statement, construction and attribution}
+Let
+\[
+ E:\ \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ E_\lambda:\ \frac{x^2}{a^2-\lambda}
+                  +\frac{y^2}{b^2-\lambda}=1,
+ \qquad a>b>0,\quad 0<\lambda<b^2.
+\]
+Put $c=\sqrt{a^2-b^2}$ and $f_\sigma=(\sigma c,0)$ for
+$\sigma\in\{+1,-1\}$. A regular closed billiard/Poncelet orbit here is a
+cyclic list $P_1,\ldots,P_N$ on $E$, with distinct consecutive endpoints,
+whose edges are tangent to $E_\lambda$ and whose continuation at each
+vertex uses the other of its two caustic tangents. Thus immediate
+retracing is excluded. The list may self-intersect, have any admissible
+winding, or repeat a shorter orbit. Set $P_{N+1}=P_1$.
+
+For a focus $f_\sigma$, define $Q_{\sigma,i}$ as the intersection of
+the full lines through $P_i$ and $P_{i+1}$ perpendicular to
+$P_i-f_\sigma$ and $P_{i+1}-f_\sigma$, respectively. These are the
+vertices of the antipedal of the original orbit polygon about that focus.
+We use ordinary Euclidean distances
+$q_{\sigma,i}=\lVert Q_{\sigma,i}-f_\sigma\rVert$.
+
+\begin{theorem}\label{thm:main}
+Every regular closed orbit just defined has finite, strictly positive
+antipedal distances and satisfies
+\begin{equation}\label{eq:sum}
+ \sum_{i=1}^N q_{+,i}=\sum_{i=1}^N q_{-,i}.
+\end{equation}
+In particular the ratio of these two sums is $1$ for every member of
+every admitted Poncelet family.
+\end{theorem}
+
+This is the observation labelled $k_{603}$ by Reznik--Garcia--Koiller
+in \cite[\S\S3.5,3.7 and Table 7]{RGKpre} and
+\cite[\S3.7 and Table 7, p.~349]{RGKjournal}. Their table records its
+experimental discovery in May 2020 and marks its proof as unknown there.
+That dated marker is not a claim about the present literature. The
+observation and antipedal construction are theirs, and the underlying
+negative-pedal/polarity geometry is classical \cite[Arts.~121--122]{Salmon}.
+The focal sideline-height product used below is also known
+\cite[Lemma 4.2]{BT}. Central inversion already proves the equality for
+centrally paired orbits; ordinary telescoping is a familiar method.
+The contribution proposed here is the identification of the ordinary
+norm difference with a coordinate increment and the resulting full-period
+proof, in particular for odd primitive periods.
+
+Neither individual sum is asserted constant as an orbit varies. The
+claim concerns the original polygon, not the outer tangent polygon,
+pedal feet, side perimeters or signed radial lengths. Hyperbolic caustics,
+degenerate caustics and two-bounce limits are outside its hypotheses.
+
+\section{Positive antipedal distance and orientation}
+\begin{lemma}\label{lem:distance}
+For noncollinear $A,B,f$, the antipedal intersection $Q$ is unique and
+\begin{equation}\label{eq:distance}
+ \lVert Q-f\rVert=\frac{\lVert A-f\rVert\lVert B-f\rVert}{h},
+ \qquad h=\operatorname{dist}(f,\operatorname{line}(A,B))>0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Translate $f$ to

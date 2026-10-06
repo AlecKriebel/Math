@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+"""Seal the authored source payload in its original repository custody context.
+
+This does not compile, archive, publish, contact anyone, or mutate Git.
+It validates adjacent results and exact input pins before generating a compact
+manifest and independent seal receipt. It is not needed to run verify.py.
+"""
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+
+HERE = Path(__file__).resolve().parent
+REQUIRED = {
+    "focal_antipedal_sum.tex", "verify.py", "run_verification.py",
+    "proof_binding.json", "input_pins.json", "RESEARCH_LOG.md", "README.md",
+    "LICENSE", "source_audit_summary.md", "intended_zenodo_metadata.json",
+    "zenodo-deposit.json", "verification_normal.json", "verification_optimized.json",
+    "execution_envelope.json", "seal_source_payload.py",
+}
+EXCLUDED = {"source_payload_manifest.json", "source_seal_receipt.json"}
+
+
+def require(condition, message):
+    if not condition:
+        raise RuntimeError(message)
+
+
+def now():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def pin(path, label=None):
+    body = path.read_bytes()
+    return {"path":label or path.name,"bytes":len(body),
+            "sha256":hashlib.sha256(body).hexdigest()}
+
+
+def read(name):
+    return json.loads((HERE/name).read_text(encoding="utf-8"))
+
+
+def main():
+    started = now()
+    found = {p.name for p in HERE.iterdir()}
+    require(found-EXCLUDED == REQUIRED, "Unexpected or missing source payload members")
+    require(all((HERE/name).is_file() for name in REQUIRED), "Payload must contain regular files")
+    require(not any((HERE/name).is_symlink() for name in found), "No symlink payload or receipt")
+    source = pin(HERE/"focal_antipedal_sum.tex")
+    binding = read("proof_binding.json")
+    require(all(source[k] == binding[k] for k in ("path","bytes","sha256")), "Manuscript binding mismatch")
+    inputs = read("input_pins.json")
+    for item in inputs["pins"]:
+        actual = pin(HERE.parent/item["path_relative_to_audit_root"])
+        require(actual["bytes"] == item["bytes"] and actual["sha256"] == item["sha256"],
+                "Changed pinned authoring input: "+item["path_relative_to_audit_root"])
+    gate = json.loads((HERE.parent/"ROOT_PRIORITY_CLEARANCE_AFTER_M1_20261006.json").read_text())
+    require(all(gate[k] is True for k in ("mathematical_clearance","M1_journal_final_comparison_cleared",
+                                         "bounded_priority_clearance","paper_preparation_authorized")),
+            "Authoritative root preparation gate is not cleared")
+    require(gate["publication_ready"] is False, "This source-only seal assumes later package reviews")
+    intended, deposit = read("intended_zenodo_metadata.json"), read("zenodo-deposit.json")
+    require(intended["metadata"] == deposit["metadata"], "Metadata objects differ")
+    metadata = intended["metadata"]
+    require(metadata["title"] == "A telescoping proof of the focal antipedal sum invariant", "Title mismatch")
+    require(metadata["publication_date"] == "2026-10-06" and metadata["version"] == "1.0", "Date/version mismatch")
+    require(metadata["license"] == "cc-by-4.0", "License mismatch")
+    require(metadata["creators"] == [{"name":"Kriebel, Alec","affiliation":"Independent researcher",
+                                      "orcid":"0009-0001-9320-500X"}], "Author metadata mismatch")
+    require(deposit["files"] == [{"path":"focal_antipedal_sum.pdf"},{"path":"focal_antipedal_sum_support.zip"}],
+            "Planned adjacent deliverable names mismatch")
+    normal, optimized = read("verification_normal.json"), read("verification_optimized.json")
+    for result, mode in ((normal,0),(optimized,1)):
+        require(result["status"] == "passed" and result["optimization_level"] == mode, "Verification mode/status mismatch")
+        require(result["proof_sha256"] == source["sha256"], "Executed verifier bound to different manuscript")
+        require(result["directed_chord_cases"] == 1456 and result["explicit_passing_guard_checks"] == 63346,
+                "Verification c
