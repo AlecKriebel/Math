@@ -1,0 +1,5 @@
+# PR107 publication audit log
+
+2026-10-06T04:04:04.979192+00:00 — authenticated exact current OPENdraft head and all incoming regular native bodies plus the unique QUEUE status projection. Original claimed_solved1/5, extra proof-search0. Source-pair validation and fresh independent math families are next; no novelty, publication or merge clearance. Source100% (native bodies), mathematics0%, PR107workflow5%; program15/99=15.15%. Primary checkout/index unchanged.
+
+2026-10-06T04:08:28.197459+00:00 — PR107 current draft eligible head cc2ae018 authenticated, all21 incoming regular bodies/source/prior no-join, complete primary OWR contribution and Karp theorem verified at exact submitted PDF hashes. Three independent mathematical families launched without shared conclusions; ROOT independently reconstructed all-tree reduction and edge/encoding boundaries. Original1/5, added central proof-search0. Source100%, mathematics20%, priority0%, PR107workflow10%; program15/99=15.15%. PR105/106 skipped entirely on literal unsolved status. No novel-resolution/publication/merge clearance. Primary checkout/index untouched.
