@@ -1,0 +1,200 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\title{Exact chordal separation of spherical Fibonacci points}
+\author{Alec Kriebel\\Independent researcher\\
+\small\url{https://orcid.org/0009-0001-9320-500X}}
+\date{October 5, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the exact finite separation conjecture stated in Brauchart's
+2012 Oberwolfach contribution: the rational, unshifted spherical Fibonacci
+configuration with $F_n$ points has minimum Euclidean chord $2/\sqrt{F_n}$
+for every $n\geq3$. A latitude--longitude inequality reduces the lower
+bound to the classical product separation of Fibonacci lattices. We
+include an elementary proof of the weaker arithmetic estimate needed
+here, making the argument self-contained.
+\end{abstract}
+
+\section{The conjecture and its precise scope}
+Let $F_0=0$, $F_1=F_2=1$, and $F_{n+1}=F_n+F_{n-1}$. For an integer
+$n\geq3$, put $q=F_n$ and $p=F_{n-1}$, and define
+\begin{equation}\label{eq:points}
+ z_k=\left(2\sqrt{\frac{k}{q}\left(1-\frac{k}{q}\right)}
+ \cos\frac{2\pi pk}{q},\quad
+ 2\sqrt{\frac{k}{q}\left(1-\frac{k}{q}\right)}
+ \sin\frac{2\pi pk}{q},\quad 1-\frac{2k}{q}\right),
+ \qquad 0\leq k<q.
+\end{equation}
+These are distinct points on the unit sphere. Brauchart's contribution
+\cite[pp.~2436--2439, especially p.~2438]{Brauchart} conjectures the
+following exact minimum, already attained by the north pole and its
+first latitude point.
+\begin{theorem}\label{thm:main}
+For every integer $n\geq3$, the configuration \eqref{eq:points} satisfies
+\[
+ \min_{0\leq i<j<q}\|z_i-z_j\|=\frac{2}{\sqrt q}.
+\]
+The unique minimizing unordered pair is $\{z_0,z_1\}$.
+\end{theorem}
+Here the metric is the ambient Euclidean chord. Its corresponding
+minimum geodesic distance is $2\arcsin(1/\sqrt q)$. The singleton $n=2$
+has no pair and is excluded. The theorem concerns the displayed rational
+longitudes and unshifted heights; it makes no assertion about midpoint
+heights, irrational golden angles, arbitrary cardinalities, discrepancy,
+or optimal packing among all spherical configurations.
+
+\section{The arithmetic and geometric inequalities}
+The arithmetic ingredient is classical. For the dual Fibonacci lattice
+$\{(h_1,h_2)\in\Z^2:h_1+ph_2\equiv0\pmod q\}$, its hyperbolic-cross
+index, the minimum of
+$\max(1,|h_1|)\max(1,|h_2|)$ over nonzero vectors, is $F_{n-2}$;
+see Zaremba \cite[p.~186]{Zaremba} and the explicit modern statement in
+Suryanarayana, Cools and Nuyens \cite[Theorem~2.2]{SCN}.
+Applying this to $(-r,m)$ gives $m|r|\geq F_{n-2}\geq q/3$.
+For completeness, the following proof establishes the needed weaker
+inequality without relying on that index theorem.
+
+\begin{lemma}\label{lem:arithmetic}
+If $n\geq3$, $1\leq m<q=F_n$, and $\ell\in\Z$, then
+\[
+ m\,|mp-\ell q|\geq q/3,\qquad p=F_{n-1}.
+\]
+\end{lemma}
+\begin{proof}
+Choose the unique $j\geq2$ with $F_j\leq m<F_{j+1}$.
+Then $j\leq n-1$; write $h=n-j\geq1$.
+The integer vectors $(F_j,F_{j-1})$ and $(F_{j+1},F_j)$ form a
+unimodular basis, since their determinant is $(-1)^{j-1}$.
+Consequently
+\[
+ (m,\ell)=S(F_j,F_{j-1})+T(F_{j+1},F_j),\qquad S,T\in\Z.
+\]
+Here $S\ne0$: otherwise a positive $m<F_{j+1}$ would be a multiple
+of $F_{j+1}$. Both $S,T$ positive would give $m\geq F_j+F_{j+1}$;
+both negative, or $S<0,T=0$, would give $m<0$. Thus either $T=0,S>0$
+or $S,T$ have opposite signs. The recurrence gives
+\[
+ pF_j-qF_{j-1}=(-1)^{j-1}F_h,\qquad
+ pF_{j+1}-qF_j=(-1)^jF_{h-1}.
+\]
+It follows that $|mp-\ell q|=|SF_h-TF_{h-1}|\geq F_h$,
+including the terminal case $h=1$, where $F_{h-1}=0$.
+Finally the Fibonacci addition identity gives
+\[
+ q=F_jF_{h+1}+F_{j-1}F_h\leq3F_jF_h
+ \leq3m|mp-\ell q|,
+\]
+using $F_{h+1}\leq2F_h$ and $F_{j-1}\leq F_j$.
+The determinant, error and addition identities all follow by induction
+from the defining recurrence.
+\end{proof}
+
+\begin{lemma}\label{lem:geometry}
+For two points with latitude parameters $0\leq a<b\leq1$ in
+\eqref{eq:points}, let $d=b-a$ and let $c$ be the cosine of their
+longitude difference. Their squared chord $D^2$ satisfies
+\[
+ c\leq0\ \Longrightarrow\ D^2\geq4d,
+ \qquad
+ 0<c<1\ \Longrightarrow\ D^2\geq4d\sqrt{1-c^2}.
+\]
+\end{lemma}
+\begin{proof}
+Put $U=2(a+b-2ab)$ and $V=4\sqrt{a(1-a)b(1-b)}$.
+Direct expansion gives
+\[
+ D^2=2(U-cV),\quad U\geq2d,\quad V^2=U^2-4d^2,
+ \quad U-2d=4a(1-b).
+\]
+For $c\leq0$ the first bound follows. For $0<c<1$, $U-cV>0$,
+and the identity
+\[
+ (U-cV)^2-4d^2(1-c^2)=(V-cU)^2\geq0
+\]
+proves the second bound. No planar distance-preservation property of
+the equal-area spherical map is used.
+\end{proof}
+
+\section{Proof of the exact separation}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Fix $0\leq i<j<q$ and set $m=j-i$ and $d=m/q$.
+Choose $\ell\in\Z$ so that $r=mp-\ell q$ satisfies
+$0<|r|\leq q/2$. Such a nonzero residue exists because consecutive
+Fibonacci numbers are coprime and $0<m<q$.
+The longitude cosine is $c=\cos(2\pi r/q)$.
+If $c\leq0$, Lemma~\ref{lem:geometry} gives
+$\|z_i-z_j\|^2\geq4m/q\geq4/q$.
+If $c>0$, then $0<|r|<q/4$. Concavity of sine on $[0,\pi/2]$ gives
+$\sin(2\pi|r|/q)\geq4|r|/q$, so the two lemmas give
+\[
+ \|z_i-z_j\|^2\geq\frac{4m}{q}\sin\frac{2\pi|r|}{q}
+ \geq\frac{16m|r|}{q^2}\geq\frac{16}{3q}>\frac4q.
+\]
+This proof includes $q=2,3,5$ without separate numerical cases.
+Since $z_0=(0,0,1)$, direct calculation gives
+$\|z_0-z_1\|^2=4/q$, proving the exact minimum.
+For equality in the nonpositive-cosine case we must have $m=1$ and
+$U=2d$. As $b=j/q<1$, the identity $U-2d=4a(1-b)$ forces $a=0$.
+Thus equality occurs only for $i=0,j=1$.
+\end{proof}
+
+\section{Source conventions, priority and verification}
+The displayed range $0\leq k<q$ and explicit pole witness in
+\cite[p.~2438]{Brauchart} specify the convention used here, despite
+the following set notation's endpoint shift. The range $1\leq k\leq q$
+gives an isometric set via $k\mapsto q-k$ and
+$(x,y,z)\mapsto(x,-y,-z)$. Including both endpoints instead gives $q+1$
+points. The reversed planar coordinate order in
+\cite[Section~5.2]{ABD} gives an isometric unordered set: reindex
+$k\equiv pj\pmod q$ and use $p^2\equiv(-1)^n\pmod q$; odd $n$ also
+requires reflection of the second spherical coordinate.
+
+The construction, pole upper bound and arithmetic product estimate are
+prior work. The contribution here is the all-pair spherical lower bound
+and its proof of the precisely stated conjecture. An extensive bounded
+primary-source audit found no earlier exact resolution in the sources
+inspected. It does not establish worldwide first priority or certify
+the conjecture's openness as of 2026. The fate of the Brauchart--Dick
+in-preparation item cited in \cite{Brauchart}, and some final graphics
+editions, remains unverified; the accompanying priority note records
+the actual reading and access limits.
+
+The accompanying verification package supplies exact finite arithmetic
+and certified rational chord controls, conventions and counterexample
+controls, source provenance, and reproduction instructions. These are
+checks supplementary to the proof, not a computational proof of an
+infinite theorem. AI tools were used extensively for derivation,
+literature comparison, computation, writing and independent adversarial
+verification. This is an unrefereed preprint; no human peer review or
+formal proof-assistant certification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{Brauchart} J.~S.~Brauchart,
+Spherical Nets, Sequences and Lattice rules---construction of
+low-discrepancy sequences on spheres, in \emph{Optimal and Near Optimal
+Configurations on Lattices and Manifolds}, Oberwolfach Reports
+\textbf{9} (2012), 2436--2439; published 2013.
+\href{https://doi.org/10.4171/OWR/2012/40}{doi:10.4171/OWR/2012/40}.
+\bibitem{ABD} C.~Aistleitner, J.~S.~Brauchart and J.~Dick,
+Point sets on the sphere $\mathbb S^2$ with small spherical cap
+discrepancy, \emph{Discrete Comput.~Geom.} \textbf{48} (2012), 990--1024.
+\href{https://doi.org/10.1007/s00454-012-9451-3}{doi:10.1007/s00454-012-9451-3}.
+\bibitem{Zaremba} S.~K.~Zaremba,
+A remarkable lattice generated by Fibonacci numbers,
+\emph{Fibonacci Quart.} \textbf{8} (1970), 185--198.
+\url{https://www.fq.math.ca/Scanned/8-2/zaremba.pdf}.
+\bibitem{SCN} G.~Suryanarayana, R.~Cools and D.~Nuyens,
+Integration and Approximation with Fibonacci lattice points,
+\emph{Dolomites Res.~Notes Approx.} \textbf{8} (2015), 92--101.
+\url{https://www.maths.tcd.ie/EMIS/journals/DRNA/pdf/cools_etal_10ypdpts.pdf}.
+\end{thebibliography}
+\end{document}
