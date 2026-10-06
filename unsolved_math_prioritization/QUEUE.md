@@ -823,7 +823,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 812 | 30000433 / OWR-1194-002 | Five-or-Six Edge-Degree Triangulations of Three-Manifolds | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 813 | 30000573 / OWR-1323-010 | Chaotic Operators on Nuclear Fréchet Spaces | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 814 | 30000638 / OWR-1394-015 | Volume Bounds for Symmetric Lattice Polytopes | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 815 | 30000789 / OWR-1588-003 | Sharp Dimension Threshold for Ricci-Flow Curvature Conditions | 0.0988 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 815 | 30000789 / OWR-1588-003 | Sharp Dimension Threshold for Ricci-Flow Curvature Conditions | 0.0988 | 5.5 | 3 | 2007 | unsolved | 5/5 |  |  |  |
 | 816 | 30000801 / OWR-1591-003 | Strong Quantization for Fourth-Order Navier Problems | 0.0988 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 817 | 30001006 / OWR-2045-003 | Sharp Ricci-Flow-Invariant Curvature Cones | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 818 | 30001054 / OWR-2090-003 | Realizability of Allowable Double-Permutation Sequences | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
