@@ -1,0 +1,636 @@
+{
+  "approach_budget": 5,
+  "archives": [
+    {
+      "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+      "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+      "kind": "author",
+      "member_code_executed": false,
+      "members": 6,
+      "status": "PASS"
+    },
+    {
+      "archive_sha256": "030fa887f620b4e03587556c7ba450d5f69e2e50609e27950cc02199b6e6c4be",
+      "external_manifest_sha256": "ca1f8271bbc5df940d7f4456f3a4199ce5d690923499cbd1b4b84ad182d086e0",
+      "kind": "audit",
+      "member_code_executed": false,
+      "members": 7,
+      "status": "PASS"
+    }
+  ],
+  "audit_final_replays": [
+    {
+      "exit_code": 0,
+      "inspection": {
+        "archive_sha256": "030fa887f620b4e03587556c7ba450d5f69e2e50609e27950cc02199b6e6c4be",
+        "external_manifest_sha256": "ca1f8271bbc5df940d7f4456f3a4199ce5d690923499cbd1b4b84ad182d086e0",
+        "kind": "audit",
+        "member_code_executed": false,
+        "members": 7,
+        "status": "PASS"
+      },
+      "name": "isolated_normal"
+    },
+    {
+      "exit_code": 0,
+      "inspection": {
+        "archive_sha256": "030fa887f620b4e03587556c7ba450d5f69e2e50609e27950cc02199b6e6c4be",
+        "external_manifest_sha256": "ca1f8271bbc5df940d7f4456f3a4199ce5d690923499cbd1b4b84ad182d086e0",
+        "kind": "audit",
+        "member_code_executed": false,
+        "members": 7,
+        "status": "PASS"
+      },
+      "name": "isolated_optimized"
+    },
+    {
+      "exit_code": 0,
+      "inspection": {
+        "archive_sha256": "030fa887f620b4e03587556c7ba450d5f69e2e50609e27950cc02199b6e6c4be",
+        "external_manifest_sha256": "ca1f8271bbc5df940d7f4456f3a4199ce5d690923499cbd1b4b84ad182d086e0",
+        "kind": "audit",
+        "member_code_executed": false,
+        "members": 7,
+        "status": "PASS"
+      },
+      "name": "relocated_hostile_cwd"
+    },
+    {
+      "exit_code": 0,
+      "inspection": {
+        "archive_sha256": "030fa887f620b4e03587556c7ba450d5f69e2e50609e27950cc02199b6e6c4be",
+        "external_manifest_sha256": "ca1f8271bbc5df940d7f4456f3a4199ce5d690923499cbd1b4b84ad182d086e0",
+        "kind": "audit",
+        "member_code_executed": false,
+        "members": 7,
+        "status": "PASS"
+      },
+      "name": "relocated_hostile_cwd_optimized"
+    }
+  ],
+  "audit_tamper_controls": [
+    {
+      "name": "archive_tamper",
+      "reason": "archive byte count",
+      "result": "REJECTED"
+    },
+    {
+      "name": "external_manifest_tamper",
+      "reason": "external manifest digest",
+      "result": "REJECTED"
+    }
+  ],
+  "author_control_suites": [
+    {
+      "detail": {
+        "archive_entrypoint_and_internal_cache_tests": "NOT_APPLICABLE: no executable payload, package imports, or entrypoints",
+        "import_shadow_sentinel_executed": false,
+        "mathematical_verification": "Human-style proof audit, not code-based proof certification",
+        "negative_control_count": 29,
+        "negative_controls": [
+          {
+            "layer": "trusted-anchor",
+            "name": "archive bit tamper",
+            "reason": "archive digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "trusted-anchor",
+            "name": "external manifest whitespace",
+            "reason": "external manifest digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "trusted-anchor",
+            "name": "changed proof with attacker-rehashed inventories",
+            "reason": "external manifest digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "missing member",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "unexpected data member",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "executable extension",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "path traversal",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "absolute path",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "backslash path",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "invalid UTF8",
+            "reason": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate JSON key",
+            "reason": "duplicate JSON key",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "nonfinite JSON",
+            "reason": "nonfinite JSON constant",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate ZIP member",
+            "reason": "duplicate ZIP member",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "symlink ZIP member",
+            "reason": "ZIP entry type",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate external inventory",
+            "reason": "duplicate inventory path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "boolean byte count",
+            "reason": "invalid byte count",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong member digest",
+            "reason": "member digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "unexpected external schema key",
+            "reason": "external manifest schema",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong external schema version",
+            "reason": "external schema version",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "internal omitted entry",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "internal duplicate entry",
+            "reason": "duplicate inventory path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong internal byte count",
+            "reason": "internal digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong internal hash",
+            "reason": "internal digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged full proof",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged solved status",
+            "reason": "terminal unsolved status",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged connected counterexample",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged novelty",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "boolean substitutes false",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "changed problem identity",
+            "reason": "author identity",
+            "result": "REJECTED"
+          }
+        ],
+        "package_code_execution": "NONE; archive bytes are read and parsed only",
+        "positive_replays": [
+          {
+            "exit_code": 0,
+            "name": "isolated_normal",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "isolated_optimized",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "relocated_hostile_cwd",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "relocated_hostile_cwd_optimized",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "irrelevant_external_bytecode_cache",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          }
+        ],
+        "schema": "kirby-2844-independent-data-controls-v1",
+        "status": "PASS",
+        "trust_model": "Trusted separately supplied external manifest digest; trusted inspector, Python standard library, interpreter, and OS. Repinned tests intentionally bypass the original cryptographic anchor to exercise structural and classification checks."
+      },
+      "optimized": false,
+      "summary": {
+        "negatives": 29,
+        "positives": 5,
+        "status": "PASS"
+      }
+    },
+    {
+      "detail": {
+        "archive_entrypoint_and_internal_cache_tests": "NOT_APPLICABLE: no executable payload, package imports, or entrypoints",
+        "import_shadow_sentinel_executed": false,
+        "mathematical_verification": "Human-style proof audit, not code-based proof certification",
+        "negative_control_count": 29,
+        "negative_controls": [
+          {
+            "layer": "trusted-anchor",
+            "name": "archive bit tamper",
+            "reason": "archive digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "trusted-anchor",
+            "name": "external manifest whitespace",
+            "reason": "external manifest digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "trusted-anchor",
+            "name": "changed proof with attacker-rehashed inventories",
+            "reason": "external manifest digest",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "missing member",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "unexpected data member",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "executable extension",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "path traversal",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "absolute path",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "backslash path",
+            "reason": "unsafe or unexpected path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "invalid UTF8",
+            "reason": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate JSON key",
+            "reason": "duplicate JSON key",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "nonfinite JSON",
+            "reason": "nonfinite JSON constant",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate ZIP member",
+            "reason": "duplicate ZIP member",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "symlink ZIP member",
+            "reason": "ZIP entry type",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "duplicate external inventory",
+            "reason": "duplicate inventory path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "boolean byte count",
+            "reason": "invalid byte count",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong member digest",
+            "reason": "member digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "unexpected external schema key",
+            "reason": "external manifest schema",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong external schema version",
+            "reason": "external schema version",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "internal omitted entry",
+            "reason": "internal member set",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "internal duplicate entry",
+            "reason": "duplicate inventory path",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong internal byte count",
+            "reason": "internal digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-structural-parser",
+            "name": "wrong internal hash",
+            "reason": "internal digest or size",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged full proof",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged solved status",
+            "reason": "terminal unsolved status",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged connected counterexample",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "forged novelty",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "boolean substitutes false",
+            "reason": "author scope flags",
+            "result": "REJECTED"
+          },
+          {
+            "layer": "repinned-semantic-classification",
+            "name": "changed problem identity",
+            "reason": "author identity",
+            "result": "REJECTED"
+          }
+        ],
+        "package_code_execution": "NONE; archive bytes are read and parsed only",
+        "positive_replays": [
+          {
+            "exit_code": 0,
+            "name": "isolated_normal",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "isolated_optimized",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "relocated_hostile_cwd",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "relocated_hostile_cwd_optimized",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          },
+          {
+            "exit_code": 0,
+            "name": "irrelevant_external_bytecode_cache",
+            "result": {
+              "archive_sha256": "4fce64f159ae10cebc4d89ba47d8c0f28cecb8ab940952331137415f865c5cfc",
+              "external_manifest_sha256": "d7332855f96826013ce7c6024b036da3742783c53993f8c2e0bffc88c9dbae8d",
+              "kind": "author",
+              "member_code_executed": false,
+              "members": 6,
+              "status": "PASS"
+            }
+          }
+        ],
+        "schema": "kirby-2844-independent-data-controls-v1",
+        "status": "PASS",
+        "trust_model": "Trusted separately supplied external manifest digest; trusted inspector, Python standard library, interpreter, and OS. Repinned tests intentionally bypass the original cryptographic anchor to exercise structural and classification checks."
+      },
+      "optimized": true,
+      "summary": {
+        "negatives": 29,
+        "positives": 5,
+        "status": "PASS"
+      }
+    }
+  ],
+  "canonical_status": "unsolved",
+  "content_safety": "Authored mathematics, audits, acceptance and public verification metadata only; no copied third-party sources, raw corpus data, private sources or coordination files.",
+  "controls_sha256": "c7e20cf5948f9f70b7914e2838e8673a454b576bdc94791d446f378ced7877ed",
+  "frozen_historical_labels_preserved": true,
+  "full_target_solved": false,
+  "inspector_sha256": "b580cc398b03fec524670b566bd97588a61578842af9efa2369bf788395d6614",
+  "no_archive_member_executed": true,
+  "original_author_validator_runs": [
+    {
+      "exit_code": 0,
+      "optimized": false,
+      "stdout": "PASS: anchored external digest, ZIP digest, exact member set, each member digest, internal manifest, UTF-8/JSON, text-only scope and terminal classification. No package code executed."
+    },
+    {
+      "exit_code": 0,
+      "optimized": true,
+      "stdout": "PASS: anchored external digest, ZIP digest, exact member set, each member digest, internal manifest, UTF-8/JSON, text-only scope and terminal classification. No package code executed."
+    }
+  ],
+  "queue_change": {
+    "all_other_bytes_preserved": true,
+    "base_blob": "e910a83bacea6c37f40a48cfacebda5e88fa045b",
+    "base_bytes": 392215,
+    "base_ref": "c40562362d60cce52a3128fa17313ad729f0d835",
+    "base_sha256": "a31b3f110ba66993c708a4d7d2f5a485499da69929461f529c26b30ba7848dca",
+    "changed_cells": [
+      "Status",
+      "Turns"
+    ],
+    "new_bytes": 392217,
+    "new_sha256": "0e5c1676568063c27734ba8ba74f9ea488c21086b1b8a3bd0f4568b4464d3dc0",
+    "path": "unsolved_math_prioritization/QUEUE.md",
+    "row_after": "| 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | unsolved | 4/5 |  |  |  |",
+    "row_before": "| 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |"
+  },
+  "schema": "kirby-2844-publication-integrity-v1",
+  "scope": "Data-integrity replays, not a mathematical proof checker. Mathematical findings are the authored report and separate independent audit.",
+  "status": "PASS",
+  "substantive_approaches": 4
+}
