@@ -940,7 +940,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 929 | 5500072 / AMR-054-0072 | Polyhedron with Regular Pentagon Faces | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 930 | 600004 / AMR-005-0004 | Baker's Dozen — Periodic hyperbolic outer billiards | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 931 | 600011 / AMR-005-0011 | Baker's Dozen — Convex tangent-segment iteration | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 932 | 8500009 / AMR-084-0009 | Existence of a strong rational Diophantine quadruple | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 932 | 8500009 / AMR-084-0009 | Existence of a strong rational Diophantine quadruple | 0.0960 | 5.5 | 3 | unknown | unsolved | 3/5 |  |  |  |
 | 933 | 9600004 / AMR-095-0004 | Negative association for asymmetric exclusion | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 934 | 9700026 / AMR-096-0026 | Stability dichotomy for the associated city dynamical system | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 935 | 9700033 / AMR-096-0033 | Unbounded component uniqueness in a SIRSN | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
