@@ -840,7 +840,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 829 | 30006162 / OWR-14299082-004 | Generic Point Property for Exceptional Surface Homeomorphisms | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 830 | 30006166 / OWR-14299082-012 | Hyperfiniteness of Generic Wreath-Product Actions | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 831 | 30006464 / OWR-14299577-017 | Short Coefficient Detection of Cusp-Form Norms | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 832 | 30001669 / OWR-4791-028 | Short Cycles in Highly Dominating Digraphs | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 832 | 30001669 / OWR-4791-028 | Short Cycles in Highly Dominating Digraphs | 0.0981 | 5.5 | 3 | 2011 | already_solved | 1/5 |  | Anbalagan, Huang, Lovett, Norin, Vetta and Wu (2015), Theorem 11: (101,100)-digraphs give the published negative answer; no new solution claimed. [Verified prior resolution](attempts/30001669/README.md). |  |
 | 833 | 30001702 / OWR-4798-027 | Minimal Facets in Triangulated Tori | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 834 | 30001707 / OWR-4799-003 | Multiplicity-Free Quantization and Orbit Counts | 0.0981 | 6.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 835 | 30001737 / OWR-4804-005 | The Converse Unitary Distinction Criterion | 0.0981 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
