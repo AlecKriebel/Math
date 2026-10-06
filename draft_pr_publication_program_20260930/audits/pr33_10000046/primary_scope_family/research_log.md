@@ -1,0 +1,8 @@
+# Research log
+
+- 2026-10-02T02:17:34.562197+00:00: Fresh original archived Benjamini PDF fetched and source target fixed independently. Audit completion 12%; verification of the bundled mathematical target 0%. Initial finding seal saved before candidate/review/code/readiness/parent/sibling reads.
+
+- 2026-10-02T02:25:47.668510+00:00: Exact13 original blobs and full14-file diff verified against actual base/head; fresh pinned files, unique numeric/code identity, full original prior, real read-only SQLite TEXT serialization and review hashes confirmed. Audit completion55%; bundled target verification0%; original attempt1/5, verification0.
+- 2026-10-02T02:25:47.668649+00:00: Both original programs reproduced byte for byte in unchanged private copies. Nine new source/ledger mutation controls reject false provenance; three prose mutants and joint provenance mutation still pass original fixed diagnostics. Actual private rank() rewrites12 to8columns and actual private require_cache accepts three invalid payload/report cases. Protected live inputs unchanged. Audit completion78%; mathematical verification0%.
+
+- 2026-10-02T02:33:10.502757+00:00: Full original source/proof/artifact role matrix and required current corrections completed. Independently confirmed current MAIN accepted29/30/31 notes occupy Chat10 instead of Findings11; original PR33 note correctly occupies Findings11 and must stay there. No shared or remote writes. Audit assignment100%; original bundled target verification0%; original substantive1/5 and verification0. Exact self-excluding first-party manifest to be sealed immediately.

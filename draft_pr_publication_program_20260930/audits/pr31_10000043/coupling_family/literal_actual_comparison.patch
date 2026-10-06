@@ -1,0 +1,951 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..e31ecfb89 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -57,7 +57,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+-| 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed capped-exploration exclusion of uniformly bounded fiber sizes, propagation of infinite fiber intersections and the cutset-hypothesis separation. The original finite-but-unbounded fiber case remains unresolved. Exact coupling checks support only these partial claims; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/31. |  |
+ | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/10000043/PARTIAL.md b/unsolved_math_prioritization/attempts/10000043/PARTIAL.md
+new file mode 100644
+index 000000000..065831dc0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/PARTIAL.md
+@@ -0,0 +1,125 @@
++# Finite vertical intersections: a partial exclusion and the remaining gap
++
++**Target:** 10000043 / AMR-099-0043, Benjamini's Open Problem 9.49.
++**Status:** unresolved. This note excludes uniformly bounded fiber intersections, not all finite fiber intersections. No novelty claim is made; separate adversarial review is pending.
++**Prepared:** 30 September 2026, gpt-6-astra at xhigh reasoning.
++
++Let G be an infinite, connected, countable, locally finite simple graph. The model is independent Bernoulli **bond** percolation with a fixed parameter p on the **Cartesian** product G x Z. Assume p_c(G)=1 for bond percolation. Write F_v={v} x Z and C(x) for the open cluster of x. These conventions follow the original notes, pp. 5, 32–33 and 76; a bounded-degree assumption is not imposed.
++
++The original question asks whether every infinite cluster that meets a fiber must meet it infinitely often. The results below leave exactly the possible clusters whose intersections with all fibers are finite but have unbounded sizes as the base vertex varies.
++
++## 1. Infinite intersections propagate between fibers
++
++**Lemma.** On G x Z at any fixed p>0, almost surely every open cluster C satisfies one of the following alternatives:
++
++- C meets every fiber F_v in infinitely many vertices;
++- C meets every fiber F_v in finitely many vertices, where zero is allowed.
++
++This statement does not require p_c(G)=1.
++
++**Proof.** It is enough to show that infinite intersection propagates across a fixed adjacent pair u,w in G. Reveal all percolation edges in the graph obtained by deleting the entire fiber F_w. Conditional on these edges, consider any of its clusters D that meets F_u infinitely often. There are infinitely many distinct edges joining D to F_w, one from each of those vertices of F_u. They are independent Bernoulli(p) edges not included in the revealed graph. Almost surely infinitely many are open. This conclusion holds simultaneously for all such D, since the revealed graph has only countably many clusters.
++
++Suppose an original cluster C met F_u infinitely but F_w only finitely. Removing the finite set C intersect F_w splits C into finitely many components: the graph is locally finite, so only finitely many edges are incident to the deleted set. One of the remaining components D meets F_u infinitely. It is a cluster of the revealed graph, because any open path avoiding F_w that leaves D would also enlarge the original cluster C. The preceding conditional argument supplies infinitely many open edges from D to F_w, forcing C to meet F_w infinitely, a contradiction.
++
++Take the countable intersection of the probability-one conclusions for all oriented base edges. Connectedness of G then propagates any infinite fiber intersection to every base vertex. QED.
++
++Thus a counterexample to the target cannot mix finite and infinite fiber intersections. Its intersections must all be finite.
++
++## 2. Capped exploration and independent domination on the base
++
++**Proposition.** If p_c(G)=1 and 0<=p<1, then, almost surely, no infinite open cluster C satisfies
++
++\[
++\sup_{v\in V(G)} |C\cap F_v|<\infty.
++\]
++
++**Proof.** Fix an integer M>=1 and a starting vertex x=(v_0,n_0). Explore its cluster by a deterministic breadth-first search, with the following modification: accept at most M vertices in any one fiber. Start by accepting x. When an edge from an accepted vertex is queried and found open, accept its other endpoint if that endpoint was not previously accepted and its fiber has fewer than M accepted vertices. Otherwise ignore that proposed addition. Process every accepted vertex and each of its incident edges; never query the same product edge twice.
++
++Fix a base edge e={u,v}. Every queried horizontal edge above e has its height in the set of heights of accepted vertices in F_u or in F_v. Each of those two sets has size at most M. Consequently at most 2M distinct horizontal edges above e are ever queried.
++
++Implement the exploration by deferred decisions. For every base edge e, prepare an independent reservoir
++
++\[
++X_{e,1},\ldots,X_{e,2M},\qquad X_{e,j}\sim\operatorname{Bernoulli}(p).
++\]
++
++On the j-th previously unqueried horizontal edge above e, use X_{e,j} as its state. Use independent Bernoulli(p) variables for newly queried vertical edges. The choice of the next query depends only on past revealed states. Therefore this procedure has exactly the law of the capped exploration in the original independent product-edge model. Unqueried product edges may be completed independently afterward. The reservoir limit cannot be exceeded by the preceding deterministic count.
++
++Define a base-edge configuration by
++
++\[
++Y_e=\max_{1\le j\le2M}X_{e,j}.
++\]
++
++The variables Y_e are independent Bernoulli variables with common parameter
++
++\[
++q_M=1-(1-p)^{2M}<1.
++\]
++
++Whenever the exploration reaches a new base vertex across a horizontal edge above e, that edge was found open, so Y_e=1. Vertical moves do not change the base vertex. Hence the projection of every accepted vertex belongs to the Y-open component of v_0. As p_c(G)=1, this base component is finite almost surely. At most M accepted vertices lie above each of its vertices, so the capped exploration is finite almost surely.
++
++On the event that the entire actual cluster C(x) has at most M vertices in every fiber, the cap never excludes a vertex of C(x). Breadth-first search then explores all of C(x). This uses local finiteness, which makes the queue fair and ensures that every vertex at finite graph distance is eventually processed. It follows that
++
++\[
++\mathbb P_p\bigl(|C(x)|=\infty\text{ and }|C(x)\cap F_v|\le M
++\text{ for all }v\bigr)=0.
++\]
++
++There are only countably many starting vertices x and positive integers M. Taking their union proves the proposition. QED.
++
++The argument only dominates the capped exploration. It does not condition the percolation measure on the global fiber-size event; such conditioning would generally destroy independence.
++
++**Corollary.** For p_c(G)=1 and a fixed 0<p<1, almost surely any infinite cluster failing the requested property has
++
++\[
++|C\cap F_v|<\infty\quad\text{for every }v,
++\qquad
++\sup_v|C\cap F_v|=\infty.
++\]
++
++For p=0 there are no infinite clusters. For p=1 the connected product graph is one cluster and every fiber intersection is infinite. Thus neither endpoint presents an additional issue.
++
++## 3. Known uniqueness and cutset cases
++
++Whenever percolation on G x Z has a unique infinite cluster, it meets every fiber infinitely almost surely. To see this, there is some vertex with positive probability of belonging to an infinite cluster, since the graph is countable and an infinite cluster exists almost surely. The FKG inequality and a finite path then give positive percolation probability at every vertex. The law is ergodic under vertical translations: finite cylinder events become independent under sufficiently large shifts, and approximation extends mixing to all events. The ergodic theorem gives positive density of infinite-cluster vertices along each fiber. Under uniqueness, all of these vertices belong to that one cluster.
++
++[Benjamini–Kozma, Theorem 2](https://alea.math.cnrs.fr/articles/v10/10-02.pdf) proves that there is at most one infinite cluster on G x Z when there is a fixed finite K such that every finite set in G can be separated from infinity by deleting at most K edges. Their **Lemma 7** proves the requested fiber-intersection property directly under this hypothesis. These are published prior results, not results of this attempt. In arXiv version 2 the same fiber lemma is numbered 5.
++
++The published counterexample in their Theorem 1 does not answer the present question negatively. Its base graph contains copies of Z^d for large d, so its base critical probability is at most p_c(Z^d)<1. Its subexponential growth and strong amenability do not replace the hypothesis p_c(G)=1.
++
++## 4. Why the missing uniformity cannot be inserted for free
++
++The base condition p_c(G)=1 does not imply the uniformly bounded cutset hypothesis. Here is an elementary example. Start with a rooted binary tree and replace every edge from original level n-1 to original level n by a path of length 2^n, for n>=1. Call the resulting locally finite degree-at-most-three graph T_*.
++
++For any fixed p<1, the probability that the root reaches the original level n is at most
++
++\[
++2^n p^{\sum_{j=1}^n2^j}
++=2^n p^{2^{n+1}-2}\longrightarrow0.
++\]
++
++An infinite root cluster must reach all original levels, since the finite subgraph before each level has finitely many vertices. Thus the root has zero infinite-cluster probability for every p<1. Connectedness and finite-energy opening of a fixed path imply the same at every vertex; hence p_c(T_*)=1.
++
++On the other hand, let A_n contain the root and all subdivided paths up through original level n. From A_n there are 2^(n+1) edge-disjoint infinite rays, one through each outgoing original edge at that level. Any edge set separating every vertex of A_n from infinity must intersect every one of these rays. Its cardinality is therefore at least 2^(n+1), so no uniform K exists. This is a counterexample to the attempted cutset implication, **not** to the original fiber question.
++
++There is also a probabilistic obstruction to replacing the cap M in Section 2 by unbounded deterministic capacities M_v. The induced bounds on base-edge opening probabilities would approach 1, while p_c(G)=1 excludes only a fixed common Bernoulli parameter below 1. Even on a ray, independent edge probabilities
++
++\[
++q_n=1-2^{-(n+1)},\qquad n\ge1,
++\]
++
++are all below 1 but give an infinite open path from the root with probability
++
++\[
++\prod_{n=1}^{\infty}q_n\ge
++1-\sum_{n=1}^{\infty}2^{-(n+1)}=\tfrac12>0.
++\]
++
++The inequality follows first for finite products, or directly from the union bound, then by continuity. The homogeneous critical probability of the underlying ray is still 1. This explains exactly why the capped-exploration proof does not extend merely from finite intersection sizes at each vertex.
++
++## 5. Remaining gap
++
++The unresolved case is an infinite cluster with finite intersection with every vertical fiber but unbounded intersection sizes across the base graph. Neither the original assumption p_c(G)=1 nor finite-energy modifications in this analysis provide the uniform control needed to exclude it. The stronger cutset theorem does not cover all admissible graphs, as the stretched-tree example shows.
++
++No counterexample to Benjamini's question, proof of its universal assertion, or exhaustive current-literature certification is claimed. The finite checker tests the capped deferred-decision coupling on a small product graph and exact probability calculations; it cannot decide an infinite-volume existence statement.
+diff --git a/unsolved_math_prioritization/attempts/10000043/README.md b/unsolved_math_prioritization/attempts/10000043/README.md
+new file mode 100644
+index 000000000..ab00fc5af
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/README.md
+@@ -0,0 +1,13 @@
++# Infinite clusters and vertical fibers
++
++**Unsolved after two substantive attempts.** The original question is not settled by this package.
++
++[PARTIAL.md](PARTIAL.md) proves that an infinite cluster cannot have a uniform finite bound on its vertical-fiber intersection sizes when the base critical probability is 1. It also proves propagation of infinite intersections across neighboring fibers. The remaining possible counterexample has finite intersections with every fiber, but sizes unbounded across the base graph.
++
++The note credits the known bounded-cutset special case, gives a stretched-tree example showing that hypothesis is strictly stronger, and identifies why unbounded exploration capacities do not yield a homogeneous percolation contradiction. These examples obstruct proof routes; they are not counterexamples to the original question.
++
++[SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the exact graph, product, and bond-percolation conventions, source recovery, and literature boundaries. The actual model was gpt-6-astra at xhigh reasoning. [Separate adversarial review](review/REVIEW.md) passed for these partial conclusions, with no mandatory mathematical correction. This is an AI review, not human peer review; novelty remains unconfirmed.
++
++Run `python check_coupling.py` from this directory. Its 4,996 exact finite assertions compare the capped exploration's reached-set law with the independent-reservoir implementation on K2 x C3 and check the probability calculations. This diagnostic cannot prove an infinite-volume assertion by itself.
++
++The independent checker adds 90,170 exact assertions, including multiple interacting reservoirs at p=1/2, 1/3, and 2/3, full product-law completion, and a sharp 2M control. Run `python review/independent_checks.py` to reproduce it. The general finite-but-unbounded fiber case remains unresolved.
+diff --git a/unsolved_math_prioritization/attempts/10000043/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/10000043/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..05d4aed11
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# Research log: infinite clusters and vertical fibers
++
++Actual model: gpt-6-astra, xhigh reasoning. Window: 30 September 2026, 04:52–06:52 UTC. At most five substantive proof attempts.
++
++## 04:55 UTC: original model and status gate
++
++Completion estimate: 5%. Recovered the complete original problem from the archived author manuscript, checked the surrounding section and standing graph/percolation conventions, and visually inspected p.76. No prior project attempt or duplicate was found; the upstream record contains only an OPEN-TRIAGE literature note. Benjamini–Kozma proves a stronger-cutset special case.
++
++## Attempt 1: capped exploration and fiber propagation
++
++Completion estimate: 15%. A deferred-decision exploration capped at M vertices per fiber uses at most 2M horizontal Bernoulli trials per base edge. Its projection is dominated by independent percolation with parameter 1-(1-p)^(2M)<1, excluding uniformly bounded-fiber infinite clusters when p_c(G)=1. A separate conditioning argument propagates an infinite fiber intersection across adjacent fibers. The remaining possibility is an infinite cluster with all fiber intersections finite but with no uniform bound on their sizes. The proof is being written for independent review.
++
++## Attempt 2: cutset and variable-cap obstacles
++
++Completion estimate remains 15%; the full target is unresolved. The existing uniform-cutset condition is not implied by p_c=1: a binary tree with exponentially stretched edges is an explicit negative control. Allowing unbounded fiber capacities yields base-edge bounds approaching 1, which does not contradict homogeneous p_c=1, as an inhomogeneous ray example shows. These examples refute proposed reductions, not the original question. Both selected routes stop at the finite-but-unbounded fiber-size case.
++
++## 05:04 UTC: frozen partial package
++
++Completion estimate remains 15% for the original target. Both selected routes have a precise unresolved gap. The frozen note and exact checker were sent for separate adversarial review. All 4,996 finite assertions passed, including agreement of the original and deferred-decision reached-set distributions. The original universal claim remains unproved, with no counterexample or novelty claim. No PR has been opened.
++
++## 05:20 UTC: separate review passed
++
++Completion estimate remains 15%; the original target is unresolved. A separate gpt-6-astra reviewer at xhigh audited the frozen proof and sources, reproduced all 4,996 author assertions, and passed 90,170 independent finite assertions. No mandatory correction was found. The mathematical artifact remains byte-identical to the reviewed snapshot. The review and reproducible checks are included for one unresolved-partial draft PR; no novelty or human-peer-review claim is made.
+diff --git a/unsolved_math_prioritization/attempts/10000043/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/10000043/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..0d70d839b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/SOURCE_AUDIT.md
+@@ -0,0 +1,33 @@
++# Source audit: infinite-cluster intersections with vertical fibers
++
++Checked 30 September 2026. The exact source is Itai Benjamini, *Coarse Geometry and Randomness*, author manuscript dated 30 October 2013, Open Problem 9.49 on p. 76. The direct [author URL](https://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf) currently returned 404. The complete PDF was recovered from the [preserved author-site snapshot](https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf), read locally, and checked against a rendering of p. 76.
++
++## Model and scope
++
++The standing graph conventions on p. 5 specify simple, countable, locally finite graphs. Section 4.1 on p. 32 defines independent Bernoulli bond percolation. Section 4.2 on p. 33 adopts infinite connected graphs and defines the Cartesian product. No bounded-degree hypothesis is imposed on the target. Section 9.6, pp. 75–76, provides the relevant context and ends with the fiber-intersection question.
++
++The target hypothesis is p_c(G)=1 for bond percolation on the base graph. The product uses the same fixed retention probability p for each horizontal and vertical edge. The parameter can lie anywhere in [0,1], including the product's critical value. The two endpoints are trivial, as recorded in the partial note.
++
++The original wording asks about infinite intersections with fibers; the pinned formulation explicitly restricts to fibers that the cluster meets. Section 1 of `PARTIAL.md` shows that any infinite intersection propagates to all fibers on a connected base. The submission therefore preserves the meaningful finite-nonempty-intersection target and does not exploit an empty fiber as a counterexample.
++
++## Prior attempt and duplicate gate
++
++The main-branch queue row was rank 49, queued, with 0/5 turns. Searches of the state, assessment/reset histories, related-target groups, attempt-path tree and commits, all-state PR titles and bodies, and the problem-specific remote branch found no prior project attempt. A full pinned-dataset title/statement search found no duplicate.
++
++The pinned research-results dictionary has an `OPEN-TRIAGE` note for AMR-099-0043. It records only a web/arXiv literature check without a proof, counterexample, or substantive proof attempt. It was read before this attempt and is not treated as mathematical evidence.
++
++`source_record.json` preserves the catalogue entry from [ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), CC BY 4.0, pinned revision `37e53eabe540fb458758e198be61634bd02ee008`. Upstream PDF files are used for source inspection and are not included in the repository package.
++
++## Exact prior theorem and its limitation
++
++The section cites Itai Benjamini and Gady Kozma, [*Uniqueness of percolation on products with Z*](https://alea.math.cnrs.fr/articles/v10/10-02.pdf), ALEA 10(1) (2013), 15–25. The complete paper was retrieved and read. Theorem 2 assumes a single uniform bound K on the number of edges needed to separate any finite base set from infinity. Under that hypothesis it proves absence of infinitely many infinite product clusters. Published Lemma 7 gives the desired infinite-fiber conclusion within that proof. In [arXiv version 2](https://arxiv.org/abs/1105.2638), this same lemma is numbered 5; the manuscript uses the published numbering.
++
++The example in their Theorem 1 has a strongly amenable, subexponential-growth base but contains copies of a high-dimensional integer lattice. Its base critical probability is strictly below 1. It is therefore not a counterexample satisfying the present hypothesis.
++
++The elementary stretched-tree construction in `PARTIAL.md` shows why the uniform cutset assumption cannot simply be substituted for p_c(G)=1. It has bounded degree and critical probability 1 but no uniform cutset bound. No conclusion about the original fiber question on that example is asserted.
++
++## Later literature check
++
++A targeted primary-source search checked the source paper's current arXiv and journal versions and related work on uniqueness, products, and fiber intersections. [Hutchcroft–Pan, *Percolation at the uniqueness threshold via subgroup relativization*](https://arxiv.org/abs/2409.12283), 2024, gives relative Burton–Keane theorems, including Theorems 1.7 and 3.1. Those theorems control the number of clusters with infinite intersection with an amenable subgroup or a suitable marked set. They do not state that every infinite cluster has infinite intersection with such a set, which is the issue remaining here. No unproved transfer from their relative uniqueness results is used.
++
++No complete primary-source resolution of the exact target was located in this bounded search. This is not an exhaustive literature certification. The capped-exploration result is stated as a partial deduction with no historical-priority claim, and the original universal question remains unresolved in this attempt.
+diff --git a/unsolved_math_prioritization/attempts/10000043/check_coupling.py b/unsolved_math_prioritization/attempts/10000043/check_coupling.py
+new file mode 100644
+index 000000000..ba466d625
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/check_coupling.py
+@@ -0,0 +1,107 @@
++#!/usr/bin/env python3
++"""Exact finite diagnostics for capped exploration, not an infinite-volume proof."""
++from collections import Counter, deque
++from fractions import Fraction
++from itertools import product
++from pathlib import Path
++import hashlib
++import json
++
++assertions = 0
++
++def check(condition):
++    global assertions
++    assertions += 1
++    assert condition
++
++
++def edge(x, y):
++    return tuple(sorted((x, y)))
++
++vertices = [(u, n) for u in (0, 1) for n in range(3)]
++vertical = sorted({edge((u, n), (u, (n+1) % 3)) for u in (0, 1) for n in range(3)})
++horizontal = [edge((0, n), (1, n)) for n in range(3)]
++edges = sorted(vertical+horizontal)
++neighbors = {v: sorted(w for w in vertices if edge(v, w) in edges) for v in vertices}
++root = (0, 0)
++
++
++def explore(cap, reveal):
++    accepted = {root}
++    counts = Counter({0: 1})
++    queue = deque([root])
++    queried = set()
++    horizontal_queries = 0
++    while queue:
++        v = queue.popleft()
++        for w in neighbors[v]:
++            e = edge(v, w)
++            if e in queried:
++                continue
++            queried.add(e)
++            if v[0] != w[0]:
++                horizontal_queries += 1
++            state = reveal(e)
++            if state and w not in accepted and counts[w[0]] < cap:
++                accepted.add(w)
++                counts[w[0]] += 1
++                queue.append(w)
++    return tuple(sorted(accepted)), horizontal_queries
++
++results = []
++for cap in (1, 2):
++    actual_law = Counter()
++    reservoir_law = Counter()
++    cap_consistent_cases = 0
++    for bits in product((0, 1), repeat=len(edges)):
++        states = dict(zip(edges, bits))
++        reached, queries = explore(cap, states.__getitem__)
++        check(queries <= 2*cap)
++        check(all(c <= cap for c in Counter(v[0] for v in reached).values()))
++        actual_law[reached] += 1
++        full, _ = explore(len(vertices), states.__getitem__)
++        if all(c <= cap for c in Counter(v[0] for v in full).values()):
++            check(reached == full)
++            cap_consistent_cases += 1
++    pool_open_count = 0
++    max_queries = 0
++    for bits in product((0, 1), repeat=len(vertical)+2*cap):
++        vert_states = dict(zip(vertical, bits[:len(vertical)]))
++        pool = bits[len(vertical):]
++        position = [0]
++        def reveal(e):
++            if e[0][0] == e[1][0]:
++                return vert_states[e]
++            value = pool[position[0]]
++            position[0] += 1
++            return value
++        reached, queries = explore(cap, reveal)
++        check(queries == position[0] and queries <= 2*cap)
++        max_queries = max(max_queries, queries)
++        check(not any(v[0] == 1 for v in reached) or any(pool))
++        reservoir_law[reached] += 1
++        pool_open_count += bool(any(pool))
++    den_actual = 2**len(edges)
++    den_reservoir = 2**(len(vertical)+2*cap)
++    for event in set(actual_law) | set(reservoir_law):
++        check(actual_law[event]*den_reservoir == reservoir_law[event]*den_actual)
++    q = Fraction(1)-Fraction(1, 2)**(2*cap)
++    check(Fraction(pool_open_count, den_reservoir) == q)
++    results.append({'cap':cap,'actual_configurations':den_actual,'reservoir_configurations':den_reservoir,
++                    'reached_set_laws_equal':True,'base_edge_parameter':str(q),
++                    'maximum_observed_horizontal_queries':max_queries,
++                    'configurations_where_cap_preserves_entire_cluster':cap_consistent_cases})
++
++finite_product = Fraction(1)
++for n in range(1, 65):
++    finite_product *= 1-Fraction(1, 2**(n+1))
++    check(finite_product >= Fraction(1, 2))
++    check(sum(2**j for j in range(1, n+1)) == 2**(n+1)-2)
++
++report = {'description':'Finite coupling and exact probability diagnostics; no universal percolation conclusion',
++          'all_assertions_passed':True,'assertions':assertions,
++          'test_graph':'K2 Cartesian product C3, used only as a finite diagnostic',
++          'finite_coupling_tests':results,'inhomogeneous_ray_products_checked':64,
++          'partial_note_sha256':hashlib.sha256(Path(__file__).with_name('PARTIAL.md').read_bytes()).hexdigest()}
++Path(__file__).with_name('check_results.json').write_text(json.dumps(report,indent=2)+'\n')
++print(json.dumps(report,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/10000043/check_results.json b/unsolved_math_prioritization/attempts/10000043/check_results.json
+new file mode 100644
+index 000000000..13fdb578d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/check_results.json
+@@ -0,0 +1,28 @@
++{
++  "description": "Finite coupling and exact probability diagnostics; no universal percolation conclusion",
++  "all_assertions_passed": true,
++  "assertions": 4996,
++  "test_graph": "K2 Cartesian product C3, used only as a finite diagnostic",
++  "finite_coupling_tests": [
++    {
++      "cap": 1,
++      "actual_configurations": 512,
++      "reservoir_configurations": 256,
++      "reached_set_laws_equal": true,
++      "base_edge_parameter": "3/4",
++      "maximum_observed_horizontal_queries": 1,
++      "configurations_where_cap_preserves_entire_cluster": 80
++    },
++    {
++      "cap": 2,
++      "actual_configurations": 512,
++      "reservoir_configurations": 1024,
++      "reached_set_laws_equal": true,
++      "base_edge_parameter": "15/16",
++      "maximum_observed_horizontal_queries": 3,
++      "configurations_where_cap_preserves_entire_cluster": 160
++    }
++  ],
++  "inhomogeneous_ray_products_checked": 64,
++  "partial_note_sha256": "2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f"
++}
+diff --git a/unsolved_math_prioritization/attempts/10000043/readiness.json b/unsolved_math_prioritization/attempts/10000043/readiness.json
+new file mode 100644
+index 000000000..5978d1c95
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/readiness.json
+@@ -0,0 +1,31 @@
++{
++  "id": 10000043,
++  "problem_number": "AMR-099-0043",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "source_scope": "Bernoulli bond percolation on the Cartesian product G x Z; G infinite, connected, countable, simple, locally finite, with p_c(G)=1. Bounded degree is not imposed.",
++  "source_location": "Benjamini, Coarse Geometry and Randomness, October 30 2013 author manuscript, Open Problem 9.49 p.76; standing conventions pp.5 and33.",
++  "time_window_utc": [
++    "2026-09-30T04:52:00Z",
++    "2026-09-30T06:52:00Z"
++  ],
++  "maximum_substantive_attempts": 5,
++  "used_substantive_attempts": 2,
++  "prior_attempt_checks": {
++    "main_queue_status": "queued",
++    "main_queue_turns": "0/5",
++    "history_matches": false,
++    "prior_pr_matches": false,
++    "prior_attempt_folder_or_branch_found": false,
++    "duplicate_found": false,
++    "upstream_report": "OPEN-TRIAGE only; web/arXiv search without a proof attempt or result"
++  },
++  "full_target_resolved": false,
++  "status": "unresolved_stalled",
++  "artifact": "PARTIAL.md",
++  "artifact_sha256": "2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f",
++  "independent_review": "PASS_PARTIAL_ONLY",
++  "partial_exact_checks_passed": 4996,
++  "independent_assertions_passed": 90170,
++  "independent_review_path": "review/REVIEW.md"
++}
+diff --git a/unsolved_math_prioritization/attempts/10000043/review/REVIEW.md b/unsolved_math_prioritization/attempts/10000043/review/REVIEW.md
+new file mode 100644
+index 000000000..94f6cdf1b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/review/REVIEW.md
+@@ -0,0 +1,79 @@
++# Independent adversarial review:10000043
++
++**Verdict: PASS for the partial conclusions, with the general problem unresolved.** No mandatory mathematical correction was found. This review does not certify novelty, external peer review, or a solution of the finite-but-unbounded fiber case.
++
++Frozen artifact: `PARTIAL.md`, SHA256 `2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f`. A byte-identical snapshot is retained as `reviewed_partial.md`. Reviewed2026-09-30 by a separate gpt-6-astra agent at xhigh. The author’s source files were not edited.
++
++## 1. Exact problem and graph conventions
++
++The requested problem-page lookup was unavailable. I independently read the recovered original [Benjamini notes](https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf), including the rendered p76, Open Problem9.49. The standing conventions are simple, countable, locally finite graphs on p5; independent Bernoulli bond percolation on p32; and infinite connected graphs and the Cartesian product on p33. Thus the artifact uses the correct model. There is no standing bounded-degree hypothesis.
++
++The original asks whether infinite clusters have infinite vertical-fiber intersections under \(p_c(G)=1\). The artifact does not exploit empty fibers as a negative answer. Its propagation lemma shows that any infinite fiber intersection is shared by all base fibers. Hence an infinite cluster that fails the intended property has only finite intersections, including zero, on every fiber. The capped proposition excludes a uniform finite upper bound, leaving the stated residual case intact.
++
++All assertions are for each fixed percolation parameter. No simultaneous assertion over uncountably many\(p\) is needed or certified.
++
++## 2. Propagation of infinite intersections
++
++The deletion-of-one-fiber proof is correct and avoids conditioning on a completed cluster, which would bias its boundary edges.
++
++Fix adjacent base vertices\(u,w\), and let\(\mathcal F\) reveal precisely the edges with both endpoints outside\(F_w\). Enumerate all product vertices by natural numbers; each cluster of this revealed graph can be measurably indexed by its least-numbered vertex. Conditional on\(\mathcal F\), a cluster\(D\) with infinitely many vertices in\(F_u\) has infinitely many distinct horizontal edges into\(F_w\). None belongs to\(\mathcal F\). Their conditional states remain independent Bernoulli\((p)\). For\(p>0\), infinitely many are open almost surely. The countable union over the measurable cluster enumeration preserves this conditional probability-one statement.
++
++Suppose now an original cluster\(C\) has infinitely many vertices in\(F_u\) but only finitely many in\(F_w\). Delete\(S=C\cap F_w\). If\(S\) is nonempty, the number of components of\(C\setminus S\) is at most the total number of edges incident to\(S\); this is finite by local finiteness. If\(S\) is empty, the remainder is connected. Therefore one remainder component meets\(F_u\) infinitely. It is a complete cluster of the revealed graph: any further revealed open connection would belong to the original cluster and would connect components without using\(F_w\). The conditional argument then forces infinitely many vertices of\(F_w\) into\(C\), a contradiction.
++
++There are only countably many oriented base edges. Intersecting their probability-one events, then following a finite base path, proves the global dichotomy simultaneously for all clusters. A uniform degree bound was never used; finiteness of the sum of the finitely many degrees in\(S\) is enough.
++
++## 3. Nonanticipating capped exploration
++
++### 3.1 Fairness and the deterministic trial bound
++
++For fixed\(M\) and root\(x\), the capped breadth-first search only queries edges incident to already accepted vertices. Every such vertex has finitely many incident edges. Thus there is a sequential, nonanticipating implementation with one fresh query at each step. Breadth-first order is fair even if degrees are unbounded globally: the graph ball of any fixed radius in a locally finite connected graph is finite, and each queued vertex has only finitely many predecessors and incident edges to process.
++
++For a fixed base edge\(e=\{u,v\}\), every queried edge above\(e\) has a height already accepted in\(F_u\) or\(F_v\). Each of these two height sets has cardinality at most\(M\), and a product edge above\(e\) is uniquely determined by its height. Consequently there are at most\(2M\) distinct queries above\(e\), regardless of their interleaving with other queries. The rule forbidding repeat queries is essential and is present in both proof and implementation.
++
++The factor2 is genuinely relevant: an independent finite triangle-base example with cap2 accepts heights\(\{-1,0\}\) in one fiber and\(\{1,2\}\) in another, and queries all four edges between them. Thus replacing\(2M\) by\(M\) would not be justified by this argument.
++
++### 3.2 Why reservoirs preserve the product law
++
++Generate independent reservoirs\((X_{e,j})_{1\le j\le2M}\) for all base edges, independent of the vertical-edge variables. At any query, the next reservoir entry used has not previously been revealed. Its label is selected using only past revealed outcomes, so its conditional distribution is Bernoulli\((p)\), independently of the past. Induction gives the same law for every finite exploration transcript as querying a pre-existing independent product-edge configuration.
++
++This argument is valid even though the queried heights depend on outcomes from other reservoirs. It is independence of *unread input variables*, rather than independence of adaptively selected output locations, that is used. No reservoir is selected using an unread value.
++
++Completing unqueried product edges independently is also legitimate. In the ordinary product model, conditional on a finite adaptive transcript, the as-yet-unqueried edge states have their original independent law. Passing to the increasing transcript sigma-fields preserves this deferred-decision description for the countable exploration. Equivalently, one can realize the original product model first and expose it by the identical adaptive query rule. The finite transcript laws agree, and the completion has the required product distribution. This is not conditioning on the global event of bounded fiber intersections.
++
++### 3.3 Independent base domination
++
++The base variables
++\[
++Y_e=\max_{1\le j\le2M}X_{e,j}
++\]
++are functions of disjoint independent reservoirs. Hence they are independent, each with parameter\(q_M=1-(1-p)^{2M}\). This statement includes unused reservoir entries and does not assert that the actually queried edges form an independent selected family.
++
++Every accepted vertex has an exploration ancestry path from\(x\). Each horizontal step on that path used an open reservoir entry, so its projected base edge is\(Y\)-open; vertical steps do not change the projection. Thus the accepted projection is contained in the\(Y\)-cluster of the base root. For finite\(M\) and\(p<1\),\(q_M<1\) exactly. The assumption\(p_c(G)=1\) therefore makes this base cluster finite almost surely. With at most\(M\) accepted vertices above each base vertex, the capped exploration is finite almost surely.
++
++On the event that the actual root cluster has at most\(M\) vertices in every fiber, no new vertex of that cluster can be rejected because a fiber is full. Indeed, the\(M\) vertices already accepted there are distinct vertices of that same cluster; an additional distinct neighbor would violate the assumed bound. Induction along finite open paths and fairness therefore recovers the entire actual cluster on this event. It must consequently be finite almost surely.
++
++Finally, there are countably many roots and integer caps. Their null-event union excludes every infinite cluster with a finite global fiber bound, including when the bound would otherwise be chosen randomly after seeing the configuration. No union over arbitrary functions\(v\mapsto M_v\) is taken.
++
++## 4. Known uniqueness cases and source attribution
++
++The unique-infinite-cluster observation is correct. Vertical translation acts mixingly on the independent edge process: finite cylinder events have disjoint supports after a sufficiently large shift, and approximation extends the result. Existence is therefore a zero-one event. If an infinite cluster exists, countability gives a vertex with positive infinite-cluster probability. FKG with a fixed finite connecting path propagates positivity to every vertex. The vertical ergodic theorem then gives a positive density of infinite-cluster vertices along each fixed fiber. Under uniqueness, they all belong to the same cluster. Countably many fibers give the simultaneous conclusion. Without uniqueness this last identification would fail, and the artifact does not make it.
++
++I independently inspected [Benjamini–Kozma, *Uniqueness of percolation on products with Z*](https://alea.math.cnrs.fr/articles/v10/10-02.pdf), Theorem2 and published Lemma7, especially pp16 and22–23. Their assumption is a single uniform bound on edge cuts separating arbitrary finite base sets from infinity. Theorem2 excludes infinitely many infinite clusters; the paper’s initial zero-one/\(0,1,\infty\) classification supplies the stated at-most-one consequence. Lemma7 directly proves the fiber property under the stronger hypothesis. Theorem1’s counterexample contains copies of high-dimensional integer lattices, so its base has critical probability below1 and cannot refute the present target.
++
++The cited [Hutchcroft–Pan relative Burton–Keane statements](https://arxiv.org/html/2409.12283v1), Theorems1.7 and3.1, bound the number of clusters with infinite intersection with a marked set under their hypotheses. They do not by themselves force every infinite cluster to have such an intersection. The source audit’s limited use of that paper is accurate.
++
++## 5. Stretched tree and the unbounded-capacity obstruction
++
++For the binary tree with level-\(n\) edge lengths\(2^n\), each root-to-original-level-\(n\) path has length\(2^{n+1}-2\), and there are\(2^n\) such paths. The union bound gives exactly the displayed estimate tending to zero for each\(p<1\). The portion preceding a fixed original level is finite, so an infinite root cluster would reach every level. Positivity of an infinite-cluster event at any other vertex would, by FKG and opening a fixed finite path, imply positivity at the root. Thus no vertex percolates below1 and\(p_c(T_*)=1\).
++
++For the finite set containing the full subdivided tree through original level\(n\), each of its\(2^n\) boundary branch vertices has two distinct outgoing subtrees. Choose one infinite ray through each outgoing edge. These\(2^{n+1}\) rays are edge-disjoint, although paired rays may share their initial vertex. Any edge cut making *every* vertex of the finite set lie in a finite component must meet all these rays. Cutting edges inside the finite set cannot evade this requirement, since the rays themselves start at its boundary vertices. Therefore the claimed lower bound on cutset size and failure of uniform\(K\) are correct. The example does not assert anything negative about the original product-fiber question.
++
++For the inhomogeneous ray, the sum of edge-failure probabilities is\(1/2\). The finite union bound, followed by continuity from above, gives positive probability of an entirely open ray. This correctly demonstrates why individual edge parameters below1 are not controlled merely by the homogeneous statement\(p_c(G)=1\). Replacing a fixed cap by unbounded deterministic capacities is therefore not a valid completion of the proof. Random capacities would additionally create dependence issues.
++
++## 6. Independent computation and verdict
++
++The original checker was copied into an isolated review subdirectory and rerun without altering the author’s files. All4,996 original assertions reproduce.
++
++The separately written `independent_checks.py` adds multiple interacting base-edge reservoirs. On a three-vertex base path with three heights, it compares complete accepted-set laws for caps1 and2 at the exact parameters\(1/2,1/3,2/3\), using4,096 direct configurations and up to16,384 reservoir configurations. It verifies the *joint* law of the two dominating base variables, including their independence. A further test verifies the entire completed product-edge law on128 configurations, not only the exploration output. It also checks a configuration attaining\(2M\) queries, increasing finite-degree controls, and80 exact ray-product inequalities. All90,170 elementary assertions pass.
++
++These finite checks do not replace the infinite exploration, conditional-independence, ergodicity or countability arguments; those were audited above. No defect requiring a source revision was found. The exact frozen package passes for publication as an unresolved partial result. The remaining possibility is an infinite cluster with finite intersection with every fiber and unbounded intersection sizes across base vertices. That possibility is neither excluded nor constructed here.
+diff --git a/unsolved_math_prioritization/attempts/10000043/review/independent_checks.py b/unsolved_math_prioritization/attempts/10000043/review/independent_checks.py
+new file mode 100644
+index 000000000..83c0eaf0b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/review/independent_checks.py
+@@ -0,0 +1,101 @@
++"""Independent finite-state checks; no infinite-volume claim is tested numerically."""
++from collections import defaultdict,deque
++from fractions import Fraction
++from itertools import product
++from pathlib import Path
++import json,hashlib
++A=0
++def ck(x):
++ global A
++ A+=1
++ assert x
++
++def edge(a,b):return tuple(sorted((a,b)))
++def model(base,heights):
++ vs=sorted({(u,h) for e in base for u in e for h in heights})
++ vert=sorted({edge((u,h),(u,h+1)) for u,h in vs if h+1 in heights})
++ hor=sorted({edge((u,h),(v,h)) for u,v in base for h in heights})
++ es=sorted(vert+hor);adj={u:sorted(v for e in es if u in e for v in e if v!=u) for u in vs}
++ return vs,vert,hor,es,adj
++
++def explore(adj,M,reveal,start=(0,0)):
++ accepted={start};count=defaultdict(int,{start[0]:1});q=deque([start]);states={};uses=defaultdict(int)
++ while q:
++  u=q.popleft()
++  for v in adj[u]:
++   e=edge(u,v)
++   if e in states:continue
++   if u[0]!=v[0]:uses[tuple(sorted((u[0],v[0])))]+=1
++   state=reveal(e);states[e]=state
++   if state and v not in accepted and count[v[0]]<M:
++    accepted.add(v);count[v[0]]+=1;q.append(v)
++ ck(all(n<=M for n in count.values()));ck(all(n<=2*M for n in uses.values()))
++ return tuple(sorted(accepted)),states,uses
++
++def hist_add(hist,key,ones):hist[(key,ones)]+=1
++def mass(hist,key,a,b,N):return sum(c*a**k*(b-a)**(N-k) for (v,k),c in hist.items() if v==key)
++base=[(0,1),(1,2)];reports=[]
++vs,vertical,horizontal,edges,adj=model(base,range(3))
++for M in (1,2):
++ actual=defaultdict(int);reservoir=defaultdict(int);yhist=defaultdict(int)
++ for bits in product((0,1),repeat=len(edges)):
++  vals=dict(zip(edges,bits));reached,states,uses=explore(adj,M,vals.__getitem__)
++  hist_add(actual,reached,sum(bits))
++  # Preservation when the uncapped component already fits the cap.
++  full,_,_=explore(adj,len(vs),vals.__getitem__)
++  if all(sum(v[0]==u for v in full)<=M for u in (0,1,2)):ck(full==reached)
++ R=len(vertical)+len(base)*2*M
++ for bits in product((0,1),repeat=R):
++  vals=dict(zip(vertical,bits));pools={e:bits[len(vertical)+i*2*M:len(vertical)+(i+1)*2*M] for i,e in enumerate(base)};idx=defaultdict(int)
++  def reveal(e):
++   if e in vals:return vals[e]
++   b=tuple(sorted((e[0][0],e[1][0])));j=idx[b];idx[b]+=1;return pools[b][j]
++  reached,states,uses=explore(adj,M,reveal)
++  yy=tuple(int(any(pools[e])) for e in base)
++  reachable={0}
++  for _ in range(3):
++   for e,opened in zip(base,yy):
++    if opened and reachable.intersection(e):reachable.update(e)
++  ck(all(u in reachable for u,h in reached))
++  hist_add(reservoir,reached,sum(bits));hist_add(yhist,yy,sum(bits))
++ keys={v for v,k in actual}|{v for v,k in reservoir}
++ for a,b in [(1,2),(1,3),(2,3)]:
++  for key in keys:ck(mass(actual,key,a,b,len(edges))*b**R==mass(reservoir,key,a,b,R)*b**len(edges))
++  q=1-(1-Fraction(a,b))**(2*M)
++  for yy in product((0,1),repeat=2):
++   got=Fraction(mass(yhist,yy,a,b,R),b**R);expected=q**sum(yy)*(1-q)**(2-sum(yy));ck(got==expected)
++ reports.append({'base':'three-vertex path','heights':3,'cap':M,'direct_configurations':2**len(edges),'reservoir_configurations':2**R,'parameters':['1/2','1/3','2/3'],'accepted_law_and_joint_Y_independence':True})
++# Full percolation law after independent completion, rather than just reached-set law.
++vs,V,H,E,adj=model(base,range(2));M=1;R=len(V)+4
++completion=[]
++for a,b in [(1,2),(1,3),(2,3)]:
++ law=defaultdict(int)
++ for bits in product((0,1),repeat=R):
++  vals=dict(zip(V,bits));pools={e:bits[len(V)+2*i:len(V)+2*i+2] for i,e in enumerate(base)};idx=defaultdict(int)
++  def reveal(e):
++   if e in vals:return vals[e]
++   be=tuple(sorted((e[0][0],e[1][0])));j=idx[be];idx[be]+=1;return pools[be][j]
++  _,states,_=explore(adj,1,reveal);unseen=[e for e in E if e not in states]
++  w=a**sum(bits)*(b-a)**(R-sum(bits))
++  for tail in product((0,1),repeat=len(unseen)):
++   full=dict(states);full.update(zip(unseen,tail));key=tuple(full[e] for e in E)
++   wt=a**sum(tail)*(b-a)**(len(tail)-sum(tail));law[key]+=w*wt*b**(len(E)-len(unseen))
++ for key in product((0,1),repeat=len(E)):
++  expected=a**sum(key)*(b-a)**(len(E)-sum(key));ck(law[key]==expected*b**R)
++ completion.append({'p':str(Fraction(a,b)),'product_configurations':2**len(E),'full_iid_completion_law':True})
++# Attain the full 2M bound on one edge through exploration of a third fiber.
++B=[(0,1),(0,2),(1,2)];vs,V,H,E,adj=model(B,range(-1,3))
++opened={edge((0,0),(0,1)),edge((0,0),(1,0)),edge((1,0),(1,-1)),edge((0,1),(2,1)),edge((2,1),(2,2))}
++reached,_,uses=explore(adj,2,lambda e:int(e in opened));sharp_queries=uses[(1,2)];ck(sharp_queries==4)
++# Increasing finite degrees do not affect the per-edge bound.
++for degree in range(2,31):
++ B=[(0,j) for j in range(1,degree+1)];vs,V,H,E,adj=model(B,range(2))
++ reached,_,uses=explore(adj,1,lambda e:1);ck(len(reached)==degree+1);ck(all(n<=2 for n in uses.values()))
++# Exact ray lower bound and stretched-tree level lengths.
++pr=Fraction(1)
++for n in range(1,81):
++ pr*=1-Fraction(1,2**(n+1));ck(pr>=Fraction(1,2));ck(sum(2**j for j in range(1,n+1))==2**(n+1)-2)
++ # At p=1/2 the elementary union bound is exactly this dyadic number.
++ ck(Fraction(2**n,2**(2**(n+1)-2))>0) if n<=10 else None
++out={'all_passed':True,'assertions':A,'multi_reservoir_tests':reports,'full_completion_tests':completion,'sharp_2M_configuration':{'cap':2,'base_edge':[1,2],'queried_horizontal_edges':sharp_queries,'verified':True},'star_degree_controls':list(range(2,31)),'exact_ray_products':80,'reviewed_sha256':hashlib.sha256(Path(__file__).with_name('reviewed_partial.md').read_bytes()).hexdigest(),'scope':'Finite exact diagnostics only. Infinite/countability steps require the written proof audit.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/10000043/review/independent_results.json b/unsolved_math_prioritization/attempts/10000043/review/independent_results.json
+new file mode 100644
+index 000000000..6202e15e2
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/review/independent_results.json
+@@ -0,0 +1,92 @@
++{
++  "all_passed": true,
++  "assertions": 90170,
++  "multi_reservoir_tests": [
++    {
++      "base": "three-vertex path",
++      "heights": 3,
++      "cap": 1,
++      "direct_configurations": 4096,
++      "reservoir_configurations": 1024,
++      "parameters": [
++        "1/2",
++        "1/3",
++        "2/3"
++      ],
++      "accepted_law_and_joint_Y_independence": true
++    },
++    {
++      "base": "three-vertex path",
++      "heights": 3,
++      "cap": 2,
++      "direct_configurations": 4096,
++      "reservoir_configurations": 16384,
++      "parameters": [
++        "1/2",
++        "1/3",
++        "2/3"
++      ],
++      "accepted_law_and_joint_Y_independence": true
++    }
++  ],
++  "full_completion_tests": [
++    {
++      "p": "1/2",
++      "product_configurations": 128,
++      "full_iid_completion_law": true
++    },
++    {
++      "p": "1/3",
++      "product_configurations": 128,
++      "full_iid_completion_law": true
++    },
++    {
++      "p": "2/3",
++      "product_configurations": 128,
++      "full_iid_completion_law": true
++    }
++  ],
++  "sharp_2M_configuration": {
++    "cap": 2,
++    "base_edge": [
++      1,
++      2
++    ],
++    "queried_horizontal_edges": 4,
++    "verified": true
++  },
++  "star_degree_controls": [
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30
++  ],
++  "exact_ray_products": 80,
++  "reviewed_sha256": "2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f",
++  "scope": "Finite exact diagnostics only. Infinite/countability steps require the written proof audit."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000043/review/review_summary.json b/unsolved_math_prioritization/attempts/10000043/review/review_summary.json
+new file mode 100644
+index 000000000..b34657023
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/review/review_summary.json
+@@ -0,0 +1,27 @@
++{
++  "verdict": "PASS_PARTIAL_ONLY",
++  "reviewed_sha256": "2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f",
++  "date": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "mandatory_corrections": [],
++  "source_edited": false,
++  "full_target_solved": false,
++  "status_recommendation": "unsolved",
++  "scope": "Infinite fiber intersections propagate; uniformly bounded fiber intersections cannot support infinite clusters when pc(G)=1; known cutset case and its strict separation verified.",
++  "residual": "Finite intersections at every fiber with unbounded sizes across the base.",
++  "original_assertions_reproduced": 4996,
++  "independent_assertions": 90170,
++  "novelty": "not certified",
++  "external_peer_review": false,
++  "checks": [
++    "Nonanticipating reservoir construction",
++    "2M per-edge bound including a sharp finite control",
++    "Independent joint dominating base-edge law",
++    "Full product-law completion",
++    "Local finiteness without uniform degree bound",
++    "Countable conditional propagation and all-root/all-cap null union",
++    "Stretched-tree cutset separation",
++    "Published source scope"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/10000043/review/reviewed_partial.md b/unsolved_math_prioritization/attempts/10000043/review/reviewed_partial.md
+new file mode 100644
+index 000000000..065831dc0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/review/reviewed_partial.md
+@@ -0,0 +1,125 @@
++# Finite vertical intersections: a partial exclusion and the remaining gap
++
++**Target:** 10000043 / AMR-099-0043, Benjamini's Open Problem 9.49.
++**Status:** unresolved. This note excludes uniformly bounded fiber intersections, not all finite fiber intersections. No novelty claim is made; separate adversarial review is pending.
++**Prepared:** 30 September 2026, gpt-6-astra at xhigh reasoning.
++
++Let G be an infinite, connected, countable, locally finite simple graph. The model is independent Bernoulli **bond** percolation with a fixed parameter p on the **Cartesian** product G x Z. Assume p_c(G)=1 for bond percolation. Write F_v={v} x Z and C(x) for the open cluster of x. These conventions follow the original notes, pp. 5, 32–33 and 76; a bounded-degree assumption is not imposed.
++
++The original question asks whether every infinite cluster that meets a fiber must meet it infinitely often. The results below leave exactly the possible clusters whose intersections with all fibers are finite but have unbounded sizes as the base vertex varies.
++
++## 1. Infinite intersections propagate between fibers
++
++**Lemma.** On G x Z at any fixed p>0, almost surely every open cluster C satisfies one of the following alternatives:
++
++- C meets every fiber F_v in infinitely many vertices;
++- C meets every fiber F_v in finitely many vertices, where zero is allowed.
++
++This statement does not require p_c(G)=1.
++
++**Proof.** It is enough to show that infinite intersection propagates across a fixed adjacent pair u,w in G. Reveal all percolation edges in the graph obtained by deleting the entire fiber F_w. Conditional on these edges, consider any of its clusters D that meets F_u infinitely often. There are infinitely many distinct edges joining D to F_w, one from each of those vertices of F_u. They are independent Bernoulli(p) edges not included in the revealed graph. Almost surely infinitely many are open. This conclusion holds simultaneously for all such D, since the revealed graph has only countably many clusters.
++
++Suppose an original cluster C met F_u infinitely but F_w only finitely. Removing the finite set C intersect F_w splits C into finitely many components: the graph is locally finite, so only finitely many edges are incident to the deleted set. One of the remaining components D meets F_u infinitely. It is a cluster of the revealed graph, because any open path avoiding F_w that leaves D would also enlarge the original cluster C. The preceding conditional argument supplies infinitely many open edges from D to F_w, forcing C to meet F_w infinitely, a contradiction.
++
++Take the countable intersection of the probability-one conclusions for all oriented base edges. Connectedness of G then propagates any infinite fiber intersection to every base vertex. QED.
++
++Thus a counterexample to the target cannot mix finite and infinite fiber intersections. Its intersections must all be finite.
++
++## 2. Capped exploration and independent domination on the base
++
++**Proposition.** If p_c(G)=1 and 0<=p<1, then, almost surely, no infinite open cluster C satisfies
++
++\[
++\sup_{v\in V(G)} |C\cap F_v|<\infty.
++\]
++
++**Proof.** Fix an integer M>=1 and a starting vertex x=(v_0,n_0). Explore its cluster by a deterministic breadth-first search, with the following modification: accept at most M vertices in any one fiber. Start by accepting x. When an edge from an accepted vertex is queried and found open, accept its other endpoint if that endpoint was not previously accepted and its fiber has fewer than M accepted vertices. Otherwise ignore that proposed addition. Process every accepted vertex and each of its incident edges; never query the same product edge twice.
++
++Fix a base edge e={u,v}. Every queried horizontal edge above e has its height in the set of heights of accepted vertices in F_u or in F_v. Each of those two sets has size at most M. Consequently at most 2M distinct horizontal edges above e are ever queried.
++
++Implement the exploration by deferred decisions. For every base edge e, prepare an independent reservoir
++
++\[
++X_{e,1},\ldots,X_{e,2M},\qquad X_{e,j}\sim\operatorname{Bernoulli}(p).
++\]
++
++On the j-th previously unqueried horizontal edge above e, use X_{e,j} as its state. Use independent Bernoulli(p) variables for newly queried vertical edges. The choice of the next query depends only on past revealed states. Therefore this procedure has exactly the law of the capped exploration in the original independent product-edge model. Unqueried product edges may be completed independently afterward. The reservoir limit cannot be exceeded by the preceding deterministic count.
++
++Define a base-edge configuration by
++
++\[
++Y_e=\max_{1\le j\le2M}X_{e,j}.
++\]
++
++The variables Y_e are independent Bernoulli variables with common parameter
++
++\[
++q_M=1-(1-p)^{2M}<1.
++\]
++
++Whenever the exploration reaches a new base vertex across a horizontal edge above e, that edge was found open, so Y_e=1. Vertical moves do not change the base vertex. Hence the projection of every accepted vertex belongs to the Y-open component of v_0. As p_c(G)=1, this base component is finite almost surely. At most M accepted vertices lie above each of its vertices, so the capped exploration is finite almost surely.
++
++On the event that the entire actual cluster C(x) has at most M vertices in every fiber, the cap never excludes a vertex of C(x). Breadth-first search then explores all of C(x). This uses local finiteness, which makes the queue fair and ensures that every vertex at finite graph distance is eventually processed. It follows that
++
++\[
++\mathbb P_p\bigl(|C(x)|=\infty\text{ and }|C(x)\cap F_v|\le M
++\text{ for all }v\bigr)=0.
++\]
++
++There are only countably many starting vertices x and positive integers M. Taking their union proves the proposition. QED.
++
++The argument only dominates the capped exploration. It does not condition the percolation measure on the global fiber-size event; such conditioning would generally destroy independence.
++
++**Corollary.** For p_c(G)=1 and a fixed 0<p<1, almost surely any infinite cluster failing the requested property has
++
++\[
++|C\cap F_v|<\infty\quad\text{for every }v,
++\qquad
++\sup_v|C\cap F_v|=\infty.
++\]
++
++For p=0 there are no infinite clusters. For p=1 the connected product graph is one cluster and every fiber intersection is infinite. Thus neither endpoint presents an additional issue.
++
++## 3. Known uniqueness and cutset cases
++
++Whenever percolation on G x Z has a unique infinite cluster, it meets every fiber infinitely almost surely. To see this, there is some vertex with positive probability of belonging to an infinite cluster, since the graph is countable and an infinite cluster exists almost surely. The FKG inequality and a finite path then give positive percolation probability at every vertex. The law is ergodic under vertical translations: finite cylinder events become independent under sufficiently large shifts, and approximation extends mixing to all events. The ergodic theorem gives positive density of infinite-cluster vertices along each fiber. Under uniqueness, all of these vertices belong to that one cluster.
++
++[Benjamini–Kozma, Theorem 2](https://alea.math.cnrs.fr/articles/v10/10-02.pdf) proves that there is at most one infinite cluster on G x Z when there is a fixed finite K such that every finite set in G can be separated from infinity by deleting at most K edges. Their **Lemma 7** proves the requested fiber-intersection property directly under this hypothesis. These are published prior results, not results of this attempt. In arXiv version 2 the same fiber lemma is numbered 5.
++
++The published counterexample in their Theorem 1 does not answer the present question negatively. Its base graph contains copies of Z^d for large d, so its base critical probability is at most p_c(Z^d)<1. Its subexponential growth and strong amenability do not replace the hypothesis p_c(G)=1.
++
++## 4. Why the missing uniformity cannot be inserted for free
++
++The base condition p_c(G)=1 does not imply the uniformly bounded cutset hypothesis. Here is an elementary example. Start with a rooted binary tree and replace every edge from original level n-1 to original level n by a path of length 2^n, for n>=1. Call the resulting locally finite degree-at-most-three graph T_*.
++
++For any fixed p<1, the probability that the root reaches the original level n is at most
++
++\[
++2^n p^{\sum_{j=1}^n2^j}
++=2^n p^{2^{n+1}-2}\longrightarrow0.
++\]
++
++An infinite root cluster must reach all original levels, since the finite subgraph before each level has finitely many vertices. Thus the root has zero infinite-cluster probability for every p<1. Connectedness and finite-energy opening of a fixed path imply the same at every vertex; hence p_c(T_*)=1.
++
++On the other hand, let A_n contain the root and all subdivided paths up through original level n. From A_n there are 2^(n+1) edge-disjoint infinite rays, one through each outgoing original edge at that level. Any edge set separating every vertex of A_n from infinity must intersect every one of these rays. Its cardinality is therefore at least 2^(n+1), so no uniform K exists. This is a counterexample to the attempted cutset implication, **not** to the original fiber question.
++
++There is also a probabilistic obstruction to replacing the cap M in Section 2 by unbounded deterministic capacities M_v. The induced bounds on base-edge opening probabilities would approach 1, while p_c(G)=1 excludes only a fixed common Bernoulli parameter below 1. Even on a ray, independent edge probabilities
++
++\[
++q_n=1-2^{-(n+1)},\qquad n\ge1,
++\]
++
++are all below 1 but give an infinite open path from the root with probability
++
++\[
++\prod_{n=1}^{\infty}q_n\ge
++1-\sum_{n=1}^{\infty}2^{-(n+1)}=\tfrac12>0.
++\]
++
++The inequality follows first for finite products, or directly from the union bound, then by continuity. The homogeneous critical probability of the underlying ray is still 1. This explains exactly why the capped-exploration proof does not extend merely from finite intersection sizes at each vertex.
++
++## 5. Remaining gap
++
++The unresolved case is an infinite cluster with finite intersection with every vertical fiber but unbounded intersection sizes across the base graph. Neither the original assumption p_c(G)=1 nor finite-energy modifications in this analysis provide the uniform control needed to exclude it. The stronger cutset theorem does not cover all admissible graphs, as the stretched-tree example shows.
++
++No counterexample to Benjamini's question, proof of its universal assertion, or exhaustive current-literature certification is claimed. The finite checker tests the capped deferred-decision coupling on a small product graph and exact probability calculations; it cannot decide an infinite-volume existence statement.
+diff --git a/unsolved_math_prioritization/attempts/10000043/source_checksums.json b/unsolved_math_prioritization/attempts/10000043/source_checksums.json
+new file mode 100644
+index 000000000..ef5c1d977
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/source_checksums.json
+@@ -0,0 +1,17 @@
++[
++  {
++    "file": "benjamini-kozma-published.pdf",
++    "bytes": 210036,
++    "sha256": "a898970ec7c92cd4cf5e1a766880ee28341cee27cf854e8ccf05dee53bf1295d"
++  },
++  {
++    "file": "benjamini-kozma.pdf",
++    "bytes": 147356,
++    "sha256": "594ef892ce9b1ae1a3c083a77e28c098eb2647c372349c3bb9949781f4614842"
++  },
++  {
++    "file": "saint-flour.pdf",
++    "bytes": 1101523,
++    "sha256": "aaab65b3acf65f4d21657da94464e9d5edb93969a4c353805099a220a0717cfe"
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/10000043/source_record.json b/unsolved_math_prioritization/attempts/10000043/source_record.json
+new file mode 100644
+index 000000000..a556a3a50
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/source_record.json
+@@ -0,0 +1,45 @@
++{
++  "id": 10000043,
++  "problem_number": "AMR-099-0043",
++  "title": "Infinite-cluster intersections with vertical fibers",
++  "statement": "Let $G$ be an infinite graph with $p_c(G)=1$. For Bernoulli percolation on $G\\times\\mathbb{Z}$, must every infinite cluster intersect each fiber $\\{v\\}\\times\\mathbb{Z}$ that it meets in infinitely many vertices almost surely?",
++  "background": "The item is retained after cross-document deduplication and source-side status review.\n\nSource list: Benjamini - Coarse Geometry and Randomness (Saint-Flour notes)\nSource item: Open problem 9.49, PDF page 76\nSource URL: https://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf#page=76 (preserved at https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf)\nAccessed: 2026-07-29\nExtraction: pypdf text checked against the rendered PDF\nStatus evidence: NEEDS_REVIEW; the recovered author-hosted source labels this item as open or as a conjecture, no source-side resolution is recorded, and the bounded modern audit found no complete primary-literature resolution.\nRights note: NEEDS_REVIEW; publicly accessible author-hosted or publisher copy, with release reuse terms requiring review.\nDifficulty assignment: default L3",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": "Itai Benjamini",
++  "proposed_year": null,
++  "category_id": 19,
++  "set_id": 13,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-07-29T00:00:00Z",
++  "updated_at": "2026-08-06T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 19,
++    "name": "probability",
++    "display_name": "Probability",
++    "description": "Problems involving probability theory, stochastic processes, and random structures.",
++    "slug": "probability",
++    "order_index": 19,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 13,
++    "name": "amr_open_problem_lists",
++    "display_name": "AMR Open Problem Lists",
++    "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
++    "slug": "amr-open-problem-lists",
++    "order_index": 13,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "research_classification": "OPEN-TRIAGE",
++  "research_summary": "Open (triage). Literature status: Listed as open. No resolution found."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000043/turns.jsonl b/unsolved_math_prioritization/attempts/10000043/turns.jsonl
+new file mode 100644
+index 000000000..b706bee04
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000043/turns.jsonl
+@@ -0,0 +1,2 @@
++{"turn": 1, "route": "Deferred-decision capped exploration and propagation across adjacent fibers", "result": "No infinite cluster has uniformly bounded fiber intersections when p_c(G)=1; any infinite fiber intersection propagates to every fiber. General finite-but-unbounded fiber sizes are not excluded.", "full_target_resolved": false}
++{"turn": 2, "route": "Uniform cutset reduction and variable-cap extension", "result": "The known cutset theorem is strictly stronger: an exponentially stretched binary tree has p_c=1 but no uniform cutset bound. An inhomogeneous percolation on a ray demonstrates why edge bounds approaching 1 do not contradict homogeneous p_c=1. No original-target counterexample or full proof.", "full_target_resolved": false}

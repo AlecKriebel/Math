@@ -1,0 +1,12 @@
+--- old_checker_replay/independent_checks.py
++++ independent_suggested_repair/independent_checks.py
+@@ -6,7 +6,8 @@
+ checks=Counter();examined=0;trees=0;instances=0
+ 
+ def ck(p,k):
+- assert p,k
++ if not p:
++  raise AssertionError(k)
+  checks[k]+=1
+ 
+ def build(n,clauses):

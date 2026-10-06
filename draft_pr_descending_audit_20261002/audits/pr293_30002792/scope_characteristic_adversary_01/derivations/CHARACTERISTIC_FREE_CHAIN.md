@@ -1,0 +1,59 @@
+# Independent characteristic-free verification of the operative chain
+
+## Algebraic intersection argument, including the equality case
+
+Use surface RR and duality over an algebraically closed field of any characteristic. Milne, author-hosted *Algebraic Geometry*, Chapter 11, printed 33–36, states this convention and gives RR, algebraic Hodge index Theorem11.50, Corollary11.51 (index one) and Corollary11.52 for any positive-square class. I read those passages and visually checked printed35–36. No analytic Hodge or Hodge symmetry input is required.
+
+One can also check the equality case directly. Fix an ample hyperplane A. The algebraic index theorem gives D^2<=0 whenever D.A=0. If D.A=D^2=0, then for every divisor E with E.A=0, (D+tE)^2<=0 for every rational t. Its linear coefficient forces D.E=0. Subtracting an A-multiple from any curve class shows D has zero intersection with every curve, hence is numerically trivial. Therefore A-perpendicular is negative definite after quotienting by numerical equivalence. A symmetric nondegenerate form with one positive direction is negative definite on the perpendicular to any H with H^2>0. This is the precise extension from ample to big-nef H used by the proof; it makes no assertion that H itself is ample.
+
+For N=b^*M, where M is ample on an abelian variety quotient, N is nef. More directly than a general nef-limit theorem, N^2>=0 follows by taking a sufficiently high very ample multiple of M and two general hyperplanes: if the image of b has dimension at most one, the square is zero; if it has dimension two, the projection formula gives a nonnegative intersection. Thus N.H=0 and H^2>0 force numerical triviality. If b were nonconstant, there is an integral curve D in X with one-dimensional image: for image dimension two choose a sufficiently ample curve meeting the locus with finite fibers; for image dimension one choose an ample curve meeting a general fiber. On its normalization, the map onto the image curve is finite of positive degree, including in the purely inseparable case. The pulled-back ample degree is positive. This contradicts N.D=0.
+
+## Picard–Albanese and genus bound
+
+For the pg=0 branch, Serre duality gives H2(O_X)=0. For a square-zero extension with ideal J, 1+J O_X identifies additively with J O_X, and the obstruction to lifting an invertible sheaf is in H2(J O_X). Since J is a k-vector space, it vanishes. Hence the Picard functor is formally smooth; its locally finite-type representing scheme is smooth. Equivalently, Liedtke printed14 explicitly states H2(O)=0 -> Pic^0 reduced, and printed13 gives equality h1(O)=dim Alb precisely when reduced. This covers characteristic2 and all infinitesimal group-scheme pathologies in this branch. For pg>0, no equality is asserted or required.
+
+Choose c0 on the normalization of the integral Cartier C~H, translate the Albanese map so c0 maps to zero, and factor the curve map through its Jacobian. The reduced image B of the Jacobian homomorphism is an abelian subvariety, independent of whether its kernel is reduced. The composite b:X->Alb/B is constant on C. Pullback of an ample line bundle on the quotient has N.C=N.H=0. The preceding argument makes b constant on X. Since the Albanese image generates Alb, the quotient is trivial, so dim Alb<=dim J(C_normalized)=g(C_normalized).
+
+The normalization exact sequence 0->O_C->n_*O_C_normalized->T->0 has T of finite nonnegative length. Both integral projective curves have H0(O)=k, so pa(C)=g(C_normalized)+length(T)>=g(C_normalized)>=0. This is an arithmetic genus comparison; it does not assume C smooth, a separable conductor map, or injectivity of the map on Jacobian tangent spaces. Therefore q<=pa(C) in precisely the pg=0 branch.
+
+## Adjoint nonvanishing arithmetic
+
+Arithmetic adjunction even for singular Cartier C follows from surface RR and 0->O_X(-C)->O_X->O_C->0: chi(O_C)=-(C^2+K.C)/2. Thus K.H=2pa(C)-2-e. In the pg=0 branch, chi(O_X)=1-q. With D=K+2H, surface RR gives
+
+chi(O_X(K+2H))=1-q+K.H+2e=e+2pa(C)-1-q>=e+pa(C)-1>=1.
+
+Duality gives h2(O_X(K+2H))=h0(O_X(-2H))=0: an effective divisor in -2H would have negative intersection with the nef H. A nowhere-vanishing section would make -2H trivial and force H^2=0. Consequently h0=chi+h1>=1. In the pg>0 branch multiplying a canonical section by s_C^2 is nonzero on the integral surface, including in characteristic2. There is no need to divide by2 in k: RR is an equality of integral intersection numbers and integers, so the denominator2 is arithmetic rather than field division.
+
+## Generic plane pullback through normalization and resolution
+
+S is an integral hypersurface of P3 over perfect k. For the complete embedding linear system, Stacks37.32.3 geometric-irreducibility hypotheses hold: choose two hyperplanes cutting S in dimension zero and a third avoiding one such point; the base locus is empty. Stacks33.47.3 applies to S_reg, a locally closed smooth immersed surface, with the same globally generating sections. Thus the general section E is irreducible and generically reduced. Its generic point is in S_reg, because a general plane does not contain any singular-curve component. As E is a hypersurface in its P2, it is Cohen–Macaulay and has no embedded associated primes, so generic reducedness implies reducedness. E is integral. No claim of smoothness at conductor intersections follows.
+
+Normalization nu:Y->S is finite for finite-type k-schemes. Normal Y is a surface with isolated singularities. Lipman's original theorem printed151 gives resolution for excellent surfaces; printed155 RemarkB builds it by singular-point blowups followed by normalization, and RemarkC gives an ideal blowup supported at finitely many points. This supplies a projective q:X->Y that is an isomorphism on Y_reg. Over perfect k its regular X is smooth. Every q-contracted curve maps to one of finitely many closed points of Y and then S. A nonempty open set of planes avoids all their S-images.
+
+For C=f^*E with f=nu q, there are then no f-contracted curve components. Every component must dominate E, since nu is finite and q has no remaining contracted components in C. At E's generic point f is an isomorphism. Hence exactly one component appears and with multiplicity one. A Cartier divisor on smooth X is Cohen–Macaulay of dimension one, with no embedded primes; one reduced generic component implies it is integral. This is a generic-point/unmixedness argument and does not invoke smooth Bertini on f^*O_S(1). The explicit Frobenius-conductor family shows why that distinction matters.
+
+## Canonical/conductor transfer
+
+On normal surface Y the canonical sheaf is reflexive (normal implies S2; dimension2 makes it Cohen–Macaulay). q_*omega_X injects into omega_Y by restricting to Y_reg and extending reflexively. Only inclusion, not equality or vanishing of higher direct images, is needed. A section vanishing on that dense open vanishes on integral X, ensuring injection.
+
+Finite duality gives nu_*omega_Y=Hom_S(nu_*O_Y,omega_S). The target S is Gorenstein with invertible omega_S=O_S(e-4), so Hom can be factored as c tensor omega_S. Kollár–Dao Definition46 and equation48.1 explicitly give this conductor/dualizing relation in the general reduced finite-normalization setting; their codimension-preserving condition18.2 holds for our finite birational surface map. In the present Cohen–Macaulay surface setting these are the actual canonical sheaves, not merely unrelated TfS2 objects. No inseparable trace map is being used.
+
+A direct local verification of this specialization is available on an affine P3-chart: A=T/(Q), where T is a regular3-dimensional polynomial ring, and its finite normalization B is Cohen–Macaulay of dimension2. The usual canonical module of B is Ext_T^1(B,T). Change of rings through the hypersurface A, for which Ext_T^j(A,T) is A for j=1 and zero otherwise, identifies Ext_T^1(B,T) with Hom_A(B,A). Up to the compatible global canonical line-bundle twist this is precisely the conductor, since Hom_A(B,A) identifies with {u in Frac(A):uB subset A} and evaluating at1 puts u in A. This calculation has no trace, separability or analytic vanishing condition.
+
+After twisting by2, the nonzero section supplied upstairs injects into H0(S,c(e-2)). At a singular-curve generic point, the one-dimensional local domain is not regular. If it were normal it would be a DVR and regular, a contradiction. Thus normalization is nontrivial there. A conductor element that was a unit would make normalization trivial; accordingly every conductor section lies in that curve's prime. Polynomial lifting follows from the hypersurface exact sequence with kernel O_P3(-2) and H1(P3,O(-2))=0. All inclusions preserve nonzero sections.
+
+## Remaining line reduction and small-characteristic interface
+
+I^(2)=intersection p_line^2. Degree d=alpha(I)+1 is at least2. A repeated factor uses up at least one extra degree beyond the radical, so the radical bound leaves only one squared linear factor. For squarefree nonconstant G all partial derivatives cannot vanish: over perfect k that would make G a p-th power. Derivatives carry a linear-prime square into that prime in every characteristic. No Euler coefficient or degree is divided out. This eliminates the remaining repeated-factor case except coplanarity.
+
+For an irreducible nonlinear factor Q, the other factors are units at every target line contained solely in Q. Q is then in its squared linear prime, so every partial vanishes there. The perfect-field hypersurface Jacobian criterion puts that line in the reduced singular-curve locus of Q. Lemma B's A, multiplied by F/Q, has forbidden degree d-2 and covers every line. Thus all factors are planes.
+
+Any target line belongs to at least two plane factors. Omitting a pair intersection, or permitting a triple-plane line, makes F/(Pi Pj) vanish on every target line, again in degree d-2. This proves completeness and the no-triple-line condition, including d=2. The no-triple-line condition is exactly what makes every other plane a unit at each minimal prime in C4.
+
+In the d by(d-1) Hilbert–Burch matrix with columns Pi e_i-Pd e_d, every maximal minor has a unique nonzero determinant permutation, so it is a product F/Pj times a sign. In characteristic2 the sign becomes1, with no cancellation or lost determinant. Grade2/perfectness and generic reducedness/no embedded primes are characteristic-free; no alternating-matrix rank parity theorem is involved. This independently checks the geometry-to-matrix interface rather than replaying the other algebra family.
+
+## Supplemental boundary claims in Section D
+
+For an integral degree-e surface, choose a general plane avoiding pairwise singular-line intersection points and not containing any singular component. Each singular line contributes a distinct singular point to the integral degree-e plane curve. Each such point has delta>=1. The curve's total delta is pa-g<=pa=(e-1)(e-2)/2. For e=2,3,4 the singular-line counts are at most0,1,3. Quadrics on P3 form a 10-dimensional vector space and each line imposes at most3 linear conditions, so3 lines fit a quadric in every characteristic. The degree3 and2 cases are easier. This independently supports the alpha(I)<=3 boundary through the same reduction with this elementary substitute for Lemma B.
+
+For a cone over integral plane curve D of degree e, its normalization n:Dn->D satisfies n_*omega_Dn=c omega_D=c(e-3). RR on smooth Dn gives h0(omega_Dn tensor n^*O_D(1))>=g+e-1>=1. Hence H0(D,c(e-2)) is nonzero. The degree-e-2 polynomial lift uses H1(P2,O(-2))=0 and extends to the cone, vanishing on all singular generator lines. This gives the claimed cone boundary without relying on the submitted Lemma A. The degree-count quintic note is arithmetic: dim cubics20 and each line imposes at most4 conditions, so the first count that can exhaust20 is5. It asserts no existence of5 independent singular lines on a quintic.

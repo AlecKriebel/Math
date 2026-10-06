@@ -1,0 +1,42 @@
+--- exact_reproduction_adversary_20261005/boundary_controls.py
++++ verification_package_preparation_20261005/positive_all/boundary_checks_ordinary/source_1_boundary_checks.py
+@@ -1,9 +1,11 @@
+ #!/usr/bin/env python3
+ """Independent stdlib-only bounded adversarial controls; never a Koopman spectrum approximation."""
+-import cmath, collections, fractions, hashlib, itertools, json, math, pathlib, sys
++import argparse, cmath, collections, fractions, hashlib, itertools, json, math, pathlib
++parser = argparse.ArgumentParser(description=__doc__)
++parser.add_argument("--output", type=pathlib.Path)
++parser.add_argument("--details-output", type=pathlib.Path)
++args = parser.parse_args()
+ F=fractions.Fraction
+-if sys.flags.optimize:
+-    raise RuntimeError('boundary audit requires optimization disabled')
+ counts=collections.Counter(); events=[]; numerical=[]; cases=[]
+ def ck(kind,condition,detail=None):
+     if not bool(condition):
+@@ -136,14 +138,20 @@
+ cases.append({'case':'finite_rotation_indistinguishability','irrational_model':'sqrt(2) float','rational':str(rational),'first_powers':501,'max_error':phase_error})
+ cases.append({'case':'Cesaro_nonuniformity','terms':m,'phase_gap':small_delta,'average_modulus':avg})
+ 
+-root=pathlib.Path(__file__).resolve().parent
+ detail={'events':events,'numerical_error_records':numerical,'cases':cases}
+-out=root/'boundary_controls_details.json'
+-raw=(json.dumps(detail,indent=2,sort_keys=True)+'\n').encode();out.write_bytes(raw)
++raw=(json.dumps(detail,indent=2,sort_keys=True)+'\n').encode()
++if args.details_output is not None:
++    args.details_output.parent.mkdir(parents=True, exist_ok=True)
++    args.details_output.write_bytes(raw)
+ receipt={'status':'PASS_BOUNDED_CONTROLS','total_controls':sum(counts.values()),'checks':dict(sorted(counts.items())),
+          'exact_rational_or_discrete_controls':sum(counts.values())-len(numerical)-counts['negative_finite_rotation_identifiability']-counts['negative_uniform_Cesaro_rate']-counts['positive_exponent_real_part'],
+          'floating_controls':len(numerical)+counts['negative_finite_rotation_identifiability']+counts['negative_uniform_Cesaro_rate']+counts['positive_exponent_real_part'],
+          'source_sha256':hashlib.sha256(pathlib.Path(__file__).read_bytes()).hexdigest(),
+          'details_sha256':hashlib.sha256(raw).hexdigest(),
+          'limitations':'Finite algebra and sampled numerical diagnostics only. No infinite-dimensional spectrum, universal arbitrary-norm theorem, density, continuity, recurrence or historical-priority conclusion is derived from finite controls.'}
+-print(json.dumps(receipt,indent=2,sort_keys=True))
++
++raw = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
++if args.output is not None:
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(raw, encoding="utf-8")
++print(raw, end="")

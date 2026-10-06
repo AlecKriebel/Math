@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\title{Tightness of contact Godbillon--Vey forms:\\
+ a classical argument for Calegari's conditional question}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{5 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+If a global defining form $\alpha$ of a cooriented taut $C^2$ foliation
+on a closed three-manifold satisfies $d\alpha=\alpha\wedge\omega$
+with a smooth contact form $\omega$, then $\ker\omega$ is tight.
+The proof combines a special case of Dathe--Khoule's 2012 general
+affine-deformation criterion with the Eliashberg--Thurston tightness
+neighborhood theorem and smooth Gray stability. A finite-interval
+smoothing argument allows $\alpha$ to be only $C^1$.
+This is a classical corollary, not a claim of a new contact construction
+or a first historical solution. Priority remains unresolved.
+\end{abstract}
+
+\section{The conditional question and the precise claim}
+The target is Question 13.2 on printed p.~29 of Calegari's actual
+2002 author preprint, dated 8 September, Version 0.78 \cite{C}.
+Its antecedents are inherited from Question 13.1: $\mathcal F$ is a
+minimal taut $C^2$ foliation of an atoroidal three-manifold $M$,
+and $\mathrm{gv}(\mathcal F)[M]\ne0$. One additionally supposes
+that a choice of global defining form $\alpha$ makes the associated
+one-form $\omega$ contact, with the convention
+\begin{equation}
+T\mathcal F=\ker\alpha,\qquad d\alpha=\alpha\wedge\omega.
+\label{connection}
+\end{equation}
+The requested conclusion is that the contact structure $\ker\omega$
+is tight. We use the closed, oriented interpretation supplied by a
+nonzero evaluation on the ordinary fundamental class. This is an
+interpretation of that evaluation, not a quoted source-wide convention;
+no boundary or noncompact version is asserted.
+
+Question 13.1 separately asks whether the defining form can be chosen
+so that $\omega\wedge d\omega$ has one weak sign everywhere.
+Neither that existence question nor existence of a contact $\omega$
+is established here. The final AMS chapter published in 2003 has DOI
+\href{https://doi.org/10.1090/pspum/071/2024640}{10.1090/pspum/071/2024640};
+its full text has not been read, and equality with the 2002 wording
+is not presumed.
+
+\begin{theorem}\label{main}
+Let $M$ be a closed oriented smooth three-manifold, and let
+$\mathcal F$ be a cooriented taut $C^2$ foliation without spherical
+leaves. Suppose $\alpha$ is a global nowhere-zero $C^1$ one-form
+defining $\mathcal F$, and $\omega$ is a smooth contact one-form
+satisfying \eqref{connection}. Then $\ker\omega$ is tight in the
+usual smooth contact-topological sense.
+\end{theorem}
+
+Minimality in the source excludes spherical leaves. Atoroidality,
+minimality, and the numerical Godbillon--Vey value play no further
+role in this implication. The global defining form supplies the
+coorientation. The conclusion therefore applies to the specified
+2002 conditional question under the smooth contact-form interpretation.
+
+\section{Proof by a finite contact path}
+We use two classical inputs. First, every smooth contact structure
+sufficiently $C^0$ close to the tangent planes of a taut $C^2$
+foliation without spherical leaves on a closed three-manifold is
+tight. This Eliashberg--Thurston neighborhood statement is explicitly
+recorded in Vogel \cite[p.~42]{V11} and Dathe--Rukimbira
+\cite[Proposition 3.3, p.~5]{DR}; the latter refers to p.~50 of
+\emph{Confoliations} \cite{ET}. We rely on those actual primary-paper
+statements, rather than claiming a full reading of the book.
+For negative contact structures apply the same result after reversing
+the orientation of the relevant component. Second, smooth Gray
+stability identifies every member of a smooth family of smooth contact
+structures on a closed manifold by an isotopy
+\cite[Theorem 2.9, p.~2451]{V16}. Tightness is consequently constant
+on such a path.
+
+\begin{proof}
+Differentiating \eqref{connection} gives
+\begin{equation}
+0=d^2\alpha=d\alpha\wedge\omega-\alpha\wedge d\omega
+=-\alpha\wedge d\omega.
+\label{mixed}
+\end{equation}
+This calculation is valid when $\alpha$ is only $C^1$: $d^2\alpha=0$
+distributionally, $\alpha\wedge\omega$ is $C^1$, and its product
+rule yields the continuous form $\alpha\wedge d\omega$.
+A continuous form that vanishes distributionally vanishes pointwise.
+For each constant real $s$, define $\beta_s=\omega+s\alpha$. Then
+\begin{align}
+\beta_s\wedge d\beta_s
+&=\omega\wedge d\omega
+ +s(\omega\wedge d\alpha+\alpha\wedge d\omega)
+ +s^2\alpha\wedge d\alpha \notag\\
+&=\omega\wedge d\omega.\label{volume}
+\end{align}
+Thus every $\beta_s$ is contact, with the same sign. Moreover,
+\begin{equation}
+\ker\beta_s=\ker(\alpha+s^{-1}\omega)\longrightarrow
+\ker\alpha\quad\text{uniformly in }C^0\quad(s\longrightarrow+\infty).
+\label{limit}
+\end{equation}
+Compactness and the positive minimum of $|\alpha|$ justify this
+uniform plane-field convergence. Choose a finite $S>0$ for which
+$\ker\beta_S$ lies in the tightness neighborhood just described.
+
+If $\alpha$ is smooth, \eqref{volume} gives a smooth contact path on
+$[0,S]$. Its endpoint is tight, so smooth Gray stability proves the
+claim at $s=0$.
+
+For $C^1$ $\alpha$, keep this same finite $S$ and keep $\omega$
+unchanged. Approximate $\alpha$ in $C^1$ by a smooth one-form $a$,
+using smooth charts and a partition of unity, and consider
+\begin{equation}
+\lambda_s=\omega+s a,\qquad 0\le s\le S.
+\label{smoothpath}
+\end{equation}
+Here is a uniform contact bound. Choose a metric and, component by
+component, an auxiliary orientation making
+$\omega\wedge d\omega=c(x)dV$ with $c\ge c_0>0$.
+On $M\times[0,S]$, bound both $|\beta_s|$ and $|d\beta_s|$ by $B$.
+If the one-form and exterior-derivative errors of \eqref{smoothpath}
+are at most $\delta$, their contact-volume error is at most
+$2B\delta+\delta^2$. Choose $\delta$ with this bound below $c_0/2$;
+the approximation can make the errors at most $\delta$ uniformly
+because $S$ is fixed. Every $\lambda_s$ is then contact.
+Also $\ker\lambda_S$ remains inside the $C^0$ tightness neighborhood
+by taking the approximation sufficiently small. Smooth Gray stability
+along \eqref{smoothpath} transports its tightness to
+$\ker\lambda_0=\ker\omega$.
+\end{proof}
+
+The approximation $a$ need not define a foliation or satisfy
+\eqref{connection}. Only closeness on a fixed finite interval is used.
+Gray stability is never applied to a $C^1$ path, to $s=\infty$, or
+to a foliated endpoint. Reversing an auxiliary orientation does not
+change tightness of the underlying contact planes.
+
+\section{Classical attribution and the limits of the note}
+Dathe--Khoule's general affine criterion
+\cite[Definition 2.1 and Theorem 2.2, pp.~102--103]{DK} already
+covers the contact mechanism. In dimension three, for an integrable
+defining form $\alpha$ and a positive contact form $\omega$, its
+criterion is
+\begin{equation}
+Q=\alpha\wedge d\omega+\omega\wedge d\alpha\ge0.
+\label{DKcriterion}
+\end{equation}
+Their definition permits $C(t)=1$, $B(t)=t$, giving
+$\alpha+t\omega$. In the present case each term of $Q$ is zero,
+and their expansion specializes to
+\[
+(\alpha+t\omega)\wedge d(\alpha+t\omega)
+=t^2\omega\wedge d\omega\qquad(t>0).
+\]
+After positive scaling, these are precisely the planes of
+$\omega+s\alpha$ with $s=1/t$. The criterion assumes integrability,
+not closedness of $\alpha$, and allows zero mixed term; no strictly
+positive first variation is needed. Negative sign is handled by
+orientation reversal.
+
+The original 2012 statement was read in an author-uploaded article
+transcription; its PDF pixels were not obtained. It does not itself
+print a $C^1$ threshold. The later coauthor preprint
+\cite[\S6, Theorem 6.2, pp.~32--33]{KMNW} explicitly attributes the
+$C^1$ criterion to the 2012 work. Its normalized-equality display
+after equation (62) omits the general nonnegative mixed term and
+should be an inequality. Equality is correct for $Q=0$, the only
+case used here; \eqref{volume} independently verifies it.
+No unrelated main result of that 2025 preprint is endorsed.
+
+Theorem~\ref{main} is our stated corollary of prior affine,
+Eliashberg--Thurston, and Gray results. The near-foliation/isotopy
+tightness argument already occurs with a closed defining form in
+Dathe--Rukimbira \cite[Proposition 3.4]{DR}; that narrower statement
+alone does not cover nonclosed $\alpha$.
+No literal statement of the exact tightness answer to Calegari's
+Question 13.2 was located in the complete transcribed 2012 article
+or the relevant 2025 section. This bounded absence is not firstness
+evidence. The final 2003 chapter, the full \emph{Confoliations} book,
+the final 2011 Dathe--Rukimbira article, and other identified literature
+remain unread. Historical priority, novelty of any explicit application
+or regularity refinement, and present-day open status are unresolved.
+
+The portable support includes the longer current candidate, which
+separately treats $C^1$ $\omega$ using an explicitly defined embedded
+$C^2$-disk criterion and tightness of sufficiently $C^1$-close smooth
+contact forms. Those qualified extras are not claims of this short
+theorem, and are not identified with every low-regularity definition
+of tightness. Exact symbolic and rational diagnostics check wedge
+identities, sign conventions, smoothing corrections, and finite-interval
+margins. They neither prove the imported global contact-topology
+theorems nor certify priority.
+
+AI tools were used extensively in analysis, drafting, source comparison,
+and verification. No conventional human peer review or refereeing has
+occurred. Independent AI audits are not human peer review.
+
+\clearpage
+\begin{thebibliography}{9}\small
+\bibitem{C} D. Calegari, \emph{Problems in foliations and laminations
+of 3-manifolds}, Version 0.78 (8 September 2002), Definition 1.1,
+p.~1; Questions 13.1--13.2, p.~29.
+\href{https://arxiv.org/abs/math/0209081v1}{arXiv:math/0209081v1}.
+
+\bibitem{DK} H. Dathe and C. Khoule, \emph{Sur les d\'eformations
+d'un feuilletage de codimension 1 en structures de contact},
+African Diaspora J. Math. \textbf{13}(2) (2012), 100--107.
+Definition 2.1 and Theorem 2.2, pp.~102--103.
+\href{https://www.researchgate.net/publication/258228980_Sur_les_deformations_d\%27un_feuilletage_de_codimension_1_en_structures_de_contact}{Author-uploaded original article transcription}.
+
+\bibitem{ET} Y. Eliashberg and W. P. Thurston, \emph{Confoliations},
+University Lecture Series \textbf{13}, AMS (1998), p.~50 cited through
+the explicit statements in \cite{V11,DR}; full book not read.
+
+\bibitem{V11} T. Vogel, \emph{Rigidity versus flexibility for tight
+confoliations}, Geom. Topol. \textbf{15} (2011), 41--121;
+tightness neighborhood, p.~42.
+\href{https://doi.org/10.2140/gt.2011.15.41}{doi:10.2140/gt.2011.15.41}.
+
+\bibitem{V16} T. Vogel, \emph{On the uniqueness of the contact structure
+approximating a foliation}, Geom. Topol. \textbf{20} (2016), 2439--2573;
+Theorem 2.9, p.~2451.
+\href{https://doi.org/10.2140/gt.2016.20.2439}{doi:10.2140/gt.2016.20.2439}.
+
+\bibitem{DR} H. Dathe and P. Rukimbira, \emph{Contact deformations of
+closed 1-forms on torus bundles over the circle}, author preprint (2008),
+Propositions 3.3--3.4, p.~5.
+\href{https://arxiv.org/abs/0812.3389v1}{arXiv:0812.3389v1}.
+
+\bibitem{KMNW} C. Khoule, M. Manso, A. Ndiaye and K. War,
+\emph{$C^0$-Contact Anosov flows}, arXiv:2503.00454v1 (1 March 2025),
+\S6, Theorem 6.2, pp.~32--33; only this relevant criterion and
+attribution are used.
+\href{https://arxiv.org/abs/2503.00454v1}{arXiv:2503.00454v1}.
+\end{thebibliography}
+\end{document}

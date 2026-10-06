@@ -1,0 +1,11 @@
+# Metric-ball geometry audit log
+
+2026-10-01T20:39:01.166811+00:00 — Sealed independent full-cell acceptance criterion and universal geometric mechanism before historical review/checker material. Primary archived Question 5.7 page 7 and published prior layered construction read and visually inspected. Audit completion estimate 35%; full target unresolved. No source/canonical/Git writes.
+
+2026-10-01T20:44:44.580839+00:00 — All 16 frozen files match their snapshot SHA-256 and exact original PR24 head bytes. Submitted verifier, historical review copy, and historical independent checker all reran in ignored per-run scratch and reproduced their saved JSON byte-for-byte. Independent new full-cell/incidence checker is running; audit completion estimate 65%. Full-source resolution remains unestablished. Historical README queue-mutation sentence is stale relative to changed_paths/queue row and has been flagged to parent; candidate remains untouched.
+
+2026-10-01T20:51:39.657279+00:00 — Completed universal full closed-disk/local-cell/incidence proof and all original reproduction. New independent rational run passes1398 assertions,256 seven-bit/root cases and32 shifted roots; six negative mutations detected. All34 edge-cell keys,27 face-cell keys and164 inherited incidence pairs match. Required README metadata reconciliation remains flagged to parent; no mathematical repair. Audit completion100%; full-source status unresolved1/5, zero added attempts. REPORT/VERDICT and first-party hash manifest prepared.
+
+2026-10-01T20:53:00.544677+00:00 — Corrected a receipt/report counting typo: the additional shifted-root product has4×2×2=16 cases, not32. The256 primary rooted cases and1398 exact assertions are unchanged. Full rerun in progress with the count computed from actual cases; audit remains100% mathematically, final hash sealing pending.
+
+2026-10-01T20:54:02.230354+00:00 — Final corrected run confirms1398 assertions,256 primary rooted cases,16 shifted roots and all six negative controls. Script hash matches receipt, all16 frozen source hashes remain unchanged, branch remainsmain and original1/5 ledger is preserved. Complete first-party manifest excludes itself and ignored foreign/scratch tmp. Audit completion100%; full-source unresolved.

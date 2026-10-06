@@ -1,0 +1,42 @@
+--- original_source_authentication_20261005/original_attempt/verify.py
++++ verification_package_preparation_20261005/positive_all/verify_optimized/source_1_verify.py
+@@ -7,10 +7,21 @@
+ from collections import Counter
+ from itertools import product
+ from pathlib import Path
+-import hashlib,json,math
++import argparse,hashlib,json,math
++
++parser = argparse.ArgumentParser(description=__doc__)
++parser.add_argument("--artifact", type=Path, default=Path(__file__).resolve().parent.parent / "pr91_note.tex")
++parser.add_argument("--output", type=Path)
++args = parser.parse_args()
++artifact = args.artifact.resolve()
++if not artifact.is_file():
++    parser.error("artifact file is missing: " + str(artifact))
++artifact_sha256 = hashlib.sha256(artifact.read_bytes()).hexdigest()
++
+ counts=Counter()
+ def ck(k,v):
+-    assert bool(v),k
++    if not bool(v):
++        raise AssertionError(k)
+     counts[k]+=1
+ def zero(M):return all(s.simplify(z)==0 for z in M)
+ S=s.Matrix([[1,1,0,2,0],[0,1,1,0,1],[0,0,1,1,0],[0,0,0,1,1],[0,0,0,0,1]])
+@@ -81,7 +92,12 @@
+     ck('Cesaro_frequency_projection',avg==int(lam==gam))
+ p=Path(__file__)
+ receipt={'status':'PASS','exact_assertions':sum(counts.values()),'checks':dict(sorted(counts.items())),
+-'artifact_sha256':hashlib.sha256(p.with_name('CLASSIFICATION.md').read_bytes()).hexdigest(),
++'artifact_sha256':artifact_sha256,
+ 'checker_sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'sympy_version':s.__version__,
+-'limitations':'Finite exact algebraic controls, not a finite-dimensional approximation to the full Koopman spectrum. Compactness, continuity, recurrence, Stone-Weierstrass density and spectral closure are justified in the written proof.'}
+-print(json.dumps(receipt,indent=2,sort_keys=True))
++'limitations':'Exact finite algebraic controls only. The infinite-dimensional spectrum and all analytic proof steps require separate proof verification.'}
++
++raw = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
++if args.output is not None:
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(raw, encoding="utf-8")
++print(raw, end="")

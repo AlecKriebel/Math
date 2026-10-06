@@ -1,0 +1,286 @@
+
+PATH: REVIEW.md SHA256: a419aef8e00f410a38fbf4bcb974718b170893f035cad52a20e24f5095126a52 
+# Independent adversarial review: Ohtsuki Conjecture 7.5 and SU(5) lens spaces
+
+**Verdict: PASS — complete counterexample to the stated universal conjecture.** The justified campaign status is **claimed_solved**, subject to the explicit qualification that this is an AI-reviewed, unrefereed mathematical argument. No mandatory correction was identified. Novelty and priority are not established.
+
+The frozen `COUNTEREXAMPLE.md` reviewed has SHA-256 `9e412983afbec39f2db103b38e771c0e45d2f5c30b433bd6a92459e9aeb4b6a6`. Its verifier has SHA-256 `608b10d88b1c57a05a230dd7b4ed954e6cc3305d810ccc804bd58754bcfebf1b`. Both are included unchanged in `author_replay/`.
+
+The two exact squared magnitudes are independently confirmed:
+
+\[
+|\tau^{SU(5)}_{10}(L(5,1))|^2=3475+1550\sqrt5,
+\qquad
+|\tau^{SU(5)}_{10}(L(5,2))|^2=4025+1800\sqrt5,
+\]
+
+in the normalization \(\tau(S^3)=1\). Both are positive and their difference is \(550+250\sqrt5>0\). Both fundamental groups are \(\mathbb Z/5\). The independent verification below uses a root-lattice Gauss sum that reduces to five Weyl terms, rather than the submitted modular-matrix multiplication.
+
+## 1. Original scope and admissible theory
+
+[Ohtsuki's original collection](https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf), Section7.1, printed pp.471–474, defines the quantum G invariant for closed oriented three-manifolds and uses the shifted parameter \(r=k+h^\vee\). Conjecture7.5 on p.474 says the absolute value, when nonzero, depends only on the fundamental group. The rendered page was inspected. The prime-level congruence in the preceding paragraph is a different statement; it imposes no prime-level hypothesis on Conjecture7.5.
+
+SU(5) is simple, compact and simply connected. Its dual Coxeter number is 5, so WZW level k=5 corresponds to r=10. This is the full SU(5) theory, with the full weight lattice; it is not a PSU(5) or root-lattice-only theory, and it has no additional spin or bundle label.
+
+[Hansen–Takata, arXiv:math/0209403v2](https://arxiv.org/abs/math/0209403), pp.26–27, constructs the modular category at r=mκ with κ≥h∨. In simply-laced type A4, m=1, so κ=r=10 is allowed. No coprimality of r and 5 is required for this construction. The index set consists of shifted weights in the open κ-alcove, namely the highest weights with four nonnegative Dynkin labels summing to at most 5, shifted by ρ. This gives exactly \(\binom94=126\) labels. The zero highest weight corresponds to the shifted vacuum ρ.
+
+The convention for the quantum-group root in Hansen–Takata is \(e^{\pi i/r}\). Its Weyl-matrix entries use \(e^{-2\pi i\langle\lambda,\mu\rangle/r}\), exactly as specialized by the author. This is compatible with the square-root convention behind the source's displayed SU(2) quantum parameter; there is no additional factor-of-two level shift.
+
+## 2. Surgery, orientation and normalization
+
+[Guadagnini–Pilo](https://arxiv.org/abs/hep-th/9612090), equations(13), (16), (19) and (20), gives the vacuum matrix word for rational unknot surgery, with signature correction. The words for the continued fractions [5] and [3,2] are respectively
+
+\[
+ST^5S,\qquad ST^3ST^2S,
+\]
+
+since \(5/2=3-1/2\). Transposition reverses the chain without changing the vacuum entry because S and T are symmetric. The corresponding unknot fillings have fundamental groups cyclic of order 5, independently of the denominator. This follows also from van Kampen: the unknot longitude is trivial in its exterior group, so p/q filling adds the relation \(\mu^p=1\).
+
+For a general group, there is no need to extrapolate Guadagnini–Pilo's explicit SU(2)/SU(3) normalization constants: Hansen–Takata's arbitrary-modular-category Corollary4.2 and equations(27)–(30) independently supply the same vacuum-word formula for the A4 category. Their convention defines L(p,q) by surgery coefficient −p/q, whereas Guadagnini–Pilo uses +p/q. This changes orientation conventions; the unitary invariant is conjugated under orientation reversal, so the displayed absolute values are unaffected. The independent computation also verifies q↔5−q explicitly.
+
+Hansen–Takata uses \(\tau_{HT}(S^3)=D^{-1}=S_{00}\), where D is the positive total quantum dimension. Thus the normalization in the candidate is
+
+\[
+\tau_{\mathrm{norm}}(M)=\tau_{HT}(M)/S_{00}.
+\]
+
+Their surgery signature factors and the scalar distinguishing the modular T matrix from twists have modulus one. Removing these phases cannot alter either squared magnitude. Removing S's magnitude would be an error; the candidate retains it.
+
+In type A4, rank=4, the number of positive roots is 10, and the root-lattice covolume is \(\sqrt5\), while the weight-lattice covolume is \(1/\sqrt5\). Equation(12) therefore gives the coefficient \(i^{10}/(10^2\sqrt5)=-1/(100\sqrt5)\) in S. With the author's integer coordinates y, the exponents in its equations(3) are correct: the S exponent in \(\zeta_{100}\) is \(-2\langle y,y'\rangle/5\), and the relative T exponent is \((|y|^2-250)/5\). All are integers. The omitted T scalar is a phase, not a missing magnitude.
+
+## 3. Independent exact derivation from a different formula
+
+Use Hansen–Takata **Theorem5.1**, printed p.39 of the cited preprint, whose displayed formula and preceding derivation were inspected. This is the general lens-space formula. The later “coprime case” simplification is **not** used, since gcd(10,5)=5.
+
+Work in
+\(\{x\in\mathbb R^5:\sum x_i=0\}\) with the usual Euclidean inner product. The coroot lattice is
+
+\[
+Y=\{\nu\in\mathbb Z^5:\sum_i\nu_i=0\},
+\qquad \rho=(2,1,0,-1,-2).
+\]
+
+Its Weyl group permutes the five coordinates, its covolume is \(\sqrt5\), and \(|\rho|^2=10\). For p=5 and κ=10, Theorem5.1 specializes, up to a unit complex factor, to
+
+\[
+\tau_{HT}(L(5,q))=
+\frac{-1}{2500\sqrt5}
+\sum_{w\in S_5}\operatorname{sgn}(w)
+ e^{-2\pi i\langle\rho,w\rho\rangle/50}
+\sum_{\nu\in Y/5Y}
+ e^{2\pi i q|\nu|^2}
+ e^{2\pi i\langle\nu,q\rho-w\rho\rangle/5}.
+\tag{A}
+\]
+
+Here the omitted factor is the Dedekind-sum phase in that theorem. The quadratic exponential in the inner sum is one. Taking the four simple roots \(e_i-e_{i+1}\) as a basis of Y, the remaining inner sum factors into four geometric sums of fifth roots of unity. It is 625 precisely when all five coordinates of \(q\rho-w\rho\) are congruent modulo5, and is zero otherwise.
+
+The coordinates of ρ represent all five residue classes. For each fixed nonzero q modulo5, there are exactly five surviving permutations, one for each common residue of \(q\rho-w\rho\). Their signs and dot products can be listed without any numerical root evaluation:
+
+| q | signs | dot products \(\langle\rho,w\rho\rangle\), with multiplicity |
+|---|---|---|
+| 1 | all +1 | 10 once; 0 twice; −5 twice |
+| 2 | all −1 | 5 twice; −5 twice; 0 once |
+
+Let \(w_0=e^{\pi i/5}\), a primitive tenth root. The surviving sums are
+
+\[
+\Sigma_1=2+2w_0+w_0^{-2},
+\qquad
+\Sigma_2=-(1+2w_0+2w_0^{-1}).
+\]
+
+Consequently (A) gives
+
+\[
+|\tau_{HT}(L(5,q))|^2=\frac{|\Sigma_q|^2}{80}.
+\tag{B}
+\]
+
+All remaining algebra takes place in the degree-four field defined by
+\(\Phi_{10}(x)=x^4-x^3+x^2-x+1\). Put
+
+\[
+u=w_0^2-w_0^3=2\cos(2\pi/5)=\frac{\sqrt5-1}{2},
+\qquad u^2+u=1.
+\]
+
+Direct multiplication, with conjugation \(w_0\mapsto w_0^{-1}\), gives
+
+\[
+|\Sigma_1|^2=13+4u=11+2\sqrt5,
+\qquad
+|\Sigma_2|^2=13+8u=9+4\sqrt5.
+\tag{C}
+\]
+
+The vacuum normalization can independently be obtained from the positive-root product in Hansen–Takata's equation(26). Positive roots of heights 1,2,3,4 occur 4,3,2,1 times. Their sine product is
+
+\[
+\prod_{\alpha>0}2\sin\frac{\pi\langle\alpha,\rho\rangle}{10}
+=10u-5>0.
+\]
+
+For example, use \(2\sin(\pi/10)=u\), \(2\sin(3\pi/10)=1+u\), \((2\sin(\pi/5))^2=2-u\), and \((2\sin(\pi/5))(2\sin(2\pi/5))=\sqrt5\). The product reduces to \(u^2(2-u)\sqrt5=10u-5\). Therefore
+
+\[
+S_{00}^2=\frac{(10u-5)^2}{50000}
+=\frac{125-200u}{50000}.
+\tag{D}
+\]
+
+Dividing (B) by (D) yields
+
+\[
+|\tau_{\mathrm{norm}}(L(5,q))|^2
+=\frac{625|\Sigma_q|^2}{125-200u}.
+\]
+
+Using (C) and \(u^2+u=1\), these ratios are exactly the two values claimed. The denominator is positive: either use the nonzero positive sine product, or \(0<u<5/8\), which follows from \(1<\sqrt5<9/4\). The two positive expressions are unequal. This independently settles both the nonvanishing and inequality requirements of the conjecture.
+
+## 4. Audit of the submitted cyclotomic certificate
+
+The submitted method enumerates the full 126-weight alcove and all 120 Weyl permutations, computes 8,001 symmetric S-numerator entries, and verifies seven final polynomial identities in \(\mathbb Z[\zeta_{100}]\). The reduction polynomial
+
+\[
+\Phi_{100}(x)=x^{40}-x^{30}+x^{20}-x^{10}+1
+\]
+
+is correct. Its chosen embedding has \(\zeta_{100}=e^{2\pi i/100}\), so the author's \(\zeta_{100}^{20}-\zeta_{100}^{30}\) is exactly the positive real u used above. Conjugation by inversion is correct. The Python arithmetic uses arbitrary-precision integers in NumPy object arrays, including convolution and reductions; it introduces no floating-point operation in the certificate.
+
+I ran the verifier in a separate copied directory. Its receipt reproduced byte for byte, including the frozen artifact hash and all seven identities. The powers of 50000 in the two squared ratios are correct: the one-component word has two S factors before division by S00; the two-component word has three. The independent calculation in Section3 checks the resulting normalized magnitudes without depending on the author's matrix enumeration or polynomial coefficients.
+
+The independent standard-library checker uses the A4 root basis, all 625 lattice residues, all 120 Weyl permutations, and four-coordinate \(\Phi_{10}\) arithmetic. It verifies **2,005 exact assertions**, including complete character-orthogonality sums for q=1,2,3,4, both phase norms, the root-product vacuum factor, both normalized values, and orientation-reversal controls. The 126-label alcove is also counted through a different parametrization by four-element subsets of {1,…,9}. The number of assertions does not count every arithmetic operation as a separate test.
+
+## 5. Reproduction and publication limits
+
+From this review directory:
+
+```sh
+python independent_checks.py > independent_results.replayed.json
+cmp independent_results.replayed.json independent_results.json
+```
+
+The submitted replay requires NumPy and should be run from its directory, because it opens its snapshot by a relative path:
+
+```sh
+cd author_replay
+python verify.py
+```
+
+`source_verification.json` records the primary PDF hashes and exact inspected locations. Publish only the files enumerated in `review_summary.json`; do not include source PDFs, rendered pages or caches.
+
+The conclusion is a **complete negative answer to the stated all-group conjecture**, using ordinary SU(5) invariants at one allowed level and two lens spaces with the same fundamental group. It does not refute Guadagnini–Pilo's SU(2) lens-space theorem, which is a restricted result, or assert a counterexample within their SU(3) numerical sample. It does not assert homotopy equivalence of the pair, a smallest counterexample, a general classification, or a new discovery. The standard modular-category and surgery theorems are clearly identified imported inputs, not re-proved quantum-group foundations. Within that normal theorem-dependent mathematical scope, no unresolved gap was found.
+
+
+PATH: independent_checks.py SHA256: 2267d374524bfc77380d736b1cb45a6d66c48130e53152909e5b0406dd84b980 
+#!/usr/bin/env python3
+"""Independent A4 root-lattice Gauss-sum certificate via Hansen–Takata Thm 5.1.
+No NumPy, floating point, author imports, or 126x126 modular matrix construction.
+"""
+from itertools import permutations,product,combinations
+from collections import Counter
+from fractions import Fraction as F
+import json
+checks=Counter()
+def ck(p,name):
+ assert p,name
+ checks[name]+=1
+# Independent degree-four ring: w=exp(pi*i/5), Phi_10=w^4-w^3+w^2-w+1.
+def red(a):
+ a=list(a)+[0]*max(0,4-len(a))
+ for j in range(len(a)-1,3,-1):
+  c=a[j]
+  for d,s in [(1,1),(2,-1),(3,1),(4,-1)]:a[j-d]+=s*c
+ return tuple(a[:4])
+def add(a,b):return tuple(x+y for x,y in zip(a,b))
+def scale(c,a):return tuple(c*x for x in a)
+def mul(a,b):
+ c=[0]*7
+ for i,x in enumerate(a):
+  for j,y in enumerate(b):c[i+j]+=x*y
+ return red(c)
+W=[red([0]*i+[1]) for i in range(10)]
+def conj(a):
+ z=(0,0,0,0)
+ for i,x in enumerate(a):z=add(z,scale(x,W[-i%10]))
+ return z
+one=W[0];u=add(W[2],scale(-1,W[3]));sqrt5=add(one,scale(2,u))
+ck(add(mul(u,u),u)==one,'golden_ratio_relation')
+ck(mul(sqrt5,sqrt5)==scale(5,one),'square_root_five_relation')
+for i,j in product(range(10),repeat=2):ck(mul(W[i],W[j])==W[(i+j)%10],'cyclotomic_multiplication')
+# A4 simple-root Gram determinant is 5, so root covolume is sqrt(5).
+G=[[F(2 if i==j else -1 if abs(i-j)==1 else 0) for j in range(4)] for i in range(4)]
+det=F(1)
+for i in range(4):
+ pivot=G[i][i];det*=pivot
+ for j in range(i+1,4):
+  ratio=G[j][i]/pivot
+  for k in range(i,4):G[j][k]-=ratio*G[i][k]
+ck(det==5,'root_lattice_covolume_squared')
+rho=(2,1,0,-1,-2)
+ck(sum(rho)==0 and sum(x*x for x in rho)==10,'Weyl_vector')
+# Distinct residues with one endpoint zero independently give 126 alcove weights.
+alcoves=[]
+for c in combinations(range(1,10),4):
+ ell=tuple(sorted(c,reverse=True))+(0,)
+ dynkin=tuple(ell[i]-ell[i+1]-1 for i in range(4))
+ ck(min(dynkin)>=0 and sum(dynkin)<=5,'integrable_weight_bound')
+ alcoves.append(dynkin)
+ck(len(set(alcoves))==126,'full_integrable_weight_count')
+# Representatives of Y/5Y in the simple-root basis, not weight labels.
+nu=[]
+for c in product(range(5),repeat=4):
+ v=(c[0],c[1]-c[0],c[2]-c[1],c[3]-c[2],-c[3])
+ ck(sum(v)==0,'root_lattice_sum_zero')
+ ck(sum(x*x for x in v)%2==0,'even_root_lattice_norm')
+ nu.append(v)
+ck(len(nu)==625,'root_lattice_quotient_size')
+perms=list(permutations(rho));ck(len(perms)==120,'Weyl_group_size')
+out={}
+for q in (1,2,3,4):
+ sigma=(0,0,0,0);survivors=[]
+ for w in perms:
+  sg=(-1)**sum(w[i]<w[j] for i in range(5) for j in range(i+1,5))
+  v=tuple(q*a-b for a,b in zip(rho,w))
+  # At kappa=10,p=5 the quadratic term is exp(2*pi*i*q*norm)=1.
+  histogram=Counter(sum(a*b for a,b in zip(n,v))%5 for n in nu)
+  character=(0,0,0,0)
+  for exponent,mult in histogram.items():character=add(character,scale(mult,W[(2*exponent)%10]))
+  selected=len({x%5 for x in v})==1
+  ck(character==(scale(625,one) if selected else (0,0,0,0)),'full_character_sum_orthogonality')
+  if selected:
+   dot=sum(a*b for a,b in zip(rho,w))
+   ck(dot%5==0,'surviving_phase_lies_in_Q_zeta10')
+   sigma=add(sigma,scale(sg,W[(-dot//5)%10]))
+   survivors.append({'permuted_rho':list(w),'sign':sg,'dot':dot})
+ ck(len(survivors)==5,'five_surviving_permutations')
+ norm=mul(sigma,conj(sigma))
+ expected=add(scale(13,one),scale(4 if q in (1,4) else 8,u))
+ ck(norm==expected,'closed_form_phase_norm')
+ out[q]={'sigma':list(sigma),'norm':list(norm),'survivors':survivors}
+# The positive-root product has multiplicities 4,3,2,1 for root heights 1,2,3,4.
+# (2sin(pi/5))^2=2-u, (2sin(2pi/5))^2=3+u, their product=sqrt5.
+root_product=mul(mul(mul(u,u),add(scale(2,one),scale(-1,u))),sqrt5)
+ck(root_product==add(scale(-5,one),scale(10,u)),'Weyl_denominator_product')
+DD=mul(root_product,root_product)
+ck(DD==add(scale(125,one),scale(-200,u)),'vacuum_squared_numerator')
+# HT unnormalized tau has factor 625/(50^2 sqrt5)=1/(4sqrt5).
+ck(F(625,50**2)==F(1,4),'Gauss_prefactor')
+ck(F(50000,80)==625,'S3_normalization_ratio')
+for q,ab in [(1,(3475,1550)),(2,(4025,1800)),(3,(4025,1800)),(4,(3475,1550))]:
+ target=add(scale(ab[0],one),scale(ab[1],sqrt5))
+ ck(mul(target,DD)==scale(625,tuple(out[q]['norm'])),'claimed_normalized_squared_value')
+ck(F(5)<F(9,4)**2 and F(5)>1,'positive_denominator_root_bound')
+# Inverse surgery and reversed chain controls at the SL(2,Z) level.
+def mm(A,B):return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+for a,b in [(3,2),(2,3)]:
+ ck(F(a)-F(1,b)==F(5,b),'lens_continued_fraction')
+ ck(a*b-1==5,'chain_homology_determinant')
+ck(out[1]['norm']==out[4]['norm'] and out[2]['norm']==out[3]['norm'],'orientation_reversal_absolute_value')
+print(json.dumps({'status':'PASS','exact_assertions':sum(checks.values()),'checks':dict(sorted(checks.items())),
+ 'method':'Hansen–Takata Theorem5.1 root-lattice Gauss sum; 625 root-lattice residues and 120 Weyl elements; Phi10 arithmetic with four integer coefficients.',
+ 'normalized_squared_magnitudes':{'L(5,1)':[3475,1550],'L(5,2)':[4025,1800]},
+ 'coefficient_basis':'a+b*sqrt(5)','q_phase_sums':out,
+ 'scope':'Independent exact formula evaluation and normalization; general quantum-group surgery theorems are cited inputs, not re-proved.'},indent=2,sort_keys=True))
+

@@ -1,6 +1,12 @@
-# Turn 2: abstract measure-only Markov tests and explicit Cox matching tests
+Current administrative status as of 2026-10-06T06:45:26.412290+00:00: published preprint 10.5281/zenodo.23180194 (https://zenodo.org/records/23180194); actual tracker 1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20 / sheet 1254632077 (Math Puzzles), row 30, range 'Math Puzzles'!A30:D30, read back and ROOT-accepted. Two sequential whole-preprint reviews are completed for immutable candidate03 content. The administrative successor requires separate ROOT ancestry/parity and source-guard acceptance; native merge is not certified here. Exact22 public payloads and all mathematics are unchanged; unrefereed, extensive AI assistance, no human peer review or formal machine proof.
 
-**Full source-aware candidate, pending independent review.** This continuation closes the two gaps recorded in TURN_1.md by separate arguments. The full Markov theorem is proved on the abstract flow, not merely after taking the marginal law of the random measure. The Cox-matching theorem concerns the distribution of the measure itself and uses explicit matchings of (µ,ζ+δ_s), with µ retained as background. No claim of historical novelty is made.
+The entire retained candidate03 text below is historical as of its frozen preparation03 checkpoint, including earlier pending, DOI-none, review-request and workflow statements. Frozen original/rejection/checkpoint records remain historical evidence.
+
+---
+
+# Turn 2: abstract measure-only Markov theorem and separately scoped background-retaining Cox matchings
+
+**Corrected author version; ROOT accepted the exact mathematical scopes of A and B, and bounded priority for precise formal A is accepted with disclosed gaps; fresh global preprint review remains pending.** A proves the formal all-Markov theorem on the arbitrary ambient flow. B proves only the specified canonical intensity-background Cox matching theorem. The original claim that B closes Last's full narrower OWR allocation question is withdrawn. Read SCOPE_AND_CREDIT.md for source selection, credit, unrefereed/AI disclosure and remaining gap. The original two substantive author turns remain 2/5; one joint turn-3 repair campaign brings the current total to 3/5.
 
 ## 1. Statements and conventions
 
@@ -12,7 +18,7 @@ for all nonnegative measurable f and every invariant ξ-preserving kernel depend
 
 **Theorem A.** Condition (I) is equivalent to mass-stationarity of Q for ξ. In particular it yields the full joint-state Mecke equation, with arbitrary measurable tests on Ω×G.
 
-**Theorem B.** For a σ-finite law Q on the canonical space M\{0}, it already suffices to require invariance under the Cox-derived kernels of the singleton matching family in Section 6. These are genuine deterministic invariant matchings of the locally finite counting measure ζ+δ_s, allowing the original µ as background. They work for arbitrary atomic, diffuse or mixed µ. Thus the characterization holds for the distribution-of-ξ Cox-transport question described in the closing OWR paragraph, not only for the larger class of all Markov kernels.
+**Theorem B.** For a σ-finite law Q on the canonical space M\{0}, it already suffices to require invariance under the Cox-derived kernels of the singleton matching family in Section 6. These are genuine deterministic invariant matchings of the locally finite counting measure ζ+δ_s, allowing the original µ as background. They work for arbitrary atomic, diffuse or mixed µ. This is an intensity-background canonical matching characterization, corresponding to the diagonal X=ξ specialization of the published 2011 projected formulation. It does not establish the intensity-erased/prescribed-X formulation or identify this family with the exact smaller class intended in Last's closing OWR paragraph.
 
 These are affirmative transport characterizations under the source's nonzero, locally finite and Abelian assumptions. A zero measure, a bounded non-Markov weighted transport, or an unproved identification of the auxiliary state with ξ is not substituted.
 
@@ -118,7 +124,7 @@ for every nonnegative measurable g. The established Mecke characterization, Last
 
 ## 6. An actual Cox-derived matching family
 
-This construction handles the narrower original distribution-of-ξ question directly.
+This construction proves the canonical intensity-background Theorem B directly. It does not settle the full strict count-only deterministic Cox allocation question.
 
 By Struble's theorem, G admits a compatible proper translation-invariant metric d. Write B̄(s,r) for its closed balls; these are compact. For s≠t define
 
@@ -136,7 +142,7 @@ Given µ, let ζ be a Poisson random measure of intensity µ. For each starting 
 
     K_b^Cox(µ,s,A)=E_µ[1_A(τ_b(µ,ζ+δ_s,s))].         (6.2)
 
-This is exactly a Cox-derived transport obtained by applying an invariant matching to the Cox process with the inserted root. The matching may use the original µ as background, as in the OWR's joint point-stationarity discussion of (ξ,ζ⁰). No independent labels, marks, grids or extra stationary background are introduced.
+This is a Cox-derived transport obtained by applying an invariant matching with original µ retained as background. Published 2011 Remark 4.8 permits inside T to observe prescribed auxiliary w and the rooted counting measure; choosing X=ξ admits these µ gates. Choosing constant X removes that intensity observation and gives a smaller class, for which this argument supplies no sufficiency theorem. No independent labels, marks, grids or extra stationary background are introduced.
 
 ### Exact density, including atoms
 
@@ -168,13 +174,17 @@ On J, R fixes µ and reverses t. The restriction µ|_(H_µ) is either zero or a 
 
 Therefore m=R_*m everywhere. Its weight a(µ;0,t) is strictly positive for t≠0, so deweighting gives the full canonical Campbell reversal identity away from t=0. At t=0, R is the identity, so the missing diagonal equality is automatic even if µ has an atom at zero. This proves the full Mecke identity and mass-stationarity. Necessity follows from transport invariance because every kernel (6.2) was proved preserving and Markov. Theorem B follows.
 
-## 8. Source closure and boundaries
+## 8. Exact source scope, attribution and remaining gap
 
-Theorem A proves the abstract σ-finite, measure-only-kernel question formulated as Annals (2009) Problem 7.3, not merely the easier canonical version. Theorem B separately supplies a preserving Cox-derived matching subclass sufficient for the distribution of ξ itself, the subject of the OWR closing question. It does not infer the latter from the former merely because both are called transports.
+Theorem A proves formal Last–Thorisson (2009) Problem 7.3 under its σ-finite arbitrary-flow setting and answers the literal imported all-Markov question. Thorisson also poses the general Markov converse in OWR47/2008, printed pp.2692/2694. The import contains no Cox/allocation restriction. This is a transparent formalization of the literal target, without asserting resolution of every question in the cited whole report.
 
-The full original OWR and foundational Annals paper were read. The published 2015 paper still states that the Markov version is open; its bounded weighted transports are not being substituted. The 2011 Bernoulli/Cox article's full PDF could not be obtained: the old author URL now redirects, and the publisher download is bot-blocked in the cloud browser. We therefore do not quote an unread final-paper definition or theorem. Instead (6.1)–(6.3) explicitly implement the original OWR's stated construction of applying an invariant matching to (µ,ζ+δ_s). The independent source reviewer must verify this exact scope match, including allowance of µ as background.
+Theorem B separately proves a σ-finite canonical measure-law criterion using genuine singleton matchings that inspect µ as background. Last's closing OWR paragraph, printed p.2673, discusses allocation-derived Cox transports and does not explicitly identify their allowed intensity observation. The final published 2011 paper, Remark 4.8 on printed p.263, writes T′(w,α,s,·)=∫T(w,ν+δ_s,s,·)Π_α(dν). Inside T observes prescribed w and rooted counting ν, not α separately. B matches the diagonal X=ξ specialization; replacing constant X by ξ enlarges the observations and is not a reduction proving the smaller premise.
 
-No stronger claim is made that Cox matchings depending only on ζ and forbidden to see µ characterize every joint auxiliary state. Likewise the theorem is not extended here to non-Abelian groups or non-locally-finite measures. Nonzeroness and σ-finiteness are retained. The proof gives new candidate deductions from credited Mecke/Palm and Poisson inputs; historical novelty has not been certified.
+The complete final 2011 paper was subsequently acquired and checked by the source-scope family at SHA256 67ba5a5c0943ac3cfaecdadcfadaf8ffd0e9cc0fe52f114b507218710a6a5744 (203,382 bytes). Original failed access is historical evidence, not a present unread limitation. The complete operative OWR contributions and formal Annals source were checked. The verified later construction edition is arXiv:1405.7566v2, revised 17 July 2015; its Section 9 retains a historical Markov gap and distinguishes weighted kernels. The complete final SPA 2015 publisher body was not authenticated, and neither that historical statement nor a bounded search certifies 2026 openness or novelty.
+
+TURN_3 records already verified, distinct count-only extensions: C for canonical probability laws with preserving Markov tests, and D for countable discrete Abelian groups with σ-finite canonical laws and allocation tests. Neither supplies the full non-discrete deterministic allocation converse, arbitrary-X strict Cox theorem, or general σ-finite strict Cox Markov extension. The Markov family cannot be silently identified with allocation mixtures in the presence of unequal multiplicities.
+
+Classical Mecke/Palm characterization and transport invariance are credited Last–Thorisson inputs. Struble's metric theorem, pointwise Haar uniqueness and ordinary Poisson Campbell–Mecke are used with their displayed assumptions. Nonzeroness, local finiteness, σ-finiteness and lcsc Hausdorff Abelian G are retained. No non-Abelian, non-locally-finite, finite-intensity-only or standard-Borel-Ω substitution is made. Bounded priority for the precise formal A claim is accepted by ROOT with the six disclosed edition/audiovisual/coverage gaps; this is not worldwide priority certification. Human refereeing, machine formal verification and publication clearance remain absent. The integrated main preprint contains A only; B/C/D remain ancillary attempt results.
 
 ### Appendix: Poisson identity used in (6.3)
 

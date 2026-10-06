@@ -1,0 +1,9 @@
+# Root acceptance of the complete second current PR27 gate
+
+2026-10-02T00:05:08.999245+00:00 — 92% workflow: clean exact current23 science gate and root replay complete; integration pending.
+
+Root read the complete new report, early reconstruction, complete primary-proof derivation, verdict, all actual correct programs and full preserved failure diffs. All23closed members and current23/94support/original13/14diff/historical22 closure are exact. Root independently ran11direct/10nested unchanged jobs, original/current BYTEEXACT receipts, and10122homotopy/428rectangular-naturality/45hook/10subgroup controls (onlyutc differs). All four original failure programs still fail for documented reasons; no failed verdict becomes PASS. The old firstfresh hardcoded22guard was run with the exact historical22candidate restored, never altered to bless current23.
+
+The universal CE splitting/right-module resolution/exteriorization and low/band formulas remain correct. The literal n2lemma is false; the corrected n>=3 subgroup-generation and wedge-kernel converse are universally established. The r>3 induction uses only n=r-1>=3 and the independent r3/r2 bases close. All previous unqualified endorsements are explicitly superseded while their sealed historical bytes remain exact. Root had already reconstructed this correction and source proof; this is a synthesis after family exposure, not another blind family.
+
+The source-context17state/18turn snapshot is exactly recoverable at Git3410fb3d and remains dated evidence. Main now has18states/20turns after PR28 acceptance; selected30003713 remains absent, so no acceptance is inferred yet. Remote head/draft/body and selected pending row require separate readback before exact merge, followed by current mirror preserving all previous entries. Original1/5,0newattempts. Retain unsolved/knownpartial without novelty/paper/newDOI/tracker or humanpeer/formal-certificate claims.

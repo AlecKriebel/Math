@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Root must explicitly supply every interpretation and exact byte pin. Four packet names: CURRENT_RESULT.md, CURRENT_PRIORITY.md, PR_BODY.md, DISPOSITION_PROPOSAL.json. No prose rewriting or scope inference.",
+  "properties": {
+    "PR": {
+      "const": 73
+    },
+    "acceptance_commit_message": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "acceptance_scientific_fields": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_as": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "attributed_partial_disposition": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "credited_prior_disposition": {
+          "oneOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "bytes",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "new_paper": {
+          "type": "boolean"
+        },
+        "novelty_clearance": {
+          "type": "boolean"
+        },
+        "publication_DOI": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "scientific_claims": {
+          "minProperties": 1,
+          "type": "object"
+        },
+        "scope_interpretation": {
+          "additionalProperties": false,
+          "properties": {
+            "excluded_scopes": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "text": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "text",
+            "excluded_scopes"
+          ],
+          "type": "object"
+        },
+        "status": {
+          "enum": [
+            "claimed_solved",
+            "already_solved",
+            "partial"
+          ]
+        },
+        "tracker_append": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "status",
+        "accepted_as",
+        "scope_interpretation",
+        "credited_prior_disposition",
+        "attributed_partial_disposition",
+        "novelty_clearance",
+        "new_paper",
+        "publication_DOI",
+        "tracker_append",
+        "scientific_claims"
+      ],
+      "type": "object"
+    },
+    "audited_outcome": {
+      "enum": [
+        "claimed_solved",
+        "already_solved",
+        "partial"
+      ]
+    },
+    "checkpoint_commit_message": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "checkpoint_files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "ROOT_certifies_public_safe": {
+            "const": true
+          },
+          "git_mode": {
+            "enum": [
+              "100644",
+              "100755"
+            ]
+          },
+          "pin": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "bytes",
+              "sha256"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pin",
+          "ROOT_certifies_public_safe",
+          "git_mode"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "execution_id": {
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+      "type": "string"
+    },
+    "expected_base_main": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "expected_submitted_head": {
+      "const": "6f82e81631fd43abc0140a831acfb43c150f4210"
+    },
+    "merge_commit_message": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "packet": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "pr_title": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "problem_id": {
+      "const": "2985"
+    },
+    "queue_after_row_base64": {
+      "contentEncoding": "base64",
+      "minLength": 1,
+      "type": "string"
+    },
+    "queue_before_row_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema": {
+      "const": "pr73-frozen-native-plan/v2"
+    },
+    "scope_interpretation": {
+      "additionalProperties": false,
+      "properties": {
+        "excluded_scopes": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "excluded_scopes"
+      ],
+      "type": "object"
+    },
+    "stage": {
+      "const": "ROOT_REVIEWED_FROZEN_EXACT_BYTES"
+    },
+    "submitted_pr_body_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "submitted_pr_title": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema",
+    "stage",
+    "PR",
+    "problem_id",
+    "expected_submitted_head",
+    "execution_id",
+    "audited_outcome",
+    "scope_interpretation",
+    "expected_base_main",
+    "packet",
+    "pr_title",
+    "submitted_pr_title",
+    "submitted_pr_body_sha256",
+    "queue_before_row_sha256",
+    "queue_after_row_base64",
+    "acceptance_scientific_fields",
+    "merge_commit_message",
+    "acceptance_commit_message",
+    "checkpoint_commit_message",
+    "checkpoint_files"
+  ],
+  "title": "PR73 frozen exact native plan",
+  "type": "object"
+}

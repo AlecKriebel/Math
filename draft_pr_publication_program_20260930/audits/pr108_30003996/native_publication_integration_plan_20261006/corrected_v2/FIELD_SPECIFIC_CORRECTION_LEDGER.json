@@ -1,0 +1,165 @@
+{
+  "UTC": "2026-10-06T06:30:01.191921+00:00",
+  "V1_modified": false,
+  "V1_pin_manifest": "V1_UNCHANGED_INPUT_PINS.json",
+  "actual_native_prepare_assess_export_executions": 0,
+  "all_F01_through_F06_addressed_in_draft": true,
+  "corrections": [
+    {
+      "before": "Local Git tracker readback was sufficient; no required Google Sheet service custody.",
+      "code": [
+        "v2_guards.py:process_receipt",
+        "v2_guards.py:validate_sheet",
+        "prepare_review_bundle.py:prepare"
+      ],
+      "corrected_fields": [
+        "google_sheet.receipt",
+        "google_sheet.row_index",
+        "google_sheet.values",
+        "final.google_sheet_receipt_sha256",
+        "final.actual_Google_Sheet_service_authenticated"
+      ],
+      "finding": "F01",
+      "mechanism": "Mandatory actual GWS metadata/header/append/readback/independent-readback after actual Zenodo; exact spreadsheet/gid/tab/columns, target note, source URL, DOI, row/range, argv/params/body pins/PIDs/UTC/exit; final gate after independent service readback. Local tracker auxiliary only.",
+      "tests": [
+        "SheetFixtures.test_synthetic_shape_and_wrong_row_doi_time_or_fixture",
+        "SheetFixtures.test_local_tracker_or_missing_service_readback_rejects"
+      ]
+    },
+    {
+      "before": "Helper SHA was bound, but editable effective configuration was not.",
+      "code": [
+        "v2_guards.py:validate_execution_manifest",
+        "v2_guards.py:ReviewedInputs",
+        "prepare_review_bundle.py:validate_gate",
+        "native_assess_worker.py:execute"
+      ],
+      "corrected_fields": [
+        "execution_inputs",
+        "effective.*",
+        "program_files",
+        "input_files",
+        "gates.*.execution_inputs_sha256",
+        "reviewed_program_sha256"
+      ],
+      "finding": "F02",
+      "mechanism": "Canonical immutable all-choice execution-input manifest, exact field sets and runtime/source/receipt/program pins; all declared nongate input bytes consumed once with no unused entries. Gate pins excluded to avoid cycles. Every gate binds manifest, main parent, source/proof/package; final and adversary bind four-file code family; final binds antecedent gate bytes and service receipts. Worker independently checks manifest/code/final gate.",
+      "tests": [
+        "BindingFixtures.test_all_effective_fields_and_canonical_bytes_required",
+        "BindingFixtures.test_gate_exact_input_and_entire_program_binding",
+        "BindingFixtures.test_pinned_capture_once_and_no_unused_inputs"
+      ]
+    },
+    {
+      "before": "str.splitlines treated non-CR/LF controls as physical CSV line endings.",
+      "code": [
+        "v2_guards.py:physical_lines",
+        "v2_guards.py:csv_records",
+        "v2_guards.py:csv_overlay"
+      ],
+      "corrected_fields": [
+        "CSV physical span selection",
+        "CSV replacement quoting and ending",
+        "unrelated record byte checks"
+      ],
+      "finding": "F03",
+      "mechanism": "Only physical CR/LF/CRLF partition input; csv.reader line_num maps to these spans. Reparse output, preserve header/count/ID order and every unrelated record exact bytes. Standard CRLF quoting then exact original target ending preserves EOF and internal quoted CR/LF.",
+      "tests": [
+        "CSVFixtures (eight Unicode/control separators, CR-only/LF/CRLF, original/new quoted multiline, target EOF without newline, duplicate/malformed input)"
+      ]
+    },
+    {
+      "before": "Capacity estimate omitted artifacts/overhead; child output and native assess were unbounded.",
+      "code": [
+        "v2_guards.py:capacity_inventory",
+        "bounded_process.py:BoundedRunner",
+        "native_assess_worker.py:execute",
+        "prepare_review_bundle.py:watch"
+      ],
+      "corrected_fields": [
+        "capacity_policy.*",
+        "process_policy.*",
+        "worker_policy.*",
+        "CAPACITY_PLAN entries",
+        "WORKER_RESULT/PROCESS_JOURNAL/PREPARE_FAILURE receipts"
+      ],
+      "finding": "F04",
+      "mechanism": "Enumerate every exact/generated/process artifact plus exclusive native atomic slot; <=512 files including slot, <=64 logical packet files, per-file/aggregate caps, 32 MiB headroom and separate >=8 MiB runtime and future-commit reserves. Bounded retained/read subprocess streams, deadlines, TERM/KILL/reaping custody. Source-pinned assess worker requires CPU/file/open-file limit setup/readbacks; Darwin memory policy is explicitly advisory with no hard memory claim and parent tree/deadline watch. Failure receipts retained and no export.",
+      "tests": [
+        "ResourceFixtures.test_capacity_full_entries_counts_and_reserve",
+        "ResourceFixtures.test_bounded_tiny_subprocess_actual_custody_fixture",
+        "ResourceFixtures.test_worker_policy_only_no_native_invocation",
+        "ResourceFixtures.test_actual_harmless_worker_resource_setup_and_file_cap",
+        "ResourceFixtures.test_published_archive_requires_exact_manifest_and_inventory"
+      ]
+    },
+    {
+      "before": "Original relative names could swap, selected QUEUE SHA was not recomputed, prior {} was re-read.",
+      "code": [
+        "v2_guards.py:validate_original_map",
+        "v2_guards.py:validate_original_queue",
+        "v2_guards.py:ReviewedInputs",
+        "prepare_review_bundle.py:prepare"
+      ],
+      "corrected_fields": [
+        "original_authentication_pins.*",
+        "original file path/name/mode/tree map",
+        "QUEUE selected_row_sha256/target/status/2/5 parse",
+        "captured prior bytes"
+      ],
+      "finding": "F05",
+      "mechanism": "Reviewed exact auth paths and fifteen regular100644 names; entry.path must equal native prefix+relative_path; live original-head NUL tree/blob map and every body checked. Whole queue pin/Git blob and selected row SHA recomputed, unique row parsed target+literalclaimed_solved+2/5. Empty selected prior captured once/reused; sourcepair absence of submitted prior kept. SQL/raw source hashes cross-bind original auth and immutable revision.",
+      "tests": [
+        "OriginalFixtures.test_exact_names_maps_and_modes",
+        "OriginalFixtures.test_queue_sha_parse_status_and_count",
+        "BindingFixtures.test_pinned_capture_once_and_no_unused_inputs"
+      ]
+    },
+    {
+      "before": "Eligibility-only regeneration changes could be accepted without a native-policy explanation.",
+      "code": [
+        "v2_guards.py:native_status_turns",
+        "v2_guards.py:expected_eligible",
+        "v2_guards.py:scoped_catalog"
+      ],
+      "corrected_fields": [
+        "unrelated eligible/local_status/turns_used explanation",
+        "native policy turn_limit and default status",
+        "baseline catalog copy"
+      ],
+      "finding": "F06",
+      "mechanism": "Derive exact default/local status and turns from native policy/assessment/state, holds unchanged and present/turn budget gates; regenerated eligibility must equal exact predicate or abort. Preserve original unrelated full rows/ranks/positions regardless of explained drift.",
+      "tests": [
+        "EligibilityFixtures.test_eligibility_only_false_drift_rejects",
+        "EligibilityFixtures.test_exact_held_and_budget_projection_preserved",
+        "EligibilityFixtures.test_score_or_hold_drift_rejects"
+      ]
+    }
+  ],
+  "independent_V2_adversary_clearance": false,
+  "new_central_proof_search_turns": 0,
+  "program_pins": [
+    {
+      "bytes": 6391,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v2/bounded_process.py",
+      "sha256": "65da1928ca298fa8d962fa5a76e3c757edb9f089238e6cd09e31ae37efb1deb4"
+    },
+    {
+      "bytes": 8309,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v2/native_assess_worker.py",
+      "sha256": "2af2d2d2a233d27c5585936b511d448e4d8b24e18ef171b4433638be4d3d11bd"
+    },
+    {
+      "bytes": 36582,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v2/prepare_review_bundle.py",
+      "sha256": "bbba70940db61f86335b5624a5c9d00c2c728a143a2e9c32ac9b18af4ad91884"
+    },
+    {
+      "bytes": 25055,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v2/v2_guards.py",
+      "sha256": "eba5bd22dd29a6ba6e6fb5bee2b26457a2db9d13feda1fb6f95c3497e8271c3b"
+    }
+  ],
+  "schema": "pr108-native-helper-v2-correction-ledger/v1",
+  "static_adversary_input": "A/native_helper_static_adversary_20261006 (exact input pins in READ_SCOPE_MANIFEST.json)"
+}

@@ -1,0 +1,957 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..88b326066 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -71,7 +71,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
++| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | 2026-09-30: Exact original large-deviation principle and full probability-measure limit set are covered by Johnston-Kabluchko-Prochno, Studia Mathematica264(2022). Separate source/proof-scope audit passed, including boundary normalization and both approximation directions. Zero new attempts; published prior work credited, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/43. |  |
+ | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+ | 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30004386/README.md b/unsolved_math_prioritization/attempts/30004386/README.md
+new file mode 100644
+index 000000000..ae5bbfa35
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/README.md
+@@ -0,0 +1,9 @@
++# Random cube projections: prior published solution
++
++**Already solved by Johnston, Kabluchko and Prochno in Studia Mathematica 264 (2022), 103–119.** Their Theorem A is the exact requested probability-measure-valued large-deviation principle. Proposition 3.1 also yields the proposed Prohorov limit set, with the realization of all its elements spelled out in [SOURCE_STATUS.md](SOURCE_STATUS.md).
++
++This package corrects an outdated open classification. It claims no new discovery and uses no additional tail assumptions or growing projection-dimension regime. [Separate adversarial AI review](review/REVIEW.md) passed and confirmed both original targets, with 664 independent exact diagnostic checks.
++
++The complete original report and author manuscript were inspected. [SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the source match, version and access details, and prior-attempt checks. The actual model was gpt-6-astra with xhigh reasoning. No new proof attempt was needed once the exact published result was located.
++
++Run `python check_normalization.py` for 527 exact rational checks of the variance and finite coefficient approximations. These are diagnostics; the cited theorem supplies the LDP.
+diff --git a/unsolved_math_prioritization/attempts/30004386/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30004386/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..eca7ad0e3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/RESEARCH_LOG.md
+@@ -0,0 +1,19 @@
++# Source-resolution log: random cube projections
++
++Actual model: gpt-6-astra, xhigh. Started 30 September 2026, 05:52:08 UTC; two-hour cap ending 07:52:08 UTC. Maximum five substantive attempts; **zero new proof attempts used** because the exact published resolution was found during source readiness.
++
++## 05:52–05:54 UTC: precise model and published result located
++
++Source-status completion estimate: 70%. The full original report identifies a fixed one-dimensional projection, with ambient dimension tending to infinity, and an LDP for the random conditional probability measure. The complete author manuscript of Johnston–Kabluchko–Prochno gives the exact rate formula in Theorem A. The publisher verifies publication in Studia Mathematica 264 (2022), 103–119, online since 17 December 2021. No earlier project attempt or exact duplicate was found.
++
++## 05:54–05:58 UTC: both requested assertions matched
++
++Source-status completion estimate: 95%, pending separate review. Theorem A matches the speed, topology and all rate-function cases. Proposition 3.1 gives a compact homeomorphic parameterization. A direct unit-norm coefficient approximation makes every closed-unit-ball limit attainable by a sequence from E_N. The boundary rate and the variance 1/3 were checked explicitly. An isolated variance typo in the author manuscript is recorded transparently, without changing the theorem.
++
++## 06:00 UTC: source-status package frozen for independent review
++
++Source-status completion estimate remains 95%, pending separate adversarial review. All 527 exact normalization and coefficient-approximation checks pass. The original target is already solved in prior published literature; no new theorem, first-discovery claim, or extra tail assumption is asserted. No PR has been opened.
++
++## 06:13 UTC: independent source-match review passed
++
++Source-status completion: 100%; the published resolution belongs to Johnston, Kabluchko and Prochno. The separate reviewer confirmed both the full random-measure LDP and the entire Prohorov limit set, reproduced all 527 author diagnostics byte for byte, and passed 664 independent exact controls. No correction was required. Six supplied review and replay files were copied unchanged; only review-status metadata was updated. The substantive attempt count remains zero.
+diff --git a/unsolved_math_prioritization/attempts/30004386/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/30004386/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..25b61652f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/SOURCE_AUDIT.md
+@@ -0,0 +1,33 @@
++# Source audit for record 30004386
++
++Checked 30 September 2026. Recommended status: **already_solved**, by prior published work. This status concerns the precise one-dimensional random-probability-measure question, not every large-deviation problem for high-dimensional projections.
++
++## Original question
++
++The problem-page lookup was unavailable. The complete pinned source record is preserved in `source_record.json`, from the verified ulamai/UnsolvedMath cache at revision `37e53eabe540fb458758e198be61634bd02ee008`, with attribution under CC BY 4.0. The research-results entry is null. Its August 2026 open triage had checked only the original report and missed the later paper.
++
++The [complete report](https://publications.mfo.de/bitstream/handle/mfo/3713/OWR_2020_06.pdf?isAllowed=y&sequence=4) is Oberwolfach Report 6/2020, DOI 10.4171/OWR/2020/6, workshop 2–8 February 2020. The group-work report is on pp.411–413, by David Alonso-Gutiérrez, Nina Gantert, Samuel Johnston, Zakhar Kabluchko, Eliza O'Reilly, Joscha Prochno and Kavita Ramanan. Conjecture 1 and the intermediate Lemma 1 are on p.413, which was visually inspected. The definitions of the cube law, directions, Gaussian normalization and κ appear in the preceding pages. The dataset's report title mentions 2021, but the underlying workshop and report number are 2020.
++
++The notation omitted from the standalone dataset question was recovered from this surrounding text. The uniforms are independent with support [-1,1]; κ contains a Gaussian term of variance (1−||α||²)/3. Both the full LDP and the whole closed-unit-ball limit set are part of the target.
++
++## Resolution and version cross-check
++
++- The [publisher page](https://www.impan.pl/en/publishing-house/journals-and-series/studia-mathematica/online/114493/projections-of-the-uniform-distribution-on-the-cube-a-large-deviation-perspective) verifies all three authors, the exact title, DOI 10.4064/sm210413-16-9, Studia Mathematica 264 (2022), 103–119, and online publication on 17 December 2021. Its abstract states the exact random-measure rate formula and normalization.
++- The complete openly available [arXiv v2 manuscript](https://arxiv.org/abs/2103.16430v2), revised 19 September 2021, was downloaded and read, including Theorem A, Proposition 3.1 with Lemmas 3.2–3.3, and the sequence-space LDP in Proposition 3.4. The full text is an author manuscript; it is not being mislabeled as a downloaded typeset journal PDF.
++- Theorem A and its continuation were checked directly against the original conjecture. The probability space, topology, speed, open-ball finite-rate domain, infinite boundary rate and variance agree.
++- The weak compactness and homeomorphism proposition supplies the necessary closedness for the intermediate question. `SOURCE_STATUS.md` adds the elementary unit-norm coefficient approximation needed to make the converse attainability explicit for a sequence indexed by every sufficiently large N.
++- An isolated variance-one sentence in the manuscript is inconsistent with its own displayed formula. The independent variance computation gives 1/3 and agrees with the theorem and publisher abstract. This is recorded rather than silently importing the typo.
++
++The full author manuscript and publisher metadata suffice for this source-status identification; a new proof of the published theorem is not claimed. The large-deviation theorem's proof is based on a compact parameter space and sphere-coordinate estimates, and then transport through a homeomorphism. Its compactness is not compactness of the entire space of all real probability measures, and its coefficient topology is not the norm topology of ℓ2.
++
++## Current literature and nearby results
++
++The later primary paper by Kabluchko and Prochno, [*Large deviations for random matrices in the orthogonal group and Stiefel manifold with applications to random projections of product distributions*](https://arxiv.org/abs/2110.12977), explicitly identifies the Johnston–Kabluchko–Prochno result as a case generalized by that work. It is corroborating context, not needed as a substitute theorem. No correction or withdrawal of the exact cube theorem was found in the bounded title/author/DOI search.
++
++Earlier and later quenched/annealed scalar-projection theorems, including work for general product measures, are different statements. The present resolution does not depend on their extra integrability assumptions. The only source distribution required here is the given bounded uniform cube law; no strengthening of the question has been inserted.
++
++## Prior-attempt checks and workflow
++
++The main queue row was queued with 0/5 attempts. Numeric-ID, problem-code, descriptive, history/reset, all-ref attempt-path, repository-path, exact remote-branch and all-state PR checks found no prior project attempt. A broader pinned-dataset search found no second record of this exact cube random-measure conjecture. Unrelated projection and κ-notation problems were not treated as duplicates.
++
++The isolated branch is `dot/math-30004386`. Shared queue/state files were not edited or regenerated. No new substantive proof attempt was used: the exact published solution was identified during source readiness, and the subsequent work checks the source match and its direct intermediate implication. The actual model was gpt-6-astra with xhigh reasoning. Separate adversarial review is pending before a single source-status draft PR.
+diff --git a/unsolved_math_prioritization/attempts/30004386/SOURCE_STATUS.md b/unsolved_math_prioritization/attempts/30004386/SOURCE_STATUS.md
+new file mode 100644
+index 000000000..4475fc4fe
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/SOURCE_STATUS.md
+@@ -0,0 +1,65 @@
++# Random projections of the cube: already solved in published work
++
++**Both parts of OWR-17469-011 were resolved by Johnston, Kabluchko and Prochno, published online in 2021 and in Studia Mathematica in 2022. This is a source-status correction, not our discovery.** Separate adversarial AI review of this identification passed; see [the report](review/REVIEW.md).
++
++## Exact question and normalization
++
++The complete [original report](https://publications.mfo.de/bitstream/handle/mfo/3713/OWR_2020_06.pdf?isAllowed=y&sequence=4), pp.411–413, concerns a **one-dimensional** projection of the uniform law on the growing cube \([-1,1]^N\). Write
++\[
++\mu_\theta=\operatorname{Law}\left(\sum_{i=1}^N\theta_iU_i\right),
++\qquad \theta\in S^{N-1},\quad U_i\stackrel{\mathrm{iid}}\sim\operatorname{Unif}[-1,1].
++\]
++For a Haar-uniform direction \(\Theta^{(N)}\), the object undergoing deviations is the **random probability measure** \(\nu_N=\mu_{\Theta^{(N)}}\). For \(\alpha\in\ell_2\), \(\|\alpha\|_2\le1\), define
++\[
++\kappa_\alpha=\operatorname{Law}\left(
++\sum_{i\ge1}\alpha_iU_i+
++\sqrt{\frac{1-\|\alpha\|_2^2}{3}}\,Z\right),
++\tag{1}
++\]
++where \(Z\sim N(0,1)\) is independent of the uniforms. The series converges in \(L^2\) and almost surely. Its total variance is **1/3**.
++
++## Published resolution of the large-deviation claim
++
++S. G. G. Johnston, Z. Kabluchko and J. Prochno, *Projections of the uniform distribution on the cube: a large deviation perspective*, **Studia Mathematica 264 (2022), 103–119**, DOI [10.4064/sm210413-16-9](https://doi.org/10.4064/sm210413-16-9). The [publisher record](https://www.impan.pl/en/publishing-house/journals-and-series/studia-mathematica/online/114493/projections-of-the-uniform-distribution-on-the-cube-a-large-deviation-perspective) gives the online date as 17 December 2021. A complete [author manuscript, arXiv v2](https://arxiv.org/abs/2103.16430v2), is openly available.
++
++**Theorem A** states the full LDP for \((\nu_N)\) on \(\mathcal P(\mathbb R)\) with its weak topology, at speed \(N\), with good rate
++\[
++I(\nu)=
++\begin{cases}
++-\frac12\log(1-\|\alpha\|_2^2),&\nu=\kappa_\alpha,\ \|\alpha\|_2<1,\\
+++\infty,&\text{otherwise}.
++\end{cases}
++\tag{2}
++\]
++This is exactly the report's Conjecture 1. There is no extra tail assumption or growing projection-dimension hypothesis.
++
++The paper uses nonnegative decreasing coefficients. This does not restrict (1): independent symmetric uniforms allow arbitrary signs to be removed and coefficients to be reordered without changing the law or squared norm. Square summability makes these rearrangements legitimate in \(L^2\).
++
++## The intermediate limit set is also covered
++
++Put
++\[
++W=\{a_1\ge a_2\ge\cdots\ge0:\ \sum_i a_i^2\le1\}.
++\]
++**Proposition 3.1** of the same paper proves that \(a\mapsto\kappa_a\) is a homeomorphism from \(W\), with coordinatewise convergence, to its image \(K\subset\mathcal P(\mathbb R)\). In particular, \(K\) is compact. The following explains explicitly how that proposition yields the report's Lemma 1, including attainability of every proposed limit.
++
++Every law in \(E_N\) belongs to \(K\): sort the absolute values of its unit-vector coefficients and pad by zeros. Hence any weak limit of a sequence chosen from the \(E_N\) lies in the closed set \(K\).
++
++Conversely fix \(a\in W\). For \(N\ge2\), take \(m_N=\lfloor\sqrt N\rfloor<N\), retain \(a_1,\ldots,a_{m_N}\), and fill the remaining \(N-m_N\) positions with
++\[
++c_N=\sqrt{\frac{1-\sum_{i=1}^{m_N}a_i^2}{N-m_N}}.
++\tag{3}
++\]
++The resulting vector has squared norm one, so its projection law belongs to \(E_N\). Moreover \(c_N\to0\). After decreasing rearrangement and zero padding, the vector converges coordinatewise to \(a\): any fixed positive coordinate eventually exceeds every filler; when a fixed target coordinate is zero, only finitely many target entries are positive and the fillers tend to zero. Proposition 3.1 now gives convergence of the laws to \(\kappa_a\). The first, irrelevant, term \(N=1\) can be chosen arbitrarily in \(E_1\).
++
++Weak convergence of probabilities on \(\mathbb R\) is equivalent to convergence in the Prohorov metric. Thus the requested set of all possible Prohorov limits is exactly \(K\), including coefficients of norm one. Those boundary laws have infinite rate in (2); they must not be deleted from the limit set.
++
++## Scope and technical checks
++
++- Probability in the LDP is over the random **direction**. This is not a quenched scalar-projection LDP or an LDP for the direction-averaged scalar law.
++- The projection dimension is fixed at one; the ambient dimension is \(N\). No coupling or independence between directions of different dimensions is needed for the marginal LDP.
++- At \(a=0\), the law is \(N(0,1/3)\) and the rate is zero. Norm-one coefficient vectors give infinite rate, and measures outside \(K\) do as well.
++- The manuscript's isolated sentence after equation (2) says variance one. Its formula, Theorem A, and the publisher abstract all give variance **1/3**. Our normalization uses the formula and verifies it directly; no theorem is altered.
++- Coordinatewise convergence is essential: the vectors with \(N\) entries \(1/\sqrt N\) have norm one and converge coordinatewise to zero. The limiting missing coefficient mass is represented by the Gaussian term in (1).
++
++The existence and exact statement of the published theorem settle the original target. The coefficient construction above only makes the intermediate implication explicit; it is not claimed as new research. The appropriate status is **already_solved**, subject to the separate source-match review required for this workflow.
+diff --git a/unsolved_math_prioritization/attempts/30004386/check_normalization.py b/unsolved_math_prioritization/attempts/30004386/check_normalization.py
+new file mode 100644
+index 000000000..8fad5749d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/check_normalization.py
+@@ -0,0 +1,71 @@
++"""Exact diagnostics for normalization and coefficient approximations.
++
++This is not a numerical proof of an LDP. The resolution is the cited theorem.
++"""
++from fractions import Fraction as Q
++from math import isqrt
++from pathlib import Path
++import hashlib
++import json
++
++assertions = 0
++
++
++def check(condition):
++    global assertions
++    assertions += 1
++    assert condition
++
++
++# Squared coefficients suffice: signs and square roots do not affect these checks.
++families = {
++    "Gaussian limit": lambda j: Q(0),
++    "one uniform, boundary": lambda j: Q(1) if j == 1 else Q(0),
++    "finite interior": lambda j: [Q(1, 4), Q(1, 9)][j-1] if j <= 2 else Q(0),
++    "infinite interior": lambda j: Q(1, 4**j),
++    "infinite norm-one boundary": lambda j: Q(3, 4**j),
++}
++dimensions = [2, 3, 4, 7, 9, 16, 25, 49, 100, 256, 1024]
++summaries = []
++for name, coefficient_square in families.items():
++    for n in dimensions:
++        m = isqrt(n)
++        check(0 < m < n)
++        first = [coefficient_square(j) for j in range(1, m + 1)]
++        retained = sum(first, Q(0))
++        check(Q(0) <= retained <= Q(1))
++        filler_square = (1 - retained) / (n - m)
++        check(filler_square >= 0)
++        check(filler_square <= Q(1, n - m))
++        check(retained + (n - m) * filler_square == 1)
++        # Every finite E_n projection has the required variance exactly.
++        check((retained + (n - m) * filler_square) / 3 == Q(1, 3))
++        arranged = sorted(first + [filler_square] * (n - m), reverse=True)
++        # Any retained coordinate exceeding the fillers stays at its sorted position.
++        for j, value in enumerate(first):
++            if value > filler_square:
++                check(arranged[j] == value)
++        # Lindeberg-tail fourth-power control, stated in squared-coefficient form.
++        check((n - m) * filler_square**2 <= Q(1, n - m))
++    summaries.append({"family": name, "dimensions": dimensions})
++
++for norm_square in [Q(0), Q(1, 4), Q(13, 36), Q(1, 3), Q(99, 100), Q(1)]:
++    variance = norm_square / 3 + (1 - norm_square) / 3
++    check(variance == Q(1, 3))
++    check(variance != Q(1))
++
++# Fourth cumulant of Uniform[-1,1], and Gaussian normalization controls.
++check(Q(1, 5) - 3 * Q(1, 3)**2 == Q(-2, 15))
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": assertions,
++    "coefficient_families": summaries,
++    "variance": "1/3",
++    "arithmetic": "exact rational squared coefficients; no floating-point simulation",
++    "source_status_sha256": hashlib.sha256((root / "SOURCE_STATUS.md").read_bytes()).hexdigest(),
++    "scope": "Normalization and finite approximation diagnostics; published Theorem A supplies the LDP.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30004386/check_results.json b/unsolved_math_prioritization/attempts/30004386/check_results.json
+new file mode 100644
+index 000000000..f07680cac
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/check_results.json
+@@ -0,0 +1,90 @@
++{
++  "all_passed": true,
++  "assertions": 527,
++  "coefficient_families": [
++    {
++      "family": "Gaussian limit",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "one uniform, boundary",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "finite interior",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "infinite interior",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "infinite norm-one boundary",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    }
++  ],
++  "variance": "1/3",
++  "arithmetic": "exact rational squared coefficients; no floating-point simulation",
++  "source_status_sha256": "98918841ab30dd1e41d51dbc7ec8515a66f1f1c82f01ff08ccc5462b758a2727",
++  "scope": "Normalization and finite approximation diagnostics; published Theorem A supplies the LDP."
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/readiness.json b/unsolved_math_prioritization/attempts/30004386/readiness.json
+new file mode 100644
+index 000000000..f51ba7c58
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/readiness.json
+@@ -0,0 +1,48 @@
++{
++  "id": 30004386,
++  "problem_number": "OWR-17469-011",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "time_window_utc": [
++    "2026-09-30T05:52:08Z",
++    "2026-09-30T07:52:08Z"
++  ],
++  "maximum_substantive_attempts": 5,
++  "used_substantive_attempts": 0,
++  "status": "already_solved",
++  "recommended_queue_status": "already_solved",
++  "full_target_resolved_in_literature": true,
++  "our_new_discovery": false,
++  "artifact": "SOURCE_STATUS.md",
++  "artifact_sha256": "90402aea80b79b7713d740863b6058b43c64050c3499701b2bf8490c90b210e3",
++  "independent_review": {
++    "verdict": "PASS_ALREADY_SOLVED_SOURCE_MATCH",
++    "report": "review/REVIEW.md",
++    "report_sha256": "554c03201d587d153fabfa19f674ae36f15e6c0c6f223a1f9637f8568dbe7ef3",
++    "required_corrections": [],
++    "independent_exact_assertions": 664,
++    "final_artifact_change": "Review-status sentence only"
++  },
++  "source_status_completion_percent": 100,
++  "resolution": {
++    "authors": [
++      "Samuel G. G. Johnston",
++      "Zakhar Kabluchko",
++      "Joscha Prochno"
++    ],
++    "title": "Projections of the uniform distribution on the cube: a large deviation perspective",
++    "journal": "Studia Mathematica",
++    "volume": 264,
++    "year": 2022,
++    "pages": "103-119",
++    "doi": "10.4064/sm210413-16-9",
++    "published_online": "2021-12-17",
++    "ldp_theorem": "Theorem A",
++    "limit_set_input": "Proposition 3.1 plus explicit unit-norm approximations"
++  },
++  "source_scope": "Probability-measure-valued LDP for one-dimensional random directions of Uniform[-1,1]^N, weak/Prohorov topology, speed N.",
++  "exact_diagnostic_assertions": 527,
++  "prior_attempt_found": false,
++  "exact_duplicate_found": false,
++  "reviewed_mathematical_snapshot_sha256": "98918841ab30dd1e41d51dbc7ec8515a66f1f1c82f01ff08ccc5462b758a2727"
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/REVIEW.md b/unsolved_math_prioritization/attempts/30004386/review/REVIEW.md
+new file mode 100644
+index 000000000..149a7a493
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/REVIEW.md
+@@ -0,0 +1,107 @@
++# Independent source-match review: 30004386 / OWR-17469-011
++
++**Verdict: PASS. The exact two-part target is already solved by the cited published work of Johnston, Kabluchko and Prochno.**
++
++Reviewed on 2026-09-30 by a separate GPT-6 Astra agent at xhigh reasoning. This is a source-match audit with checks of the stated intermediate implication, not a new discovery or a claim of independent priority.
++
++Frozen SOURCE_STATUS.md SHA-256:
++
++98918841ab30dd1e41d51dbc7ec8515a66f1f1c82f01ff08ccc5462b758a2727
++
++No author artifact was edited.
++
++## 1. Original problem and publication identity
++
++The original is the group-work report in Oberwolfach Report **6/2020**, pp. 411–413. Its underlying workshop ran 2–8 February 2020. The surrounding definitions concern a Haar-uniform direction on the Euclidean unit sphere and the one-dimensional projection of the uniform cube law. The random object in the large-deviation statement is the resulting probability measure on the real line.
++
++Conjecture 1 asks for the full stated rate function at speed \(N\). Lemma 1 separately asks for every possible Prohorov limit of projection laws with unit coefficient vectors, including both necessity and attainability. The original definitions and the rendered conjecture/lemma page were checked. Any 2021 label in imported metadata does not change this source.
++
++Source: [OWR 6/2020, original report](https://publications.mfo.de/bitstream/handle/mfo/3713/OWR_2020_06.pdf?isAllowed=y&sequence=4).
++
++The publisher confirms the three authors, title, DOI 10.4064/sm210413-16-9, **Studia Mathematica 264 (2022), 103–119**, and online publication on **17 December 2021**. Its abstract explicitly states the same cube random-measure LDP and rate formula. The complete open author manuscript is arXiv:2103.16430v2, revised 19 September 2021. The inspected full text is that manuscript; a typeset journal PDF was not obtained. This access distinction does not obscure the exact published main-result statement, which appears on the publisher's own page.
++
++Sources: [publisher record and abstract](https://www.impan.pl/en/publishing-house/journals-and-series/studia-mathematica/online/114493/projections-of-the-uniform-distribution-on-the-cube-a-large-deviation-perspective), [versioned open manuscript](https://arxiv.org/abs/2103.16430v2).
++
++## 2. Exact theorem match
++
++Theorem A uses the space of real Borel probability measures with the weak topology, speed \(N\), and a good rate
++\[
++ I(\kappa_a)=-\tfrac12\log(1-\|a\|_2^2)
++ \quad\text{for }\|a\|_2<1,
++\]
++with infinite rate otherwise. Its law is precisely the uniform series plus an independent Gaussian of variance \((1-\|a\|_2^2)/3\). It is a full LDP, not merely a compact-set upper bound. The theorem and its continuation were read directly.
++
++Proposition 3.1 identifies the compact space of decreasing nonnegative sequences with squared sum at most one, using coordinatewise convergence, homeomorphically with its image of laws. Lemma 3.2 gives uniqueness of the ordered coefficient representation. This also makes the rate unambiguous, including the distinction between norm-one and smaller-norm parameters.
++
++Thus both the random object and topology agree with the original. An LDP for a sampled scalar projection, or for its direction-averaged law, would be a different claim. Independence of directions across different ambient dimensions is unnecessary because these LDP bounds concern each marginal distribution.
++
++Source: [Johnston–Kabluchko–Prochno, Theorem A and §3.1](https://arxiv.org/pdf/2103.16430v2).
++
++## 3. Normalization and coefficient conventions
++
++For independent \(U_i\sim\operatorname{Unif}[-1,1]\), centeredness and \(\operatorname{Var}(U_i)=1/3\) give
++\[
++ \operatorname{Var}\left(\sum_i a_iU_i+
++       \sqrt{(1-\|a\|_2^2)/3}\,Z\right)
++ =\frac{\|a\|_2^2}{3}+\frac{1-\|a\|_2^2}{3}
++ =\frac13 .
++\]
++The independent series converges in \(L^2\) and almost surely since the sum of variances is finite. Symmetry removes coefficient signs, and rearranging the nonzero coefficients preserves the law and squared norm. Zero terms can be discarded. These assertions hold for infinite square-summable sequences by \(L^2\) convergence, not by assuming absolute summability of the coefficients.
++
++The isolated sentence after equation (2) in the open manuscript stating variance one is inconsistent with its displayed law. The formula, Theorem A, and publisher abstract agree with the calculation above. The package correctly records this typo and uses variance \(1/3\).
++
++At \(a=0\) the law is \(N(0,1/3)\) and the rate is zero. Norm-one laws remain valid members of the limit set, while their LDP rate is infinite. A law cannot acquire a finite rate by a second smaller-norm ordered representation, because that representation is unique.
++
++## 4. Both directions of the limit-set claim
++
++Let \(W\) be the ordered closed unit ball and \(K=\{\kappa_a:a\in W\}\).
++
++For necessity, each law in \(E_N\) is \(\kappa_b\) for the decreasing absolute coefficients of its unit vector, padded by zeros. Its Gaussian term is zero. Proposition 3.1 makes \(K\) compact, hence closed in the Hausdorff weak topology on real probability measures. Every weak limit of such laws lies in \(K\).
++
++For attainability, the package retains \(m_N=\lfloor\sqrt N\rfloor\) coefficients and fills the remaining \(r_N=N-m_N\) positions with
++\[
++ c_N=\sqrt{\frac{1-\sum_{i\le m_N}a_i^2}{r_N}} .
++\]
++For \(N\ge2\), the vector is well-defined and has squared norm exactly one. Moreover \(0\le c_N^2\le1/r_N\to0\).
++
++Here is a direct check of the rearrangement step. If \(b^{(N)}\) is the sorted vector, then for every \(j\le m_N\),
++\[
++ a_j\le b_j^{(N)}\le\max(a_j,c_N).
++\]
++The lower bound holds because at least \(j\) retained entries are at least \(a_j\). For the upper bound, only the preceding \(j-1\) retained entries can exceed \(\max(a_j,c_N)\). Thus every fixed coordinate converges, even with ties, zeros or infinitely many positive coordinates. Proposition 3.1 gives convergence of the laws to \(\kappa_a\).
++
++There is also a direct distributional check. The retained sum converges in \(L^2\) to the uniform series. An independent filler sum has variance tending to \((1-\|a\|_2^2)/3\); its log characteristic function has quadratic term \(-r_Nc_N^2t^2/6\) and error bounded by a constant times
++\[
++ r_Nc_N^4\le 1/r_N\longrightarrow0
++\]
++for fixed \(t\). Its limit is the required independent Gaussian, possibly degenerate. This independently confirms that no boundary law is lost.
++
++This constructs a sequence for every sufficiently large integer \(N\), not only a subsequence. The first term can be arbitrary. Since Prohorov convergence metrizes weak convergence of probabilities on \(\mathbb R\), the original limit-set topology is exactly the one used.
++
++## 5. Exact controls and their limits
++
++All **527 author assertions** were replayed in a separate copy; the resulting JSON receipt is byte-identical to the frozen receipt. The author's script writes its own output file, so it was not run in the author's directory.
++
++The independent standard-library checker passes **664 exact rational assertions**. It uses a different prefix rule, \(\lfloor N/2\rfloor\), and checks six coefficient families, including plateaus, finite boundary points, infinite interior points and infinite norm-one points. It verifies the uniform coordinate-error inequality, unit normalization, vanishing filler fourth powers, and exact fourth-moment bounds.
++
++Separate characteristic-function calculations through degree six confirm the variance and higher-moment coefficients, including permutation controls and a negative check against variance one. Diffuse unit vectors verify that norm-one coefficients can converge coordinatewise to zero while higher uniform cumulants disappear.
++
++Run from this review directory:
++
++    python independent_checks.py > independent_results.json
++
++These are finite diagnostics of normalization and the approximation argument. They do not constitute an experimental proof of a large-deviation principle. The published theorem supplies the LDP.
++
++The original report and author-manuscript PDF hashes and byte sizes match the frozen source manifest. The original problem page and theorem continuation were visually inspected; current arXiv and publisher metadata were read independently.
++
++## 6. Disposition
++
++**The status already_solved is justified for both Conjecture 1 and Lemma 1 in the original report.** Credit belongs to Johnston, Kabluchko and Prochno. The elementary construction explaining the intermediate implication is not promoted as a new result.
++
++The package requires no mathematical or source-scope correction for publication. Its scope remains one-dimensional projections of the continuous uniform cube law, with ambient dimension growing. No new substantive proof attempt was used. The review does not claim to reconstruct every proof estimate in the published paper or to certify unrelated projection LDPs.
++
++## Final artifact hash coverage
++
++The final SOURCE_STATUS.md was checked on 2026-09-30 by exact byte replacement against the originally reviewed artifact. Its only change updates the pending-review sentence to record the completed scoped AI review and link this report. All mathematics and attribution are unchanged. This verdict also covers final SHA-256:
++
++90402aea80b79b7713d740863b6058b43c64050c3499701b2bf8490c90b210e3
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_normalization.py b/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_normalization.py
+new file mode 100644
+index 000000000..8fad5749d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_normalization.py
+@@ -0,0 +1,71 @@
++"""Exact diagnostics for normalization and coefficient approximations.
++
++This is not a numerical proof of an LDP. The resolution is the cited theorem.
++"""
++from fractions import Fraction as Q
++from math import isqrt
++from pathlib import Path
++import hashlib
++import json
++
++assertions = 0
++
++
++def check(condition):
++    global assertions
++    assertions += 1
++    assert condition
++
++
++# Squared coefficients suffice: signs and square roots do not affect these checks.
++families = {
++    "Gaussian limit": lambda j: Q(0),
++    "one uniform, boundary": lambda j: Q(1) if j == 1 else Q(0),
++    "finite interior": lambda j: [Q(1, 4), Q(1, 9)][j-1] if j <= 2 else Q(0),
++    "infinite interior": lambda j: Q(1, 4**j),
++    "infinite norm-one boundary": lambda j: Q(3, 4**j),
++}
++dimensions = [2, 3, 4, 7, 9, 16, 25, 49, 100, 256, 1024]
++summaries = []
++for name, coefficient_square in families.items():
++    for n in dimensions:
++        m = isqrt(n)
++        check(0 < m < n)
++        first = [coefficient_square(j) for j in range(1, m + 1)]
++        retained = sum(first, Q(0))
++        check(Q(0) <= retained <= Q(1))
++        filler_square = (1 - retained) / (n - m)
++        check(filler_square >= 0)
++        check(filler_square <= Q(1, n - m))
++        check(retained + (n - m) * filler_square == 1)
++        # Every finite E_n projection has the required variance exactly.
++        check((retained + (n - m) * filler_square) / 3 == Q(1, 3))
++        arranged = sorted(first + [filler_square] * (n - m), reverse=True)
++        # Any retained coordinate exceeding the fillers stays at its sorted position.
++        for j, value in enumerate(first):
++            if value > filler_square:
++                check(arranged[j] == value)
++        # Lindeberg-tail fourth-power control, stated in squared-coefficient form.
++        check((n - m) * filler_square**2 <= Q(1, n - m))
++    summaries.append({"family": name, "dimensions": dimensions})
++
++for norm_square in [Q(0), Q(1, 4), Q(13, 36), Q(1, 3), Q(99, 100), Q(1)]:
++    variance = norm_square / 3 + (1 - norm_square) / 3
++    check(variance == Q(1, 3))
++    check(variance != Q(1))
++
++# Fourth cumulant of Uniform[-1,1], and Gaussian normalization controls.
++check(Q(1, 5) - 3 * Q(1, 3)**2 == Q(-2, 15))
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": assertions,
++    "coefficient_families": summaries,
++    "variance": "1/3",
++    "arithmetic": "exact rational squared coefficients; no floating-point simulation",
++    "source_status_sha256": hashlib.sha256((root / "SOURCE_STATUS.md").read_bytes()).hexdigest(),
++    "scope": "Normalization and finite approximation diagnostics; published Theorem A supplies the LDP.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_results.json b/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_results.json
+new file mode 100644
+index 000000000..f07680cac
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/author_replay/check_results.json
+@@ -0,0 +1,90 @@
++{
++  "all_passed": true,
++  "assertions": 527,
++  "coefficient_families": [
++    {
++      "family": "Gaussian limit",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "one uniform, boundary",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "finite interior",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "infinite interior",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    },
++    {
++      "family": "infinite norm-one boundary",
++      "dimensions": [
++        2,
++        3,
++        4,
++        7,
++        9,
++        16,
++        25,
++        49,
++        100,
++        256,
++        1024
++      ]
++    }
++  ],
++  "variance": "1/3",
++  "arithmetic": "exact rational squared coefficients; no floating-point simulation",
++  "source_status_sha256": "98918841ab30dd1e41d51dbc7ec8515a66f1f1c82f01ff08ccc5462b758a2727",
++  "scope": "Normalization and finite approximation diagnostics; published Theorem A supplies the LDP."
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/independent_checks.py b/unsolved_math_prioritization/attempts/30004386/review/independent_checks.py
+new file mode 100644
+index 000000000..33968de20
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/independent_checks.py
+@@ -0,0 +1,83 @@
++#!/usr/bin/env python3
++"""Independent exact controls, not an LDP proof.
++Run from this directory: python independent_checks.py > independent_results.json
++"""
++from fractions import Fraction as F
++from collections import Counter
++from itertools import permutations
++from math import factorial
++import json
++counts=Counter()
++def check(ok,name):
++    assert ok,name
++    counts[name]+=1
++
++# Squared coefficients; a different prefix rule m=floor(N/2) is used.
++families={
++ 'gaussian':(lambda j:F(0),F(0)),
++ 'single_boundary':(lambda j:F(j==1),F(1)),
++ 'plateau_interior':(lambda j:F(1,4) if j<=3 else F(0),F(3,16)),
++ 'finite_boundary':(lambda j:[F(4,9),F(4,9),F(1,9)][j-1] if j<=3 else F(0),F(11,27)),
++ 'infinite_interior':(lambda j:F(1,3**j),F(1,8)),
++ 'infinite_boundary':(lambda j:F(2,3**j),F(1,2)),
++}
++dimensions=[2,5,8,17,32]
++for name,(squared,total_fourth) in families.items():
++    for n in dimensions:
++        m=n//2; r=n-m
++        retained=[squared(j) for j in range(1,m+1)]
++        mass=sum(retained,F(0)); filler=(1-mass)/r
++        arranged=sorted(retained+[filler]*r,reverse=True)
++        check(1<=m<n,'valid_alternative_prefix')
++        check(F(0)<=filler<=F(1,r),'vanishing_filler_bound')
++        check(sum(arranged,F(0))==1,'unit_sphere_normalization')
++        check(sum(arranged,F(0))/3==F(1,3),'projection_variance')
++        for j,a2 in enumerate(retained):
++            check(a2<=arranged[j]<=max(a2,filler),'sorted_coordinate_interval')
++            check(F(0)<=arranged[j]-a2<=filler,'coordinate_error_bound')
++        tail_fourth=total_fourth-sum((x*x for x in retained),F(0))
++        check(tail_fourth>=0,'exact_target_fourth_tail')
++        excess=r*filler*filler
++        check(excess<=F(1,r),'gaussian_filler_fourth_bound')
++        finite_fourth=sum((x*x for x in arranged),F(0))
++        check(abs(finite_fourth-total_fourth)<=tail_fourth+F(1,r),'total_fourth_error_bound')
++        moment4=F(1,3)-F(2,15)*finite_fourth
++        check(F(1,5)<=moment4<=F(1,3),'projection_fourth_moment_range')
++
++# Characteristic-polynomial coefficients up to t^6, using z=t^2.
++def multiply(x,y):
++    return [sum((x[j]*y[k-j] for j in range(k+1)),F(0)) for k in range(4)]
++def cf_coefficients(squares, gaussian_variance):
++    result=[(-gaussian_variance/F(2))**k/F(factorial(k)) for k in range(4)]
++    for q in squares:
++        result=multiply(result,[F(1),-q/F(6),q*q/F(120),-q**3/F(5040)])
++    return result
++vectors=[[],[F(1)],[F(1,4)]*3,[F(4,9),F(4,9),F(1,9)],[F(1,4),F(1,9),F(1,25)]]
++for squares in vectors:
++    norm2=sum(squares,F(0))
++    result=cf_coefficients(squares,(1-norm2)/3)
++    p4=sum((q*q for q in squares),F(0)); p6=sum((q**3 for q in squares),F(0))
++    moment4=F(1,3)-F(2,15)*p4
++    moment6=F(5,9)-F(2,3)*p4+F(16,63)*p6
++    check(result[0]==1,'characteristic_normalization')
++    check(result[1]==-F(1,6),'characteristic_variance_coefficient')
++    check(result[2]==moment4/24,'characteristic_fourth_moment')
++    check(result[3]==-moment6/720,'characteristic_sixth_moment')
++    for perm in set(permutations(squares)):
++        check(cf_coefficients(perm,(1-norm2)/3)==result,'permutation_invariance_control')
++    check(result[1]!=-F(1,2),'variance_one_negative_control')
++
++# Norm discontinuity controls and Gaussian filler cumulants.
++for n in [2,3,8,25,64]:
++    squares=[F(1,n)]*n
++    check(sum(squares,F(0))==1,'diffuse_unit_norm')
++    check(sum((x*x for x in squares),F(0))==F(1,n),'diffuse_fourth_decay')
++    check(sum((x**3 for x in squares),F(0))==F(1,n*n),'diffuse_sixth_decay')
++
++print(json.dumps({
++ 'status':'PASS','arithmetic':'Python standard-library exact rational arithmetic',
++ 'assertions':sum(counts.values()),'checks':dict(counts),
++ 'dimensions':dimensions,'families':list(families),
++ 'scope':'Finite normalization, coordinatewise filler-error, moment and characteristic-coefficient controls only. '
++         'The LDP is supplied by the cited published theorem; both limit-set directions are audited in REVIEW.md.'
++},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/independent_results.json b/unsolved_math_prioritization/attempts/30004386/review/independent_results.json
+new file mode 100644
+index 000000000..78c6b62aa
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/independent_results.json
+@@ -0,0 +1,42 @@
++{
++  "status": "PASS",
++  "arithmetic": "Python standard-library exact rational arithmetic",
++  "assertions": 664,
++  "checks": {
++    "valid_alternative_prefix": 30,
++    "vanishing_filler_bound": 30,
++    "unit_sphere_normalization": 30,
++    "projection_variance": 30,
++    "sorted_coordinate_interval": 186,
++    "coordinate_error_bound": 186,
++    "exact_target_fourth_tail": 30,
++    "gaussian_filler_fourth_bound": 30,
++    "total_fourth_error_bound": 30,
++    "projection_fourth_moment_range": 30,
++    "characteristic_normalization": 5,
++    "characteristic_variance_coefficient": 5,
++    "characteristic_fourth_moment": 5,
++    "characteristic_sixth_moment": 5,
++    "permutation_invariance_control": 12,
++    "variance_one_negative_control": 5,
++    "diffuse_unit_norm": 5,
++    "diffuse_fourth_decay": 5,
++    "diffuse_sixth_decay": 5
++  },
++  "dimensions": [
++    2,
++    5,
++    8,
++    17,
++    32
++  ],
++  "families": [
++    "gaussian",
++    "single_boundary",
++    "plateau_interior",
++    "finite_boundary",
++    "infinite_interior",
++    "infinite_boundary"
++  ],
++  "scope": "Finite normalization, coordinatewise filler-error, moment and characteristic-coefficient controls only. The LDP is supplied by the cited published theorem; both limit-set directions are audited in REVIEW.md."
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/review/review_summary.json b/unsolved_math_prioritization/attempts/30004386/review/review_summary.json
+new file mode 100644
+index 000000000..ab0d928c3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/review/review_summary.json
+@@ -0,0 +1,45 @@
++{
++  "problem_id": 30004386,
++  "problem_code": "OWR-17469-011",
++  "reviewed_at_utc": "2026-09-30",
++  "verdict": "PASS_ALREADY_SOLVED_SOURCE_MATCH",
++  "justified_status": "already_solved",
++  "reviewer_model": "gpt-6-astra",
++  "reviewer_reasoning": "xhigh",
++  "author_artifact": "SOURCE_STATUS.md",
++  "author_sha256": "90402aea80b79b7713d740863b6058b43c64050c3499701b2bf8490c90b210e3",
++  "published_source": "Johnston, Kabluchko and Prochno, Studia Mathematica 264 (2022), 103-119, DOI 10.4064/sm210413-16-9",
++  "covered_targets": [
++    "Conjecture 1: full random-probability-measure LDP",
++    "Lemma 1: entire Prohorov limit set, both directions including norm-one boundary"
++  ],
++  "full_text_inspected": "arXiv:2103.16430v2 author manuscript; publisher metadata and exact main-result abstract independently checked",
++  "required_corrections": [],
++  "new_result": false,
++  "new_substantive_attempts": 0,
++  "author_assertions_reproduced": 527,
++  "author_receipt_byte_identical": true,
++  "independent_exact_assertions": 664,
++  "independent_full_reproof_of_published_LDP": false,
++  "sources_verified": [
++    {
++      "cache_filename": "original.pdf",
++      "url": "https://publications.mfo.de/bitstream/handle/mfo/3713/OWR_2020_06.pdf?isAllowed=y&sequence=4",
++      "sha256": "908283ff96b6ee7d710e14f817f263f62d50d467114b2723cb50f4de86fbc3e0",
++      "bytes": 490099
++    },
++    {
++      "cache_filename": "jkp2022.pdf",
++      "url": "https://arxiv.org/pdf/2103.16430v2",
++      "sha256": "895649b83af8609a638d77f18baa00890952196b429c3304cba7721815e310cd",
++      "bytes": 160880
++    }
++  ],
++  "files": {
++    "REVIEW.md": "554c03201d587d153fabfa19f674ae36f15e6c0c6f223a1f9637f8568dbe7ef3",
++    "independent_checks.py": "1c31686a0c2303467514a565184911c44bd8c29a7945b9fb94aa864b33d14d24",
++    "independent_results.json": "b2089f38b6e43fff87f8799e14475d13c65f34d05b805d0800aa80dda39038f7"
++  },
++  "original_author_sha256": "98918841ab30dd1e41d51dbc7ec8515a66f1f1c82f01ff08ccc5462b758a2727",
++  "final_hash_verification": "Exact replacement of the review-status sentence only; all mathematical and attribution content unchanged"
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/source_checksums.json b/unsolved_math_prioritization/attempts/30004386/source_checksums.json
+new file mode 100644
+index 000000000..22ff6d162
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/source_checksums.json
+@@ -0,0 +1,14 @@
++[
++  {
++    "cache_filename": "original.pdf",
++    "url": "https://publications.mfo.de/bitstream/handle/mfo/3713/OWR_2020_06.pdf?isAllowed=y&sequence=4",
++    "sha256": "908283ff96b6ee7d710e14f817f263f62d50d467114b2723cb50f4de86fbc3e0",
++    "bytes": 490099
++  },
++  {
++    "cache_filename": "jkp2022.pdf",
++    "url": "https://arxiv.org/pdf/2103.16430v2",
++    "sha256": "895649b83af8609a638d77f18baa00890952196b429c3304cba7721815e310cd",
++    "bytes": 160880
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/30004386/source_record.json b/unsolved_math_prioritization/attempts/30004386/source_record.json
+new file mode 100644
+index 000000000..7f9394135
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30004386/source_record.json
+@@ -0,0 +1,64 @@
++{
++  "id": 30004386,
++  "problem_number": "OWR-17469-011",
++  "title": "Large Deviations for Random High-Dimensional Projections",
++  "statement": "Let $\\Theta^{(N)}$ be uniform on $S^{N-1}$ and set $\\nu_N=\\mu_{\\Theta^{(N)}}$. Does $(\\nu_N)$ satisfy a large-deviation principle with speed $N$ and rate function\n\n$$I(\\nu)=-\\frac12\\log(1-\\|\\alpha\\|_2^2)$$\n\nwhen $\\nu=\\kappa_\\alpha$ for some $\\alpha$ in the open unit ball of $\\ell_2$, and $I(\\nu)=\\infty$ otherwise? As an intermediate step, are the possible Prohorov limits of\n\n$$E_N=\\left\\{\\operatorname{law}\\!\\left(\\sum_{i=1}^N\\alpha_iU_i\\right):\\alpha\\in S^{N-1}\\right\\}$$\n\nexactly $\\{\\kappa_\\alpha:\\alpha\\in\\ell_2,\\ \\|\\alpha\\|_2\\leq1\\}$?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [New Perspectives and Computational Challenges in High Dimensions (2021), Oberwolfach Reports, DOI 10.4171/owr/2020/6, pp. 377--416](https://doi.org/10.4171/owr/2020/6)\n\n## Literature review (checked 2026-08-22)\n\n**Status:** open\n\n**Assessment.** The 2021 report states this large-deviation principle and its compactness lemma as conjectural; the checked literature gives no proof of the full claim by 2026-08-22.\n\n**Sources checked.**\n\n- [Oberwolfach report on the conjecture](https://doi.org/10.4171/owr/2020/6)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2020,
++  "category_id": 19,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2020/6",
++  "source_citation": "New Perspectives and Computational Challenges in High Dimensions (2021), Oberwolfach Reports, DOI 10.4171/owr/2020/6, pp. 377--416",
++  "literature_assessment": "The 2021 report states this large-deviation principle and its compactness lemma as conjectural; the checked literature gives no proof of the full claim by 2026-08-22.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2020/6",
++      "label": "Oberwolfach report on the conjecture"
++    }
++  ],
++  "literature_checked_at": "2026-08-22",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-17469-011",
++    "literature-status:open",
++    "owr-year:2020"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 19,
++    "name": "probability",
++    "display_name": "Probability",
++    "description": "Problems involving probability theory, stochastic processes, and random structures.",
++    "slug": "probability",
++    "order_index": 19,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "Conjecture: if Theta^(N) is uniform on the unit sphere S^(N-1) and nu-N=mu-Theta^(N), then (nu-N) satisfies a large deviation principle with rate N and rate function I(nu)=-1/2 log(1-||alpha||^2) when nu=kappa-alpha for some alpha in the unit ball of l-2 with ||alpha||<1, and I(nu)=infinity otherwise. A necessary intermediate claim is that the possible Prohorov limits of laws in E-N={law(sum-subscript-i=1-to-N alpha-i U-i): alpha in S^(N-1)} are exactly {kappa-alpha: alpha in the unit ball of l-2}.",
++  "clean_statement": "Let $\\Theta^{(N)}$ be uniform on $S^{N-1}$ and set $\\nu_N=\\mu_{\\Theta^{(N)}}$. Does $(\\nu_N)$ satisfy a large-deviation principle with speed $N$ and rate function\n\n$$I(\\nu)=-\\frac12\\log(1-\\|\\alpha\\|_2^2)$$\n\nwhen $\\nu=\\kappa_\\alpha$ for some $\\alpha$ in the open unit ball of $\\ell_2$, and $I(\\nu)=\\infty$ otherwise? As an intermediate step, are the possible Prohorov limits of\n\n$$E_N=\\left\\{\\operatorname{law}\\!\\left(\\sum_{i=1}^N\\alpha_iU_i\\right):\\alpha\\in S^{N-1}\\right\\}$$\n\nexactly $\\{\\kappa_\\alpha:\\alpha\\in\\ell_2,\\ \\|\\alpha\\|_2\\leq1\\}$?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The official report was checked. The projection laws, the limit set, and the rate function were reconstructed from the displayed source formulas."
++}
+diff --git a/unsolved_math_prioritization/attempts/30004386/turns.jsonl b/unsolved_math_prioritization/attempts/30004386/turns.jsonl
+new file mode 100644
+index 000000000..e69de29bb

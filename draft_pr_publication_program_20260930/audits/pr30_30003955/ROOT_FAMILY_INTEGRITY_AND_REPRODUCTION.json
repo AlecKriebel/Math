@@ -1,0 +1,91 @@
+{
+  "utc": "2026-10-02T00:53:00.463893+00:00",
+  "all_passed": true,
+  "scope": "Unchanged actual family programs replayed in isolated copies; universal proofs reviewed separately; finite diagnostics do not certify the whole target.",
+  "families": [
+    {
+      "family": "geometric_family",
+      "manifested_members": 26,
+      "manifest_sha256": "21e46f56cf0a188560c124a92a4f4e80111a85b231d458b0d8a0bd6cfebede60",
+      "all_hashes_unchanged": true
+    },
+    {
+      "family": "monodromy_family",
+      "manifested_members": 22,
+      "manifest_sha256": "ee044d097755e71562d4c18906ff9c8d9ee9ed3a713e4791285e1a53f32abf27",
+      "all_hashes_unchanged": true
+    },
+    {
+      "family": "primary_scope_family",
+      "manifested_members": 20,
+      "manifest_sha256": "af047c709decfac6d5ba32d87b92431332db484aa2dc4ca42a9d9929fe3e3ce2",
+      "all_hashes_unchanged": true
+    }
+  ],
+  "manifested_members": 68,
+  "imported_members": 2,
+  "comparisons": [
+    {
+      "path": "geometric_family/reproduction_results.json",
+      "byte_identical": true,
+      "replay_sha256": "1ebb2bf53d083df7d566729976ac1b0590e85d9c51ea201966ae2e8ae7847835"
+    },
+    {
+      "path": "geometric_family/geometric_control_results.json",
+      "byte_identical": true,
+      "replay_sha256": "26dede03cc810f9bd0d85618c9af3e3320e0ebe3b9592e4333ef8f85f8d84d60"
+    },
+    {
+      "path": "primary_scope_family/validation_results.json",
+      "byte_identical": true,
+      "replay_sha256": "91563e465b2f7a808284343ac31d0caf3990a0660bd980d806b74b68693fceb8"
+    },
+    {
+      "path": "monodromy_family/independent_action_results.json",
+      "byte_identical": true,
+      "replay_sha256": "656e5813ad4a69de5cb02640a9095cdb015cd277d1eb690b932ecf961582760f"
+    }
+  ],
+  "monodromy_original_replay": {
+    "mathematical_and_frozen_fields_identical": true,
+    "utc_only_execution_difference": true,
+    "separately_verified_dated_shared_history_differences": [
+      {
+        "path": "unsolved_math_prioritization/state.json",
+        "old_hash": "98ed417b0864b85d5b725d4cc9f4be2b292b2f09fe58b956c343f76fe9c1c386",
+        "root_replay_hash": "343a2fb76a24c90ba4dda1934439e7d94ed6760539a264664e5c6a6f00dceadb",
+        "cause": "PR29 genuine current-acceptance event after the family original replay",
+        "old_main_commit": "d60bd86ccecb49ce9e11e669685444927c01aa6f"
+      },
+      {
+        "path": "unsolved_math_prioritization/history.jsonl",
+        "old_hash": "a0e759dcece93cca0df03d3c6b13b1a64a80813ad9c95e338efb3d2cc8b955c9",
+        "root_replay_hash": "5c5af06425927aa77488b0ec6a77ac6e0881a7de7795ae94d843afe79656c004",
+        "cause": "PR29 genuine current-acceptance event after the family original replay",
+        "old_main_commit": "d60bd86ccecb49ce9e11e669685444927c01aa6f"
+      }
+    ],
+    "original31_and53830_byte_identical": true
+  },
+  "expected_failure": {
+    "exit_code": 1,
+    "classification": "EXPECTED_FAILURE_RECORDED_NOT_PASS",
+    "evidence": "geometric_family/reproduction_results.json"
+  },
+  "root_setup_failures": [
+    {
+      "error": "KeyError: files",
+      "cause": "Root wrongly assumed monodromy manifest key instead of actual entries.",
+      "corrected": "Copied all22 actual manifested entries after inspecting schema."
+    },
+    {
+      "error": "two missing copied scripts, exit2",
+      "cause": "Commands attempted before monodromy copy completed.",
+      "corrected": "Both unchanged scripts then replayed successfully after exact copy; no original or closed-family writes."
+    }
+  ],
+  "original15_and_closed71_input_hashes_preserved": true,
+  "original_stage_verdict": "REQUIRES_REPAIR_original_condition3",
+  "repaired_gate": "pending_NEW_complete_independent_adversary",
+  "new_substantive_attempts": 0
+}

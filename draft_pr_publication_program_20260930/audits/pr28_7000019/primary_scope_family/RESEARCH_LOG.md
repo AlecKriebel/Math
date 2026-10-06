@@ -1,0 +1,8 @@
+# Research log
+
+- 2026-10-01 22:50 UTC: Started independent source/scope audit in own folder on main. No Git or publication writes. 0% audit completion.
+- 2026-10-01 22:54 UTC: Fresh source byte receipts and pre-packet independent target/mechanism reconstruction sealed. 20% audit completion. Strongest reconstructed result: C^(2,alpha) convex fixed-height rigidity under h<2r_in, imported Reichel symmetry. Original target remains uncovered outside that regime.
+- 2026-10-01 22:55 UTC: Exact Git/manifest snapshot and upstream LFS/raw/SQLite joins checked. Initial numeric-ID prior lookup error corrected in separate addendum; no source mismatch after proper code join. Frozen unsolved2/5 versus main queued0/5/no ledger discrepancy identified. 55% audit completion.
+- 2026-10-01 22:57 UTC: Original author, submitted-copy and old reviewer replays unchanged and byte-exact; 1056/1056/266 checks. Independently checked 2004 author list Problem22, historical qualification required. 70% audit completion.
+- 2026-10-01 23:04 UTC: New 35 first-party controls and 19 rejected mutants pass. Reproducer refreshes all4PDFs, validates raw/SQLite, and replays old programs; universal partial proof and auxiliary controls remain sound. 90% audit completion.
+- 2026-10-01T23:07:51.815123+00:00: REPORT/VERDICT/reproduction receipt completed and first-party final manifest prepared. 100% audit completion. Mathematical scoped partial passes; metadata/ledger repairs still need parent action and fresh complete candidate gate. No original full-target solution, novelty, paper/DOI, historical telemetry, or future-byte certification.

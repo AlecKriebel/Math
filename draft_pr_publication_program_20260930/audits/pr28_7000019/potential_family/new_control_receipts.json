@@ -1,0 +1,212 @@
+{
+  "utc": "2026-10-01T22:58:37.505015+00:00",
+  "sympy_version": "1.14.0",
+  "passed_named_controls": 20,
+  "explicit_mathematical_mutants_rejected": 10,
+  "checks": [
+    {
+      "name": "finite_atomic_Fubini_with_saturation",
+      "passed": true,
+      "detail": "Angular interval lengths for positive weights2,3,5 at radii1/4,1/2,3/2; half-width1/2."
+    },
+    {
+      "name": "band_boundary_r_equals_a",
+      "passed": true,
+      "detail": "At the truncation radius all orientations are admitted, including endpoints."
+    },
+    {
+      "name": "atom_at_center",
+      "passed": true,
+      "detail": "A source at the slab center lies in every centered slab; the Newton kernel would be singular."
+    },
+    {
+      "name": "dimension5_band_probability",
+      "passed": true,
+      "detail": "The same ratio1/2 yields11/16 in five dimensions."
+    },
+    {
+      "name": "offcenter_sphere_integral_antiderivative",
+      "passed": true,
+      "detail": "Longitude integration contributes2\u03c0R\u00b2; definite integral has endpoints|R-q| andR+q."
+    },
+    {
+      "name": "sphere_potential_throughout_interior",
+      "passed": true,
+      "detail": "For0<q<R, the exact single-layer potential with kernel1/(4\u03c0r) isR."
+    },
+    {
+      "name": "sphere_exterior_potential",
+      "passed": true,
+      "detail": "Forq>R, the normalized potential isR\u00b2/q."
+    },
+    {
+      "name": "normalized_body_outward_jump",
+      "passed": true,
+      "detail": "The exterior derivative atq=R is-1 and the interior derivative is0."
+    },
+    {
+      "name": "unnormalized_jump",
+      "passed": true,
+      "detail": "The4\u03c0 conversion agrees on both the potential and the boundary derivative."
+    },
+    {
+      "name": "sphere_exterior_radial_harmonicity",
+      "passed": true,
+      "detail": "Radial Laplacian ofR\u00b2/q vanishes away from the center."
+    },
+    {
+      "name": "sphere_exterior_decay",
+      "passed": true,
+      "detail": "Exact decay meets Reichel's exterior boundary condition."
+    },
+    {
+      "name": "full_width_normalization",
+      "passed": true,
+      "detail": "Independent offcenter sphere formula matchesP=2C/h."
+    },
+    {
+      "name": "strict_core_has_open_ball",
+      "passed": true,
+      "detail": "Unit ball withh=4/5 has coreB(0,3/5); the strict inequality gives an open set."
+    },
+    {
+      "name": "one_point_constancy_is_insufficient",
+      "passed": true,
+      "detail": "Harmonicx1 vanishes at the origin but is not constant; an open starting set is essential."
+    },
+    {
+      "name": "nonball_equipotential_level_equation",
+      "passed": true,
+      "detail": "The radial graph solves1/r+eps*t/r\u00b2=1."
+    },
+    {
+      "name": "equipotential_equatorial_first_jet",
+      "passed": true,
+      "detail": "Any rotationally symmetric sphere through equatorial radius1 would need center shifteps."
+    },
+    {
+      "name": "equipotential_equatorial_second_jet",
+      "passed": true,
+      "detail": "A sphere with that center shift has second jeteps\u00b2, opposite sign for nonzeroeps."
+    },
+    {
+      "name": "dipole_level_exterior_radial_derivative_negative",
+      "passed": true,
+      "detail": "Level radius exceeds9/10, hence1+2eps*t/r>0 for|t|<=1 andeps=1/20; outward charge is positive."
+    },
+    {
+      "name": "smooth_ellipsoid_nonconstant_uniform_potential_diagnostic",
+      "passed": true,
+      "detail": "Axes3,2,1; h=.8; all sampled points lie in the open core by the contained unit-ball bound. Numeric evidence only."
+    },
+    {
+      "name": "smooth_large_width_empty_core_control",
+      "passed": true,
+      "detail": "Axes3,2,1 have inradius1 and diameter6; h=5/2 meets target diameter bound but has empty core."
+    }
+  ],
+  "mutants": [
+    {
+      "name": "remove_core_condition_use_a_over_r_everywhere",
+      "rejected": true,
+      "reason": "Exact angular average20/3 differs from unsaturated Newton expression26/3."
+    },
+    {
+      "name": "extend_Newton_band_identity_to_dimension5",
+      "rejected": true,
+      "reason": "Uniform direction probability is not a/r outside dimension3."
+    },
+    {
+      "name": "extend_band_identity_to_dimension2",
+      "rejected": true,
+      "reason": "For a/r=1/2 on S^1 the band has probability1/3."
+    },
+    {
+      "name": "flip_body_outward_normal_jump_sign",
+      "rejected": true,
+      "reason": "Explicit sphere formula fixes outward-body normal sign."
+    },
+    {
+      "name": "use_unnormalized_jump_for_normalized_kernel",
+      "rejected": true,
+      "reason": "Normalized potential has derivative-1; unnormalized potential has derivative-4\u03c0."
+    },
+    {
+      "name": "drop_full_width_factor2",
+      "rejected": true,
+      "reason": "The wrong factor gives2\u03c0R rather than the exact4\u03c0R."
+    },
+    {
+      "name": "drop_direction_measure_4pi",
+      "rejected": true,
+      "reason": "Unnormalized direction measure must be canceled on both sides."
+    },
+    {
+      "name": "replace_h_less_2rin_by_h_leq_2rin",
+      "rejected": true,
+      "reason": "Unit sphere withh=2 has empty strict core even though the weak bound holds."
+    },
+    {
+      "name": "continue_from_one_point",
+      "rejected": true,
+      "reason": "Single-point constancy does not trigger analytic continuation."
+    },
+    {
+      "name": "omit_uniform_density_in_electrostatic_rigidity",
+      "rejected": true,
+      "reason": "Smooth nonball dipole equipotentials admit positive variable equilibrium charge; seeREPORT for representation argument."
+    }
+  ],
+  "bounded_numeric_diagnostic": {
+    "axes": [
+      3,
+      2,
+      1
+    ],
+    "h": 0.8,
+    "points": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5
+      ]
+    ],
+    "resolutions": [
+      [
+        48,
+        128
+      ],
+      [
+        96,
+        256
+      ]
+    ],
+    "normalized_potential_values": [
+      [
+        2.116677038241718,
+        2.1079973137621493,
+        2.1340888503534505
+      ],
+      [
+        2.116677038241726,
+        2.107997313762132,
+        2.1340888522069075
+      ]
+    ],
+    "between_resolution_max_change": 1.8534569434791592e-09,
+    "observed_variation": 0.02609153844477552,
+    "limitation": "Convergence comparison gives no rigorous quadrature error bound and proves no universal theorem."
+  },
+  "scope": "New exact mechanism controls and explicit falsifiers; universal conclusions require the written proof and primary theorem.",
+  "full_target_solved": false
+}

@@ -1,0 +1,5 @@
+# Exact retained historical run capability correction
+
+2026-10-02T12:17:56.739211+00:00 — administrative preparation100%; actual build pending, target stillUNSOLVED, original2/5,new0/audit0.
+
+The genuine typed first attempt passed baseline and all17 negative controls before the unchanged505 builder rejected eight historical .run1 files at line300. Its complete failed outer capture8098702a and typed20-run capture/private build failure remain untouched. This revision changes only the exact source anchor, preserves validation of the original seven-source package at its original path, explicitly binds this adjacent four-member source revision, and admits only the exact eight path/size/SHA exception rows against successful support0ef3c266. No science, root receipt, original ledger, current native preimage, original builder or prior typed source is edited. Each .run1 byte was already root read/retained; the two historical JSON bodies were read fully again. There is no arbitrary extension exception. Complete new execution and new whole-current review remain pending.

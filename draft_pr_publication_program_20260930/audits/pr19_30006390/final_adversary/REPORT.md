@@ -1,0 +1,76 @@
+# Fresh complete adversarial acceptance gate: PR 19
+
+**Verdict: PASS_UNRESOLVED_PARTIAL_ANALYSIS for the exact frozen current candidate.** There is no required mathematical or frozen-candidate repair. The strongest verified result is a classical high-probability lower bound of q+√q+1 and a standard upper bound of (1+o(1))q ln(q), together with exact reductions and specific direct container-parameter obstructions. Neither conjectured growing lower bound is established. The correct disposition is **unsolved, 2/5 original substantive attempts**, with duplicate 30006391 treated as the same target. No paper, Zenodo deposit, DOI, or tracker promotion is warranted.
+
+The historical PR body contains one inaccurate file-scope sentence: it says all changes are confined to the attempt directory, while its own file list includes QUEUE.md. Correct the live PR body before eventual promotion by acknowledging that queue row or deleting the confinement sentence. This is a metadata action for the parent, not an error in the frozen 17-entry candidate. The parent retains the ordered-disposition hold following PR 18. This reviewer performed no Git or publication operation.
+
+## Exact input and independence
+
+Original PR head: `f1053196b6405623d5f5d8611289939765918d72`.
+Current BASELINE SHA256: `04a3a4780e1a6eca5a3e2d721a5eaa86de6cdce414b6fd21efd59a294ab33ee5`.
+Current MANIFEST SHA256: `ada5dc55de75c4169bd9adf8f6bfeafd9a2dfe6d96b3aa6ec6003e41079c42f8`.
+
+All 13 original attempt files match the frozen snapshot's SHA256, byte length, and independently calculated Git-blob SHA1. All 17 current manifest entries match; the candidate has 18 physical files including MANIFEST itself. All 34 files bound by the three current family manifests match. The complete candidate inventory is unchanged at the final check. Imported source records and the original turn ledger remain byte-identical to the historical snapshot.
+
+The criterion and complete independent mathematical first pass were sealed at **2026-10-01T18:21:11.240374+00:00**, before historical review files or detailed root/family outcomes were opened. The reviewer reconstructed every universal baseline claim and primary source hypotheses before inspecting the diagnostic programs. No sibling-agent conferral occurred. The transparent qualification is that the permitted candidate README and PR input body themselves assert previous AI-review passes; these high-level summaries were encountered during inventory and were not used as evidence. `FIRST_PASS_SEAL.json` preserves that exact boundary. `CRITERION_AND_FIRST_PASS.md` remains unchanged and supplies the full reconstruction, criterion, deductions, exceptions, and exact gap.
+
+The old review's final BASELINE SHA256 is `9e0a930e61d849799c4395024c85d4f9c75b63ae2172321ef78ebf643f283c82`, matching the original snapshot and differing from the current source-annotated candidate. Its old pass was not transferred to the current text. This report is the fresh complete gate for the stated current digest.
+
+## Exact source, scope repairs, and provenance
+
+The original [Alon OWR contribution](https://ems.press/content/serial-article-files/52246?nt=1), printed pp. 2249–2251, states Conjecture 5 for large prime-power orders and pointwise independent half-retention; it asks to hit all line sections. The full relevant contribution was read, together with the full adjacent partial-design proof in the [author note](https://web.math.princeton.edu/~nalon/PDFS/remark191.pdf) and the corresponding Section 4 proof and conjecture in the [author survey](https://web.math.princeton.edu/~nalon/PDFS/sum280.pdf). The [publisher record](https://ems.press/journals/owr/articles/14299518) confirms publication on 16 February 2026 and report pp. 2243–2322; the workshop date is September 2025.
+
+The current baseline's extension to every existing finite plane of order q≥2 is mathematically justified by its incidence-only proofs. It is labelled as a baseline extension, not literal source-domain preservation. Skipping empty sections defines τ(∅)=0; the literal source has no feasible transversal when a section is empty. The discrepancy event has probability at most n·2^(-(q+1))=o(1), making the asymptotic targets equivalent, not the finite statements identical. BASELINE, CURRENT_SOURCE_SCOPE, SOURCE_AUDIT, and README make these two changes explicit. The preserved imported typography-only verification field is explicitly historical and is not adopted as current literal certification. S1 and S2 are therefore sufficiently repaired throughout current first-party metadata.
+
+An independent post-seal download of the full pinned [UnsolvedMath dataset](https://huggingface.co/datasets/ulamai/UnsolvedMath/tree/37e53eabe540fb458758e198be61634bd02ee008), its research-results dictionary, and license-bearing README verifies that both imported target records match exactly. The full research-results dictionary contains neither target ID nor either OWR problem-number string. The related 30006389 record contains the distinct partial-design and compatible-sequence questions answered by Alon. Normalizing whitespace in the two original conjecture passages yields exactly the same hash `ecb38f596dfc82a68f4bb6718194a46bad5e1a3501d88c9a4f38b57cba5a5e31`, independently matching the duplicate receipt.
+
+Dated claims about earlier all-state project searches and prior-attempt absence are preserved as historical provenance. Their original query logs were not reconstructed in this gate; they do not certify exhaustive current absence or novelty. Independent bounded current literature searches found no positively verified exact later resolution. Neither that search nor author-hosted open wording certifies worldwide current openness. This limitation does not affect the self-contained classical partial proofs.
+
+## Complete mathematical verdict
+
+The full analytical reconstruction is sealed in `CRITERION_AND_FIRST_PASS.md`; the conclusions are as follows.
+
+1. Each empty-line and full-line exceptional probability is at most n·2^(-(q+1)). On their joint complement, section hitting is ordinary blocking and a blocker contained in R contains no line. The reduction uses no independence between lines and is uniform over every existing plane. It must not be asserted on every finite realization.
+2. The incidence proof of Bruen's bound is valid for arbitrary finite planes and requires both ordinary blocking and absence of a whole line. The integer bound is q+1+ceil(√q). Its ratio to q tends to one. The algebraic difference is exactly q(a²−q), and no equality classification or field coordinates are assumed. Positive classical attribution was checked in Bruen's own 1980 Theorem 1 and, after the first seal, in the full original [1970 paper](https://www.ams.org/journals/bull/1970-76-02/S0002-9904-1970-12470-3/S0002-9904-1970-12470-3.pdf), including its general-order final remark; the candidate proof is independent of that announcement.
+3. Hoeffding deviations √(3(q+1)ln q) and √(3n ln q) yield failure at most 2(n+1)q^-6 for simultaneous line/size concentration. Relative errors tend to zero uniformly. For large enough q, m>ln(q+1) and ρ=ln(q+1)/m lies in (0,1). Conditional thinning and repair uses linearity of expectation and allows repeated repair points. Some outcome has size at most the expectation, giving the natural-log leading constant one. It is an upper bound, not a conjectural lower rate; m=0 and small-q invalid ρ are explicitly excluded from this asymptotic step.
+4. On no-empty, every finite blocker contains an inclusion-minimal one, so the threshold equivalence is exact. The deterministic minimal-blocker family yields the weighted first-moment upper bound. It includes line blockers, and uses containment probability 2^-|B| only for fixed witnesses. At every fixed C, a uniformly vanishing sum at floor(Cq) would suffice for divergence. A diagonal choice gives one deterministic f(q)→∞ from all those fixed-C estimates; no estimate is supplied here. This condition is sufficient, not necessary, and one fixed C or the unrestricted-subset count cannot prove divergence. A logarithmic rate is strictly stronger.
+5. The target retains each point once. Empty-line events share points; joint emptiness of two lines is twice the product of marginals. Conditioning on retention of an ordinary blocker already forces all sections to meet it. The independent-incidence proof's product of separate line failures cannot transfer. The candidate does not claim all probabilistic methods are impossible.
+6. The full-line hypergraph has n vertices, n edges, uniformity s=q+1, and uniform first degree measure with squared counting-measure norm 1/n. The complete hypotheses and proof bodies of [Balogh–Samotij](https://www.math.tau.ac.il/~samotij/papers/efficient-containers-revised.pdf), including Sections 2.4, 3–4's technical theorem proof and Section 7's epsilon-net construction, were checked. The packaged threshold αβηn≥10^9s^7 is impossible because αβηn<n<s². The technical chain's t=1 term forces n>150000s^4; all signs and domains are correct. The distinct journal-form arXiv file agrees on the relevant theorem constants and normalization. These obstructions are confined to the cited direct complete-line invocations. Shortening edges changes complement independence and requires a new preservation argument.
+7. The complete epsilon-net proof mechanisms in Balogh–Samotij Section 7 and [Balogh–Solymosi](https://arxiv.org/pdf/1704.05089) Sections 6–7 construct specially chosen sparse, trimmed grid systems and projections. They do not assert the random-half target for every finite projective plane. No general container impossibility or unsupported transfer is claimed.
+
+Thus the exact remaining gap is exclusion of all nontrivial minimal blockers of size Cq for every fixed C, or another valid growing lower-bound mechanism. The weighted-enumeration route is blocked at that unsupported structural statement. No new central proof attempt was added by this validation.
+
+## Reproduction of every submitted computation
+
+Copies of all foreign scripts were run only under ignored `tmp/replays`; the copies remain byte-identical to their inputs.
+
+| Computation | Independent replay result |
+|---|---|
+| Original homogeneous author diagnostic | Exit 0; stored check_results.json matches byte for byte; 8,320 point subsets |
+| Historical affine reviewer diagnostic | Exit 0; stored independent_checks.json matches byte for byte; 28,072 assertions |
+| Current blocker affine exhaustive cover and certificate | Exit 0; 104,600 assertions; certificate byte-identical; mathematical result fields identical |
+| Current blocker cyclic/antichain/dual inclusion-exclusion control | Exit 0; mathematical result fields identical |
+| Current probability control | Exit 0; byte-identical result; 4,958 checks |
+| Current exact container certificate | Exit 0; byte-identical result; four prime-order planes and 8,320 complement checks |
+
+Only the two blocker result timestamps differ between replay and stored output. All non-timestamp fields agree exactly. The dual replay correctly followed generation of its dependent affine certificates; no family input files were mutated. Receipt hashes, commands, Python/platform, and comparisons are in `REPRODUCTION_RESULTS.json`. Hash verification results are in `BINDING_RESULTS.json`.
+
+## Meaningful new falsification controls
+
+`fresh_falsification_controls.py` imports no candidate or family code and uses true GF(4) arithmetic with x²+x+1. It tests field axioms, constructs PG(2,4), verifies incidence, and enumerates every one of its **2,097,152** retained point sets. A complete coverage-preserving deletion recurrence optimizes the nonempty-section transversal number, including R=∅. It records the complete τ, ordinary-blocker, and minimal-blocker cardinality censuses. There are 185,440 no-empty/no-full realizations and **zero** violations of the integer Bruen bound 7. The finite minimal-blocker census is 21 at size 5, 360 at size 7, 10,080 at size 8, and 280 at size 9. These are finite diagnostics, not a new asymptotic theorem.
+
+This distinct square-order mechanism also gives an explicit seven-point Baer equality control, with 14 one-point sections, seven three-point sections, and two tangent witnesses at every selected point. Deleting any point destroys ordinary blocking; the exact transversal size is seven. Whole lines and line subsets supply the indispensable countercontrols to dropping the no-full hypothesis.
+
+All 1,330 triples of lines were classified: 210 concurrent triples and 1,120 projective triangles. Their unions have 3q+1 and 3q points respectively. At half retention, joint triple emptiness is four or eight times the marginal product. Monochromatic-line indicators are pairwise independent but a triangle triple has joint probability twice its product. This directly guards against upgrading pairwise independence to joint independence.
+
+Exact biased retention at 1/3, 2/5, 1/2, and 4/5 is evaluated from the complete cardinality census. Pair-empty and pair-full correlation ratios become 1/(1−p) and 1/p; global empty/full probability symmetry holds precisely at p=1/2 among these controls. This tests the role of the exact half-retention assumption without changing the problem.
+
+Every thinning of the Baer blocker at ρ=2/5 repairs back to that seven-point set because of singleton tangent sections. The actual repair expectation is exactly seven, below the linear miss-count upper bound 1589/125. Its minimum section size is one, which correctly rejects finite-order substitution of the baseline's special ρ=ln(5). Finally, complements of line blockers contain (n−1)·binom(q,t)>0 shortened collinear t-edges for t=2,3,4, falsifying direct preservation of the blocker-complement encoding.
+
+The new controls pass **2,102,288 counted checks**. One initial own-control constant used q² instead of n−1=q²+q for the number of other lines; the actual incidence calculation falsified it, and the control was repaired before passing. This was a reviewer-control error, not a candidate error, and is recorded in the research log. `FRESH_CONTROL_RESULTS.json` provides the reproducible exact results. All finite numerical evidence is supplemental to the universal analytical proof.
+
+## Final action and artifact policy
+
+Accept the frozen current package as valid unresolved partial analysis. Preserve unsolved 2/5, exact duplicate handling, classical attribution, finite-evidence limits, and the remaining structural gap. Fix the live PR body's queue-row scope sentence when updating it for eventual ordered promotion. Do not create a paper, deposit, DOI, or tracker entry from these partial results.
+
+All work is confined to `final_adversary/`. Downloaded full foreign papers and datasets, raw/copied source text, and copied scripts are only under ignored `tmp/`; persistent files are first-party review, orchestration, controls, hashes, and receipts. No external individual was contacted, no outreach was prepared, and no Git, branch, canonical/current-candidate mutation, publication, or new central attempt occurred. The acceptance workflow is complete at 100%; this is distinct from progress toward solving the conjecture.

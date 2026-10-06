@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-04T22:59:18.950696+00:00 — Criteria frozen before source, candidate, checks, or inherited-review access. Audit completion estimate: 5%. Criteria SHA-256: `1bbb0dfd74e5aa48e1339e2e42df6c6171bf63743af68e64568b6c4401ae56f0`.
+- 2026-10-04T23:01:46.117797+00:00 — Source-only equality, edition mapping, settings, area conventions, and independent route/program frozen before candidate access. Audit completion estimate: 20%.
+- 2026-10-04T23:05:32.004302+00:00 — Full independent local germs derived: q double-leading vector (2/k)(1,i); outer residues ±a/(k sn(v))(1,i), double determinants cancel. Common lattice and nonzero-residue argument checked analytically. Candidate analytic mechanism passes provisionally. Audit completion estimate: 65%.
+- 2026-10-04T23:09:51.689400+00:00 — All independently authored checks passed: 18 exact N4 controls, 12 exact N3 controls, 34 non-interval 100-digit real/complex diagnostics. No proof gap found for the stated nondegenerate confocal elliptic-caustic theorem. Exact odd triangle refutes extra phase-constancy. Audit completion estimate: 90%; final report and byte/mode seal remain.
+- 2026-10-04T23:12:34.158471+00:00 — Final analytic audit verdict PASS for the stated signed, nondegenerate confocal elliptic-caustic theorem; separate phase-constancy false. Full report written; no central mathematical gap identified. Audit completion estimate: 100% subject only to seal verification. Stop-writing closure follows final seal.

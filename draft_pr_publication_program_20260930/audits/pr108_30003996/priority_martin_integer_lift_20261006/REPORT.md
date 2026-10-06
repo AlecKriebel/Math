@@ -1,0 +1,59 @@
+# Martin lineage and joint integer lift priority audit
+
+Sealed bounded-family recommendation: **GO_FROM_THIS_FAMILY for a properly attributed note resolving Kaibel's 2018 listed Problem 1, without an absolute-first claim.** This is conditional on the root's mathematical and other-family adjudication. No authenticated antecedent theorem in this family resolves the literal problem through an elementary translation. **NO-GO for an absolute “first in history” claim or for claiming the original Martin proofs were read.** Missing originals alone do not constitute a material novelty obstruction.
+
+The audit covers original head `3526d46bf143b08e5055ffa7728c6278e9f958ea`, target30003996 / OWR-16633-013, and the exact repaired `../repaired_diagnostics_v1/PROOF.md` pinned in SOURCE_MANIFEST.json. Parent mathematical checkpoint: `e9b968010f26cdb827d51df3fca823991744ef71`. Incoming claimed_solved2/5 is retained; no native structured status ledger was supplied. Root mathematical gate100 and priority0 are supplied context, not a status promotion by this family. Added central proof turns0.
+
+## Scope and independence
+
+Complete Kaibel contribution, printed3014–3015 / PDF46–47, was read before the exact complete candidate. INITIAL_MECHANISM_SEARCH_FREEZE.json records the independent mechanism/search freeze at 2026-10-06T05:00:34.544543+00:00, before consultation of old author searches or other-family/root conclusions. Later consultation of the old author's RESEARCH_LOG.md and README.md yielded no concrete earlier literal theorem; no other priority-family report was read. Parent subsequently supplied the correct Martin DOI and the mathematical checkpoint. Original-source pixels were inspected after the text-first freeze. [Kaibel source](https://ems.press/content/serial-article-files/46772).
+
+The primary document is OberwolfachReport50/2018, DOI10.4171/OWR/2018/50, workshop4–10November2018; OWR-16633-013 is retained as the supplied target catalog label. Title/frontmatter were separately checked at seal.
+
+The literal problem selects one undirected spanning tree, orients its whole edge set outward from each vertex root, and minimizes the sum of independently supplied root-specific arc costs. All roots are part of the input table; zero-cost roots are allowed. Inward orientations transpose costs. The neighboring fixed-root/destination-path Problem 2 has different variables and a different objective. No transfer from it is assumed.
+
+## Exact model identity
+
+The common-edge Martin system and its integer/tree bijection are written and proved in LIFT_MODEL.md. The inward equations are present in the full primary CCZ manuscript §6.1, pp25–26. The outward counterpart appears in Friesen's dissertation Proposition2, printedp8, eq(2.4)–(2.7). These are sufficient for authenticating the exact model identity without the inaccessible original. [CCZ February2010 manuscript](https://www.andrew.cmu.edu/user/gc0v/webpub/ExtFor-Feb2010.pdf), [Friesen2019 dissertation](https://d-nb.info/1219966134/34).
+
+For every edge {u,v} and every root r, z_r(u,v)+z_r(v,u)=x_uv; nonroot indegrees are1 and root indegree0. Summing gives x(E)=N−1. For every nonempty S choose r in S to derive x(E(S))≤|S|−1. Integer x is therefore one tree, and its entire z fiber is uniquely its induced orientations. Conversely every common tree gives that integer point. Arbitrary linear coefficients on all z are exactly the literal costs, with no graph enlargement and the same N roots. An additional edge objective can be absorbed into both directions at one root.
+
+The explicit table has 2N|E| entries, polynomial encoding size. Uniform shift M adds MN(N−1) to each integer objective and to its decision threshold. This covers signed integer costs after a polynomial-size shift; positive shift by1 preserves all comparisons. Projected spanning-tree integrality does not imply integrality of the whole lift or polynomial optimization of its integer points under arbitrary z coefficients.
+
+## Published proof and cost-model comparisons
+
+Martin's publisher authenticates Operations Research Letters10(3),119–128, April1991, DOI **10.1016/0167-6377(91)90028-N**. The abstract describes reformulations from separation, not an arbitrary all-root integer-objective hardness theorem. Ordinary publisher full-text attempts returned HTML/403. No access-control bypass was attempted. [Martin1991 publisher](https://www.sciencedirect.com/science/article/pii/016763779190028N).
+
+The entire ten-page Goemans–Myung1993 catalog was read. It studies ordinary edge-cost Steiner trees and fixed-root Steiner arborescences, with projected versus full formulation distinctions. Its bibliography separately records Martin's1986 Chicago sharp spanning-tree working paper and a1988 separation-reformulation working paper. These dates establish bibliographic leads, not authentication of unread earlier proofs. Its flow formulation must not be conflated with the all-root orientation lift. [Primary author copy](https://math.mit.edu/~goemans/PAPERS/GoemansMyung-1993-ACatalogOfSteinerTreeFormulations.pdf).
+
+The Fernández et al. author's final draft is dated9October2016, with publication1August2017, EJOR260(3),886–903, DOI10.1016/j.ejor.2016.10.016. Its actual complexity proof, pp4–5, concerns ordered weighting/sorting of multiple sums of undirected edge costs. Its Martin section, pp6–9, provides the common-edge inward formulation, while fixed-root reductions serve projected edge objectives. Sorting and its added variables are not the literal linear all-root cost table. Its use of “integrality property” cannot establish full-lift integrality. [Primary UPC full text](https://upcommons.upc.edu/bitstreams/393c601a-5764-4777-b18d-78bcfb2b67cc/download).
+
+Friesen's Proposition13 proof, printedpp68–69, and the NeurIPS2022 Proposition4 supplemental proof, printedp20, authenticate a single fixed-root arborescence projection: other roots act as existential variables establishing rank constraints. They do not prove that the joint all-root lift is integral or that arbitrary integer z objectives are easy/hard. Higher-order monomial/McCormick additions and robust prediction's continuous marginals change the relevant optimization model. [NeurIPS2022 main](https://papers.neurips.cc/paper_files/paper/2022/file/4f92d2f498b88f1bd43732312272967a-Paper-Conference.pdf), [official supplement](https://papers.neurips.cc/paper_files/paper/2022/file/4f92d2f498b88f1bd43732312272967a-Supplemental-Conference.pdf).
+
+The primary publisher supplies Bunke et al.'s actual Theorem3.2 proof and §4 formulations. It proves uniform-weight NP-hardness of minimum fundamental cut bases via a constant shift from minimum fundamental cycle bases. Its objective is total tree distance of original graph-edge demands. A natural expression using Martin coordinates is a weighted sum of |z_s(a,b)−z_t(a,b)|, not the literal arbitrary linear z objective. Its ILPs explicitly add cut-membership/shore variables and coupling constraints. No elementary mapping to the unchanged joint lift was established here; this does not prove that every possible reduction is impossible. This is concrete adjacent prior hardness, not a sufficient antecedent for the candidate. [Primary publisher full sections](https://www.sciencedirect.com/science/article/pii/S0166218X09002972), [DOI](https://doi.org/10.1016/j.dam.2009.07.015). The2007 report is a bibliographic version lead; local PDF attempts yielded HTML.
+
+## Candidate restrictions and diagnostic
+
+The candidate graph has N=n+m+2 vertices and at most1+2n+3m edges, is connected and simple, and supplies every arc/root cost explicitly. Its structural count identity is valid for every B>1:
+
+    p+Bq=Bm+n+(1−h)+(B−1)(q−m).
+
+Consequently **B=2 follows by the same proof**, with costs{0,1,2}, threshold2m+n, and unchanged graph/root count. Shift1 gives costs{1,2,3} and threshold2m+n+N(N−1). The proof already supports strong/unary hardness: even B=n+1 is polynomially bounded, and B=2 sharpens that elementary restriction. This audit adds no central proof route and makes no novelty claim for the specialization. There is no verified candidate claim of planarity, bounded degree, fixed root count, global optimization or approximation.
+
+An exact finite falsifier of the projected-integrality inference is saved in LIFT_VALIDATION.json. On the existing candidate's four unsatisfiable two-variable clauses, N=8, |E|=13, and B=2, a rational feasible full-lift point has cost10 while the minimum over384 enumerated common trees is11. Its x coordinates are1 on tf and1/2 elsewhere; different roots average different trees sharing these marginals. validate_lift.py checks232 equations/conditions and208 dense costs using rational arithmetic, and checks the positive shift56 on every tree. Normal Python and Python−O both exited0. This is a reproducible defect witness, not a prior published hardness result and not a substitute for priority evidence.
+
+## Access gaps, novelty and go/no-go
+
+**Nonessential for exact model identity:** the inaccessible Martin1991 original, Martin1986/1988 working papers, and original Maculan/Wong predecessors. Later primary full formulations plus the direct integer correspondence suffice to check the literal mapping. The authentic Kaibel contribution itself names Martin as formulation motivation while presenting the problem as open in2018; this is evidence against treating an unread citation alone as a specific prior-hardness obstruction, though it is not proof of novelty.
+
+**Essential for an exhaustive historical assertion:** original proofs and unindexed literature were not all checked. No bounded audit can certify universal absence. This family therefore declines absolute priority and does not claim original full-text review. The needed positive evidence for a material obstruction would be an earlier theorem with arbitrary simultaneous root-orientation costs, or a fully checkable elementary translation preserving this feasible set and cost model. None was authenticated.
+
+Potential substantive residual novelty is a proof that the literal2018 Problem1 is NP-complete/strongly NP-hard for this exact joint integer model. Whether that is already covered outside this family remains for root adjudication. The common-edge formulation identity is classical; a cost shift, inward/outward transpose, dense encoding, or B=2 specialization alone is not substantive novelty over a covering prior theorem.
+
+A properly attributed note can state that it resolves the problem as listed in2018 and present the exact proof and classical formulation connection, without asserting absolute first discovery. This family finds **no reason to block that note on Martin-lineage priority grounds**. Overall publication is not authorized or performed by this audit.
+
+## Receipts and limits
+
+SOURCE_MANIFEST.json and READ_SCOPE.json pin files, versions and actual reading boundaries. SEARCH_RECEIPTS.json records18 web calls, primary/discovery URLs and UTC capture semantics; exact query strings for the first3 calls were not persisted, so their receipts explicitly retain only an interval and raw results. No reconstructed queries are passed off as exact. COMMANDS.jsonl records actual subprocess PIDs/argv/exits; long arguments are replaced publicly by hashes, with exact raw records under ignored private/. BOOTSTRAP_SCOPE.json discloses2 early inventory calls whose PIDs were not exposed. TOOL_RECEIPTS.json identifies API actions with no exposed OS PID.
+
+PDFs, extracted source text, screenshots and raw web results remain private/ and ignored. The source/data byte and SHA manifests permit local verification without redistributing copyrighted text. All writes stayed within this dedicated folder; no Git/index/remote, editor, service, publication, contact or outreach work occurred. The bounded family work is sealed; broader priority remains unresolved.

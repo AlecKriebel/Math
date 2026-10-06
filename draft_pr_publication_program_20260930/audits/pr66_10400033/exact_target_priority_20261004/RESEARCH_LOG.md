@@ -1,0 +1,33 @@
+# Exact target priority audit: PR66 / target 10400033
+
+## 2026-10-04T16:47:15.114538+00:00 — checkpoint 1 — estimated completion 8%
+
+Goal: test whether a pre-existing source proves the universal inequality |v3(K)| <= floor(n(n^2-1)/24) for every classical knot admitting an n-crossing diagram, with v3(right trefoil)=1; include candidate even-n bound n(n^2-4)/24. Mathematics is already adjudicated by ROOT; this task is literature priority only. Success requires a full-source, exact-hypothesis match for a prior solution, or a scoped honest negative search conclusion with any unresolved plausible source. No external human communication; read-only automated publication retrieval is permitted. All repository writes confined to this folder; no Git commands, mutations, upload or publication by this audit. Raw publication bodies and raw web outputs will reside outside the repository at /Users/alec/.cache/pr66_exact_target_priority_20261004.
+
+Independence: searched exact conjecture/author/invariant phrases before consulting any prior opinion; no prior SOURCES.md/README or sibling/ROOT reports opened. The supplied source_record contains boilerplate partial-progress opinions; those were visible as part of authentic input and are not adopted. First searches locate Ohtsuki and an institutional Abe research summary explicitly limited to torus knots. These are leads; no body-level conclusion yet.
+
+## 2026-10-04T16:51:57.439439+00:00 — checkpoint 2 — estimated completion 32%
+
+First independent conclusion sealed. Exact-form match found only under torus-knot hypothesis. Publisher source date confirms 1 June 2004 despite volume label 2002. Abe journal returned HTML; this is not successful body access. Next: inspect older universal estimates and expand citation/current-status network. No prior project priority reports read.
+
+## 2026-10-04T16:54:18.007518+00:00 — checkpoint 3 — estimated completion 45%
+
+After first conclusion seal, ROOT transmitted a comparative lead to Fiedler–Stoimenow inv.pdf page8. This audit had independently downloaded that URL before sealing but had not read its target-related passage. Post-seal body inspection confirms Remark3.1 page6 gives vt3=4v3; §3.2 page7 proves/coarsely asserts cubic estimate |vt3| <= c^3/6; final paragraph page8 asserts the (2,2m-1) torus diagram maximizes v3 through crossing number2m, without a displayed extremal counting argument or a cited proof in that paragraph. The prior assertion would imply a stronger universal claim if valid. This is a material priority lead, so provisional negative search conclusion no longer suffices for final verdict. Published version and supporting/reference histories being retrieved. ROOT comparative exposure disclosed; sealed FIRST remains unchanged.
+
+## 2026-10-04T16:58:58.423420+00:00 — checkpoint 4 — estimated completion 70%
+
+Visual page verification of Fiedler–Stoimenow author PDF pages5–7 confirms universal displayed inequality |vt3| <= C(n,2)+C(n,3), relation vt3=4v3, and unordered subset convention. The binomial identity C(n,2)+C(n,3)=n(n^2-1)/6 directly supplies the exact universal target; integer v3 supplies flooring. This is a simple specialization of prior displayed bound, not a new proof-search route. P8 stronger even extremality remains separately unverified. Author PDF titlepage says current1February2002/first9December1996; author bibliography lists31January2002 and says minor updates/corrections compared with printed2000publication. Crossref directly verifies2000September/pp59–79/DOI. Publisher fullbody and archival snapshot retrieval failed; historical printed-version identity is not asserted.
+
+After independence seal and decisive own PDF reads, original SOURCES.md was opened with receipt read_original_sources_post_seal (started16:58:13.205340UTC). It contains appended review opinions and warns about /15 bound inconsistency at trefoil and T(2,5). This exposure is now disclosed. FIRST_CONCLUSION remains untouched. The supplied original report did not include Fiedler–Stoimenow.
+
+Citation coverage: OpenAlex citation lists for Willerton2002 returned17 works; Abe2015 returned1 work. These lists are incomplete coverage, not authoritative exhaustive citation certificates. Recent plausible titles2024/2025 being screened.
+
+## 2026-10-04T17:03:10.358318+00:00 — checkpoint 5 — estimated completion 90%
+
+Exact-target verdict finalized as prior_full_solution based on Fiedler–Stoimenow universal displayed binomial bound after normalization, independent of p8 extremality. verify_specialization.py passed coefficient identity for all n and boundary arithmetic n0–100; source inequality/normalization/integrality are explicitly assumptions supplied by checked sources, not numerically re-proved. Full recent primary arXiv bodies2024Pairs,2024Integrals,2025Families and2019Ropelength downloaded and screened. Their relevant passages concern fish geography, degree2/Casson, family relations, or the older coarser cubic bound; no contradiction to decisive source normalization/scope found. Bibliographic identity of2000chapter is verified, identical printedcontent is still inaccessible. Source/report metadata and final manifest in preparation.
+
+## 2026-10-04T17:12:21.532881+00:00 — checkpoint 6 — estimated completion 100% of assigned exact-target audit
+
+Final verdict prior_full_solution for original universal target. Report and precise primary bibliography saved. Counting/scope/normalization audit and coefficient specialization pass; actual final custody validation (recorder PID 76901, subprocess PID 76909, 17:10:43.460193UTC, return0) verified FIRST seal, original input hashes, all54 previously completed subprocess receipts plus9 web receipts, and private stream/source custody. Expected nonzero retrieval routes and the failed encoding inspection remain preserved. This completion percentage concerns the assigned bounded audit, not exhaustive worldwide or earliest priority. Actual2000printed chapter identity, pre2026byte-history, page8even-refinement proof and mechanism novelty remain explicit gaps. Final receipt readback and manifest now being generated; no publication or shared Git/ledger mutation.
+
+2026-10-04T17:13:32.263478+00:00 — final custody readback complete (100% assigned audit): actual recorder PID78174/subprocess PID78182, return0, stdout1435B SHA256382d99095ffbad45bf3a459fae94a7360d0b39c2d35d3462a084f1b40e7e538e. All55 prior subprocess receipts plus9 web receipts rechecked, four expected failures preserved; final receipt count becomes56+9. VERDICT.json finalized. Manifest generation follows as a metadata inventory; it does not manufacture historical body availability.

@@ -1,0 +1,216 @@
+{
+  "UTC": "2026-10-06T07:12:56.075489+00:00",
+  "V1_modified": false,
+  "V2_modified": false,
+  "actual_native_prepare_assess_export_executions": 0,
+  "all_F01_through_F08_addressed_in_draft": true,
+  "corrections": [
+    {
+      "before": "Local Git tracker readback was sufficient; no required Google Sheet service custody.",
+      "code": [
+        "v3_guards.py:process_receipt",
+        "v3_guards.py:validate_sheet",
+        "prepare_review_bundle.py:prepare"
+      ],
+      "corrected_fields": [
+        "google_sheet.receipt",
+        "google_sheet.row_index",
+        "google_sheet.values",
+        "final.google_sheet_receipt_sha256",
+        "final.actual_Google_Sheet_service_authenticated"
+      ],
+      "finding": "F01",
+      "mechanism": "Mandatory actual GWS metadata/header/append/readback/independent-readback after actual Zenodo; exact spreadsheet/gid/tab/columns, target note, source URL, DOI, row/range, argv/params/body pins/PIDs/UTC/exit; final gate after independent service readback. Local tracker auxiliary only.",
+      "tests": [
+        "SheetFixtures.test_synthetic_shape_and_wrong_row_doi_time_or_fixture",
+        "SheetFixtures.test_local_tracker_or_missing_service_readback_rejects"
+      ]
+    },
+    {
+      "before": "Helper SHA was bound, but editable effective configuration was not.",
+      "code": [
+        "v3_guards.py:validate_execution_manifest",
+        "v3_guards.py:ReviewedInputs",
+        "prepare_review_bundle.py:validate_gate",
+        "native_assess_worker.py:execute"
+      ],
+      "corrected_fields": [
+        "execution_inputs",
+        "effective.*",
+        "program_files",
+        "input_files",
+        "gates.*.execution_inputs_sha256",
+        "reviewed_program_sha256"
+      ],
+      "finding": "F02",
+      "mechanism": "Canonical immutable all-choice execution-input manifest, exact field sets and runtime/source/receipt/program pins; all declared nongate input bytes consumed once with no unused entries. Gate pins excluded to avoid cycles. Every gate binds manifest, main parent, source/proof/package; final and adversary bind five-file code family; final binds antecedent gate bytes and service receipts. Worker independently checks manifest/code/final gate.",
+      "tests": [
+        "BindingFixtures.test_all_effective_fields_and_canonical_bytes_required",
+        "BindingFixtures.test_gate_exact_input_and_entire_program_binding",
+        "BindingFixtures.test_pinned_capture_once_and_no_unused_inputs"
+      ]
+    },
+    {
+      "before": "str.splitlines treated non-CR/LF controls as physical CSV line endings.",
+      "code": [
+        "v3_guards.py:physical_lines",
+        "v3_guards.py:csv_records",
+        "v3_guards.py:csv_overlay"
+      ],
+      "corrected_fields": [
+        "CSV physical span selection",
+        "CSV replacement quoting and ending",
+        "unrelated record byte checks"
+      ],
+      "finding": "F03",
+      "mechanism": "Only physical CR/LF/CRLF partition input; csv.reader line_num maps to these spans. Reparse output, preserve header/count/ID order and every unrelated record exact bytes. Standard CRLF quoting then exact original target ending preserves EOF and internal quoted CR/LF.",
+      "tests": [
+        "CSVFixtures (eight Unicode/control separators, CR-only/LF/CRLF, original/new quoted multiline, target EOF without newline, duplicate/malformed input)"
+      ]
+    },
+    {
+      "before": "Capacity estimate omitted artifacts/overhead; child output and native assess were unbounded.",
+      "code": [
+        "v3_guards.py:capacity_inventory",
+        "bounded_process.py:BoundedRunner",
+        "native_assess_worker.py:execute",
+        "prepare_review_bundle.py:watch"
+      ],
+      "corrected_fields": [
+        "capacity_policy.*",
+        "process_policy.*",
+        "worker_policy.*",
+        "CAPACITY_PLAN entries",
+        "WORKER_RESULT/PROCESS_JOURNAL/PREPARE_FAILURE receipts"
+      ],
+      "finding": "F04",
+      "mechanism": "Enumerate every exact/generated/process artifact plus exclusive native atomic slot; <=512 files including slot, <=64 logical packet files, per-file/aggregate caps, 32 MiB headroom and separate >=8 MiB runtime and future-commit reserves. Bounded retained/read subprocess streams, deadlines, TERM/KILL/reaping custody. Source-pinned assess worker requires CPU/file/open-file limit setup/readbacks; Darwin memory policy is explicitly advisory with no hard memory claim and parent tree/deadline watch. Failure receipts retained and no export.",
+      "tests": [
+        "ResourceFixtures.test_capacity_full_entries_counts_and_reserve",
+        "ResourceFixtures.test_bounded_tiny_subprocess_actual_custody_fixture",
+        "ResourceFixtures.test_worker_policy_only_no_native_invocation",
+        "ResourceFixtures.test_actual_harmless_worker_resource_setup_and_file_cap",
+        "ResourceFixtures.test_published_archive_requires_exact_manifest_and_inventory"
+      ]
+    },
+    {
+      "before": "Original relative names could swap, selected QUEUE SHA was not recomputed, prior {} was re-read.",
+      "code": [
+        "v3_guards.py:validate_original_map",
+        "v3_guards.py:validate_original_queue",
+        "v3_guards.py:ReviewedInputs",
+        "prepare_review_bundle.py:prepare"
+      ],
+      "corrected_fields": [
+        "original_authentication_pins.*",
+        "original file path/name/mode/tree map",
+        "QUEUE selected_row_sha256/target/status/2/5 parse",
+        "captured prior bytes"
+      ],
+      "finding": "F05",
+      "mechanism": "Reviewed exact auth paths and fifteen regular100644 names; entry.path must equal native prefix+relative_path; live original-head NUL tree/blob map and every body checked. Whole queue pin/Git blob and selected row SHA recomputed, unique row parsed target+literalclaimed_solved+2/5. Empty selected prior captured once/reused; sourcepair absence of submitted prior kept. SQL/raw source hashes cross-bind original auth and immutable revision.",
+      "tests": [
+        "OriginalFixtures.test_exact_names_maps_and_modes",
+        "OriginalFixtures.test_queue_sha_parse_status_and_count",
+        "BindingFixtures.test_pinned_capture_once_and_no_unused_inputs"
+      ]
+    },
+    {
+      "before": "Eligibility-only regeneration changes could be accepted without a native-policy explanation.",
+      "code": [
+        "v3_guards.py:native_status_turns",
+        "v3_guards.py:expected_eligible",
+        "v3_guards.py:scoped_catalog"
+      ],
+      "corrected_fields": [
+        "unrelated eligible/local_status/turns_used explanation",
+        "native policy turn_limit and default status",
+        "baseline catalog copy"
+      ],
+      "finding": "F06",
+      "mechanism": "Derive exact default/local status and turns from native policy/assessment/state, holds unchanged and present/turn budget gates; regenerated eligibility must equal exact predicate or abort. Preserve original unrelated full rows/ranks/positions regardless of explained drift.",
+      "tests": [
+        "EligibilityFixtures.test_eligibility_only_false_drift_rejects",
+        "EligibilityFixtures.test_exact_held_and_budget_projection_preserved",
+        "EligibilityFixtures.test_score_or_hold_drift_rejects"
+      ]
+    },
+    {
+      "before": "Every Sheet cell was required nonempty, rejecting the actually authorized blank chat cell.",
+      "code": [
+        "v3_guards.py:valid_https",
+        "v3_guards.py:validate_sheet",
+        "prepare_review_bundle.py:prepare"
+      ],
+      "corrected_fields": [
+        "google_sheet.values[1]",
+        "google_sheet.existing_chat_authorized",
+        "exact four strings"
+      ],
+      "finding": "F07",
+      "mechanism": "Original/DOI/notes remain authenticated nonempty strings. Blank chat is accepted with existing_chat_authorized=false; a nonempty existing chat requires explicit prior authorization plus valid HTTPS without credentials, whitespace/control or malformed host/port. Actual immutable V2 service envelope is accepted without changing its body. No chat share or invented URL.",
+      "tests": [
+        "SheetFixtures.test_blank_chat_accepts_without_share_and_bad_existing_links_reject"
+      ]
+    },
+    {
+      "before": "Python site startup and arbitrary inherited Python/Git/GH environment could affect execution before guards.",
+      "code": [
+        "launch_review_bundle.sh",
+        "bounded_process.py:BoundedRunner",
+        "v3_guards.py:validate_environment_policy",
+        "v3_guards.py:verify_private_runtime_configuration",
+        "prepare_review_bundle.py:prepare",
+        "native_assess_worker.py:execute"
+      ],
+      "corrected_fields": [
+        "effective.environment_policy",
+        "initial launch -E -S -B",
+        "worker launch -E -S -B",
+        "Git config/location pins",
+        "GH existing auth/config metadata pins",
+        "expected GH login",
+        "process effective environment receipt"
+      ],
+      "finding": "F08",
+      "mechanism": "Reviewed shell launcher clears environment before Python -E -S -B. Every child gets one exact nonsecret role environment, never os.environ inheritance. Darwin UID-derived CF encoding is explicit. Exact effective Git config/location files and existing GH file-backed config/auth are bounded privately hash-checked; no credential bodies or tokens in inventory/receipts. Disable system/global Git configs, prompts/hooks/fsmonitor/credential helper; reject executable config and GH external aliases/socket. Parent binds exact environment, all binary pins and five-file code family in immutable input manifest and fresh adversary/final gates. GH expected login is checked through pinned CLI with reviewed auth, no credential dump.",
+      "tests": [
+        "StartupFixtures.test_clean_python_and_initial_launcher_ignore_injected_startup",
+        "StartupFixtures.test_missing_startup_flags_and_ambient_policy_reject_before_spawn",
+        "StartupFixtures.test_private_config_pins_exact_locations_and_no_credential_copy"
+      ]
+    }
+  ],
+  "independent_V3_adversary_clearance": false,
+  "new_central_proof_search_turns": 0,
+  "predecessor_pin_manifest": "PREDECESSOR_UNCHANGED_INPUT_PINS.json",
+  "program_pins": [
+    {
+      "bytes": 6934,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v3/bounded_process.py",
+      "sha256": "82bc40b58843d8d0d6848e7170b4959b7c409015060414a44703309a1849aed5"
+    },
+    {
+      "bytes": 732,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v3/launch_review_bundle.sh",
+      "sha256": "b35d9128cb441d30a6496466f2ba915fd7229c24e16c652467743f5d7e1bbeff"
+    },
+    {
+      "bytes": 8936,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v3/native_assess_worker.py",
+      "sha256": "fbc26896542b3799d7d0482b5c5960d26fd4ea6129b7b7d3757a30b57bef848e"
+    },
+    {
+      "bytes": 39171,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v3/prepare_review_bundle.py",
+      "sha256": "5132eadb223dd52e27236115599f31c76a5a1fd260909fe20ec0b366c84f7e9b"
+    },
+    {
+      "bytes": 33603,
+      "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v3/v3_guards.py",
+      "sha256": "e1b354f5e5d3412f743a2f8804d39129df5cd0ffcfe5c0605661bec25698a82e"
+    }
+  ],
+  "schema": "pr108-native-helper-v3-correction-ledger/v1",
+  "static_adversary_input": "A/native_helper_corrected_v2_adversary_20261006 (complete REPORT/VERDICT/code/results read; exact byte pins retained)"
+}

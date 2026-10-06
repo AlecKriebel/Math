@@ -1,0 +1,11 @@
+# Author follow-up priority audit research log
+
+- 2026-10-05 19:11 UTC: Started bounded author/citation-family comparison of PR91's closed-ball C(U) classification. Scope: Küster's 2015 and 2016 exact claims; later Küster publications and discovered citing papers. Completion estimate 5%. No outreach authorized or performed. Source/root records read only; outputs confined to this directory.
+- 2026-10-05 19:13 UTC: Primary 2015 Section 3.1 and pp58–59 extracted; SHA256 matches parent-provided source. Exact p43 converse remains expressly open. Completion estimate 25%.
+- 2026-10-05 19:14 UTC: Initial pypdf attempt on system Python failed; bundled runtime recovered. First OWR extraction was one page late; printed320–322 correspond to PDF24–26 and corrected extraction is preserved. 2019v1 paper downloaded from arXiv. Python TLS verification failed for Tübingen2021; OS curl downloaded it successfully. Receipts preserve failure and recovery. Completion estimate 40%.
+- 2026-10-05 19:16 UTC: 2021 dissertation whole text extracted and all spectral keyword hit pages identified. Source title/declaration says2021; metadata date5Nov2021. 2019 arXiv version history gives v1 18Jun2019, v3 9Jul2019. Search crawl labels ignored for priority dates. No general mixed-spectrum completion located yet; theorem-bearing pages still being checked. Completion estimate 55%.
+
+These estimates concern completion of this bounded audit, not probability of worldwide priority or authorization to promote PR91.
+
+- 2026-10-05 19:24 UTC: Checked later author theorem families and citing sources, then visually verified rendered theorem pages. RKBS v3 explicitly covers C(X), not merely a proper kernel subspace, and credits Scheffold1971 for the closed-disk image criterion. The full disk is also an immediate 2015 open-disk/closed-spectrum consequence. Completion estimate90%. No exact later general mixed reverse inclusion found.
+- 2026-10-05 19:27 UTC: Closed bounded author/citation-family report, read-scope/custody manifest and machine verdict. Completion estimate100% for this assigned audit. No worldwide absence claim or publication authorization. Ordinary journal/original-source/version gaps recorded; no matching unread theorem claim surfaced that materially blocks this bounded comparison. No Git, outreach, PR, upload or global-state action performed.

@@ -1,0 +1,8 @@
+# Independent V3 exact-code review log
+
+- 2026-10-06T07:19:20.292599+00:00: Froze hypotheses, assumptions, success/falsification criteria before source or prior verdict review. Completion estimate: 5%.
+- 2026-10-06T07:20:24.305508+00:00: Completed independent full five-core code read before prior reviewer verdicts. Candidate questions frozen without promotion. Completion estimate: 30%.
+- 2026-10-06T07:24:49.677928+00:00: First independent35-test normal/optimized runs each had one reviewer-fixture oracle setup error: omitted exact native is_v2 variable. All27 sealed tests and seven other challenges passed, including both actual immutable receipts. Preserved all failed custody and corrected only own fixture. Completion estimate: 65%.
+- 2026-10-06T07:25:07.192831+00:00: Corrected independent35/35 normal and optimized runs passed (PIDs15129/15256). Actual immutable v2 Sheet and real Zenodo packet receipts accepted unchanged;180 CSV cases and1600 native predicate cases pass. Baseline model preserves all unrelated complete rows/ranks/positions; it is not native workload reproduction. Completion estimate:80%.
+- 2026-10-06T07:29:26.336552+00:00: Completed review with required F09 derived-resource-policy correspondence finding. Pure exact-fragment counterexample passes normal/optimized(PIDs16907/16908); no actual worker/native operation. F07/F08 closed; completed paper/publication/tracker preserved. Review completion100%; helper readiness estimate85%, future config/capacity/commissioning not cleared. Sealing next.
+- 2026-10-06T07:30:14.998217+00:00: Final input/copy readbacks unchanged, complete scope and sealed report ready. Review completion 100%; helper readiness estimate 85%. Required F09; future config/native/capacity/merge clearance false.

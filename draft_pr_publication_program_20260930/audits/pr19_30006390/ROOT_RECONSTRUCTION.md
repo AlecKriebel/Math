@@ -1,0 +1,17 @@
+# PR19 independent baseline reconstruction
+
+Exact target: q prime powers tending to infinity, n=q²+q+1 projective-plane points, independent Bernoulli1/2 retention per POINT shared by all incidences. Minimum subset of R meeting every nonempty line section. Required growing factor versus q or stronger qlogq lower bound. Candidate openly supplies only classical baseline and failed-route diagnosis, not either conclusion. Input BASELINE/source_records/turn_ledger read; no historical review or verification scripts consulted yet.
+
+For any abstract finite projective plane, all q+1 line points independent: each empty or wholly-retained line has probability2^-(q+1). Union over n lines gives combined exceptional probability≤2n2^-(q+1)=o(1). Outside it, transversals are ordinary blockers containedR with no wholeline.
+
+Incidence lower bound k(q+1)≥n gives integerk≥q+1. Set a=k-q-1≥0. On each L a point outsideB has q other concurrent lines whose B portions outsideL are pairwise disjoint; rL≤k-q=a+1. rL(rL-1)≤(a+1)(rL-1). Orderedpair sum k(k-1)≤(a+1)(k(q+1)-n). Substitution gives exactly q(a²-q)≥0; hence k≥q+sqrtq+1 (integerceil). No field coordinates or equality-caseclassification required. Wholeline-blockers must be excluded first.
+
+Hoeffding with t=sqrt(3(q+1)logq) gives two-sided individual-line failure≤2q^-6 and unionfailureO(q^-4); t/q→0 even though shared point variables correlate different lines. IndependentglobalbinomialR gives |R|=(1+o(1))n/2. For fixed goodR,m=(1+o(1))q/2, rho=log(q+1)/m<1. TemporaryBernoulliT has expectedsize rho|R|; eachmissedlineprob≤exp(-rho m)=1/(q+1). Adding onepoint per missednonemptysection (possiblyduplicates) yields blocker size≤|T|+misscount. Existence via expectation gives (1+o(1))qlogq. This is upper, not the missing lower. No independence among missedlineindicators needed.
+
+On allsections-nonempty, tauR≤k iff some inclusionminimal ordinaryB size≤k liesR. Each fixedB has containmentprob2^-|B|, independentofhowitslinesoverlap. Unionbound gives ≤n2^-(q+1)+summinimalB2^-|B|. Sufficient estimate tending0 for eachfixedCq missing. Existence deterministic f(q)→∞ from allfixedC probabilitybounds would require standarddiagonalargument, not a numericalconjecture from q2,3. CountingALLsubsets binom(n,k)2^-k for k=Cq diverges rapidly, no useful certificate. Blocking-setminimality reduces redundant supersets but its weightedenumeration is exactlyunsupported difficulty; markrouteblocked notsolution.
+
+For distinctL,M sharedintersection singlepoint, emptyevents joint2^-(2q+1) versus product2^-(2q+2). UnderB⊂R anyfixedordinaryB meetsallsections already. IndependentINCIDENCE deletion theorem cannot multiply sharedPOINT-model failures; compareexactsourcehypotheses next.
+
+Fulllinehypergraph s=q+1-uniform regular degreeq+1; n<s². AdvertisedTheorem1.6 leftαβηn<n<s² cannot exceed10^9s7. TechnicalTheorem2.1 normalfirstdegreeuniformnorm²1/n leads impossiblechain300s4/n≤1/(δn)≤p/500<1/500 ⇒n>150000s4. Exact sourcehypotheses/proof require full primary verification; no otherauxiliarycontainerroute excluded. Replacings edges by shorter collinearsets changesindependents to strictercondition, adapternotprovided.
+
+Remaininggap exact original full conjecture, weightedsmallminimalblocker estimate or other universalmechanism unsupported. Current restricted baseline provisionally coherent; sources/containercoefficients/originalscope and author diagnosticreproduction still gates. Original2/5 ledger unchanged, no newcentralproofattempt; no novelty/paper/DOI/tracker.

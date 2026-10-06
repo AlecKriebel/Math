@@ -1,0 +1,57 @@
+# PR25 independent primary/source/version/claim-scope adversarial report
+
+**Source-scope verdict: PASS for the legitimate unsolved source-only partial, retaining the real-proof hold and zero campaign solution/novelty credit.** A separate canonical workflow repair is required before any eventual root acceptance/merge: the original human-readable QUEUE disposition is not recorded in canonical state/history. This family does not authorize promotion, merge, publication or a paper.
+
+Audit completed 2026-10-01 UTC. Exact original head: `aa99d4a36eff79cbb7aae55ce3ffe4a0eb31af95`. Target: numeric 2800102, AMR-027-0102. Frozen 16-file SOURCE_AUDIT SHA256: `99ae40a387e00e5d2c46ed8db4e479170092b2484cf237f83629ba5e1201ec8e`. No candidate/shared/canonical/Git/PR mutation occurred. All family artifacts are in this directory; foreign sources and replay runs are ignored. No outside individual was contacted.
+
+## Independence and exact criterion
+
+`SEALED_CRITERION.md` was sealed at 2026-10-01T20:53:34.815735+00:00, SHA256 `ea5526ec46c465fce5de970caa176e45389cd3eb9586ec9b8508e17ce9a6e6e8`. It preceded reading candidate SOURCE_AUDIT, historical review/scripts and root/sibling detailed reviews. Initial inputs were literal source_record, original 2013 author post, original December 2015 MIT Open Problem 1.2, live current arXiv pages and relevant full bodies. The exact MIT Open1.2 handout was additionally fetched after reading the candidate link and independently agrees with the already-read full 2015 notes. Its bytes match submitted provenance.
+
+For standard square X_K(d), G=X/sqrt(d), the requested mean is a_K(d)=d^-1 E||G||_*=d^-3/2 ETr(XX*)^(1/2). Standard complex means circular Gaussian density exp(-|z|²)/π: each real component has variance 1/2 and E|z|²=1. Required directions are real increase and complex decrease for **every integer d >= 1**, at **square shape 0**. Shape 1, a bounded tested prefix, an asymptotic statement or a different scaling cannot substitute. Strict claims in current sources are stronger than the original weak inequalities. `VERIFIED_DERIVATIONS.md` independently checks scaling, d1 endpoints and the short complex proof's universal propagation using its explicit imported published recurrence.
+
+Acceptance of a source-only partial requires accurate scope, provenance and limitations. It does not require proving every theorem it carefully labels as an uncertified external claim. This distinguishes an honest validation hold from an unsupported solved-result claim.
+
+## Primary-source evidence and adversarial conclusions
+
+| Source | Version/date and exact scope | Finding |
+|---|---|---|
+| [Bandeira original author post](https://afonsobandeira.wordpress.com/2013/11/01/a-conjecture-on-the-singular-values-of-a-gaussian-matrix/) | 2013-11-01; both square directions, component variance 1/2 |Original proposer/date and normalization agree. Imported year2015 is collection metadata; it is not the earliest source date. |
+| [Official MIT 2015 notes](https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-of-data-science-fall-2015/5f0f7205d1cf274e80d77345a7edbf2a_MIT18_S096F15_TenLec.pdf) |December 2015; Open Problem 1.2 printedp18; all n >= 1 |Distinguished from later2016 ETH notes revision. Exact handout SHA/bytes also match candidate. |
+| [Hutník real](https://arxiv.org/abs/2608.12151v2) |v1 August 12, v2 September 11, 2026; Theorem 1.1 at shape 0 for all N >= 1 |Exact requested real statistic; stronger increase>1/(160N²), read as an external preprint claim. |
+| [Hutník complex](https://arxiv.org/abs/2608.12147v2) |v1 August 12, v2 September 11, 2026; Theorem 3.1 / Corollary 3.2, s = 1/2, shape 0 |Exact complex target included; general-moment and transition extensions are separate scope. |
+| [Baslingker–Dan](https://arxiv.org/abs/2608.27532v1) |v1 August 27, 2026; Theorem 1.1 all n >= 1, shape >= 0 |Full 3-page proof read; exact square implication and scalar/base/induction logic checked. |
+| [Abreu–Patil](https://arxiv.org/abs/2609.07802v1) |arXiv September 7, 2026; manuscript stamp September 9; Theorem 1 printed p. 3 |Square bound/denominator/decrement orientation match real paper Eq. 3.1. |
+| [Abreu old claim](https://arxiv.org/abs/1606.00494v3) |v1 2016-06-01; v2 2017-03-09; v3 2023-03-06 withdrawn |Actual author Abreu, erroneous Lemma 1 invalidates claim; current abstract/title do not override withdrawal notice. No v3 PDF is supplied by arXiv. |
+
+No withdrawal marker or journal-reference field was found on the four current 2026 arXiv pages. This is a page-field observation, not an assertion that no journal publication exists or that human peer review occurred. The candidate uses this distinction correctly.
+
+The [separate 2026 published Abreu recurrence article](https://link.springer.com/article/10.1007/s11785-026-01988-4), published August 7, was checked directly at Springer. It expressly leaves its sign-estimation difficulty unresolved. Its journal existence does not restore the withdrawn 2016 proof. The current papers cite this recurrence-only work under its distinct title. Candidate references correctly avoid conflating it with the withdrawn full monotonicity claim.
+
+## Whole real-square dependency chain and exact hold
+
+The real-square source route was traced through Section 1's definitions, Proposition 2.2, Lemma 2.3, Proposition 2.4, Theorem 2.5, Lemmas 3.2–3.3, Proposition 3.4 and Appendix A.1. `SEALED_CRITERION.md` types each dependency as a source theorem, density identity, analytic interchange, coefficient identity, scalar inequality or finite boundary check. The identity's rescaling is x=2y with Jacobian1/2. Abel completion replaces parity/incomplete-gamma terms by an absolutely convergent diagonal series. Gamma duplication converts parity coefficients to a common form; kernel positivity and adjacent-dimension estimates permit the first-diagonal reserve comparison. N = 1, 2, 3 are handled separately. Real v2 imports the all-d square decrement upper bound from Abreu–Patil Theorem 1; it is not proven by complex scalar recurrence tests alone.
+
+Abreu–Patil's relevant body, including its recurrence identification, generating-function/singularity-analysis route to the needed asymptotics and Section 4 upper/lower-bound argument, was read sufficiently to verify the candidate's dependency descriptions. This family does **not** independently certify every analytic step or external supporting theorem. The candidate explicitly leaves (i) complete LOE identity/rescaling derivation, (ii) all Abel convergence/interchange/positivity details, and (iii) complete supporting decrement-bound proof uncertified. Those are genuine mathematical dependencies. They are not falsely transformed into evidence that the source record is invalid, and no counterexample or fatal flaw in the new papers is asserted.
+
+The strongest verified mathematical partial is the exact normalization plus the logical all-d complex-square argument with its named imported2019 moment theorem/recurrence. It does not settle the bundled real/complex target independently. The real theorem remains an accurately scoped external claim; the exact remaining certification gap stays on hold.
+
+## Historical reproduction, provenance and new controls
+
+`audit_controls.py` completed 165 read-only controls with 0 failures. All 16 original file hashes/byte counts/Git blobs match the frozen manifest and exact head; source_audit hash matches the pinned value. The submitted verifier, copied historical submitted verifier and historical independent verifier were run only in ignored family subdirectories. Their receipts exactly match the original 383,383 and53 assertion outputs. These are bounded arithmetic/source consistency diagnostics, not real-proof certificates.
+
+Both original corpus files match immutable revision37e53eabe540fb458758e198be61634bd02ee008 and recorded full sizes/SHA256s. The numeric record and prior_report match the corpus exactly. The prior report's false old authorship/status and malformed incidental expressions are preserved as historical input, including its explicit later withdrawal correction. SOURCE_AUDIT rejects those assertions as current proof evidence. All six submitted PDF provenance hashes/byte counts match fresh primary downloads, including the final 2019 Cunden–Mezzadri–O'Connell–Simm source. Its fractional moment domain includes k = 1/2 at square shape; distinguish that theorem/polynomial identification from a degree-in-n formula discussed initially for integer k.
+
+The 14 NEW negative scope controls test component variance 1, omitted average/scaling factors, wrong nuclear exponent/moment, rectangular shape, finite/asymptotic-only domain, reversed directions, withdrawn abstract proof promotion, real certification from mere source scope, novelty promotion and hidden proof turns. Additional exact deterministic homogeneity and variance controls independently expose scaling factors. These are executable adversarial scope predicates fixed by the seal; they do not purport to be mathematical counterexamples to the real theorem.
+
+Duplicate search found one literal numeric identity, one matching problem code and one identical normalized statement. The 8 related keyword hits were read: the seven others concern unrelated geometry/dynamics, general asymptotic spiked-PCA questions, DFT bounds, focusing, matrix signings or free-function singular values. No exact duplicate target was found. Related-target groups omit 2800102. The actual merge base has no target attempt tree; head history contains the single source-audit addition. Fresh all-state numeric/code/Gaussian-subject PR searches return only PR25 where they return a match. These reproduce current absence checks; a present query cannot prove historical remote absence at an earlier clock time.
+
+Original budget remains 0/5. No independent theorem is promoted as campaign novelty, no original fresh proof turn was discovered hidden in the source-triage log, and this audit does not add proof-search turns. Audit completion 100% means this family report is complete; it does not mean the real proof is certified or a discovery has occurred.
+
+## Exact eventual PR scope and actionable handoff
+
+Live read at audit time still showed the exact frozen original head, open draft PR25. Actual changed paths are 16 attempt artifacts plus exactly one target row in QUEUE.md. Git and GitHub inventories agree. The body says only the attempt directory was changed **by the researcher** and assigns the queue edit to the coordinator; this is consistent with the eventual combined scope, not a false claim that the entire PR contains no shared queue edit.
+
+**No primary-source/claim-scope text repair is mandatory.** Retain the honest unsolved source hold; do not require a new paper for this valid partial and do not award discovery credit.
+
+**Parent-owned workflow repair:** exact original head has no 2800102 entry in state.json, no corresponding history event, and an effective assessment still marked proof/candidate with no holds, while QUEUE.md manually says unsolved/source hold. This can allow regeneration to lose the reviewed disposition. `CANONICAL_WORKFLOW_OBSERVATION.json` pins the evidence. The root gate must reconcile the chosen held disposition through canonical state/history/assessment, preserve all frozen history, and run a fresh full exact-head acceptance gate on any resulting head. This family did not perform that repair and does not grant blanket merge approval.

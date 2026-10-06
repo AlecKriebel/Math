@@ -1,0 +1,11 @@
+--- positive/independent_controls.py
++++ false/independent_controls.py
+@@ -13,7 +13,7 @@
+  if not p:raise RuntimeError(name)
+  checks[name]+=1
+ x=sp.Symbol('x');phi=sp.Poly(sp.cyclotomic_poly(100,x),x,domain=sp.ZZ)
+-require(phi.as_expr()==x**40-x**30+x**20-x**10+1,'Phi100_independent_SymPy')
++require(phi.as_expr()==x**40-x**30+x**20-x**10+2,'Phi100_independent_SymPy')
+ require(sp.totient(100)==40 and phi.is_irreducible,'field_degree_irreducibility')
+ rem=[]
+ for j in range(100):

@@ -1,6 +1,6 @@
 # Turn 1: canonical-law characterization by symmetric lazy Markov transports
 
-**Scoped theorem candidate, unreviewed.** This proves the characterization for a σ-finite law of the random measure itself. The exact relation to the original OWR's Cox-derived subclass and to the stronger abstract joint-state, measure-only-kernel formulation is not silently assumed. Those source-scope questions remain to be settled before a full-target disposition.
+**Corrected historical author version.** This first-turn canonical theorem remains valid. Its mathematical Sections 1–6 below are preserved literally from the original snapshot. The later abstract-state repair is Theorem A in TURN_2.md. Current scope and source credit are in SCOPE_AND_CREDIT.md; the narrower non-discrete strict Cox allocation question remains unresolved.
 
 ## 1. Setting
 
@@ -99,13 +99,8 @@ A locally compact second countable group admits an increasing sequence of symmet
 
 The classical Mecke characterization now gives a stationary σ-finite measure whose Palm measure is Q; Last–Thorisson's mass-stationarity/Palm equivalence finishes the stated canonical theorem. No finite intensity, absolute continuity with respect to Haar measure, ergodicity, finite total random mass, or positive density is added.
 
-## 7. Exact remaining scope questions
+## 7. Historical gap and later disposition
 
-The theorem is affirmative for the law of ξ on its canonical measure space, including any σ-finite such law. This directly addresses the plain phrase “distribution of ξ” under invariance by **all** invariant mass-preserving Markov kernels.
+At the original turn-1 checkpoint, the arbitrary ambient joint-state issue and the Cox subclass issue were separate gaps. TURN_2 Theorem A closes the former while retaining arbitrary measurable Ω and possibly non-σ-finite ξ-marginal. Theorem B only establishes the canonical intensity-background singleton-matching theorem; its identification with Last's narrower OWR closing allocation class was not verified and is withdrawn in the corrected version. TURN_3 supplies separately scoped probability-law Markov and discrete σ-finite allocation results without closing the full non-discrete allocation gap.
 
-Two stronger or differently formulated targets require separate argument, not an assertion of equivalence:
-
-1. Annals Problem 7.3 is stated for an abstract flow (Ω,F,Q), possibly with an auxiliary random element, while restricting transports to σ(ξ)-measurable kernels. The proof above may use gates separating full canonical states; replacing the state by a joint (X,ξ) while keeping kernels ξ-only would be invalid. A σ-finite Q may also have a non-σ-finite pushforward under ξ. These issues have not been solved by the canonical proof.
-2. The OWR's closing paragraph refers specifically to kernels obtained by applying allocations to a Cox process with an extra origin point. The imported statement says all invariant mass-preserving kernels. Whether the constructed symmetric lazy kernels belong to that Cox-derived subclass, or whether an equivalent generating family suffices, has not yet been established here.
-
-Thus the original problem is not promoted solely on this theorem. This is the first substantive author turn and a precisely stated candidate increment, pending further source closure and independent review. The known bounded-weighted-kernel characterization is credited as prior work and is not mistaken for the Markov claim proved above.
+This is the first of the original two author turns. The unchanged original file is bound in HISTORICAL_INPUT_MANIFEST.json and preserved in the original audit snapshot. No historical novelty or full original-OWR resolution endorsement follows from this corrected first-turn document.

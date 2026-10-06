@@ -1,0 +1,8 @@
+# Fresh primary reading
+
+Read on 2026-10-03 via the web reader, without copying a public PDF into this family. The web operation exposes no process identifier, so its PID is unknown; no local PID is assigned to it.
+
+* Official [Oberwolfach Report 3/2017](https://ems.press/doi/pdf/10.4171/OWR/2017/3), p.149 (PDF page 16): the plane/sphere question, orientation-preserving maps fixing 0,1 or 0,1,infinity, the unique conformal decomposition, and the expected alpha=0 failure. The text describes the topology through the pulled-back metric, rather than treating a diffeomorphism as a zero-derivative object. The workshop was January 8–14, 2017. The original curated source record's 2018 label is a bibliographic inconsistency, not a mathematical defect.
+* [Banakh–Belegradek, Spaces of nonnegatively curved surfaces](https://arxiv.org/html/1510.07269), introduction, §§2,8,9: ordinary C^k norm at alpha=0; compact-open topology on smooth objects; D^{gamma+1} paired with C^gamma metrics/functions; normalized conformal uniqueness; the sphere and plane continuous bijections; the nonintegral homeomorphism theorem and its integer endpoint limitation. Section 8 explicitly notes the corrected endpoint in the Belegradek–Hu erratum. These passages justify the exact question, not this family's novel endpoint proof.
+
+The DOI lookup for the original erratum failed in the web reader; no claim that its full body was read. The authenticated primary paper above directly explains the corrected hypothesis. Known uniformization and conformal automorphism classification are background; this audit explicitly proves the needed inversion, endpoint estimates, support/completeness, and curvature sign for the constructed sequence. There is no literature priority certification.

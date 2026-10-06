@@ -1,0 +1,14 @@
+from pathlib import Path
+import datetime,hashlib,json,os,shutil,subprocess
+A=Path(__file__).resolve().parent;F=A/'independent_reproduction_adversary_20261006';O=A/'original_source_authentication_20261006/original_attempt';D=A/'repaired_diagnostics_v1';D.mkdir(exist_ok=False)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+sites=[('verify.py',F/'author_suggested_repair/verify.py','e97081e21df60b3e06af907788a03fc280d0506839c452d78dc50cdca59565da'),('independent_checks.py',F/'independent_suggested_repair/independent_checks.py','e2ff01b552ff827eb94c3747fc73178150b63f1b6657d82daac5c06a90cb4c08')]
+for name,source,pin in sites:
+ if sha(source)!=pin:raise RuntimeError('suggested repair changed')
+ shutil.copyfile(source,D/name)
+shutil.copyfile(O/'PROOF.md',D/'PROOF.md')
+if sha(D/'PROOF.md')!='2c219bf80ad4bbba75f8c70169b26b7e9b11b6f5e1742543f25d9cb0d0c5ebe8':raise RuntimeError('proof changed')
+for name in ['author_suggested_repair.diff','independent_suggested_repair.diff']:shutil.copyfile(F/name,D/name)
+(D/'REPAIR_NOTES.md').write_text('# Verification guard correction and boundary clarification\n\nThe immutable submitted mathematical proof is retained byte-exact. The submitted checker and old independent checker accepted known-false controls under Python -O because their assertions were removed. Only their three assert sites are replaced by explicit exceptions (two author sites, one independent site); the normal mathematical checks and counts are preserved. Diffs and root relocation/false-control readbacks accompany this copy.\n\nFor any publication text, spell out the already permitted trivial-input mapping: a CNF containing an empty clause maps to the graph for (x) and (not x), with binary optimum1 and positive optimum11 versus threshold10. An empty or all-tautological conjunction maps to (x), with binary optimum0 and positive optimum7 versus threshold7. Remove repeated same-sign literals and tautological clauses before the ordinary graph construction; retain repeated whole clauses. Relabel appearing variable identifiers densely to avoid encoding a huge absent-variable range. The exact minimum-unsatisfied-clause identity is for the constructed cleaned nonempty-clause formula. These are explicit instances of the submitted proof\'s trivial-case allowance, not another central proof-search response.\n\nNo priority or publication clearance is supplied by this code correction.\n')
+(A/'DIAGNOSTIC_REPAIR_PROPAGATION_20261006.json').write_text(json.dumps({'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'actual_operator_PID':os.getpid(),'original_proof_unchanged':True,'extra_central_proof_search_turns':0,'files':[{'path':str(p.relative_to(A)),'bytes':p.stat().st_size,'sha256':sha(p)} for p in D.iterdir() if p.is_file()]},indent=2)+'\n')
+print(json.dumps({'repair_sites':3,'proof_unchanged':True,'root_validation_pending':True}))

@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-03T03:56Z. Began independent source-first review. No candidate/sibling/root/old-verdict reads. Downloaded EMS46073, CoxeterII, pdgroup, IGAP from direct primary URLs. Completion estimate: 15% of scoped audit; universal discovery unresolved.
+- 2026-10-03T03:57Z. Literal EMS question and right module convention checked; finite-length FP definition read in pdgroup and IGAP and visual locator checked at physical233/printed229. Direct root-level Davis-Okun URL404; parent supplied only /papers/ source URL from SOURCE_SCOPE, after literal gate. This is the only source-index-derived exposure before sealing; no index content was read. Completion estimate: 25% of scoped audit.
+- 2026-10-03T04:04Z. Reconstructed finite-index right-action Shapiro map and conditional ascending-HNN/free-product proofs, identified finite-kernel realizability and Tor gaps. Read complete relevant primary proofs CoxeterII sections3-5 and Davis-Okun §2 and §4.3 including nested theorem hypotheses; recorded associated graded/nonsplit limitation. Completion estimate: 55% before candidate comparison; 0% certified universal resolution.

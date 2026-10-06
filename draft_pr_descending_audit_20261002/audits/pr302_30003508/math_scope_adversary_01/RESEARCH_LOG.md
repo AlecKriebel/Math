@@ -1,0 +1,8 @@
+# Independent family C research log
+
+- 2026-10-05 04:16 UTC — Criteria frozen before original/candidate reading. Target is original-source fidelity and actual observability, not historical priority. Review completion 5%.
+- 2026-10-05 04:18 UTC — Complete official OWR PDF downloaded, entire document extracted, relevant pages1507–1509 rendered and read; EMS official identity downloaded. Explicit original reversible stationary reflected tensor setting confirmed. Review completion 30%.
+- 2026-10-05 04:19 UTC — All 29 submitted full bodies and Git blob IDs authenticated; first native helper formatting failure preserved and repaired. TURN_1 and TURN_2 read independently. No previous review conclusions read. Review completion 45%.
+- 2026-10-05 04:23 UTC — Independent 35 exact scope controls passed: one-mode flux-null tensor witness, ordinary-normal/conormal boundary distinction on the disk, finite-feature observability, dyadic sampling and net arithmetic. These controls are partial evidence, not infinite-dimensional/statistical proofs. Review completion 75%.
+- 2026-10-05 04:25 UTC — Exact unmodified author control copies passed 11+42 checks, with full native receipts and no frozen-source writes. Independent analytical observability and scope comparisons complete. Review completion 90%.
+- 2026-10-05 04:28 UTC — Report and scoped verdict prepared: zero mandatory findings within the precisely stated theorem. Smoothness, known bounding constants, conormal reflection, exact positions, and local/clipped L² losses remain essential qualifications. No unrestricted model, rate, sensor-noise, priority, or numerical implementation claim verified. Review completion 100%; original author count 2/5 unchanged.

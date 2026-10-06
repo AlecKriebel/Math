@@ -1,0 +1,38 @@
+{
+  "status": "DRAFT_ROOT_REVIEW_REQUIRED_BEFORE_SINGLE_LOCAL_SEAL",
+  "primary_gate_sha256": "9c199a9b7aa81b3d498943a1b2f3a15e9f36829d60f76f6a700f149d91c4e177",
+  "public_whitelist_before_generated_closure": [
+    "AUDIT_LOG.md",
+    "CLOSURE_PLAN.json",
+    "CURRENT_BINDINGS.json",
+    "FILE_SCHEMA_INVENTORY.json",
+    "PRIMARY_BASELINE.md",
+    "PRIMARY_GATE.json",
+    "REPLAY_BINDINGS.json",
+    "REPORT.md",
+    "RESEARCH_LOG.md",
+    "SOURCE_INVENTORY.json",
+    "independent_controls.py",
+    "independent_transport_controls.py",
+    "seal_namespace.py",
+    "verify_namespace.py"
+  ],
+  "additional_generated_public_custody_summaries": [
+    "PUBLIC_MANIFEST.json",
+    "PRIVATE_MANIFEST.json",
+    "CLOSURE.json"
+  ],
+  "private_rule": "Every other regular file and all raw third-party sources/extractions/renders/full native captures/kit copies/version snapshots are below private/. Source hashes and private relative paths may appear in public custody summaries; full copyrighted source payloads do not.",
+  "approval_rule": "Root fully reads/replays the draft artifacts, then explicitly authorizes the local one-shot seal. Its exact message is recorded with an actual observed timestamp at private/ROOT_SEAL_AUTHORIZATION.json before sealing.",
+  "command_after_authorization": [
+    "python3",
+    "-B",
+    "seal_namespace.py",
+    "--approval",
+    "private/ROOT_SEAL_AUTHORIZATION.json"
+  ],
+  "one_shot_outputs": "Only PUBLIC_MANIFEST.json, PRIVATE_MANIFEST.json and final CLOSURE.json are created by the sealer. It refuses existing closure outputs. CLOSURE.json is the last namespace write.",
+  "verification_rule": "The verifier only reads byte inventories, native provenance, code versions and live bindings; it never executes mathematical programs. Full mode verifies private and external pins; public-only mode clearly reports private/external unchecked.",
+  "postseal_capture_rule": "Root captures closed full/public verifier native stdout/stderr/argv/cwd/UTC/exit outside this namespace, preferably at the prefixes named in REPLAY_BINDINGS.json, and binds actual bytes/SHA in the external final gate. No index or other namespace file is modified after seal.",
+  "no_namespace_writes_after_seal": true
+}

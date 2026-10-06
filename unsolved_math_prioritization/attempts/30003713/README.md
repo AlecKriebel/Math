@@ -1,0 +1,9 @@
+# 30003713: accepted known homology partial
+
+**Accepted unsolved partial; NEW second complete gate PASS; exact original head remotely merged.** The target requires all-degree evaluated polynomial-functor homology. The verified known CE/right-module reformulation and credited low/band components leave unrestricted Schur kernels and cokernels unevaluated. No novelty or full resolution is claimed.
+
+Read PARTIAL.md, CURRENT_POWELL_RANGE_QUALIFICATION.md, CURRENT_SOURCE_QUALIFICATION.md and ACCEPTANCE.md. The first full gate found Powell Lemma5.2 false atn2; its failed verdict/harnesses and historical22packet remain exact. The repaired n>=3 universal intersection proof supports the used r>3 induction; separate r3/r2/r1 bases close, so all displayed formulas survive. Three early-independent original families, root full-source reconstruction/repair, a NEWdifferentcomplete current23/94support adversary, and root11direct/10nested +10122homotopy/428naturality/45hook/10subgroup reproductions pass. This is full current-package review, not an inherited old PASS or delta-only check.
+
+Original1/5; no new substantive attempt. All original science/source/ledger/oldreviews/scripts/receipts/log and ORIGINAL/REVIEWED_CANDIDATE administration are preserved. Scope includes selected QUEUErow, with all unrelated12-column data/state/history protected. The present acceptance mirror is separately recorded in parent state_mirror_receipt.json; static catalog/desk/manualready/legacy-generator limitations remain explicit. Historical model/query/source-byte attestations are qualified.
+
+Extensive AI use; unrefereed, no humanpeer-review/proof-assistant certificate. No paper, newDOI, release or trackerrow. Execute unchanged old scripts only in isolated copies; existing /usr/bin/python3 supplies SymPy1.14.0. Finite checks corroborate separately reviewed universal proofs.

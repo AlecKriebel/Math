@@ -1,0 +1,11 @@
+# KP-1.85: audited unresolved partial findings
+
+The full target remains unresolved in this attempt: a nonconstant SO(3) character arc on the specified complete-holonomy PSL2(C) component for every hyperbolic knot in S3. The retained finite-quotient normalization and conditional real-component obstruction are correct. Known Euclidean-cone and two-bridge cases are credited earlier results. No universal cone existence, canonical-component bridge or qualifying knot counterexample is supplied.
+
+OBSTRUCTION.md remains the exact original mathematical artifact. CURRENT_UNIVERSAL_CERTIFICATE.md and the independent normalization/cone/scope certificates document the full retained deductions and exact gap, including the cone angle-pi boundary and imported analytic theorem hypotheses. Finite exact controls reproduce the original21/21/121 results; they do not validate arbitrary prose or prove the universal knot problem.
+
+Proposed outcomeunsolved, accepted partial findings. Original1/5 substantive response, newresearch0, verification0. No paper, newDOI or tracker row. Three distinct independently sealed approach families and actual parent replay are complete; a NEW whole-current-package review remains pending. AI tools were extensively used; documentation is unrefereed AI-audited, without claimed external human review or formal proof-assistant verification.
+
+All original15 artifacts and original dated model/provenance/log/turn metadata are byte-exact in original_archive/. Top-level turns.json and source_record.json also remain byte-exact historical records; their dates/model fields do not describe this current parent audit. independent_review/ is the historical original review and has not been transferred as a current complete gate. New current readiness/provenance/status are independently scoped.
+
+Private reproduction: copy check_controls.py and independent_review/independent_checks.py before running them with /usr/bin/python3 and SymPy1.14.0. The independent program writes independent_results.json beside its copied implementation. See CURRENT_PROOF_DEPENDENCIES.json; its ../ base resolves from the frozen audit packet in draft_pr_publication_program_20260930/audits/pr35_2744, the explicit source anchor recorded there.

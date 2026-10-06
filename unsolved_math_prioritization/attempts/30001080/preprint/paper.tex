@@ -1,0 +1,296 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\BB}{\mathcal B(G)}
+\newcommand{\FF}{\mathcal F}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\EQ}{\mathbb E_Q}
+\newcommand{\supp}{\operatorname{supp}}
+\title{Measure-only preserving Markov transports\protect\\ characterize mass-stationarity}
+\author{Alec Kriebel\thanks{ORCID: \url{https://orcid.org/0009-0001-9320-500X}. Discovery, checking, and manuscript preparation were extensively AI-assisted. This is an unrefereed preprint without human peer review or a formal machine proof. Finite control computations do not prove the general theorem.}}
+\date{6 October 2026\quad---\quad Unrefereed research note}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $G$ be a locally compact second countable Hausdorff Abelian group, acting jointly measurably on an arbitrary measurable space. Let $Q$ be sigma-finite and let $\xi$ be a covariant locally finite Radon random measure, nonzero $Q$-almost everywhere. We prove that full ambient $Q$-invariance under every invariant, $\xi$-preserving, $\xi$-measurable Markov transport kernel implies the joint Mecke identity, and hence mass-stationarity. Together with known transport invariance this answers Last--Thorisson's Problem 7.3 in the stated setting. The argument uses oriented local symmetric transports away from periods of the measure and normalized period-subgroup transports on the remaining set. It requires neither a standard Borel ambient space nor a sigma-finite law of $\xi$, and imposes no finite-intensity assumption.
+\end{abstract}
+
+\section{Statement, conventions, and antecedents}
+
+Write $G$ additively and fix a Haar measure $\lambda$. Let $\MM$ denote the nonnegative locally finite Radon measures on $G$, with the evaluation sigma-field, equivalently the Borel sigma-field of the vague topology. This is a standard Borel space. Its translations
+\[
+  (\theta_u\mu)(B)=\mu(B+u)
+\]
+act jointly continuously in the vague topology. In particular $\MM$ has a countable family of measurable sets separating its points. These standard measure-space facts concern $\MM$, not the ambient space below.
+
+Let $(\Omega,\FF)$ be an arbitrary measurable space with a jointly measurable action $(u,\omega)\mapsto\theta_u\omega$, satisfying $\theta_0=\mathrm{id}$ and $\theta_u\theta_v=\theta_{u+v}$. Let $Q$ be a sigma-finite measure on this space and let $\xi:\Omega\to\MM$ be measurable and covariant:
+\[
+  \xi_{\theta_u\omega}=\theta_u\xi_\omega,
+  \qquad Q\{\xi(G)=0\}=0.
+\]
+Here $\xi_\omega=\xi(\omega)$, and $\EQ$ denotes integration, without requiring $Q$ to be a probability measure.
+
+A Markov transport kernel $T$ from $\Omega\times G$ to $G$ has row mass one. It is invariant and $\xi$-preserving if, respectively,
+\begin{align}
+ T(\theta_u\omega,s-u,B-u)&=T(\omega,s,B), \label{eq:cov}\\
+ \int T(\omega,s,B)\,\xi_\omega(ds)&=\xi_\omega(B) \label{eq:pres}
+\end{align}
+for every $\omega,s,u,B$ in their respective domains. It is $\xi$-measurable if $T(\cdot,\cdot,B)$ is $\sigma(\xi)\otimes\BB$-measurable for every $B\in\BB$. This is the definition in \cite[Section 7]{LT09}. The invariance hypothesis is
+\begin{equation}
+ \EQ\int f(\theta_t\omega)\,T(\omega,0,dt)=\EQ f,
+ \qquad f:\Omega\to[0,\infty]\text{ measurable}. \label{eq:inv}
+\end{equation}
+All nonnegative integrals below allow the value infinity.
+
+For completeness, mass-stationarity here has the meaning of \cite[Definition 6.1]{LT09}. For relatively compact Borel $C$ with $\lambda(C)>0$ and $\lambda(\partial C)=0$, put $\lambda_C=\lambda|_C/\lambda(C)$ and let
+\[
+ T_C(\omega,s,dv)=\frac{\ind_{C+s}(v)\,\xi_\omega(dv)}{\xi_\omega(C+s)}
+\]
+when the denominator is positive, using $\delta_s$ in the zero-denominator branch. Mass-stationarity is the joint sampling identity
+\begin{equation}
+ \EQ\int\lambda_C(dr)\int T_C(\omega,-r,dv)\,
+       g(\theta_v\omega,r+v)
+ =\EQ\int g(\omega,r)\,\lambda_C(dr) \label{eq:ms}
+\end{equation}
+for every nonnegative measurable $g$ on $\Omega\times G$, together with nonzeroness. For the Palm measures obtained below the zero-denominator branch is immaterial: the origin lies in the support and $r$ lies in $\operatorname{int}C$ for $\lambda_C$-almost every $r$.
+
+\begin{theorem}\label{thm:main}
+In the setting above, $Q$ is mass-stationary for $\xi$ if and only if \eqref{eq:inv} holds for every invariant, $\xi$-preserving, $\xi$-measurable Markov transport kernel. In particular this hypothesis implies
+\begin{equation}
+ \EQ\int g(\theta_t\omega,-t)\,\xi_\omega(dt)
+ =\EQ\int g(\omega,t)\,\xi_\omega(dt),
+ \qquad g:\Omega\times G\to[0,\infty]\text{ measurable}. \label{eq:mecke}
+\end{equation}
+No standard Borel assumption on $\Omega$, sigma-finiteness of $Q\circ\xi^{-1}$, or finite-intensity condition is required.
+\end{theorem}
+
+The credited inputs are the classical Mecke/Palm equivalence, in the ambient formulation \cite[(2.7)]{LT09}, the equivalence of Palm measures and mass-stationarity \cite[Theorem 6.3]{LT09}, and transport invariance \cite[Theorem 4.1]{LT09}. The contribution of the proof below is deriving \eqref{eq:mecke} from the Markov hypothesis with measure-only kernel dependence. The bounded weighted-kernel characterization was already proved in \cite[Theorem 7.2]{LT09}; a weighted kernel may have row mass different from one and cannot be substituted in our hypothesis. Theorem \ref{thm:main} answers precisely \cite[Problem 7.3]{LT09}. It also yields the canonical law-of-$\xi$ specialization of the general all-Markov converse discussed in \cite[pp.\ 2692, 2694]{OWR}.
+
+Important partial predecessors are \cite[Propositions 3.6 and 3.8]{LT11}: for discrete measures, measure-only Bernoulli tests recover Mecke reversal away from measure-periodic shifts, and give mass-stationarity in the aperiodic case (under the stated origin-in-support condition). The more general discrete theorem there allows dependence on an auxiliary state and assumes that state space is Borel; \cite[Remark 3.11]{LT11} expressly records the periodicity qualification. A positive-density result on $\mathbb R^d$ appears in \cite[Theorem 6]{LT15v2}, formulated for the joint pair $((X,Z),\xi)$ with $\xi(dt)=Z_t\,dt$, local integrability on every line and infinite integral on every half-line. Its density-field hypotheses are not silently identified with a version of $Z$ observable from $\xi$ alone. We cite the retained arXiv version specified in the bibliography; its complete final journal body has not been checked here.
+
+\section{Local Markov kernels and oriented reversal}
+
+Define measurable involutions and a measurable factor map by
+\[
+ R(\omega,t)=(\theta_t\omega,-t),\qquad
+ R_0(\mu,t)=(\theta_t\mu,-t),\qquad
+ \rho(\omega,t)=(\xi_\omega,t).
+\]
+Covariance gives $\rho R=R_0\rho$. Put
+\[
+ J=\{(\omega,t):\theta_t\xi_\omega=\xi_\omega\}.
+\]
+The diagonal of the standard Borel space $\MM$ is measurable, so $J$ is measurable. It is $R$-invariant. Define the Campbell measure
+\[
+ c(d\omega,dt)=Q(d\omega)\,\xi_\omega(dt).
+\]
+Fix a countable measurable partition $(D_j)$ of $\Omega$ with $Q(D_j)<\infty$. A compact exhaustion $(C_n)$ of $G$ and local finiteness give the countable finite-mass product cover
+\begin{equation}
+ P_{jnk}=\bigl(D_j\cap\{\xi(C_n)\leq k\}\bigr)\times C_n,
+ \qquad c(P_{jnk})\leq kQ(D_j),\quad k\geq1. \label{eq:cover}
+\end{equation}
+Thus $c$ is sigma-finite. So is $R_*c$, since $R$ is a measurable involution. This does not assert sigma-finiteness of the marginal law of $\xi$.
+
+Fix a symmetric compact neighborhood $C$ of zero. For $\mu\in\MM$ and $s,t\in G$ let
+\begin{equation}
+ a(\mu;s,t)=
+ \frac{\ind_C(t-s)}{(1+\mu(s+C))(1+\mu(t+C))},
+ \qquad r(\mu,s)=\int a(\mu;s,t)\,\mu(dt). \label{eq:conductance}
+\end{equation}
+Evaluation of the translated measure makes all terms measurable, and local finiteness makes the denominators finite. Symmetry of $C$ makes $a$ symmetric in $s,t$; simultaneous translation leaves it unchanged. Moreover
+\begin{equation}
+ 0\leq r(\mu,s)\leq\frac{\mu(s+C)}{1+\mu(s+C)}\leq1. \label{eq:row}
+\end{equation}
+For a Borel $R_0$-invariant indicator $b$ on $\MM\times G$, set
+\begin{align}
+ a_b(\mu;s,t)&=a(\mu;s,t)\,b(\theta_s\mu,t-s),\notag\\
+ r_b(\mu,s)&=\int a_b(\mu;s,t)\,\mu(dt),\notag\\
+ K_b(\mu,s,dt)&=a_b(\mu;s,t)\,\mu(dt)
+                  +(1-r_b(\mu,s))\delta_s(dt). \label{eq:lazy}
+\end{align}
+Kernel integration proves measurability. The equality
+\[
+ b(\theta_s\mu,t-s)=b(\theta_t\mu,s-t)
+\]
+makes $a_b$ symmetric. Its row integral is at most one, so $K_b$ is Markov. Its covariance follows from the simultaneous covariance of $a_b$ and $\mu$. For every nonnegative measurable $\varphi$ on $G$, Tonelli and symmetry give
+\[
+ \int\mu(ds)\int a_b(\mu;s,t)\varphi(t)\,\mu(dt)
+ =\int \varphi(t)r_b(\mu,t)\,\mu(dt).
+\]
+Adding the holding contribution $\int\varphi(t)(1-r_b(\mu,t))\,\mu(dt)$ proves $\mu K_b=\mu$, including infinite total mass. Therefore $T_b(\omega,s,\cdot)=K_b(\xi_\omega,s,\cdot)$ satisfies every requirement of the hypothesis. The gates see $\xi$ only.
+
+Let
+\[
+ m(d\omega,dt)=a(\xi_\omega;0,t)c(d\omega,dt).
+\]
+Its first marginal is bounded by $Q$, by \eqref{eq:row}. For a nonnegative measurable $f$ with $\EQ f<\infty$, invariance under $T_b$ gives
+\begin{equation}
+ \int b(\xi_\omega,t)f(\theta_t\omega)\,m(d\omega,dt)
+ =\int b(\xi_\omega,t)f(\omega)\,m(d\omega,dt). \label{eq:finite}
+\end{equation}
+Both jump integrals are finite: the outgoing term is bounded by $\EQ f$, and the incoming term is bounded by the full invariant expectation $\EQ f$. Subtracting the finite holding integral gives the displayed equality. No subtraction of infinite measures occurs.
+
+\begin{lemma}\label{lem:oriented}
+For each $C$ above, $m$ and $R_*m$ agree on $J^c$.
+\end{lemma}
+\begin{proof}
+Let $A$ be a measurable subset of $\MM$ and $B$ a Borel subset of $G$. Define
+\[
+ F_A=\{(\mu,t):\mu\in A,\ \theta_t\mu\notin A\},
+ \qquad F=F_A\cap(\MM\times B).
+\]
+The sets $F$ and $R_0F$ are measurable and disjoint. Hence
+$b=\ind_F+\ind_{R_0F}$ is an allowed invariant indicator. Let $D\in\FF$ satisfy $Q(D)<\infty$ and apply \eqref{eq:finite} to
+$f(\omega)=\ind_D(\omega)\ind_A(\xi_\omega)$.
+On $\rho^{-1}F$ the incoming value of $f$ vanishes; on $\rho^{-1}(R_0F)$ the outgoing value vanishes. Since $\rho R=R_0\rho$, the surviving incoming term is the reversal of the surviving outgoing term. Thus
+\begin{equation}
+ m\bigl((D\times B)\cap\rho^{-1}F_A\bigr)
+ =R_*m\bigl((D\times B)\cap\rho^{-1}F_A\bigr). \label{eq:orientedrect}
+\end{equation}
+
+Here is the product-measure extension in detail. For the two measures restricted to $\rho^{-1}F_A$, taking $D=D_j$ and $B=G$ in \eqref{eq:orientedrect} shows that both give mass at most $Q(D_j)$ to $D_j\times G$. For arbitrary $D$, applying \eqref{eq:orientedrect} to $D\cap D_j$ and summing over $j$ proves equality on every rectangle $D\times B$. On each block $D_j\times G$, both restrictions are finite and agree on the rectangle pi-system generating the restricted product sigma-field. Finite-measure uniqueness on each block, followed by the countable sum, proves equality on every measurable subset of $\rho^{-1}F_A$. This argument requires no countable generation of $\FF$.
+
+Choose a countable separating family $(A_\ell)$ in $\MM$, including complements. If $\theta_t\xi_\omega\ne\xi_\omega$, some $A_\ell$ contains $\xi_\omega$ and excludes $\theta_t\xi_\omega$. Consequently
+\[
+ J^c=\bigcup_\ell\rho^{-1}F_{A_\ell}.
+\]
+Disjointify this countable cover. Equality on every measurable subset of each piece, already proved, then yields $m|_{J^c}=(R_*m)|_{J^c}$.
+\end{proof}
+
+Let $w(\omega,t)=a(\xi_\omega;0,t)$. Symmetry and covariance imply $w\circ R=w$, hence $R_*m=wR_*c$. On $\Omega\times C$ the function $w$ is strictly positive. For any measurable $E\subset J^c\cap(\Omega\times C)$, integrate
+$\ind_E\min\{k,1/w\}$ against the two equal weighted measures and let $k\uparrow\infty$. Monotone convergence gives $c(E)=R_*c(E)$, even when either value is infinite.
+
+A locally compact second countable group is sigma-compact: a countable cover by relatively compact open sets supplies compact sets $L_n$ covering $G$. If $C_0$ is a symmetric compact neighborhood of zero, then
+\[
+ C_n=C_0\cup\bigcup_{i\leq n}(L_i\cup(-L_i))
+\]
+is an increasing symmetric compact neighborhood exhaustion. Repeat the construction and Lemma \ref{lem:oriented} separately for every $C_n$. For arbitrary measurable $E\subset J^c$, equality on $E\cap(\Omega\times C_n)$ and monotone convergence now give
+\begin{equation}
+ c|_{J^c}=(R_*c)|_{J^c}. \label{eq:offperiod}
+\end{equation}
+This passage uses equality of measures on every member of a specified exhaustion; no unproved inference from a single local identity is used.
+
+\section{Period transports and full ambient reversal}
+
+For $\mu\in\MM$, put
+\[
+ H_\mu=\{t\in G:\theta_t\mu=\mu\}.
+\]
+Continuity of translations in the vague topology makes $H_\mu$ a closed subgroup. Its graph is Borel, by the measurable diagonal of $\MM$. Since $G$ is Abelian,
+$H_{\theta_s\mu}=H_\mu$ for every $s$.
+For a relatively compact Borel set $B\subset G$ define
+\begin{align}
+ w_B(\mu)&=\mu(H_\mu\cap B),\notag\\
+ \kappa_B(\mu,dt)&=
+ \begin{cases}
+  \ind_{H_\mu\cap B}(t)\mu(dt)/w_B(\mu),&w_B(\mu)>0,\\
+  \delta_0(dt),&w_B(\mu)=0,
+ \end{cases}\notag\\
+ K_B(\mu,s,A)&=\kappa_B(\theta_s\mu,A-s). \label{eq:periodkernel}
+\end{align}
+Integration of the Borel graph against the measure kernel shows that $w_B$ and $\kappa_B$ are measurable; local finiteness gives $w_B<\infty$. The last line is a measurable probability kernel and directly gives covariance. This construction chooses neither orbit representatives nor a measurable normalization of Haar measures.
+
+\begin{lemma}\label{lem:periodpres}
+For every $\mu\in\MM$, $K_B$ preserves $\mu$.
+\end{lemma}
+\begin{proof}
+Fix $\mu$ and set $H=H_\mu$. Choose a Haar measure $\lambda_H$ on this one closed subgroup, with any normalization. For every $s\in G$, the restriction $(\theta_s\mu)|_H$ is a locally finite Radon measure on $H$, invariant under $H$-translations. Indeed $\theta_h\theta_s\mu=\theta_s\mu$ for $h\in H$. Uniqueness of Haar measure therefore gives
+\[
+ (\theta_s\mu)|_H=c_s\lambda_H\quad\text{for a finite }c_s\geq0,
+\]
+including the zero restriction. These coefficients are used only in this fixed-$\mu$ argument.
+
+Put $\beta=\lambda_H(H\cap B)<\infty$. If $\beta=0$, every $w_B(\theta_s\mu)$ is zero, every row holds at $s$, and preservation is immediate. If $\beta>0$, let
+\[
+ E=\{s:w_B(\theta_s\mu)>0\},\qquad
+ \nu_B(dh)=\ind_{H\cap B}(h)\lambda_H(dh)/\beta.
+\]
+On $E$ every displacement row of \eqref{eq:periodkernel} equals the same probability $\nu_B$, since $c_s$ cancels; off $E$ it equals $\delta_0$. The set $E$ is measurable and $H$-invariant because $\theta_{s+h}\mu=\theta_s\mu$. Both $\mu$ and $\mu|_E$ are $H$-invariant. For any Borel $A\subset G$, Tonelli gives
+\begin{align*}
+ \int_E K_B(\mu,s,A)\,\mu(ds)
+ &=\int_H\nu_B(dh)\,\mu\bigl(E\cap(A-h)\bigr)\\
+ &=\mu(E\cap A).
+\end{align*}
+The holding rows on $E^c$ contribute $\mu(E^c\cap A)$. Adding proves $\mu K_B=\mu$. Infinite values are allowed throughout.
+\end{proof}
+
+Thus $T_B(\omega,s,\cdot)=K_B(\xi_\omega,s,\cdot)$ is an admissible measure-only preserving Markov kernel. Every displacement in $\kappa_B(\mu,\cdot)$ lies in $H_\mu$ (also in the zero branch), so it leaves $\mu$ and $w_B(\mu)$ unchanged. Apply \eqref{eq:inv} to the nonnegative measurable function $w_B(\xi_\omega)f(\omega)$. At a positive denominator its factor cancels the normalization; at a zero denominator both sides of the corresponding integrand are zero. We use the usual nonnegative-integral convention $0\cdot\infty=0$. It follows that, for every nonnegative measurable $f$,
+\begin{equation}
+ \EQ\int_{H_\xi\cap B} f(\theta_t\omega)\,\xi_\omega(dt)
+ =\EQ\bigl[f(\omega)w_B(\xi_\omega)\bigr]. \label{eq:periodinv}
+\end{equation}
+There is no integrability condition or subtraction in this step.
+
+For each fixed $\mu$, the restriction $\mu|_{H_\mu}$ is zero or a multiple of Haar measure on the Abelian group $H_\mu$. Haar measure on an Abelian group is invariant under inversion, and therefore $w_{-B}(\mu)=w_B(\mu)$. Applying \eqref{eq:periodinv} with $-B$ gives
+\begin{equation}
+ \EQ\int\ind_{H_\xi}(t)\ind_B(-t)f(\theta_t\omega)\,\xi_\omega(dt)
+ =\EQ\int\ind_{H_\xi}(t)\ind_B(t)f(\omega)\,\xi_\omega(dt). \label{eq:periodrect}
+\end{equation}
+First this holds for relatively compact $B$. For arbitrary Borel $B$, apply it to $B\cap C_n$ and use monotone convergence on both sides. Taking $f=\ind_D$ proves agreement of $c|_J$ and $R_*(c|_J)$ on every rectangle $D\times B$. Because $J$ is $R$-invariant, the latter measure equals $(R_*c)|_J$.
+
+The extension from rectangles is again justified explicitly. The sets $P_{jnk}$ in \eqref{eq:cover} are product sets of finite $c$-mass and cover $\Omega\times G$. The rectangle identity shows that $R_*(c|_J)$ has the same finite mass as $c|_J$ on each $P_{jnk}$. On each such product set, intersections with rectangles form a generating pi-system on which the two finite restrictions agree. Finite-measure uniqueness proves equality there; disjointifying the countable cover then yields
+\begin{equation}
+ c|_J=(R_*c)|_J. \label{eq:onperiod}
+\end{equation}
+In particular hidden ambient information is retained: a shift in $H_\xi$ may change $\omega$, and \eqref{eq:periodinv} tests arbitrary functions of that changed state.
+
+\begin{proof}[Completion of Theorem \ref{thm:main}]
+Equations \eqref{eq:offperiod} and \eqref{eq:onperiod} give $c=R_*c$, which is exactly \eqref{eq:mecke}. The established ambient Mecke characterization \cite[(2.7)]{LT09}, credited there to Mecke \cite{Mecke67}, supplies a stationary sigma-finite measure $P$ on $(\Omega,\FF)$ with $Q=P_\xi$. By \cite[Theorem 6.3]{LT09}, $Q$ is mass-stationary in the sense of \eqref{eq:ms}. Conversely mass-stationarity gives such a $P$, and \cite[Theorem 4.1]{LT09} gives \eqref{eq:inv} for every invariant $\xi$-preserving transport kernel, in particular the measure-only Markov kernels of the theorem.
+\end{proof}
+
+\section{Boundaries and verification status}
+
+No support assumption at the origin was added. It follows from the identity just proved. If $S=\{\omega:0\notin\supp\xi_\omega\}$, then covariance gives
+\[
+ (R_*c)(S\times G)=\EQ\int\ind_{\{t\notin\supp\xi_\omega\}}\,\xi_\omega(dt)=0.
+\]
+Thus $c(S\times C_n)=0$ for every $n$. Nonzeroness and the exhaustion imply $Q(S)=0$. This also verifies the assertion about the sampling denominator following \eqref{eq:ms}. Atomic, diffuse, mixed, and periodic measures are all covered; if $\xi|_{H_\xi}=0$, the period part of the Campbell measure is simply zero.
+
+The proof permits infinite $Q(\Omega)$, infinite $\xi(G)$, and a non-sigma-finite law of $\xi$. The nonzero assumption is essential to the source convention: at the zero measure an origin shift can leave a canonical state fixed regardless of the sampling interpretation. Non-Abelian groups and non-locally-finite measures lie outside the stated theorem.
+
+The general Markov question is distinct from Last's narrower question about kernels obtained by applying deterministic allocations to the inserted Cox process \cite[p.\ 2673]{OWR}; see also the separate averaged-Cox question \cite[Remark 4.8]{LT11}. Theorem \ref{thm:main} does not establish that smaller-test-class converse and does not claim to resolve every question in the Oberwolfach report.
+
+Two bounded literature reviews found no exact prior resolution in the primary bodies and repository records they checked. This is not an exhaustive literature certificate or a claim of worldwide firstness. In particular the complete final 2015 journal body and an identified 2016 lecture were not reviewed. Finite computational controls from the development check examples of preservation, gates, and periods; they are supplementary finite controls, not a proof of the general result. The proof offered here is the measure-theoretic argument above. This version is an extensively AI-assisted, unrefereed research note, without human peer review or formal machine verification.
+
+\begin{thebibliography}{9}
+\bibitem{Mecke67}
+J.~Mecke, \emph{Station\"are zuf\"allige Ma\ss e auf lokalkompakten Abelschen Gruppen},
+Z.\ Wahrscheinlichkeitstheorie verw.\ Gebiete \textbf{9} (1967), 36--58.
+
+\bibitem{LT09}
+G.~Last and H.~Thorisson, \emph{Invariant transports of stationary random measures and mass-stationarity},
+Ann.\ Probab.\ \textbf{37} (2009), 790--813.
+\href{https://doi.org/10.1214/08-AOP420}{doi:10.1214/08-AOP420}.
+Checked version: official electronic reprint
+\href{https://arxiv.org/abs/0906.2062v1}{arXiv:0906.2062v1}, 11 June 2009;
+its pagination differs from the journal.
+
+\bibitem{LT11}
+G.~Last and H.~Thorisson, \emph{Characterization of mass-stationarity by Bernoulli and Cox transports},
+Commun.\ Stoch.\ Anal.\ \textbf{5} (2011), 251--269.
+\href{https://doi.org/10.31390/cosa.5.2.01}{doi:10.31390/cosa.5.2.01}.
+Checked version: complete published body from the
+\href{https://repository.lsu.edu/cosa/vol5/iss2/1/}{LSU repository}.
+
+\bibitem{LT15v2}
+G.~Last and H.~Thorisson, \emph{Construction and characterisation of stationary and mass-stationary random measures on $\mathbb R^d$},
+\href{https://arxiv.org/abs/1405.7566v2}{arXiv:1405.7566v2}, 17 July 2015;
+retained PDF internal date 24 April 2019.
+Associated journal publication: Stochastic Process.\ Appl.\ \textbf{125} (2015), 4473--4488,
+\href{https://doi.org/10.1016/j.spa.2015.07.006}{doi:10.1016/j.spa.2015.07.006}.
+The statements cited here were checked in the retained author version;
+the complete final journal body was not read and is not asserted identical.
+
+\bibitem{OWR}
+\emph{New Perspectives in Stochastic Geometry}, Oberwolfach Report 47/2008,
+Oberwolfach Rep.\ \textbf{5} (2008), 2655--2702, published 30 September 2009.
+\href{https://doi.org/10.4171/OWR/2008/47}{doi:10.4171/OWR/2008/47}.
+Relevant contributions: G.~Last, pp.\ 2673--2674, and H.~Thorisson, pp.\ 2692--2694.
+\end{thebibliography}
+\end{document}

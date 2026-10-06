@@ -1,0 +1,28 @@
+{
+  "sealed_at_utc": "2026-10-02T09:47:07.536009+00:00",
+  "head": "652b8115080e5e97b2274cb602de3faf8c551f20",
+  "base": "c6975ca76f9f667f1250ba403d0e6da2aafe14d0",
+  "snapshot_identity_supplied": "debd6fd2621f401ec927c441da3b54a13ca60ee917698898299ad24faf67616e",
+  "target": "For every independent sequence of stopped standard Brownian pieces indexed by all integers, with stopping times 0<=T_k<c a.s. for one deterministic finite c and divergent sums in both directions, does the continuous concatenation admit one a.s. finite real random S at which its centered forward and centered time-reversed halves are independent standard Brownian motions?",
+  "source": "https://sites.math.washington.edu/~burdzy/open_mathjax.php, Problem 8, read 2026-10-02; source lines 51-58",
+  "probability_quantifiers": "A property of the given concatenation law. S may depend on the full path and extra randomness; no stopping-time property of S is stated. Exact joint law of both complete halves is required.",
+  "concatenation": "S_0=0; S_{k+1}-S_k=T_k; X_0=0; X_{S_k+t}-X_{S_k}=B^k_t for 0<=t<T_k, extended continuously at joins. Negative pieces retain increasing-time orientation; observing X_{-t} reverses each path and reverses the indexed concatenation order.",
+  "assumptions": [
+    "Joint stopped pieces (T_k,B^k_[0,T_k]) are independent. They need not be identically distributed.",
+    "Each B^k is standard Brownian motion for its specified stopping-time filtration. Any filtration enlargement must retain the Brownian property; anticipation is excluded.",
+    "All T_k>=0 are a.s. finite. Zero lengths are permitted and removed harmlessly; the divergent sums exclude a finite-time accumulation of infinitely many indexed positive lengths.",
+    "One deterministic strict common bound T_k<c a.s. applies to every k. A pathwise bound depending on omega, per-index bounds growing with k, or uniform finite moments are different assumptions.",
+    "The source definition of two-sided Brownian motion is random-origin existence. At the distinguished join 0 the negative half need not be Brownian."
+  ],
+  "success_criteria": [
+    "A checkable proof yielding one finite random shift S with both halves having the exact independent Wiener joint law, or an admissible bounded counterexample excluding every possible such S.",
+    "For partial claims, verify only their stated output; pathwise approximation, rescaling limits, stationary/equilibrium replacements, and randomized rotations do not alone prove the source target."
+  ],
+  "boundary_cases": [
+    "T_k=0 for arbitrary indices; non-iid positive durations; nonintegrable index count in bounded intervals; c=0 gives no admissible divergent construction.",
+    "Stopping-time dependence of (T,B_T), bias after time reversal, negative-side ordering and filtration.",
+    "Random-origin shift could be non-stopping; independence of the two halves cannot be inferred from a marginal Gaussian limit."
+  ],
+  "pre_partial_independent_mechanism": "Forward gluing from a fixed indexed join follows strong Markov concatenation. Bounded optional sampling controls terminal moments but does not make reversed stopped paths Brownian. Any claim that rotation at a stopping time preserves a deterministic Brownian block law must be proved, including dependence of chosen rotation on the block. An iid equilibrium/Palm origin would alter the general non-iid source model and cannot be silently substituted.",
+  "exposure_disclosure": "Read entire literal source_record.json and prior_report.json first as directed. Both embed dated OPEN-TRIAGE/status/search claims; treated solely as supplied history, not current fact. Read snapshot_manifest.json metadata (17 changed paths, 16 original attempt artifacts). A file-inventory command inadvertently listed .gitignore paths under other audits; no sibling content, verdict, or interpretation was read. No PARTIAL/readiness/review was read before sealing."
+}

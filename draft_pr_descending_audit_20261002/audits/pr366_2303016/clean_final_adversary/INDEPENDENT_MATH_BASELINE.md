@@ -1,0 +1,31 @@
+# Independent primary-first mathematical baseline
+
+Sealed before reading author proof, code, history, or any analytical findings of other reviewers. Primary retrieval and hash-bound extraction occurred 2026-10-03T17:40:48.724316Z. Read Hayman–Lingham 2018 printed 65 (PDF page 66), including Update 3.16, and Hedberg–Wolff 1983 introduction/foundations and printed 173–174 (Numdam PDF pages 14–15, cover counted).
+
+## Exact target and method requirement
+
+For compact E in R^n, n >= 3, define F={x in E: W_E(x)<infinity}, W_E(x)=integral_0^1 cap(E intersect closed B(x,r)) r^(1-n) dr. Prove F polar directly. Ordinary Newtonian capacity is intended; choose kernel k(x,y)=|x-y|^(2-n) and cap(K)=1/inf_{probability nu on K} I(nu). Positive constants do not alter finiteness or zero capacity. Outside E the analogous finite-integral set contains the open complement, so the membership restriction is essential. No conclusion about n=2 is justified by the same power kernel.
+
+The source explicitly already obtains polarity from Kellogg and asks for a direct proof. Its Update says no reported progress; that sentence does not establish current novelty. Hedberg–Wolff already supplies the Borel compact-localization/energy-contradiction mechanism in 1983. Their C_(alpha,q) is a Bessel capacity; at q=2 its kernel G_(2alpha) has the same local singularity as the Riesz kernel, not literal Newtonian equality. A proposed Newtonian proof must rederive its needed statements in the declared normalization, or quantitatively justify comparison. Citing Theorem 2 alone fails the direct-method request; reproducing the Borel proof's mechanism with ordinary energy is substantively direct and must be credited as a classical specialization.
+
+## Independently derived Newtonian mechanism
+
+For compact A, energy minimization exists by weak compactness and lower semicontinuity of the nonnegative kernel. Suppose cap(A)>0 and let nu minimize probability energy I>0. For bounded mean-zero densities h against nu, the two-sided variation (1+t h)nu yields integral U^nu h dnu=0; hence U^nu=I nu-almost everywhere. For any Borel D subset A, sigma=nu|D has I(sigma)<=integral U^nu dsigma=I nu(D), while the capacity definition gives nu(D)^2<=cap(D) I(sigma) for compact D (and the ordinary Borel extension by capacitability). Thus nu(D)<=I cap(D). With mu=nu/I, mu(D)<=cap(D), mu(A)=cap(A)=m, and I(mu)=m. This is a linear bound in the mass; a quadratic-only bound would not give the desired contradiction. This derivation needs neither a maximum principle nor boundary regularity.
+
+For a fixed compact K, c_K(x,r)=cap(K intersect closed B(x,r)) is upper semicontinuous jointly by compact upper limits and decreasing-compact capacity continuity. Fixed-r lower semicontinuity is generally false. Nevertheless T_gamma(x)=integral_gamma^1 c_K(x,r) r^(1-n) dr is continuous: ball inclusions squeeze at shifted radii, r -> c_K(x,r) is monotone with countably many discontinuities, and domination holds on r >= gamma. Therefore W_K=sup_gamma T_gamma is lower semicontinuous, hence Borel. In particular sublevel sets for W_E are Borel. If F had positive capacity, ordinary Borel Choquet capacitability gives compact K within a bounded sublevel. W_K is finite and bounded above on K.
+
+Take a finite-energy probability on K and replace K by its compact support. Every neighborhood of every support point has positive measure and therefore positive capacity, since restriction and normalization give mass^2/energy <= cap. W_K remains bounded. Choose a near-maximizer a of W_K and gamma>0 so that T_gamma(a) is near sup_K W_K. Continuity makes T_gamma(x) near that supremum throughout a small ball. Consequently integral_0^gamma c_K(x,r) r^(1-n) dr is uniformly as small as desired on K in that ball. Let L=K intersect closed B(a,rho), of positive capacity. Restriction only decreases c; for r>=gamma use cap(L)<= (2rho)^(n-2), obtained from the minimum kernel on its diameter. Thus W_L is uniformly <= epsilon, while m=cap(L) can also be made arbitrarily small.
+
+Layer cake, including zero-distance/atomic cases by Tonelli, gives U^mu(x)=(n-2) integral_0^infinity mu(closed B(x,r)) r^(1-n) dr. Open/closed balls differ only at countably many radii for fixed x. The linear local mass bound gives the part up to 1 <= (n-2)epsilon. The part above 1 is <=m. Integrating against mu gives m=I(mu)<=[(n-2)epsilon+m]m, impossible for m>0 when (n-2)epsilon+m<1. Thus F has capacity zero. Use only the declared foundation zero Newtonian capacity iff polar to conclude.
+
+## Independent edge and sharpness requirements
+
+Atoms have infinite k-energy; zero capacity compact sets are harmless; ball radius zero and singleton capacity require explicit limiting treatment. A compact localization cannot claim positive capacity at an arbitrary point without first taking a finite-energy support. Diagonal Tonelli is nonnegative extended-valued and requires no artificial diagonal deletion.
+
+An n-dimensional closed ball provides a narrowly scoped logarithmic weakening counterexample: interior points have c(x,r)=r^(n-2) for sufficiently small r in this kernel convention, so W diverges like integral dr/r. Replacing the integrand by division by [log(e/r)]^beta with beta>1 makes it finite on a positive-capacity interior region. The beta<=1 integral diverges; no all-nonintegrable-gauge optimality follows. A claim of full best possible behavior for every nonintegrable gauge remains unsupported unless a separate mechanism is supplied.
+
+For a segment in R^3, any probability has infinite energy: a dyadic partition at scale 2^-j has at most C 2^j cells, sum of squared masses >= 1/(C 2^j), and kernel layer cake charges a uniformly positive contribution at each scale. Hence segment capacity zero. Finite controls cannot establish this borderline fact without the infinite-scale argument.
+
+## Baseline decision
+
+A correctly executed Newtonian specialization of the above classical Borel mechanism would meet the direct proof requirement. Credit must be partial/classical, not a novel whole-problem resolution. Initial discovery/review completion estimate: 30%; the author packet, executed evidence, bindings, and exact-head preparation remain unchecked.

@@ -1,0 +1,3218 @@
+6-arXiv:math/0209403v2 [math.GT] 2 Feb 2003
+7-                                                 for classical simple Lie algebras, and their
+8-                                                            asymptotic expansions
+9-
+10-                                                                         Søren Kold Hansen
+11-                                                                           Toshie Takata
+12-
+13-                                                 School of Mathematics, The University of Edinburgh, JCMB, King’s Buildings,
+14-                                                                 Edinburgh EH9 3JZ, United Kingdom
+15-                                                                                   and
+16-                                            Department of Mathematics, Faculty of Science, Niigata University, Niigata 950-2181,
+17-                                                                                 Japan
+18-                                                Email: hansen@maths.ed.ac.uk and takata@math.sc.niigata-u.ac.jp
+19-
+20-                                            Abstract
+21-
+22-                                            We derive explicit formulas for the Reshetikhin–Turaev invariants of all oriented
+23-                                            Seifert manifolds associated to an arbitrary complex finite dimensional simple
+24-                                            Lie algebra g in terms of the Seifert invariants and standard data for g. A
+25-                                            main corollary is a determination of the full asymptotic expansions of these
+26:                                            invariants for lens spaces in the limit of large quantum level. Our results are
+27-                                            in agreement with the asymptotic expansion conjecture due to J. E. Andersen
+28-                                            [1], [2].
+29-
+30-                                            AMS Classification numbers Primary: 57M27
+31-                                            Secondary: 17B37, 18D10, 41A60
+32-
+33-                                            Keywords: Quantum invariants, Seifert manifolds, quantum groups, modu-
+34-                                            lar tensor categories, asymptotic expansions
+35-
+36-
+37-
+38-
+39-                                                                                     1
+40-1    Introduction
+41-
+42-In 1988 E. Witten [55] proposed new invariants ZkG (X, L) ∈ C of an arbitrary 3–
+43-manifold X with an embedded colored link L by quantizing the Chern–Simons
+44-field theory associated to a simple and simply connected compact Lie group
+45-G, k being an arbitrary positive integer called the (quantum) level. (Here and
+46-in the following a 3–manifold is a closed oriented 3–manifold. In particular
+47-a Seifert manifold is an oriented Seifert manifold.) The invariant ZkG (X, L) is
+48-given by a Feynman path integral over the (infinite dimensional) space of gauge
+49-equivalence classes of connections in a G bundle over X . This integral should
+50-be understood in a formal way since, at the moment of writing, it seems that
+51-no mathematically rigorous definition is known, cf. [27, Sect. 20.2.A]. We will
+52-call the invariants ZkG for the quantum G–invariants or the Witten invariants
+53-associated to G.
+54-N. Reshetikhin and V. G. Turaev [44] were the first to give a rigorous construc-
+55-tion of quantum invariants of 3–manifolds with embedded knots. In fact they
+56-                           sl (C)
+57-constructed invariants τr 2 (X, L) ∈ C of the pair (X, L) by combinatorial
+58-means using surgery presentations of (X, L) and irreducible representations of
+59-the quantum deformations of sl2 (C) at certain roots of unity, r being an inte-
+60-ger ≥ 2 associated to the order of the root of unity. Later quantum invariants
+61-τrg(X, L) ∈ C associated to other complex simple Lie algebras g were con-
+62-structed using representations of the quantum deformations of g at ‘nice’ roots
+63-of unity, see [53]. We call τrg for the quantum g–invariants or the RT–invariants
+64-associated to g.
+65-Both in Witten’s approach and in the approach of Reshetikhin and Turaev the
+66-invariants are part of a family of topological quantum field theories (TQFT’s).
+67-This implies that the invariants are defined for compact oriented 3–dimensional
+68-cobordisms (perhaps with some extra structure on the boundary), and sat-
+69-isfy certain cut-and-paste axioms, see [4], [11], [42], [52]. The TQFT’s of
+70-Reshetikhin and Turaev can from an algebraic point of view be given a more
+71-general formulation by using so-called modular (tensor) categories [52]. The
+72-representation theory of the quantum deformations of g at certain roots of
+73-unity, g an arbitrary finite dimensional complex simple Lie algebra, induces
+74-such modular categories, see e.g. [32], [9], [35].
+75-The invariants of Witten are defined by means of a path integral as stated
+76-above. A natural way in physics to obtain information about quantities defined
+77-by means of such path integrals is to study their perturbative (or asymptotic)
+78-expansion for large level k . In fact, by using stationary phase approximation
+79-
+80-                                       2
+81-techniques together with path integral arguments Witten was able [55] to ex-
+82-press the leading large k asymptotics (or the so-called semiclassical approxima-
+83-tion) of ZkG (X) as a sum over the set of stationary points for the Chern–Simons
+84-functional. The terms in this sum are expressed by such topological/geometric
+85-invariants as Chern–Simons invariants, Reidemeister torsions and spectral flows,
+86-so here we see a way to extract topological information from the invariants. A
+87-full asymptotic expansion of Witten’s invariant is expected on the basis of a
+88-full perturbative analysis of the Feynman path integral, see [7], [8], [6].
+89-The first rigorous verifications of the conjectured formula for the semiclassical
+90-approximation were given, partly by Freed and Gompf [13] presenting a large
+91:amount of computer calculations for the SU (2)–invariants of lens spaces and
+92-some 3–fibered Seifeirt manifolds, and about the same time by Jeffrey [26] and
+93-Garoufalidis [14] who independently gave exact calculations of the semiclassical
+94:approximation of the SU (2)–invariants of lens spaces. Jeffrey also verified parts
+95-of the conjecture for the semiclassical approximation of ZkG (X) for G arbitrary
+96-and X belonging to a class of mapping tori of the torus.
+97-It is generally believed that the family of TQFT’s of Reshetikhin and Turaev is a
+98-mathematical realization of Witten family of TQFT’s. This belief has together
+99-with the above works on the perturbative expansion of Witten’s invariants led
+100-to a detailed conjecture, the asymptotic expansion conjecture (AEC), which
+101-specifies the asymptotic behaviour of the RT–invariants. The AEC was pro-
+102-posed by Andersen in [1], where he proved it for mapping tori of finite order
+103-diffeomorphisms of orientable surfaces of genus at least two using the gauge
+104-theoretic approach to the quantum invariants.
+105-Let us give an outline of the results obtained in this paper. Firstly, we deter-
+106-mine formulas for the invariants τrg of all Seifert manifolds in terms of the Seifert
+107-invariants and standard data for g, g being an arbitrary complex finite dimen-
+108-sional simple Lie algebra, cf. Theorem 4.3. Theorem 4.3 is a generalization of
+109-[17, Theorem 8.4]. For a certain subclass of the Seifert manifolds, containing all
+110-the Seifert fibered integral homology spheres, we simplify the expression for the
+111-invariants considerable, cf. Theorem 4.8. This result is a generalization of [33,
+112-Formula (4.2)]. Secondly, we analyse more carefully the invariants τrg(X) for X
+113:any lens space. Theorem 5.1 gives the result for any lens space and any of the
+114:invariants τrg . Proposition 5.2 gives more compact expressions for τrg(L(p, q))
+115:in case r and p are coprime. A main corollary of Theorem 5.1, Corollary 5.5,
+116-is a determination of the large r asymptotics of the quantum g–invariants of
+117:the lens spaces. The result is in agreement with the AEC, and leads together
+118-with the AEC to a Conjecture 5.6 for the Chern–Simons invariants of the flat G
+119:connections on any lens space, G being an arbitrary simply connected, compact
+120-
+121-                                         3
+122:simple Lie group. All the results for lens spaces are generalizations of results
+123:in [26], which considered the g = sl2 (C) case. To be precise Theorem 5.1 gen-
+124-eralizes [26, Theorem 3.4], Proposition 5.2 generalizes [26, Theorem 3.7], and
+125-Corollary 5.5 is a generalization of [26, Formula (5.7)].
+126-We have via recent private communication learned that J. E. Andersen has
+127-for the groups G = SU (n) proved the asymptotic expansion conjecture for
+128-all closed 3–manifolds via the gauge theoretic approach. The proof involves
+129-asymptotics of Hitchin’s connection over Teichmüller space, approximations to
+130-all orders, of the boundary states of handle bodies and techniques similar to
+131-the ones presented in [3]. Where Andersen works with the gauge theoretic
+132-definition of the quantum invariant, we work with the definition of Reshetikhin
+133:and Turaev and our proof of the AEC for lens spaces is very different from
+134-Andersen’s general proof in the SU (n)–case.
+135-A major part of the paper is concerned with studying a certain family of finite
+136-dimensional complex representations Rgr of SL(2, Z), one representation for
+137-each pair g, r. These representations are known from the study of theta func-
+138-tions and modular forms in connection with the study of affine Lie algebras, cf.
+139-[29], [28, Sect. 13]. They also play a fundamental role in conformal field theory
+140-and (therefore) in the Chern–Simons TQFT’s of Witten, see e.g. [15], [54], [55].
+141-In case g = sl2 (C), Jeffrey [25], [26] has determined a nice formula for Rgr (U )
+142-in terms of the entries in U ∈ SL(2, Z) and the integer r. Theorem 2.6 is a
+143-generalization of Jeffrey’s result to arbitrary g, compare with [26, Sect. 2]. The
+144-representations Rgr are of interest when calculating the RT–invariants of the
+145-Seifert manifolds since certain matrices, which can be expressed through these
+146-representations, enter into the formulas of the invariants.
+147-The paper is organized as follows. In Sect. 2 we derive formulas for the repre-
+148-sentations Rgr . Sect. 3 is a short section intended to introduce notation for the
+149-Seifert manifolds. Moreover, we recall surgery presentations for these manifolds
+150-due to Montesinos [39]. In Sect. 4 we recall the formulas for the RT–invariants
+151-of the Seifert manifolds for an arbitrary modular category. These formulas
+152-are then used together with the results in Sect. 2 to calculate the g–invariants
+153:of the Seifert manifolds. In Sect. 5 we analyse the case of lens spaces more
+154-carefully. In the final Sect 6 we state a rational surgery formula for the quan-
+155-tum g–invariants, specializing a rational surgery formula [17, Theorem 5.3] for
+156-the RT–invariants associated to an arbitrary modular category. Besides an ap-
+157-pendix is added presenting two related proofs of a reciprocity formula for Gauss
+158-sums, Proposition 2.2, which plays a vital role in this paper.
+159-After having finished this work, we learned via private communication that
+160-Marino has obtained a similar result as ours Theorem 4.8 in case the Siefert
+161-
+162-                                        4
+163-manifold has base S 2 and the Lie algebra g is simply laced, cf. [38, Formula
+164-(4.11)]. It seems that the result Theorem 2.6 (in the form of the first formula in
+165-Corollary 2.7) has been known in the mathematical physics literature for some
+166-time at least for the simply laced case, cf. [38, Formula (2.5)], [45, Formula
+167-(1.6)]. We have, however, not been able to find any proof of this result in the
+168-literature.
+169-This paper is an extensive expansion of the paper [19] and gives also the details
+170-left out in that paper, in particular the proof of the main Lemma 2.4.
+171-
+172-Acknowledgements This work were done while the first author was sup-
+173-ported by a Marie Curie Fellowship of the European Commission (CEE No
+174-HPMF-CT-1999-00231) and a postdoctoral fellowship of the European Com-
+175-mision research network EDGE (European Differential Geometry Endeavour).
+176-He acknowledge hospitality of l’Institut de Recherche Mathématique Avancée
+177-(IRMA), Université Louis Pasteur and C.N.R.S., Strasbourg, while being a
+178-Marie Curie Fellow, and the School of Mathematics, University of Edinburgh,
+179-while being an EDGE postdoctoral fellow. Much of this work were done while
+180-the second author visited IRMA and she also thanks this department for its hos-
+181-pitality. A part of this work was done while both authors visited the Research
+182-Institute for Mathematical Sciences (RIMS), Kyoto University. We would like to
+183-thank RIMS for hospitality during the special month on invariants of knots and
+184-3–manifolds, September 2001. We also thank the organizers of this workshop
+185-for financial support during our visit. The first author thanks J. E. Ander-
+186-sen for helpful conversations about quantum invariants in general and about
+187-asymptotics of these invariants in particular, and both authors would like to
+188-thank T. T. Q. Le for some helpful comments. The first author is partially
+189-supported by the Danish Natural Science Research Council.
+190-
+191-
+192-2    Formulas for the representations of SL(2, Z).
+193-
+194-In this section we analyse a family of unitary representations of SL(2, Z) asso-
+195-ciated with a complex finite dimensional simple Lie algebra g. First let us fix
+196-some notation for g. (For details about standard material for Lie algebras we
+197-refer to [22].) Let h be a Cartan subalgebra of g, and let h∗R be the R–vector
+198-space spanned by the roots. We let X and Y be the weight lattice and the root
+199-lattice respectively. Let h·, ·i be the standard
+200-                                        √        inner product in h∗R normalized
+201-such that the long roots have length 2. (That is, h·, ·i is proportional to the
+202-inner product induced by the Killing form of g restricted to h.) Then the short
+203-
+204-                                        5
+205-                         p
+206-roots have length 2/m, where m = 1 if g is simply laced, i.e. belongs to the
+207-series A, D or E , m = 2 if g belongs to the series B or C or is of type F4 , and
+208-m = 3 if g is of type G2 . In the following, the symbol m will be reserved for
+209-this number. For x ∈ h∗R \ {0}, we let x∨ = 2x/hx, xi. If Π = {α1 , α2 , . . . , αl }
+210-is an arbitrary set of simple (basis) roots and if {λ1 , λ2 , . . . , λl } ⊆ h∗R is the set
+211-of fundamental dominant weights relative to Π, i.e. hλi , α∨           j i = δij , then X is
+212-the Z–lattice generated by {λ1 , λ2 , . . . , λl } and Y is the Z–lattice generated
+213-by Π. Let ∆ be the set of roots. Then { α∨ | α ∈ ∆ } are the so-called dual
+214-roots or coroots (relative to our inner product h·, ·i). (So in this paper a coroot
+215-is in h∗R and not in h.) The coroot lattice Y ∨ is the Z–lattice generated by
+216-{α∨             ∨
+217-   1 , . . . , αl } for an arbitrary set of simple roots {α1 , . . . , αl }. Recall that
+218-
+219-                  Y ∨ = {x ∈ h∗R | hx, yi ∈ Z for all y ∈ X},                           (1)
+220-                    X =      {x ∈ h∗R | hx, yi ∈ Z                    ∨
+221-                                                       for all y ∈ Y }.
+222-We note that X and Y ∨ are dual to each other. It is obvious from the above,
+223-that the Weyl group W preserves the lattices X , Y , and Y ∨ . Let us also note
+224-the following facts: For all x, y ∈ Y ∨ we have
+225-                               hx, yi ∈ Z,        hx, xi ∈ 2Z.                          (2)
+226-There exists a (least) positive integer D such that we for all µ, ξ ∈ X have
+227-                                       1                     2
+228-                            hµ, ξi ∈     Z,       hµ, µi ∈     Z.                       (3)
+229-                                       D                     D
+230-Let us fix a set Π = {α1 , α2 , . . . , αl } of simple roots in the following and let
+231-{λ1 , λ2 , . . . , λl } be the set of fundamental dominant weights relative to Π. The
+232-(open) fundamental Weyl chamber (relative to Π) is the set
+233-                     FWC = {x ∈ h∗R | hx, αi i > 0, i = 1, . . . , l}.
+234-We let C = FWC be the topological closure of FWC. For a positive integer k ,
+235-the k –alcove (relative to Π) is the (closed) set
+236-                              Ck = {x ∈ C | hx, θi ≤ k},
+237-where θ is the highest root of g (relative to Π). (Note that θ is a long root).
+238-We will also need the following sets:
+239-                 Qk = {c1 λ1 + . . . + cl λl | c1 , . . . , cl ∈ [0, k[ },
+240-                  Pk = {c1 α∨               ∨
+241-                            1 + . . . + cl αl | c1 , . . . , cl ∈ [0, k[ }.
+242-
+243-Let Wkaff = W ⋉ kY ∨ be the affine Weyl group acting on h∗R in the usual sense
+244-(kY ∨ acting by translations). It follows that Pk is a fundamental domain of
+245-the group kY ∨ . Moreover, it is well-known (see [28, Sect. 6] for a proof) that
+246-
+247-                                              6
+248-Ck is a fundamental domain of Wkaff . We will say that a subset M of h∗R is
+--
+314-
+315-                                           7
+316-In the calculations to follow, a multi-dimensional reciprocity formula for Gauss
+317-sums plays a crucial role. Let V be a real vector space of dimension l with
+318-inner product h·, ·i, Λ a lattice in V and Λ∗ the dual lattice. For an integer r,
+319-a self-adjoint automorphism f : V → V , and an element ψ ∈ V , we assume
+320-                 r
+321-                   hλ, f (λ)i, hλ, f (η)i, rhλ, ψi ∈ Z, ∀λ, η ∈ Λ,            (5)
+322-                 2
+323-                 r
+324-                   hµ, f (µ)i, hµ, rξi, rhµ, ψi ∈ Z, ∀µ, ξ ∈ Λ∗ ,
+325-                 2
+326-and f (Λ∗ ) ⊆ Λ∗ . Then we have
+327-
+328-Proposition 2.2 (Reciprocity formula for Gauss sums)
+329-                     √
+330-                                             √
+331-                                      
+332-        ∗
+333-           X         π −1                             
+334:   vol(Λ )      exp         hλ, f (λ)i exp 2π −1hλ, ψi
+335-                        r
+336-              λ∈Λ/rΛ
+337-                             −1/2
+338-                                                                    √
+339-              
+340-                       f                         X
+341-                                     r l/2                   exp −πr −1hµ + ψ, f −1 (µ + ψ)i .
+342-                                                                                            
+343-          =       det √
+344-                        −1
+345-                                             µ∈Λ∗ /f (Λ∗ )
+346-
+347-For a proof, see [25, Sect. 2]. For the convenience of the reader, we sketch
+348-Jeffrey’s proof in the appendix. Moreover, we present in the appendix a slightly
+349-alternative proof. Both arguments rely on the Poisson resummation formula.
+350-Below we will use the reciprocity formula, Proposition 2.2, with Λ = X , the
+351-dual lattice being the coroot lattice Y ∨ .
+352-The group SL(2, Z) is generated by two matrices
+353-                                                 
+354-                           0 −1                 1 1
+355-                    Ξ=              , Θ=              .                                    (6)
+356-                           1 0                  0 1
+357-We note that
+358-                                       Ξ2 = (ΞΘ)3 = −1.                                    (7)
+359-For a tuple of integers C = (m1 , . . . , mt ) we let Ck = (m1 , . . . , mk ) and
+360-                         C C 
+361-                          ak bk
+362-                  BkC =                  = Θmk ΞΘmk−1 Ξ . . . Θm1 Ξ                        (8)
+363-                          cCk dCk
+364-for k = 1, 2, . . . , t, and let B C = BtC . Moreover, we put
+365-                               aC0 = dC0 = 1,            bC0 = cC0 = 0.
+366-We say that C has length |C| = t. If it is clear from the context what C is we
+367-write ak for aCk etc. By [26, Proposition 2.5] the elements ai , bi , ci , di satisfy
+368-the recurrence relations
+369-                             ak = mk ak−1 − ck−1 , ck = ak−1 ,                             (9)
+370-                             bk = mk bk−1 − dk−1 , dk = bk−1
+371-
+372-
+373-                                                     8
+374-for k = 1, 2, . . . , t. Moreover,
+375-                                                            
+376-                          bk        1   1               1
+377-                             =−       +      + ··· +                                (10)
+378-                          ak        a1 a2 a1         ak ak−1
+379-and (m1 , . . . , mk ) is a continued fraction expansion of ak /bk , k = 1, 2, . . . , t,
+380-i.e.
+381-                             ak                  1
+382-                                = mk −                    .                       (11)
+383-                             bk                      1
+384-                                        mk−1 −
+385-                                                       1
+386-                                                 ··· −
+387-                                                       m1
+388-Let in the following κ ∈ Z>0 be fixed. We have a representation R = Rgκ of
+389-SL(2, Z) given by
+390-                √ |∆+ |                                   √
+391:                          vol(X) 1/2 X
+392-                                                                      
+393-                  −1                                    2π −1
+394-     R(Ξ)λµ =                              det(w) exp −       hw(λ), µi ,
+395:                   κl/2   vol(Y ∨ )                       κ
+396-                                      w∈W
+397-                         √            √         
+398-                         π −1 2 π −1 2
+399-     R(Θ)λµ = δλµ exp           |λ| −        |ρ|                       (12)
+400-                           κ            h∨
+401-for λ, µ ∈ int(Cκ ) ∩ X . Here ρ is half the sum of positive roots. In the
+402-following we also write Ũ for R(U ). Note that the matrices R(Ξ) and R(Θ)
+403-are symmetric (in fact R(Θ) is diagonal).
+404-
+405-Remark 2.3 It is well-known that the representations R are unitary. Let us
+406-here give a few references to this fact. Unitarity of R(Θ) follows immediately
+407-from (12). By [9, Theorem 3.3.20] we have
+408-                                    R(Ξ)λµ = sλµ ,                                  (13)
+409-where s is defined in [9, Formula (3.1.16)], and ·¯ is complex conjugation. (In
+410-the expression for sλµ in [9, Theorem 3.3.20] there is a minor mistake; one has
+411-to replace i|∆+ | by i−|∆+ | .) By the proof of [9, Theorem 3.3.20] it follows that
+412-                                      s2λµ = δλ∗ µ .                                (14)
+413-Here λ∗ = −w0 (λ − ρ) + ρ = −w0 (λ), where w0 is the longest element in W
+414-(relative to our set of simple roots Π) and where we use that w0 (ρ) = −ρ, see
+415-[23, Sect. 1.8]. By [23, Sect. 1.8] we have det(w0 ) = (−1)|∆+ | . By this and (12)
+416-we get
+417-                                R(Ξ)λ∗ µ = R(Ξ)λµ .                            (15)
+418-Now unitarity of R(Ξ) follows from (13), (14), and (15). The original reference
+419-for the unitarity of R seems to be [15, Appendix].
+420-
+421-                                            9
+422-One should note that the expressions for the entries of R(Ξ) and R(Θ) are
+423-well-defined for all λ, µ ∈ X . Note also that if λ or µ is an elements of X
+424-belonging to the boundary of Cκ , then R(Ξ)λµ = 0 (use the same argument as
+425-in the proof of the final claim of Proposition 2.1). This observation allows us
+426-to shift between int(Cκ ) ∩ X and Cκ ∩ X as summation index set in formulas
+427-below. Following Jeffrey [25, Sect. 2], [26, Sect. 2] we consider
+428-                                                        mt−1                     m1
+429-                    X
+430-     TλC0 ,λt+1 =            Ξ̃λt+1 λt Θ̃m
+431-                                         λt Ξ̃λt λt−1 Θ̃λt−1 Ξ̃λt−1 λt−2 · · · Θ̃λ1 Ξ̃λ1 λ0
+432-                                           t
+433-
+434-                  λ1 ,...,λt ∈Cκ ∩X
+435-
+436-for λ0 , λt+1 ∈ X , where we write Θ̃λ for Θ̃λλ . Then we have the following
+437-generalization of [26, Lemma 2.6]:
+438-
+439-Lemma 2.4 Assume that C = (m1 , . . . , mt ) is a sequence of integers such that
+440-ak is nonzero for k = 1, . . . , t. Then
+441-                                                   √                           2
+442-                                                                                 !
+443-                   X                X            π  −1c t             w(λ  0 )
+444- TλC0 ,λt+1 = KλC0   det(w)                exp −          λt+1 + κµ +
+445-                                    ∨    ∨
+446-                                                   at κ                 ct
+447-                   w∈W                µ∈Y /at Y
+448-
+449-for all λ0 , λt+1 ∈ X , where
+450-                        √ (t+1)|∆+ |                         √        t
+451-                                                                                 !
+452-              C          −1                  l Dt          π −1 X              2
+453-          Kλ0 =                            ζ      exp − ∨ (             mi )|ρ|
+454:                     (κ|at |)l/2 vol(Y ∨ )                   h
+455-                                                                    i=1
+456-                                        √        t−1
+457-                                                                    !
+458-                                      π −1 X 1
+459-                         × exp −               (             )|λ0 |2 .
+460-                                          κ          ai−1 ai
+461-                                                       i=1
+462-              √
+463-Here ζ = exp π 4−1       and Dt = sign(a0 a1 ) + · · · + sign(at−1 at ).
+464-
+465-Proof We prove the proposition by induction on the length of C . First consider
+466-TλC01,λ2 , λ0 , λ2 ∈ X . Since Ξ̃ is symmetric we have
+467-                       X
+468-       TλC01,λ2 =            Ξ̃λ2 λ1 Θ̃m 1
+469-                                       λ1 Ξ̃λ1 λ0
+470-                   λ1 ∈Cκ ∩X
+471-                                           √
+472:                   (−1)|∆+ | vol(X)
+473-                                                       
+474-                                            π −1
+475-                                                                            gλ1,m  1 ,κ
+476-                                                                    X
+477-                                                     2
+478-              =                        exp − ∨ m1 |ρ|                          0 ,λ2
+479-                                                                                        (λ),
+480:                      κl     vol(Y ∨ )       h
+481-                                                                  λ∈Cκ ∩X
+482-
+483-where gλ1,m   1 ,κ
+484-          0 ,λ2
+485-                   is given by (4). The closure Q̄m of Qm is precisely tiled by
+486-1–alcoves. Moreover, if Q̄N is tiled by n 1–alcoves, then Q̄kN is tiled by n
+487-k –alcoves. We also have that if Q̄N is tiled by n 1–alcoves, then Q̄kN is tiled
+488:by kl n 1–alcoves. Note that vol(Q̄N ) = N l vol(X) and vol(C1 ) = vol(P̄1 )/|W |.
+489-We use here that C1 is a fundamental domain for the action of W1aff , while P1
+490-
+491-                                                  10
+492-is a fundamental domain for the action of Y ∨ . Therefore, if Q̄N is precisely
+493:tiled by n 1–alcoves, then n = vol(Q̄N )/ vol(C1 ) = N l |W | vol(X)/ vol(Y ∨ ).
+494-Let N = mD, where D is the integer from (3). By Proposition 2.1 and the
+495-above we get
+496-                gλ1,m 1 ,κ
+497-                                                              gλ1,m  1 ,κ
+498-          X                                                 X
+499-                                   l                    ∨
+500-                    ,λ
+501-                   0 2
+502:                           (λ) = N   |W | vol(X)/ vol(Y   )      0 ,λ2
+503-                                                                          (λ).
+504-             λ∈X/N κX                                            λ∈Cκ ∩X
+505-
+506-Therefore
+507-                                        √
+508-                       (−1)|∆+ |
+509-                                                     X
+510-                                          π −1
+511-  TλC01,λ2       =                 exp − ∨ m1 |ρ| 2
+512-                                                               det(ww′ )
+513-                       κl N l |W |         h
+514-                                                      w,w ′ ∈W
+515-                                           √                                      
+516-                               X           π −1       2                   ′
+517-                                                                                 
+518-                        ×             exp       m1 |λ| + hλ, −2w(λ0 ) − 2w (λ2 )i .
+519-                                             κ
+520-                          λ∈X/N κX
+521-
+522-Let f = m1 N idh∗R , ψ = ψ(w, w′ ) = − κ1 (w(λ0 ) + w′ (λ2 )), w, w′ ∈ W , and
+523-r = N κ. Then, by (1), (2), and (3), the assumptions (5) are satisfied, so by
+524-Proposition 2.2 we get
+525-                             √
+526-            (−1)|∆+ |
+527-                                                   X
+528-  C1                             π −1           2
+529-Tλ0 ,λ2 =             exp − ∨ m1 |ρ|                          det(ww′ )
+530-             r l |W |                h
+531-                                                    w,w ′ ∈W
+532-                                   √
+533-                                                                √
+534-                                                   
+535-                   X             π −1                                     
+536-             ×           exp             hλ, f (λ)i exp 2π −1hλ, ψi
+537-                                     r
+538-                 λ∈X/rX
+539-                               |∆+ |
+540-                                                 −1/2             √         
+541-                   ∨ −1 (−1)                 f              l/2        π −1  2
+542:        = vol(Y )                     det √                r exp − ∨ m1 |ρ|
+543-                          r l |W |           −1                         h
+544-                   X
+545-                                   ′
+546-                                          X                   √
+547-                                                   exp −π −1rhµ + ψ, f −1 (µ + ψ)i
+548-                                                                                  
+549-             ×          det(ww )
+550-                        w,w ′ ∈W              µ∈Y ∨ /f (Y ∨ )
+551-                                              √      l/2      √
+552-                           (−1)|∆+ |
+553-                                                                              
+554-                                                   −1            π −1       2
+555-             =                                             exp − ∨ m1 |ρ|
+556:                     (κN )l/2 vol(Y ∨ )|W |      m1 N              h
+557-                                                                  √            
+558-                          X                        X              π −1κ
+559-                      ×          det(ww′ )                  exp −       |µ + ψ|2 .
+560-                                                                    m1
+561-                        w,w ′ ∈W                  ∨
+562-                                              µ∈Y /m1 N Y ∨
+563-          √                   
+564-Here exp − π m−1κ1
+565-                    |µ + ψ|  2   is invariant under µ 7→ µ + m1 α, µ, α ∈ Y ∨ , by
+566-(1) and (2), so
+567-                                   √ l/2         √
+568-                 (−1)|∆+ |
+569-                                                                  
+570-  C1                                   −1             π −1      2
+571-Tλ0 ,λ2 =                                     exp − ∨ m1 |ρ|
+572:            (κ)l/2 vol(Y ∨ )|W |     m1                 h
+573-                                                          √             
+574-                     X
+575-                                     ′
+576-                                           X              π −1κ        2
+577-                 ×          det(ww )               exp −        |µ + ψ|
+578-                       ′                   ∨     ∨
+579-                                                           m1
+580-                            w,w ∈W                µ∈Y /m1 Y
+581-
+582-
+583-                                                      11
+584-                                   √      l/2     √
+585-               (−1)|∆+ |
+586-                                                                    X
+587-                                        −1            π −1       2
+588-       =                                        exp − ∨ m1 |ρ|               det(ww′ )
+589:           κl/2 vol(Y ∨ )|W |          m1                h
+590-                                                                    w,w ′ ∈W
+591-                                          √                                      
+592-                          X                 π −1      ′ −1    ′ −1              2
+593-                 ×                   exp −         |κw (µ) − w w(λ0 ) − λ2 |
+594-                                              m1 κ
+595-                     µ∈Y ∨ /m1 Y   ∨
+596-
+597-                               √ l/2     √
+598-               (−1)|∆+ |
+599-                                                       
+600-                                 −1         π −1     2
+601-       =                               exp − ∨ m1 |ρ|
+602:           κl/2 vol(Y ∨ )|W |   m1           h
+603-                                    −1
+604-                   X X
+605-                ×             det(w′ w)
+606-                     w ′ ∈W w∈W
+607-                                           √                               
+608-                          X              π −1             ′ −1            2
+609-                ×               exp −             |κµ − w w(λ0 ) − λ2 |
+610-                                           m1 κ
+611-                  µ∈Y ∨ /m1 Y ∨
+612-            √                        !l                           √
+613-           ( −1)2|∆+ |
+614-                                                                          
+615-                                1         l sign(m1 )        m1 π −1 2
+616-       =                                ζ             exp −           |ρ|
+617:           κl/2 vol(Y ∨ )                                        h∨
+618-                            p
+619-                               |m1 |
+620-                                                     √                             
+621-                   X                 X                  π −1                      2
+622-                ×       det(w)                  exp −          |κµ − w(λ0 ) − λ2 | .
+623-                                     ∨        ∨
+624-                                                         m1 κ
+625-                     w∈W             µ∈Y /m1 Y
+626-
+627-
+628-
+629-
+630-Finally we replace µ by −µ, and use that m1 = a1 , c1 = 1.
+631-
+632-
+633-Assume next by induction that the lemma is true for all sequences of length
+634-t − 1. Then we get for λ0 , λt+1 ∈ X that
+635-
+636-
+637-                                               C
+638-                     X
+639-  TλC0 ,λt+1 =                Ξ̃λt+1 λt Θ̃m     t−1
+640-                                          λt Tλ0 ,λt
+641-                                            t
+642-
+643-                 λt ∈Cκ ∩X
+644-                          √ |∆ |               √
+645:                         −1 + vol(X) 1/2
+646-                                                           
+647-                  C                             π −1     2
+648-            =    Kλ0t−1                    exp − ∨ mt |ρ|
+649:                         κl/2    vol(Y ∨ )       h
+650-                         X
+651-                                      ′
+652-                       ×       det(ww )
+653-                           w,w ′∈W
+654-                                        √                                     
+655-                              X          π −1
+656-                                              mt |λt |2 + hλt , −2w′ (λt+1 )i
+657-                                                                             
+658-                       ×           exp
+659-                                           κ
+660-                         λt ∈Cκ ∩X
+661-                                              √                                !
+662-                               X             π −1ct−1                 w(λ0 ) 2
+663-                       ×               exp −             λt + κµ +               .
+664-                              ∨      ∨
+665-                                               at−1 κ                  ct−1
+666-                           µ∈Y /at−1 Y
+667-
+668-
+669-                                                12
+670-By (1) and (2) we have
+671-                                          √                                           
+672-          X
+673-                          ′
+674-                                 X        π −1                               ′
+675-                                                                                     
+676-                 det(ww )            exp           hλt , mt λt i + hλt , −2w (λt+1 )i
+677-                                            κ
+678-        w,w ′ ∈W           λt ∈Cκ ∩X
+679-                                            √                                  !
+680-                          X                π −1ct−1                  w(λ0 ) 2
+681-                   ×                exp −                λt + κµ +
+682-                         ∨        ∨
+683-                                             at−1 κ                     ct−1
+684-                     µ∈Y /at−1 Y
+685-                  X                   X         X
+686-               =        det(ww′ )
+687-               w,w ′ ∈W                 λt ∈Cκ ∩X µ∈Y ∨ /at−1 Y ∨
+688-                        √                                                           
+689-                         π −1                   2                        ′
+690-                                                                                   
+691-                 × exp             mt |λt + κµ| + hλt + κµ, −2w (λt+1 )i
+692-                            κ
+693-                        √
+694-                           π −1ct−1
+695-                 × exp −                 |λt + κµ|2
+696-                              at−1 κ
+697-                            √                                      √              
+698-                         2π −1                                   π −1
+699-                       +           hλt + κµ, −w(λ0 )i −                    |λ0 |2
+700-                          at−1 κ                              at−1 ct−1 κ
+701-                        √                X
+702-                        π −1                         a     ,at ,κ
+703-             = exp −              |λ0 |2            gλt−1
+704-                                                       0 ,λt+1
+705-                                                                  (λt ).
+706-                      at−1 ct−1 κ
+707-                                                 λt ∈Cκ ∩X
+708-                                                 t    a    ,a ,κ
+709-We want to alter the sum λt ∈Cκ ∩X gλt−1
+710-                                   P
+711-                                           0 ,λt+1
+712-                                                   (λt ) by applying the reciprocity
+713-formula, Proposition 2.2. Before we can do this we need to alter this sum
+714-using some symmetries. By Proposition 2.1 and the fact that Cκ and Pκ are
+715-fundamental domains of respectively Wκaff and κY ∨ , we get
+716-                            a     ,at ,κ
+717-                      X                           X a ,a ,κ
+718-                                                               t
+719-                |W |       gλt−1
+720-                              0 ,λt+1
+721-                                         (λ)  =       gλt−1
+722-                                                         0 ,λt+1
+723-                                                                 (λ).
+724-                              λ∈Cκ ∩X                       Pκ ∩X
+725-
+726-Since the map Y ∨ /at−1 Y ∨ × (Pκ ∩ X) → Pat−1 κ ∩ X , (µ, λ) 7→ λ + κµ, defines
+727-a bijection, we therefore get
+728-                 X      a     ,at ,κ        1   X
+729-                       gλt−1
+730-                           ,λ        (λ) =          hλ0 ,λt+1 (λ),
+731-                          0 t+1            |W |
+732-                 λ∈Cκ ∩X                                  λ∈Pat−1 κ ∩X
+733-
+734-where
+735-                                               √
+736-                                 X               π −1at 2
+737-                                                  ′
+738-        hλ0 ,λt+1 (λ) =          det(ww ) exp            |λ|
+739-                                                  at−1 κ
+740-                        w,w ′ ∈W
+741-                                        √                                 
+742-                                     2π −1                       ′
+743-                                   +         hλ, −w(λ0 ) − at−1 w (λt+1 )i .
+744-                                      at−1 κ
+745-Exactly as in the proof of Proposition 2.1 we get that hλ0 ,λt+1 : X → C is
+746-invariant under the action of Waaff
+747-                                 t−1 κ
+748-                                       , and, moreover, that hλ0 ,λt+1 (λ) = 0 for
+749-
+750-                                                  13
+751-all λ ∈ X ∩ H κ . Now let N = mD as in the first part of the induction and get
+752-that
+753:            X                       N l |W | vol(X) X
+754-                    hλ0 ,λt+1 (λ) =                         hλ0 ,λt+1 (λ),
+755:                                        vol(Y ∨ )
+756-        λ∈X/κat−1 N X                                           λ∈Cat−1 κ ∩X
+757-
+758-where we use that Q̄κat−1 N is precisely tiled by κat−1 –alcoves, in fact by
+759:N l |W | vol(X)/ vol(Y ∨ ) of these alcoves. Therefore
+760-           X        a     ,a ,κ
+761:                           t                vol(Y ∨ )               X
+762-                   gλt−1
+763-                     0 ,λt+1
+764-                             (λ) =                                          hλ0 ,λt+1 (λ).
+765:                                        N l |W | vol(X)
+766-         λ∈Cκ ∩X                                            λ∈X/κat−1 N X
+767-
+768-Putting everything together we get
+769-                          √ |∆+ |                           √
+770:                                        vol(Y ∨ ) 1/2
+771-                                                                          
+772-       C            Ct−1    −1                               π −1       2
+773-     Tλ0 ,λt+1 = Kλ0                                    exp − ∨ mt |ρ|
+774:                         κl/2 N l |W | vol(X)                 h
+775-                                      √               
+776-                                      π −1                  X
+777-                       × exp −                  |λ0 |2           hλ0 ,λt+1 (λ).
+778-                                    at−1 ct−1 κ
+779-                                                                λ∈X/κat−1 N X
+780-
+781-We are now in a position where we can use the reciprocity formula. If we let
+782-f = N at idh∗R , r = κat−1 N , and ψ = ψ(w, w′ ) = − κa1t−1 (w(λ0 ) + at−1 w′ (λt+1 )),
+783-w, w′ ∈ W , then
+784-                    X                       X
+785-                            hλ0 ,λt+1 (λ) =      det(ww′ )
+786-              λ∈X/κat−1 N X                          w,w ′ ∈W
+787-                             √
+788-                                                   √
+789-                                            
+790-                      X      π −1                           
+791-                    ×   exp       hλ, f (λ)i exp 2π −1hλ, ψi .
+792-                               r
+793-                        λ∈X/rX
+794-
+795-By (1), (2), and (3) the assumptions (5) are satisfied, so by Proposition 2.2 we
+796-obtain
+797-                                                    −1/2
+798-           X
+799-                                         ∨ −1    f                 X
+800:                    hλ0 ,λt+1 (λ) = vol(Y )     √          r l/2        det(ww′ )
+801-                                                  −1                 ′
+802-                                                                 w,w ∈W
+803-      λ∈X/κat−1 N X
+804-                      X                  √
+805-                                exp −πr −1hµ + ψ, f −1 (µ + ψ)i
+806-                                                                   
+807-                ×
+808-                    µ∈Y ∨ /f (Y ∨ )
+809-              √        l/2
+810-                −1             (κat−1 )l/2       X
+811-          =                                             det(ww′ )
+812:                at              vol(Y ∨ )
+813-                                             w,w ′ ∈W
+814-                                                  √           
+815-                          X                 πκat−1 −1        2
+816-                ×                     exp −           |µ + ψ| .
+817-                                                at
+818-                    µ∈Y ∨ /at N Y   ∨
+819-
+820-
+821-
+822-                                                  14
+823-                 √             
+824-Here exp − πκat−1
+825-               at
+826-                    −1
+827-                       |µ + ψ| 2 only depends on µ (mod a Y ∨ ), so in total we
+828-                                                                 t
+829-get that
+830-                     √ |∆+ |          √                             √              
+831-    C           Ct−1 −1                  π −1          2              π −1          2
+832-  Tλ0 ,λt+1 = Kλ0               exp − ∨ mt |ρ| exp −                           |λ0 |
+833-                     κl/2 |W |             h                       at−1 ct−1 κ
+834-                   √ l/2
+835-                       −1                     X
+836-               ×                (κat−1 )l/2          det(ww′ )
+837-                      at
+838-                                            w,w ′ ∈W
+839-                                                     √              
+840-                           X                 πκat−1 −1             2
+841-                     ×              exp −                  |µ + ψ| ,
+842-                            ∨     ∨
+843-                                                   at
+844-                             µ∈Y /at Y
+845-
+846:where we use that vol(X) = vol(Y ∨ )−1 . In a similar way as in the first step of
+847-the induction we finally get
+848-                    X
+849- TλC0 ,λt+1 = KλC0t      det(w)
+850-                       w∈W
+851-                                                         √                           
+852-                                     X                 πct −1       w(λ0 )          2
+853-                             ×                   exp −        |κµ +        + λt+1 )| ,
+854-                                                         at κ        ct
+855-                                 µ∈Y ∨ /at Y   ∨
+856-
+857-
+858-where we use that at−1 = ct . Here
+859-                √ |∆+ |           √                                  √               
+860-  Ct       Ct−1 −1                     π −1           2               π −1            2
+861-Kλ0 = Kλ0                  exp − ∨ mt |ρ| exp −                                  |λ0 |
+862-                    κl/2                 h                          at−1 ct−1 κ
+863-                  √ l/2
+864-                      −1
+865-              ×                 (κat−1 )l/2
+866-                      at
+867-               √ t|∆+ |                     √ |∆+ |                   √           
+868-                  −1                 l Dt−1 −1                    mt π −1 2
+869-      =                            ζ                     exp −                 |ρ|
+870:         (κ|at−1 |)l/2 vol(Y ∨ )               κl/2                   h∨
+871-                            √         t−1
+872-                                                   !              √        t−2
+873-                                                                                                !
+874-                          π −1 X                 2               π −1 X 1                     2
+875-              × exp − ∨ (                 mi )|ρ| exp −                  (              )|λ0 |
+876-                            h                                      κ            a a
+877-                                      i=1                                  i=1 i−1 i
+878-                               √
+879-                                                   |at−1 | l/2 l/2 l sign(at at−1 )
+880-                                                        
+881-                            π −1
+882-              × exp −                   |λ0 |2                   κ ζ
+883-                          at−1 ct−1 κ                |at |
+884-           √ (t+1)|∆+ |                           √          t
+885-                                                                         !
+886-              −1                                π    −1    X
+887-      =                        ζ l Dt exp − ∨ (                 mi )|ρ|2
+888:         (κ|at |)l/2 vol(Y ∨ )                     h
+889-                                                           i=1
+890-                            √         t−1
+891-                                                           !
+892-                          π −1 X 1
+893-              × exp −               (             )|λ0 |2 ,
+894-                              κ           ai−1 ai
+895-                                         i=1
+896-
+897-where we use that ct−1 = at−2 .
+898-
+899-                                                  15
+900-We want to use the above result to find a simple expression for the entries of
+901-R(U ) in terms of the entries of U and data for the Lie algebra g. There is,
+902-however, a small hurdle to overcome because of the assumption on the ak ’s in
+903-Lemma 2.4. To this end we need
+904-                          
+905-                  a b
+906-Lemma 2.5 Let U =       ∈ PSL(2, Z) = SL(2, Z)/{±1} with c 6= 0. Then
+907-                  c d
+908-we can write
+909-                           U = V Θn
+910-where n ∈ Z and V is given in the following way: If a = 0 then V = Ξ; if
+911-a 6= 0 then there exists a sequence of integers C such that V = B C and such
+912-that aCk 6= 0, k = 1, 2, . . . , |C|.
+913-
+914-Proof If a = 0 then 1 = det(U ) = −bc so c = −b = ±1. As element of
+915-PSL(2, Z) we therefore have
+916-                                     
+917-                                 0 −1        ′
+918-                            U=      ′   = ΞΘd
+919-                                 1 d
+920-where d′ ∈ {±d}. Now assume that a 6= 0. By (7) we can find a tuple of
+921-                                                   ′             ′
+922-integers C ′ = (m1 , . . . , mt ) such that U = B C . If ai = aCi 6= 0, i = 1, 2, . . . , t,
+923-we let C = C ′ and n = 0. Therefore assume this is not the case. Let
+924-                         i = max{ j ∈ {1, 2, . . . , t} | aj = 0}.
+925-                                                                                  ′
+926-Since at = a 6= 0 we have i < t. As in the case a = 0 we have that B Ci = ΞΘj
+927-for some j ∈ Z. If i = t − 1 then
+928-                                                         
+929-                                                 1 mt + j
+930-                    U = Θmt Ξ2 Θj = Θmt +j =
+931-                                                 0    1
+932-                                                                                      ′
+933-contradicting the fact that c 6= 0. Therefore i < t − 1 and U = W Θn with
+934-n′ = mi+1 + j and
+935-                            W = Θmt Ξ · · · Θmi+2 Ξ.
+936-Let nk = mi+k+1 , k = 1, 2, . . . , t − i − 1, let C ′′ = (n1 , . . . , nt−i−1 ), and let
+937-         ′′                ′′
+938-a′k = aCk etc. Then W = B C , and
+939-                                             ′
+940-                                             ak b′k 1 n′
+941-                                                                ′
+942-                                                                        ak n′ a′k + b′k
+943-                                                                                    
+944-  ai+k+1 bi+k+1      C′            C ′′ n′
+945-                  = Bi+k+1 = Bk Θ = ′                             = ′                     ,
+946-  ci+k+1 di+k+1                              ck d′k 0 1                 ck n′ c′k + d′k
+947-so in particular a′k = ai+k+1 6= 0, k = 1, 2, . . . , t − i − 1, by the maximality of
+948-i. Therefore we can let n = n′ and C = C ′′ .
+949-
+950-                                            16
+951-For the next theorem we need the Rademacher Phi function Φ, which is defined
+952-on PSL(2, Z) by
+953-                       a+d
+954-            Φ
+955-                  a b
+956-                          =       c − 12(sign(c))s(d, c) , c 6= 0,      (16)
+957-                   c d          b
+958-                                d                        , c = 0.
+959-Here, for c 6= 0, the Dedekind sum s(d, c) is given by
+960-                                      |c|−1
+961-                                 1 X         πj      πdj
+962-                      s(d, c) =          cot     cot                      (17)
+963-                                4|c|          c        c
+964-                                     j=1
+965-                                                       
+966-                                                a i bi
+967-for |c| > 1 and s(d, ±1) = 0. If Ai =                     ∈ SL(2, Z) such that
+968-                                                ci di
+969-A3 = A1 A2 we have
+970-                   Φ(A3 ) = Φ(A1 ) + Φ(A2 ) − 3 sign(c1 c2 c3 ).           (18)
+971-We refer to [43] for a comprehensive description of the Rademacher Phi function.
+972-We will also need
+973-                             |ρ|2   dim g    2|∆+ | + l
+974-                                  =       =             ,                   (19)
+975-                              h∨     12         12
+976-where the first identity is Freudenthal’s strange formula. If c = 0 then U = ǫΘb
+977-for some b ∈ Z and ǫ ∈ {±1}. By (12) we immediately get
+978-                                           √               √        
+979-              b             b                 π −1 2 π −1 2
+980-         R(Θ )λµ = R(Θ)λµ = δλµ exp b                |µ| −        |ρ|
+981-                                                κ            h∨
+982-for λ, µ ∈ int(Cκ ) ∩ X . For the case U = −Θb = Ξ2 Θb (see (7)) we use
+983-the identity R(Ξ2 )λµ = δλµ∗ , which follows by the unitarity of R and (15)
+984-(alternatively use (13) and (14) directly). This gives
+985-                                              √               √       
+986-               b             b                  π −1 2 π −1 2
+987-        R(−Θ )λµ = R(Θ)λ∗ µ = δλ∗ µ exp b               |µ| −       |ρ|
+988-                                                   κ            h∨
+989-for λ, µ ∈ int(Cκ ) ∩ X . For the case c 6= 0 we have
+990-                                      
+991-                                 a b
+992-Theorem 2.6 Let U =                       ∈ SL(2, Z) with c 6= 0, and let λ, µ ∈
+993-                                 c d
+994-int(Cκ ) ∩ X . Then
+995-                  √                        √
+996-                 ( −1 sign(c))|∆+ |
+997-                                                              
+998-                                             π −1           2
+999-  R(U )λµ =                           exp − ∨ Φ(U )|ρ|
+1000:                  (κ|c|)l/2 vol(Y ∨ )         h
+1001-                               √            X              √                
+1002-                                π −1 d 2                      π −1 a         2
+1003-                      × exp             |µ|             exp          |λ + κν|
+1004-                                  κ c            ∨    ∨
+1005-                                                                κ c
+1006-                                             ν∈Y /cY
+1007-                                              √                   
+1008-                         X                   2π −1
+1009-                      ×        det(w) exp −          hλ + κν, w(µ)i .
+1010-                                               κc
+1011-                      w∈W
+1012-
+1013-
+1014-                                        17
+1015-If a 6= 0 we also have
+1016-                          √                        √
+1017-                         ( −1 sign(c))|∆+ |
+1018-                                                                    
+1019-                                                     π −1         2
+1020-        R(U )λµ =                             exp − ∨ Φ(U )|ρ|
+1021:                          (κ|c|)l/2 vol(Y ∨ )         h
+1022-                                      √             X
+1023-                                       π −1 b 2
+1024-                              × exp             |µ|      det(w)
+1025-                                          κ a
+1026-                                                     w∈W
+1027-                                                √                       
+1028-                                    X            π −1 a           w(µ) 2
+1029-                              ×            exp          |λ + κν −      | .
+1030-                                     ∨   ∨
+1031-                                                    κ c              a
+1032-                                ν∈Y /cY
+1033-
+1034-
+1035-Proof According to the previous lemma there exists an integer n, a sign ǫ ∈
+1036-{±1} and a V ∈ SL(2, Z) as in the Lemma 2.5 such that U = ǫV Θn . Let us
+1037-first assume that ǫ = 1. Assume, moreover, that a 6= 0 and that n = 0, i.e.
+1038-assume that U = B C , where C = (m1 , . . . , mt ) and ak 6= 0, k = 1, 2, . . . , t. Let
+1039-C ′ = (m1 , . . . , mt−1 ). Then by Lemma 2.4
+1040-                            ′
+1041-    R(U )λµ = Θ̃m    C
+1042-                λλ Tµ,λ
+1043-                  t
+1044-
+1045-                         √                       √                X
+1046-                      ′   π −1             2     π −1           2
+1047-               =   KµC exp          mt |λ| −             mt |ρ|           det(w)
+1048-                              κ                    h∨
+1049-                                                                    w∈W
+1050-                                                   √                                 !
+1051-                            X                     π −1ct−1                    w(µ) 2
+1052-                     ×                 exp −                     λ + κν +
+1053-                                                    at−1 κ                    ct−1
+1054-                       ν∈Y ∨ /at−1 Y ∨
+1055-                         √                                  √             
+1056-                  C′         π −1            2                π −1         2
+1057-               = Kµ exp − ∨ mt |ρ| exp −                                |µ|
+1058-                                h                           at−1 ct−1 κ
+1059-                                                             √                      
+1060-                        X                    X                 π −1                2
+1061-                     ×       det(w)                    exp             mt |λ + κν|
+1062-                                                                  κ
+1063-                       w∈W             ν∈Y ∨ /at−1 Y ∨
+1064-                            √                              
+1065-                                 π −1ct−1                 2
+1066-                     × exp −                    |λ + κν|
+1067-                                    at−1 κ
+1068-                                   √                         
+1069-                                 2π −1
+1070-                     × exp −               hλ + κν, w(µ)i
+1071-                                  at−1 κ
+1072-                         √                                   √             
+1073-                  C′         π −1            2                π −1          2
+1074-               = Kµ exp − ∨ mt |ρ| exp −                                |µ|
+1075-                                h                           at−1 at−2 κ
+1076-                                   √             X
+1077-                                  π −1         2
+1078-                     × exp −               |µ|           det(w)
+1079-                                 at at−1 κ
+1080-                                                   w∈W
+1081-                                             √                                !
+1082-                          X                π −1 a                   w(µ) 2
+1083-                     ×             exp                  λ + κν −                ,
+1084-                           ∨     ∨
+1085-                                               κ c                    a
+1086-                           ν∈Y /cY
+1087-
+1088-
+1089-                                           18
+1090-where we have used (9). Let us calculate the factor in front of the sum. By
+1091-Lemma 2.4 we get
+1092-                         √                
+1093-                 C′         π −1
+1094-       K := Kµ exp − ∨ mt |ρ|2
+1095-                              h
+1096-                                     √                          √           
+1097-                                     π −1         2              π −1        2
+1098-                        × exp −                |µ| exp −                  |µ|
+1099-                                   at−1 at−2 κ                  at at−1 κ
+1100-               √ t|∆+ | lD                   √        t
+1101-                                                                   !
+1102-                 −1       ζ t−1            π −1 X
+1103-           =                       exp − ∨ (              mi )|ρ|2
+1104:               (κ|c|)l/2 vol(Y ∨ )           h
+1105-                                                     i=1
+1106-                                     √       t
+1107-                                                               !
+1108-                                    π −1 X 1                 2
+1109-                        × exp −           (              )|µ| .
+1110-                                      κ          ai−1 ai
+1111-                                                      i=1
+1112-By [26, Formula (2.20)] we have
+1113-                                    t
+1114-                                    X                t−1
+1115-                                                     X
+1116-                       Φ(U ) =             mi − 3          sign(ai−1 ai ).
+1117-                                     i=1             i=1
+1118-This together with (10) gives
+1119-                 √ t|∆+ | lD              √                      
+1120-                   −1       ζ t−1          π −1                 2
+1121-         K =                         exp − ∨ (Φ(U ) + 3Dt−1 )|ρ|
+1122:                 (κ|c|)l/2 vol(Y ∨ )         h
+1123-                                 √            
+1124-                                     π −1 b 2
+1125-                          × exp −           |µ| .
+1126-                                        κ a
+1127-By (19) we then have
+1128-                                      √
+1129-         √
+1130-                                                            
+1131-               (t−1)|∆+ | lDt−1     π −1                   2
+1132-             −1     ζ      exp − ∨ (Φ(U ) + 3Dt−1 )|ρ|
+1133-                                      h
+1134-                                  √                     √ 
+1135-                √ (t−1)|∆+ |
+1136-                                                                    
+1137-                                     lπ −1 (2|∆+ | + l)π −1
+1138-               = −1          exp           −                   Dt−1
+1139-                                        4           4
+1140-                                  √           
+1141-                                 π −1
+1142-                      × exp − ∨ Φ(U )|ρ|2
+1143-                                    h
+1144-                                        √
+1145-                √ (t−1−Dt−1 )|∆+ |
+1146-                                                        
+1147-                                          π −1        2
+1148-               = −1                exp − ∨ Φ(U )|ρ| .
+1149-                                           h
+1150-Moreover,
+1151-                                      t−1
+1152-                                      X                          t−1
+1153-                                                                 X
+1154-        t − 1 − Dt−1 = t − 1 −              sign(ai−1 ai ) =         (1 − sign(ai−1 ai ))
+1155-                                      i=1                        i=1
+1156-and                      √        1−sign(ai−1 ai )
+1157-                             −1                      = sign(ai−1 ai ),
+1158-
+1159-                                               19
+1160-   √ t−1−Dt−1
+1161-so −1             = sign(at−1 ) = sign(c) since a0 = 1. This proves the last
+1162-given formula for the entries of R(U ). The first formula follows easily from this
+1163-by observing that
+1164-                                  b     1    d
+1165-                                    +     = .
+1166-                                  a ac       c
+1167-                          C   n
+1168-Next assume that U = B Θ with n 6= 0, where C is as above. Then
+1169-                                                               
+1170-           C        −n       a b        1 −n           a −na + b
+1171-          B = UΘ =                                 =                   ,
+1172-                             c d        0 1            c −nc + d
+1173-and since the theorem is valid for U = B C (by the above) we get
+1174-  R(U )λµ = R(B C )λµ R(Θ)nµµ
+1175-             √                        √
+1176-            ( −1 sign(c))|∆+ |
+1177-                                                                
+1178-                                        π −1          C
+1179-                                                             2
+1180-          =                      exp − ∨         Φ(B ) + n |ρ|
+1181:             (κ|c|)l/2 vol(Y ∨ )         h
+1182-                         √             X               √                
+1183-                          π −1 d 2                       π −1 a          2
+1184-                 × exp             |µ|              exp          |λ + κν|
+1185-                             κ c                           κ c
+1186-                                        ν∈Y ∨ /cY ∨
+1187-                                         √                    
+1188-                    X                   2π −1
+1189-                 ×       det(w) exp −            hλ + κν, w(µ)i .
+1190-                                          κc
+1191-                       w∈W
+1192-
+1193-By (18), Φ(B C Θn ) = Φ(B C ) + Φ(Θn ) = Φ(B C ) + n and the result follows. Next
+1194-                                                                        
+1195-                                                                  0 −1
+1196-consider the case where a = 0 (and ǫ = 1) so U = ΞΘn =                     . Then
+1197-                                                                  1 n
+1198-the result follows directly by inserting the formulas for the entries of R(Ξ) and
+1199-R(Θ) into
+1200-                            R(U )λµ = R(Ξ)λµ R(Θ)nµµ
+1201-and by using that Φ(ΞΘn ) = Φ(Ξ) + Φ(Θn ) = n (use (18)).
+1202-Let us finally consider the case where ǫ = −1, so U = −V Θn (V being as in
+1203-Lemma 2.5). By the remarks just before the theorem we get
+1204-                             R(U )λµ = R(−U )λ∗ µ .
+1205-Since the theorem is valid for −U (by the above) and since λ∗ = −w0 (λ) and
+1206-det(w0 ) = (−1)|∆+ | , see Remark 2.3, we get
+1207-                √                        √                       √
+1208-               ( −1 sign(c))|∆+ |
+1209-                                                                              
+1210-                                           π −1           2        π −1 d 2
+1211- R(U )λµ =                           exp − ∨ Φ(U )|ρ| exp                  |µ|
+1212:                (κ|c|)l/2 vol(Y ∨ )         h                          κ c
+1213-                                        √                            
+1214-                           X            π −1 a                      2
+1215-                    ×             exp          | − w0 (λ) + κw0 (ν)|
+1216-                           ∨    ∨
+1217-                                          κ c
+1218-                        ν∈Y /cY
+1219-                                            √                                 
+1220-                         X
+1221-                                    −1       2π −1
+1222-                    ×        det(w0 w) exp           h−w0 (λ) + κw0 (ν), w(µ)i
+1223-                                                 κc
+1224-                      w∈W
+1225-
+1226-
+1227-                                       20
+1228-                √                         √
+1229-               ( −1 sign(c))|∆+ |
+1230-                                                            
+1231-                                            π −1          2
+1232-           =                         exp − ∨ Φ(U )|ρ|
+1233:                (κ|c|)l/2 vol(Y ∨ )          h
+1234-                            √              X             √                 
+1235-                             π −1 d 2                       π −1 a          2
+1236-                    × exp              |µ|            exp           |λ + κν|
+1237-                                κ c            ∨    ∨
+1238-                                                              κ c
+1239-                                            ν∈Y /cY
+1240-                                                 √                       
+1241-                       X
+1242-                                    −1         2π −1              −1
+1243-                    ×       det(w0 w) exp −             hλ + κν, w0 w(µ)i
+1244-                                                  κc
+1245-                         w∈W
+1246-
+1247-by which the theorem follows.
+1248-
+1249-Since R is a unitary representation we have
+1250-                               R(U )λµ = R(U −1 )µλ                            (20)
+1251-for any U ∈ SL(2, Z) and all λ, µ ∈ int(C
+1252-                                         κ ) ∩ X . By
+1253-                                                     this and the facts that
+1254-                                             d −b
+1255-Φ(U −1 ) = −Φ(U ) (use (18)) and U −1 =                we get
+1256-                                           −c a
+1257-
+1258-                                        
+1259-                                   a b
+1260-Corollary 2.7 Let U =                        ∈ SL(2, Z) with c 6= 0, and let λ, µ ∈
+1261-                                   c d
+1262-int(Cκ ) ∩ X . Then
+1263-                 √             |∆ |      √
+1264-                   −1 sign(c) +
+1265-                                                              
+1266-                                             π −1           2
+1267-  R(U )λµ =                          exp   −       Φ(U  )|ρ|
+1268:                 (κ|c|)l/2 vol(Y ∨ )           h∨
+1269-                             √             X              √                 
+1270-                              π −1 a 2                        π −1 d         2
+1271-                     × exp             |λ|             exp           |µ + κν|
+1272-                                 κ c            ∨    ∨
+1273-                                                                κ c
+1274-                                             ν∈Y /cY
+1275-                                              √                  
+1276-                        X                    2π −1
+1277-                     ×       det(w) exp −           hµ + κν, w(λ)i .
+1278-                                               κc
+1279-                         w∈W
+1280-
+1281-If d 6= 0 we also have
+1282-                         √             |∆ |      √
+1283-                           −1 sign(c) +
+1284-                                                                   
+1285-                                                    π −1         2
+1286-       R(U )λµ =                             exp − ∨ Φ(U )|ρ|
+1287:                         (κ|c|)l/2 vol(Y ∨ )         h
+1288-                                     √             X
+1289-                                      π −1 b 2
+1290-                             × exp             |λ|      det(w)
+1291-                                         κ d
+1292-                                                    w∈W
+1293-                                               √                       
+1294-                                   X            π −1 d           w(λ) 2
+1295-                             ×            exp          |µ + κν −     | .
+1296-                                    ∨   ∨
+1297-                                                   κ c             d
+1298-                               ν∈Y /cY
+1299-
+1300-
+1301-
+1302-
+1303-                                             21
+1304-We are particularly interested in expressions for R(U )λµ in case λ or µ is equal
+1305-to ρ. Note that since ρ∗ = ρ, Ξ2 = −1 and R(Ξ2 )λµ = δλµ∗ , then
+1306-                  R(−U )λρ = R(U )λρ ,        R(−U )ρλ = R(U )ρλ               (21)
+1307-for all λ ∈ int(Cκ ) ∩ X , so these entries are in fact functions of PSL(2, Z). By
+1308-the Weyl denominator formula we have
+1309-                                            √                   
+1310-                      X                   2π −1
+1311-                          det(w) exp −            hλ + κν, w(ρ)i
+1312-                                             κc
+1313-                     w∈W
+1314-                                 Y √             π               
+1315-                             =       2 −1 sin − hλ + κν, αi ,
+1316-                                                    κc
+1317-                                α∈∆+
+1318-
+1319-so we get the alternative formula
+1320-                                            √
+1321-                   (2 sign(c))|∆+ |
+1322-                                                              
+1323-                                              π −1          2
+1324-   R(U )λρ =                          exp − ∨ Φ(U )|ρ|                         (22)
+1325:                  (κ|c|)l/2 vol(Y ∨ )           h
+1326-                            √              X              √               
+1327-                             π −1 d 2                       π −1 a         2
+1328-                   × exp               |ρ|             exp         |λ + κν|
+1329-                                κ c             ∨    ∨
+1330-                                                               κ c
+1331-                                             ν∈Y /cY
+1332-                           Y        π              
+1333-                       ×        sin      hλ + κν, αi .
+1334-                                      κc
+1335-                         α∈∆+
+1336-
+1337-for U ∈ SL(2, Z) as in Theorem 2.6. By using the Weyl denominator formula
+1338-and the first expression in Corollary 2.7 we get
+1339-                                            √
+1340-                   (2 sign(c))|∆+ |
+1341-                                                               
+1342-                                              π −1           2
+1343-    R(U )ρµ =                         exp − ∨ Φ(U )|ρ|                          (23)
+1344:                  (κ|c|)l/2 vol(Y ∨ )          h
+1345-                            √              X               √               
+1346-                             π −1 a 2                        π −1 d         2
+1347-                   × exp               |ρ|              exp         |µ + κν|
+1348-                                κ c                             κ c
+1349-                                            ν∈Y ∨ /cY ∨
+1350-                           Y        π               
+1351-                       ×        sin      hµ + κν, αi .
+1352-                                      κc
+1353-                         α∈∆+
+1354-
+1355-We end this section with some symmetry considerations needed elsewhere. As
+1356-mentioned allready below Remark 2.3 the expressions for R(Ξ)λµ and R(Θ)λµ
+1357-in (12) are well-defined for all λ, µ ∈ X . If U ∈ SL(2, Z) we can find a tuple of
+1358-integers C = (m1 , . . . , mt ) such that U = B C . We can therefore use the formula
+1359-                                                   C
+1360-                             R(U )λµ = R(Θ)m     t−1
+1361-                                           λλ Tµ,λ
+1362-                                             t
+1363-
+1364-
+1365-                                                             C
+1366-to extend (λ, µ) 7→ R(U )λµ to all of X × X . Here Tµ,λt−1 is defined above
+1367-Lemma 2.4. We can also make such an extension directly by using the expres-
+1368-sions in Theorem 2.6. An easy inspection of the proof of Theorem 2.6 shows
+1369-that these two extensions coincide.
+1370-
+1371-                                         22
+1372-Lemma 2.8 Let U ∈ SL(2, Z). Then (λ, µ) 7→ R(U )λµ , X × X → C, is
+1373-invariant under the action of κY ∨ on each factor. Moreover,
+1374-                         R(U )w(λ)w′ (µ) = det(w) det(w′ )R(U )λµ .
+1375-Finally, R(U )λµ = 0 if λ or µ belongs to X ∩ H κ .
+1376-
+1377-Proof Since Ξ4 = 1 we have U = ΞB = CΞ, where B = Ξ3 U and C = U Ξ3 .
+1378-The lemma then follows by the fact that it is true for U = Ξ.
+1379-
+1380-Since Cκ is a fundamental domain for the action of Wκaff it follows by Lemma 2.8
+1381-that (20) is valid for all λ, µ ∈ X . Therefore we have that the expressions for
+1382-R(U )λµ stated in Corollary 2.7 are valid for all λ, µ ∈ X . Note that (22) is
+1383-valid for all λ ∈ X and (23) is valid for all µ ∈ X .
+1384-
+1385-
+1386-3     Seifert manifolds
+1387-
+1388-For Seifert manifolds we will use the notation introduced by Seifert in his
+1389-classification results for these manifolds, see [49], [50], [17, Sect. 2]. That
+1390-is, (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )) is the Seifert manifold with orientable base
+1391-of genus g ≥ 0 if ǫ = o and non-orientable base of genus g > 0 if ǫ = n (where
+1392-the genus of the non-orientable connected sum #k RP2 is k ). (In [49], [50]
+1393-(ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )) is denoted (O, ǫ; g | b; α1 , β1 ; . . . ; αn , βn ), but we
+1394-leave out the O since we are only dealing with oriented Seifert manifolds.) The
+1395-pair (αj , βj ) of coprime integers is the (oriented) Seifert invariant of the j ’th
+1396-exceptional (or singular) fiber. We have 0 < βj < αj . The integer −b is equal
+1397-to the Euler number of the Seifert fibration (ǫ; g | b) (which is a locally trivial
+1398-S 1 –bundle). The sign is chosen so that the Euler number of the spherical (or
+1399-unit) tangent bundle over an orientable surface Σ is equal to the Euler charac-
+1400-teristic of Σ, see [39, Chap. 1 and 4], [48, Sect. 3]. More generally                       the Seifert
+1401-                                                                                                      
+1402-                                                                                        Pn
+1403-Euler number of (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )) is E = − b + j=1 βj /αj .
+1404:We note that lens spaces are Seifert manifolds with base S 2 and zero, one
+1405-or two exceptional fibers. According to [39, Fig. 12 p. 146], the manifold
+1406-(ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )) has a surgery presentation as shown in Fig. 1 if
+1407-ǫ = o and as shown in Fig. 2 if ǫ = n. The g indicate g repetitions.
+1408-                                                        `
+1409-For completeness we will also state the results in terms of the non-normalized
+1410-Seifert invariants due to W. D. Neumann, see [24]. For a Seifert manifold X
+1411-with non-normalized Seifert invariants {ǫ; g; (α1 , β1 ), . . . , (αn , βn )} the invari-
+1412-ants ǫ and g are as above. The (αj , βj ) are here pairs of coprime integers with
+1413-
+1414-                                                  23
+1415-                         0                                                         αn
+1416-                                                                                   βn
+1417-                                0                                            α1
+1418-                                                                             β1
+1419-                0
+1420-                        ·g·0·       −b                      ···
+1421-                        `
+1422-
+1423-
+1424-
+1425-
+1426-           Figure 1: Surgery presentation of (o; g | b; (α1 , β1 ), . . . , (αn , βn ))
+1427-
+1428-
+1429-                    1                                                              αn
+1430-                    2                                                              βn
+1431-                                1                                             α1
+1432-                                2                                             β1
+1433-               2           2
+1434-                         ···        −b                       ···
+1435-                          g
+1436-                         `
+1437-
+1438-
+1439-
+1440-
+1441-          Figure 2: Surgery presentation of (n; g | b; (α1 , β1 ), . . . , (αn , βn ))
+1442-
+1443-
+1444-αj > 0 but not necessarily with 0 < βj < αj . These pairs are not invariants
+1445-of X , but can be varied according to certain rules. In fact, X has a surgery
+1446-presentation as shown in Fig. 1 with b = 0 if ǫ = o and  Pas shown in Fig. 2 with
+1447-                                                           n
+1448-b = 0 if ǫ = n. The Seifert Euler number of X is − j=1 βj /αj (which is an
+1449-invariant of the Seifert fibration X ). For more details we refer to [24, Sect. I.1].
+1450-
+1451-
+1452-4    The RT–invariants of the Seifert 3–manifolds
+1453-
+1454-In this section we will use Corollary 2.7 together with results in [17] to derive
+1455-expressions for the quantum g–invariants of all Seifert manifolds, g being an
+1456-arbitrary complex finite dimensional simple Lie algebra. The formulas for the
+1457-invariants will be expressed in terms of the Seifert invariants together with
+1458-
+1459-                                               24
+1460-standard data for g.
+1461-
+1462-The RT–invariants of the Seifert manifolds for modular categories
+1463-Let us first give some preliminary remarks on modular categories. We use
+1464-notation as in [52]. Let (V, {Vi }i∈I ) be an arbitrary modular category with
+1465-braiding c and twist θ . The ground ring is K = EndV (I), where I is the unit
+1466-object. Let i 7→ i∗ be the involution in I determined by the condition that Vi∗
+1467-is isomorphic to the dual of Vi . An element i ∈ I is called self-dual if i = i∗ .
+1468-For such an element we have a K –module isomorphism HomV (V ⊗ V, I) ∼       = K,
+1469-V = Vi . The map x 7→ x(idV ⊗ θV )cV,V is a K –module endomorphism of
+1470-HomV (V ⊗ V, I), so is a multiplication by a certain εi ∈ K . By the definition
+1471-of the braiding and twist we have (εi )2 = 1. In particular εi ∈ {±1} if K is a
+1472-field. We have a distinguished element 0 ∈ I such that V0 = I.
+1473-The S – and T –matrices of V are the matrices S = (Sij )i,j∈I , T = (Tij )i,j∈I
+1474-given by Sij = tr(cVj ,Vi ◦ cVi ,Vj ) and Tij = δij vi , where tr is the categorical
+1475-trace of V , δij is the Kronecher delta equal to 1 if i = j and zero elsewhere,
+1476-and vi ∈ K such that θVi = vi idVi .
+1477-Assume that V has a rank D, i.e. an element of K satisfying
+1478-                                  X
+1479-                           D2 =        dim(i)2 ,
+1480-                                          i∈I
+1481-
+1482-where dim(i) = dim(Vi ) = tr(idVi ). We let
+1483-                                   X
+1484-                            ∆=        vi−1 dim(i)2 .
+1485-                                       i∈I
+1486-
+1487-Moreover, let τ = τ(V,D) be the RT–invariant associated to (V, {Vi }i∈I , D), cf.
+1488-[52, Sect. II.2]. For a tuple of integers C = (m1 , . . . , mt ), let
+1489-                                 GC = T mt S · · · T m1 S.
+1490-                                                  (o)            (n)
+1491-We put ao = 2 and an = 1. Moreover, let bj              = 1 and bj    = δjj ∗ , j ∈ I . Given
+1492-                                                         (j)          (j)
+1493-pairs (αj , βj ) of coprime integers we let       Cj = (a1 , . . . , amj ) be a continued
+1494-fraction expansion of αj /βj , j = 1, 2, . . . , n.
+1495-
+1496-Theorem 4.1 ([17]) Let M = (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )), ǫ = o, n. Then
+1497-                                        Pn
+1498-         τ (M ) = (∆D −1 )σǫ D aǫ g−2− j=1 mj
+1499-                                                                       n
+--
+1513-   σǫ = (aǫ − 1) sign(E) +            sign(αj βj ) +        ak − Φ(B ) .              (24)
+1514-                                                     3
+1515-                                j=1                  j=1   k=1
+1516-                               
+1517-                    Pn     βj
+1518-Here E = − b +         j=1 αj       is the Seifert Euler number.
+1519-
+1520-The RT–invariant τ (M ) of the Seifert manifold M with non-normalized Seifert
+1521-invariants {ǫ; g; (α1 , β1 ), . . . , (αn , βn )}, is given by the same expression with the
+1522-                                                                                 β
+1523-exceptions that the factor vj−b has to be removed and E = − nj=1 αjj .
+1524-                                                                          P
+1525-
+1526-
+1527-The theorem    is also valid in case n = 0. In Qnthis case one just has to put all
+1528-       Pn                                                                   g
+1529-sums j=1 equal to zero and all products i=1 equal to 1. Note that ǫj = 1
+1530-if g is even and ǫgj = ǫj if g is odd since ǫ2j = 1. The sum nj=1 sign(αj βj ) is
+1531-                                                               P
+1532-of course equal to n for normalized Seifert invariants.
+1533:Let us next consider the lens spaces. For p, q a pair of coprime integers, recall
+1534:that L(p, q) is given by surgery on S 3 along the unknot with surgery coefficient
+1535-−p/q . In the following corollary we include the possibilities L(0, 1) = S 1 × S 2
+1536-and L(1, q) = S 3 , q ∈ Z.
+1537-
+1538-Corollary 4.2 ([17]) Let p, q be a pair of coprime integers. If q 6= 0 we let
+1539-(a1 , . . . , an−1 ) be a continued fraction expansion of −p/q . If q = 0, put n = 3
+1540-and a1 = a2 = 0. Then
+1541:                             τ (L(p, q)) = (∆D −1 )σ D −n GC00 ,                      (25)
+1542-                                             P                    
+1543-                                                n−1
+1544-where C = (a1 , . . . , an−1 , 0) and σ = 31    l=1 la  −  Φ(B   C) .
+1545-
+1546-
+1547-
+1548-
+1549-The RT–invariants of the Seifert manifolds for the classical Lie al-
+1550:gebras√ Let g be a complex finite dimensional simple Lie algebra and let
+1551-q = eπ −1/r , r = mκ, where κ is an integer ≥ h∨ . Let Uq (g) be the quan-
+1552-tum group associated to these data as defined by Lusztig, see [37, Part V].
+1553-We follow [9, Sect. 1.3 and 3.3] here but will mostly use notation from [52] for
+1554-modular categories as above. (Note that what     we denote Uq (g) here is denoted
+1555-Uq (g)|q=eπ√−1/mκ in [9].) Let Vrg, {Vi }i∈I be the modular category induced by
+1556-                                            
+1557-
+1558-these data, cf. [9, Theorem 3.3.20]. In particular the index set for the simple
+1559-objects is I = int(Cκ ) ∩ X . We use here the shifted indexes (shifted by ρ)
+1560-(contrary to [9]). Normally the irreducible modules of Uq (g) (of type 1) (q
+1561-a formal variable) are indexed by the cone of dominant integer weights X+ .
+1562-Here we denote the irreducible module associated with µ ∈ X+ by Vµ+ρ . For
+1563-
+1564-                                             26
+1565-q a root of unity as above Vλ is an irreducible module of Uq (g) of non-zero
+1566-dimension if λ ∈ I . The involution I → I , λ 7→ λ∗ is given by λ∗ = −w0 (λ),
+1567-where w0 is the longest element in W , see also Remark 2.3. The distinguished
+1568-element 0 ∈ I is equal to ρ. According to [9, Theorem 3.3.20] we can use
+1569-                                                             −1
+1570-                                                            
+1571-                               ∨ ) 1/2
+1572-                                                  
+1573:                         vol(Y           Y          πhα, ρi
+1574-              D = κl/2                     2 sin                       (26)
+1575:                         vol(X)                       κ
+1576-                                                 α∈∆+
+1577-
+1578-as a rank of Vrg . According to the same theorem we have that
+1579-                                       ∆D −1 = ω −3 ,                        (27)
+1580-where                   √              √            √        
+1581-                   2π    −1c           π −1 2           π −1 2
+1582-             ω=e        24      = exp      |ρ|   exp  −     |ρ|   ,          (28)
+1583-                                        h∨                κ
+1584-                            ∨
+1585-where as usual c = κ−h
+1586-                     κ dim(g) is the central charge and where the last equality
+1587-follows from Freudenthal’s strange formula (19).
+1588-Let s̃ be as defined in [9, Sect. 3.1] and let S be the S –matrix of Vrg . Observe
+1589-that in the terminology of [52], s̃ is the S –matrix of the mirror of Vrg . This
+1590-implies that
+1591-                                Sλµ = s̃λ∗ µ = s̃λµ∗
+1592-for λ, µ ∈ I . By [9, Formula (3.1.16)] we have s̃ = Ds, where s is the matrix
+1593-also considered in Remark 2.3. The matrix t in [9] is equal to the T –matrix of
+1594-Vrg . It follows then from [9, Theorem 3.3.20] and (12) that T = ω Θ̃. By these
+1595-remarks and (13) and (15) we conclude that
+1596-                                Sλµ = D Ξ̃λµ ,        Tλµ = ω Θ̃λµ           (29)
+1597-for µ, λ ∈ I . Let C = (a1 , . . . , an ) ∈ Zn and let k ∈ {0, 1}. By (29) we
+1598-immediately get
+1599-                                 Pn                                    
+1600-            (S k GC )λρ = D k+n ω j=1 aj Ξ̃k Θ̃an Ξ̃Θ̃an−1 · · · Θ̃a1 Ξ̃  (30)
+1601-                                                                     λρ
+1602-for λ ∈ I . We also need the explicit formula for dim(λ), λ ∈ I . In fact
+1603-                                                1/2 Y                 
+1604:                                −l/2 vol(X)                    πhα, λi
+1605-    dim(λ) = Sλρ = D Ξ̃λρ = Dκ                         2 sin             ,   (31)
+1606:                                      vol(Y ∨ )                  κ
+1607-                                                             α∈∆+
+1608-
+1609-see also [9, Formulas (3.3.2) and (3.3.5)].
+1610-Let τrg = τ(Vrg ,D) be the RT–invariant associated with (Vrg, D). Given a pair of
+1611-coprime integers (α, β), α > 0, we let β ∗ be the inverse of β in the multiplica-
+1612-tive group of units of Z/αZ. For integers a, b 6= 0 we let
+1613-                                 S(a/b) = 12 sign(b)s(a, b),                 (32)
+1614-
+1615-                                                 27
+1616-where s(a, b) is given by (17). This is the so-called Dedekind symbol. (In
+1617-particular, the right-hand side of (32) only depends on the rational number
+1618-a/b.) Then we have the following generalization of [17, Theorem 8.4]:
+1619-
+1620-Theorem 4.3 Let M = (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )), ǫ ∈ {o, n}. Then
+1621-                     √
+1622-                                                                              
+1623-                                                               n     
+1624-                   π   −1                                     X       βj 
+1625-   τrg(M ) = exp         3(aǫ − 1) sign(E) − E −                S         |ρ|2 
+1626-                      κ                                              αj
+1627-                                                                     j=1
+1628-                                √      n|∆ |
+1629-                                −1 + κl(aǫ g/2−1)        1
+1630-                         × |∆ |(n+a g−2)
+1631:                           2 +     ǫ     vol(Y ) ǫ Al/2
+1632-                                              ∨   2−a g
+1633-                                √                            
+1634-                                3π −1                       2
+1635-                         × exp          (1 − aǫ ) sign(E)|ρ| Zǫg(M ; r),
+1636-                                  h∨
+1637-             Qn
+1638-where A =       j=1 αj and
+1639-
+1640-                                                           √
+1641-                                                   
+1642-                                                                       
+1643- g
+1644-             X (ǫ) a g
+1645-                      ǫ 
+1646-                          Y
+1647-                                  2−n−aǫ g πhλ, αi         π −1       2
+1648-Zǫ (M ; r) =     bλ ελ        sin                     exp          E|λ|
+1649-                                             κ                κ
+1650-             λ∈I         α∈∆+
+1651-                                                                  
+1652-                      X        X              X        Yn
+1653-                ×                      ...                det(wj )
+1654-                         w1 ,...,wn ∈W ν1 ∈Y ∨ /α1 Y ∨   νn ∈Y ∨ /αn Y ∨   j=1
+1655-                                                                               
+1656-                                               n
+1657-                                        √ X       βj∗
+1658-                                                      κ|νj |2 + 2hwj (ρ), νj i 
+1659-                                                                              
+1660-                              × exp −π −1
+1661-                                                  αj
+1662-                                             j=1
+1663-                                          √
+1664-                                                                    
+1665-                                                    n
+1666-                                       2π   −1     X κνj + wj (ρ)
+1667-                              × exp −         hλ,                 i .
+1668-                                          κ                 αj
+1669-                                                         j=1
+1670-
+1671-The RT–invariant τrg(M ) of the Seifert manifold M with non-normalized Seifert
+1672-invariants {ǫ; g; (α1 , β1 ), . . . , (αn , βn )} is given by the same expression.
+1673-
+1674-The
+1675-P theorem P     is also valid in case   P n = 0. In this case one just has to put the sum
+1676-  w1 ,...,wn ∈W           /α1 Y ∨ . . .
+1677-                   ν1 ∈Y ∨P              νn ∈Y ∨ /αn Y ∨ in Zǫ (M ; r) equal to 1, ǫ = o, n,
+1678-and put A = 1 and nj=1 S(βj /αj ) = 0.
+1679-
+1680-Proof The proof follows very closely the proof of [17, Theorem 8.4]. Let
+1681-M = (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn)), ǫ ∈ {o,n}. Choose tuples of integers Cj =
+1682-  (j)          (j)                            αj ρj
+1683-(a1 , . . . , amj ) such that B Cj =                     , j = 1, 2, . . . , n. By Theorem 4.1
+1684-                                              βj σj
+1685-
+1686-                                                28
+1687-and (11) we have
+1688-                                           Pn
+1689-    τrg(M ) = (∆D −1 )σǫ D aǫ g−2− j=1 mj
+1690-                                                                               n
+1691-                                                                                                   !
+1692-                          X (ǫ) a g                                            Y
+1693-                       ×        bλ ελǫ vλ−b dim(λ)2−n−aǫ g                           (SGCi )λρ         ,
+1694-                               λ∈I                                             i=1
+1695-
+1696-
+1697-where σǫ is given by (24). By using (27), (29), (30), and (31) we get
+1698-                                 Pn        P mj   (j)   X (ǫ) a g
+1699-   τrg(M ) = αǫ (κ)ω −3σǫ −b+        j=1     k=1 ak      bλ ελǫ Θ̃−b
+1700-                                                                  λλ
+1701-                                                        λ∈I
+1702-                                                                         
+1703-                                                                            n
+1704-                                                                                    !
+1705-                                      Y                           πhα, λi  Y
+1706-                              ×              sin2−n−aǫ g                     (Ñi )λρ ,
+1707-                                                                    κ
+1708-                                     α∈∆+                                             i=1
+1709-
+1710-                                        
+1711-                         −βi −σi
+1712-where Ni = ΞB Ci =                           and
+1713-                         αi   ρi
+1714-
+1715:              αǫ (κ) = κl(n+aǫ g−2)/2 2|∆+ |(2−n−aǫ g) vol(Y ∨ )n+aǫ g−2 .
+1716-
+1717-By Corollary 2.7 we get
+1718-                                                             
+1719-  n
+1720-  Y                          X               n
+1721-                                             Y                         X                       X
+1722-    (Ñi )λρ = βǫ (κ)                             det(wj )                        ...
+1723-  i=1                    w1 ,...,wn ∈W       j=1                  ν1 ∈Y ∨ /α1 Y ∨         νn ∈Y ∨ /αn Y ∨
+1724-                                      √
+1725-                                                                             
+1726-                                            n
+1727-                                     π −1 X ρj
+1728-                             × exp               |ρ + κνj |2 
+1729-                                       κ       αj
+1730-                                           j=1
+1731-                                         √
+1732-                                                                      
+1733-                                               n
+1734-                                      2π −1   X    1
+1735-                             × exp −                hρ + κνj , wj (λ)i ,
+1736-                                         κ        αj
+1737-                                                         j=1
+1738-
+1739-
+1740-where
+1741-                        √ n|∆+ |                  √
+1742-                                                                        
+1743-                                                           n
+1744-                          −1                    π   −1    X
+1745-        βǫ (κ) =                         exp − ∨            Φ(Nj ) |ρ|2 
+1746:                   κnl/2 Al/2 vol(Y ∨ )n          h
+1747-                                                          j=1
+1748-                                         √
+1749-                                                           
+1750-                                                n
+1751-                                       π   −1  X βj
+1752-                                                        |λ|2  .
+1753-                           × exp −           
+1754-                                          κ         αj
+1755-                                                        j=1
+1756-
+1757-
+1758-                                                29
+1759-In particular we have
+1760-
+1761-                                    √       n|∆+ | l(aǫ g−2)/2         √            
+1762-                                        −1        κ                    π −1
+1763-   αǫ (κ)βǫ (κ)Θ̃−b
+1764-                 λλ    =                                          exp        E|λ|  2
+1765:                            2|∆+ |(n+aǫ g−2) Al/2 vol(Y ∨ )2−aǫ g        κ
+1766-                                                      √
+1767-                                                                                
+1768-                                                                    n
+1769-                                                    π   −1         X
+1770-                                          × exp  ∨ b −              Φ(Nj ) |ρ|2  .
+1771-                                                      h
+1772-                                                                             j=1
+1773-
+1774-
+1775-
+1776-By (18), Φ(Ni ) = Φ(B Ci ) − 3 sign(αi βi ). By this and (24) we get
+1777-
+1778-                                                    n                       mj
+1779-                                                                          n X
+1780-                                                                                     (j)
+1781-                                                    X                     X
+1782-                3σǫ = 3(aǫ − 1) sign(E) −                   Φ(Nj ) +                ak .
+1783-                                                    j=1                   j=1 k=1
+1784-
+1785-
+1786-
+1787-Therefore
+1788-
+1789-                    √ n|∆+ | l(a g/2−1)
+1790-                       −1       κ ǫ                1 P nj=1 Φ(Nj )−3(aǫ −1) sign(E)−b
+1791-    τrg(M ) =                                         ω
+1792:                2|∆+ |(n+aǫ g−2) vol(Y ∨ )2−aǫ g Al/2
+1793-                                  √
+1794-                                                              
+1795-                                                 n
+1796-                                π   −1          X
+1797-                       × exp  ∨ b −               Φ(Nj ) |ρ|2 
+1798-                                  h
+1799-                                                j=1
+1800-                                  √
+1801-                                                      
+1802-                                            n
+1803-                                π −1      X    ρj  2 
+1804-                       × exp                        |ρ|
+1805-                                   κ            α
+1806-                                           j=1 j
+1807-                                                                        √
+1808-                                                               
+1809-                                                                                      
+1810-                  X (ǫ) a g
+1811-                             ǫ 
+1812-                                  Y
+1813-                                           2−n−aǫ g πhλ, αi             π −1         2
+1814-                ×     bλ ελ            sin                        exp             E|λ|
+1815-                                                         κ                   κ
+1816-                  λ∈I            α∈∆+
+1817-                                                                           
+1818-                      X           X                 X         Yn
+1819-                ×                           ...                  det(wj )
+1820-                  w1 ,...,wn ∈W ν1 ∈Y ∨ /α1 Y ∨         νn ∈Y ∨ /αn Y ∨    j=1
+1821-                                                                                    
+1822-                                            n
+1823-                                    √       X ρj
+1824-                       × exp π −1                      (κ|νj |2 + 2hwj (ρ), νj i
+1825-                                                   αj
+1826-                                             j=1
+1827-                                        √
+1828-                                                            
+1829-                                            n
+1830-                                2π   −1     X κν j + wj (ρ)
+1831-                       × exp −         hλ,                 i .
+1832-                                   κ               αj
+1833-                                                        j=1
+1834-
+1835-
+1836-                                                   30
+1837-By (28) we get
+1838-                                                   √
+1839-                                                                                  
+1840-                                                                n
+1841-         Pn
+1842-          j=1 Φ(Nj )−3(aǫ −1) sign(E)−b
+1843-                                         π −1                  X
+1844-     ω                                    exp     b−     Φ(Nj ) |ρ|2 
+1845-                                           h∨
+1846-                                                      j=1
+1847-                           √
+1848-                                               
+1849-                                      n
+1850-                          π −1 X ρj  2 
+1851-                  × exp                      |ρ|
+1852-                             κ          α
+1853-                                     j=1 j
+1854-                 √                           
+1855-                 3π −1                      2
+1856-          = exp         (1 − aǫ ) sign(E)|ρ|
+1857-                    h∨
+1858-                    √
+1859-                                                                          
+1860-                                                     n               
+1861-                   π −1                            X     ρj
+1862-           × exp          3(aǫ − 1) sign(E) + b +           − Φ(Nj )  |ρ|2  .
+1863-                     κ                                    αj
+1864-                                                               j=1
+1865-
+1866-
+1867-The theorem now follows by using (16) together with the facts that s(a, b) =
+1868-s(a′ , b) if a′ a ≡ 1 (mod b) and s(−a, b) = −s(a, b), cf. [43, Chap. 3]. (The
+1869-identity s(−a, b) = −s(a, b) follows immediately from (17).) The case with
+1870-non-normalized Seifert invariants follows as above by letting b be equal to zero
+1871-everywhere.
+1872-
+1873-
+1874-By the above proof we get the following compact formula for the invariant of
+1875-the Seifert manifold M = (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )):
+1876-                                                        √                 
+1877-              g
+1878-                                X (ǫ) a g
+1879-                                           ǫ
+1880-                                                           π −1          2
+1881-             τr (M ) = γǫ (κ)        bλ ελ exp −                    b|λ|      (33)
+1882-                                                               κ
+1883-                                λ∈I
+1884-                                                                 n
+1885-                                                                            !
+1886-                                             2−n−aǫ g Y
+1887-                                     × Ξ̃λρ                        (Ñi )λρ ,
+--
+2190-                                             καj
+2191-                         j=1 α∈∆+
+2192-
+2193-
+2194-so we have shown
+2195-
+2196-
+2197-Theorem 4.8 Let M = (ǫ; g | b; (α1 , β1 ), . . . , (αn , βn )), ǫ ∈ {o, n}, and assume
+2198-that the αj are mutually coprime. Then
+2199-
+2200-                      √
+2201-                                                                
+2202-                                                    n    
+2203-                    π   −1                          X    βj 
+2204-    τrg(M ) = exp         3(aǫ − 1) sign(E) − E −   S       |ρ|2 
+2205-                       κ                                 αj
+2206-                                                                    j=1
+2207-
+2208-                                            κl(aǫ g/2−1)      1
+2209-                         × |∆ |(a g−2)       ∨ 2−a    g
+2210:                           2  +  ǫ     vol(Y )      ǫ   |W | Al/2
+2211-                                √                                
+2212-                                3π −1                           2
+2213-                         × exp           (1 − aǫ ) sign(E)|ρ| Wǫg(M ; r),
+2214-                                   h∨
+2215-
+2216-                                                   36
+2217-            Qn
+2218-where A =     j=1 αj and
+2219-
+2220-                                                          
+2221-                                                        
+2222-                   X (ǫ) a g     Y                πhλ, αi 
+2223-      Wǫg(M ; r) =     bλ ελǫ      sin2−n−aǫ g
+2224-                                                    κ
+2225-                   λ∈J         α∈∆+
+2226-                             √            n Y
+2227-                                          Y                       
+2228-                              π −1      2                  π
+2229-                      × exp        E|λ|             sin       hλ, αi .
+2230-                                κ                         καj
+2231-                                                    j=1 α∈∆+
+2232-
+2233-
+2234-The RT–invariant τrg(M ) of the Seifert manifold M with non-normalized Seifert
+2235-invariants {ǫ; g; (α1 , β1 ), . . . , (αn , βn )} is given by the same expression.
+2236-
+2237-
+2238-
+2239-
+2240:5    The case of lens spaces
+2241-
+2242:In this section we present different expressions for the invariant τrg(L(p, q)), p, q
+2243-being an arbitrary
+2244-                 but   fixed pair of coprime integers. Let b, d be any integers
+2245-                   q b
+2246-such that U =               ∈ SL(2, Z). Assume q 6= 0, let
+2247-                   p d
+2248-                                                        
+2249-                                               p  d
+2250-                           V = −ΞU =                         ,
+2251-                                               −q −b
+2252-
+2253-                                                                 ′
+2254-and let C ′ = (a1 , a2 , . . . , an−1 ) ∈ Zn−1 such that B C = V . Then C ′ is
+2255-a continued fraction expansion of −p/q and U = ΞV = B C where C =
+2256-(a1 , a2 , . . . , an−1 , 0). By Corollary 4.2, (27) and (30) we therefore get
+2257-
+2258:                             τrg(L(p, q)) = ω Φ(U ) Ũρρ ,                      (35)
+2259-
+2260:where ω is given by (28). If q = 0 we have p = 1 and L(p, q) = S 3 . In this case
+2261:we have τrg(L(p, q)) = D −1 . We also have U = ΞΘd so by using (12), (26) and
+2262-(28) we find that the right-hand side of (35) is also equal to D −1 . The identity
+2263-(35) coincides with [26, Formula (3.7)] for g = sl2 (C), see also [17, Formula
+2264-(49)].
+2265-
+2266-By elaborating on the expression (35) along the same lines as in [26, Sect. 3]
+2267:we can now easily derive an explicit expression for τrg(L(p, q)). If q 6= 0 we get
+2268-
+2269-                                          37
+2270-by Theorem 2.6 that
+2271-                       √             |∆ |       √
+2272-                         −1 sign(p) +
+2273-                                                                   
+2274-                                                    π −1         2
+2275-        R(U )ρρ =                          exp − ∨ Φ(U )|ρ|
+2276:                       (κ|p|)l/2 vol(Y ∨ )           h
+2277-                                    √             X
+2278-                                    π −1 b 2
+2279-                          × exp              |ρ|        det(w)
+2280-                                       κ q
+2281-                                                   w∈W
+2282-                                             √                         
+2283-                                 X             π −1
+2284-                          ×             exp          |qρ + κqν − w(ρ)|2
+2285-                                  ∨   ∨
+2286-                                                 pqκ
+2287-                             ν∈Y /pY
+2288-                       √              |∆ |      √
+2289-                         −1 sign(p) +
+2290-                                                                   
+2291-                                                    π −1         2
+2292-                  =                         exp − ∨ Φ(U )|ρ|
+2293:                       (κ|p|)l/2 vol(Y ∨ )            h
+2294-                                         √           
+2295-                                          π −1 b 2
+2296-                                × exp             |ρ|
+2297-                                             κ q
+2298-                                                  √                 
+2299-                              X                  π −1              2
+2300-                          ×         det(w) exp          |qρ − w(ρ)|
+2301-                                                   pqκ
+2302-                             w∈W
+2303-                                              √            
+2304-                                 X             π −1qκ 2
+2305-                          ×              exp            |ν|
+2306-                                  ∨    ∨
+2307-                                                   p
+2308-                             ν∈Y /pY
+2309-                                         √                    
+2310-                                          2π −1
+2311-                                × exp            hν, qρ − w(ρ)i .
+2312-                                             p
+2313-By (28) and (35) we then get
+2314-                         √              |∆ |      √
+2315-                           −1 sign(p) +
+2316-                                                                      
+2317-         g                                            π −1          2
+2318:        τr (L(p, q)) =                        exp −         Φ(U )|ρ|
+2319:                         (κ|p|)l/2 vol(Y ∨ )            κ
+2320-                                             √         
+2321-                                            π −1 b 2
+2322-                                  × exp             |ρ|
+2323-                                               κ q
+2324-                                                  √                    
+2325-                                X                  π −1               2
+2326-                             ×        det(w) exp          |qρ − w(ρ)|
+2327-                                                     pqκ
+2328-                               w∈W
+2329-                                                √            
+2330-                                   X             π −1qκ 2
+2331-                             ×             exp            |ν|
+2332-                                    ∨    ∨
+2333-                                                     p
+2334-                               ν∈Y /pY
+2335-                                           √                    
+2336-                                            2π −1
+2337-                                  × exp            hν, qρ − w(ρ)i .
+2338-                                               p
+2339-Here
+2340-                  √            √                
+2341-                  π −1 b 2       π −1            2
+2342-             exp        |ρ| exp       |qρ − w(ρ)|
+2343-                    κ q           pqκ
+2344-
+2345-                                       38
+2346-                        √                                               
+2347-                          π −1          2    2    2    2
+2348-                                                                       
+2349-                 = exp            pb|ρ| + q |ρ| + |ρ| − 2qhρ, w(ρ)i
+2350-                           pqκ
+2351-                        √                                      
+2352-                          π −1        2        2
+2353-                                                              
+2354-                 = exp            d|ρ| + q|ρ| − 2hρ, w(ρ)i ,
+2355-                           pκ
+2356-where we use that pb + 1 = qd. Moreover,
+2357-           √                                          √                   
+2358-           π −1         2       2
+2359-                                                          π −1            2
+2360-      exp           d|ρ| + q|ρ| − 2hρ, w(ρ)i exp −                 Φ(U )|ρ|
+2361-              pκ                                               κ
+2362-                       √                     √                             
+2363-                     2π −1                       π −1 d + q                   2
+2364-          = exp −            hρ, w(ρ)i exp                       − Φ(U ) |ρ| .
+2365-                       pκ                           κ       p
+2366-Here
+2367-                                  d+q
+2368-                     Φ(U ) =             − 12 sign(p)s(d, p),
+2369-                                   p
+2370-                        qd ≡ 1 (mod p)
+2371-so
+2372-          √                         √                         
+2373-          π −1 d + q            2       π −1                     2
+2374-     exp             − Φ(U ) |ρ| = exp       12 sign(p)s(q, p)|ρ| .
+2375-            κ    p                        κ
+2376-By putting all the pieces together and using (32) we get
+2377-
+2378:Theorem 5.1 The RT–invariants associated to g of the lens space L(p, q),
+2379-p 6= 0, are given by
+2380-                     √             |∆ |      √
+2381-                       −1 sign(p) +
+2382-                                                               
+2383-        g                                     π −1       q     2
+2384:      τr (L(p, q)) =                     exp         S      |ρ|
+2385:                     (κ|p|)l/2 vol(Y ∨ )          κ      p
+2386-                                               √            
+2387-                        X                    2π −1
+2388-                     ×       det(w) exp −           hρ, w(ρ)i
+2389-                                                pκ
+2390-                       w∈W
+2391-                                    √ q                  √ 1
+2392-                     X                                          
+2393-                                              2
+2394-                ×           exp π −1 κ|ν| exp 2π −1 hν, qρ − w(ρ)i .
+2395-                     ∨    ∨
+2396-                                         p                    p
+2397-                  ν∈Y /pY
+2398-
+2399-We also have
+2400-                                                         √
+2401-                                (2 sign(p))|∆+ |
+2402-                                                                       
+2403-                                                         π −1    q     2
+2404:               τrg(L(p, q)) =                      exp        S     |ρ|
+2405:                               (κ|p|)l/2 vol(Y ∨ )         κ     p
+2406-                                      √ q                    √ q
+2407-                     X                                               
+2408-                                                   2
+2409-                ×             exp π −1 κ|ν| exp 2π −1 hν, ρi
+2410-                                            p                    p
+2411-                  ν∈Y ∨ /pY ∨
+2412-                                                      
+2413-                           Y           π
+2414-                      ×         sin       hρ + κν, αi .
+2415-                                      pκ
+2416-                         α∈∆+
+2417-
+2418-
+2419-
+2420-
+2421-                                        39
+2422-The second formula simply follows by using the Weyl denominator formula on
+2423-the first formula. (A direct check shows, that the above theorem is also true
+2424:for q = 0, in which case p = ±1 and L(p, q) = S 3 . If p = 0, then q = ±1 and
+2425:L(p, q) = S 1 × S 2 , and τrg(S 1 × S 2 ) = 1 in the normalization used here.)
+2426-
+2427-
+2428-The coprime case In this subsection we consider the coprime case, i.e. the
+2429:case (r, p) = 1, r = mκ. In particular p 6= 0. From Theorem 5.1 we have
+2430-                         √             |∆+ |      √
+2431-                           −1  sign(p)
+2432-                                                                 
+2433-            g                                      π −1    q     2
+2434:          τr (L(p, q)) =                      exp       S     |ρ| Σ,
+2435:                         (κ|p|)l/2 vol(Y ∨ )         κ     p
+2436-where
+2437-                        √                                      !
+2438-                                               √ q qρ − w(ρ) 2
+2439-                                    
+2440-        X             2π −1
+2441-Σ =     det(w) exp −        hρ, w(ρ)i exp −π −1 κ
+2442-                        pκ                            p qκ
+2443-    w∈W
+2444-                                                  !
+2445-            X            √ q          qρ − w(ρ) 2
+2446-        ×          exp π −1 κ ν +                   .
+2447-             ∨   ∨
+2448-                             p           qκ
+2449-               ν∈Y /pY
+2450-
+2451-First assume that p is odd. Let ρw = qρ − w(ρ). Since p and 4qr are coprime,
+2452-there exist integers c and a such that pc + 4qra = 1. By definition of ρ, we
+2453-have ρ ∈ 21 Y . Moreover, mY ⊆ Y ∨ , so 2mρw ∈ Y ∨ . Therefore
+2454-                                   √                  √             
+2455-                X                 2π −1                    π −1      2
+2456-      Σ =          det(w) exp −          hρ, w(ρ)i exp −        |ρw |
+2457-                                    pκ                      pqκ
+2458-               w∈W
+2459-                                                                 !
+2460-                                     √ q                      pc 2
+2461-                        X                            
+2462-                   ×           exp π −1 κ ν + ρw 4am +
+2463-                        ∨    ∨
+2464-                                          p                  qκ
+2465-                     ν∈Y /pY
+2466-                                   √                  √             
+2467-                X                 2π −1                    π −1      2
+2468-          =        det(w) exp −          hρ, w(ρ)i exp −        |ρw |
+2469-                                    pκ                      pqκ
+2470-               w∈W
+2471-                                                          !
+2472-                        X            √ q             pc 2
+2473-                   ×           exp π −1 κ ν + ρw
+2474-                        ∨    ∨
+2475-                                          p         qκ
+2476-                     ν∈Y /pY
+2477-                                  √ q
+2478-                    X                       
+2479-          = Σ′             exp π −1 κ|ν|2 ,
+2480-                     ∨   ∨
+2481-                                      p
+2482-                ν∈Y /pY
+2483-
+2484-where
+2485-                            √                 √                  
+2486-    ′
+2487-        X                  2π −1                π −1      2 2 2
+2488-  Σ =         det(w) exp −       hρ, w(ρ)i exp       |ρw | (p c − 1) .
+2489-                             pκ                  pqκ
+2490-        w∈W
+2491-
+2492-
+2493-                                     40
+2494-We used here (1) and the fact that ρw ∈ X . Since p2 c2 − 1 = 4qra(4qra − 2)
+2495-we get
+2496-                               √             
+2497-    ′
+2498-           X                  2π −1
+2499-   Σ =         det(w) exp −          hρ, w(ρ)i
+2500-                                pκ
+2501-          w∈W
+2502-                      √                                               
+2503-                       π −1                     2       2
+2504-               × exp         4am(−2 + 4qra)[(q + 1)|ρ| − 2qhρ, w(ρ)i]
+2505-                         p
+2506-           X
+2507-       =       det(w)eβ ew ,
+2508-           w∈W
+2509-
+2510-where
+2511-                          √                           
+2512-            β            4π −1             2         2
+2513-           e     = exp −       am(1 + pc)(q + 1)|ρ| ,
+2514-                            p
+2515-                          √                                 
+2516-                         2π −1
+2517-           ew    = exp −       [1 + 4qra(4qra − 2)] hρ, w(ρ)i .
+2518-                           pκ
+2519-
+2520-Since ρ ∈ X and 2mρ ∈ Y ∨ we have 2m|ρ|2 ∈ Z so
+2521-                               √                  
+2522-                β            4π −1       2       2
+2523-               e = exp −            am(q + 1)|ρ|
+2524-                                p
+2525-                               √                      
+2526-                             2π −1 ∗        ∗ ∗      2
+2527-                  = exp −           4 (q + q )r 2m|ρ| ,
+2528-                                p
+2529-where n∗ is the inverse of n (mod p) for any integer n coprime to p. Moreover,
+2530-                      √                             √              
+2531-       w            2π −1 2                         2π −1
+2532-      e = exp −             pc hρ, w(ρ)i = exp −            chρ, w(ρ)i ,
+2533-                        κ                              κ
+2534-where we used pc2 = c − 4qrac and the fact that 2mhρ, w(ρ)i ∈ Z. We thus
+2535-obtain
+2536-                        √            |∆ |       √
+2537-                          −1 sign(p) +
+2538-                                                                  
+2539-        g                                        π −1       q     2
+2540:       τr (L(p, q)) =                      exp         S       |ρ|
+2541:                       (κ|p|)l/2 vol(Y ∨ )         κ        p
+2542-                                           √                         
+2543-                                          2π −1 ∗         ∗ ∗       2
+2544-                              × exp −            4 (q + q )r 2m|ρ|
+2545-                                             p
+2546-                                                  √               
+2547-                            X                    2π −1
+2548-                         ×        det(w) exp −          chρ, w(ρ)i
+2549-                                                    κ
+2550-                           w∈W
+2551-                                               √ q
+2552-                               X                         
+2553-                                                        2
+2554-                         ×             exp π −1 κ|ν| .
+2555-                                ∨    ∨
+2556-                                                   p
+2557-                             ν∈Y /pY
+2558-
+2559-
+2560-                                       41
+2561-Here
+2562-                                √
+2563-       X                      
+2564-                              2π −1
+2565-                                                Y √        πc     
+2566-                 det(w) exp −       chρ, w(ρ)i =   2 −1 sin − hρ, αi
+2567-                                κ                            κ
+2568-    w∈W                                             α∈∆+
+2569-
+2570-by the Weyl denominator formula. Note that c is the inverse of p (mod 4r).
+2571-Next we assume that p is even. Then q is odd and there exist two integers c and
+2572-a such that 4pc + qra = 1. We put ρw = 12 (qρ − w(ρ)) ∈ 21 Y , so 2mρw ∈ Y ∨ .
+2573-Moreover, 2ρw ∈ Y ⊆ X . We therefore find
+2574-                                            √ q
+2575-                               X                      
+2576-                   Σ = Σ′′           exp π −1 κ|ν|2 ,
+2577-                               ∨   ∨
+2578-                                                 p
+2579-                                  ν∈Y /pY
+2580-where
+2581-                                         √             
+2582-        ′′
+2583-                     X                 2π −1
+2584-    Σ            =     det(w) exp −            hρ, w(ρ)i
+2585-                                         pκ
+2586-                   w∈W
+2587-                                  √                          
+2588-                                     π −1       2 2         2
+2589-                           × exp           (16p c − 1)|2ρw |
+2590-                                      pqκ
+2591-                                         √             
+2592-                   X                   2π −1
+2593-                 =     det(w) exp −            hρ, w(ρ)i
+2594-                                         pκ
+2595-                   w∈W
+2596-                                    √                                        
+2597-                               amπ −1                2        2
+2598-                                                                            
+2599-                       × exp              (qra − 2) (q + 1)|ρ| − 2qhρ, w(ρ)i
+2600-                                    p
+2601-                   X
+2602-                 =     det(w)eβ ew ,
+2603-                    w∈W
+2604-where
+2605-                          √                         
+2606-             β        amπ −1              2        2
+2607-      e = exp                  (qra − 2)(q + 1)|ρ| ,
+2608-                          p
+2609-                            √                           √             
+2610-       w              2amqπ −1                         2π −1
+2611-      e    = exp                 (2 − qra)hρ, w(ρ)i −         hρ, w(ρ)i .
+2612-                           p                             pκ
+2613-Here qra − 2 = −1 − 4pc so
+2614-                                     √                    
+2615-                    β              2π −1      2          2
+2616-                   e = exp −              a(q + 1)2m|ρ|
+2617-                                      4p
+2618-                                     √                     
+2619-                                   2π −1         ∗ ∗      2
+2620-                        = exp −           (q + q )r 2m|ρ| ,
+2621-                                      4p
+2622-where n∗ is the inverse of n (mod 4p) for any integer n coprime to p. Moreover,
+2623-               √                                      √               
+2624-     w          2π −1                                  2π −1
+2625-    e = exp             (aqr − 1)hρ, w(ρ)i = exp −            4chρ, w(ρ)i .
+2626-                   pκ                                     κ
+2627-We have thus shown
+2628-
+2629-                                            42
+2630-Proposition 5.2 Let r = mκ be coprime to p. If p is odd we have
+2631-
+2632-                            √             |∆ |       √
+2633-                              −1 sign(p) +
+2634-                                                                       
+2635-                                                      π −1      q      2
+2636:        τrg(L(p, q))   =                        exp         S       |ρ|
+2637:                            (κ|p|)l/2 vol(Y ∨ )         κ       p
+2638-                                                √                         
+2639-                                               2π −1 ∗        ∗ ∗        2
+2640-                                   × exp −            4 (q + q )r 2m|ρ|
+2641-                                                  p
+2642-                                                       √               
+2643-                                 X                    2π −1
+2644-                              ×        det(w) exp −          chρ, w(ρ)i
+2645-                                                         κ
+2646-                                w∈W
+2647-                                                    √ q
+2648-                                    X                        
+2649-                              ×             exp π −1 κ|ν|2 .
+2650-                                     ∨    ∨
+2651-                                                        p
+2652-                                  ν∈Y /pY
+2653-
+2654-
+2655-Alternatively we have
+2656-
+2657-                                             √
+2658-                     (2 sign(p))|∆+ |
+2659-                                                               
+2660-                                               π −1      q     2
+2661: τrg(L(p, q))   =                       exp          S      |ρ|
+2662:                    (κ|p|)l/2 vol(Y ∨ )          κ       p
+2663-                                  √                          
+2664-                                 2π −1 ∗           ∗ ∗      2
+2665-                     × exp −              4 (q + q )r 2m|ρ|
+2666-                                    p
+2667-                                                 
+2668-                                                                    √ q
+2669-                            Y        πc             X                    
+2670-                                                                          2
+2671-                     ×         sin       hρ, αi            exp π −1 κ|ν| .
+2672-                                        κ              ∨   ∨
+2673-                                                                      p
+2674-                           α∈∆+                   ν∈Y /pY
+2675-
+2676-
+2677-Here n∗ is the inverse of n (mod p) for any integer n coprime to p, and c is
+2678-the inverse of p (mod 4r).
+2679-
+2680-If p is even we have
+2681-
+2682-                            √             |∆ |      √
+2683-                              −1 sign(p) +
+2684-                                                                      
+2685-                                                     π −1       q     2
+2686:        τrg(L(p, q))   =                        exp        S       |ρ|
+2687:                            (κ|p|)l/2 vol(Y ∨ )         κ       p
+2688-                                                √                     
+2689-                                               2π −1       ∗ ∗       2
+2690-                                   × exp −           (q + q )r 2m|ρ|
+2691-                                                 4p
+2692-                                                       √                
+2693-                                 X                   2π −1
+2694-                              ×        det(w) exp −         4chρ, w(ρ)i
+2695-                                                        κ
+2696-                                w∈W
+2697-                                                   √ q
+2698-                                    X                        
+2699-                                                            2
+2700-                              ×             exp π −1 κ|ν| .
+2701-                                     ∨    ∨
+2702-                                                       p
+2703-                                  ν∈Y /pY
+2704-
+2705-
+2706-                                            43
+2707-Alternatively we have
+2708-                                             √
+2709-                     (2 sign(p))|∆+ |
+2710-                                                                
+2711-                                              π −1      q       2
+2712: τrg(L(p, q))   =                       exp          S       |ρ|
+2713:                    (κ|p|)l/2 vol(Y ∨ )          κ      p
+2714-                                  √                        
+2715-                                 2π −1          ∗ ∗       2
+2716-                     × exp −              (q + q )r 2m|ρ|
+2717-                                   4p
+2718-                                                  
+2719-                                                                      √ q
+2720-                                                                            
+2721-                            Y          4πc              X
+2722-                                                                             2
+2723-                     ×         sin        hρ, αi              exp π −1 κ|ν| .
+2724-                                        κ               ∨     ∨
+2725-                                                                        p
+2726-                         α∈∆+                       ν∈Y /pY
+2727-
+2728-Here n∗ is the inverse of n (mod 4p) for any integer n coprime to p, and 4c is
+2729-the inverse of p (mod r).
+2730-
+2731:Remark 5.3 a) By a direct check using Theorem 5.1 one finds that L(64, 9)
+2732-                                                                               sl (C)
+2733-and L(64, 25) are distinguished by the sl4 (C)–invariant, in fact by τ6 4 . On
+2734:the other hand these lens spaces can not be distinguished by the LMO invariant.
+2735-This follows by [10, Proposition 5.1] and the fact that S(9/64) = S(25/64)(=
+2736-−63/32), cf. [30, Remark (4.14)]. Since the perturbative invariant τ P sln(C)
+2737-[36] can be recovered from the LMO invariant, cf. [41], we see that τ P sln(C)
+2738-does not separate L(64, 9) and L(64, 25). The perturbative invariant τ P sln(C)
+2739-                                                                       P sl (C)
+2740-is determined by the family of quantum P sln (C)–invariants τr n , see [36].
+2741-Oppositely it is expected that the perturbative invariant τ P sln(C) dominates
+2742-                   P sl (C)
+2743-the invariants τr n , cf. [36, Conjecture 1.8]. From the explicit formulas
+2744-                             P sl (C)
+2745:for the P sl4 –invariants τr 4        of the lens spaces in [51], it follows that these
+2746-invariants can not distinguish between L(64, 9) and L(64, 25) for r a prime. It
+2747-would be interesting to examine if this is also the case for the non-prime r for
+2748-        P sl (C)
+2749-which τr 4       is defined.
+2750-b) In a forthcoming paper
+2751-                      √ [20] we make
+2752-                                     detailed calculations of the Gaussian
+2753-      P                    q    2
+2754-sums ν∈Y ∨ /pY ∨ exp π −1 p κ|ν| , thereby obtaining more detailed separa-
+2755-tion results.
+2756-
+2757-
+2758:The asymptotic expansion conjecture and lens spaces In this section
+2759:we calculate the large r asymptotics of r 7→ τrg(L(p, q)), r = mκ. Let us
+2760-begin by some introductory remarks. Therefore, let X be an arbitrary closed
+2761-oriented 3–manifold and let G be a simply connected compact simple Lie group
+2762-with complexified Lie algebra g. We are interested in the behaviour of the
+2763-complex function κ 7→ τrg(X) in the limit of large κ, i.e. κ → ∞. It is believed
+2764-that Witten’s TQFT associated with G and k coincides with the TQFT of
+2765-
+2766-                                          44
+2767-Reshetikhin and Turaev associated with g and k + h∨ . In particular it is
+2768-conjectured that Witten’s semiclassical approximation for ZkG (X) should be
+2769-valid for the function κ 7→ τrg(X), and furthermore that this function should
+2770-have a full asymptotic expansion in the limit κ → ∞. The precise formulation
+2771-of this is stated in the following conjecture, called the asymptotic expansion
+2772-conjecture (AEC).
+2773-
+2774-Conjecture 5.4 (J. E. Andersen [1], [2]) Let {α1 , . . . , αM } be the set of
+2775-values of the Chern–Simons functional of flat G connections on a closed oriented
+2776-                                                                               (j)
+2777-3–manifold X . Then there exist dj ∈ Q, I˜j ∈ Q/Z, bj ∈ R+ and cn ∈ C for
+2778-j = 1, . . . , M and n = 1, 2, 3, . . . such that we for all N = 0, 1, 2, . . . have
+2779-                  M                                    N
+2780-                                                                   !
+2781-                          √              √
+2782-                 X                           ˜         X
+2783-    g
+2784-   τmκ  (X) =       bj e2π −1καj κdj eπ −1Ij /4 1 +        c(j)
+2785-                                                            n κ
+2786-                                                                −n
+2787-                                                                     + o(κd−N ) (36)
+2788-              j=1                                  n=1
+2789-
+2790-in the limit κ → ∞, where d = max{d1 , . . . , dM }.
+2791-
+2792-Here f (κ) = o(κd−N ) means as usual that f (κ)/κd−N → 0 as κ → ∞. The
+2793-AEC was proposed by Andersen in [1], where he proved it for the mapping tori
+2794-of finite order diffeomorphisms of orientable surfaces of genus at least 2 and for
+2795-general g using the gauge theoretic approach to the quantum invariants. These
+2796-manifolds are Seifert manifolds with orientable base and Seifert Euler number
+2797-equal to zero, see [1, Sect. 4]. NoteP that the semiclassical approximation is
+2798-given by putting N = 0 in the sum M     j=1 ... in (36). This part of the AEC and
+2799-some of the conjectures concerning the topological interpretation of the different
+2800-parts of the asymptotic formula, see [2] for details, are in fact inspired by the
+2801-works of Witten, Freed and Gompf, Jeffrey and Rozansky on the semiclassical
+2802-approximation of Witten’s invariants.
+2803-As already stated, Jeffrey [25], [26] and Garoufalidis [14] made completely rig-
+2804-orous calculations of the semiclassical approximation of the SU (2)–invariants
+2805:of lens spaces. Actually these calculations contain a complete verification of
+2806:the AEC for the lens spaces and g = sl2 (C). Jeffrey’s calculations also contain
+2807-a proof of the AEC for a certain class of mapping tori over the torus for an
+2808-arbitrary complex finite dimensional simple Lie algebra.
+2809-In [46], [47] L. Rozansky calculated the Witten SU (2)–invariants of all Seifert
+2810-manifolds with orientable base and carried through a rather technical analy-
+2811-sis leading to a candidate for the full asymptotic expansion of these invariants
+2812-(for the Seifert manifolds with Seifert Euler number different from zero). As
+2813-shown in [17, Sect. 8] the invariants calculated by Rozansky are equal to the
+2814-
+2815-                                        45
+2816-RT–invariants associated to sl2 (C). However, to actually prove that his for-
+2817-mula gives the asymptotic expansion of the invariants one has to incorporate
+2818-estimations of error terms in the calculations. This was left out in Rozansky’s
+2819-calculations. In [16], [18] the first author has supplemented the calculations
+2820-of Rozansky by making the necessary error estimates thereby proving, that
+2821-Rozansky’s formula is really the asymptotic expansion of these invariants. In
+2822-[18] the calculations are carried through for a big class of functions including the
+2823-sl2 (C)–invariants of all oriented Seifert manifolds with orientable base or non-
+2824-orientable base with even genus (also the ones with Seifert Euler number equal
+2825-to zero). Based on results of D. Auckly [5] the Chern–Simons invariants can be
+2826-identified in the asymptotic formula thereby proving the AEC, Conjecture 5.4,
+2827-for these Seifert manifolds and g = sl2 (C). It should be mentioned that Rozan-
+2828-sky and Lawrence have calculated the asymptotics of the sl2 (C)–invariants of
+2829-a subclass of the Seifert manifolds with base S 2 by a method which avoids the
+2830-rather technical analysis of error terms, cf. [33]. However, it seems that their
+2831-method does not work for arbitrary oriented Seifert manifolds.
+2832-
+2833:From Theorem 5.1 it is obvious, that the large κ asymptotics of τrg(L(p, q)) is
+2834-on a form as predicted by the asymptotic expansion conjecture, Conjecture 5.4.
+2835:We note that L(p, q) and L(p′ , q ′ ) are homeomorphic if and only if p = p′ and
+2836-
+2837-                     q ≡ ±q ′   (mod p) or qq ′ ≡ ±1 (mod p).
+2838-
+2839-A homeomorphism preserves orientation if and only if the relevant sign is +.
+2840-If q ∗ denotes the inverse of q in the group of units of Z/pZ we therefore have
+2841:that there is an orientation preserving homeomorphism between L(p, q) and
+2842-L(p, q ∗ ). In particular, we can exchange q and q ∗ in any of the formulas for
+2843:τrg(L(p, q)). For the following discussion this seems to be an advantage. We
+2844-have
+2845-                                                              
+2846-                 π                        π                π
+2847-           sin      hρ + κν, αi  = sin       hρ, αi cos      hν, αi
+2848-                 pκ                       pκ               p
+2849-                                                                      
+2850-                                                 π               π
+2851-                                        + cos      hρ, αi sin      hν, αi .
+2852-                                                pκ               p
+2853-If we let
+2854-
+2855-   Mj = { ν ∈ Y ∨ /pY ∨ | hν, αi ∈ pZ for exactly j elements α in ∆+ }
+2856-
+2857-for j = 0, 1, . . . , |∆+ |, then we get
+2858-
+2859-                                                                 (ν)
+2860-Corollary 5.5 There exists a family of complex numbers cn , n = 1, 2, . . .,
+2861-
+2862-                                           46
+2863-ν ∈ Y ∨ /pY ∨ , depending directly on p but only on q through S(q/p), such that
+2864-
+2865-                                          |∆+ | 
+2866-                       (2 sign(p))|∆+ | X π j X                      √   q∗ 2
+2867-                                                                            
+2868:     τrg(L(p, q)) =                                      bν exp 2π −1κ |ν|
+2869:                      (κ|p|)l/2 vol(Y ∨ ) j=0 pκ ν∈M                     2p
+2870-                                                       j
+2871-                                                         ∞
+2872-                                                                     !
+2873-                                     √ q∗
+2874-                                                      X
+2875-                                                              (ν) −n
+2876-                         × exp 2π −1 hν, ρi         1+       cn κ      ,
+2877-                                            p           n=1
+2878-
+2879-for all κ ∈ Z≥h∨ , where
+2880-                                                                                              
+2881-                    Y
+2882-                                        hν,αi/p
+2883-                                                                   Y                   π
+2884-       bν =                      (−1)             hρ, αi                     sin         hν, αi .
+2885-                                                                                       p
+2886-              α∈∆+ : hν,αi∈pZ                              α∈∆+ : hν,αi /
+2887-                                                                       ∈pZ
+2888-
+2889-
+2890-
+2891-
+2892-Note here that S(q/p) = S(q ∗ /p). The infinite power series in 1/κ present in
+2893-the above corollary are convergent for all κ ∈ Z≥h∨ . Note also that 0 ∈ M|∆+ | ,
+2894-so this set is non-empty. Let us in some greater detail look at a few examples.
+2895-First assume that g √       = sl2 (C). In this case we have that ∆+ contains
+2896-                                                                       √     one
+2897-                                       ∨
+2898:element α of length 2 and Y = Y = SpanZ {α} so vol(Y ) = 2. For   ∨
+2899-
+2900-n ∈ {0, 1, . . . , |p| − 1} we have
+2901-
+2902-                                            hnα, αi = 2n
+2903-
+2904-so if we identify nα by n we have
+2905-                                 
+2906-                                     {0}        ,            if p is odd
+2907-                       M1 =
+2908-                                     {0, |p|/2} ,            if p is even
+2909-
+2910-and M0 = {0, 1, . . . , |p| − 1} \ M1 . For p odd we therefore have
+2911-
+2912-                                                        ∞
+2913-                                        s                              !
+2914-                                  π           2         X  (0)
+2915:         τrsl2 (C) (L(p, q)) =                       1+   cl κ−l
+2916-                                 |p|κ       |p|κ
+2917-                                                            l=1
+2918-                                     |p|−1
+2919-                         s
+2920-                                             √   q∗         √ q∗
+2921-                                                              
+2922-                               2 X
+2923-              + sign(p)                exp 2π −1κ n2 exp 2π −1 n
+2924-                             |p|κ n=1            p            p
+2925-                                               ∞
+2926-                                                      !
+2927-                                      2πn      X  (n)
+2928-                              × sin         1+   cl κ−l .
+2929-                                       p
+2930-                                                             l=1
+2931-
+2932-
+2933-                                                   47
+2934-For p even we find that
+2935-                                                                          ∞ 
+2936-                                     s                                                            !
+2937-                               π           2                  q ∗ p/2
+2938-                                                                          X   (0)  |p|/2)
+2939-                                                                                          
+2940:      τrsl2 (C) (L(p, q)) =                     1 − (−1)                +    cl + cl        κ−l
+2941-                              |p|κ       |p|κ
+2942-                                                                            l=1
+2943-                      s
+2944-                                                                       q∗    √
+2945-                                                                                          
+2946-                             2                  X
+2947-           + sign(p)                                         exp 2π −1κ n2
+2948-                           |p|κ                          |p|
+2949-                                                                       p
+2950-                                  n∈{1,2,...,|p|−1} : n6= 2
+2951-                                              ∞
+2952-                                                      !
+2953-                            q∗ √
+2954-                                      
+2955-                                     2πn      X  (n)
+2956-                 × exp 2π −1 n sin         1+   cl κ−l .
+2957-                            p         p
+2958-                                                                            l=1
+2959-
+2960-                                                                                  sl (C)
+2961:For all p we find that the leading large κ asymptotics of τr 2 (L(p, q)) is
+2962-                        |p|−1
+2963-                 s
+2964-    √                                √     q∗ 2       2πq ∗ n
+2965-                                                                     
+2966-                     2 X                                              2πn
+2967-      −1 sign(p)              exp 2π −1κ n sin                  sin         ,
+2968-                   |p|κ n=1                p             p             p
+2969-
+2970-where we use that
+2971-            |p|−1
+2972-                              √
+2973-                           q∗ 2     2πq ∗ n
+2974-                                                   
+2975-             X                                      2πn
+2976-                 exp 2π −1κ n cos             sin         = 0.
+2977-             n=1
+2978-                           p          p              p
+2979-
+2980-This result coincides with [26, Formula (5.7)]. It is well-known, see e.g. [26,
+2981-Formula (5.3)], that the set of values of the Chern–Simons functional of flat
+2982:SU (2) connections on L(p, q) is 1
+2983-                      ∗                                      
+2984-                       q 2
+2985-                S=       n (mod 1) | n = 0, 1, . . . , |p| − 1 ,
+2986-                       p
+2987-so here we see the reason for replacing q by q ∗ . (Note that q ∗ (p−n)2 /p ≡ q ∗ n2 /p
+2988-(mod 1).) If we e.g. have p = k2 , where k is a positive integer, then
+2989-                                      q∗ 2
+2990-                                        n ≡ 0 (mod 1)
+2991-                                      p
+2992-for n = k , so we see that two elements belonging to different sets Mj can have
+2993-the same Chern–Simons value.
+2994-Let us also examine
+2995-            √       the type A2 . Here Y ∨ = Y = SpanZ {α1 , α2 }, where αi
+2996-have length 2, i = 1, 2. We have ∆+ = {α1 , α2 , α1 + α2 }, and in particular
+2997-  1
+2998-    There seems to be a problem with signs here. The set S of Chern–Simons invariants
+2999:has been calculated by Kirk and Klassen, cf. [31, Theorem 5.1]. According to their
+3000-result all the above stated Chern–Simons values have to be multiplied by −1. Note
+3001:that L(p, q) in [31] is equal to L(p, −q) here.
+3002-
+3003-                                                    48
+3004-|∆+ | = 3. If we identify ν = kα1 + nα2 ∈ Y ∨ /pY ∨ with (k, n) ∈ {0, 1, . . . , |p| −
+3005-1}2 one finds by an elementary analysis that
+3006-                  
+3007-                     {(0, 0), (l, 2l), (2l, l)} , if |p| = 3l, l ∈ Z \ {0},
+3008-        M3 =
+3009-                     {(0, 0)}                   , otherwise,
+3010-        M2 = ∅
+3011-and M0 = {0, 1, . . . , |p| − 1}2 \ (M1 ∪ M3 ), where M1 = ∅ for |p| = 3 and
+3012-                                                                          
+3013-         
+3014-                                            exactly one of the identities 
+3015-                                                                           
+3016-                                             k = 2n, n = 2k,
+3017-         
+3018-                                                                          
+3019-                                                                           
+3020-                                                                          
+3021-                                          2
+3022-    M1 = (k, n) ∈ {0, 1, . . . , |p| − 1}    k = 2n − |p|, n = 2k − |p|
+3023-                                             k + n = |p|
+3024-         
+3025-                                                                          
+3026-                                                                           
+3027-         
+3028-                                                                          
+3029-                                                                           
+3030-                                             is satisfied
+3031-                                                                          
+3032-
+3033-otherwise. For |p| = 1 we have M3 = {(0, 0)} and Mj = ∅, j = 0, 1, 2, and for
+3034-|p| = 2 we have M3 = {(0, 0)}, M1 = {(0, 1), (1, 0), (1, 1)} and M0 = M2 = ∅.
+3035-Corollary 5.5 leads together with Conjecture 5.4 immediately to the following
+3036-conjecture (use the uniqueness property of asymptotic expansions of the form
+3037-(36), i.e. the fact that an arbitrary function f : Z>0 → C has at most one
+3038-asymptotic expansion of the form (36) if the αj ’s are mutually different and
+3039-rational).
+3040-
+3041-Conjecture 5.6 The set of values of the Chern–Simons functional of flat G
+3042:connections on L(p, q) is given by2
+3043-                    ∗                             
+3044-                      q     2               ∨    ∨
+3045-                         |ν| (mod Z)   ν ∈ Y /pY     ,
+3046-                      2p
+3047-for any simply connected, compact simple Lie group G.
+3048-
+3049-Proving this conjecture will together with Corollary 5.5 give a proof of the
+3050:AEC for the invariants τrg(L(p, q)). In fact, by the uniqueness property of
+3051-asymptotic expansions of the form (36), Conjecture 5.6 should for G = SU (n)
+3052-be a corollary of Corollary 5.5 and the recent result of Andersen, mentioned
+3053-in the introduction. For G = SU (n) Conjecture 5.6 should also follow from
+3054-results in [40].
+3055-
+3056-
+3057-6        A rational surgery formula for the invariant τrg
+3058-
+3059-In this final section we derive a rational surgery formula for the invariant τrg .
+3060-The result follows easily from the surgery formula derived in [17] in the setting
+3061-    2
+3062-        perhaps with the opposite signs dependend on the choice of conventions
+3063-
+3064-                                            49
+3065-of a general modular tensor category. By rational surgery we mean rational
+3066-surgery on an arbitrary closed oriented 3–manifold M along a framed link
+3067-inside M . Let us briefly recall the situation from [17]. Let (V, {Vi }i∈I ) be a
+3068-fixed modular category with a fixed rank D, and let τ be the RT–invariant
+3069-associated to these data. For a link L we let col(L) be the set of mappings
+3070-from the set of components of L to the index set I . Before giving the result
+3071-in the general case, let us first consider rational surgery along links in S 3 . If
+3072-L ⊆ S 3 is framed and oriented and λ ∈ col(L) we let Γ(L, λ) be the colored
+3073-ribbon graph induced by L with the i’th component Li of L colored by Vλ(Li ) .
+3074-
+3075-Theorem 6.1 ([17]) Let L be a link in S 3 with n components and let M
+3076-be the 3–manifold given by surgery on S 3 along L with surgery coefficient
+3077-pi /qi ∈ Q attached to the i’th component, i = 1, 2, . . . , n (so we assume qi 6= 0,
+3078-i = 1, 2, . . . , n, see the comments to (37)). Moreover, let Ω be a colored ribbon
+3079-graph in M (also identified with a colored ribbon graph in S 3 \ L). Let L0
+3080-be L considered as a framed link with all components given the framing 0 and
+3081-                                                                         (i)      (i)
+3082-with an arbitrary chosen but fixed orientation. Finally, let Ci = (a1 , . . . , ami )
+3083-be a continued fraction expansion of pi /qi , i = 1, 2, . . . , n. Then
+3084-                                  Pn           Pn
+3085-       τ (M, Ω) = (∆D −1 )σ+ i=1 ci D − i=1 mi
+3086-                                                        n
+3087-                                                                  !
+3088-                                                           Ci
+3089-                            X                           Y
+3090-                                       3
+3091-                       ×          τ (S , Γ(L0 , λ) ∪ Ω)   Gλ(Li )0 ,
+3092-                               λ∈col(L)                       i=1
+3093-                                 
+3094-             1 Pmi     (i)     Ci
+3095-where ci = 3      j=1 aj − Φ(B ) , i = 1, . . . , n, and σ is the signature of
+3096-the linking matrix of L (with the surgery coefficients p1 /q1 , . . . , pn /qn on the
+3097-diagonal ).
+3098-
+3099-In the case of surgery on arbitrary closed oriented 3–manifolds along framed
+3100-links we do not have a preferred framing as in the case of surgery on S 3 (or
+3101-on another integral homology sphere), i.e. we can not identify the framing of a
+3102-link component with an integer in a canonical way, see [17, Appendix B]. Here,
+3103-by a framed link in a closed oriented 3–manifold M , we mean a pair (L, Q),
+3104-where Q = ∐ni=1 Qi : ∐ni=1 (B 2 × S 1 ) → M is an embedding (or more precisely
+3105-an isotopy class of such embeddings) and L is the image by Q of ∐ni=1 (0 × S 1 ).
+3106-For other definitions of framed links in 3–manifolds and how these relate to
+3107-this definition we refer to [17, Appendix B]. The following result is sensitive to
+3108-a choice of orientations. We will use the following conventions.
+3109-
+3110-Conventions 6.2 The space B 2 × S 1 is the standard solid torus in R3 with
+3111-the orientation induced by the standard right-handed orientation of R3 . Here
+3112-
+3113-                                          50
+3114-S 1 is the standard unit circle in the xz –plane with centre 0 and oriented coun-
+3115-terclockwise, i.e., e3 is a positively oriented tangent vector in the tangent space
+3116-Te1 S 1 ⊆ R3 , ei being the i’th standard unit vector in R3 , see Fig. 3. For a
+3117-framed link (L, Q) as above we will always assume that each copy of B 2 × S 1
+3118-is this oriented standard solid torus, and that Q is orientation preserving after
+3119-giving the image of Q the orientation induced by that of M (we can always
+3120-obtain this by composing some of the Qi by g × idS 1 if necessarily, where
+3121-g : B 2 → B 2 is an orientation reversing homeomorphism). Moreover, we orient
+3122-L so that Qi restricted to S 1 × {0} is orientation preserving for each i. The
+3123-oriented meridian α and longitude β , see Fig. 3, represent a basis (over Λ) of
+3124-H1 (Σ(1;) ; Λ) = Λ ⊕ Λ, Λ = Z, R, Σ(1;) = S 1 × S 1 . (For the notation Σ(1;) , see
+3125-[52, Chap. IV].)
+3126-
+3127-
+3128-
+3129-
+3130-                                                                 z
+3131-                   β
+3132-                                              α
+3133-                                                                     x
+3134-
+3135-
+3136-
+3137-
+3138-                                         Figure 3
+3139-
+3140-Let us recall the notion of rational surgery on M along (L, Q). Therefore,
+3141-let Ui = Qi (B 2 × S 1 ) and let li = Qi (e1 × S 1 ) oriented so that [li ] = [Li ] in
+3142-H1 (Ui ; Z), where Li = Qi (0 × S 1 ). Moreover, let µi = Qi (∂B 2 × 1) oriented
+3143-so that (∂Qi )∗ ([α]) = [µi ] in H1 (∂Ui ; Z), where ∂Qi is the restriction of Qi to
+3144-∂B 2 × S 1 = Σ(1;) . Let (pi , qi ) be pairs of coprime integers, let hi : ∂Ui → ∂Ui
+3145-be homeomorphisms such that
+--
+3259-[11] C Blanchet, N Habegger, G Masbaum, P Vogel, Topological quantum
+3260-     field theories derived from the Kauffman bracket, Topology 34 (1995) 883–927
+3261-[12] K Chandrasekharan, Elliptic functions, Grundlehren der math. wis-
+3262-     senschaften 281, Springer–Verlag (1985)
+3263-[13] D S Freed, R E Gompf, Computer calculations of Witten’s 3–manifold in-
+3264-     variants, Comm. Math. Phys. 141 (1991) 79–117
+3265-[14] S Garoufalidis, Relations among 3–manifold invariants, D. Phil. thesis, The
+3266-     University of Chicago (1992)
+3267-[15] D Gepner, E Witten, String theory on group manifolds, Nuclear Phys. B 278
+3268-     (1986) 493–549
+3269-[16] S K Hansen, Reshetikhin–Turaev invariants of Seifert 3–manifolds, and their
+3270-     asymptotic expansions, D. Phil. thesis, The University of Aarhus (1999)
+3271-[17] S K Hansen, Reshetikhin–Turaev invariants of Seifert 3–manifolds and a ra-
+3272-     tional surgery formula, Algebr. Geom. Topol. 1 (2001) 627–686
+3273-[18] S K Hansen, Analytic asymptotic expansions of the Reshetikhin–Turaev invari-
+3274-     ants of Seifert 3–manifolds for sl2 (C), in preparation
+3275-[19] S K Hansen, T Takata, Quantum invariants of Seifert 3–manifolds and their
+3276-     asymptotic expansions, in Invariants of knots and 3–manifolds (Kyoto 2001 ),
+3277-     Geometry and Topology Monographs 4 (2002), 69–87
+3278-[20] S K Hansen, T Takata, Generalized Gauss sums and quantum invariants of
+3279:     lens spaces, in preparation
+3280-[21] L Hörmander, The analysis of linear partial differential operators I, Springer–
+3281-     Verlag (1983)
+3282-[22] J E Humphreys, Introduction to Lie algebras and representation theory, Grad.
+3283-     Texts in Math. 9, Springer–Verlag (1972)
+3284-[23] J E Humphreys, Reflection groups and Coxeter groups, Cambridge Studies in
+3285-     Advanced Math. 29, Cambridge University Press (1990)
+3286-[24] M Jankins, W D Neumann, Lectures on Seifert manifolds, Brandeis Lecture
+3287-     Notes 2, Brandeis University (1981)
+3288-[25] L C Jeffrey, On some aspects of Chern–Simons gauge theory, D. Phil. thesis,
+3289-     University of Oxford (1991)
+3290:[26] L C Jeffrey, Chern–Simons–Witten invariants of lens spaces and torus bundles,
+3291-     and the semiclassical approximation, Comm. Math. Phys. 147 (1992) 563–604
+3292-[27] G W Johnson, M L Lapidus, The Feynman integral and Feynman’s oper-
+3293-     ational calculus, Oxford mathematical monographs, Clarendon Press, Oxford
+3294-     University Press (2000)
+3295-
+3296-                                        54
+3297-[28] V G Kac, Infinite dimensional Lie algebras, 3rd ed., Cambridge University
+3298-     Press (1990)
+3299-[29] V G Kac, D H Peterson, Infinite-dimensional Lie algebras, theta functions
+3300-     and modular forms, Adv. in Math. 53 (1984) 125–264
+3301-[30] R Kirby, P Melvin, Dedekind sums, µ–invariants and the signature cocycle,
+3302-     Math. Ann. 299 (1994) 231–267
+3303-[31] P A Kirk, E P Klassen, Chern–Simons invariants of 3–manifolds and repre-
+3304-     sentation spaces of knot groups, Math. Ann. 287 (1990) 343–367
+3305-[32] A A Kirillov, On an inner product in modular tensor categories, J. Amer.
+3306-     Math. Soc. 9 (1996) 1135–1169
+3307-[33] R Lawrence, L Rozansky, Witten–Reshetikhin–Turaev invariants of Seifert
+3308-     manifolds, Comm. Math. Phys. 205 (1999) 287–314
+3309-[34] T T Q Le, Integrality and symmetry of quantum link invariants, Duke Math. J.
+3310-     102 (2000) 273–306
+3311-[35] T T Q Le, Quantum invariants of 3–manifolds: Integrality, splitting, and per-
+3312-     turbative expansions, preprint arXiv:math.QA/0004099
+3313-[36] T T Q Le, On perturbative P SU (n) invariants of rational homology 3–spheres,
+3314-     Topology 39 (2000) 813–849
+3315-[37] G Lusztig, Introduction to quantum groups, Birkhäuser (1993)
+3316-[38] M Marino, Chern–Simons theory, matrix integrals, and perturbative three-
+3317-     manifold invariants, preprint arXiv:hep-th/0207096
+3318-[39] J M Montesinos, Classical tessellations and three-manifolds, Universitext,
+3319-     Springer-Verlag (1987)
+3320-[40] H Nishi, SU (n)–Chern–Simons invariants of Seifert fibered 3–manifolds, In-
+3321-     ternat. J. Math. 9 (1998) 295–330
+3322-[41] T Ohtsuki, Quantum invariants - A study of knots, 3-manifolds, and their
+3323-     sets, Series on Knots and Everything 29, World Scientific Publishing Co., Inc.,
+3324-     (2002)
+3325-[42] F Quinn, Lectures on axiomatic topological quantum field theory, (Parc City,
+3326-     UT, 1991), IAS/Park City Math. Ser. 1, Amer. Math. Soc. (1995) 323–453
+3327-[43] H Rademacher, E Grosswald, Dedekind sums, The Carus Mathematical
+3328-     Monographs 16, The Mathematical Association of America (1972)
+3329-[44] N Reshetikhin, V G Tureav, Invariants of 3–manifolds via link polynomials
+3330-     and quantum groups, Invent. Math. 103 (1991) 547–597
+3331-[45] L Rozansky, A contribution of the trivial connection to the Jones polynomial
+3332-     and Witten’s invariant of 3d manifolds I, Comm. Math. Phys. 175 (1996) 275–
+3333-     296
+3334-[46] L Rozansky, A large k asymptotics of Witten’s invariant of Seifert manifolds,
+3335-     Comm. Math. Phys. 171 (1995) 279–322
+3336-
+3337-                                       55
+3338- [47] L Rozansky, Residue formulas for the large k asymptotics of Witten’s invari-
+3339-      ants of Seifert manifolds. The case of SU (2), Comm. Math. Phys. 178 (1996)
+3340-      27–60
+3341-
+3342- [48] P G Scott, The geometries of 3–manifolds, Bull. London Math. Soc. 15 (1983)
+3343-      401–487
+3344-
+3345- [49] H Seifert, Topologie dreidimensionaler gefaserter räume, Acta Math. 60 (1933)
+3346-      147–238
+3347-
+3348- [50] H Seifert, Topology of 3–dimensional fibered spaces (english translation by W.
+3349-      Heil of: Topologie dreidimensionaler gefaserter räume, Acta Math. 60 (1933)
+3350-      147–238). In H Seifert, W Threlfall, A textbook of topology, Pure Appl. Math.
+3351-      89, Academic Press (1980) 359–422
+3352-
+3353: [51] T Takata, On quantum P SU (n)–invariants for lens spaces, J. Knot Theory
+3354-      Ramifications 5 (1996) 885–901
+3355-
+3356- [52] V G Turaev, Quantum invariants of knots and 3–manifolds, de Gruyter Stud.
+3357-      Math. 18, Walter de Gruyter (1994)
+3358-
+3359- [53] V G Turaev, H Wenzl, Quantum invariants of 3–manifolds associated with
+3360-      classical simple Lie algebras, Internat. J. Math. 4 (1993) 323–358
+3361-
+3362- [54] E Verlinde, Fusion rules and modular transformations in 2D conformal field
+3363-      theory, Nuclear Phys. B 300 (1988) 360–376
+3364-
+3365- [55] E Witten, Quantum field theory and the Jones polynomial, Comm. Math. Phys.
+3366-      121 (1989) 351–399
+3367-
+3368-
+3369-
+3370-
+3371-Appendix
+3372-
+3373-
+3374-In the proof of the main Lemma 2.4, the reciprocity formula, Proposition 2.2, played a
+3375-crucial role. The idea of using the reciprocity formula stems from Jeffrey’s calculations
+3376-in [25], [26] as already stated in the introduction. Jeffrey’s proof of the reciprocity
+3377-formula, which is a verbatim generalization of the argument presented in the proof of
+3378-[12, Chap. IX Theorem 1] can be found in her thesis [25].
+3379-
+3380-In this appendix we will first sketch Jeffrey’s proof, which builds on a limiting case of
+3381-the Poisson summation formula applied to Gaussian functions. A main ingredient is the
+3382-Fourier transformation of a Gaussian function, which rely on an analytic continuation
+3383-argument for complex functions of several variables. Next we will present a slightly
+3384-different argument which avoids the direct use of this Fourier transform result.
+3385-
+3386-                                           56
+3387-Jeffrey’s proof of Proposition 2.2 According to the Poisson summation formula
+3388-we have            X                   X
+3389-                      φ̂(an) = (2π/a)l   φ(2πn/a),   a>0
+3390-                        n∈Zl                     n∈Zl
+3391-
+3392-for φ ∈ S(Rl ), see [21, p. 178]. Here S(Rl ), is the Schwartz space of smooth (C ∞ )
+3393-functions that are rapidly decreasing at infinity, and φ̂ is the Fourier transformation
+3394-of φ. Recall that              Z
+3395-                          φ̂(ξ) =        e−ihx,ξi φ(x)dx,   φ ∈ L1 (Rl )
+3396-                                    Rl
+3397-
+3398-for ξ ∈ Rl , where h·, ·i is the standard inner product in Rl . (Below h·, ·i will also be
+3399-used to denote the inner product in V , but the meaning of h·, ·i will always be clear
+3400-from the context.) We recall that S(Rl ) ⊆ L1 (Rl ).
+3401-Let VC = V ⊗R C and extend h·, ·i to a hermitian product in VC in the usual way. Let
+3402-τ ∈ EndC (VC )) such that the imaginary part of τ is positive definite. By assumption
+3403-the sum               X        √                    √
+3404-                         exp(π −1hτ (λ), λi) exp(2π −1hλ, ψi)
+3405-                        λ∈Λ
+3406-
+3407-is absolutely convergent. In general, if Ω is a symmetric complex l × l–matrix with
+3408-positive definite imaginary part and z ∈ Cl and if φ : Rl → C is given by
+3409-                                      √              √
+3410-                         φ(x) = exp(π −1xt Ωx + 2π −1xt z)
+3411-
+3412-then                             −1/2
+3413-                                              √
+3414-                           
+3415-                              Ω
+3416-                                        exp −π −1(ξ − z)t Ω−1 (ξ − z) .
+3417-                                                                     
+3418-            φ̂(2πξ) =    det √
+3419-                              −1
+3420-Here the square root is positive on the positive real axis with a cut along the negative
+3421-real axis. To see this, first assume that Ω−1 z ∈ Rl and complete the square and use
+3422-[21, Theorem 7.6.1]. The general case then follows by analytic continuation.
+3423-By using this result together with the Poisson summation formula we get
+3424-                   √                    √
+3425-       Σλ∈Λ exp(π −1hτ (λ), λi) exp(2π −1hλ, ψi)                                (39)
+3426-                                     −1/2 X
+3427-                                                        √
+3428-                             
+3429-                                 τ
+3430:            = vol(Λ)−1 det √                      exp −π −1hτ −1 (µ + ψ), µ + ψi
+3431-                                                                                
+3432-                                 −1          µ∈Λ∗
+3433-
+3434-if we futhermore e.g. assume that τ can be represented by a symmetric matrix w.r.t.
+3435-a basis of VC of the form {w1 ⊗ 1, . . . , wl ⊗ 1}, where {w1 , . . . , wl } is some basis of V .
+3436-This is always the case in the situations where we will use (39)√below, since f : V → V
+3437-is self-adjoint. Let us use the identity (39) with τ = 1r fC + −1εidVC , ε > 0, where
+3438-fC = f ⊗ idC . For λ, α ∈ Λ we have F (λ + rα) = F (λ) by (5), where
+3439-                                √
+3440-                                                            √
+3441-                                                     
+3442-                                  π −1
+3443-                   F (λ) = exp             hf (λ), λi exp(2π −1hλ, ψi),                     (40)
+3444-                                    r
+3445-
+3446-                                                 57
+3447-so the left-hand side of (39) becomes
+3448-                                 X        X
+3449-                      LHS(ε) =      F (λ)   exp(−πε|λ + rα|2 ).
+3450-                                     Λ/rΛ         α∈Λ
+3451-
+3452-
+3453-Here
+3454-                                                 l/2
+3455-                                                  
+3456-   X                                          1
+3457:         exp(−πε|λ + rα|2 ) =         vol(Λ∗ )
+3458-                                             εr2
+3459-   α∈Λ
+3460-                                                                 √
+3461-                                                                      
+3462-                                         X             1               λ
+3463-                                       ×    exp −πhβ, 2 βi exp 2π −1hβ, i
+3464-                                                      εr               r
+3465-                                          ∗ β∈Λ
+3466-
+3467-                                                                       √
+3468-by using
+3469-    √ (39)    with the roles of Λ and Λ∗ reversed and with τ −1 = − −1εr2 idVC (so
+3470-τ = −1 εr12 idVC has positive definite imaginary part). We first observe that
+3471-                                                            X
+3472:                           lim εl/2 LHS(ε) = r−l vol(Λ∗ )          F (λ).
+3473-                          ε→0+
+3474-                                                            Λ/rΛ
+3475-
+3476-This follows by the fact that
+3477-                                                  √
+3478-                                                       
+3479-                         X             1                λ
+3480-                   lim       exp −πhβ, 2 βi exp 2π −1hβ, i = 1,
+3481-                ε→0+                  εr                r
+3482-                         β∈Λ
+3483-                           ∗
+3484-
+3485-
+3486-
+3487-which follows by the fact that
+3488-
+3489-                                           √
+3490-                                                    
+3491-              X                1                    λ
+3492-                     exp −πhβ, 2 βi exp 2π −1hβ, i
+3493-                              εr                    r
+3494-           β∈Λ∗ \{0}
+3495-                     X        π              π 2 X         π       
+3496-               ≤          exp − 2 |β|2 ≤ exp −     2
+3497-                                                     c     exp − 2 |β|2
+3498-                                εr             2εr              2r
+3499-                   β∈Λ \{0}
+3500-                      ∗                                  ∗           β∈Λ
+3501-
+3502-
+3503-for ε ∈]0, 1], c = min{ |β| : β ∈ Λ∗ \ {0} } > 0.
+3504-                               l/2
+3505-                    √ limε→0+ ε RHS(ε), where RHS(ε) is the right-hand side of
+3506-Hereafter we calculate
+3507-              1
+3508-(39) with τ = r fC + −1εidVC . Note that
+3509-                                     √                   √         −1
+3510-                    τ −1 = rfC−1 −    −1ε(rfC−1 )2 idVC + −1εrfC−1     .
+3511-
+3512-By using this we find that RHS(ε) is equal to
+3513-                         −1/2
+3514-                                                     √
+3515-                  
+3516-                      τ             X
+3517:       vol(Λ)−1 det √                          exp(−π −1hµ + ψ, rf −1 (µ + ψ)i)
+3518-                      −1         µ∈Λ∗ /f (Λ∗ )
+3519-             X                  √
+3520-                exp −πεr2 h(id + −1εrfC−1 )−1 f −1 (µ + ψ) + β , f −1 (µ + ψ) + βi ,
+3521-                                                                                 
+3522-          ×
+3523-            β∈Λ∗
+3524-
+3525-
+3526-                                                  58
+3527-                                                                            √
+3528-where we use that G(µ + f (β)) = G(µ) for µ, β ∈ Λ∗ , where G(µ) = exp(−π −1hµ +
+3529-ψ, rf −1 (µ + ψ)i). The sum
+3530-                             P
+3531-                               β∈Λ∗ can √
+3532-                                        now be calculated by using (39) once more
+3533-                                                     √
+3534-with ψ replaced by f (µ + ψ) and τ = εr−1
+3535-                      −1
+3536-                                          2 (idVC +    −1εrfC ). By doing this we get
+3537-                                       −1/2        l/2
+3538-                                                                    √
+3539-                     
+3540-                           1                      1                           1/2
+3541-   RHS(ε) =        det √ fC + εidVC                 2
+3542-                                                           det(id + −1εrfC )
+3543-                         r −1                    εr
+3544-                          X            √
+3545-                                exp −π −1hµ + ψ, rf −1 (µ + ψ)i
+3546-                                                                  
+3547-                    ×
+3548-                        µ∈Λ∗ /f (Λ∗ )
+3549-                                                    √             
+3550-                           X       π            π −1
+3551-                       ×       exp − 2 |λ|2 exp −        hf (λ), λi
+3552-                                    εr                r
+3553-                           λ∈Λ
+3554-                                            √
+3555-                                   × exp 2π −1hf −1 (µ + ψ), λi .
+3556-                                                               
+3557-
+3558-As before we find that the sum over Λ converges to 1 as ε → 0+ . Therefore
+3559-                                      −1/2
+3560-                                     f
+3561-            l/2
+3562-       lim ε RHS(ε) =         det √             r−l/2
+3563-      ε→0+                           −1
+3564-                                   X              √
+3565-                                          exp −π −1hµ + ψ, rf −1 (µ + ψ)i .
+3566-                                                                           
+3567-                              ×
+3568-                                        µ∈Λ∗ /f (Λ∗ )
+3569-
+3570-Since limε→0+ εl/2 RHS(ε) = limε→0+ εl/2 LHS(ε) the result follows.
+3571-
+3572-A second proof of Proposition 2.2 This proof builds on the following periodicity
+3573-result:
+3574-
+3575-Lemma 6.5 Let Λ be a lattice in V and let h : V → V be a linear map such that
+3576-h(Λ) ⊆ Λ. Moreover, let gε : V → V , ε ∈]0, a], be a curve of self-adjoint positive
+3577-definite maps such that gε → g0 in EndR (V ) as ε → 0, where g0 is positive definite,
+3578-a being a fixed positive number. Finally, let v0 ∈ V be fixed but arbitrary and let
+3579-F : V → C be a map such that
+3580-                                        F (λ + h(α)) = F (λ)
+3581-for all λ, α ∈ Λ. Then
+3582-               X                                p
+3583:                     F (λ)     = vol(Λ)| det(h)| det(g0 )
+3584-            λ∈Λ/h(Λ)
+3585-                                                          X
+3586-                                          × lim εl/2            e−πεhλ+v0 ,gε (λ+v0 )i F (λ).
+3587-                                             ε→0+
+3588-                                                          λ∈Λ
+3589-
+3590-
+3591-Proof By assumption we have
+3592-                 X
+3593-                     e−πεhλ+v0 ,gε (λ+v0 )i F (λ)
+3594-                       λ∈Λ
+3595-                             X                  X
+3596-                 =                      F (λ)         e−πεhλ+v0 +h(α),gε (λ+v0 +h(α))i .
+3597-                           λ∈Λ/h(Λ)             α∈Λ
+3598-
+3599-
+3600-                                                    59
+3601-The lemma will therefore follow if we can show that
+3602-                        p                   X
+3603:         vol(Λ)| det(h)| det(g0 ) lim εl/2      e−πεhv+h(α),gε (v+h(α))i = 1
+3604-                                      ε→0+
+3605-                                                   α∈Λ
+3606-                                                                                      l
+3607-                                                            P
+3608-for any v ∈ V . This is done by changing the sum               α∈Λ to a sum over Z (using
+3609-coordinates) and then use the Poisson summation formula to this sum. Note that if
+3610-V = {v1 , . . . , vl } is a basis for V such that Λ is generated by this set over the integers
+3611:and if W = {w1 , . . . , wl } is an orthonormal basis for V then vol(Λ) = det(k), where
+3612-k : V → V is the linear isomorphism given by k(wj ) = vj , j = 1, 2, . . . , l.
+3613-
+3614-Now let F : Λ → C be given by (40), and let h = ridV : V → V . Then F (λ + h(α)) =
+3615-F (λ) for α, λ ∈ Λ by (5), so by the above lemma we get
+3616-                    X                              X        2
+3617:                         F (λ) = vol(Λ)rl lim εl/2   e−πε|λ| F (λ).
+3618-                                              ε→0+
+3619-                    λ∈Λ/rΛ                                λ∈Λ
+3620-
+3621-To continue we use coordinates. Let V and W be bases for V as in the proof of
+3622-Lemma 6.5, and let C be the matrix of f w.r.t. W . Moreover, let D = (dij )li,j=1 such
+3623-         Pl
+3624-that vj = i=1 dij wi . Then
+3625-          X         2
+3626-             e−πε|λ| F (λ)
+3627-           λ∈Λ
+3628-                                            √
+3629-                                                                 √
+3630-                                                          
+3631-                  X                         π −1
+3632-                         e−πεhDn,Dni exp
+3633-                                                                           
+3634-              =                                  hDn, CDni exp 2π −1hDn, yi ,
+3635-                                              r
+3636-                  n∈Zl
+3637-
+3638-where y are the coordinates of ψ w.r.t. the basis W . By the Poisson summation
+3639-formula we get
+3640-                                                X Z    √
+3641-                   −πε|λ|2
+3642-              X                                               −1
+3643-                                             −1
+3644-                 e         F (λ) = | det(D)|        e2π −1hm,D xi
+3645-                 λ∈Λ                               m∈Zl   Rl
+3646-                                         √
+3647-                                                            √
+3648-                                                     
+3649-                                         π −1
+3650-                         ×e−πεhx,xi exp
+3651-                                                                     
+3652-                                              hx, Cxi exp 2π −1hx, yi dx.
+3653-                                           r
+3654-The summands are all Gaussian integrals and can be calculated by diagonalizing C . In
+3655-fact, if we choose an orthogonal matrix Q such that Q−1 CQ = Diag(λ1 , . . . , λl ) and
+3656-let η = εr2 , then we arrive at the following identity
+3657-                                       −1/2
+3658-          X
+3659-                          l/2        f
+3660-                F (λ) = r      det √              lim η l/2
+3661-         λ∈Λ/rΛ
+3662-                                     −1          η→0+
+3663-                 X
+3664-                     exp −πηhm + Dt y, D−1 C −1 QH(η)Q−1 C −1 (D−1 )t (m + Dt y)i
+3665-                                                                                    
+3666-              ×
+3667-                 m∈Zl
+3668-                     √
+3669-           × exp −π −1rhD−1 QH(η)Q−1 C −1 (D−1 )t (m + Dt y), m + Dt yi ,
+3670-                                                                             
+3671-
+3672-                                                             2 −1
+3673-where H(η) = Diag(f1 (η), . . . , fl (η)), where fj (η) = 1 + rλη j   → 1 as η → 0+ .
+3674-Next we use the following technical but straightforward
+3675-
+3676-                                              60
+3677-Lemma 6.6 Let a > 0 and let A : ]0, a] → GL(l, R) be a curve of positive definite
+3678-symmetric matrices such that A(ε) → A0 as ε → 0+ , where A0 is a symmetric positive
+3679-definite matrix. Moreover, let B : ]0, a] → GL(l, R) be a curve and B0 a fixed matrix
+3680-such that
+3681-                                     1
+3682-                                lim (B(ε) − B0 ) = 0.
+3683-                               ε→0+ ε
+3684-
+3685-Then we have
+3686-                       X                                    √
+3687-            lim εl/2          e−εhn+x1 ,A(ε)(n+x1 )i exp
+3688-                                                                                       
+3689-                                                             −1hn + x2 , B(ε)(n + x2 )i
+3690-           ε→0+
+3691-                       n∈Zl
+3692-                              X                                   √
+3693-              = lim εl/2             e−εhn+x1 ,A(ε)(n+x1 )i exp
+3694-                                                                                               
+3695-                                                                      −1hn + x2 , B0 (n + x2 )i
+3696-                ε→0+
+3697-                              n∈Zl
+3698-
+3699-for any x1 , x2 ∈ Rl in the sense that if one of the two limits exists then does the other
+3700-and they are equal.
+3701-
+3702-By this lemma (and Lemma 6.5) we get that
+3703-                                     −1/2
+3704-       X                           f
+3705-              F (λ)   = rl/2 det √             lim η l/2
+3706-     λ∈Λ/rΛ
+3707-                                    −1        η→0+
+3708-                            X
+3709-                                exp −πηhm + Dt y, D−1 C −2 (D−1 )t (m + Dt y)i
+3710-                                                                              
+3711-                          ×
+3712-                                 m∈Zl

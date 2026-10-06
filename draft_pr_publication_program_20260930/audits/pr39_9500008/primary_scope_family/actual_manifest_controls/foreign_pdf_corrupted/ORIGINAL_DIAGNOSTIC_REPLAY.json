@@ -1,0 +1,65 @@
+{
+  "utc": "2026-10-02T10:14:55.801925+00:00",
+  "default_python_probe": {
+    "argv": [
+      "python3",
+      "-c",
+      "import sys; print(sys.executable); print(sys.version); import sympy; print(sympy.__version__)"
+    ],
+    "returncode": 1,
+    "stdout": "/opt/homebrew/opt/python@3.14/bin/python3.14\n3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]\n",
+    "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys; print(sys.executable); print(sys.version); import sympy; print(sympy.__version__)\n                                                           ^^^^^^^^^^^^\nModuleNotFoundError: No module named 'sympy'\n"
+  },
+  "working_python_probe": {
+    "argv": [
+      "/usr/bin/python3",
+      "-c",
+      "import sys,sympy; print(sys.executable); print(sys.version); print(sympy.__version__)"
+    ],
+    "returncode": 0,
+    "stdout": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3\n3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]\n1.14.0\n",
+    "stderr": ""
+  },
+  "source_snapshot_untouched": true,
+  "runs": [
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/original_replay/verify.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"finite_configurations\": 12288,\n  \"uniform_four_step_prefix_checks\": 48,\n  \"maximum_grid_error_seen\": 2,\n  \"exp4_rigorous_lower_bound\": \"71/3\",\n  \"geometric_ratio_majorant\": \"1/8\",\n  \"scope\": \"Finite stopped-walk analogues verify exact rotation algebra, junction agreement, modulus inequality, and finite-prefix regeneration. They do not prove Brownian laws, the a.s. modulus estimate, or existence of the required random shift; those claims are separately justified or left open in PARTIAL.md.\"\n}\n",
+      "stderr": "",
+      "relative_script": "verify.py",
+      "script_sha256": "2e9d7e510491f1ac6bb26732e8ff3c6923cb49188b619c197373ea43e126ce0e",
+      "generated_output": "verification.json",
+      "output_bytes_equal_frozen": true
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/original_replay/review/submitted_verify.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"passed\": true,\n  \"finite_configurations\": 12288,\n  \"uniform_four_step_prefix_checks\": 48,\n  \"maximum_grid_error_seen\": 2,\n  \"exp4_rigorous_lower_bound\": \"71/3\",\n  \"geometric_ratio_majorant\": \"1/8\",\n  \"scope\": \"Finite stopped-walk analogues verify exact rotation algebra, junction agreement, modulus inequality, and finite-prefix regeneration. They do not prove Brownian laws, the a.s. modulus estimate, or existence of the required random shift; those claims are separately justified or left open in PARTIAL.md.\"\n}\n",
+      "stderr": "",
+      "relative_script": "review/submitted_verify.py",
+      "script_sha256": "2e9d7e510491f1ac6bb26732e8ff3c6923cb49188b619c197373ea43e126ce0e",
+      "generated_output": "review/verification.json",
+      "output_bytes_equal_frozen": true
+    },
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/primary_scope_family/original_replay/review/independent_checks.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"named_checks_passed\": 12,\n  \"failed\": 0,\n  \"path_configurations\": 144,\n  \"rotation_grid_equalities\": 2256,\n  \"randomized_zero_duration_prefix_laws\": 16,\n  \"checks\": {\n    \"rotation_difference\": \"PASS\",\n    \"left_endpoint\": \"PASS\",\n    \"right_endpoint\": \"PASS\",\n    \"rational_path_rotation_and_cut_horizons\": \"PASS\",\n    \"zero_duration_junctions_included\": \"PASS\",\n    \"randomized_zero_time_regeneration_prefixes\": \"PASS\",\n    \"reflection_exponent\": \"PASS\",\n    \"dyadic_cover_count\": \"PASS\",\n    \"exponential_tail_majorant\": \"PASS\",\n    \"geometric_ratio\": \"PASS\",\n    \"summable_majorant_sum\": \"PASS\",\n    \"scaled_log_error_vanishes\": \"PASS\"\n  },\n  \"sympy_version\": \"1.14.0\",\n  \"scope\": \"Finite path algebra, zero-duration regeneration analogues, and exact tail constants. Brownian law, independence, and almost-sure statements are proved in the written review, not inferred from these tests.\"\n}\n",
+      "stderr": "",
+      "relative_script": "review/independent_checks.py",
+      "script_sha256": "19838f57742abe2c467ef827c9338c81b240178c13d22c7525d08828818f6bf5",
+      "generated_output": "review/independent_results.json",
+      "output_bytes_equal_frozen": true
+    }
+  ]
+}

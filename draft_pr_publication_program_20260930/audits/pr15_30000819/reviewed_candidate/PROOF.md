@@ -251,21 +251,20 @@ each hole to all higher degrees. That yields an infinite-hole semigroup,
 so it is an invalid attempted counterexample to the source. The verifier
 includes this negative control explicitly.
 
-## 8. Exact unresolved issue and disposition
+## 8. Known result, unresolved interpretation and disposition
 
 The coarse existential volume-only assertion in the dataset's wording is
-proved by the displayed combination of classical facts. The original
-source's potential sharp bound \(h\le V\), and the stronger expected
+proved by the displayed combination of classical facts. A possible sharp interpretation \(h\le V\), and the stronger expected
 Eisenbud--Goto-type bounds, are not proved or refuted here. Replacing
 \(2V^2(V-1)^2-2\) by \(V\) would require a genuinely stronger estimate;
 the circuit-support argument and the Taylor-resolution bound do not supply it.
 
 A separate source audit positively verified a prior theorem for the existential reading: CCMPV [5, Corollary5.3] gives a constant B(e) bounding ideal regularity of every nondegenerate homogeneous prime over an algebraically closed field, using multiplicity alone. Here distinct degree-one Laurent monomials imply no linear forms in I_A, the quotient is a domain, and its multiplicity is V. Section6 gives h<=reg(I_A)-2<=B(V)-2. Thus the dataset's existential F(V) assertion is already a corollary of published work. This does not prove a sharp inequality, nor establish priority for this quartic formula.
 
-The original source does not print h<=V. Its stronger reading is plausible from the wording and context; the precise intended strength is not established by this audit. We retain unsolved/source-scope hold for that unresolved original interpretation while recording already_solved explicitly for the weaker dataset reading. No claim that the weak F(V) assertion remains open is made.
+The original source does not print h<=V. A stronger reading is plausible from the wording and context, but the precise intended strength is not established by this audit. The formulated numeric target is already_solved by the positive published existential F(V) corollary. Unknown original intent and unproved sharper variants are recorded separately; they are not attributed to the author as a printed or intended inequality and do not replace the numeric target.
 
 The original bounded search located degree/codimension/generator-count and specialized k-normality bounds; the current positive CCMPV evidence completes its account for existential F(V). Neither search establishes historical priority for this elementary explicit coarse corollary or resolves the sharper formulation. Accordingly the proposed
-queue disposition is **partial / source-scope hold**, not claimed solved.
+queue disposition is **already_solved / credited partial acceptance**. No newly solved open problem or priority for the quartic formula is claimed. No paper, new DOI or tracker row is prepared.
 
 ## References
 

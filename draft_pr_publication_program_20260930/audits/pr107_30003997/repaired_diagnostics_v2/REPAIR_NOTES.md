@@ -1,0 +1,3 @@
+# Current effective audited package
+
+The immutable submitted attempt is unchanged. Version1 is the dated mathematical-gate snapshot, with the explicit preprocessing and exception-guard repairs. Version2 changes only the review header and the historical-priority paragraph to record the verified prior hardness corollary and the qualified exact-identity finding. All mathematical sections and both checker files are unchanged from version1. Fresh actual normal/optimized receipts are regenerated for this version; no proof-search turn is added. This is a preserved audit package, not a publication or a merged source PR.

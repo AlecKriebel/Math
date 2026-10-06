@@ -1,0 +1,70 @@
+def check_dense_kernel_formulas(f,v):
+    """Test actual semilinear kernels, dual images and basis invariance independently.
+
+    For F=A*sigma, V=B*sigma^-1, C=A*sigma(A), D=B*sigma^-1(B),
+    ker(F^2)=sigma^-2 ker(C), ker(V^2)=sigma^2 ker(D). Thus dual
+    second-power images are sigma^2(D)^T and sigma^-2(C)^T.
+    """
+    def linear_kernel(a,k):
+        r=[row[:] for row in a];pivots=[];d=len(a[0])
+        for j in range(d):
+            i=next((i for i in range(len(pivots),len(r)) if r[i][j]),None)
+            if i is None:continue
+            s=len(pivots);r[s],r[i]=r[i],r[s]
+            c=k.inverses[r[s][j]];r[s]=[k.mul(c,x) for x in r[s]]
+            for i in range(len(r)):
+                if i!=s:
+                    c=r[i][j];r[i]=[k.sub(x,k.mul(c,y)) for x,y in zip(r[i],r[s])]
+            pivots.append(j)
+            if len(pivots)==len(r):break
+        free=[j for j in range(d) if j not in pivots]
+        out=zeros(d,len(free))
+        for z,j in enumerate(free):
+            out[j][z]=1
+            for i,c in enumerate(pivots):out[c][z]=k.neg(r[i][j])
+        return out
+    def triangular_inverse(b,k):
+        d=len(b);nilpotent=[[k.sub(b[i][j],int(i==j)) for j in range(d)] for i in range(d)]
+        result=eye(d);power=eye(d)
+        for exponent in range(1,d):
+            power=multiply(power,nilpotent,k)
+            for i in range(d):
+                for j in range(d):result[i][j]=k.add(result[i][j],k.neg(power[i][j]) if exponent%2 else power[i][j])
+        assert multiply(result,b,k)==eye(d)==multiply(b,result,k)
+        return result
+    rows=[]
+    # The characteristic-two degree-five sample checks this generic algebraic formula,
+    # and does not extend the p>3 group-scheme theorem.
+    for p,modulus in [(5,[1,1,0,1]),(7,[2,0,0,1]),(2,[1,0,1,0,0,1])]:
+        k=Field(p,modulus)
+        sigma2=[k.sigma[k.sigma[x]] for x in range(k.q)]
+        tau2=[k.tau[k.tau[x]] for x in range(k.q)]
+        base_f=from_integers(f,k);base_v=from_integers(v,k)
+        row=dict(q=k.q,modulus=modulus,bases=[])
+        for label in ('minimal','dense_upper','dense_lower'):
+            b=eye(6)
+            if label=='minimal':b[0][1]=k.p
+            else:
+                rng=random.Random(34002 if label=='dense_upper' else 34403)
+                for i in range(6):
+                    for j in range(i+1,6):
+                        x=k.encode([rng.randrange(p),rng.randrange(1,p),rng.randrange(p)])
+                        if label=='dense_upper':b[i][j]=x
+                        else:b[j][i]=x
+            bi=triangular_inverse(b,k)
+            ff=multiply(multiply(bi,base_f,k),twist(b,k.sigma),k)
+            vv=multiply(multiply(bi,base_v,k),twist(b,k.tau),k)
+            inv=invariants(ff,vv,k)
+            assert inv['delta2']==0 and inv['dual_delta2']==inv['dual_kernel_formula']==1
+            c=multiply(ff,twist(ff,k.sigma),k);d=multiply(vv,twist(vv,k.tau),k)
+            kf=twist(linear_kernel(c,k),tau2);kv=twist(linear_kernel(d,k),sigma2)
+            assert multiply(c,twist(kf,sigma2),k)==zeros(6,5)
+            assert multiply(d,twist(kv,tau2),k)==zeros(6,5)
+            assert rank(kf,k)==rank(kv,k)==5 and 6-rank(join(kf,kv),k)==1
+            # The previous bare-row-space expression must be falsified, not silently removed.
+            bare=rank(c,k)+rank(d,k)-rank(join(transpose(c),transpose(d)),k)
+            if label=='minimal':assert bare==0
+            row['bases'].append(dict(name=label,P=b,delta2=inv['delta2'],dual_delta2=inv['dual_delta2'],dual_kernel_formula=inv['dual_kernel_formula'],actual_kernel_codimension=6-rank(join(kf,kv),k),old_bare_row_formula=bare,old_formula_mutant_rejected=(bare!=1)))
+        rows.append(row)
+    return rows
+

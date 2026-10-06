@@ -1,0 +1,1 @@
+The preserved original review and receipts cover the exact original147b64... proof. The current source/status qualification is a new candidate; no old PASS transfers to new bytes. Three complete new original-stage families/root support the partial; a NEW complete current gate is pending. Earlier acd8... pre-header artifact not independently recovered.

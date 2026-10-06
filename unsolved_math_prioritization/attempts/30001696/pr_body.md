@@ -1,0 +1,11 @@
+The complete noncyclic bounded-switch complex B(i,d) has the asserted PL sphere–ball product. Three new independent mathematical families and root reproduce the original receipts and393658 fresh exact controls; universal proofs carry the conclusion.
+
+The deep priority audit found a direct classical subsumption: Klee–Novik's published embedded coordinate-collapse sequence, complementary PL manifold and classical collar/regular-neighborhood theory imply the entire product. A complete typed adapter repairs the actual-neighborhood premise with an outward collar and verifies the PL product through cell subdivisions. The conservative current classification proposed is already_solved; the spectral argument is retained as a checked alternative. No earlier source explicitly printing the universal product formula or historical recognition was verified; the audit deduction is newly spelled out, and no new discovery framing is claimed.
+
+The current package credits Remark3.7 and Machacek's actual coordinate collapse, corrects Klee–Novik to Advances in Mathematics229(1)(2012),487–500, DOI10.1016/j.aim.2011.07.024, and preserves all original histories and the1/5 attempt budget. A fresh complete current adversary is pending.
+
+This PR changes unsolved_math_prioritization/attempts/30001696/ and its row in unsolved_math_prioritization/QUEUE.md. Current repairs/evidence are on main under draft_pr_publication_program_20260930/audits/pr21_30001696/. Extensive AI assistance; unrefereed. No paper, new Zenodo deposit, DOI or publication-tracker row is proposed for already_solved partial acceptance.
+
+## Accepted disposition
+
+The new complete current gate passed with no required repairs; root reproduced101284 new exact controls. Accepted as already_solved partial by conservative classical subsumption. Earlier explicit printing and recognition remain unverified. Original1/5 budget preserved; no paper, DOI, deposit or tracker row. Canonical ACCEPTANCE.md records the completed review.

@@ -1,0 +1,15 @@
+# Accepted current result — PR55 / OWR-14299288-015
+
+Accepted as **verified scoped comparison; prior-theorem corollary**, categorized `already_solved` and retained as attributed partial progress.
+
+Verified scoped combinatorial comparison pi D(Q x Delta_(n-1)) = H(Q) for n>=1, Q Delzant, A=Q intersection Z^n, the smooth complete very ample toric embedding of degree>=2, with full induced face lattices and imported established GKZ foundations; accepted as attributed partial progress and a prior-theorem corollary of Esterov2010.
+
+The exact source asks for a combinatorial reproof of a known equality. The accepted proof retains the cited Sano smooth complete very ample Delzant, full lattice-point, degree-at-least-two setting. OWR’s terse introductory arbitrary-configuration notation is not certified here as a singular, sparse, incomplete, lattice-index-defective, degree-one or foundation-free theorem. The stronger one-to-one correspondence request in Ogusu–Sano Conjecture4.5 is not certified; only the hull equality is accepted. Accordingly full_source_solved=false.
+
+Esterov’s 2010 general Newton formula implies this scoped comparison by the explicitly checked specialization in CURRENT_PRIORITY_SPECIALIZATION.md. The earlier theorem and the newly written target-specific deduction are distinguished. No literal earlier Hurwitz derivation, identical candidate algorithm, earliest recognition, global novelty or comprehensive absence finding is claimed. The old candidate’s direct presentation remains useful verified exposition; it is not accepted as a novel resolution of a genuinely open problem.
+
+The sixteen original scientific files from head `85c78d0cf3959d9d492a637cb90835ebc6a0e828` retain their exact bodies, modes and blobs as dated inputs. Their claimed_solved/full_source_solved assertions and dated open triage do not govern present acceptance. The frozen corrected SOURCE packet’s approval-false/prospective handoff statements remain truthful historical statements in that packet and have not been copied as present native authority. acceptance.json binds the actual ROOT decision, current reviews, prior deduction, original source custody and GitHub exact-head merge.
+
+The raw upstream report key is absent; the selected SQL fallback is non-NULL text `{}`; the original wrapper contains a JSON null placeholder. These are distinct facts. The current native review_hash uses `[problem, {}]`, and no raw null or fictional prior report is inferred. Original substantive attempts stay 1/5; verification and source-priority audits add no central proof-attempt turn.
+
+No new paper, Zenodo upload, publication DOI or spreadsheet row accompanies this partial/prior-result acceptance. Any DOI in the credited deduction is an earlier literature citation. AI tools were used extensively; the work is unrefereed and has no conventional human peer-review or formal proof-assistant certification. State and history contain one present-day acceptance mirror, without replaying historical lifecycle events.

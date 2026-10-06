@@ -1,0 +1,15 @@
+--- original_readonly_helper
++++ v2_readonly_helper
+@@ -97,6 +97,12 @@
+ hidden={x.decode()[2:] for x in flags.split(b'\0') if x and (chr(x[0]).islower() or chr(x[0]).upper()=='S')}-own
+ assert hidden==set(held['hidden_flagged_foreign_paths'])
+ controls()
++# Reject late HEAD or owned-index drift immediately before receipt creation.
++assert git('branch','--show-current').strip()==b'main' and git('rev-parse','HEAD').decode().strip()==COMMIT
++assert git('diff','--cached','--name-only','-z')==b'' and not (R/'.git/MERGE_HEAD').exists()
++assert git('ls-remote',endpoints['endpoint'],'refs/heads/main').split()[0].decode()==COMMIT
++finalpr=json.loads(run(['/opt/homebrew/bin/gh','pr','view','80','--repo','AlecKriebel/Math','--json','number,state,headRefOid,baseRefName,mergeCommit,mergedAt']))
++assert finalpr['number']==80 and finalpr['state']=='MERGED' and finalpr['baseRefName']=='main' and finalpr['headRefOid']==HEAD and finalpr['mergeCommit']['oid']==COMMIT and finalpr['mergedAt']==pr['mergedAt']
+ result={'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'COMMITTED_PUSHED_INDEPENDENTLY_READ_BACK','phase':'merge','commit':COMMIT,'parent':BASE,'second_parent':HEAD,'merge_exit':old[73][0]['exit_code'],'merged_at':pr['mergedAt'],'19_original_bodies_modes_blobs_preserved':True,'original_head':HEAD,'lease_token':TOKEN,'actual_PID':os.getpid(),'index_empty':True,'ordinary_foreign_dirty_bodies_modes_diffs_and_entire_foreign_index_preserved':True,'known_held_foreign_manifest_preserved':hp,'known_held_foreign_file_count':len(held['files']),'foreign_assurance_scope':'Exactly coordinator-declared held set plus all ordinary dirty/hidden-index-flag paths; not every ignored or historical unheld file','original_budget':'1/5','new_central_proof_search_turns':0,'reconciliation':{'failed_original_child_PID':11452,'failed_outer_result':failedpin,'failure':'Immediate GitHub readback OPEN after successful exact push; later fresh read-only GitHub reports exact merged commit','original_failed_evidence_preserved':True,'original_completed_inner_children':181,'original_push_PID':12002,'read_only_completion_child_count':len(newrecords),'no_merge_push_commit_stage_or_PR_mutation_repeated':True,'reconciliation_source':pin(Path(__file__).resolve()),'original_child_result_pins':evidencepins}}
+ with RECEIPT.open('x') as stream:stream.write(json.dumps(result,indent=2)+'\n');stream.flush();os.fsync(stream.fileno())
+ assert load(RECEIPT)==result

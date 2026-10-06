@@ -1,0 +1,9 @@
+# Independent gates for the restricted partial findings
+
+| Family | Independent mechanism and evidence | Exact gap |
+|---|---|---|
+| Algebra | Arbitrary-field coefficient-one Laurent group reducedness; primary contraction; universal T-module/Čech positive-degree defect; multigraded Koszul socle/depth chain and redundant-generator persistence;10,351 new exact probes,135 author receipt identical,five mutations rejected | Unrestricted non-binomial primary residual class unexcluded; geometric conclusions initially reserved to independent family |
+| Geometry | All-prime catenary dimension/reflexive symbolic-power argument; Cartier divisor (r,3r) with deficiency2r−1; global O(-7)^2 frame and homogeneous ribbon degree2 contradiction; exact both link colons;99 new checks and explicit flat same-radical CM degeneration countercontrol | Length-two exclusion uses homogeneous arithmetic CM; generic length one unrestricted |
+| Original/source | Full OWR/Singh–Walther exact arbitrary scope and >=3 glyph; full relevant MSSv3, Boixv2, Hassanzadehv2 proofs and classical dependencies;35 independent exact assertions | Hassanzadeh published full text inaccessible; bounded search supplies no worldwide openness or novelty certificate |
+
+Root reconstructed the claims independently before historical review or sibling conclusions, then reproduced original135 and six historical independent groups byte-identically. It subsequently reproduced all three new family receipts with every mathematical field identical; only the algebra receipt's timestamp differs. Original14-file snapshot and4/5 original ledger are unchanged. Clarified current proof adds the local dimension premise, vertex localization, unrestricted length-one boundary and pinned source versions; no central proof attempt was added. Family manifests bind current completed reports. A fresh independent full candidate review is next. No publication package is warranted for this unsolved outcome.
