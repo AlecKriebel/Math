@@ -12,7 +12,7 @@ integer optimization. The original Martin1991 proof has not yet been authenticat
 publisher metadata alone is not a full-text comparison.
 
 The root's independent first query pass was frozen before current priority-family
-findings. Thirty-two exact/near-objective, source-name, lift and multiple-root
+findings. Thirty-six exact/near-objective, source-name, lift and multiple-root
 queries are recorded with UTCs in ROOT_PRIMARY_SEARCH_PROGRESS_20261006.json.
 The first exact-question matches retrieve the original report. Failure to locate
 a follow-up under these terms is not a proof of novelty.
@@ -52,3 +52,13 @@ color and prescribed-root feasibility. These are interim communications awaiting
 full sealed reports and root authentication. They do not establish an antecedent
 or certify novelty. Original Martin1991 and Hu1974 full texts remain candidate
 access gaps whose materiality must be judged against each claimed theorem.
+
+Fresh combined priority adversary identified required correctionF01 in classical
+V1 Tilk–Irnich pricing comparison: zero demand allows optional/pruned vertices.
+Deleting flow charges can retain fixed-cost Steiner support and need not yield
+minimum spanning arborescence. The distinction from the target must be based on
+optional versus mandatory vertices and exact feasible support, with any narrower
+all-mandatory inference justified explicitly. This does not establish prior
+coverage of Kaibel Problem1 or affect its authenticated mathematical proof.
+Sealed classicalV1 is historical; corrected_v2 is requested and must be reviewed
+before effective root priority adjudication. No publication clearance is granted.
