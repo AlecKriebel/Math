@@ -1,0 +1,30 @@
+--- original/independent_review/independent_checks.py
++++ suggested/independent_review/independent_checks.py
+@@ -8,14 +8,16 @@
+ from functools import lru_cache
+ import hashlib,json
+ 
++def require(value, message='verification predicate failed'):
++ if not value: raise AssertionError(message)
+ root=Path(__file__).resolve().parent
+ EXPECTED='1a6c267c6240b66c1d804397f4bbbe246f5b6147c3930e1a68396e60b618d615'
+-assert hashlib.sha256((root/'author_replay/PROOF.md').read_bytes()).hexdigest()==EXPECTED
++require(hashlib.sha256((root/'author_replay/PROOF.md').read_bytes()).hexdigest()==EXPECTED)
+ counts={};stats={'formulas':0,'unsatisfiable_formulas':0,'tree_formula_cases':0,
+  'noncanonical_trees':0,'without_hub_edge':0,'extra_clause_edges':0,'canonical_trees':0,
+  'canonical_positive_penalty_trees':0}
+ def ck(v,k):
+-    assert v,k
++    require(v, k)
+     counts[k]=counts.get(k,0)+1
+ 
+ @lru_cache(None)
+@@ -138,7 +140,7 @@
+ ck(0+0<=0,'fixed_yes_instance')
+ ck(not(1+1<=1),'fixed_no_instance')
+ 
+-r={'all_pass':True,'assertions':sum(counts.values()),'checks':counts,'statistics':stats,
++r={'all_pass':True,'guard_mode':'explicit_require_survives_python_optimization','verifier_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'assertions':sum(counts.values()),'checks':counts,'statistics':stats,
+    'distinct_graphs':allowed_trees.cache_info().currsize,'artifact_sha256':EXPECTED,
+    'scope':'Independent Pruefer enumeration and all-root edge-cut cost evaluation, including all noncanonical trees in the finite suite. The written proof establishes all-size strong NP-completeness.'}
+ (root/'independent_results.json').write_text(json.dumps(r,indent=2)+'\n')

@@ -9,7 +9,7 @@ adds no central proof-search turn and does not fabricate a historical ledger.
 ## Literal model and success criterion
 
 I read the complete Kaibel contribution in the pinned Oberwolfach Report
-50/2018, printed pp3013–3014. Problem 1 selects ONE undirected spanning tree
+50/2018, printed pp3014–3015. Problem 1 selects ONE undirected spanning tree
 and sums costs of its induced arborescence over ALL vertex roots. Each root
 has its own vector on BOTH directed versions of every undirected edge.
 Problem 2 has a different fixed-root path-cost objective and must not be
