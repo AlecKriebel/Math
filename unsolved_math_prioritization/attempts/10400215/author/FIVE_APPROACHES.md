@@ -1,0 +1,9 @@
+# Five substantive approaches and stopping point
+
+1. **Block geometry and triangulation conversion.** Recovered the source and applied the precise Costantino--Thurston bounds. Traced the proposed linear route through efficient drilled triangulations. Its supplied converter is quadratic; no linear construction was found. This route also fixes normalization and zero-shadow semantics.
+2. **Prime/JSJ decomposition.** Proved the sum-of-squares refinement and bounded-piece-volume linear comparison, then the exact reduction to all finite-volume hyperbolic pieces. A putative unbounded-ratio sequence forces a sequence of hyperbolic pieces with unbounded volume. No shadow-additivity assumption was used.
+3. **Dehn-filling counterexamples and additive constants.** Ruled out fixed finite-parent filling families as sources of unbounded ratios using norm monotonicity and the quadratic theorem. Derived an integer norm gap and showed an affine universal upper estimate would already suffice. No affine estimate was established.
+4. **Long-slope geometry and integrality.** Used the full Ishikawa--Koda branched-special-shadow hypothesis. Derived a uniform linear bound with a fixed slope cutoff, an exact integer-rounding threshold, and the simpler sufficient cutoff 2 pi sqrt(3n/2). This is a credited algebraic consequence of prior estimates. The existence of such long-slope shadows for arbitrary manifolds remains unproved.
+5. **Quantum-invariant comparison.** Inspected the 2022 quantum growth bounds and isolated the direction-of-inequality obstruction. Supplied an abstract numerical countermodel to the proposed deduction. It is not a manifold or a disproof of the target.
+
+These are five approaches within one bounded investigation, not a claim of five separate human research sessions. Stop: the universal linear upper estimate remains unresolved by this work. No sixth author approach is intended.
