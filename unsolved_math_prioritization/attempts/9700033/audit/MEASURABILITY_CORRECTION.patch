@@ -1,0 +1,130 @@
+--- a/CERTIFICATE.json
++++ b/CERTIFICATE.json
+@@ -1,16 +1,16 @@
+ {
+   "files": {
+     "README.md": {
+-      "bytes": 1019,
+-      "sha256": "a819f9ef42720de9f458d3bfd5f74abe85e10a812d98d258c09d0fe696b626b6"
++      "bytes": 1440,
++      "sha256": "f0023da21331b9a187a64fb25316effa9a57dca89f6a256c144b7e994ca59c82"
+     },
+     "RESULT.md": {
+-      "bytes": 12706,
+-      "sha256": "71b14cdd53ac8b2f286b81c113d2ec6d475f064b6df40426af3994a0d093343f"
++      "bytes": 15591,
++      "sha256": "6dce990127314a48057675ab0506a0144bfc36734c815360601ebc19c4f0093c"
+     },
+     "SOURCE_MANIFEST.json": {
+-      "bytes": 5110,
+-      "sha256": "e49da8817478580033b5ea25a516e5ea826efa11dfdd64f17247f0ee95995b5b"
++      "bytes": 5550,
++      "sha256": "4a48ad5a66fdaf8539c0b7fb8fa09c63d78885a7fec2be857e882adad9a4c4bf"
+     },
+     "verify.py": {
+       "bytes": 4498,
+--- a/README.md
++++ b/README.md
+@@ -7,3 +7,5 @@
+ SOURCE_MANIFEST.json contains public bibliographic and byte-verification metadata only. CERTIFICATE.json binds every other safe file. An external manifest independently binds the certificate, all files, and the final ZIP. Neither the certificate nor the verifier is a trust anchor against deliberate simultaneous rewriting; compare the external manifest from the author handoff.
+ 
+ The directory is deliberately strict: unlisted files, nested manifests, symlinks, changed bytes, and missing files are errors. Use `-B` to avoid generating a cache directory.
++
++This is the separately identified corrected derivative. Section 2 now constructs a measurable witness count H_r; it asserts a covering family of at most H_r distinct unbounded components with E[H_r]<=8p(1), without asserting measurability of their exact number. The original author files are preserved separately. The independent audit is AI review, not human peer review, formal verification, or a novelty certificate.
+--- a/RESULT.md
++++ b/RESULT.md
+@@ -1,6 +1,6 @@
+ # SIRSN major-road components: a finite exterior-covering family
+ 
+-Problem 9700033 / AMR-096-0033, rank 935. Author disposition: **UNSOLVED; scoped partial result; 3 of at most 5 approaches used.** This is AI-assisted, unrefereed work. Neither a general uniqueness theorem, a SIRSN counterexample, nor historical novelty is claimed.
++Problem 9700033 / AMR-096-0033, rank 935. Author disposition: **UNSOLVED; scoped partial result; 3 of at most 5 approaches used.** Corrected derivative after independent AI audit, 2026-10-06; the frozen original is preserved separately. This is AI-assisted, unrefereed work. Neither a general uniqueness theorem, a SIRSN counterexample, nor historical novelty is claimed.
+ 
+ ## 1. Target and hypotheses
+ 
+@@ -12,31 +12,43 @@
+ 
+ We use these source inputs explicitly: intensity(E_r)=p(1)/r; E_r has the intrinsic sampling-independent version of Proposition 6.3; and equation (6.4) allows a single deterministic root at 0 to be planted without enlarging E_r, almost surely. Only countably sampled routes from that root will be used. No assertion about simultaneously adjoining every deterministic pair of points is needed.
+ 
+-## 2. Partial theorem
++## 2. Partial theorem with a measurable witness bound
+ 
+-**Theorem.** Fix r>0. Almost surely there is a nonempty finite collection C_1,...,C_K of unbounded connected components of E_r and a finite random M such that
++**Theorem.** Fix r>0. Almost surely there is a measurable finite integer H_r>=1 and a finite measurable random radius M_r with the following property: at most H_r distinct unbounded connected components of E_r together have infimum distance at most 2r from every x with |x|>M_r. Each of these components meets circle(0,2r), and
+ 
+-dist(x, C_1 union ... union C_K) <= 2r whenever |x|>M.
++H_r <= N_r := #(E_r intersect circle(0,2r)),    E[H_r] <= 8p(1).
+ 
+-One can choose these components among those meeting circle(0,2r), and E[K] <= 8p(1). Here distance means infimum distance. We do not assert that a nearest point is attained, that the chosen components are all unbounded components, or that K=1. The probability-one statement is for each fixed r; a countable intersection supplies it simultaneously for positive rational r.
++More explicitly, H_r counts measurably constructed, unbounded path-connected witness sets contained in E_r; different witnesses may be in the same connected component. No measurability of the exact number of topological components is asserted or used. The components need not be all unbounded components, and H_r need not equal one. No nearest-point attainment or closure of E_r is required. This is a probability-one assertion for each fixed r. A countable intersection gives it for all positive rational r, without claiming a common event for all real r.
+ 
+-**Proof.** By the stationary isotropic edge-process intersection identity [A, section 2.1], the mean number N_r of points where E_r meets circle(0,2r) is
++**Proof.** The stationary isotropic edge-process intersection identity [A, section 2.1], applied along a circle, gives
+ 
+-E[N_r] = (2/pi) intensity(E_r) length(circle(0,2r)) = 8p(1).
++E[N_r] = (2/pi) (p(1)/r) (4 pi r) = 8p(1).
+ 
+-This is the curved-boundary version of the line-intersection identity (2.2): integrate the same local intersection intensity along the circle. Equivalently use the coarea formula on each line segment and the translation- and rotation-invariant mean length-direction measure. Tangencies and segment endpoints lying on this fixed circle have probability zero under translation invariance. Consequently N_r is finite almost surely. Distinct connected components meeting the circle use disjoint nonempty subsets of these N_r points; list them as D_1,...,D_J, with J<=N_r.
++This curved-boundary application is also the one used in [A, Proposition 6.1]; it follows by integrating the local directional intersection intensity along the circle. The edge-length directional measure is translation invariant and uniform in direction. Segment endpoints, tangencies, and multiple-direction vertices do not contribute additional intersections on a fixed circle almost surely; this follows from stationarity and the countable segment representation. Overlapping segments are counted as a union. Thus N_r is a finite measurable point count almost surely. No assertion that finite local length alone bounds crossings is used.
+ 
+-Couple the Poisson samples as in [A] and put Xi_infinity=union_lambda Xi(lambda). This countable set is almost surely dense and unbounded. Plant 0. At the present fixed r, equation (6.4) identifies the resulting E_r with the original E_r, on a probability-one event. In particular, every part of every route R(0,xi), xi in Xi_infinity, at distance greater than r from both endpoints is already in E_r.
++Couple the endpoint samples by the space-time Poisson process used in [A]. Their union Xi_infinity is countable, dense, and unbounded almost surely. One measurable enumeration is obtained by taking the successive shells of the boxes [-m,m]^2 times [0,m], m=1,2,..., and ordering the finitely many atoms in each shell lexicographically by arrival time and then spatial coordinates. Zero-probability ties can be broken by a fixed rule. There is no first-arrival ordering of the entire infinite plane. Retain only endpoints xi_n with |xi_n|>4r, preserving their order.
+ 
+-Take xi in Xi_infinity with |xi|>4r. Parameterize R(0,xi) continuously. Let t_1 be its first encounter with the closed disc centered at xi of radius 2r. Let t_0 be its last encounter, before t_1, with the closed disc centered at 0 of radius 2r. These times exist, by continuity and the disjointness of the two closed discs. The subroute from t_0 to t_1 is outside their interiors and meets their boundaries at its endpoints. Every point of this subroute is at distance at least 2r>r from both route endpoints. Thus the whole subroute is in E_r. It starts on circle(0,2r), so lies in some D_i, and ends at distance 2r from xi. Therefore
++Plant the single deterministic root 0. Work on the probability-one event on which equation (6.4) identifies the planted-root E_r with E_r, all the countably many sampled root routes are feasible and compatible, Xi_infinity is dense, and N_r is finite. This uses one deterministic root and a countable family of random endpoints, not an uncountable intersection over deterministic route pairs.
+ 
+-min_i dist(xi,D_i) <= 2r.                                           (1)
++Parameterize each route R(0,xi_n) continuously on [0,1], for example by normalized arclength, as gamma_n. Let t_1,n be its first encounter with the closed disc of radius 2r about xi_n, and let t_0,n be its last encounter with the closed disc of radius 2r about 0 before t_1,n. Both times exist. The discs are disjoint, so t_0,n<t_1,n; continuity gives boundary contact at each time. Set
+ 
+-There are only finitely many D_i. Their bounded members, if any, are all contained in one finite random disc B(0,B). For |xi|>B+2r, none of those bounded members can meet the circle of radius 2r about xi. Hence the component supplying the subroute in (1) is unbounded. There must be at least one such member, since Xi_infinity is unbounded.
++A_n = gamma_n([t_0,n,t_1,n]),    q_n = gamma_n(t_0,n).
+ 
+-Let C_1,...,C_K be all the unbounded members of this finite list. Then K<=J<=N_r, and (1) holds with these C_i whenever |xi|>max(4r,B+2r). The distance to a nonempty set is a 1-Lipschitz function, whether or not the set is closed. Density of Xi_infinity therefore extends that inequality to every x outside the same disc. Taking expectations proves the claimed bound. QED.
++The compact subpath A_n stays at distance at least 2r>r from both route endpoints, so A_n is contained in E_r by (6.4). It contains q_n in circle(0,2r) and has a point at distance 2r from xi_n. First/last contact times with these closed discs, the evaluation q_n, and the maximum norm a_n=max{|z|: z in A_n} are measurable functions of the countably many continuous routes. For clarity, first contact is determined by minima of the continuous distance function over compact time intervals; last contact is first contact for the time-reversed restricted path. Evaluation and compact-interval maxima are measurable for the usual continuous-path Borel structure.
+ 
+-This strengthens the bare statement that at least one unbounded component exists: finitely many of them together stay within a fixed Euclidean distance of every sufficiently remote location. The bound counts a selected family only, not every component in the plane.
++Group the indices n according to equality of q_n, choosing the first occurring index of each group as its representative. There are finitely many groups because their distinct q-values belong to the N_r-point set. Equality of points and the first-occurrence rule are measurable. For a representative j set
++
++G_j = union{A_n: q_n=q_j},    b_j = sup{a_n: q_n=q_j}.
++
++Each G_j is path-connected: all its constituent subpaths contain q_j. Its radius b_j is a measurable extended nonnegative random variable, being a countable supremum with measurable equality tests. The group is unbounded exactly when b_j=infinity, equivalently when for every integer L some n in that group has a_n>L. Define H_r as the number of first-occurrence representatives with b_j=infinity. This is a measurable integer and H_r<=N_r.
++
++There are finitely many bounded groups. Set B_r=0 if there are none; otherwise let B_r be the maximum of their finite radii b_j. This is a finite measurable random variable. If |xi_n|>B_r+2r, A_n cannot belong to a bounded group, since its endpoint at distance 2r from xi_n has norm at least |xi_n|-2r>B_r. Since Xi_infinity is unbounded, at least one group is unbounded, so H_r>=1.
++
++Let G be the union of the unbounded G_j and take M_r=max(4r,B_r+2r). For every sampled endpoint with |xi_n|>M_r, dist(xi_n,G)<=2r. For any x with |x|>M_r, density supplies sampled endpoints tending to x while staying outside that disc. Distance to any nonempty set is 1-Lipschitz, so dist(x,G)<=2r.
++
++Each unbounded connected set G_j is contained in a unique connected component of E_r. Those components are unbounded and meet circle(0,2r). Discard repeated components purely as a pathwise set operation; their number is at most H_r. This final step asserts existence of a covering family and does not take the expectation of its exact cardinality or require a measurable enumeration of the components. Since H_r<=N_r, E[H_r]<=8p(1). QED.
++
++This is a finite exterior-covering result. It neither captures every unbounded component nor merges the covering components. The change from the author's expected exact component count to a measurable witness bound removes an unstated component-measurability step while retaining a quantitative expected upper bound on the size of an available cover.
+ 
+ ## 3. Why spatial symmetries and mean length alone cannot prove uniqueness
+ 
+@@ -60,7 +72,7 @@
+ 
+ 1. **Mass transport / local modification.** The nested marked-line construction above refutes an argument using only stationarity, isotropy, scaling, and the 1/r length intensity. A Burton-Keane-style argument would additionally have to justify a permissible modification and its positive probability within the law of the route system. The external Poisson sample consists of endpoint probes, not independently resampled road edges. Indeed Proposition 6.3 says additional endpoint sampling leaves E_r unchanged. No finite-energy premise has been established.
+ 
+-2. **All-pairs routing and finite crossings.** This gives the finite exterior-covering theorem. The missing implication is from finitely many unbounded components collectively within 2r of all remote points to one unbounded component. It is not legitimate to replace the theorem's selected family by the set of every unbounded component, or to replace K<=N_r by K=1.
++2. **All-pairs routing and finite crossings.** This gives the finite exterior-covering theorem. The missing implication is from finitely many unbounded components collectively within 2r of all remote points to one unbounded component. It is not legitimate to replace the theorem's selected family by the set of every unbounded component, or to replace the witness bound H_r<=N_r by a singleton claim.
+ 
+ 3. **Infinite geodesics and special-model confluence.** A sufficient additional route to uniqueness would be both (a) every unbounded component of E_r contains a tail from some common coalescing family of singly infinite geodesics, and (b) every pair of those tails eventually coincides. Then two allegedly distinct components would share a tail and hence be the same component. Neither (a) nor (b) follows from the proofs here. A connected path can switch between distinct finite routes; it need not itself be a geodesic. Aldous separates unique infinite geodesics and coalescence as additional questions in section 7. Results for the specific Poisson-road metric do not automatically transfer to every SIRSN.
+ 
+@@ -80,4 +92,4 @@
+ 
+ ## 6. Verification limits
+ 
+-The accompanying program checks exact rational intensity/scaling identities, finite last-exit/first-entry controls, and strict package membership and hashes. These are diagnostics and reproducibility checks, not a formal proof of the continuum theorem or a simulation-based uniqueness claim. The mathematical proofs above require independent review. Source documents, copied extracts, corpus records, and private coordination material are excluded from this safe packet.
++The accompanying program checks exact rational intensity/scaling identities, finite last-exit/first-entry controls, and strict package membership and hashes. These are diagnostics and reproducibility checks, not a formal proof of the continuum theorem or a simulation-based uniqueness claim. Section 2 incorporates an independent AI audit correction; this is not human peer review, formal verification, or a novelty certificate. Source documents, copied extracts, corpus records, and private coordination material are excluded from this safe packet.
+--- a/SOURCE_MANIFEST.json
++++ b/SOURCE_MANIFEST.json
+@@ -40,6 +40,12 @@
+       "https://github.com/AlecKriebel/Math/pull/41"
+     ],
+     "repository": "AlecKriebel/Math"
++  },
++  "independent_ai_correction": {
++    "author_zip_sha256": "5bd8726384871fa1f3f97543db1a88d7340d2474287f8e90feb4509a73746523",
++    "date_utc": "2026-10-06",
++    "scope": "Section 2 uses countable measurable route-witness groups and expected witness bound; no exact topological-component cardinality expectation is asserted",
++    "source_metadata": "Author source metadata retained; fresh audit retrieval history is recorded separately"
+   },
+   "inspection_date_utc": "2026-10-06",
+   "live_problem_page": {
