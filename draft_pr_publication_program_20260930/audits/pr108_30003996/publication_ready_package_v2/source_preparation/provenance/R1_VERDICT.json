@@ -1,0 +1,79 @@
+{
+  "schema": "pr108-whole-publication-package-R1-verdict/v1",
+  "UTC": "2026-10-06T06:08:49.298379+00:00",
+  "actual_operator_PID": 59503,
+  "PR": 108,
+  "problem_id": 30003996,
+  "review_completion_estimate_percent": 100,
+  "disposition": "MINOR_REQUIRED_ACCURACY_REPAIR_THEN_NEW_FRESH_WHOLE_PACKAGE_R2",
+  "mathematical_blocker_found": false,
+  "primary_source_attribution_blocker_found": false,
+  "bounded_priority_wording_blocker_found": false,
+  "layout_blocker_found": false,
+  "payload_integrity_blocker_found": false,
+  "metadata_blocker_found": false,
+  "required_findings": [
+    {
+      "id": "F01",
+      "severity": "minor",
+      "category": "diagnostic contract/documentation accuracy",
+      "locations": [
+        "source_preparation/verify_exact.py:35",
+        "source_preparation/verify_exact.py:44",
+        "source_preparation/README.md:37"
+      ],
+      "mechanism": "Empty-clause early return skips validation of later malformed literals or excess clause size; rejection depends on clause order.",
+      "reproduced_normal_and_optimized": true,
+      "valid_3CNF_theorem_affected": false,
+      "repair": "Validate all raw input before fixed-no return (chosen by parent), or narrow documented contract; refresh checks/receipts/manifest consistently.",
+      "evidence": [
+        "NORMALIZATION_NORMAL.json",
+        "NORMALIZATION_OPTIMIZED.json",
+        "NORMALIZATION_EXECUTION_RECEIPTS.json"
+      ]
+    }
+  ],
+  "optional_findings": [],
+  "strongest_verified_result": "All-size exact whole-root objective NP-completeness with bounded0/1/2costs and1/2/3shift; finite implementation checks corroborate.",
+  "exact_remaining_gap": "F01 repair and new fresh R2 over changed whole package; no publication clearance from R1.",
+  "priority_scope": "Compatible with dated inspected-corpus claim; no absolute-first or still-open2026 certification, no new exhaustive literature audit.",
+  "pins": {
+    "manifest_sha256": "0fa09c03acc5fbd0c596b506fb0dc0416435b021fa73c83dcac7b73e81fda1cb",
+    "ZIP_sha256": "9409c1e641c6fded1a53b6bb064267ac26c6544c20a93de54e948aca98c57458",
+    "ZIP_bytes": 126500,
+    "logical_payload_files": 36,
+    "ZIP_members": 37,
+    "PDF_sha256": "f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4",
+    "PDF_pages": 4,
+    "TeX_sha256": "a0e7e6158267fbf9ca4cafbd5ccb4cfa4ac79a1e0aea61282c9ee09d7e8d11d5"
+  },
+  "actual_reproduction": {
+    "portable_runner_positive_modes": 2,
+    "checks_per_mode": 2727773,
+    "formula_parameter_cases": 397,
+    "tree_formula_parameter_cases": 74997,
+    "portable_actual_negative_controls": 6,
+    "historical_actual_replays": 4,
+    "historical_counts": [
+      78056,
+      600122,
+      78056,
+      600122
+    ],
+    "fresh_independent_positive_modes": 2,
+    "fresh_independent_actual_negative_controls": 6,
+    "fresh_rational_lift_modes": 2,
+    "normalization_actual_probe_modes": 2,
+    "actual_runtime": "Python3.14",
+    "portable_PID": 51833,
+    "independent_PID_normal": 54366,
+    "independent_PID_optimized": 54370,
+    "rational_PID_normal": 56739
+  },
+  "source_package_mutated": false,
+  "external_human_communication": false,
+  "Git_index_queue_branch_remote_service_native_editor_mutated": false,
+  "publication_clearance": false,
+  "original_effort": "2/5; original structured ledger absent",
+  "new_central_proof_search_turns": 0
+}
