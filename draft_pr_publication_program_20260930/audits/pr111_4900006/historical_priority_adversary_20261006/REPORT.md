@@ -1,0 +1,76 @@
+# PR111: independent historical priority audit
+
+Audit date: 2026-10-06. The mathematical input is the repaired v2 construction, not the rejected v1 source framing. This audit does not authorize publication or determine the whole PR disposition.
+
+## Bounded verdict
+
+The literal imported assertion, if it includes smooth systems on manifold phase spaces, already has an elementary negative answer within the classical direct-product/quasiperiodic framework documented by Zelik's author preprint associated with the 2008 cascade-systems paper. A linearly decaying variable times an irrational torus flow has a genuine compact global attractor relative to its phase space and has no equilibrium or periodic orbit there. Its local Lyapunov dimension is attained, but cannot be attained on either proposed orbit class. This is a checkable specialization of established machinery; I did not find a passage where Zelik explicitly calls it a counterexample to Eden's conjecture.
+
+That observation does **not** establish historical priority for PR111's stronger, entire-R5 example: complete analytic ambient flow, compact minimal attractor attracting all bounded subsets of R5, an unstable quasiperiodic maximizing torus, existing equilibria and periodic orbits with strict dimension gaps, and the specific value 203/50 under both admitted asymptotic conventions. No prior source actually read in this historical family establishes that entire package. This is a bounded non-match, not a novelty clearance.
+
+The actual 1989 thesis, the 1991 Eden–Foias–Temam paper, the 1990 Eden paper, and the 1993 Leonov–Lyashko original remain unread after legitimate public retrieval attempts. Therefore I cannot reconstruct their precise original quantifiers or exclude a counterexample there. The available 1989 article and Eden's 2017 retrospective explicitly discuss a Lorenz-specific question; that question must not be conflated with the unrestricted imported statement. Conversely, inaccessible historical texts do not invalidate the verified negative answer to a separately authenticated modern unrestricted assertion.
+
+## Exact target and evidence discipline
+
+The imported database statement asks whether the maximum on a global attractor of a smooth dissipative dynamical system occurs at an equilibrium or an unstable periodic orbit. It gives no explicit Euclidean, chaotic, transitive, generic, or Lorenz restriction. Its source is a secondary unsolved-problems list; its claim to be open is not a mathematical priority certificate.
+
+The repaired candidate is `../repaired_diagnostics_v2/COUNTEREXAMPLE.md`, SHA256 `0e2e4e1484193c304cb2394142e24460c89a50f6ab3bb58ad838624cabb9035f`. Its previously passed mathematical gate is `../ROOT_MATHEMATICAL_GATE_20261006.json`, SHA256 `bd45c96b065affb146ca7aa32efdfa32791177f4d892960434fa6641610f282d`. The candidate's exclusions remain binding: no chaotic, generic, Lorenz, typical-trajectory, original-thesis-scope, or finite-time-equality claim.
+
+This family read primary bodies before other new priority-family reports. After the root supplied a specific Zelik threat, I independently read the actual author PDF and its relevant definitions/examples. Copyright PDF bodies, extracted text, and rendered pages remain private and ignored. Download receipts distinguish actual PDF bytes from publisher HTML and failures; a successful HTTP response is not treated as full-text access.
+
+## Historical source findings
+
+| Source actually inspected | Relevant content and comparison | Priority consequence |
+|---|---|---|
+| Alp Eden, *Local Lyapunov exponents and a local estimate of Hausdorff dimension*, M2AN 23(3):405–413 (1989); entire article | Printed p408 defines its local expression using the globally selected integer. Question 1, p409, concerns whether **some point** attains the global expression. The following remark says the thesis contains an abstract example where each local expression is strictly smaller. Question 2 asks about critical-point characterization. Question 3, p411, asks for the Lorenz dimension at its distinguished stationary point. Section 5's planar attractor is a segment containing three equilibria and illustrates a limitation of the bound. | The abstract non-attainment reference is a material lead, not a verified equilibrium/periodic counterexample of the present scope. PR111's pointwise maximum is attained on a torus, so it is not that referenced non-attainment phenomenon. Do not identify all these questions as one theorem. [Primary article](https://www.numdam.org/item/M2AN_1989__23_3_405_0.pdf). |
+| Alp Eden, *Local and Global Lyapunov Exponents Revisited*, 2017 workshop booklet, printed p23 / PDF p29 | The author retrospectively credits the late-1980s theory and a positive Lorenz resolution through Leonov's work. It points to the 1989 article, 1991 paper, and 1993 Leonov–Lyashko work. | Author-authored evidence for a Lorenz-specific historical question; it supplies neither full original thesis quantifiers nor a general negative example. [Workshop booklet](https://pde.iyte.edu.tr/wp-content/uploads/sites/166/2015/12/booklet.pdf). |
+| Kuznetsov–Leonov, *A short survey on Lyapunov dimension for finite dimensional dynamical systems in Euclidean space*, arXiv:1510.03835v2 | Printed p11, after (50), describes an equilibrium-or-periodic critical-point conjecture and cites thesis p98 Question 1. Printed pp25–26 separately discuss the Lorenz conjecture and cite article p411 Question 3 / thesis p98 Question 2. The framework starts with an open subset U of Rn and a compact invariant set K. | Confirms that an unrestricted orbit-class formulation exists in a primary mathematical exposition, while making the distinct Lorenz lineage explicit. It is an exposition of the thesis, not a substitute for reading thesis p98. The actual PDF displays an arXiv version date of 19 February 2016 and an internal footer date of 2 July 2018; both are recorded rather than silently choosing one. [Actual version URL](https://arxiv.org/pdf/1510.03835v2). |
+| Kuznetsov et al., *Finite-time Lyapunov dimension and hidden attractor of the Rabinovich system*, Nonlinear Dynamics 92:267–285 (2018) | Printed pp275–276 put the equilibrium-or-unstable-periodic assertion in a **strange-attractor** setting. A later self-excited/typical refinement has further explicit restrictions. | Does not make PR111 a resolution of the strange/typical variants. [Repository full text](https://d-nb.info/1160228949/34), [publisher DOI](https://doi.org/10.1007/s11071-018-4054-z). |
+| Parker–Goluskin, *Computation of attractor dimension and maximal sums of Lyapunov exponents using polynomial optimization*, arXiv:2510.14870v2, 21 January 2026 | Actual p2 permits Rn, subdomains, and embedded lower-dimensional manifolds; pp4–5 use forward-invariant B and **ambient Rn tangent vectors**. Definition 2.3 / discussion after (18), p7, states the equilibrium-or-periodic maximization assertion with a fixed global index. Its later chaotic/equilibrium-only conjecture is separate. | A directly authenticated modern broad assertion. A manifold restriction is allowed, but intrinsic and ambient spectra must be distinguished. It does not establish historical novelty. [Actual version](https://arxiv.org/pdf/2510.14870v2). |
+
+The source manifest identifies actual inspected bytes, read ranges, dates, URLs, and gaps. Only personally read passages are used above; title/abstract-only or metadata-only leads are separately labeled.
+
+## Zelik threat: exact logical adjudication
+
+The actual author PDF is titled *A remark on a uniform Lyapunov dimension of cascade systems*, SHA256 `0e7eaa6b186887bf138a8ce0fdd3cdbce0164c9956aaf308e14cd16782029141` (217864 bytes). The author's publication link associates it with *On the Lyapunov dimension of cascade systems*, CPAA 7(4):971–985 (2008), DOI `10.3934/cpaa.2008.7.971`. I read the author version, not an unobserved publisher PDF. Example numbering in this report is therefore 3.1–3.3; publisher search indexing uses 4.1–4.3, which is not claimed as directly page-authenticated here. [Author PDF](https://sergey-zelik.co.uk/publications/dlyap.pdf), [publisher metadata](https://www.aimsciences.org/article/doi/10.3934/cpaa.2008.7.971).
+
+The introduction, p2, expressly includes phase H1×T^k for quasiperiodic forcing. Section 1, pp4–6, defines uniform exponents/dimension over a compact invariant set. Example 3.1, p10, states equality for independent components under its listed spectral assumptions. Example 3.2, pp10–11, gives torus translations and their zero exponents. Example 3.3, pp11–12, constructs a continuous-time dissipative semigroup on a phase containing the external invariant set A0. The actual global-attractor definition on p12 is relative to that chosen phase and attracts **all bounded subsets of that phase**. Thus the phase restriction is substantive, not an informal compact invariant subset being mislabeled global. Rendered pp10–12 were visually inspected to check signs, hypotheses, and the phase/global-attractor sentence.
+
+A checkable finite-dimensional specialization of the classical framework is
+
+\[
+\dot w=-w,\quad \dot\theta_1=1,\quad \dot\theta_2=\sqrt2,
+\qquad \Phi=\mathbb R\times(\mathbb R/2\pi\mathbb Z)^2.
+\]
+
+The flow is complete and smooth. Its compact minimal global attractor relative to Phi is A={0}×T2. Indeed, the distance to A equals exp(-t)|w|, uniformly for bounded sets. To prove minimality, every point of A lies on a bounded complete orbit, and the flow maps A onto A, so any closed invariant attracting set must contain A. There are no equilibria since the angular field is nonzero. A period T>0 would require T and sqrt(2)T both to belong to 2pi Z, contradicting irrationality. In the intrinsic product metric the singular values are 1,1,exp(-t), so the spectrum is (0,0,-1) and local Kaplan–Yorke dimension is exactly 2 everywhere on A, including the nonnegative-sum zero boundary. The fixed-global-index definition also gives j=2 and dimension 2. Volume contracts by exp(-t), and Phi has a bounded absorbing set.
+
+This is an **inference/specialization**, not a quotation of a displayed Zelik Eden counterexample. The finite ODE is not asserted to be literally printed in the paper. Zelik's direct-product and torus ingredients, and his continuous-time relative-global-attractor framework, make clear why the unrestricted assertion is already outside a viable novelty claim. The construction requires no unsolved extension of Zelik's theorem.
+
+The ambient convention in Parker–Goluskin can also be checked without pretending intrinsic and ambient dimensions coincide. Embed B=T2×R in C2×R, and restrict the analytic linear ambient vector field
+
+\[
+\dot z_1=iz_1,\quad \dot z_2=i\sqrt2 z_2,\quad \dot w=-w,
+\qquad B=\{|z_1|=|z_2|=1\}\times\mathbb R.
+\]
+
+Its relative global attractor is the same torus at w=0; the ambient derivative has four zero exponents and one exponent -1, so the fixed-global-index dimension over B is 4, also attained everywhere on the attractor. There are still no equilibrium or periodic orbits in B. This refutes the modern orbit-class assertion on its explicitly allowed manifold domains. The system is complete on full R5, but it has **no compact full-R5 global attractor**, because arbitrary oscillator radii are preserved. It therefore does not reproduce PR111's full-R5 attractor, unstable torus, nonempty equilibrium/periodic comparison, or value 203/50. The simpler intrinsic value 2 must not be attached to this ambient derivative convention.
+
+## Access gaps and priority limits
+
+1. **Eden thesis (1989), p98 especially:** exact-title searches found university/author bibliographic leads, not readable body. IUCAT and Indiana ScholarWorks public attempts returned access-denial HTML. No thesis page was inspected. The title is confirmed by author/university bibliographic material, but the original question and its assumptions remain unverified.
+2. **Eden–Foias–Temam (1991), DOI 10.1007/BF01049491:** official PDF URL returned HTML, not PDF, despite HTTP200. Public OpenAlex metadata reported no accessible repository location in the observed response. Publisher abstract describes local/global exponents and critical-trajectory bounds, but does not identify the maximizing orbit class. The body remains unread.
+3. **Leonov–Lyashko (1993):** English and Russian searches recovered citations and later mathematical treatments, not the original full text. English citation is Vestnik26(3):15–18; secondary/retrospective Russian pagination varies. No DOI was verified. I do not invent an identifier or precise Russian pagination. Available author retrospective and later Lorenz theorems support a Lorenz-positive lineage, not exact original-paper hypotheses.
+4. **Eden (1990), *Local estimates for the Hausdorff dimension of an attractor*, JMAA150:100–119, DOI10.1016/0022-247X(90)90198-O:** public metadata exposed an official bronze-OA PDF URL, but that actual URL returned403HTML. The referenced p114 material is not directly read; it could illuminate the abstract counterexample and definitions.
+5. **Kaplan–Mallet-Paret–Yorke (1984), *The Lyapunov dimension of a nowhere differentiable attracting torus*, ETDS4:261–281, DOI10.1017/S0143385700002431:** publisher metadata shows original June1984 and online digitization in September2008. The publicly indexed author PDF timed out in direct retrieval and web open. Abstract/index excerpts concern attracting graphs over toral maps with expanding eigenvalues. They are a historical lead, not verified evidence of an aperiodic negative result. In particular, an expanding toral automorphism can have periodic points; a torus title alone does not establish the needed orbit-class exclusion.
+
+These are limitations of the observed access/search, not proofs that no public copy exists. No outside researcher was contacted. Institutional/library access could resolve the exact thesis and article gaps; only the human user may communicate externally.
+
+## Findings for the root decision
+
+* The unrestricted **manifold-inclusive** negative answer is already a direct classical specialization. A first-resolution claim for that literal assertion is not justified by the repaired example.
+* No read historical primary establishes the **whole strengthened full-R5 comparison theorem**. That finer contribution may be useful, but its priority remains separately unestablished and must not be promoted from this family's non-match alone.
+* The original historical Eden conjecture's exact thesis scope remains unknown. A Lorenz-specific question is directly documented and already positively resolved in later primary treatments; PR111 does not answer that question.
+* It is safe to retain the verified construction and proof as an explicit example/reproduction or partial contribution, with precise domain and conventions. This family does not independently clear a publication framed as a novel solution of the original unsolved historical conjecture.
+
+Best-guess completion of the bounded historical investigation: 85%. The assigned audit report is complete; historical original-scope and priority clearance are not complete. No Git, PR, merge, publication, or external-message mutation was made.
