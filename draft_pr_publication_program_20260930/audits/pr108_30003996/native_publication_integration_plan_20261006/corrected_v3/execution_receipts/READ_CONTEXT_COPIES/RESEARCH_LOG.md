@@ -1,0 +1,11 @@
+# PR108 corrected native helper V3 research log
+
+2026-10-06 06:50:17 UTC — Started immutable successor in corrected_v3; original V1/V2 remain unchanged. Read complete corrected-V2 adversary REPORT/VERDICT/counterexample code and normal/optimized results, verified requested adversary output manifest. Draft repair completion 10%; new central proof-search turns0, native execution0. Exact target literal claimed_solved PR108 /30003996 /OWR-16633-013.
+
+2026-10-06 07:04:54 UTC — Recovered current draft checkpoint. Blank authorized B contract implemented; first 24 normal offline fixtures pass. Startup role policies and clean launcher draft implemented. Draft repair completion75%; native/service execution0.
+
+2026-10-06 07:04:54–07:08:38 UTC (bounded observation interval) — Added startup injection and configuration-location fixtures. Initial 27-test normal run failed in startup-only guard: actual macOS Python adds nonsecret __CF_USER_TEXT_ENCODING after env -i. Recorded compatibility finding and repaired startup/environment policy with exact UID-derived value, not arbitrary inherited variables. This failed tool-only run is not presented as successful or as a native execution; tool chunk2e011a retained in session. Draft repair completion85%.
+
+2026-10-06 07:08:38 UTC — Repaired normal27/27 run passed, including absent injection sentinel and actual clean shell launcher. Wrote inert templates only; no runtime configuration or prepare/assess/export was created. Read/pinned actual local parent publication and Sheet root receipts as context; no service call or independent actual-service validation by this agent. Draft repair completion95%; final normal/-O custody, manifests and seal pending. Parent’s planned64MiB future commit reserve is documented, with unchanged configurable guards and no capacity inference.
+
+2026-10-06 07:12:56 UTC — First custody collector stopped before spawning suites: source README/code were incorrectly addressed at C, where only native output paths are materialized. Corrected the explicit read list to existing R/unsolved_math_prioritization/{AGENTS.md,README.md,queue.py}. No native operation or successful collector receipt was claimed. Tool failure chunkeeaf43 retained in session. Draft completion95%, final custody retry pending.

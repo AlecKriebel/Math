@@ -1,0 +1,30 @@
+{
+  "schema": "pr108-v3-fresh-static-adversary-findings/v1",
+  "UTC": "2026-10-06T07:29:26.336552+00:00",
+  "required_findings": [
+    {
+      "id": "F09",
+      "severity": "required",
+      "title": "Derived worker resource policy is not checked against immutable reviewed choices",
+      "locations": [
+        "native_assess_worker.py:49",
+        "native_assess_worker.py:74",
+        "native_assess_worker.py:80",
+        "prepare_review_bundle.py:336",
+        "prepare_review_bundle.py:343",
+        "prepare_review_bundle.py:345"
+      ],
+      "trigger": "A concurrent or manual edit to WORKER_CONTROL.json after parent construction but before worker startup changes its worker_policy while execution manifest and final gate stay unchanged.",
+      "mechanism": "Worker validates policy bounds from control.worker_policy but never compares those values to execution.effective.worker_policy. Parent accepts worker success using outcome, return flag, PID and execution-input SHA without checking requested_resource_policy or enforced limit readbacks. A valid CPU90 control therefore passes the exact worker policy fragment and exact parent acceptance predicate with a reviewed CPU2 policy and unchanged manifest binding.",
+      "normal_and_optimized_reproduced": true,
+      "counterexample_actual_PIDs": [
+        16907,
+        16908
+      ],
+      "counterexample_scope": "Pure extracted exact-code guard fragments and synthetic successful worker-result dictionaries. No actual prepare, execute, assess, resource setup, config/gate creation or service operation.",
+      "repair": "Require the worker control policy to equal execution.effective.worker_policy before resource setup; independently check requested policy and actual CPU/FSIZE/NOFILE readbacks against immutable choices before parent accepts success. Revalidate or derive the remaining worker control choices from the reviewed manifest/authenticated native inputs; include a mismatching-control regression normally and under optimization.",
+      "not_claimed": "No evidence of any real concurrent edit, native run or compromised host. Arbitrary host-level binary replacement is outside this review."
+    }
+  ],
+  "optional_findings": []
+}

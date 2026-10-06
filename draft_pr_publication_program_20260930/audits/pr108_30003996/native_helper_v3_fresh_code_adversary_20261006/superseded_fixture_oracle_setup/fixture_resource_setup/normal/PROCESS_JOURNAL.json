@@ -1,0 +1,56 @@
+{
+  "actual_operator_PID": 14836,
+  "records": [
+    {
+      "PID": 14837,
+      "SIGKILL_attempted": false,
+      "UTC_end": "2026-10-06T07:24:31.582921+00:00",
+      "UTC_start": "2026-10-06T07:24:31.532911+00:00",
+      "actual_process_record": true,
+      "ambient_environment_inherited": false,
+      "argv": [
+        "/opt/homebrew/bin/python3",
+        "-E",
+        "-S",
+        "-B",
+        "-c",
+        "from native_assess_worker import apply_resource_policy; from pathlib import Path; import json,sys; setup=apply_resource_policy(json.loads(sys.argv[1])); probe=Path(sys.argv[2]); failed=False\ntry: probe.write_bytes(b\"x\"*8192)\nexcept OSError: failed=True\nprint(json.dumps({\"fixture_only\":True,\"setup\":setup,\"file_cap_blocked_oversize_write\":failed,\"probe_bytes\":probe.stat().st_size,\"native_assess_executed\":False}))",
+        "{\"deadline_seconds\": 5, \"cpu_seconds\": 2, \"address_space_bytes\": 536870912, \"file_size_bytes\": 4096, \"open_files\": 32, \"memory_limit_mode\": \"advisory_no_hard_memory_claim\"}",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr108_30003996/native_helper_v3_fresh_code_adversary_20261006/fixtures/fixture_resource_setup/normal/probe.bin"
+      ],
+      "child_reaped": true,
+      "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr108_30003996/native_helper_v3_fresh_code_adversary_20261006/fixtures",
+      "deadline_seconds": 2,
+      "effective_nonsecret_environment": {
+        "LANG": "C",
+        "LC_ALL": "C",
+        "PATH": "/usr/bin:/bin",
+        "TZ": "UTC",
+        "__CF_USER_TEXT_ENCODING": "0x1F5:0x0:0x0"
+      },
+      "executable_role": "python",
+      "exit_code": 0,
+      "fixture": true,
+      "output_complete": true,
+      "stderr": {
+        "bytes_observed": 0,
+        "retained_bytes": 0,
+        "retained_path": "process_receipts/0.stderr.bin",
+        "retained_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256_observed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes_observed": 554,
+        "retained_bytes": 64,
+        "retained_path": "process_receipts/0.stdout.bin",
+        "retained_sha256": "99e3cfa060da15525b33fc3c098455faf98d824e1406c1daf854f6d191669eb3",
+        "sha256_observed": "74375b5e3454958ccb7471ba0b05546b0b3b8518d861a533cf7bad8e17d310b7"
+      },
+      "stream_read_caps": {
+        "stderr": 1024,
+        "stdout": 4096
+      },
+      "termination_reason": null
+    }
+  ]
+}

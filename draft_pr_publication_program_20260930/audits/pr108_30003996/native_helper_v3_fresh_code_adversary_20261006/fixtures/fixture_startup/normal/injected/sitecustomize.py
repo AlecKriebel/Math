@@ -1,0 +1,2 @@
+from pathlib import Path
+Path('/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr108_30003996/native_helper_v3_fresh_code_adversary_20261006/fixtures/fixture_startup/normal/STARTUP_INJECTION_SENTINEL_MUST_BE_ABSENT').write_text("untrusted startup executed")
