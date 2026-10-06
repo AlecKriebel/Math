@@ -1,0 +1,122 @@
+--- a/verify.py
++++ b/verify.py
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env python3
+ """Pinned package verifier. Checks are active under -O; no mathematical oracle."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
++    raise SystemExit("Use a reviewed external bootstrap with python -I -S -B; startup is not isolated")
+ import argparse
+ import hashlib
+ import importlib.util
+--- a/audit_checks.py
++++ b/audit_checks.py
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env python3
+ """Replay and adversarial controls for this package, with no -O-disabled assertions."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
++    raise SystemExit("Use a reviewed external bootstrap with python -I -S -B; startup is not isolated")
+ import argparse
+ import hashlib
+ import json
+@@ -20,7 +23,7 @@
+     (path/'MANIFEST.json').write_text(json.dumps({'schema':'strict-flat-sha256-v1','files':files},sort_keys=True,indent=2)+'\n')
+     return sha((path/'MANIFEST.json').read_bytes())
+ def run(path,pin,opt):
+-    return subprocess.run([sys.executable,'-B']+(['-O'] if opt else [])+[str(path/'verify.py'),'--root',str(path),'--manifest-sha256',pin],cwd='/tmp',capture_output=True,text=True,timeout=30)
++    return subprocess.run([sys.executable,'-I','-S','-B']+(['-O'] if opt else [])+[str(path/'verify.py'),'--root',str(path),'--manifest-sha256',pin],cwd='/tmp',capture_output=True,text=True,timeout=30)
+ def writable_copy(src,dst):
+     shutil.copytree(src,dst)
+     for p in dst.iterdir():p.chmod(0o644)
+--- a/math_checks.py
++++ b/math_checks.py
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env python3
+ """Finite combinatorial regression checks, not a distinction theorem verifier."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
++    raise SystemExit("Use a reviewed external bootstrap with python -I -S -B; startup is not isolated")
+ from collections import Counter
+ from itertools import product
+ from math import comb, factorial
+--- a/verify_corpora.py
++++ b/verify_corpora.py
+@@ -1,5 +1,8 @@
+ #!/usr/bin/env python3
+ """Optional read-only replay against locally supplied public dataset snapshots."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):
++    raise SystemExit("Use a reviewed external bootstrap with python -I -S -B; startup is not isolated")
+ import argparse
+ import hashlib
+ import json
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -91,7 +91,7 @@
+ 
+ No actual prior proof attempt was found in the bounded AlecKriebel/Math searches recorded in metadata. Empty connector search results are not a complete repository-history audit. The catalog's desk assessment is not counted as an earlier attempt.
+ 
+-The code independently enumerates labelled involutions in a finite test universe, compares the formula, and checks explicit adversarial examples. It cannot establish distinction for arbitrary representations or prove the cited analytic theorems. The all-size counting identity is justified by the proof in §3; finite enumeration is a regression test. Strict inventory, external manifest pinning, normal/optimized/relocated replays, and mutation tests protect the authored package. An uninvolved mathematical audit remains required before publication.
++The code independently enumerates labelled involutions in a finite test universe, compares the formula, and checks explicit adversarial examples. It cannot establish distinction for arbitrary representations or prove the cited analytic theorems. The all-size counting identity is justified by the proof in §3; finite enumeration is a regression test. Strict inventory, external manifest pinning, normal/optimized/relocated replays, and mutation tests check the authored package. The independent audit found that the original direct startup imported unlisted local modules before inventory rejection. The corrected entry points require python -I -S -B before nonbuiltin imports, and the external isolated bootstrap validates the entire inventory and all payload hashes before executing any package code from a private snapshot. The bootstrap and expected manifest pin must come from a separately trusted source. This is an integrity check under a trusted interpreter and operating system, not a hostile-code sandbox. The original freeze remains immutable; the separate independent audit and acceptance report describe the actual correction and reruns. The mathematical disposition is unchanged.
+ 
+ ## References
+ 
+--- a/VERIFICATION.json
++++ b/VERIFICATION.json
+@@ -51,7 +51,7 @@
+       "optimized_rejected": true
+     }
+   ],
+-  "note": "Final sealed package replays are recorded in the external freeze receipt; the same pinned code and mathematical checks are retained.",
++  "note": "Historical author controls for original freeze only. Patched-code acceptance and independent controls are in the separate independent audit package.",
+   "pre_execution_code_pins": {
+     "audit_checks.py": {
+       "bytes": 5888,
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -5,32 +5,32 @@
+       "sha256": "c8631378ed8f5dcf46f08e57149893ba1fb8e8e804dd44537580beb4b3051f6d"
+     },
+     "REPORT.md": {
+-      "bytes": 11516,
+-      "sha256": "ca8258edfd8653b2175a80c748adfc65648e3d5e1c4132c28b6e7f3409102ff2"
++      "bytes": 12159,
++      "sha256": "c86af03b53cc3164c2d54cf29afb60322c6a195d0913e4e6e9eb2aa1129bd069"
+     },
+     "SOURCES.json": {
+       "bytes": 3365,
+       "sha256": "890beb70cd04c62272f16f6b8d24524cd53afe742e150d100a9016c1e41cd23a"
+     },
+     "VERIFICATION.json": {
+-      "bytes": 7132,
+-      "sha256": "98e4bb2bfa7253eefdf9e20b465781918fb007aba174f2f6de5b53c75ba2f5cc"
++      "bytes": 7148,
++      "sha256": "ba37b62c5b9ff99b9a2f319084f2ed3e625f986fdc0de49d63d9af1fa3448e64"
+     },
+     "audit_checks.py": {
+-      "bytes": 5888,
+-      "sha256": "86dd61e41860135d1eba28bb82b6866e4a2d7fbe31e5a44f7e7da75beeed6f64"
++      "bytes": 6092,
++      "sha256": "e3babc64d6b010b30736ccafeae548306d855857529648099afc7a991b546849"
+     },
+     "math_checks.py": {
+-      "bytes": 3844,
+-      "sha256": "cceaaec8354db90753bad7d8bce8887d35da22ab1024d06b683b2a83d2f44bac"
++      "bytes": 4038,
++      "sha256": "ecd5fb3bea8afb53ad94cd36c8d5ccec9d0f050d493486dda34ced602b3d9366"
+     },
+     "verify.py": {
+-      "bytes": 4405,
+-      "sha256": "a435dc05a8495bf106de411a6022bdd628590004186f502b2ab215f526575e09"
++      "bytes": 4599,
++      "sha256": "ad3dc2c0c3142b32a9c643ea5b1ef62be2c4cd248dc3a26c76336189cf88b0e9"
+     },
+     "verify_corpora.py": {
+-      "bytes": 1947,
+-      "sha256": "265fea79be3b1d0d215178ee18527eb09c73ae0cc4196c4145317c081e21123a"
++      "bytes": 2141,
++      "sha256": "229e1953f236cbf94ceae39f7eea6cb96962c38074e5c24346f94a57158259f1"
+     }
+   },
+   "schema": "strict-flat-sha256-v1"
