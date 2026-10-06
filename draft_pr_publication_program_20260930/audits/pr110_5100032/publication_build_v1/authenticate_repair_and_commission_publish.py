@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+"""Record completed root repair review and fresh existing-commit push decision."""
+from pathlib import Path
+from datetime import datetime,timezone
+import hashlib,json,os
+A=Path(__file__).resolve().parents[1];B=A/'publication_build_v1';V=A/'actual_native_candidate_adversary_20261006/acceptance_reconciliation_review_20261006'
+def need(v,s):
+    if not v:raise RuntimeError(s)
+def can(v):return (json.dumps(v,sort_keys=True,ensure_ascii=False,indent=2,allow_nan=False)+'\n').encode()
+def hp(b):return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def ap(f):return {'path':str(f.relative_to(A)),**hp(f.read_bytes())}
+def read(f):return json.loads(f.read_bytes())
+mf=V/'OUTPUT_MANIFEST.json';manifest=read(mf);checked=[]
+for e in manifest['files']:
+    f=V/e['path'];need(hp(f.read_bytes())=={k:e[k] for k in ('bytes','sha256')},'Complete sealed independent repair body');checked.append(ap(f))
+adfile=V/'ACTUAL_NATIVE_CANDIDATE_ADVERSARY_V2.json';ad=read(adfile);oldfile=A/'ROOT_ACTUAL_NATIVE_CANDIDATE_REVIEW_AUTHENTICATION_20261006.json';old=read(oldfile)
+need(ad['actual_review'] is True and ad['clearance'] is True and ad['required_findings']==[] and ad['scope_checks']==old['scope_checks'] and all(old['scope_checks'].values()),'Independent original scope retained and repair clear')
+need(old['native_candidate_actual_authenticated'] is True and old['candidate_receipt_pin']==ad['candidate_receipt_pin'] and old['main_parent']==ad['main_parent'],'Original actual completed root/candidate authentication')
+need((B/'record_native_action_v5.py').read_text()==(B/'record_native_action_v4.py').read_text().replace('journal.stat().st_size<=128*1024','journal.stat().st_size<=1024*1024'),'Exact bounded one-line monitor repair')
+need((B/'commission_native_action_v5.py').read_text()==(B/'commission_native_action_v4.py').read_text().replace('record_native_action_v4.py','record_native_action_v5.py').replace('ROOT_ACTUAL_NATIVE_CANDIDATE_REVIEW_AUTHENTICATION_20261006.json','ROOT_ACTUAL_NATIVE_CANDIDATE_REVIEW_AUTHENTICATION_V2_20261006.json'),'Exact separately referenced commissioner repair')
+for k in ('reconciliation_program_pin','outer_launcher_pin','repaired_commissioner_pin','action_program_pin','continuation_program_pin','linear_diff_program_pin','integration_inputs_pin','stopped_CPU_continuation_inventory_pin'):
+    f=A/ad[k]['path'];need(ap(f)==ad[k],'Exact reviewed repair/candidate/source pin');checked.append(ap(f))
+original=A/ad['original_complete_actual_candidate_review_pin']['path'];need(ap(original)==ad['original_complete_actual_candidate_review_pin'],'Original actual independent complete review retained')
+inspectfile=A/'actual_acceptance_reconciliation_20261006/inspect/RECEIPT.json';r=read(inspectfile);j=read(inspectfile.parent/'PROCESS_JOURNAL.json');result=read(V/'RECONCILIATION_AUDIT_RESULT.json');independent=read(V/'INDEPENDENT_STATIC_GIT_BODY_JOURNAL.json')
+need(ad['reconciliation_actual_inspect_receipt_pin']==ap(inspectfile) and r['actual_operator_PID']==87582 and r['all_full_committed_bodies_reproduced'] is True and r['all132_durable_old_groups_freshly_absent'] is True and r['remote_verified'] is False and r['remote_main']==ad['main_parent'],'Actual root full337 read-only reproduction')
+need(len(j['records'])==349 and all(x['exit_code']==0 and x['reaped'] and x['process_group_absence_confirmed'] and x['fully_drained'] and x['error'] is None and x['termination_reason'] is None for x in j['records']),'All349 actual root bounded/reaped children')
+need(result['checks']==53702 and result['all337_full_live_and_immutable_Git_bodies_independently_reproduced'] is True and result['selection_pins']==r['pins'] and len(independent)==337 and result['all_old_groups_freshly_absent_in_actual_full_ps'] is True,'Independent actual53702 guards and337 fullbody readbacks')
+need(result['original_outer_full_stream_custody_claimed'] is False and result['original_last_child_historical_reap_unconfirmed']==84786,'Historical incomplete custody remains explicit')
+now=datetime.now(timezone.utc).isoformat();auth=A/'ROOT_ACTUAL_NATIVE_CANDIDATE_REVIEW_AUTHENTICATION_V2_20261006.json';gatefile=A/'actual_action_inputs_20261006/RECONCILE_PUBLISH_ROOT_GATE.json';need(not auth.exists() and not gatefile.exists(),'Fresh unique completed root review and separate publish decision')
+root={'schema':'pr110-root-actual-native-candidate-repair-authentication/v2','UTC':now,'actual_root_PID':os.getpid(),'actual_review':True,'native_candidate_actual_authenticated':True,'required_findings':[],'main_parent':ad['main_parent'],'integration_inputs_pin':ad['integration_inputs_pin'],'candidate_receipt_pin':ad['candidate_receipt_pin'],'packet_sha256':ad['packet_sha256'],'linear_diff_program_pin':ad['linear_diff_program_pin'],'stopped_CPU_continuation_inventory_pin':ad['stopped_CPU_continuation_inventory_pin'],'adversary_decision_pin':ap(adfile),'scope_checks':ad['scope_checks'],'original_complete_root_review_pin':ap(oldfile),'original_complete_independent_review_pin':ap(original),'actual_root_reconciliation_receipt_pin':ap(inspectfile),'actual_independent_repair_manifest_pin':ap(mf),'checked_repair_artifacts':checked,'original_actual_review_carried_forward':True,'source_candidate_and_proof_unchanged':True,'monitor_one_line_journal_cap_repair':True,'existing_acceptance_commit':r['commit'],'existing_acceptance_tree':r['tree'],'old84786_historical_reap_unconfirmed':True,'old_outer_full_stream_custody_claimed':False,'fresh_all132_registered_group_absence_authenticated':True,'acceptance_push_completed':False,'ready_and_merge_executed':False,'actual_workflow_percent':90,'program_completed_PRs':17,'dated_eligible_total':99,'persistent_goal_complete':False}
+auth.write_bytes(can(root))
+gate={'schema':'pr110-existing-acceptance-reconciliation/v1','mode':'publish','role':'root','UTC':now,'actual_root_PID':os.getpid(),'actual_review':True,'clearance':True,'required_findings':[],'program_pin':ap(B/'reconcile_acceptance_commit.py'),'phase_program_pin':ad['action_program_pin'],'interrupted_action_gate_pin':ap(A/'actual_action_commissions_20261006/acceptance_commit_ROOT_GATE.json'),'existing_commit':r['commit'],'repair_adversary_pin':ap(adfile),'preflight_receipt_pin':ap(inspectfile),'completed_root_repair_authentication_pin':ap(auth),'mutation_authorized':'One compare-and-swap push of the exact already committed acceptance state; no recommit/reassessment.'}
+gatefile.write_bytes(can(gate));print(json.dumps({'actual_root_PID':os.getpid(),'root_authentication_pin':ap(auth),'publish_gate_pin':ap(gatefile),'actual_push_executed':False}))
