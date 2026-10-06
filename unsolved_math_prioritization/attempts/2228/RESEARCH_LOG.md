@@ -7,3 +7,5 @@ Best-guess completion toward the full linear extremal-bound target: **15%**, a s
 The validation correction replaces six optimized-away assertions with explicit exceptions. The original program and historical output remain unchanged; original optimized execution is not accepted as active validation. Both frozen archives, exact acceptance and the actual patch remain byte-pinned.
 
 Only the target Status and Turns change. Publication verification is not complete until remote byte readback, fresh replays and the final open/draft/unmerged/no-auto-merge state have been checked. No copied source documents, dataset contents or private coordination are distributed.
+
+2026-10-06T16:49:44.365085+00:00: Publication classification correction: the canonical queue Status is **unsolved**, with Turns **3/5**. The mathematical audit disposition remains partial/stalled, with no new proof approach or changed mathematical claim. Only the queue Status is corrected from the initial draft; all historical author and audit bytes stay exact. Completion estimate toward the full theorem remains 15%.

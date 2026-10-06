@@ -908,7 +908,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 897 | 20002597 / AIM-PROBABILITY-0039 | Dyck random transpositions and a sharp edgewise comparison obstruction | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 898 | 2193 / EP-584 | Erdős Problem #584 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 899 | 2200007 / AMR-021-0007 | Problems Around Polynomials — Conjecture 4 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 900 | 2228 / EP-642 | Erdős Problem #642 | 0.0960 | 5.5 | 1 | unknown | partial | 3/5 |  |  |  |
+| 900 | 2228 / EP-642 | Erdős Problem #642 | 0.0960 | 5.5 | 1 | unknown | unsolved | 3/5 |  |  |  |
 | 901 | 2303033 / AMR-022-3033 | Research Problems in Function Theory — Problem 3.33 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 902 | 2308014 / AMR-022-8014 | Research Problems in Function Theory — Problem 8.14 | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 903 | 2315 / EP-810 | Erdős Problem #810 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
