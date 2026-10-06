@@ -884,7 +884,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 873 | 30003902 / OWR-16408-015 | Virtual Cohomological Dimension of Surface Automorphism Groups | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 874 | 10000034 / AMR-099-0034 | Half-plane percolation for invariant FKG processes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 875 | 10000036 / AMR-099-0036 | Invariant finite-energy percolation with internal threshold one | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 876 | 10400128 / AMR-103-0128 | Problem 7.13 — (H. | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 876 | 10400128 / AMR-103-0128 | Problem 7.13 — (H. | 0.0960 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 877 | 10400135 / AMR-103-0135 | Problem 7.20 — (S. | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 878 | 11000109 / AMR-109-0109 | Problem 2.4 — Let Γ be a subgroup of finite index in the mapping class group Mod1,2 and let φ: Γ → Γ be an automorphism. | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 879 | 136 / GREEN-048 | Balanced Ham Sandwich Line | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
