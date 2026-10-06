@@ -1,0 +1,11 @@
+--- immutable_original/PROOF.md
++++ repaired_diagnostics_v1/PROOF.md
+@@ -24,7 +24,7 @@
+ 
+ ## 2. Reduction from 3SAT
+ 
+-Use the classical NP-complete problem of satisfiability of a CNF formula with at most three literals per clause. Delete tautological clauses and repeated occurrences of the same literal. Each remaining clause is nonempty and contains distinct variables, with one sign per variable. This preprocessing preserves satisfiability. Trivial constant inputs can be mapped to fixed yes/no instances; they play no role in the hardness argument.
++Use the classical NP-complete problem of satisfiability of a CNF formula with at most three literals per clause. If the formula contains an empty clause, map it to the fixed no-instance obtained by the construction below for (x_1) AND (NOT x_1). Delete repeated occurrences of the same signed literal and delete tautological clauses. If no clauses remain, map the formula to the fixed yes-instance obtained for (x_1). Otherwise relabel the occurring variables consecutively. Every remaining clause is nonempty and contains distinct variables, with one sign per variable. This preprocessing preserves satisfiability. The fixed yes-instance has binary optimum0 and positive optimum7 at threshold7; the fixed no-instance has binary optimum1 and positive optimum11 at threshold10. Both meet every promised graph restriction. The exact minimum-unsatisfied-clause identity below concerns the ordinary constructed cleaned formula; the trivial branches preserve the decision answer.
+ 
+ Let the variables be \(x_1,\ldots,x_n\), and the remaining clauses be \(C_1,\ldots,C_m\). Construct the following vertices:
+ \[

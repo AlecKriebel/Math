@@ -1,0 +1,7 @@
+# Verification guard correction and boundary clarification
+
+The immutable submitted mathematical proof is retained byte-exact in the original archive. This current PROOF.md clarifies its already acknowledged total-input preprocessing branch, using the fixed yes/no gadgets independently checked by the auditors; all other proof text is unchanged. The submitted checker and old independent checker accepted known-false controls under Python -O because their assertions were removed. Only their three assert sites are replaced by explicit exceptions (two author sites, one independent site); the normal mathematical checks and counts are preserved. Diffs and root relocation/false-control readbacks accompany this copy.
+
+For any publication text, spell out the already permitted trivial-input mapping: a CNF containing an empty clause maps to the graph for (x) and (not x), with binary optimum1 and positive optimum11 versus threshold10. An empty or all-tautological conjunction maps to (x), with binary optimum0 and positive optimum7 versus threshold7. Remove repeated same-sign literals and tautological clauses before the ordinary graph construction; retain repeated whole clauses. Relabel appearing variable identifiers densely to avoid encoding a huge absent-variable range. The exact minimum-unsatisfied-clause identity is for the constructed cleaned nonempty-clause formula. These are explicit instances of the submitted proof's trivial-case allowance, not another central proof-search response.
+
+No priority or publication clearance is supplied by this code correction.
