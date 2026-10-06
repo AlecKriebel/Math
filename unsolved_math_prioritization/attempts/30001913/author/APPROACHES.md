@@ -1,0 +1,17 @@
+# Five substantive approaches
+
+The prior catalog's desk triage was not counted as an attempt. A bounded exact-ID check of repository code, PRs, branches, and commits found no actual prior attempt; this is not an exhaustive repository-history or novelty claim.
+
+1. **Source reconstruction and literature theorem transfer.** Read every supplied record field, checked both prescribed hashes, and inspected the original OWR pages 2681–2683. Recovered all normalization and dimension hypotheses. Compared the 2012/2013 Fanosearch paper, the 2021 rigid-MMLP classification, Przyjalkowski's 2017 compactification theorem, Shamoto's 2018 rescaling Hodge–Tate conditions, and the 2025 final Modularity paper. The rigid-MMLP class is not identified with all genus-zero facet polynomials; Shamoto's notion is different. No source inspected establishes the full target. Outcome: the Minkowski subclass and particular non-Minkowski examples are credited prior results; no complete transfer.
+
+2. **Global cohomology and compactification.** Derived the general inequality defect(V) ≤ b3(Z) using the decomposition theorem, and b3(Z)=2Σ genus(Ci) for a smooth toric threefold followed by point/curve blowups. This proves extremality when the chosen centers are rational and the period summand is irreducible nonconstant. Outcome: rigorous sufficient condition and quantitative obstruction; all rational facet normalizations do not by themselves certify such a resolution.
+
+3. **Exact one-parameter search.** Analyzed Fa=x+y+z+x^(-4)y^(-2)z^(-1)+2x^(-2)y^(-1)+a x^(-1). Identified its reflexive facets and the one potentially positive-genus face. The discriminant proves precisely a∈{0,±4} satisfies the facet condition. Exact constant-term identities identify a=0 with the projective-three-space mirror period; a=4 is the credited Fanosearch Example 6.6; a=−4 follows by scalar/torus change. Outcome: all Hodge–Tate members of this family are extremal. It is one family, not a classification.
+
+4. **Singular rational facets and principalization.** The a=±4 face has a genuine node in the torus, so it is not a smooth-component input to the weak-nondegeneracy theorem. Principalized the local nodal ideal (u,yz) by two smooth codimension-two blowups. Outcome: nodes have a simple local model, but analytic branch choices and global irreducible nodal curves leave a globalization gap. No resolution for arbitrary rational singular facets is asserted.
+
+5. **Global monodromy countermodel to an overstrong shortcut.** Pulled an explicit irreducible integral rank-two local system back by s↦s^m, deriving defect m−1 for odd m and m−2 for even m. For every even m≥4 the monodromies at both branch points are nontrivial unipotent, yet the defect is positive. Outcome: local unipotence does not imply extremality. This is not a Laurent-polynomial counterexample and does not satisfy the target's facet hypothesis by construction.
+
+## Remaining gap and stopping condition
+
+The five-approach budget is exhausted. The missing step is either a global genus-zero-center principalization theorem covering every allowed singular/repeated facet configuration, another proof of vanishing for its actual principal-period summand, or an explicit normalized reflexive three-variable counterexample with independently certified monodromy. None is supplied here. Literature non-discovery is not evidence of novelty or a proof that the conjecture remains open in all literature.
