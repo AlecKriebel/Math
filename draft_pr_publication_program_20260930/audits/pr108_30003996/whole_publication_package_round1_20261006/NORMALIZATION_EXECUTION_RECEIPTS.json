@@ -1,0 +1,201 @@
+{
+  "UTC": "2026-10-06T06:03:40.014360+00:00",
+  "PID": 55686,
+  "cases": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-c",
+        "import importlib.util,json,sys; p=sys.argv[1];s=importlib.util.spec_from_file_location('published_copy',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);out=[]\nfor cs in [[[],[0]],[[],[True]],[[],[1,2,3,4]],[[0],[]],[[True],[]],[[1,2,3,4],[]]]:\n try:out.append({'input':cs,'output':m.normalize(cs),'rejected':False})\n except AssertionError as e:out.append({'input':cs,'guard':str(e),'rejected':True})\nprint(json.dumps({'optimization':sys.flags.optimize,'cases':out}))",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr108_30003996/whole_publication_package_round1_20261006/scratch/source_preparation/verify_exact.py"
+      ],
+      "PID": 55687,
+      "start_UTC": "2026-10-06T06:03:39.937424+00:00",
+      "end_UTC": "2026-10-06T06:03:39.971230+00:00",
+      "exit": 0,
+      "stdout_sha256": "2b048b0a3e5dfae5adde36c8de4ed7c76454684036ec01a06d5146a0c27308e3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed": {
+        "optimization": 0,
+        "cases": [
+          {
+            "input": [
+              [],
+              [
+                0
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [],
+              [
+                true
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [],
+              [
+                1,
+                2,
+                3,
+                4
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [
+                0
+              ],
+              []
+            ],
+            "guard": "literal_labels_are_nonzero_integers",
+            "rejected": true
+          },
+          {
+            "input": [
+              [
+                true
+              ],
+              []
+            ],
+            "guard": "literal_labels_are_nonzero_integers",
+            "rejected": true
+          },
+          {
+            "input": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              []
+            ],
+            "guard": "at_most_three_input_literals",
+            "rejected": true
+          }
+        ]
+      }
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-c",
+        "import importlib.util,json,sys; p=sys.argv[1];s=importlib.util.spec_from_file_location('published_copy',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);out=[]\nfor cs in [[[],[0]],[[],[True]],[[],[1,2,3,4]],[[0],[]],[[True],[]],[[1,2,3,4],[]]]:\n try:out.append({'input':cs,'output':m.normalize(cs),'rejected':False})\n except AssertionError as e:out.append({'input':cs,'guard':str(e),'rejected':True})\nprint(json.dumps({'optimization':sys.flags.optimize,'cases':out}))",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr108_30003996/whole_publication_package_round1_20261006/scratch/source_preparation/verify_exact.py"
+      ],
+      "PID": 55688,
+      "start_UTC": "2026-10-06T06:03:39.971305+00:00",
+      "end_UTC": "2026-10-06T06:03:40.014311+00:00",
+      "exit": 0,
+      "stdout_sha256": "1fd37b5bc85aae11e2106b432ce4aac892873f2a05219fa180bd5cb7a9700f03",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "observed": {
+        "optimization": 1,
+        "cases": [
+          {
+            "input": [
+              [],
+              [
+                0
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [],
+              [
+                true
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [],
+              [
+                1,
+                2,
+                3,
+                4
+              ]
+            ],
+            "output": {
+              "kind": "no",
+              "clauses": [],
+              "symbols": []
+            },
+            "rejected": false
+          },
+          {
+            "input": [
+              [
+                0
+              ],
+              []
+            ],
+            "guard": "literal_labels_are_nonzero_integers",
+            "rejected": true
+          },
+          {
+            "input": [
+              [
+                true
+              ],
+              []
+            ],
+            "guard": "literal_labels_are_nonzero_integers",
+            "rejected": true
+          },
+          {
+            "input": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              []
+            ],
+            "guard": "at_most_three_input_literals",
+            "rejected": true
+          }
+        ]
+      }
+    }
+  ]
+}
