@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""UNEXECUTED corrected_v4 (compatible v3 schemas): commissioned future review bundle; no install/export/Git/service writes.
+
+Templates intentionally reject before any external read. Current tests never call prepare.
+"""
+import sys
+import os
+if __name__=='__main__':
+    expected_startup_environment={'PATH':'/usr/bin:/bin','LC_ALL':'C','LANG':'C','TZ':'UTC'}
+    if sys.platform=='darwin':expected_startup_environment['__CF_USER_TEXT_ENCODING']='0x'+format(os.getuid(),'X')+':0x0:0x0'
+    if not (sys.flags.ignore_environment and sys.flags.no_site and sys.flags.dont_write_bytecode) or dict(os.environ)!=expected_startup_environment:
+        raise SystemExit('Use the reviewed clean launcher: Python -E -S -B, no ambient environment.')
+sys.dont_write_bytecode = True
+from pathlib import Path
+import argparse, collections, datetime, hashlib, io, json, os, re, shutil, sqlite3, stat, zipfile
+import v3_guards as g
+from bounded_process import BoundedRunner, validate_policy as validate_process_policy, now
+from native_assess_worker import validate_policy as validate_worker_policy
+sys.dont_write_bytecode = True
+D = Path(__file__).resolve().parent
+V1 = D.parent
+A = V1.parent
+C = A.parents[2]
+R = Path('/Users/alec/Documents/Math')
+K,CODE,N,HEAD = g.K,g.CODE,g.N,g.HEAD
+P = 'unsolved_math_prioritization/'
+REV = '37e53eabe540fb458758e198be61634bd02ee008'
+REVIEW = '9a2816afbdd3750d36f550dc6e91c7201aa024344a7b83fdb420aafe6c86df0d'
+STATEMENT = '65c107bf152773ed079cc344cfcf853c4f7da15a10453ca6f7fb411bbf5aab97'
+PROOF = '2818eab189445649ae1ba98d55e3da3e5fab918de88f1779de86962ba99a3393'
+ORIGINAL_PROOF = '1a6c267c6240b66c1d804397f4bbbe246f5b6147c3930e1a68396e60b618d615'
+ORIGINAL = A/'original_source_authentication_20261006'
+BASE_NAMES = ['queue.py','manifest.json','policy.json','catalog.json','assessments.json','state.json',
+              'history.jsonl','assessment_history.jsonl','ranking.csv','summary.json','SHORTLIST.md','QUEUE.md']
+EXPORT = ['assessments.json','state.json','history.jsonl','assessment_history.jsonl','catalog.json',
+          'ranking.csv','summary.json','SHORTLIST.md','QUEUE.md']
+require,sha,encode,rel,regular = g.require,g.sha,g.canonical,g.relative,g.regular
+
+def disk_pin(path):
+    info=regular(path); h=hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''): h.update(block)
+    require(regular(path).st_size == info.st_size, 'Streamed input size changed')
+    return {'bytes':info.st_size,'sha256':h.hexdigest()}
+
+def bounded_local_pin(spec,root=A,cap=128*1024):
+    g.pin_shape(spec); path=C/rel(spec['path'])
+    require(path.is_relative_to(root) and spec['bytes'] <= cap and regular(path).st_size == spec['bytes'], 'Local control pin/root/cap')
+    data=path.read_bytes(); require(len(data)==spec['bytes'] and sha(data)==spec['sha256'],'Local control changed')
+    return path,data
+
+def validate_gate(obj,role,manifest_sha,inputs_sha,program_hashes,base):
+    require(obj.get('schema')=='pr108-publication-root-gate/v3' and obj.get('role')==role and
+        obj.get('PR')==108 and obj.get('problem_id')==30003996,'Gate identity/schema/role')
+    bindings={'main_parent':base,'original_head':HEAD,'review_hash':REVIEW,'statement_hash':STATEMENT,
+        'effective_proof_sha256':PROOF,'package_manifest_sha256':manifest_sha,'execution_inputs_sha256':inputs_sha}
+    require(all(obj.get(k)==v for k,v in bindings.items()),'Gate input binding')
+    require(obj.get('actual_root_review') is True and obj.get('clearance') is True and
+        not any(obj.get(x) is True for x in ['fixture','simulated','dry_run']),'Actual root clearance required')
+    require(obj.get('new_central_proof_search_turns')==0 and obj.get('original_budget')=='2/5','Gate effort interpretation')
+    require(isinstance(obj.get('exact_claim'),str) and obj['exact_claim'].strip() and obj.get('checked_artifacts'),'Gate claim/artifacts')
+    require(g.utc(obj['UTC']) <= datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(minutes=5),'Gate future UTC')
+    fields={'mathematics':['mathematical_clear

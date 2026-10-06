@@ -1,0 +1,56 @@
+--- sealed_corrected_v3/native_assess_worker.py
++++ corrected_v4/native_assess_worker.py
+@@ -44,16 +44,19 @@
+ def execute(control_path):
+     g.validate_python_startup(os.environ)
+     # No fixture entry point invokes this function.
+-    control = loads(regular(control_path.absolute()) and control_path.read_bytes())
++    require(regular(control_path.absolute()).st_size<=128*1024,'Worker control read cap')
++    control = loads(control_path.read_bytes())
+     require(control['schema'] == 'pr108-native-assess-control/v3' and control['fixture'] is False, 'Actual worker control required')
+     policy = control['worker_policy']; validate_policy(policy)
+     output = control_path.absolute().parent
+     require(output.parent==D and control_path.name=='WORKER_CONTROL.json' and
+         output.name=='candidate_'+control['execution_inputs_sha256'][:16], 'Worker control outside its sole reviewed candidate root')
++    require(regular(output/'EXECUTION_INPUTS.json').st_size<=128*1024,'Worker immutable input read cap')
+     execution_bytes=(output/'EXECUTION_INPUTS.json').read_bytes();execution=g.loads(execution_bytes)
+     g.validate_execution_manifest(execution,execution_bytes)
+     g.validate_environment_policy(execution['effective']['environment_policy'])
+     require(sha(execution_bytes)==control['execution_inputs_sha256'],'Worker immutable execution manifest changed')
++    require(regular(output/'CONFIG.json').st_size<=128*1024,'Worker thin config read cap')
+     config=g.loads((output/'CONFIG.json').read_bytes());g.validate_thin_config(config)
+     require(config['execution_inputs']['sha256']==sha(execution_bytes) and config['execution_inputs']['bytes']==len(execution_bytes),'Worker thin config correspondence')
+     programs={}
+@@ -71,11 +74,15 @@
+         not any(final.get(x) is True for x in ['fixture','simulated','dry_run']),'Worker lacks final actual manifest-bound native clearance')
+     backend = output/'private_native_backend'
+     require(str(backend) == control['ROOT'] and backend.is_dir() and not backend.is_symlink(), 'Private backend root')
++    g.require(g.regular(backend/'manifest.json').st_size<=32*1024*1024,'Worker native manifest read cap')
++    validated_control=g.validate_worker_control(control,execution,execution_bytes,output,(backend/'manifest.json').read_bytes())
++    policy=validated_control['worker_policy'];validate_policy(policy)
+     began = now(); result = {'schema':'pr108-native-assess-worker-receipt/v3','actual_operator_PID':os.getpid(),
+         'UTC_start':began, 'fixture':False, 'native_function':'queue.py:assess', 'ROOT':str(backend),
+         'SQL_connection':'mode=ro&immutable=1', 'native_status_command_called':False,
+         'queue_py_sha256':control['queue_py_sha256'], 'execution_inputs_sha256':control['execution_inputs_sha256'],
+-        'requested_resource_policy':policy, 'applied_limits':{}, 'hard_memory_limit_claimed':False}
++        'requested_resource_policy':policy, 'applied_limits':{}, 'hard_memory_limit_claimed':False,
++        'validated_worker_control':validated_control,'worker_control_binding_sha256':sha(canonical(validated_control))}
+     try:
+         setup=apply_resource_policy(policy)
+         result['applied_limits']=setup['enforced_limit_readbacks'];result['memory_policy']=setup['memory_policy']
+--- sealed_corrected_v3/prepare_review_bundle.py
++++ corrected_v4/prepare_review_bundle.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""UNEXECUTED V3: commissioned future review bundle; no install/export/Git/service writes.
++"""UNEXECUTED corrected_v4 (compatible v3 schemas): commissioned future review bundle; no install/export/Git/service writes.
+ 
+ Templates intentionally reject before any external read. Current tests never call prepare.
+ """
+@@ -146,7 +146,7 @@
+ 
+ def prepare(config_path):
+     g.validate_python_startup(os.environ)
+-    require(config_path.absolute().is_relative_to(D),'Future actual thin config must reside in V3')
++    require(config_path.absolute().is_relative_to(D),'Future actual thin config must reside in corrected_v4')
+     require(regular(config_path.absolute(
