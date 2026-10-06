@@ -882,7 +882,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 871 | 30003771 / OWR-16158-014 | Nonabelian Torsors and Essentially Finite Parabolic Bundles | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 872 | 30003800 / OWR-16162-015 | Unramified Cohomology of Mixed-Type Classifying Spaces | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 873 | 30003902 / OWR-16408-015 | Virtual Cohomological Dimension of Surface Automorphism Groups | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 874 | 10000034 / AMR-099-0034 | Half-plane percolation for invariant FKG processes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 874 | 10000034 / AMR-099-0034 | Half-plane percolation for invariant FKG processes | 0.0960 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 875 | 10000036 / AMR-099-0036 | Invariant finite-energy percolation with internal threshold one | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 876 | 10400128 / AMR-103-0128 | Problem 7.13 — (H. | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 877 | 10400135 / AMR-103-0135 | Problem 7.20 — (S. | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
