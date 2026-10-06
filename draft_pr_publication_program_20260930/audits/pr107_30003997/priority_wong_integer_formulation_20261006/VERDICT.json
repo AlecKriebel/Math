@@ -1,0 +1,63 @@
+{
+  "audit_family": "priority_wong_integer_formulation_20261006",
+  "target": {"pull_request": 107, "source_problem_id": "30003997", "source": "Kaibel, OWR50/2018, Problem2, printed3014-3015"},
+  "date_utc": "2026-10-06",
+  "scope": "Bounded primary-source formulation lineage and exact-model priority comparison",
+  "original_proof_budget_used": "1/5 inherited",
+  "additional_central_proof_search_turns": 0,
+  "independent_initial_comparison_preserved": true,
+  "initial_comparison_evidence": "RESEARCH_LOG.md checkpoint1; canonical Wong comparison sent to root before receiving other-family results",
+  "mathematical_correctness": {"status": "inherited_verified", "basis": "../repaired_diagnostics_v1/PROOF.md and ../ROOT_MATHEMATICAL_GATE_20261006.json", "new_central_proof_review_claimed": false},
+  "independently_checked_findings": [
+    "The literal source is fixed-root directed spanning out-arborescence with arbitrary destination-specific arc vectors, distinct from all-roots Problem1.",
+    "Primary 2010 and 2019 reproductions use one unit root-to-destination flow per nonroot vertex, individually bounded by common capacities, and cardinality equality n-1.",
+    "At integral capacities on the cardinality face, supported flow variables uniquely encode tree paths; integral projection does not establish full joint-extension integrality.",
+    "Goemans-Myung1993 p23 explicitly records nonintegrality of coupled Q_xf despite integral Q_x projection for T=V; its attribution is Martin1986 working paper, not Martin1991.",
+    "Wong1978, Magnanti-Wong1984, Costa2005, VanVyve-Wolsey2004/2006, and ZIB08-29 do not by their inspected proofs establish the candidate's restricted theorem.",
+    "Unrestricted negative-cost hardness is an explicit audit corollary of Karp1972 directed Hamilton-circuit completeness; no nonnegative DAG consequence is claimed from it."
+  ],
+  "restricted_priority_basis_received_after_initial_independence": {
+    "status": "root_provided_full_model_comparison_read",
+    "source": "Chapoullie-Szigeti, On packing time-respecting arborescences, Discrete Optimization45(2022)100702, Theorem13 construction",
+    "doi": "10.1016/j.disopt.2022.100702",
+    "url": "https://pagesperso.g-scop.grenoble-inp.fr/~szigetiz/OCG/13.C-Szigeti.pdf",
+    "comparison": "../root_priority_20261006/ROOT_PRIOR_THEOREM_COMPARISON.md",
+    "independent_fresh_primary_review_by_this_family": false,
+    "proof_level_subdivision_and_cost_translation": true,
+    "covers": ["binary nonnegative costs", "zero threshold", "simple digraph", "root reachability", "four consecutive layers", "depth3", "nonroot indegree<=3", "strong optimization hardness", "positive1/2 offset with fixed path-length total"],
+    "does_not_claim": ["earliest priority", "verbatim publication of Kaibel's destination-cost table", "verbatim prior minimum-unsatisfied-clause identity on candidate3SAT family"]
+  },
+  "novel_resolution_clearance": false,
+  "novel_restricted_hardness_clearance": false,
+  "recommended_disposition": "Do not promote PR107 as a new hardness theorem or novel resolution. The checked direct reduction may be retained as exposition subject to root disposition.",
+  "required_corrections": [
+    "Remove or qualify novel-resolution, new-hardness, and current-open-status claims.",
+    "Cite the proof-level2022 restricted consequence and label the destination-cost translation an audit inference.",
+    "Keep Problem1/all-roots separate from Problem2/fixed-root.",
+    "Distinguish directed capacity variables, undirected edge projection, and auxiliary commodity flows.",
+    "Use individual commodity bounds rather than aggregate capacity, and cardinality equality rather than only a lower bound.",
+    "Do not infer integral full extension or easy joint-objective optimization from integral projection.",
+    "Identify Goemans-Myung nonintegrality as coupled Q_xf; do not confuse it with the loose uncoupled undirected cut relaxation S_x.",
+    "Correct Martin nonintegrality attribution to1986 working paper; do not claim original Wong1980 was directly inspected.",
+    "Distinguish downloaded ZIB2008 title/version and author Andreas Tuchscherer from a differently titled2009 citation."
+  ],
+  "unresolved_priority": [
+    {"issue": "Original Wong1980 conference fulltext and exact auxiliary conventions", "status": "not_located", "blocks_no_novelty_disposition": false},
+    {"issue": "Original Martin1986 working-paper nonintegrality witness and exact cardinality-face scope", "status": "not_obtained", "blocks_no_novelty_disposition": false},
+    {"issue": "Earliest publication implying full restricted destination-cost model", "status": "not_claimed_by_this_family", "blocks_no_novelty_disposition": false},
+    {"issue": "Explicit post2018 citation answering Kaibel's Problem2", "status": "not_found_in_bounded_formulation_search", "blocks_no_novelty_disposition": false},
+    {"issue": "Prior verbatim candidate3SAT minimum-unsatisfied-clause identity", "status": "not_located; identity alone does not establish substantive novelty", "blocks_no_novelty_disposition": false}
+  ],
+  "blocked_inference_routes": [
+    {"route": "Generic fixed-charge/Steiner/TSP hardness implies all-vertex fixed-root tree hardness", "gap": "Known hardness uses omitted terminals, fixed charges, budgets, arbitrary origins, capacities, or a tour; no checked specialization eliminating these supplied by those papers."},
+    {"route": "Integral spanning-tree projection implies integral full flow extension", "gap": "Projection forgets auxiliary coordinates; explicit nonintegrality is recorded in the coupled-flow lineage."},
+    {"route": "Formulation nonintegrality alone proves NP-hard joint-objective integer optimization", "gap": "Nonintegrality is not a computational hardness theorem; a model-specific reduction is required."}
+  ],
+  "completion_estimate_percent": 100,
+  "completion_estimate_scope": "Assigned bounded formulation-family audit, not a claim of exhaustive historical priority",
+  "outside_input_or_outreach": "None initiated, prepared, or required for this disposition",
+  "actions": {"git": false, "pull_request": false, "native_editor": false, "zenodo": false, "tracker": false, "external_communication": false},
+  "third_party_fulltexts": "private_sources only; excluded from public report payload",
+  "pins": "MANIFEST.json, INPUT_PINS.json, SOURCE_INVENTORY.json",
+  "limitations": "Root's final combined disposition and any final adversarial certification are outside this family's authority."
+}
