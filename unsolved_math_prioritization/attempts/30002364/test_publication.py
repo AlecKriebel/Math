@@ -25,8 +25,11 @@ with tempfile.TemporaryDirectory(prefix='cm publication acceptance ') as td:
         need((p.returncode==0)==success,label+': '+(p.stdout+p.stderr)[-1000:]);need(not marker.exists(),'untrusted code executed')
         records.append({'name':label,'expected':'pass' if success else 'reject','passed':True})
         return p
+    # Trusted code outside each tested package authenticates its selected wrapper
+    # before that wrapper executes, including for the changed-wrapper control.
+    guard="import pathlib,hashlib,stat,sys,subprocess; p=pathlib.Path(sys.argv[1]).absolute(); ok=p==p.resolve() and stat.S_ISREG(p.lstat().st_mode) and hashlib.sha256(p.read_bytes()).hexdigest()==sys.argv[4]; ok or sys.exit('external pre-execution wrapper rejection'); sys.exit(subprocess.run([sys.executable,'-I','-S','-B']+(['-O'] if sys.flags.optimize else [])+sys.argv[1:]).returncode)"
     def call(r,mode,execute=False,manpin=mp,wrap=wp):
-        return [sys.executable,'-I','-S','-B']+(['-O'] if mode else [])+[str(r/'verify_publication.py'),str(r),manpin,wrap]+(['--execute'] if execute else [])
+        return [sys.executable,'-I','-S','-B']+(['-O'] if mode else [])+['-c',guard,str(r/'verify_publication.py'),str(r),manpin,wrap]+(['--execute'] if execute else [])
     relocated=t/'relocated whole package with spaces';shutil.copytree(root,relocated)
     for mode in (False,True):
         tag='optimized' if mode else 'normal'
@@ -50,9 +53,8 @@ with tempfile.TemporaryDirectory(prefix='cm publication acceptance ') as td:
                ('directory symlink',lambda r:(shutil.rmtree(r/'author'),(r/'author').symlink_to(root/'author',target_is_directory=True)))]
         for label,change in cases:
             r=t/(tag+' '+label);shutil.copytree(root,r);change(r)
-            # Never execute a changed wrapper. Its pin must be rejected by trusted original.
+            # The trusted external guard rejects a changed wrapper before execution.
             args=call(r,mode)
-            if label in ('changed wrapper','wrapper symlink'):args[args.index(str(r/'verify_publication.py'))]=str(wrapper)
             launch(tag+' reject '+label,args,False)
         linked=t/(tag+' root link');linked.symlink_to(root,target_is_directory=True);launch(tag+' reject root symlink',call(linked,mode),False)
         ancestor=t/(tag+' ancestor');ancestor.symlink_to(root.parent,target_is_directory=True);launch(tag+' reject ancestor symlink',call(ancestor/root.name,mode),False)
