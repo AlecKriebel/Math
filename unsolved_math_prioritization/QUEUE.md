@@ -832,7 +832,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 823 | 30001176 / OWR-3392-002 | Factorizations from Minimal Exchangeable Random Sequences | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 824 | 30001223 / OWR-3400-007 | Simple Tops of Young Modules | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 824 | 30001223 / OWR-3400-007 | Simple Tops of Young Modules | 0.0985 | 5.5 | 3 | 2009 | claimed_solved | 1/5 |  | [Audited q=1, odd-characteristic counterexamples; all n>=2](attempts/30001223/README.md) |  |
 | 825 | 30001336 / OWR-4084-010 | Rooted-Tree Expansions of Renormalized Two-Point Functions | 0.0985 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 826 | 30001460 / OWR-4332-001 | Geometric Quotients of K-Sheets | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 827 | 30001478 / OWR-4335-003 | Prime Ideals and Coordinate-Ring Maps of $R(\alpha,\beta)$ | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
