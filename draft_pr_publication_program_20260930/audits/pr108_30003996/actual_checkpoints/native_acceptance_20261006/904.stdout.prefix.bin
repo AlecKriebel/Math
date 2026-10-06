@@ -1,0 +1,31 @@
+# Independent adversarial review: aggregate root-dependent spanning-tree hardness
+
+## Verdict and exact coverage
+
+**PASS_COMPLETE_STRONG_NP_COMPLETENESS.** No mandatory correction is required. The submitted reduction proves strong NP-completeness of its explicitly encoded nonnegative-integer decision problem and therefore NP-hardness of the exact optimization problem in the source.
+
+The frozen `PROOF.md` SHA-256 is
+
+`1a6c267c6240b66c1d804397f4bbbe246f5b6147c3930e1a68396e60b618d615`.
+
+This is a fresh independent adversarial AI audit. It is not human peer review, and historical priority has not been established. No verifier, proof, or verdict for the adjacent path-cost problem was imported or used as verification of this result.
+
+## 1. Exact source objective
+
+I read the complete Kaibel contribution, including both problems and their separate motivations, on printed pp.3014–3015 of [Oberwolfach Report 50/2018](https://ems.press/content/serial-article-files/46772?nt=1), and visually inspected the first problem on p.3014. The primary PDF hash is `a90207e0cadc310ab5a52a228c4b25a16f5e5f617542f006e9909cf90d4c72d2`.
+
+Problem 1 gives an undirected graph, both directed copies of every edge, and an arbitrary cost vector for **each root vertex**. For one selected undirected spanning tree it sums the costs of all its root-induced arborescences. It does not choose the arborescences independently, and it does not sum destination-dependent costs only along paths in a fixed-root tree. The latter is the distinct Problem 2. The submitted reduction matches Problem 1 exactly.
+
+The candidate explicitly uses outward arborescences. If the convention is inward, reversing every supplied arc-cost entry gives an objective-preserving reduction, because every induced tree arc reverses. Thus the orientation convention causes no gap. The original real-valued cost notation contains the finite, nonnegative-integer subclass proved hard here; no complexity claim about unencoded arbitrary real numbers is needed.
+
+The imported NP-complete source problem is satisfiability with at most three literals per clause, item 11 in [Karp's original list](https://doi.org/10.1007/978-1-4684-2001-2_9). Its standard NP-completeness is the only complexity-theoretic hardness input. Targeted current searches did not establish priority for this particular reduction; the lack of a novelty claim is appropriate.
+
+## 2. Preprocessing, graph, and cost specification
+
+Deleting a repeated literal and deleting a tautological clause preserve satisfiability. Nonempty remaining clauses contain each participating variable in exactly one sign. Empty clauses and empty formulas have fixed no/yes outputs: for example, the two-vertex, one-edge instance with both rooted costs 1 and threshold 1 is a no-instance, while all costs zero with threshold zero is a yes-instance. Variables can be relabeled by their distinct occurrences, so the numbers of vertices and clauses used in the reduction are polynomial in the formula's explicit length.
+
+The constructed graph has exactly the two hubs, n variables and m clauses described in the proof. Clause incidences are present precisely for occurring variables. The graph is simple; no parallel edges or loops are required. It is connected because the hub edge joins the hubs, every variable is adjacent to both hubs, and each nonempty clause has an incident variable. Repeated clauses create distinct clause vertices and do not cause a difficulty. Variables absent from some or all clauses are also harmless.
+
+The root-t cost vector assigns the same value to both orientations of each edge. It therefore charges every hub-variable edge 1 and every clause-variable edge B, regardless of how the tree is oriented at t. At a clause root, the only possibly positive costs are the indicated variable-to-hub arcs. Costs on their reverses, on clause edges, on the hub edge and on absent-variable incidences are zero. Other root vectors are identically zero. These are explicit input entries, independent of the eventually chosen tree.
+
+## 3. Exhaustive structural argument for arbitra

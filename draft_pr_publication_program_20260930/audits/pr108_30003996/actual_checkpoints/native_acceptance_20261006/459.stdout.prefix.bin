@@ -1,0 +1,50 @@
+"""Independent root byte/dictionary audit of the concrete private candidate; no export."""
+from pathlib import Path
+import sys, os, datetime, hashlib, json, csv, io, collections, re
+A=Path(__file__).resolve().parent; C=A.parents[2]
+D=A/'native_publication_integration_plan_20261006/corrected_v5'
+sys.path.insert(0,str(D))
+import v3_guards as g
+from bounded_process import BoundedRunner
+g.validate_python_startup(os.environ)
+inputs_bytes=(D/'EXECUTION_INPUTS_FROZEN_20261006.json').read_bytes()
+inputs=g.loads(inputs_bytes); g.validate_execution_manifest(inputs,inputs_bytes)
+inputs_sha=g.sha(inputs_bytes)
+g.require(inputs_sha=='dfe3e71993e3bd99afb9c11e54f4fe4c9117c770849ffac54c7bc2b17e6bd76a','Actual frozen inputs changed')
+candidate=D/('candidate_'+inputs_sha[:16]); receipt=g.loads((candidate/'CANDIDATE_RECEIPT.json').read_bytes())
+g.require(receipt['execution_inputs_sha256']==inputs_sha and receipt['native_assess_executed_in_private_backend'] is True and receipt['native_export_executed'] is False and not (candidate/'PREPARE_FAILURE.json').exists(),'Candidate identity/failure')
+out=A/'root_native_v5_candidate_inspection_20261006';out.mkdir(exist_ok=False)
+e=inputs['effective'];runner=BoundedRunner(out,C,e['process_policy'],e['environment_policy'])
+before={}; native_prefix='unsolved_math_prioritization/';K='30003996';N=native_prefix+'attempts/'+K+'/'
+names=['assessments.json','state.json','history.jsonl','assessment_history.jsonl','catalog.json','ranking.csv','summary.json','SHORTLIST.md','QUEUE.md']
+basepins={Path(p['path']).name:p for p in e['native_baseline_pins']}
+for name in names:
+    b,_,_=runner.run([e['runtime']['git_executable'],'show',e['main_parent']+':'+native_prefix+name],role='git',stdout_cap=basepins[name]['bytes']+1)
+    g.require(len(b)==basepins[name]['bytes'] and g.sha(b)==basepins[name]['sha256'],'Baseline byte pin')
+    p=C/native_prefix/name
+    g.require(not p.is_symlink() and (not p.exists() or p.read_bytes()==b),'Concurrent native baseline edit')
+    before[name]=b
+affected=receipt['affected_paths'];g.require(len({x['path'] for x in affected})==len(affected),'Duplicate offer')
+offered={}
+for row in affected:
+    path=g.relative(row['path']);g.require(path.startswith(N) or path in [native_prefix+n for n in names],'Export scope')
+    p=candidate/'bundle'/path;g.regular(p);b=p.read_bytes()
+    g.require({'bytes':len(b),'sha256':g.sha(b)}==row['after'],'Offer body pin')
+    if path in [native_prefix+n for n in names]:
+        old=before[Path(path).name];g.require(row['before']=={'bytes':len(old),'sha256':g.sha(old)} and old!=b,'Global diff correspondence')
+    else:g.require(row['before'] is None,'Target file unexpectedly exists')
+    offered[path]=b
+def after(name):return offered.get(native_prefix+name,before[name])
+oldass=g.loads(before['assessments.json']);newass=g.loads(after('assessments.json'))
+oldstate=g.loads(before['state.json']);newstate=g.loads(after('state.json'))
+g.require({k:v for k,v in oldass.items() if k!=K}=={k:v for k,v in newass.items() if k!=K},'Other assessments changed')
+g.require(K not in oldstate and {k:v for k,v in newstate.items() if k!=K}==oldstate,'Other states changed')
+state=newstate[K];g.require(state['status']=='claimed_solved' and state['turns_used']==2 and state['new_central_proof_search_turns']==0 and state['original_structured_ledger_present'] is False,'Target provenance')
+g.require(g.loads(offered[N+'IMPORT_BASELINE.json'])==state,'Import baseline correspondence')
+g.require(g.loads(offered[N+'HISTORICAL_DESK_ASSESSMENT.json'])==oldass[K],'Original desk metadata')
+for key,value in oldass[K].items():
+    if key!='reviewed_at':g.require(newass[K].get(key)==value,'Historical assessment field changed: '+key)
+g.require(g.utc(newass[K]['reviewed_at'])<=datetime.datetime.now(datetime.timezone.utc),'Native assessment timestamp')
+g.require(newass[K]['publication_DOI']=='10.5281/zenodo.23181280' and newass[K]['original_budget']=='2/5' and newass[K]['new_central_proof_search_turns']==0,'Published assessment')
+for name in ['history.jsonl','assessment_history.jsonl']:
+    b=after(na

@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""Validate and inventory this source-preparation snapshot; no service calls.
+
+After a deliberate paper edit, --refresh-paper-binding updates its hash only.
+Run run_checks.py again before resealing: old verification receipts are rejected.
+This seal never certifies an unseen PDF/archive or whole-package review.
+"""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+HISTORICAL_SHA = '2818eab189445649ae1ba98d55e3da3e5fab918de88f1779de86962ba99a3393'
+
+
+def require(value, message):
+    if not value:
+        raise AssertionError(message)
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--refresh-paper-binding', action='store_true')
+    args = parser.parse_args()
+    binding_path = ROOT/'PROOF_BINDING.json'
+    binding = json.loads(binding_path.read_text())
+    require(digest(ROOT/binding['historical_proof_relative_path']) == HISTORICAL_SHA,
+            'exact audited historical proof must be preserved')
+    paper_sha = digest(ROOT/binding['paper_relative_path'])
+    if args.refresh_paper_binding:
+        binding['paper_sha256'] = paper_sha
+        binding_path.write_text(json.dumps(binding, indent=2)+'\n')
+        print(json.dumps({'paper_binding_refreshed':True, 'paper_sha256':paper_sha,
+                          'next_step':'Run run_checks.py with a new retained receipt before sealing.'}))
+        return
+    require(binding['paper_sha256'] == paper_sha, 'current paper must match portable binding')
+    require(binding['current_verifier_sha256'] == digest(ROOT/'verify_exact.py')
+            and binding['current_runner_sha256'] == digest(ROOT/'run_checks.py'),
+            'V2 source binding must identify the current verifier and runner')
+    actual = json.loads((ROOT/'verification_results/actual_run_receipt.json').read_text())
+    require(actual['all_pass'] and actual['intentional_controls_rejected'] == 12,
+            'successful actual controls required')
+    require(len(actual['verification_reports']) == 2, 'normal and optimized receipts required')
+    require(all(r['paper_sha256'] == paper_sha
+                and r['historical_proof_sha256'] == HISTORICAL_SHA
+                and r['verifier_sha256'] == digest(ROOT/'verify_exact.py')
+                for r in actual['verification_reports']), 'receipts must bind current note and verifier')
+    require(actual['runner_sha256'] == digest(ROOT/'run_checks.py'), 'runner receipt must bind current runner')
+    require(all(r['actual_exit'] == r['expected_exit'] for r in actual['actual_subprocesses']),
+            'actual exits must match expected results')
+    correction = json.loads((ROOT/'CORRECTION_LEDGER.json').read_text())
+    require(correction['finding']['id'] == 'F01' and correction['source_repair_completed']
+            and correction['current_verifier_sha256'] == digest(ROOT/'verify_exact.py'),
+            'current correction ledger must bind the repaired F01 verifier')
+    require(correction['actual_run_receipt_sha256']
+            == digest(ROOT/'verification_results/actual_run_receipt.json'),
+            'correction ledger must bind the actual current verification')
+    meta = json.loads((ROOT/'intended_zenodo_metadata.json').read_text())['metadata']
+    plan = json.loads((ROOT/'zenodo-deposit.json').read_text())
+    require(plan['metadata'] == meta, 'metadata objects must be exactly identical')
+    require(meta['publication_type'] == 'preprint' and meta['upload_type'] == 'publication',
+            'narrow preprint deposit type')
+    require(meta['creators'] == [{'name':'Kriebel, Alec','affiliation':'Independent researcher',
+                                 'orcid':'0009-0001-9320-500X'}], 'author identity must be exact')
+    excluded = {'SOURCE_PREPARATION_MANIFEST.json','SHA256SUMS','SEAL.json'}
+    files = []
+    for path in sorted(ROOT.rglob('*')):
+        if not path.is_file() or '__pycache__' in path.parts:
+            continue
+        rel

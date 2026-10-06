@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""Inert PR108 input builder. No native preparation, assess, gates or services.
+
+Run with a reviewed Python using env -i and -E -S -B. The only subprocesses
+are local read-only Git commands. Output stays in this preparation folder.
+The main parent and sealed helper directory are mandatory explicit arguments.
+"""
+import sys
+sys.dont_write_bytecode = True
+from pathlib import Path
+import argparse, datetime, hashlib, importlib.util, json, os, re, shutil, stat, subprocess
+
+HERE = Path(__file__).absolute().parent
+A = HERE.parent
+C = A.parents[2]
+R = Path('/Users/alec/Documents/Math')
+P = 'unsolved_math_prioritization/'
+N = P + 'attempts/30003996/'
+ORIGINAL = A / 'original_source_authentication_20261006'
+BASE_NAMES = ['queue.py', 'manifest.json', 'policy.json', 'catalog.json', 'assessments.json', 'state.json',
+              'history.jsonl', 'assessment_history.jsonl', 'ranking.csv', 'summary.json', 'SHORTLIST.md', 'QUEUE.md']
+PACKAGE_SHA = '61f08bd60185b6ef2382fb279fe77d59958974c07c4a44976cc7289eafca8c38'
+DOI = '10.5281/zenodo.23181280'
+ORIGINAL_HEAD = '3526d46bf143b08e5055ffa7728c6278e9f958ea'
+JOURNAL = []
+READS = {}
+
+def require(ok, message):
+    if not ok:
+        raise ValueError(message)
+
+def now():
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+def canonical(obj):
+    return (json.dumps(obj, sort_keys=True, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode()
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+def regular(path):
+    require(path.is_absolute(), 'Absolute path required')
+    require(not any(p.is_symlink() for p in [*path.parents, path]), 'Nonruntime symlink input')
+    info = path.stat()
+    require(stat.S_ISREG(info.st_mode), 'Nonregular input')
+    return info
+
+def metadata_pin(path, private=False):
+    """Stream into a digest only. Private configuration bodies are never retained."""
+    info = regular(path)
+    h = hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            h.update(block)
+    after = regular(path)
+    require((info.st_size, info.st_mtime_ns) == (after.st_size, after.st_mtime_ns), 'Input changed while hashing')
+    pin = {'path': str(path), 'bytes': info.st_size, 'sha256': h.hexdigest()}
+    READS[str(path)] = {**pin, 'body_retained': False, 'private_metadata_only': private,
+                       'mode': oct(stat.S_IMODE(info.st_mode))}
+    return pin
+
+def local_pin(path):
+    pin = metadata_pin(path)
+    require(path.is_relative_to(A), 'Nongate input outside target audit')
+    return {**pin, 'path': str(path.relative_to(C))}
+
+def body(path, expected=None):
+    info = regular(path)
+    require(info.st_size <= 8 * 1024 * 1024, 'Audit body cap')
+    data = path.read_bytes()
+    pin = {'path': str(path.relative_to(C)), 'bytes': len(data), 'sha256': sha(data)}
+    if expected is not None:
+        require(pin == expected, 'Existing receipt pin changed: ' + str(path))
+    READS[str(path)] = {**pin, 'body_retained': False, 'parsed_privately': True}
+    return data
+
+def json_body(path, expected=None):
+    return json.loads(body(path, expected))
+
+def command(argv, env, cap=32 * 1024 * 1024):
+    """Bounded local Git read; keep full-stream hashes and 4096-byte prefixes only."""
+    require(Path(argv[0]).name == 'git', 'Only local read-only Git subprocesses')
+    require(argv[1] in ['show', 'rev-parse', 'symbolic-ref', 'ls-tree'], 'Disallowed Git operation')
+    began = now()
+    proc = subprocess.Popen(argv, cwd=C, env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        out, err = proc.communicate(timeout=30)
+    except subprocess.TimeoutExpired:
+        proc.kill(); proc.communicate(); raise ValueError('Read-only Git deadline') from None
+    require(len(out) <= cap and len(err) <= 65536, 'Read-only Git output cap')
+    JOURNAL.append({'argv': argv, 'cwd': str(C), 'PID': proc.pid, 'UTC_start': began, 'UTC_end': now(),
+                    'exit_code': proc.returncode, 'environment': env, 'ambient_inherited': False,
+                    'stdout_byt

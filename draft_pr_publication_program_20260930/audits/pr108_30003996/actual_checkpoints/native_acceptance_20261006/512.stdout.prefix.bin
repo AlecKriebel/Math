@@ -1,0 +1,13 @@
+--- sealed_input_preparation/build_execution_inputs.py
++++ input_preparation_v2/build_execution_inputs.py
+@@ -131,8 +131,8 @@
+ def build(args):
+     require(re.fullmatch('[0-9a-f]{40}', args.main_parent), 'Explicit complete main parent')
+     D = args.helper_dir.absolute()
+-    require(D.parent == A / 'native_publication_integration_plan_20261006' and D.name == 'corrected_v4', 'Corrected V4 helper only')
+-    require((D / 'SEAL_RECEIPT.json').is_file() and (D / 'CORE_FAMILY_MANIFEST.json').is_file(), 'Await sealed corrected V4 contract')
++    require(D.parent == A / 'native_publication_integration_plan_20261006' and D.name == 'corrected_v5', 'Corrected V5 helper only')
++    require((D / 'SEAL_RECEIPT.json').is_file() and (D / 'CORE_FAMILY_MANIFEST.json').is_file(), 'Await sealed corrected V5 contract')
+     # Import only the pure guard module; prepare and worker entry points are never imported or called.
+     spec = importlib.util.spec_from_file_location('pr108_reviewed_input_guards', D / 'v3_guards.py')
+     g = importlib.util.module_from_spec(spec); spec.loader.exec_module(g)

@@ -1,0 +1,46 @@
+"""Read-only authentication of frozen choices plus pure guard/consumer/capacity tests."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import copy,datetime,hashlib,importlib.util,json,os,shutil,stat,subprocess
+D=Path(__file__).resolve().parent;A=D.parent;C=A.parents[2]
+S=A/'native_publication_integration_plan_20261006/corrected_v4';B=A/'native_actual_input_preparation_20261006';Q=B/'draft_0dd29832e98382f5'
+sys.path.insert(0,str(S))
+import v3_guards as g
+import prepare_review_bundle as helper
+# Imports execute no entry point or resource-setup function.
+M=S/'EXECUTION_INPUTS_FROZEN_20261006.json';mbytes=M.read_bytes();m=g.loads(mbytes);cfg=m['effective']
+checks=[];pins=[];metadata=[]
+def need(ok,message):
+    if not ok:raise ValueError(message)
+def checked(name,fn):
+    fn();checks.append(name)
+def rejection(name,fn):
+    try:fn()
+    except (ValueError,KeyError,TypeError):checks.append(name);return
+    raise RuntimeError('Accepted challenge: '+name)
+def streamed(path,private=False):
+    before=g.regular(path);digest=hashlib.sha256();count=0
+    with path.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block);count+=len(block)
+    after=g.regular(path);need((before.st_size,before.st_mtime_ns)==(after.st_size,after.st_mtime_ns) and count==before.st_size,'metadata changed during hash')
+    return {'path':str(path),'bytes':count,'sha256':digest.hexdigest(),'mode':format(stat.S_IMODE(after.st_mode),'04o'),'UID':after.st_uid,'private_opaque_hash_only':private,'body_retained_or_disclosed':False}
+def pincheck(pin,absolute=False,private=False):
+    path=Path(pin['path']) if absolute else C/g.relative(pin['path']);actual=streamed(path,private)
+    need(actual['bytes']==pin['bytes'] and actual['sha256']==pin['sha256'],'exact pin mismatch: '+str(path));metadata.append(actual);return path
+need(len(mbytes)==69303 and g.sha(mbytes)=='0dd29832e98382f5d73ddbc93b139e23d9f11d8cc2f60d53fe4050ce01b709bf' and stat.S_IMODE(M.stat().st_mode)==0o444,'final readonly frozen pin')
+g.validate_execution_manifest(m,mbytes);g.validate_environment_policy(cfg['environment_policy']);helper.validate_process_policy(cfg['process_policy']);helper.validate_worker_policy(cfg['worker_policy'])
+checked('exact canonical final manifest/environment/resource policies',lambda:need(cfg['main_parent']=='f36cb1e34696d460b9cfb5b03425998de48c4669','main parent'))
+provisional=g.loads((B/'draft_0a8a86fd02ff1f8e/EXECUTION_INPUTS_DRAFT.json').read_bytes());p=copy.deepcopy(provisional);p['effective']['main_parent']=cfg['main_parent']
+checked('only main parent differs from original authenticated provisional',lambda:need(g.canonical(p)==mbytes and g.canonical(m)==(Q/'EXECUTION_INPUTS_DRAFT.json').read_bytes(),'provisional/final drift'))
+# All existing sealed bytes are preserved; a known future frozen data file is outside original94 inventory.
+original=json.loads((S/'OUTPUT_MANIFEST.json').read_bytes());source_review=A/'native_v4_fresh_source_adversary_20261006';review_manifest=json.loads((source_review/'OUTPUT_MANIFEST.json').read_bytes());builder_manifest=json.loads((B/'OUTPUT_MANIFEST.json').read_bytes())
+for root,manifest in [(S,original),(source_review,review_manifest),(B,builder_manifest)]:
+    for pin in manifest['files']:
+        path=root/pin['relative_path'];actual=streamed(path)
+        need(actual['bytes']==pin['bytes'] and actual['sha256']==pin['sha256'],'sealed predecessor mutation')
+    for name in ['OUTPUT_MANIFEST.json','SEAL_RECEIPT.json']:metadata.append(streamed(root/name))
+checked('original V4 payload92/source-review payload23/builder payload15 preserved',lambda:need(original['file_count']==92 and review_manifest['file_count']==23 and len(builder_manifest['files'])==15,'sealed counts'))
+for pin in m['program_files']:pincheck(pin)
+family={Path(p['path']).name:{k:p[k] for k in ['bytes','sha256']} for p in m['program_files']}
+checked('exact source-reviewed five-program family',lambda:need(g.sha(g.canonical(family))=='e57b078c27b6ea42080bc74d2bd91c3252a408f8a468de46ccb607c37a64c2e2','code family')

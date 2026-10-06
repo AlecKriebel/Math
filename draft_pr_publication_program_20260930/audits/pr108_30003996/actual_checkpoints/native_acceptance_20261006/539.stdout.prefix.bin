@@ -1,0 +1,41 @@
+--- sealed_corrected_v4/v3_guards.py
++++ corrected_v5/v3_guards.py
+@@ -145,6 +145,27 @@
+     gh_names={Path(x['path']).name for x in gh['config_pins']}
+     require(gh_names in [{'hosts.yml'},{'hosts.yml','config.yml'}] and
+         all(Path(x['path']).parent==Path(gh['environment']['GH_CONFIG_DIR']) for x in gh['config_pins']),'Exact GH config/auth file location')
++
++def validate_gh_configuration_lines(text):
++    """Narrow GH field guard: CR/LF physical lines, ASCII space/tab only; no YAML loader."""
++    pending_socket_indent=None;pending_empty_mapping_indent=None
++    for line in re.split(r'\r\n|\r|\n',text):
++        leading=re.match(r'[ \t]*',line).group(0);content=line[len(leading):]
++        if not content or content.startswith('#'):continue
++        if pending_socket_indent is not None:
++            require(len(leading)<=pending_socket_indent,'GH nonempty socket continuation forbidden')
++            pending_socket_indent=None
++        if pending_empty_mapping_indent is not None:
++            if len(leading)>pending_empty_mapping_indent:
++                require(not re.match(r'[\"\x27]?!',content),'GH executable alias continuation forbidden')
++            pending_empty_mapping_indent=None
++        socket=re.fullmatch(r'([ \t]*)http_unix_socket[ \t]*:[ \t]*(.*)',line)
++        if socket:
++            require(re.fullmatch(r"(?:[ \t]*(?:#[^\r\n]*)?|(?:\"\"|'')[ \t]*(?:#[^\r\n]*)?)",socket.group(2)) is not None,
++                'GH nonempty socket configuration forbidden')
++            pending_socket_indent=len(socket.group(1))
++        require(not re.search(r'^[ \t]*[^#\r\n]+:[ \t]*[\"\x27]?!',line),'GH executable alias configuration forbidden')
++        if re.fullmatch(r'[ \t]*[^#\r\n]+:[ \t]*(?:#[^\r\n]*)?',line):pending_empty_mapping_indent=len(leading)
+ 
+ def verify_private_runtime_configuration(policy):
+     """Read bounded configuration privately; emit metadata only, never credentials."""
+@@ -185,9 +206,7 @@
+                         require(key.lower() not in ['sshcommand','pager','editor','proxy','proxyauthmethod','promisor','partialclonefilter'], 'Unreviewed Git command/proxy/lazy-fetch option')
+                         if key.lower()=='fsmonitor':require(value.strip().lower() in ['false','no','off','0'],'Git fsmonitor must be disabled')
+             elif path.name=='config.yml':
+-                text=data.decode()
+-                require(not re.search(r'(?m)^\s*(?:http_unix_socket):\s*\S',text) and
+-                    not re.search(r'(?m)^\s*[^#\n]+:\s*[\"\x27]?!',text),'GH external alias/socket configuration forbidden')
++                validate_gh_configuration_lines(data.decode())
+             metadata.append({'role':role,**spec,'body_retained_or_disclosed':False})
+     directory=Path(policy['gh']['environment']['GH_CONFIG_DIR'])
+     require({str(x) for x in directory.iterdir() if x.is_file()}=={x['path'] for x in policy['gh']['config_pins']},'Undeclared GH config/auth file')

@@ -1,0 +1,52 @@
+"""One own-folder offline read/fixture checkpoint; no native/Git/services/config preparation."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import datetime,hashlib,json,os,shutil,collections
+import v3_guards as g
+from bounded_process import BoundedRunner
+from test_v4_guards import fixture_environment_policy
+D=Path(__file__).resolve().parent;A=D.parent.parent;C=A.parents[2];R=Path('/Users/alec/Documents/Math')
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def write(name,obj):(D/name).write_bytes(g.canonical(obj))
+def pin(path,group):
+    g.regular(path);data=path.read_bytes()
+    return {'path':str(path),'bytes':len(data),'sha256':g.sha(data),'group':group}
+start=now();g.validate_python_startup(os.environ)
+prior=g.loads((D/'PREDECESSOR_UNCHANGED_INPUT_PINS.json').read_bytes());inputs=[]
+counts=collections.Counter()
+for item in prior['files']:
+    actual=pin(Path(item['path']),item['group']);g.require(actual==item,'Predecessor bytes changed')
+    inputs.append(actual);counts[item['group']]+=1
+adversary=A/'native_helper_v3_fresh_code_adversary_20261006'
+g.require(g.sha((adversary/'OUTPUT_MANIFEST.json').read_bytes())=='8240f0629e367f964a290869dbf3b1a9e4c0c3e84311156ed93430e8d1ef9c28','Adversary manifest differs')
+for name in [*g.PROGRAMS,'test_v4_guards.py','write_review_documents.py','PLAN.md','WORKER_CONTROL_CONTRACT.json','CORE_SOURCE_DIFF.patch','SOURCE_DIFF_MANIFEST.json','PREDECESSOR_UNCHANGED_INPUT_PINS.json','collect_offline_custody.py']:
+    inputs.append(pin(D/name,'V3_source_and_policy'))
+for p in [R/'AGENTS.md',R/'unsolved_math_prioritization/AGENTS.md',R/'unsolved_math_prioritization/README.md',R/'unsolved_math_prioritization/queue.py',
+          A/'ROOT_ACTUAL_PUBLICATION_RECEIPT_20261006.json',A/'ROOT_ACTUAL_GOOGLE_SHEET_SERVICE_RECEIPT_20261006.json',
+          *[A/'original_source_authentication_20261006'/x for x in ['ORIGINAL_BLOB_MANIFEST.json','QUEUE_STATUS_PROJECTION.json','SOURCEPAIR_AUTHENTICATION.json','SELECTED_IMPORTED_PRIOR_REPORT.json']]]:
+    inputs.append(pin(p,'actual_read_context'))
+# Templates are parsed and rejected through pure guard functions; no prepare entry point is called.
+rejections={}
+for name,function in [('CONFIG_TEMPLATE_DO_NOT_RUN.json',g.validate_thin_config),
+        ('EXECUTION_INPUTS_TEMPLATE_DO_NOT_RUN.json',lambda o:g.validate_execution_manifest(o,g.canonical(o)))]:
+    p=D/name;inputs.append(pin(p,'inert_template'))
+    try:function(g.loads(p.read_bytes()))
+    except ValueError as error:rejections[name]={'rejected':True,'error':str(error)}
+    else:raise ValueError('Template unexpectedly accepted')
+policy={'max_process_count':4,'retain_bytes_per_stream':4096,'max_stdout_bytes':8192,'max_stderr_bytes':16384,'deadline_seconds':30,'terminate_grace_seconds':1}
+output=D/'execution_receipts';output.mkdir(exist_ok=False)
+runner=BoundedRunner(output,D,policy,fixture_environment_policy());results=[]
+for mode,extra in [('NORMAL',[]),('OPTIMIZED',['-O'])]:
+    stdout,stderr,record=runner.run([sys.executable,*g.PYTHON_PREFIX,*extra,str(D/'test_v4_guards.py')],fixture=True)
+    g.require(record['exit_code']==0 and b'Ran 32 tests' in stderr and stderr.rstrip().endswith(b'OK'),'Offline fixture suite failed')
+    for stream,data in [('STDOUT',stdout),('STDERR',stderr)]:
+        (output/(mode+'_'+stream+'_FULL.bin')).write_bytes(data)
+        g.require(g.sha(data)==record[stream.lower()]['sha256_observed'],'Returned bounded full output differs from actual observed bytes')
+    result={'mode':mode,'fixture_only':True,'actual_PID':record['PID'],'UTC_start':record['UTC_start'],'UTC_end':record['UTC_end'],
+        'exit_code':record['exit_code'],'tests':32,'all_passed':True,'argv':record['argv'],
+        'native_prepare_assess_export_install_executions':0,'service_calls':0,'Git_commands':0,
+        'stdout':pin(output/(mode+'_STDOUT_FULL.bin'),'actual_fixture_output'),
+        'stderr':pin(output/(mode+'_STDERR_FULL.bin'),'actual_fixture_output')}
+    write(mode+'_FIXTURE_RESULTS.json',result);results.append(result)
+# Verify all predecessor pi

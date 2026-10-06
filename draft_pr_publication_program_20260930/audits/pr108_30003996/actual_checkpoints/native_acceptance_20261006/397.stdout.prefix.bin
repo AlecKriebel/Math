@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Independent read-only concrete-data audit; imports no integration helper."""
+from pathlib import Path
+import collections, copy, csv, datetime, hashlib, io, json, os, stat, subprocess, sys, time, zipfile
+
+C = Path(__file__).resolve().parents[4]
+A = Path(__file__).resolve().parent.parent
+D = A / 'native_publication_integration_plan_20261006/corrected_v5'
+Q = D / 'candidate_dfe3e71993e3bd99'
+O = Path(__file__).resolve().parent
+T = '30003996'
+N = Path('unsolved_math_prioritization')
+TARGET = N / 'attempts' / T
+MAIN = 'f36cb1e34696d460b9cfb5b03425998de48c4669'
+ESHA = 'dfe3e71993e3bd99afb9c11e54f4fe4c9117c770849ffac54c7bc2b17e6bd76a'
+mode = 'optimized' if sys.flags.optimize else 'normal'
+checks = collections.Counter()
+readpins = {}
+negative_controls = []
+git_custody = []
+started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+def ensure(v, label, group='binding'):
+    checks[group] += 1
+    if not v:
+        raise RuntimeError(label)
+
+def sha(b):
+    return hashlib.sha256(b).hexdigest()
+
+def canon(x):
+    return json.dumps(x, sort_keys=True, ensure_ascii=False, allow_nan=False, separators=(',', ':')).encode()
+
+def body(p):
+    p = Path(p)
+    ensure(p.is_file() and not p.is_symlink(), 'nonregular input ' + str(p), 'path')
+    b = p.read_bytes()
+    pin = {'path': str(p), 'bytes': len(b), 'sha256': sha(b)}
+    old = readpins.get(str(p))
+    ensure(old is None or old == pin, 'input changed while reviewing ' + str(p), 'custody')
+    readpins[str(p)] = pin
+    return b
+
+def stream_pin(p):
+    p = Path(p)
+    ensure(p.is_file() and not p.is_symlink(), 'nonregular stream input', 'path')
+    h = hashlib.sha256(); size = 0
+    with p.open('rb') as f:
+        while True:
+            b = f.read(1024 * 1024)
+            if not b: break
+            size += len(b); h.update(b)
+    pin = {'path': str(p), 'bytes': size, 'sha256': h.hexdigest()}
+    old = readpins.get(str(p))
+    ensure(old is None or old == pin, 'stream changed ' + str(p), 'custody')
+    readpins[str(p)] = pin
+    return pin
+
+def load(p):
+    def reject_duplicate(pairs):
+        d = {}
+        for k,v in pairs:
+            if k in d: raise RuntimeError('duplicate JSON key')
+            d[k] = v
+        return d
+    return json.loads(body(p), object_pairs_hook=reject_duplicate,
+                      parse_constant=lambda x: (_ for _ in ()).throw(RuntimeError('nonfinite JSON')))
+
+def match(p, pin):
+    b = body(p)
+    ensure(len(b) == pin['bytes'] and sha(b) == pin['sha256'], 'pin mismatch ' + str(p), 'pin')
+    return b
+
+def match_stream(p, pin):
+    q = stream_pin(p)
+    ensure(q['bytes'] == pin['bytes'] and q['sha256'] == pin['sha256'], 'stream pin mismatch', 'pin')
+
+def same_except_target(b, a):
+    return set(a) == set(b) | {T} and all(canon(b[k]) == canon(a[k]) for k in b if k != T)
+
+def catalog_invariant(b, a):
+    if len(b) != len(a): return False
+    seen = set()
+    for x,y in zip(b,a):
+        k = x.get('id')
+        if k in seen or k != y.get('id'): return False
+        seen.add(k)
+        if k != T and canon(x) != canon(y): return False
+    x = next(r for r in b if r['id'] == T); y = next(r for r in a if r['id'] == T)
+    e = copy.deepcopy(x); e.update(local_status='claimed_solved', turns_used=2, eligible=False, rank=None)
+    return canon(e) == canon(y)
+
+def physical_csv(b):
+    """Scan physical CR/LF record boundaries independently of helper line logic."""
+    records = []; start = 0; i = 0; quoted = False
+    while i < len(b):
+        c = b[i]
+        if c == 34:
+            if quoted and i+1 < len(b) and b[i+1] == 34:
+                i += 2; continue
+            quoted = not quoted
+        elif c in (10,13) and not quoted:
+            stop = i+1
+            if c == 13 and stop < len(b) and b[stop] == 10: stop += 1
+            records.append(b[start:stop]); start = stop; i = stop; continue
+        i += 1
+    if start < len(b): records.append(b[start:])
+    if quoted: raise RuntimeError('unterminated quote in actual CSV')
+    parsed = []
+    for rec in records:
+        r = list(csv.reader(io.StringIO(rec.decode('utf-8'), new
