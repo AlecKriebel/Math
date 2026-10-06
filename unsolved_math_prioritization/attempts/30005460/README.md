@@ -1,16 +1,18 @@
 # 30005460: convexity of fixed odd-power SOS cones
 
-**Complete negative-answer candidate after two substantive author turns; independent review pending.**
+**Audited narrow result; published unrefereed preprint. Original substantive author budget: 2/5.**
 
-`PROOF.md` gives a tensor-moment amplification argument and an explicit rational certificate for nonconvexity of the sextic cube-root SOS cone in **3*10^62 variables**. Each of 10^62 disjoint copies of the credited modified Motzkin seed has an SOS cube, while their average has a cube separated from SOS by a positive moment functional. This is a finite convex combination in one fixed ambient coefficient space.
+The theorem is nonconvexity of C(3*10^62,6,3), the cone of real nonnegative homogeneous sextics whose cubes are sums of squares. Each of 10^62 disjoint copies of the classical coefficient-1 modified Motzkin seed has an SOS cube, while their finite average does not. For every fixed odd q>=3, some finite dimension n(q) gives nonconvexity. The dimension may depend on q.
 
-The candidate answers the general source question negatively; it does not settle convexity in three variables or give a classification by dimension, degree and exponent. Closedness and the published convexity of the union over odd exponents remain valid. The seed identity and standard SOS/moment tools are credited; no historical novelty is asserted.
+The accepted result answers the source's general-dimensional convexity assertion negatively. It gives no ternary result, smallest dimension, prescribed small-dimension result, common dimension for every odd q, full classification, or firstness guarantee. Closedness and the earlier convexity of the union over odd powers remain valid. The seed and cube, separation, tensor positivity and collision arguments are credited to earlier work.
 
-- `SOURCE_GATE.md`: exact original and published definitions, current literature and prior-work gate
-- `PROOF.md`: complete turn-2 candidate, including the all-odd-exponent large-dimension consequence
-- `TENSOR_MOMENT_CERTIFICATE.json`, `check_turn2.py`, `turn2_checks.json`: compressed exact moment certificate, 90,494 assertions; no numerical SDP
-- `TURN_1.md` and its unchanged manifest: earlier circuit-slice and formal-template reductions
-- `REVIEW_REQUEST.md`: full adversarial attacks and limits
-- `FROZEN_MANIFEST.json`: all portable author files at this review freeze
+Published manuscript and archive: [Zenodo record](https://zenodo.org/records/23191301), [DOI 10.5281/zenodo.23191301](https://doi.org/10.5281/zenodo.23191301). The [publication receipt](PUBLICATION_RECEIPT.json) records the actual published metadata, full downloaded PDF and ZIP hashes, tracker row readback, and acceptance of two fresh whole-package reviews of the corrected selector02 version.
 
-No final PR or queue promotion before independent review and the separate publication gate. Source PDFs and exploratory scripts are excluded from this public packet.
+- `preprint/paper.tex`, `preprint/odd_power_sos_nonconvexity.pdf`: standalone manuscript source and PDF.
+- `preprint/odd_power_sos_verification.zip`, `preprint/verify_package.py`: portable standard-library exact verification; follow `preprint/README.md`.
+- `PROOF.md`, `TENSOR_MOMENT_CERTIFICATE.json`, `check_turn2.py`: original proof with current scope/credit front matter and unchanged mathematical certificate.
+- `SOURCE_GATE.md`, `SOURCES.md`, `SOURCE_VERSIONS.json`, `PRIORITY_NOTE.md`: corrected source extent and bounded credit/priority record.
+- `audit/WHOLE_PREPRINT_REVIEW_ACCEPTANCE.json`: actual ROOT acceptance of the two corrected whole-package reviews; their complete reports accompany it.
+- `HISTORICAL_ERRATUM.md`, `ORIGINAL_SUBMISSION.json`: original-head hashes and correction of the earlier incomplete contribution-range characterization.
+
+The original turns, research log, freeze manifests, source manifest, saved checks and `independent_review/` remain historical records. Their pending-status and pp.778–780 wording describes the earlier version; use the current notes for disposition and source extent. AI tools were used extensively. This is an unrefereed preprint without human peer review or a formal proof-assistant certificate.

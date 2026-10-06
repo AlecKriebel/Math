@@ -305,7 +305,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 294 | 20001798 / AIM-GEOMETRY-0136 | Airy topological recursion, exact WKB, and the wild Hodge gap | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 295 | 20003006 / AIM-TOPOLOGY-0094 | Clique and cubical-nerve realizations of digital homotopy groups | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 296 | 2884 / KP-4.8 | Kirby Problem 4.8 | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 297 | 30005460 / OWR-12697710-006 | Convexity of Odd-Power Sum-of-Squares Cones | 0.1756 | 5.0 | 3 | 2023 | claimed_solved | 2/5 | [PR 283](https://github.com/AlecKriebel/Math/pull/283) | Reviewed nonconvexity: sextics with SOS cubes, n=3*10^62; finite-average tensor certificate. No ternary claim. |  |
+| 297 | 30005460 / OWR-12697710-006 | Convexity of Odd-Power Sum-of-Squares Cones | 0.1756 | 5.0 | 3 | 2023 | claimed_solved | 2/5 | [PR 283](https://github.com/AlecKriebel/Math/pull/283) | Audited C(3*10^62,6,3) nonconvex; for each fixed odd q>=3 some finite n(q). Published unrefereed preprint with exact tensor certificate; no ternary/optimal/uniform claim. | [10.5281/zenodo.23191301](https://doi.org/10.5281/zenodo.23191301) |
 | 298 | 30005468 / OWR-12697710-015 | Rational Certificates for Truncated Moment Nonrepresentability | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 299 | 30005584 / OWR-14297732-013 | Degrees of Asymptotically Conical Expanders Under Connected Sum | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |

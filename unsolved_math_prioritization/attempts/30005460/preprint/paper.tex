@@ -1,0 +1,374 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\SOS}{\operatorname{SOS}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\C}{\mathcal C}
+\title{Nonconvexity of fixed odd-power sum-of-squares cones}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{6 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a fixed odd integer $q$, consider the nonnegative real homogeneous
+forms whose $q$th powers are sums of squares. We give a negative answer to
+the general-dimensional convexity question recorded by Reznick in 2023.
+For sextics and $q=3$, the cone is nonconvex in the explicit finite dimension
+$3\cdot10^{62}$. For every odd $q\ge3$, it is nonconvex in some finite
+dimension depending on $q$. The proof combines a classical modified
+Motzkin form with an SOS cube, separation from the SOS cone, positivity of
+product truncated functionals, and elementary distinct-index counting.
+An explicit rational moment functional gives the displayed dimension;
+its $220\times220$ local positivity certificate can be checked without
+floating-point arithmetic. No ternary or smallest-dimension conclusion is made.
+\end{abstract}
+
+\section{The question and the result}
+Let $\R[x_1,\ldots,x_n]_m$ be the real forms of degree $m$, where $m$ is
+positive and even. For a positive odd integer $q$, set
+\[
+ \C(n,m,q)=\{f\in\R[x_1,\ldots,x_n]_m:
+                  f\ge0\text{ on }\R^n,\quad f^q\in\SOS\}.
+\]
+Here SOS means a finite sum of squares of real polynomials. Nonnegativity
+is automatic from the second condition when $q$ is odd. These sets are
+closed and stable under multiplication by nonnegative scalars; whether
+they are convex is a separate question. Reznick asks this for general $n,m,q$
+in his 2023 Oberwolfach contribution~\cite[p.779]{OWR}. The same question
+appears in~\cite[\S6]{BKR}.
+
+\begin{theorem}\label{thm:main}
+Put $N=10^{62}$ and $n=3N$. On disjoint variable triples $(x_i,y_i,z_i)$,
+define
+\[
+ p_i=x_i^4y_i^2+x_i^2y_i^4+z_i^6-x_i^2y_i^2z_i^2\qquad(1\le i\le N).
+\]
+Each $p_i$ belongs to $\C(n,6,3)$, whereas
+$N^{-1}\sum_{i=1}^N p_i$ does not. Thus $\C(3\cdot10^{62},6,3)$ is not convex.
+Moreover, for every fixed odd $q\ge3$ there is a finite $n(q)$ for which
+$\C(n(q),6,q)$ is not convex.
+\end{theorem}
+
+The explicit dimension is a sufficient bound, with no optimality claim.
+The theorem refutes the general convexity assertion; it does not settle
+the ternary fixed-power question, classify parameter triples, or give a
+common dimension for all odd exponents. Each counterexample persists on
+adding unused variables, because restriction of an SOS to those variables
+equal to zero is again SOS. The case $q=1$ and classical cases in which
+every nonnegative form is SOS remain consistent with the theorem.
+
+The ingredients are established. The exact modified Motzkin seed is due
+to Berg--Christensen--Jensen~\cite[Lemma~1]{BCJ}; its SOS cube is recorded
+in~\cite{OWR,BKR}. Closure and positive-functional separation are classical
+as well~\cite[Theorems~3--4]{BCJ}. Product pseudoexpectation positivity is
+explicit in Barak--Kelner--Steurer~\cite[Lemma A.5]{BKS}. Distinct-index
+versus collision asymptotics appear, for example, in~\cite[Lemma~2.1]{AB}
+and~\cite[Proposition~6.4]{BR}. We apply these tools to obstruction at one
+\emph{prescribed} odd power and supply an explicit finite certificate.
+The convexity of the union over odd powers in~\cite[Theorem~5.3]{BKR}
+and~\cite[Theorem~2.2]{Stubborn} allows the exponent to increase and does
+not imply fixed-power convexity.
+
+\section{Disjoint-copy obstruction at a fixed odd power}
+We write $\R[u]_{\le r}$ for polynomials of total degree at most $r$ in
+a fixed finite variable block $u$.
+
+\begin{lemma}\label{lem:product}
+Let $p\in\R[u]_m$, let $q$ be positive and odd, and put $d=qm/2$.
+Suppose $L:\R[u]_{\le2d}\to\R$ satisfies
+\[
+ L(1)=1,\qquad L(h^2)\ge0\ (\deg h\le d),\qquad a_1:=L(p)<0.
+\]
+For all sufficiently large finite integers $s$, the polynomial
+$(p(u_1)+\cdots+p(u_s))^q$ on disjoint copies of $u$ is not SOS.
+\end{lemma}
+\begin{proof}
+The local moment matrix
+$M=(L(u^{\alpha+\beta}))_{|\alpha|,|\beta|\le d}$ is positive semidefinite.
+On polynomials of degree at most $2d$ in \emph{each} of the $s$ blocks,
+define a product functional on monomials by
+\[
+ L_s\!\left(\prod_{i=1}^s u_i^{\alpha_i}\right)
+                  =\prod_{i=1}^s L(u^{\alpha_i}).
+\]
+The matrix controlling $L_s(H^2)$ for all $H$ of \emph{total} degree at
+most $d$ is a principal submatrix of $M^{\otimes s}$, hence is positive
+semidefinite. Consequently $L_s$ is nonnegative on every sum of such
+squares. This is the standard product-positivity construction~\cite{BKS}.
+All spaces and products here are finite; no representing measure is assumed.
+
+Put $a_j=L(p^j)$ for $0\le j\le q$, so $a_0=1$, and let
+$S_s=\sum_{i=1}^s p(u_i)$. Expansion by partitions of the $q$ labelled
+factors gives
+\begin{equation}\label{eq:partitions}
+ L_s(S_s^q)=\sum_{\pi\in\operatorname{Part}([q])}
+              (s)_{|\pi|}\prod_{B\in\pi}a_{|B|},
+ \qquad (s)_r=s(s-1)\cdots(s-r+1).
+\end{equation}
+For each partition, assigning its distinct blocks to distinct copies
+has $(s)_{|\pi|}$ choices. The unique partition with $q$ blocks is the
+singleton partition. Thus the expression is a polynomial in $s$ of degree
+$q$, with leading coefficient $a_1^q<0$; all collisions contribute lower
+degree. It is strictly negative for all sufficiently large integers $s$.
+
+An SOS polynomial of degree at most $2d$ can involve only square summands
+of degree at most $d$: otherwise its highest-degree homogeneous part
+would be a nonzero sum of squares, and could not cancel. Therefore the
+negative value excludes every SOS representation of $S_s^q$.
+\end{proof}
+
+\begin{lemma}\label{lem:separation}
+If a form $p$ is not SOS and $q$ is positive and odd, then with $d=qm/2$
+there exists an $L$ satisfying the hypotheses of Lemma~\ref{lem:product}.
+\end{lemma}
+\begin{proof}
+The cone of SOS polynomials of degree at most $2d$ is closed. Indeed, let
+$v$ be the vector of all monomials of degree at most $d$ and write a
+coefficient-convergent SOS sequence as $v^TQ_jv$, $Q_j\succeq0$.
+For a standard Gaussian integral $\Gamma$,
+$G=\Gamma(vv^T)$ is positive definite. Coefficient convergence bounds
+$\Gamma(v^TQ_jv)=\tr(Q_jG)$, which bounds $\tr Q_j$, and hence the matrices
+$Q_j$. A convergent subsequence yields a positive semidefinite Gram
+matrix for the limit.
+
+The same highest-degree argument used above shows that a non-SOS form
+$p$ is outside this larger finite-degree SOS cone. Finite-dimensional
+separation from a closed convex cone gives a functional $L_0$ nonnegative
+on that cone with $L_0(p)<0$. For sufficiently small $\varepsilon>0$,
+$L_0+\varepsilon\Gamma$ still has negative value on $p$ and has positive
+definite moment matrix. Its value on $1$ is positive. Dividing by that
+value gives the required $L$. This is classical SOS duality~\cite{BCJ}.
+\end{proof}
+
+The power map $f\mapsto f^q$ is continuous in the coefficient topology.
+The closedness just proved therefore also gives closedness of each fixed-power
+set $\C(n,m,q)$ as the inverse image of the fixed-degree SOS cone.
+
+In particular, if a non-SOS nonnegative form $p$ has an SOS $q$th power,
+its disjoint copies belong to the same ambient $\C$, whereas a sufficiently
+large finite average does not. Convexity implies closure under every
+finite convex combination by induction, so that average refutes convexity.
+If a violating pair is desired, take the least failing prefix of the
+finite sum in the same ambient variable space; its preceding prefix and
+next summand are inside the cone. This asserts existence of a pair,
+without assigning an SOS power to any untested prescribed prefix.
+
+\section{The classical seed}
+Set
+\begin{equation}\label{eq:seed}
+ p=x^4y^2+x^2y^4+z^6-x^2y^2z^2.
+\end{equation}
+AM--GM gives $x^4y^2+x^2y^4+z^6\ge3x^2y^2z^2$, hence $p\ge0$.
+The dehomogenization $p(x,y,1)$ is exactly the example in~\cite[Lemma~1]{BCJ}.
+Below we also independently certify $p\notin\SOS$ by a positive-on-squares
+functional with $L(p)=-1$.
+The credited SOS identity for $p^3$~\cite{OWR,BKR} is displayed in
+Appendix~\ref{app:cube} and checked by exact polynomial expansion in the
+supplement. For every odd $q\ge3$,
+\[
+                 p^q=p^3\bigl(p^{(q-3)/2}\bigr)^2\in\SOS.
+\]
+Lemmas~\ref{lem:product} and~\ref{lem:separation} therefore prove the second
+assertion of Theorem~\ref{thm:main}. The functional may depend on $q$;
+no degree 18 functional is reused outside its domain.
+
+\section{An explicit rational functional for the cube}
+For $\alpha\in\mathbb N^3$, let $g_\alpha$ be the standard Gaussian moment:
+it is zero if any coordinate is odd, and otherwise
+$g_\alpha=\prod_{j=1}^3(\alpha_j-1)!!$, with $(-1)!!=1$.
+We define $\mu_\alpha=L(x^{\alpha_1}y^{\alpha_2}z^{\alpha_3})$
+for $|\alpha|\le18$. Set all moments with an odd coordinate to zero.
+For even coordinates, put $\mu_0=1$, and
+$\mu_\alpha=g_\alpha/1024$ when $|\alpha|=2$ or $4$.
+For degree 6, write $\alpha=2(a,b,c)$ and use
+\[
+\begin{array}{c|rrrrr}
+(a,b,c)&(3,0,0)&(0,3,0)&(2,1,0)&(1,2,0)&(0,0,3)\\\hline
+\mu_{2(a,b,c)}&2^{24}&2^{24}&1&1&1\\[2pt]
+(a,b,c)&(1,1,1)&(1,0,2)&(0,1,2)&(2,0,1)&(0,2,1)\\\hline
+\mu_{2(a,b,c)}&4&32&32&4096&4096
+\end{array}
+\]
+For $|\alpha|=2r$, $4\le r\le9$, put $\mu_\alpha=T_rg_\alpha$, where
+\begin{equation}\label{eq:scales}
+\begin{array}{c|rrrrrr}
+r&4&5&6&7&8&9\\\hline
+T_r&10^{16}&10^{34}&10^{53}&10^{73}&10^{94}&10^{116}.
+\end{array}
+\end{equation}
+This table specifies the entire order-nine moment matrix, with
+$\binom{12}{3}=220$ monomials. Coordinate parity splits it into eight
+blocks of size at most 35.
+
+\begin{proposition}\label{prop:certificate}
+The functional specified above is positive on every nonzero square of
+degree at most 18: $L(h^2)>0$ for $0\ne h$, $\deg h\le9$.
+\end{proposition}
+\begin{proof}
+Here is a compressed exact rational certificate and its verification rule.
+Order multi-indices lexicographically by increasing first coordinate,
+then second, then third, within the set $|\alpha|\le r$; retain this order
+in each parity block. At order 3 the leading principal minors are as follows.
+The entries in each row list all such minors for that block.
+\begin{center}\small
+\begin{tabular}{c l}
+\toprule
+Parity&Leading principal minors at order 3\\\midrule
+000&$1,\ 3071/1048576,\ 2047/268435456,\ 5117/274877906944$\\
+001&$1/1024,\ 1015/1048576,\ 3109055/1048576,\ 1056109395/131072$\\
+010&$1/1024,\ 32767/1048576,\ 16642474743/32768,\ 257328824345/1048576$\\
+100&$1/1024,\ 32767/1048576,\ 16359/1048576,\ 257328824345/1048576$\\
+011,101,110&$1/1024$ each\\
+111&$4$\\\bottomrule
+\end{tabular}
+\end{center}
+They are positive, so Sylvester's criterion establishes order 3 positivity.
+For $r=4,\ldots,9$, split each block with new degree-$r$ monomials into
+old and new rows. It has the form
+\[
+ \begin{pmatrix}A&B\\B^T&T_rG\end{pmatrix},\qquad
+ G=(g_{\alpha+\beta})_{\substack{|\alpha|=|\beta|=r\\
+                            \alpha,\beta\text{ of the given parity}}}.
+\]
+The Gaussian matrix $G$ is positive definite. The lower-degree block $A$
+is positive definite by induction; $B$ uses already specified moments.
+Let $C=B^TA^{-1}B$. Exact rational calculations give
+\begin{equation}\label{eq:traces}
+                   0\le\tr(G^{-1}C)<T_r
+\end{equation}
+for each of the four extending blocks at each order. The supplement's rational witness file
+\path{TENSOR_MOMENT_CERTIFICATE.json} lists all 24 exact fractions,
+the old/new dimensions and strict bounds. Its standalone checker rebuilds
+$A,B,G$ from the displayed moments, solves the rational systems and
+checks these fractions and inequalities; supplied positivity flags are
+not used. It also independently computes all 220 positive pivots of the
+full local blocks and verifies the exact LDL reconstruction.
+
+Since $C\succeq0$, the largest eigenvalue of
+$G^{-1/2}CG^{-1/2}$ is at most its trace. Equation~\eqref{eq:traces}
+therefore implies $T_rG-C\succ0$. The Schur complement makes every
+enlarged block positive definite. Blocks with no new rows are unchanged.
+Induction proves the proposition. The finite computations in this step
+are exact rational certificate checks, with no numerical eigensolver or SDP.
+\end{proof}
+
+\section{The finite-dimensional counterexample}
+Exact expansion using the moment table yields
+\begin{equation}\label{eq:values}
+ a_1=L(p)=-1,\quad a_2=L(p^2)=11292\cdot10^{53},\quad
+ a_3=L(p^3)=35039520\cdot10^{116}.
+\end{equation}
+The first value is $1+1+1-4$. For the other two, homogeneity means all
+moments have degree 12 or 18, respectively, so these are Gaussian polynomial
+moments times $T_6$ or $T_9$. The checker expands both polynomials exactly.
+Proposition~\ref{prop:certificate} and $L(p)=-1$ also prove that $p$ is not SOS.
+
+For $S_N=\sum_{i=1}^N p_i$, the cubic case of~\eqref{eq:partitions} is
+\[
+ L_N(S_N^3)=Na_3+3N(N-1)a_2a_1+N(N-1)(N-2)a_1^3.
+\]
+Since $a_1=-1$ and $a_2\ge1$, we obtain
+\[
+ L_N(S_N^3)\le N\{a_3-(N^2-1)\}<0,
+\]
+where the strict inequality follows from
+\[
+ 35039520\cdot10^{116}<10^{124}-1=N^2-1\qquad(N=10^{62}).
+\]
+Lemma~\ref{lem:product}'s product positivity excludes every SOS for
+$S_N^3$, and positive scaling excludes one for $(S_N/N)^3$.
+Each $p_i^3$ has the credited SOS identity. Thus the average is a finite
+convex combination of elements of $\C(3N,6,3)$ outside that set, proving
+the first assertion of Theorem~\ref{thm:main}.
+
+The functional $L$ is not a measure on real points: its negative value on
+the nonnegative $p$ prevents that interpretation. Only positivity on the
+required squares is asserted. The argument neither constructs an enormous
+matrix numerically nor assumes an infinite product probability measure.
+
+\section{Verification, priority and disclosure}
+The accompanying verification archive contains this standalone source,
+the complete rational certificate, a Python-standard-library checker,
+expected deterministic output, hash/provenance records, the claim scope
+and a dated priority note. The checker uses integers and rational fractions
+to verify the local moment matrices, all initial minors and Schur traces,
+the credited cube identity, the three seed moments and the exact finite
+cubic sign. These computations support the finite certificate; the
+arbitrary finite product argument and the every-odd-$q$ assertion are
+proved analytically above. No formal proof-assistant certificate is claimed.
+
+Two independent extensive bounded priority audits identified no exact
+earlier fixed-power result in the sources examined. Their source versions,
+reading extents and remaining gaps are disclosed in the supporting note.
+The full final Papp--Alizadeh 2013 article and Schm\"udgen 1979 body were
+unavailable; a captured Choi--Lam--Reznick 1995 scan was unread and unused.
+Classical tensor/separation ingredients have independently accessible
+primary proofs. Bibliographies, citation indexes and talk coverage have
+limits. This is not a worldwide-firstness guarantee or a certificate of
+present openness. The claim concerns the general question recorded in 2023.
+
+AI tools were used extensively in derivation, literature comparison,
+reproduction, writing and adversarial verification. This is an unrefereed
+preprint and has not received human peer review. Mathematical and source
+claims remain open to independent correction. The author metadata does
+not imply affiliation with a research institution.
+
+\appendix
+\section{The credited cube identity}\label{app:cube}
+For the seed~\eqref{eq:seed}, put
+\begin{align*}
+h_1&=x^5y^4-x^3y^4z^2,& h_2&=x^4y^5-x^4y^3z^2,\\
+h_3&=x^4y^2z^3-x^2y^2z^5,&h_4&=x^2y^4z^3-x^2y^2z^5,\\
+h_5&=xy^2z^6-x^3y^4z^2,&h_6&=x^2yz^6-x^4y^3z^2,\\
+h_7&=x^2y^4z^3-x^4y^2z^3,&h_8&=x^4y^5-x^2yz^6,\\
+h_9&=x^5y^4-xy^2z^6.&&
+\end{align*}
+Then the identity in~\cite{BKR}, specialized to this seed, is
+\begin{align*}
+p^3={}&\frac32\sum_{j=1}^9h_j^2+(z^9-2x^2y^2z^5)^2
+ +(xyz^7-2x^3y^3z^3)^2\\
+&+(x^3y^6-2x^3y^4z^2)^2+(x^3y^5z-2x^3y^3z^3)^2\\
+&+(x^6y^3-2x^4y^3z^2)^2+(x^5y^3z-2x^3y^3z^3)^2
+ +2(x^3y^3z^3)^2.
+\end{align*}
+Every square factor has degree 9 and every weight is positive.
+This is the modified coefficient-$1$ seed, not the coefficient-$3$
+original Motzkin form.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{OWR} B. Reznick, The Odd Powers of the Motzkin Polynomial, etc.,
+in \emph{Real Algebraic Geometry with a View toward Koopman
+Operator Methods}, Oberwolfach Reports 14/2023, pp.~778--781.
+\href{https://doi.org/10.4171/OWR/2023/14}{doi:10.4171/OWR/2023/14}.
+\bibitem{BKR} G. Blekherman, K. Kozhasov and B. Reznick,
+On odd powers of nonnegative polynomials that are not sums of squares,
+\emph{Forum of Mathematics, Sigma} 14 (2026), e65.
+\href{https://doi.org/10.1017/fms.2026.10221}{doi:10.1017/fms.2026.10221}.
+\bibitem{BCJ} C. Berg, J. P. R. Christensen and C. U. Jensen,
+A remark on the multidimensional moment problem,
+\emph{Mathematische Annalen} 243 (1979), 163--169.
+\href{https://doi.org/10.1007/BF01420423}{doi:10.1007/BF01420423}.
+\bibitem{BKS} B. Barak, J. Kelner and D. Steurer,
+Rounding Sum-of-Squares Relaxations, ECCC Report TR13-184 (2013),
+Appendix A, Lemma A.5.
+\url{https://eccc.weizmann.ac.il/report/2013/184/}.
+\bibitem{AB} J. Acevedo and G. Blekherman,
+Power Mean Inequalities and Sums of Squares, arXiv:2303.11823v1 (2023).
+\url{https://arxiv.org/abs/2303.11823}.
+\bibitem{BR} G. Blekherman and C. Riener,
+Symmetric Nonnegative Forms and Sums of Squares,
+arXiv:1205.3102v4 (2020), Proposition~6.4.
+\url{https://arxiv.org/abs/1205.3102}.
+\bibitem{Stubborn} L. Baldi, G. Blekherman, K. Kozhasov, D. Plaumann,
+B. Reznick and R. Sinn, Stubborn Polynomials,
+arXiv:2602.01191v1 (2026).
+\url{https://arxiv.org/abs/2602.01191}.
+\end{thebibliography}
+\end{document}

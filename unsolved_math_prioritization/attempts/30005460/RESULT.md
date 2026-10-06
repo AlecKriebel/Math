@@ -1,11 +1,11 @@
-# Candidate disposition
+# Accepted narrow disposition
 
-Problem 30005460 / OWR-12697710-006 asks whether the closed cones of homogeneous nonnegative forms whose fixed odd power is SOS are convex.
+Problem30005460 / OWR-12697710-006 concerns convexity of real nonnegative homogeneous forms whose one fixed odd power is SOS.
 
-**Candidate: no in general.** For N=10^62, degree six and fixed exponent three, take N disjoint variable copies of p=x^4y²+x²y^4+z^6-x²y²z². The credited exact identity proves each cube is SOS. An explicitly specified rational order-nine positive-definite moment matrix has L(p)=-1. Its tensor product is nonnegative on all squares relevant to the cube of the N-block sum, but evaluates that cube negatively. Their average is therefore outside the same ambient cone C_(3N,6,3).
+The theorem is **C_(3*10^62,6,3) is not convex**. Each of N=10^62 disjoint copies of the classical sextic p=x^4y²+x²y^4+z^6−x²y²z² has an SOS cube. Their finite average is nonnegative but its cube is separated from SOS by the product of an explicit rational order-nine functional. The local 220-by-220 matrix has eight parity blocks of at most35; exact principal-minor and Schur-trace checks certify positivity. The arbitrary finite tensor argument is written, not a computation of an astronomical matrix.
 
-All moment positivity is certified by exact initial principal minors and Schur-complement trace inequalities. The tensor step is proved for arbitrary finite N; it does not require construction of an exponentially sized numerical matrix. The local 220-by-220 moment matrix splits into blocks of size at most35. The final proof and certificate use N=10^62, superseding larger exploratory bounds that were never frozen as the candidate.
+For each fixed odd q>=3, some finite dimension n(q) likewise gives nonconvexity for sextics. No common n for all q, ternary result, optimal dimension, prescribed small-dimension result, full classification, stubbornness, worldwide firstness or current-openness certificate is asserted. Closedness and the earlier convex union over varying odd exponents remain valid. The seed/cube, separation, tensor positivity and counting ingredients are credited in `PRIORITY_NOTE.md`.
 
-The general amplification lemma also gives nonconvexity at a sufficiently large finite dimension for each fixed odd q>=3, using the same non-SOS seed and p^q=p³ times a square. This does not assert a common dimension for all q or settle any prescribed small dimension.
+The original author budget remains **2/5**; this audit and publication add no substantive proof-search turn. The current queue disposition remains `claimed_solved` with this narrow resolved scope. Two fresh corrected whole-package reviews, published metadata and full downloaded file hashes, and the actual tracker row are bound in `PUBLICATION_RECEIPT.json`.
 
-Status: **full general-question candidate, unreviewed, 2/5 substantive turns used**. Three turns remain if the independent audit exposes a genuine gap. No historical novelty claim or public resolution is authorized by this author result alone.
+Published unrefereed preprint: [DOI 10.5281/zenodo.23191301](https://doi.org/10.5281/zenodo.23191301); [Zenodo record](https://zenodo.org/records/23191301). Tracker readback: document `1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20`, range `'Math Puzzles'!A33:D33`. No human peer review or formal proof-assistant verification is claimed.

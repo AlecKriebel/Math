@@ -1,6 +1,6 @@
 # A tensor-moment counterexample to fixed odd-power SOS convexity
 
-**Author turn 2 of 5. Complete candidate for the general yes/no question; independent review pending.** This proves a counterexample in a finite, very large number of variables. It does not classify the small-dimensional cones or answer the ternary fixed-exponent case.
+**Original author turn 2 of 5; audited narrow theorem and published unrefereed preprint.** Current publication/review evidence is in `PUBLICATION_RECEIPT.json`; historical pending-status records remain unchanged at the original head. This proves a counterexample in a finite, very large number of variables. It does not classify the small-dimensional cones or answer the ternary fixed-exponent case.
 
 ## 1. Exact target and result
 
@@ -8,7 +8,7 @@ For positive n, positive even m and odd q, put
 
 C_(n,m,q) = {f in R[x1,...,xn]_m : f is nonnegative and f^q is a sum of squares}.
 
-These are the source's Sigma_(n,m)(2k+1), with q=2k+1. The coefficient space is real, the forms are homogeneous, and all exponents here are fixed before taking a convex combination. The source asks whether these sets are closed convex cones. Closedness and nonnegative scalar closure hold; the general convexity assertion has a negative answer if the following candidate is correct.
+These are the source's Sigma_(n,m)(2k+1), with q=2k+1. The coefficient space is real, the forms are homogeneous, and all exponents here are fixed before taking a convex combination. The source asks whether these sets are closed convex cones. Closedness and nonnegative scalar closure hold; the following theorem disproves the general-dimensional convexity assertion.
 
 **Theorem.** Let N=10^62 and n=3N. Partition n variables into N triples (xi,yi,zi), and set
 
@@ -18,7 +18,7 @@ Each p_i belongs to C_(n,6,3), but their average N^-1 sum_i p_i does not. Conseq
 
 More generally, for every odd q>=3 there is a finite n(q) for which C_(n(q),6,q) is not convex. Nonconvexity persists on adding unused variables. The classical convex cases, including q=1 and the Hilbert equality cases, are unaffected. No claim that every remaining parameter triple is nonconvex is made.
 
-The seed cube identity is credited to Reznick's report and Blekherman–Kozhasov–Reznick, published 2026, §6 after Theorem 6.3. Tensor products of positive moment matrices, elementary Schur complements and finite-dimensional separation are standard tools. No historical novelty claim is made.
+The coefficient-1 modified Motzkin seed is earlier work of Berg–Christensen–Jensen (1979), Lemma 1, pp.164–165. Its SOS cube is credited to Reznick's OWR2023 contribution (inclusive pp.778–781, operative p.779) and Blekherman–Kozhasov–Reznick, published 2026, §6 after Theorem 6.3. Tensor products of positive moment matrices, elementary Schur complements and finite-dimensional separation are standard tools. No historical novelty claim is made.
 
 ## 2. Tensor amplification lemma
 
@@ -141,6 +141,6 @@ The functional is not a measure on real points. Its negative value on the pointw
 - For all n>=3*10^62, the same cubic counterexample persists by ignoring the extra variables: an SOS in the larger ring would restrict to an SOS when those extra variables are zero.
 - Closedness survives. The union over odd exponents remains convex by the published Blekherman–Kozhasov–Reznick theorem. The block sum can therefore acquire an SOS at a later odd exponent; it is not claimed stubborn.
 - The proof uses disjoint variable blocks, beyond Turn 1's single fixed circuit subspace. It does not convert the earlier formal-preordering obstruction into a claim about arbitrary SOS certificates.
-- The April 2026 published paper leaves fixed-exponent convexity open in §6. A bounded follow-up source search found no later primary resolution, but no worldwide priority claim is based on that search.
+- The April 2026 published paper records the fixed-exponent question in §6. This is a dated source statement, not a certificate of present openness. The subsequent bounded priority assessment and explicit reading limits are in `PRIORITY_NOTE.md`.
 
-This completes substantive author turn 2. The candidate is frozen for an uninvolved full adversarial review before any status promotion or final PR. If a genuine gap is found, three substantive author turns remain.
+This mathematics was completed in substantive author turn 2. Its mathematical equations, construction and certificate are unchanged by the subsequent audit and bibliographic repair. The corrected preprint was later accepted after two fresh whole-package reviews, published to Zenodo and recorded in the tracker as bound by `PUBLICATION_RECEIPT.json`. The original budget remains2/5; a genuine new gap would reopen the audit. No ternary, optimal/uniform dimension, full classification or firstness claim is made.
