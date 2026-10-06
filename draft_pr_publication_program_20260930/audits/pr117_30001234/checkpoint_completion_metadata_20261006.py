@@ -54,6 +54,7 @@ path=P/'CURRENT_PROGRESS.json';progress=json.loads(path.read_text())
 require(progress['current_PR']==117 and progress['fully_completed_count']==19,'Unexpected completion cursor')
 progress['fully_completed_eligible_PRs'].append(117)
 progress.update({'UTC':stamp,'updated_UTC':stamp,'fully_completed_count':20,'fully_completed_fraction_percent':20/99*100,'workflow_estimate_percent':20/99*100,
+ 'workflow_estimate_definition':'Eleven published workflows, three legacy prior-result dispositions, one legacy verified partial disposition and five priority/source-based closures divided by dated99-PR census; final operational release is separately receipted.',
  'current_core_disposition_complete':True,'current_PR_workflow_percent':100,'current_workflow_estimate_percent':100,
  'current_native_correction_checkpoint_pending':False,'current_native_disposition_checkpoint_commit':BASE,
  'current_source_catalog_openness_correction_committed':True,'current_completion_metadata_checkpoint_pending':True,

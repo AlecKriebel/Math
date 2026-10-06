@@ -145,7 +145,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.0000 | 5.0 | 3 | 2009 | already_solved | 1/5 |  | 2026-10-06: Exact singleton-fiber counterexample already in Takagi2011/2013 Example4.4, DOI10.2140/ant.2013.7.917. Current proof and complete optimal segment verified, useful exposition; no novel resolution. PR117 closed unmerged without paper/DOI/tracker. Original1/5 imported, audit0. |  |
 | 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
