@@ -129,7 +129,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.0000 | 5.5 | 3 | unknown | already_solved | 1/5 |  | 2026-10-06: Literal analytic criterion verified and recovered from DR2019 Eq3.2/stated surface limit plus classical DLMF19.7.8. Prior reconstruction/classical corollary; exact earlier printing and earliest priority unverified, finite algebraic Cayley output separate. PR104 closed without merge/new paper after independent mathematical/priority and fresh disposition reviews. Original1/5 imported; audit0; no DOI/tracker. |  |
 | 122 | 9700041 / AMR-096-0041 | Topological realization of compact Markov-chain limits | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 123 | 30003709 / OWR-15987-020 | Recovering Toric Arrangement Posets from Complement Cohomology | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |

@@ -1,0 +1,8 @@
+# Research log: PR104 fresh final disposition adversary
+
+- 2026-10-06T03:43:48Z: Primary comparison in progress; read original candidate and actual GKT2007 §§4–5 / Tabachnikov2015 §7 before reviewing proposed disposition. Read relevant DR2019 §§2–4 and official DLMF. Completion estimate: **50%** of bounded disposition review.
+- 2026-10-06T03:45:24.181432+00:00: Independent source comparison pinned before any sibling family report. Verified signs, finite versus divergent counts, direct surface sufficiency, and both exact DLMF representations. Completion estimate: **65%**.
+- 2026-10-06T03:46:53Z: Read complete mathematical and priority-family reports after independence checkpoint; checked Ivory metric and Tejada rotational example. No substantive discrepancy found. System Python lacked mpmath in an optional diagnostic attempt; standard-library Simpson corroboration succeeded. Official DLMF web views succeeded; first direct TeX GET returned403, with no retries or bypass. Completion estimate: **90%**.
+- 2026-10-06T03:49:39.317342+00:00: Completed REPORT and VERDICT. Independently support already_solved only for literal analytic classification, with fresh prior-corollary assessment and original claimed proof/effort custody. No required correction or unresolved concern within disposition. Completion estimate: **100%**.
+
+Original substantive effort: **1/5**, unchanged. Extra central proof-search turns: **0**. No new paper, contact/outreach, Git/PR/native/editor/Zenodo/tracker action. All writes within this review folder. Third-party page images are private review aids, not authored publication artifacts.
