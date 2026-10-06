@@ -817,7 +817,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 806 | 30000263 / OWR-1050-014 | Discrete Interaction-Matrix Inequalities in Three Dimensions | 0.0990 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 807 | 6200010 / AMR-061-0010 | Boundaries of Groups and Kleinian Groups — Problem 10 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 808 | 6200014 / AMR-061-0014 | Boundaries of Groups and Kleinian Groups — Problem 14 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 809 | 6200022 / AMR-061-0022 | Boundaries of Groups and Kleinian Groups — Problem 22 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 809 | 6200022 / AMR-061-0022 | Boundaries of Groups and Kleinian Groups — Problem 22 | 0.0990 | 6.0 | 3 | 2005 | already_solved | 1/5 |  | Credited prior negative resolution: Dey-Liu, GGD online 2025-07-04, DOI 10.4171/GGD/908; weighted free-tree construction credited to Guilbault-Mooney. Audited elementary proof excludes every nonempty invariant cocompact convex core. Conditional boundary projections are homeomorphisms for proper CAT(0) factors and closed core; neighboring Problem 21 remains unresolved here. No novelty, human peer review, or formal certification claimed. [Proof and audit](attempts/6200022/README.md). |  |
 | 810 | 6200061 / AMR-061-0061 | Boundaries of Groups and Kleinian Groups — Problem 61 | 0.0990 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 811 | 30000432 / OWR-1194-001 | Equal-Area Drawings of Plane Triangulations | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 812 | 30000433 / OWR-1194-002 | Five-or-Six Edge-Degree Triangulations of Three-Manifolds | 0.0989 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
