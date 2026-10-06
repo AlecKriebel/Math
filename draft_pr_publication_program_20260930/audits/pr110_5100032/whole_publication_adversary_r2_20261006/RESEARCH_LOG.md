@@ -1,0 +1,9 @@
+# Fresh R2 whole-publication review
+
+2026-10-06T14:26:38.288600+00:00 — Review 5% complete. Started from scratch; no R1 folder or verdict read. Required proof, source-domain, priority-boundary, archive, reproducibility and metadata review. All writes restricted to this folder. No external human communications, Git or publication action.
+
+2026-10-06T14:29:02.237087+00:00 — Review 45% complete. All 34 fixed candidate files/33 ZIP members, manifests and 16 source pins authenticated; mathematical reconstruction and genuine portable normal/-O + runner passed. Independent contact-normal numerical chords and odd/star billiard cycles support rather than replace proof. All four manuscript pages rendered and inspected. No required finding yet; continue actual primary-source scope and priority comparisons.
+
+2026-10-06T14:33:23.011181+00:00 — Review 85% complete. Actual RGK definitions/table rows and source domain align. Complete supplied journal final and precursor read and independently compared; targeted publisher bibliographic checks passed. Salmon negative-pedal mechanism, BT height-product and bicentric inverse-perimeter mappings rechecked. All original author/root negative stderr hashes reconstruct in exact verifier output order; fresh eight controls additionally saved with real streams/PIDs. Own 20,707 explicit guards pass normal/-O. Verdict being written with no required repair.
+
+2026-10-06T14:37:58.080799+00:00 — Review 100% complete. Fresh PASS verdict formed without reading R1; no required findings. Full candidate/source/metadata/archive/PDF checks, exact portable normal/-O + genuine runner failures, independent angle derivation and contact-normal odd/star numerical falsification complete.145 author-source blobs authenticated with explicit final-printing boundary. Report/verdict/input pins written. Final public readback and seal follow; this does not authorize publication.
