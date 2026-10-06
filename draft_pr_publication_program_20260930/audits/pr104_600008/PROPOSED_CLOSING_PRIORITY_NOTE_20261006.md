@@ -1,0 +1,13 @@
+<!-- pr104-analytic-prior-disposition-20261006 -->
+
+Closing without merging or publishing a new paper: the analytic result is mathematically sound, but we have not established a substantive new contribution.
+
+The criterion is already recoverable from Dragović–Radnović's [2019 preprint](https://arxiv.org/abs/1909.08154v1), subsequently [published in2020](https://doi.org/10.1007/978-3-030-57000-2_8). Its introduction and Remark4.4 explicitly identify the same GKT2007 Problem5.2 / Tabachnikov2015 section7 question. Independent reviewers reconstructed the surface limit of Eq3.2 and checked the step/winding mapping: eliminating the divergent belt-reflection count gives N I_v=2r I_u=rL, with even N for full tropic arcs. The GKT equator return has the same displacement and allows odd return counts. The paper does not explicitly print our normalized mean formula; this finding rests on the checked reconstruction, not its introductory assertion alone.
+
+The identity I_u+I_v=pi is the classical [third-kind connection formula](https://dlmf.nist.gov/19.7#E8). Combining it with L=2I_u gives exactly the submitted condition M=n/(n+2r). Separation, the invariant density and the Poncelet property are established background. Equal-axis continuity, path/count conventions, least periods and monotonicity are useful exposition and corollaries; no independent new result has been demonstrated.
+
+This is an **analytic prior-result / classical-corollary disposition**. We are not claiming the exact displayed formula was printed previously, identifying the earliest author, certifying the complete singular-flow convergence proof, or claiming a finite algebraic Cayley determinant was solved. Fixed total billiard-reflection counts cannot simply be passed through the surface limit. The inaccessible directly relevant sources and these limits are recorded in the audit.
+
+The mathematical review used three fresh independent families, reproduced both submitted computations, checked global coverage, equator continuation, boundary cases, full-arc parity and the actual winding lift, and repaired the diagnostic guards to remain enabled under Python-O. Original proof and source bytes, including the original1/5 effort accounting, are preserved. Attribution or an exposition rewrite cannot establish the novel resolution required for publication in this program. No preprint, DOI or tracker row is created. Extensive AI-assisted verification is recorded; this is not conventional human peer review.
+
+[Proof, priority comparison and review records](https://github.com/AlecKriebel/Math/tree/main/draft_pr_publication_program_20260930/audits/pr104_600008).
