@@ -27,7 +27,7 @@ def main():
     publicmd['upload_type']=rt['type'];publicmd['publication_type']=rt['subtype'];publicmd['license']=publicmd['license']['id']
     public_normalizations=z.verify({'metadata':publicmd,'files':record['files']},md,local)
     operations={};requests={};pids=[]
-    labels={'deposition':'zenodo_deposition_GET_20261006','metadata':'zenodo_record_GET_20261006','PDF':'zenodo_pdf_GET_20261006','ZIP':'zenodo_zip_GET_20261006'}
+    labels={'deposition':'zenodo_deposition_GET_20261006','metadata':'zenodo_record_GET_20261006','PDF':'zenodo_pdf_content_GET_20261006','ZIP':'zenodo_zip_GET_20261006'}
     filenames={'deposition':'actual_deposition_get.json','metadata':'actual_record_get.json','PDF':'focal_antipedal_sum.pdf','ZIP':'focal_antipedal_sum_support.zip'}
     for role,label in labels.items():
         op=A/'actual_operations'/label;ex=read(op/'execution.json');h=read(D/(filenames[role]+'.HTTP_RECEIPT.json'));body=(D/filenames[role]).read_bytes()

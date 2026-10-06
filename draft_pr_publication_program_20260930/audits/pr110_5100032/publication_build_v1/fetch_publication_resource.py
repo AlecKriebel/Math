@@ -38,7 +38,7 @@ def main():
         require(args.name in ('focal_antipedal_sum.pdf','focal_antipedal_sum_support.zip'),'Expected artifact name')
         require(args.bytes is not None and 0<args.bytes<1048576 and args.url,'Expected bounded download')
         name=args.name;url=args.url;safeurl(url)
-        opener=urllib.request.build_opener(Redirect());request=urllib.request.Request(url,headers={'User-Agent':z.USER_AGENT,'Accept':'application/octet-stream'})
+        opener=urllib.request.build_opener(Redirect());request=urllib.request.Request(url,headers={'User-Agent':z.USER_AGENT})
         with opener.open(request,timeout=60) as response:
             status=response.status;body=response.read(args.bytes+1);finalurl=response.url
         require(status==200 and len(body)==args.bytes,'File HTTP status or response size failed')
