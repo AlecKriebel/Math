@@ -912,7 +912,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 901 | 2303033 / AMR-022-3033 | Research Problems in Function Theory — Problem 3.33 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 902 | 2308014 / AMR-022-8014 | Research Problems in Function Theory — Problem 8.14 | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 903 | 2315 / EP-810 | Erdős Problem #810 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 904 | 2487 / EP-1097 | Erdős Problem #1097 | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 904 | 2487 / EP-1097 | Erdős Problem #1097 | 0.0960 | 5.5 | 1 | unknown | unsolved | 0/5 |  | 2026-10-06: Verified prior partial resolution; uniform O(n^(3/2)) subquestion false by the classical Ruzsa seed. Main optimal-exponent/order question unresolved in inspected sources; theorem-dependent 1.77898 < gamma <= 11/6. No novelty or new approach; 0/5. [Audited report](attempts/2487/README.md). |  |
 | 905 | 2724 / KP-1.65 | Kirby Problem 1.65 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 906 | 2731 / KP-1.72 | Kirby Problem 1.72 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 907 | 2733 / KP-1.74 | Kirby Problem 1.74 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
