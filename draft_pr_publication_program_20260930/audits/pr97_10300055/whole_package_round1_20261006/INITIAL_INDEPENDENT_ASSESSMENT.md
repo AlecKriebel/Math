@@ -1,0 +1,9 @@
+# Initial independent assessment
+
+Preserved before reading preparation conclusions or support reports. Read: complete short TeX theorem and proof (publicfiles/pr97_note.tex); custody structure/hash lists only.
+
+The proof mechanism is plausible and appears sound on its stated closed, oriented, cooriented, taut C², no-sphere, C¹-alpha/smooth-omega domain. Independently: applying weak d to dα=α∧ω gives α∧dω=0; α∧dα=0 and ω∧dα=0 follow directly. Thus (ω+sα)∧d(ω+sα)=ω∧dω, including negative s. Since α has a positive norm minimum, α+ω/s tends uniformly to α for s→+∞. A finite S places the contact plane inside a neighborhood where EVERY sufficiently near smooth contact structure must be tight. For C¹ alpha that endpoint itself need not be smooth; instead smooth alpha in C¹ on fixed [0,S], retaining omega. Compactness gives a nonzero minimum contact volume and a bounded norm, so small C¹ perturbation preserves contactness throughout. Smooth Gray then transfers endpoint tightness to exactly ker omega. No Gray step at infinity or foliation is required.
+
+Outstanding falsifiable obligations: primary ET statement must have every-near quantifier and correct smoothness/closed/no-sphere scope; smooth Gray must apply uniformly finite, no C¹ contact theorem assumed; original conditional problem must supply global alpha, coorientation, closed oriented interpretation and smooth-contact interpretation. Check whether minimality excludes a spherical leaf, and disconnected/sign components are sound. Need independently audit distributional product rule, regularity of supplemental C¹-omega/C²-disk claims, classical attribution and priority qualifiers, code/receipt/output safety, hashes/archive/legal metadata and all PDF pages. No result or release accepted yet.
+
+Initial mathematical concern count: zero established counterexamples, with all listed obligations open. Initial review completion estimate: 8%. This is NOT novelty or publication authorization.
