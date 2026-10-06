@@ -2,7 +2,7 @@
 """Build a concrete packet from real preflight/service bytes; never runs assess."""
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,sys
+import hashlib,json,os,sqlite3,subprocess,sys
 A=Path(__file__).resolve().parents[1]
 def need(v,m):
     if not v:raise RuntimeError(m)
@@ -10,8 +10,84 @@ def canonical(v):return (json.dumps(v,sort_keys=True,ensure_ascii=False,indent=2
 def hp(b):return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
 def read(p):return json.loads(p.read_text())
 def pin(p):return {'path':p.relative_to(A).as_posix(),**hp(p.read_bytes())}
+def stream_file_pin(p):
+    h=hashlib.sha256();n=0
+    with Path(p).open('rb') as f:
+        for b in iter(lambda:f.read(1048576),b''):h.update(b);n+=len(b)
+    return {'bytes':n,'sha256':h.hexdigest()}
+def authenticate_preflight(F):
+    pre=read(F);C=A.parents[2];journal=read(F.parent/'PROCESS_JOURNAL.json');need(journal['actual_operator_PID']==pre['actual_reader_PID'],'Raw probe PID/journal')
+    opfolder=A/'actual_operations/root_fresh_native_preflight_20261006';ex=read(opfolder/'execution.json')
+    need(ex['exit_code']==0 and ex['reaped'] is True and ex['child_PID']==pre['actual_reader_PID'] and ex['termination']['signal'] is None,'Genuine actual probe completion')
+    for s in ('stdout','stderr'):need(hp((opfolder/ex[s]['path']).read_bytes())=={k:ex[s][k] for k in ('bytes','sha256')},'Actual probe parent stream')
+    outer=read(opfolder/'stdout.bin');need(outer['actual_reader_PID']==pre['actual_reader_PID'] and outer['preflight_path']==str(F) and outer['main_parent']==pre['main_parent'],'Real stdout/raw probe identity')
+    physical=pre['runtime']['binaries']['python']['resolved_absolute_path'];helper=A/'publication_build_v1/prepare_native_preflight.py'
+    need(ex['argv']==[physical,'-E','-S','-B','-P',str(helper),pre['main_parent'],F.parent.name] and ex['cwd']==str(A) and ex['UTC_start']<=pre['UTC']<=ex['UTC_end'],'Exact actual physical Python/helper/flags/cwd/start chronology')
+    operations=journal['operations'];need(len({r['actual_PID'] for r in operations})==len(operations),'Genuine distinct probe child PIDs');dynamic={}
+    git=pre['runtime']['binaries']['git']['resolved_absolute_path'];native_checks=[];baseenv=pre['runtime']['python_environment']
+    gitenv={**baseenv,'GIT_CONFIG_NOSYSTEM':'1','GIT_CONFIG_GLOBAL':'/dev/null','GIT_CONFIG_SYSTEM':'/dev/null','GIT_OPTIONAL_LOCKS':'0','GIT_NO_REPLACE_OBJECTS':'1','GIT_TERMINAL_PROMPT':'0'}
+    gitbase=[git,'-c','core.fsmonitor=false','-c','core.hooksPath=/dev/null','-c','credential.helper='];gh=pre['runtime']['binaries']['gh']['resolved_absolute_path']
+    ghenv={**baseenv,'GH_CONFIG_DIR':pre['runtime']['gh_config_directory'],'GH_HOST':'github.com','GH_PROMPT_DISABLED':'1','GH_PAGER':'','GH_BROWSER':'/usr/bin/false','GH_EDITOR':'/usr/bin/false','GH_NO_UPDATE_NOTIFIER':'1'}
+    digest=lambda env:hashlib.sha256(json.dumps(env,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    contracts=[]
+    for role in ('python','git','gh','gws','node'):
+        path=pre['runtime']['dependency_files']['gws_native_backend']['absolute_path'] if role=='gws' else pre['runtime']['binaries'][role]['resolved_absolute_path']
+        contracts.append(([path,'--version'],ex['environment_sha256']))
+    for args in (['rev-parse','HEAD'],['symbolic-ref','--short','HEAD'],['ls-remote','https://github.com/AlecKriebel/Math.git','refs/heads/main'],['diff','--cached','--name-only','-z']):contracts.append((gitbase+args,digest(gitenv)))
+    contracts.append(([gh,'pr','view','https://github.com/AlecKriebel/Math/pull/110','--json','number,state,isDraft,headRefOid,baseRefName,headRefName'],digest(ghenv)))
+    for spec in pre['native_baseline'].values():contracts.append((gitbase+['show',pre['main_parent']+':'+spec['path']],digest(gitenv)))
+    # JSON canonicalization sorts native_baseline keys; recover the literal
+    # queue/manifest/policy/... ordering used by the audited probe source.
+    order=['queue.py','manifest.json','policy.json','catalog.json','assessments.json','state.json','history.jsonl','assessment_history.jsonl','ranking.csv','summary.json','SHORTLIST.md','QUEUE.md']
+    contracts=contracts[:10]+[(gitbase+['show',pre['main_parent']+':'+pre['native_baseline'][name]['path']],digest(gitenv)) for name in order]
+    need(len(operations)==len(contracts),'Exact actual probe child count')
+    for operation,(argv,envsha) in zip(operations,contracts):
+        need(operation['argv']==argv and operation['cwd']==str(C) and operation['environment_sha256']==envsha,'Exact current probe child argv/cwd/environment contract')
+        need(operation['exit_code']==0 and operation['reaped'] is True and operation['termination_reason'] is None and ex['UTC_start']<=operation['UTC_start']<=operation['UTC_end']<=pre['UTC'],'Successful actual readonly child/whole chronology')
+        for stream in ('stdout','stderr'):
+            row=operation[stream];need(row['streams_fully_drained'] is True and row['observed_bytes']==row['bytes'] and row['observed_sha256']==row['sha256'],'Full observed successful stream')
+            if 'path' in row:need(hp((A/row['path']).read_bytes())=={k:row[k] for k in ('bytes','sha256')},'Raw actual dynamic child stream')
+            else:
+                need(stream=='stdout' and row['body_custody']=='immutable_Git_blob_full_body' and row['git_commit_path'].startswith(pre['main_parent']+':'),'Exact retained Git custody')
+                replayargv=gitbase+['show',row['git_commit_path']];started=datetime.now(timezone.utc).isoformat();p=subprocess.Popen(replayargv,cwd=C,env=gitenv,stdout=subprocess.PIPE,stderr=subprocess.PIPE);termination=None
+                try:body,err=p.communicate(timeout=30)
+                except subprocess.TimeoutExpired:p.kill();body,err=p.communicate();termination='deadline_KILL_and_reap'
+                native_checks.append({'actual_PID':p.pid,'argv':replayargv,'cwd':str(C),'environment_sha256':digest(gitenv),'exit_code':p.returncode,'reaped':True,'termination_reason':termination,'UTC_start':started,'UTC_end':datetime.now(timezone.utc).isoformat(),'full_stdout':hp(body),'full_stderr':hp(err)})
+                (F.parent/'ROOT_GIT_REPLAY_JOURNAL.json').write_bytes(canonical({'actual_operator_PID':os.getpid(),'operations':native_checks}))
+                need(p.returncode==0 and termination is None and not err and hp(body)=={k:row[k] for k in ('bytes','sha256')},'Independent full Git body replay; actual failure retained')
+        if 'path' in operation['stdout']:dynamic[tuple(operation['argv'])]=(A/operation['stdout']['path']).read_bytes()
+    for name,spec in pre['native_baseline'].items():
+        need(any(row['argv'][-1]==pre['main_parent']+':'+spec['path'] and row['full_stdout']=={k:spec[k] for k in ('bytes','sha256')} for row in native_checks),'Every native baseline independently checked')
+    need(dynamic[tuple(gitbase+['rev-parse','HEAD'])].decode().strip()==pre['main_parent'] and dynamic[tuple(gitbase+['symbolic-ref','--short','HEAD'])].strip()==b'main' and dynamic[tuple(gitbase+['diff','--cached','--name-only','-z'])]==b'','Exact actual local main/branch/empty-index raw bodies')
+    ghraw=next(body for argv,body in dynamic.items() if argv[0]==gh and argv[1:3]==('pr','view'));ghvalue=json.loads(ghraw)
+    need(ghvalue['headRefOid']==pre['original_head'] and ghvalue['state']=='OPEN' and ghvalue['isDraft'] is True and ghvalue['baseRefName']=='main' and ghvalue['number']==110,'Actual raw live PR response')
+    remote=next(body for argv,body in dynamic.items() if 'ls-remote' in argv);need(remote.decode().split()[0]==pre['main_parent'],'Actual raw remote main response')
+    sourceargv=gitbase+['show',pre['main_parent']+':'+str(helper.relative_to(C))];started=datetime.now(timezone.utc).isoformat()
+    p=subprocess.Popen(sourceargv,cwd=C,env=gitenv,stdout=subprocess.PIPE,stderr=subprocess.PIPE);termination=None
+    try:source,err=p.communicate(timeout=30)
+    except subprocess.TimeoutExpired:p.kill();source,err=p.communicate();termination='deadline_KILL_and_reap'
+    sourcecheck={'actual_PID':p.pid,'argv':sourceargv,'cwd':str(C),'environment_sha256':digest(gitenv),'exit_code':p.returncode,'reaped':True,'termination_reason':termination,'UTC_start':started,'UTC_end':datetime.now(timezone.utc).isoformat(),'full_stdout':hp(source),'full_stderr':hp(err)}
+    native_checks.append(sourcecheck)
+    (F.parent/'ROOT_GIT_REPLAY_JOURNAL.json').write_bytes(canonical({'actual_operator_PID':os.getpid(),'operations':native_checks}))
+    need(p.returncode==0 and termination is None and not err and source==helper.read_bytes(),'Exact committed helper body custody; actual failure retained')
+    pre['committed_probe_source_authentication']={**sourcecheck,'body_pin':pin(helper)}
+    for binary in pre['runtime']['binaries'].values():need(stream_file_pin(binary['resolved_absolute_path'])=={k:binary[k] for k in ('bytes','sha256')},'Fresh runtime body pin')
+    for dependency in pre['runtime']['dependency_files'].values():need(stream_file_pin(dependency['absolute_path'])=={k:dependency[k] for k in ('bytes','sha256')},'Fresh current GWS dependency body')
+    for config in pre['runtime']['private_configuration_pins']:need(stream_file_pin(config['absolute_path'])=={k:config[k] for k in ('bytes','sha256')},'Fresh private configuration body pin')
+    for name,spec in pre['raw_source_pins'].items():need(stream_file_pin(Path('/Users/alec/Documents/Math/unsolved_math_prioritization/cache')/name)==spec,'Raw source independently checked')
+    cache=pre['source_cache'];need(stream_file_pin(cache['absolute_path'])==cache['pin'] and not any(os.path.lexists(cache['absolute_path']+s) for s in ('-wal','-shm','-journal')),'Actual immutable SQL body/sidecars')
+    db=sqlite3.connect('file:'+cache['absolute_path']+'?mode=ro&immutable=1',uri=True)
+    try:
+        need(db.execute('SELECT revision FROM metadata').fetchone()==(pre['dataset_revision'],) and db.execute('SELECT count(*) FROM records').fetchone()[0]==15458,'Actual SQL identity')
+        row=db.execute('SELECT payload,report FROM records WHERE key=?',('5100032',)).fetchone()
+        for i,name in enumerate(('source_record.json','prior_imported_report.json')):need(canonical(json.loads(row[i]))==canonical(read(A/'original_head_authentication_20261006/original_attempt'/name)),'Actual root sourcepair SQL comparison')
+        need(bool(json.loads(row[1])),'Actual nonempty SQL prior')
+    finally:db.close()
+    pre['raw_probe_receipt']=pin(F);pre['actual_parent_execution']=pin(opfolder/'execution.json');pre['root_authentication_PID']=os.getpid();pre['root_authentication_UTC']=datetime.now(timezone.utc).isoformat();pre['root_independently_authenticated_actual_preflight_processes']=True;pre['independent_full_native_Git_checks']=native_checks
+    output=F.parent/'PREFLIGHT_ROOT_AUTHENTICATED.json';need(not output.exists(),'Unique actual authenticated preflight');output.write_bytes(canonical(pre));return output
 def main():
     F=Path(sys.argv[1]);need(F.is_relative_to(A) and F.is_file(),'Actual preflight file');D=F.parent
+    rawF=F;F=authenticate_preflight(F)
     pre=read(F);need(pre['actual_receipt'] is True and pre['native_assess_executed'] is False,'Actual readonly preflight')
     family=A/'native_execution_programs_v1';need((family/'OUTPUT_MANIFEST.json').is_file() and (family/'SEAL_RECEIPT.json').is_file(),'Final concrete family not sealed')
     m=read(family/'OUTPUT_MANIFEST.json')
@@ -57,6 +133,11 @@ def main():
     for name in evidence:
         checked_use(A/name);offers[prefix+'acceptance_audit/'+name]=use(A/name)
     checked_use(D/'PROCESS_JOURNAL.json')
+    checked_use(D/'ROOT_GIT_REPLAY_JOURNAL.json')
+    checked_use(rawF)
+    for name in ('execution.json','stdout.bin','stderr.bin'):checked_use(A/'actual_operations/root_fresh_native_preflight_20261006'/name)
+    for name in ('publication_build_v1/prepare_native_preflight.py','publication_build_v1/prepare_native_packet.py','publication_transport_source_custody_v1/SOURCE_CUSTODY.json'):
+        checked_use(A/name)
     for operation in read(D/'PROCESS_JOURNAL.json')['operations']:
         for stream in ('stdout','stderr'):
             if 'path' in operation[stream]:checked_use(A/operation[stream]['path'])

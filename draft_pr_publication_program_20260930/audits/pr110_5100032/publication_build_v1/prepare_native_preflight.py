@@ -2,7 +2,7 @@
 """Fresh read-only source/runtime/main probe. Does not assess or export."""
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,os,platform,shutil,sqlite3,stat,subprocess,sys
+import hashlib,json,os,platform,selectors,shutil,signal,sqlite3,stat,subprocess,sys,time
 A=Path(__file__).resolve().parents[1];C=A.parents[2]
 def need(v,m):
     if not v:raise RuntimeError(m)
@@ -33,20 +33,41 @@ def invocation(path,version):
 def main():
     expected=sys.argv[1];label=sys.argv[2];D=A/'native_actual_input_preparation_20261006'/label;D.mkdir(parents=True,exist_ok=False);ops=[]
     def run(argv,env=None):
-        start=now();p=subprocess.Popen(argv,cwd=C,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-        termination=None
-        try:out,err=p.communicate(timeout=45)
-        except subprocess.TimeoutExpired:p.kill();out,err=p.communicate();termination='deadline_KILL_and_reap'
-        i=len(ops);streams={}
+        start=now();p=subprocess.Popen(argv,cwd=C,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,start_new_session=True)
+        termination=None;begin=time.monotonic();sel=selectors.DefaultSelector()
         is_git_body=len(argv)>=3 and 'show' in argv and argv[-1].startswith(expected+':')
+        caps={'stdout':32*1024*1024 if is_git_body else 65536,'stderr':65536};buffers={k:bytearray() for k in caps};counts={k:0 for k in caps};hashes={k:hashlib.sha256() for k in caps}
+        for name,stream in [('stdout',p.stdout),('stderr',p.stderr)]:os.set_blocking(stream.fileno(),False);sel.register(stream,selectors.EVENT_READ,name)
+        def kill(reason):
+            nonlocal termination
+            if termination is None:
+                termination=reason
+                try:os.killpg(p.pid,signal.SIGKILL)
+                except ProcessLookupError:pass
+        while sel.get_map() or p.poll() is None:
+            if time.monotonic()-begin>45:kill('deadline_KILL_and_reap')
+            if time.monotonic()-begin>48:break
+            for key,_ in sel.select(.1):
+                b=os.read(key.fileobj.fileno(),65536);name=key.data
+                if not b:sel.unregister(key.fileobj);key.fileobj.close();continue
+                counts[name]+=len(b);hashes[name].update(b);buffers[name].extend(b[:max(0,caps[name]-len(buffers[name]))])
+                if counts[name]>caps[name]:kill(name+'_cap_KILL_and_reap')
+        drained=not bool(sel.get_map());sel.close()
+        if p.poll() is None:kill('final_KILL_and_reap')
+        try:p.wait(timeout=3)
+        except subprocess.TimeoutExpired:termination='unreaped_operator_intervention_required'
+        for stream in (p.stdout,p.stderr):
+            if not stream.closed:stream.close()
+        out,err=bytes(buffers['stdout']),bytes(buffers['stderr']);i=len(ops);streams={}
         for kind,body in [('stdout',out),('stderr',err)]:
-            if kind=='stdout' and is_git_body:
-                streams[kind]={**hp(body),'body_custody':'immutable_Git_blob_full_body','git_commit_path':argv[-1]}
+            observed={'observed_bytes':counts[kind],'observed_sha256':hashes[kind].hexdigest(),'streams_fully_drained':drained}
+            if kind=='stdout' and is_git_body and termination is None and drained:
+                streams[kind]={**hp(body),**observed,'body_custody':'immutable_Git_blob_full_body','git_commit_path':argv[-1]}
             else:
-                need(len(body)<=65536,'Dynamic preflight response too large');f=D/(str(i)+'.'+kind+'.bin');f.write_bytes(body)
-                streams[kind]={'path':str(f.relative_to(A)),**hp(body),'body_custody':'full_actual_raw_CLI_stream'}
-        ops.append({'argv':argv,'cwd':str(C),'actual_PID':p.pid,'UTC_start':start,'UTC_end':now(),'exit_code':p.returncode,'reaped':True,'termination_reason':termination,'environment_sha256':hashlib.sha256(json.dumps(dict(os.environ) if env is None else env,sort_keys=True,separators=(',',':')).encode()).hexdigest(),**streams})
-        (D/'PROCESS_JOURNAL.json').write_bytes(canonical({'actual_operator_PID':os.getpid(),'operations':ops}));need(p.returncode==0 and termination is None and len(err)<=65536,'Readonly process failed; real failure envelope retained')
+                f=D/(str(i)+'.'+kind+'.bin');f.write_bytes(body)
+                streams[kind]={'path':str(f.relative_to(A)),**hp(body),**observed,'body_custody':'full_actual_raw_CLI_stream' if drained and len(body)==counts[kind] else 'explicitly_truncated_actual_CLI_prefix'}
+        ops.append({'argv':argv,'cwd':str(C),'actual_PID':p.pid,'UTC_start':start,'UTC_end':now(),'exit_code':p.returncode,'reaped':p.returncode is not None,'termination_reason':termination,'environment_sha256':hashlib.sha256(json.dumps(dict(os.environ) if env is None else env,sort_keys=True,separators=(',',':')).encode()).hexdigest(),**streams})
+        (D/'PROCESS_JOURNAL.json').write_bytes(canonical({'actual_operator_PID':os.getpid(),'operations':ops}));need(p.returncode==0 and termination is None and drained,'Readonly process failed; real failure envelope retained')
         return out
     paths={'python':'/opt/homebrew/bin/python3','git':'/opt/homebrew/bin/git','gh':'/opt/homebrew/bin/gh','gws':'/Users/alec/.nvm/versions/node/v22.16.0/bin/gws','node':'/opt/homebrew/bin/node','sh':'/bin/sh','env':'/usr/bin/env'}
     need(shutil.which('node')==paths['node'],'Actual ambient Node PATH selection differs from declared current snapshot')
@@ -92,6 +113,7 @@ def main():
         for i,name in enumerate(('source_record.json','prior_imported_report.json')):need(canonical(json.loads(row[i]))==canonical(read(A/'original_head_authentication_20261006/original_attempt'/name)),'Actual nonempty sourcepair SQL mismatch')
     finally:db.close()
     need(bool(json.loads(row[1])) and manifest['files']==raw and manifest['revision']==sourceauth['dataset_revision'] and manifest['records']==15458,'Native/raw source identity')
-    result={'schema':'pr110-root-post-service-main-source-runtime-preflight/v1','actual_receipt':True,'template_only':False,'actual_reader_PID':os.getpid(),'UTC':now(),'main_parent':expected,'remote_main':expected,'original_head':pr['headRefOid'],'review_hash':target['review_hash'],'statement_hash':target['statement_hash'],'SQL_prior_equals_nonempty_original':True,'SQL_source_equals_original':True,'full_native_baseline_and_runtime_independently_checked':True,'native_baseline':baseline,'runtime':runtime,'source_cache':{'absolute_path':str(cache),'pin':filepin(cache)},'raw_source_pins':raw,'target_catalog_record':target,'fresh_current_runtime_not_retrospective_binary_proof':True,'process_journal':{'path':str((D/'PROCESS_JOURNAL.json').relative_to(A)),**filepin(D/'PROCESS_JOURNAL.json')},'native_assess_executed':False,'live_native_export_executed':False}
+    need(not os.path.lexists(C/'unsolved_math_prioritization/attempts/5100032'),'Target native attempt appeared')
+    result={'schema':'pr110-concrete-native-preflight/v1','actual_receipt':True,'template_only':False,'actual_reader_PID':os.getpid(),'UTC':now(),'main_parent':expected,'remote_main':expected,'branch':'main','original_head':pr['headRefOid'],'review_hash':target['review_hash'],'statement_hash':target['statement_hash'],'dataset_revision':sourceauth['dataset_revision'],'SQL_record_count':15458,'SQL_prior_equals_nonempty_original':True,'SQL_source_equals_original':True,'native_target_absent':True,'SQL_sidecars_absent':True,'live_PR':{'number':110,'head':pr['headRefOid'],'base':'main','state':'OPEN','isDraft':True},'full_native_baseline_and_runtime_independently_checked':True,'root_independently_authenticated_actual_preflight_processes':False,'native_baseline':baseline,'runtime':runtime,'source_cache':{'absolute_path':str(cache),'pin':filepin(cache)},'raw_source_pins':raw,'target_catalog_record':target,'fresh_current_runtime_not_retrospective_binary_proof':True,'process_journal':{'path':str((D/'PROCESS_JOURNAL.json').relative_to(A)),**filepin(D/'PROCESS_JOURNAL.json')},'native_assess_executed':False,'live_native_export_executed':False}
     (D/'PREFLIGHT.json').write_bytes(canonical(result));print(json.dumps({'preflight_path':str(D/'PREFLIGHT.json'),'actual_reader_PID':os.getpid(),'UTC':result['UTC'],'processes':len(ops),'main_parent':expected}))
 if __name__=='__main__':main()
