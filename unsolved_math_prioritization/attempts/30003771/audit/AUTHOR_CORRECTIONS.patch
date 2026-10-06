@@ -1,0 +1,62 @@
+--- a/CITATIONS.md
++++ b/CITATIONS.md
+@@ -4,13 +4,13 @@
+ https://doi.org/10.4171/OWR/2018/17
+ https://ems.press/content/serial-article-files/46740
+ 
+-S2. Indranil Biswas and Niels Borne, “Tamely ramified torsors and parabolic bundles,” Ann. Sc. Norm. Super. Pisa Cl. Sci. (5), XXIII (2022), 293–314. Inspected arXiv final manuscript v4, 5 November 2020: Definition 2.2; Theorem 2.8; Remark 2.9(3); Proposition 3.13; Appendix B, manuscript pp. 16–17. The manuscript labels the appendix examples as due to David Rydh.
++S2. Indranil Biswas and Niels Borne, “Tamely ramified torsors and parabolic bundles,” Ann. Sc. Norm. Super. Pisa Cl. Sci. (5), XXIII (2022), 293–314. Inspected arXiv final manuscript v4, 5 November 2020: Definitions 2.2 and 2.5 (including footnote 1); Theorem 2.8; Remark 2.9(3); Proposition 3.13; Lemma 3.20 and Remark 3.21; Appendix B, manuscript pp. 16–17. The manuscript labels the appendix examples as due to David Rydh.
+ https://arxiv.org/abs/1706.06733v4
+ https://arxiv.org/pdf/1706.06733
+ https://doi.org/10.2422/2036-2145.202005_015
+ https://journals.sns.it/index.php/annaliscienze/article/view/894
+ 
+-S3. Indranil Biswas and Niels Borne, “The Nori fundamental gerbe of tame stacks,” Transformation Groups 22 (2017), 91–104. Inspected arXiv v3, 9 September 2015: Proposition 4.5 and Theorem 4.11.
++S3. Indranil Biswas and Niels Borne, “The Nori fundamental gerbe of tame stacks,” Transformation Groups 22 (2017), 91–104. Inspected arXiv v3, 9 September 2015: Proposition 4.5 and Theorem 4.11, with the faithfulness correction stated in S2, Remark 3.21.
+ https://arxiv.org/abs/1502.07023v3
+ https://arxiv.org/pdf/1502.07023
+ https://doi.org/10.1007/s00031-017-9419-8
+--- a/MATHEMATICAL_AUDIT.md
++++ b/MATHEMATICAL_AUDIT.md
+@@ -6,11 +6,15 @@
+ 
+ The local ramification model is a Kummer cover induced along an injection of the product of roots-of-unity group schemes into G, after a field extension and an fppf neighborhood of the base point. This is more restrictive than merely naming a torsor on the associated stack. [S1]
+ 
++Source-version qualification: the 2018 report uses an earlier diagonal-step definition of a weight. This audit uses the corrected joint-weight definition in the final manuscript, Definition 2.5: the sum of the coordinate-step images in E_(l/r) must have nonzero cokernel at x. The final manuscript explicitly credits Ahlqvist for correcting the earlier definition. At a crossing, a simultaneous diagonal step is not a substitute for that sum. Thus “the original question” here preserves its proper-base existence quantifiers and Kummer-local torsor requirement, while adopting the published correction to its weight terminology. [S1, p. 1070; S2, Definition 2.5 and footnote 1]
++
+ ## 2. A precise partial endpoint of the proposed strategy
+ 
+ Let S be the root stack associated with (X,D,r). Its geometric inertia at a point on several divisor components is H = product(mu_{r_i}) over those components. Denominators are bounded by r componentwise. At a crossing, keeping only separate one-divisor weight lists loses joint-character information.
+ 
+ The relevant existing uniformization theorem applies to an inflexible, pseudo-proper, finite-type stack with finite inertia. It says that a finite-group-scheme torsor with algebraic-space total space exists exactly when every representation of each closed residual gerbe is a subquotient of the restriction of an essentially finite bundle. This is already nonabelian. It uses the Nori gerbe and does not need a chosen rational point. [S3, Theorem 4.11 and Proposition 4.5]
++
++A dependency qualification is essential: S2, Remark 3.21 corrects the terminology of S3 for nonalgebraic fundamental gerbes. The relevant morphism to the profinite Nori gerbe must be faithful (injective on automorphism sheaves); it is not asserted representable by algebraic spaces. S2, Lemma 3.20 passes from faithfulness at the limit to a finite gerbe stage. At that algebraic stage representability is appropriate, and S3, Proposition 4.5 supplies a finite-group-scheme torsor. The residual-representation uniformization criterion remains valid with this correction.
+ 
+ Here is the elementary character step behind the reduction. A representation of the diagonalizable group H is a finite direct sum of its character spaces, in any characteristic. If every character occurs in some restricted bundle, a direct sum of finitely many such bundles, with repetitions, contains any chosen finite-dimensional H-representation as a subrepresentation. Conversely, if every H-representation is a subquotient, apply this to a single character: graded subquotients cannot acquire a character absent from the original representation. Thus all-character detection, with the correct joint weights, matches the residual-representation test.
+ 
+--- a/STATUS.md
++++ b/STATUS.md
+@@ -11,3 +11,5 @@
+ Prior-attempt gate: exact supplied full-data fingerprints and complete problem/report pair matched; the inherited research report is empty. The existing catalog contribution is a desk-review suggestion, not a proof attempt. Exact-ID/title GitHub searches returned no indexed matching prior PR or commit. This is bounded negative search evidence, not a claim that all repository history is exhaustively indexed.
+ 
+ Two substantive approaches were used: source-exact root-stack reduction, then algebraic checking of the previously known local obstruction. Stopped at the established obstruction rather than relabeling a modified problem as solved. No publication or external repository mutation was performed. No executable proof checker is part of this packet.
++
++Independent review clarification: the corrected joint-weight definition of the final manuscript and its correction from representability to faithfulness for nonalgebraic fundamental gerbes are now explicit. Both elementary obstruction proofs pass review. These source-precision repairs do not change the unresolved result or the two-approach count.
+--- a/VERIFICATION_METADATA.json
++++ b/VERIFICATION_METADATA.json
+@@ -80,5 +80,14 @@
+       "full_document_read": false
+     }
+   ],
+-  "review_status": "author_checked; fresh independent review pending"
++  "review_status": "independently_reviewed_partial_result_with_source_precision_corrections",
++  "source_precision_corrections": [
++    "Use final manuscript Definition 2.5 for joint weights, acknowledging correction of OWR diagonal-step definition",
++    "Apply final manuscript Remark 3.21: faithful for maps to nonalgebraic fundamental gerbes; representable only at algebraic finite-gerbe stages"
++  ],
++  "original_author_archive": {
++    "bytes": 8319,
++    "sha256": "d55c2141a1d6d85aa159ea425bd928fac155f0cf8942fb89051ea51e6db29664",
++    "unchanged": true
++  }
+ }

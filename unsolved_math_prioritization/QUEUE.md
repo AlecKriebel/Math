@@ -879,7 +879,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 868 | 30003570 / OWR-15582-004 | Heegner Divisors and the Pseudo-Effective Cone | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 869 | 30003596 / OWR-15586-007 | Polyhedral Global Newton–Okounkov Bodies for Mori Dream Spaces | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 870 | 30003711 / OWR-15987-022 | Schwarz Genus of the Flex-Point Cover | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 871 | 30003771 / OWR-16158-014 | Nonabelian Torsors and Essentially Finite Parabolic Bundles | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 871 | 30003771 / OWR-16158-014 | Nonabelian Torsors and Essentially Finite Parabolic Bundles | 0.0964 | 5.5 | 3 | 2018 | unsolved | 2/5 |  |  |  |
 | 872 | 30003800 / OWR-16162-015 | Unramified Cohomology of Mixed-Type Classifying Spaces | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 873 | 30003902 / OWR-16408-015 | Virtual Cohomological Dimension of Surface Automorphism Groups | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 874 | 10000034 / AMR-099-0034 | Half-plane percolation for invariant FKG processes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
