@@ -878,7 +878,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 867 | 30003521 / OWR-15437-003 | NLS Approximation on Periodic Nonlinear Wave Graphs | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 868 | 30003570 / OWR-15582-004 | Heegner Divisors and the Pseudo-Effective Cone | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 869 | 30003596 / OWR-15586-007 | Polyhedral Global Newton–Okounkov Bodies for Mori Dream Spaces | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 870 | 30003711 / OWR-15987-022 | Schwarz Genus of the Flex-Point Cover | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 870 | 30003711 / OWR-15987-022 | Schwarz Genus of the Flex-Point Cover | 0.0964 | 5.5 | 3 | 2018 | claimed_solved | 1/5 |  | Ordinary unnormalized section-based Schwarz genus 8 (normalized 7), resolving the curated Chen-Wan 8-9 gap; two independent AI audits accept the scoped proof without correction. Literal OWR connected/full-nine-sheet trivialization remains unresolved by this result; no algorithmic-complexity, novelty, human-peer-review or formal-verification claim. [Proof and scope](attempts/30003711/README.md). |  |
 | 871 | 30003771 / OWR-16158-014 | Nonabelian Torsors and Essentially Finite Parabolic Bundles | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 872 | 30003800 / OWR-16162-015 | Unramified Cohomology of Mixed-Type Classifying Spaces | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 873 | 30003902 / OWR-16408-015 | Virtual Cohomological Dimension of Surface Automorphism Groups | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
