@@ -1,0 +1,165 @@
+{
+  "format": "kirby-flat-independent-integrity-replay-v1",
+  "author_archive_sha256": "438631e930255782b67ab90b2139255b223857a7d5cdb874496ff16f041f4f91",
+  "author_external_manifest_sha256": "392de62a32bceb3d8aa7919d9021f7c9866731ce4d23a05f0cac323416bf60d1",
+  "verifier_sha256": "a85ff8b5028649ee1d18f73723491ffd40b593ad4b35b8ddc79304482af97813",
+  "harness_sha256": "dd2452b068971a10e50c0d30c7edd6f9c36752a094c9b472724f5ea4e6e6a998",
+  "positive_runs": [
+    {
+      "mode": "isolated normal",
+      "exit_code": 0,
+      "result": {
+        "full_target_solved": false,
+        "members": 6,
+        "payload_digests_match": true,
+        "regular_data_only": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "mode": "isolated optimized",
+      "exit_code": 0,
+      "result": {
+        "full_target_solved": false,
+        "members": 6,
+        "payload_digests_match": true,
+        "regular_data_only": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "mode": "relocation and hostile import shadowing",
+      "exit_code": 0,
+      "result": {
+        "full_target_solved": false,
+        "members": 6,
+        "payload_digests_match": true,
+        "regular_data_only": true,
+        "status": "PASS"
+      }
+    },
+    {
+      "mode": "optimized relocation and hostile import shadowing",
+      "exit_code": 0,
+      "result": {
+        "full_target_solved": false,
+        "members": 6,
+        "payload_digests_match": true,
+        "regular_data_only": true,
+        "status": "PASS"
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "case": "missing member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "unexpected text member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "duplicate member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "path traversal entry",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "absolute path entry",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "symlink entry",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "nonregular or executable member",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "executable mode",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "nonregular or executable member",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "payload appended",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member declared size",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "same length payload corruption",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member bytes or digest: PROOF.md",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "internal digest changed",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "internal payload digest",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "duplicate JSON key",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "duplicate JSON key: executable_code",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "internal inventory missing",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "internal inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "unlisted code",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory or duplicate",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "archive trust anchor mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive trust anchor",
+      "test_only_outer_reanchoring": false
+    },
+    {
+      "case": "manifest trust anchor mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "external trust anchor",
+      "test_only_outer_reanchoring": false
+    }
+  ],
+  "negative_controls_count": 15,
+  "all_expected_results_observed": true,
+  "original_author_archive_unchanged": true,
+  "original_author_manifest_unchanged": true,
+  "boundary": "These are tests of an independently authored, external read-only integrity verifier. The distributed author payload has no executable code. Mathematical proofs are not machine checked. No author code, source PDF, or dataset was imported or executed."
+}

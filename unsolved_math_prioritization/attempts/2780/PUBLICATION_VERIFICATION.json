@@ -1,0 +1,343 @@
+{
+  "format": "kirby-flat-publication-local-verification-v1",
+  "full_target_solved": false,
+  "status": "unsolved",
+  "approaches_used": 5,
+  "approach_limit": 5,
+  "author_replay": {
+    "format": "kirby-flat-independent-integrity-replay-v1",
+    "author_archive_sha256": "438631e930255782b67ab90b2139255b223857a7d5cdb874496ff16f041f4f91",
+    "author_external_manifest_sha256": "392de62a32bceb3d8aa7919d9021f7c9866731ce4d23a05f0cac323416bf60d1",
+    "verifier_sha256": "a85ff8b5028649ee1d18f73723491ffd40b593ad4b35b8ddc79304482af97813",
+    "harness_sha256": "dd2452b068971a10e50c0d30c7edd6f9c36752a094c9b472724f5ea4e6e6a998",
+    "positive_runs": [
+      {
+        "mode": "isolated normal",
+        "exit_code": 0,
+        "result": {
+          "full_target_solved": false,
+          "members": 6,
+          "payload_digests_match": true,
+          "regular_data_only": true,
+          "status": "PASS"
+        }
+      },
+      {
+        "mode": "isolated optimized",
+        "exit_code": 0,
+        "result": {
+          "full_target_solved": false,
+          "members": 6,
+          "payload_digests_match": true,
+          "regular_data_only": true,
+          "status": "PASS"
+        }
+      },
+      {
+        "mode": "relocation and hostile import shadowing",
+        "exit_code": 0,
+        "result": {
+          "full_target_solved": false,
+          "members": 6,
+          "payload_digests_match": true,
+          "regular_data_only": true,
+          "status": "PASS"
+        }
+      },
+      {
+        "mode": "optimized relocation and hostile import shadowing",
+        "exit_code": 0,
+        "result": {
+          "full_target_solved": false,
+          "members": 6,
+          "payload_digests_match": true,
+          "regular_data_only": true,
+          "status": "PASS"
+        }
+      }
+    ],
+    "negative_controls": [
+      {
+        "case": "missing member",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "unexpected text member",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "duplicate member",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "path traversal entry",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "absolute path entry",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "symlink entry",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "nonregular or executable member",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "executable mode",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "nonregular or executable member",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "payload appended",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "member declared size",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "same length payload corruption",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "member bytes or digest: PROOF.md",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "internal digest changed",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "internal payload digest",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "duplicate JSON key",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "duplicate JSON key: executable_code",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "internal inventory missing",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "internal inventory",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "unlisted code",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive inventory or duplicate",
+        "test_only_outer_reanchoring": true
+      },
+      {
+        "case": "archive trust anchor mutation",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "archive trust anchor",
+        "test_only_outer_reanchoring": false
+      },
+      {
+        "case": "manifest trust anchor mutation",
+        "expected": "REJECT",
+        "observed": "REJECT",
+        "reason": "external trust anchor",
+        "test_only_outer_reanchoring": false
+      }
+    ],
+    "negative_controls_count": 15,
+    "all_expected_results_observed": true,
+    "original_author_archive_unchanged": true,
+    "original_author_manifest_unchanged": true,
+    "boundary": "These are tests of an independently authored, external read-only integrity verifier. The distributed author payload has no executable code. Mathematical proofs are not machine checked. No author code, source PDF, or dataset was imported or executed."
+  },
+  "final_audit_positive_runs": [
+    {
+      "optimized": false,
+      "relocated_hostile_imports": false,
+      "result": {
+        "author_members_preserved": 6,
+        "full_target_solved": false,
+        "mathematics_machine_checked": false,
+        "members": 11,
+        "regular_data_only": true,
+        "status": "PASS",
+        "verdict": "ACCEPT_SCOPED_PARTIAL_ANALYSIS"
+      }
+    },
+    {
+      "optimized": true,
+      "relocated_hostile_imports": false,
+      "result": {
+        "author_members_preserved": 6,
+        "full_target_solved": false,
+        "mathematics_machine_checked": false,
+        "members": 11,
+        "regular_data_only": true,
+        "status": "PASS",
+        "verdict": "ACCEPT_SCOPED_PARTIAL_ANALYSIS"
+      }
+    },
+    {
+      "optimized": false,
+      "relocated_hostile_imports": true,
+      "result": {
+        "author_members_preserved": 6,
+        "full_target_solved": false,
+        "mathematics_machine_checked": false,
+        "members": 11,
+        "regular_data_only": true,
+        "status": "PASS",
+        "verdict": "ACCEPT_SCOPED_PARTIAL_ANALYSIS"
+      }
+    },
+    {
+      "optimized": true,
+      "relocated_hostile_imports": true,
+      "result": {
+        "author_members_preserved": 6,
+        "full_target_solved": false,
+        "mathematics_machine_checked": false,
+        "members": 11,
+        "regular_data_only": true,
+        "status": "PASS",
+        "verdict": "ACCEPT_SCOPED_PARTIAL_ANALYSIS"
+      }
+    }
+  ],
+  "final_audit_anchor_controls": [
+    {
+      "case": "archive anchor mutation",
+      "exit_code": 1,
+      "result": {
+        "status": "REJECT",
+        "reason": "archive anchor"
+      }
+    },
+    {
+      "case": "manifest anchor mutation",
+      "exit_code": 1,
+      "result": {
+        "status": "REJECT",
+        "reason": "manifest anchor"
+      }
+    }
+  ],
+  "corpus_binding": {
+    "revision": "37e53eabe540fb458758e198be61634bd02ee008",
+    "files": [
+      {
+        "name": "problems.json",
+        "bytes": 68931837,
+        "sha256": "04128381e42a5e312326d74adb0947ee02062ade70229e02d3060ac4ef9942cf",
+        "match": true
+      },
+      {
+        "name": "research_results.json",
+        "bytes": 80334822,
+        "sha256": "8da848d31c20eb4eecaa07702eced4724aa4a89f877c2a0774d9f3138389aa6b",
+        "match": true
+      }
+    ],
+    "statement_sha256": "6242182bda554114d13ac5b3432e9f1e9bfce550ca5ec5459ab3e2f8d252cd63",
+    "complete_problem_report_review_sha256": "fbee43cce846d99a5a70cd54bcd08315015259e2855eab09a3b6250883ee89b2",
+    "complete_pair_bytes": 8526,
+    "report_empty": true
+  },
+  "source_documents_byte_verified": [
+    {
+      "name": "k3",
+      "title": "K3: A New Problem List in Low-Dimensional Topology",
+      "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
+      "bytes": 6578041,
+      "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f"
+    },
+    {
+      "name": "bcs",
+      "title": "Some groups of mapping classes not realized by diffeomorphisms",
+      "url": "https://arxiv.org/pdf/0905.2360",
+      "bytes": 197423,
+      "sha256": "c263cc57ec8c67a2bd366bc1c4334f27d926264f80a2ab9537b64b78bd396f6f"
+    },
+    {
+      "name": "km",
+      "title": "Signatures of foliated surface bundles and the symplectomorphism groups of surfaces",
+      "url": "https://arxiv.org/pdf/math/0305182",
+      "bytes": 262939,
+      "sha256": "835ba2909ea6d28dcce4675ef5e1be8211e255fb102fc3670625542249237c42"
+    },
+    {
+      "name": "nariman",
+      "title": "Stable homology of surface diffeomorphism groups made discrete",
+      "url": "https://arxiv.org/pdf/1506.00033",
+      "bytes": 649522,
+      "sha256": "f7cdc46216c3367be42d1d3b32222fb198a4f874db1c2c647ef430d26af62b71"
+    },
+    {
+      "name": "bowden",
+      "title": "Flat structures on surface bundles",
+      "url": "https://msp.org/agt/2011/11-4/agt-v11-n4-p12-p.pdf",
+      "bytes": 321152,
+      "sha256": "30da6eee70d3f42a47078e0386948bd307d7bb6a184d1b8e63509eb91389a451"
+    },
+    {
+      "name": "hillman",
+      "title": "Sections of surface bundles",
+      "url": "https://msp.org/gtm/2015/19-1/gtm-v19-n1-p01-p.pdf",
+      "bytes": 339826,
+      "sha256": "51384076cfe2ab4667743ad02fe6a22cee5a977515d6ffe6f136adc869db6b18"
+    },
+    {
+      "name": "nariman_2024",
+      "title": "On flat manifold bundles and the connectivity of Haefliger's classifying spaces",
+      "url": "https://arxiv.org/pdf/2202.00052",
+      "bytes": 227532,
+      "sha256": "82676714cd553609d3afc8d73e83388b84e357f8f42341b128f69da2efbcf1ba"
+    }
+  ],
+  "mathematics_formally_verified": false,
+  "packaged_code": false,
+  "execution_boundary": "External integrity utilities only; no archive member executed. Python -I -S -B before all imports. Hostile relocation and optimized checks test those external utilities, not mathematics.",
+  "archives": [
+    {
+      "name": "KIRBY_FLAT_2780_AUTHOR_SAFE_FREEZE.zip",
+      "bytes": 12700,
+      "sha256": "438631e930255782b67ab90b2139255b223857a7d5cdb874496ff16f041f4f91"
+    },
+    {
+      "name": "KIRBY_FLAT_2780_INDEPENDENT_AUDIT_SAFE.zip",
+      "bytes": 25111,
+      "sha256": "2805bf6d20db068e4bbd1521312fa9487717556171fbbf19b0d1714bd43c79c5"
+    }
+  ],
+  "external_manifests": [
+    {
+      "name": "KIRBY_FLAT_2780_AUTHOR_EXTERNAL_MANIFEST.json",
+      "bytes": 1400,
+      "sha256": "392de62a32bceb3d8aa7919d9021f7c9866731ce4d23a05f0cac323416bf60d1"
+    },
+    {
+      "name": "KIRBY_FLAT_2780_INDEPENDENT_AUDIT_EXTERNAL_MANIFEST.json",
+      "bytes": 2429,
+      "sha256": "4ea99b1574de3dde648d582462007e7c8d3ddc90815aaa2da098ce1b23a1291a"
+    }
+  ]
+}
