@@ -862,7 +862,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 851 | 20002051 / AIM-GEOMETRY-0389 | Higher-even-dimensional Polyakov formulae | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 852 | 20002320 / AIM-LOGIC-0096 | Effective isolation and descent to the prime model | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 853 | 2303021 / AMR-022-3021 | Research Problems in Function Theory — Problem 3.21 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 854 | 2303030 / AMR-022-3030 | Research Problems in Function Theory — Problem 3.30 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 854 | 2303030 / AMR-022-3030 | Research Problems in Function Theory — Problem 3.30 | 0.0975 | 6.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-06: credited classical finite-rank rigidity: only circles have finite-rank double-layer operators on smooth Jordan curves; circle rank one. Miyanishi (2018), Cor. 5.1, and earlier Khavinson-Putinar-Shapiro / Miyanishi-Suzuki statements; original Shapiro book proof uninspected. Signed source-normal normalization and C-to-L2 rank transfer independently audited; no new rigidity proof or novelty claim. [Audit](attempts/2303030/audit/AUDIT.md). |  |
 | 855 | 2305007 / AMR-022-5007 | Research Problems in Function Theory — Problem 5.7 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 856 | 2307028 / AMR-022-7028 | Research Problems in Function Theory — Problem 7.28 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 857 | 2307042 / AMR-022-7042 | Research Problems in Function Theory — Problem 7.42 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
