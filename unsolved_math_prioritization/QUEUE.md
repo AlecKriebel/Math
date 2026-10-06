@@ -877,7 +877,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 866 | 30003245 / OWR-15170-007 | Bounded-House Finiteness for Totally Real Algebraic Integers | 0.0970 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 867 | 30003521 / OWR-15437-003 | NLS Approximation on Periodic Nonlinear Wave Graphs | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 868 | 30003570 / OWR-15582-004 | Heegner Divisors and the Pseudo-Effective Cone | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 869 | 30003596 / OWR-15586-007 | Polyhedral Global Newton–Okounkov Bodies for Mori Dream Spaces | 0.0967 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 869 | 30003596 / OWR-15586-007 | Polyhedral Global Newton–Okounkov Bodies for Mori Dream Spaces | 0.0967 | 5.5 | 3 | 2017 | unsolved | 5/5 |  | Accepted corrected bounded audit: prior affirmative flag-on-X claim and later attribution verified; exact proof not independently certified here; no refutation or current-open classification. Unsolved records our investigation only. Conic diagnostic, sufficient descent criterion, cubic cone/semigroup separation and full-lattice criterion; [audit](attempts/30003596/README.md). |  |
 | 870 | 30003711 / OWR-15987-022 | Schwarz Genus of the Flex-Point Cover | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 871 | 30003771 / OWR-16158-014 | Nonabelian Torsors and Essentially Finite Parabolic Bundles | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 872 | 30003800 / OWR-16162-015 | Unramified Cohomology of Mixed-Type Classifying Spaces | 0.0964 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
