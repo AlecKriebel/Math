@@ -62,3 +62,5 @@ all-mandatory inference justified explicitly. This does not establish prior
 coverage of Kaibel Problem1 or affect its authenticated mathematical proof.
 Sealed classicalV1 is historical; corrected_v2 is requested and must be reviewed
 before effective root priority adjudication. No publication clearance is granted.
+
+2026-10-06T05:39:13.202700+00:00 — Superseding disposition: F01 is CLOSED in corrected classicalV2; root read all exact primary§4.3.2 and corrected report. All final reports authenticated. ROOT_PRIORITY_ADJUDICATION_20261006.md and ROOT_PRIORITY_GATE_20261006.json now govern current priority. Prior interim observations above are retained history; no unsupported V1 inference survives in current comparison.

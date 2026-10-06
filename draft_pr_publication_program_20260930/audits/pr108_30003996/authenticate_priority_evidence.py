@@ -24,8 +24,9 @@ for f in spec['families']:
  require(sha(verdict.read_bytes())==f['root_read_verdict_sha256'],'root verdict-reading pin drift')
  for name in f['manifests']:
   M=D/name;mb=M.read_bytes();x=json.loads(mb)
+  binding_base=(D/f.get('manifest_base_overrides',{}).get(name,'.')).resolve()
   for row in rows(x):
-   q=resolve(D,row);require(q.is_file() and not q.is_symlink(),'missing/nonregular manifested body '+str(q))
+   q=resolve(binding_base,row);require(q.is_file() and not q.is_symlink(),'missing/nonregular manifested body '+str(q))
    b=q.read_bytes();prefix='append-only' in row.get('snapshot_semantics','') and 'prefix' in row.get('snapshot_semantics','')
    actual=b[:row['bytes']] if prefix else b
    require(len(actual)==row['bytes'] and sha(actual)==row['sha256'],'body pin drift '+str(q))
