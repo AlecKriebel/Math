@@ -836,7 +836,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 825 | 30001336 / OWR-4084-010 | Rooted-Tree Expansions of Renormalized Two-Point Functions | 0.0985 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 826 | 30001460 / OWR-4332-001 | Geometric Quotients of K-Sheets | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 827 | 30001478 / OWR-4335-003 | Prime Ideals and Coordinate-Ring Maps of $R(\alpha,\beta)$ | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 828 | 30001522 / OWR-4413-005 | Persistent Gaps between Free $p$-Rank and Toral Rank | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 828 | 30001522 / OWR-4413-005 | Persistent Gaps between Free $p$-Rank and Toral Rank | 0.0983 | 5.5 | 3 | 2010 | claimed_solved | 2/5 |  | [Classical Wu-manifold witness: actual free toral rank 0, free p-rank 1 for every odd p; two AI audits accept; no novelty certification](attempts/30001522/README.md) |  |
 | 829 | 30006162 / OWR-14299082-004 | Generic Point Property for Exceptional Surface Homeomorphisms | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 830 | 30006166 / OWR-14299082-012 | Hyperfiniteness of Generic Wreath-Product Actions | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 831 | 30006464 / OWR-14299577-017 | Short Coefficient Detection of Cusp-Form Norms | 0.0982 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
