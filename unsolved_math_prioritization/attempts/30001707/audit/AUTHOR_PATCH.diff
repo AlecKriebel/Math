@@ -1,0 +1,98 @@
+--- a/README.md
++++ b/README.md
+@@ -6,19 +6,21 @@
+ 
+ Run exact checks:
+ 
+-    python -B certificate.py
+-    python -O -B certificate.py
++    python -I -S -B certificate.py
++    python -I -S -O -B certificate.py
+ 
+-A separately supplied strict external manifest pins every member, including the verifier. Before executing verify.py, compare its SHA-256 against that trusted manifest; do not accept a replacement manifest as proof of authenticity. Then run from any working directory:
++A separately supplied strict external manifest pins every member, including the verifier. Before executing any Python entry point, verify the separately trusted external manifest hash and the entry-point file hash. Do not accept a replacement manifest as proof of authenticity. Start a trusted Python interpreter with -I -S, as below, so package-local imports, PYTHONPATH, and site customizations cannot run before validation. The entry points also reject missing isolation flags; that guard cannot undo code already run during an unsafe interpreter startup. Then run from any working directory:
+ 
+-    python -B /path/to/package/verify.py /path/to/external-manifest.json
+-    python -O -B /path/to/package/verify.py /path/to/external-manifest.json
++    python -I -S -B /path/to/package/verify.py /path/to/external-manifest.json
++    python -I -S -O -B /path/to/package/verify.py /path/to/external-manifest.json
+ 
+ To replay the four positive and 38 negative controls after the same bootstrap:
+ 
+-    python -B /path/to/package/controls.py /path/to/external-manifest.json
+-    python -O -B /path/to/package/controls.py /path/to/external-manifest.json
++    python -I -S -B /path/to/package/controls.py /path/to/external-manifest.json
++    python -I -S -O -B /path/to/package/controls.py /path/to/external-manifest.json
+ 
+ No network, dependencies, dataset, or third-party source file is needed. The verifier rejects every unexpected node, directory, symlink, missing member, size/hash mismatch, or changed expected result. The external author receipt records normal, optimized, relocation, and adversarial controls. Hash integrity is not a mathematical proof or independent acceptance.
+ 
+ The archive contains only authored mathematics, authored verification code, and public metadata. It excludes source PDFs, extracts, images, dataset records, and private coordination material. This author freeze is not publication approval or independent acceptance.
++
++Independent hardening correction: all verifier and certificate subprocesses use isolated, no-site Python startup. This prevents the independently reproduced extra-module import-shadowing execution defect in the author freeze. No mathematical result, finite check, or expected check output was changed. This is a corrected derivative, not the immutable original author freeze.
+--- a/certificate.py
++++ b/certificate.py
+@@ -1,5 +1,10 @@
+ #!/usr/bin/env python3
+ """Exact finite/symbolic consistency checks, not a general-conjecture proof."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site):
++    sys.stderr.write("ISOLATED STARTUP REQUIRED: use python -I -S -B (optionally -O)\n")
++    sys.exit(2)
++
+ from collections import Counter
+ from fractions import Fraction as F
+ import hashlib
+--- a/controls.py
++++ b/controls.py
+@@ -2,6 +2,11 @@
+ """Replay normal/optimized/relocation/adversarial controls in temporary directories.
+ Bootstrap this file and the external manifest from separately trusted hashes first.
+ """
++import sys
++if not (sys.flags.isolated and sys.flags.no_site):
++    sys.stderr.write("ISOLATED STARTUP REQUIRED: use python -I -S -B (optionally -O)\n")
++    sys.exit(2)
++
+ import hashlib
+ import json
+ import os
+@@ -36,7 +41,7 @@
+             return {'code':91,'reason':'external manifest bootstrap pin rejected'}
+         if not stat.S_ISREG((p/'verify.py').lstat().st_mode) or sha(p/'verify.py')!=verifier_hash:
+             return {'code':92,'reason':'verifier bootstrap pin rejected'}
+-        args=[sys.executable]+(['-O'] if optimized else [])+['-B',str(p/'verify.py'),str(m)]
++        args=[sys.executable]+(['-O'] if optimized else [])+['-I','-S','-B',str(p/'verify.py'),str(m)]
+         r=subprocess.run(args,cwd='/tmp',capture_output=True,text=True,timeout=45,check=False)
+         return {'code':r.returncode,'reason':r.stderr.strip(),'stdout':r.stdout}
+ 
+--- a/verify.py
++++ b/verify.py
+@@ -1,5 +1,10 @@
+ #!/usr/bin/env python3
+ """Strict external-manifest verification followed by pinned exact checks."""
++import sys
++if not (sys.flags.isolated and sys.flags.no_site):
++    sys.stderr.write("ISOLATED STARTUP REQUIRED: use python -I -S -B (optionally -O)\n")
++    sys.exit(2)
++
+ import hashlib
+ import json
+ from pathlib import Path
+@@ -10,7 +15,7 @@
+ 
+ FILES = {"README.md", "RESULT.md", "APPROACHES.md", "SOURCES.json",
+          "PROVENANCE.json", "EXPECTED.json", "certificate.py", "verify.py", "controls.py"}
+-CERTIFICATE_SHA256 = "731e6a9ebafd45e2e43e186f8480dfbb2b7ee0a48feb186bb377b774ad56b29b"
++CERTIFICATE_SHA256 = "73df2d31ad38d623cd8936adb1b210f6669d7437ce7f9f4f59e1dc5d4f34afee"
+ 
+ 
+ def need(ok, message):
+@@ -63,7 +68,7 @@
+         need(digest(data)==entry["sha256"], "hash mismatch: "+name)
+     need(digest((root/"certificate.py").read_bytes())==CERTIFICATE_SHA256,
+          "certificate source pin mismatch; execution refused")
+-    args=[sys.executable]+(["-O"] if sys.flags.optimize else [])+["-B",str(root/"certificate.py")]
++    args=[sys.executable]+(["-O"] if sys.flags.optimize else [])+["-I","-S","-B",str(root/"certificate.py")]
+     completed=subprocess.run(args,cwd=root,capture_output=True,text=True,timeout=30,check=False)
+     need(completed.returncode==0 and not completed.stderr, "certificate process failed")
+     actual=parse(completed.stdout)
