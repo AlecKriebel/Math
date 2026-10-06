@@ -869,7 +869,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 858 | 2780 / KP-2.32 | Kirby Problem 2.32 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 859 | 2781 / KP-2.33 | Kirby Problem 2.33 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 861 | 2997 / KP-4.121 | Kirby Problem 4.121 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 861 | 2997 / KP-4.121 | Kirby Problem 4.121 | 0.0975 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 862 | 3015 / KP-5.8 | Kirby Problem 5.8 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 863 | 30002888 / OWR-13682-010 | Forgetful Functors for Mixed Perverse Sheaves | 0.0973 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 864 | 30002904 / OWR-13687-003 | Generic Infinite Index Subgroups of Integral Special Linear Groups | 0.0973 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |

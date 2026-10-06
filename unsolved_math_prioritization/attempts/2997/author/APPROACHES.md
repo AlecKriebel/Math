@@ -1,0 +1,11 @@
+# Bounded approaches
+
+No more than five substantive approaches were pursued. These are mathematical attempts and their stopping points, not claims of a solution.
+
+1. Euler characteristic and binding geography. Decompose the open book into its mapping torus and binding neighborhood. This yields exact genus identities, the lower bound of k+1 spherical components when b_2=2k and pi_1=1, and the connected-binding obstruction. Completed as Proposition 1.
+2. Identity-monodromy construction and converse. Use van Kampen, Poincare-Lefschetz duality, the three-dimensional Poincare theorem, and a product handle construction. This fully classifies the boundary-relative identity-monodromy case and proves the binding bound sharp. Completed as Proposition 2. The converse does not apply to arbitrary monodromy.
+3. Relaxation to homologically trivial monodromy. The sphere twist on S^2 x I is homologically trivial yet produces the odd S^2-bundle. Hsueh's explicit diagrams verify that the proposed relaxation fails. This is a known example used as a countercheck, not a newly discovered counterexample to Kirby's question.
+4. Simplicial-volume and parallelizability obstructions. Checked Kastenholz's primary preprint and the subsequent Lawande-Saha preprint. Their general counterexamples have nontrivial fundamental group, so they do not answer the simply connected clause. No new obstruction was proved here.
+5. Gauge-theoretic shortcut from spherical binding. Proposition 1 alone does not prove that any counted sphere is homologically essential. The boundary of an entire page is null-homologous as an oriented sum, and the one-component sphere binding of the standard S^4 is itself null-homologous. For nontrivial monodromy, homology must also account for monodromy and gluing maps. We established no theorem forcing an essential sphere in the relevant generality, so this approach is stopped without claiming a Seiberg-Witten obstruction. In particular, the S^4 example is a warning against an automatic inference, not a proof that all such spheres are null-homologous when b_2>0.
+
+Outcome: a sharp elementary necessary condition and a complete restricted classification. The unrestricted simply connected signature-zero question remains unresolved by this work. No novelty claim is made for the elementary consequences or the restricted classification.
