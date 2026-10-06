@@ -932,7 +932,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 921 | 2950 / KP-4.74 | Kirby Problem 4.74 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 922 | 2986 / KP-4.110 | Kirby Problem 4.110 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 923 | 2999 / KP-4.123 | Kirby Problem 4.123 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 924 | 30006628 / OWR-14299911-031 | Property T for Random Free-Product Quotients above One-Third Density | 0.0960 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 924 | 30006628 / OWR-14299911-031 | Property T for Random Free-Product Quotients above One-Third Density | 0.0960 | 5.5 | 3 | 2026 | claimed_solved | 1/5 |  | Scoped full proof for n>=3 fixed nontrivial finitely generated factors, fixed inverse-closed generating alphabets/ball radius and 1/3<d<1, all integer relator lengths; unchanged proof accepted by two independent AI mathematical audits. Broader two-factor question excluded; no exhaustive novelty, human peer-review or formal certification claim. |  |
 | 925 | 3075 / OPG-605 | Average diameter of a bounded cell of a simple arrangement | 0.0960 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 926 | 3081 / OPG-2435 | Monochromatic empty triangles | 0.0960 | 5.5 | 2 | unknown | queued | 0/5 |  |  |  |
 | 927 | 3800003 / AMR-037-0003 | Degenerate facets of polytopes | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
