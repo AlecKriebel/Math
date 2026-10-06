@@ -7,8 +7,9 @@ A = Path(__file__).resolve().parent
 C = A.parents[2]
 
 def main():
-    parser = argparse.ArgumentParser(); parser.add_argument('--restore', action='store_true'); args = parser.parse_args()
-    receipt = json.loads((A / 'ROOT_COMPLETED_PRIVATE_BUFFER_COMPRESSION_20261006.json').read_text())
+    parser = argparse.ArgumentParser(); parser.add_argument('--restore', action='store_true'); parser.add_argument('--batch', choices=['pr107', 'pr104'], default='pr107'); args = parser.parse_args()
+    name = 'ROOT_COMPLETED_PRIVATE_BUFFER_COMPRESSION_20261006.json' if args.batch == 'pr107' else 'ROOT_COMPLETED_PR104_PRIVATE_BUFFER_COMPRESSION_20261006.json'
+    receipt = json.loads((A / name).read_text())
     for row in receipt['rows']:
         packed = C / row['compressed_path']; original = C / row['original_path']
         if not packed.resolve().is_relative_to(C) or not original.resolve().is_relative_to(C) or packed.is_symlink():
