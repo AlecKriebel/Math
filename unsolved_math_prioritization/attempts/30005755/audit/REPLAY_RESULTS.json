@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "command": "python3 audit_checks.py --check AUDIT_RESULTS.json",
+      "exit_code": 0,
+      "output": "PASS: independent algebra, exact determinant, kernel, E-space, and witness checks"
+    },
+    {
+      "command": "python3 author/verification.py --check author/expected_results.json",
+      "exit_code": 0,
+      "output": "PASS: exact determinant, symbolic polynomial, module witnesses, and arithmetic checks"
+    },
+    {
+      "command": "python3 author/verify_manifest.py",
+      "exit_code": 0,
+      "output": "PASS: all 9 frozen files match; no extras"
+    },
+    {
+      "negative_control": "mutated independent expected determinant",
+      "rejected": true
+    },
+    {
+      "negative_control": "author manifest mutation",
+      "rejected": true
+    },
+    {
+      "negative_control": "author manifest extra_file",
+      "rejected": true
+    }
+  ],
+  "schema": "tf-equivalence-independent-replay-v1"
+}
