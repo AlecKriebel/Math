@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+"""Authenticate actual complete local bodies and save only metadata."""
+from pathlib import Path
+import datetime, hashlib, json, os
+D=Path(__file__).resolve().parent
+A=D.parent
+now=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+def pin(p):
+    b=p.read_bytes()
+    return {'path':str(p.relative_to(D)) if p.is_relative_to(D) else str(p),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def dump(name,obj):
+    (D/name).write_text(json.dumps(obj,indent=2,sort_keys=True)+'\n')
+input_files=[
+A/'ROOT_MATHEMATICAL_GATE_20261006.json',
+A/'PRIMARY_SOURCE_DOWNLOAD_PINS_20261006.json',
+A/'original_head_authentication_20261006/original_attempt/source_record.json',
+A/'original_head_authentication_20261006/original_attempt/prior_imported_report.json',
+A/'original_head_authentication_20261006/original_attempt/PROOF.md',
+A/'original_head_authentication_20261006/POLICY_AGENTS.md',
+A/'original_head_authentication_20261006/POLICY_unsolved_math_prioritization_AGENTS.md'
+]
+inputs=[pin(p) for p in input_files]
+proof=next(p for p in inputs if p['path'].endswith('/PROOF.md'))
+if proof['bytes']!=6990 or proof['sha256']!='8478d2a792944c5fb9e8a53324e0c6bce8eba317de29c31a6fcbd6ca0205709d':
+    raise RuntimeError('original PROOF pin mismatch')
+gate=json.loads(input_files[0].read_text())
+if gate['original_head']!='3d159f0a00d0bd7ff8d558d6fbc75af5094f7a35' or gate['priority_clearance'] is not False:
+    raise RuntimeError('input gate mismatch')
+reused=[]
+for entry in json.loads(input_files[1].read_text())['sources']:
+    p=Path(entry['path']); item=pin(p)
+    if item['sha256']!=entry['sha256'] or item['bytes']!=entry['bytes']:
+        raise RuntimeError('reused source body pin mismatch')
+    item['read_scope_this_family']='Root-pinned original sourcepair acknowledged/authenticated by byte read; source theorem mathematical scope is accepted from root gate. No new full historical-body reading is claimed by this family.'
+    reused.append(item)
+dump('INPUT_PINS.json',{'schema':'pr110-modern-input-pins/v1','UTC':now(),'actual_metadata_builder_PID':os.getpid(),'inputs':inputs,'reused_readonly_primary_sourcepins':reused,'private_body_redistribution':False})
+sources=json.loads((D/'SOURCE_READ_DESCRIPTIONS.json').read_text())['source_descriptions']
+rows=[]
+for s in sources:
+    pdf=D/'private_sources'/(s['name']+'.pdf')
+    txt=D/'private_review_materials'/(s['name']+'.txt')
+    if not pdf.read_bytes().startswith(b'%PDF-'):
+        raise RuntimeError('non-PDF primary source '+s['name'])
+    row=dict(s)
+    row['private_pdf_body_pin']=pin(pdf);row['private_extract_body_pin']=pin(txt)
+    row['extracted_page_count']=txt.read_text().count('\f')
+    row['actual_download_receipt']=json.loads((D/'actual_operations'/('download_'+s['name'])/'execution.json').read_text())
+    row['actual_extract_receipt']=json.loads((D/'actual_operations'/('extract_'+s['name'])/'execution.json').read_text())
+    if row['actual_download_receipt']['exit_code']!=0 or row['actual_extract_receipt']['exit_code']!=0:
+        raise RuntimeError('uncompleted primary acquisition '+s['name'])
+    rows.append(row)
+gap_payload=D/'private_sources/GKR_spatial_final.pdf'
+gap_data=gap_payload.read_bytes()
+if gap_data.startswith(b'%PDF-') or b'access" content="No"' not in gap_data:
+    raise RuntimeError('expected documented final subscription HTML response changed')
+gap={'doi':'10.1007/s10883-022-09608-y','body_available':False,'body_read':False,'payload_name_has_pdf_suffix_but_is_html':True,'actual_failed_payload_pin':pin(gap_payload),
+     'actual_download_receipt':json.loads((D/'actual_operations/download_GKR_spatial_final/execution.json').read_text()),
+     'actual_extract_receipt':json.loads((D/'actual_operations/extract_GKR_spatial_final/execution.json').read_text()),
+     'essential_selected_candidate_version_gap':True,
+     'preprint_final_body_identity_asserted':False}
+if gap['actual_extract_receipt']['exit_code']!=1:
+    raise RuntimeError('documented parser failure changed')
+dump('SOURCE_READ_LEDGER.json',{'schema':'pr110-modern-primary-body-reads/v1','UTC':now(),'actual_metadata_builder_PID':os.getpid(),'actual_access_date':'2026-10-06','primary_bodies':rows,'unread_selected_candidate_final':gap,
+'interpretation':'Section read scopes are reviewer attestations of actual text inspection, distinct from byte authentication and downloads. Download/extraction execution PIDs are actual child processes, not fictitious mathematical reader PIDs.'})
+private=[]
+for folder in ('private_sources','private_review_materials'):
+    for p in sorted((D/folder).rglob('*')):
+        if p.is_file():private.append(pin(p))
+dump('PRIVATE_MATERIAL_PINS.json',{'schema':'pr110-modern-private-material-pins/v1','UTC':now(),'actual_metadata_builder_PID':os.getpid(),'private_complete_body_metadata_only':private,'private_paths_excluded_from_public_payload':True})
+for name in ('TRANSFER_NORMAL.json','TRANSFER_OPTIMIZED.json'):
+    x=json.loads((D/name).read_text())
+    if x['status']!='passed' or x['explicit_checks']!=49:
+        raise RuntimeError('control result mismatch')
+v=json.loads((D/'VERDICT.json').read_text())
+v['UTC_report_authentication']=now();v['actual_metadata_builder_PID']=os.getpid()
+v['root_mathematical_gate_pin']=inputs[0];v['private_material_pins_file']='PRIVATE_MATERIAL_PINS.json'
+dump('VERDICT.json',v)
+print(json.dumps({'status':'authenticated','actual_PID':os.getpid(),'source_bodies':len(rows),'private_bodies':len(private),'required_gap':'M1','priority_clearance':False}))

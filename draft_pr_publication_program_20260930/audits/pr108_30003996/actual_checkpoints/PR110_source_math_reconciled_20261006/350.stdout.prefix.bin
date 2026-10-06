@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Independent exact unit-normal chord calculations; no orbit sampling proof."""
+from pathlib import Path
+from fractions import Fraction as F
+import hashlib
+import json
+
+counts={}
+def ck(name,value):
+    assert value,name
+    counts[name]=counts.get(name,0)+1
+def dot(x,y):
+    return sum(a*b for a,b in zip(x,y))
+def solve(u,v,r,s):
+    det=u[0]*v[1]-u[1]*v[0]
+    assert det!=0
+    return ((r*v[1]-u[1]*s)/det,(u[0]*s-r*v[0])/det)
+def circle(t):
+    return ((1-t*t)/(1+t*t),2*t/(1+t*t))
+
+normals=[circle(F(x,2)) for x in (-8,-4,-2,-1,0,1,2,4,8)]+[(F(-1),F(0))]
+chords=0
+gamma_signs=set()
+normal_signs=set()
+for aa,bb,cc in ((5,4,3),(13,5,12),(25,24,7)):
+    a,b,c=map(F,(aa,bb,cc))
+    for nx,ny in normals:
+        K=a*a*nx*nx+b*b*ny*ny
+        normal=(nx,ny);tangent=(-ny,nx)
+        hs=[F(j,40)*a for j in range(1,40)
+            if 0<K-(F(j,40)*a)**2<b*b]
+        assert hs
+        selected=sorted(set([hs[0],hs[len(hs)//2],hs[-1]]))
+        for h in selected:
+            lam=K-h*h
+            # A=X-k sqrt(lam)e, B=X+k sqrt(lam)e.
+            center_s=-h*nx*ny*c*c/K
+            X=(h*nx+center_s*tangent[0],h*ny+center_s*tangent[1])
+            k=a*b/K
+            ck("unit_normal",dot(normal,normal)==1 and dot(normal,tangent)==0)
+            ck("caustic_support",h*h==(a*a-lam)*nx*nx+(b*b-lam)*ny*ny)
+            ck("nested_caustic",0<lam<b*b)
+            # Both coefficients of the quadratic-field endpoint equation.
+            const=X[0]**2/a**2+X[1]**2/b**2+k*k*lam*(tangent[0]**2/a**2+tangent[1]**2/b**2)
+            root=2*k*(X[0]*tangent[0]/a**2+X[1]*tangent[1]/b**2)
+            ck("endpoint_ellipse_constant",const==1)
+            ck("endpoint_ellipse_root",root==0)
+            qs=[]
+            for sigma in (1,-1):
+                Y=(X[0]-sigma*c,X[1])
+                height=h-sigma*c*nx
+                ck("positive_focal_height",height>0)
+                r0=a-sigma*c*X[0]/a
+                r1=-sigma*c*k*tangent[0]/a
+                ck("endpoint_focus_norm_constant",dot(Y,Y)+k*k*lam==r0*r0+r1*r1*lam)
+                ck("endpoint_focus_norm_root",2*k*dot(Y,tangent)==2*r0*r1)
+                product=r0*r0-r1*r1*lam
+                ck("positive_focal_product",product>0)
+                # The two endpoint equations become these rational equations
+                # after their sum and difference; no half-angle formula is used.
+                Q=solve(Y,tangent,dot(Y,Y)+k*k*lam,2*dot(Y,tangent))
+                ck("antipedal_average_equation",dot(Q,Y)==dot(Y,Y)+k*k*lam)
+                ck("antipedal_difference_equation",dot(Q,tangent)==2*dot(Y,tangent))
+                q=product/height
+                ck("antipedal_positive_norm",q>0 and dot(Q,Q)==q*q)
+                qs.append(q)
+            ck("focal_height_product",(h-c*nx)*(h+c*nx)==b*b-lam)
+            E=(a*a+b*b)*lam-a*a*b*b
+            target=2*c*nx*E/(K*(b*b-lam))
+            ck("independent_edge_difference",qs[0]-qs[1]==target)
+            # Delta y = 2ab*sqrt(lam)*nx/K; Gamma has the inverse sqrt.
+            gamma_times_dy=c*E/(a*b*(b*b-lam))*(2*a*b*nx/K)
+            ck("common_coefficient_telescoping",qs[0]-qs[1]==gamma_times_dy)
+            gamma_signs.add((E>0)-(E<0));normal_signs.add((nx>0)-(nx<0))
+            chords+=1
+ck("both_coefficient_signs",{-1,1}.issubset(gamma_signs))
+ck("both_displacement_signs_and_zero",normal_signs=={-1,0,1})
+
+# No orbit test is being substituted for telescoping: this verifies the exact
+# cyclic identity symbolically for distinct formal vertex coordinates.
+import sympy as S
+for n in range(3,13):
+    ys=S.symbols("y:"+str(n))
+    ck("cyclic_telescoping",S.expand(sum(ys[(i+1)%n]-ys[i] for i in range(n)))==0)
+aa,bb,lam=S.symbols("a b lam",positive=True)
+E=(aa*aa+bb*bb)*lam-aa*aa*bb*bb
+ck("zero_coefficient_parameter",S.simplify(E.subs(lam,aa*aa*bb*bb/(aa*aa+bb*bb)))==0)
+root=Path(__file__).resolve().parent
+result={"status":"PASS","exact_assertions":sum(counts.values()),
+        "rational_unit_normal_chords":chords,"checks":counts,
+        "artifact_sha256":hashlib.sha256((root/"author_replay/PROOF.md").read_bytes()).hexdig
