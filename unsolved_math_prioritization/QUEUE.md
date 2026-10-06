@@ -864,7 +864,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 853 | 2303021 / AMR-022-3021 | Research Problems in Function Theory — Problem 3.21 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 854 | 2303030 / AMR-022-3030 | Research Problems in Function Theory — Problem 3.30 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 855 | 2305007 / AMR-022-5007 | Research Problems in Function Theory — Problem 5.7 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 856 | 2307028 / AMR-022-7028 | Research Problems in Function Theory — Problem 7.28 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 856 | 2307028 / AMR-022-7028 | Research Problems in Function Theory — Problem 7.28 | 0.0975 | 6.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-06: credited prior affirmative result. Guo-Xiao (2026), arXiv:2608.04540v1, Theorem 1.1 and Corollary 1.2 settle both alternatives; complete proof verified by independent AI audit. For continuous f, the circle integral/r^2 tends to zero pointwise through all small radii. Preprint status; journal acceptance unverified; no novelty claim. [Audit](attempts/2307028/audit/INDEPENDENT_MATHEMATICAL_AUDIT.md). |  |
 | 857 | 2307042 / AMR-022-7042 | Research Problems in Function Theory — Problem 7.42 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 858 | 2780 / KP-2.32 | Kirby Problem 2.32 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 859 | 2781 / KP-2.33 | Kirby Problem 2.33 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |

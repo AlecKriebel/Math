@@ -1,0 +1,152 @@
+{
+  "adversarial_cases": [
+    {
+      "case": "unexpected_executable",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "unexpected_cache",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "hidden_file",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "traversal",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "absolute_path",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "duplicate_member",
+      "reason": "duplicate_member",
+      "result": "rejected"
+    },
+    {
+      "case": "missing_member",
+      "reason": "exact_namespace",
+      "result": "rejected"
+    },
+    {
+      "case": "symlink_member",
+      "reason": "regular_file",
+      "result": "rejected"
+    },
+    {
+      "case": "executable_member_mode",
+      "reason": "executable_mode",
+      "result": "rejected"
+    },
+    {
+      "case": "same_length_payload_tamper",
+      "reason": "payload_digest",
+      "result": "rejected"
+    },
+    {
+      "case": "length_payload_tamper",
+      "reason": "payload_length",
+      "result": "rejected"
+    },
+    {
+      "case": "manifest_pin_tamper",
+      "reason": "manifest_pin",
+      "result": "rejected"
+    },
+    {
+      "case": "json_duplicate_key",
+      "reason": "duplicate_json_key",
+      "result": "rejected"
+    },
+    {
+      "case": "nonfinite_json",
+      "reason": "nonfinite_json",
+      "result": "rejected"
+    },
+    {
+      "case": "nul_payload",
+      "reason": "nul_content",
+      "result": "rejected"
+    },
+    {
+      "case": "archive_comment",
+      "reason": "archive_comment",
+      "result": "rejected"
+    },
+    {
+      "case": "truncated_zip",
+      "reason": "BadZipFile",
+      "result": "rejected"
+    },
+    {
+      "case": "corrupt_compressed_payload",
+      "reason": "BadZipFile",
+      "result": "rejected"
+    },
+    {
+      "case": "byte_distinct_repack",
+      "reason": "archive_pin",
+      "result": "rejected"
+    }
+  ],
+  "author_archive": {
+    "archive_bytes": 6273,
+    "archive_sha256": "71fea7845b03ca825e1e4c34524b6b3ab312d5433480eb159c757a0aa3200fa2",
+    "crc": "pass",
+    "manifest_sha256": "b1bd22260ecff4940ee4069ae493e5c21dfbb508a570b00968c37e7adcc0d786",
+    "members": 5,
+    "payload_hashes": "pass",
+    "static_inventory": "pass"
+  },
+  "delivered_payload_execution": "not applicable; five static data files",
+  "execution_is_validation_harness_only": true,
+  "formal_proof_checker": false,
+  "modes": [
+    {
+      "adversarial_rejections": 19,
+      "isolated": true,
+      "mode": "normal",
+      "no_site": true,
+      "optimized": 0,
+      "result": "pass"
+    },
+    {
+      "adversarial_rejections": 19,
+      "isolated": true,
+      "mode": "optimized",
+      "no_site": true,
+      "optimized": 1,
+      "result": "pass"
+    },
+    {
+      "adversarial_rejections": 19,
+      "isolated": true,
+      "mode": "relocated",
+      "no_site": true,
+      "optimized": 0,
+      "result": "pass"
+    },
+    {
+      "adversarial_rejections": 19,
+      "isolated": true,
+      "mode": "relocated_optimized",
+      "no_site": true,
+      "optimized": 1,
+      "result": "pass"
+    }
+  ],
+  "original_author_bytes_unchanged": true,
+  "private_validator_sha256": "15322ee957b880249e2fcd6622af1a9c4bf170155b266398c5e390383c7917a1",
+  "relocation_import_shadowing": "An adjacent json.py and sitecustomize.py, each raising an error if imported, were inert in both isolated relocated runs. No payload import or execution occurred.",
+  "schema": "independent-static-package-verification-v1",
+  "source_contents_included": false,
+  "total_negative_fixture_rejections": 76,
+  "validator_uses_assert": false
+}
