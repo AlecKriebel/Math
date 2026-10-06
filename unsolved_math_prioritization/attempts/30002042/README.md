@@ -1,6 +1,6 @@
 # Stringy E-polynomials: audited scoped partial, 30002042
 
-**General finiteness remains unresolved by this attempt. Status: `unsolved_by_this_attempt`, 5/5.** This is an unrefereed, AI-assisted mathematical record, with no full-solution or novelty claim.
+**General finiteness remains unresolved by this attempt. Queue status: `unsolved`, 5/5; mathematical outcome: `unsolved_by_this_attempt`.** This is an unrefereed, AI-assisted mathematical record, with no full-solution or novelty claim.
 
 Read [the accepted mathematical report](author/RESULT.md), [the independent audit](audit/AUDIT.md), and [the acceptance boundary](audit/ACCEPTANCE.json). The two original archives, their external manifests, their 20 extracted members, and the separately pinned author bootstrap are unchanged. No proof correction was required. Statements about pending review or publication inside the immutable originals describe earlier stages.
 
