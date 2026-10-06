@@ -929,7 +929,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 918 | 2910 / KP-4.34 | Kirby Problem 4.34 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 919 | 2928 / KP-4.52 | Kirby Problem 4.52 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 920 | 2931 / KP-4.55 | Kirby Problem 4.55 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 921 | 2950 / KP-4.74 | Kirby Problem 4.74 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 921 | 2950 / KP-4.74 | Kirby Problem 4.74 | 0.0960 | 5.5 | 3 | unknown | unsolved | 4/5 |  |  |  |
 | 922 | 2986 / KP-4.110 | Kirby Problem 4.110 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 923 | 2999 / KP-4.123 | Kirby Problem 4.123 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 924 | 30006628 / OWR-14299911-031 | Property T for Random Free-Product Quotients above One-Third Density | 0.0960 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
