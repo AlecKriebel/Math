@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "test_subject": "External independently authored data-only verifier; no author payload executed",
+  "author_archive_sha256": "40ec3c8bdd4c409514a435f922b340032bb2ed3dab16663107c14524b06721a5",
+  "author_external_manifest_sha256": "a7d5f36971b446e318ef7aae29ccdae104a8fda7019545ffd7cd6dafd1361745",
+  "external_verifier_sha256": "715072702b7b8e597faa75044494493b667c281275abfba55cdfaf0319eca35c",
+  "test_harness_sha256": "a4a01de657e896694c65e4d434dbc1a4f8c6586191f4e6ddae2b7ccc9f269540",
+  "python_version": "3.12.14",
+  "optimization_level_of_harness": 1,
+  "positive_runs": [
+    {
+      "mode": "isolated normal",
+      "exit_code": 0,
+      "result": {
+        "data_only": true,
+        "members": 6,
+        "partial_not_solved": true,
+        "result": "PASS"
+      }
+    },
+    {
+      "mode": "isolated optimized",
+      "exit_code": 0,
+      "result": {
+        "data_only": true,
+        "members": 6,
+        "partial_not_solved": true,
+        "result": "PASS"
+      }
+    },
+    {
+      "mode": "relocated hostile normal",
+      "exit_code": 0,
+      "result": {
+        "data_only": true,
+        "members": 6,
+        "partial_not_solved": true,
+        "result": "PASS"
+      }
+    },
+    {
+      "mode": "relocated hostile optimized",
+      "exit_code": 0,
+      "result": {
+        "data_only": true,
+        "members": 6,
+        "partial_not_solved": true,
+        "result": "PASS"
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "case": "missing member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "unexpected member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "duplicate member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "parent traversal",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "absolute path",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "nested code payload",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "symlink member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member file type or mode",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "executable mode",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member file type or mode",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "FIFO member",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member file type or mode",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "same-length payload mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "member digest or length",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "appended payload bytes",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "declared member length",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "invalid UTF-8",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "'utf-8' codec can't decode byte 0xff in position 0: invalid start byte",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "duplicate JSON key",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "duplicate JSON key",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "nonfinite JSON constant",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "nonfinite JSON constant",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "internal inventory omission",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "internal inventory",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "internal digest mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "internal digest or length",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "incorrect problem identity",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "problem identity",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "false full-solution flag",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "status boundary: full_solution",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "false solved status",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "partial status",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "executable status claim",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "status boundary: executable_payload",
+      "test_only_outer_reanchoring": true
+    },
+    {
+      "case": "archive trust-anchor mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "archive trust anchor",
+      "test_only_outer_reanchoring": false
+    },
+    {
+      "case": "manifest trust-anchor mutation",
+      "expected": "REJECT",
+      "observed": "REJECT",
+      "reason": "manifest trust anchor",
+      "test_only_outer_reanchoring": false
+    }
+  ],
+  "negative_control_count": 22,
+  "all_expected_results_observed": true,
+  "author_archive_unchanged": true,
+  "author_manifest_unchanged": true,
+  "limits": "Cryptographic and structural integrity only. No mathematical machine verification. Fault-injection fixtures reanchor outer metadata solely to reach deeper validation paths. No payload import, deserialization into executable objects, or execution occurs."
+}
