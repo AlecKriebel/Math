@@ -1,0 +1,16 @@
+--- a/taut_leaf_genus_2999/check.py
++++ b/taut_leaf_genus_2999/check.py
+@@ -201,6 +201,13 @@
+     require(s.get('literal_weak_formulation') == 'refuted_by_explicit_counterexample', 'Wrong weak status')
+     require(s.get('original_closed_formulation') == 'unresolved_by_this_work', 'Overstated original status')
+     require(s.get('novelty_claim') is False, 'Novelty must not be claimed')
++    require(s.get('status') == 'formulation_counterexample_original_unresolved',
++            'Overstated or inconsistent overall status')
++    require(s.get('s2_times_s2_subquestion') == 'not_resolved',
++            'Overstated S2-times-S2 subquestion status')
++    require(s.get('recommended_queue_status') ==
++            'partial / formulation issue; do not mark original solved',
++            'Overstated or inconsistent queue recommendation')
+     return {'scope_labels': 'PASS'}
+ 
+ def self_test():
