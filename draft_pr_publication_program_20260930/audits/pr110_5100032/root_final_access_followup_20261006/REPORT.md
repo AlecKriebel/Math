@@ -1,0 +1,17 @@
+# PR110 final-version access follow-up
+
+The previous goal turn made progress: fresh combined priority adjudication, root custody and the specific M1 hold were completed and pushed at a54913a3c2330a2f9fe31763000cd047df84cd3b. This follow-up tests additional legitimate retrieval routes for the identified journal final. It does not reopen or replace the verified mathematical proof, close the PR, or clear publication.
+
+The required body remains Garcia–Koiller–Reznik, *Estimating Elliptic Billiard Invariants with Spatial Integrals*, JDCS29:757–767(2023), online2022, DOI10.1007/s10883-022-09608-y. Its nine-page arXiv2102.10899v1 precursor is fully read; the eleven-page final remains unread.
+
+Four targeted indexed searches, covering the authors' UFG/UFJF repositories, HAL and Zenodo, returned no results. These are finite discovery searches, not proof that no legitimate copy exists.
+
+Fresh Crossref metadata supplies publisher-deposited version-of-record PDF and HTML text-mining links. The PDF link is the previously attempted route; its separate HTML fulltext.html link was now retrieved by actual curl57470. Curl succeeded, but inspection58288 shows subscription preview, no Introduction or Conclusions section and no governing final statements/proofs. A successful HTTP response is not a full-body read. The web tool could not open that HTML route.
+
+Fresh OpenAlex metadata labels this DOI closed and has no repository/full-text location in its current record. Semantic Scholar returns no openAccessPdf URL. These are discovery indexes, not exhaustive access inventories or mathematical evidence.
+
+The publisher HTML visibly offers six public figure thumbnails. Root inspected only Figure6 at its actually supplied m312 PNG URL, downloaded by actual curl59442. The plot compares angle-cosine averages with a caustic parameter. It supplies no antipedal norm-sum statement or proof; no caption or complete final body was inferred from it. This is additional partial primary evidence consistent with the precursor's specified average observables, and does not resolve M1.
+
+The existing research Chrome profile was checked through the supported UI tool. Browser2's agent-created tab963512676 displayed the identified publisher page, subscription preview and no institutional affiliation. No authentication credentials were entered, institution selected, purchase made, or permission granted. The temporary research tab was closed. Native-app inventory reported a locked Mac, but browser-page reading worked; the substantive issue is absent authenticated article access, not the native inventory error. UI tools supplied no OS PID or exact action timestamp, so none is invented. Raw UI text, publisher body, public thumbnail and diagnostic preview stream remain private and are not redistributed.
+
+Result: the same finite identified final-version comparison remains unavailable. The pending human legitimate-link/institutional-access question has not been answered. Access failure is not evidence of already_solved. No additional independent mathematical work or unchanged access retry is needed before receiving a legitimate full final body. Root retains the adjudicated hold; source/math100%, selected-candidate priority work90%, current workflow30%, publication0%. The persistent full program is incomplete:17/99 workflows completed,10 published. New central proof-search turns0; original2/5 preserved.
