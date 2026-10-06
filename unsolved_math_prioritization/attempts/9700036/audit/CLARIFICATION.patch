@@ -1,0 +1,102 @@
+--- author/CERTIFICATE.json
++++ accepted/CERTIFICATE.json
+@@ -1,16 +1,16 @@
+ {
+   "files": {
+     "README.md": {
+-      "bytes": 1336,
+-      "sha256": "93dfadcb4e1192586706dd2d04dc08eee61b2c2e6072ded4f1d914049ecd39a9"
++      "bytes": 1736,
++      "sha256": "59306ef2e618608a35a8369204a6b89a4dff1c4a337d5e9613b40d49cec89a60"
+     },
+     "RESULT.md": {
+-      "bytes": 8078,
+-      "sha256": "c19045209ad22425206fce60a356aff27d058c06f84d81e78408b65c0ad5f07f"
++      "bytes": 10540,
++      "sha256": "88a73cdede0a1513d05d9834f693b2446b94e6e8dbe688da17872d7cdc6ef5aa"
+     },
+     "SOURCE_MANIFEST.json": {
+-      "bytes": 6089,
+-      "sha256": "d657986c3f4cbfe51d00b407a59f38eb5338adb6795b24d733a8ba623e485ce2"
++      "bytes": 6736,
++      "sha256": "d7f84ed82daf8047615053d707ace5e57378a74574fc0672bb884951cf90922d"
+     },
+     "verify.py": {
+       "bytes": 7054,
+--- author/README.md
++++ accepted/README.md
+@@ -2,10 +2,12 @@
+ 
+ Problem 9700036 / AMR-096-0036, queue rank 936.
+ 
+-Disposition: **RESOLVED_BY_PRIOR_LITERATURE**, subject to independent audit of the application note. This is an application of David Aldous's published 2021 theorem, not a claim to a new mathematical solution. No GitHub or queue changes were made by the author of this package.
++Disposition: **RESOLVED_BY_PRIOR_LITERATURE**, accepted for this exact clarified derivative by the accompanying independent AI audit; this is not human peer review or formal verification. This is an application of David Aldous's published 2021 theorem, not a claim to a new mathematical solution. No GitHub or queue changes were made by the author of this package.
+ 
+ Read `RESULT.md` for the source identification, scope, and application argument. `SOURCE_MANIFEST.json` records public-source metadata and the exact-record gate. It contains neither source documents nor dataset records. `verify.py` checks package integrity and finite diagnostics, not the validity of the cited infinite-network theorem.
+ 
+ Run `python -B verify.py` or `python -B -O verify.py`. Optional `--catalog FILE --problems FILE --reports FILE` checks the three complete external corpora and reconstructs the exact canonical array. Optional `--sources-dir DIRECTORY` checks the four external PDFs against their recorded bytes. The package contains none of those inputs.
+ 
+ The mathematical work stops on the prior-literature resolution. No new proof-search approaches were attempted. A reviewer should especially inspect the jagged-route bridge and the invariant-event conditioning argument; the program is not a substitute for those inspections.
++
++This derivative retains the original attribution and result. It makes the measurable finite-hull conditioning event explicit and proves the all-finite-terminal bridge. The original author freeze is preserved separately. Consult the accompanying audit, patch, and exact acceptance record for scope and byte pins.
+--- author/RESULT.md
++++ accepted/RESULT.md
+@@ -20,7 +20,7 @@
+ 
+ The source formulates edges as line segments. Jagged SIRSN endpoints do not invalidate its tree argument. For finitely many sampled terminals, fix one terminal and take the union of the arcs from it to the others. If the whole network is a topological tree, each new arc meets the preceding union in a connected initial subarc: a disconnected intersection would supply two distinct connecting arcs and hence a circuit. Inductively, the finite hull has finitely many branch points. Suppressing unmarked degree-two points produces a finite combinatorial tree whose edges retain their rectifiable-arc lengths. It has a terminal-weighted centroid. All distances along its arcs dominate Euclidean displacement. The original polygonal segments, including any endpoint accumulation, need not be replaced by straight chords.
+ 
+-These are precisely the network facts used in the published proof's §2.2, p.7: a finite terminal hull, a centroid, and a Euclidean lower bound on routes through that centroid. The remaining estimates involve only the Poisson terminal configuration and its coloring. Consequently that proof applies unchanged to these finite rectifiable tree hulls. This is an application/convention check, not a claim that scalar length statistics imply the SIRSN axioms. The latter have been assumed from the outset.
++These are precisely the network facts used in the published proof's §2.2, p.7: a finite terminal hull, a centroid, and a Euclidean lower bound on routes through that centroid. The remaining estimates involve only the Poisson terminal configuration and its coloring. Consequently the proof extends to these finite rectifiable tree hulls; there is no need to straighten arcs or assert that their infinitely many polygonal subdivisions form a locally finite vertex set. Geometric crossings are junctions in the embedded union. Finite edge intensity means finite expected length per unit area, not finite vertex count. The independent audit records the source proof's minor notation and constant-insensitive details separately. This is an application/convention check, not a claim that scalar length statistics imply the SIRSN axioms. The latter have been assumed from the outset.
+ 
+ ## Application when the network is almost surely a tree
+ 
+@@ -43,20 +43,28 @@
+ 
+ The stronger conclusion is P(S(1) is a tree)=0. Here is the needed conditioning check, since conditioning casually could destroy the Poisson marginal.
+ 
+-Let A be the translation-invariant event that S(1) is a tree, and suppose p=P(A)>0. The conditional joint law of (Π,S(1)) is translation invariant. Its Π marginal remains the unit Poisson law. To prove this, let f be any bounded local measurable function of Π and average its translates over growing squares. By ergodicity of the Poisson process these averages converge in L¹ to E f. Translation invariance of A makes the conditional expectation of every such average equal to E[f|A]. L¹ convergence also holds after conditioning, with error at most the original error divided by p. Therefore E[f|A]=E f. Bounded local functions determine the point-process law.
++We use a measurable event that contains every tree configuration, without silently assuming that a finite-hull condition is globally equivalent to the absence of every possible limiting topological circuit. Regard each route as its compact arc, including endpoints, and let A be the event that, for every three distinct sampled terminals x, y, z,
+ 
+-Under this conditional law the network is a tree, but independence of its routes from Π and scale invariance need not survive and are not assumed. They are unnecessary: the unconditional finite estimate already gives
++R(x,y) is a subset of R(x,z) union R(z,y).                       (2)
+ 
+-E[Z_r(B)|A] ≤ E Z_r(B)/p < infinity.
++The Poisson sample can be measurably enumerated. Compact-set inclusion is a Borel relation in the Hausdorff hyperspace, and the SIRSN measurable finite-route setup therefore makes A a countable intersection of measurable events. Quantification over all triples makes A translation invariant, independently of the enumeration. Every globally tree-valued sampled network satisfies (2), since its routes are the unique simple arcs.
+ 
+-Because the conditional Poisson marginal and translation invariance were preserved, its typical-pair normalization is still |B|πr². The conditional mean is thus at most 2Δr/(3p). Theorem 1.2 applies to that conditional invariant tree network and says the same mean is infinite for sufficiently large r, a contradiction. Thus p=0.
++Here is why (2) supplies every finite-hull property needed by the cited proof, including for four or more terminals. Fix a finite terminal set F with a root o in F. The union H_F of R(o,x), x in F, is a finite rectifiable topological tree: compatibility makes the intersection of any two root routes a compact initial subarc, and adjoining a root route to a previous finite union attaches just one remaining arc along a connected initial subarc. This induction produces finitely many essential vertices. Equation (2), applied with z=o, places every R(x,y) for x,y in F inside H_F. Since H_F is a tree, these are precisely its unique connecting arcs. Thus the entire finite-terminal route network is that tree. Conversely, an acyclic three-terminal route union satisfies (2). We do not need a claim about an infinite-union converse. On A, Aldous's proof applies directly to these finite hulls, with their terminal-weighted centroids and original arc lengths.
+ 
+-This reasoning treats tree-ness as the usual measurable no-circuit property of the sampled route network. It does not assert independence of A from the route field, or ergodicity of that field.
++Suppose p=P(A)>0. The conditional joint law of (Pi,S(1)) is translation invariant. Its Pi marginal remains the unit Poisson law. To prove this, let f be any bounded local measurable function of Pi and average its translates over growing squares. By ergodicity of the Poisson process these averages converge in L1 to E f. Joint translation invariance and invariance of A make the conditional expectation of every such average equal to E[f|A]. L1 convergence also holds after conditioning, with error at most the original error divided by p. Therefore E[f|A]=E f. Bounded local functions determine the point-process law. This is ergodicity of the Poisson marginal, not of the joint network.
++
++Under this conditional law independence of routes from Pi and scale invariance need not survive and are not assumed. They are unnecessary: the unconditional finite estimate gives
++
++E[Z_r(B)|A] <= E Z_r(B)/p < infinity.
++
++Because the conditional Poisson marginal and translation invariance were preserved, its typical-pair normalization is still |B| pi r^2. The conditional mean is thus at most 2 Delta r/(3p). The finite-hull version of the published tree-network proof says this same mean is infinite for sufficiently large r, a contradiction. Thus P(A)=0. Since every tree configuration lies in A, S(1) cannot be a tree, even with positive probability. More explicitly, almost surely some finite three-terminal route union has a circuit; no assertion of global-event measurability beyond the measurable sampled-route setup is needed.
++
++This argument does not assert independence of A from the route field, conditional SIRSN scale invariance, or ergodicity of that field.
+ 
+ ## Scope and stopping point
+ 
+ The same application works for a weak SIRSN with the stated sampling, compatibility, invariance, and finite expected stretch; the strong remote-route intensity bound is not used in the contradiction. The proof does not determine the number or shape of cycles, provide a counterexample, or resolve the distinct IDs 9700033 and 9700034.
+ 
+-The exact prior record and report contained literature review only. After recovering the correct definitions, the published 2021 obstruction was found before original proof search. Zero of five original search approaches were used. The appropriate disposition is credited prior-literature resolution, pending an independent application audit, rather than a new solution or an unsolved partial.
++The exact prior record and report contained literature review only. After recovering the correct definitions, the published 2021 obstruction was found before original proof search. Zero of five original search approaches were used. The appropriate disposition is credited prior-literature resolution, accepted by the accompanying independent AI application audit (not human peer review or formal proof verification), rather than a new solution or an unsolved partial.
+ 
+ Checks in this package verify corpus/PDF byte bindings, the radial integration coefficients, ordered/unordered normalization, and finite weighted-tree centroid cases. They do not prove the cited theorem, establish continuum measurability, or independently certify the whole application argument.
+--- author/SOURCE_MANIFEST.json
++++ accepted/SOURCE_MANIFEST.json
+@@ -42,6 +42,12 @@
+     "queue_url": "https://github.com/AlecKriebel/Math/blob/main/unsolved_math_prioritization/QUEUE.md",
+     "repository": "AlecKriebel/Math",
+     "root_and_problem_directory_check": "Main repository root and problems/ listings inspected; only nearby 9700034 directory found, a distinct target."
++  },
++  "independent_application_clarification": {
++    "bridge": "Compatibility plus triple inclusion gives every finite terminal route hull a finite rectifiable tree. Apply the published proof to these finite hulls; no infinite-union equivalence claimed.",
++    "event": "All sampled terminal triples satisfy R(x,y) subset R(x,z) union R(z,y).",
++    "review_kind": "Independent AI mathematical audit, not human peer review or formal verification.",
++    "source_proof_notes": "Balanced strips on published p.3 must have full height or width m, not 1. The audit supplies constant-insensitive details for the omitted small-square exclusion argument."
+   },
+   "inspection_date_utc": "2026-10-06",
+   "literature_searches": [

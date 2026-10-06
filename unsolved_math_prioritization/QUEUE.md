@@ -944,7 +944,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 933 | 9600004 / AMR-095-0004 | Negative association for asymmetric exclusion | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 934 | 9700026 / AMR-096-0026 | Stability dichotomy for the associated city dynamical system | 0.0960 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 935 | 9700033 / AMR-096-0033 | Unbounded component uniqueness in a SIRSN | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 936 | 9700036 / AMR-096-0036 | SIRSN subnetworks cannot be trees | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 936 | 9700036 / AMR-096-0036 | SIRSN subnetworks cannot be trees | 0.0960 | 5.5 | 3 | unknown | already_solved | 0/5 |  | Prior-literature resolution: Aldous (2021), Theorem 1.2, ECP 26 article 31, DOI 10.1214/21-ECP401, with explicit SIRSN application and necessary source-proof clarifications. Almost surely S(1) contains a finite circuit, including Steiner junctions. Accepted clarified application plus source-proof repair together by two independent AI reviews; not a new theorem, human peer review, or formal verification. |  |
 | 937 | 9700042 / AMR-096-0042 | Near-one asymptotics for oriented-percolation flow | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 938 | 9900008 / AMR-098-0008 | Mass-stationarity of diffuse random measures via allocations | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 939 | 9900009 / AMR-098-0009 | Markovian-kernel characterization of mass-stationarity | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
