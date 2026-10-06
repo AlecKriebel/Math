@@ -1,5 +1,3 @@
-**Current priority correction (October 6, 2026 UTC): the exact ordinary-potential negative answer is preexisting in Ferudun (2026) Theorem 1.2, DOI 10.5281/zenodo.23049958. See PRIORITY_CORRECTION.md. The following original source-scope analysis remains mathematically valid and is preserved verbatim below; its limited later-literature screening is historical, not current-openness certification.**
-
 # Exact source gate: 30001994
 
 Bastian Harrach, joint with Lilian Arnold, “Inverse Eddy Current Problems,” OWR11/2012, printed630–633, asks on631 whether the conductivity-potential map can be defined for arbitrary nonnegative bounded conductivity. The full official report and the complete published foundational paper were read; the question page was visually checked.

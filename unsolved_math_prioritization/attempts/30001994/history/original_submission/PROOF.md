@@ -1,6 +1,6 @@
 # A smooth degenerate conductivity with no ordinary correction potential
 
-**Verified credited exposition of a preexisting ordinary-potential counterexample.** See [PRIORITY_CORRECTION.md](PRIORITY_CORRECTION.md): Ferudun (2026) Theorem 1.2 already gives the same negative answer; this packet makes no new-resolution claim. The distinction between an actual gradient in the source's solution space and an abstract conductivity-weighted completion is essential.
+**Complete first-turn candidate for the ordinary-potential source target; independent review pending.** The distinction between an actual gradient in the source's solution space and an abstract conductivity-weighted completion is essential.
 
 ## 1. Exact claim
 
@@ -151,7 +151,7 @@ This packet does not claim that every generalized variational formulation is imp
 
 ## 7. Credit, checks and disposition
 
-The source spaces and known positive-conductivity construction are credited to Arnold–Harrach2012. Hilbert-space projection, H¹ density and the standard circulation/gradient obstruction are classical. The explicit coefficient and approximation are written out so their hypotheses can be independently checked. The exact negative answer was already given by Ferudun (2026), Theorem 1.2; see PRIORITY_CORRECTION.md. No novelty of this particular proof detail or exhaustive oldest priority is certified.
+The source spaces and known positive-conductivity construction are credited to Arnold–Harrach2012. Hilbert-space projection, H¹ density and the standard circulation/gradient obstruction are classical. The explicit coefficient and approximation are written out so their hypotheses can be independently checked. No historical novelty is certified by the bounded literature search.
 
 The accompanying checker verifies the algebraic divergence and cylindrical identities, the single-valued piecewise potential, its exact angular energy, and scope controls. These finite symbolic checks do not replace the H¹ approximation or distributional-testing proof.
 

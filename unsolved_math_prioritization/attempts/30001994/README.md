@@ -1,15 +1,11 @@
-# 30001994: degenerate conductivity and the correction potential
+# 30001994: credited ordinary eddy-potential counterexample
 
-**Complete first-turn counterexample candidate for the source's ordinary-potential map; independent review pending.**
+**Already solved by a prior primary preprint; verified credited exposition, original author 1/5.**
 
-`PROOF.md` gives a smooth compactly supported nonnegative conductivity and a smooth compactly supported divergence-free input A for which no H¹-local scalar potential satisfies div(σ(A+∇φ))=0. The conductor has Lipschitz boundary and connected exterior, and conductivity is positive almost everywhere inside it, but vanishes on a meridional cut. Weighted gradients can approximate cancellation of a circulation that no ordinary single-valued Sobolev gradient can cancel.
+[Current status](CURRENT_STATUS.json) and [priority correction](PRIORITY_CORRECTION.md) record the authoritative outcome. Ferudun's September 30, 2026 [Theorem 1.2](https://doi.org/10.5281/zenodo.23049958) predates this October 1 construction and already proves the same smooth ordinary-potential negative answer. A new open-problem resolution is withdrawn.
 
-This excludes extension of the original Lemma3.1 gradient map and its W(curl) reconstruction to arbitrary nonnegative bounded conductivity. It does not exclude a weighted-completion projection, which the proof constructs, nor every generalized scalar distribution or alternative eddy-current formulation.
+[PROOF.md](PROOF.md) remains a complete verified argument for the smooth annular-cylinder example: weighted single-valued approximants, legitimate Sobolev weak testing and a compact solenoidal dual contradiction. Three independent mathematical/source families found no remaining mathematical gap; ROOT reproduced the 323 author and 673 inherited controls byte-identically. Finite checks supplement the written analytic proof. Weighted completion and generalized BV/distributional escape remain possible; no full transient nonexistence theorem is inferred.
 
-- `SOURCE_GATE.md`: exact PDE, function spaces, topology and later-source qualifications
-- `PROOF.md`: full construction, strong weighted approximation, admissible distributional tests and dual contradiction
-- `check_turn1.py`, `turn1_checks.json`:323 exact symbolic controls, replayed identically
-- `source_manifest.json`: pinned primary reading inputs
-- `REVIEW_REQUEST.md`: required adversarial checks
+The exact original 19-file submission, including both manifests and old review, is preserved in [history/original_submission](history/original_submission/README.md). Historical manifests resolve within that archive. Current FROZEN_MANIFEST.json is a pointer to PUBLIC_MANIFEST.json; original pending-review and old-hash references in inherited reviews refer to the archived submission. Current source metadata includes the exact predecessor but no source PDF.
 
-One of five substantive author turns has been used. If a source mismatch or mathematical gap remains after review, four turns remain. No historical novelty claim or final PR before independent review and publication authorization.
+Research and verification used AI tools extensively. This remains unrefereed, with no human peer review or formal proof verification claimed. Under the current claimed_solved-only scope, the corrected already_solved PR remains a draft, unmerged/unclosed, without a new paper, Zenodo upload, DOI, tracker row or release.
