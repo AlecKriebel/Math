@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""Authenticate immutable authored source and reproduce in a disposable copy."""
+from pathlib import Path
+import datetime, hashlib, json, os, shutil, subprocess, sys
+
+A = Path(__file__).resolve().parents[1]
+S = A/'publication_package_v1'
+B = Path(__file__).resolve().parent
+EXPECTED = '003e11228b5b3cd7ffb6b20712fae42574c38d8f52a7f3bc9dafc3a4d40604b8'
+def require(ok, text):
+    if not ok: raise RuntimeError(text)
+def now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def pin(p):
+    b=p.read_bytes()
+    return {'path':p.name,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+def read(p): return json.loads(p.read_text())
+def main():
+    start=now(); mpath=S/'source_payload_manifest.json'; m=read(mpath)
+    require(pin(mpath)['sha256']==EXPECTED, 'External source manifest pin')
+    seal=read(S/'source_seal_receipt.json')
+    require(seal['source_manifest']==pin(mpath), 'Source seal binding')
+    require(seal['actual_sealer_PID']==32926 and m['actual_manifest_builder_PID']==32926,'Actual sealer identity')
+    names=[e['path'] for e in m['files']]
+    require(len(names)==len(set(names))==15,'Source member count')
+    require({p.name for p in S.iterdir()}==set(names)|{'source_payload_manifest.json','source_seal_receipt.json'},'Exact source scope')
+    inventory=[]
+    for item in m['files']:
+        p=S/item['path']; require(p.is_file() and not p.is_symlink(),'Regular source file')
+        require(pin(p)==item,'Full source body mismatch: '+item['path']); inventory.append(item)
+    require(sum(e['bytes'] for e in inventory)==76191,'Source total count')
+    inp=read(S/'input_pins.json')
+    for item in inp['pins']:
+        p=A/item['path_relative_to_audit_root']; actual=pin(p)
+        require(all(actual[k]==item[k] for k in ('bytes','sha256')),'Research input mismatch')
+    require(len(inp['pins'])==16,'Input reference count')
+    intended=read(S/'intended_zenodo_metadata.json'); deposit=read(S/'zenodo-deposit.json')
+    require(intended['metadata']==deposit['metadata'],'Exact intended metadata')
+    require(read(S/'proof_binding.json')==dict(schema='focal-antipedal-manuscript-binding/v1',**pin(S/'focal_antipedal_sum.tex')),'Proof binding')
+    scratch=A/'private_operational_archive'/'root_publication_replay_v1'
+    require(not scratch.exists(),'Unique scratch path')
+    shutil.copytree(S,scratch)
+    argv=[sys.executable,'-E','-S','-B',str(scratch/'run_verification.py')]
+    st=now(); proc=subprocess.Popen(argv,cwd=scratch,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    out,err=proc.communicate()
+    (B/'root_replay_stdout.json').write_bytes(out); (B/'root_replay_stderr.bin').write_bytes(err)
+    require(proc.returncode==0 and not err,'Root replay process failed')
+    result=json.loads(out); require(result['directed_chord_cases_per_run']==1456 and result['passing_guard_checks_per_run']==63346,'Root positive counts')
+    env=read(scratch/'execution_envelope.json')
+    require(env['normal_optimized_agree'] and env['positive_runs']==2 and env['required_failed_subprocess_controls']==8,'Root modes and controls')
+    for mode in ('normal','optimized'):
+        value=read(scratch/('verification_'+mode+'.json'))
+        require(value['status']=='passed' and value['proof_sha256']==pin(S/'focal_antipedal_sum.tex')['sha256'],'Root mode proof binding')
+        shutil.copyfile(scratch/('verification_'+mode+'.json'),B/('root_verification_'+mode+'.json'))
+    shutil.copyfile(scratch/'execution_envelope.json',B/'root_execution_envelope.json')
+    for item in inventory: require(pin(S/item['path'])==item,'Source changed after reproduction')
+    receipt={'schema':'pr110-root-source-authentication/v1','actual_root_PID':os.getpid(),'UTC_start':start,'UTC_end':now(),
+      'source_manifest':pin(mpath),'source_seal':pin(S/'source_seal_receipt.json'),'full_source_files_checked':15,'source_total_bytes':76191,
+      'full_input_pins_checked':16,'source_unchanged_after_root_replay':True,
+      'root_replay':{'child_PID':proc.pid,'argv':argv,'cwd':str(scratch),'UTC_start':st,'exit_code':proc.returncode,
+          'stdout':pin(B/'root_replay_stdout.json'),'stderr':pin(B/'root_replay_stderr.bin')},
+      'root_positive_runs':2,'root_required_failed_subprocess_controls':8,'directed_chords_per_run':1456,'guards_per_run':63346,
+      'metadata_exactly_equal':True,'publication_ready':False,'workflow_completion_percent':40}
+    (B/'ROOT_SOURCE_AUTHENTICATION.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
+    print(json.dumps(receipt,indent=2))
+if __name__=='__main__': main()
