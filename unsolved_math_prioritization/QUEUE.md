@@ -141,7 +141,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 130 | 5300050 / AMR-052-0050 | Boundary entropy of an attracting basin | 0.2142 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 132 | 30005451 / OWR-12697708-004 | Local Limits of Preferential Attachment with Deterministic or Random Outdegree | 0.2116 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | unsolved | 2/5 |  | 2026-09-30: Separate review passed global QS concentric-ball roundness without compact-sphere assumptions and the credited radial QC reduction to finite dimension. General nonradial Hilbert QC-to-QS and stronger undefined quasiball interpretations remain unresolved.31997author and3962independent algebraic controls; two bounded routes. Draft PR: https://github.com/AlecKriebel/Math/pull/115. |  |
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
