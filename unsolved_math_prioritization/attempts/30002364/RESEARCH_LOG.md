@@ -1,0 +1,5 @@
+# Research and publication checkpoints
+
+- 2026-10-06: Five substantive approaches completed in the immutable author record: source reconciliation; finite CM-type/local-average matrices; explicit field and prime realization; geometric endomorphism and codimension-two obstruction; adversarial comparison with the published rank assertion. A complete candidate was frozen. Completion estimate for constructing the two-part candidate: 100%; external mathematical acceptance remains open.
+- 2026-10-06: Two independent AI audits accepted the forward construction. The literal converse was clarified by a separately preserved 6,007-byte authored patch. Each audit accepted the exact corrected proof with SHA-256 e6955e4c7e5379e103de79ad3e5dc427d36adab8d36409f81647cbc173495a79. Audit gate completion: 100%; human peer review, novelty, and author agreement on the literature correction are not claimed.
+- 2026-10-06 10:46 UTC: Four original archives and 30 member files verified against frozen external manifests. Prepared one draft-PR package and a byte-preserving three-cell queue update. Publication verification remains subject to the exact-head readback receipt.
