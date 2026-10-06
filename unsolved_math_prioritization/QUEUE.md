@@ -830,7 +830,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 819 | 30001066 / OWR-2090-019 | Helly Numbers for Isolated Line Transversals | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 820 | 4600024 / AMR-045-0024 | Extension of a block code II | 0.0986 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
 | 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | unsolved | 5/5 |  |  |  |
 | 823 | 30001176 / OWR-3392-002 | Factorizations from Minimal Exchangeable Random Sequences | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 824 | 30001223 / OWR-3400-007 | Simple Tops of Young Modules | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 825 | 30001336 / OWR-4084-010 | Rooted-Tree Expansions of Renormalized Two-Point Functions | 0.0985 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
