@@ -306,7 +306,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 295 | 20003006 / AIM-TOPOLOGY-0094 | Clique and cubical-nerve realizations of digital homotopy groups | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 296 | 2884 / KP-4.8 | Kirby Problem 4.8 | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 297 | 30005460 / OWR-12697710-006 | Convexity of Odd-Power Sum-of-Squares Cones | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 298 | 30005468 / OWR-12697710-015 | Rational Certificates for Truncated Moment Nonrepresentability | 0.1756 | 5.0 | 3 | 2023 | claimed_solved | 1/5 |  | [Fixed-p rational-square obstruction](attempts/30005468/RESULT.md): min p=1; alternative rational separators exist; stronger variants excluded |  |
+| 298 | 30005468 / OWR-12697710-015 | Rational Certificates for Truncated Moment Nonrepresentability | 0.1756 | 5.0 | 3 | 2023 | claimed_solved | 1/5 |  | [Audited fixed-p rational-square obstruction](attempts/30005468/RESULT.md): min p=1; non-PSD input; alternative/rescaled rational separators; classical ingredients credited; unrefereed AI-assisted note. | [10.5281/zenodo.23196750](https://doi.org/10.5281/zenodo.23196750) |
 | 299 | 30005584 / OWR-14297732-013 | Degrees of Asymptotically Conical Expanders Under Connected Sum | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |

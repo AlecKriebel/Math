@@ -1,29 +1,8 @@
-# Fixed moment separator: proof and final scope
+# A fixed rational moment separator with no rational quadratic-module certificate
 
-This branch records the literal fixed-polynomial result for
-30005468 / OWR-12697710-015. The current paper and finite verification supplement
-are [available at DOI 10.5281/zenodo.23196750](https://doi.org/10.5281/zenodo.23196750), with the
-[published files](https://zenodo.org/records/23196750). The exact publication and tracker
-readbacks are in PUBLICATION_RECEIPT.json; the tracker range is 'Math Puzzles'!A34:D34.
-
-The original author budget remains 1/5. Integration, reproduction, literature
-comparison and preprint review did not consume a new author proof-search turn.
-The note was prepared and checked extensively with AI tools. It is unrefereed;
-no independent human peer review or formal proof-assistant certification is
-claimed. Two fresh whole-package AI adversarial reviews and ROOT acceptances
-are recorded under audit/. Their scope is the exact final package, not a
-worldwide priority or current-openness certification.
-
-The quartic, norm/Galois construction and real identity are Scheiderer (2016),
-Theorem 2.1 and Example 2.8. The local leading-term mechanism is classical:
-Scheiderer (2000), Lemma 1.1 and the proof of Proposition 6.1; Benoist (2022),
-Remark 2.7; and the ball-module argument in Nie's May 26, 2011 author version,
-Example 5.3. Earlier irrational semidefinite infeasibility certificates include
-Naldi--Sinn (2021), Example 3.8. The note's contribution is the explicit
-fixed-separator application and normalization clarification, with these
-established ingredients credited. It introduces none of those ingredients.
-
-The mathematical sections below reproduce the originally submitted argument, with its exact scope and classical credit. The final note preprint/paper.tex is the reviewed publication version. The originally submitted full PROOF.md, including its then-pending review status, is preserved exactly in audit/original_submission/PROOF.md.
+Status: first-turn complete candidate for the literal question in OWR 14/2023,
+printed pp.803–804. Independent source and proof review is required. The result
+uses Scheiderer's explicit example and makes no novelty claim.
 
 ## 1. Exact claim and quantifiers
 

@@ -1,36 +1,27 @@
-# Sources and reading locations
+# Credited sources and versions
 
-1. Naldi (with Henrion and Safey El Din), OWR 14/2023, pp.802–804:
-   https://ems.press/content/serial-article-files/47007
-   Original question p.804 / PDF64; definitions and the minimum-one unit-ball
-   example p.803 / PDF63. Full PDF and rendered pages checked.
-2. Henrion–Naldi–Safey El Din, “Algebraic certificates for the truncated moment
-   problem,” arXiv:2302.06927v1, February 2023:
-   https://arxiv.org/abs/2302.06927v1
-   Full author PDF obtained at
-   https://homepages.laas.fr/henrion/papers/exactmoments.pdf
-   Definitions of Q(g)[D] p.4; Archimedean assumption p.5; y_0>0 p.8;
-   Definition3, Corollary2, Remark2 p.9. Author preprint, not a claimed final
-   journal edition. A web-text request showed a bot page, but the direct PDF
-   download returned the complete 19-page mathematical manuscript.
-3. Scheiderer, “Sums of squares of polynomials with rational coefficients,”
-   JEMS18 (2016),1495–1513, DOI10.4171/JEMS/620:
-   https://ems.press/content/serial-article-files/32129
-   Theorem2.1 explicit quartic p.1499; norm/Galois construction pp.1500–1501;
-   Example2.8 and exact real-SOS identity p.1502. Full final PDF checked.
-4. Powers, “Rational certificates of positivity on compact semialgebraic sets,”
-   Pacific J. Math.251 (2011),385–391, DOI10.2140/pjm.2011.251.385:
-   https://msp.org/pjm/2011/251-2/pjm-v251-n2-p08-s.pdf
-   Theorem7 pp.389–390 and Remark8 p.390. Full final PDF checked.
+The final portable preprint/SOURCE_VERSIONS.json and preprint/PRIORITY_NOTE.md contain the complete reviewed bibliography, actual reading extents and access/version qualifications. They govern the current paper. Historical source lists remain unchanged under audit/original_submission/.
 
-Current-status checks, not theorem inputs:
-- https://www.unilim.fr/pages_perso/simone.naldi/publications.html
-- https://homepages.laas.fr/henrion/publis.html
-- https://arxiv.org/abs/2508.07060
-- https://www.sciencedirect.com/science/article/pii/S0019357726000716
-- https://www.math.iitb.ac.in/webcal/view_entry.php?date=20260209&friendly=1&id=1879&user=__public__
+The quartic, norm/Galois construction and real identity are Scheiderer (2016),
+Theorem 2.1 and Example 2.8. The local leading-term mechanism is classical:
+Scheiderer (2000), Lemma 1.1 and the proof of Proposition 6.1; Benoist (2022),
+Remark 2.7; and the ball-module argument in Nie's May 26, 2011 author version,
+Example 5.3. Earlier irrational semidefinite infeasibility certificates include
+Naldi--Sinn (2021), Example 3.8. The note's contribution is the explicit
+fixed-separator application and normalization clarification, with these
+established ingredients credited. It introduces none of those ingredients.
 
-Source files, extracted full texts, rendered pages and the imported complete
-upstream record are reading-only inputs and excluded from the public package.
-Their PDF checksums are recorded in source_manifest.json. No downloaded
-external program was executed. The checker is independently authored here.
+Principal primary sources:
+
+- Original OWR report: https://ems.press/content/serial-article-files/47007 ; DOI 10.4171/OWR/2023/14, printed pp.802–804.
+- Companion arXiv:2302.06927v1: https://arxiv.org/abs/2302.06927v1 ; Definition 3, Corollary 2, Remark 2.
+- Scheiderer (2016): https://ems.press/content/serial-article-files/32129 ; DOI 10.4171/JEMS/620, Theorem 2.1 / Example 2.8.
+- Powers (2011): https://msp.org/pjm/2011/251-2/pjm-v251-n2-p08-s.pdf ; DOI 10.2140/pjm.2011.251.385, Theorem 7.
+- Scheiderer (2000): DOI 10.1090/S0002-9947-99-02522-2, Lemma 1.1 / proof of Proposition 6.1.
+- Benoist (2022): https://www.math.ens.psl.eu/~benoist/articles/badpoints.pdf ; DOI 10.1007/s00209-021-02804-9, Remark 2.7.
+- Nie, author version May 26, 2011: https://mathweb.ucsd.edu/~njw/PUBLICPAPERS/JacSdp.pdf ; Example 5.3.
+- Naldi--Sinn (2021): https://www.unilim.fr/pages_perso/simone.naldi/papers/2018_naldi_sinn.pdf ; DOI 10.1016/j.jpaa.2020.106605, Example 3.8. The OWR reference's different terminal DOI digits are corrected here.
+- Chua--Plaumann--Sinn--Vinzant, arXiv:1608.00234v1, Lemma 1.6, rational Gram/square-factor equivalence.
+- Keshari--Ojha--Patra, arXiv:2508.07060v1; final online journal DOI 10.1016/j.indag.2026.09.003. The accessible preprint and journal metadata do not constitute a whole final journal-body reading.
+
+Copyrighted source PDFs, extracted texts, screenshots, credentials and internal native execution records are not part of the portable verification archive. No external person was contacted.

@@ -1,75 +1,50 @@
-# Exact source and scope assessment
+# Source interpretation and bounded priority scope
 
-Checked 2026-10-01. Proposed disposition is a complete candidate for the literal
-fixed-polynomial existence question, pending independent review. One substantive
-author turn is used. No historical novelty claim is made.
+This branch records the literal fixed-polynomial result for
+30005468 / OWR-12697710-015. The current paper and finite verification supplement
+are [available at DOI 10.5281/zenodo.23196750](https://doi.org/10.5281/zenodo.23196750), with the
+[published files](https://zenodo.org/records/23196750). The exact publication and tracker
+readbacks are in PUBLICATION_RECEIPT.json; the tracker range is 'Math Puzzles'!A34:D34.
 
-## Original report
+The original author budget remains 1/5. Integration, reproduction, literature
+comparison and preprint review did not consume a new author proof-search turn.
+The note was prepared and checked extensively with AI tools. It is unrefereed;
+no independent human peer review or formal proof-assistant certification is
+claimed. Two fresh whole-package AI adversarial reviews and ROOT acceptances
+are recorded under audit/. Their scope is the exact final package, not a
+worldwide priority or current-openness certification.
 
-Simone Naldi, joint with Didier Henrion and Mohab Safey El Din, “On Algebraic
-Certificates for the Truncated Moment Problem,” OWR 14/2023, printed pp.802–804,
-DOI 10.4171/OWR/2023/14. Full publisher PDF was read, and pp.803–804 were
-visually checked. The moment indices comprise every monomial of total degree
-at most d. Measures are nonnegative Borel measures supported in a basic closed
-semialgebraic K in real affine n-space. The report initially allows real
-generators; our example satisfies the stronger rational-generator condition.
+The exhibited polynomial is fixed: p=1+f, where f is Scheiderer's classical
+rational ternary quartic that is a sum of real squares but not rational squares.
+On K={1-x^2-y^2-z^2>=0}, p has minimum one. The rational degree-four moment vector
+has all 35 entries, m_0=1, m_(4,0,0)=-1 and all other entries zero. It has no
+nonnegative representing measure, even on R^3, and L_m(p)=0. For the displayed
+ball generator g, p belongs to 1+Q_R(g) but not to 1+Q_Q(g), at every finite
+multiplier degree. Rational certificates mean rational polynomial square
+factors, equivalently rational positive-semidefinite Gram data.
 
-The report discusses compact K. Its certificates p have degree <=d,
-are strictly positive on K, satisfy L_y(p)=0, and belong to 1+Q(g). The final
-question asks whether a rational such p can require irrational SOS data in
-every certificate of this fixed membership. It does not require every separator
-for y to have that defect. The printed unit-ball example on p.803 is
-p=1+(8/9)(1-x^2-y^2), whose minimum on the ball is exactly one. Hence
-strict positivity of p is not a printed condition min p>1.
+This is an affirmative instance of the phenomenon asked about in the printed
+fixed-polynomial OWR question, with that explicit rational-square convention.
+It does not establish a PSD-input case: M_2(m) has diagonal entry -1 at x^2.
+The same m has a rationally certified separator q=1+x^4. The polynomial p itself
+is rationally certifiable in Q_Q(g), and every rational rescaling c*p with c>1
+is rationally certifiable in 1+Q_Q(g), by Powers' strictly positive ball theorem.
+For c<1 even the real normalized membership is impossible at the origin.
+The rational-coefficient real-SOS multiplier list (f,0) already exists, so that
+weaker requirement is not obstructed. No all-separator, strict-margin, minimum
+relaxation degree, general descent or world-first claim is made.
 
-The report omits several hypotheses in its compressed general discussion.
-We explicitly take y_0=1>0, a nonempty compact ball and a rational Archimedean
-module. We do not rely on the report's unqualified conic-duality statements.
-The constructed y is not positive semidefinite as a truncated moment matrix;
-no such restriction is printed. Requiring it would be an additional problem.
+The source is Naldi, joint with Henrion and Safey El Din, “On Algebraic Certificates for the Truncated Moment Problem,” OWR 14/2023, printed pp.802–804, DOI 10.4171/OWR/2023/14. The question asks whether the fixed-polynomial phenomenon can occur; the exhibited instance answers that existential question affirmatively. The report's own ball example has minimum one. Its text does not impose a positive-semidefinite input moment matrix. Rational square factors are the explicit convention of this note; the source does not formally define that phrase, and no author intention or approval is asserted.
 
-## Companion preprint, stronger construction
+The companion arXiv:2302.06927v1, Definition 3, Corollary 2 and Remark 2 distinguish a separator from a construction with min_K p>1. This example meets the former and lies outside the latter strict-margin regime. It makes no claim about a stronger question's current openness.
 
-Henrion–Naldi–Safey El Din, arXiv:2302.06927v1, 2023, full author PDF from
-Henrion's publication page. Section 2.1 defines Q(g)[D] by bounding each
-summand's degree, in distinction from Q(g) intersected with low-degree
-polynomials. Our impossibility quantifies over all D, so it is not a failure
-only at a small SDP relaxation.
+The quartic, norm/Galois construction and real identity are Scheiderer (2016),
+Theorem 2.1 and Example 2.8. The local leading-term mechanism is classical:
+Scheiderer (2000), Lemma 1.1 and the proof of Proposition 6.1; Benoist (2022),
+Remark 2.7; and the ball-module argument in Nie's May 26, 2011 author version,
+Example 5.3. Earlier irrational semidefinite infeasibility certificates include
+Naldi--Sinn (2021), Example 3.8. The note's contribution is the explicit
+fixed-separator application and normalization clarification, with these
+established ingredients credited. It introduces none of those ingredients.
 
-Definition 3, p.9, defines a separator by strict positivity and L_y(p)=0.
-Corollary 2 additionally constructs min_K p>1, arbitrarily large, under
-Archimedeanity and y_0>0. Remark 2 discusses rational p and potential
-irrationality of its SOS data. Our example meets Definition 3 and the OWR
-question, but does not meet the extra strict-margin conclusion of Corollary 2.
-That distinction is explicit rather than silently repaired. On a rational ball,
-Powers's theorem rules out the stronger strict-margin version for a fixed p.
-A review should judge whether the intended OWR question adds that unprinted
-restriction; if so, this packet is a scoped result rather than a full answer.
-
-## Primary inputs and current status
-
-- Scheiderer, JEMS 18 (2016), pp.1495–1513, Theorem 2.1 / Example 2.8:
-  explicit rational real-SOS but non-rational-SOS ternary quartic. Full
-  publisher PDF read. The construction and its Galois obstruction are credited
-  and reproduced in the proof; this is not a newly discovered quartic.
-- Powers, Pacific J. Math. 251 (2011), pp.385–391, Theorem 7:
-  rational strictly positive polynomials admit rational Putinar certificates
-  when a rational ball generator is available. The displayed theorem includes
-  the ball term separately. We use it only for the unit-ball presentation,
-  where that term is already one of the original generators.
-- Powers's Remark 8 asks whether real Archimedeanity descends to Q. A 2026
-  IIT Bombay primary talk abstract reports a partial zero-dimensional result;
-  it is not used as a theorem in this packet. Keshari–Ojha–Patra's 2025
-  arXiv abstract and September 2026 publisher metadata concern natural
-  univariate generators and likewise do not settle the displayed multivariate
-  fixed-p example. No claim of comprehensive negative literature search.
-- The original authors' current publication listings still list the moment
-  manuscript as a preprint, and arXiv showed only v1. These are status checks,
-  not proof of historical openness or novelty of this consequence.
-
-The full pinned upstream statement and catalog assessment were read. The
-immutable research_results.json has no OWR records or matching ID/code/title;
-no separate prior AI proof report was available. Exact ID/source-code PR and
-branch searches, two main attempt-directory histories, local all-ref history,
-and related-target-group inspection found no prior Alec/campaign attempt.
-Upstream source research does not count as an earlier campaign proof attempt.
+Three independent approach families conducted a bounded primary-source priority comparison. The current 2026 descent paper's full journal body and Appendix B.1 were unavailable. The accessible univariate, strictly positive and zero-dimensional-support statements do not apply to this fixed minimum-one ball obstruction: its module is already rationally Archimedean and its support ideal is zero in Q[x,y,z], whose quotient has Krull dimension three. Those unavailable bodies are not evidence of absence. Additional unread final/version boundaries are retained in preprint/PRIORITY_NOTE.md and preprint/SOURCE_VERSIONS.json. No exact earlier application was verified in the examined material; no worldwide firstness or absence claim follows.

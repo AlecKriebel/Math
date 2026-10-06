@@ -1,4 +1,4 @@
-# Accepted fixed-polynomial result and publication
+# Published fixed moment separator
 
 This branch records the literal fixed-polynomial result for
 30005468 / OWR-12697710-015. The current paper and finite verification supplement
@@ -34,6 +34,8 @@ The rational-coefficient real-SOS multiplier list (f,0) already exists, so that
 weaker requirement is not obstructed. No all-separator, strict-margin, minimum
 relaxation degree, general descent or world-first claim is made.
 
+Read PROOF.md for the proof, SOURCE_SCOPE.md for the interpretation, and preprint/paper.tex for the concise research note. Extract the published verification archive and run its verify_package.py without changing its files. The original 2,059 finite controls support exact identities; they do not prove the all-degree theorem by finite search.
+
 The quartic, norm/Galois construction and real identity are Scheiderer (2016),
 Theorem 2.1 and Example 2.8. The local leading-term mechanism is classical:
 Scheiderer (2000), Lemma 1.1 and the proof of Proposition 6.1; Benoist (2022),
@@ -43,4 +45,4 @@ Naldi--Sinn (2021), Example 3.8. The note's contribution is the explicit
 fixed-separator application and normalization clarification, with these
 established ingredients credited. It introduces none of those ingredients.
 
-The all-degree exclusion uses the order-four part at the origin, where all weights are one. It does not assume that high-degree weighted terms cannot cancel. See PROOF.md and preprint/paper.tex. The bounded literature comparison and unread source-version boundaries are explicit in preprint/PRIORITY_NOTE.md and preprint/SOURCE_VERSIONS.json.
+All eighteen originally submitted bodies are preserved byte-for-byte in audit/original_submission/. HISTORICAL_ERRATUM.md identifies their historical status. No downloaded third-party source PDFs are redistributed.
