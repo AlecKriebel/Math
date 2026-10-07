@@ -21,3 +21,11 @@ Meaningful priority correction: Naor 2609.07564v1 already proves Hilbert-to-stan
 A concise, self-contained verification note has been authored and compiled successfully in the native editor; Tectonic exported an actual PDF. It explicitly disclaims novelty and corrects historical status. This is a useful proof/attribution record; it is not a newly published preprint. Complete-package adversarial review remains to run.
 
 Mathematical resolution estimate: 85%. Publication package estimate: 50% prepared, 0% publication eligibility. Percentages are estimates, not proof. Disk became briefly full during parallel work; only redundant project-owned downloads were removed. Shared checkout/index preserved in checkpoint01.
+
+## 2026-10-06 22:28 America/Los_Angeles
+
+Fresh complete-package reviewer 1 reconstructed the entire cut/cubic/quartic/killed-walk argument and arbitrary-measure projection/full-map passage, retrieved primary sources with matching hashes, inspected all seven PDF pages, verified all 22 archive members against the exact v1 receipt, and rebuilt/executed the extracted package. No substantive issue found. Independent secondary attack on pathological measures/nonseparable/unbounded scope also found no failure. Exact review: reviews/package_review_1.md, SHA256 7aef1b164cbc3c28e977d650c32a53d4e23483935a428ff8ceb027b392c32365.
+
+Minor precision cleanup: say cotype constant is an infimum of admissible constants, avoiding a general attainment implication. For v2, keep volatile live logs and status outside the reproduction archive; preserve them in the repository. Freeze stable mathematical/attribution/reproduction contents and obtain a NEW independent full review. Publication hold remains unchanged.
+
+Mathematical resolution estimate: 95%. Publication package estimate: 85% of a complete verification packet; novel-publication eligibility 0%. Exact goal remains incomplete: no substantively new target, eligible production deposit, DOI or tracker entry.
