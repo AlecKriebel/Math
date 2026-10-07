@@ -1,0 +1,91 @@
+{
+  "source_claim": "OpenAI family 090 Theorem 1.1; real radial Schwartz certificate with normalized objective 2/sqrt(3).",
+  "source_commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "formal_coverage": "none; analytic manuscript plus validated computations",
+  "claims": [
+    {
+      "id": "B090-geometry",
+      "statement": "Every positive j^2+jk+k^2 is in periodic node set N; dual lattice is a rotation at covolume one.",
+      "dependencies": [],
+      "status": "independently checked elementary proof",
+      "evidence": "CERTIFICATE_AUDIT.md items 1,8"
+    },
+    {
+      "id": "B090-regularity",
+      "statement": "Each l1 cardinal list defines an entire p with finite spectral measure; qp and its transform are real radial Schwartz functions.",
+      "dependencies": [
+        "finite_measure_division_identities",
+        "two_dimensional_complex_Gaussian_transform"
+      ],
+      "status": "independently reconstructed analytic argument",
+      "evidence": "CERTIFICATE_AUDIT.md items 2,3"
+    },
+    {
+      "id": "B090-inversion",
+      "statement": "I\u00b1S are boundedly invertible on full unweighted l1(N;R2), with inverse bound 91||rf||+2540||rt||.",
+      "dependencies": [
+        "B090-regularity",
+        "finite_matrix_gates",
+        "uniform_output_tail_envelopes"
+      ],
+      "status": "analytic Schur proof checked; supplied and independent full finite gates passed",
+      "evidence": "CERTIFICATE_AUDIT.md items 4,5"
+    },
+    {
+      "id": "B090-finite-signs",
+      "statement": "Exact H1 is nonpositive on [1,41.5] and H2 nonnegative on [0,41.5], with required zeros and strict quotient margins.",
+      "dependencies": [
+        "B090-inversion",
+        "2436_Bernstein_inequalities",
+        "coefficient_error_envelopes",
+        "Taylor_truncation_errors"
+      ],
+      "status": "analytic quotient argument checked; supplied and independent 2436-inequality validated replays passed",
+      "evidence": "CERTIFICATE_AUDIT.md item 6"
+    },
+    {
+      "id": "B090-tail-signs",
+      "statement": "For s>=41.5, sigma_i H_i(s)>=.00448(s-m)^2 for nearest node m>=43.",
+      "dependencies": [
+        "B090-inversion",
+        "rational_part_lower_bound",
+        "E_second_derivative_envelope",
+        "log_concavity_sine_product"
+      ],
+      "status": "independently checked complete unbounded proof; supplied scalar bounds replayed",
+      "evidence": "CERTIFICATE_AUDIT.md item 7"
+    },
+    {
+      "id": "B090-normalization",
+      "statement": "F(0)=Fhat(0)=6Q1 exp(-pi h)>0; scaled certificate has fhat(0)=1 and f(0)=2/sqrt(3).",
+      "dependencies": [
+        "B090-regularity",
+        "exact_interpolation",
+        "Poisson_summation"
+      ],
+      "status": "independent exact proof checked; no numerical normalization assumption",
+      "evidence": "CERTIFICATE_AUDIT.md item 8"
+    },
+    {
+      "id": "B090-main",
+      "statement": "Existence of exact required planar Cohn-Elkies certificate.",
+      "dependencies": [
+        "B090-geometry",
+        "B090-regularity",
+        "B090-inversion",
+        "B090-finite-signs",
+        "B090-tail-signs",
+        "B090-normalization"
+      ],
+      "status": "retained following analytic audit and complete independent computation; fresh adversarial review of this input and final dependency chain still required",
+      "evidence": "CERTIFICATE_AUDIT.md"
+    }
+  ],
+  "excluded_claims": [
+    "triangle-program product comparison",
+    "full target B equality without separately audited product theorem",
+    "periodic optimizer classification",
+    "all-dimensional problem 20001754",
+    "public priority or novelty"
+  ]
+}

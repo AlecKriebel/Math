@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xurl}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\setlength{\emergencystretch}{2em}
+\newcommand{\F}{\mathbf F}
+\newcommand{\R}{\mathbf R}
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\Sch}{\mathcal S}
+\newcommand{\wrp}{\mathbin{\mathrm{wr}}}
+\title{Two consequences of group-algebra and planar Fourier certificates:\\wreath products and triangle bounds}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{6 October 2026; version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We derive two separately motivated consequences of precisely identified input theorems in OpenAI's mathematics collection. The torsion-free group-algebra counterexample, combined with the established Hopfian embedding framework, yields a finitely generated Hopfian group $H$ for which the standard restricted regular wreath product $C_2\wrp H$ is non-Hopfian. We give its split epimorphism and kernel explicitly. The sharp planar two-point Fourier certificate, combined with the Cohn--de Laat--Salmon product-program comparison and triangular-lattice Poisson bounds, yields $L_2=2/\sqrt3$ and the exact planar triangle infimum $P_2=4/3$. We reconstruct the deductions, audit the substantive inputs, repair product-proof bookkeeping, and provide independently implemented validated computations and source records. These consequences use credited literature; no first-priority or independent-breakthrough claim is made. The planar equality does not settle the all-dimensional triangle problem or assert attainment of its infimum.
+\end{abstract}
+
+\section{Provenance, contribution, and verification status}
+Problem 21.22 of the twenty-first Kourovka Notebook asks whether the standard restricted wreath product of two finitely generated Hopfian groups is Hopfian \cite{kourovka}. Our repository's draft PR~389, problem~2531, retains this question as unsolved and records partial results \cite{pr389}. The acting group in the question acts regularly on itself, and the base consists of finite-support lamps. A counterexample for another permutational action does not answer this question.
+
+Problem~1.32 in de Laat's AIM list \cite{aim} concerns a triangle Fourier program and its comparison with the Cohn--Elkies two-point program, including questions about symmetry and conversion of optimizers. Draft PR~487, problem~20001754, retains the general question as unsolved \cite{pr487}. Our second target concerns only dimension two and the three lengths $|x|,|y|,|x-y|$. It adds no condition on $|x+y|$ and makes no all-dimensional claim.
+
+The wreath reduction is already part of Bradford--Fournier-Facio's equivalence framework \cite{bff}; the product-program comparison is due to Cohn--de Laat--Salmon \cite{cdls}; the lattice arguments are standard Poisson arguments. We do not claim these deductions as independent discoveries. The substantive central inputs are OpenAI's Theorem~1.1 in \cite{oai197} and Theorem~1.1 in \cite{oai090}. All OpenAI sources used here are pinned to commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. Manuscript title dates are not treated as public-priority dates.
+
+The accompanying ledgers distinguish written proof coverage from finite computations and formal artifacts. Two independent source audits reconstructed the central manuscript arguments; the independent planar checks enclose every required finite inequality. The existing comparison notes checked only the short implications, so they are not used as validation of the imported proofs. Our mathematical claims rely on the inspected manuscript inputs, not on a formal-verification label. The contribution new to this repository is an explicit, attributed consequence-and-verification package; the reductions and standard Poisson arguments are established mechanisms.
+
+\section{Part I: a non-Hopfian restricted regular wreath product}
+A group is Hopfian if every surjective endomorphism is injective. For groups $A,H$, their standard restricted regular wreath product is
+\[
+ A\wrp H=A^{(H)}\rtimes H,\qquad
+ (h\cdot f)(x)=f(h^{-1}x),
+\]
+where $A^{(H)}$ denotes finite-support functions with pointwise multiplication.
+
+\begin{theorem}[Conditional wreath consequence]\label{thm:wreath}
+Suppose a finitely generated group $G$ has elements $a,b\in\F_2[G]$ with $ab=1$ and $ba\ne1$. There is a finitely generated Hopfian group $H$ such that $C_2\wrp H$ is finitely generated and non-Hopfian. Its specified noninjective epimorphism fixes $H$ pointwise and splits.
+\end{theorem}
+
+The needed established embedding input is: every finitely generated group embeds in a finitely generated Hopfian group. Bradford--Fournier-Facio use Miller--Schupp \cite{ms} in their proof of Theorem~4.11. The stronger countable-group statement also follows from the accessible independent construction of Bridson--Short, Theorem~A \cite{bs}. Our source audit records that the original Miller--Schupp proof was not retrievable, and checks the accessible alternative's embedding and epimorphism-rigidity mechanism. Neither embedding statement assumes $G$ itself is Hopfian.
+
+\begin{proof}
+Choose an injective homomorphism $G\hookrightarrow H$ with $H$ finitely generated and Hopfian. Its induced group-algebra homomorphism is injective: distinct group elements remain distinct basis elements. Thus the same equations hold in $R=\F_2[H]$.
+
+Take the single lamp factor $A=C_2=(\F_2,+)$. The additive group $R_{\rm add}$ is the \emph{entire restricted base} $A^{(H)}$, by the correspondence $f\mapsto\sum_{h\in H}f(h)[h]$. It is not being identified with the single factor $A$. Left translation becomes left multiplication by $[h]$, so the wreath multiplication is
+\[
+ (r,h)(s,k)=(r+[h]s,hk).
+\]
+Define $\Phi(r,h)=(rb,h)$. Products of finite-support group-algebra elements have support contained in the product of their finite supports. Both $rb$ and $ra$ therefore remain in the restricted base. Associativity gives $([h]s)b=[h](sb)$, and hence
+\[
+ \Phi((r,h)(s,k))=(rb+[h](sb),hk)
+ =\Phi(r,h)\Phi(s,k).
+\]
+For every $(r,h)$, the preimage $(ra,h)$ maps to $(r(ab),h)=(r,h)$. Thus $\Phi$ is surjective. The element $e=1-ba$ is nonzero and
+\[
+ eb=b-bab=b-b(ab)=0.
+\]
+Consequently $(e,1_H)$ is a nonidentity kernel element.
+
+The factor $C_2$ is finite, hence finitely generated and Hopfian. The factor $H$ has the asserted properties by the embedding theorem. A finite generating set of $H$, lifted to the acting subgroup, together with the identity-coordinate lamp generates the wreath product: its conjugates supply every basis lamp $[h]$, and finite sums supply every restricted lamp.
+
+Finally $e^2=e$, and $\ker(r\mapsto rb)=Re$: if $rb=0$, then $re=r-rba=r$, while $eb=0$ gives the converse inclusion. The homomorphism $\Sigma(r,h)=(ra,h)$ satisfies $\Phi\Sigma=\mathrm{id}$, proving splitting. No finite-presentation assertion for $H$ or the wreath product is required.
+\end{proof}
+
+Bradford--Fournier-Facio's Theorem~1.3/4.11 equates the universal abelian-lamp Hopficity assertion with direct finiteness. Their Theorem~1.5 specializes at $A=C_2$ to the criterion that $C_2\wrp H$ is Hopfian exactly when $H$ is Hopfian and $\F_2[H]$ is directly finite. The proof above verifies the scalar counterexample direction directly; it does not need their classification of arbitrary epimorphisms.
+
+Theorem~1.1 of \cite{oai197} supplies a finitely presented torsion-free $G$ and $a,b,c\in\F_2[G]$ with $ab=1$, $ac=0$ and $c\ne0$. If $ba=1$, then $c=b(ac)=0$, a contradiction; hence it supplies the hypothesis of Theorem~\ref{thm:wreath}. Its manuscript-level chain consists of a parity criterion, random high-girth immersed graphs, a multiplicity-stage bounded-pattern estimate, planar extraction, and cone-picture surgeries protecting a nonzero coefficient. The supporting audit reconstructs each of these steps, including the uniform stage estimates and essentiality-preserving cone surgeries. Root protection proves that the identity coefficient of $c$ is one; it does not assert pairwise distinct images of every graph vertex. Exact finite arithmetic verifies the weighted-word contraction. No particular matching outcome is enumerated: the retained construction uses a proved probabilistic existence argument. The fresh source adversary found no substantive defect in this proof chain. The related Lean declaration inspected in the collection instead concerns a finite characteristic-two coefficient field and a group with odd-prime torsion. It is not formal verification of this torsion-free $\F_2$ input, and no proof-assistant verification is claimed here.
+
+\begin{theorem}[Negative wreath-product answer]\label{thm:negative}
+There exist finitely generated Hopfian groups $A,H$ whose standard restricted regular wreath product $A\wrp H$ is not Hopfian. One may take $A=C_2$, and the noninjective epimorphism in Theorem~\ref{thm:wreath} splits with kernel $(R(1-ba))\times\{1_H\}$.
+\end{theorem}
+\begin{proof}
+Apply Theorem~\ref{thm:wreath} to the finitely presented, hence finitely generated, group supplied by OpenAI's credited input theorem. The preceding argument supplies its one-sided inverse defect. All claimed factor and wreath finiteness properties were verified in that theorem.
+\end{proof}
+
+\section{Part II: exact planar program definitions and lower bounds}
+Use the Fourier transform
+\[
+ \widehat g(\xi)=\int_{\R^n}g(x)e^{-2\pi i\langle x,\xi\rangle}\,dx.
+\]
+Let $L_n$ be the infimum of $g(0)$ over real Schwartz functions $g$ on $\R^n$ satisfying
+\[
+ \widehat g(0)=1,\qquad \widehat g\ge0,\qquad
+ g(x)\le0\quad (|x|\ge1).
+\]
+Put $D=\{0\}\cup[1,\infty)$ and
+\[
+ C_\triangle=\{(x,y): |x|,|y|,|x-y|\in D\}\setminus\{(0,0)\}.
+\]
+Let $P_n$ be the infimum of $F(0,0)$ over real Schwartz functions on $\R^n\times\R^n$ with $\widehat F(0,0)=1$, $\widehat F\ge0$ everywhere, and $F\le0$ on $C_\triangle$. These are raw number-density objectives, with no rotational-invariance or optimizer-attainment assumption.
+
+\begin{proposition}[Planar Poisson lower bounds]\label{prop:poisson}
+With these definitions, $L_2\ge2/\sqrt3$ and $P_2\ge4/3$.
+\end{proposition}
+\begin{proof}
+Let $\Lambda$ be generated by $(1,0)$ and $(1/2,\sqrt3/2)$, with covolume $d=\sqrt3/2$. Its squared lengths are $m^2+mn+n^2$, positive integers for nonzero $(m,n)\in\Z^2$. Its minimum nonzero length is one. For every feasible $g$, Schwartz decay ensures absolute convergence of both Poisson sums, and
+\[
+ g(0)\ge\sum_{u\in\Lambda}g(u)
+ =d^{-1}\sum_{v\in\Lambda^*}\widehat g(v)
+ \ge d^{-1}=\frac2{\sqrt3}.
+\]
+The first sign inequality includes all length-one boundary vectors.
+
+For $(u,v)\in\Lambda^2\setminus\{(0,0)\}$, the three vectors $u,v,u-v$ are lattice vectors, so their norms belong to $D$. This includes zero coordinates, coincident points $u=v$, collinear vectors, and boundary vectors. Thus every such pair belongs to $C_\triangle$. The product lattice has covolume $d^2$, and
+\[
+ F(0,0)\ge\sum_{(u,v)\in\Lambda^2}F(u,v)
+ =d^{-2}\sum_{(s,t)\in(\Lambda^*)^2}\widehat F(s,t)
+ \ge d^{-2}=\frac43.
+\]
+Taking infima proves the assertions, without supposing either infimum is attained.
+\end{proof}
+
+The number density $2/\sqrt3$ corresponds to covered-area density $\pi/(2\sqrt3)$ for disks of radius $1/2$. The latter must not be substituted for $L_2$.
+
+\section{The product comparison and exact planar equality}
+Let
+\[
+ C_\square=\{(x,y):|x|,|y|\in D\}\setminus\{(0,0)\}.
+\]
+Since $C_\triangle\subseteq C_\square$, square feasibility implies triangle feasibility. The product-program theorem of Cohn--de Laat--Salmon, Proposition~4.7, together with their continuous-to-Schwartz value comparison, gives
+\begin{equation}\label{eq:product}
+ P_n\le P(C_\square)\le L_n^2.
+\end{equation}
+This is an infimum comparison, not a claim that $g(x)g(y)$ is feasible. Indeed, if an admissible even $g$ is negative at $u$ with $|u|\ge1$, then $(u,-u)\in C_\triangle$ but $g(u)g(-u)>0$.
+
+For completeness we give the upper-comparison mechanism with a consistent distance-one convention. The functional-analytic inputs are compact theta-prime strong duality, as stated in the corrected de Laat--Vallentin version~3, Section~5.1, Lemma~10 \cite{dlv}, and the equality of continuous and Schwartz program values for the closed sign sets here, Theorem~3.1 and Proposition~3.5 of \cite{cdls}. The supporting audit checks their exact measure models and perturbation arguments.
+
+On a compact cube $Q_r=[0,r]^n$, put an edge between distinct points at distance less than one. The theta-prime primal variable is a finite symmetric nonnegative positive definite measure on $Q_r^2$, supported on the diagonal and nonedges, with diagonal mass one. Positive definiteness means nonnegative pairing with every continuous positive definite kernel. Its objective is total mass. The dual minimizes $\max_x K(x,x)$ among continuous symmetric kernels with $K-1$ positive definite and $K\le0$ on distinct nonedges. The cited compact theorem gives equality of these primal and dual values, denoted $\vartheta'(Q_r)$; dual attainment is not needed.
+
+For two such compact graphs, the disjunctive product has an edge if either coordinate pair is an edge. Let $\mu$ be a feasible measure on that product. Write $D_i$ for equality of the $i$th coordinates, and $A=\mu(D_1)\ge\mu(D_1\cap D_2)=1$. The first marginal of $\mu$, divided by $A$, is feasible for the first graph: its diagonal mass is one, its support is allowed, and testing kernels $K_1\otimes1$ proves positive definiteness. The second marginal of the restriction $\mu|_{D_1}$ is feasible for the second graph and has total mass $A$. To justify positive definiteness of this restriction without using a discontinuous test kernel, test
+\[
+ e^{-t|x_1-y_1|^2}K_2(x_2,y_2),\qquad t>0,
+\]
+which is continuous and positive definite, and use dominated convergence for the finite measure as $t\to\infty$. Its second-coordinate diagonal mass is the original full diagonal mass, one. The product of these two marginal total masses is the total mass of $\mu$. It follows that
+\begin{equation}\label{eq:theta-product}
+ \vartheta'(Q_r\mathbin{*}Q_r)\le\vartheta'(Q_r)^2.
+\end{equation}
+
+Given a two-point admissible Schwartz function $g$, choose $T=r+1$ and periodize
+\[
+ p_T(z)=\sum_{k\in\Z^n}g(z+Tk),\qquad K_T(x,y)=T^n p_T(x-y).
+\]
+Poisson summation gives Fourier coefficients $\widehat g(k/T)$ for $K_T$, so $K_T-1$ is positive definite. For a distinct nonedge, the $k=0$ displacement has length at least one, while every $k\ne0$ translate has some coordinate of absolute value at least $T-r=1$. Each summand is therefore nonpositive, including the boundary case. This kernel is dual feasible, with constant diagonal $T^n\sum_k g(Tk)$. Schwartz decay gives, for any $N>n$,
+\[
+ \sum_{k\ne0}|g(Tk)|\le C_N T^{-N}\sum_{k\ne0}|k|^{-N}\longrightarrow0.
+\]
+Consequently $\limsup_{r\to\infty}\vartheta'(Q_r)/r^n\le g(0)$, and infimizing gives an upper limit at most $L_n$.
+
+Now let $V=Q_r\times Q_r\subset\R^{2n}$ have volume $W=r^{2n}$, and choose a continuous dual-feasible product kernel $K$ with objective $M$ arbitrarily close to $\vartheta'(Q_r*Q_r)$. Extend $K$ by zero outside $V^2$, and set
+\[
+ h(z)=\int_{\R^{2n}}K(t+z,t)\,dt.
+\]
+The extended kernel remains positive definite: every finite test matrix has a positive semidefinite principal block on points in $V$ and zero rows elsewhere. Integrating finite quadratic forms shows $h$ is positive definite. It is compactly supported and continuous. Indeed a continuous positive definite kernel has a continuous Hilbert-space feature map on $V$; extend that map by zero to an $L^2$ function. The resulting correlation is continuous by translation continuity in $L^2$. Thus $h$ is integrable with nonnegative Fourier transform.
+
+For $z\in C_\square$, whenever both $t+z$ and $t$ belong to $V$, they are a distinct nonedge of the disjunctive product; zero displacement coordinates are allowed. Hence $h(z)\le0$. The exact normalization is
+\[
+ h(0)\le MW,\qquad
+ \widehat h(0)=\int_{V^2}K(s,t)\,ds\,dt\ge W^2>0.
+\]
+The second inequality pairs $K-1$ with the constant test function. Therefore $h/\widehat h(0)$ is continuous square-feasible with objective at most $M/W$. The square on $W$ is essential. Letting $M$ approach the compact dual value, using \eqref{eq:theta-product}, and then taking $r\to\infty$ proves that the continuous square-program infimum is at most $L_n^2$. The cited continuous-to-Schwartz value comparison yields \eqref{eq:product}. This is a proof of an infimum inequality, with no optimizer-attainment assertion.
+
+\begin{theorem}[Exact planar equality]\label{thm:planar}
+For the specified real Schwartz programs,
+\[
+ L_2=\frac2{\sqrt3},\qquad P_2=\frac43.
+\]
+\end{theorem}
+\begin{proof}
+OpenAI's Theorem~1.1 in \cite{oai090} supplies an admissible planar two-point Schwartz function $g$ with $g(0)=2/\sqrt3$. This certificate and Proposition~\ref{prop:poisson} give matching upper and lower bounds for $L_2$. Equation~\eqref{eq:product} and the second Poisson bound then give
+\[
+ \frac43\le P_2\le L_2^2=\frac43.
+\]
+No triangle optimizer or objective-preserving conversion is used.
+\end{proof}
+
+The substantive external input is Theorem~1.1 of \cite{oai090}.\allowbreak Its construction couples Gaussian-damped entire cardinal functions through an infinite $\ell^1$ system. Finite matrix bounds and uniform output-tail estimates provide an actual bounded inverse; residual bounds compare rational tables to the exact coefficient lists. Finite Bernstein bounds control whole half-gaps after the vanishing jets are subtracted, and an analytic second-derivative bound and sine-product barrier control the unbounded region. Differentiated Poisson summation fixes the exact positive normalization. The accompanying audit reconstructs this chain. An independent adaptive Arb integration implementation verifies all 51 finite nodes, both matrix signs and the cross/exterior bounds, 102 residual pairs, 84 half-gaps and 2,436 Bernstein inequalities. A second independent implementation uses direct node-Taylor formulas and an audited Fej\'er remainder to verify all 2,436 Bernstein inequalities. Independent scalar checks verify the envelope, coefficient-error, Taylor-tail and unbounded-tail constants. These finite checks supplement the written continuum and infinite-system arguments; floating-point sampling is diagnostic evidence only.
+
+\section{Attribution, scope, and reproducibility}
+Theorems~\ref{thm:negative} and~\ref{thm:planar} are consequences of the explicitly credited external inputs and the displayed deductions. The independent checks and audits have the exact scopes described above; neither target is claimed as formally verified. The two parts do not settle other wreath actions, a prescribed nonabelian free lamp, all-dimensional equality, characterization of triangle optimizers, or a universal conversion theorem.
+
+An institutional 2026 thesis abstract by Daria Zhitniaia \cite{zhitniaia} announces a planar magic-function representation. The full thesis was unavailable in the inspected institutional record; the abstract alone does not permit a comparison of complete sign, regularity, and normalization claims. This limits any priority conclusion. No outreach was undertaken. Our short deductions and standard lattice arguments are derivative, and the verification package must be assessed on its actual checkable coverage.
+
+The editable source, bibliography, dependency and theorem ledgers, exact source versions, independent code, computational receipts, review records and reproduction instructions are maintained together. Third-party manuscripts and runtime libraries are local audit inputs, excluded from the intended distributable package. The package manifest binds each distributed file to a SHA-256 identity. Reproduction checks all decisive finite gates with assertions enabled, rebuilds the PDF, and compares the extracted text on every page; binary PDF identity may differ through build metadata. Computational receipts do not certify the probabilistic/topological proof, which must be checked from the written source audit and its pinned input.
+
+\paragraph{AI disclosure.} AI tools were used extensively in research, drafting, computation and verification. Internal independent and adversarial reviews were AI-assisted. This preprint has not undergone conventional human peer review or refereeing. AI systems are not listed as authors, and no external endorsement is implied.
+
+\begin{thebibliography}{99}
+\bibitem{kourovka} The Kourovka Notebook, 21st issue, Problem~21.22, editors' October 2026 version. \url{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/10/21tkt-1.pdf}.
+\bibitem{pr389} Alec Kriebel, problem 2531 / Kourovka 21.22 research packet, PR~389, head \nolinkurl{fcb661d172c182d0437a07c3714ad4e113278d3b}. \url{https://github.com/AlecKriebel/Math/pull/389}.
+\bibitem{pr487} Alec Kriebel, problem 20001754 / AIM 1.32 research packet, PR~487, head \nolinkurl{d33ec2f43aa7c59519f0b004202b8cd653ce4fd8}. \url{https://github.com/AlecKriebel/Math/pull/487}.
+\bibitem{bff} H. Bradford and F. Fournier-Facio, Hopfian wreath products and the stable finiteness conjecture, \emph{Mathematische Zeitschrift} 308 (2024), Paper 58. DOI: \href{https://doi.org/10.1007/s00209-024-03589-3}{10.1007/s00209-024-03589-3}.
+\bibitem{ms} C. F. Miller III and P. E. Schupp, Embeddings into Hopfian groups, \emph{Journal of Algebra} 17 (1971), 171--176. DOI: \href{https://doi.org/10.1016/0021-8693(71)90028-7}{10.1016/0021-8693(71)90028-7}.
+\bibitem{bs} M. R. Bridson and H. Short, Complete embeddings of groups, \emph{Bulletin of the Australian Mathematical Society} 110 (2024), 136--144. DOI: \href{https://doi.org/10.1017/S0004972723001442}{10.1017/S0004972723001442}.
+\bibitem{oai197} OpenAI, A Torsion-Free Group Algebra That Is Not Directly Finite, manuscript titled October 4, 2026, Theorem~1.1, immutable release commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026/direct-finiteness.pdf}.
+\bibitem{oai090} OpenAI, A sharp Fourier certificate for planar circle packing, manuscript titled September 23, 2026, Theorem~1.1, same immutable release commit. \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf}.
+\bibitem{aim} D. de Laat, Discrete analysis and its applications, AIM Problem~1.32. \url{http://aimpl.org/discreteaf/1/}.
+\bibitem{cdls} H. Cohn, D. de Laat and A. Salmon, Three-point bounds for sphere packing, arXiv:2206.15373v1 (2022), Proposition~4.7, Theorem~3.1 and Proposition~3.5. \url{https://arxiv.org/abs/2206.15373v1}.
+\bibitem{dlv} D. de Laat and F. Vallentin, A semidefinite programming hierarchy for packing problems in discrete geometry, \emph{Mathematical Programming} B 151 (2015), 529--553; corrected arXiv:1311.3789v3 (2021), Section~5.1, Lemma~10. \url{https://arxiv.org/abs/1311.3789v3}.
+\bibitem{zhitniaia} D. Zhitniaia, Linear Programming Bound for Sphere Packing in Dimension 2, bachelor's thesis, HSE University (2026), institutional abstract only. \url{https://www.hse.ru/en/edu/vkr/1163516275}.
+\end{thebibliography}
+\end{document}

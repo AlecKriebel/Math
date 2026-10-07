@@ -1,9 +1,21 @@
-# Dependency and route ledger
+# Dependency and approach ledger
 
-| Route | Mechanism | Evidence | Status | Exact gap |
+| Route | Mechanism | Evidence | Verification status | Exact gap or limitation |
 |---|---|---|---|---|
-| A-source | one-sided inverse with protected nonzero defect | family 197 pinned source | Audit pending | diagram/topology/nonvanishing and existence proof |
-| A-bridge | Hopfian overgroup; right multiplication on finite lamps | Bradford–Fournier-Facio; Miller–Schupp | Conditional algebra verified; embedding under audit | exact embedding proof |
-| B-source | sharp radial planar Schwartz certificate | family 090 | Audit pending | signs, inversion, interval certificates and tails |
-| B-bridge | Poisson lower bounds and product comparison | original packet, product literature | Audit pending | feasibility and boundary cases |
-| Formal | Lean existential characteristic-two finite-field result with odd-prime torsion | FinitelyPresented.lean | Translation audit pending | does not directly state torsion-free F₂ result |
+| A197-parity | finite graph components of odd/even cardinality give ab=1 and ac=0; protected B-root gives identity coefficient1 in c | target_a/TORSION_FREE_INPUT_AUDIT.md; independent source review | Independently reconstructed twice | Requires root protection from the subsequent diagram argument; no assumption all vertex images distinct |
+| A197-probability | projective/Fano types; weighted word contraction; girth-conditioned switching; diameter; multiplicity stages; aligned blocks and self-links | Same audits; check_fixed_constants.py and exact receipt | Numerical constants independently exact; entire asymptotic mechanism inspected twice | No explicit selected finite random outcome; existence argument is the retained mechanism |
+| A197-diagrams | planar separator/extraction followed by relative cone-picture surgeries | Same audits | Independently inspected twice without an identified substantive defect | Fresh package reviewer must challenge stage projections, uniform o(L), essentiality and root endpoints |
+| A197-topology | π₂=0 gives contractible 2D universal cover; cyclic prime-order cohomology excludes torsion | Same audits | Written proof reconstructed | Standard Hurewicz/Whitehead and cyclic resolution inputs; no formal coverage |
+| A-embedding | published Miller–Schupp embedding; accessible Bridson–Short independent complete Hopfian embedding | bridges/wreath/EMBEDDING_AUDIT.md, exact primary hashes | Needed statement checked; accessible rigidity proof reconstructed | Original1971 proof unavailable; established deep geometric inputs in alternative remain cited, not computationally revalidated |
+| A-wreath | left regular action commutes with right b; ra gives preimages; e gives kernel | bridges/wreath/PROOF.md; orientation controls | Verified conditional proof | Central F₂ group-ring defect must pass final source acceptance; different permutational action is insufficient |
+| B090-analytic | finite spectral measures, complex Gaussian Fourier identity, full ℓ¹ Schur inverse, exact zero jets | target_b/CERTIFICATE_AUDIT.md, source adversary | Two independent manuscript inspections found no substantive defect | Finite inverse/residual inequalities require complete independent gates |
+| B090-computation | independent adaptive Arb integrals; separate node-Taylor + Fejér implementation; independent scalar envelopes | target_b checkers; reviews/source_adversary/independent_arb_bernstein.py | All scalar gates and separate2436 Bernstein coefficients pass; main full integral replay nearing completion | Supplied-code success and float diagnostics alone are insufficient; exact ball bounds and coverage required |
+| B090-global-signs | lower-jet quotient, positive Bernstein basis on whole half-gaps, truncation/error envelopes; unbounded rational/second derivative/sine barrier | Analytic audits and scalar receipts | Written global proof inspected twice | Finite gates must pass; no sampling substitute |
+| B-lower | Poisson on triangular Λ and Λ² | bridges/triangle/BRIDGE_PROOF.md | Verified | No substantive gap identified; boundary and axes checked |
+| B-product | compact theta-prime marginal product, periodization, averaged dual kernel, continuous-to-Schwartz equality | bridges/triangle/BRIDGE_PROOF.md and DUALITY_AUDIT.md | Exact source models and proof mechanisms reconstructed | Fresh review required; source bookkeeping repairs explained in full |
+| B-geometric-alternative | invoke optimal geometric circle packing | bridges/triangle/BRIDGE_PROOF.md | Blocked | Geometric packing density alone does not imply equality of Fourier-program infimum |
+| Formal alternative | actual Lean characteristic-two finite-field torsion construction, standard MonoidAlgebra | reviews/formal/AUDIT.md and137-file inventory | Scope/model/placeholder audit complete; NOT BUILT, NOT USED | Different theorem, no torsion-free F₂ coverage. No formal verification claim |
+| Priority | exact-target searches, current source histories, prior announcements | priority records and final audit underway | Preliminary records retained | Search absence is not proof of novelty; unavailable HSE thesis limits sharp planar priority |
+| Publication | reviewed precise manuscript + authored reproducibility package | publication/ and reproducibility/ | Assembly underway | Fresh full-package reviews, clean reproduction and PDF visual inspection before Zenodo |
+
+No route is reopened by restating an equivalent unsupported assertion. All input scopes and remaining limitations must remain synchronized across manuscript, metadata and upload package.

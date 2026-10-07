@@ -1,7 +1,18 @@
 # Theorem ledger
 
-| ID | Exact retained claim | Status | Evidence and gap |
+Status at the source checkpoint: no central manuscript defect has been found, but final promotion of A/B awaits complete finite validation and fresh whole-package reviews. Estimates measure work completed, not probability of truth.
+
+| ID | Exact quantified statement and assumptions | Dependencies / evidence | Status, boundaries and falsification |
 |---|---|---|---|
-| A | ∃ finitely generated Hopfian A,H with A wr H non-Hopfian, restricted regular action | Unestablished | Family 197 nonvanishing proof and Hopfian embedding input require validation |
-| B1 | L₂=2/√3 for specified real Schwartz program | Unestablished | Family 090 global signs require validation |
-| B2 | P₂=4/3 for exact triangle sign set | Unestablished | B1 and precise product theorem require validation |
+| A-implication | If a finitely generated G has a,b∈F₂[G] with ab=1 and ba≠1, there is a finitely generated Hopfian H containing G, and C₂ wr H is non-Hopfian | Established Hopfian embedding; bridges/wreath/PROOF.md and EMBEDDING_AUDIT.md | Verified implication; regular left action, finite-support base, right multiplication. Wrong left orientation fails control; no assumption G Hopfian, no finitely presented H claim |
+| A-kernel | In that construction Φ(r,h)=(rb,h), Σ(r,h)=(ra,h), ΦΣ=id, e=1−ba≠0, e²=e, ker Φ=Re×{1_H} | Associativity and ab=1; explicit written equations; orientation_receipt.json is only a model control | Verified conditional construction; A=C₂ is the single lamp, R_add is the entire base; finite factors/H/wreath finite generation handled |
+| A-input | There exist a finitely presented torsion-free G and a,b,c∈F₂[G] with ab=1, ac=0, c≠0, hence ba≠1 | OpenAI family197 Theorem1.1 pinned adc7f124…; target_a/TORSION_FREE_INPUT_AUDIT.md; independent source adversary; exact fixed constants | Two independent manuscript inspections found no substantive defect; fresh complete-package review required. No selected matching/presentation generated; no Lean coverage claimed |
+| A | ∃ finitely generated Hopfian A,H such that their standard restricted regular wreath product A wr H is non-Hopfian | A-input + A-implication, A=C₂ | Pending final input acceptance and package review; not yet promoted as an unconditional published result |
+| B-lower | For every specified admissible real Schwartz g on R², g(0)≥2/√3; for every specified admissible F on R⁴, F(0,0)≥4/3 | Poisson on Λ and Λ²; bridges/triangle/BRIDGE_PROOF.md; exact_lattice_receipt.json only controls geometry | Verified; includes u=0, v=0, u=v, length-one boundaries; no attainment assumption |
+| B-product | For every n≥1, P_n≤P(C_square)≤L_n² in the exact distance-one Schwartz formulation | Cohn–de Laat–Salmon product mechanism, compact theta-prime and Schwartz duality; BRIDGE_PROOF.md and DUALITY_AUDIT.md | Reconstructed proof verified provisionally for fresh review; volume-square normalization repaired; no naïve g(x)g(y) conversion |
+| B-input | ∃ real radial Schwartz g on R² with ĝ(0)=1, g(0)=2/√3, ĝ≥0 globally and g≤0 for |x|≥1, Fourier phase exp(−2πi<x,ξ>) | OpenAI family090 Theorem1.1 pinned adc7f124…; CERTIFICATE_AUDIT.md, independent integral/scalar computations, source adversary | Analytic proof inspected independently; complete adaptive integral gate still running at checkpoint. Floats are diagnostic only; Bernstein finite intervals and analytic unbounded tails both required |
+| B1 | L₂=2/√3 | B-lower + B-input | Pending final input acceptance and fresh package review |
+| B2 | P₂=4/3 | B1 + B-product + B-lower | Pending final acceptance; planar infimum only; no triangle optimizer or all-dimensional resolution |
+| B-baseline | L₂≤4/π and P₂≤16/π² | g(x)=(4/π)(1−|x|²)e^(−2|x|²), Fourier transform (1+π²|ξ|²/2)e^(−π²|ξ|²/2); B-product | Verified fallback bound, independent of sharp input |
+
+Full source versions, written proofs, computational scope, and reviews are retained. The central imported results receive their original attribution; the deductions and Poisson arguments are not claimed as independently discovered breakthroughs.
