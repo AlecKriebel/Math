@@ -1,4 +1,4 @@
-# Approach families — checkpoint 5
+# Approach families — checkpoint 6
 
 | Family | Mechanism | Evidence | Status | Exact gap |
 |---|---|---|---|---|
@@ -11,3 +11,5 @@
 | D: adversarial proof falsification | Attack walk, Liouville, supports, averaging signs, center gluing, spectral estimates | Full independent reconstruction and exact finite tests | No substantive mathematical gap found | Classical structural inputs remain cited; source-only scan not kernel proof |
 
 A blocked approach route is distinct from persistent-goal status. Optional associative multiplication companion deferred. Early audit independence was preserved; common findings were compared after independent source inspection.
+
+Source-access terminal route: publisher entitlement revalidated; bounded container/archive/local-library/physical-header routes and49unique residual PDF first-two-page extraction/render/OCR completed without a new candidate. Six partial/eight parser-failed residual identities and later-page/non-PDF limits are unresolved, with no global absence claim. Independent status/route adversaries found no specific credible safe new lead; actual persistent goal is blocked and unachieved. Reopen on complete authorized primary text or materially changed licensed access. Overall estimates: mathematical resolution75%, publication package40%. This is diagnostic/status evidence, not renewed mathematics or final-package clearance.
