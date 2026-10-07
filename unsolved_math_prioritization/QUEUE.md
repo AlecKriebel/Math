@@ -951,7 +951,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 942 | 30004633 / OWR-4990379-003 | Lagrangian Schemes for Irregular Porous-Medium Solutions | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  | Five approaches: accepted transgression and conditional line/recursion results; scoped odd Ramond smooth-extension correction and canonical odd current repair (+1/32 on F-dual). Actual OWR torsion comparison unresolved. [Full packet](attempts/30004711/README.md). |
 | 944 | 30004818 / OWR-8415345-008 | Genus-Reducing Local-Knot Concordance in Orientable Three-Manifolds | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 945 | 30004938 / OWR-8415362-003 | Polyhedrality of Totally Nonnegative Critical Varieties | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 946 | 30005030 / OWR-9790360-001 | Spatial Regularity Versus Time Integrability for Fractional SDEs | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
