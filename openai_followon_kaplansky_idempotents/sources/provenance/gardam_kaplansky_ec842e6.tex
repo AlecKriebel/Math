@@ -1,0 +1,3003 @@
+\chapter{The Kaplansky conjectures}
+
+\section{Introduction}
+
+\begin{definition}
+    Let $R$ be a ring and $G$ be a group. The \emph{group ring} $R[G]$ consists of finite formal $R$-linear sums \[
+        R[G] = \set{ \sum_{i=1}^n r_{g_i} \cdot g_i }{ r_{g_i} \in R, g_i \in G }
+    \] with multiplication \[
+        (\sum r_g \cdot g)(\sum s_h \cdot h) = \sum r_g s_h \cdot g h = \sum_k (\sum_{gh = k} r_g s_h) \cdot k.
+    \]
+\end{definition}
+
+In this course, we'll almost always have $R = \Z$ or $R = K$ a field; in the latter case, one often calls $K[G]$ the \emph{group algebra}.
+
+\begin{center}
+    \fbox{\parbox{20em}{
+        \centering
+        From now on: \\ $G$ will always be a group, \\ $K$ will always be a field, and \\ $R$ will always be a ring.
+    }}
+\end{center}
+
+\begin{example}
+    For $G = \Z = \gen{t}$, $R[G]$ is the ring of Laurent polynomials over $R$, usually denoted $R[t,t^{-1}]$.
+\end{example}
+
+A viewpoint due to Noether: Representations of $G$ on $K$-vector spaces are $K[G]$-modules.
+
+\begin{warning}
+    $K[G]$ is non-commutative unless $G$ is abelian. It is (left) Noetherian only in special settings and it is never semisimple for infinite $G$ (cf.\ Maschke's theorem).
+\end{warning}
+
+Although group rings tend to have bad ring theoretic properties, they conjecturally have nice elementary properties.
+Note first that for $k \in K \setminus \{0\}$ and $g \in G$, the element $kg \in K[G]$ is a unit (with $(k \cdot g)^{-1} = k^{-1} \cdot g^{-1}$); such units are called \emph{trivial}.
+A group is called \emph{torsion-free} if it has no non-trivial finite order elements.
+For example, fundamental groups of aspherical manifolds are torsion-free.
+
+\begin{definition}
+    Let $\mathcal{P}$ be a property of groups.
+    A group $G$ is \emph{virtually $\mathcal{P}$} if it has a finite-index subgroup $G_0$ with $\mathcal{P}$.
+\end{definition}
+
+As another example, a finitely generated subgroup of $\GL_n(\C)$ is virtually torsion-free (Selberg).
+
+\begin{conjecture}[The Kaplansky conjectures]
+    If $G$ is torsion-free, then $K[G]$ has
+    \begin{itemize}
+        \item no non-trivial units: $\alpha \beta = \beta \alpha = 1 \implies \alpha = kg$ for some $k \in K^\times, g \in G$
+        \item no non-zero zero divisors: $\alpha \beta = 0 \implies \alpha = 0$ or $\beta = 0$, and
+        \item no non-trivial idempotents: $\alpha^2 = \alpha \implies \alpha = 0$ or $\alpha = 1$.
+    \end{itemize}
+    For \emph{any} $G$ (possibly with torsion), $K[G]$ is
+    \begin{itemize}
+        \item directly finite: $\alpha \beta = 1 \implies \beta \alpha = 1$.
+    \end{itemize}
+\end{conjecture}
+
+These are the unit conjecture, zero divisor conjecture, idempotent conjecture and direct finiteness conjectures respectively.
+(Direct finiteness is also called \emph{Dedekind finiteness} or \emph{von Neumann finiteness}.)
+
+\begin{remark}
+    The unit conjecture is false; the others are open.
+\end{remark}
+
+\begin{remark}
+    Torsion-freeness is essential. For example, if $g \in G$ has order $n \geq 2$ then $(1 - g)(1 + g + \dots + g^{n-1}) = 1 - g^n = 0$.
+\end{remark}
+
+\begin{remark}
+    These conjectures are ``local'' in the sense that they only depend on the finitely generated subgroups of $G$.
+\end{remark}
+
+\begin{proposition}
+    \label{proposition:kaplansky_relations}
+    For a given torsion-free group $G$ and field $K$, we have \[
+        \text{unit conj.} \implies
+        \text{zero divisor conj.} \implies
+        \text{idempotent conj.} \implies
+        \text{direct finiteness}
+    \]
+\end{proposition}
+
+\begin{proof}
+    The 3 weaker conjectures are ring theoretic statements and their implications are easy ring theoretic observations: if $\alpha \beta = 1$ and $\beta \alpha \neq 1$ then $(\beta \alpha)^2 = \beta (\alpha \beta) \alpha = \beta \alpha$ is a non-trivial idempotent.
+    If $\alpha^2 = \alpha$ is a non-trivial idempotent, then $\alpha^2 - \alpha = \alpha (\alpha - 1) = 0$ with both factors non-zero.
+
+    The unit conjecture is a ``group ring theoretic'' statement and the proof of the implication requires the following (which we'll prove later using group theory):
+    \begin{theorem}[Connell]
+        $K[G]$ is prime if and only if $G$ has no non-trivial finite normal subgroup.
+    \end{theorem}
+    A non-commutative ring $R$ is called \emph{prime} if the zero ideal is not a product of two non-zero ideals.
+    This is equivalent to saying that for all $0 \neq \alpha, \beta \in R$ there exists $\gamma \in R$ with $\alpha \gamma \beta \neq 0$.
+
+    Since $G$ is torsion-free, $K[G]$ is prime.
+    Suppose that $\alpha \beta = 0$ for $\alpha, \beta \neq 0$.
+    Then there exists $\gamma \in K[G]$ with $\beta \gamma \alpha \neq 0$.
+    Now \[
+        (1 + \beta \gamma \alpha) (1 - \beta \gamma \alpha) = 1 - \beta \gamma (\alpha \beta) \gamma \alpha = 1.
+    \]
+    Thus $1 + \beta \gamma \alpha$ is a non-trivial unit, since if it were trivial then $\beta \gamma \alpha = kg - 1$ which implies $k^2 g^2 - 2kg + 1 = 0$ which is absurd unless $g = 1$, which then forces $\beta \gamma \alpha \in K$ so $\beta \gamma \alpha = 0$ since it is nilpotent.
+\end{proof}
+
+\begin{definition}
+    A group $G$ is \emph{residually finite} if for all $1 \neq g \in G$ there exists a homomorphism $\phi_g \colon G \to Q$ to a finite group such that $\phi_g (g) \neq 1$.
+\end{definition}
+
+We will see later that the direct finiteness conjecture is true for $K = \C$.
+Here we prove:
+
+\begin{proposition}
+    \label{proposition:rf_implies_df}
+    Let $G$ be residually finite.
+    Then $K[G]$ is directly finite.
+\end{proposition}
+
+\begin{notation}
+For $\alpha \in K[G]$ and $g \in G$, let $(\alpha)_g \in K$ denote the coefficient of $g$ in $\alpha$.
+Then $\alpha = \sum_{g \in G} (\alpha)_g \cdot g$ and $(\alpha)_g = 0$ for all but finitely many elements of $G$.
+\end{notation}
+
+\begin{definition}
+    An element $\alpha \in K[G]$ has \emph{support} \[
+        \supp(\alpha) = \set{ g \in G }{ (\alpha)_g \neq 0 }.
+    \]
+\end{definition}
+
+\begin{proof}
+    Suppose $\alpha, \beta \in K[G]$ with $\alpha \beta = 1$.
+    A group homomorphism $\phi \colon G \to Q$ induces a ring homomorphism $K[G] \to K[Q]$.
+    Thus $K[Q]$ is a $K[G]$-module.
+    Note that $Q$ is a basis for the $K$-vector space $K[Q]$, so if $Q$ is finite this is a finite dimensional representation of $G$ on $V = K[Q]$.
+
+    Let $A = \supp(\alpha)$, $B = \supp(\beta)$.
+    Let $C = BA = \set{ ba }{ a \in A, b \in B}$.
+    By residual finiteness, there is a finite quotient $\phi \colon G \epi Q$ which is injective on $C$: take the product of homomorphisms $\phi_g$ given by the definition over all $g \in C^{-1} C \setminus \{1\}$ (and let $Q$ be the image of this product homomorphism).
+
+    Now the induced maps $\rho_\alpha, \rho_\beta \in \End(V)$ satisfy $\rho_\alpha \circ \rho_\beta = \id_V$ and thus -- since $V = K[Q]$ is finite dimensional -- we have $\rho_\beta \circ \rho_\alpha = \id_V$.
+
+    But we can write $\beta \alpha = \sum_{c \in C} (\beta \alpha)_c \cdot c$ and thus \[
+        \rho_{\beta \alpha}(1_Q) = \phi(\beta \alpha) = \sum_{c \in C} (\beta \alpha)_c \cdot \phi(c) = 1_Q
+    \] forces (since all $\phi(c)$ are distinct!) \[
+        (\beta \alpha)_c = \begin{cases}
+            1 & c = 1 \\
+            0 & \text{else}
+        \end{cases}
+    \] that is, $\beta \alpha = 1$.
+\end{proof}
+
+\section{Proving the unit conjecture}
+
+There is only one way known to prove the unit conjecture: the unique product property.
+
+\begin{definition}
+    A group $G$ has the \emph{unique product property} (or ``has unique products'', or ``has UP'') if for all non-empty finite subsets $A, B \subseteq G$ there exists $g \in G$ such that $g = ab$ for a unique pair $(a, b) \in A \times B$.
+\end{definition}
+
+\begin{example}
+    In $(\Z, +)$ the ``product'' $\max(A) + \max(B)$ is unique.
+\end{example}
+
+\begin{remark}
+    A group with UP is torsion-free: if $1 \neq H \leq G$ is a finite subgroup, set $A = B = H$.
+    Each product occurs exactly $|H|$ times.
+\end{remark}
+
+\begin{proposition}
+    A group $G$ with UP satisfies the zero divisor conjecture.
+\end{proposition}
+
+\begin{proof}
+    Let $\alpha, \beta \in K[G]$ with $\alpha, \beta \neq 0$ and set $A = \supp(\alpha), B = \supp(\beta)$.
+    Write
+    \begin{align*}
+        \alpha = \sum_{a \in A} \lambda_a \cdot a \\
+        \beta = \sum_{b \in B} \mu_b \cdot b.
+    \end{align*}
+    Then if $g_0 = a_0 b_0$ is a unique product for $(A, B)$ we have \[
+        (\alpha \beta)_{g_0} = \sum_{gh = g_0} \lambda_g \mu_h = \lambda_{a_0} \mu_{b_0} \neq 0
+    \] and thus $\alpha \beta \neq 0$.
+\end{proof}
+
+For the unit conjecture we need something that \emph{a priori} is stronger.
+
+\begin{definition}
+    A group $G$ has the \emph{two unique products property} if for all finite subsets $A, B \subseteq G$ with $|A| |B| \geq 2$, there exist elements $g_0 \neq g_1$ of $G$ such that $g_0 = a_0 b_0$ for a unique pair $(a_0, b_0) \in A \times B$ and $g_1 = a_1 b_1$ for a unique pair $(a_1, b_1) \in A \times B$.
+\end{definition}
+
+\begin{proposition}[Strojnowski]
+    The two unique product property is equivalent to the unique product property.
+\end{proposition}
+
+\begin{proof}
+    TUP $\implies$ UP is immediate (TUP doesn't apply if $|A| = |B| = 1$, but if $|A| = 1$ or $|B| = 1$, then all products are unique!)
+
+    Suppose now $G$ has UP but that finite sets $A, B \subseteq G$ with $|A| |B| \geq 2$ have only $1$ unique product.
+    Without loss of generality, by translating $A$ on the left and $B$ on the right, we can assume that $1 = 1 \cdot 1$ is the unique unique product.
+
+    Now let $C = B^{-1} A$, $D = B A^{-1}$.
+    We claim that $C \cdot D$ has no unique product, giving the desired contradiction.
+    Every element of $CD$ can be written as $b_1^{-1} a_1 b_2 a_2^{-1}$ for some $a_1, a_2 \in A$, $b_1, b_2 \in B$.
+
+    If $(a_1, b_2) \neq (1, 1)$, then by assumption there is another pair $(a_1', b_2')$ with $a_1' b_2' = a_1 b_2$ and thus \[
+        (b_1^{-1} a_1) \cdot (b_2 a_2^{-1}) = (b_1^{-1} a_1') \cdot (b_2' a_2^{-1})
+    \] is \emph{not} a unique product for $(C, D)$.
+
+    If $(a_1, b_2) = (1, 1)$, then unless $(a_2, b_1) = (1, 1)$ we can write \[
+        b_1^{-1} \cdot a_2^{-1} = (a_2 b_1)^{-1} = (a_2' b_1')^{-1} = (b_1')^{-1} (a_2')^{-1}
+    \]
+    with $a_2 \neq a_2'$ (and $b_1 \neq b_1'$).
+    Finally, if $(a_1, b_2) = (1, 1)$ and $(a_2, b_1) = (1, 1)$, then our element of $CD$ is $1 = 1 \cdot 1 = b^{-1} \cdot b = a \cdot a^{-1}$ for any $a \in A$ or $b \in B$.
+\end{proof}
+
+\begin{corollary}
+    \label{corollary:UP_implies_unit_conjecture}
+    A group with UP satisfies the unit conjecture.
+\end{corollary}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+Most examples of groups with UP are orderable groups.
+
+\begin{definition}
+    A group $G$ is \emph{left-orderable} if it admits a total order $<$ that is left-invariant, that is, $g < h$ implies $kg < kh$ for all $g, h, k \in G$.
+\end{definition}
+
+\begin{remark}
+    Being left-orderable and right-orderable are equivalent, but admitting a bi-invariant total order is much stronger!
+\end{remark}
+
+\begin{proposition}
+    A left-orderable group has UP.
+\end{proposition}
+
+\begin{proof}
+    We show that the maximum of $AB$ is a unique product.
+    Let $b_0 = \max B$.
+    Then for all $a \in A$ and $b \in B \setminus \{b_0\}$ we have $b < b_0 \implies ab < ab_0$.
+    Thus the maximum of $AB$ can only be written as $a \cdot b_0$ and this expression must be unique (as $a_i \neq a_j \implies a_i b_0 \neq a_j b_0$).
+\end{proof}
+
+\begin{remark}
+    It is \emph{not} necessarily true that $\max(AB) = \max(A) \max(B)$!
+\end{remark}
+
+\begin{definition}
+    For a left-ordered group $(G, <)$, the set \[
+        \cP = \set{ g \in G }{ 1 < g }
+    \] is called its \emph{positive cone}.
+\end{definition}
+
+The positive cone satisfies
+\begin{enumerate}
+    \item $\cP^2 \subseteq \cP$ (that is, it is a subsemigroup)
+    \item $G = \cP \sqcup \{1\} \sqcup \cP^{-1}$.
+\end{enumerate}
+
+\begin{lemma}
+    Left-orderings are equivalent to choice of $\cP \subset G$ satisfying (1) and (2).
+\end{lemma}
+
+\begin{proof}
+    Exercise (hint: $x < y \Leftrightarrow 1 < x^{-1} y$).
+\end{proof}
+
+\begin{lemma}
+    A group $G$ is left-orderable if and only if for all $g_1, \dots, g_n \in G \setminus \{1\}$ there exists a choice of signs $\epsilon_1, \dots, \epsilon_n \in \{1, -1\}$ such that \[
+        1 \notin S(g_1^{\epsilon_1}, \dots, g_n^{\epsilon_n}),
+    \] the subsemigroup generated by $g_1^{\epsilon_1}, \dots, g_n^{\epsilon_n}$.
+\end{lemma}
+
+\begin{proof}
+    $\Rightarrow$ set $\epsilon_i = 1$ if $g_i \in \cP$ (that is, $1 < g_i$) else $-1$.
+
+    $\Leftarrow$ we use compactness (slogan: inverse limit of non-empty finite sets is non-empty).
+    Let $X = \{1, -1\}^{G \setminus \{1\}}$ be the set of functions $G \setminus \{1\} \to \{1, -1\}$ and let $A \subset X$ denote those functions that define a positive cone.
+    This is equivalent to satisfying (simultaneously!) the choice of sign condition for all possible $g_1, \dots, g_n \in G \setminus \{1\}$ (actually $n = 3$ suffices).
+    That is, if we denote such functions $A_{\{g_1, \dots, g_n\}}$ then \[
+        A = \bigcap_{\text{finite } S \subset G \setminus \{1\}} A_S.
+    \]
+    But $X$ is compact by Tychonoff and the $A_S$ are closed (only depend on the restriction to $S \to \{1, -1\}$) and have all finite intersections non-empty by assumption.
+    Thus $A \neq \emptyset$.
+\end{proof}
+
+We will apply the lemma to prove the following:
+\begin{theorem}[Burns--Hale]
+    \label{theorem:burns_hale}
+    If every finitely generated non-trivial subgroup of $G$ has a non-trivial left-orderable quotient, then $G$ is left-orderable.
+\end{theorem}
+
+\begin{definition}
+    Let $\mathcal{P}$ be a property of groups.
+    A group $G$ is \emph{locally $\mathcal{P}$} if every finitely generated subgroup of $G$ has $\mathcal{P}$.
+\end{definition}
+
+We call a group \emph{indicable} if it either maps onto $\Z$ or is trivial.
+So the Burns--Hale theorem says in particular that a \emph{locally indicable} group is left-orderable.
+
+\begin{corollary}[Higman, 1940]
+    \label{corollary:LI_kaplansky}
+    Locally indicable groups satisfy the conjectures on units and zero divisors.
+\end{corollary}
+
+\begin{proof}
+    Locally indicable $\implies$ left-orderable $\implies$ UP.
+\end{proof}
+
+\begin{example}
+    The following groups are locally indicable:
+    \begin{itemize}
+        \item free groups (subgroups of free groups are free by Nielsen--Schreier)
+        \item fundamental groups of surfaces of non-positive Euler characteristic
+        \item torsion-free nilpotent groups
+        \item torsion-free one-relator groups i.e.\ groups of the form $\gp{X}{r}$ where $r \in F(X)$ is not a proper power (Brodskii, Howie)
+    \end{itemize}
+\end{example}
+
+\begin{proof}[Proof of Burns--Hale theorem]
+    Suppose $G$ is not left-orderable and let $n$ be minimal such that there exist $g_1, \dots, g_n \in G \setminus \{1\}$ with $1 \in S(g_1^{\epsilon_1}, \dots, g_n^{\epsilon_n})$ for all choices of $\epsilon_i$.
+    Let $H = \gen{g_1, \dots, g_n} \leq G$.
+    By assumption, $H$ has a non-trivial left-orderable quotient $q \colon H \epi Q$.
+    By relabelling, assume $g_1, \dots, g_t \in \ker(q)$ and $g_{t+1}, \dots, g_n \notin \ker(q)$.
+    As $t < n$, we can assign $\epsilon_1, \dots, \epsilon_t$ such that \[
+        1 \notin S(g_1^{\epsilon_1}, \dots, g_t^{\epsilon_t}),
+    \] and since $Q$ is left-orderable we can assign $\epsilon_{t+1}, \dots, \epsilon_n$ such that \[
+        1 \notin S(q(g_{t+1})^{\epsilon_{t+1}}, \dots, q(g_n)^{\epsilon_n}).
+    \]
+    But this implies that \[
+        1 \notin S(g_1^{\epsilon_1}, \dots, g_n^{\epsilon_n})
+    \] as every non-empty product of those elements \emph{either} only uses $g_1, \dots, g_t$ so lies in $S(g_1^{\epsilon_1}, \dots, g_t^{\epsilon_t})$ \emph{or} has image under $q$ in $S(q(g_{t+1})^{\epsilon_{t+1}}, \dots, q(g_n)^{\epsilon_n})$.
+\end{proof}
+
+\subsection*{The dynamical point of view}
+
+\begin{proposition}
+    The group $\Homeo^+(\R)$ of orientation-preserving (i.e.\ increasing) homeomorphisms of the real line is left-orderable.
+\end{proposition}
+
+\begin{proof}
+    Let $\{x_0, x_1, x_2, \dots\} \subset \R$ be dense (e.g.\ enumerate $\Q$).
+    Then we define $f < g$ for $f \neq g \in \Homeo^+(\R)$ by \[
+        f < g \Leftrightarrow f(x_i) < g(x_i) \text{ for the minimal } i \in \N \text{ s.t. } f(x_i) \neq g(x_i).
+    \]
+    (Such an $i$ exists as continuous functions to Hausdorff spaces are determined by their values on dense subsets.)
+    Left-invariance is immediate as elements of $\Homeo^+(\R)$ are strictly monotone (and we take $\Homeo^+(\R)$ to act on $\R$ on the left!).
+    Let $f, g, h \in \Homeo^+(\R)$ with $f < g$ and $g < h$ and let $i \in \N$ be the minimal index such that $f(x_i) \neq g(x_i)$ or $g(x_i) \neq h(x_i)$.
+    Then $f(x_i) \leq g(x_i)$ and $g(x_i) \leq h(x_i)$ with at least one inequality being strict, so $f(x_i) < h(x_i)$.
+    Moreover, for $j < i$ we have $f(x_j) = g(x_j) = h(x_j)$, so $f < h$.
+\end{proof}
+
+In fact:
+
+\begin{proposition}
+    A countable group is left-orderable if and only if it is a subgroup of $\Homeo^+(\R)$.
+\end{proposition}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{proposition}
+    Suppose that $N \normal G$ such that $N$ and $G / N$ both have UP.
+    Then $G$ has UP.
+\end{proposition}
+
+\begin{proof}
+    Let $A, B \subset G$ be finite non-empty subsets and write $\phi \colon G \epi G / N$.
+    Suppose $\phi(a_1) \cdot \phi(b_1)$ is a unique product for $\phi(A) := \set{\phi(a)}{a \in A}$ and $\phi(B)$ in $G/N$.
+    By replacing $A$ with $a_1^{-1} A$ and $B$ with $B b_1^{-1}$, we can assume without loss of generality that $\phi(a_1) = \phi(b_1) = 1$.
+    Thus for $a \in A$ and $b \in B$ we have \[
+        a b \in N \Leftrightarrow \phi(a b) = 1 \Leftrightarrow \phi(a) = 1 \text{ and } \phi(b) = 1 \Leftrightarrow a \in N \text{ and } b \in N
+    \]
+    Hence the unique product of the non-empty finite sets $A \cap N$ and $B \cap N$ in the UP group $N$ is a unique product for $A$ and $B$.
+\end{proof}
+
+\subsection*{Diffuse groups}
+
+We now meet the weakest property known to imply UP.
+
+\begin{definition}
+    Let $A \subset G$ be a finite subset.
+    An element $a \in A$ is called \emph{extremal} if for all $1 \neq s \in G$, either $as \notin A$ or $a s^{-1} \notin A$ (or both).
+    A group is called \emph{diffuse} if every non-empty finite subset contains an extremal element.
+\end{definition}
+
+% TODO add figure showing extremal points on boundary of a disc
+
+\begin{remark}
+    \label{remark:diffuse_intersection}
+    $a \in A$ is extremal if and only if $a^{-1} A \cap A^{-1} a = \{1\}$.
+\end{remark}
+
+\begin{remark}
+    This notion has been called ``weakly diffuse'' with diffuse reserved for the \emph{a priori} stronger property that any $A \subset G$ with $2 \leq |A| < \infty$ has at least $2$ extremal points, but they turn out to be equivalent.
+\end{remark}
+
+\begin{proposition}
+    \label{proposition:LO_diffuse_UP}
+    For any group we have the implications \[
+        \text{left-orderable} \implies \text{diffuse} \implies \text{UP}.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Suppose $(G, <)$ is left-ordered.
+    Let $A \subset G$ be an arbitrary non-empty finite subset and let $a = \max A$.
+    For any $1 \neq s \in G$ either $1 < s$ or $1 < s^{-1}$, which implies either $a < a s$ or $a < a s^{-1}$.
+    Thus $a$ is extremal.
+    Hence $G$ is diffuse.
+
+    Suppose $G$ is diffuse and let $A, B \subset G$ be non-empty finite subsets.
+    Consider $C = AB$.
+    Let $c \in C$ be an extremal point and pick some $a_1 \in A, b_1 \in B$ such that $c = a_1 b_1$.
+    We claim that this is a unique product.
+    Suppose for the sake of contradiction that $c = a_2 b_2$ with $b_1 \neq b_2$ (and $a_2 \in A$, $b_2 \in B$).
+    Then
+    \begin{align*}
+        c \cdot (b_2^{-1} b_1) &= a_2 b_2 \cdot (b_2^{-1} b_1) = a_2 b_1 \in C \\
+        c \cdot (b_2^{-1} b_1)^{-1} &= a_1 b_1 \cdot (b_1^{-1} b_2) = a_1 b_2 \in C
+    \end{align*}
+    contradicting diffuseness.
+\end{proof}
+
+\begin{remark}
+    Given finite $B \subset G$ we can easily decide if all non-empty $A \subseteq B$ have an extremal point because if $a \in A_0 \subseteq A_1$ and $a$ is extremal in $A_1$, then it is also extremal in $A_0$.
+    Thus we can run a greedy algorithm, starting with $A = B$ and throwing out all extremal points at each step (checking extremality in finitely many steps via \Cref{remark:diffuse_intersection}), seeing if we terminate with $A = \emptyset$ or with a non-empty set $A$ that falsifies diffuseness.
+\end{remark}
+
+\begin{exercise}
+    Show that the following classes of groups are closed under taking extensions:
+    \begin{itemize}
+        \item locally indicable groups
+        \item left-orderable groups
+        \item diffuse groups
+    \end{itemize}
+\end{exercise}
+
+
+\section{Hyperbolic groups}
+
+Geodesics in the hyperbolic plane resemble tripods.
+% Note to self: probably should have given a proper definition of tripod.
+
+% TODO add figure of slim triangle and comparison tripod
+
+Given 3 points $a, b, c$ in a metric space, they map isometrically to the vertices $\overline{a}, \overline{b}, \overline{c}$ of a unique tripod with central vertex $\overline{o}$.
+
+The length $d(\overline{o}, \overline{a})$ must be \[
+    \frac{1}{2}(d(a, b) + d(a, c) - d(b, c)) =: (b \cdot c)_a
+\] which we call the \emph{Gromov product}.
+Morally, it measures ``distance to the incircle''.
+
+Let $X$ be a geodesic metric space, i.e. a metric space such that for all $x, y \in X$ there is an isometric embedding $p \colon [0, d(x, y)] \to X$ of an interval (standard metric on $\R$) such that $p(0) = x$ and $p(d(x, y)) = y$.
+We denote the image of such a geodesic $p$ from $x$ to $y$ by $[x, y]$.
+For a geodesic triangle $\Delta = \Delta(a, b, c)$, define \[
+    \chi_\Delta \colon \Delta \to T_\Delta
+\] by mapping the three geodesics isometrically to the comparison tripod $T_\Delta$.
+For $\delta \geq 0$, $\Delta$ is called \emph{$\delta$-thin} if $p, q \in \chi_\Delta^{-1}(t)$ implies $d(p, q) \leq \delta$ for all $t \in T_\Delta$.
+
+\begin{definition}
+    Let $\delta \geq 0$.
+    A geodesic metric space $X$ is called \emph{$\delta$-hyperbolic} if every geodesic triangle is $\delta$-thin.
+    $X$ is called \emph{(Gromov) hyperbolic} if it is $\delta$-hyperbolic for some $\delta \geq 0$.
+\end{definition}
+
+\begin{example}
+    A tree is $0$-hyperbolic.
+\end{example}
+
+\begin{warning}
+    There are multiple equivalent definitions of hyperbolicity, but the constant $\delta$ will need to change in general.
+\end{warning}
+
+\begin{definition}
+    A group $G$ is called \emph{hyperbolic} if it acts properly cocompactly by isometries on a proper geodesic hyperbolic space.
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item A free group acting a tree (deck transformations on universal cover of rose graph).
+        % TODO add figure of Cayley graph of F_2?
+        \item The fundamental group of a closed hyperbolic surface acting on the hyperbolic plane.
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    An action $G \acts X$ by homeomorphisms of a topological space is called \emph{proper} if for all compact $K \subseteq X$, the set $\set{g \in G}{gK \cap K \neq \emptyset}$ is finite.
+    It is called \emph{cocompact} if there exists compact $K \subseteq X$ such that $X = G \cdot K$.
+\end{definition}
+
+\begin{definition}
+    A metric space $X$ is called \emph{proper} if for all $x \in X$ and for all $r \geq 0$, the closed ball $\overline{B}(x, r) := \set{y \in X}{d(x, y) \leq r}$ is compact.
+\end{definition}
+
+\begin{remark}
+    \label{remark:geometric_actions}
+    For a proper metric space $X$, an action $G \acts X$ by isometries is proper if and only if for all $x \in X$ and $r \geq 0$, the set $\set{g \in G}{d(g \cdot x, x) \leq r}$ is finite and it is cocompact if and only if for all $x \in X$ there exists $r \geq 0$ such that $X = G \cdot \overline{B}(x, r)$.
+\end{remark}
+
+\begin{lemma}
+    \label{lemma:geometric_action_conjugacy_classes}
+    Let $G \acts X$ be a proper cocompact action by isometries on a proper metric space.
+    Let $R \geq 0$.
+    Then \[
+        S_R = \set{g \in G}{\Exists x \in X \text{ s.t. } d(g \cdot x, x) \leq R}
+    \] consists of finitely many conjugacy classes.
+    % Note to self: next time teaching this, just introduce translation length!
+    % In particular, it's much nicer to say "translation length is a conjugacy invariant".
+\end{lemma}
+
+\begin{proof}
+    Pick some basepoint $x_0 \in X$.
+    By cocompactness, there exists $r_0 \geq 0$ such that $X = G \cdot \overline{B}(x_0, r_0)$.
+    Suppose $g \in G$ and $x \in X$ with $d(g \cdot x, x) \leq R$.
+    Since $X = G \cdot \overline{B}(x_0, r_0)$, there exists $h \in G$ such that $x_1 := h^{-1} \cdot x \in \overline{B}(x_0, r_0)$.
+    Then \[
+        d(g^h \cdot x_1, x_1) = d(h^{-1} g h \cdot (h^{-1} \cdot x), h^{-1} \cdot x) = d(h^{-1} g x, h^{-1} x) = d(g \cdot x, x) \leq R
+    \] and thus \[
+        d(g^h \cdot x_0, x_0) \leq d(g^h \cdot x_0, g^h \cdot x_1) + d(g^h \cdot x_1, x_1) + d(x_1, x_0) \leq 2r_0 + R
+    \] so by properness there are only finitely many possibilities for $g^h$.
+    Thus the elements of $S_R$ are contained in finitely many conjugacy classes.
+    Since $d(g^h \cdot (h^{-1} \cdot x), h^{-1} \cdot x) = d(g \cdot x, x)$ for all $g, h \in G$ and $x \in X$, we note that $S_R$ will be a union of conjugacy classes.
+
+
+\end{proof}
+
+\begin{definition}[4-point condition]
+    Let $\delta \geq 0$.
+    A metric space $X$ is $(\delta)$-hyperbolic if
+    \begin{equation}\label{equation:fourpoint}
+        (x \cdot y)_w \geq \min\{ (x \cdot z)_w, (y \cdot z)_w \} - \delta \tag{$\ast$}
+    \end{equation}
+    for all $w, x, y, z \in X$.
+\end{definition}
+
+\begin{remark}
+    This definition is arguably less intuitive, but it also works for non-geodesic metric spaces e.g.\ discrete metric spaces.
+\end{remark}
+
+\begin{proposition}
+    \label{proposition:comparing_deltas}
+    Let $X$ be a geodesic metric space.
+    Then
+    \begin{enumerate}
+        \item[(i)] $X$ is $(\delta)$-hyperbolic $\implies$ $X$ is $4\delta$-hyperbolic.
+        \item[(ii)] $X$ is $\delta$-hyperbolic $\implies$ $X$ is $(\delta)$-hyperbolic.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (i) is left as an exercise.
+
+    Hint: Suppose that $p \in [x, y]$ and $q \in [x, z]$ with $d(x, p) = d(x, q) \leq (y \cdot z)_x$.
+    Prove the required inequality $d(p, q) \leq 4\delta$ by bounding $(p \cdot q)_x$ from below by first proving the general fact that, for all $a, b, c, d, w \in X$, we have \[
+        (a \cdot d)_w \geq \min\{(a \cdot b)_w, (b \cdot c)_w, (c \cdot d)_w\} - 2\delta.
+    \]
+
+    (ii) Pick $x'$ on a geodesic $[w, x]$, $y'$ on $[w, y]$ and $z'$ on $[w, z]$ such that \[
+        d(w, x') = d(w, y') = d(w, z') = \min\{ (x \cdot z)_w, (y \cdot z)_w \}.
+    \]
+    % TODO add figure
+    By $\delta$-thinness of $\Delta(w, x, z)$ we have $d(x', z') \leq \delta$ and similarly $d(z', y') \leq \delta$ so that $d(x', y') \leq 2\delta$.
+    Thus \[
+        d(x, y) \leq d(x, x') + 2\delta + d(y, y')
+    \] but by construction
+    \begin{align*}
+        d(x, x') &= d(w, x) - \min\{ (x \cdot z)_w, (y \cdot z)_w \} \\
+        d(y, y') &= d(w, y) - \min\{ (x \cdot z)_w, (y \cdot z)_w \}
+    \end{align*}
+    so that \[
+        d(x, y) \leq d(w, x) + d(w, y) - 2\min\{ (x \cdot z)_w, (y \cdot z)_w \} + 2 \delta
+    \] which says precisely that \[
+        (x \cdot y)_w \geq \min\{ (x \cdot z)_w, (y \cdot z)_w \} - \delta.
+    \]
+\end{proof}
+
+Let's repackage the 4-point condition to be symmetric: we have that
+\begin{align}
+    \label{equation:unpackaged_fourpoint1}
+    (x \cdot y)_w
+        &\geq (x \cdot z)_w - \delta \\
+    \label{equation:unpackaged_fourpoint2}
+    \text{or} \qquad (x \cdot y)_w
+        &\geq (y \cdot z)_w - \delta
+\end{align}
+(or both).
+Inequality~\eqref{equation:unpackaged_fourpoint1} says
+\begin{align*}
+    d(w, x) + d(w, y) - d(x, y)
+        &\geq d(w, x) + d(w, z) - d(x, z) - 2\delta \\
+    \Leftrightarrow \qquad \qquad d(w, z) + d(x, y)
+        &\leq d(w, y) + d(x, z) + 2\delta.
+\end{align*}
+So similarly rewriting \eqref{equation:unpackaged_fourpoint2} and combining the two possibilities, we see that the 4-point condition \eqref{equation:fourpoint} is equivalent to \begin{equation}
+    \label{equation:symmetric_fourpoint}
+    d(w, z) + d(x, y) \leq \max \{ d(w, y) + d(x, z), d(w, x) + d(y, z) \} + 2\delta. \tag{$\diamond$}
+\end{equation}
+There are $3$ ways to partition $\{w, x, y, z\}$ into $2$ pairs, all of which occur in the previous equation.
+Suppose $S \leq M \leq L$ are the corresponding sums of opposite edge lengths.
+Then \eqref{equation:fourpoint} is equivalent (considering permutations of the $4$ points) to the assertion $L \leq M + 2\delta$.
+
+\begin{theorem}[Delzant]
+    \label{theorem:delzant}
+    Let $X$ be a $\delta$-hyperbolic geodesic metric space (in the sense of thin triangles) and suppose that $G \acts X$ by isometries such that for all $1 \neq g \in G$ and for all $x \in X$, we have \[
+        d(x, g \cdot x) > 3 \delta.
+    \]
+    Then $G$ is diffuse.
+\end{theorem}
+
+\begin{proof}
+    We claim that for all $g \in G$, $1 \neq h \in G$ and $p \in X$ we have either \begin{align*}
+        d(gh \cdot p, p)
+            &> d(g \cdot p, p) \\
+        \text{or} \qquad
+        d(gh^{-1} \cdot p, p)
+            &> d(g \cdot p, p). \\
+    \end{align*}
+    Then we are done because for finite $A \subseteq G$ and any $p \in X$, an element $a \in A$ achieving $\max_{a \in A} d(a \cdot p, p)$ will be extremal.
+
+    Suppose for the sake of contradiction that
+    \begin{equation}
+        \label{equation:delzant_absurdum}
+        d(g \cdot p, p) \geq d(gh \cdot p, p), d(gh^{-1} \cdot p, p).
+    \end{equation}
+    Consider the symmetric 4-point condition \eqref{equation:symmetric_fourpoint} on $p, g \cdot p, gh \cdot p, gh^{-1} \cdot p$.
+    (Note that $X$ is assumed $\delta$-hyperbolic and is thus $(\delta)$-hyperbolic by \Cref{proposition:comparing_deltas}.)
+    The three possible sums are (since $G \acts X$ by isometries):
+    \begin{align*}
+        d(g \cdot p, p) + d(gh^{-1} \cdot p, gh \cdot p)
+        &= d(g \cdot p, p) + d(h^2 \cdot p, p) \\
+        d(gh \cdot p, p) + d(g \cdot p, gh^{-1} \cdot p)
+        &= d(gh \cdot p, p) + d(h \cdot p, p) \\
+        d(gh^{-1} \cdot p, p) + d(g \cdot p, gh \cdot p)
+        &= d(gh^{-1} \cdot p, p) + d(h \cdot p, p).
+    \end{align*}
+    If we assume $d(h^2 \cdot p, p) \geq d(h \cdot p, p)$, then together with \eqref{equation:delzant_absurdum} this implies that the first term is the largest and thus the 4-point condition says
+    \begin{align*}
+        d(g \cdot p, p) + d(h^2 \cdot p, p)
+        & \leq d(g h^{\pm 1} \cdot p, p) + d(h \cdot p, p) + 2\delta \\
+        & \leq d(g \cdot p, p) + d(h \cdot p, p) + 2\delta.
+    \end{align*}
+    So in either case, we have $d(h^2 \cdot p, p) \leq d(h \cdot p, p) + 2\delta$.
+    Thus \[
+        (h \cdot p, h^{-1} \cdot p)_p \geq \frac{1}{2} d(h \cdot p, p) - \delta.
+    \]
+    Take any geodesic $[p, h^{-1} \cdot p]$ and translate it by $h$ to get a preferred geodesic $[h \cdot p, p]$.
+    If we let $q$ be the midpoint of $[p, h^{-1} \cdot p]$ and then let $q', q''$ lie on $[q, p]$ respectively $[h \cdot q, p] \subset [h \cdot p, p]$ at distance $\delta$ from $q$ respectively $h \cdot q$, we have $d(q', q'') \leq \delta$ by $\delta$-thinness of $\Delta(h^{-1} \cdot p, p, h \cdot p)$.
+    But now \[
+        d(h \cdot q, q) \leq d(h \cdot q, q'') + d(q'', q') + d(q', q) \leq 3\delta,
+    \] a contradiction.
+
+\end{proof}
+
+\begin{corollary}
+    Let $G$ be a residually finite hyperbolic group.
+    Then $G$ is virtually diffuse.
+\end{corollary}
+
+\begin{remark}
+    It is a famous open problem whether all hyperbolic groups are residually finite.
+\end{remark}
+
+\begin{proof}
+    Let $G \acts X$ properly cocompactly by isometries, where $X$ is a proper geodesic $\delta$-hyperbolic metric space.
+    By \Cref{lemma:geometric_action_conjugacy_classes} there exist $1 = g_0, g_1, \dots, g_n \in G$ such that for all $g \in G$, if there exists $x \in X$ with $d(g \cdot x, x) \leq 3\delta$ then $g \sim g_i$ for some $i$.
+    By residual finiteness we can find $\phi \colon G \epi Q$, $Q$ finite, such that $\phi(g_1), \dots, \phi(g_n) \neq 1$.
+    Then $G_0 = \ker(\phi)$ satisfies the assumptions of Delzant's \cref{theorem:delzant}.
+\end{proof}
+
+We note one consequence of this corollary of general interest (i.e.\ beyond studying group rings).
+\begin{corollary}
+    A residually finite hyperbolic group is virtually torsion-free.
+\end{corollary}
+
+\begin{exercise}
+    Verify \Cref{remark:geometric_actions} (translating between topological and metric conditions).
+\end{exercise}
+
+\section{Primality of group rings}
+
+Our aim is to give a complete proof of the following, which was used to show that the unit conjecture for $K[G]$ implies the zero divisor conjecture for $K[G]$.
+
+\begin{theorem}[Connell]
+    $K[G]$ is prime if and only if $G$ has no non-trivial finite normal subgroup.
+\end{theorem}
+
+Recall that a ring $R$ is \emph{prime} if for all $\alpha, \beta \in R \setminus \{0\}$ there exists $\gamma \in R$ such that $\alpha \gamma \beta \neq 0$ (that is, the zero ideal is a prime ideal in the sense of non-commutative ring theory).
+
+To get there we need some group ring basics, a fair bit of group theory and an ingenious trick of Passman.
+
+\begin{definition}
+    Let $H \leq G$.
+    Then the projection $\pi_H \colon K[G] \to K[H]$ is defined by \[
+        \pi_H(\sum_{g \in G} a_g g) = \sum_{g \in H} a_g g.
+    \]
+\end{definition}
+
+Warning: this is never a ring homomorphism for $H \lneq G$! But we do have:
+
+\begin{lemma}
+    \label{lem:KH_bimodule_hom}
+    $\pi_H$ is a homomorphism of $(K[H], K[H])$-bimodules.
+\end{lemma}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{corollary}
+    Let $H \leq G$.
+    If $\alpha \in K[H]$ is a unit in $K[G]$, then it is a unit in $K[H]$.
+\end{corollary}
+
+\begin{proof}
+    For $\beta \in K[G]$ with $\alpha \beta = \beta \alpha = 1$ we have \[
+        \alpha \pi_H(\beta) = \pi_H(\alpha \beta) = 1 = \pi_H(\beta \alpha) = \pi_H(\beta) \alpha
+    \] so in fact $\alpha^{-1} = \beta = \pi_H(\beta) \in K[H]$.
+\end{proof}
+
+Recall that a \emph{left transversal} for $H \leq G$ is a set $X$ containing exactly one representative $x$ of each left coset of $H$, so that $G = \sqcup_{x \in X} x H$.
+
+\begin{lemma}
+    Let $X$ be a left transversal for $H$ in $G$.
+    Then every element $\alpha \in K[G]$ can be written uniquely as a finite sum \[
+        \alpha = \sum_{x \in X} x \alpha_x
+    \] with $\alpha_x \in K[H]$. In fact, $\alpha_x = \pi_H(x^{-1} \alpha)$.
+    Thus $K[G]$ is a free right $K[H]$-module with $X$ as a basis.
+\end{lemma}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+Recall that $M_n(R)$ denotes the ring of $n \times n$ matrices over a ring $R$.
+
+\begin{lemma}
+    \label{lemma:KG_in_MnKH}
+    Let $[G : H] = n < \infty$.
+    Then $K[G] \mono M_n(K[H])$.
+\end{lemma}
+
+\begin{proof}
+    Let $X = \{x_1, \dots, x_n\}$ be a left transversal for $H$ in $G$.
+    Then $V = K[G]$ is a free right $K[H]$-module with basis $X$.
+    It is also a left $K[G]$-module and since left and right multiplication commute, $K[G]$ acts by $K[H]$-linear transformations of $V \cong K[H]^n$.
+    Since for each $\alpha \in K[G]$ and each index $j$ we have \[
+        \alpha x_j = \sum_{i=1}^n x_i \pi_H(x_i^{-1} \alpha x_j),
+    \] sending the element $\alpha$ to the matrix \[
+        \eta_X(\alpha) := \left( \pi_H(x_i^{-1} \alpha x_j) \right)_{ij}
+    \] defines the embedding (for choice of basis $X$).
+
+\end{proof}
+
+\begin{remark}
+    If $G$ is finite and $H = 1$ then this is just the regular representation.
+\end{remark}
+
+\begin{example}
+    Let $D_\infty = \gp{r, t}{r^2 = 1, t^r = t^{-1}} = \Z \rtimes \Z/2$ and take $X = \{1, r\}$ as the obvious left transversal for $\gen{t} = \Z$.
+    Then since $r \cdot 1 = r, r \cdot r = 1 \cdot 1, t \cdot 1 = 1 \cdot t, t \cdot r = r \cdot t^{-1}$, we have $K[D_\infty] \to M_2(K[t, t^{-1}])$ given by extending \[
+        r \mapsto \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},
+        \quad
+        t \mapsto \begin{pmatrix} t & 0 \\ 0 & t^{-1} \end{pmatrix}.
+    \]
+\end{example}
+
+The first bit of group theory is:
+
+\begin{lemma}[Schur]
+    \label{lemma:schur}
+    If $[G : Z(G)] < \infty$ then $|G'|$ is finite.
+\end{lemma}
+
+\begin{definition}
+    Let $H \leq G$ with $[G : H] = n < \infty$.
+    Pick a left transversal $\{x_1, \dots, x_n\}$ for $H$.
+    For each $g \in G$ and $1 \leq j \leq n$, we have $g x_j = x_i h_j$ for some unique $h_j \in H$.
+    The \emph{transfer} is defined as the map $G / G' \to H / H'$ given by \[
+        g \mapsto h_1 \dots h_n H'.
+    \]
+\end{definition}
+
+\begin{lemma}
+    The transfer is a group homomorphism and does not depend on the choice of transversal.
+\end{lemma}
+
+\begin{proof}
+    Map $K[G] \to M_n(K[H])$ via \cref{lemma:KG_in_MnKH}, $M_n(K[H]) \to M_n(K[H/H'])$ by extending $K[H] \to K[H/H']$, and $M_n(K[H/H']) \to K[H/H']$ via the determinant.
+    For given $g \in G$ and $1 \leq j \leq n$, with $g x_j = x_i h_j \Leftrightarrow h_j = x_i^{-1} g x_j$, the $j$-th column of $\eta_X(g)$ contains $h_j$ in row $i$, otherwise zeroes.
+    Letting $\operatorname{sgn}(g)$ denote the sign of the permutation $g$ induces on the set $G / H$, we have that the composition $G \to K[H/H']$ so defined maps \[
+        g \mapsto \operatorname{sgn}(g) h_1 \dots h_n \in K[H / H']
+    \]
+    where the image is moreover a trivial unit.
+    The group of trivial units is $K^\times \times H / H'$ so we can project onto the second factor to obtain our map \[
+        G \to H / H' \colon g \mapsto h_1 \dots h_n.
+    \]
+    As the image is abelian, it factors through $G/G'$ to define the transfer.
+    It is independent of the choice of transversal since change of basis of $K[G]$ produces similar matrices in $M_n(K[H])$, whose images in $M_n(K[H/H'])$ will have the same determinant.
+
+\end{proof}
+
+\begin{proof}[Proof of Schur's lemma]
+    Let $Z = Z(G)$.
+    Consider the transfer map $G / G' \to Z / Z' = Z$.
+    By centrality of $Z$, for $g \in Z$ this is simply $g \mapsto g^n$ (in fact, one can show this for all $g \in G$).
+    Thus $g \in G' \cap Z$ implies $g^n = 1$.
+    If $x_1, \dots, x_n$ is a transversal, then every commutator is of the form $[x_i z_1, x_j z_2] = [x_i, x_j]$ (for some $z_1, z_2 \in Z$) and thus $G'$ is finitely generated.
+    Now $[G' : G' \cap Z] \leq n$ so $G' \cap Z$ is finitely generated, finite exponent and abelian, thus finite.
+    Thus $G'$ is finite.
+\end{proof}
+
+\begin{definition}
+    The \emph{FC-centre} of a group $G$ is \[
+        \Delta(G) = \{ g \in G : |g^G| < \infty \},
+    \] the set of elements whose conjugacy class is finite.
+\end{definition}
+
+This is alternatively the set of elements $g$ whose centralizer $C_G(g)$ is finite index (by orbit-stabilizer theorem for $G \curvearrowright G$).
+As $C_G(gh) \geq C_G(g) \cap C_G(h)$ and $[G : C_G(g) \cap C_G(h)] \leq [G : C_G(g)] [G : C_G(h)]$ for all $g, h \in G$, we see that $\Delta(G)$ is a (characteristic) subgroup of $G$.
+
+We call $G$ an \emph{FC-group} if $G = \Delta(G)$.
+Note that $\Delta(\Delta(G)) = \Delta(G)$, i.e. the FC-centre is an FC-group.
+
+\begin{lemma}
+    \label{lemma:fc_is_locally_finite_by_free_abelian}
+    An FC-group is locally finite-by-(free abelian).
+\end{lemma}
+
+\begin{proof}
+    Let $H = \langle h_1, \dots, h_n \rangle \leq G$.
+    Then $C_G(H) = \cap_{i=1}^n C_G(h_i)$ is finite index in $G$ and thus $Z(H) = C_G(H) \cap H$ is finite index in $H$.
+    Thus Schur's lemma implies that $H'$ is finite.
+    Now $H / H'$ is a finitely generated abelian group so it has the form $T \oplus \mathbb{Z}^d$ where $T$ is finite.
+    Thus the kernel of the composition $H \to \mathbb{Z}^d$ is finite.
+\end{proof}
+
+\begin{remark}
+    The torsion elements of an abelian group form a characteristic subgroup, so any group (finitely generated or not) has a well-defined torsion-free abelianization.
+\end{remark}
+
+\begin{corollary}
+    A torsion-free virtually cyclic is cyclic.
+\end{corollary}
+
+\begin{proof}
+    Let $G$ be torsion-free and virtually cyclic with $G_0 = \gen{t}$ a finite index subgroup.
+    (If $G_0$ is finite, then $G$ is finite and thus trivial.)
+    We claim that $G$ is an FC-group.
+    For any $1 \neq g \in G$ there exists $n \geq 1$ such that $g^n \in G_0$, i.e. $g^n = t^m$ for some $m \in \Z$.
+    By torsion-freeness $m \neq 0$ and thus $C_G(g)$ contains $\gen{t^m}$ which is finite index in $G_0$ and thus in $G$.
+
+    A virtually finitely generated group is finitely generated so \cref{lemma:fc_is_locally_finite_by_free_abelian} applies.
+    Now we are done by the classification of finitely generated abelian groups.
+\end{proof}
+
+\begin{remark}
+    A torsion-free virtually abelian group need not be abelian, e.g.\ the fundamental group $\Z \rtimes \Z$ of the Klein bottle.
+\end{remark}
+
+We now have the tools to prove the following result on the torsion of $\Delta(G)$, \[
+    \Delta^+(G) := \{g \in \Delta(G) : \operatorname{ord}(g) < \infty \}.
+\]
+
+\begin{lemma}[B.H. Neumann]
+    \label{lemma:neumann_fc}
+    $\Delta^+(G)$ is a characteristic subgroup of $G$ and $\Delta(G) / \Delta^+(G)$ is torsion-free abelian.
+\end{lemma}
+
+\begin{proof}
+    If $g, h \in \Delta^+(G)$ then the generators of $H = \langle g, h \rangle$ are both in the kernel of its torsion-free abelianization, so $H$ is finite.
+    Thus $\Delta^+(G)$ is a subgroup, which is clearly characteristic.
+
+    Since $\Delta^+(G)$ contains \emph{precisely} the torsion elements of $\Delta(G)$, the quotient $\Delta(G) / \Delta^+(G)$ is torsion-free.
+    For any $H = \langle g, h \rangle \leq \Delta(G)$, we have that $H'$ is finite by \cref{lemma:fc_is_locally_finite_by_free_abelian} and thus $H' \leq \Delta^+(G)$, so $\Delta(G) / \Delta^+(G)$ is abelian.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:ncls_finite_delta}
+    If $x_1, \dots, x_n \in \Delta^+(G)$ then the normal closure $N = \ncls{x_1, \dots, x_n}_G$ is finite.
+\end{lemma}
+
+\begin{proof}
+    $N$ is generated by the finitely many conjugates in $G$ of the $x_i$, which are all in the kernel of the torsion-free abelianization of $N$, so we are done by \cref{lemma:fc_is_locally_finite_by_free_abelian}.
+\end{proof}
+
+\begin{lemma}[B.H. Neumann]
+    \label{lemma:neumann_cosets}
+    Let $G$ be a group and $H_1, \dots, H_n \leq G$.
+    Suppose there exist finitely many (left) cosets $g_{ij} H_i$ such that \[
+        G = \bigcup_{i,j} g_{ij} H_i.
+    \]
+    Then some $[G : H_i] < \infty$.
+\end{lemma}
+
+\begin{proof}
+    We proceed by induction on $n$.
+    The base case $n=1$ is clear.
+    Suppose $n \geq 2$.
+    If all (left) cosets of $H_n$ occur, then $[G : H_n] < \infty$.
+    If not, then let $g H_n$ be such that $g H_n \neq g_{nj} H_n$ for all $j$, which gives $g H_n \cap g_{nj} H_n = \emptyset$ for all $j$.
+    Thus \[
+        g H_n \subseteq \bigcup_{i \leq n-1, k} g_{ik} H_i.
+    \]
+    Now replace each $g_{nj} H_n$ with $\set{g_{nj} g^{-1} g_{ik} H_i}{i \leq n-1}$ to write $G$ as a finite union of cosets of $H_1, \dots, H_{n-1}$.
+\end{proof}
+
+This result is similarly true for right cosets.
+
+The final ingredient is:
+\begin{theorem}[Passman]
+    Suppose that $\alpha, \beta \in K[G]$ such that $\alpha \gamma \beta = 0$ for all $\gamma \in K[G]$.
+    Then $\pi_{\Delta(G)}(\alpha) \pi_{\Delta(G)}(\beta) = 0$.
+\end{theorem}
+
+\begin{proof}[Proof of Connell's Theorem]
+    If $H \normal G$ is finite then let $\alpha = \sum_{h \in H} h \in K[G]$.
+    Note that $\alpha \in Z(K[G])$ and $\alpha^2 = |H| \alpha$.
+    Thus $\alpha \gamma (\alpha - |H|) = 0$ for all $\gamma \in K[G]$, so $K[G]$ is not prime.
+
+    If $G$ has no non-trivial finite normal subgroup, then by \cref{lemma:ncls_finite_delta} we have $\Delta^+(G) = 1$ and thus by Neumann's \cref{lemma:neumann_fc} $\Delta(G)$ is torsion-free abelian.
+    Suppose that $0 \neq \alpha, \beta \in K[G]$ with $\alpha \gamma \beta = 0$ for all $\gamma \in K[G]$.
+    By choosing some $g \in \supp(\alpha), h \in \supp(\beta)$ and replacing $\alpha$ with $g^{-1} \alpha$ and $\beta$ with $\beta h^{-1}$, we can assume without loss of generality that $1 \in \supp(\alpha)$ and $1 \in \supp(\beta)$.
+    Thus $\pi_{\Delta(G)}(\alpha), \pi_{\Delta(G)}(\beta) \neq 0$ but by Passman's theorem their product is zero.
+    This is impossible as $\Delta(G)$ is torsion-free abelian so $K[\Delta(G)]$ satisfies the zero divisor conjecture.
+\end{proof}
+
+\begin{proof}[Proof of Passman's Theorem]
+    Let $\Delta = \Delta(G)$.
+    It suffices to prove that $\pi_\Delta(\alpha) \beta = 0$ since then \[
+        0 = \pi_\Delta\left( \pi_\Delta(\alpha) \beta \right) = \pi_\Delta(\alpha) \pi_\Delta(\beta)
+    \] (as $\pi_\Delta$ is a homomorphism of $K[\Delta]$-bimodules, \cref{lem:KH_bimodule_hom}).
+
+    Write $\alpha = \alpha_0 + \alpha_1$ where $\alpha_0 = \pi_\Delta(\alpha)$.
+    Suppose for the sake of contradiction that $\alpha_0 \beta \neq 0$ and fix some $g_0 \in \supp(\alpha_0 \beta)$.
+    The assumption on $\alpha$ and $\beta$ is equivalent to saying \[
+        x^{-1} (\alpha_0 + \alpha_1) x \beta = 0
+    \] for all $x \in G$.
+    If $x \in C_G(\supp(\alpha_0))$ then this simplifies to \[
+        x^{-1} \alpha_1 x \beta = - \alpha_0 \beta
+    \] so that $g_0 \in \supp(x^{-1} \alpha_1 x \beta)$.
+    Let
+    \begin{align*}
+        \supp(\alpha_1) &= \{ v_1, \dots, v_m \} \\
+        \supp(\beta) &= \{ w_1, \dots, w_n \}
+    \end{align*}
+    So if $x \in C_G(\supp(\alpha_0))$ there exist $1 \leq i \leq m, 1 \leq j \leq n$ such that \[
+        x^{-1} v_i x w_j = g_0.
+    \]
+    If $g_{ij}$ is some solution in $x$ to $v_i^x = g_0 w_j^{-1}$, then the set of solutions is precisely the coset $C_G(v_i) g_{ij}$.
+
+    Now the definition of $\Delta$ guarantees that \[
+        C := C_G(\supp(\alpha_0)) = \bigcap_{g \in \supp(\alpha_0)} C_G(g)
+    \] is finite index in $G$ whereas for $v_i \in \supp(\alpha_1)$ we have $[G : C_G(v_i)] = \infty$ which implies $[C : C \cap C_G(v_i)] = \infty$ too.
+    If every $x \in C$ lies in some $C_G(v_i) g_{ij}$, then $C$ can be written as a finite union of cosets of infinite index subgroups, contradicting Neumann's \cref{lemma:neumann_cosets}.
+
+\end{proof}
+
+\begin{exercise}
+    Let \[
+        T(G) = \set{g \in G}{\operatorname{ord}(g) < \infty}
+    \] denote the set of torsion of the group $G$.
+    \begin{enumerate}
+        \item Show that if $G / N$ is torsion-free then $T(G) \subseteq N$.
+        \item Show that if $T(G)$ is a subgroup of $G$, then $G / T(G)$ is torsion-free.
+        \item Show that if $T(G)$ is finite, then it is indeed a subgroup. (Hint: consider the FC-centre $\Delta(G)$.)
+    \end{enumerate}
+    % Would be nice to have an easy example where $G / \ncls(T(G))$ is not torsion-free, but all I can think of is adjoining a root to the infinite dihedral group, and this surely needs Bass--Serre theory.
+    % Actually: with enough theory of polycyclic groups we should be fine, since adjoining a square root in $D_\infty$ is polycyclic.
+    % Introducing the theory of torsion-length (e.g. Chiodo) is surely too much at this point.
+\end{exercise}
+
+\begin{exercise}
+    Suppose that $g, h, x_0 \in G$ satisfy $g^{x_0} = h$.
+    Show that \[
+        \set{x \in G}{g^x = h} = C_G(g) x_0.
+    \]
+\end{exercise}
+
+\begin{exercise}
+    Let $[G : G_0] < \infty$.
+    Prove or disprove: If $G_0$ is an FC-group, then $G$ is an FC-group.
+\end{exercise}
+
+\begin{exercise}
+    Consider the group ring $\F_2[\Z/3]$.
+    \begin{enumerate}
+        \item Does is contain zero-divisors?
+        \item Does is contain non-trivial units?
+        \item Does this contradict anything we proved?
+    \end{enumerate}
+\end{exercise}
+
+\section{Traces}
+
+(This section of the lectures follows \cite[Chapter 2]{Passman} very closely.)
+
+Suppose $\abs{G} = n < \infty$.
+Then $V = K[G]$ gives a finite dimensional representation of $G$, namely the regular representation.
+Fix as a basis $G$ which gives $\rho \colon K[G] \to M_n(K)$.
+As $G \acts G$ freely, we know that each $\rho(g)$ for $g \neq 1$ is a permutation matrix with zeroes on the diagonal, and of course $\rho(1) = I_n$.
+Thus \[
+    \tr(\rho(\sum_{g \in G} a_g \cdot g)) = \sum_{g \in G} a_g \cdot \tr(\rho(g)) = |G| \cdot a_1
+\] i.e.\ the trace of $\rho(\alpha)$, $\alpha \in K[G]$, is just a fixed multiple of the coefficient $a_1 = (\alpha)_1$ of the identity.
+This motivates defining
+\begin{definition}
+    The \emph{trace} on $K[G]$ is
+    \begin{align*}
+        \tr \colon K[G] &\to K \\
+                 \alpha &\mapsto (\alpha)_1.
+    \end{align*}
+\end{definition}
+
+\begin{lemma}
+    $\tr \colon K[G] \to K$ is $K$-linear and $\tr(\alpha \beta) = \tr(\beta \alpha)$ for all $\alpha, \beta \in K[G]$.
+\end{lemma}
+
+Note that $\tr(\alpha \beta) = \tr(\beta \alpha)$ is called the \emph{trace identity}.
+
+\begin{proof}
+    Linearity is clear.
+    If
+    \begin{align*}
+        \alpha &= \sum_{g} a_g \cdot g \\
+        \beta &= \sum_{g} b_g \cdot g \\
+    \end{align*}
+    then \[
+        \tr(\alpha \beta) = \sum_{gh = 1} a_g \cdot b_h = \sum_{hg = 1} b_h \cdot a_g = \tr(\beta \alpha).
+    \]
+\end{proof}
+
+\begin{definition}
+    An element $\alpha \in K[G]$ is called \emph{algebraic} if there is some non-zero polynomial $p(x) \in K[x]$ such that $p(\alpha) = 0$.
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item $\alpha$ is called \emph{nilpotent} if $\alpha^m = 0$ for some $m \in \Z^+$
+        \item idempotent elements are algebraic (with $p(x) = x^2 - x$)
+    \end{itemize}
+\end{example}
+For these algebraic elements, trace is worth studying.
+
+\begin{lemma}
+    \label{lemma:alg_traces_of_finite_groups}
+    Let $\abs{G} = n < \infty$ and suppose that $\chr(K) \nmid n$.
+    \begin{enumerate}
+        \item[(i)] If $\alpha$ is nilpotent, then $\tr(\alpha) = 0$.
+        \item[(ii)] If $e$ is an idempotent, then $\tr(e) = \dim(e \cdot K[G]) / n \in \{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\}$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Consider $V = K[G]$.
+    We will use $\tr(\alpha) = \frac{1}{\abs{G}} \tr(\rho(\alpha))$.
+
+    (i) Pick a basis of $V$ that is compatible with the chain of subspaces $V \supseteq \alpha V \supseteq \alpha^2 V \dots \supseteq \alpha^m V = \{0\}$.
+    (We want $v_1, \dots, v_k$ to be a basis of $\alpha^i V$ for all $i$, where $k = k(i) = \dim(\alpha^i V)$.)
+    Then the matrix for $\alpha$ with respect to this basis is strict upper triangular.
+    Thus $\tr(\rho(\alpha)) = 0$ and hence $\tr(\alpha) = 0$.
+
+    (ii) Suppose $e^2 = e$.
+    Then $V = eV \oplus (1-e)V$ (for $v \in V$, we have $v = ev + (1-e)v$ so that $eV$ and $(1-e)V$ together span, whereas if $ev = (1-e)v'$ then $ev = e^2 v = e(1-e)v' = (e - e^2)v' = 0$.)
+    Then $e$ acts as the identity on $eV$ and is zero on $(1-e)V$ and hence $\tr(\rho(e)) = \dim(eV)$.
+\end{proof}
+
+\begin{remark}
+    If $e$ is an idempotent, then so is $1-e$.
+    If $\abs{G} = n < \infty$ then $\frac{1}{n} \sum_g g$ is an idempotent.
+\end{remark}
+
+We will work towards proving the following general result on traces:
+\begin{theorem}[Kaplansky]
+    \label{theorem:kaplansky}
+    If $e \in \C[G]$ is a non-trivial idempotent, then $\tr(e) \in (0, 1)$.
+\end{theorem}
+
+\begin{corollary}
+    \label{corollary:CG_df}
+    $\C[G]$ is directly finite.
+\end{corollary}
+
+\begin{proof}
+    If $\alpha \beta = 1$ then $(\beta \alpha)^2 = \beta (\alpha \beta) \alpha = \beta \alpha$ is an idempotent, but $\tr(\beta \alpha) = \tr(\alpha \beta) = 1$ so $\beta \alpha$ must be the trivial idempotent $1$.
+\end{proof}
+
+\begin{definition}
+    The \emph{prime subfield} of a field $K$ is the smallest subfield of $K$.
+\end{definition}
+If $\chr(K) = p > 0$, the prime subfield is $\F_p$.
+If $\chr(K) = 0$, it is $\Q$.
+
+In particular, \Cref{lemma:alg_traces_of_finite_groups} (ii) shows that if $e$ is an idempotent then $\tr(e)$ is in the prime subfield.
+This algebraic property is also true for infinite $G$, as we'll see later in \Cref{theorem:zalesskii}.
+Also if $\chr(K) = 0$ then $0 \leq \tr(e) \leq 1$ and this analytic property is true in general by \Cref{theorem:kaplansky}.
+
+For infinite $G$ we no longer have a finite dimensional representation at hand, so we need to be able to get at $\tr(e)$ internally to $\C[G]$.
+
+\begin{definition}
+    For $\alpha = \sum_g a_g \cdot g, \beta = \sum_g b_g \cdot g \in \C[G]$, we define the inner product \[
+        \inner{\alpha}{\beta} = \sum_g a_g \overline{b_g}
+    \] which induces the norm \[
+        \norm{\alpha} = \sqrt{\inner{\alpha}{\alpha}}.
+    \] We also define an absolute value \[
+        \abs{\alpha} = \sum_g \abs{a_g}.
+    \] Finally, we define conjugation via \[
+        \overline{\alpha} = \sum_g \overline{a_g} g^{-1}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    $(\C[G], \inner{\cdot}{\cdot})$ is an inner product space and $\inner{\alpha}{\beta} = \tr(\alpha \overline{\beta})$.
+    Furthermore $\alpha \mapsto \overline{\alpha}$ is a ring anti-automorphism of $\C[G]$ and for all $\alpha, \beta, \gamma \in \C[G]$ we have \[
+        \inner{\alpha}{\beta \gamma} = \inner{\alpha \overline{\gamma}}{\beta} = \inner{\overline{\beta}\alpha}{\gamma}.
+    \]
+\end{lemma}
+
+Thus conjugation is the adjoint with respect to left and right multiplication.
+
+\begin{proof}
+    This is the standard inner product on $V = \C[G]$ with respect to the basis $G$.
+    Note that \[
+        \tr(\alpha \overline{\beta}) = (\alpha \overline{\beta})_1 = \sum_{gh = 1}(\alpha)_g (\overline{\beta})_h = \sum_g a_g \overline{b_g} = \inner{\alpha}{\beta}.
+    \]
+    Since $(g \cdot h)^{-1} = h^{-1} \cdot g^{-1}$, it is clear that $\overline{\alpha \beta} = \overline{\beta} \overline{\alpha}$.
+    Likewise it is clear that $\overline{\alpha + \beta} = \overline{\alpha} + \overline{\beta}$ and $\overline{\overline{\alpha}} = \alpha$.
+    For all $\alpha, \beta, \gamma \in \C[G]$ we have \[
+        \inner{\alpha}{\beta \gamma} = \tr(\alpha \cdot \overline{\beta \gamma}) = \tr(\alpha \overline{\gamma} \overline{\beta}) = \inner{\alpha \overline{\gamma}}{\beta}
+    \] and \[
+        \inner{\alpha}{\beta \gamma} = \tr(\alpha \overline{\gamma} \overline{\beta}) = \tr(\overline{\beta} \alpha \overline{\gamma}) = \inner{\overline{\beta} \alpha}{\gamma}.
+    \]
+\end{proof}
+
+Now, as a warm up to the general result, we can give a different proof of:
+\begin{lemma}
+    Let $G$ be finite.
+    If $e \in \C[G]$ is an idempotent, then $\tr(e) \geq 0$.
+\end{lemma}
+
+\begin{proof}
+    Let $I = e \C[G] = \set{ e \alpha }{\alpha \in \C[G]}$ be the right ideal of $\C[G]$ generated by $e$.
+    Let $I^\perp$ be its orthogonal complement.
+    Since $\C[G]$ is finite dimensional, $\C[G] = I \oplus I^\perp$ is a direct sum decomposition.
+    We note that $I^\perp$ is also a right ideal: if $\alpha \in I$, $\beta \in I^\perp$ and $\gamma \in \C[G]$, then \[
+        \inner{\alpha}{\beta \gamma} = \inner{\alpha \overline{\gamma}}{\beta} = 0
+    \] as $\alpha \overline{\gamma} \in I$.
+
+    Now let $1 = f + f^\perp$ with $f \in I, f^\perp \in I^\perp$.
+    As $f^\perp = 1 - f$ we see that $f^\perp f = f f^\perp$, but $f^\perp f \in I^\perp$ and $f f^\perp \in I$, so in fact $f f^\perp = 0$, so that $f^2 = f(1 - f^\perp) = f$ and similarly $(f^\perp)^2 = f^\perp$.
+
+    For any $\alpha \in \C[G]$ we have $\alpha = f \alpha + f^\perp \alpha$ with $f \alpha \in I$ and $f^\perp \alpha \in I^\perp$.
+    Thus if $\alpha \in I$, then $f \alpha = \alpha$, so we have $f \C[G] \supseteq I$.
+    But $f \C[G] \subseteq I$ since $f \in I$ and $I$ is a right ideal, thus $f \C[G] = I$ and similarly $f^\perp \C[G] = I^\perp$.
+
+    As $f$ is orthogonal to $f^\perp \C[G] = I^\perp$, for all $\alpha \in \C[G]$ we have \[
+        0 = \inner{f}{f^\perp \alpha} = \inner{f}{(1-f)\alpha} = \inner{\overline{(1-f)} f}{\alpha}.
+    \]
+    Letting $\alpha = \overline{(1-f)} f$ we see that $(1 - \overline{f}) f = 0$, that is $\overline{f} f = f$.
+    Hence $\overline{f} = \overline{\overline{f} f} = \overline{f} f = f$ so $f$ is a self-adjoint idempotent, i.e.\ what we call a \emph{projection}.
+    Since $e, f \in I$ and both act as the identity on $I$, we have $e = fe$ and $f = ef$.
+    Thus \[
+        \tr(e) = \tr(fe) = \tr(ef) = \tr(f).
+    \]
+    But \[
+        \tr(f) = \tr(f \overline{f}) = \inner{f}{f} = \norm{f}^2 \geq 0.
+    \]
+\end{proof}
+
+For infinite $G$, $\C[G]$ will not have such direct sum decompositions, or in other words, such an $f$ need not exist.
+One approach is to embed $\C[G]$ in either the reduced group $C^*$-algebra of $G$ or the von Neumann algebra of $G$.
+An alternative approach introduced by Passman, which we follow, is to take better and better approximations $f_n$ of such an element $f$ without ever leaving $\C[G]$.
+
+We can characterize $f$ as follows.
+For $\alpha \in I$ we consider the distance from $\alpha$ to $1$.
+By definition \[
+    d(\alpha, 1)^2 = \norm{\alpha - 1}^2 = \inner{\alpha - 1}{\alpha - 1} = \inner{\alpha - f - f^\perp}{\alpha - f - f^\perp} = \norm{\alpha - f}^2 + \norm{f^\perp}^2
+\] as $\alpha - f \in I$ implies that $\inner{\alpha - f}{f^\perp} = 0$.
+Thus $d(\alpha, 1) \geq \norm{f^\perp}$ with equality if and only if $\alpha = f$, so $f$ is the unique element of $I$ that is closest to $1$.
+
+Let $G$ be arbitrary.
+If $L$ is a $\C$-subspace of $\C[G]$, we define \[
+    d(L, \gamma) = \inf_{\alpha \in L} \norm{\alpha - \gamma}.
+\]
+For $I = e \C[G]$, since $\C[G]$ is not complete we cannot expect that this infimum is achieved.
+But we can approach it.
+Recall that $\inner{\beta}{f - 1} = 0$ for all $\beta \in I$.
+We will take $f_n$ such that $\norm{f_n - 1} \to d(I, 1)$ as $n \to \infty$.
+The following generalization of the Cauchy--Schwarz inequality lets us see that then also $\inner{\beta}{f_n - 1} \to 0$ as $n \to \infty$.
+
+\begin{lemma}
+    Let $(V, \inner{\cdot}{\cdot})$ be an inner product space, $L \subseteq V$ a subspace and $\alpha, \beta \in L$.
+    Then \[
+        \abs{\inner{\beta}{\alpha - \gamma}}^2 \leq \norm{\beta}^2 ( \norm{\alpha - \gamma}^2 - d(L, \gamma)^2).
+    \]
+\end{lemma}
+
+So if $\alpha \in L$ is close to realizing $d(L, \gamma)$, then $\alpha - \gamma$ is almost orthogonal to $L$.
+
+\begin{proof}
+    The lemma is trivial for $\beta = 0$ so suppose $\beta \neq 0$ and set $k = \inner{\alpha - \gamma}{\beta} / \norm{\beta}^2$.
+    Then $\alpha - k \beta \in L$ so that \[
+        \norm{\alpha - k \beta - \gamma}^2 \geq d(L, \gamma)^2.
+    \]
+    Then
+    \begin{align*}
+        \norm{\alpha - \gamma}^2 - d(L, \gamma)^2
+        &\geq \norm{\alpha - \gamma}^2 - \norm{\alpha - k \beta - \gamma}^2 \\
+        &= \inner{\alpha - \gamma}{\alpha - \gamma} - \inner{\alpha - k \beta - \gamma}{\alpha - k \beta - \gamma} \\
+        &= k \inner{\beta}{\alpha - \gamma} + \overline{k} \inner{\alpha - \gamma}{\beta} - k \overline{k} \inner{\beta}{\beta} \\
+        &= \inner{\beta}{\alpha - \gamma} \overline{\inner{\beta}{\alpha - \gamma}} / \norm{\beta}^2 \\
+        &= \abs{\inner{\beta}{\alpha - \gamma}}^2 / \norm{\beta}^2.
+    \end{align*}
+\end{proof}
+
+\begin{exercise}
+    Let $G = S_3 = D_6$ generated by $r = (1 2 3)$ and $s = (1 2)$.
+    We can present $G$ as $\gp{r, s}{r^3, s^2, r^s = r^{-1}}$.
+    Let $\omega \in \C$ be a primitive cube root of $1$.
+    Consider the elements
+    \begin{align*}
+        f_1 &= 1 + r + r^{-1} \\
+        f_\omega &= 1 + \omega r + \omega^{-1} r^{-1} \\
+        f_{\omega^{-1}} &= 1 + \omega^{-1} r + \omega r^{-1}
+    \end{align*}
+    of $\C[G]$ and let \[
+        e = \frac{1}{6} f_\omega (1 + s).
+    \]
+    \begin{enumerate}
+        \item Verify that $\frac{1}{3} f_1, \frac{1}{3} f_\omega, \frac{1}{3} f_{\omega^{-1}}$ are all self-adjoint idempotents.
+        \item Show that $f_1 + f_\omega + f_\omega^{-1} = 3$.
+        \item Show that $f_\omega f_1 = 0$.
+        \item Show that $(1 + s) f_\omega = f_\omega + f_{\omega^{-1}} s$.
+        \item Show that $e$ is an idempotent. (Hint: apply the previous three calculations!)
+        \item Check that $e$ is not self-adjoint and verify moreover that $\langle e, 1 - e \rangle \neq 0$.
+    \end{enumerate}
+    % This idempotent is just the matrix
+    %   1 1
+    %   0 0
+    % under the representation sending r to diag(w, w^-1) and s to a permutation matrix.
+\end{exercise}
+
+We will use a few basic identities.
+\begin{lemma}
+    \begin{enumerate}
+        \item[(i)] $\norm{\alpha + \beta} \leq \norm{\alpha} + \norm{\beta}$, $\abs{\alpha + \beta} \leq \abs{\alpha} + \abs{\beta}$.
+        \item[(ii)] $\abs{\tr \alpha} \leq \norm{\alpha}$, $\inner{\alpha}{1} = \tr \alpha$.
+        \item[(iii)] $\norm{\alpha \beta} \leq \norm{\alpha} \cdot \abs{\beta}$, $\abs{\alpha \beta} \leq \abs{\alpha} \cdot \abs{\beta}$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) is standard (or an exercise using Cauchy--Schwarz) and (ii) is immediate.
+    For (iii), let $g \in G$.
+    Then clearly $\norm{\alpha g} = \norm{\alpha}$ as both are $\sum_h \abs{(\alpha)_h}^2$.
+    Seen differently, $g$ is an isometry since $\overline{g} = g^{-1}$: \[
+        \norm{\alpha g}^2 = \inner{\alpha g}{\alpha g} = \inner{\alpha g \overline{g}}{\alpha} = \norm{\alpha}^2.
+    \]
+    Thus \[
+        \norm{\alpha \beta} = \norm{ \sum_g \alpha \cdot (\beta)_g g } \leq \sum_g \norm{ \alpha \cdot (\beta)_g g} = \sum_g \norm{\alpha} \cdot \abs{\beta_g} = \norm{\alpha} \abs{\beta}.
+    \] and similarly $\abs{\alpha g} = \abs{\alpha}$ so that $\abs{\alpha \beta} \leq \abs{\alpha} \abs{\beta}$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{theorem:kaplansky}]
+    Let $e \neq 0$ be an idempotent in $\C[G]$ and let $I = e \C[G]$.
+    We will prove that $\tr(e) > 0$ and in fact $\tr e \geq \norm{e}^2 / \abs{e}^2$.
+    Then we are done since if $e$ is a non-trivial idempotent, then so is $1-e$, and $\tr(1-e) = 1 - \tr(e) >  0$ so that $\tr(e) < 1$.
+
+    Let $d = d(I, 1)$ and choose $f_n \in I$ with \[
+        \norm{f_n - 1}^2 < d^2 + \frac{1}{n^4}.
+    \]
+    Then the lemma ensures \[
+        \abs{\inner{\beta}{f_n - 1}} < \norm{\beta} \frac{1}{n^2}
+    \] for all $\beta \in I$.
+    Since $f_n \in I$ we have $e f_n = f_n$ and thus \[
+        \tr(f_n e) = \tr(e f_n) = \tr(f_n).
+    \]
+    Now \[
+        \abs{ \tr f_n e - \tr e} = \abs{\tr(f_n e - e)} \leq \norm{f_n e - e}
+    \] and
+    \begin{align*}
+        \norm{f_n e - e}^2
+            &= \inner{(f_n - 1)e}{(f_n - 1)e} \\
+            &= \inner{(f_n - 1)e \overline{e}}{f_n - 1} \\
+            &\leq \norm{(f_n - 1) e \overline{e}} \frac{1}{n^2} \\
+            &\leq \norm{f_n - 1} \abs{e \overline{e}} \frac{1}{n^2} \\
+            &\leq \frac{(d+1) \abs{e \overline{e}}}{n^2}
+    \end{align*}
+    (where we used that $(f_n - 1)e \in I$ as $f_n, e \in I$.)
+    Thus $\abs{\tr f_n - \tr e} \to 0$ as $n \to \infty$.
+
+    But \[
+        \norm{f_n}^2 - \tr f_n = \inner{f_n}{f_n} - \inner{f_n}{1} = \inner{f_n}{f_n - 1}
+    \] so that \[
+        \abs{ \norm{f_n}^2 - \tr f_n } \leq \norm{f_n} \frac{1}{n^2} \leq \frac{d+2}{n^2} \to 0
+    \] as $n \to \infty$.
+    Thus $\abs{\norm{f_n}^2 - \tr e} \to 0$ as $n \to \infty$ so \[
+        \tr e = \lim_{n \to \infty} \norm{f_n}^2 \geq 0.
+    \]
+
+    Finally, we have \[
+        \norm{e} \leq \norm{e - f_n e} + \norm{f_n e} \leq \norm{e - f_n e} + \norm{f_n} \abs{e}
+    \] where $\norm{e - f_n e} = O(\frac{1}{n})$, so taking limits we have $\norm{e} \leq \sqrt{\tr e} \abs{e}$ and thus \[
+        \tr e \geq \norm{e}^2 / \abs{e}^2 > 0
+    \]
+\end{proof}
+
+We show later that in fact $\tr e \in \Q \cap [0, 1]$ but we already have:
+\begin{corollary}
+    If $\chr(K) = 0$ and $e \in K[G]$ is a non-trivial idempotent, then $\tr(e)$ is a totally real algebraic number all of whose algebraic conjugates lie in $(0, 1)$.
+\end{corollary}
+
+\begin{proof}
+    Let $F = \Q((e)_g : g \in \supp(e))$.
+    Then $e \in F[G]$ and $F$ is embeddable in $\C$, so viewing $e$ as an element of $\C[G]$ we have $\tr(e) \in (0, 1)$.
+    Any field automorphism of $\C$ induces an automorphism of $\C[G]$ and thus $\sigma(\tr(e)) \in (0, 1)$.
+    If $\tr(e)$ transcendental, there would exist $\sigma$ violating this.
+\end{proof}
+
+\subsection*{Places}
+
+We shifted from an arbitrary characteristic $0$ field to $\C$ via a common subfield.
+Another way to shift fields is homomorphisms -- of rings, not fields!
+
+Recall: an ideal $M$ of a (unital) commutative ring $R$ is called maximal if and only if $R / M$ is a field.
+We frequently use the homomorphism $R[G] \to (R / M)[G]$.
+
+\begin{definition}
+    A subring $R$ of a field is called a \emph{valuation ring} if for all $x \in K$, either $x \in R$ or $x^{-1} \in R$ (or both).
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item $R = K$
+        \item $\Z_p \subset \Q_p$
+        \item $K[[X]] \subset K((X))$
+    \end{itemize}
+\end{example}
+
+\begin{lemma}
+    Let $R \subset K$ be a valuation ring.
+    If $M$ denotes the set of non-units of $R$, then $M$ is the unique maximal ideal of $R$.
+\end{lemma}
+
+\begin{proof}
+    Let $x, y \in R$.
+    If $xy$ is a unit, so are $x$ and $y$ (as $R$ is commutative!).
+    Thus $M$ is closed under multiplication by $R$.
+    Let $x, y \in M$ and consider $x - y \in R$.
+    Then since $R$ is a valuation ring, either $x^{-1} y \in R$ or $y^{-1} x \in R$.
+    Since $x - y = x(1 - x^{-1}y) = y(y^{-1} x - 1)$, we see in either case that $x - y \in M$.
+    Thus $M$ is an ideal.
+    Any proper ideal of $R$ consists of non-units, so $M$ is indeed maximal.
+\end{proof}
+
+A valuation ring $R$ has a homomorphism onto the field $F = R/M$.
+We extend this to $K$ by defining
+\begin{align*}
+    \phi_R \colon K &\to F \cup \{\infty\} \\
+                  x &\mapsto \begin{cases}
+                      x + M  & \text{if } x \in R \\
+                      \infty & \text{if } x \notin R
+                  \end{cases}
+\end{align*}
+
+\begin{definition}
+    Let $K$ and $F$ be fields.
+    A map $\phi \colon K \to F \cup \{\infty\}$ is called a \emph{place} if $R := \phi^{-1}(F)$ is a subring of $K$ with $\phi_R$ a homomorphism $R \to F$ and $\phi(x) = \infty$ if and only if $x$ is nonzero and $\phi(x^{-1}) = 0$.
+\end{definition}
+
+\begin{lemma}
+    Let $K$ be a field.
+    \begin{enumerate}
+        \item[(i)] If $R$ is a valuation ring in $K$, then $\phi_R$ is a place.
+        \item[(ii)] If $\phi \colon K \to F \cup \{\infty\}$ is a place, then $R = \phi^{-1}(F)$ is a valuation ring in $K$ with maximal ideal $M = \phi^{-1}(0)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) If $x \notin R$ then $x^{-1} \in R$ and moreover $x^{-1} \in M$ (since $(x^{-1})^{-1} \notin R$).
+    Also $x^{-1} \in M$ implies $x \notin R$.
+    That is, $\phi_R$ satisfies $\phi(x) = \infty \Leftrightarrow \phi(x^{-1}) = 0$.
+
+    (ii) $R$ is by definition a subring.
+    If $x \notin R$ then $\phi(x) = \infty$ so $\phi(x^{-1}) = 0$ and $x^{-1} \in R$, so $R$ is a valuation ring.
+    Since $\phi(x) = 0 \Leftrightarrow x^{-1} \notin R$, we see that $M$ is the set of non-units of $R$.
+\end{proof}
+
+So there is essentially a one-to-one correspondence between places and valuation rings (up to picking $F \cong R / M$).
+
+\begin{theorem}[Extension theorem for places]
+    Let $K$ be a field, $S$ a subring of $K$ and $\sigma \colon S \to F$ a homomorphism to the algebraically closed field $F$.
+    Then there exists a place $\phi_R \colon K \to F \cup \{\infty\}$ such that $R \supseteq S$ and $\phi_R|_S = \sigma$.
+\end{theorem}
+
+\begin{example}
+    $K = \C$, $S = \Z$ and $F = \overline{\F}_p$.
+\end{example}
+
+\begin{proof}
+    Consider the set of all pairs $(R, \phi)$ such that $S \subseteq R \subseteq K$ and $\phi \colon R \to F$ is a homomorphism that extends $\sigma$.
+    This is a poset under \[
+        (R_1, \phi_1) \leq (R_2, \phi_2) :\Leftrightarrow R_1 \subseteq R_2, \phi_2 \text{ extends } \phi_1.
+    \]
+    This poset is non-empty, as it contains $(S, \sigma)$, and chains are bounded, so by Zorn's lemma there is a maximal pair $(R, \phi)$.
+    We will show that $R$ is a valuation ring.
+    Let $M = \ker (\phi)$.
+    \begin{claim}
+        $M$ is the unique maximal ideal of $R$.
+    \end{claim}
+    We show that $s \in R \setminus M$ implies $s^{-1} \in R$, so $M$ contains all the non-units.
+    Let \[
+        R' = \set{r / s}{ r \in R, s \in R \setminus M } \subseteq K
+    \] and define
+    \begin{align*}
+        \phi' \colon R' &\to F \\
+                    r/s &\mapsto \phi(r) / \phi(s).
+    \end{align*}
+    We can check that $\phi'$ is a homomorphism extending $\phi$, so by maximality we have $R' = R$, so $s^{-1} \in R$ for all $s \in R \setminus M$ in particular.
+    Thus $M$ is the unique maximal ideal of $R$ and $\phi(R) \cong R / M$ is a field.
+
+    \begin{claim}
+        If $x \in K \setminus R$ then $1 \in M[x]$.
+    \end{claim}
+    Consider the polynomial ring $R[t]$ and let \[
+        I = \set{f \in R[t]}{f(x) = 0},
+    \] the kernel of the evaluation homomorphism $R[t] \to R[x]$, so $R[x] = R[t] / I$.
+    Now $\phi$ extends to $\tilde{\phi} \colon R[t] \to \phi(R)[t]$ and so $\tilde{\phi}(I)$ is an ideal of $\phi(R)[t]$, which we will show is the whole ring.
+    If that were not the case, then since $\phi(R)$ is a field, $\phi(R)[t]$ is a PID and there would exist a non-constant polynomial $h \in \phi(R)[t]$ such that $\tilde{\phi}(I) = (h)$.
+    Since $\phi(R) \subseteq F$ and $F$ is algebraically closed, we then have $y \in F$ such that $h(y) = 0$.
+    Then the composition \[
+        R[t] \overset{\tilde{\phi}}{\to} \phi(R)[t] \overset{\text{ev}}{\to} F
+    \] has $I$ in its kernel.
+    This factors through $R[t] / I = R[x] \supsetneq R$, contradicting maximality of $(R, \phi)$.
+    Thus $\tilde{\phi}(I) = \phi(R)[t]$ so $1 \in \tilde{\phi}(I)$ so picking some $f \in I$ such that $\tilde{\phi}(f) = 1$ we have $1 = f(t) + g(t)$, $g \in \ker(\tilde{\phi})$.
+    But $\ker(\tilde{\phi}) = M[t]$ and $f(x) = 0$ so setting $t = x$ gives $1 = g(x) \in M[x]$.
+
+    We can now show $R$ is a valuation ring.
+    Suppose for the sake of contradiction that $x, x^{-1} \in K \setminus R$.
+    Then we can find polynomials $g, h \in M[t]$ such that $1 = g(x) = h(x^{-1})$.
+    Choose them to have minimal possible degree and suppose without loss of generality that $n = \deg(h) \leq \deg(g)$.
+
+    Now $1 = \sum_{i=0}^n a_i x^{-i}$ with $a_i \in M$.
+    Then \[
+        (1 - a_0) x^n = \sum_{i=1}^n a_i x^{n-i} = \sum_{i=0}^{n-1} a_{n-i} x^i
+    \] and since $1 - a_0 \notin M$ it is invertible in $R$ so we write \[
+        x^n = \sum_{i=0}^{n-1} \frac{a_{n-1}}{1 - a_0} x^i.
+    \] But we can substitute this into $g$ to eliminate all terms of degree $\geq n$, a contradiction.
+
+    Thus $R$ is a valuation ring, whose unique maximal ideal is $M = \ker(\phi)$.
+    Thus $\phi_R \colon K \to F \cup \{\infty\}$ is a place.
+\end{proof}
+
+What is the ``valuation''?
+
+\begin{definition}
+    A \emph{valuation} on a field $K$ is a surjection $v \colon K \to vK \cup \{\infty\}$, where $vK$ is an ordered abelian group (the \emph{value group}) such that for all $x, y \in K$
+    \begin{itemize}
+        \item $v(x) = \infty \iff x = 0$,
+        \item $v(xy) = v(x) + v(y)$, and
+        \item $v(x+y) \geq \min \{ v(x), v(y) \}$.
+    \end{itemize}
+    (Here we define $a + \infty = \infty$ for $a \in vK \cup \{\infty\}$ and $a < \infty$ for $a \in vK$.)
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item $p$-adic valuation $\Q_p \to \Z$ ($\sum_{i=k}^\infty a_i p^i$ with $a_k \neq 0$ is mapped to $k$)
+        \item $K((t)) \to \Z \colon \sum_{i = k}^\infty a_i t^i \mapsto k$.
+    \end{itemize}
+\end{example}
+
+Valuations $v$ and $w$ are equivalent if there is an order-preserving $\phi \colon vK \overset{\cong}{\to} wK$ such that $w = \phi \circ v$.
+
+\begin{proposition}
+    Equivalence classes of valuations on $K$ are in one-to-one correspondence with valuation rings in $K$.
+\end{proposition}
+
+\begin{proof}
+    Given $v \colon K \to vK \cup \{\infty\}$, $R_v = \set{x \in K}{ v(x) \geq 0 }$ is a valuation ring: closure under addition and multiplication is immediate and $x \notin R_v$ implies $v(x) < 0$ which implies $v(x^{-1}) > 0$ so that $x^{-1} \in R_v$.
+    Note that its group of units is $R_v^\times = \set{x \in K}{v(x) = 0}$ and the maximal ideal is $M_v = \set{x \in K}{v(x) > 0}$.
+
+    If $R \subseteq K$ is a valuation ring, then $\Gamma = K^\times / R^\times$ is an abelian group and it is ordered with positive cone $\set{x R^\times}{x \in M}$.
+    Since $M$ is an ideal of $R$, $x \in M$ implies $x R^\times \subseteq M$ so there is no dependence on the choice of coset representative.
+    If $x, y \in M \setminus \{0\}$ then $xy \in M \setminus \{0\}$ so we have a subsemigroup and $x \notin R \Leftrightarrow x^{-1} \in M$ so we indeed partition.
+\end{proof}
+
+\begin{corollary}
+    \label{corollary:zdc_char_0_from_char_p}
+    Let $p$ be a prime.
+    Suppose $\C[G]$ contains non-zero zero divisors.
+    Then $\F_{p^n}[G]$ contains zero divisors for some $n$.
+\end{corollary}
+
+\begin{proof}
+    There is a homomorphism $\Z \to \overline{\F}_p$ so by the extension theorem for places there is a place $\phi \colon \C \to \overline{\F}_p \cup \{\infty\}$.
+    Suppose $0 \neq \alpha, \beta \in \C[G]$ with $\alpha \beta = 0$.
+    Consider $\set{ (\alpha)_g }{ g \in \supp(\alpha) }$.
+    This finite set contains some minimal $\lambda = (\alpha)_{g_0}$ under the corresponding valuation $v$ so that $v((\alpha)_g) \geq v(\lambda)$ for $g \in \supp(\alpha)$ and hence $v(\lambda^{-1}(\alpha)_g) \geq 0$.
+    That is, $\lambda^{-1} \alpha \in R[G]$ where $R \subset \C$ is the corresponding valuation ring $R = \phi^{-1}(\overline{\F}_p)$.
+    Similarly some $\mu^{-1} \beta \in R[G]$ where $\mu = (\beta)_{h_0}$.
+    Now $\overline{\alpha} = \phi(\lambda^{-1} \alpha)$, $\overline{\beta} = \phi(\mu^{-1} \beta) \in \overline{\F}_p[G]$ satisfy \[
+        \overline{\alpha} \overline{\beta} = \phi(\lambda^{-1} \mu^{-1} \alpha \beta) = \phi(0) = 0
+    \]
+    but have support containing $g_0, h_0$ respectively.
+    Since $\overline{\F}_p = \lim_{n \to \infty} \F_{p^n}$, the result follows.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:test_element_for_place}
+    Let $S \subseteq K$ be a subring of a field and let $x_1, \dots x_n$ be finitely many elements of $K$.
+    Then there exists an element $s_0 \in S \setminus \{0\}$ such that if $\sigma \colon S \to F$ is a homomorphism to an algebraically closed field $F$ with $\sigma(s_0) \neq 0$, then $\sigma$ extends to a place $\phi_R \colon K \to F \cup \{\infty\}$ with $R \supseteq S[x_1, \dots, x_n]$.
+\end{lemma}
+
+\begin{proof}
+    TODO break up into exercises.
+\end{proof}
+
+\begin{corollary}
+    \label{corollary:place_finite_almost_all_primes}
+    Let $\chr(K) = 0$ and let $x_1, \dots, x_n \in K^\times$.
+    Then for infinitely many primes $p$ there exists a place $\phi_R \colon K \to \overline{\F}_p \cup \{\infty\}$ with $\phi_R(x_i) \neq 0$ or $\infty$ for all $i$.
+\end{corollary}
+
+\begin{proof}
+    Take $S = \Z$ in \Cref{lemma:test_element_for_place} and take the finite set \[
+        \{x_1, \dots, x_n, x_1^{-1}, \dots, x_n^{-1}\}.
+    \]
+    Then $s_0 \in \Z$ has only finitely many prime factors.
+    For all other primes $p$, $\sigma \colon \Z \to \overline{\F}_p$ satisfies $\sigma(s_0) \neq 0$ and so extends to a place $\phi_R$ with $x_i, x_i^{-1} \in R$ which gives $\phi_R(x_i) \neq 0$ or $\infty$.
+\end{proof}
+
+\begin{corollary}
+    If $\C[G]$ has a non-trivial unit, then for all but finitely many primes $p$ there exists $n$ such that $\F_{p^n}[G]$ has a non-trivial unit.
+\end{corollary}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+The augmentation map \[
+    \epsilon \colon R[G] \to R
+\] restricts to a map $(R[G])^\times \to R^\times$.
+The kernel is $V(R[G])$, the group of \emph{normalized} units.
+Since \[
+    1 \to V(R[G]) \to (R[G])^\times \to R^\times \to 1
+\] is split such that $R^\times$ is central (assuming $R$ to be commutative), then in fact $R[G] \cong R^\times \times V(R[G])$.
+The unit conjecture states that for torsion-free $G$, the natural injection $G \mono V(K[G])$ is surjective.
+
+We can strengthen the link between the unit conjecture and the zero divisor conjecture as follows.
+
+\begin{proposition}
+    \label{proposition:zd_and_torsion_units}
+    Let $\chr(K) > 0$ and let $G$ be torsion-free.
+    Then $V(K[G])$ is torsion-free if and only if $K[G]$ has no zero divisors.
+\end{proposition}
+
+\begin{proof}
+    Let $\chr(K) = p$.
+    Suppose $0 \neq \alpha, \beta \in K[G]$ with $\alpha \beta = 0$.
+    By primality of $K[G]$, we can assume without loss of generality that $\alpha = \beta$, that is, that $\alpha^2 = 0$ (by replacing $\alpha$ with some non-zero product $\beta \gamma \alpha$).
+    Now \[
+        (1 + \alpha)^p = 1 + p \alpha + \binom{p}{2} \alpha^2 + \dots + \alpha^p = 1 + \alpha^p = 1.
+    \]
+    Note that $\alpha^2 = 0$ implies $\epsilon(\alpha)^2 = 0 \in K$ so that $\epsilon(\alpha) = 0$.
+    As $\alpha \neq 0$, we have that $1 + \alpha \in V(K[G])$ is non-trivial torsion.
+
+    Now suppose $1 \neq \alpha \in V(K[G])$ with $\alpha^n = 1$, for some $n \geq 2$.
+    Then $(1 - \alpha)(1 + \alpha + \dots + \alpha^{n-1}) = 0$.
+    The first factor is non-zero by assumption on $\alpha$.
+    The second factor has augmentation $n$, which is non-zero provided that $p \nmid n$.
+    If $p \mid n$ then supposing (without loss of generality) that $\ord(\alpha) = n$, we have $\alpha^{n / p} \neq 1$ and thus \[
+        0 = 1 - \alpha^n = (1 - \alpha^{n/p})^p
+    \] so $K[G]$ has zero divisors.
+\end{proof}
+
+\begin{corollary}
+    \label{corollary:zd_units_all_K}
+    $G$ satisfies the zero divisor conjecture for all fields $K$ if and only if $V(K[G])$ is torsion-free for all fields $K$.
+\end{corollary}
+
+\begin{proof}
+    We've already seen in \Cref{corollary:zdc_char_0_from_char_p} that $G$ satisfies the zero divisor conjecture in characteristic $0$ if it does in characteristic $p > 0$.
+    If $V(K[G])$ has torsion for $\chr(K) = 0$, the proof of \Cref{proposition:zd_and_torsion_units} gives zero divisors in $K[G]$.
+    % TODO this really could be phrased better
+\end{proof}
+
+\begin{remark}
+    The ``detour'' via positive characteristic is necessary -- we cannot strengthen \Cref{corollary:zd_units_all_K} to say for all $K$ that $K[G]$ is a domain precisely when $V(K[G])$ is torsion-free (at least, not with our current knowledge).
+    In particular, we don't know if $\Z[G]$ can have zero divisors for torsion-free $G$, but it is a theorem of Sehgal that $V(\Z[G])$ is torsion-free (in fact, $V(\cO[G])$, where $\cO$ is the ring of algebraic integers).
+\end{remark}
+
+\subsection{The power map}
+
+Let $\chr(K) = p > 0$.
+In a non-commutative $K$-algebra, we do not necessarily have $(\alpha + \beta)^p = \alpha^p + \beta^p$, but we will establish what one might call ``Frobenius under the trace''.
+
+\begin{definition}
+    Let $A$ be a $K$-algebra.
+    The \emph{commutator subspace} $[A, A]$ is the subspace spanned by $[\alpha, \beta] := \alpha \beta - \beta \alpha$ for $\alpha, \beta \in A$.
+\end{definition}
+
+\begin{lemma}
+    \label{lemma:frobenius_mod_commutators}
+    Let $A$ be an algebra over a field $K$, with $\chr(K) = p > 0$.
+    If $\alpha_1, \dots, \alpha_m \in A$ and $q = p^n$, then \[
+        (\alpha_1 + \alpha_2 + \dots + \alpha_m)^q = \alpha_1^q + \dots + \alpha_m^q \mod [A, A].
+    \]
+\end{lemma}
+
+\begin{proof}
+    The difference $\beta := (\alpha_1 + \dots + \alpha_m)^q - (\alpha_1^q + \dots + \alpha_m^q)$ is a sum of expressions $\alpha_{i_1} \alpha_{i_2} \dots \alpha_{i_q}$ where not all indices are the same.
+    Modulo $[A, A]$, cyclic permutation does not change such expressions.
+    Note that $\Z / q\Z$ acts on the $m^q - m$ summands of $\beta$ by cyclic permutation and all orbits have size greater than $1$ and hence divisible by $p$.
+    Thus $\beta \in [A, A]$.
+\end{proof}
+
+For $g \in G$ we write $[g]$ for its conjugacy class \[
+    [g] = [g]_\sim = g^G \in G / {\sim}.
+\]
+
+\begin{definition}
+    For $g \in G$, let
+    \begin{align*}
+        \tau_{[g]} \colon K[G] &\to K \\
+                        \alpha &\mapsto \sum_{h \in [g]} (\alpha)_h
+    \end{align*}
+    denote the sum of coefficients over the conjugacy class of $g$.
+\end{definition}
+
+This is a $K$-linear map. ``The'' trace is $\tr = \tau_{[1]}$.
+
+\begin{lemma}
+    \label{lemma:commutators_and_traces}
+    Let $\alpha \in K[G]$.
+    Then $\alpha \in [K[G], K[G]]$ if and only if $\tau_{[g]}(\alpha) = 0$ for all $g \in G$.
+    Moreover, a $K$-linear map $\tau \colon K[G] \to K$ annihilates $[K[G], K[G]]$ if and only if it is constant on conjugacy classes.
+\end{lemma}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+In particular, the trace identity \[
+    \tau_{[g]}(\alpha \beta) = \tau_{[g]}(\beta \alpha)
+\] holds for all $g \in G$ and $\alpha, \beta \in K[G]$.
+
+\begin{definition}
+    We call $g \in G$ a $p$-element if its order is $p^n$, $n \geq 1$.
+    For $\alpha \in K[G]$, define \[
+        \psupp(\alpha) = \set{g \in \supp(\alpha)}{\text{$g$ is a $p$-element}}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    Let $\alpha = \sum_g a_g \cdot g \in K[G]$ be nilpotent.
+    \begin{enumerate}
+        \item[(i)] If $\chr(K) = p > 0$ then \[
+            \tr(\alpha) + \sum_{g \in \psupp(\alpha)} a_g = 0.
+        \] In particular, either $\tr(\alpha) = 0$ or $\psupp(\alpha) \neq \emptyset$.
+        \item[(ii)] If $\chr(K) = 0$ then $\tr(\alpha) = 0$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) We choose $q = p^n$ large enough so that $\alpha^q = 0$ and $g^q = 1$ for all $g \in \psupp(\alpha)$.
+    Thus \[
+        0 = \alpha^q = \sum_{g \in G} a_g^q g^q \mod [K[G], K[G]]
+    \] and taking traces gives \[
+        0 = \sum_{g^q = 1} a_g^q = (\sum_{g^q = 1} a_g)^q
+    \] and since $\set{g \in \supp(\alpha)}{g^q = 1} = \{1\} \sqcup \psupp(\alpha)$, we have \[
+        \tr(\alpha) + \sum_{g \in \psupp(\alpha)} a_g = \sum_{g^q = 1}a_g = 0.
+    \]
+
+    (ii) By \Cref{corollary:place_finite_almost_all_primes}, for infinitely many primes $p$ there exists a place $\phi_R \colon K \to \overline{\F}_p \cup \{\infty\}$ with $\phi_R(a_g) \neq 0, \infty$ for all $g \in \supp(\alpha)$.
+    Thus $\alpha \in R[G]$ and its image $\tilde{\alpha}$ in $(R / M)[G] \subseteq \overline{\F}_p[G]$ is nilpotent.
+    If $\tr(\alpha) \neq 0$, then $\tr(\tilde{\alpha}) = \phi_R(a_1) \neq 0$ and by (i) $\psupp(\alpha) \neq \emptyset$.
+    But this cannot be true for infinitely many primes.
+\end{proof}
+
+Using this we can show some more trace functions vanish on nilpotents.
+% TODO define terminology "trace-like function" as constant on cc <==> vanish on commutators ?
+We define a preorder on $G$ by setting \[
+    x < y :\Leftrightarrow \ncls{x}_G \subseteq \ncls{y}_G.
+\] That is, $<$ is reflexive and transitive, but not antisymmetric.
+It induces a partial order on $\approx$-equivalence classes, where we say \[
+    x \approx y :\Leftrightarrow (x < y \text{ and } y < x) \Leftrightarrow \ncls{x}_G = \ncls{y}_G.
+\]
+
+\begin{remark}
+    This is a coarser equivalence relation than conjugacy.
+    We always have $x \approx x^{-1}$.
+    Magnus proved that if $x, y \in F_n$ with $x \approx y$, then $x \sim y$ or $x \sim y^{-1}$.
+    In general this is far from true, e.g.\ a simple group $G$ has two $\approx$-classes: $\{1\}$ and $G \setminus \{1\}$.
+\end{remark}
+
+If $S = [g]_\approx \in G / {\approx}$, we define \[
+    \tau_S \colon K[G] \to K \colon \alpha \mapsto \sum_{g \in S} (\alpha)_g.
+\]
+
+\begin{remark}
+    If we pick a transversal $X$ for $[g]_\approx / {\sim}$, then $\tau_S = \sum_{x \in X} \tau_{[x]}$.
+\end{remark}
+
+\begin{proposition}
+    If $\chr(K) = 0$ and $\alpha \in K[G]$ is nilpotent, then $\tau_S(\alpha) = 0$ for each $S \in G / {\approx}$.
+\end{proposition}
+
+\begin{proof}
+    We ``induct'' over the finite poset of $\approx$-classes $S$ that intersect $\supp(\alpha)$.
+    Pick a maximal such $S$ for which we haven't proved $\tau_S(\alpha) = 0$.
+    Let $x \in S$.
+    Then $y \in \ncls{x}_G$ if and only if $[y]_\approx = T \leq S$.
+    The image of $\alpha$ in $K[G / \ncls{x}_G]$ is nilpotent and has trace \[
+        0 = \sum_{y \in \ncls{x}_G} (\alpha)_y = \sum_{T \leq S} \tau_T(\alpha).
+    \] As $\tau_T(\alpha) = 0$ for $T \lneq S$, we are done.
+\end{proof}
+
+We will need the following black box from number theory and a corollary of it.
+(The black box is a consequence of the Frobenius density theorem.)
+
+\begin{proposition}
+    Let $f \in \Z[t]$ be a monic irreducible polynomial with $\deg f > 1$.
+    Then there exist infinitely many primes $p$ such that $f \operatorname{mod} p \in (\Z / p \Z) [t]$ does not have all its roots in $\Z / p\Z$.
+\end{proposition}
+
+\begin{corollary}
+    \label{corollary:to_frobenius_density_theorem}
+    Let $\chr(K) = 0$ and $x_0, x_1, \dots, x_n \in K$ with $x_0 \notin \Q$.
+    Then for infinitely many primes $p$, there exists a place $\phi_R \colon K \to \overline{\F}_p \cup \{\infty\}$ with $\phi_R(x_i) \neq 0$ for all $i$ and $\phi_R(x_0) \notin \F_p$.
+\end{corollary}
+
+\begin{theorem}[Zalesskii]
+    \label{theorem:zalesskii}
+    Let $e \in K[G]$ be an idempotent.
+    Then $\tr(e)$ is in the prime subfield of $K$.
+\end{theorem}
+
+\begin{proof}
+    Let $e = \sum_{g} a_g g$ and suppose first that $\chr(K) = p > 0$.
+    Let $S = \{1\} \cup \psupp(e)$.
+    We can find $n_0$ such that $g^{p^n} = 1$ for all $g \in S$ and $n \geq n_0$.
+    Moreover, $S = \set{g \in \supp(e)}{g^{p^n} = 1}$ for all $n \geq n_0$.
+    By ``Frobenius under the trace'' (i.e.\ \Cref{lemma:frobenius_mod_commutators} plus \Cref{lemma:commutators_and_traces}) we have for $q = p^n, n \geq n_0$ \[
+        \tr(e^q) = \sum_{g \in S} a_g^q = (\sum_{g \in S} a_g)^q
+    \] so now $e = e^2$ implies $e = e^{p^{n_0}} = e^{p^{n_0+1}}$ and thus \[
+        \tr(e) = \left( \sum_{g \in S} a_g \right)^{p^{n_0}} = \left( \sum_{g \in S} a_g \right)^{p^{n_0+1}}
+    \] so that $\tr(e)$ is a root of the polynomial $x^p - x$, which has all its roots in $\F_p$.
+
+    Now suppose $\chr(K) = 0 $ and suppose for the sake of contradiction that $\tr(e) \notin \Q$.
+    By \Cref{corollary:to_frobenius_density_theorem} there exists a prime $p$ (in fact, infinitely many) and a place $\phi_R \colon K \to \overline{\F}_p \cup \{\infty\}$ such that $\phi_R(a_g) \neq \infty$ for all $g \in \supp(e)$ and $\phi_R(a_1) = \phi_R(\tr(e)) \notin \F_p$.
+    But then $e \in R[G]$ and its image $\tilde{e} \in (R/M)[G] \subseteq \overline{\F}_p[G]$ is an idempotent and has trace $\tr(\tilde{e}) = \phi_R(\tr(e)) \notin \F_p$, contradicting the characteristic $p$ case.
+\end{proof}
+
+Our results on traces of nilpotents and idempotents admit a nice generalization, which we state but will not prove.
+
+\begin{theorem}
+    Let $\alpha$ be an algebraic element of $K[G]$ with minimal polynomial $f(t) \in K[t]$.
+    Let $\lambda_1, \dots, \lambda_n$ be the distinct roots of $f$ in some algebraic closure of $K$.
+    \begin{enumerate}
+        \item[(i)] If $\chr(K) = 0$ then there exist rational numbers $r_1, \dots, r_n$ satisfying $0 < r_i$ and $\sum_{i=1}^n r_i = 1$ such that \[
+            \tr(\alpha) = \sum_{i=1}^n r_i \lambda_i.
+        \]
+        \item[(ii)] If $\chr(K) = p > 0$ and either $G$ has no $p$-elements or $f(t)$ has no repeated roots, then there exist $r_1, \dots, r_n \in \F_p$ with $\sum_{i=1}^n r_i = 1$ such that \[
+            \tr(\alpha) = \sum_{i=1}^n r_i \lambda_i.
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Formanek]
+    \label{theorem:formanek}
+    Let $G$ be a torsion-free group.
+    Let \[
+        N_G = \set{p}{p \text{ is prime and there exist } g \in G \setminus \{1\}, n \in \Z^+ \text{ s.t. } g \sim g^{p^n}}
+    \] (this is the set of primes that are in a sense ``bad'' for $G$).
+    Suppose $e \in K[G]$ is an idempotent.
+    \begin{enumerate}
+        \item[(i)] If $\chr(K) = p > 0$ and $p \notin N_G$, then $\tr(e) = 0$ or $1$.
+        \item[(ii)] If $\chr(K) = 0$ and $p \notin N_G$ for infinitely many primes $p$, then $e = 0$ or $1$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    When Formanek proved this theorem in 1973, the condition $\abs{N_G} < \infty$ may have appeared somewhat esoteric.
+    Since then, geometric group theory has brought many groups into focus where this holds (often $N_G = \emptyset$).
+\end{remark}
+
+\begin{example}
+    $\abs{N_G} < \infty$ for torsion-free $G$ if $G$ is
+    \begin{itemize}
+        \item a finitely generated subgroup of $\GL_n F$, $F$ any field (Bass)
+        \item hyperbolic
+        \item CAT(0)
+        \item a subgroup of $\Out(F_n)$ or the mapping class group $\Mod(\Sigma)$ of a surface
+    \end{itemize}
+\end{example}
+
+\begin{corollary}
+    All those groups satisfy the idempotent conjecture in characteristic $0$.
+\end{corollary}
+
+\begin{remark}
+    Osin proved that every countable torsion-free group embeds into a torsion-free group $G$ with exactly $2$ conjugacy classes.
+    Then $N_G$ contains all primes!
+\end{remark}
+
+\begin{proof}[Proof of Formanek's \Cref{theorem:formanek}]
+    (i) Let $e = \sum_g a_g g \in K[G]$, $\chr(K) = p > 0$, $p \notin N_G$.
+    Let $h \in G \setminus \{1\}$.
+    We wish to compute \[
+        \tau_{[h]}(e) = \sum_{g \sim h} a_g.
+    \] For any $g \in G \setminus \{1\}$, there is at most one $n \in \Z^+$ such that $g^{p^n} \sim h$, as otherwise $g^{p^{n+i}} \sim g^{p^n}$ with $i \geq 1$ and then $(g^{p^n})^{p^i} \sim g^{p^n}$, contradicting $p \notin N_G$.
+    Since $\supp(e)$ is finite, there exists $q = p^n$ such that $g^q \not \sim h$ for all $g \in \supp(e)$.
+    Now Frobenius under the trace gives us, since $e = e^q$, that \[
+        \tau_{[h]}(e) = \tau_{[h]}(e^q) = \sum_{\substack{g \in \supp(e) \\ g^q \sim h}} a_g^q = \sum_{g \in \emptyset} a_g^q = 0
+    \] for all $h \neq 1$.
+    Now the augmentation $\epsilon(e) = 0$ or $1$ in $K$, since it is an idempotent.
+    But \[
+        \epsilon(e) = \sum_{[g] \in \supp(e) / {\sim}} \tau_{[g]}(e) = \tau_{[1]}(e) = \tr(e)
+    \] so that $\tr(e) = 0$ or $1$.
+
+    (ii) Now $\chr(K) = 0$.
+    Suppose for the sake of contradiction that $e \neq 0$ or $1$, so that by Kaplansky's \Cref{theorem:kaplansky} we have $a_1 = \tr(e) \neq 0$ or $1$.
+    Then set $b = a_1 (1 - a_1) \neq 0$.
+    By \Cref{corollary:place_finite_almost_all_primes}, for all but finitely many primes $p$, there is a place $\phi_R \colon K \to \overline{\F}_p \cup \{\infty\}$ with all $\phi_R(a_g) \neq \infty$ and $\phi_R(b) \neq 0$ (or $\infty$).
+
+    Thus $e \in R[G]$ has image $\tilde{e} \in (R/M)[G] \subseteq \overline{\F}_p[G]$ with trace $\phi_R(a_1) \neq 0$ or $1$ (since $\phi_R(a_1) (1 - \phi_R(a_1)) = \phi_R(b) \neq 0$).
+    For infinitely many of these $p$ we will also have $p \notin N_G$, which contradicts the $\chr(K) = p$ case.
+\end{proof}
+
+\section{The unit conjecture counterexample}
+
+Rips and Segev (1987) gave the first example of a torsion-free group without unique products, using small cancellation theory ($\abs{A} = 4$ and $B$ is huge).
+Promislow showed shortly thereafter (1988) that the crystallographic group \[
+    P = \gp{a, b}{b^{-1} a^2 b = a^{-2}, a^{-1} b^2 a = b^{-2}}
+\]
+does not have unique products, with $A = B$, $\abs{A} = 14$.
+In 2021, it was shown that $K[P]$ is a counterexample to the unit conjecture whenever $\chr\ K > 0$ (Gardam, Murray).
+
+Let $D_\infty = \gp{r, t}{r^2 = 1, t^r = t^{-1}}$ denote the infinite dihedral group.
+It naturally acts on $\R$ (isometrically) via $t \cdot x = x+1$ and $r \cdot x = -x$ (``translate'' and ``rotate'').
+
+\begin{lemma}
+    \label{lemma:promislow_embedding}
+    \begin{align*}
+        \phi \colon P &\to D_\infty \times D_\infty \times D_\infty \\
+        a &\mapsto (t, tr, r) \\
+        b &\mapsto (r, t, tr)
+    \end{align*}
+    is an injective group homomorphism.
+\end{lemma}
+
+\begin{remark}
+    The stabilizer of $K^n \times \{1\}$ in $GL(K^n \oplus K)$ is $\Aff(K^n)$.
+    This lets us rephrase the above embedding as the faithful representation \[
+        a \mapsto \begin{pmatrix}
+            1 &    &    & 1 \\
+              & -1 &    & 1 \\
+              &    & -1 & 0 \\
+              &    &    & 1
+        \end{pmatrix},
+        \quad
+        b \mapsto \begin{pmatrix}
+            -1 &   &    & 0 \\
+               & 1 &    & 1 \\
+               &   & -1 & 1 \\
+               &   &    & 1
+        \end{pmatrix}.
+     \]
+\end{remark}
+
+\begin{proof}[Proof of \Cref{lemma:promislow_embedding}]
+    Note that $\phi(a^2) = (t^2, 1, 1)$ so that $\phi(b^{-1} a^2 b) = (r^{-1} t^2 r, 1, 1) = (t^{-2}, 1, 1) = \phi(a^{-2})$.
+    Similarly $\phi(a^{-1} b^2 a) = \phi(b^{-2})$, so this is a well-defined group homomorphism.
+
+    Since $(a^2)^b = a^{-2}$, we have $b \in N_P(\gen{a^2})$, thus $\gen{a^2} \normal P$ and likewise $\gen{b^2} \normal P$.
+    As $(a^2)^{b^2} = (a^{-2})^b = a^2$, we see that $\Z^2 \cong \gen{a^2, b^2} \normal P$.
+    The relations of $P$ are a consequence (in general) of $a^2 = 1$ and $b^2 = 1$ respectively, so $P / \gen{a^2, b^2} \cong \gp{a, b}{a^2, b^2} \cong D_\infty$.
+    The abelianization of $D_\infty$ is $\Z/2 \oplus \Z/2$ with $[D_\infty, D_\infty] = \gen{abab} \cong \Z$ (exercise!).
+    Let $x = a^2, y = b^2, z = (ab)^2$.
+    Now $x^z = (a^2)^{abab} = (a^2)^{bab} = (a^{-2})^{ab} = (a^{-2})^b = a^2 = x$ and similarly $y^z = y$.
+    Thus $\gen{x, y, z} \cong \Z^3$ is a normal subgroup of $P$ with quotient $\Z/2 \oplus \Z/2$.
+
+    Since $\phi(x) = (t^2, 1, 1)$, $\phi(y) = (1, t^2, 1)$ and $\phi(ab) = (tr, trt, rtr) = (tr, r, t^{-1})$ which implies $\phi(z) = (1, 1, t^{-2})$, we see that $\phi$ is injective on $\gen{x, y, z}$.
+    We project $D_\infty \times D_\infty \times D_\infty$ onto the first two factors and then maps to $\Z/2 \oplus \Z/2$ by quotienting out the corresponding $\gen{t}$.
+    This gives a map $q \circ \phi \colon P \epi \Z/2 \oplus \Z/2$ which has $\gen{x, y, z}$ in the kernel.
+    Since $P / \gen{x, y, z} \cong \Z/2 \oplus \Z/2$, we see $\ker (q \circ phi) = \gen{x, y, z}$ and thus $g \notin \gen{x, y, z}$ implies $\phi(g) \neq 1$.
+    So $\phi$ is injective.
+\end{proof}
+
+\begin{exercise}
+    Show that $\gp{r,t}{r^2, t^r = t^{-1}} \cong \gp{a, b}{a^2, b^2}$ and that the latter has derived subgroup $\gen{abab} \cong \Z$.
+\end{exercise}
+
+\begin{exercise}
+    Show that if $G$ does not have the unique product property then there is a finite subset $A \subset G$ such that $A \cdot A$ does not have a unique product.
+    Deduce that if $G$ does not have the unique product property, then there are arbitrarily large sets $A$ that witness this.
+\end{exercise}
+
+Having identified the abstract finitely presented group $P$ with a subgroup of $D_\infty \times D_\infty \times D_\infty$ in \Cref{lemma:promislow_embedding}, we can prove:
+
+\begin{corollary}
+    \label{corollary:P_is_tf}
+    $P$ is torsion-free.
+\end{corollary}
+
+\begin{proof}
+    The abelianization of $D_\infty$ is $\Z/2 \oplus \Z/2$ and an element is non-trivial torsion if and only if it has image $(0, \bar{r})$ or $(\bar{t}, \bar{r})$.
+    Thus the abelianization of $D_\infty^3$ is an elementary abelian $2$-group (isomorphic to $(\Z/2)^6$) and the image of $P$ is an order $4$ subgroup of $(D_\infty^3)^\text{ab}$, comprising
+    \begin{align*}
+        \overline{\phi(1)} &= ((0, 0), (0, 0), (0, 0)) \\
+        \overline{\phi(a)} &= ((\bar{t}, 0), (\bar{t}, \bar{r}), (0, \bar{r})) \\
+        \overline{\phi(b)} &= ((0, \bar{r}), (\bar{t}, 0), (\bar{t}, \bar{r})) \\
+        \overline{\phi(ab)} &= ((\bar{t}, \bar{r}), (0, \bar{r}), (\bar{t}, 0)).
+    \end{align*}
+    Thus every element of $P$ is either in the torsion-free subgroup $\gen{x, y, z} \cong \Z^3$ or has infinite order in precisely one of the three $D_\infty$ factors.
+    Thus $P$ is torsion-free.
+\end{proof}
+
+\begin{proof}[Alternative proof of \Cref{corollary:P_is_tf}]
+    (This abstract proof, that does not require identifying $P$ with a subgroup of $D_\infty \times D_\infty \times D_\infty$, is not examinable.)
+    We rewrite
+    \begin{align*}
+        P
+        &= \gp{x, b, y, a}{x^b = x^{-1}, y^a = y^{-1}, x=a^2, b^2 = y} \\
+        &= \gp{x, b}{x^b = x^{-1}} \underset{\substack{x = a^2 \\ b^2 = y}}{*} \gp{y, a}{y^a = y^{-1}}
+    \end{align*}
+    and since $\gen{x, b^2} \cong \gen{a^2, y} \cong \Z^2$ this exhibits $P$ as the free product with amalgamation over $\Z^2$ of two Klein bottle groups.
+    A standard fact of Bass--Serre theory is that free product with amalgamation preserves torsion-freeness.
+\end{proof}
+
+Recall that bi-orderable $\implies$ locally indicable $\implies$ left-orderable $\implies$ diffuse $\implies$ unique products $\implies$ unit conjecture.
+Each successive property is weaker and indeed more difficult to falsify for $P$.
+
+% TODO move this to where it is first used?
+\begin{definition}
+    A group $G$ is \emph{bi-orderable} if it admits a total order $<$ that is bi-invariant, that is, $g < h$ implies $kg < kh$ and $gk < hk$ for all $g, h, k \in G$.
+\end{definition}
+
+$P$ is not bi-orderable: $a^2$ is non-trivial and conjugate to $a^{-2}$
+
+$P$ is not locally indicable: we compute $P^{\text{ab}} \cong \Z^2 / \gen{(4, 0), (0, 4)} \cong \Z/4 \oplus \Z/4$ so $P$ itself does not surject onto $\Z$.
+
+$P$ is not left-orderable: note that $\sigma_a \colon P \to P \colon a \mapsto a^{-1}, b \mapsto b$ is an automorphism, as \[
+    \sigma_a(b^{-1} a^2 b a^2) = b^{-1} a^{-2} b a^{-2} \sim a^{-2} b^{-1} a^{-2} b = (b^{-1} a^2 b a^2)^{-1}
+\] and \[
+    \sigma_a(a^{-1} b^2 a b^2) = a b^2 a^{-1} b^2 \sim a^{-1} b^2 a b^2
+\] so it is a well-defined group homomorphism $P \to P$, which is an involution so in particular an automorphism.
+(Similarly $\sigma_b \colon P \to P \colon a \mapsto a, b \mapsto b^{-1}$ is an automorphism.)
+Suppose $<$ is a left-order on $P$.
+We can now suppose without loss of generality that $a > 1$ and $b > 1$.
+But $a^{-1} b \neq 1$ and if $a^{-1} b > 1$ we have \[
+    1 = a^{-1} b^2 a b^2 = (a^{-1} b) \cdot b \cdot a \cdot b^2 > 1
+\] and if $a^{-1} b < 1$ we have $b^{-1} a > 1$ and thus \[
+    1 = b^{-1} a^2 b a^2 = (b^{-1} a) \cdot a \cdot b \cdot a^2 > 1
+\] giving a contradiction in either case.
+
+Bowditch gave an elegant proof that $P$ is not diffuse (after this was already known via failure of unique products).
+We exploit some $3$-fold symmetry that is not immediately clear from the $2$-generator presentation. Recall \[
+    \phi(ab) = (tr, r, t^{-1})
+\] and thus \[
+    \phi(b^{-1} a^{-1}) = (tr, r, t)
+\] and hence cycling the factors of $D_\infty^3$ cycles through $a$, $b$, $c := b^{-1} a^{-1}$.
+(In a sense, this is ``all'' the $3$-fold symmetry of $P$, as $\abs{\Out(P)} = 2^5 \cdot 3$.)
+
+As we are acting on the left, it is more convenient to phrase diffuseness in terms of extremal points $a \in A$ such that $sa \notin A$ or $s^{-1} a \notin A$ for all $s \in G \setminus \{1\}$.
+It is also convenient to replace the finite set $A \subset G$ with a finite set $A \subset X$, where $G \acts X$ simply transitively.
+In this case, $X = \set{(x, y, z) \in \Z^3}{x + y + z = 1 \mod 2}$.
+
+For the set $A$ we take $6$ elements:\[
+    A = \{ (\pm 1, 0, 0), (0, \pm 1, 0), (0, 0, \pm 1) \}.
+\]
+The isometry $\phi(a)$ is a glide reflection about $y = \frac{1}{2}, z = 0$.
+Since for example \[
+    a \colon (-1, 0, 0) \mapsto (0, 1, 0) \mapsto (1, 0, 0)
+\] we see that $(0, 1, 0)$ is \emph{not} extremal.
+As $b^{-2} \cdot (0, 1, 0) = (0, -1, 0)$ and $(b^{-2} a)^2 = a^2$ we also have \[
+    b^{-2} a \colon (-1, 0, 0) \mapsto (0, -1, 0) \mapsto (1, 0, 0)
+\] so that also $(0, -1, 0)$ is \emph{not} extremal.
+By symmetry the same is true for the other $4$ points, completing the proof that $P$ is not diffuse.
+
+We name the sets that witness the failure of diffuseness:
+
+\begin{definition}
+    A finite subset $A \subset G$ is called a \emph{ravel} if it contains no extremal points, i.e.\ for all $a \in A$ there exists $1 \neq s \in G$ such that $sa, s^{-1}a \in A$.
+\end{definition}
+
+We have a translational degree of freedom: if $A$ is a ravel then so is $Ag$ for any $g \in G$.
+Similarly, turning the failure of diffuseness for $P \acts \R^3$ into a ravel $A \subset P$ requires a choice of basepoint.
+Let's pick $p = (0, 1, 0)$.
+Recall
+\begin{align*}
+    a &\colon (-1, 0, 0) \mapsto (0, 1, 0) \mapsto (1, 0, 0) \\
+    b &\colon (0, -1, 0) \mapsto (0, 0, 1) \mapsto (0, 1, 0) \\
+    c &\colon (0, 0, -1) \mapsto (1, 0, 0) \mapsto (0, 0, 1)
+\end{align*}
+so we compute labels for our six points as
+\begin{align*}
+    a^{-1} \cdot p &= (-1, 0, 0) & a \cdot p &= (1, 0, 0) \\
+    b^{-2} \cdot p &= (0, -1, 0) & p &= (0, 1, 0) \\
+    c^{-1} a \cdot p &= (0, 0, -1) & b^{-1} \cdot p &= (0, 0, 1).
+\end{align*}
+% TODO add figure
+This gives the ravel $A = \{g_1, \dots, g_6\}$ with \[
+    g_1 = a^{-1}, g_2 = a, g_3 = b^{-2}, g_4 = 1, g_5 = c^{-1} a, g_6 = b^{-1}.
+\]
+The failure to have extremal points is verified by
+\begin{align*}
+    a &\colon g_1 \mapsto g_4 \mapsto g_2 \\
+    b^{-2} a &\colon g_1 \mapsto g_3 \mapsto g_2 \\
+    b &\colon g_3 \mapsto g_6 \mapsto g_4 \\
+    c^{-2} b &\colon g_3 \mapsto g_5 \mapsto g_4 \\
+    c &\colon g_5 \mapsto g_2 \mapsto g_6 \\
+    a^{-2} c &\colon g_5 \mapsto g_1 \mapsto g_6.
+\end{align*}
+A natural question is: what is encoded by this combinatorial data?
+The data is: each element of $A$ has a corresponding pair of elements it lies between e.g.\ $g_4 \leadsto \{ g_1, g_2 \}$.
+The existence of $s \in G$ (in this case: $s = a$) such that $g_1 = s^{-1} g_4, g_2 = s g_4$ is equivalent to $g_4 g_1^{-1} g_4 g_2^{-1} = 1$.
+
+(Note: in general, there could be multiple $s \neq 1$ such that $s^{-1} a, s a \in A$, beyond having a given $s^{\pm 1}$.
+We assume a choice has been made for simplicity.)
+
+Given this data as $f \colon \{1, \dots, n\} \to \binom{\{1, \dots, n\}}{2}$, where $i \notin f(i)$, we add for notational convenience an arbitrary order on the pairs, writing $f(i) = \{s(i), t(i)\}$, and then we can define a group \[
+    G_f = \gp{g_1, \dots, g_n}{ g_i g_{s(i)}^{-1} g_i g_{t(i)}^{-1}, i = 1, \dots, n}.
+\]
+In our case, this is \[
+    G = \biggp{g_1, \dots, g_6}{
+        \substack{
+            g_1 g_5^{-1} g_1 g_6^{-1}, \,
+            g_2 g_5^{-1} g_2 g_6^{-1}, \,
+            g_3 g_1^{-1} g_3 g_2^{-1}, \, \\
+            g_4 g_1^{-1} g_4 g_2^{-1}, \,
+            g_5 g_3^{-1} g_5 g_4^{-1}, \,
+            g_6 g_3^{-1} g_6 g_4^{-1}
+        }
+    }.
+\]
+By construction, $G \epi \gen{A} = P$.
+
+\begin{lemma}
+    $G_f \cong H_f * \Z$ for some group $H_f$.
+\end{lemma}
+
+The free factor of $\Z$ corresponds to our translational degree of freedom.
+Note that $H_f$ is \emph{a priori} ``well-defined'': $H * \Z \cong K * \Z \implies H \cong K$ by Grushko's theorem.
+
+\begin{proof}
+    We choose a ``basepoint'' $g_j$ and change to the basis $h_1, \dots, h_j, g_j, h_{j+1}, \dots, h_n$ of the free group $F(g_1, \dots, g_n)$, where we set $h_i = g_i g_j^{-1}$ for $i = 1, \dots, n$.
+    (NB: $h_j = 1$!)
+    Thus $g_i = h_i g_j$.
+    Note that \[
+        g_i g_{s(i)}^{-1} g_i g_{t(i)}^{-1}
+        =
+        h_i g_j (h_{s(i)} g_j)^{-1} h_i g_j (h_{t(i)} g_j)^{-1}
+        =
+        h_i h_{s(i)}^{-1} h_i h_{t(i)}^{-1}
+    \] is a word in the free group $F(h_1, \dots, \widehat{h_j}, \dots, h_n)$ of rank $n-1$ and so substituting gives \[
+        G_f = \gp{h_1, \dots, h_{j-1}, h_{j+1}, \dots, h_n}{h_i h_{s(i)}^{-1} h_i h_{t(i)}^{-1}} * \gp{g_j}{}
+    \]
+    which completes the proof as $\gp{g_j}{} \cong \Z$.
+\end{proof}
+
+\begin{remark}
+    As $g_i g_k^{-1} = (g_i g_j^{-1}) (g_k g_j^{-1})^{-1} = h_i h_k^{-1}$, we see that \[
+        H_f = \gen{\set{g_i g_k^{-1}}{ i, k \in \{1, \dots, n\} }}
+    \] which is independent of the choice of $j$.
+\end{remark}
+
+\begin{lemma}
+    For Bowditch's $6$-element ravel function $f$, we have $H_f \cong P$.
+\end{lemma}
+
+In other words, one could say $P$ is the universal group supporting this ravel.
+
+\begin{proof}
+    We ``cheat'' by keeping in mind that we have a homomorphism $G_f \epi P$ which sends $g_2 \mapsto a, g_4 \mapsto 1, g_6 \mapsto b^{-1}$.
+    So $g_4$ is a convenient choice of basepoint (but any choice works!).
+
+    We have \[
+        H_f = \biggp{h_1, h_2, h_3, h_5, h_6}{
+            \substack{
+                h_1 h_5^{-1} h_1 h_6^{-1}, \,
+                \underline{h_2 h_5^{-1} h_2 h_6^{-1}}, \,
+                h_3 h_1^{-1} h_3 h_2^{-1}, \\
+                \underline{h_1^{-1} h_2^{-1}}, \,
+                h_5 h_3^{-1} h_5, \,
+                \underline{h_6 h_3^{-1} h_6}
+            }
+        }
+    \]
+    where the underlined relations will be used to eliminate variables $h_5$, $h_1$ and $h_3$ respectively.
+    We rename $h_2$ to be $a$ and $h_6$ to be $b^{-1}$, then use \[
+        h_5 = a b a, \quad h_1 = a^{-1}, \quad h_3 = b^{-2}
+    \] to write
+    \begin{align*}
+        H_f
+        & \cong \gp{a, b}{a^{-1} (aba)^{-1} a^{-1} (b^{-1})^{-1}, \; b^{-2} a b^{-2} a^{-1}, \; (aba) b^2 (aba)} \\
+        & \cong \gp{a, b}{a^{-2} b^{-1} a^{-2} b, \; b^{-2} a b^{-2} a^{-1}, \; (aba)^2 b^2} \\
+        & \cong \gp{a, b}{b^{-1} a^2 b = a^2, \; a^{-1} b^2 a = b^2, \; (aba)^2 b^2}
+    \end{align*}
+    but in $P$ we have \[
+        (aba)^2 = a (ba^2) ba = a (a^{-2} b) ba = a^{-1} b^2 a = b^{-2}
+    \] so the final relator is redundant and indeed $H_f \cong P$.
+\end{proof}
+
+The ravel function $f$ clearly has symmetries, i.e.\ permutations $\sigma \in \Sym(n)$ such that $f(\sigma(i)) = \{ \sigma(s(i)), \sigma(t(i))\}$ for all $i$.
+Specifically, its automorphism group is isomorphic to the wreath product $\Z/2 \wr \Z/3$, generated by $(1 \; 2)$ and $(1 \; 3 \; 5)(2 \; 4 \; 6)$.
+Such an automorphism induces an automorphism \[
+    \sigma \colon G_f \to G_f \colon g_i \mapsto g_{\sigma(i)}
+\] since it (and its inverse) preserve the relations.
+Moreover, as $H_f = \gen{g_i g_k^{-1}}$ and $\sigma$ simply permutes the elements of the set $\set{g_i g_k^{-1}}{ i, k \in \{1, \dots, n\} }$, this restricts to an automorphism of $H_f$.
+
+\begin{exercise}
+    Compute the automorphisms of $P$ induced by the generating symmetries $(1 \; 2)$ and $(1 \; 3 \; 5)(2 \; 4 \; 6)$ of the automorphism group of Bowditch's ravel.
+\end{exercise}
+% Answer:
+%     a \mapsto a^{-1}, b \mapsto b
+%     a \mapsto b, b \mapsto b^{-1} a^{-1} = c
+
+We now turn to:
+\begin{theorem}[Promislow]
+    $P$ is not a UP group.
+\end{theorem}
+The duplex is of the form $(S, S)$ where $\abs{S} = 14$.
+
+The combinatorial data of a duplex with $\abs{A} = m$, $\abs{B} = n$ is a partition of (or equivalent relation on) $\{1, \dots, m\} \times \{1, \dots, n\}$ into sets of size at least $2$.
+Similarly to with ravels, this also defines a finitely presented group: if $(i, j)$ and $(k, l)$ are in the same set of the partition then we have a relation $a_i b_j  = a_k b_l$.
+
+This group similarly has an obvious free factor, this time a free factor of $F_2 = \Z * \Z$ (corresponding to left translation on $A$ and right translation on $B$).
+The data for Promislow's duplex has no non-trivial symmetry in $\Sym(14) \times \Sym(14)$ -- but it does in $(\Sym(14) \times \Sym(14)) \rtimes \Z/2$ where we allow swapping the sets $A$ and $B$.
+Such a twist is \emph{not} an automorphism of the corresponding universal group as $a_i b_j = a_k b_l$ is \emph{not} equivalent to $b_j a_i = b_j a_k$.
+We only get an automorphism after inversion.
+In other words: there exists $\phi \in \Aut(P)$ such that $S = \phi(S)^{-1}$.
+
+\begin{remark}
+    Our presentation of Promislow's example differs from his.
+    He uses a different embedding $P \mono D_\infty^3$ and exploits symmetry on a ``piecewise'' basis i.e.\ coset by coset.
+    Both expositions really boil down to $P$ being virtually abelian.
+    % We also swap E_1 and E_2...
+\end{remark}
+
+For notational brevity, we follow Promislow's example and write $n$ for $t^n \in D_\infty$ and $n*$ for $t^n r \in D_\infty$.
+
+Let
+\begin{align*}
+    E_0 &= \{ (0, 0, -2), (0, 0, 2) \} \\
+    E_1 &= \{ (-1, 1*, 2*), (-1, -1*, 0*), (-1, 1*, 0*) \\
+        & \phantom{= \{} (1, 1*, -2*), (1, -1*, 0*), (1, 1*, 0*) \} \\
+    E_2 &= \{ (2*, -1, 1*), (0*, -1, 1*), (0*, -1, -1*) \\
+        & \phantom{= \{} (2*, 1, -1*), (0*, 1, -1*), (0*, 1, 1*) \}
+\end{align*}
+
+\begin{theorem}[Promislow]
+    \label{theorem:S_duplex}
+    Let $S = E_0 \cup E_1 \cup E_2$.
+    Then $S \cdot S$ has no unique product.
+\end{theorem}
+
+The automorphism $\phi$ is conjugation by $(1, 1, r) \in D_\infty^3$ i.e.\ by $(0, 0, 0*)$ in Promislow's shorthand.
+
+\begin{lemma}
+    \label{lemma:S_symmetry}
+    Let $\phi$ be conjugation by $(0, 0, 0*)$ and let $S$ be as \Cref{theorem:S_duplex}.
+    Then $\phi(S) = S^{-1}$.
+    \qed
+\end{lemma}
+
+\begin{remark}
+    Let $A = \gen{x, y, z} \normal P$.
+    Then $E_0 \subset A$, $E_1 \subset aA$, $E_2 \subset bA$.
+\end{remark}
+
+Note that $\phi(c) = (tr, r, t)^{(1, 1, r)} = (tr, r, t^{-1}) = c^{-1}$ and that $\phi \colon x \mapsto x, y \mapsto y, z \mapsto z^{-1}$.
+
+Why is \Cref{lemma:S_symmetry} helpful?
+We'll see in \Cref{corollary:promislow_freebie}.
+Let's keep in mind:
+\begin{lemma}
+    The map $G \to G \colon g \mapsto g^{-1}$ is an automorphism if and only if $G$ is abelian.
+\end{lemma}
+
+\begin{proof}
+    Since it is a bijection, it is an automorphism if and only if for all $g, h \in G$ we have $(gh)^{-1} = g^{-1} h^{-1}$ which is equivalent to $gh = hg$.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:virtually_abelian_trick}
+    If $A \normal G$ is an abelian normal subgroup and $\phi \in \Aut(G)$, $g \in G$ are such that $\phi(g) = g^{-1}$ and $\phi(a)^g = a^{-1}$ for all $a \in A$, then $\phi(h) = h^{-1}$ for all $h \in gA$.
+\end{lemma}
+
+\begin{proof}
+    There exists $a \in A$ such that $h = ga$ and so \[
+        \phi(h) = \phi(ga) = \phi(g) \phi(a) = g^{-1} \phi(a) g g^{-1} = a^{-1} g^{-1} = h^{-1}.
+    \]
+\end{proof}
+
+\begin{corollary}[to \Cref{lemma:S_symmetry}]
+    \label{corollary:promislow_freebie}
+    $E_1 \cdot E_2 = E_2 \cdot E_1$.
+\end{corollary}
+
+\begin{proof}
+    We note that \Cref{lemma:virtually_abelian_trick} is satisfies for $G = P$, $A = \gen{x, y, z}$, $g = c$ and the aforementioned $\phi$.
+    So if $u \in E_1$, $v \in E_2$, then $uv \in cA$ and $\phi(uv) = v^{-1} u^{-1}$ so that $uv = \phi(v)^{-1} \phi(u)^{-1} \in E_2 \cdot E_1$ as $E_2 = \phi(E_2)^{-1}$ and $E_1 = \phi(E_1)^{-1}$.
+\end{proof}
+
+We also have $E_0 \cdot E_1 = E_1 \cdot E_0$ and $E_0 \cdot E_2 = E_2 \cdot E_0$ (for similar but not identical reasons), so the tedious part is verifying that every element of $A$ in $S \cdot S$ occurs at least twice, which we skip.
+
+The known non-trivial units of torsion-free groups exhibit symmetry.
+\begin{definition}
+    Let $\theta \in \Aut(K[G])$.
+    We call a unit $\alpha \in K[G]$ \emph{$\theta$-unitary} if $\alpha^{-1} = \theta(\alpha)^*$.
+\end{definition}
+If $K[G]$ has non-trivial units, then $\Aut(K[G])$ is big and mysterious -- including conjugation by all units.
+We'll consider the subgroup of automorphisms that preserve the subgroup $K^\times \times G$ of trivial units.
+
+Let $G$ and $H$ be arbitrary groups.
+We have $\Aut(G) \times \Aut(H) \mono \Aut(G \times H)$ in the obvious way, but $\Aut(G \times H)$ can be much bigger.
+Consider for example $G = H = \Z$: we're comparing $\left\{\left(\begin{smallmatrix} \pm 1 & \\ & \pm 1 \end{smallmatrix}\right)\right\}$ with $\GL_2(\Z)$.
+
+In our case, the full automorphism group fairly manageable.
+\begin{proposition}
+    \label{proposition:aut_of_centreless_times_abelian}
+    Suppose $G$ is centreless and $H$ is abelian.
+    Then \[
+        \Aut(G \times H) \cong (\Aut(G) \times \Aut(H)) \ltimes \Hom(G, H).
+    \]
+\end{proposition}
+
+\begin{remark}
+    We need $H$ abelian to have a \emph{group} $\Hom(G, H)$.
+    For arbitrary $G$ and $H$, there is a subgroup of $\Aut(G \times H)$ consisting of those automorphisms \[
+        \set{
+            \begin{pmatrix}
+                \theta_G & \chi_H \\
+                \chi_G & \theta_H
+            \end{pmatrix}
+            \in
+            \Aut(G \times H)
+        }{
+            \substack{
+                \theta_G \in \Aut(G), \; \theta_H \in \Aut(H), \\
+                \chi_G \in \Hom(G, Z(H)), \; \chi_H \in \Hom(H, Z(G))
+            }
+        }.
+    \] Note that for some choice of $\theta_G, \theta_H, \chi_G, \chi_H$ we get a homomorphism that is \emph{not} an automorphism (e.g. $\left(\begin{smallmatrix} 1 & 1 \\ 1 & 1 \end{smallmatrix}\right) \in \End(\Z \times \Z)$.)
+\end{remark}
+% TODO add exercise on generic condition for such a map to be an automorphism
+
+\begin{proof}
+    Let $\theta \in \Aut(G \times H)$ and let $i_G, i_H, \phi_G, \phi_H$ be the natural inclusions and projections
+    \begin{align*}
+        G \overset{i_G}{\mono} G \times H \overset{\phi_G}{\epi} G \\
+        H \overset{i_H}{\mono} G \times H \overset{\phi_H}{\epi} H.
+    \end{align*}
+    Since $1 \times H$ is central in $G \times H$, so is $\theta(1 \times H)$ and thus $(\pi_G \circ \theta)(1 \times H) = 1$ as $G$ is centreless.
+    Thus \[
+        (\pi_G \circ \theta)(g, h) = (\pi_G \circ \theta)(g, 1) \cdot (\pi_G \circ \theta)(1, h) = (\pi_G \circ \theta)(g, 1)
+    \] is independent of $h$ so we have a well-defined homomorphism \[
+        \Aut(G \times H) \to \Aut(G) \colon \psi \mapsto \pi_G \circ \psi \circ i_G.
+    \]
+    Since $\theta(1 \times H) \leq 1 \times H$ we similarly get a homomorphism \[
+        \Aut(G \times H) \to \Aut(H) \colon \psi \mapsto \pi_H \circ \psi \circ i_H.
+    \]
+
+    Let $\theta_G = \pi_G \, \theta \, i_G \in \Aut(G)$, $\theta_H = \pi_H \, \theta \, i_H \in \Aut(H)$, and let $\chi = \theta_H^{-1} \, \pi_H \, \theta \, i_G \in \Hom(G, H)$ (where the final $\theta_H^{-1}$ is introduced for convenience, as will become apparent soon).
+    Since $\pi_G \, \theta \, i_H = 1$, we have for all $g \in G, h \in H$ that
+     \begin{align*}
+         \theta(g, h)
+             &= \theta(g, 1) \cdot \theta(1, h) \\
+             &= (\theta_G(g), \theta_H \chi(g)) \cdot (1, \theta_H (h)) \\
+             &= (\theta_G(g), \theta_H (\chi(g) h)).
+     \end{align*}
+     Now if $\theta' \in \Aut(G \times H)$ with $\theta_G', \theta_H', \chi'$ defined similarly, we compute
+     \begin{align*}
+         (\theta' \theta)(g, h)
+            &= (\theta_G'(\theta_G(g)), \theta'_H\left(\chi'(\theta_G(g)) \theta_H(\chi(g) h) \right)) \\
+            &= (\theta_G'\theta_G(g), \theta'_H \theta_H \left(\theta_H^{-1} \chi'\theta_G(g) \chi(g) h \right)) \\
+            &= (\theta_G'\theta_G(g), \theta'_H \theta_H \left((\chi'^{(\theta_G, \theta_H)} \chi)(g) h \right)) \\
+     \end{align*}
+     where we define the action \[
+         \chi'^{(\theta_G, \theta_H)} = \theta_H^{-1} \chi' \theta_G.
+     \]
+     Thus we have an isomorphism \[
+        \Aut(G \times H) \overset{\cong}{\to} (\Aut(G) \times \Aut(H)) \ltimes \Hom(G, H).
+     \]
+\end{proof}
+
+\begin{corollary}
+    The trivial-unit-preserving ring automorphisms of $K[P]$ are the maps of the form \[
+        \sum a_g \cdot g \mapsto \sum \tau(\chi(g) a_g) \cdot \phi(g)
+    \] for $\phi \in \Aut(P)$, $\tau \in \Aut(K)$, $\chi \in \Hom(P, K^\times)$.
+\end{corollary}
+
+\begin{proof}
+    First note that these are automorphisms of the group of trivial units that extend to automorphisms of $K[P]$.
+    $P$ is centreless as every $g \in P$ has $g^2 \in A = \gen{x, y, z}$, a normal $\Z^3$ subgroup on which the generators $a, b$ acts as $\left(\begin{smallmatrix} 1 & & \\ & -1 & \\ & & -1 \end{smallmatrix}\right)$ and $\left(\begin{smallmatrix} -1 & & \\ & 1 & \\ & & -1 \end{smallmatrix}\right)$ respectively.
+    The group of trivial units is isomorphic to $P \times K^\times$, with $K^\times$ abelian, so \Cref{proposition:aut_of_centreless_times_abelian} applies.
+    Note that $K^\times$ has many more automorphisms as a group than we get by restricting field automorphisms, but a ring automorphism of $K[P]$ that preserves $K^\times$ thus preserves $K$, on which it acts as a ring (equivalently, field) automorphism.
+\end{proof}
+
+\begin{remark}
+    A character $\chi \in \Hom(P, K^\times)$ is the same thing as a 1-dimensional representation $P \to \GL_1(K)$.
+    A representation of $P$ is a $K[P]$-module.
+    If we twist this module by precomposing with the automorphism of $K[P]$ associated to $\chi$, this has the effect of tensoring with the 1-dimensional representation.
+    One could call such $\chi$ a ``gauge automorphism''.
+\end{remark}
+
+\begin{theorem}[\cite{Gardam21}]
+    \label{theorem:promislow_unit}
+    There exists $\alpha \in (\F_2[P])^\times$ with $\abs{\supp(\alpha)} = 21$.
+\end{theorem}
+
+That is, the Kaplansky unit conjecture is false.
+
+\begin{corollary}[\cite{Gardam21}]
+    \label{corollary:huge_group_of_units}
+    $(\F_2[P])^\times$ contains free subgroups and is not finitely generated.
+\end{corollary}
+
+The construction of a non-trivial unit over $\F_2$ was generalized by Murray \cite{Murray21} to a unit $\alpha_d \in \F_d[P]$ for arbitrary prime $d$, with $\abs{\supp{\alpha_d}} \to \infty$ as $d \to \infty$.
+
+The unit $\alpha$ exhibits symmetry that was expressed in \cite{Gardam21} in terms of cosets of $N = \gen{x, y, z}$.
+This was explained coherently by Bartholdi, who observed
+\begin{theorem}[\cite{Bartholdi23}]
+    \label{theorem:bartholdi_unit_symmetry}
+    There exist non-trivial automorphisms $\theta_0, \theta_1 \in \Aut(K[P])$ such that $\theta_0(\alpha_d) = \alpha_d$ and $\theta_1(\alpha_d)^* = \alpha_d^{-1}$.
+\end{theorem}
+That is, the units are $\theta_1$-unitary.
+
+\begin{remark}
+    It is unclear whether allowing the field automorphism is helpful.
+\end{remark}
+
+\begin{remark}
+    If $\alpha \in K[G]$ is $\theta$-unitary, then $\alpha \theta(\alpha)^* = 1$ gives $\theta(\alpha) \theta^2(\alpha)^* = 1$ and thus $(\theta^2(\alpha)^*)^* \theta(\alpha)^* = 1^* = 1$ so that $\theta^2(\alpha) \theta(\alpha)^* = 1$ and by uniqueness of inverses $\theta^2(\alpha) = \alpha$.
+    % TODO be careful about swapping * and \theta if character takes values outside \pm 1...
+    Thus $\theta$ acts as a permutation on $\supp(\alpha)$ and will induce a finite order automorphism of $\gen{\supp(\alpha)}$ (which is typically all of $G$).
+    In Bartholdi's theorem, $\theta_1^2 = 1$ but in general $\theta^2$ can be non-trivial!
+\end{remark}
+
+Bartholdi's explanation of the units first requires translation, i.e.\ multiplication of units by group elements (specifically $\alpha \mapsto \alpha b^{-1} a^{-1}$).
+We can simplify his explanation further if we apply a further group automorphism (namely $a \mapsto a, b \mapsto a^{-2} b$) which has the effect of conjugating $\theta_0, \theta_1$ in $\Aut(K[P])$.
+Then we arrive at:
+
+\begin{proposition}
+    Let $\chi \colon P \to K^\times \colon a \mapsto -1, b \mapsto -1$.
+    Then we can take \[
+        \theta_0 = (\phi_0, 1), \theta_1 = (\phi_1, \chi) \in \Aut(P) \ltimes \Hom(P, K^\times)
+    \] where
+    \begin{align*}
+        \phi_0 &\colon a \mapsto a^{-1}, b \mapsto b^{-1} \\
+        \phi_1 &\colon a \mapsto a, b \mapsto b^{-1}
+    \end{align*}
+    in \Cref{theorem:bartholdi_unit_symmetry}.
+\end{proposition}
+
+As observed in \cite[Lemma 1]{Gardam21} in very different terms, this gives ``2 out of 4 cosets'' for free.
+
+\begin{lemma}[``2 out of 4 cosets'']
+    If $\alpha \in K[P]$ satisfies $\phi_0(\alpha) = \alpha$, then \[
+        \left( \alpha \cdot \theta_1(\alpha)^* \right)_g = 0
+    \] for all $g \in Na, Nb$, where $\Z^3 \cong N = \gen{x, y, z} \normal P$.
+\end{lemma}
+
+\begin{proof}
+    Let $\alpha = \sum a_g \cdot g$, so $\theta_1(\alpha)^* = \sum \chi(g) a_g \cdot \phi_1(g)^{-1}$.
+    Let $k \in Nb$.
+    Then \[
+        \left( \alpha \cdot \theta_1(\alpha)^* \right)k = \sum_{\substack{g, h \text{ s.t.} \\ g \phi_1(h)^{-1} = k}} a_g \chi(h) a_h.
+    \]
+    But $\phi_1(k) = k^{-1}$, so $g \phi_1(h)^{-1} = k$ implies $\phi_1(g) \phi_1^2(h)^{-1} = \phi_1(k) = k^{-1}$ and so $h \phi_1(g) = k$ too.
+    Since $g \phi_1(h) \in Nb$ and $\phi_1$ acts trivially on $P / N$, $gh \in Nb$ and in particular $g \neq h$.
+    As $P / N \cong \Z/2 \oplus \Z/2$, we also have $gh^{-1} \in Nb$, so now
+    \begin{align*}
+        \left( \alpha \cdot \theta_1(\alpha)^* \right)_k
+            &= \sum_{\substack{\{g, h\} \text{ s.t.} \\ g \phi_1(h)^{-1} = k}} a_g a_h (\chi(g) + \chi(h)) \\
+            &= \sum a_g a_h \chi(h^{-1}) (\chi(g h^{-1}) + 1) \\
+            &= 0
+    \end{align*}
+    as $g h^{-1} \in Nb$ implies $\chi(gh^{-1}) = \chi(b) = -1$.
+
+    Since $\theta_0(\alpha) = \alpha$, we have for $k \in Na$ that \[
+        \left( \alpha \cdot \theta_1(\alpha)^* \right)_k = \left( \alpha \cdot (\theta_1 \theta_0(\alpha))^* \right)_k = 0
+    \] similarly as $\phi_1 \phi_0 \colon a \mapsto a^{-1}, b \mapsto b$.
+\end{proof}
+
+\begin{remark}
+    The first non-trivial unit in $\F_2[P]$ was found by reformulating the quadratic system of equations one has for given finite candidate support sets (on $147$ elements) as a problem in boolean satisfiability (a.k.a.\ SAT).
+    Note that $2^{147} \sim 10^{44}$!
+    SAT is the original NP-complete problem.
+    It is the problem of deciding, given a propositional (so quantifier-free) Boolean formula, whether it can be made true (\emph{satisfied}) for some assignment of its variables to \texttt{false} and \texttt{true}.
+    Generally, the input is assumed to be in conjunctive normal form, something like \[
+        (\neg x \vee \neg y \vee \neg z) \wedge (\neg x \vee y \vee z) \wedge (x \vee \neg y \vee z) \wedge (x \vee y \vee \neg z)
+    \]
+    which asserts that $x + y + z = 0$ in $\F_2$ (making the natural identification of \texttt{false} with $0$ and \texttt{true} with $1$).
+\end{remark}
+
+\section{Units of the infinite dihedral group}
+
+We won't prove \Cref{corollary:huge_group_of_units} as it is mostly a computation using (variants on) the unit from \Cref{theorem:promislow_unit}.
+It does however have one essential ingredient that is of independent interest: the computation of the entire group of units of $\F_2[D_\infty]$, due to Mirowicz \cite{Mirowicz91}.
+A map $P \to D_\infty$ induces a map $(\F_2[P])^\times \to (\F_2[D_\infty])^\times$ and understanding $(\F_2[D_\infty])^\times$ completely (in particular, knowing its abelianization) allows us to deduce that $(\F_2[P])^\times$ is not finitely generated without even knowing all the units of $\F_2[P]$ (or whether they surject onto the units of $\F_2[D_\infty]$, for that matter).
+
+\subsection*{Characterizing units in $\F_2[D_\infty]$}
+
+Recall that $D_\infty = \gp{t, r}{r^2 = 1, t^r = t^{-1}}$ and $\langle t \rangle \cong \Z$ is an index 2 subgroup.
+By the standard trick \ref{lemma:KG_in_MnKH}, we can embed $\F_2[D_\infty] \mono M_2(\F_2[\Z])$.
+Every $\alpha \in \F_2[D_\infty]$ is uniquely expressible as $a + br$ for $a, b \in \F_2[\Z]$.
+Let $* \colon \F_2[\Z] \to \F_2[\Z]$ denote the involution induced by the action of $r$: $t^* = t^{-1}$.
+Then the embedding is \[
+    a + br \mapsto \begin{pmatrix} a & b \\ b^* & a^* \end{pmatrix}.
+\]
+
+Since we now are working with matrices over a commutative ring, we can check invertibility by whether or not the determinant is a unit.
+Since $\F_2[\Z]$ has no non-trivial units, this means the determinant must be some $t^k \in \Z$.
+However, the inverse matrix \[
+    t^{-k} \begin{pmatrix} a^* & b \\ b^* & a \end{pmatrix}
+    \] will be in the image of $\F_2[D_\infty]$ if and only if $k = 0$.
+Thus:
+
+\begin{lemma}
+    The element $\alpha = a + br \in \F_2[D_\infty]$ is a unit if and only if $\det \alpha = a a^* - b b^* = 1$. \qed
+\end{lemma}
+
+\begin{example}
+    The embedding sends \[
+        t^{-1} + t + (1 + t + t^2)r \mapsto \begin{pmatrix}
+            t^{-1} + t & 1 + t + t^2 \\
+            1 + t^{-1} + t^{-2} & t + t^{-1}
+        \end{pmatrix}
+    \] which has determinant \[
+        (t^{-1} + t)^2  - (1 + t + t^2)(t^{-2} + t^{-1} + 1) = t^{-2} + 2 + t^2 + t^{-2} + 2t^{-1} + 3 + 2t + t^2 = 1
+    \] so it is a unit.
+    For general invertible $2 \times 2$ matrices over commutative rings, \[
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}^{-1}
+        =
+        \frac{1}{ad - bc}
+        \begin{pmatrix}
+            d & -b \\
+            -c & a
+        \end{pmatrix}
+    \] so since we're in characteristic $2$ with $a = d$ and $\det = 1$, we see that this units is its own inverse.
+\end{example}
+
+For $a \in \F_2[\Z]$ define
+\begin{align*}
+    \max a &:= \max \supp{a} \\
+    \min a &:= \min \supp{a} \\
+    \deg a &:= \max a - \min a = \max aa^*
+\end{align*}
+
+(with $\max (0) = -\infty, \min(0) = \infty, \deg(0) = -\infty$).
+The trivial units are precisely those $a + br$ for which one of $a$ and $b$ is $0$ and the other has degree $0$ (that is, is some $t^k$).
+If one of $a$ and $b$ is $0$, this is moreover the only way to satisfy $\det \alpha = 1$.
+So every non-trivial unit has $a \neq 0$ and $b \neq 0$.
+Suppose $a + br$ is a non-trivial unit.
+If $\deg a = 0$, then $a a^* = t^0 = 1$ so we get $b b^* = 0$ which forces $b = 0$, contradicting non-triviality.
+Thus our non-trivial unit $a + br$ has \[
+    \deg(\alpha) := \deg a = \max a a^* = \max b b^* = \deg b \geq 1.
+\]
+We define the degree of a trivial unit (where $\{\deg(a), \deg(b)\} = \{-\infty, 0\}$) to be $0$.
+
+\subsection*{Generators for a group of non-trivial units}
+
+We now introduce our generators for $(\F_2[D_\infty])^\times$.
+For $i \in \N^+$ and $j \in \Z$ define
+\begin{align*}
+    n_{ij} &:= t^{-i} + t^i + t^j (t^{-i} + t^i) r \\
+    e_{ij} &:= t^{-i} + 1 + t^i + t^j (t^{-i} + t^i) r = 1 + n_{ij}.
+\end{align*}
+
+In general $(a + br)^2 = a^2 + bb^* + (ab + ba^*)r$, so when $a^* = a$ this cancels to $a^2 + bb^*$.
+So $(1 + t^j r)^2 = 1 + t^j t^{-j} = 0$.
+Note that $(t^{-i} + t^i)^* = t^{-i} + t^i$, so that $[1 + t^j r, t^{-i} + t^i] = 0$.
+Thus
+\begin{align*}
+    n_{ij} n_{i'j}
+    &= (t^{-i} + t^i) (1 + t^j r) (t^{-i'} + t^{i'}) (1 + t^j r) \\
+    &= (t^{-i} + t^i) (t^{-i'} + t^{i'}) (1 + t^j r)^2 \\
+    &= 0.
+\end{align*}
+
+In particular, $n_{ij}^2 = 0$ so that $e_{ij}^2 = 1$.
+
+\subsection*{Infinite elementary abelian 2-groups}
+
+Let us define subgroups (for $j \in \Z$)
+\begin{align*}
+    U_j &:= \gen{ e_{ij} \colon i \in \N^+} \\
+    U &:= \gen{U_j \colon j \in \Z}.
+\end{align*}
+
+As $n_{ij} n_{i'j} = 0$, we have that
+\begin{align*}
+    \bigoplus_{i \in \N^+} \Z/2 &\to U_j \\
+    \sum_{i \in I} 1_i &\mapsto 1 + \sum_{i \in I} n_{ij}
+\end{align*}
+is an isomorphism, as \[
+    (1 + \sum_{i \in I} n_{ij}) (1 + \sum_{i' \in I'}n_{i'j}) = 1 + \sum_{i \in I} n_{ij} + \sum_{i' \in I'}n_{i'j} + 0.
+\]
+
+\subsection*{The free product}
+
+Our next claim is that the natural map \[
+    \bigstar_{j \in \Z} U_j \to U
+\] is an isomorphism.
+% TODO get a better big asterisk
+
+We reformulate Mirowicz's argument as ping pong.
+The ping pong lemma is the standard way to prove that a group is a free product.
+We recall a statement of it here but will not prove it.
+
+\begin{lemma}[Ping pong lemma]
+    Let $G$ act on a set $X$ and let $G_i \leq G$ be subgroups, $i \in I$, at least one of which contains more than $2$ elements, and let $X_i \subset X$ be disjoint subsets.
+    Suppose that for all distinct $i, j \in I$ and all $g \in G \setminus \{1\}$ we have $g \cdot X_j \subseteq X_i$.
+    Then $G = *_{i \in I} G_i$.
+\end{lemma}
+
+\begin{remark}
+    The condition that some $G_i$ has more than $2$ elements is necessary: consider $G = G_1 \times G_2$ where both $G_1$ and $G_2$ are order $2$ and act non-trivially (in the only way possible) on $X = \{1, 2\}$ with $X_1 = \{1\}, X_2 = \{2\}$.
+\end{remark}
+
+\begin{example}
+    The standard example of an application of the ping pong lemma is to show that \[
+        \begin{pmatrix}
+            1 & x \\
+            0 & 1
+        \end{pmatrix},
+        \quad
+        \begin{pmatrix}
+            1 & 0 \\
+            x & 1
+        \end{pmatrix}
+    \] generate a free subgroup of $\SL_2(\R)$ whenever $x \geq 2$.
+    Here $G \acts \R^2$ in the natural way, $G_1, G_2$ are the respective cyclic subgroups and \[
+        X_1 = \set{\begin{pmatrix} x \\ y \end{pmatrix} \in \R^2}{\abs{x} > \abs{y}},
+        \quad
+        X_2 = \set{\begin{pmatrix} x \\ y \end{pmatrix} \in \R^2}{\abs{y} > \abs{x}}.
+    \]
+\end{example}
+
+\begin{lemma}
+    \label{lemma:mirowicz_pingpong}
+    Let $X = U$ and define disjoint $X_j$, $j \in \Z$, by \[
+        X_j = \{ ar + b \in X : \min(a) + j = \min(b) \}.
+    \]
+    Then the action of $U$ (with subgroups $U_j$, $j \in \Z$) on $X$ by right multiplication satisfies the assumptions of the ping pong lemma, so $U = *_{j \in \Z} U_j$.
+    Moreover $U = \{1\} \sqcup \bigsqcup_{j \in \Z} X_j$ so that all $g \in U \setminus \{1\}$ are non-trivial units.
+\end{lemma}
+
+\begin{proof}
+    Let $a + br \in X_i$, $i \neq j$, so that $\min(b) - \min(a) \neq j$ (and both $\min(a), \min(b)$ are finite).
+    Consider $g \in U_j \setminus \{1 \}$.
+    We are required to prove that \[
+        (c + dr) := (a + br) g
+    \] lies in $X_j$.
+
+    From the proof that $U_j \cong \oplus_{\N^+} \Z/2$ and the definition of $n_{ij}$ we see that $g = 1 + p(1 + t^j r)$ for some non-zero $p \in \F_2[\Z]$ with $p = p^* = \sum_{i \in I} (t^{-i} + t^i)$.
+    Set $n = \max p > 0$ (so we can write $p = t^{-n} + \dots + t^n$).
+    Thus \[
+        c = a(1 + p) + b(p t^{-j})
+    \] and since $\min( a (1 + p)) = \min(a) - n$ and $\min (b(p t^{-j})) = \min(b) - n - j$, which are distinct by assumption (that $a + br \notin X_j$), we have \[
+        \min(c) = \min(\min(a), \min(b) - j) - n.
+    \]
+    Likewise \[
+        d = apt^j + b(1 + p)
+    \] so that \[
+        \min(d) = \min(\min(a) - n + j, \min(b) - n)
+    \] and hence $\min(c) + j = \min(d)$ so that $c + dr \in X_j$.
+
+    Finally, note that if $g_j \in U_j \setminus \{1\}$ then $1 \cdot g_j \in X_j$ so by writing any non-trivial element of $U$ in normal form $g_{j_1} g_{j_2} \dots g_{j_k}$ we see it lies in $X_{j_k}$ and thus is of the form $a + br$ where both $a \neq 0$ and $b \neq 0$.
+\end{proof}
+
+\subsection*{The semidirect product decomposition}
+
+We abuse notation slightly and write $D_\infty$ for the subgroup of trivial units.
+We claim that $\gen{U, D_\infty}$ is naturally a semidirect product $U \rtimes D_\infty$.
+Since we proved above that $U \cap D_\infty = 1$, it only remains to show that the generators $t$ and $r$ of $D_\infty$ normalize $U$.
+
+\begin{align*}
+    t^{-1} e_{i,j} t
+    &= t^{-i} + 1 + t^i + t^{j-1} (t^{-i} + t^i) r t \\
+    &= t^{-i} + 1 + t^i + t^{j-2} (t^{-i} + t^i) r \\
+    &= e_{i,j-2} \\
+    r^{-1} e_{i,j} r
+    &= t^i + 1 + t^{-i} + t^{-j}(t^i + t^{-i}) r \\
+    &= e_{i,-j}
+\end{align*}
+
+So $D_\infty$ simply permutes the free factors $U_j$ ($j \in \Z)$ of $U$ according to a natural action of $D_\infty$ on $\Z$ with two orbits, namely evens and odds.
+(This action is generated by reflection in $0$ and $1$.
+Another natural choice of action of $D_\infty$ on $\Z$ would be generated by reflection in $0$ and $\frac{1}{2}$ and thus have only one orbit.)
+In other words, we have what has been referred to in the literature as a graph wreath product \[
+    (\oplus_{\N^+} \Z/2) \wr D_\infty
+\] where $\Z$ is a discrete graph, hence the ``graph product'' is just a free product.
+
+\subsection*{Proving all units are accounted for}
+
+\begin{lemma}
+    Let $\alpha \in (\F_2[D_\infty])^\times$ be non-trivial.
+    Then there exist $i \in \N^+, j \in \Z$ such that \[
+        \deg(\alpha e_{ij}) < \deg(\alpha).
+    \]
+\end{lemma}
+
+This immediately implies that $(\F_2[D_\infty])^\times = \gen{U, D_\infty} = U \rtimes D_\infty$.
+
+\begin{proof}
+    Let $\alpha = a + br$.
+    As one might guess after studying the proof of Lemma~\ref{lemma:mirowicz_pingpong}, we set $j := \min(b) - \min(a)$.
+
+    For $c + dr := (a + br) e_{ij}$ we have \[
+        c = a + (t^{-i} + t^{i})(a + t^{-j} b).
+    \]
+    Our choice of $j$ ensures cancellation at both ends ($\min$ and $\max$) in computing $a + t^{-j} b$.
+    We now choose our $i$ to be the minimal amount we move inside after such cancellation, so that when we extend by $i$ in both directions (by multiplying by $t^{-i} + t^i$) we get something that will again cancel with $a$.
+    That is, we set \[
+        i := \min\left(\min(a + t^{-j}b) - \min(a), \max(a) - \max(a + t^{-j}b)\right).
+    \]
+    Then
+    \begin{align*}
+        \min \left( (t^{-i} + t^{i})(a + t^{-j}b) \right) &\geq \min(a) \\
+        \max \left( (t^{-i} + t^{i})(a + t^{-j}b) \right) &\leq \max(a)
+    \end{align*}
+    with at least one being an equality, and thus $\min(c) \geq \min(a)$ and $\max(c) \leq \max(a)$ with at least one inequality being strict, so $\deg(c) < \deg (a)$ as claimed.
+    (NB: it is possible that $\deg(c) = 0$ or $c = 0$, in which case we know that $(a + br)e_{ij}$ is a trivial unit.)
+\end{proof}
+
+\section{The unit conjecture is not a ring theoretic statement}
+
+We now make precise (in a way) the observation that the unit conjecture is a ``group ring theoretic'' statement and not simply a ring theoretic statement about a group ring, as the other $3$ Kaplansky conjectures are.
+
+If the trivial units were a definable subset of the ring $K[G]$ (in the sense of model theory) then they would necessarily be invariant under all ring automorphisms, including conjugation by non-trivial units (if any exist).
+This cannot be the case for non-exotic groups, at least.
+Let's introduce the exotic groups in question.
+
+\begin{definition}
+    A group $V$ is called an \emph{Adian extension} if it is finitely generated and torsion-free and $V / Z(V)$ is an infinite group of finite exponent.
+\end{definition}
+
+This means there exists a positive integer $n$ such that $g^n = 1$ for all $g \in V / Z(V)$.
+
+\begin{remark}
+    The famous Burnside problem (1902) asks whether a finitely generated group of finite exponent must be finite.
+    Novikov--Adian (1968) gave the first counterexample.
+    Adian (1971) went one step further and constructed the first Adian extension.
+    A group containing an Adian extension can certainly be considered ``exotic''.
+\end{remark}
+
+\begin{example}
+    There are no solvable infinite ``Burnside groups'': we can prove by induction on the derived length that a finitely generated solvable group $G$ of finite exponent is finite.
+    Indeed, the base case of derived length $0$ is the trivial group.
+    For the inductive step, note that the abelianization of $G$ is finite (e.g.\ by the classification of finitely generated abelian groups, or argue directly) and the derived subgroup, being finite index in a finitely generated group, is itself finitely generated.
+    Since solvability passes to quotients, this immediately implies that there are no solvable Adian extensions.
+    In particular, the following proposition applies whenever $G$ is solvable.
+\end{example}
+
+\begin{proposition}
+    \label{proposition:selfnormalizing_trivial_units}
+    Let $G$ be torsion-free.
+    Suppose that no subgroup of $G$ is an Adian extension.
+    Let $T \leq (K[G])^\times$ denote the subgroup of trivial units.
+    Then $T$ is self-normalizing i.e. $N_{(K[G])^\times}(T) = T$.
+\end{proposition}
+
+In other words, if $u$ is \emph{any} non-trivial unit then $T^u \neq T$.
+(To show $T$ is not a definable subset of $K[G]$ we only need one such $u$.)
+
+\begin{proof}[Proof of \Cref{proposition:selfnormalizing_trivial_units}]
+    Suppose for the sake of contradiction that $u$ is a non-trivial unit of $K[G]$ with $T^u = T$.
+    Let $S = \supp(u)$.
+    Since $t u$ will also normalize $T$ for any $t \in T$, we can assume without loss of generality that $1 \in S$.
+    Let $n = \abs{S}!$.
+
+    Let $g \in G$ be a trivial unit.
+    Let $h := u^{-1} g u \in T$.
+    Considering the augmentation map, we see that $h \in G$.
+    We change perspective and write the previous equation as $g^{-1} u h = u$.
+    The map $G \to G \colon x \mapsto g^{-1} x h$ permutes the elements of $S$ and thus $x \mapsto g^{-n} x h^n$ fixes $S$ pointwise.
+    As $1 \in S$, this means that $g^n = h^n$ and the aforementioned map is actually the inner automorphism $x \mapsto g^{-n} x g^n$, so $g^n \in C_G(V)$ where $V = \gen{S}$.
+    This holds in particular for $g \in V$ so that the finitely generated group $V$ has the property that $V / Z(V)$ has exponent (dividing) $n$.
+    By assumption $V$ cannot be an Adian extension, so $V / Z(V)$ is finite.
+    By Schur's \Cref{lemma:schur}, this implies $V'$ is finite and hence trivial by torsion-freeness.
+    Thus $V$ is a torsion-free abelian group supporting the non-trivial unit $u$, a contradiction.
+\end{proof}
+
+\section{Bi-orderable groups}
+
+We will prove that if $G$ is bi-orderable, then $K[G]$ embeds into a skew field.
+This is much stronger than satisfying the zero divisor conjecture.
+
+\begin{lemma}
+    $\cP \subset G$ is the positive cone of a bi-ordering if and only if
+    \begin{enumerate}
+        \item $\cP^2 \subseteq \cP$ (that is, it is a subsemigroup)
+        \item $G = \cP \sqcup \{1\} \sqcup \cP^{-1}$.
+        \item $\cP^g = \cP$ for all $g \in G$ (that is, it is a normal subset)
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\begin{example}
+    Torsion-free abelian groups are left-orderable (assuming the axiom of choice) and thus bi-orderable.
+\end{example}
+
+\begin{example}
+    Free groups are bi-orderable.
+\end{example}
+
+We will not prove this but it follows from $F_n$ being residually torsion-free nilpotent.
+
+\begin{lemma}
+    A bi-orderable group has unique roots.
+    That is, if $n \in \Z^+$ and $g, h \in G$ such that $g^n = h^n$, then $g = h$.
+\end{lemma}
+
+\begin{proof}
+    If $g \neq h$ then without loss of generality $g < h$ and thus \[
+        g^n = g^{n-1} g < g^{n-1} h < g^{n-2} h^2 < \dots < h^n.
+    \]
+\end{proof}
+
+\begin{example}
+    We can present the fundamental group $\Z \rtimes \Z$ of the Klein bottle as $\gp{a, b}{a^2 = b^2}$ which clearly fails to have unique roots.
+\end{example}
+
+\begin{proposition}
+    \label{proposition:nilpotent_biorderable}
+    Torsion-free nilpotent groups are bi-orderable.
+\end{proposition}
+
+\begin{example}
+    \[
+        \set{
+            \begin{pmatrix}
+                1 & x & z \\
+                  & 1 & y \\
+                  &   & 1
+            \end{pmatrix}
+        }{
+            x, y, z \in \Z
+        }
+    \] is the (integral) Heisenberg group.
+    It is the free $2$-generated class-$2$ nilpotent group.
+\end{example}
+
+\begin{lemma}
+    \label{lemma:biorderable_extensions}
+    Suppose $N \normal G$ such that $N$ and $G/N$ are bi-orderable, where $N$ admits a bi-ordering whose positive cone is a normal subset of $G$.
+    Then $G$ is bi-orderable.
+\end{lemma}
+
+\begin{proof}
+    Exercise.
+\end{proof}
+
+\Cref{lemma:biorderable_extensions} lets us prove inductively that torsion-free nilpotent groups are bi-orderable:
+if $G$ is class-$c$ nilpotent then $G / Z(G)$ is class-$(c-1)$ nilpotent.
+We just need to ensure $G / Z(G)$ is also torsion-free, that is, that for $n \in \Z^+$ and $g \in G$ we have \[
+    ( [g^n, h] = 1 \quad \forall h \in G ) \implies ( [g, h] = 1 \quad \forall h \in G ).
+\]
+It suffices to show for all $n \in \Z^+$ and $g, h \in G$ that \[
+    g^n = (h^{-1} g h)^n \implies g = h^{-1} g h.
+\]
+In other words, the whole question of bi-orderability for torsion-free nilpotent groups boils down to uniqueness of roots!
+
+\begin{lemma}
+    \label{lemma:quotient_by_tf_centre}
+    Suppose $Z(G)$ is torsion-free.
+    Then $Z(G / Z(G))$ is torsion-free.
+\end{lemma}
+
+\begin{proof}
+    Suppose $\overline{g} \in Z(G / Z(G))$ satisfies $\overline{g}^n = 1$ for some $n \in \Z^+$.
+    That is, for $g \in G$ with $\overline{g} = g Z(G)$ we have $g^n \in Z(G)$ and $[g, h] \in Z(G)$ for all $h \in G$.
+    The identity $[xy, z] = [x, z]^y [y, z]$ implies the identity \[
+        [x^n, y] = [x, y]^{x^{n-1}} [x, y]^{x^{n-2}} \dots [x, y]^x [x, y].
+    \]
+    In our case, for arbitrary $h \in G$ we have $[g, h] \in Z(G)$ and thus $[g^n, h] = [g, h]^n$.
+    But $g^n \in Z(G)$ so $[g^n, h] = 1$ and $[g, h] \in Z(G)$ which is torsion-free.
+    Thus $[g, h] = 1$.
+    As $h$ was arbitrary, this means $g \in Z(G)$, that is, $\overline{g} = 1$.
+\end{proof}
+
+\begin{corollary}
+    \label{corollary:nilpotent_quotient_torsion_free}
+    Let $G$ be torsion-free nilpotent.
+    Then $G / Z(G)$ is also torsion-free.
+\end{corollary}
+
+\begin{remark}
+    We see that for nilpotent $G$, if $Z(G)$ is torsion-free then $G$ is torsion-free.
+\end{remark}
+
+\begin{proof}[Proof of \Cref{corollary:nilpotent_quotient_torsion_free}]
+    The upper central series is \[
+        1 = Z_0 \normal Z_1 \normal \dots \normal Z_c = G
+    \] (where $G$ is class-$c$ nilpotent) defined by $Z_{i+1} / Z_i = Z(G / Z_i)$.
+    Repeated application of \Cref{lemma:quotient_by_tf_centre} (to $G$, $G / Z_1$, $G / Z_2$, \dots) shows that all quotients $Z_{i+1} / Z_i$ are torsion-free.
+    As extensions of torsion-free groups are torsion-free, the result follows.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{proposition:nilpotent_biorderable}]
+    Induct on nilpotency class, noting that a central subset is normal (so that \Cref{lemma:biorderable_extensions} applies) and torsion-free abelian groups are bi-orderable.
+\end{proof}
+
+Bi-orderability is the strongest property we've seen that implies the Kaplansky conjectures:
+
+\begin{proposition}
+    \label{proposition:biorderable_LI}
+    Bi-orderable groups are locally indicable.
+\end{proposition}
+
+We will prove \Cref{proposition:biorderable_LI} mostly in exercises.
+As bi-orderability passes to subgroups, it is equivalent to showing that a finitely generated bi-orderable group has infinite abelianization.
+
+\begin{definition}
+    Let $G$ be an ordered group.
+    A subgroup $H < G$ is called \emph{convex} if for $a, b \in H$ and $g \in G$ we have $a < g < h$ implies $g \in H$.
+\end{definition}
+
+\begin{definition}
+    Let $G$ be an ordered group.
+    Then $G$ is called \emph{Archimedean} if for all $g, h > 1$ there exists $n \in \Z^+$ such that $g^n > h$.
+\end{definition}
+
+\begin{proposition}
+    Let $G$ be an Archimedean bi-ordered group.
+    Then $G$ is abelian.
+\end{proposition}
+
+\begin{remark}
+    In fact, an Archimedean left-ordered group is automatically bi-ordered and moreover isomorphic to a subgroup of $\R$ (a theorem of Hölder).
+\end{remark}
+
+\begin{proof}
+    Note that if $g, t > 1$ then there exists $n \in \N$ such that $t^n \leq g < t^{n+1}$.
+    Suppose $G$ has a least positive element $t$.
+    Then $t^n \leq g < t^{n+1}$ implies $1 \leq t^{-n} g < t$ so that $t^{-n} g = 1$, that is, any positive element is a power of $t$, so $G = \gen{t} \cong \Z$ is abelian.
+    So we now assume there is no least positive element.
+
+    Let $x, y \in G$.
+    We will show $[x, y] = 1$.
+    We can assume without loss of generality that $x > 1$ and $y > 1$ and since $[y, x] = [x, y]^{-1}$ we can also assume $[x, y] \geq 1$.
+    Given any $t > 1$ we find integers $m, n$ such that $t^m \leq x < t^{m+1}$ and $t^n \leq y < t^{n+1}$ and thus $x^{-1} \leq t^{-m}$ and $y^{-1} \leq t^{-n}$ so that $[x, y] < t^{-m} t^{-n} t^{m+1} t^{n+1} = t^2$.
+    We now just need to show that if $g > 1$ then there exists $t > 1$ such that $t^2 \leq g$ as this will force $[x, y] = 1$.
+
+    Let $g > 1$ and take some $1 < s < g$.
+    If $s^2 \leq g$ then we take $t = s$.
+    Otherwise $s < g < s^2$ and $g < s^2$ implies $(s^{-1} g)^2 = s^{-1} \cdot g \cdot (s^{-1} g) < s^{-1} \cdot s^2 \cdot (s^{-1} g) = g$ whereas $s < g$ implies $1 < s^{-1} g$ so that $t = s^{-1} g$ works.
+\end{proof}
+
+\begin{exercise}
+    In this exercise we prove \Cref{proposition:biorderable_LI}.
+    Let $G$ be a bi-ordered group.
+    \begin{enumerate}
+        \item Let $g_0 > 1$.
+            Show that \[
+                N_{g_0} := \set{g \in G}{g^n < g_0 \quad \forall n \in \Z}
+            \] is a subgroup of $G$.
+        \item Suppose $G = \gen{S}$ and $g_0 = \max(S^{\pm 1})$.
+            (Note that if $S$ is infinite, the maximum may not exist.)
+            Show that $N_{g_0} \normal G$.
+            (Hint: let $g \in N_{g_0}$ and write arbitrary $h \in G$ as a product of $|h|$ elements of $S^{\pm 1}$.
+            Then show $g_0 < (h g_0 h^{-1})^{2|h| + 1}$ so that $g^{n(2|h| + 1)} < g_0$ implies $(h^{-1} g h)^n < g_0$.)
+        \item Show that $N_{g_0}$ is convex.
+        \item Show that there is a natural bi-ordering on the quotient of a bi-ordered group by a convex normal subgroup.
+        \item Show that the bi-ordering on $G / N_{g_0}$ thus constructed is Archimedean.
+        \item Conclude that a finitely generated bi-orderable group has infinite abelianization.
+    \end{enumerate}
+\end{exercise}
+
+A stronger conjecture than the zero divisor conjecture is:
+
+\begin{conjecture}
+    Let $K$ be a field a $G$ be a torsion-free group.
+    Then $K[G]$ embeds into a skew field (a.k.a.\ division ring).
+\end{conjecture}
+
+Suppose $K[G]$ satisfies the zero divisor conjecture.
+We could attain a skew field by localization provided $K[G]$ satisfies the Ore condition: for all $a, b \in K[G]$ with $b \neq 0$ there exist $x, y \neq 0$ such that $xa = yb$.
+However, we'll see later that this holds if and only if $G$ is amenable! % TODO add reference
+
+As a motivating example, an alternative way to embed $K[\Z]$ into a field is to take the formal Laurent series.
+Then supports can be infinite but are sufficiently well controlled that multiplication can be defined.
+This generalizes to:
+
+\begin{theorem}[Malcev, Neumann]
+    \label{theorem:malcev_neumann}
+    Let $G$ be a bi-ordered group.
+    Let $D$ denote the formal sums $\sum_{g \in G} a_g \cdot g$, where $a_g \in K$, with well-ordered support.
+    Then $D$ is a skew field containing $K[G]$.
+\end{theorem}
+
+\begin{definition}
+    A set $X$ is \emph{well-ordered} if every non-empty subset of $X$ contains a least element.
+\end{definition}
+
+Every subset of a well-ordered set is well-ordered.
+
+\begin{lemma}
+    \label{lemma:wellordered_products}
+    Let $G$ be a bi-ordered group, $g \in G$ and $A, B \subseteq G$ well-ordered subsets.
+    Then
+    \begin{enumerate}
+        \item[(i)] $S = \set{(a, b) \in A \times B}{ab = g}$ is finite.
+        \item[(ii)] $A \cup B$ and $AB$ are well-ordered.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) If $S$ were infinite, we could construct an infinite ascending sequence in the projection $S_A = \pi_A(S) \subseteq A$ by defining $a_0 = \min(S_A)$ and $a_{i+1} = \min \set{a \in S_A}{a > a_i}$.
+    Then $b_i := a_i^{-1} g$ defines an infinite descending sequence in $B$, a contradiction.
+
+    (i) If $\emptyset \neq S \subseteq A \cup B$ then $\min(S) = \min(\min(S \cap A), \min(S \cap B))$.
+
+    If $AB$ is not well-ordered, then we can construct an infinite descending sequence $a_1 b_1 > a_2 b_2 > \dots$ with $a_i \in A, b_i \in B$.
+    Since $A$ is well-ordered we can construct an infinite non-decreasing subsequence $(a_{n_j})$ by setting $n_0$ such that $a_{n_0} = \min \{ a_i \}$ and then setting $n_{j+1}$ such that $a_{n_{j+1}} = \min \set{a_i}{i > n_j}$.
+    Then $(b_{n_j})$ is strictly decreasing, a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{theorem:malcev_neumann}]
+    We define addition and multiplication on $D$ in the same way as for $K[G]$.
+    Multiplication is well-defined by \Cref{lemma:wellordered_products} part (i).
+    Moreover, the resulting formal sums have well-ordered support by part (ii).
+    This makes $D$ into a ring - the ring axioms hold for the same reasons as in $K[G]$.
+
+    We only need to check that non-zero elements are invertible.
+    If $\beta \neq 0$ then letting $x = \min(\supp(\beta))$, we have $x^{-1} \supp(\beta) \subseteq \{1\} \cup \cP$, where $\cP$ is the positive cone of $G$, so we can write $\beta = (\beta)_x x (1 - \alpha)$ where $A = \supp(\alpha) \subseteq \cP$.
+    As $(\beta)_x x$ is invertible, we just have to show that such $1 - \alpha$ is invertible.
+    The obvious expression to try is $1 + \alpha + \alpha^2 + \dots$.
+    We need to show that this is well-defined and has well-ordered support.
+
+    \begin{proposition}
+        \label{proposition:wellordered_subsemigroup}
+        Let $G$ be a bi-ordered group with positive cone $\cP$ and suppose $A \subseteq \cP$ is well-ordered.
+        Then $\tilde{A} = S(A) = \cup_{n=1}^\infty A^n$, the subsemigroup generated by $A$, is also well-ordered.
+    \end{proposition}
+
+    We finish the proof of \Cref{theorem:malcev_neumann} assuming \Cref{proposition:wellordered_subsemigroup}.
+    The proposition has as a corollary that each $g$ only occurs in finitely many $A^n$, in other words, \[
+        \limsup_{n \to \infty} A^n := \bigcap_{n=1}^\infty \bigcup_{j \geq n} A^j = \emptyset.
+    \]
+
+    Indeed, suppose the limsup is non-empty.
+    Being a subset of $\tilde{A}$ it is well-ordered so we let $g$ be its least element.
+    Then $g \in A^{n_j}$ for some $n_1 < n_2 < \dots$ and we write $g = a_j b_j$ where $a_j \in A$ and $b_j \in A^{n_j - 1} \subset \tilde{A}$.
+    By \Cref{lemma:wellordered_products} (i) there are only finite many different pairs $(a_j, b_j)$ so some $b_j = a_j^{-1} g < g$ occurs infinitely many times, contradicting the minimality of $g$.
+    Thus each $g \in G$ is in the support of only finitely many $\alpha^n$ and we can define $\gamma = 1 + \alpha + \alpha^2 + \dots \in D$, since $\tilde{A}$ is well-ordered.
+    Clearly $((1 - \alpha)\gamma)_1 = 1$ whereas general \[
+        ((1-\alpha)\gamma)_g = \sum_{ab = g} (1 - \alpha)_a (\gamma)_b
+    \] can only involve finitely many $b \in \tilde{A}$ (\Cref{lemma:wellordered_products} (i)).
+    Call them $b_1, \dots, b_k$ and choose $N$ such that $g, b_1, \dots, b_k \notin A^n$ for all $n > N$ so that we have
+    \begin{align*}
+        ((1 - \alpha)\gamma)_g
+        &= \sum_{ab = g} (1 - \alpha)_a (\gamma)_b \\
+        &= \sum_{ab = g} (1 - \alpha)_a (1 + \alpha + \dots + \alpha^N)_b \\
+        &= ((1 - \alpha)(1 + \alpha + \dots + \alpha^N))_g \\
+        &= (1)_g - (\alpha^{N+1})_g \\
+        &= 0.
+    \end{align*}
+    Thus $(1 - \alpha) \gamma = 1$ and similarly $\gamma (1 - \alpha) = 1$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{proposition:wellordered_subsemigroup}]
+    We wish to do proof by induction.
+    We need to control how elements ``grow'' (in the ordering) when we take products of $a_i \in A$.
+    We do this by breaking $\tilde{A}$ up into manageable pieces.
+
+    The smallest convex subgroup containing $x \in G$ is \[
+        c(x) := \set{g \in G}{x^{-i} \leq g \leq x^i \text{ for some } i \in \Z}.
+    \]
+    We note that $1 \leq x \leq y$ implies $c(x) \leq c(y)$.
+    Define an equivalence relation $\sim$ on $A$ by $x \sim y$ if $c(x) = c(y)$.
+    In other words, $x \sim y$ if there exist $m, n \in \Z^+$ such that $x \leq y^m$ and $y \leq x^n$.
+    (This is called Archimedean equivalence.)
+
+    As $A$ is well-ordered, we can define a transversal $W$ for $A / {\sim}$ by taking the smallest element of each equivalence class.
+    Note that $W$ is also well-ordered.
+    Equip $W \times \N^+$ with the lexicographic order, a well-ordering.
+
+    Define $f \colon \tilde{A} \to W \times \N^+$ by sending $x$ to $(w, r)$ where $x \sim w$ (which is possible, even though $W$ is a transversal for $A / {\sim}$ and not $\tilde{A} / {\sim}$, as $a_1 \dots a_k \sim \max \{a_i\}$ for a product of $a_i \in A$) and $r$ is minimal such that $x \leq w^r$.
+
+    Then one checks that $f$ is order-preserving.
+    It is convenient to extend $W \times \N^+$ by adding a smallest element $(1, 0)$.
+    Let $X = W \times \N^+ \cup \{ (1, 0) \}$ and (by slight abuse of notation) also write $f \colon \tilde{A} \cup \{1\} \to X$ for the order-preserving extension.
+
+    \begin{claim}
+        If $x \in \tilde{A}$ we can write $x = x_0 a x_1$ for some $a \in A$ and $x_0, x_1 \in \tilde{A} \cup \{1\}$ such that $f(x_0), f(x_1) < f(x)$.
+    \end{claim}
+
+    The proof of the claim is left as an exercise, with the hint that we write $x = a_1 a_2 \dots a_k$ for $a_i \in A$ and let $a = \max \{a_i\}$.
+
+    Since $f$ is order-preserving and $X$ is well-ordered, $\tilde{A} \cup \{1\}$ will be well-ordered if and only if every $f^{-1}((w,r))$ is well-ordered.
+    We prove this by transfinite induction on $X$.
+    The base case is $f^{-1}((1, 0)) = \{1\}$, so trivial.
+    The inductive step follows from the claim: if $S = f^{-1} (\set{(w', r') \in X}{(w', r') < (w, r)})$ then $f^{-1}((w, r)) \subseteq SAS$, which is well-ordered by \Cref{lemma:wellordered_products} (ii).
+\end{proof}
