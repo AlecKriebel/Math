@@ -13,3 +13,9 @@ Mathematical resolution estimate: 5%. Publication package estimate: 1%. These es
 Read central source arguments directly: local trace contraction, invariant eigenspace multiplicity, orthogonal splitting, tagged-stack Fourier Gram potential, parity functional and matching realization. Algebraic identities presently check; independent audits continue. Derived exact subset-state flow formulation with m=2(N-1)+(N-1)(N-2)2^(N-3) scalar nonnegativities and diagonal PSD embedding. Literature audit found CCC 2016 corrected prior TSP bound, requiring precise tilde-Omega notation. Original Yannakakis reduction has 3n cities; independent 2n contraction variant under investigation. Source remote main still equals pinned adc7f1 at check.
 
 Mathematical resolution estimate: 40%. Publication package estimate: 5%.
+
+## 2026-10-06T22:20:17-07:00 — full mathematical candidate
+
+Independent central audits found no material defect in the needed exponential source proof. Separate geometry audits reconstructed original3n and compressed2n faces and all-N padding. Exact affine tight-slack closed-cone proof replaces a proper-lift duality shortcut. Six-page standalone source compiles in built-in editor; exported PDF rendered and all6 pages inspected with clean formulas/references/fonts/page breaks. Corrected prior bound and actual source-public chronology reconciled. Rights follow existing CC BY4/MIT package convention; third-party manuscript/proof copies excluded from Zenodo archives.
+
+Mathematical resolution estimate: 97%. Publication package estimate: 55%. Whole-package reviewers and external publication/tracker verification remain.

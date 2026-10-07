@@ -1,0 +1,38 @@
+{
+  "clean_empty_directory_extraction": true,
+  "results": [
+    {
+      "command": [
+        "tectonic",
+        "main.tex"
+      ],
+      "cwd": "work/clean_reproduction_v1/source",
+      "exit_code": 0,
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `main.pdf` (87.083984375 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+      "stderr": "warning: main.tex:74: Underfull \\hbox (badness 1264) in paragraph at lines 73--74\nwarning: main.tex:74: Underfull \\hbox (badness 1264) in paragraph at lines 73--74\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+    },
+    {
+      "command": [
+        "python3",
+        "checks/reproduce.py"
+      ],
+      "cwd": "work/clean_reproduction_v1/verification",
+      "exit_code": 0,
+      "stdout": "PASS checks/tsp_reduction_check.py\nPASS checks/independent_geometry_checks.py\nPASS checks/source_bridge_audit.py\nFinite checks are supplemental evidence, not an asymptotic proof or Lean certification.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "checks/reproduce.py",
+        "--upstream"
+      ],
+      "cwd": "work/clean_reproduction_v1/verification",
+      "exit_code": 0,
+      "stdout": "PASS checks/tsp_reduction_check.py\nPASS checks/independent_geometry_checks.py\nPASS checks/source_bridge_audit.py\nPASS checks/fetch_pinned_sections.py\nPASS agent_notes/upstream_adversary_checks.py\nFinite checks are supplemental evidence, not an asymptotic proof or Lean certification.\n",
+      "stderr": ""
+    }
+  ],
+  "pdf_text_identical": true,
+  "scope": "Source build and finite supplemental checks; not formal proof or human peer review."
+}

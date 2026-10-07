@@ -101,7 +101,7 @@ Define the linear projection
     y_{ij}=x_{ij} for i,j in W,
     y_{v j}=x_{v j}+x_{z_t j} for j in W.
 
-On every tour in this face, each internal new path city has degree two within H and thus no other incident tour edge. The path endpoints v and z_t each have exactly one remaining incident edge. Contracting the path gives a Hamiltonian cycle on the m old cities. When m>=3 the two endpoint neighbors in W are distinct: if they were the same j, the cycle consisting of the path and those two endpoint edges would omit all other old cities, contradicting connectedness. Thus y is an ordinary 0/1 tour incidence vector. Conversely the expansion above supplies every old tour. Convex-hull linearity now proves
+On every tour in this face, each internal new path city has degree two within H and thus no other incident tour edge. The path endpoints v and z_t each have exactly one remaining incident edge. These remaining edges must lead into W: internal path vertices have no unused degree, while an extra edge joining the endpoints would close a separate cycle omitting W (and for t=1 would repeat the existing simple edge). Contracting the path therefore gives a Hamiltonian cycle on the m old cities. When m>=3 the two endpoint neighbors in W are distinct: if they were the same j, the cycle consisting of the path and those two endpoint edges would omit all other old cities, contradicting connectedness. Thus y is an ordinary 0/1 tour incidence vector. Conversely the expansion above supplies every old tour. Convex-hull linearity now proves
 
     P_TSP(m) = image(C_{m,N}),
     xc_psd(P_TSP(N)) >= xc_psd(P_TSP(m)).
