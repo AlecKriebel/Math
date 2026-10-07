@@ -1,0 +1,7 @@
+# Research log — independent Lean scope audit
+
+- 2026-10-07T05:35:05.762396+00:00: Began direct source inspection at pin `adc7f1241b42e322a6451854ab7e4b4c146bf78a`, with no prior audits read. Success criterion: identify the actual semantic theorem, weighted ladder gap assumptions, local proof admissions, and whether a kernel check is available. Audit completion estimate: 10%.
+- 2026-10-07T05:36:15.618978+00:00: Distinguished the comparator `sorry` template from the actual supplied `MatchingCount.Main.thm_main` proof. Identified the main statement as uniform unweighted counting, not weighted-hafnian approximation. Completion estimate: 50%.
+- 2026-10-07T05:36:15.618978+00:00: Scanned all 415 actual MatchingCount source files and import edges; no local proof escape hatches found. Identified the explicit tree-bag/height hypotheses and concrete discharge of abstract pair-Poincaré assumptions. Completion estimate: 90%.
+- 2026-10-07T05:38:08Z: Direct Lean 4.34.1 import probe failed due to missing compiled `Main.olean`; checkout has no `.lake` or dependency artifacts. No successful kernel check or theorem axiom set is claimed. This limitation was reported immediately to the parent audit.
+- 2026-10-07T05:41:05.338311+00:00: Saved findings and receipts; all 423 unique upstream files read match pinned Git blobs, and source checkout remains clean. Source-scope audit completion estimate: 100%. Formal verification of the upstream theorem remains unperformed; weighted-FPRAS formalization is outside the selected theorem's scope.
