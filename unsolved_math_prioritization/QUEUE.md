@@ -998,7 +998,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 989 | 2800903 / AMR-027-0903 | 10 Lectures and 42 Open Problems — Tightness of k-median LP | 0.0908 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 990 | 30002760 / OWR-13487-001 | Optimal Adaptive Approximation of Transport-Dominated Equations | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 990 | 30002760 / OWR-13487-001 | Optimal Adaptive Approximation of Transport-Dominated Equations | 0.0908 | 5.5 | 3 | 2015 | unsolved | 5/5 |  | [Audited partial results](attempts/30002760/README.md): five scoped approaches accepted; original proofs unchanged. Erath-Praetorius (2019) already establish stationary SUPG asymptotic optimal rates under their hypotheses, including sufficiently small marking parameter. Broad parabolic and parameter-uniform preasymptotic scope remains unresolved here; conditional rate transfers and restricted obstructions do not settle it. No novelty or full-resolution claim. |  |
 | 991 | 30002842 / OWR-13673-012 | Finiteness of Automorphism Groups of Rational Vertex Operator Algebras | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 992 | 30003081 / OWR-14222-009 | Higher-Dimensional Theory of Unexpected Curves | 0.0905 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 993 | 30003116 / OWR-14603-015 | Quantitative Entropy of Rational Multiplicative Orbits | 0.0905 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
