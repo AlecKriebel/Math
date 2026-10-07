@@ -26,7 +26,7 @@ def main():
         run('add','--',REL,env=env)
         # Never publish caches, raw third-party source downloads, or temporary indexes.
         staged_paths=run('ls-files',env=env).splitlines()
-        excluded=[f for f in staged_paths if f.startswith(REL+'/') and ('/pinned_build/' in f or '/.lake/' in f or '/checkpoints/index-' in f or (f.startswith(REL+'/sources/') and f.endswith(('.pdf','.txt','.tar','.gz'))))]
+        excluded=[f for f in staged_paths if f.startswith(REL+'/') and ('/pinned_build/' in f or '/.lake/' in f or '/checkpoints/index-' in f or ('/notes/' in f and '/sources/' in f) or (f.startswith(REL+'/sources/') and f.endswith(('.pdf','.txt','.tar','.gz'))))]
         if excluded: run('rm','--cached','--ignore-unmatch','--',*excluded,env=env)
         owned=run('diff','--cached','--name-only',base,env=env).splitlines()
         if not owned: print('No new owned files'); return

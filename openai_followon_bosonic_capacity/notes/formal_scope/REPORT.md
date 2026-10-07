@@ -40,3 +40,30 @@ The strongest verified result at this checkpoint is a precise, physically faithf
 The harness preserves original autoImplicit=false and Lean version 4.34.1, but intentionally has a reduced Lake package configuration: only the actual external dependency Mathlib at original pin `d13f23b723b8a846827a245b89c10fc7d3f11612`. The giant original package includes many unrelated packages/compatibility patches, none imported by these 26 modules. Original configurations are retained under `upstream_config/` for audit. This reduced harness is a reproducible selected-module check, not a reproduction of the entire published Lean library.
 
 Observed Lake version: `Lake version 5.0.0-src+5045d00 (Lean version 4.34.1)`. Setup is in progress; diagnostic output is retained in `build_setup.log`. Pending final checks are (1) cache/dependency setup, (2) compilation of `OAI.InformationTheory.PhotonNumber.Inequality`, (3) `#print axioms` for the final real theorem, and (4) comparison or explicit exact statement/definition agreement. No comparator checker has yet run.
+
+## Checkpoint 2 — statement equivalence established; build suspended
+
+Timestamp: 2026-10-06T21:16:43.461220-07:00 (2026-10-07T04:16:43.461220+00:00 UTC).
+Best-guess contribution to project mathematical resolution: 20%; publication package: 5%.
+
+`statement_definition_comparison.json` establishes exact equality of the comparator and real theorem statement after whitespace normalization, and exact equality of all comparator/actual definitions after removing comments and normalizing whitespace. The sole original textual difference is the documentation for the `g` function's zero-log convention. This is a source comparison, not a `comparator`/`lean4export` check.
+
+The 26-module OAI source closure was additionally scanned for `native_decide`, `ofReduceBool`, `implemented_by`, `extern`, `unsafe`, `sorry`, `admit`, `axiom`, `sorryAx`, and `declare_axiom`: no hits. No claim is made about axiom closure of compiled modules, because compilation did not run. The ordinary `DiagonalForms.System` abstraction packages source/target parameters, test vectors, a linear map, and summability; its `Comparison` predicates are proved for the physical maps at a regularized minimum, rather than postulated in the final theorem.
+
+Build attempts:
+
+1. `lake update` with the original Mathlib Git requirement failed fetching full history (`early EOF`).
+2. A depth-one exact-pin Mathlib fetch succeeded and its detached checkout is at `d13f23b723b8a846827a245b89c10fc7d3f11612` (toolchain bump to v4.34.1).
+3. Lake's next update unnecessarily tried `git fetch --tags --force origin` and failed with `No space left on device`. Only its own failed 269,774,847-byte `tmp_pack_yTuUV0` was removed. This restored free space from 116 MiB to 371 MiB; no unrelated or user data was removed.
+4. The Lake harness was changed to a local path dependency pointing to that exact shallow checkout; another update exited 1 without useful output under disk pressure.
+5. Per the lead researcher, all cache downloads/build setup are suspended until adequate space is available. No theorem, axiom printout, or comparator run completed.
+
+The `pinned_build/OAI` selected source copy remains byte-identical to the 26 pinned source objects. The local mathlib source/dependency cache lives only in ignored `pinned_build/.lake/` (146 MiB); no generated file was written to the upstream clone. A final read-only upstream `git status --short --untracked-files=no` remained empty. Upstream's Apache-2.0 license was retained at `pinned_build/LICENSE` for the exported source files.
+
+## Exact remaining gap and permitted claim
+
+**Permitted claim:** the actual supplied EPnI source is an unconditional theorem with the intended full-Fock finite-energy multimode semantics, and contains an explicit, physically faithful proof dependency chain without visible placeholders or a theorem-assuming abstraction. Its comparator and actual definitions/statements agree.
+
+**Not yet verified:** Lean elaboration/kernel acceptance of the pinned proof; exact final theorem axiom closure; comparator verification; whether every step of the substantial handwritten upstream proof is sound independently of Lean; the dynamic-capacity follow-on theorem; novelty/publication conditions.
+
+A complete note may accurately cite the upstream theorem after independent mathematical review, but must not say that this project reproduced its formal verification. If relying specifically on machine verification as decisive validation, the current disk obstacle must be resolved and the stated build/axiom checks completed before promotion.

@@ -18,3 +18,9 @@ Rates may be negative for consumed resources; exact permitted operations require
 Pivotal entropy premise: for all finite n>=1 and arbitrary finite-energy rho, S(L_t^tensor n(rho)) >= n g(t g^(-1)(S(rho)/n)), t in [0,1]. Upstream family273 asserts this via EPnI but validity/semantics/build are under independent audit.
 
 Success requires complete rigor for both regions, ensembles/energy/truncation/closures and boundaries N=0,lambda=0,1,eta=1/2,1. A dependency gap precludes unconditional success.
+
+## Operational correction checkpoint
+
+The literal predecoding private secrecy condition in WH 1005.3818v3 Sec5 is inconsistent with its own unit-resource protocol. At N=0 it excludes every positive generated private/key dimension, whereas the displayed region includes OTP(-1,1,-1). The original literal private target is therefore false. Independent proof: notes/upstream_proof/new_operational_check.md.
+
+A candidate repaired model protects generated W=(M,T_A) by trace decoupling from Eve and all public X=(K,L). Consumed V=(J,S_B) may become correlated with W and transcript; only generated secrets are retained as secure resources. All original signed forward resource accounting, finite gross resource rates, no feedback, and average photon constraints remain. A corrected converse is derived; conventional achievability is under independent construction audit. No silent replacement of the literal source model.
