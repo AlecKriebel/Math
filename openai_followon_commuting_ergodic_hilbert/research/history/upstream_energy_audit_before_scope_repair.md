@@ -72,7 +72,9 @@ Order comparison therefore bounds the base cost by `C s V_v^n`; the integration 
 
 **Hard/smooth identity** (lines 181–202). Directly, `k_s = Dil_(sqrt(s)) k_1`, `psi=-g_3'''`, and `k_s*k_s*k_s = s^(-1/2) psi(t/sqrt(s))`. Substitution `z=|t|/sqrt(s)` gives exactly the difference of `P` values divided by `t`. Furthermore `c_0=2g_3''(0)=-(2/3)g_3(0)` is negative but nonzero; positivity is never needed. The even extension of `P` is smooth and vanishes to second order. Thus `E_rho(0)=0` is the correct continuous value. The hard identity is valid away from endpoint values, which are immaterial under the scalar integrals. This reconstructs only the identity; estimating many hard endpoint errors still requires the later sections.
 
-## Formalization boundary
+## Numerical corroboration and formalization boundary
+
+Floating-point computations were supplementary bookkeeping checks only. My independent seeded test (`812606`, bundled Python and NumPy) sampled 5,000 complex cyclic triples in dimensions 1–5, half with deliberately rank-deficient edges, and 15,000 neighbor comparisons. The largest ratios to the stated right sides were `0.07470168193073122` for mixed trace and `0.707003261832278` for neighbors; no violation was found. The additional independent matrix reviewer reported reconstructing all of the matrix proof and stress-testing singular support, probability averaging, and cubic expansion without a violation. Numerical treatment of near-zero eigenvalues cannot certify the supported inequalities; the exact algebra above supplies the verification.
 
 The copied `LEAN_SCOPE_082.md` explicitly associates its scope with the **September 24 maximal** manuscript and claims a maximal estimate. It does not state the October 5 full annular variation theorem. Neither this scope document nor a comparator link certifies the annular dependency; no formal build was reproduced by this review.
 

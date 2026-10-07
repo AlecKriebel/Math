@@ -25,7 +25,9 @@ frequency proof depends on the upstream finite-matrix and heat statements;
 those statements must also pass their separately assigned audit.
 
 The pivotal new frequency steps were reconstructed analytically below rather
-than accepted merely from the theorem statement.
+than accepted merely from the theorem statement. Concrete finite coefficient
+probes were also run; they are exploratory floating-point quadrature and not
+proof of the estimate.
 
 ## Exact dependency and coefficient scope
 
@@ -328,6 +330,38 @@ This converges precisely for every `r>2`. It establishes the needed full
 annular variation once the upstream smooth estimate is supplied; neither
 the number of increments nor a dyadic-only scale restriction survives.
 It gives no `r=2` endpoint and no nonsymmetric or one-sided Cesaro theorem.
+
+## Concrete falsification probes and their limits
+
+`frequency_audit_computations.py` and its JSON result use Python 3.14.6 with
+only standard-library modules. The script evaluates the closed Gaussian
+formula for `H_xi` and constructs coefficient phases separately at every
+output pair. For discrete quadrature responses `T_{ij,k,xi}`, it chooses
+
+\[
+ \mu=\overline T/
+ \max\{(\sum_{k,\xi}|T|^2\,\Delta\gamma)^{1/2},\ \max_{k,\xi}|T|\}.
+\]
+
+This deliberately aligns every coefficient phase with the output response
+while satisfying the finite-menu analogues of both bounds (up to roundoff).
+The magnitudes are a simple admissible normalization, not a claim to solve
+the entire constrained optimization problem. The dual array can then be
+chosen to attain the discrete `ell^(3/2)` norm of this positive response.
+Inputs tested were constant arrays, complex linear chirps arranged to cancel
+a triangular phase, and independent random-sign arrays, with one/four scales,
+`D=1,2,4` and 17/33 nodes per coordinate. The mesh was
+`h=1/(4D)`, satisfying the hypothesis at equality for the smallest scale.
+
+The largest sampled normalized output ratio was approximately `3.194` in
+the four-scale `D=1` chirp example. No contradiction emerged; the theorem
+allows an unspecified constant larger than that. The `D` comparisons also
+change the physical support because the node count is held fixed, so they
+are **not** evidence of an asymptotic uniform estimate. Midpoint quadrature
+is not a certified continuous-frequency integration and no bound or theorem
+is inferred from these probes. Their purpose is to expose obvious phase,
+sign, normalization or frequency-growth failures. The analytic covariance
+certificate above, unlike those probes, is an exact check.
 
 ## Exact remaining dependency and reproducibility record
 
