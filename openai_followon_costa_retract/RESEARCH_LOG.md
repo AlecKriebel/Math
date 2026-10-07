@@ -37,7 +37,7 @@ Current PDF hash3fd17ac91b2f640931988bbd65ae8d8b48cc9b6253c2befa17b4c47171441f52
 
 A first complete-package adversarial reviewer has the original request, exact candidate and primary input. No mathematical, title, attribution or novelty promotion rests only on the first-pass scoped reviews. Production publication is not yet attempted; exact remaining gap is complete-package reviews, then remote metadata/checksum verification, publication and tracker read-back. Upstream source clone stays unchanged; current remote main still equals pinned input.
 
-## Checkpoint 04 — 2026-10-06 21:45 PDT
+## Checkpoint 04 — 2026-10-06 21:43 PDT
 
 Mathematical resolution estimate: 95%. Publication package estimate: 75%.
 
@@ -47,5 +47,25 @@ All repairs propagated into main.tex, exported PDF, archive, metadata, source/de
 
 A NEW complete-package reviewer received the original request and latest exact package, without the prior full-review verdict. No stage or publish operation has occurred; project-local production state was checked absent, and no prior stage attempt is known. Exact remaining gap: fresh latest-package no-substantive-issue verdict, then remote verification/publication and spreadsheet update.
 
-### Checkpoint04 validation completion — 2026-10-06 21:46 PDT
+### Checkpoint04 validation completion — 2026-10-06 21:44 PDT
 Clean v2 reproduction passed both computational scripts and standalone paper build, verifying all86 archive manifest files. PDF text matches the intended export. Root inspected all six revised pages and confirmed both citation corrections; no layout defect. The candidate files remain frozen for the fresh reviewer. Estimates remain math95%, package75%.
+
+## Checkpoint05 — 2026-10-07T04:53:19.722920+00:00
+
+Mathematical resolution estimate:100%. Publication package estimate:90%.
+
+Fresh complete reviewer02 independently reconstructed the proof from original sources, checked all87 archive entries, both scripts, all six PDF pages, exact metadata and scoped priority/formal claims, and found no substantive issue. It did not consult prior full-review verdicts before reaching its conclusion; a supplemental helper's incidental exposure to agent status summaries is documented, and the full reviewer itself independently checked every pivotal claim. Review01 citation correction and all housekeeping repairs are accepted. No known substantive concern remains.
+
+Root confirmed exact reviewed hashes still match all intended files and manifest. No mathematical/content/metadata changes follow this acceptance. The final basis is the independently checked written theorem and explicit maps; no kernel build or full follow-on formalization is claimed. Production staging/publication is now authorized under the original prompt and all stated conditions; proceeding without a new permission request. Final remote verification and tracker row remain.
+
+## Checkpoint06 — 2026-10-07T04:58:06.476549+00:00
+
+Mathematical resolution estimate:100%. Publication package estimate:100%.
+
+Production tool sequence completed: check→stage→inspect→publish --confirm-id23203270→inspect --check-doi. The draft ID came from this verified stage/inspect, and a separate prepublication remote read confirmed every intended metadata field and exact file set/sizes/MD5 checksums against final reviewed SHA256s. Only accepted remote normalization was omitted affiliation→null; no affiliation was invented. Publication verified submitted/public record23203270 and DOI10.5281/zenodo.23203270. Resolver returned HTTP200 to that record.
+
+Public GET downloads of paper.pdf(74424bytes, c579ec3442f4bcdf68ed737ad8bc65328682158845ed2e14e6636b2b119f52c6) and source-and-verification.zip(153906bytes,1d5fad97e53c8e265c1e70485182976d9882f26e4f58d0ff430db354e8ec2620) exactly matched the reviewed package. A web-wrapper page fetch was unavailable, but the production API, DOI resolver and actual public downloads independently succeeded; no duplicate deposit was created.
+
+Only after confirmed publication, current gws schemas and spreadsheet metadata resolved numeric tab1254632077 to Math Puzzles. Actual headers were Original Problem, Solution Chat URL, DOI, Notes. Fresh exact DOI/deposit/title search found no duplicate. Appended one RAW row in that column order, carrying problem/scope, DOI and notes with exact title/author/ORCID/date/attribution/review/formal limits/record URL; optional chat URL blank. Read-back verified exact 'Math Puzzles'!A40:D40. Raw broader spreadsheet reads kept project-local and Git-ignored; only this row and necessary public receipts are released.
+
+No source-clone changes, external contacts, unrelated PR processing, GitHub releases, branch changes or force pushes. Final mathematical/package files remain exactly the fresh-reviewed versions; publication status/receipts live separately and do not alter the deposited archive. Core resolution, valid publication and tracker entry are all complete. Proceeding to final owned-file commit/push before closing the persistent goal.
