@@ -1,7 +1,10 @@
 # Current theorem and validation scope
 
 Status: uniform proofs complete; upstream handwritten arguments independently
-audited without a known substantive gap; final package review pending.
+audited without a known substantive gap. Both complete-package reviews passed
+the exact final candidate04. Production Zenodo publication and tracker
+readback are verified; see FINAL_RESULT.md. This live status update follows
+publication; the immutable verification ZIP retains its earlier workflow snapshot.
 
 For h≥2, let L_h be nonempty products of all binary relations on h points,
 including the empty identity product. Let E_h encode each relation by its
@@ -38,6 +41,7 @@ bound. Binary coding is older machinery, and all exponential obstructions
 are inherited. No first claim, 2^Ω(n) binary-source exponent, L≠NL, or stronger
 uniform complexity separation is made.
 
-Success still requires two complete-package reviewers including a fresh
-reviewer of the latest package, clean-package test, production Zenodo
-publication and read-back-verified spreadsheet entry.
+All required complete-package reviews, clean-package reproduction, production
+Zenodo publication and read-back-verified spreadsheet entry are complete.
+The DOI is 10.5281/zenodo.23202966, resolved to the published record.
+Tracker range: Math Puzzles!A35:D35. Exact receipts are retained separately.

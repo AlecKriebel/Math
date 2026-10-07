@@ -126,3 +126,25 @@ The four intended upload files and metadata have the exact hashes in
 reviews/candidate04_hashes.json. Local production check passed.
 Production stage, inspect, publish, confirmed readback and tracker remain
 pending. No DOI or publication status is claimed yet.
+
+## 2026-10-06 21:36 PDT / 2026-10-07 04:36 UTC — publication and tracker verified
+
+Mathematical resolution: 100% best guess. Publication package: 100% best guess.
+Both core binary results are proved with cubic source loss and independently
+validated inherited inputs. Candidate04 passed two complete-package reviewers,
+including the fresh independent final pass and exact bibliographic repair
+checks. Production Zenodo record 23202966 is confirmed submitted/public, DOI
+10.5281/zenodo.23202966 assigned and resolving HTTP 200 to that record. Tool sequence
+check -> stage -> inspect -> publish --confirm-id 23202966 -> inspect --check-doi
+completed. All four public downloads match the exact reviewed hashes.
+
+Google Workspace CLI resolved numeric tab 1254632077 to Math Puzzles, read
+its four headers and searched the entire returned target tab for DOI/title/ID.
+No match existed. One RAW row was appended to 'Math Puzzles'!A35:D35; exact
+independent readback passed. Unknown optional chat URL is blank. No
+unrelated data/formula or PR was changed. Final source/receipt checkpoint
+will use the same safe isolated-index main-only publication method.
+FINAL_RESULT.md records results, scope, attribution, review cycles, service
+receipts and the still-unreproduced formal validation limitation. The four
+immutable deposit files retain their candidate04 identities. Live workflow
+ledgers now reflect completion; the ZIP keeps its historical reviewed copies.
