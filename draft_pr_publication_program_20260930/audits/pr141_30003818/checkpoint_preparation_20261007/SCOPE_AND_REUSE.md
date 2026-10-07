@@ -1,0 +1,11 @@
+# PR141 provisional audit-only checkpoint
+
+The proposed checkpoint records original-submission custody and dated public audit work while independent mathematical finals and priority remain pending. It publishes only explicitly listed own PR141 audit notes/checks/original20, ascending after-PR140 intake, and actual PR140 final acceptance/readback and its postcompletion log. It changes no native/canonical target or global progress file and performs no local installation.
+
+All seven sparse tree functions are copied byte for byte from the independently reviewed PR140 sparse source9d5505. The same bounded children, normal fresh sole-parent push, complete changed-path comparison, full-body readback and owned operation barrier code are retained. New intake/custody/scope guards bind originalPR141head523247e3 and genuinely completed PR140 receiptcee4. The source is prepared for a new independent exact source/proposal review; it has not run.
+
+Live scientific audit files are captured as small dated body copies for source stability. Their complete original body/mode pins and publication paths are recorded; reviewers can continue their current work. Original20 archives remain literal submitted history, including their original claims and efforts. The proposal narrative does not promote those historical claims. Private_sources, private/cache folders, replay/control sandboxes and primary PDFs/text/screenshots are excluded. Every unrelated immutable MAIN path is preserved by the exact sparse overlay and full parent-tree diff; real R/C HEAD/ref/index/config, intentional backend/cache absences and the completed native/global families remain pinned.
+
+The actual prospective commit/PID/readback is intentionally absent. ROOT must authenticate this exact proposal, obtain independent source/plan PASS, recheck its fresh base and resources, and alone execute a later authorized publication.
+
+Current scientific status at capture: genuine ROOT mathematical gate PASS after two independent finals; priority and case publication acceptance remain pending. The dated earlier pending-final observation is preserved only as history. Closed peer reports/checks/results are selected when useful; copyrighted page images, raw stdout/stderr and duplicate replay-control bodies are kept out of this minimal checkpoint.

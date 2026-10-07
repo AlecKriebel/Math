@@ -1,0 +1,3 @@
+# PR141 repaired checkpoint preparation
+
+2026-10-07T20:54:45.325885+00:00 — 90% source/proposal preparation. OriginalD1 and its closed REPAIR_REQUIRED review are preserved. The final observed mode/blob/path predicate is repaired, source delta regenerated from final bytes, and initial current scope corrected. Mathematical PASS plus bounded priority preparation PASS are genuine; scientific case50%, no new proof turns and original1/5 retained. Whole package/publication/tracker/merge/native acceptance remain outstanding. This task remains audit-only with no installations, native/canonical/global/provider/ref/index/config changes or cleanup. No operator import/run occurs.

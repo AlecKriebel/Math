@@ -1,0 +1,184 @@
+--- accepted_PR140_sparse_source_9d5505
++++ PR141_repaired_audit_only_final_source
+@@ -1,6 +1,6 @@
+ """Publish a reviewed sparse tree overlay; never change checkout refs/index.
+ 
+-Local installation is a separate forward-only step after authenticated publication.
++Audit-only checkpoint: native, canonical and global program paths are excluded; no local installation action exists.
+ Every action requires the exact plan and an independent source/plan PASS.
+ """
+ from pathlib import Path, PurePosixPath
+@@ -8,15 +8,16 @@
+ 
+ R = Path('/Users/alec/Documents/Math')
+ C = R/'draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout'
+-A = C/'draft_pr_publication_program_20260930/audits/pr140_5100023'
+-D = A/'scoped_active_checkpoint_20261007'
++A = C/'draft_pr_publication_program_20260930/audits/pr141_30003818'
++D = A/'checkpoint_preparation_repaired_v2_20261007'
+ G = '/opt/homebrew/Cellar/git/2.38.2/bin/git'
+ GH = '/opt/homebrew/Cellar/gh/2.85.0/bin/gh'
+ URL = 'https://github.com/AlecKriebel/Math.git'
+-AUDIT = ('draft_pr_publication_program_20260930/audits/pr140_5100023/','draft_pr_publication_program_20260930/audits/pr134_2306064/','draft_pr_publication_program_20260930/ordered_intake_20261007/after_PR134/')
+-NATIVE = set()
+-ATTEMPT = set()
+-PROGRAM = {'draft_pr_publication_program_20260930/'+s for s in ['CURRENT_PROGRESS.json','CURRENT_PROGRESS.md','RESEARCH_LOG.md']}
++AUDIT = ('draft_pr_publication_program_20260930/audits/pr141_30003818/','draft_pr_publication_program_20260930/ordered_intake_20261007/after_PR140/')
++PREVIOUS_AUDIT = 'draft_pr_publication_program_20260930/audits/pr140_5100023/'
++PREVIOUS_PUBLIC = {PREVIOUS_AUDIT+n for n in ['ROOT_FINAL_METADATA_ACCEPTANCE_20261007.json','actual_final_metadata_root_readback_20261007/ROOT_READBACK.json','RESEARCH_LOG.md']}
++ORIGINAL_HEAD = '523247e3246a5f44c7b0089074bb304c1f642bd0'
++PREVIOUS_ACCEPTANCE_SHA = 'cee4dff32b212eac03bfc29844bcc0facd8a6e779aa0ebb2f15191c5449305a5'
+ 
+ def require(ok, message):
+     if not ok: raise RuntimeError(message)
+@@ -104,6 +105,14 @@
+     return v
+ 
+ def guard(plan,journal):
++    require(digest(Path(__file__).read_bytes())==plan['source_sha256'],'running source changed')
++    prior=plan['previous_PR140_acceptance'];require(prior['path']==str(C/PREVIOUS_AUDIT/'ROOT_FINAL_METADATA_ACCEPTANCE_20261007.json') and prior['sha256']==PREVIOUS_ACCEPTANCE_SHA,'actual prior completion custody')
++    check(prior['path'],prior);accepted=json.loads(Path(prior['path']).read_bytes())
++    require(accepted['owner']=='ROOT' and accepted['fixture_only'] is False and accepted['status']=='ACCEPTED_COMPLETE' and accepted['case_PR']==140 and accepted['case_percent']==100 and accepted['completed_count']==24 and accepted['published_count']==12 and accepted['overall_goal_complete'] is False,'genuine PR140 completed case; overall goal incomplete')
++    for role in ['source','plan','publish','install','root_readback','native_acceptance','actual_acceptance_inputs']:check(accepted[role]['path'],accepted[role])
++    priority=plan['bounded_priority_preparation_gate']
++    require(priority['path']==str(A/'ROOT_BOUNDED_PRIORITY_PREPARATION_GATE_20261007.json') and priority['sha256']=='93012db7f60c4ae6065be9ea006f850a469fab20ac31918dcd982492599b99fc','genuine bounded priority preparation gate')
++    check(priority['path'],priority)
+     for x in plan['protected']: check(x['path'],x)
+     for x in plan['protected_absences']: require(not safe(x).exists(),'protected absence changed: '+x)
+     for root,expected in [(R,plan['R_HEAD']),(C,plan['C_HEAD'])]:
+@@ -113,26 +122,38 @@
+     require(pr['state']=='closed' and pr['merged_at'] is None and pr['draft'] is True and pr['head']['sha']==plan['previous_PR134_original_head'],'PR134 disposition changed')
+     comment=json.loads(run([GH,'api','repos/AlecKriebel/Math/issues/comments/6028564660'],journal))
+     require(digest(comment['body'].encode())==plan['closing_comment_body_sha256'],'closing comment changed')
+-    current_pr=json.loads(run([GH,'api','repos/AlecKriebel/Math/pulls/140'],journal))
+-    require(current_pr['state']=='open' and current_pr['merged_at'] is None and current_pr['draft'] is True and current_pr['head']['sha']==plan['current_PR140_original_head'],'PR140 intake head/state changed')
++    previous_pr=json.loads(run([GH,'api','repos/AlecKriebel/Math/pulls/140'],journal))
++    merge=plan['previous_PR140_merge']
++    require(previous_pr['state']=='closed' and previous_pr['merged'] is True and previous_pr['merged_at']==merge['merged_at'] and previous_pr['merge_commit_sha']==merge['commit'] and previous_pr['head']['sha']==merge['original_head'],'PR140 accepted original merge changed')
++    current_pr=json.loads(run([GH,'api','repos/AlecKriebel/Math/pulls/141'],journal))
++    require(current_pr['state']=='open' and current_pr['merged_at'] is None and current_pr['draft'] is True and current_pr['head']['sha']==ORIGINAL_HEAD,'PR141 original intake head/state changed')
+ 
+ def load_inputs(plan_path,plan_sha,review_path,review_sha):
+     require(digest(safe(plan_path).read_bytes())==plan_sha,'plan SHA')
+     plan=json.loads(Path(plan_path).read_bytes())
+-    require(plan['schema']=='pr140-active-checkpoint-overlay/v1','plan schema')
++    require(plan['schema']=='pr141-audit-only-checkpoint-overlay/v1','plan schema')
+     require(plan['source_sha256']==digest(Path(__file__).read_bytes()),'source SHA')
++    require(plan['scope']=='PR141_AUDIT_ONLY_PROVISIONAL' and plan['case_publication_acceptance'] is False and plan['bounded_priority_preparation_PASS'] is True and plan['whole_package_publication_clearance'] is False and plan['goal_complete'] is False,'audit checkpoint; math and bounded priority preparation PASS; whole package/publication pending')
+     require(digest(safe(review_path).read_bytes())==review_sha,'review SHA')
+     review=json.loads(Path(review_path).read_bytes())
+     require(review['verdict']=='PASS' and review['plan_sha256']==plan_sha and review['source_sha256']==plan['source_sha256'],'independent source/plan review')
+     check(G,plan['git_executable']);check(GH,plan['gh_executable'])
++    required={str(root/'.git'/name) for root in (R,C) for name in ['index','config','HEAD','packed-refs','FETCH_HEAD','refs/heads/main','refs/remotes/origin/main','index.lock','HEAD.lock','packed-refs.lock','refs/heads/main.lock','refs/remotes/origin/main.lock']}
++    protected={x['path'] for x in plan['protected']};absent=set(plan['protected_absences'])
++    require(len(protected)==len(plan['protected']) and len(absent)==len(plan['protected_absences']) and not protected&absent and required<=protected|absent,'complete exact real Git resource baselines')
++    require(all(str(C/'unsolved_math_prioritization'/name) in absent for name in ['queue.py','manifest.json','policy.json','cache/catalog.sqlite']),'intentional backend/cache absences preserved')
++    require(all(str(root/'.git'/name) in absent for root in (R,C) for name in ['index.lock','HEAD.lock','packed-refs.lock','refs/heads/main.lock','refs/remotes/origin/main.lock']),'real Git locks remain absent')
+     seen=set()
+     for m in plan['members']:
+         rel=m['path'];require(str(PurePosixPath(rel))==rel and not PurePosixPath(rel).is_absolute() and '..' not in PurePosixPath(rel).parts,'invalid relative path')
+-        require(rel in NATIVE|ATTEMPT|PROGRAM or rel.startswith(AUDIT),'outside publication scope')
+-        require(rel.lower() not in seen,'case duplicate');seen.add(rel.lower())
++        require(rel in PREVIOUS_PUBLIC or rel.startswith(AUDIT),'outside exact audit-only publication scope')
++        require(not any(p.casefold().startswith('private') or p.casefold() in {'cache','.git','replay','working_controls'} for p in PurePosixPath(rel).parts),'private/cache/working control publication forbidden')
++        require(PurePosixPath(rel).suffix.casefold() in {'.md','.json','.jsonl','.py','.patch'},'copyrighted primary material and raster/text exports excluded')
++        require(rel.casefold() not in seen,'case duplicate');seen.add(rel.casefold())
+         check(m['source'],m['post'])
+         require(m['post']['mode']==420,'publication mode')
+-        require(not m['install'] or rel in NATIVE|ATTEMPT|PROGRAM,'outside local installation scope')
++        require(m['install'] is False and m['local_pre'] is None,'audit-only checkpoint cannot install any path')
++    require(seen,'nonempty explicit public audit selection')
+     return plan
+ 
+ def tree_oid(value):
+@@ -238,14 +259,14 @@
+     git(['cat-file','-e',plan['base_commit']+'^{commit}'],journal)
+     for m in plan['protected_remote_inputs']:
+         z=git(['ls-tree','-z',plan['base_commit'],'--',m['path']],journal)
+-        require(digest(z)==m['tree_sha256'],'native dependency tree changed')
++        require(digest(z)==m['tree_sha256'],'readonly dependency tree changed')
+         b=git(['show',plan['base_commit']+':'+m['path']],journal)
+-        require(len(b)==m['bytes'] and digest(b)==m['sha256'],'native dependency body changed')
++        require(len(b)==m['bytes'] and digest(b)==m['sha256'],'readonly dependency body changed')
+     for m in plan['members']:
+         z=git(['ls-tree','-z',plan['base_commit'],'--',m['path']],journal)
+         require(digest(z)==m['pre_tree_sha256'],'current remote path/mode/blob changed')
+     tree=build_proposed_tree(plan,journal)
+-    changed=set(git(['diff','--name-only','-z',plan['base_commit'],tree],journal).decode().split('\0'))-{''}
++    changed=set(git(['diff','--no-ext-diff','--no-textconv','--no-renames','--name-only','-z',plan['base_commit'],tree],journal).decode().split('\0'))-{''}
+     require(changed==set(plan['expected_changed_paths']),'complete tree differs outside exact overlay')
+     for m in plan['members']:
+         z=git(['ls-tree','-z',tree,'--',m['path']],journal)
+@@ -263,56 +284,19 @@
+         git(['fetch','--no-write-fetch-head','--no-tags','--refmap=',URL,current],journal)
+         git(['merge-base','--is-ancestor',commit,current],journal)
+     for m in plan['members']:
++        entry=git(['ls-tree','-z',current,'--',m['path']],journal)
++        require(entry==('100644 blob '+m['post_blob']+'\t'+m['path']+'\0').encode(),'final observed public tree mode/blob/path changed')
+         z=git(['show',current+':'+m['path']],journal)
+         require(len(z)==m['post']['bytes'] and digest(z)==m['post']['sha256'],'published full body changed')
+     guard(plan,journal)
+-    journal.update(status='published_local_install_pending',published_commit=commit,observed_remote=current,public_full_body_readback=True,whole_parent_tree_preserved_outside_exact_overlay=True)
+-
+-def install(plan,journal,run_dir,published_receipt,published_sha):
+-    require(digest(safe(published_receipt).read_bytes())==published_sha,'published receipt SHA')
+-    previous=json.loads(safe(published_receipt).read_bytes())
+-    require(previous['plan_sha256']==journal['plan_sha256'] and previous['status']=='published_local_install_pending','authenticated published receipt required')
+-    current=remote(journal);commit=previous['published_commit']
+-    if current!=commit:
+-        git(['fetch','--no-write-fetch-head','--no-tags','--refmap=',URL,current],journal);git(['merge-base','--is-ancestor',commit,current],journal)
+-    guard(plan,journal)
+-    selected=[m for m in plan['members'] if m['install']]
+-    # Resume forward after interruption: every owned path must match pre or post.
+-    already=[]
+-    for m in selected:
+-        path=safe(C/m['path'])
+-        if path.exists() and pin(path)==m['post']:already.append(m['path'])
+-        elif m['local_pre'] is None:require(not path.exists(),'new local path differs from reviewed postimage')
+-        else:check(path,m['local_pre'])
+-        b=git(['show',current+':'+m['path']],journal)
+-        require(digest(b)==m['post']['sha256'],'current public postimage mismatch')
+-    journal.update(status='published_local_install_in_progress',published_commit=commit,installed=[],observed_preexisting_postimages=already);dump(run_dir/'RECEIPT.json',journal)
+-    for i,m in enumerate(selected):
+-        path=safe(C/m['path']);path.parent.mkdir(parents=True,exist_ok=True);safe(path.parent)
+-        if m['path'] in already:check(path,m['post']);continue
+-        if m['local_pre'] is not None:
+-            backup=run_dir/('before_'+str(i));backup.write_bytes(path.read_bytes());os.chmod(backup,m['local_pre']['mode']);check(backup,m['local_pre'])
+-        # A new run gets a distinct temporary name, preserving old partial files.
+-        tmp=path.with_name(path.name+'.pr140-'+journal['plan_sha256'][:12]+'-'+run_dir.name+'.tmp')
+-        if tmp.exists():
+-            check(tmp,m['post']);journal.setdefault('observed_preexisting_install_temps',[]).append(str(tmp))
+-        else:
+-            with tmp.open('xb') as f:
+-                f.write(Path(m['source']).read_bytes());f.flush();os.fsync(f.fileno())
+-            os.chmod(tmp,420);check(tmp,m['post'])
+-        journal['installing_path']=m['path'];dump(run_dir/'RECEIPT.json',journal)
+-        if m['local_pre'] is None: require(not path.exists(),'concurrent local creation')
+-        else: check(path,m['local_pre'])
+-        os.replace(tmp,path);check(path,m['post']);journal['installed'].append(m['path']);dump(run_dir/'RECEIPT.json',journal)
+-    for m in selected:check(C/m['path'],m['post'])
+-    guard(plan,journal)
+-    journal.update(status='public_and_local_install_verified',local_full_body_mode_readback=True,multiple_file_install_globally_atomic=False,private_cache_installed=False)
++    journal.update(status='published_audit_only_checkpoint_verified',published_commit=commit,observed_remote=current,public_full_body_readback=True,public_full_body_mode_readback=True,whole_parent_tree_preserved_outside_exact_overlay=True)
++
+ 
+ def main():
+     action,pp,ps,rp,rs,rd,*rest=sys.argv[1:]
+-    require(action in ['publish','install'],'action')
++    require(action=='publish' and not rest,'audit-only publish action')
+     run_dir=safe(rd);require(run_dir.parent==D/'private','run directory scope');run_dir.mkdir(exist_ok=False)
+-    journal={'schema':'pr140-active-checkpoint-operation-receipt/v1','actual_PID':os.getpid(),'UTC_start':utc(),'action':action,'plan_sha256':ps,'source_sha256':digest(Path(__file__).read_bytes()),'review_sha256':rs,'children':[],'status':'starting'}
++    journal={'schema':'pr141-audit-only-checkpoint-operation-receipt/v1','actual_PID':os.getpid(),'UTC_start':utc(),'action':action,'plan_sha256':ps,'source_sha256':digest(Path(__file__).read_bytes()),'review_sha256':rs,'children':[],'status':'starting'}
+     lock=D/'private/OPERATION_LOCK.json';owned_lock=None;lock_identity=None
+     try:
+         safe(lock);fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
+@@ -322,8 +306,7 @@
+         finally:os.close(fd)
+         owned_lock=pin(lock)
+         plan=load_inputs(pp,ps,rp,rs)
+-        if action=='publish': require(not rest,'publish arguments');publish(plan,journal,run_dir)
+-        else: require(len(rest)==2,'published receipt path/SHA arguments');install(plan,journal,run_dir,rest[0],rest[1])
++        publish(plan,journal,run_dir)
+     except BaseException as e:
+         journal.update(error_type=type(e).__name__,error=str(e)[:4096]);raise
+     finally:
