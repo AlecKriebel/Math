@@ -10,7 +10,7 @@ for n in ['DEPENDENCY_LEDGER.md','CURRENT_THEOREM.md']:
     items[n]=p/n
 for n in ['upstream_mathematical_audit.md','upstream_interval_review.md','upstream_interval_checks.py','transfer_proofs.md','priority_audit.md','priority_modern_check.md','formal_input_audit.md']:
     items['notes/'+n]=p/'notes'/n
-for n in ['SOURCE_HASHES.json','370.md','UPSTREAM_LICENSE','UPSTREAM_README.md']:
+for n in ['SOURCE_HASHES.json','370.md','UPSTREAM_LICENSE','UPSTREAM_README.md','priority_source_manifest.json','priority_modern_manifest.json']:
     items['sources/'+n]=p/'sources'/n
 for f in (p/'sources/family370').rglob('*'):
     if f.is_file(): items[str(f.relative_to(p))]=f

@@ -1,10 +1,11 @@
-# Independent approach families
+# Independent approach families and current status
 
 | Family | Mechanism | Evidence / status | Exact remaining gap |
 |---|---|---|---|
-| A: analytic input | Newton potentials, localized virial, geometric interval pressure, scaling contradiction | Upstream proof copied; independent falsification active | Verify each central estimate without assuming the conclusion |
-| B: formal input | Inspect real Lean declaration, semantics and axioms; reproduce pinned kernel checks | Independent source inspection/build active | Build, axiom closure, correspondence to classical PDE hypothesis |
-| C: transfers | Doubling/interior normalization; half-space theorem; boundary flattening | PQS primary text available; conditional derivation active | Exact nonnegative hypothesis, limiting nontriviality, spaces and domain constants |
-| D: priority | Primary statements, citation chains, public disclosure history and companion scan | Independent audit active | Whether a newly unconditional corollary package is already public; honest attribution |
+| A: analytic input | Newton potentials, localized virial, interval/layer-pressure, scaling contradiction | Needed unweighted proof independently reconstructed; separate interval falsification passed | No known analytic gap in needed specialization; broader weighted theorem not certified here |
+| B: formal input | Actual Lean declaration, PDE semantics, import hashes and trust scan | All96 source hashes match; no extra PDE assumption or source hole found | Complete kernel/axiom/Comparator reproduction unverified due missing Mathlib artifacts and storage; not used as acceptance basis |
+| C: transfers | Interior doubling, gradient rescaling, exact half-space theorem, boundary flattening | Full classical scope and strong compactness derived, independently checked in complete review01 | Fresh review of current exact package pending |
+| D: priority | Primary statements/citation chains, release chronology and companion inventory | Modest immediate-consequence framing supported; no new analytic mechanism/first claim | Two subscription theorem ranges inaccessible; exhaustive novelty not certified |
+| E: package adversarial | Original problem, primary proof, exact artifacts/metadata and clean reproduction | Review01 complete; two minor documentation repairs; fresh review02 active | Fresh verdict, then exact remote deposit/file/DOI and tracker read-back |
 
-An approach is blocked if it simply assumes an equivalent or stronger unverified central claim. Such a route can reopen only with a new mechanism or evidence. Complete-package adversarial reviews occur after a candidate exists.
+An approach is blocked if it only transfers the central difficulty to an equivalent or stronger unsupported claim. No such replacement is being used. Lean source inspection is explicitly not promoted to kernel verification. The consequence note derives new full-range availability from OpenAI’s audited input and established reductions; it does not appropriate the upstream discovery.

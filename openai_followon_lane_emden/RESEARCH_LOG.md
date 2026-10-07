@@ -33,3 +33,11 @@ Mathematical resolution estimate: **90%**. Publication package estimate: **50%**
 Clean source extraction, source hashes, 648 rational scaling/hyperbola checks, and all614 floating-point interval diagnostics passed. The first clean TeX command failed because its output directory did not exist; README now creates that directory and the repeated clean compilation passed. Final source compiled in the native editor, with an actual independently exported five-page PDF.
 
 The private-index checkpoint helper inadvertently included its own two transient index/lock artifacts when the broad receipts directory was staged in checkpoint1. They contain Git index bookkeeping, not publication content. A project-local ignore rule now excludes these names, and this ordinary correction checkpoint removes the two absent files from current remote main without rewriting history or touching the shared checkout/index. No temporary index artifact is part of the Zenodo upload set. Documentation regeneration by the Google CLI remained unstaged.
+
+## 2026-10-06 21:48 PDT — checkpoint 2: complete review, repair, and fresh review
+
+Mathematical resolution estimate: **95%**. Publication package estimate: **65%**.
+
+Complete reviewer01 independently read every analytic source section and exact PQS statements, rederived the pressure closure and domain/boundary argument, inspected all5 PDF pages, reproduced 648 rational cases/614 diagnostics and clean TeX compilation, and checked all34 original archive members. No substantive defect was found. Two minor documentation inconsistencies were repaired in CURRENT_THEOREM.md and publication README. The revised archive adds literature identity manifests and review01/response01; TeX, PDF, mathematics, metadata and source/diagnostic identities are unchanged.
+
+A NEW complete reviewer02 was assigned the original problem, full exact revised package and primary sources from scratch. Candidate v2 upload identities: PDF5dfd8597…; archive7fd3d023…; manifest31f34df6…. Fresh final acceptance and production deposit/tracker verification are outstanding. No deposit has been created. All reviewer scratch and clean-build caches are ignored.
