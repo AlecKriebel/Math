@@ -22,5 +22,5 @@ manifest={'metadata':{'title':'Binary rational hafnians: an exact reduction and 
 (ROOT/'zenodo-deposit.json').write_text(json.dumps(manifest,indent=2)+'\n')
 review_files=['zenodo-deposit.json']+[item['path'] for item in manifest['files']]
 review_id={name:{'sha256':hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),'bytes':(ROOT/name).stat().st_size} for name in review_files}
-(ROOT/'publication/CANDIDATE_IDENTITY.json').write_text(json.dumps({'candidate':'v2','files':review_id,'authored_payload':hashes},indent=2)+'\n')
+(ROOT/'publication/CANDIDATE_IDENTITY.json').write_text(json.dumps({'candidate':'v3','files':review_id,'authored_payload':hashes},indent=2)+'\n')
 print(json.dumps({'payload_files':len(hashes),'archive_bytes':archive.stat().st_size,'identity':review_id},indent=2))
