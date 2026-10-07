@@ -1,0 +1,12 @@
+--- a/verify.py
++++ b/verify.py
+@@ -15,7 +15,8 @@
+ count=0
+ def check(b):
+  global count
+- assert b
++ if not b:
++  raise AssertionError('certificate check failed')
+  count+=1
+ check(sum(y)==2)
+ for i in range(6):
