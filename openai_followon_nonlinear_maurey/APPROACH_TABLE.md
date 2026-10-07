@@ -1,10 +1,11 @@
-# Approach families
+# Approach families and exact status
 
-| Mechanism | Evidence | Status | Exact remaining gap |
+| Mechanism | Evidence | Status | Exact gap |
 |---|---|---|---|
-| Finite cuts, cubic smoothing, quartic potential and killed Markov walk | Source family332 gives 3024 cost bound; elementary reconstruction underway | Active independent audit | Verify every step and all-L1 adaptation |
-| Approximate finite data by simple functions plus bidual projection | Standard finite-dimensional L1 approximation suggested by triage | Alternative, reserve | Need rigorous closed-constraint passage; direct cuts appear simpler |
-| Mendel–Naor finite extension + weak-star compactness + L-embedded projection | Primary Theorem1.11 and discussion (9) | Active independent audit | Exact finite constraints and arbitrary-measure projection |
-| Counterexample/boundary/priority attack | Three agents working independently | Active | Full evidence and fresh complete-package falsification |
+| Finite cuts, cubic smoothing, quartic potential, killed stationary Markov walk | Full independent reconstruction; 3024 bound; all-L1 proof in main.tex | Mathematically verified, awaiting final package review | Expository/package errors may remain |
+| Simple-function approximation and bidual projection | Primary Lembedded input; independently checked finite approximation | Valid alternative reduction | Unneeded for direct cotype proof; no new mechanism |
+| MN2013 finite theorem + anchored fine ultrafilter + contractive bidual projection | Independent reconstruction; arbitrary-measure finite-piece projection | Mathematically verified, awaiting final package review | Final manuscript consistency audit |
+| Novel endpoint theorem from broader source/measure scope | Earlier Naor Sept10 announcement plus known reductions implies entire scope | Blocked by priority duplication | Reopen only if materially new in-scope theorem or proof contribution is established; no such contribution identified |
+| Adversarial package and attribution review | Separate input proof, full scope, priority and novelty-falsifier agents completed | Fresh complete-package reviews pending | Two distinct complete reviewers; repair and fresh pass |
 
-A route is blocked when it replaces the central claim by an equally difficult unsupported assertion; it may reopen only on new evidence/mechanism.
+No external communication. No unrelated PR work. No formal verification claim. No production deposit or tracker row exists.

@@ -11,3 +11,13 @@ Three independent approaches/audits started: cut/cubic/stopped-walk reconstructi
 Mathematical resolution estimate: 20%. Publication package estimate: 3%. These are planning estimates, not evidence.
 
 Shared main has substantial concurrent changes and differs from current remote main. Publish owned findings through an isolated index and a commit based on current remote main, preserving checkout HEAD, index and other files. Disk headroom is about 1 GB; keep builds small.
+
+## 2026-10-06 22:20 America/Los_Angeles
+
+Independent cut audit reconstructs every essential upstream inequality and the all-real-L1 adaptation, including constant 3024, zero weights, zero stationary masses and t=1. Independent full-extension audit reconstructs an anchored fine-ultrafilter proof and a contractive ultrapower-to-bidual map, plus arbitrary-measure projection via a maximal almost-disjoint finite-measure decomposition. NPSS source constant is 4 sqrt(p-1), finite p>=2.
+
+Meaningful priority correction: Naor 2609.07564v1 already proves Hilbert-to-standard-L1; v2 (submitted September 10, 2026) announces forthcoming Mendel–Naor L1 metric Markov cotype two and O(sqrt(p)) extension. Two independent priority audits find that the entire proposed target is an immediate consequence of that announcement plus established reductions. No genuine new theorem was found. Full forthcoming MN26 proof was not located; distinguish announcement from checked proof and do not erase priority. The upstream explicit proof is audited independently of that announcement. The novelty publication route is blocked by substantive duplication, not by a mathematical gap. No Zenodo or tracker mutation is allowed by the original novelty condition in the current scope.
+
+A concise, self-contained verification note has been authored and compiled successfully in the native editor; Tectonic exported an actual PDF. It explicitly disclaims novelty and corrects historical status. This is a useful proof/attribution record; it is not a newly published preprint. Complete-package adversarial review remains to run.
+
+Mathematical resolution estimate: 85%. Publication package estimate: 50% prepared, 0% publication eligibility. Percentages are estimates, not proof. Disk became briefly full during parallel work; only redundant project-owned downloads were removed. Shared checkout/index preserved in checkpoint01.

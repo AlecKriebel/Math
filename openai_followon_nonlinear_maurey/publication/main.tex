@@ -1,0 +1,222 @@
+% Adapted verification note: all-measure and full-extension exposition added by Alec Kriebel, 2026.
+% Cut/cubic/quartic/killed-chain argument attributed to OpenAI family 332; see references and NOTICE.
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,allcolors=blue!50!black]{hyperref}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\1}{\mathbf1}
+\hypersetup{pdftitle={Endpoint nonlinear Maurey extension: an all-measure verification note},pdfauthor={Alec Kriebel},pdfsubject={Verification note; no new-result priority claim}}
+\title{Endpoint nonlinear Maurey extension:\\an all-measure verification note}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a checked all-measure formulation of endpoint nonlinear Maurey extension: every Lipschitz map from an arbitrary subset of a metric space $X$ of Markov type two to any real $L_1(\mu)$ extends with loss at most $C M_2(X)$, where $C$ is universal. We adapt OpenAI's finite-cut construction to measurable functions, retaining $N_2(L_1(\mu))\leq12\sqrt{21}$, and explain the full extension using Mendel--Naor's finite theorem and a contractive bidual projection, including nonseparable and non-$\sigma$-finite cases. This is a verification and attribution note, not a claim to a new solution: Naor's September 10, 2026 revision already publicly announces the $L_1$ cotype result and the $O(\sqrt p)$ extension consequence of forthcoming work with Mendel. The broader formulation is an elementary consequence of that input and established machinery.
+\end{abstract}
+
+\section{Claim, conventions, and attribution}
+All spaces are set-sized. A measure space means a set $\Omega$, a $\sigma$-algebra $\Sigma$, and a countably additive positive measure $\mu:\Sigma\to[0,\infty]$. The Banach space $L_1(\mu;\R)$ consists of equivalence classes modulo almost-everywhere equality of real measurable functions with $\int|f|\,d\mu<\infty$. Completeness of the measure, $\sigma$-finiteness, localizability, and separability are not assumed.
+
+For $n,t\geq1$, let $A=(a_{ij})_{i,j=1}^n$ be stochastic and reversible relative to a probability vector $\pi$, meaning $\pi_i a_{ij}=\pi_j a_{ji}$. Zero entries of $\pi$ are allowed; detailed balance implies $\pi A=\pi$. A metric space $X$ has \emph{Markov type two} with constant $M$ if every such datum and every $u_1,\dots,u_n\in X$ satisfy
+\begin{equation}\label{eq:type}
+ \sum_{i,j}\pi_i(A^t)_{ij}d_X(u_i,u_j)^2
+ \leq M^2t\sum_{i,j}\pi_i a_{ij}d_X(u_i,u_j)^2.
+\end{equation}
+We denote the infimum of positive admissible $M$ by $M_2(X)$. For a non-singleton space it is at least one; singleton and empty spaces will be handled separately. Metric Markov cotype two with constant $N$ means that for every finite tuple $x_1,\dots,x_n\in Y$ one can choose $y_1,\dots,y_n\in Y$ with
+\begin{equation}\label{eq:cotype}
+ \sum_i\pi_i d_Y(x_i,y_i)^2+t\sum_{i,j}\pi_i a_{ij}d_Y(y_i,y_j)^2
+ \leq N^2\sum_{i,j}\pi_i\left(\frac1t\sum_{s=1}^t A^s\right)_{ij}d_Y(x_i,x_j)^2.
+\end{equation}
+The least admissible constant is $N_2(Y)$, with the same infimum convention. These are the conventions of Mendel--Naor \cite[Definitions 1.1--1.2]{MN13}.
+
+\begin{samepage}
+\begin{theorem}\label{thm:extension}
+There is a universal $C<\infty$ such that for every metric space $X$ with $M_2(X)<\infty$, every measure space as above, every $S\subseteq X$, and every Lipschitz $f:S\to L_1(\mu;\R)$, there is $F:X\to L_1(\mu;\R)$ with $F|_S=f$ and
+\[\Lip(F)\leq C M_2(X)\Lip(f).\]
+In the convention \eqref{eq:cotype}, $N_2(L_1(\mu;\R))\leq12\sqrt{21}$. If $\kappa$ is a fixed universal constant valid in Mendel--Naor's Theorem 1.11 at exponent two, one may take $C=12\sqrt{21}\,\kappa$.
+\end{theorem}
+\end{samepage}
+
+\paragraph{Provenance and status.}
+Ball introduced the relevant extension program \cite{Ball92}; Mendel--Naor \cite[Theorem 1.11, discussion (9), Question 1.15]{MN13} provide the finite extension theorem and ask about metric Markov cotype of $\ell_1$. Naor \cite{Naor26}, first publicly submitted September 7, 2026, proves Hilbert-to-$L_1[0,1]$ extension by de-H\"oldering factorization. His September 10 revision, in its ``Added in proof,'' announces that forthcoming Mendel--Naor work \emph{Metric invariants from de-H\"oldering factorization} proves $N_2(L_1[0,1])<\infty$ and the $O(\sqrt p)$ extension estimate. We verified that announcement, but did not locate and verify the forthcoming full proof. The announcement itself already implies the scope of Theorem~\ref{thm:extension} by established reductions, as explained in Section~\ref{sec:priority}.
+
+Finite cut representations are classical \cite{DL97}, and the cubic smoothing appears in Cheng--Wang--Xiang \cite{CWX26}, for the different invariant of torus metric cotype. The explicit cut/cubic/quartic/stopped-walk proof below is adapted from OpenAI \cite{OAI332}, pinned at repository commit \texttt{adc7f124} (full hash in the source-custody receipt). That manuscript is dated October 5, 2026; its repository release was publicly disclosed subsequently. Its stated extension corollary is Hilbert-to-$\ell_1$. We claim neither the base discovery, a first endpoint solution, nor a new extension method. The all-measure bookkeeping and explicit full-extension reconstruction are the purpose of this note.
+
+\section{The measurable cut construction}
+Fix $x_1,\dots,x_n\in L_1(\mu;\R)$. Choose finite-valued measurable representatives simultaneously, modifying a finite union of measurable null sets if needed. Set
+\[
+ v=\min_i x_i,\qquad b_B=\left(\min_{i\in B}x_i-\max_{i\notin B}x_i\right)_+
+ \quad(\varnothing\ne B\subsetneq[n]).
+\]
+Finite minimum, maximum, and positive part are measurable. Also $|v|\leq\sum_i|x_i|$ and $0\leq b_B\leq2\sum_i|x_i|$, so they are integrable for every measure convention above. Put $w_B=\int b_B\,d\mu$ and keep only cuts of positive weight in $\mathcal B$. Write
+\[
+ \norm{u}_{1,w}=\sum_{B\in\mathcal B}w_B|u_B|,\qquad
+ \norm{u}_H^2=\sum_{B\in\mathcal B}w_Bu_B^2,\qquad
+ z_i(B)=\1_{\{i\in B\}}.
+\]
+The affine map $T(u)=v+\sum_{B\in\mathcal B}u_Bb_B$ takes values in the original $L_1$ space and obeys
+\begin{equation}\label{eq:cuts}
+ T(z_i)=x_i,\qquad
+ \norm{x_i-x_j}_1=\norm{z_i-z_j}_{1,w}=\norm{z_i-z_j}_H^2,
+ \qquad \norm{T(u)-T(u')}_1\leq\norm{u-u'}_{1,w}.
+\end{equation}
+Indeed, at each $\omega$, list the distinct values as $\alpha_1<\cdots<\alpha_m$. The only positive cut functions there correspond to the nested upper sets $B_r=\{i:x_i(\omega)\geq\alpha_{r+1}\}$ and have value $\alpha_{r+1}-\alpha_r$. Adding the gaps below each $x_i(\omega)$ proves reconstruction. For a pair $i,j$, all nonzero signed gaps have the same sign, so
+\[
+ |x_i(\omega)-x_j(\omega)|=\sum_B|z_i(B)-z_j(B)|b_B(\omega).
+\]
+Integrate this finite equality and use that binary differences have equal absolute value and square. The last assertion follows from the triangle inequality. A discarded $b_B$ is zero almost everywhere, so discarding it changes no $L_1$ identity. If $\mathcal B$ is empty, all $x_i$ agree and \eqref{eq:cotype} holds with $y_i=x_i$.
+
+\section{Cubic smoothing and the cotype bound}
+The remaining argument is a self-contained reconstruction of \cite{OAI332} in the finite weighted cut space. Let $Q=[0,1]^{\mathcal B}$, $\phi(r)=3r^2-2r^3$, and $\Phi(u)_B=\phi(u_B)$. This map fixes binary vectors. For $e\in\{0,1\}^{\mathcal B}$, $u,u'\in Q$, $a=u-e$, and $\delta=u'-u$, define
+\[
+ R=\norm{a+\delta}_H^4-\norm a_H^4-4\norm a_H^2\langle a,\delta\rangle_H.
+\]
+Direct expansion gives
+\begin{equation}\label{eq:quartic}
+ R=2\norm a_H^2\norm\delta_H^2+
+       (2\langle a,\delta\rangle_H+\norm\delta_H^2)^2.
+\end{equation}
+Since $|\phi'(r)|\leq6|r-d|$ for either bit $d$, integration and Cauchy--Schwarz yield
+\[
+ \norm{\Phi(u')-\Phi(u)}_{1,w}
+ \leq6\norm a_H\norm\delta_H+3\norm\delta_H^2.
+\]
+Equation~\eqref{eq:quartic} implies $\norm a_H^2\norm\delta_H^2\leq R/2$ and
+\[
+ \norm\delta_H^4\leq
+ 2(2\langle a,\delta\rangle_H+\norm\delta_H^2)^2
+       +8\norm a_H^2\norm\delta_H^2\leq4R.
+\]
+Therefore
+\begin{equation}\label{eq:flat}
+ \norm{\Phi(u')-\Phi(u)}_{1,w}^2\leq108R.
+\end{equation}
+If $(M_m)$ is a $Q$-valued Hilbert martingale and $e$ is an initial-filtration-measurable binary vector, the linear term in $R$ has conditional expectation zero. Summing \eqref{eq:flat}, using boundedness of $Q$ and monotone convergence, gives, whenever $M_m\to M_\infty$ almost surely,
+\begin{equation}\label{eq:mart}
+ \E\sum_{m\geq0}\norm{\Phi(M_{m+1})-\Phi(M_m)}_{1,w}^2
+ \leq108\E\norm{M_\infty-e}_H^4.
+\end{equation}
+All quantities lie in a fixed finite-dimensional space, so neither separability of the target nor choice of measurable pointwise martingales is at issue.
+
+We record the time comparison with its constant. For a stationary $A$-walk $(Z_s)$ and metric data $(x_i)$, put $D(s)=\E d(x_{Z_s},x_{Z_0})^2$ and $W=t^{-1}\sum_{s=1}^tD(s)$. Triangle inequality, Minkowski, and stationarity imply
+\[
+ \sqrt{D(r+s)}\leq\sqrt{D(r)}+\sqrt{D(s)},\quad D(t)\leq4W,\quad
+ D(jt+r)\leq2j^2D(t)+2D(r)\quad(0\leq r<t).
+\]
+For the middle inequality average $D(t)\leq2D(r)+2D(t-r)$ over $1\leq r\leq t$. Let $S_t$ be independent of the walk with $\Prob(S_t=s)=pq^s$, $p=(t+1)^{-1}$ and $q=1-p$. With $J=\lfloor S_t/t\rfloor$ and $R_t=S_t-tJ$,
+\[
+ \E J^2\leq\E S_t^2/t^2=2+1/t\leq3,\qquad
+ \Prob(R_t=r)=\frac{pq^r}{1-q^t}\leq2/t.
+\]
+Here $q^t\leq1/2$, since $(1+1/t)^t\geq2$. Thus $\E D(R_t)\leq2W$, and
+\begin{equation}\label{eq:geometric}
+ \E d(x_{Z_{S_t}},x_{Z_0})^2\leq28W.
+\end{equation}
+This includes $t=1$, when $R_t=0$.
+
+For the cotype construction set
+\[
+ h_i=p\sum_{s\geq0}q^s\sum_j(A^s)_{ij}z_j\in Q,
+ \qquad h_i=pz_i+q\sum_j a_{ij}h_j,
+ \qquad y_i=T(\Phi(h_i)).
+\]
+Run the following finite-state killed chain from the stationary distribution $\pi$. At an alive index $i$, it dies at the same index with probability $p$, and otherwise moves to an alive index $j$ with probability $qa_{ij}$; death is absorbing. Attach $h_i$ to an alive index and $z_i$ to a dead index. The harmonic identity makes the attached process a martingale with respect to the observed initial state and transitions. It starts at $h_{Z_0}$ and terminates at $z_{Z_{S_t}}$. In particular, its filtration does not reveal the future killing time. Apply \eqref{eq:mart} with $e=z_{Z_0}$. By \eqref{eq:cuts}, the terminal fourth-power potential is $\norm{x_{Z_{S_t}}-x_{Z_0}}_1^2$.
+
+Define
+\[
+ B_0=\sum_i\pi_i\norm{z_i-\Phi(h_i)}_{1,w}^2,\qquad
+ E_0=\sum_{i,j}\pi_i a_{ij}\norm{\Phi(h_i)-\Phi(h_j)}_{1,w}^2.
+\]
+At transition time $m$, survival is independent of the stationary walk, giving expected jump cost $pq^mB_0+q^{m+1}E_0$. Summing gives exactly $B_0+(q/p)E_0=B_0+tE_0$. Contractivity in \eqref{eq:cuts}, followed by \eqref{eq:mart} and \eqref{eq:geometric}, proves
+\[
+ \sum_i\pi_i\norm{x_i-y_i}_1^2+t\sum_{i,j}\pi_i a_{ij}\norm{y_i-y_j}_1^2
+ \leq108\cdot28\sum_{i,j}\pi_i\left(\frac1t\sum_{s=1}^tA^s\right)_{ij}\norm{x_i-x_j}_1^2.
+\]
+This establishes $N_2(L_1(\mu;\R))^2\leq3024$. Only stationarity was used; the construction also proves this cotype inequality for stationary stochastic matrices without detailed balance. This strengthening is already recorded in \cite{OAI332}.
+
+\section{A contractive projection for every measure convention}\label{sec:projection}
+We need a projection $P:Y^{**}\to Y$ with $P\iota=\operatorname{Id}_Y$ and $\norm P\leq1$, where $Y=L_1(\mu;\R)$ and $\iota$ is the canonical embedding. Harmand--Werner--Werner \cite[Chapter IV, Example 1.1(a), p.158]{HWW} establish the stronger statement that $L_1$ spaces are L-embedded: their canonical copy is an L-summand in the bidual. Their Banach lattice proof uses the projection-band property of an AL-space; it does not assert that $L_1$ is a dual. To make arbitrary-measure scope explicit, the following reduction requires that standard result only for finite measures.
+
+By Zorn's lemma choose a maximal family $(E_i)_{i\in I}$ of measurable sets with $0<\mu(E_i)<\infty$ and $\mu(E_i\cap E_j)=0$ for $i\ne j$. For any $f\in L_1(\mu)$, only countably many $i$ have $\int_{E_i}|f|>0$, since each finite sum of these integrals is at most $\norm f_1$. Let $U_f$ be the measurable union of those countably many $E_i$. If $f$ were nonzero outside $U_f$, some $D=(\Omega\setminus U_f)\cap\{|f|\geq1/k\}$ would have positive finite measure. It intersects each remaining $E_i$ in a null set, since the integral of $|f|$ on each such $E_i$ is zero. It is disjoint from the selected ones. Adjoining $D$ contradicts maximality. Thus $f=0$ almost everywhere outside $U_f$.
+
+Consequently restriction defines an isometric isomorphism
+\begin{equation}\label{eq:sum}
+ L_1(\mu)\cong\left(\bigoplus_{i\in I}L_1(\mu|_{E_i})\right)_1.
+\end{equation}
+Surjectivity follows by gluing any countably supported summable family of integrable functions: within that countable subfamily remove the preceding overlaps to obtain disjoint measurable representatives; the removed sets are null. No uncountable union is used. If no positive finite-measure set exists, $L_1(\mu)=\{0\}$ by the same level-set argument.
+
+For completeness, the needed projection on an arbitrary $\ell_1$ sum has a direct description. Let $Y=\bigoplus_1Y_i$, let $r_i:Y\to Y_i$ be restriction, and let $P_i:Y_i^{**}\to Y_i$ be contractive projections. For $u\in Y^{**}$ define
+\[P(u)=(P_i r_i^{**}u)_{i\in I}.\]
+For every finite $J\subset I$, the norm of the combined restriction $r_J$ is at most one; identifying the bidual of a finite $\ell_1$ sum with the finite sum of biduals gives
+\[\sum_{i\in J}\norm{P_i r_i^{**}u}\leq\sum_{i\in J}\norm{r_i^{**}u}\leq\norm u.\]
+Hence the displayed family is summable, $P$ is linear and contractive, and $P\iota$ is the identity. This agrees with the stability fact in \cite[Chapter IV, Proposition 1.5(b)]{HWW}. Applying it to \eqref{eq:sum} proves the required arbitrary-measure assertion. For a nonzero target this projection has norm exactly one.
+
+\section{From finite extensions to the full map}
+Mendel--Naor \cite[Theorem 1.11]{MN13} state the following at exponent two: if $X$ has Markov type two, $Y$ has metric Markov cotype two, and a barycenter map satisfies
+\[\norm{\mathfrak B(\nu)-\mathfrak B(\eta)}\leq\Gamma W_2(\nu,\eta),\qquad\mathfrak B(\delta_y)=y,\]
+for finitely supported probability measures, then for every Lipschitz $f:S\to Y$ and every finite $E\subset X$ there is $g_E:E\to Y$ agreeing with $f$ on $E\cap S$, with
+\[\Lip(g_E)\leq\kappa\Gamma M_2(X)N_2(Y)\Lip(f).\]
+The required condition is $W_2$-barycentricity, not the separate power-two convexity condition called $2$-barycentricity in that paper. For any Banach space the ordinary mean works with $\Gamma=1$: for any coupling $\lambda$,
+\[
+ \norm{\mathfrak B(\nu)-\mathfrak B(\eta)}
+ \leq\int\norm{y-z}\,d\lambda
+ \leq\left(\int\norm{y-z}^2\,d\lambda\right)^{1/2}.
+\]
+Taking the infimum over couplings proves the claimed convention. In particular the cotype result just proved supplies the finite extensions with $L=12\sqrt{21}\kappa M_2(X)\Lip(f)$.
+
+Here is the entire compactness step, corresponding to \cite[discussion (9)]{MN13}. If $S=\varnothing$, take $F=0$; if $\Lip(f)=0$ and $S$ is nonempty, extend its common value constantly. Empty or singleton $X$, and a zero target, are immediate. Otherwise choose $s_0\in S$. Direct the set $\mathcal I$ of finite subsets of $X$ containing $s_0$ by inclusion. Choose an ultrafilter $\mathcal U$ containing every tail $\{E:D\subseteq E\}$ for finite $D\subset X$. These tails have the finite intersection property; an arbitrary free ultrafilter would not suffice. For each $E$ take the finite extension $g_E$, and set
+\[
+ u_E(x)=\begin{cases}g_E(x)-f(s_0),&x\in E,\\0,&x\notin E.\end{cases}
+\]
+For every fixed $x$, $\norm{u_E(x)}\leq Ld_X(x,s_0)$ for all $E$, so this is a bounded family even when $X$ and $f(S)$ are unbounded. Define a functional on $Y^*$ by
+\[
+ H(x)(y^*)=\lim_{\mathcal U}y^*(u_E(x)).
+\]
+Scalar ultralimits exist on bounded intervals and preserve linearity; the stated bound shows $H(x)\in Y^{**}$. On the tail containing $x,x'$ the finite Lipschitz inequality holds, and therefore
+\[
+ \norm{H(x)-H(x')}\leq Ld_X(x,x'),\qquad
+ H(s)=\iota(f(s)-f(s_0))\quad(s\in S).
+\]
+Now $F(x)=f(s_0)+PH(x)$ is the required full map in the original $Y$.
+
+Equivalently, $x\mapsto[u_E(x)]$ is a map into the Banach ultrapower $Y_{\mathcal U}$. The operator
+\[Q:Y_{\mathcal U}\to Y^{**},\qquad Q([u_E])(y^*)=\lim_{\mathcal U}y^*(u_E)\]
+is well defined, linear and contractive: changing a representative by an ultranorm-zero family leaves every scalar limit fixed, and $|Q([u_E])(y^*)|\leq\norm{y^*}\lim_{\mathcal U}\norm{u_E}$. It fixes the diagonal copy of $Y$. Thus $PQ$ is a contractive retraction. No assertion of duality of $L_1$, nor a separability, compact-range, closed-subset, or local-reflexivity hypothesis is needed here. This completes Theorem~\ref{thm:extension}.
+
+\section{Examples, boundaries, and the priority implication}\label{sec:priority}
+Naor--Peres--Schramm--Sheffield \cite[Theorem 1.2]{NPSS} prove $M_2(L_p)\leq4\sqrt{p-1}$ for $2\leq p<\infty$. Consequently
+\[\Lip(F)\leq4C\sqrt{p-1}\Lip(f)\]
+for $L_p$ sources and real $L_1$ targets. For arbitrary source measures, the same Markov-type estimate follows from the standard finite simple-function approximation: a finite tuple in $L_p$ is approximated on a common finite disjoint partition by simple functions supported on finite-measure sets. Their finite-dimensional weighted $\ell_p$ span embeds isometrically into the usual $L_p[0,1]$. Apply \eqref{eq:type} and pass to the norm limit in its finitely many terms. Hilbert sources have $M_2=1$ \cite{Ball92}. These examples retain their source constant; no $p=\infty$ assertion follows.
+
+The positive cotype assertion for the usual $L_1[0,1]$ already suffices to obtain the entire scope above. For each $m$, the constant functions on a partition into $m$ equal intervals form an isometric scaled copy of $\ell_1^m$; conditional averaging on the intervals is a contractive projection. Apply cotype in $L_1[0,1]$ and project its output to this span, preserving every input and decreasing each cost. This gives dimension-independent cotype for finite $\ell_1$. Each finite weighted cut space in Section 2 is isometric to such a finite $\ell_1$. Choose its cotype outputs and apply $T$; the identities \eqref{eq:cuts} transfer the inequality to any $L_1(\mu)$, with the same constant. The preceding full-extension argument then applies. Thus the earlier announced result yields the broad formulation by established reductions, independently of the explicit numerical proof reconstructed here. Absence of a located forthcoming full proof does not erase the earlier public disclosure. This note is not offered as a novel resolution on the strength of added measure quantifiers.
+
+Metric Markov cotype need not pass to arbitrary subspaces of $L_1$; the projection argument just used requires a specific contractive retraction. Kalton's counterexample is recorded in \cite[Theorem 1.14]{MN13}. The pointwise cut proof does not concern noncommutative $L_1$ or Schatten-1 targets. For complex scalar $L_1$ only a separate realification statement is justified: $Jf=(\Re f,\Im f)$ maps into $L_1$ on the disjoint union of two copies of $\Omega$, and
+\[\norm f_1\leq\norm{Jf}_1\leq\sqrt2\norm f_1.\]
+Apply the real extension and the inverse of $J$ to obtain at most $\sqrt2 C M_2(X)$ loss. This is a distortion deduction, not a complex min/max argument.
+
+\paragraph{Verification disclosure.}
+AI tools were used extensively in research, drafting, and verification. Independent automated audits are not conventional human peer review; this note has not undergone conventional human refereeing. No Lean formalization of family 332 or this follow-on result was found or claimed. The accompanying research records distinguish checked proofs, established cited theorems, and the earlier public announcement. No external individual was contacted. Production publication is withheld under the project's novelty condition.
+
+\begin{thebibliography}{9}
+\bibitem{DL97} M. M. Deza and M. Laurent, \emph{Geometry of Cuts and Metrics}, Algorithms and Combinatorics 15, Springer, 1997. \href{https://doi.org/10.1007/978-3-642-04295-9}{doi:10.1007/978-3-642-04295-9}.
+\bibitem{CWX26} Q. Cheng, Y. Wang and B. Xiang, \emph{Sharp Metric Cotype Inequalities for $L_1$ via Nonlinear Cut Smoothing}, arXiv:2609.08749v2, September 9, 2026. \href{https://arxiv.org/abs/2609.08749v2}{Versioned public record}.
+\bibitem{Ball92} K. Ball, \emph{Markov chains, Riesz transforms and Lipschitz maps}, Geom. Funct. Anal. 2 (1992), 137--172. \href{https://doi.org/10.1007/BF01896971}{doi:10.1007/BF01896971}.
+\bibitem{MN13} M. Mendel and A. Naor, \emph{Spectral calculus and Lipschitz extension for barycentric metric spaces}, Anal. Geom. Metr. Spaces 1 (2013), 163--199. \href{https://doi.org/10.2478/agms-2013-0003}{doi:10.2478/agms-2013-0003}. \href{https://web.math.princeton.edu/~naor/homepage\%20files/cat0-extension.pdf}{Author PDF}.
+\bibitem{HWW} P. Harmand, D. Werner and W. Werner, \emph{M-Ideals in Banach Spaces and Banach Algebras}, Lecture Notes in Math. 1547, Springer, 1993. \href{https://doi.org/10.1007/BFb0084355}{doi:10.1007/BFb0084355}. \href{https://page.mi.fu-berlin.de/werner99/mbuch/buch4.pdf}{Chapter IV}.
+\bibitem{NPSS} A. Naor, Y. Peres, O. Schramm and S. Sheffield, \emph{Markov chains in smooth Banach spaces and Gromov hyperbolic metric spaces}, Duke Math. J. 134 (2006), 165--197. \href{https://doi.org/10.1215/S0012-7094-06-13415-4}{doi:10.1215/S0012-7094-06-13415-4}. \href{https://web.math.princeton.edu/~naor/homepage\%20files/Mtype.pdf}{Author PDF}.
+\bibitem{Naor26} A. Naor, \emph{De-H\"oldering factorization}, arXiv:2609.07564v2, September 10, 2026 (v1: September 7, 2026). \href{https://arxiv.org/abs/2609.07564v2}{Versioned public record}. The ``Added in proof'' cites M. Mendel and A. Naor, \emph{Metric invariants from de-H\"oldering factorization}, 2026, forthcoming preprint.
+\bibitem{OAI332} OpenAI, \emph{Metric Markov Cotype Two of $\ell_1$}, OpenAI Math Release preprint, 2026. Manuscript-specific citation: \texttt{OAI:Metric-Markov-Cotype-Two-of-l1-October-5-2026}. \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Metric-Markov-Cotype-Two-of-l1-October-5-2026/l1-markov-cotype.pdf}{Pinned source PDF}.
+\end{thebibliography}
+\end{document}
