@@ -18,7 +18,7 @@
 \newcommand{\wrp}{\mathbin{\mathrm{wr}}}
 \title{Two consequences of group-algebra and planar Fourier certificates:\\wreath products and triangle bounds}
 \author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
-\date{6 October 2026; version 1.0}
+\date{6 October 2026; version 1.0.0}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -26,7 +26,7 @@ We derive two separately motivated consequences of precisely identified input th
 \end{abstract}
 
 \section{Provenance, contribution, and verification status}
-Problem 21.22 of the twenty-first Kourovka Notebook asks whether the standard restricted wreath product of two finitely generated Hopfian groups is Hopfian \cite{kourovka}. Our repository's draft PR~389, problem~2531, retains this question as unsolved and records partial results \cite{pr389}. The acting group in the question acts regularly on itself, and the base consists of finite-support lamps. A counterexample for another permutational action does not answer this question.
+Problem 21.22 of the twenty-first Kourovka Notebook asks whether the standard restricted wreath product of two finitely generated Hopfian groups is Hopfian \cite{kourovka}. The same existence question is Question~1.14 of the published Bradford--Fournier-Facio paper \cite{bff}. Our repository's draft PR~389, problem~2531, retains this question as unsolved and records partial results \cite{pr389}. The acting group in the question acts regularly on itself, and the base consists of finite-support lamps. A counterexample for another permutational action does not answer this question.
 
 Problem~1.32 in de Laat's AIM list \cite{aim} concerns a triangle Fourier program and its comparison with the Cohn--Elkies two-point program, including questions about symmetry and conversion of optimizers. Draft PR~487, problem~20001754, retains the general question as unsolved \cite{pr487}. Our second target concerns only dimension two and the three lengths $|x|,|y|,|x-y|$. It adds no condition on $|x+y|$ and makes no all-dimensional claim.
 
@@ -87,7 +87,7 @@ Use the Fourier transform
 \[
  \widehat g(\xi)=\int_{\R^n}g(x)e^{-2\pi i\langle x,\xi\rangle}\,dx.
 \]
-Let $L_n$ be the infimum of $g(0)$ over real Schwartz functions $g$ on $\R^n$ satisfying
+The two-point method is due to Cohn--Elkies \cite{ce}. Let $L_n$ be the infimum of $g(0)$ over real Schwartz functions $g$ on $\R^n$ satisfying
 \[
  \widehat g(0)=1,\qquad \widehat g\ge0,\qquad
  g(x)\le0\quad (|x|\ge1).
@@ -96,7 +96,7 @@ Put $D=\{0\}\cup[1,\infty)$ and
 \[
  C_\triangle=\{(x,y): |x|,|y|,|x-y|\in D\}\setminus\{(0,0)\}.
 \]
-Let $P_n$ be the infimum of $F(0,0)$ over real Schwartz functions on $\R^n\times\R^n$ with $\widehat F(0,0)=1$, $\widehat F\ge0$ everywhere, and $F\le0$ on $C_\triangle$. These are raw number-density objectives, with no rotational-invariance or optimizer-attainment assumption.
+Let $P_n$ be the infimum of $F(0,0)$ over real Schwartz functions on $\R^n\times\R^n$ with $\widehat F(0,0)=1$, $\widehat F\ge0$ everywhere, and $F\le0$ on $C_\triangle$. The AIM source displays the square root of the triangle infimum; our $P_n$ is its unrooted objective, so its planar numerical comparison is $\sqrt{P_2}=L_2$. These are raw number-density objectives, with no rotational-invariance or optimizer-attainment assumption.
 
 \begin{proposition}[Planar Poisson lower bounds]\label{prop:poisson}
 With these definitions, $L_2\ge2/\sqrt3$ and $P_2\ge4/3$.
@@ -182,12 +182,12 @@ OpenAI's Theorem~1.1 in \cite{oai090} supplies an admissible planar two-point Sc
 No triangle optimizer or objective-preserving conversion is used.
 \end{proof}
 
-The substantive external input is Theorem~1.1 of \cite{oai090}.\allowbreak Its construction couples Gaussian-damped entire cardinal functions through an infinite $\ell^1$ system. Finite matrix bounds and uniform output-tail estimates provide an actual bounded inverse; residual bounds compare rational tables to the exact coefficient lists. Finite Bernstein bounds control whole half-gaps after the vanishing jets are subtracted, and an analytic second-derivative bound and sine-product barrier control the unbounded region. Differentiated Poisson summation fixes the exact positive normalization. The accompanying audit reconstructs this chain. An independent adaptive Arb integration implementation verifies all 51 finite nodes, both matrix signs and the cross/exterior bounds, 102 residual pairs, 84 half-gaps and 2,436 Bernstein inequalities. A second independent implementation uses direct node-Taylor formulas and an audited Fej\'er remainder to verify all 2,436 Bernstein inequalities. Independent scalar checks verify the envelope, coefficient-error, Taylor-tail and unbounded-tail constants. These finite checks supplement the written continuum and infinite-system arguments; floating-point sampling is diagnostic evidence only.
+The substantive external input is Theorem~1.1 of \cite{oai090}.\allowbreak{} Its construction couples Gaussian-damped entire cardinal functions through an infinite $\ell^1$ system. Finite matrix bounds and uniform output-tail estimates provide an actual bounded inverse; residual bounds compare rational tables to the exact coefficient lists. Finite Bernstein bounds control whole half-gaps after the vanishing jets are subtracted, and an analytic second-derivative bound and sine-product barrier control the unbounded region. Differentiated Poisson summation fixes the exact positive normalization. The accompanying audit reconstructs this chain. An independent adaptive Arb integration implementation verifies all 51 finite nodes, both matrix signs and the cross/exterior bounds, 102 residual pairs, 84 half-gaps and 2,436 Bernstein inequalities. A second independent implementation uses direct node-Taylor formulas and an audited Fej\'er remainder to verify all 2,436 Bernstein inequalities. Independent scalar checks verify the envelope, coefficient-error, Taylor-tail and unbounded-tail constants. These finite checks supplement the written continuum and infinite-system arguments; floating-point sampling is diagnostic evidence only.
 
 \section{Attribution, scope, and reproducibility}
 Theorems~\ref{thm:negative} and~\ref{thm:planar} are consequences of the explicitly credited external inputs and the displayed deductions. The independent checks and audits have the exact scopes described above; neither target is claimed as formally verified. The two parts do not settle other wreath actions, a prescribed nonabelian free lamp, all-dimensional equality, characterization of triangle optimizers, or a universal conversion theorem.
 
-An institutional 2026 thesis abstract by Daria Zhitniaia \cite{zhitniaia} announces a planar magic-function representation. The full thesis was unavailable in the inspected institutional record; the abstract alone does not permit a comparison of complete sign, regularity, and normalization claims. This limits any priority conclusion. No outreach was undertaken. Our short deductions and standard lattice arguments are derivative, and the verification package must be assessed on its actual checkable coverage.
+An institutional 2026 thesis abstract by Daria Zhitniaia \cite{zhitniaia} announces a planar magic-function representation. Its public-posting date is undetermined, and the full thesis was unavailable in the inspected institutional record; the abstract alone does not permit a comparison of complete sign, regularity, and normalization claims. An April 2026 preprint of Zhou \cite{zhou} already asserts planar linear-programming sharpness in its introduction, but does not provide a planar certificate in the inspected proof. These records limit any priority conclusion. No outreach was undertaken. Our short deductions and standard lattice arguments are derivative, and the verification package must be assessed on its actual checkable coverage.
 
 The editable source, bibliography, dependency and theorem ledgers, exact source versions, independent code, computational receipts, review records and reproduction instructions are maintained together. Third-party manuscripts and runtime libraries are local audit inputs, excluded from the intended distributable package. The package manifest binds each distributed file to a SHA-256 identity. Reproduction checks all decisive finite gates with assertions enabled, rebuilds the PDF, and compares the extracted text on every page; binary PDF identity may differ through build metadata. Computational receipts do not certify the probabilistic/topological proof, which must be checked from the written source audit and its pinned input.
 
@@ -202,9 +202,11 @@ The editable source, bibliography, dependency and theorem ledgers, exact source 
 \bibitem{bs} M. R. Bridson and H. Short, Complete embeddings of groups, \emph{Bulletin of the Australian Mathematical Society} 110 (2024), 136--144. DOI: \href{https://doi.org/10.1017/S0004972723001442}{10.1017/S0004972723001442}.
 \bibitem{oai197} OpenAI, A Torsion-Free Group Algebra That Is Not Directly Finite, manuscript titled October 4, 2026, Theorem~1.1, immutable release commit \nolinkurl{adc7f1241b42e322a6451854ab7e4b4c146bf78a}. \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026/direct-finiteness.pdf}.
 \bibitem{oai090} OpenAI, A sharp Fourier certificate for planar circle packing, manuscript titled September 23, 2026, Theorem~1.1, same immutable release commit. \url{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-sharp-Fourier-certificate-for-planar-circle-packing-September-23-2026/paper.pdf}.
-\bibitem{aim} D. de Laat, Discrete analysis and its applications, AIM Problem~1.32. \url{http://aimpl.org/discreteaf/1/}.
+\bibitem{aim} D. de Laat, Problem~1.32, Discrete geometry and automorphic forms, AIM problem list. \url{http://aimpl.org/discreteaf/1/}.
 \bibitem{cdls} H. Cohn, D. de Laat and A. Salmon, Three-point bounds for sphere packing, arXiv:2206.15373v1 (2022), Proposition~4.7, Theorem~3.1 and Proposition~3.5. \url{https://arxiv.org/abs/2206.15373v1}.
 \bibitem{dlv} D. de Laat and F. Vallentin, A semidefinite programming hierarchy for packing problems in discrete geometry, \emph{Mathematical Programming} B 151 (2015), 529--553; corrected arXiv:1311.3789v3 (2021), Section~5.1, Lemma~10. \url{https://arxiv.org/abs/1311.3789v3}.
 \bibitem{zhitniaia} D. Zhitniaia, Linear Programming Bound for Sphere Packing in Dimension 2, bachelor's thesis, HSE University (2026), institutional abstract only. \url{https://www.hse.ru/en/edu/vkr/1163516275}.
+\bibitem{ce} H. Cohn and N. Elkies, New upper bounds on sphere packings I, \emph{Annals of Mathematics} 157 (2003), 689--714. DOI: \href{https://doi.org/10.4007/annals.2003.157.689}{10.4007/annals.2003.157.689}.
+\bibitem{zhou} J. Zhou, Cusp Form Dimensions, Lattice Uniqueness, and LP Sharpness for Sphere Packing in Dimensions 8 and 24, arXiv:2604.10914v1 (13 April 2026), introduction. \url{https://arxiv.org/abs/2604.10914v1}.
 \end{thebibliography}
 \end{document}
