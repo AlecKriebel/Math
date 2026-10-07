@@ -1,0 +1,24 @@
+{
+  "created_utc": "2026-10-07T04:26:30.834671+00:00",
+  "status": "PASS_NONFINITE_PROPAGATION_CONTROLS",
+  "source_sha256": "a0f43f18d0d9b1129ca9393e620f215355a9bc9ee1fc8334dd8fa62d53094442",
+  "tests": [
+    {
+      "argument_ball": "[-0.400000000000000000000000000000000000000000000000000000000 +/- 1.44e-58]j",
+      "nonfinite_controls": 37,
+      "all_nonfinite": true
+    },
+    {
+      "argument_ball": "[+/- 0.0101] + [-0.4 +/- 0.0101]j",
+      "nonfinite_controls": 37,
+      "all_nonfinite": true
+    },
+    {
+      "argument_ball": "[+/- 1.01] + [+/- 0.501]j",
+      "nonfinite_controls": 37,
+      "all_nonfinite": true
+    }
+  ],
+  "written_domain_argument": "Every transformed adaptive callback evaluates 1/(t+2i/5) and multiplies its lambda factor. A finite evaluation therefore excludes the sole singularity from the argument ball; on that ball all remaining operations are entire or rational with nonvanishing denominator. The direct density expressions are entire. No branch-cut operation occurs within a callback. Exponentiating the rational transform may create an essential singularity at the excluded point, which does not change this domain argument.",
+  "scope": "Elementary nonfinite propagation controls, supplementary to direct inspection of all callback formulas and the official API analytic-domain contract; not a standalone audit of an arbitrary integrand."
+}

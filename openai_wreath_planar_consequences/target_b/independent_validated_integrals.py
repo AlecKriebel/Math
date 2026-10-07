@@ -1,7 +1,9 @@
 """Independent validated spectral integrals; no upstream implementation imported.
 Uses adaptive Arb integration rather than the published finite Fejer quadrature.
-All integrands are meromorphic, with their only possible pole at t=-2i/5;
-nonfinite evaluation there fulfils acb.integral analytic-callback contract.
+The transformed integrands are holomorphic off t=-2i/5, where their
+exponentials may have an essential singularity. Balls containing that point
+produce nonfinite evaluations, as required by the acb.integral analytic
+callback contract. The rational/entire operations introduce no branch cuts.
 """
 from pathlib import Path
 from math import comb
