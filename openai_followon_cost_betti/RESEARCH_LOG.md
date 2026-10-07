@@ -47,3 +47,15 @@ Candidate v2 inventory and all four supplied verifiers pass from a new archive e
 Mathematical resolution estimate: 100%. Publication package estimate: 90%.
 
 Two distinct full-package reviewers completed independent reconstructions. Review 01 required the one archive-path repair, and a NEW reviewer from a fresh context found candidate v2 clean after checking the entire mathematical, priority, metadata, rights, PDF and reproduction scope. The final exact review and verdict hashes are retained. Root verified all frozen file hashes, the unchanged pinned/current upstream version and the corrected checker. No known substantive concern remains. This is manual AI-assisted validation, not formalization or human refereeing. Eligibility is for the attributed expanded consequence/verification note; the positive cost theorem and group are OpenAI's. Production publication and the DOI tracker remain pending.
+
+## 2026-10-06 22:26:23 America/Los_Angeles - publication and tracker checkpoint
+
+Mathematical resolution estimate: 100%. Publication package estimate: 100%.
+
+The expressly authorized production check -> stage -> inspect -> publish --confirm-id 23203732 -> inspect --check-doi workflow completed. The public record is 23203732, DOI 10.5281/zenodo.23203732; submitted/published state, metadata and file checksums are verified. The DOI resolves HTTP 200. Independent unauthenticated downloads of both uploaded files match the exact reviewed SHA-256, MD5 and byte lengths.
+
+Google Workspace CLI resolved numeric tab 1254632077 to Math Puzzles, re-read the four actual headers and all existing rows, and found no duplicate DOI/deposit/title. One RAW row was appended at 'Math Puzzles'!A43:D43 and read back with all four values exactly matching. Publication was not repeated.
+
+A local disk-space error prevented the first read-back shell command from launching after the successful append. Cleared only owned temporary build/render/extraction folders and retried the read-only operation, not the append. The verified row receipt is retained. Final files, snapshots, mathematical proof records and review receipts remain intact. No reviewed upload or metadata bytes changed after the clean review.
+
+Final sources, publication manifest, nonsecret receipts and current completion documentation are being pushed through the same safe isolated-index main transaction. The post-transaction receipt records the actual commit and preservation of the shared checkout/index.
