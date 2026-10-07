@@ -1,0 +1,31 @@
+# Published record and final verification
+
+Observed 2026-10-07T16:11:30.189356+00:00. Mathematical resolution 100%; publication package 99% while the final owned repository checkpoint/readback and goal completion are being recorded.
+
+**Ordinary Banach–Mazur rigidity of von Neumann algebras**, Alec Kriebel, ORCID 0009-0001-9320-500X. Preprint/publication date 2026-10-07. Production Zenodo record **23217863**: [public record](https://zenodo.org/records/23217863); DOI **10.5281/zenodo.23217863**: [resolving DOI](https://doi.org/10.5281/zenodo.23217863). The separate post-publication tool inspection returned submitted/public state and HTTP200 DOI resolution. An independent unauthenticated readback subsequently confirmed public state, metadata, DOI landing and both exact download bytes.
+
+The human instruction “Do the least restrictive” resolved the offered CC BY 4.0/CC BY-SA 4.0 choice to **CC BY 4.0** for original project material; [decision receipt](../receipts/license_decision_20261007.json). Unchanged OpenAI material keeps Apache-2.0. Third-party Roydor and other unlicensed PDFs/extractions/renders are excluded.
+
+| Deposited file | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [paper.pdf](https://zenodo.org/api/records/23217863/files/paper.pdf/content) | 83877 | `64ef84935aa6b3d327e30d26719927ce603aa75116a6aefa70589342bafe1c0b` |
+| [source-and-verification.zip](https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content) | 617532 | `c237465073726cf0da83abfa3e0251f15a30541dac693f35885694df632c7bb0` |
+
+The source is `manuscript/main.tex`, SHA-256 `46a02c0cd03f798459a9cfd8fb1cd5e03c4e599208a2a53750d3b218b7e96dc4`. Metadata is `zenodo-deposit.json`, SHA-256 `6ba70c83463b4128180fca31aa475b0524825f23c48f9d0ec612b17cfbb36b95`. Neither upload, source nor metadata changed after the final licensed-package review. The ZIP has 41 members and its 40 nonmanifest members are individually authenticated. The immutable uploaded preparation README correctly describes its dated preparation stage; actual later review/publication/tracker outcomes are documented here and in outer repository receipts without rewriting the uploaded files.
+
+The authorized repository tool performed **separate** check, stage, inspect, publish `--confirm-id 23217863`, and inspect `--check-doi` operations. The actual confirmation ID came from the verified stage/inspect receipts. Exactly one draft was created and published, with no ambiguity/retry and no GitHub release or parallel upload pathway. Remote metadata was exact except the tool's permitted omitted creator affiliation→null normalization. Receipts:
+
+- [Final local check](../receipts/zenodo_check_final_20261007.json).
+- [Verified stage](../receipts/zenodo_stage_20261007.json) and [draft inspection](../receipts/zenodo_inspect_draft_20261007.json).
+- [Actual publication](../receipts/zenodo_publish_20261007.json) and [separate public/DOI inspection](../receipts/zenodo_inspect_published_20261007.json).
+- [Independent public snapshot and33 checks](../receipts/published_public_independent_readback_20261007.json) and [report](../reviews/published_public_independent_readback_20261007.md).
+
+Three distinct complete-package cycles scrutinized the original targets, entire manuscript, actual primary dependencies, fresh priority analysis, archived code/checks and publication files/metadata. Each report preserves scope and limitations; final exact licensed v3 passed with no substantive issue. Its sole live administrative pointer was corrected outside the frozen/uploaded payload. Reviews and root dispositions are in `reviews/`; the frozen v3 manifest is SHA-256 `863698e72184550fd5f7868fda190784e7dc2f3d06de640c05ec593030a7ae5f`. Clean archive rebuild, actual TeX build/render and finite exact replays passed. The proof relies on mathematically audited manuscript inputs, not a reproduced Lean kernel build. Internal AI reviews are not conventional human peer review.
+
+After actual publication with an assigned DOI, installed gws 0.22.5 and its inspected resource schema were used for the tracker. Metadata resolved spreadsheet `1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20`, numeric tab **1254632077**, to **Math Puzzles**. Actual headers are Original Problem / Solution Chat URL / DOI / Notes. A complete 1049×43prewrite grid scan in displayed/formula and structured link modes found no identity match. A new independent administrative reviewer confirmed the row/schema and duplicate check; root refreshed the same complete grid immediately before appending.
+
+Exactly one `gws sheets spreadsheets values append` used RAW and INSERT_ROWS, with explicit table range `'Math Puzzles'!A1:D1049`. The authoritative response placed one four-cell row at **`'Math Puzzles'!A54:D54`**. A separate GET returned the exact ordered values; a metadata refresh showed1050 allocated rows, and root scanned the complete new 1050×43 grid. Only row 54 matches the publication DOI/record/full title; prior displayed/formula values and all prior nonempty structured cells remained identical. The Solution Chat URL cell is blank because no share URL was supplied or requested. Title, author/ORCID, date, scope, attributed contribution, review limitations and record/reproduction links occupy the existing Notes column.
+
+[Exact tracker request, append response, independent readback, ordered values and uniqueness receipt](../receipts/tracker_verified_row_20261007.json). [Tracker](https://docs.google.com/spreadsheets/d/1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20/edit?gid=1254632077#gid=1254632077). Unrelated tracker contents remain ignored scratch; only this project's row and schema/count/hash evidence are published.
+
+The core theorem is for all complex von Neumann algebras and canonical preduals with the same algebra-dependent epsilon_M, ordinary complex Banach–Mazur distance and Jordan *-isomorphism. No universal epsilon, arbitrary-Banach-space comparison, associative-isomorphism replacement or fresh formalization is asserted. Priority remains a bounded primary-source audit, with Roydor's old conditional announcement and OpenAI's cohomology contribution explicitly attributed; no firstness claim. Extensive AI assistance and absence of conventional human refereeing are disclosed in the manuscript and public metadata.

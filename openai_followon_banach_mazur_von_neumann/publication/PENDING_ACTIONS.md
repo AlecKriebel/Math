@@ -1,3 +1,15 @@
+# Verified outcomes and final administrative checkpoint
+
+Observed 2026-10-07T16:11:30.189356+00:00. Mathematics 100%; publication package 99% pending final repository checkpoint/readback and goal completion.
+
+Mathematical proof, fresh October 7 priority audit, confirmed CC BY 4.0 license, clean reproducibility and three distinct whole-package review cycles are complete. Production Zenodo publication is verified: DOI10.5281/zenodo.23217863 ([record](https://zenodo.org/records/23217863)), DOI resolves, public metadata and both exact files independently authenticated. Tracker append/readback and full-tab uniqueness are verified at `'Math Puzzles'!A54:D54`. See [PUBLISHED_RECORD.md](PUBLISHED_RECORD.md) and project receipts for exact evidence.
+
+Remaining authorized action: push/read back the final owned documentation and nonsecret receipts using the existing main-only shared-state-preserving protocol, then mark the original persistent goal complete. No license question, mathematical/publication/source-access blocker or further publication authorization is pending. Do not republish, create a release, change the uploaded payload, or append another tracker row.
+
+The following earlier preparation gates are retained only as a timestamped historical snapshot.
+
+## Historical preparation snapshot
+
 # Publication gates for the current full proof candidate
 
 **Pre-review preparation snapshot: 2026-10-07 14:29:16 UTC (07:29:16 America/Los_Angeles).** Status, review counts and unresolved choices below describe this snapshot. Later complete-package review dispositions, license resolution and any publication/tracker outcomes are recorded separately in the repository's review and publication receipts; this snapshot does not predict those outcomes.

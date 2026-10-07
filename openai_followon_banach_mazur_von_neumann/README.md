@@ -1,5 +1,23 @@
 # Ordinary Banach–Mazur rigidity of von Neumann algebras
 
+Published **7 October 2026** on production Zenodo: [DOI 10.5281/zenodo.23217863](https://doi.org/10.5281/zenodo.23217863) ([record 23217863](https://zenodo.org/records/23217863)). The DOI resolves to the public record. Original project material uses **CC BY 4.0**, selected by the human user; included unchanged OpenAI material retains Apache-2.0 and its attribution.
+
+For every complex von Neumann algebra M, the paper establishes an algebra-dependent epsilon_M>0 such that every complex von Neumann algebra N with either ordinary complex d_BM(M,N)<1+epsilon_M or d_BM(M_*,N_*)<1+epsilon_M is Jordan *-isomorphic to M. The same threshold covers the algebra and canonical-predual statements, including arbitrary nonseparable scope. No universal threshold is asserted.
+
+The result is an attributed consequence of OpenAI family 295's ordinary bounded self-coefficient Hochschild vanishing and established Roydor geometry/deformation machinery. The explicit fixed-source proof extends beyond the separable-predual assumption in Roydor's printed Theorem 1.2. The cohomology breakthrough and older correction, type-I structure, isometry and predual results are inherited. The fresh October 7 [priority audit](research/priority_audit_20261007.md) found no inspected complete duplicate of the result and proof arrangement; this bounded observation does not certify novelty or firstness.
+
+- [Published seven-page PDF](https://zenodo.org/api/records/23217863/files/paper.pdf/content) · [Exact TeX source](manuscript/main.tex).
+- [Published source and verification archive](https://zenodo.org/api/records/23217863/files/source-and-verification.zip/content) · [Reproduction instructions](reproducibility/README.md).
+- Three distinct complete-package AI review cycles passed. The final [licensed-package review](reviews/final_licensed_package_freshreview_20261007.md) binds the exact deposited files; [root disposition](reviews/ROOT_RESPONSES_FINAL_PACKAGE_V3_LICENSED.md) records the sole administrative pointer correction outside the payload.
+- Clean extraction/build, seven-page render comparison, archive reproducibility and finite mechanism checks passed. An [independent public readback](reviews/published_public_independent_readback_20261007.md) verified all metadata and full-byte equality of both downloads. These checks do not constitute conventional human refereeing or a reproduced Lean kernel verification; AI tools were used extensively.
+- The specified [tracker](https://docs.google.com/spreadsheets/d/1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20/edit?gid=1254632077#gid=1254632077) contains exactly one verified matching row, **`'Math Puzzles'!A54:D54`**. [Exact request, ordered values and readback](receipts/tracker_verified_row_20261007.json) are retained.
+
+Author: Alec Kriebel, [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). See [published-record details](publication/PUBLISHED_RECORD.md), [research log](RESEARCH_LOG.md), [theorem ledger](THEOREM_LEDGER.md) and [dependency ledger](DEPENDENCY_LEDGER.md). No external individual was contacted. Main-only owned checkpoint publication preserves the shared checkout/index and all concurrent projects.
+
+Status observed 2026-10-07T16:11:30.189356+00:00: mathematics 100%; publication package 99% pending final repository checkpoint/readback and platform goal completion. These estimates are administrative progress judgments, not evidence. The following dated preparation material is retained solely as history.
+
+## Historical pre-review preparation snapshot
+
 **Pre-review preparation snapshot: 2026-10-07 14:29:16 UTC (07:29:16 America/Los_Angeles).** Status, review counts and unresolved choices below describe this snapshot. Later complete-package review dispositions, license resolution and any publication/tracker outcomes are recorded separately in the repository's review and publication receipts; this snapshot does not predict those outcomes.
 
 Current research candidate, 7 October 2026. The full argument in [manuscript/main.tex](manuscript/main.tex) covers every complex von Neumann algebra, including arbitrary nonseparable preduals. The fixed-source proof mechanisms have received independent adversarial checks; at this snapshot the complete publication package has not yet received either of its required final reviews. No Zenodo deposit, DOI, tracker entry or GitHub release exists at this snapshot.
