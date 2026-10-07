@@ -73,4 +73,4 @@ For the current full package use reproduce.py with the explicit argument
 --fileset PUBLICATION_FILESET.json. The default VERIFICATION_FILESET.json
 belongs to the historical version-3 record, whose matching files live in its
 archived ZIP. Current package reproduction deletes generated fixtures before
-running their writers, and compares every regenerated sparse fixture exactly.
+running their writers, and compares every mathematical field and source hash in each regenerated sparse fixture exactly. Only the rational checker's top-level python_version runtime field is excluded; its actual and saved versions are retained in the receipt. Arithmetic reproduction was independently checked on Python 3.11.8 and 3.14.6.

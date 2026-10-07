@@ -67,3 +67,17 @@ eligible new contribution 50% (not certified); publication package 40%.
 The v4 review snapshot covers61 files:57 authored inputs, their verification fileset, exact upload ZIP, manifest and path list. Clean reproduction regenerated all fixtures and passed; the nine-page exported PDF matched a separate clean build and native compiler. No source clone changes or later upstream correction were found. Fresh complete reviewer D is running. The ZIP and metadata are frozen for that review; final review reports/receipts are kept separately to avoid self-referential archive hashes.
 
 Best guesses: dense mathematical core100%; sparse reduction95%; publication package75%; eligible new contribution85% on specific positive primary comparisons, subject to full adversarial review. These are estimates, not proof or novelty evidence.
+
+## 2026-10-07T06:07:07.548217+00:00 — owned checkpoint and reproducibility falsification
+
+Checkpoint07 pushed the frozen v4 candidate as b323de8f77099b2c897188138a7f6d1f17a333d1 atop then-current remote main. Receipt proves the shared checkout HEAD and global index were unchanged. Reviewer D independently reproduced the archive, inspected all nine PDF pages, rechecked pinned source identities and passed additional huge-degree cases. D then falsified the advertised multi-interpreter reproduction: sparse rational fixture comparison includes volatile python_version, causing Python3.11.8 to fail despite equal mathematical results. Exact v4 promotion is withheld pending repair and a new fresh full-package pass. A historical construction-priority pointer also needs package correspondence. No stage, publication or tracker mutation has occurred.
+
+Optional binary-root notes now have their preserved checker and a fresh receipt; they remain outside the core publication kit and introduce no new headline result.
+
+Best guesses: dense core100% on cited-source proof basis; sparse mathematics95% pending final full audit; publication package75%. Percentages are estimates, not evidence.
+
+## 2026-10-07T06:10:41.036833+00:00 — repaired v5, clean dual-interpreter runs and fresh review
+
+D1 and D2 were repaired as recorded in reviews/response_to_package_d.md. Only runtime identity is normalized; mathematical data/source hashes remain exact and stale-output writers remain guarded. Two separately extracted archives pass on Python3.11.8 and3.14.6, including independent PDF export on3.14. The PDF/theorem is unchanged. v5 has58 authored inputs,59ZIP members,62reviewed files. ZIP291388bytes, SHA25696c4bdf7d2944b8e741fefa0fad6c112b25672af700ef5aa837e61353ef5ba68; review snapshot SHA25628648607df876ce3b5cf2b4cd2e09818c70d7cd5c2f1f9bb4221a15125a29132. A NEW reviewer E was assigned the full original target and all primary materials without a previous favorable verdict as a premise. Production local check passed; no deposit stage or tracker write has occurred.
+
+Best guesses: dense core100% on cited-source basis; sparse mathematics95% pending fresh full audit; publication package85%. These estimates are not evidence.

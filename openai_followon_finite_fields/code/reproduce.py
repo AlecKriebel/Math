@@ -74,8 +74,18 @@ def main():
                 process=subprocess.run([sys.executable,script],cwd=clean/'agent_notes',text=True,capture_output=True,timeout=90)
                 if process.returncode or not generated.is_file():raise SystemExit('Independent sparse check failed: '+script+'\n'+process.stderr)
                 actual=json.loads(generated.read_text());expected=json.loads((root/'agent_notes'/generated.name).read_text())
-                if actual!=expected:raise SystemExit('Regenerated sparse JSON differs: '+script)
-                sparse_results.append({'script':script,'exit_code':0,'data_regenerated':True,'saved_result_exactly_equal':True,'generated_sha256':hashlib.sha256(generated.read_bytes()).hexdigest()})
+                # Only this checker's top-level interpreter identity is volatile.
+                # Compare every mathematical field and source hash exactly.
+                actual_math=dict(actual);expected_math=dict(expected);runtime={}
+                if script=='sparse_rational_independent_checks.py':
+                    runtime={'actual_python_version':actual_math.pop('python_version'),
+                             'saved_python_version':expected_math.pop('python_version')}
+                if actual_math!=expected_math:raise SystemExit('Regenerated sparse JSON differs: '+script)
+                sparse_results.append({'script':script,'exit_code':0,'data_regenerated':True,
+                    'saved_mathematical_result_exactly_equal':True,
+                    'excluded_runtime_metadata_keys':['python_version'] if runtime else [],
+                    'runtime_metadata':runtime,'saved_result_exactly_equal':actual==expected,
+                    'generated_sha256':hashlib.sha256(generated.read_bytes()).hexdigest()})
         compile_result=None
         if a.compile_pdf:
             version=subprocess.run(['tectonic','--version'],text=True,capture_output=True,check=True).stdout.strip()
