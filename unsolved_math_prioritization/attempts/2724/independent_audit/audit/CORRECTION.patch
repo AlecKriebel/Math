@@ -1,0 +1,80 @@
+--- author/ATTEMPT_LOG.md
++++ corrected/ATTEMPT_LOG.md
+@@ -7,4 +7,4 @@
+ 3. Approach 1, Morse decomposition into elementary Lagrangian pieces: derived the primitive-constancy criterion for a regular level to be Legendrian. An explicit exact local surface has no critical height points but non-Legendrian level curves. The direct automatic-slicing step is therefore false.
+ 4. Closure check: smooth ribbon realization after endpoint stabilizations does not establish Lagrangian isotopy of the given embedding. No justified collaring or elementary-normalization theorem was obtained. Stopped as stalled partial work rather than repeat the unsupported implication.
+ 
+-Result: unsolved; turns used 1/5. The local diagnostic is proved, but no new global theorem, counterexample, or novelty is claimed. The arithmetic verifier is supplementary and cannot establish a global isotopy. The frozen package is ready for independent adversarial review, not marked as independently accepted.
++Result: unsolved; turns used 1/5. The local diagnostic is proved, but no new global theorem, counterexample, or novelty is claimed. The arithmetic verifier is supplementary and cannot establish a global isotopy. The original author freeze recorded independent review as pending. This corrected derivative incorporates source-scope precision edits identified by the independent audit; the separately pinned acceptance report records the exact accepted artifact. These edits are audit corrections and do not add a mathematical attempt.
+--- author/MATHEMATICAL_AUDIT.md
++++ corrected/MATHEMATICAL_AUDIT.md
+@@ -6,15 +6,13 @@
+ 
+ ## Exact target and scope
+ 
+-Problem 1.65 on printed page 63 of the 2026 K3 preliminary book asks:
+-
+-“Is every exact Lagrangian cobordism without index 2 critical points Lagrangian isotopic to a decomposable Lagrangian cobordism?”
++Problem 1.65 on printed page 63 of the 2026 K3 preliminary book asks whether each exact Lagrangian cobordism whose ambient height has no index-2 critical points admits a Lagrangian isotopy to a decomposable one. This is an authored paraphrase, not a transcription.
+ 
+ Source: https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf
+ 
+ The ambient setting is the four-dimensional symplectization of standard contact three-space. Write its coordinates as (t,x,y,z), contact form alpha = dz - y dx, Liouville form lambda = exp(t) alpha, and symplectic form omega = d lambda. The cobordism is a two-dimensional embedded Lagrangian surface with cylindrical Legendrian knot or link ends outside a compact region. Exactness means lambda restricted to the surface equals df, with the customary constant-end conditions; for links one must retain the relevant same-end primitive conventions when composing pieces.
+ 
+-The critical-point condition concerns the ambient height t restricted to the surface, not an arbitrary intrinsic Morse function on its abstract topology. Decomposable cobordisms concatenate Legendrian-isotopy traces, isolated standard maximal-tb unknot births, and the allowed oriented Legendrian surgery pieces. Arbitrary smooth bands or tangles have not thereby been certified as these pieces.
++The critical-point condition concerns the ambient height t restricted to the surface, not an arbitrary intrinsic Morse function on its abstract topology. Decomposable cobordisms concatenate the standard Lagrangian concordances associated with Legendrian isotopies, isolated standard maximal-tb unknot births, and the allowed oriented Legendrian surgery pieces. A literal Legendrian-isotopy trace generally requires perturbation to become a Lagrangian concordance, as Etnyre and Leverson note in Section 4, footnote 1. Arbitrary smooth bands or tangles have not thereby been certified as these pieces.
+ 
+ We do not identify smooth isotopy, Lagrangian isotopy, exact Lagrangian isotopy, and compactly supported Hamiltonian isotopy. The source states Lagrangian isotopy. Establishing only non-Hamiltonian-isotopy would not by itself refute that conclusion. Conversely, preserving the given ends and exactness would be a sufficient stronger construction, but is not assumed to follow automatically from a smooth isotopy.
+ 
+@@ -53,8 +51,8 @@
+ 
+ Morse theory cuts a given surface into smooth products, births, and saddles when no maxima occur. To turn this into a proof of the target, one still needs a theorem producing suitable Legendrian intermediate levels and simultaneously making every critical region an allowed elementary exact Lagrangian piece, with compatible gluings and the required Lagrangian-isotopy conclusion. The local calculation shows why this theorem cannot be replaced by the observation that the height has no index-2 points.
+ 
+-The known smooth realization theorem also stops short. Etnyre and Leverson, Theorem 1.2, realize a smooth ribbon cobordism as decomposable after stabilizing its prescribed Legendrian ends. This does not identify an already-given exact Lagrangian embedding with that realization by a Lagrangian isotopy. Their Question 1.8 asks whether an existing Lagrangian ribbon cobordism can be stabilized to become decomposable. See https://arxiv.org/abs/2410.06305, pp. 2-3. Removing stabilizations and controlling a prescribed embedding are additional requirements, not consequences established here.
++The known smooth realization theorem also stops short. Etnyre and Leverson, Theorem 1.2, realize a smooth ribbon cobordism with nonempty negative end as decomposable after stabilizing its prescribed Legendrian ends. This does not identify an already-given exact Lagrangian embedding with that realization by a Lagrangian isotopy. Their Question 1.8 asks whether an existing Lagrangian ribbon cobordism with both ends nonempty can be stabilized to become decomposable. See https://arxiv.org/abs/2410.06305, pp. 2-3. Removing stabilizations and controlling a prescribed embedding are additional requirements, not consequences established here.
+ 
+ ## Verification limits
+ 
+-The accompanying executable checks the displayed local polynomial differential identities using exact rational arithmetic. It checks negative controls and runs identically under Python optimization. It does not certify the existence of a global collaring isotopy, the full source papers, or the original open problem. Independent mathematical review is still required.
++The accompanying executable checks the displayed local polynomial differential identities using exact rational arithmetic. It checks negative controls and runs identically under Python optimization. It does not certify the existence of a global collaring isotopy, the full source papers, or the original open problem. The separate independent acceptance report reviews this local proof and its scope; it does not certify a global isotopy or settle the original problem.
+--- author/README.md
++++ corrected/README.md
+@@ -6,4 +6,4 @@
+ 
+ STATUS.json is a proposed task status, not a claim that a repository queue was updated. PUBLIC_VERIFICATION_METADATA.json records hashes, byte counts, retrieval outcomes, and inspection locations without source text or dataset contents. FILE_MANIFEST.json binds the safe files; the separate external manifest binds the ZIP. No primary-source PDF, extracted paper text, raw dataset, private coordination material, or inherited corpus content is included.
+ 
+-This package has not yet undergone independent review or human peer review. No publication was performed.
++This is the corrected derivative of the preserved author freeze. The separately pinned independent acceptance report identifies the scope corrections and verified local result. No human peer review or solution of the full problem is claimed. No publication was performed.
+--- author/SOURCE_AUDIT.md
++++ corrected/SOURCE_AUDIT.md
+@@ -12,7 +12,7 @@
+ 
+ ## Smooth realization does not give the required isotopy
+ 
+-John B. Etnyre and Caitlin Leverson, Lagrangian Realizations of Ribbon Cobordisms, arXiv:2410.06305v1, Theorem 1.2 and Question 1.8, pp. 2-3. Their existence theorem allows stabilizations of the Legendrian ends and a smooth isotopy of a ribbon cobordism. The paper separately poses stabilized decomposability of a given Lagrangian ribbon cobordism as a question. These statements do not settle the prescribed-embedding, unstabilized target.
++John B. Etnyre and Caitlin Leverson, Lagrangian Realizations of Ribbon Cobordisms, arXiv:2410.06305v1, Theorem 1.2 and Question 1.8, pp. 2-3. Their existence theorem assumes a nonempty negative end and allows stabilizations of the Legendrian ends and a smooth isotopy of a ribbon cobordism. The paper separately poses stabilized decomposability of a given Lagrangian ribbon cobordism with both ends nonempty as a question. These statements do not settle the prescribed-embedding, unstabilized target.
+ 
+ https://arxiv.org/abs/2410.06305
+ 
+@@ -35,7 +35,7 @@
+ 
+ https://arxiv.org/abs/2608.27316
+ 
+-Roberta Guadagni, Non-decomposable cobordisms via Lagrangian moves, arXiv:2609.35048v1, Theorems 1.1-1.2 and Section 2.1. The general move theorem initially supplies weak, potentially non-exact cobordisms. The explicit main example is an exact reverse concordance from a stabilized nontrivial knot to a stabilized unknot. This review does not certify that construction as no-index-2. In particular, the existence of a diagram movie is not evidence that it uses only the allowed decomposable pieces. The paper was inspected as a preprint; no claim about the minimum stabilization count is needed here.
++Roberta Guadagni, Non-decomposable cobordisms via Lagrangian moves, arXiv:2609.35048v1, Theorems 1.1-1.2 and Section 2.1. The general move theorem initially supplies weak, potentially non-exact cobordisms. The explicit main example is an exact reverse concordance from a stabilized nontrivial knot to a stabilized unknot. Section 2.2 identifies the unknot move U1 as containing an H3 cap; Proposition 6.2 and the proof of Theorem 1.2 use a splitting 1-handle followed by a cap. Thus this displayed construction contains an index-2 critical point and is not a no-index-2 construction. This observation concerns the exhibited movie and does not by itself prove that all isotopic embeddings must have index-2 points. The existence of a diagram movie is not evidence that it uses only the allowed decomposable pieces. The paper was inspected as a preprint; no claim about the minimum stabilization count is needed here.
+ 
+ https://arxiv.org/abs/2609.35048
+ 
+--- author/STATUS.json
++++ corrected/STATUS.json
+@@ -1,8 +1,9 @@
+ {
++  "correction_scope": "Explicit nonempty-end hypotheses; standard Lagrangian isotopy-concordance terminology; authored problem paraphrase; displayed Guadagni cap; no change to the local model or unresolved conclusion.",
+   "counterexample_to_original_problem": false,
+   "findings": "Morse slicing does not automatically supply Legendrian levels: an exact local Lagrangian embedding has no height critical points but non-Legendrian slices. Known stabilized smooth realization and non-ribbon constructions do not settle the required Lagrangian-isotopy statement. Global collaring and elementary-piece normalization remain unproved.",
+   "full_solution": false,
+-  "independent_review": "pending",
++  "independent_review": "accepted_local_diagnostic_only",
+   "novelty_claim": false,
+   "problem_id": 2724,
+   "problem_number": "KP-1.65",
