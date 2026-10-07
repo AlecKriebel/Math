@@ -66,3 +66,48 @@ Disk exhaustion transiently prevented saving and another agent spawn.
 Only an owned temporary rebuild PDF was removed; no other effort was touched.
 Writes now succeed. Initial public checkpoint d8148467e1410820f60d27451e63f50ff9d5c30f
 was verified on remote main, preserving shared checkout HEAD and index hash.
+
+## 2026-10-06 22:28 PDT — candidate review checkpoint
+
+Mathematical resolution estimate: 98%. Repository-note package estimate: 65%
+(clean-extraction bug found); authorized novelty deposit completion remains 0%.
+
+Candidate 1 is frozen by reviews/package1_manifest.json and public checkpoint
+65b49c7f5ca58c22ddb1912a07b64f7bdca05ef6. Its scientific algebra/source
+claims have survived a first complete-package audit so far; the reviewer read
+the whole upstream proof and re-fetched the exact prior public triage. A real
+packaging defect was reproduced: verification/reproduce.py does not create
+receipts/ in a clean extraction, so saving its final receipt fails. Repair and
+a new complete-package reviewer will follow the first finalized report.
+
+The initial checkpoint inadvertently captured source evidence caches created
+concurrently by the priority agent. Checkpoint 2 removes those owned cache
+paths from remote main, keeps their local copies and hash manifests, and adds
+the upstream Apache license. No history was rewritten. The scientific payload
+contains authored audits, citations and hashes, not copied third-party papers
+or lecture source. Shared checkout HEAD and index are unchanged.
+
+Disk pressure recurred; a request to free space is pending. Only owned temporary
+clean-build directories were removed. The frozen payload hashes remain intact,
+and the original native compilation success receipt remains readable.
+
+## 2026-10-06 22:33 PDT — repaired candidate 2 checkpoint
+
+Mathematical resolution estimate: 98% (final fresh source/package verdict pending).
+Repository-note package estimate: 95%. Authorized novelty publication progress: 0%.
+
+Complete-package reviewer one independently read every primary proof section,
+verified the exact source copies and prior public bytes, checked all four PDF
+pages, and found no substantive mathematical or priority concern. Its only
+substantive finding was the clean-extraction receipt-directory bug. The repair
+creates that directory before building; README clarifies versions and review
+record placement. main.tex and paper.pdf are byte-identical to candidate 1.
+
+Frozen candidate 2 is recorded in reviews/package2_manifest.json; all payload
+hashes and 34 archive members check exactly, with clean CRC. Root extraction
+was interrupted by filesystem exhaustion, not a new script exception. A NEW
+independent reviewer has since successfully extracted and run the documented
+reproduction through completion, including its receipt. It continues original
+source and priority falsification before issuing a fresh whole-package verdict.
+
+No Zenodo or tracker operation was attempted. The duplication gate persists.
