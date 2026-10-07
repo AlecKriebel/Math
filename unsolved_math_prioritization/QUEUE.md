@@ -966,7 +966,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | unsolved | 5/5 |  | Verified strong partial: sharp B_gamma threshold 5/2 (additive gap 1/2), equality tY and cone-class attainment (d>=3, N>=3); universal spectral lower bound under source boundary hypotheses. Product obstruction, angular min-max, thin-cylinder limit and Bessel stationary candidate verified by two independent audits. Bounded-domain global spectral-sum optimizer attainment remains unproved. [Accepted packet](attempts/30005990/README.md). |  |
 | 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |

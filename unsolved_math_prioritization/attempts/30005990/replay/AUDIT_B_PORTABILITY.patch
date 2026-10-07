@@ -1,0 +1,55 @@
+--- audit_b/checks/independent_controls.py
++++ replay/audit_b_controls.py
+@@ -8,7 +8,8 @@
+ import mpmath as mp
+ 
+ ROOT=pathlib.Path(__file__).resolve().parents[1]
+-SOURCE=ROOT.parent/'boundary_frequency_30005990'
++SOURCE=ROOT
++# Publication-only path adapter; frozen inputs remain in author/.
+ results={}
+ def record(name, condition, detail):
+     if not bool(condition): raise AssertionError(name+': '+str(detail))
+@@ -16,9 +17,9 @@
+ 
+ expected={'PROOF.md':'d78e4612f31f16b3be6a735ca2a0c1417483bdbe18f548d0d9ae52cb16909c34','REALIZATION_APPROACHES.md':'eb2502b48d0781a2ab70e6ed023696875f889a33ce95ac08cf7fffff75409b0b'}
+ for name,digest in expected.items():
+-    current=hashlib.sha256((SOURCE/'packet'/name).read_bytes()).hexdigest()
+-    frozen=hashlib.sha256((ROOT/'frozen'/name).read_bytes()).hexdigest()
+-    record('frozen_'+name,current==frozen==digest,{'sha256':current,'bytes':(SOURCE/'packet'/name).stat().st_size})
++    current=hashlib.sha256((SOURCE/'author'/name).read_bytes()).hexdigest()
++    frozen=hashlib.sha256((ROOT/'author'/name).read_bytes()).hexdigest()
++    record('frozen_'+name,current==frozen==digest,{'sha256':current,'bytes':(SOURCE/'author'/name).stat().st_size})
+ 
+ x,t,k=s.symbols('x t k', positive=True)
+ u=s.Function('u')(x,t); a=s.Function('a')(x,t)
+@@ -51,7 +52,8 @@
+         expected_g[i]=max((1-q)*A-q*B,0)
+         expected_g[j]=max(q*B-(1-q)*A,0)
+     worst=max(worst,float(np.linalg.norm(got-expected_g)))
+-    assert np.count_nonzero(got>1e-12)<=1
++    if not (np.count_nonzero(got>1e-12)<=1):
++        raise RuntimeError('Portable assertion failed: np.count_nonzero(got>1e-12)<=1')
+ record('tree_interpolation_explicit_formula',worst<1e-12,{'cases':4000,'max_error':worst,'formula':'G_s(a,b)_i=[(1-s) hat(a)_i+s hat(b)_i]_+'})
+ 
+ # Common coefficients are forced by both signed inequalities on each Y interface.
+@@ -103,12 +105,15 @@
+     radius=mp.mpf('.002')
+     mass=mp.quad(lambda r:R(r)**2*r**(dimension-1),[0,radius])
+     freq=radius*mp.diff(R,radius)/R(radius)+z*z*radius*mass/(R(radius)**2*radius**(dimension-1))
+-    assert abs(ode)<mp.mpf('1e-50')
+-    assert abs(coeff-target)<mp.mpf('1e-11')
+-    assert abs(freq-g)<mp.mpf('1e-7')
++    if not (abs(ode)<mp.mpf('1e-50')):
++        raise RuntimeError("Portable assertion failed: abs(ode)<mp.mpf('1e-50')")
++    if not (abs(coeff-target)<mp.mpf('1e-11')):
++        raise RuntimeError("Portable assertion failed: abs(coeff-target)<mp.mpf('1e-11')")
++    if not (abs(freq-g)<mp.mpf('1e-7')):
++        raise RuntimeError("Portable assertion failed: abs(freq-g)<mp.mpf('1e-7')")
+     vals.append({'d':dimension,'nu':str(nu),'first_zero':float(z),'ode_residual':float(abs(ode)),'quadratic_asymptotic_error':float(abs(coeff-target)),'uncorrected_frequency_at_0.002':float(freq)})
+ record('Bessel_radial_and_frequency_controls',True,vals)
+ 
+ out={'status':'passed','independent':True,'proof_status':'Sanity and negative controls only; analytic audit is in reports/AUDIT.md.','number_of_controls':len(results),'results':results}
+-(ROOT/'checks'/'results.json').write_text(json.dumps(out,indent=2)+'\n')
++# No write into the immutable publication packet.
+ print(json.dumps(out,indent=2))
