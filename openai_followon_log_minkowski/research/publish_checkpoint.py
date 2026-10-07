@@ -40,11 +40,15 @@ for attempt in range(1, 5):
         env = dict(os.environ, GIT_INDEX_FILE=str(Path(temp) / "index"))
         run(["git", "read-tree", base], env=env)
         run(["git", "add", "--", REL], env=env)
-        # Reference downloads are local research evidence, never publication files.
+        # Reference downloads and generated review trees remain local evidence.
         tracked = run(["git", "ls-files", "--", REL], env=env).splitlines()
         for path in tracked:
-            if path.startswith(REL + "/agent_notes/") and any(
-                part.endswith("_sources") for part in path.split("/")):
+            relative = Path(path.removeprefix(REL + "/"))
+            reference_copy = relative.parts[0] == "agent_notes" and any(
+                part.endswith("_sources") for part in relative.parts[:-1])
+            review_tree = relative.parts[0] == "reviews" and any(
+                "_extract" in part or "_render" in part for part in relative.parts[:-1])
+            if reference_copy or review_tree:
                 run(["git", "update-index", "--force-remove", "--", path], env=env)
         changed = run(["git", "diff", "--cached", "--name-only", base], env=env).splitlines()
         if any(not p.startswith(REL + "/") for p in changed):

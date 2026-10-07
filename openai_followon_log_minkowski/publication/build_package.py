@@ -37,6 +37,7 @@ BASE_FILES = (
     "verification/COMPUTATION_RESULTS.json",
     "verification/REPRODUCTION_RESULTS.json",
     "sources/UPSTREAM_INVENTORY.json",
+    "verification/UPSTREAM_CORRECTION_CHECK.json",
     "agent_notes/upstream_proof_audit.md",
     "agent_notes/moment_dependencies.md",
     "agent_notes/smooth_transfer.md",
