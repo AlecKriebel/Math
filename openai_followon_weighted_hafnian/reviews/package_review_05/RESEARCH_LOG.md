@@ -1,3 +1,9 @@
 # Independent review 05 research log
 
 2026-10-07T06:20:39.589435+00:00 — Read original request and AGENTS.md. Verified v5 four upload/manifest hashes, snapshot equality, 29 ZIP members, 28 payload hashes and current-source correspondence. Read actual manuscript, full gadget/sampling proofs and implementation. Review completion estimate: mathematical review 30%; full package review 15%. Candidate untouched.
+
+2026-10-07T06:26:01.285552+00:00 — Clean reproduction/PDF build passed; all six deposited pages visually inspected and all rebuilt rasters/text identical. Exact optional source inspector pin matches original425hashes; kernel unavailable as disclosed. Own extra exact signatures/fibers, arbitrary failed estimate laws and six receipt boundaries pass. All original payloads preserved. Mathematical review completion estimate85%; complete-package review80%, awaiting full independent upstream/priority final reports.
+
+2026-10-07T06:35:25.357901+00:00 — Upstream independent final source/mathematical report sealed and all seven referenced receipt/report hashes checked. Original priority subreview disclosed incidental earlier status inventory exposure; a fork-none primary-only replacement gate is underway. Existing direct evidence retained, no candidate change. Mathematical review estimate95%; complete-package review90% pending replacement priority gate and final custody.
+
+2026-10-07T06:40:56.890897+00:00 — Replacement primary-only priority gate sealed PASS; all its referenced seal hashes verified. Frozenv5 final custody rechecked all29ZIPmembers/28payloads/current sources and four intended file hashes plus identity. Complete-package verdict PASS with no required repairs; mathematical review100%, package review100% assigned coverage. Kernel rebuild and universal novelty absence remain unverified/disclosed. No candidate/Git/publication/tracker mutation.
