@@ -1,0 +1,11 @@
+# Qualified original-target disposition — staging only
+
+**2306064 / AMR-022-6064. final-operative-disposition-postimages-preparation_only. Original target already_solved by a verified older mathematical consequence. Candidate mathematics PASS; alternative polynomial novelty UNRESOLVED. Express first named-answer priority unverified.**
+
+The accepted fresh scientific review finds the literal all-real sufficient-generalization question answerable from full Silverman1975 and Mocanu–Reade1975 theorems through the R_alpha/W_alpha/power-series scaling deduction in [candidate section6](CANDIDATE.md). The candidate's proof sections2–4 are unchanged. Whole-candidate historical subsumption is false as an established claim: its ball is not fully accepted by the old exponential test, and the two balls are incomparable at alpha=-1/2. No uniformly stronger-ball claim is made.
+
+[SOURCES.md](SOURCES.md) preserves the2016/2026 source corrections, credits the valid2017 mechanism and limited1985 preview, and adds the full1975 pins. The [review](review/REVIEW.md) explicitly preserves the prior bundle as archival and adds the accepted scientific distinction; no historical reviewer is claimed to have approved the newly edited text.
+
+Current author/replay normal receipts each pass50840 finite exact controls against the new candidate hash. The unchanged explicit-if independent checker's actual earlier normal/optimized28722 and optimized false-guard rejection are retained with original PIDs/dates, not rerun here. See ../REPLAY_RESULTS.json and ../RETAINED_INDEPENDENT_EXERCISE.json. Finite controls remain diagnostics; the written proof establishes the theorem.
+
+Actual PR closure/comment/readback and native/author/global propagation are PENDING_SEPARATE_REVIEWED_WRITER. This stage claims no completed service or global operation. No publication is authorized; preprint/Zenodo/tracker created=false, DOI=null. Original effort1/5, substantive approach1, added central proof0, no human review. Earlier stages and original17 remain sealed. This folder is excluded from the current core checkpoint plan. Any eventual closure URL/status must be recorded in a new dated operation receipt without overwriting this frozen stage.

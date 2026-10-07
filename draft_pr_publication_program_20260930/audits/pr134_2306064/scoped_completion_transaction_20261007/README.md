@@ -1,0 +1,11 @@
+# PR134 scoped completion successor
+
+Prepared at 2026-10-07T14:11:04.058827+00:00. Case completion estimate remains 80% until native publication, local readback and final program bookkeeping complete.
+
+PR134 is closed unmerged. Its original target is answered by a verified mathematical consequence of Silverman (1975) and Mocanu–Reade (1975). The alternative polynomial criterion is mathematically verified; its novelty remains unresolved, and whole-candidate historical subsumption is unestablished. No paper, DOI, tracker row or new central proof-search turn is warranted. Original effort remains 1/5.
+
+The earlier LocalSync and operational custody prototypes were never launched. They and their findings remain unchanged as historical preparation evidence. This separate route uses reviewed V3 native bodies and a private Git index based on the fresh remote. It preserves every unrelated published tree entry, both actual checkout refs/indices and the other audit maps. Normal push rejects concurrent remote drift. Local installation follows authenticated publication and records every replacement; it is not globally atomic. No previous grant, reservation or PASS is reused. The other audit reports it is paused and holds no writer or operational lock; this is status evidence, not authority over other chats.
+
+The ignored cache is not a tracked publication artifact and is not changed by this transaction. Final program completion follows a separate verified bookkeeping commit.
+
+The linked corrected_attempt/ snapshot was prepared before the actual closure and is archived under its dated V2 preparation path. Its historical pending fields and unsupported whole-candidate wording are superseded by [the V4 reconciliation](../HISTORICAL_SCOPE_WORDING_RECONCILIATION_V4_20261007.md) and the V3 qualified disposition. The demonstrated noninclusion applies only to the specific 1975 exponential test; neither whole-candidate historical subsumption nor nonsubsumption is established. The underlying candidate proof/checker is retained for reproducibility. Private review controls and primary-source PDF copies are omitted from Git. Private member pins in old review manifests document the performed review, not a claim that those private bodies are in this public subset.
