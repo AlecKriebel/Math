@@ -1,0 +1,8 @@
+# Research and publication log
+
+- 2026-10-07 22:06–22:14 UTC: source reconciliation established published counterexamples before any new proof-search attempt. The frozen chronology preserves the detailed sequence. Goal completion estimate: 100% for the credited negative disposition, conditional on the cited published geometric theorems; no new discovery claimed. Research turns: 0/5.
+- 2026-10-07, independent acceptance stage: the full original report was accepted without a mathematical correction. The auditor checked source scope, frozen bytes, arithmetic in three Python modes, and 39 controlled runs. The complete unchanged audit records the limits of those checks. Goal completion estimate: 100% for this source-dependent mathematical acceptance.
+- 2026-10-07 22:28–22:32 UTC, publication preparation: fresh main was `7431d02aed19d00fc8494a564b9048db203320e9`. Four exact/semantic PR queries and all ten branch-list pages (980 branches) found no same-target publication. The root tree and exact target paths were also checked; a full recursive-tree request failed with a transport error, so no claim of complete repository content search is made. Search absence remains bounded by the checked snapshots and terminology.
+- Publication preparation preserves the complete author packet, independent audit, and original archive. The wrapper adds mandatory external manifest pinning, exact inventory checks and source-free replay. Queue changes are limited to the current target's permitted cells. Goal completion estimate at packaging: 95% of publication; remote-byte and live-draft verification remain separate final checks.
+
+This log records no new mathematical turn. No outreach or release was performed as part of these stages.
