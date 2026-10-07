@@ -8,3 +8,8 @@ The adapted minimal Lake configuration and reproduction script are identified
 in lean_check/README.md. Original mathematical proof modules are unmodified.
 No compiled upstream verification is claimed. Third-party package downloads
 and generated caches are excluded from Git and the Zenodo upload kit.
+
+The five source-scan candidate files under lean_check/receipts/mathlib_scan_candidates
+are pinned Mathlib sources at d13f23b723b8a846827a245b89c10fc7d3f11612,
+retaining their supplied copyright headers, under the Apache License 2.0 in
+LICENSE-mathlib.txt. These files are audit evidence, not theorem build results.

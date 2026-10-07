@@ -1,16 +1,34 @@
 {
-  "pdf_build": {
-    "compiler": "Tectonic 0.16.9",
-    "pdf_bytes": 80290,
-    "status": "passed",
-    "stderr": "",
-    "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"main.out\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `main.pdf` (78.408203125 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
-    "tex_sha256": "effc61c3809b0290f4b9a063c7a7dbc389e512d38e81683d0bea0cee42f19aa5"
-  },
   "python": "3.14.6",
+  "candidate": {
+    "main.tex": {
+      "sha256": "effc61c3809b0290f4b9a063c7a7dbc389e512d38e81683d0bea0cee42f19aa5",
+      "bytes": 20422
+    },
+    "paper.pdf": {
+      "sha256": "8f068229d0f4222e3a46070f2e3db6ae7ce4194eb0a172696c0201f1beedeb56",
+      "bytes": 80290
+    },
+    "README.md": {
+      "sha256": "fca0eb6955d6c5794eaafcc132617a42706178fb16319bc1c4a6d75c3a8b3dd2",
+      "bytes": 5370
+    },
+    "verification.zip": {
+      "sha256": "98387ea3646a73c09db831269111e796e1ceded5a290cf518b8e140b09726a3b",
+      "bytes": 74536
+    },
+    "zenodo-deposit.json": {
+      "sha256": "fa6d151d0ce646e898cfb68ac7abb92c857c344488a593e138003e5cc290c5c0",
+      "bytes": 2427
+    }
+  },
+  "zip_member_count": 28,
+  "source_checked_files": 74,
   "runs": [
     {
-      "result": {
+      "script": "code/binary_compiler.py",
+      "seconds": 0.61,
+      "results": {
         "deterministic_machines": 288,
         "fooling_pairs": 100,
         "pullback_cases": 227136,
@@ -29,13 +47,12 @@
         },
         "source_words": 1534,
         "status": "passed"
-      },
-      "script": "code/binary_compiler.py",
-      "seconds": 0.58,
-      "sha256": "013a096ca48a8a8123d6f28adf32b6e6d517ef7bd9d125450e6950ee772b49d0"
+      }
     },
     {
-      "result": {
+      "script": "reviews/reduction_adversary_check.py",
+      "seconds": 13.364,
+      "results": {
         "complement_identity_words": 4369,
         "endmarked_source_words": 32764,
         "fooling_crosses": 20515,
@@ -45,58 +62,56 @@
         "raw_one_state_nondeterministic_machines": 8192,
         "scope": "Encoding only; upstream lower bounds not established.",
         "status": "passed"
-      },
-      "script": "reviews/reduction_adversary_check.py",
-      "seconds": 14.786,
-      "sha256": "bff7d0d7bb6338421e4632231792d003aa019e34e3020c869a638d5427861bdf"
+      }
     },
     {
-      "result": {
+      "script": "agent_notes/determinization_algebra_check.py",
+      "seconds": 0.15,
+      "results": {
+        "status": "PASS",
         "checks": [
           {
-            "corner_products_checked": 1,
             "degree": 0,
             "diagrams": 1,
             "idempotents": 1,
+            "corner_products_checked": 1,
             "sandwiches_checked": 1
           },
           {
-            "corner_products_checked": 1,
             "degree": 1,
             "diagrams": 1,
             "idempotents": 1,
+            "corner_products_checked": 1,
             "sandwiches_checked": 2
           },
           {
-            "corner_products_checked": 10,
             "degree": 2,
             "diagrams": 3,
             "idempotents": 2,
+            "corner_products_checked": 10,
             "sandwiches_checked": 12
           },
           {
-            "corner_products_checked": 234,
             "degree": 3,
             "diagrams": 15,
             "idempotents": 10,
+            "corner_products_checked": 234,
             "sandwiches_checked": 280
           },
           {
-            "corner_products_checked": 11304,
             "degree": 4,
             "diagrams": 105,
             "idempotents": 40,
+            "corner_products_checked": 11304,
             "sandwiches_checked": 7520
           }
-        ],
-        "status": "PASS"
-      },
-      "script": "agent_notes/determinization_algebra_check.py",
-      "seconds": 0.442,
-      "sha256": "7d7d5bcf1ff402a5a8fb3608b6fb087e6a30d202519b7fc0f009552b108502e2"
+        ]
+      }
     },
     {
-      "result": {
+      "script": "agent_notes/upstream_algebra_check.py",
+      "seconds": 2.62,
+      "results": {
         "scope": "exhaustive width one and seeded width two falsification",
         "seed": 129,
         "width_1": {
@@ -117,11 +132,15 @@
           "transport_budgets": 7412,
           "transport_contexts": 1794
         }
-      },
-      "script": "agent_notes/upstream_algebra_check.py",
-      "seconds": 3.661,
-      "sha256": "cfdb53dda2890064ba68e60c9ba79c31f5202f55bb67b04ed96f963547951ce8"
+      }
     }
   ],
+  "pdf_reproduction": {
+    "version": "Tectonic 0.16.9",
+    "bytes": 80289,
+    "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"main.out\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `main.pdf` (78.4072265625 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+    "stderr": ""
+  },
+  "pdf_text_same": true,
   "status": "passed"
 }
