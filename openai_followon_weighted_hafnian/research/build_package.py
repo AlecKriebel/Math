@@ -1,0 +1,26 @@
+"""Build only the authored publication payload; reading copies never enter it."""
+from pathlib import Path
+import hashlib,json,shutil,zipfile,datetime
+ROOT=Path(__file__).resolve().parents[1]
+kit=ROOT/'publication/zenodo-upload-kit'; stage=kit/'source-and-verification'
+if stage.exists(): shutil.rmtree(stage)
+stage.mkdir(parents=True)
+files=['README.md','LICENSES.md','LICENSE_CODE.txt','reproduce.py','DEPENDENCY_REFERENCES.json','DEPENDENCY_LEDGER.md','THEOREM_STATE.md','APPROACH_TABLE.md','manuscript/main.tex','proofs/GADGET_PROOF.md','proofs/SAMPLING_PROOF.md','code/gadget.py','code/sampling.py','code/test_gadget.py','code/test_sampling.py','code/upstream_cell_checks.py','data/gadget_verification.json','data/sampling_verification.json','data/upstream_cell_verification.txt','research/UPSTREAM_PROOF_AUDIT.md','research/FORMAL_SCOPE_AUDIT.md','research/PRIORITY_AUDIT.md','research/priority_sources/SOURCE_STATEMENTS.md','research/priority_sources/SEARCH_LOG.md','research/priority_sources/references.bib']
+for name in files:
+    dest=stage/('main.tex' if name=='manuscript/main.tex' else name)
+    dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/name,dest)
+shutil.copyfile(ROOT/'manuscript/main.pdf',stage/'paper.pdf')
+hashes={str(p.relative_to(stage)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(stage.rglob('*')) if p.is_file()}
+(stage/'PAYLOAD_SHA256.json').write_text(json.dumps(hashes,indent=2)+'\n')
+archive=kit/'source-and-verification.zip'
+with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+    for p in sorted(stage.rglob('*')):
+        if p.is_file():
+            info=zipfile.ZipInfo(str(p.relative_to(stage)),date_time=(2026,10,6,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o100644<<16;z.writestr(info,p.read_bytes())
+shutil.copyfile(stage/'paper.pdf',kit/'paper.pdf');shutil.copyfile(stage/'README.md',kit/'README.md')
+manifest={'metadata':{'title':'Binary rational hafnians: an exact reduction and approximation and sampling consequences','upload_type':'publication','publication_type':'preprint','creators':[{'name':'Kriebel, Alec','orcid':'0009-0001-9320-500X'}],'description':'<p>This note records a self-contained exact reduction from every even-order symmetric matrix with binary nonnegative rational off-diagonal entries to a simple unweighted perfect-matching count, with polynomial encoding length, an explicit logarithmic integer-weight gadget, exact rational scaling, and weighted matching fibers. Citing the general-graph FPRAS of OpenAI, it derives a uniform rational hafnian FPRAS with exact zero detection and a rigorously specified bounded-bit total-variation approximate sampler.</p><p>Logarithmic integer weight removal, binary rational weighted-to-unweighted equivalence, and counting self-reduction are established machinery and credited to earlier work, including Dell and collaborators, McQuillan, and Jerrum, Valiant, and Vazirani. The approximation breakthrough belongs to OpenAI. This is an attributed consequence and implementation note; no first-publication, new reduction, or independent solution of the base approximation problem is claimed. The supplement contains proofs, transparent code, exact finite enumeration and output-law checks, dependency and priority audits, and clean reproduction instructions. Finite checks do not certify the upstream FPRAS. The real upstream Lean statement was inspected, but no independent kernel rebuild was reproduced.</p><p>Nonnegative rational inputs only; no signed or complex hafnian or unrestricted Gaussian-boson-sampling consequence. AI tools were used extensively in research, drafting and automated adversarial verification. The preprint has not undergone conventional human peer review or refereeing at publication. Automated reviews are not human peer review. Newly authored prose and data are CC BY 4.0; code is MIT as specified in the archive.</p>','publication_date':'2026-10-06','access_right':'open','license':'cc-by-4.0','version':'1.0.0','keywords':['hafnian','perfect matchings','approximate counting','FPRAS','approximate sampling','binary rational weights'],'related_identifiers':[{'identifier':'https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a','relation':'references','scheme':'url'},{'identifier':'https://arxiv.org/abs/1301.2880','relation':'references','scheme':'url'}]},'files':['publication/zenodo-upload-kit/paper.pdf','publication/zenodo-upload-kit/source-and-verification.zip','publication/zenodo-upload-kit/README.md']}
+(ROOT/'zenodo-deposit.json').write_text(json.dumps(manifest,indent=2)+'\n')
+review_files=['zenodo-deposit.json']+manifest['files']
+review_id={name:{'sha256':hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),'bytes':(ROOT/name).stat().st_size} for name in review_files}
+(ROOT/'publication/CANDIDATE_IDENTITY.json').write_text(json.dumps({'candidate':'v1','files':review_id,'authored_payload':hashes},indent=2)+'\n')
+print(json.dumps({'payload_files':len(hashes),'archive_bytes':archive.stat().st_size,'identity':review_id},indent=2))
