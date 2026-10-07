@@ -949,7 +949,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 938 | 9900008 / AMR-098-0008 | Mass-stationarity of diffuse random measures via allocations | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 939 | 9900009 / AMR-098-0009 | Markovian-kernel characterization of mass-stationarity | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | unsolved | 5/5 |  | Accepted partials: complete real-coefficient orders 6, 13, 15; all-order reduced supports with at most two active variable terms; odd-order finite cyclotomic/period decision; k=4L+2 midpoint/even-lag exclusion and rationally scaled finite reductions. Full arbitrary-order classification unresolved; novelty not established. [Proofs and full audits](attempts/4700011/README.md). |  |
 | 942 | 30004633 / OWR-4990379-003 | Lagrangian Schemes for Irregular Porous-Medium Solutions | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 944 | 30004818 / OWR-8415345-008 | Genus-Reducing Local-Knot Concordance in Orientable Three-Manifolds | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
