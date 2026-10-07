@@ -955,7 +955,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 944 | 30004818 / OWR-8415345-008 | Genus-Reducing Local-Knot Concordance in Orientable Three-Manifolds | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 945 | 30004938 / OWR-8415362-003 | Polyhedrality of Totally Nonnegative Critical Varieties | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 946 | 30005030 / OWR-9790360-001 | Spatial Regularity Versus Time Integrability for Fractional SDEs | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 947 | 30005079 / OWR-10252925-004 | Nondivisorial Valuations in Explicit Fano Degenerations | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 947 | 30005079 / OWR-10252925-004 | Nondivisorial Valuations in Explicit Fano Degenerations | 0.0947 | 5.5 | 3 | 2022 | claimed_solved | 1/5 |  | Complete smooth Fano fivefold construction with rank-two nondivisorial global H-minimizer and singular canonical first central fiber; two independent AI mathematical acceptances; no novelty claim. [Proof, full audits, and exact checks](attempts/30005079/PUBLICATION.md) |  |
 | 948 | 30005171 / OWR-11101913-005 | Stable Limits of Smooth Plane Curves | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
