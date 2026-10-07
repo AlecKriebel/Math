@@ -81,8 +81,8 @@ so existence is not a pivotal assumption.
 
 ## 2. Periodic configurations: density and the disk energy limit
 
-**Lemma 1.** Let `L>0`, and let `F={f_1,…,f_q}` be a finite set of distinct
-points in the half-open square `[0,L)²`. Put
+**Lemma 1.** Let `L>0` and `q≥1`, and let `F={f_1,…,f_q}` be a finite set of
+distinct points in the half-open square `[0,L)²`. Put
 
 \[
 C=F+L\mathbb Z^2.
