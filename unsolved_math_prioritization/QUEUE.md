@@ -988,7 +988,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | unsolved | 5/5 |  | Accepted corrected partials: rational and parameter-compatible pseudomanifold reductions; finite-cover/self-cover and shuffle-product results; fixed-boundary torus filling obstruction; attained duality and exact bounded-cocycle criterion. Audit clarifies raw singular face parametrizations and mixed/same-factor shuffle deletions. General aspherical equality and counterexample remain unresolved; no novelty claim. [Corrected report and audit](attempts/30001810/ACCEPTANCE.md). |  |
 | 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 982 | 30001917 / OWR-11139-010 | Normality of Varieties of Minimal Rational Tangents | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 983 | 6000001 / AMR-059-0001 | Realizing Statistical Manifolds in Dually Flat Manifolds | 0.0915 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
