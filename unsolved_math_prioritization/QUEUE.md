@@ -963,7 +963,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
-| 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
+| 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | unsolved | 5/5 |  | Accepted corrected partials: candidate area 4√2; eighteen-adjacency restricted optimum; full affine dual optimum 2√2+2/√3; equal-mass fractional mixture and central-continuity obstruction. Compact supported-current formulation and classical pairing corrected. Neither unrestricted minimum solved. [Proof and audit](../octahedral_soap_5900026/README.md). |  |
 | 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
