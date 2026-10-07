@@ -10,7 +10,7 @@ import argparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
-TITLE = "The Sperner property of Artinian complete intersections in characteristic zero"
+TITLE = "The Sperner property of standard graded Artinian complete intersections in characteristic zero"
 
 
 def sha(path):

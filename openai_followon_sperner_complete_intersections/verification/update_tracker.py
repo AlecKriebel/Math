@@ -47,7 +47,7 @@ def main():
     manifest = json.loads((ROOT / "zenodo-deposit.json").read_text())
     title = manifest["metadata"]["title"]
     require(publication["title"] == title, "Publication receipt belongs to another title")
-    candidate = json.loads((ROOT / "receipts/candidate_v2.json").read_text())
+    candidate = json.loads((ROOT / "receipts/candidate_v3.json").read_text())
     require(candidate["manifest_sha256"] == hashlib.sha256(
         (ROOT / "zenodo-deposit.json").read_bytes()).hexdigest(), "Manifest differs from reviewed candidate")
     expected = {f["name"]: (f["bytes"], f["sha256"]) for f in candidate["payload"]}

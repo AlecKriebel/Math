@@ -1,4 +1,4 @@
-# The Sperner property of Artinian complete intersections in characteristic zero
+# The Sperner property of standard graded Artinian complete intersections in characteristic zero
 
 Alec Kriebel — ORCID https://orcid.org/0009-0001-9320-500X
 
