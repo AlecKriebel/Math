@@ -970,7 +970,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | claimed_solved | 1/5 |  | Full NP-completeness proof for undirected unit-length three-terminal BSP, even unit costs and original distances 3; two independent full audits pass unchanged. No priority claim. [Proof and audits](attempts/30000347/README.md). |  |
 | 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 964 | 30000853 / OWR-1730-006 | Boundary-Intersection Vanishing on Abelian-Variety Moduli | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 965 | 30000962 / OWR-1967-011 | Recursive Determination of Quantum Knot Invariants | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
