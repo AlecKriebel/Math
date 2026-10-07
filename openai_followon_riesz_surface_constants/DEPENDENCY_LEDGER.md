@@ -1,12 +1,18 @@
-# Dependency ledger
+# Dependency ledger: exact retained chain
 
-| Dependency | Precise role and assumptions | Source and validation basis | Status / gap |
+All upstream sources are pinned to adc7f1241b42e322a6451854ab7e4b4c146bf78a; sources/UPSTREAM_MANIFEST.json binds the bytes. Independent audit reports record line-level mechanisms, actual checks and limitations.
+
+| Dependency | Precise statement / role | Citation and validation basis | Disposition and exact limitation |
 |---|---|---|---|
-| U: infinite universal optimality | T1 lower bound for locally finite centered-density-one sets; g(t)=t^(-s/2) | Pinned main Theorem 1.1 and atomic Theorem 1.1; source hashes saved | Unverified; independent analytic, certificate and Lean audits pending |
-| Gaussian certificate | Radial Schwartz f≤exp(-πα|x|²), real Fourier f̂≥0, direct/dual contacts | Main construction and atomic companion | Central proof/sign estimates pending; finite checks alone are insufficient |
-| Completely monotone transfer | g smooth, (-1)^r g^(r)≥0; ordered disk liminf | Main mixtures / atomic energy sections | Pending independent review; Riesz derivatives elementary |
-| Finite/infinite bridge | Periodized side √N boxes, ε√N gaps, s>2; density rescale 1/(1+ε) | New project proof | Independent derivation pending |
-| Lattice upper bound | Covolume one, summable ζ for s>2 | Direct counting/tail proof | Pending |
-| Hardin–Saff universality | Positive H², compact embedded C¹ manifold convention; ambient norm | math-ph/0311024, exact version/corrections pending | Scope review pending |
-| BHS Conjecture 2 | Explicit two-dimensional lattice constant, normalization | Vanderbilt 235.pdf | Exact text/provenance pending |
-| Lean | Real declarations, not comparator statements; semantic equality and axiom audit | lean/docs/090.md + actual source closure | Build/semantic audit pending; no formalization claim |
+| U | Every locally finite C⊂R² with centered closed-disk count/(πR²)→1 has lower ordered-pair energy per particle ≥ covolume-one triangular lattice sum for any smooth nonnegative completely monotone squared-distance potential | OpenAI main Theorem 1.1 and atomic Theorem 1.1; both complete core analytic audits; source-bound finite checkers pass | Retained external theorem. No conventional human refereeing; no independently reproduced kernel proof. Needed only for square-periodic configurations |
+| Sharp Gaussian construction | For every α>0 actual radial Schwartz f≤exp(-πα|x|²), real f̂≥0, direct contacts and dual zeros | Main sections 2–6; atomic construction/infinite/sign sections; both agent audits inspect true transform, unweighted ℓ¹ convergence, Schur inversion, all-radius sign propagation | No unsupported final optimality assumption found; finite arithmetic alone is not the analytic proof |
+| Positive mixture / lower limit | Nonnegative Gaussian sums, Fatou along every radius sequence, Tonelli, shifted positive measure then lattice shift removal | Main section 7; atomic energy section | Audited, permits singular g and infinite energy. Riesz g has exact derivative (s/2)_r t^(-s/2-r)>0 |
+| Periodic disk row identity | Finite motif q≥1, L>0, s>2: closed-disk per-point energy limit is motif-average full outgoing row sum; density q/L² | publication/main.tex Lemma 2, independent proof in proofs/FINITE_TRANSFER.md | Tail ≤8q(2/L)^sΣm^(1-s); fixed-radius cutoff removed after disk limit. No uniform-in-N averaging assumption |
+| Gap bridge | a_N≥(1+ε)^(-s) Z_s−8ε^(-s)ζ_R(s−1)N^(1−s/2), every N≥1, ε>0 | publication/main.tex Proposition 3; independently derived | Density-one compression factor 1/(1+ε), energy factor (1+ε)^s; limit R→∞, N→∞, ε↓0 |
+| Lattice crop | Covolume one; Z_s finite for s>2; exact-N selection from side √N+2D crop gives a_N≤Z_s(1+2D/√N)^s | publication/main.tex section 3; independent proof | Unconditional upper bound; no exact-crop-count assumption or half-pair factor |
+| Surface universality | Compact finite union φ_k(K_k), K_k compact⊂R², φ_k bi-Lipschitz on open G_k; positive H²; s>2: normalized ordered energy→C_(s,2)/H²^(s/2) | Hardin–Saff 2005, definition (19), Theorem 2.4; arxiv math-ph/0311024v3 including addendum; primary source audit | Smooth compact embedded surfaces with smooth boundary fit via chart extension. Ambient Euclidean norm. Use addendum only within compact regular thickening; its unbounded-neighborhood wording is not needed |
+| Original conjecture | KS1998 Conjecture 1 unordered sphere coefficient; BHS2012 Conjecture 2 covolume-normalized ζ for s>d, d2/4/8/24 | agent_notes/classical_scope.md; primary PDFs/hash manifest | Only d2, s>2 resolved here. Original pairs doubled; intended lattice explicitly defined, avoiding BHS basis typo |
+| Known finite/infinite reduction | Periodic/nonperiodic asymptotics equal C_(s,d); thermodynamic infinite minimum equals C_(s,d) | HSS2014 Theorem 3.2; HLSS2018 Proposition 3.1 and published footnote; CK2007 Lemma 9.1 for periodic ball sums | Established machinery. Our explicit periodization proof is an account in current conventions, not a novel invented reduction |
+| Formal sources | Real OAI.AtomicTriangular.universal_energy_minimum and its definitions match U | 227-module closure, hashes, source scan and selected actual proof inspection in formal audit | Not used as kernel-verification evidence. Exact compile failed at missing compatible Mathlib/OAI oleans; no Comparator or axiom check passed; no follow-on formalization claimed |
+
+A material defect in U would block the unconditional constant claim; the gap construction does not repair or bypass U. Current analytic audits identify no material defect. Final complete-package reviews must independently test the retained chain and attribution.

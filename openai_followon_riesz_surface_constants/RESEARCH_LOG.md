@@ -11,3 +11,19 @@ Five independent routes are active: main interpolation/certificate proof; atomic
 Shared local main is diverged from origin/main (one local commit, 123 remote commits in initial check). Shared checkout and index must remain intact. Owned checkpoints will use a temporary index and a commit with current public main as parent, pushed directly to main without force. No GitHub release will be created.
 
 Strongest verified result at intake: the pinned manuscripts state the exact required infinite-configuration theorem. Its validity, actual formal proof and finite transfer are still under independent audit. No unconditional solution is claimed.
+
+## 2026-10-07T04:20:57Z — checkpoint 1: retained mathematical chain and candidate
+
+Mathematical resolution: **95%** (estimate; complete-package falsification remains). Publication package: **60%** (estimate).
+
+Both independent upstream analytic audits found no substantive defect in the needed positive-energy theorem. The main source-bound interval checker completed all 37,310 Bernstein and ten tail comparisons and the scalar checker passed; the atomic exact checker passed twice, with independent rational/diagnostic checks. Actual Lean declarations semantically match the intended statement, but compatible Mathlib was unavailable and no OAI theorem/kernel/Comparator/axiom verification was reproduced. This limitation is explicit everywhere; handwritten audits are the retained validation basis.
+
+The independent finite bridge proves the exact uniform inter-box error 8 ε^(-s) ζ_R(s−1) N^(1−s/2), density-one compression and disk/N/gap order of limits. The exact-N lattice crop gives the reverse bound. Primary Hardin–Saff definition (19), Theorem 2.4 and included addendum cover smooth compact embedded surfaces with smooth boundary; the addendum's neighborhood lemma is used only with compact closure, repairing its overbroad printed wording. The sphere coefficient and Kuijlaars–Saff unordered convention are reconciled.
+
+The priority audit traces the target to KS1998 Conjecture 1 and BHS2012 Conjecture 2; finite/periodic equivalence belongs to HSS2014 and thermodynamic identification to HLSS2018. This is an explicit newly available consequence of OpenAI's theorem plus established reductions. No independent base breakthrough or first-public-priority assertion is made. No exact explicit finite/surface duplicate was located; bounded negative searches do not certify firstness. Optional finite-rate research is preserved in research notes but excluded from publication scope.
+
+The standalone source is open in the native LaTeX editor and compiles successfully after fixing a missing color-package import. An actual five-page PDF was exported and all initial pages visually inspected; attribution revisions require renewed export/inspection. Source clone remains read-only. The shared volume briefly filled during concurrent work; only this project's completed temporary checker environment was removed, then a small new environment prepared for clean reproduction after storage recovered. No unrelated artifacts were removed.
+
+The installed gws prerequisite file was missing; invoking its generator with `--help` unexpectedly generated instruction files in the shared root. Those newly untracked generated files were moved into the dedicated project's ignored reproduction folder; existing repository docs were preserved. The actual spreadsheet metadata resolves numeric tab 1254632077 to **Math Puzzles**, with four populated headers: Original Problem, Solution Chat URL, DOI, Notes. Read-only preflight succeeded. No tracker write or Zenodo staging/publication has occurred.
+
+Strongest verified result: a complete conventional consequence proof of both core mathematical targets using two audited versions of U, with all pair/covolume/area/tail conventions checked. Full priority wording and two independent complete-package reviews remain mandatory publication gates.

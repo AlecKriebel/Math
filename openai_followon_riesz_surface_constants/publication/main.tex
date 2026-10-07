@@ -1,0 +1,333 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,xcolor,amsmath,amssymb,amsthm,mathtools,microtype,xurl}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}\newcommand{\Z}{\mathbb Z}
+\newcommand{\Es}{\mathcal E_s}\newcommand{\Hs}{\mathcal H_s}
+\newcommand{\abs}[1]{\lvert#1\rvert}\newcommand{\norm}[1]{\lVert#1\rVert}
+\DeclareMathOperator{\covol}{covol}
+\hypersetup{pdftitle={Hypersingular Riesz-energy constants on surfaces from triangular-lattice universal optimality},pdfauthor={Alec Kriebel},pdfsubject={Exact two-dimensional hypersingular Riesz-energy constants, s greater than 2}}
+\title{Hypersingular Riesz-energy constants on surfaces\protect\\from triangular-lattice universal optimality}
+\author{Alec Kriebel\thanks{ORCID: \url{https://orcid.org/0009-0001-9320-500X}.}}
+\date{October 6, 2026}
+\begin{document}\maketitle
+\begin{abstract}
+We deduce the exact two-dimensional hypersingular minimal Riesz-energy
+constant for every real $s>2$ from OpenAI's recently released triangular-lattice
+universal-optimality theorem. The constant is the Epstein sum of the
+covolume-one triangular lattice. An explicit gap-periodization argument
+relates the finite square problem to the source theorem's centered-disk
+lower energy, with an inter-box error of order $N^{1-s/2}$ for each fixed gap
+parameter. A lattice crop gives the matching upper bound. The corrected
+Hardin--Saff universality theorem then gives the ordered-pair leading
+asymptotic on every smooth compact embedded surface of positive area,
+including surfaces with smooth boundary, for ambient Euclidean distance.
+This resolves the two-dimensional $s>2$ case of the explicit lattice-constant
+conjecture recorded by Brauchart, Hardin and Saff. The universal-optimality
+breakthrough, finite-to-infinite reduction and manifold theorem are inherited
+results; this note gives a self-contained account of the known passage and
+records its planar surface consequence.
+\end{abstract}
+
+\section{Statement, provenance and conventions}
+Put $b=\sqrt3/2$ and
+\[
+ \Lambda=b^{-1/2}\{j(1,0)+k(1/2,b):j,k\in\Z\},\qquad
+ Z_s=\zeta_\Lambda(s)=\sum_{v\in\Lambda\setminus\{0\}}\abs{v}^{-s}.
+\]
+The lattice has covolume one. For a compact set $K\subset\R^p$, define
+\[
+ \Es(K,N)=\min_{x_1,\ldots,x_N\in K}
+        \sum_{i\ne j}\abs{x_i-x_j}^{-s},
+\]
+with collisions assigned energy $+\infty$. All pair sums in this note are
+\emph{ordered}. Distances are Euclidean distances in the ambient space,
+not intrinsic geodesic distances. The Hausdorff measure $\mathcal H^2$ is
+normalized to agree with planar Lebesgue area.
+
+\begin{theorem}\label{thm:main}
+For every real $s>2$,
+\begin{equation}\label{eq:square}
+ C_{s,2}:=\lim_{N\to\infty}\frac{\Es([0,1]^2,N)}{N^{1+s/2}}=Z_s.
+\end{equation}
+If $M\subset\R^p$ is a smooth compact embedded two-dimensional manifold,
+with or without smooth boundary, and $A=\mathcal H^2(M)>0$, then
+\begin{equation}\label{eq:surface}
+ \Es(M,N)\sim Z_s A^{-s/2}N^{1+s/2}.
+\end{equation}
+In particular, the unit sphere in $\R^3$, with chordal distance, has
+coefficient $Z_s/(4\pi)^{s/2}$.
+\end{theorem}
+
+The candidate constant in dimension two goes back to Kuijlaars and
+Saff~\cite[Conjecture 1]{KS1998}, whose unordered-pair coefficient must be
+doubled in our convention; Brauchart--Hardin--Saff~\cite[Conjecture 2]{BHS2012}
+state the formula $C_{s,d}=\covol(\Lambda_d)^{s/d}\zeta_{\Lambda_d}(s)$
+for $s>d$ in dimensions $2,4,8,24$. We establish only its $d=2$, $s>2$
+part. The result concerns the leading minimum value, not microscopic
+crystallization or uniqueness of finite minimizers. It makes no new assertion
+for $s\le2$ or about a second-order term.
+
+The new pivotal input is OpenAI's infinite-plane theorem
+\cite[Theorem 1.1]{OAIUniversal}, also proved in its atomic companion
+\cite[Theorem 1.1]{OAIAtomic}. We use the exact source version at repository
+commit \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+For a locally finite $\mathcal C\subset\R^2$, let $B_R$ be the closed disk
+centered at zero and $n_{\mathcal C}(R)=\#(\mathcal C\cap B_R)$. The source
+uses centered density $n_{\mathcal C}(R)/(\pi R^2)\to1$ and
+\begin{equation}\label{eq:infinite}
+ \Hs(\mathcal C)=\liminf_{R\to\infty}\frac1{n_{\mathcal C}(R)}
+   \sum_{\substack{x,y\in\mathcal C\cap B_R\\x\ne y}}\abs{x-y}^{-s}.
+\end{equation}
+The imported theorem says that $\Hs(\mathcal C)\ge Z_s$ for every such
+configuration. Indeed $g(t)=t^{-s/2}$ satisfies its smooth nonnegative
+complete-monotonicity hypotheses, since
+\[
+ (-1)^r g^{(r)}(t)=(s/2)_r t^{-s/2-r}>0\quad(t>0,\ r\ge0).
+\]
+Here $(s/2)_0=1$. Section~\ref{sec:periodic} proves the exact finite transfer;
+only the square-periodic special case of the imported theorem is needed.
+The finite/periodic asymptotic equivalence was proved by Hardin, Saff and
+Simanek~\cite[Theorem 3.2]{HSS2014}. Hardin, Lebl'e, Saff and
+Serfaty~\cite[Proposition 3.1]{HLSS2018} identify the thermodynamic minimum
+with $C_{s,d}$; their published note explicitly draws the analogous
+$d=8,24$ consequence of universal optimality. Periodic centered-ball
+limits also appear in Cohn--Kumar~\cite[Lemma 9.1]{CK2007}. The passage
+proved below is this established reduction in the present conventions.
+This is an explicit newly available consequence of the planar theorem,
+not an independently discovered base breakthrough. We do not claim an
+independent proof of planar universal optimality, invention of these
+reductions, or first public priority for the corollary.
+
+\section{Periodic disk limits and a gap-periodization bound}\label{sec:periodic}
+We first justify the disk-energy limit for the periodic configurations used
+below, so there is no implicit change of averaging convention.
+
+\begin{lemma}\label{lem:periodic}
+Let $L>0$, $q\ge1$, and $F=\{f_1,\ldots,f_q\}\subset[0,L)^2$ consist of distinct
+points. For $\mathcal C=F+L\Z^2$ and $s>2$, the centered density is $q/L^2$,
+and the lower limit in \eqref{eq:infinite} is an ordinary finite limit equal to
+\begin{equation}\label{eq:rows}
+ \frac1q\sum_{i=1}^q h_i,\qquad
+ h_i=\sum_{\substack{1\le j\le q,\ k\in\Z^2\\(j,k)\ne(i,0)}}
+       \abs{f_i-f_j-Lk}^{-s}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Representations are unique in the half-open fundamental square, and the set
+is locally finite. For $m=\norm{k}_\infty\ge2$, each denominator in the
+$i$th row is at least $L(m-1)\ge Lm/2$. There are $8m$ such translations,
+so the tail is bounded by $8q(2/L)^s\sum_{m\ge2}m^{1-s}<\infty$.
+The remaining finitely many denominators are nonzero. Thus $h_i<\infty$;
+all rearrangements of these nonnegative sums are justified by Tonelli.
+
+Let $n_i(R)=\#((f_i+L\Z^2)\cap B_R)$ and $d=L\sqrt2/2$.
+The side-$L$ cells centered at these points give
+\[
+ \pi(R-d)^2/L^2\le n_i(R)\le\pi(R+d)^2/L^2\quad(R>d).
+\]
+Their union contains $B_{R-d}$ and is contained in $B_{R+d}$.
+Consequently $n_i(R)=\pi R^2/L^2+O(R/L+1)$ and
+$n_i(R)/n_{\mathcal C}(R)\to1/q$.
+
+Write $S_R$ for the numerator in \eqref{eq:infinite} and let $h_i^{(T)}$
+be the row restricted to displacements of length at most $T$.
+For $R>T$, completing outgoing rows and, respectively, retaining only
+rows from $B_{R-T}$ give
+\[
+ \sum_i n_i(R-T)h_i^{(T)}\le S_R\le\sum_i n_i(R)h_i.
+\]
+Divide by $n_{\mathcal C}(R)$ and take $R\to\infty$ at fixed $T$.
+Then $T\to\infty$ gives $h_i^{(T)}\uparrow h_i$ by monotone convergence,
+proving \eqref{eq:rows}. This also proves the asserted density.
+\end{proof}
+
+For $\lambda>0$, direct substitution of $R/\lambda$ in the definitions gives
+\begin{equation}\label{eq:scaling}
+ \operatorname{dens}(\lambda\mathcal C)=\lambda^{-2}\operatorname{dens}(\mathcal C),
+ \qquad \Hs(\lambda\mathcal C)=\lambda^{-s}\Hs(\mathcal C).
+\end{equation}
+Let $a_N=N^{-1-s/2}\Es([0,1]^2,N)$, and distinguish the Riemann zeta
+function $\zeta_{\mathrm R}(u)=\sum_{m\ge1}m^{-u}$ from the lattice sum.
+
+\begin{proposition}\label{prop:lower}
+For each $s>2$, $N\ge1$ and $\varepsilon>0$,
+\begin{equation}\label{eq:finitebound}
+ a_N\ge(1+\varepsilon)^{-s}Z_s
+       -8\varepsilon^{-s}\zeta_{\mathrm R}(s-1)N^{1-s/2}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Take any distinct $N$-point set $X=\{x_i\}\subset[0,1]^2$, set
+$y_i=\sqrt N x_i$, $L=(1+\varepsilon)\sqrt N$, and repeat
+$F=\{y_i\}$ by $L\Z^2$. The strict gap makes $F\subset[0,L)^2$, even
+when $X$ contains boundary points, and the density is $(1+\varepsilon)^{-2}$.
+By Lemma~\ref{lem:periodic}, its energy per point is
+\[
+ N^{-1-s/2}\sum_{i\ne j}\abs{x_i-x_j}^{-s}+I_{N,\varepsilon},\qquad
+ I_{N,\varepsilon}=\frac1N\sum_{i,j=1}^N\sum_{k\ne0}
+                  \abs{y_i-y_j-Lk}^{-s}.
+\]
+The cross-cell sum includes $i=j$ for nonzero translations.
+For $m=\norm{k}_\infty\ge1$, a coordinate with $\abs{k_a}=m$ gives
+\[
+ \abs{y_i-y_j-Lk}\ge\sqrt N\big((1+\varepsilon)m-1\big)
+                       \ge\varepsilon\sqrt N\,m.
+\]
+Counting the $8m$ translations in that shell yields the uniform bound
+\begin{equation}\label{eq:cross}
+ 0\le I_{N,\varepsilon}\le
+ 8\varepsilon^{-s}\zeta_{\mathrm R}(s-1)N^{1-s/2}.
+\end{equation}
+No separation or occupancy bound within $X$ was used.
+
+Compress the repeated configuration by $\lambda=(1+\varepsilon)^{-1}$.
+It now has centered density one. Equations~\eqref{eq:rows}--\eqref{eq:scaling}
+and the imported universal-optimality theorem give
+\[
+ Z_s\le(1+\varepsilon)^s\left[
+       N^{-1-s/2}\sum_{i\ne j}\abs{x_i-x_j}^{-s}+I_{N,\varepsilon}\right].
+\]
+Combine with \eqref{eq:cross} and minimize over $X$ to prove
+\eqref{eq:finitebound}. Finite minimizers exist by lower semicontinuity
+on the compact product after assigning $+\infty$ to collisions.
+\end{proof}
+
+For fixed $\varepsilon>0$, the error in \eqref{eq:finitebound} tends to zero
+because $s>2$. Hence
+\[
+ \liminf_{N\to\infty}a_N\ge(1+\varepsilon)^{-s}Z_s,
+ \qquad \liminf_{N\to\infty}a_N\ge Z_s
+\]
+after $\varepsilon\downarrow0$. The limit order is the disk radius first
+at each fixed $N,\varepsilon$, then $N\to\infty$ at fixed $\varepsilon$,
+then $\varepsilon\downarrow0$. There is no uniform-in-$N$ disk-limit
+assumption and no periodization with zero gap.
+
+\section{The matching lattice upper bound}
+The sum $Z_s$ converges for $s>2$: if $\Lambda=B\Z^2$ with $B$ invertible,
+then $\abs{Bk}\ge c\norm{k}_\infty$ for some $c>0$, and
+$Z_s\le8c^{-s}\sum_{m\ge1}m^{1-s}<\infty$.
+Take a bounded fundamental parallelogram $P$ of $\Lambda$, contained in
+$[-D,D]^2$ for some $D>0$. Its translates tile the plane up to cell
+boundaries and each has area one. For $t\ge2D$, every point of
+$[D,t-D]^2$ lies in a cell whose lattice representative belongs to
+$[0,t]^2$. Therefore
+\[
+ \#(\Lambda\cap[0,t]^2)\ge(t-2D)^2.
+\]
+With $t_N=\sqrt N+2D$, select exactly $N$ points $Y_N$ from this crop.
+Each outgoing row of the finite set is at most the full lattice sum $Z_s$.
+Scale by $1/t_N$ into the unit square to obtain
+\[
+ \Es([0,1]^2,N)\le t_N^s N Z_s,\qquad
+ a_N\le Z_s\left(1+\frac{2D}{\sqrt N}\right)^s.
+\]
+Thus $\limsup a_N\le Z_s$, proving \eqref{eq:square}.
+Selecting an exact-$N$ subset avoids any assumption that a lattice crop
+can be chosen with exactly $N$ sites. No tail is discarded with an
+uncontrolled error.
+
+\section{Transfer to surfaces and verification scope}
+Hardin and Saff~\cite[Theorem 2.4]{HS2005} prove that, for $s>d$, a compact
+$d$-rectifiable manifold $K\subset\R^{d'}$ of positive $\mathcal H^d$
+measure satisfies
+\[
+ \lim_{N\to\infty}\frac{\Es(K,N)}{N^{1+s/d}}
+          =\frac{C_{s,d}}{\mathcal H^d(K)^{s/d}}.
+\]
+Their definition (19) is a finite union $K=\bigcup_k\varphi_k(K_k)$,
+where each $K_k\subset\R^d$ is compact and $\varphi_k$ is bi-Lipschitz
+on an open set $G_k\supset K_k$. The theorem uses ambient Euclidean
+distance, ordered pairs, and the unit-cube-normalized constant.
+We use the corrected proof, with the addendum included in the cited
+arXiv version, rather than the uncorrected neighborhood assertion in
+Proposition 8.3.
+
+A smooth compact embedded surface with smooth boundary has finitely many
+such compact chart pieces. At a boundary point, its smooth chart on a
+half-disk extends to an open planar neighborhood; after shrinking, the
+extension is bi-Lipschitz by the full-rank derivative and local graph
+representation. The pieces on the half-disk remain compact subsets of
+that open neighborhood. Thus the $s>d$ theorem allows boundary here.
+The extra containment in a $C^1$ manifold without boundary in the source's
+$s=d$ clause is not needed for $s>2$.
+
+For completeness, the $s>d$ addendum's neighborhood lemma is used only
+inside a \emph{compact} regular thickening: cover each chart piece by
+finitely many closed cubes contained in $G_k$ and take the union of their
+bi-Lipschitz images. This is a compact $d$-regular set containing $K$.
+Consequently the closure of each relative neighborhood is compact and
+its positive-distance step is valid. No unrestricted unbounded-neighborhood
+version of that lemma is invoked. Applying the theorem with $d=2$ and
+\eqref{eq:square} proves \eqref{eq:surface}; the sphere has area $4\pi$.
+
+The accompanying dependency ledger and audits record an independent
+analytic review of the needed parts of both OpenAI proofs, source hashes,
+and reproduced finite certificates. The main manuscript's two interval
+checkers completed all 37,310 Bernstein and ten tail comparisons and the
+scalar assertions; the atomic finite checker also passed. These checks
+validate explicit inequalities only; the analytic reductions, infinite
+corrections, global signs and density/mixture transfer were separately
+reviewed. The actual family-090 Lean source statements were inspected for
+semantic agreement. A complete build of the pinned compatible library
+was not reproduced, and this note is not claimed to be formally verified.
+
+\paragraph{Disclosure.}
+AI tools were used extensively in research, drafting, computation and
+verification. The cited upstream manuscripts are supplied as OpenAI-authored
+AI-produced work and are attributed accordingly. This preprint has not
+undergone conventional human peer review or refereeing at publication.
+Automated adversarial reviews recorded in the package are not human peer
+review. The upstream universal-optimality theorem remains the explicit
+external mathematical dependency of the conclusion.
+
+\begin{thebibliography}{99}
+\bibitem{KS1998}
+A. B. J. Kuijlaars and E. B. Saff.
+Asymptotics for minimal discrete energy on the sphere.
+\emph{Transactions of the American Mathematical Society} \textbf{350} (1998),
+523--538. \href{https://www.math.vanderbilt.edu/saffeb/texts/159.pdf}{Author-hosted paper}.
+\bibitem{HS2005}
+D. P. Hardin and E. B. Saff.
+Minimal Riesz energy point configurations for rectifiable $d$-dimensional
+manifolds. \emph{Advances in Mathematics} \textbf{193} (2005), 174--204.
+\href{https://arxiv.org/abs/math-ph/0311024}{arXiv:math-ph/0311024v3},
+including the attached addendum (headed November 23, 2018 in the retrieved PDF).
+\bibitem{BHS2012}
+J. S. Brauchart, D. P. Hardin and E. B. Saff.
+The next-order term for optimal Riesz and logarithmic energy asymptotics
+on the sphere. \emph{Contemporary Mathematics} \textbf{578} (2012), 31--61.
+\href{https://arxiv.org/abs/1202.4037}{arXiv:1202.4037};
+\href{https://www.math.vanderbilt.edu/saffeb/texts/235.pdf}{author-hosted version}.
+\bibitem{CK2007}
+H. Cohn and A. Kumar.
+Universally optimal distribution of points on spheres.
+\emph{Journal of the American Mathematical Society} \textbf{20} (2007), 99--148.
+\href{https://arxiv.org/abs/math/0607446}{arXiv:math/0607446}.
+\bibitem{HSS2014}
+D. P. Hardin, E. B. Saff and B. Z. Simanek.
+Periodic discrete energy for long-range potentials.
+\emph{Journal of Mathematical Physics} \textbf{55} (2014), 123509.
+\href{https://doi.org/10.1063/1.4903975}{doi:10.1063/1.4903975};
+\href{https://arxiv.org/abs/1403.7505v2}{arXiv:1403.7505v2}.
+\bibitem{HLSS2018}
+D. P. Hardin, T. Lebl'e, E. B. Saff and S. Serfaty.
+Large deviation principles for hypersingular Riesz gases.
+\emph{Constructive Approximation} \textbf{48} (2018), 61--100.
+\href{https://doi.org/10.1007/s00365-018-9431-9}{doi:10.1007/s00365-018-9431-9};
+\href{https://arxiv.org/abs/1702.02894v2}{arXiv:1702.02894v2}.
+\bibitem{OAIUniversal}
+OpenAI. \emph{Universal optimality of the triangular lattice}.
+OpenAI Math Release preprint, 2026.
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Universal-optimality-of-the-triangular-lattice-September-23-2026/paper.pdf}{OAI:Universal-optimality-of-the-triangular-lattice-September-23-2026}.
+\bibitem{OAIAtomic}
+OpenAI. \emph{An atomic certificate for triangular-lattice universal optimality}.
+OpenAI Math Release preprint, 2026.
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/An-atomic-certificate-for-triangular-lattice-universal-optimality-September-26-2026/paper.pdf}{OAI:An-atomic-certificate-for-triangular-lattice-universal-optimality-September-26-2026}.
+\end{thebibliography}
+\end{document}
