@@ -23,8 +23,9 @@ def run(args, *, env=None, data=None):
         raise RuntimeError(f"{' '.join(args)} failed: {p.stderr.strip()}")
     return p.stdout.strip()
 
-if len(sys.argv) != 2:
-    raise SystemExit("usage: publish_checkpoint.py 'commit message'")
+if len(sys.argv) not in {2, 3} or (len(sys.argv) == 3 and sys.argv[2] != "--no-receipt"):
+    raise SystemExit("usage: publish_checkpoint.py 'commit message' [--no-receipt]")
+save_receipt = len(sys.argv) == 2
 if run(["git", "branch", "--show-current"]) != "main":
     raise SystemExit("Shared checkout must remain on main")
 scratch = PROJECT / "research" / ".scratch"
@@ -73,7 +74,8 @@ for attempt in range(1, 5):
         break
 if receipt is None:
     raise SystemExit("Remote main moved repeatedly; no force push attempted")
-receipts = PROJECT / "research" / "git_publication_receipts.jsonl"
-with receipts.open("a") as stream:
-    stream.write(json.dumps(receipt, sort_keys=True) + "\n")
+if save_receipt:
+    receipts = PROJECT / "research" / "git_publication_receipts.jsonl"
+    with receipts.open("a") as stream:
+        stream.write(json.dumps(receipt, sort_keys=True) + "\n")
 print(json.dumps(receipt, sort_keys=True))
