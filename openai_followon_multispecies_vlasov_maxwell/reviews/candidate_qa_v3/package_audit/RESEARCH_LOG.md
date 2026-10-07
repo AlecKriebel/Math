@@ -1,0 +1,6 @@
+# Package v3 audit research log
+
+- 2026-10-07T04:49:42.587783+00:00 — Began new read-only v3 package/metadata/reference audit; saved exact initial builder bytes and 25 mapped original hashes plus all three upload-file hashes. Dedicated v3 directory; v1/v2 outputs unchanged. Completion estimate: 30% of assigned packaging/metadata audit.
+- 2026-10-07T04:50:01.547750+00:00 — Prepared independent v3 whitelist and metadata audit with exact requested PDF/ZIP hashes and the metadata/abstract-only Glassey–Strauss 1986 attribution scope check. Independent reference scan is running separately. Completion estimate: 65%. No new analytic, priority or publication certification.
+- 2026-10-07T04:50:03.036078+00:00 — Independent reference scan completed16/16, all128 document references classified,25 original map counterparts and207 formal hash records checked; new1986 attribution scope explicitly metadata/abstract only. Completion estimate:90%; final outer receipt and prior-artifact preservation pending.
+- 2026-10-07T04:51:58.992001+00:00 — All35 frozen packaging/metadata checks passed; recorded4 mutable project comparisons separately and retained initial builder/input evidence. Original packet unchanged; prior audit hashes pass. Final saved receipts and artifact manifest complete. Completion estimate:100%. No mathematics/priority/presentation/publication approval.

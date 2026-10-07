@@ -1,0 +1,6 @@
+# Package v4 audit research log
+
+- 2026-10-07T04:52:49.959328+00:00 — Began latest independent read-only v4 packaging/metadata/reference audit; saved exact builder snapshot plus25 mapped original input hashes and all3 upload hashes. Earlier v1/v2/v3 audit directories preserved. Completion estimate:30% of assigned audit.
+- 2026-10-07T04:52:49.981875+00:00 — Observed v3→v4 main.tex diff consists only of bibliography grouping/small type and length adjustments;7 reference entries and analytic body retained. Preparing exact frozen-check and independent-reference receipts. Completion estimate:60%. No math/priority/Lean/publication approval.
+- 2026-10-07T04:53:12.107837+00:00 — Independent reference audit completed 17/17 checks, all 128 references classified, 25 map counterparts matched and 207 formal hashes cross-checked. Exact V3→V4 bibliography-only difference confirmed independently. Completion estimate:90%.
+- 2026-10-07T04:54:45.557390+00:00 — All 37 frozen checks plus 4 current-project checks passed; all 3 upload paths exactly select V4 bytes, every initial root/candidate input remained stable, all saved prior audit manifests pass and all prior full QA trees stayed unchanged. MD/JSON/scripts/hash receipts finalized. Completion estimate:100%; no mathematical/priority/Lean/visual/publication approval.
