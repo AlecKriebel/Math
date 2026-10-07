@@ -1,0 +1,312 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,longtable,geometry,hyperref}
+\geometry{margin=1in}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PP}{\mathbb P}\newcommand{\CC}{\mathbb C}\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\OO}{\mathcal O}\newcommand{\Cl}{\operatorname{Cl}}\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\lct}{\operatorname{lct}}\newcommand{\Sing}{\operatorname{Sing}}
+\title{Five approaches to smooth limits of prime-degree plane curves\\\large Partial results and exact remaining gaps for problem 30005171}
+\author{AI-assisted mathematical research note}
+\date{7 October 2026}
+\pdfmapfile{+lm.map}\pdfmapfile{+cm.map}\pdfmapfile{+symbols.map}\pdfmapfile{+euler.map}
+\begin{document}\maketitle
+\begin{abstract}
+The assertion that every smooth abstract limit of prime-degree plane curves embeds as a Cartier divisor in a log-terminal $\mathbb Q$-Gorenstein degeneration of $\PP^2$ is not proved or disproved here. We give five substantive approaches, with complete arguments for the partial statements obtained: a limiting-linear-series obstruction; a hyperelliptic test family showing the weakness of root and Hilbert-function tests; a Cartier-index and genus restriction; a nodal-boundary exclusion; and an exhaustive degree-11 rational-unicuspidal threshold obstruction. The last argument has a short mathematical exhaustion proof independent of its computational replay. All general geometric dependencies are stated explicitly. No novelty or priority claim is made.
+\end{abstract}
+\tableofcontents
+
+\section{Question, status, and scope}
+Throughout, the ground field is $\CC$. A smooth limit means the central fiber $C_0$ of a smooth proper family of connected curves over a smooth pointed curve, with general fiber a smooth plane curve of degree $p$. After shrinking and finite base change we work over a discrete valuation ring. Set
+\[
+ g_p=\frac{(p-1)(p-2)}2.
+\]
+A $\mathbb Q$-Gorenstein degeneration of $\PP^2$ here is an actual flat surface family with general fiber $\PP^2$ and relatively $\mathbb Q$-Cartier canonical divisor, with the usual compatible reflexive powers. Merely writing down a quotient surface with the same canonical self-intersection is insufficient.
+
+The source is Conjecture B in DeVleming's contribution to Oberwolfach Report 32/2022, printed p.~1822 \cite{OWR}. It asks for a Cartier embedding of every such $C_0$ in a log-terminal $\mathbb Q$-Gorenstein degeneration of $\PP^2$. The published paper \cite{DS}, p.~685, states the same conjecture using Manetti surfaces. We use the following established results, not as new contributions:
+\begin{itemize}
+\item Hacking--Prokhorov's classification identifies the relevant surfaces with partial smoothings of $\PP(a^2,b^2,c^2)$ for positive Markov triples $a^2+b^2+c^2=3abc$ \cite[Cor.~1.2]{HP}.
+\item The prime cases $2,3$ are elementary; \cite[Thms.~D,E]{DS} establishes the cases $5,7$.
+\item Nonplanar limits constructed in Markov degrees in \cite[Thm.~1.10]{DS} are Cartier curves on these surfaces. They do not contradict the conjecture.
+\end{itemize}
+Targeted searches and the authors' current research lists, including the 2026 preprints \cite{DLT,DW}, did not yield a general resolution. This is a bounded literature search, not a certificate that no result exists elsewhere. The degree-11 cusp computation below is consistent with the prior classification \cite[Thm.~5.1]{DSi}; it is an independently written verification, not a claim to discover a new classification.
+
+For clarity, four objects are distinct: the smooth abstract curve $C_0$; its possibly degenerate limiting plane linear series; the possibly singular divisor $D^{\mathrm{CY}}_0$ in a Calabi--Yau limit of plane pairs; and the singular ambient surface $X^{\mathrm{CY}}_0$. The existence of the last two with $\lct(X^{\mathrm{CY}}_0,D^{\mathrm{CY}}_0)\geq3/p$ does not identify $D^{\mathrm{CY}}_0$ with $C_0$. Likewise, a smooth Weil divisor on a singular surface need not be Cartier.
+
+\section{Approach 1: extend the plane polarization}
+The attempted proof is to extend the degree-$p$ plane linear series across the smooth family and show that it still embeds. The following gives precisely what this method proves.
+
+\begin{lemma}[Existence of a limiting net]\label{lem:net}
+Let $f:\mathcal C\to\operatorname{Spec}R$ be a smooth proper family of connected curves over a DVR, with general fiber a smooth degree-$p$ plane curve, $p\geq5$. After a finite base extension needed to define the generic plane embedding, there is a line bundle $L$ on $\mathcal C$ such that
+\[
+ \deg L_0=p,\qquad L_0^{\otimes(p-3)}\simeq\omega_{C_0},
+ \qquad V\subseteq H^0(C_0,L_0),\quad\dim V=3.
+\]
+The net $V$ is the specialization of the three generic plane-coordinate sections. It may have base points.
+\end{lemma}
+\begin{proof}
+The total space is a regular surface. Represent $\OO_{C_\eta}(1)$ by a divisor on the generic curve and take its closure; a divisor on a regular surface is Cartier. This produces $L$, of constant fiber degree $p$. Generic plane adjunction gives $L_\eta^{p-3}\simeq\omega_{C_\eta}$. A generic trivialization of $L^{p-3}\otimes\omega_{\mathcal C/R}^{-1}$ has divisor supported on the special fiber. That fiber is irreducible and is the principal divisor of a uniformizer, so its associated line bundle restricts trivially. This proves the asserted root identity.
+
+The finite $R$-module $f_*L$ is torsion-free and hence free, of rank $h^0(C_\eta,\OO(1))=3$. The cohomology sequence for multiplication by a uniformizer gives an injection
+\[
+ (f_*L)\otimes_R R/\mathfrak m\hookrightarrow H^0(C_0,L_0).
+\]
+Its image is the required three-dimensional net. Notice that $h^0(C_0,L_0)$ itself may be larger than three.
+\end{proof}
+
+\begin{proposition}[Prime degree and the fixed part]\label{prop:basepoints}
+Let $C$ be smooth of genus $g_p$, where $p\geq5$ is prime. If a degree-$p$ line bundle $L$ has a base-point-free three-dimensional linear series, then that series embeds $C$ as a smooth degree-$p$ plane curve.
+If $C$ is nonplanar and $(L,V)$ is as in Lemma~\ref{lem:net}, let $B$ be the common zero divisor of $V$, $b=\deg B$, and write $m$ for the degree of the induced map to its integral plane image of degree $e$. Then
+\[
+ 1\leq b\leq p-4,\qquad m\geq2,\quad e\geq2,
+ \qquad p-b=me.
+\]
+\end{proposition}
+\begin{proof}
+Removing $B$ gives a base-point-free net in $L(-B)$, hence a nonconstant morphism $C\to\PP^2$. The image is integral and nondegenerate: a linear equation of the image would be a linear dependence among the three sections. Thus $e\geq2$. Pulling back a general line gives $p-b=me$.
+
+If $b=0$, primality implies $m=1$ and $e=p$. The map from the smooth proper curve is finite birational and hence is its image's normalization. Plane adjunction and the normalization exact sequence give
+\[
+ g(C)=g_p=p_a(\text{image})=g(C)+\sum_Q\delta_Q.
+\]
+All $\delta_Q$ vanish. The integral plane image is normal, hence smooth, and the normalization map is an isomorphism.
+
+If $b>0$ and $m=1$, the same argument gives
+$g_p=g(C)\leq(e-1)(e-2)/2<g_p$, since $e\leq p-b<p$. This is impossible. Therefore $m,e\geq2$, so $p-b\geq4$, as claimed.
+\end{proof}
+
+\begin{corollary}
+A nonplanar smooth limit of plane quintics is hyperelliptic.
+\end{corollary}
+\begin{proof}
+For $p=5$, the proposition forces $b=1$ and $me=4$, so $m=e=2$. The image is an integral conic and hence is $\PP^1$. The degree-two map is a hyperelliptic pencil.
+\end{proof}
+This is an abstract-curve argument, and does not by itself put that curve on a Manetti surface. The Cartier realization required by the original question is supplied in degree five by the cited work.
+
+For $p=11$, the possible triples $(b,m,e)$ from this method are
+\[
+\begin{gathered}
+(1,2,5),(1,5,2),(2,3,3),(3,2,4),(3,4,2),\\
+(5,2,3),(5,3,2),(7,2,2).
+\end{gathered}
+\]
+These are necessary numerical possibilities, not existing smoothings. For example, Riemann--Hurwitz for a double cover of a genus-$h\leq6$ normalization of a plane quintic gives ramification degree $92-4h$, which is nonnegative. Therefore that elementary test does not eliminate the first case.
+
+\paragraph{Exact remaining gap.}
+There is no proof that the limiting net is base-point-free. Removing its base divisor changes its degree and destroys the prime-factor argument. Moreover a proof of base-point-freeness for every prime would be false because the known quintic and other Markov-prime examples are nonplanar. One needs to interpret the base locus in an ambient surface degeneration, rather than discard it.
+
+\section{Approach 2: canonical roots and Hilbert functions}
+The second attempted route is to use the root identity in Lemma~\ref{lem:net}, together with every semicontinuity inequality for powers of the polarization. A family of explicit test objects demonstrates that these conditions do not suffice.
+
+\begin{proposition}[Hyperelliptic numerical test objects]\label{prop:hyper}
+For every odd integer $p\geq5$, let $C$ be any smooth hyperelliptic curve of genus $g_p$, and let $P$ be a Weierstrass point. Set $L=\OO_C(pP)$. Then
+\[
+ L^{p-3}\simeq\omega_C,\qquad \deg L=p,
+\]
+and, for every integer $k\geq0$,
+\[
+ h^0(C,L^k)\ \geq\ h^0(C^{\mathrm{pl}}_p,\OO_{C^{\mathrm{pl}}_p}(k)),
+\]
+where $C^{\mathrm{pl}}_p$ is a smooth plane curve of degree $p$.
+The complete series $|L|$ has fixed divisor exactly $P$, and its moving part factors through the hyperelliptic map.
+\end{proposition}
+\begin{proof}
+Write $A$ for the degree-two hyperelliptic pencil. Since $P$ is a ramification point, $A\simeq\OO_C(2P)$, and hyperelliptic adjunction gives
+\[
+ \omega_C\simeq A^{g_p-1}=\OO_C((2g_p-2)P),\qquad
+ 2g_p-2=p(p-3).
+\]
+This is the root identity.
+
+Choose an affine equation $y^2=f(x)$ with $\deg f=2g_p+1$ and $P$ the unique point at infinity. The pole orders of $x,y$ are $2,2g_p+1$. The ring of functions regular off $P$ is $\CC[x,y]/(y^2-f(x))$, with vector-space basis the monomials $x^i$ and $x^iy$. In particular, for $0\leq n\leq2g_p$,
+\[
+ h^0(C,\OO_C(nP))=\lfloor n/2\rfloor+1.
+\]
+For $0\leq k\leq p-3$, we have $kp\leq2g_p-2$, while the plane restriction sequence gives $h^0(C_p^{\mathrm{pl}},\OO(k))=(k+1)(k+2)/2$. The difference is
+\[
+ \left\lfloor\frac{kp}{2}\right\rfloor+1-\frac{(k+1)(k+2)}2
+ =\left\lfloor\frac{k(p-k-3)}2\right\rfloor\geq0.
+\]
+For $k\geq p-2$, both line bundles are nonspecial, because $kp>2g_p-2$. Their dimensions equal $kp-g_p+1$ by Riemann--Roch. This proves all the inequalities, including arbitrarily large $k$.
+
+Because $p<2g_p+1$ and $p$ is odd, a basis for $H^0(C,L)$ is
+$1,x,\ldots,x^{(p-1)/2}$. Their maximum pole order at $P$ is $p-1$, so they vanish as sections of $L$ at $P$. The last basis vector has precisely first-order vanishing there; the section $1$ has no zero away from $P$. Thus the common zero divisor is exactly $P$. The moving series is $|(p-1)P|=|A^{(p-1)/2}|$, which factors through the hyperelliptic map.
+\end{proof}
+
+There is also an explicit net with moving degree four: the subspace spanned by $1,x,x^2$ has fixed divisor $(p-4)P$ and maps $C$ two-to-one onto a conic. For $p=7$, these test objects satisfy every condition just proved, yet \cite[Thm.~E]{DS} excludes them as smooth limits of plane septics. This is a direct known negative control for the attempted sufficiency criterion. It does not assert that this chosen net is the specialization of a plane net.
+
+\paragraph{Exact remaining gap.}
+The graded spaces have the required dimensions, but their multiplication maps and their deformations as a polarized curve are not controlled. We have neither a flat deformation of the graded algebra to a plane-curve algebra nor a smoothing of any of these test objects to a plane curve for a new prime. The construction is not a counterexample to the question.
+
+\section{Approach 3: Cartier indices, genus, and ambient surfaces}
+We now assume an ambient surface exists, and test what it can be. For a Manetti surface $X$, use the following class-group facts from \cite[Thm.~1.6]{DS}: there is an ample positive generator $H$ of $\Cl(X)\simeq\ZZ$ and a positive integer $\alpha$ such that
+\[
+ H^2=\frac1{\alpha^2},\quad \Pic(X)=\ZZ\cdot\alpha^2H.
+\]
+The integer $\alpha$ is the product of the unsmoothed Markov entries. Since $K_X^2=9$ and $-K_X$ is ample, $K_X=-3\alpha H$ in this torsion-free group.
+
+\begin{lemma}[Smooth Cartier curves avoid singular points]\label{lem:local}
+If a Cartier divisor on a surface is smooth at a closed point, the surface is smooth at that point.
+\end{lemma}
+\begin{proof}
+Let $(R,\mathfrak m)$ be the local ring of the surface, and let a nonzerodivisor $f\in\mathfrak m$ define the divisor. The ring $R/(f)$ is regular of dimension one. Its maximal ideal has one generator; lifting that generator and adding $f$ generates $\mathfrak m$ by Nakayama's lemma. Thus $\dim_\CC\mathfrak m/\mathfrak m^2\leq2=\dim R$, and $R$ is regular. Over $\CC$ this is smoothness.
+\end{proof}
+The word Cartier is essential: on $\operatorname{Spec}\CC[u,v]^{\mu_r}$ with scalar action $(u,v)\mapsto(\zeta u,\zeta v)$, the image of $u=0$ is the smooth curve $\operatorname{Spec}\CC[v^r]$, while its nontrivial local divisor class prevents it from being Cartier for $r>1$.
+
+\begin{proposition}[Genus forces the prime index]\label{prop:index}
+Let $p\geq5$ be prime and let $C\subset X$ be a smooth connected effective Cartier divisor of genus $g_p$ on a Manetti surface. Then $\alpha$ divides $p$. Consequently either $X\simeq\PP^2$ or $X$ has exactly one remaining singularity, with local class group of order $p^2$; in the latter case $p$ is a Markov number.
+\end{proposition}
+\begin{proof}
+Write $C=m\alpha^2H$, with $m>0$ since $C$ is nonzero effective and $H$ is ample. Put $q=m\alpha$. By Lemma~\ref{lem:local}, $C$ avoids $\Sing X$, so ordinary adjunction along its smooth neighborhood gives
+\[
+ 2g_p-2=C(C+K_X)=m^2\alpha^2-3m\alpha=q(q-3).
+\]
+Thus
+\[
+ (q-p)(q+p-3)=0.
+\]
+As $q>0$ and $p\geq5$, the second factor is positive; hence $q=p$ and $\alpha\mid p$. If $\alpha=1$, all singularities have been smoothed and the classified surface is $\PP^2$. If $\alpha=p$, the product of the remaining nontrivial Markov entries is the prime $p$, so there is exactly one such entry, equal to $p$.
+\end{proof}
+This proposition only assumes the abstract genus and a Cartier embedding. It does not quietly assume that this particular embedding already extends the given family. Once a compatible degree-$p$ pair family is given, its specialization has class $p\alpha H$, and its being Cartier is equivalently $\alpha^2\mid p\alpha$, the same divisibility condition.
+
+\begin{lemma}
+The integer $11$ is not a Markov number.
+\end{lemma}
+\begin{proof}
+We recall the elementary descent. Sort a positive Markov triple as $a\leq b\leq c$. Apart from the root $(1,1,1)$, replacing $c$ by $c'=3ab-c=(a^2+b^2)/c$ gives a positive integer at most $b$ and decreases the maximal entry when $c>b$. Indeed the polynomial $F(t)=t^2-3abt+a^2+b^2$ has roots $c,c'$ and $F(b)=a^2+(2-3a)b^2\leq0$; the equality exceptions are checked directly. If $b=c$, then $a^2=(3a-2)b^2$ and $a\leq b$ force $a=b=1$, so the only equal-maximal triple is the root.
+
+If a triple contains $11$, mutate only maximal entries greater than $11$ until its maximum is $11$. It remains to solve
+$a^2+b^2+121=33ab$ with $1\leq a\leq b\leq11$. As $F(b)\leq0$ in the preceding argument, descent of this bounded set gives precisely $(1,1,1),(1,1,2),(1,2,5)$ as the triples with maximum at most $11$; equivalently, direct checking of the $66$ pairs $(a,b)$ in the displayed equation gives no zero. A dependency-free exact check is included. Thus no triple contains $11$.
+\end{proof}
+The finite check can also be read as a compact integer certificate: for each $a=1,\ldots,11$, the quadratic $b^2-33ab+(a^2+121)$ has no integer root in $[a,11]$.
+
+\paragraph{Exact remaining gap.}
+The divisibility condition classifies possible ambient surfaces only after a Cartier embedding is supplied. It does not create the embedding, prove that a Calabi--Yau divisor is Cartier, or show that the smooth abstract limit equals that divisor. For $p=11$ it implies that a positive answer must force planarity, but it does not establish that planarity.
+
+\section{Approach 4: exclude nodal boundary curves}
+The fourth approach asks whether semistable reduction and positivity alone force a Calabi--Yau divisor to be smooth. They do so in a useful restricted regime.
+
+\begin{theorem}[Nodal curve in the smooth locus]\label{thm:nodal}
+Let $X$ be a Manetti surface and let $D\subset X\setminus\Sing X$ be a connected, reduced nodal curve. Suppose it occurs as the special fiber of a proper flat family of curves with smooth general fiber and genus at least two. If the stable model of that family has a smooth special fiber, then $D$ is already smooth and irreducible.
+\end{theorem}
+\begin{proof}
+The nodal curve has a dual multigraph $\Gamma$ whose loops include self-nodes. Semistable reduction of a family with nodal central fiber only subdivides node edges if needed; its stable model contracts unstable rational components. Neither operation changes the first Betti number of the graph. The smooth stable fiber has graph with one vertex and no edges, so $b_1(\Gamma)=0$: the graph of $D$ is a tree.
+
+Write $D=\sum_{i=1}^rD_i$. Each $D_i$ is Cartier, since its support lies in the smooth locus and its ideal is trivial near the surface singularities. Write $D_i=m_iA$ where $A=\alpha^2H$ is the ample Picard generator and $m_i$ is a positive integer. Distinct components have intersection
+\[
+ D_iD_j=m_im_jA^2=m_im_j\alpha^2>0.
+\]
+Because $D$ is nodal, this is exactly the number of edges between their vertices. Every pair of distinct vertices is adjacent. A tree with this property has $r\leq2$.
+
+If $r=2$, there is exactly one edge, so $m_1m_2\alpha^2=1$. Hence $\alpha=m_1=m_2=1$, $X=\PP^2$, and $D$ is the union of two lines. Its arithmetic genus is zero, contrary to the genus hypothesis. Thus $r=1$. A self-node would give a loop, again contradicting $b_1=0$. The irreducible nodal curve has no nodes and is smooth.
+\end{proof}
+The graph invariant used here can also be verified by the normalization exact sequence: for a connected nodal curve,
+$\ p_a(D)=\sum_i g(\widetilde D_i)+b_1(\Gamma)$.
+Subdividing an edge adds one edge and one vertex; contracting a rational tail or suppressing a rational two-valent vertex preserves $b_1$. A cycle of rational components cannot disappear into a smooth stable fiber of genus at least two.
+
+Applied to a Calabi--Yau limit under the theorem's extra hypotheses, uniqueness of stable reduction identifies its smooth special fiber with the originally given $C_0$. In this regime, the sought Cartier realization is indeed obtained.
+
+\paragraph{Exact remaining gap.}
+The hypotheses that the divisor is reduced, nodal, and avoids $\Sing X$ are not known for general prime degree. High-order cusps, multiple components, nonnormal total divisor spaces, and curves through quotient singularities are precisely situations where this graph proof does not apply. Log canonicity with coefficient $3/p<1$ does not imply that a curve is nodal. No such implication is used here.
+
+\section{Approach 5: an exhaustive degree-11 cusp obstruction}
+The fifth approach attacks one non-nodal case left by the preceding theorem, using the log-canonical threshold and the semigroup distribution theorem. It produces a complete exclusion for one particular geometric class.
+
+\begin{theorem}\label{thm:11}
+If $D\subset\PP^2$ is an irreducible rational degree-11 curve whose only singular point is unibranch, then
+\[
+ \lct(\PP^2,D)<\frac3{11}.
+\]
+Thus such a curve cannot be the divisor of a log-canonical pair $(\PP^2,(3/11)D)$.
+\end{theorem}
+\subsection{Imported singularity formulas}
+For a plane branch write its characteristic sequence as $(m;\beta_1,\ldots,\beta_s)$, with $m\geq2$, $\beta_1>m$, and strictly decreasing gcds $e_0=m$, $e_i=\gcd(m,\beta_1,\ldots,\beta_i)$, ending at $e_s=1$. Set $N_i=\beta_i-\beta_{i-1}$ for $i\geq2$. The classical formulas used below are
+\begin{align}
+ 2\delta&=(m-1)(\beta_1-1)+\sum_{i=2}^s(e_{i-1}-1)N_i,\label{eq:delta}\\
+ \lct&=\frac1m+\frac1{\beta_1}.\label{eq:lct}
+\end{align}
+The value semigroup has generators $v_0=m$, $v_1=\beta_1$, and
+\[
+ v_i=\frac{e_{i-2}}{e_{i-1}}v_{i-1}+N_i\quad(i\geq2).
+\]
+These formulas are recorded in \cite[\S2,\S3.5]{DSi}. Only the characteristic exponents are used, not all nonzero terms in a Puiseux expansion. Finally, for a rational unicuspidal degree-$d$ plane curve the Borodzik--Livingston theorem \cite[Thm.~6.5]{BL} says that
+\begin{equation}\label{eq:BL}
+ R(jd+1):=\#(S\cap[0,jd+1))=\frac{(j+1)(j+2)}2,
+ \qquad -1\leq j\leq d-2.
+\end{equation}
+The half-open interval convention is important. These are necessary existence conditions, never sufficient conditions.
+
+\subsection{Mathematical exhaustion of the threshold regime}
+\begin{lemma}\label{lem:12}
+For a plane branch with $\delta=45$ and $\lct\geq3/11$, the complete list of possible characteristic sequences is
+\[
+\begin{gathered}
+(2;91),\ (3;46),\ (4;31),\\
+(4;b,93-2b)\quad (b=6,10,14,18,22,26,30),\\
+(6;8,63),\ (6;9,34).
+\end{gathered}
+\]
+This list has twelve entries and is exhaustive for every number of Puiseux pairs.
+\end{lemma}
+\begin{proof}
+Since $\beta_1\geq m+1$, $m\geq8$ gives
+$\lct\leq1/8+1/9=17/72<3/11$. Thus $2\leq m\leq7$. A strictly decreasing gcd chain beginning with one of these integers has at most two drops: the only composite possibilities are $4\to2\to1$, $6\to2\to1$, and $6\to3\to1$. This already rules out three or more characteristic exponents in the entire threshold regime.
+
+For prime $m=2,3,5,7$, the first gcd drop is directly to $1$, so (\ref{eq:delta}) gives $(m-1)(\beta_1-1)=90$. For $m=2,3$ this yields $\beta_1=91,46$, respectively. For $m=5$ there is no integer solution. For $m=7$ the solution $\beta_1=16$ has threshold $23/112<3/11$ and is excluded.
+
+For $m=4$ with $e_1=1$, the solution is $\beta_1=31$. If $e_1=2$, write $b=\beta_1$. Then $b>4$, $b\equiv2\pmod4$, and the second increment $N$ must be odd and positive. Equation (\ref{eq:delta}) becomes
+$3(b-1)+N=90$, so $N=93-3b>0$ and $b\leq30$. Thus $b$ is exactly one of the seven stated values. The second characteristic exponent is $b+N=93-2b$. These values satisfy the threshold inequality; no other $b$ can occur.
+
+For $m=6$, the threshold inequality requires $\beta_1\leq66/7$, so the only integer first exponents greater than six are $7,8,9$. With $\beta_1=7$ the gcd is one and $2\delta=30\ne90$. With $\beta_1=8$, $e_1=2$, and (\ref{eq:delta}) gives $N=55$, hence $\beta_2=63$. With $\beta_1=9$, $e_1=3$, and $40+2N=90$ gives $N=25$, hence $\beta_2=34$. Both final gcds are one. This completes the exhaustive case split.
+\end{proof}
+
+\subsection{Eliminating the twelve entries}
+For each row below, $S$ is the semigroup generated by the displayed positive integers. The indicated $j$ violates (\ref{eq:BL}); the columns give the actual and required counts. This is separate from the exhaustion proof.
+\begin{center}\begin{tabular}{@{}llllr@{}}\toprule
+Characteristic sequence & Generators of $S$ & $j$ & $R(11j+1)$ & Required\\\midrule
+$(2;91)$ & $2,91$ & 1 & 6 & 3\\
+$(3;46)$ & $3,46$ & 1 & 4 & 3\\
+$(4;6,81)$ & $4,6,87$ & 1 & 5 & 3\\
+$(4;10,73)$ & $4,10,83$ & 1 & 4 & 3\\
+$(4;14,65)$ & $4,14,79$ & 2 & 9 & 6\\
+$(4;18,57)$ & $4,18,75$ & 2 & 8 & 6\\
+$(4;22,49)$ & $4,22,71$ & 2 & 7 & 6\\
+$(4;26,41)$ & $4,26,67$ & 3 & 11 & 10\\
+$(4;30,33)$ & $4,30,63$ & 4 & 16 & 15\\
+$(4;31)$ & $4,31$ & 4 & 16 & 15\\
+$(6;8,63)$ & $6,8,79$ & 2 & 9 & 6\\
+$(6;9,34)$ & $6,9,43$ & 2 & 7 & 6\\\bottomrule
+\end{tabular}\end{center}
+The small semigroup counts can be checked directly. For instance, below $45$, $\langle4,31\rangle$ contains the twelve multiples of $4$ from $0$ to $44$, together with $31,35,39,43$, for a total of $16$, rather than $15$. The supplied program records the actual elements for every row and reproduces the counts by two different elementary enumeration routines.
+
+\begin{proof}[Proof of Theorem~\ref{thm:11}]
+Rationality, the degree-genus formula, and uniqueness of the singular point give $\delta=g_{11}=45$. If the threshold were at least $3/11$, Lemma~\ref{lem:12} would place its characteristic sequence in the twelve-row list. Every row contradicts the necessary semigroup distribution identity. This is impossible.
+\end{proof}
+
+As a cross-check with the literature rather than a dependency of this finite argument, the prior degree-$\leq30$ classification \cite[Thm.~5.1, Table~7]{DSi} leaves only the standard $(10;11)$ singularity in degree eleven. Its threshold $1/10+1/11=21/110$ is indeed below $3/11$.
+
+\paragraph{Exact remaining gap.}
+Theorem~\ref{thm:11} concerns irreducible rational unicuspidal divisors on the ordinary plane. It says nothing about a reducible or nonreduced Calabi--Yau divisor, a curve on a singular Manetti surface, or multiple singular points. In particular it is not a classification of degree-11 smooth limits, and cannot justify marking the original problem solved. Extending the low-degree graph casework to degree eleven would require new proofs; the degree-$5,7$ hypotheses in \cite{DS} are not silently extrapolated.
+
+\section{Conclusions and reproducibility}
+The five approaches give compatible necessary conditions and restricted positive cases, with no contradiction among them. They establish no new prime case of the original assertion. Our disposition is therefore: \textbf{unresolved after five substantive approaches}. Literature lookup, source inspection, code checks, and document preparation are not counted as mathematical approaches.
+
+The accompanying original Python program uses only the standard library. It checks the limiting-net degree partitions; the hyperelliptic dimension formulas; the Markov and Cartier arithmetic; the nodal intersection obstruction; and the degree-11 cusp list, its exhaustion by a general gcd-chain enumeration, and every explicit semigroup witness. Two distinct semigroup algorithms agree. Negative controls reject a deleted candidate and an altered count. These exact finite checks support the stated proofs and are not a proof assistant certificate or independent peer review.
+
+The immediate outstanding mathematical task is to control the full divisor and ambient surface in Hacking's Calabi--Yau degeneration while preserving the smooth stable replacement. Any counterexample would have to be an actual smooth family with a special curve that admits no Cartier embedding on any allowed ambient surface; a numerical root, a low-gonality curve, or a singular plane equation alone would not suffice.
+
+\begin{thebibliography}{99}
+\bibitem{OWR} K. DeVleming (joint work with D. Stapleton), A question of Mori and families of plane curves, in \emph{Algebraic Geometry: Moduli Spaces, Birational Geometry and Derived Aspects}, Oberwolfach Report 32/2022, contribution pp.~1821--1824; Conjecture B p.~1822. \url{https://doi.org/10.4171/owr/2022/32}.
+\bibitem{DS} K. DeVleming and D. Stapleton, \emph{Smooth limits of plane curves of prime degree and Markov numbers}, J. \'{E}c. polytech. Math. \textbf{11} (2024), 683--731. \url{https://doi.org/10.5802/jep.263}.
+\bibitem{HP} P. Hacking and Y. Prokhorov, \emph{Smoothable del Pezzo surfaces with quotient singularities}, Compos. Math. \textbf{146} (2010), 169--192. \url{https://doi.org/10.1112/S0010437X09004370}; primary preprint \url{https://arxiv.org/abs/0808.1550}.
+\bibitem{BL} M. Borodzik and C. Livingston, \emph{Heegaard Floer homology and rational cuspidal curves}, Forum Math. Sigma \textbf{2} (2014), e28. \url{https://doi.org/10.1017/fms.2014.28}; \url{https://arxiv.org/abs/1304.1062}.
+\bibitem{DSi} K. DeVleming and N. Singh, \emph{Rational unicuspidal plane curves of low degree}, arXiv:2311.15922v1 (2023), preprint. \url{https://arxiv.org/abs/2311.15922v1}.
+\bibitem{DLT} K. DeVleming, J. Li, and S. Torres, \emph{Weighted projective degenerations of $\PP^n$}, arXiv:2606.21660v1 (2026), preprint. Relevant inspected application: \S6.4. \url{https://arxiv.org/abs/2606.21660v1}.
+\bibitem{DW} K. DeVleming, \emph{A guide to wall crossing for moduli of varieties}, arXiv:2602.20286v1 (2026), preprint. Relevant inspected application: \S5.3. \url{https://arxiv.org/abs/2602.20286v1}.
+\end{thebibliography}
+\end{document}
