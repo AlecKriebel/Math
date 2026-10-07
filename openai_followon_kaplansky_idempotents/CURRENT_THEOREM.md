@@ -1,37 +1,11 @@
-# Exact target and current strongest result
+# Exact target and strongest verified result
 
-Target: establish a finitely presented torsion-free group G with a finite
-two-dimensional classifying complex and a scalar idempotent e in F_2[G] other
-than 0 and 1. The same e must remain nontrivial over every characteristic-two
-field K. For R=F_2[G], prove that P=eR is nonzero, cyclic, projective,
-R is isomorphic to R direct-sum P as right modules, and [P]=0 in K_0(R).
+The original core follows from the audited pinned October 4 theorem and classical algebra: a finitely presented torsion-free group G with a finite 2D K(G,1), e=1-ba in F_2[G], e^2=e, e!=0,1; every characteristic-two coefficient extension preserves it. P=eR is nonzero, cyclic and projective, R≅R⊕P as right modules, and [P]=0 in K_0(R). All these consequences and their proof outline had already appeared in the author's public triage. Validation is new work but is not advertised as a new mathematical discovery.
 
-Current strongest result: the full target follows from the exact October 4
-source Theorem 1.1 and the self-contained ring proof in main.tex. Separate
-complete combinatorial/probabilistic and topological source audits found no
-substantive gap in their checked arguments. The root independently checked
-the algebra, source bounded-pattern argument, source topology and interfaces.
-This is proof-based automated verification with an explicit cited dependency,
-not a Lean formalization or conventional human refereeing. Fresh complete
-package review remains required before treating the research record as final.
+New quantitative refinement: in the unchanged seven-extra type/turn-weight model and any permitted inverse pairing, q=32 is the least dyadic q>=4 with spectral radius rho(M)<1. The exact three-class quotient and rational certificates prove word-mass contraction at 32 and growth at 4,8,16. All parameter-dependent source estimates remain valid at 32, giving a 532-edge rose construction (existential matching).
 
-Numerical explicitness: existential m and matching outcome, with 8260 rose
-generators and a finite tree-relator/path-sum recipe; no listed numerical
-presentation, matching, support or multiplication certificate obtained.
+Sharper inherited realization: a classical finite HNN embedding gives a two-generator finitely presented torsion-free H with a finite 2D K(H,1), transporting the same scalar witnesses and module properties to K[H]. If the source presentation has r relators, the resulting two-generator presentation is aspherical with r relators. Two is the least possible generator count for a torsion-free idempotent example; this is an application of classical machinery, not a new embedding theorem.
 
-Priority finding: the entire core consequence and algebraic proof outline
-are already public in commit f27318d83bd7000ef817957a9a4b3087de28d198 of
-AlecKriebel/Math. The user duplication rule applies. No genuinely new in-scope
-extension was established. Withhold duplicate novelty publication; no DOI or
-tracker entry. The persistent publication objective remains unachieved.
+The least-order assertion concerns the fixed dyadic turn-weight model; it excludes neither modified models nor other good matchings at lower q. The incidence data and exact scripts are finite supplemental certificates only. No numerical successful matching, relator list, reduced support, group-algebra multiplication certificate or full Lean formalization is supplied. No odd-characteristic, characteristic-zero or reduced-C*-algebra conclusion follows. No nonzero K_0 class is asserted.
 
-Success requires validating the exact October 4 construction, not the earlier
-torsion example, proving every target, checking priority/duplication, two complete
-package audits including a fresh final pass, actual PDF verification, production
-Zenodo publication and verified tracker entry. A material source gap prevents an
-unconditional solution and publication as one. Existing public duplication also
-prevents a new-solution publication.
-
-Excluded conclusions: characteristic zero; odd characteristic; reduced group
-C*-algebra projections; nonzero K_0 class; matrix idempotents substituted for
-scalar ones; numerical explicitness unsupported by actual finite data.
+The new refinement has independent parameter, falsification and priority audits. Complete-package fresh review, exact-file publication and tracker readback are separate gates; no DOI or publication success is inferred from these mathematical checks.

@@ -10,15 +10,3 @@
 
 A route is blocked if it merely assumes an equivalent unsupported central claim.
 No independent replacement construction has yet been verified.
-
-
-## Reopened extension routes (October 6)
-
-| Family | Mechanism | Evidence | Status | Exact gap |
-|---|---|---|---|---|
-| Parameter calibration | Equitable squared-turn quotient and rational upper/lower witnesses | Independent parameter and falsification audits | Verified q32 least dyadic within unchanged model | Complete current package review and publication |
-| Finite incidence | Explicit GF32 and PG(2,32) plus Fano/inverse data | Exhaustive deterministic certificate | Verified label model | Successful matching remains existential |
-| Classical embedding | Finite HNN free bases, tree of spaces, generator elimination | 1949 and 2018 primary text plus self-contained proof | Verified attributed 2-generator corollary | Not a new embedding mechanism |
-| Extension priority | Compare exact calibration to source/companions/public triage | Independent primary-source attack | No exact calibration in checked evidence; modest refinement justified | No universal first-priority claim |
-
-The earlier core-only duplication decision remains correct. The extension route reopens for a materially distinct checked matrix result, not a relabeled idempotent consequence. No unsupported equivalent central claim is assumed.

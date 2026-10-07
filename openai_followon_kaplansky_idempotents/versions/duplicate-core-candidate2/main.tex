@@ -1,0 +1,266 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\setlength{\emergencystretch}{2em}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Scalar idempotents and projective cancellation from a torsion-free characteristic-two construction},pdfauthor={Alec Kriebel},pdfsubject={Attributed consequence note; duplicate novelty publication withheld}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Ftwo}{\mathbb F_2}
+\newcommand{\KG}{K[G]}
+\title{Scalar idempotents and projective cancellation\\from a torsion-free characteristic-two construction}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The October 4 manuscript of OpenAI constructs a finitely presented
+torsion-free group $G$, with a finite two-dimensional classifying complex,
+and $a,b,c\in\Ftwo[G]$ such that $ab=1$, $ac=0$, and $c\ne0$.
+Classical ring algebra then makes $e=1-ba$ a nontrivial scalar idempotent.
+For $R=\Ftwo[G]$, the right ideal $P=eR$ is nonzero, cyclic and projective,
+with $R\cong R\oplus P$ and $[P]=0$ in $K_0(R)$.
+The same example works over every characteristic-two field.
+We give the complete consequence proof, an existential presentation recipe,
+and the scope of the source audit. The result and short proof were already
+disclosed in the author's public research triage. This record adds
+verification and exposition, claims no new mathematical discovery,
+and is withheld from a duplicate novelty preprint deposit.
+\end{abstract}
+
+\section{Exact statement and attribution}
+For a field $K$ and a torsion-free group $G$, the scalar form of
+Kaplansky's idempotent conjecture asks whether every $e\in K[G]$ with
+$e^2=e$ belongs to $\{0,1\}$; see \cite[Problem 1(c)]{Oinert}.
+Its positive-characteristic form quantifies over all fields of positive
+characteristic. The example below contradicts its characteristic-two
+specialization, even for finitely presented groups with a finite
+two-dimensional classifying complex.
+
+The pivotal input is precisely \cite[Theorem 1.1]{OpenAI}, at repository
+commit \href{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a}{\texttt{adc7f124}} (full hash in the source manifest):
+there exist such a group $G$ and $a,b,c\in\Ftwo[G]$ with
+\begin{equation}\label{eq:input}
+ab=1,\qquad ac=0,\qquad c\ne0.
+\end{equation}
+The group construction and its new failure of direct finiteness belong to
+that source. The reduction from failure of direct finiteness to a
+nontrivial idempotent is classical and explicitly appears in
+\cite[Proposition \texttt{kaplansky\_relations}]{Gardam}.
+The module calculation below is the corresponding standard splitting;
+compare the interpretation of direct finiteness of the regular right
+module in \cite[p.~9]{Ara}.
+
+\begin{theorem}\label{thm:consequence}
+There exists a finitely presented torsion-free group $G$ admitting a finite
+two-dimensional classifying complex and a scalar idempotent
+$e\in R=\Ftwo[G]$ with $e\ne0,1$. The right $R$-module $P=eR$ is nonzero,
+cyclic and projective, and
+\[
+R_R\cong R_R\oplus P,\qquad [P]=0\quad\hbox{in }K_0(R).
+\]
+For every characteristic-two field $K$, the image of the same $e$ in
+$K[G]$ remains an idempotent other than $0$ and $1$.
+\end{theorem}
+
+The algebraic proof is self-contained in the next section. The existence
+of the group is supplied by the cited input, whose actual probabilistic
+and topological arguments were separately audited as recorded in
+Section~\ref{sec:input-audit}. Neither a scalar idempotent in odd
+characteristic or characteristic zero, nor a projection in a reduced
+group $C^*$-algebra, is asserted.
+
+\section{Ring and right-module proof}
+\begin{proposition}\label{prop:ring}
+Let $R$ be a nonzero unital ring and suppose \eqref{eq:input} holds in $R$.
+Then $e=1-ba$ is an idempotent other than $0$ and $1$, and $P=eR$ has all
+the right-module and $K_0$ properties in Theorem~\ref{thm:consequence}.
+No characteristic assumption is needed for this proposition.
+\end{proposition}
+\begin{proof}
+Put $f=ba$. Then $f^2=b(ab)a=f$, so
+$e^2=(1-f)^2=1-2f+f^2=1-f=e$.
+Also $ec=c-b(ac)=c\ne0$, whence $e\ne0$.
+If $e=1$, then $ba=0$, and $a=a(ba)=0$ contradicts $ab=1$ in a
+nonzero ring. Thus $e\ne1$.
+
+The complementary idempotents $f$ and $e$ satisfy $fe=ef=0$ and
+$f+e=1$. Therefore $R=fR+eR$. If $x=fr=es$, then
+$x=fx=fes=0$, giving the direct sum
+\begin{equation}\label{eq:split}
+R_R=baR\oplus eR.
+\end{equation}
+Since $baR\subseteq bR$ and $b=bab$, the reverse inclusion holds as
+well: $baR=bR$. Left multiplication by $b$ is a right $R$-linear
+isomorphism $R_R\to bR$, with inverse left multiplication by $a$.
+Indeed $abr=r$ for every $r$, and $ba(br)=br$ for every $br\in bR$.
+
+Consequently \eqref{eq:split} identifies $R_R$ with $R_R\oplus P$.
+For a fully explicit pair of inverse maps, use
+\[
+\Phi(r)=(ar,er),\qquad \Psi(u,p)=bu+p
+\quad (r,u\in R,\ p\in eR).
+\]
+The identities $ae=eb=0$, $ep=p$, and $ab=1$ give
+$\Psi\Phi(r)=bar+er=r$ and $\Phi\Psi(u,p)=(u,p)$.
+They also show $\ker(r\mapsto ar)=eR$; in particular $c\in P$.
+
+The module $P$ is a direct summand of the free right module $R_R$, hence
+projective. It is cyclic, generated by $e$, and nonzero because it
+contains $e=e\cdot1\ne0$. By definition, $K_0(R)$ is the group completion
+of the direct-sum monoid of finitely generated projective right modules
+\cite[Chapter II, Section 2]{Weibel}. Hence the isomorphism implies
+$[R]=[R]+[P]$ and therefore $[P]=0$ in that abelian group.
+It does not imply $P=0$. Rather, $R\oplus0\cong R\oplus P$ with
+$0\not\cong P$ exhibits failure of projective cancellation.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:consequence}]
+Apply Proposition~\ref{prop:ring} to the group and triple of
+\cite[Theorem 1.1]{OpenAI}. If $K$ is any characteristic-two field, the
+unique unital embedding $\Ftwo\hookrightarrow K$ induces
+\[
+\Ftwo[G]\longrightarrow K[G],\qquad
+\sum_g\lambda_g g\longmapsto\sum_g\lambda_g g.
+\]
+This map is multiplicative and injective because the elements of $G$
+form a basis over each coefficient field. It preserves $e^2=e$ and
+cannot send $e$ or $e-1$ to zero. Thus the same finite-support scalar
+idempotent remains nontrivial over every such field. Applying the ring
+proposition there also gives $eK[G]$ with the corresponding absorption
+and zero $K_0$ class.
+\end{proof}
+
+Vanishing of this one class does not assert $K_0(R)=0$. In fact the
+scalar inclusion $\Ftwo\to R$ and augmentation $R\to\Ftwo$ split off
+$K_0(\Ftwo)=\mathbb Z$ from $K_0(R)$. The characteristic-two field
+embedding supplies no coefficient map to a field of odd characteristic
+or characteristic zero.
+
+\section{Existence construction and explicitness}\label{sec:input-audit}
+The source uses the projective plane over $\mathbb F_{128}$, with
+$v=16513$ points and lines, and a signed alphabet of $v+7=16520$ letters.
+The seven extras are paired with seven ordinary letters; the remaining
+ordinary letters are paired amongst themselves. Thus its rose has 8260
+generators. For sufficiently large $m\equiv1\pmod4$, take $m$ vertices
+per line class on side $A$ and $m-1$ on side $B$.
+Each ordinary outgoing-label set is the corresponding 129-point line.
+One distinguished $A$ vertex has all seven extras. The other extra sets
+are empty or complements of Fano-plane lines. Each of those seven
+four-element complements occurs at $(129m-1)/4$ vertices of $A$ and
+$129(m-1)/4$ vertices of $B$, distributed evenly amongst line classes.
+This balances inverse-label slots and imposes the exact intersection
+parities needed by the source's Proposition 2.1.
+
+Independent random bijections pair inverse slots on each side. Sections
+3--5 of \cite{OpenAI} prove positive probability of an outcome with
+logarithmic girth, bounded component diameter, and no reduced spherical
+arrangement. In Section 6 the cone-picture surgeries give both
+asphericity and protection of the designated roots. Attaching cones on
+all graph components to the rose yields the finite two-dimensional
+classifying complex and its torsion-free fundamental group.
+
+For clarity, a finite presentation is available \emph{after an outcome
+has been selected}. In each component $\Lambda$ choose a spanning tree
+and root $q_\Lambda$, and let $w_x$ label the tree path from $q_\Lambda$
+to $x$. For each non-tree edge with chosen orientation $x\to y$ and
+letter $t$, impose the relator $w_x t w_y^{-1}$. These relators normally
+generate the labels of all graph loops, exactly as required by the cone
+attachment. Choose the designated roots in their respective components
+$A',B'$. Then the source supplies
+\[
+a=\sum_{x\in A'}w_x,\qquad b=\sum_{x\in A'}w_x^{-1},\qquad
+c=\sum_{y\in B'}w_y^{-1}
+\]
+in the presented group algebra. A simultaneous-label step makes each
+product contribution constant on a component of the product graph.
+The handshake lemma gives cancellation in characteristic two: all
+degrees are odd on $A'\times B'$, while the single even-degree exception
+$(x_A,x_A)$ on $A'\times A'$ leaves contribution $1$.
+Root protection ensures that only $y=x_B$ contributes to the identity
+coefficient of $c$, so that coefficient equals $1$.
+
+The parameter $m$ and the matching outcome are existential in this
+source. No numerical graph, relator list, explicit reduced support of
+$e$, or multiplication certificate is supplied here. The tree recipe
+and the source's fully specified probability model establish existence;
+they are not a claim that a finite search certificate was obtained.
+
+Our dependency audit checked the repeated-edge issue by reconstructing
+the multiplicity-stage first moments and the nearly aligned block grid.
+Different stages need not be independent: a realization must survive
+each separate first-moment bound. The small unpaired fraction is fixed
+before the path-number, length, and comparison bounds. Planar extraction
+then applies one fixed triple of bounds to arrangements of every size.
+The topology audit checked all four same-edge band surgeries, including
+preservation of graph endpoints in rooted disk pictures and essentiality
+after splitting a sphere. These checks are recorded with exact source
+hashes and limitations in the accompanying research records.
+
+The family-197 Lean documentation names earlier torsion-containing
+examples. Its actual finitely presented declaration includes an element
+of odd prime order. We did not use that formalization to verify the
+October 4 torsion-free theorem and make no claim that this consequence
+note is formally verified. An isolated rebuild of the pinned source
+compiled its 31-page manuscript; compilation is a document check,
+not proof verification. Automated audits are also not human peer review.
+
+\section{Public disclosure and deposit decision}
+The OpenAI source is cited as supplied, with a manuscript date of
+October 4, 2026. The repository history observed on October 6 has the
+pinned initial commit timestamped October 6, 21:58:50 UTC. A manuscript
+date and a commit timestamp alone do not establish its earliest public
+disclosure; this record makes no first-priority claim.
+
+An affirmative duplication witness is the author's publicly accessible
+research triage \cite{Triage}, in commit
+\texttt{f27318d83bd7000ef817957a9a4b3087de28d198}, timestamped
+October 7, 04:55:38 UTC (October 6, 21:55:38 PDT).
+Its report, Section 4, states all the present core consequences, and its
+algebra notes give $e=1-ba$, $P=eR$, the direct-sum splitting and the
+left-multiplication isomorphism. The triage expressly conditioned its
+recommendation on validating the upstream theorem. The present note
+adds a source audit and expanded verification; it does not add a new
+idempotent or cancellation mechanism or a new mathematical conclusion.
+
+Under the project's duplication rule, no duplicate preprint is deposited
+on Zenodo and no DOI or tracker entry is created. Standard further
+consequences of a proper one-sided inverse do not warrant relabeling
+the already disclosed result as a new discovery.
+
+\paragraph{Disclosure.}
+AI tools were used extensively in research, drafting and verification,
+including independent automated adversarial audits. This note has not
+undergone conventional human peer review or refereeing. OpenAI is the
+supplied author of the upstream AI-produced construction; no affiliation
+or coauthor is inferred.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{OpenAI} OpenAI, \emph{A Torsion-Free Group Algebra That Is Not
+Directly Finite}, OpenAI Math Release preprint, October 4, 2026,
+Theorem 1.1. Pinned source commit
+\href{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026}{adc7f124}.
+\bibitem{Oinert} Johan {\"O}inert, \emph{Units, zero-divisors and idempotents
+in rings graded by torsion-free groups},
+\href{https://arxiv.org/abs/1904.04847v3}{arXiv:1904.04847v3}, July 20, 2023
+(first submitted April 9, 2019).
+\bibitem{Gardam} Giles Gardam, \emph{The Kaplansky conjectures}, lecture
+notes, source version February 20, 2024,
+\href{https://github.com/gilesgardam/lectures/blob/ec842e6a09851e98a38e2a4bea3b273b4a9debb9/kaplansky.tex}{commit ec842e6}, Proposition
+\texttt{kaplansky\_relations}.
+\bibitem{Ara} P. Ara, K. R. Goodearl, K. C. O'Meara and E. Pardo,
+\emph{Separative cancellation for projective modules over exchange rings},
+May 1996 report no. 142, p.~9,
+\href{https://ir.canterbury.ac.nz/bitstreams/9810640d-0c02-42b1-a9ac-49f0f8bd703b/download}{institutional full text}.
+\bibitem{Weibel} Charles A. Weibel, \emph{The K-book: An Introduction to
+Algebraic K-theory}, AMS, 2013, Chapter II,
+\href{https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.ii.pdf}{author's chapter}.
+\bibitem{Triage} Alec Kriebel, \emph{Ten further research paths opened by
+the OpenAI mathematics release}, public research triage, October 6, 2026,
+\href{https://github.com/AlecKriebel/Math/blob/f27318d83bd7000ef817957a9a4b3087de28d198/openai_followon_batch2_20261006/REPORT.md}{report, Section 4}; accompanying
+\href{https://github.com/AlecKriebel/Math/blob/f27318d83bd7000ef817957a9a4b3087de28d198/openai_followon_batch2_20261006/agent_notes/algebra_groups.md}{algebra notes, Section 1}.
+\end{thebibliography}
+\end{document}

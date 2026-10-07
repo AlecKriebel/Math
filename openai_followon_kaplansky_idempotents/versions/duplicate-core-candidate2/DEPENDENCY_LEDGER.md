@@ -15,18 +15,3 @@
 All upstream manuscript references resolve to sources/preprints/A-Torsion-Free-Group-Algebra-That-Is-Not-Directly-Finite-October-4-2026 at commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. Source publication/citation alone does not certify a claim.
 
 Scope: these are checkable mathematical proof audits, not human refereeing or a formalized full theorem. Fresh complete-package audits additionally test cross-file consistency, claims and reproducibility. No source or companion in a different characteristic, group with torsion or analytic algebra supplies a missing dependency.
-
-
-## October 6 quantitative refinement
-
-| ID | Precise assertion | Evidence | Status and limit |
-|---|---|---|---|
-| E1 | Exact 3-class quotient of squared turn matrix, any allowed inverse pairing | main.tex Eq(2), direct full matrix row audit | Verified; classes E,S,O count the excluded inverses |
-| E2 | q=32 rho<1, word sum≤(5376/5)(987/1000)^(h−1) | exact ratios and positive vector;verify_parameter.py | Verified, no floating point dependence |
-| E3 | q=4,8,16 rho>1 andword sum grows≥Cq(503/500)^(h−1) | common exact positive vector;full matrixindependent check | Verified; obstruction only unchanged decay criterion |
-| E4 | q=32 full asymptotic construction valid | changed capacity, degree, switching, expansion, closure constants;parameter and independent falsification audits | Verified bysource proof adaptation, not numerical matching |
-| E5 | finite PG(2,32) label certificate | GF32 irreducible polynomial, exhaustive field/incidence/Fano/inversechecks;data hash | Verified; no group witness certificate |
-| E6 | classical 2-generator HNN host preserves finite 2D K, torsionfree, ringtriple | HNN 1949, Morozov–Schupp Obs.3.4, explicit free bases and tree-of-spaces proof | Verified standard machinery; no new embedding claim |
-| E7 | refinement distinct from prior public core | exact pinned source/companions/triage inspected and current primary searches | Modest model calibration absent from checked texts; no first-priority claim |
-
-D3's original q128 remains the historical source audit. E1–E4 explicitly adapt it; the source is not silently repinned. Original duplication D9 still applies to the core but does not disclose E1–E3. Complete package reviews of the prior core candidate do not certify this changed package.

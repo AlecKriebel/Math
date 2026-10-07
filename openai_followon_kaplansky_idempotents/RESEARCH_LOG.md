@@ -139,3 +139,12 @@ initiated, and the goal is not marked complete. No new in-scope novelty was
 established. Repository findings and nonsecret receipts are committed/pushed
 on main with shared checkout HEAD/index preserved. Disk space recovered
 enough to finish the required reviews; no other effort was modified.
+
+
+## 2026-10-06 22:55 PDT — a distinct model-specific refinement
+
+Original core mathematical resolution: 100%. Quantitative extension mathematical resolution: 98% pending current full package adversarial pass. Revised publication package: 35%. Actual Zenodo publication/tracker: 0%.
+
+The core remains affirmatively duplicated; its exact 36-file reviewed candidate is preserved under versions/duplicate-core-candidate2. Independent routes found and checked a genuinely distinct modest extension: a three-class squared-turn quotient gives exact contraction at q=32 and exact exponential growth at q=4,8,16, so 32 is the least admissible dyadic order for this unchanged model's decay criterion. All parameter-dependent source estimates remain valid; an independent full-source falsification pass found no obstruction. New finite-plane data certify the order-32 incidence alphabet. Classical finite HNN embedding supplies an attributed two-generator host, without a new embedding mechanism or global 532-generator claim.
+
+The independent priority attack inspected the exact source, companions and triage: none states the matrix calibration or lower-order obstruction. A narrowly framed refinement note is justified; no first-priority claim is made. The prior core-only duplication decision is preserved and explained to the user. The current main.tex is a new refinement candidate, native compiler success; two fresh complete-package reviewers are required for this material change. No deposit or tracker operation occurred.
