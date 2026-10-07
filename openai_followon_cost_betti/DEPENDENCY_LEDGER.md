@@ -11,14 +11,16 @@
 | U7 | Sparse-overlap expansion gives rk(D)>alpha n/100, via relative planar word matching and labelled graph shortening | rank-surgery.tex, Theorem rank:main; planar.tex, Lemma planar:main | Complete lower audit; separate independent planar falsifier; no substantive gap found |
 | G1 | For a countable group and every free p.m.p. action on a standard probability space, beta_n^(2)(R)=beta_n^(2)(Gamma); no ergodicity assumption | Gaboriau 2002, Corollary 3.16 | Published primary statement/hypotheses checked: classical_bridge/REPORT.md |
 | G2 | Cost(R)-1 >= beta_1^(2)(R)-beta_0^(2)(R) for p.m.p. countable relation | Gaboriau 2002, Corollary 3.23 | Published primary statement checked: classical_bridge/REPORT.md |
-| G3 | beta_0^(2)(R)=integral 1/|[x]_R|; infinite classes give zero; aperiodic cost at least one | Gaboriau 2002, Proposition 3.15(1); classical cost theory | Published primary statement checked: classical_bridge/REPORT.md |
+| G3 | beta_0^(2)(R)=integral 1/|[x]_R|; infinite classes give zero; aperiodic cost at least one | Gaboriau 2002, Properties 3.15(1); classical cost theory | Published primary statement checked: classical_bridge/REPORT.md |
 
-No relevant formalization of family259 was identified in catalogue, docs or Comparator scope checks; no Lean build was applicable. No follow-on theorem is claimed Lean-verified.
+No relevant formalization of family 259 was identified in catalogue, docs or Comparator scope checks; no Lean build was applicable. No follow-on theorem is claimed Lean-verified.
 
 
-| D1 | a,u_1,...,u_99 is a free basis, F=<u_i> embeds inGamma | Upstream models:sequence basis substitution, independently checked | Inverse substitutions verified; attributed in manuscript |
-| D2 | S=1+sum_1^99u_i and t-1 have injective right convolution onl2Gamma | Self-contained 100-regular-tree layer-energy proof and coset decomposition | notes/classical_bridge/DIRECT_BETTI.md, special_s/PROOF.md; fresh direct_review/AUDIT.md |
-| D3 | Exact101x100 Foxboundary, injective d2, dense d1 image | Lifted path derivation, classical Fox1953 and von Neumann dimension | Complete direct adversary plus exact free-ring verification |
-| D4 | Presentation complex aspherical and allbeta_n=0 | d2 injective onintegralchains; simplyconnected acyclic2D cover; Hurewicz/Whitehead | Complete direct audit; noEuler-only shortcut |
+| ID | Exact role and hypotheses | Source | Validation status |
+|---|---|---|---|
+| D1 | a,u_1,...,u_99 is a free basis, F=<u_i> embeds in Gamma | Upstream models:sequence basis substitution, independently checked | Inverse substitutions verified; attributed in manuscript |
+| D2 | S=1+sum_1^99u_i and t-1 have injective right convolution on l2(Gamma) | Self-contained 100-regular-tree layer-energy proof and coset decomposition | notes/classical_bridge/DIRECT_BETTI.md, special_s/PROOF.md; fresh direct_review/AUDIT.md |
+| D3 | Exact 101 x 100 Fox boundary, injective d2, dense d1 image | Lifted path derivation, classical Fox 1953 and von Neumann dimension | Complete direct adversary plus exact free-ring verification |
+| D4 | Presentation complex aspherical and all beta_n=0 | d2 injective on integral chains; simply connected acyclic 2D cover; Hurewicz/Whitehead | Complete direct audit; no Euler-only shortcut |
 
 All full-solution/publication claims continue to require complete-package validation. Historical scoped audits preserve their own limitations. They are not machine proof certificates or human refereeing.

@@ -3,7 +3,6 @@
 from pathlib import Path
 import hashlib
 import json
-import shutil
 import zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -27,6 +26,13 @@ def main():
         'priority/PUBLICATION_ELIGIBILITY_ADDENDUM.md':'notes/priority_audit/PUBLICATION_ELIGIBILITY_ADDENDUM.md',
         'priority/DIRECT_COMPUTATION_PRIORITY.md':'notes/priority_audit/DIRECT_COMPUTATION_PRIORITY.md',
         'priority/web_source_manifest.json':'notes/priority_audit/web_source_manifest.json',
+        'priority/local_source_manifest.json':'notes/priority_audit/local_source_manifest.json',
+        'priority/direct_computation_source_manifest.json':'notes/priority_audit/direct_computation_source_manifest.json',
+        'priority/direct_computation_web_manifest.json':'notes/priority_audit/direct_computation_web_manifest.json',
+        'verification/check_fox.py':'notes/classical_bridge/direct_review/check_fox.py',
+        'verification/check_fox_results.json':'notes/classical_bridge/direct_review/check_results.json',
+        'verification/verify_constants.py':'reviews/upstream_lower_audit/verify_constants.py',
+        'verification/constants_certificate.json':'reviews/upstream_lower_audit/constants_certificate.json',
         'proof-audits/upper/AUDIT.md':'reviews/upstream_upper_audit/AUDIT.md',
         'proof-audits/upper/SOURCE_HASHES.json':'reviews/upstream_upper_audit/SOURCE_HASHES.json',
         'proof-audits/compression/AUDIT.md':'reviews/compression_audit/AUDIT.md',

@@ -23,3 +23,9 @@ Independent upper, compression/deployment, and full lower audits found no substa
 Priority correction: the previous conditional three-line limit proof is already literally public in our own triage commit 387962dc519c86b1d1833cb0a41bd3fbddd2b446. The final paper must acknowledge it; a mere layout/eta change would not justify a new-solution preprint. The separately checked direct all-degree computation and dependency-validation record provide the substantive expansion under the expressly requested consequence-note scope. No claim of firstness or independent fixed-price discovery will appear. Final direct-calculation priority refresh remains underway.
 
 Native editor compilation succeeded. Exported draft PDF has six pages. Original upstream TeX uses pdfTeX-only metadata primitives; an isolated Tectonic build copy guarded only those three lines and compiled successfully. Original upstream files remain unchanged. Complete-package reviews and production/tracker operations remain pending.
+
+## 2026-10-06 21:51:11 America/Los_Angeles - complete-candidate checkpoint
+
+Mathematical resolution estimate: 95%. Publication package estimate: 65%.
+
+Prepared the six-page standalone source and exported, visually checked PDF; the explicit allowlist archive has 35 files including primary source hashes, scoped audits, exact computations and priority corrections. Production manifest passed the repository tool's local check. Candidate v1 is frozen by SHA-256 hashes in receipts/frozen_package_v1.json, with a local preserved snapshot. Complete-package review begins on this exact candidate. This is not publication approval or a conventional human review. Two distinct full-package reviewers remain required. Checkpoint cfd895602b28db03eefa878541f8c88b275a097b was pushed to main without changing the shared HEAD or index.
