@@ -1,0 +1,1 @@
+The unchanged family 295 manuscript/source and Lean scope document are copied from OpenAI Math commit adc7f1241b42e322a6451854ab7e4b4c146bf78a for independent audit. Author: OpenAI. Repository license: Apache-2.0; included LICENSE. No finding below implies human peer review or a reproduced formal build.
