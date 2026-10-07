@@ -20,6 +20,8 @@ Victor Shoup, *New algorithms for finding irreducible polynomials over finite fi
 
 Theorem 3.1 gives the deterministic polynomial-time reduction from prime-field construction to prime-field polynomial factoring. Theorem 4.1 and its proof already extend the construction implication to a supplied nonprime field representation. The construction implication should be attributed to Shoup, not advertised as new machinery. The author-hosted copy is dated January 31, 1989; public priority should use the FOCS publication evidence rather than treating this manuscript date as a verified first disclosure.
 
+The simpler degree-`md` lift below is also explicitly public: Shanthanu S. Rai, *Pseudo-Deterministic Construction of Irreducible Polynomials over Finite Fields*, arXiv:2410.04071v1, Algorithm 2 and Theorem 4.1, <https://arxiv.org/html/2410.04071v1>. The arXiv history records submission on 2024-10-05 at 08:02:34 UTC. Its construction subroutine and factorization subroutine use randomness, but its algebraic lift is exactly the one below. This independent derivation therefore does not create a new reduction or establish priority.
+
 Downloaded primary PDF SHA-256: `00590fb8f0717338530b067626428781991edb840fb74c37cf846f07f50e0644`. Its embedded character encoding prevents normal text extraction. Pages 3–10 were rendered at 180 dpi and OCRed for reading. Mathematical expressions in the notes below are independently derived rather than trusting OCR formulas. The saved source PDF and rendered pages are research inputs, **not proposed publication attachments**: redistribution rights were not established.
 
 ## A simple lift from prime fields to an arbitrary explicit base
@@ -50,6 +52,12 @@ The binomial irreducibility criterion says that `X^D-a` is irreducible over `K_r
 
 is a field of dimension `sD` over `F_p`, with `b` the image of `B`. Because `a=b^D` generates `K_r`, the element `b` generates `L` over `F_p`.
 
+In this particular root-of-unity construction, the binomial criterion can also be independently checked by an elementary order argument. Every root `b` of `X^D-a` in an algebraic closure has exact order `r^(k+e)`: its order divides `r^(k+e)` and its `r^e`th power has order `r^k`. Write `p^s=1+c*r^k`, where `r` does not divide `c`. Binomial expansion shows that raising this number to the `r`th power increases its `r`-adic valuation after subtraction of one by exactly one; raising to an exponent prime to `r` leaves the valuation unchanged. Indeed the first binomial term has the asserted valuation and each later term has greater valuation, since `r` is odd and `k>=1`. Induction gives
+
+`v_r(p^(s*t)-1)=k+v_r(t)`.
+
+Any exponent with `p^u=1 mod r^(k+e)` must be a multiple of `s`, by reduction modulo `r`. Therefore `ord_(r^(k+e))(p)=s*r^e=sD`, which is exactly the Frobenius orbit size of `b`. Its degree over the degree-`s` field `K_r` is `D`, proving the needed binomial irreducibility in the exact finite-field setting without an unchecked general-field input.
+
 Define
 
 `gamma=sum_(i=0)^(s-1) b^(p^(D*i))`.
@@ -68,6 +76,8 @@ If `p=3 mod 4`, `X^2+1` is irreducible over `F_p`. For `e=1`, return it. For `e>
 
 `f_k(X^(2^(e-1))) in F_p[X]`.
 
+The irreducibility in both 2-power branches has the same independent order verification. For `u=1+c*2^k` with `c` odd and `k>=2`, expanding `u^2-1` proves `v_2(u^2-1)=k+1`; odd powers preserve valuation. Hence `v_2(u^t-1)=k+v_2(t)`. If `p=1 mod4`, a root of `X^(2^e)-a` has order `2^(k+e)` and degree `2^e`, taking `u=p` and `k=v_2(p-1)>=2`. If `p=3 mod4`, a root of the displayed substituted `f_k` has order `2^(k+e-1)`; any exponent making `p` equal to one modulo that order is even, and applying the valuation identity to `u=p^2` gives minimal such exponent `2^e`. This directly proves the final polynomial irreducible and explains the exceptional branch.
+
 This variant uses the factor oracle instead of Shoup's explicit quadratic-extension square-root formula. It avoids the need to trust or transplant that formula and still uses only degree-four oracle inputs.
 
 ### `r=p`: an Artin–Schreier tower with a trace certificate
@@ -85,6 +95,8 @@ The roots of `Y_i^p-Y_i-a_(i-1)` are `y_i+j` for `j in F_p`. Summing their `(p-1
 `Tr_(K_i/K_(i-1))(a_i)=-a_(i-1)`,
 
 and inductively `Tr_(K_i/F_p)(a_i)=(-1)^i !=0`. This supplies a certificate for every tower step. An element in a proper subfield of `K_i=F_(p^(p^i))` has absolute trace zero, because the relative degree of `K_i` over that subfield is divisible by `p`. Hence `a_i` generates `K_i`, and its minimal polynomial has degree `p^i`. Compute the final polynomial by linear dependence among its powers.
+
+For a concrete implementation, after every step compute the minimal polynomial of `a_i` and change coordinates to its power basis. The matrix whose columns are `1,a_i,...,a_i^(p^i-1)` in the two-level tower basis is invertible; Gaussian elimination performs the coordinate change. Thus the implementation never needs to accumulate a deeply nested tower. At the next step, `a_i` is just the distinguished root of its new prime-field polynomial.
 
 This tower is a variant of the Artin–Schreier construction in Shoup's proof, which credits Adleman–Lenstra. It requires no calls to `PF`. If `p|N`, then `p<=N`, so writing a degree-`p` polynomial is permitted by the dense degree bound. If `p>N`, this branch is never entered.
 
@@ -160,7 +172,7 @@ Let `N=md`, `B=ceil(log_2 p)`, and `J` be the number of distinct prime divisors 
 | Trace computation | at most `s` powers by exponent `p^D`, bit length `DB+1`; `O(sDB)` tower multiplications by repeated squaring | stored exponents `O(NB)` bits |
 | Arbitrary-base lift | one extension factorization of degree `N=md` over supplied degree-`m` field | dense lifted input length `O(NmB)` |
 
-With schoolbook polynomial arithmetic, multiplying in a recursively flattened tower of total dimension `M` uses `O(M^2)` prime-field operations per tower level with harmless polynomial overhead; the number of levels is `O(log N)`. Reduction coefficients are part of the same bounded representations. Prime-field inversion uses the extended Euclidean algorithm on integers of `B` bits; multiplication/addition use standard exact integer arithmetic. Therefore the construction overhead is bounded by some fixed polynomial in `N+B`, independently of `PF`. A deliberately loose bound `O((N+1)^10(B+1)^4)` bit operations suffices for the above explicit implementation; optimizing that exponent is unnecessary here. The oracle contribution is bounded by
+With schoolbook polynomial arithmetic, multiplying in a two-level tower of total dimension `M` uses `O(M^2)` prime-field operations: if the base degree is `s` and relative degree is `t`, the cost is `O(s^2 t^2)`. After every Artin–Schreier or coprime-combination step, flatten to the certified generating element's power basis using an invertible `M x M` matrix and `O(M^3)` exact elimination; the next step again has at most two levels. Odd-prime trace construction already has only two levels. There are `O(log N)` tower/combination stages. Reduction coefficients are part of the same bounded representations. Prime-field inversion uses the extended Euclidean algorithm on integers of `B` bits; multiplication/addition use standard exact integer arithmetic. Therefore the construction overhead is bounded by some fixed polynomial in `N+B`, independently of `PF`. A deliberately loose bound `O((N+1)^10(B+1)^4)` bit operations suffices for this implementation; optimizing that exponent is unnecessary here. The oracle contribution is bounded by
 
 `[J(1+NB)+2B] * T(N^2,B)`.
 

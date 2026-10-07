@@ -31,6 +31,11 @@ nonmonic, constant, zero, bad-oracle and inseparable examples. These exhaustive
 tests have field-size dependence and are verification examples, not a fast
 factorization algorithm.
 
+Field multiplication uses coefficient convolution and reduction modulo h. Field
+inversion uses extended Euclid in F_p[t]. Repeated first-dependence solves use
+O(n*s^3) field operations per trace coordinate, rather than the more efficient
+incremental linear algebra used in an optimized mathematical reduction.
+
 Each squarefree run records n, fixed-algebra dimension s <= n, and the bounds
 m*s on trace coordinates/prime-oracle calls and s on oracle-polynomial degree.
 The Berlekamp matrix is n by n over K. First dependence calculations use n by

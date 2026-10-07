@@ -192,7 +192,21 @@ class FiniteField:
         if a == self.zero:
             raise ZeroDivisionError("zero field element")
         self.stats.count("field_inversions")
-        return self.pow(a, self.q - 2)
+        # Extended Euclid in F_p[t] avoids exponent q-2 and its additional
+        # extension-degree factor.  Track the coefficient of a, not of h.
+        r0, r1 = self.h, _itrim(a, self.p)
+        s0, s1 = (), (1,)
+        while r1:
+            quotient, remainder = _idiv(r0, r1, self.p)
+            r0, r1 = r1, remainder
+            s0, s1 = s1, _iadd(s0, _imul(quotient, s1, self.p), self.p, -1)
+            self.stats.count("inverse_prime_polynomial_euclid_steps")
+        if len(r0) != 1:
+            raise ArithmeticError("nonzero element is not invertible under the field promise")
+        scalar = pow(r0[0], -1, self.p)
+        inverse = _idiv(tuple(scalar * coefficient % self.p for coefficient in s0),
+                        self.h, self.p)[1]
+        return inverse + (0,) * (self.m - len(inverse))
 
     def basis(self) -> tuple[Element, ...]:
         return tuple(tuple(int(i == j) for i in range(self.m)) for j in range(self.m))

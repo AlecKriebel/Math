@@ -176,3 +176,22 @@ The pseudocode's product check after refinement is against the squarefree `u`; i
 * **No prime factorization oracle for integers:** even field-definition irreducibility can be checked by all degrees up to m/2. The reduction oracle factors polynomials only.
 
 These deductions establish the conditional transfer, not the central prime-field hypothesis. The family-142 audit and any family-003/029 analytic gap remain outside this note. No novelty or priority claim is certified here. A reference computation with a small-prime exhaustive oracle can validate implementation mechanics, but cannot substantiate the polynomial-time prime-field oracle or remove this conditional status.
+
+## Independent reference artifact and finite checks
+
+Checkpoint 2026-10-06 21:30 America/Los_Angeles (2026-10-07T04:30:48Z). Conditional-reduction mathematical resolution estimate: 100%; unconditional project resolution: not certified here; publication package: 0%. The strongest verified result is the conditional theorem above plus implementation mechanics on the listed finite inputs. Completion percentages are workflow estimates, not evidence for the upstream theorem.
+
+`code/extension_direct_verify.py` independently implements the direct p-fixed reduction using only Python's standard library, with its own field/polynomial arithmetic and incremental power-relation elimination. The p-primality and h-irreducibility conditions are explicitly promises in this independent implementation. It accepts an oracle callback and checks that the callback's roots give an exact factorization of each minimal polynomial. Its shipped `small_prime_oracle` enumerates `p` roots and refuses `p>257`; this is explicitly confined to test fixtures and does **not** implement or demonstrate a polynomial-time prime-field theorem. Its field inversions use exponentiation by `q-2`, so a safe bound for the actual reference arithmetic is `O(m^3(L+1)^3)` bit operations per field operation, rather than the theoretical extended-Euclid bound used above. Substituting this in the direct operation counts still gives the loose uniform bound `O(m^4 n^5(L+1)^4)+n P(n,L)` when a genuine oracle replaces the test fixture.
+
+`receipts/extension_direct_examples.json` records five fully reconstructed examples: repeated factors over F_2, mixed multiplicities with an irreducible quadratic over F_4, a squarefree F_4 case with `p | m`, mixed multiplicities over F_9, and repeated factors over F_5. It also records zero, constant and inverse coefficient-Frobenius checks. The field representations are `T` over F_2/F_5, `T^2+T+1` over F_2, and `T^2+1` over F_3. The irreducible F_4 quadratic is `X^2+X+t`; `Tr(t)=1` proves it has no root. For F_9, `X^2-(1+t)` is irreducible since `(1+t)^4=2`, so `1+t` is a nonsquare. These finite identities are also recoverable from the recorded arithmetic.
+
+`code/extension_crosscheck.py` compares this independent direct implementation with `code/finite_fields.py`'s trace reduction and a third algorithm, exhaustive trial division. Complete enumeration covers all monic polynomials of degrees 1--4 over F_2, 1--3 over F_3/F_4, and 1--2 over F_5/F_8/F_9: 345 cases. An additional F_8 polynomial with all eight distinct field values as roots exercises a 24-by-24 prime-field Frobenius matrix, eight-dimensional fixed algebra and multiple coordinates having the same values. All 346 comparisons passed. `receipts/extension_independent_crosscheck.json` records the parameter sets, cases, dimensions, Python version, source hashes and observed run time. That time is a reproducibility observation for these tiny fixtures, not a general efficiency claim.
+
+Reproduce with:
+
+```
+python3 code/extension_direct_verify.py --output receipts/extension_direct_examples.json
+python3 code/extension_crosscheck.py --output receipts/extension_independent_crosscheck.json
+```
+
+The checks found no failure in either reduction. They do not establish correctness for all fields by themselves; that conclusion rests on the algebraic proof. They provide no certification of family 142 or a new priority claim. The independent direct module and cross-check file must remain test/reference supplements to a clearly conditional result until the upstream prime theorem is validated.

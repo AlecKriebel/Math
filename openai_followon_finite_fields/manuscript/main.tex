@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Deterministic algorithms over represented finite fields: consequences of prime-field factorization},pdfauthor={Alec Kriebel},pdfsubject={Unpublished attributed consequence and verification record},pdfkeywords={finite fields, deterministic algorithms, factorization, irreducible construction}}
+\newcommand{\Fp}{\mathbf F_p}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\PF}{\mathsf{PF}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Deterministic algorithms over represented finite fields:\\consequences of prime-field factorization}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 6, 2026\\\small Unpublished research record; Zenodo deposit withheld after priority audit}
+\begin{document}
+\maketitle
+\begin{abstract}
+We spell out uniform deterministic reductions for complete dense polynomial
+factorization and prescribed-degree irreducible construction over
+$K=\Fp[t]/(h)$, where $p$ is prime and $h$ is a supplied monic irreducible
+polynomial. Their only oracle is prime-field polynomial factorization.
+A trace-coordinate implementation and an independent prime-Frobenius
+implementation handle multiplicities and inseparability. Substituting the
+prime-field theorem of OpenAI gives polynomial bit complexity in the dense
+input and requested output sizes. The reductions are established machinery
+of Berlekamp and Shoup; the degree-multiplication construction also appears
+in Rai. This note records consequences, representation details and an audit,
+not a new prime-field algorithm or a priority claim. The upstream theorem
+requires the general cyclotomic Hecke zero-free theorem of a separate
+companion, beyond the narrower formalized quasi-Riemann theorem.
+\end{abstract}
+
+\section{Problem, provenance and exact model}
+Represent $p$ in binary, put $L=\lceil\log_2p\rceil$, and supply
+$h\in\Fp[T]$ monic of degree $m\ge1$. Primality of $p$ and irreducibility
+of $h$ are promises, or may be checked deterministically. The field
+$K=\Fp[T]/(h)$ has power basis $1,t,\ldots,t^{m-1}$; every coordinate
+is a canonical residue with $L$ bits. A nonzero polynomial $f\in K[X]$
+of degree $n$ is a dense list. Complete factorization returns its leading
+coefficient $c$ and distinct monic irreducibles $g_i$ with positive binary
+multiplicities $e_i$, such that $f=c\prod_i g_i^{e_i}$. Constants have an
+empty list. Zero has no such finite unique factorization and is rejected.
+The field and coefficient input uses $O((n+2)mL)$ bits; output coefficients
+use $O(nmL)$ and multiplicities $O(n\log(n+1))$ bits.
+
+For construction, a positive degree $d$ may be supplied in binary, but the
+requested dense output has $(d+1)m$ coefficient slots. Polynomial in $d$
+is polynomial in this output size, and is not polynomial in $\log d$.
+No practical efficiency is inferred from a fixed polynomial exponent.
+A dense-input convention cannot be inferred from a field cardinality alone;
+the supplied defining polynomial is part of the input.
+
+Berlekamp's reduction from general finite fields to split prime-field
+polynomials is already public \cite{Berlekamp70}. Shoup's construction
+reduction is public in Theorems 3.1 and 4.1 of \cite{Shoup90}.
+The particular degree-$md$ lift below also occurs in Algorithm 2 and
+Theorem 4.1 of Rai \cite{Rai24}. The newly supplied input is OpenAI's
+prime-field theorem \cite{OAI142}. We attribute that breakthrough to its
+source. Consolidating its implications does not independently solve the
+base deterministic factorization problem or invent these reductions.
+
+\section{Explicit reduction for complete factorization}
+Let $P(u,L)$ be a nondecreasing bit-cost bound for a deterministic complete
+factorization algorithm $\PF$ over $\Fp$ on degree at most $u$.
+
+\begin{theorem}[Established reduction with explicit oracle accounting]
+There is a uniform deterministic reduction for complete factorization
+in the above representation with polynomial nonoracle overhead in $n,m,L$.
+The trace version uses at most $mn$ calls to $\PF$, each of degree at most
+$n$, with sum of queried degrees at most $mn^2$.
+An alternative uses at most $n$ calls and sum of degrees at most $n^2$.
+Neither version enumerates the field or uses an integer-factorization
+or primitive-root oracle.
+\end{theorem}
+
+\subsection{Fixed algebras and trace separation}
+First suppose $f$ is monic squarefree of degree $u$. If it has $s$
+irreducible components, the Chinese remainder theorem gives
+\[
+ A=K[X]/(f)\simeq\prod_{a=1}^s\mathbf F_{p^{m u_a}},\qquad
+ \sum_a u_a=u,\quad s\le u.
+\]
+With $q=p^m$, $q$-Frobenius is $K$-linear. Its fixed algebra
+$B_q=\ker(\mathrm{Frob}_q-I)$ is $K^s$. Form its $u\times u$ matrix
+and compute a kernel basis $b_1,\ldots,b_s$ by exact elimination.
+For $0\le j<m$ form
+\[
+ c_{ij}=\sum_{k=0}^{m-1}(t^j b_i)^{p^k}\in A.
+\]
+Each component of $b_i$ belongs to $K$, so each component of $c_{ij}$
+is $\Tr_{K/\Fp}(t^j b_i(a))\in\Fp$. This is a quotient-algebra
+power computation, not a coefficientwise trace on arbitrary elements of $A$.
+
+The trace polynomial $\sum_{k=0}^{m-1}Y^{p^k}$ is nonzero and has degree
+$p^{m-1}<p^m$, so trace is nonzero, including when $p\mid m$.
+For every $\delta\ne0$, multiplication by $\delta$ is bijective;
+therefore $y\mapsto\Tr(\delta y)$ is nonzero. Some power-basis coordinate
+$y=t^j$ detects it. Two different coordinate maps on $B_q=K^s$ differ
+on some $b_i$; hence some $c_{ij}$ separates every pair of components.
+Using just $\Tr(b_i)$ would not justify this claim: $\Tr(1)$ can vanish.
+
+If $c$ has component values $a_1,\ldots,a_s\in\Fp$, its monic minimal
+polynomial, over either $K$ or $\Fp$, is exactly
+\[
+ \mu_c(Z)=\prod_{a\in\{a_1,\ldots,a_s\}}(Z-a).
+\]
+A polynomial annihilates $c$ precisely when it vanishes at each coordinate;
+this proves the formula, squarefreeness and degree at most $s$.
+Find $\mu_c$ by the first dependence among $1,c,\ldots,c^s$ in the
+$u$-dimensional $K$-space $A$. Its coefficients lie in the canonical
+$\Fp$ and can be converted after checking the other basis coordinates vanish.
+Factor $\mu_c$ with $\PF$. The returned factors are distinct linear
+polynomials and give its occurring values. Refine each current factor block
+$g$ by $\gcd(g,c-a)$ for those values $a$. These gcds partition its
+component support. After all $ms$ coordinates no block contains two
+components, so every block is irreducible.
+
+\subsection{Independent prime-Frobenius variant}
+The $p$-power map is $\Fp$-linear, generally not $K$-linear.
+On the $um$-dimensional space with basis $t^jX^i$, form
+$\mathrm{Frob}_p-I$ as an $um\times um$ matrix over $\Fp$.
+Its kernel $B_p$ is $\Fp^s$, because the $p$-fixed elements of every
+finite field component are exactly $\Fp$. A basis of $B_p$ separates
+all coordinate pairs. For each of its $s$ basis vectors compute the
+first power relation over $\Fp$ and apply the same minimal-polynomial
+factorization and gcd refinements. This proves correctness independently
+of the trace pairing and uses only $s$ prime calls.
+
+For one squarefree input, the trace version uses at most $ms^3$ gcds
+and the direct version at most $s^3$. A first-dependence system has
+$u$ rows over $K$, or $um$ rows over $\Fp$, and at most $s+1$ columns.
+A loose count for the trace version is $O(m^2u^5(L+1))$ operations in $K$.
+For the direct variant one may bound the cost by
+\[
+ O(mu^3L+u^5)\text{ operations in }K,
+ \quad O(m^3u^3+mu^4)\text{ operations in }\Fp.
+\]
+These counts include powering, exact elimination, dependence tracking,
+root-product checks and gcds. The prime calls add at most $msP(s,L)$
+or $sP(s,L)$ bits respectively. Coefficients remain canonical field
+coordinates; no coefficient-height growth occurs in elimination.
+Schoolbook arithmetic and polynomial extended Euclid bound a $K$ operation
+by $O(m^2(L+1)^3)$ bits, so these are uniform bit-polynomial reductions.
+The reference program's simple repeated dependence solves fit within the
+looser polynomial bounds; operation counters are not a runtime guarantee.
+
+\subsection{Multiplicity and inseparability}
+Normalize $f$ by its leading coefficient. The standard squarefree procedure
+sets $C=\gcd(f,f')$, $W=f/C$, and $i=1$. While $W\ne1$, set
+$Y=\gcd(W,C)$, emit $(W/Y,i)$ if nonconstant, then set
+$W=Y$, $C=C/Y$, and increment $i$. If $C\ne1$ after this loop, its
+remaining multiplicities are divisible by $p$; its derivative is zero.
+For $C=\sum c_k X^k$ its unique $p$th root is
+\[
+ H=\sum_j c_{pj}^{p^{m-1}}X^j.
+\]
+Indeed $a^{p^m}=a$ in $K$. Recurse on $H$ and multiply the returned
+multiplicities by $p$. Copying coefficients works only when $m=1$.
+
+To check this procedure, fix a factor of multiplicity $e$. If $p\nmid e$,
+it initially occurs once in $W$ and $e-1$ times in $C$, and is emitted
+at step $i=e$. If $p\mid e$, it remains wholly in $C$ and passes to
+recursion with multiplicity $e/p$. This proves the result by induction.
+The emitted squarefree products have disjoint irreducible supports and
+sum of degrees at most $n$. Recursive input degrees sum to at most $2n$.
+All gcd loops have polynomial cost; coefficient-root exponents have
+$O(mL)$ bits, not $p^{m-1}$ iterations. Summing the squarefree call bounds
+gives exactly the bounds in the theorem. The argument covers $p=2$, $m=1$
+and wholly inseparable inputs.
+
+For checking $h$, compute successive $T^{p^j}\bmod h$, check the gcd with
+$T^{p^j}-T$ for every $j\le\lfloor m/2\rfloor$, and check
+$T^{p^m}=T\bmod h$. A reducible degree-$m$ polynomial has an irreducible
+factor of degree at most $m/2$, so the gcds detect it, also with repeated
+factors. This uses $m$ binary modular powers and no integer factorization.
+
+\section{Prescribed-degree construction}
+Shoup \cite[Theorem 3.1]{Shoup90} gives a deterministic reduction from
+constructing an irreducible degree-$N$ polynomial over $\Fp$ to $\PF$,
+with polynomial overhead in $N,L$. Theorem 4.1 gives the analogous
+arbitrary-base implication. For clarity an alternative known lift is as follows.
+Construct $H\in\Fp[X]$ irreducible of degree $N=md$, factor it over $K$
+by the preceding theorem, and take the lexicographically first factor.
+The $p$-Frobenius orbit of a root has size $N$. $p^m$-Frobenius acts
+by adding $m$ modulo $N$, so every orbit has size
+$N/\gcd(N,m)=d$. Every factor therefore has degree $d$ and multiplicity
+one. This proves the lift without finding an isomorphism or primitive
+root. It is the same lift as Rai's Algorithm 2 \cite{Rai24}.
+For $d=1$ return $X$; for $m=1$ direct prime construction suffices.
+The extension is the explicit quotient $K[X]/(g)$ for the output $g$.
+
+The supplementary construction audit makes Shoup's oracle use explicit:
+trial division factors the numeric output degree $N$; each prime-power
+construction has prime-field algebra dimension at most $N^2$; oracle
+polynomial degrees are at most $N^2$, and there are
+$O(NL\log(N+1))$ calls. The coefficient slots always have $L$ bits.
+The bound includes $p$-power Artin--Schreier towers, odd prime-power
+binomials and the special $2$-power cases. It never factors $p-1$.
+Trial division of $N$ is permitted by dense output size and is not an
+integer-factorization oracle on arbitrary binary inputs.
+The $2$-power exception cannot be omitted: over $\mathbf F_3$,
+\[
+ X^4+1=(X^2+X+2)(X^2+2X+2),
+\]
+although $-1$ is nonsquare. The supplied construction uses the quadratic
+extension in that case, following the established binomial criterion.
+Factoring $H$ over $K$ has input size $O(dm^2L)$, polynomial in the
+original field and dense degree-$d$ output sizes. Thus the whole construction
+is bit-polynomial whenever $P$ is polynomial.
+
+\section{The upstream input, its audit and the resulting scope}
+\begin{corollary}[Consequence of OpenAI's prime-field theorem]
+Using \cite[Theorem 1.1]{OAI142}, complete factorization over the represented
+$K$ and degree-$d$ irreducible construction are uniform deterministic
+algorithms with bit complexity polynomial in the relevant dense
+input/output sizes. They require no GRH, randomness, integer-factorization
+oracle or primitive-root oracle.
+\end{corollary}
+\begin{proof}
+Substitute the cited prime-field bound
+$P(u,L)=O(((u+1)L)^{10^{12}})$ into the two established reductions.
+Every oracle degree, number of calls and nonoracle representation is bounded
+by a fixed polynomial in the dense parameters just given.
+\end{proof}
+
+This is a consequence of the cited proof, not an independent proof of
+its analytic or geometric breakthrough. Family 142's Theorem 1.2 is an
+auxiliary-prime reduction with numeric prime-size parameter $E$.
+Its unconditional Theorem 1.1 imports family 029's Theorem 1.2
+\cite{OAI029}: all finite-order Hecke $L$-functions over every cyclotomic
+field containing $\mu_{12}$ are zero-free in $\Re s>1-10^{-6}$, with the
+principal pole permitted. The applications use
+$F=\mathbf Q(\mu_{12q})$ and the cyclic extension $F(p^{1/q})/F$.
+Abelian zeta factorization and the smoothed explicit formula produce
+auxiliary primes $\ell\le c B^{20000000}$, where
+$B=20+(n+1)(L+1)$. A Dirichlet-only theorem does not suffice.
+
+We inspected the actual manuscripts at the pinned repository commit
+\begin{center}\small\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.\end{center}
+The audit covers source hashes, the required theta, reflection, Poisson and
+Mellin arguments, and the algebraic norm, divisor and splitting proof. Separate automated adversarial audits found
+no substantive gap in those inspected dependencies. Limited finite checks
+of auxiliary tables, local Gauss/Euler identities and exact exponent
+margins are supplied; they do not prove an analytic zero-free theorem.
+The huge prime-field branch was not executed. Family 003's actual Lean
+scope is Dirichlet and Eisenstein-field Hecke nonvanishing; it does not
+cover the needed varying cyclotomic input. No relevant Lean build was
+reproduced here and this follow-on is not claimed formally verified.
+
+For optional fixed-$r$ extraction, factor the dense polynomial $X^r-a$
+and return its linear-factor roots. Complexity is polynomial in numeric
+$r,m,L$, hence in $m,L$ for each fixed $r$. No polynomial-in-$\log r$
+claim follows. This is merely a factoring consequence; quadratic
+nonresidue and square-root consequences already in the release are not
+relabeled as new results.
+
+\section{Reproduction, limitations and disclosure}
+The supplement contains exact reduction pseudocode, source/dependency
+ledgers, proof-node audits and standard-library Python implementations.
+The bundled prime oracle enumerates $\Fp$ only in bounded small examples;
+its $O(p)$ cost is not polynomial in $\log p$ and cannot substantiate
+prime-field derandomization. Independent trial-division comparison checks
+377 small monic inputs; a second implementation cross-checks 346 cases.
+Examples cover characteristic two, nontrivial inverse coefficient Frobenius,
+repeated factors, $m=1$, constants and rejected zero/oracle errors.
+The manuscript makes no assertion of practical efficiency or first priority.
+The priority audit found only inherited consequences and no demonstrated
+genuinely new extension. A new-solution Zenodo deposit is therefore withheld.
+
+AI tools were used extensively in research, drafting and verification.
+Automated adversarial reviews are not conventional human peer review or
+refereeing; this work has not undergone such review. Alec Kriebel is the
+sole listed author; no affiliation or outside endorsement is asserted.
+Upstream AI-produced mathematical work is attributed to OpenAI as supplied
+by its manuscript-specific citation information.
+
+\begin{thebibliography}{9}
+\bibitem{Berlekamp70} E. R. Berlekamp, \emph{Factoring polynomials over large
+finite fields}, Mathematics of Computation \textbf{24} (1970), 713--735.
+\href{https://doi.org/10.1090/S0025-5718-1970-0276200-X}{doi:10.1090/S0025-5718-1970-0276200-X}.
+\bibitem{Shoup90} V. Shoup, \emph{New algorithms for finding irreducible
+polynomials over finite fields}, Mathematics of Computation \textbf{54}
+(1990), 435--447; preliminary version, FOCS 1988.
+\href{https://www.shoup.net/papers/detirred.pdf}{Author-hosted primary text}.
+\bibitem{Rai24} S. S. Rai, \emph{Pseudo-deterministic construction of irreducible
+polynomials over finite fields}, ECCC TR24-147 (October 4, 2024), arXiv:2410.04071 (October 5, 2024).
+\href{https://arxiv.org/abs/2410.04071}{Versioned public record}.
+\bibitem{OAI142} OpenAI, \emph{Deterministic Polynomial Factorization over
+Prime Fields}, OpenAI Math Release preprint (October 4, 2026),
+Manuscript-specific citation supplied by the source.
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/Deterministic-Polynomial-Factorization-over-Prime-Fields.pdf}{Pinned manuscript}.
+\bibitem{OAI029} OpenAI, \emph{Primitive roots for every admissible integer
+base}, OpenAI Math Release preprint (October 4, 2026),
+Manuscript-specific citation supplied by the source.
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/primitive-roots-all-integer-bases.pdf}{Pinned manuscript}.
+\end{thebibliography}
+\end{document}
