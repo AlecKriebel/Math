@@ -1,18 +1,23 @@
-# Exact target and current status
+# Exact statements and current scope
 
-## Mathematical consequence
+## Singular Cartier-index criterion
 
-For n>=5, assume the unrestricted boundary-zero complex algebraic klt normalized-volume bound in every k=2,...,n. Then Li–Liu global Reeb minimization/density identity and Spotti–Sun Theorem1.3(2) give a natural homeomorphism
+Let X be an irreducible normal projective complex klt Fano of dimension m>=1, with a weak KE current of bounded potentials smooth on X_reg. Let L be ample Cartier, r a positive integer, and omega_X^[-1] = L^r as an actual line-bundle identity. If r>m/2+1, then T_X and the tangent sheaf on every finite quasi-etale cover are slope stable with respect to the anticanonical polarization; none of those covers is a product of two positive-dimensional normal projective varieties. Every parallel orthogonal complex structure on (X_reg,g) is J or -J. The strict uniform index bound is sharp: P^(r-1) x P^(r-1) at equality admits mixed conjugation isometries.
 
-    complex/polarized GH compactification of smooth KE cubic n-folds
-        ≅ [P(H^0(P^(n+1),O(3))) // SL(n+2)](C)
+Proof: DGP stable-factor cover; factorwise Cartier restriction; negative Hilbert-polynomial roots from KV; slope descent on etale complete-intersection curves; local positive KE curvature kills parallel (2,0) forms; reflexive tangent endomorphism and stable simplicity. No completeness, full U(m) holonomy, Picard-rank restriction or simply-connectedness is assumed. The isometry statement for arbitrary metric completions needs its own regularity theorem and is not asserted here.
 
-with the analytic quotient topology. Equivalence retains complex structure (biholomorphic isometry); the bare unmarked metric GH quotient forgets it. Closed points correspond to Q-Gorenstein-smoothable K-polystable Fanos admitting smoothing to smooth cubics, with -K=(n-1)L, L Cartier ample and L^n=3. This is the good/coarse space of polystable representatives in the cubic smoothing closure, not all Fanos with that dimension/volume.
+## Cubic compactifications for n>=5
 
-The gap upper bound is asserted by upstream family037 at pin adc7f1241b42e322a6451854ab7e4b4c146bf78a. Combined scoped audits found no substantive flaw in its needed routes; the input is a cited external theorem, not independently formalized or reproved here. Equality is unnecessary. The checkable conditional deduction and exact boundaries are in main.tex and agent_notes/.
+Using the cited upstream unrestricted gap bound in every k=2,...,n, LL global Reeb minimization/density normalization and SS17 established transfer give
 
-## Priority and publication
+    complex/polarized GH compactification of smooth KE cubics = cubic GIT(C).
 
-A publicly downloaded current KSZZ manuscript states a stronger arbitrary-dimensional K/GIT comparison. Its route differs; we do not claim it contains our identical proof. Our cubic-specific mechanism is the established SS17 reduction instantiated with the new upstream gap, plus established LL minimization. No genuinely new in-scope theorem or mechanism has been established. Preserve the consequence audit in the project and public repository checkpoints; no new-solution preprint deposit is cleared. Earliest KSZZ public posting is unverified; current public access October6 PDT is verified.
+This comparison retains complex structure and has the closed-polystable-point interpretation in the cubic Q-Gorenstein smoothing closure. All boundary varieties have -K=(n-1)H with H ample Cartier and H^n=3. The new index criterion applies because n-1>n/2+1 precisely for n>=5. DSII metric/algebraic regular-locus identification, normal Hartogs/GAGA and SGA2 Pic=Z[H] give holomorphic or antiholomorphic isometries preserving the hyperplane polarization. Thus the ordinary unmarked metric GH closure is homeomorphic to cubic GIT(C) modulo coefficientwise conjugation, including the entire boundary.
 
-No scheme/stack isomorphism, functor equivalence, every nonclosed semistable point theorem, or cubic-curve headline is claimed by our deduction. No Zenodo publication/DOI/tracker row exists for this effort. Persistent publication goal is unachieved.
+The gap proof is an external OpenAI input at pin adc7f1241b42e322a6451854ab7e4b4c146bf78a. Scoped audits found no blocker, not a full formal or human-refereed certification. No schemes/stacks, functor equivalence, every nonclosed semistable point, cubic curves, effective GH distance or equality-case classification beyond the general index counterexample is asserted.
+
+## Attribution and publication state
+
+The core complex comparison is already publicly stated in stronger form by KSZZ, using a different proof; SS17 already gives our exact conditional transfer mechanism. The additional candidate is the singular high-Cartier-index rigidity criterion and all-boundary metric-fiber proof, derived with explicit attribution to DGP, the classical index bound, Spotti/OSS predecessors, DSII and SGA2. Two independent current primary-source scope comparisons recommend a modest consequence/extension paper if the complete package passes fresh review. This is no first-disclosure certification, and no first-solution headline is proposed.
+
+main.tex and the exported eight-page paper.pdf now contain the additional proof. The old audit version remains in prior public commits and exact review snapshots. Earlier complete reviews do not certify this changed candidate. Full fresh package review is pending. No Zenodo draft, submitted record, DOI or tracker row exists yet. Persistent publication goal remains active and unachieved.

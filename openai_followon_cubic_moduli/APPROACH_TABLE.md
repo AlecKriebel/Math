@@ -1,4 +1,4 @@
-# Independent approach families — checkpoint 02
+# Independent approach families — checkpoint 05
 
 | Family | Mechanism | Evidence | Status | Exact remaining gap |
 |---|---|---|---|---|
@@ -9,6 +9,8 @@
 | E: new-resolution publication | Advertise n>=5 cubic comparison as new | Public stronger KSZZ theorem; known SS reduction | Blocked as proposed new-resolution route | No novel in-scope theorem/mechanism; cannot repair by scheme/stack/nodal upgrades also public |
 | F: alternative deduction/exposition | Assemble the upstream gap and established transfer | Local standalone audit note; adversarial priority review | Retained as research evidence | Different proof from KSZZ does not alone establish a new contribution; no novelty clearance |
 
-| G: metric-only extension probe | DGP quasi-etale splitting + high Cartier index + reflexive-form vanishing | Primary OSS convention and recorded derivation | No novelty-cleared substitute; not promoted | Boundary isometry/root/RC hypotheses and precise priority still need independent checking; this does not resolve publication condition |
+| G: singular metric extension | DGP quasi-etale splitting + high Cartier index + local positive-Ricci contraction + reflexive endomorphism | Completed independent index/isometry audits; exact DSII/SGA2 checks; sharp product counterexample | New precise candidate proved from cited inputs; package not yet promoted | Fresh entire-package review and verified deposit/tracker pending; no first claim |
+| H: current candidate priority | Compare exact prior hypotheses/mechanisms with singular criterion and boundary fibers | Two distinct primary-source audits including smooth PW/Hwang, DGP24, Hoering2026, OSS/Spotti, KSZZ | Modest attributed extension recommended | Does not certify global first disclosure; full mathematics/package gates apply |
+| I: KSZZ proof falsification | Inspect full public15page comparison chain and pivotal dependencies | General-Gorenstein Shibata precursor, DGP resolution slope, local/relative repairs | No irreparable central gap or new theorem found | Exact Shi2017 Prop3.13 and stack upgrades not reconstructed; not our proof input |
 
 A route is not a persistent-goal status. The goal remains unachieved; it is not marked complete or tool-blocked prematurely. No outreach, releases, duplicate deposit or tracker changes.
