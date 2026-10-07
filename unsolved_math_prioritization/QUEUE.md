@@ -959,7 +959,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 948 | 30005171 / OWR-11101913-005 | Stable Limits of Smooth Plane Curves | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | unsolved | 5/5 |  | Audited partials: inverse-symbol criterion, quadratic and shifted determinantal cases, two exact SOS slice certificates, and sharp quintic deformation extension threshold. Full weak-SOS equivalence and weak-SOS boundary remain unresolved. See [packet](attempts/30005481/README.md). |  |
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
