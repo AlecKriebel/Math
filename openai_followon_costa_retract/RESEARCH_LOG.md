@@ -36,3 +36,16 @@ Complete six-page candidate and exact two-file deposit set assembled. Built-in c
 Current PDF hash3fd17ac91b2f640931988bbd65ae8d8b48cc9b6253c2befa17b4c47171441f52. Source archive hash646723cd3a3bd20d6a862a9db06d7720a13ff94368c1d12937b1666fa101d19f. Manifest hash e3785367073600f672b90f66cb8a419084d97c3b11312c5cad2dff2b31bd1452. Candidate includes original paper source, exact scripts, audits, hashes and Apache-licensed unchanged Lean closure with adapted minimal config; no cache, credentials or primary-source reading PDFs. License follows repository preprint template CC BY4.0 with upstream Apache notice/license.
 
 A first complete-package adversarial reviewer has the original request, exact candidate and primary input. No mathematical, title, attribution or novelty promotion rests only on the first-pass scoped reviews. Production publication is not yet attempted; exact remaining gap is complete-package reviews, then remote metadata/checksum verification, publication and tracker read-back. Upstream source clone stays unchanged; current remote main still equals pinned input.
+
+## Checkpoint 04 — 2026-10-06 21:45 PDT
+
+Mathematical resolution estimate: 95%. Publication package estimate: 75%.
+
+Complete reviewer01 independently read the original problem, full candidate and pinned §§1–7, reconstructed the core proof, ran both scripts in a fresh environment, checked all six PDF pages and audited current primary provenance/metadata. Required repair: two external citations said Theorem1 instead of the pinned Theorem1.1. No substantive mathematical gap found. Packaging and license subchecks found no demonstrated blocker; adapted-config notice, exact mixed-license scope and portable navigation were improved conservatively.
+
+All repairs propagated into main.tex, exported PDF, archive, metadata, source/dependency docs and licensing. The optional Lean proof modules remain unchanged. Updated v2 PDF hash c579ec3442f4bcdf68ed737ad8bc65328682158845ed2e14e6636b2b119f52c6; archive hash1d5fad97e53c8e265c1e70485182976d9882f26e4f58d0ff430db354e8ec2620; manifest hash e04a63c83d3f2c47460715597e67917fd5179fc258431af5b1257ff1aca6d0ac. Built-in compilation succeeds. Clean v2 reproduction/visual checks initiated.
+
+A NEW complete-package reviewer received the original request and latest exact package, without the prior full-review verdict. No stage or publish operation has occurred; project-local production state was checked absent, and no prior stage attempt is known. Exact remaining gap: fresh latest-package no-substantive-issue verdict, then remote verification/publication and spreadsheet update.
+
+### Checkpoint04 validation completion — 2026-10-06 21:46 PDT
+Clean v2 reproduction passed both computational scripts and standalone paper build, verifying all86 archive manifest files. PDF text matches the intended export. Root inspected all six revised pages and confirmed both citation corrections; no layout defect. The candidate files remain frozen for the fresh reviewer. Estimates remain math95%, package75%.

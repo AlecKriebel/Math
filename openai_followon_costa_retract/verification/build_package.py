@@ -41,6 +41,8 @@ def main():
             if '.lake' not in path.parts:
                 payload['lean/'+str(path.relative_to(lean))]=path.read_bytes()
     payload['lean/README.md']=b'Pinned OpenAI family 047 sources, Apache 2.0; unchanged OAI modules.\nThe minimal Lake configuration is an audit adaptation excluding unrelated dependencies.\nRun lake update; lake exe cache get; lake build OAI.Algebra.AffineCancellation.Main; lake env lean PrintAxioms.lean.\nThese commands require sufficient disk and network. Full proof compilation was NOT reproduced in this package audit.\nSee ../audits/formal_scope.md and ../provenance/lean_source_hashes.json.\n'
+    for name in ['lake_update.log','model_lean_attempt.log','targeted_lean_attempt.log']:
+        payload['audits/formal_scope_logs/'+name]=(ROOT/'notes/formal_scope'/name).read_bytes()
     inner={'source_commit':'adc7f1241b42e322a6451854ab7e4b4c146bf78a','files':{n:{'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()} for n,b in sorted(payload.items())}}
     payload['CONTENTS.json']=(json.dumps(inner,indent=2)+'\n').encode()
     with zipfile.ZipFile(output/'source-and-verification.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
