@@ -20,7 +20,7 @@ for name in names:
  for part in parts[:-1]: d=d.setdefault(part,{})
  if path.is_symlink():
   import os
-  oid=run(['hash-object','-w','--stdin']) if False else raw(['hash-object','-w','--stdin'],os.readlink(path).encode()).decode().strip();mode='120000'
+  oid=raw(['hash-object','-w','--stdin'],os.readlink(path).encode()).decode().strip();mode='120000'
  else: oid=run(['hash-object','-w','--',name]);mode='100755' if path.stat().st_mode&stat.S_IXUSR else '100644'
  d[parts[-1]]=(mode,'blob',oid)
 def tree(d):

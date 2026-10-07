@@ -1,4 +1,4 @@
-# Verified target, awaiting exact-package final review
+# Verified target after two complete-package AI reviews
 
 There exists an absolute C<infinity such that for every set-sized metric space X with finite Markov type-two constant M2(X), every countably additive positive measure space (Omega,Sigma,mu), every S subset X, and every Lipschitz f:S->L1(mu;R), an extension F:X->L1(mu;R) exists with Lip(F)<=C M2(X)Lip(f).
 
