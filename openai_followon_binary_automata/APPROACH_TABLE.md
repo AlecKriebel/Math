@@ -1,11 +1,13 @@
-# Approach table
+# Approach table — 2026-10-06 21:20 PDT
 
 | Family | Mechanism | Evidence | Status | Exact remaining gap |
 |---|---|---|---|---|
-| A | Explicit binary block source plus virtual-bit pullback | Both inputs use same relation language; safe polynomial constructions plausible | Active independently | Full transition rules, proof, counts and edge cases |
-| B | Deterministic matching/rank obstruction upstream | Actual manuscript and proof declarations found | Independent audit active | Algebraic proof soundness and model semantic agreement |
-| C | Nondeterministic path-diagram order-reversal upstream | Actual manuscript and proof declarations found | Independent audit active | Transport, nesting, amplification and representation soundness |
-| D | Formal dependency reproduction | No direct sorry found in relevant modules | Active in pinned copy | Toolchain, exact build, actual theorem assumptions |
-| E | Prior binary reduction / smaller source construction | Kapoutsis 2013 already uses adjacency coding | Priority and construction audit active | Exact O(h²) claim; distinguish known reduction from unrestricted new consequence |
+| A | Binary adjacency source and virtual-bit pullback | Uniform transition proof, exact cubic source/sh² pullback, two independent simulators | Complete, adversarial reduction audit passed | Whole-package review |
+| B | Upstream deterministic matching/rank obstruction | Independent primary proof + real-declaration semantic audit; exhaustive degree≤4 algebra probes | No substantive gap found | Kernel reproduction unavailable; not invoked as successful verification |
+| C | Upstream nondeterministic path-diagram order reversal | Independent representation/transport/nesting/amplification audit and tiny algebra probes | No substantive gap found | Kernel reproduction unavailable; not invoked as successful verification |
+| D | Formal build validation | 41 pinned modules/signature source checks | Environment blocked by disk exhaustion | Successful kernel build, axiom printing, Comparator not performed |
+| E | Strict-alignment source lower bound | h³ explicit fooling set and independent cross tests | Proven; order-optimal expansion | No first priority claim |
+| F | Prior reduction and consequence framing | Primary 2011/2013/2026 statement and release-date audit, R816 antecedent | Audit complete | Recheck source pin before publication; package claims reviewed globally |
 
-A cannot repair a false B or C merely by encoding. A failed pivotal input blocks unconditional promotion unless independently repaired.
+A/E are unconditional reduction lemmas; applying them to B/C uses external
+mathematical results. A/E could not repair a substantive failure of B/C.

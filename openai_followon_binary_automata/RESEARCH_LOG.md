@@ -14,3 +14,51 @@ The source README reports mixed verification. Read both manuscript-specific cita
 Independent agents: original determinization argument; original complementation argument; binary compiler/construction; primary-literature priority audit; pinned formal build and axiom audit. Preserve early independence. Established binary adjacency encoding is already printed in Kapoutsis (2013); attribution and exact counts need checking.
 
 Shared main is behind current remote main. Use isolated index and commit-tree based on freshly fetched remote main for owned files only; never alter shared index/checkout, force-push, reset, or create a branch. No GitHub releases.
+
+## 2026-10-06 21:20 PDT / 2026-10-07 04:20 UTC — proof/package checkpoint
+
+Mathematical resolution: 92% best guess. Publication package: 45% best guess.
+Strongest verified result: full uniform source compiler in (3h³−h)/2+2
+marked states / one fewer ordinary states, exact sh² target pullback,
+all-word complement equivalence, and h³ source fooling set. Independent
+reduction adversary found no defect and ran 4,472,832 equivalence checks;
+root reran both original and independent checkers, plus upstream finite
+algebra probes. Separate manuscript/semantic audits of each original
+exponential lower bound found no substantive gap. All exponential
+obstructions remain credited to those external theorems.
+
+Formal reproduction limitation: 41 byte-identical actual proof modules,
+source scans and matching Comparator signatures were checked, but disk
+exhaustion prevented dependency acquisition and kernel build / axiom
+printing / Comparator execution. Only owned failed caches were removed.
+There is no claim of reproduced formal verification. This limitation is
+stated globally; dependency validation is by the independent handwritten
+proof audits, not the failed build.
+
+Priority audit confirms adjacency coding appears in Kapoutsis 2011/2013;
+public R816 supplies other coding machinery with quadratic input only.
+Our note is an explicitly attributed fixed-binary consequence, plus strict
+alignment/source accounting, with no first claim. No duplicate unrestricted
+exponential binary theorem was found in inspected sources. Public release
+of the upstream input was verified October 6, distinct from manuscript dates.
+
+Six-page standalone manuscript compiled in the built-in editor; an actual
+exported PDF also compiled with Tectonic and all six pages were rendered and
+visually inspected. Full package freeze, clean reproduction, and two fresh
+complete-package reviewers remain pending. Initial safe checkpoint was
+pushed as 281e5a6a20ee1b672cd940125f6733ab8f3f10a8 without changing shared
+checkout/index. One concurrent remote-main update rejected an earlier push;
+retry used newly read remote parent, without force-push or reset.
+
+## 2026-10-06 21:22 PDT / 2026-10-07 04:22 UTC — complete candidate checkpoint
+
+Mathematical resolution: 95% best guess. Publication package: 65% best guess.
+The frozen candidate has a standalone six-page PDF/source, publication README,
+metadata manifest and deterministic verification ZIP. Clean temporary-directory
+reproduction passed all four original/independent scripts and the PDF build.
+The exact files and SHA-256 values are in reviews/candidate01_hashes.json;
+local Zenodo check passed for production. No remote deposit has been created.
+First fresh complete-package adversary is reviewing the exact candidate,
+original target, primary input proofs, all dependency/priority records and code.
+Second fresh complete-package review is required after the first pass/repairs.
+The deposit will use the repository tool's four-file upload kit, not releases.
