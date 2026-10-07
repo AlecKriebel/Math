@@ -1,0 +1,43 @@
+--- a/CANDIDATE.md
++++ b/CANDIDATE.md
+@@ -102,7 +102,7 @@
+ 
+ q_T(1/2)≥q_T(b)^2 / [2(b^2+(1-b)^2)]^N.                       (4.4)
+ 
+-Indeed the fair-measure second moment of the likelihood ratio is the denominator. Both bounds depend exponentially on N; neither is uniform over arbitrarily fine tilings. The Boolean AND function, with probabilities b^N and 2^{-N}, confirms that a dimension-free backward transfer cannot follow from monotonicity alone. AND is used only as a logical obstruction to that inference, not as a claimed square-tiling crossing example.
++Indeed the fair-measure second moment of the likelihood ratio is the denominator. Both bounds depend exponentially on N; neither is uniform over arbitrarily fine tilings. For a stronger logical control, fix b>1/2, choose alpha=(b+1/2)/2, and let f_N indicate that at least ceil(alpha*N) of N bits are black. Chebyshev's inequality gives P_{1/2}(f_N=1)≤1/[4N(alpha-1/2)^2]→0 and P_b(f_N=1)≥1-b(1-b)/[N(b-alpha)^2]→1. Thus no dimension-free positive fair-probability bound can follow from monotonicity and a uniform positive high-density bound alone. These threshold functions are logical controls only, not claimed square-tiling crossing examples.
+ 
+ For the seven-square tiling, the exact fair influences, in the specified order, are
+ 
+@@ -180,9 +180,9 @@
+ 
+ (i) finite admissible tilings U_n and increasing finite subsets F_n⊂T with union T, such that U_n contains every square of F_n exactly;
+ 
+-(ii) with probability one, either H_fin or W_fin occurs under the chosen product coloring of T.
+-
+-Give common tiles the same colors and independently color the extra tiles of U_n. If every finite admissible tiling has fair horizontal crossing probability at least c, then P_T(H_fin)≥c.
++(ii) with probability one, either H_fin or W_fin occurs under the independent fair product coloring of T.
++
++Give common tiles their shared independent fair colors and give the extra tiles of each U_n independent fair colors, independent of all common-tile colors. If every finite admissible tiling has fair horizontal crossing probability at least c, then P_{T,1/2}(H_fin)≥c.
+ 
+ Proof. On H_fin choose a finite black witnessing chain. It lies in F_n for all sufficiently large n, so every such U_n has a black crossing. On W_fin choose its finite white witness. It likewise lies in F_n eventually, and the finite Hex alternative forbids a black crossing in U_n. Thus the crossing indicators of U_n converge almost surely to 1_{H_fin}, irrespective of the extra colors. Every U_n has the fair product marginal, because common and extra tile colors are independent fair bits. Bounded convergence proves P_T(H_fin)=lim_n q_Un(1/2)≥c. ∎
+ 
+--- a/checks/exact_crossings.py
++++ b/checks/exact_crossings.py
+@@ -1,3 +1,6 @@
++if not __debug__:
++    raise RuntimeError("Verification requires assertions; rerun without -O or PYTHONOPTIMIZE.")
++
+ import json
+ from fractions import Fraction
+ from pathlib import Path
+--- a/checks/verify_rational.py
++++ b/checks/verify_rational.py
+@@ -1,4 +1,7 @@
+ """Additional exact checks. No external packages, network, or randomness."""
++if not __debug__:
++    raise RuntimeError("Verification requires assertions; rerun without -O or PYTHONOPTIMIZE.")
++
+ from fractions import Fraction as F
+ from pathlib import Path
+ import json

@@ -996,7 +996,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 985 | 30002395 / OWR-12591-005 | Dini Spaces as Primitive Spectra of Amenable $C^*$-Algebras | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | unsolved | 5/5 |  | 2026-10-07: unsolved after 5/5 approaches. Corrected, independently audited partials: finite Hex duality; exact 65/128 versus 63/128 seven-square crossings; unit vertex extremal length; finite-size influence/measure bounds; Peled-dependent high-density bound at p >= 1-exp(-26); qualified countable finite-chain transfer. Neither fair-color conjecture is proved. Authored packet: random_square_crossings_10000051/. |  |
 | 989 | 2800903 / AMR-027-0903 | 10 Lectures and 42 Open Problems — Tightness of k-median LP | 0.0908 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 990 | 30002760 / OWR-13487-001 | Optimal Adaptive Approximation of Transport-Dominated Equations | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 991 | 30002842 / OWR-13673-012 | Finiteness of Automorphism Groups of Rational Vertex Operator Algebras | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
