@@ -32,7 +32,7 @@ def main():
         index_path = ROOT / index_path
     import hashlib
     index_before = hashlib.sha256(index_path.read_bytes()).hexdigest()
-    run('git', 'fetch', '--no-write-fetch-head', 'origin', 'refs/heads/main')
+    run('git', '-c', 'gc.auto=0', 'fetch', '--no-write-fetch-head', 'origin', 'refs/heads/main')
     remote = run('git', 'ls-remote', 'origin', 'refs/heads/main').split()[0]
     fd, private_index = tempfile.mkstemp(prefix='checkpoint-index-', dir=PROJECT/'receipts')
     os.close(fd)
