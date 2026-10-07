@@ -33,6 +33,8 @@ def main():
         result=subprocess.run(['git','push','origin',commit+':refs/heads/main'],cwd=ROOT,capture_output=True,text=True)
         if result.returncode==0:
             observed=run(['ls-remote','origin','refs/heads/main']).split()[0]
+            if observed!=commit:
+                subprocess.run(['git','fetch','--no-tags','--no-write-fetch-head','origin',observed],cwd=ROOT,check=True,capture_output=True,text=True)
             ancestor=subprocess.run(['git','merge-base','--is-ancestor',commit,observed],cwd=ROOT,capture_output=True)
             if observed!=commit and ancestor.returncode!=0:raise SystemExit('Remote receipt does not prove commit presence')
             after_index=hashlib.sha256(shared_index.read_bytes()).hexdigest()

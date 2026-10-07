@@ -50,3 +50,11 @@ assumption. Every residue is reduced modulo p. The trace implementation raises
 alpha*b to p powers in the quotient ring, then sums m terms; it does not apply a
 coefficientwise trace to an arbitrary polynomial. All oracle roots are checked by
 reconstructing the monic queried polynomial before they are used to split.
+
+The complete construction fixtures/statistics require an explicit destination:
+
+```text
+python3 construction_reduction_examples.py --output ../data/construction_examples.json
+```
+
+Without --output the constructor prints only a summary. The project-level reproduce.py deletes the copied construction JSON, regenerates it, and then compares the fresh data, so stale archived fixtures cannot pass merely by being copied. It also compares saved direct/trace-check results, ignoring only Python-version and elapsed-time metadata. Historical v1/v2 clean-run receipts did not provide that regeneration evidence; see review B and its response for the correction.
