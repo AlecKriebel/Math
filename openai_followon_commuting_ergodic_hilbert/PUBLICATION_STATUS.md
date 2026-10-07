@@ -1,0 +1,15 @@
+# Verified publication status
+
+Bilinear ergodic Hilbert variation for commuting transformations as a consequence of annular triangular variation
+
+Published production Zenodo record: [23204591](https://zenodo.org/records/23204591). DOI: [10.5281/zenodo.23204591](https://doi.org/10.5281/zenodo.23204591). Separate resolver verification returned HTTP 200 to the record. All four unauthenticated public downloads match the exact freshly reviewed payloads by SHA-256, MD5 and byte size.
+
+The theorem covers arbitrary commuting invertible measurable probability-preserving transformations with measurable inverses, complex L3 inputs, H0=0 and symmetric Hilbert sums. For every r>2 it gives full pointwise variation and maximal bounds in L^(3/2), almost-everywhere and norm convergence, and maximal-tail norm convergence. It is an explicit fixed-positive-area cell restriction and finite-window transference consequence of the cited, independently audited OpenAI annular theorem. The continuous breakthrough and established reduction machinery are credited. There is no first-priority, independent continuous breakthrough, r=2, noncommuting, broader-input-exponent or one-sided Cesaro claim.
+
+Three distinct full-package review cycles were completed. Review 1 required numerical provenance; review 2 identified numerical support beyond the original kernel-only boundary. Both were repaired. A NEW review 3 independently checked the entire narrowed exact package and found no substantive issue. Numerical support in the deposit is limited to Section 2 kernel bookkeeping. The clean source reproduces the five-page PDF byte-for-byte; every page was visually inspected and all 14,850 kernel-only assertions pass. Automated audits are not conventional human peer review or formal certification. Extensive AI use is disclosed.
+
+The verified tracker row is ['Math Puzzles'!A47:D47](https://docs.google.com/spreadsheets/d/1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20/edit?gid=1254632077#gid=1254632077&range=A47:D47). All four cells exactly match the single RAW/INSERT_ROWS append. Unknown optional Solution Chat URL is blank.
+
+Downloads: [README.md](https://zenodo.org/api/records/23204591/files/README.md/content); [verification-supplement.zip](https://zenodo.org/api/records/23204591/files/verification-supplement.zip/content); [source.zip](https://zenodo.org/api/records/23204591/files/source.zip/content); [paper.pdf](https://zenodo.org/api/records/23204591/files/paper.pdf/content)
+
+The immutable deposit ledgers retain their expressly labeled prepublication checkpoint state. Current evidence is in PROGRAM_STATE.json, reviews/complete_package_review_3.md and receipts/FINAL_REVIEW_VERDICT.json, ROOT_FINAL_ACCEPTANCE.json, PREPUBLICATION_REMOTE_VERIFICATION.json, zenodo_publish.stdout.json, zenodo_inspect_doi.stdout.json, PUBLIC_RECORD_AND_DOWNLOAD_VERIFICATION.json and TRACKER_VERIFICATION.json. Original exploratory records were retained in research history; non-kernel probes and their numerical-corroboration framing are excluded from the deposit. No external individual was contacted.
