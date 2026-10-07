@@ -975,7 +975,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 964 | 30000853 / OWR-1730-006 | Boundary-Intersection Vanishing on Abelian-Variety Moduli | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 965 | 30000962 / OWR-1967-011 | Recursive Determination of Quantum Knot Invariants | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 966 | 30001052 / OWR-2089-013 | Functorial Maps Between p-Local Finite-Group Classifying Spaces | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 967 | 30006191 / OWR-14299085-005 | Counterexamples to Strongly Continuous Many-Fermion Dynamics | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 967 | 30006191 / OWR-14299085-005 | Counterexamples to Strongly Continuous Many-Fermion Dynamics | 0.0920 | 5.5 | 3 | 2025 | claimed_solved | 1/5 |  | Bounded-region v2 counterexample in d=3: fixed smooth compactly supported V and f; varying Slater states give annihilation norm difference tending to 2 under both orderings. [Proof and two independent acceptances](attempts/30006191/bounded_region_v2/README.md); no novelty claim. |  |
 | 968 | 30006223 / OWR-14299092-002 | Expander Degree Under Boundary Connected Sums | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 969 | 30006419 / OWR-14299521-012 | Infinitesimal Quasiconformality of Harmonic Spheres | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 970 | 30001260 / OWR-3477-004 | Rank-One-Isotropy Actions of $S_{5}$ on Spheres | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
