@@ -1,0 +1,6 @@
+# Research and verification history
+
+- 2026-10-07 18:38 UTC: primary-source inspection and dated literature check completed. The OWR request was distinguished from the later entire-boundary question; Vilches and Chou were identified as relevant prior constructions. Estimated completion of the scoped source/application review: 85%.
+- 2026-10-07 18:39 UTC: the original author packet was frozen with explicit toric data and exact controls. Estimated completion toward a checkable scoped application: 95%, pending independent acceptance.
+- 2026-10-07 18:48 UTC: the independent automated audit accepted the scoped application. Its 17 independent test groups and the author's 1,613 assertions passed. The audit proved a sharper D4 auxiliary-source counterexample and supplied the optional clarification without changing the chosen chain application. Estimated completion of the scoped review: 100%, conditional on the explicitly credited categorical literature inputs; no universal classification completion is implied.
+- 2026-10-07: publication preparation preserved the original packet and full audit, added source-free offline replay and mutation checks, and refreshed the bounded repository duplicate gate against current main. Draft-only publication is intended; no merge or release is part of this packet.
