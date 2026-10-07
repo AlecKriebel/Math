@@ -1,3 +1,13 @@
 # Independent candidate v3 review log
 
 2026-10-07T05:48:38.214893+00:00 — Started independent full-package review after reading AGENTS.md and original USER_REQUEST.txt. No previous review conclusions inspected. Review completion estimate: 0%; mathematical and publication completion not assumed.
+
+2026-10-07T05:49:13.433383+00:00 — Saved own gadget, gluing, bit-model, zero and adaptive sampler reconstruction before audit reports. Review completion estimate 20%.
+
+2026-10-07T05:53:17.450380+00:00 — Exact candidate bytes and all ZIP CRC/hash identities verified; README relative reproduction passed with immutable payload; saved data semantics and upstream stdout exactly reproduced. All six deposited PDF pages rendered/visually inspected; clean Tectonic build succeeded and extracted text matched byte for byte. Optional inspector reproduced 415 modules/zero pin mismatches; missing Mathlib probe remains unverified kernel build. Review completion estimate 65%; external proof and priority rechecks remain pending.
+
+2026-10-07T05:55:14.347109+00:00 — Independent finite attacks passed: 300 generic DAGs, 132 integer signatures through 129 plus 255/256/257, 48 integer/rational full-fiber instances, 84 integrated adaptive laws with zero/huge/tiny failure responses, and direct 8193-bit failed-output arithmetic. Deliberate directed-cycle control falsifies signature (2,2,0,0), corroborating necessity of acyclicity. Receipt collision and symlink/hardlink rejection checks passed. Concrete v3 documentation defect confirmed: optional source-inspector literal invocation exits126 because0644 script lacks python3 prefix; repair required, frozen v3 untouched. Review completion estimate85%.
+
+2026-10-07T05:58:29.336882+00:00 — Fresh auxiliary priority search raised a Cai–Liu v1 attribution absence hypothesis. Exact versioned HTML inspection independently falsified it: paragraph afterTheorem1.2 explicitly cites McQ13 Proposition5 for nonnegative edge-weight equivalence; root additionally confirmed exactv1 PDF p4. No citation repair is justified. Retaining allegation/correction evidence prevents a reviewer error from contaminating candidate. Review completion90%; upstream full-proof report pending.
+
+2026-10-07T06:05:44.234794+00:00 — Completed full frozen-v3 review after fresh primary proof/priority verdicts. Final verdict REQUIRED REPAIRS for optional inspector command only; no substantive mathematical, metadata, PDF or main reproduction issue found. Kernel build/axiom closure remains unverified and correctly disclosed. Review completion estimate100%; publication candidate v3 gate fails until command correction and fresh full review. Frozen custody sealed before root was allowed to rebuild.

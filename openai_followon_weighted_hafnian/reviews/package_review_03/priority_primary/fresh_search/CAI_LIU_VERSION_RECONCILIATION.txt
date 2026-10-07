@@ -1,0 +1,27 @@
+Cai–Liu version reconciliation
+Verified 2026-10-07 UTC. Checkpoint: this narrow falsification/reconciliation task is 100% complete; overall mathematical and publication completion are not assessed.
+
+Conclusion: the earlier REPORT.txt allegation that the 2019 arXiv text omits McQuillan Proposition 5 attribution is false. REPORT.txt is corrected in place. The withdrawn assertion and prior report hash are preserved in cai_liu_reconciliation_evidence.json. No candidate/archive was changed.
+
+Direct primary sources compared:
+1. https://arxiv.org/html/1904.10493v1 contains the attribution in the paragraph immediately after Theorem 1.2.
+2. https://arxiv.org/pdf/1904.10493v1 contains it on PDF page 4, printed page 4, after Theorem 1.2. Local pdftotext -layout lines 148–149 recover the sentence cleanly.
+3. https://arxiv.org/src/1904.10493v1 contains it in original archive member intro.tex, line 191, with citation key DBLP:journals/corr/abs-1301-2880 and Proposition 5. The member is copied unchanged under primary_reading/cai_liu_v1_source_text/.
+4. https://arxiv.org/pdf/1904.10493 is byte-identical to the versioned v1 PDF.
+5. https://drops.dagstuhl.de/storage/00lipics/lipics-vol168-icalp2020/LIPIcs.ICALP.2020.23/LIPIcs.ICALP.2020.23.pdf has it on printed page 23:4, after Theorem 4, adding “to the unweighted #PM” and using numbered reference [18, Proposition 5].
+6. https://arxiv.org/abs/1904.10493 lists only v1, submitted 23 April 2019 at 18:52:15 UTC. The versioned source supports the sentence in that version; later-generated HTML alone is not being used to establish its historical public date.
+
+Both direct arXiv PDFs SHA-256:
+b21cb2a28cf4b6f1a075988e5ce4e01cec457b1eac8a10f025e36711a21a564b
+v1 source archive SHA-256:
+bc5d3714e9270d3c04ae2a5b93cb409f1224a4d54d0d93622eda072ed9e027d5
+intro.tex SHA-256:
+80ba9e3e6516a2b9e282e880fb03ae4887337fae26c6f438eac9617552491f47
+v1 HTML SHA-256:
+a2005bd5a92893081e3ada1e349276915f0b92f883e6841a0236e29adec916a3
+Proceedings PDF SHA-256:
+b8cabdc527f1402a0217c5018275f4d91ba68d5a4148420af44f95baddb47af6
+
+cai_liu_reconciliation_evidence.json records exact normalized attribution sentences and the original exact source line, locations, withdrawn assertion, and old/new report hashes. cai_liu_download_evidence.json records the five direct download URLs, final URLs, content types, sizes, and hashes. All third-party files and complete text extracts remain under primary_reading/ and excluded from publication payloads/owned-source Git commits.
+
+Cause: I inferred absence from incomplete search/open excerpts and a search for “unweighted,” instead of verifying the entire attribution sentence in PDF/source. It was an evidence-handling error. The PDF contains the sentence and local extraction recovers it cleanly. There is no demonstrated parser omission and no actual omission/addition version discrepancy. This correction strengthens the evidence that the weighted/unweighted approximation equivalence was recognized publicly by 2019.
