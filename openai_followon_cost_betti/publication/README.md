@@ -20,10 +20,12 @@ The Bernoulli positive cost gap is inherited from the full compression/deploymen
 ```sh
 python3 verification/verify_exact.py
 python3 verification/finite_boundary_check.py
+python3 verification/check_fox.py
+python3 verification/verify_constants.py
 tectonic main.tex
 ```
 
-Alternatively compile `main.tex` twice with an existing pdfLaTeX installation. The verification scripts use only Python's standard library. The second check covers 329,027 finite contraction cases; it does not prove the Borel or infinite-class arguments. Software versions and clean-build output are recorded under `reproducibility/`. Exact inspected upstream file hashes are in `upstream/UPSTREAM_MANIFEST.json`; original third-party PDFs and TeX are cited, not bundled. The original upstream TeX was separately rebuilt in an isolated copy after three engine-specific metadata primitives were guarded for Tectonic; mathematical text was unmodified.
+Alternatively compile `main.tex` twice with an existing pdfLaTeX installation. The verification scripts use only Python's standard library. The second check covers 329,027 finite contraction cases; it does not prove the Borel or infinite-class arguments. Software versions and clean-build output are recorded under `reproducibility/`. Exact inspected upstream file hashes are in `upstream/UPSTREAM_MANIFEST.json`; original third-party PDFs and TeX are cited, not bundled. The additional Fox checker reproduces the independent algebraic checks for ranks 0, 1, 2 and 99, and the constants checker independently reproduces the exact rational inequalities. The original upstream TeX was separately rebuilt in an isolated copy after three engine-specific metadata primitives were guarded for Tectonic; mathematical text was unmodified.
 
 `proof-audits/` gives source pointers, exact mathematical checks, limitations and reviewed versions. `priority/` preserves the dated audit and its corrections/addenda. Historic provisional reports describe the scope and status of their own check, not a claim that later package review has been completed. The final exact upload set and completed fresh reviews are identified by the external frozen-package/review records in the [public project folder](https://github.com/AlecKriebel/Math/tree/main/openai_followon_cost_betti), under `receipts/` and `reviews/`; archive contents are fixed before those complete-package reviews.
 

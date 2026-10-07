@@ -4,7 +4,7 @@
 
 Mathematical resolution estimate: 20%. Publication package estimate: 2%.
 
-Read the complete request, root AGENTS.md, upstream README/INPUTS, source statements, and prior triage. Created the requested dedicated folder and persistent goal. No earlier work on this exact target was found. The upstream read-only checkout is exactly adc7f1241b42e322a6451854ab7e4b4c146bf78a with no tracked modifications. The shared checkout is on main, substantially behind current remote main and contains other researchers' work. Any publication checkpoint will use an isolated index on current remote main, preserving the shared checkout, index and HEAD. No queue or unrelated PR operations apply.
+Read the complete request, root AGENTS.md, upstream README/INPUTS, source statements, and prior triage. Created the requested dedicated folder and persistent goal. No earlier dedicated project folder for this effort was found; the prior conditional triage was read as a starting record. The upstream read-only checkout is exactly adc7f1241b42e322a6451854ab7e4b4c146bf78a with no tracked modifications. The shared checkout is on main, substantially behind current remote main and contains other researchers' work. Any publication checkpoint will use an isolated index on current remote main, preserving the shared checkout, index and HEAD. No queue or unrelated PR operations apply.
 
 Assigned independent agents to upper/action input validation, lower/rank input validation, classical bridge verification, priority audit, and measurable compression/deployment falsification. The strongest current statement is the conditional squeeze implication in THEOREM_LEDGER.md. The release theorem itself is not certified by triage. No deposit or tracker mutation has occurred.
 
@@ -29,3 +29,15 @@ Native editor compilation succeeded. Exported draft PDF has six pages. Original 
 Mathematical resolution estimate: 95%. Publication package estimate: 65%.
 
 Prepared the six-page standalone source and exported, visually checked PDF; the explicit allowlist archive has 35 files including primary source hashes, scoped audits, exact computations and priority corrections. Production manifest passed the repository tool's local check. Candidate v1 is frozen by SHA-256 hashes in receipts/frozen_package_v1.json, with a local preserved snapshot. Complete-package review begins on this exact candidate. This is not publication approval or a conventional human review. Two distinct full-package reviewers remain required. Checkpoint cfd895602b28db03eefa878541f8c88b275a097b was pushed to main without changing the shared HEAD or index.
+
+## 2026-10-06 22:00:38 America/Los_Angeles - review 01 and repair checkpoint
+
+Mathematical resolution estimate: 98%. Publication package estimate: 75%.
+
+Complete-package reviewer 01 independently reconstructed the direct proof, all positive-cost primary inputs, classical transfer, upper graphing, constants and priority; it found no mathematical or attribution defect. It found one package defect F1: the supplementary Fox checker used the repository proof path after archive relocation. Repaired its lookup to support both layouts, regenerated its result, and expanded README commands to run all four supplied verifiers. Main TeX, actual PDF and deposit metadata are unchanged. The exact v1 review, response and hashes are retained. Version 2 will undergo a clean archive test and a NEW whole-package review before any production deposit.
+
+## 2026-10-06 22:01:48 America/Los_Angeles - candidate v2 checkpoint
+
+Mathematical resolution estimate: 98%. Publication package estimate: 80%.
+
+Candidate v2 inventory and all four supplied verifiers pass from a new archive extraction, followed by a clean PDF build. SHA-256 d88ca91ab6d75388f61e5103c7f4a189fe3bab4a7349312313e4d06ea3a72d8b pins the revised archive; PDF and metadata hashes are unchanged. A NEW independent complete-package reviewer was assigned the original full target and all primary sources from a fresh context. No production draft or tracker mutation has occurred.

@@ -116,7 +116,12 @@ def check(n):
 
 
 if __name__ == "__main__":
-    reviewed = Path(__file__).parent.parent / "DIRECT_BETTI.md"
+    root = Path(__file__).resolve().parent.parent
+    candidates = (root / "DIRECT_BETTI.md",
+                  root / "proof-audits" / "direct" / "DIRECT_BETTI.md")
+    reviewed = next((proof for proof in candidates if proof.is_file()), None)
+    if reviewed is None:
+        raise FileNotFoundError("DIRECT_BETTI.md is missing from the repository or archive proof layout")
     print(json.dumps({
         "reviewed_sha256": hashlib.sha256(reviewed.read_bytes()).hexdigest(),
         "checks": [check(n) for n in (0, 1, 2, 99)],
