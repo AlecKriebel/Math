@@ -981,7 +981,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 970 | 30001260 / OWR-3477-004 | Rank-One-Isotropy Actions of $S_{5}$ on Spheres | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 971 | 30001278 / OWR-3480-009 | Sharper Ramification Bounds for Local Galois Representations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 972 | 30001285 / OWR-3481-002 | Comparison Maps in Motivic Cohomology of Central Simple Algebras | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | unsolved | 5/5 |  | Accepted scoped unresolved investigation: literal full-sheaf P1 defect is separate from the connected rational question. Component splitting and divisor, zero-cycle, curve-product and open-curve cases hold; neither relation-kernel inclusion is proved in general; full Lawson kernel retained. Independent audit accepted after verifier-only exception patch; no full resolution or novelty claim. [Packet](attempts/30001288/README.md). |  |
 | 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |

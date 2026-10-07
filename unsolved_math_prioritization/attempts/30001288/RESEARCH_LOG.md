@@ -1,0 +1,5 @@
+# Publication research log
+
+- 2026-10-07: The five substantive approaches and their mathematical limits are preserved in `original/MATHEMATICS.md`. The five-turn budget is exhausted; no further proof-search turn is represented by publication work.
+- 2026-10-07: Independent audit accepted the scoped unresolved investigation with a verifier-only correction. The complete report, acceptance, patch, and exact controls are preserved in `audit/`. The full connected rational comparison remains unproved; no novelty claim is made.
+- 2026-10-07T21:30:00Z: Prepared a source-free publication with unchanged originals and audit, separately patched accepted copy, exact closed inventory, externally supplied digest, strict patch replay, and explicit normal/optimized wrapper and child tests. Publication assembly is complete; remote transport verification is recorded separately after publication. The general-resolution goal remains unresolved and is not assigned a fabricated percentage; 100% of the five-turn budget was used. Accepted scoped-deliverable preparation: 100%.
