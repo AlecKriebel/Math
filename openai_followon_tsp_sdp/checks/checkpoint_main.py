@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Publish only this effort onto current remote main without changing shared HEAD/index."""
+"""Publish this effort's tree onto remote main without changing shared HEAD/index."""
 import argparse,datetime,hashlib,json,os,subprocess,tempfile
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 REPO=ROOT.parent
 
 def run(args,env=None):
-    return subprocess.run(['git',*args],cwd=REPO,env=env,text=True,capture_output=True,check=True).stdout.strip()
+    return subprocess.run(['git','-c','gc.auto=0',*args],cwd=REPO,env=env,text=True,capture_output=True,check=True).stdout.strip()
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('message');p.add_argument('--receipt',required=True);args=p.parse_args()
@@ -19,10 +19,19 @@ def main():
         tmp=ROOT/f'.git-checkpoint-index-{os.getpid()}'
         env=os.environ.copy();env['GIT_INDEX_FILE']=str(tmp)
         try:
-            run(['read-tree',base],env)
+            # Build a small project-only tree and retain every other remote entry.
+            run(['read-tree','--empty'],env)
             run(['add','--',ROOT.name],env)
-            tree=run(['write-tree'],env)
+            scoped=run(['write-tree'],env)
+            project_entry=subprocess.check_output(['git','ls-tree','-z',scoped,'--',ROOT.name],cwd=REPO)
+            assert project_entry and project_entry.count(b'\0')==1
+            entries=subprocess.check_output(['git','ls-tree','-z',base+'^{tree}'],cwd=REPO).split(b'\0')
+            owned_name=ROOT.name.encode()
+            retained=[entry for entry in entries if entry and entry.split(b'\t',1)[1]!=owned_name]
+            tree=subprocess.check_output(['git','mktree','-z'],cwd=REPO,input=b'\0'.join(retained)+b'\0'+project_entry).decode().strip()
             commit=run(['commit-tree',tree,'-p',base,'-m',args.message],env)
+            changed=subprocess.check_output(['git','diff-tree','--no-commit-id','--name-only','-r','-z',base,commit],cwd=REPO).split(b'\0')
+            assert all(not name or name.startswith(owned_name+b'/') for name in changed)
             push=subprocess.run(['git','push','origin',f'{commit}:refs/heads/main'],cwd=REPO,text=True,capture_output=True)
             attempts.append({'base':base,'commit':commit,'returncode':push.returncode,'output':push.stdout+push.stderr})
             if push.returncode==0:break

@@ -25,3 +25,13 @@ Mathematical resolution estimate: 97%. Publication package estimate: 55%. Whole-
 First complete-package reviewer examined exact frozen-v1 source/PDF/archives/metadata, central matching proof, affine slack, geometry, prior literature and version checks; no substantive issue identified. Fixed the noted directory-list ambiguity in repository README. Original reviewed archives and exact hashes preserved. Preparing candidate-v2 for fresh complete-package review; no mathematical or PDF change. Clean independent rebuild and finite reproduction passed.
 
 Mathematical resolution estimate: 99%. Publication package estimate: 75%. Publication and tracker are still unperformed.
+
+## 2026-10-06T22:36:48-07:00 — final publication gate
+
+Fresh second complete-package reviewer found no substantive issue in exact candidate-v2. It independently reconstructed the proof, assigned distinct upstream/priority audits, reproduced code and clean TeX build, checked archive/member hashes and inspected all6 PDF pages. First-review README clarification is repaired. Frozen payload and metadata rechecked unchanged, source remote still equals pin. No known substantive mathematical/package concern remains; proceeding under explicit publication and tracker authorization. Mathematical resolution estimate:100%. Publication package estimate:90% (remote publication, DOI/download verification and tracker still pending). No human refereeing or exponential Lean certification is claimed.
+
+## 2026-10-06T22:42:43-07:00 — verified production publication and tracker
+
+Production Zenodo record23204250 is submitted/public with DOI10.5281/zenodo.23204250; DOI HTTP200 resolves. Prescribed check/stage/inspect/publish/inspect sequence completed with verified draftID23204250. Remote metadata matched, and independent public downloads of all3 files matched reviewed sizes/SHA256/MD5. GWS resolved numeric tab1254632077 to Math Puzzles, checked current4-column schema and duplicates, appended one RAW/INSERT_ROWS row, then read back exact 'Math Puzzles'!A46:D46 values and confirmed exactly1 DOI row. Nonsecret receipts preserved; raw unrelated sheet data excluded from Git/payload.
+
+Mathematical resolution estimate:100%. Publication package estimate:100%. Final owned-file push and remote-tree verification are the remaining operational checkpoint before closing the persistent goal.
