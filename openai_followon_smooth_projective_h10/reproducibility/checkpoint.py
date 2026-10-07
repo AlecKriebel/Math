@@ -54,6 +54,15 @@ def main():
             changed = command(['diff-tree', '--no-commit-id', '--name-only', '-r', commit])
             if not set(changed.splitlines()).issubset(files):
                 raise RuntimeError('Unexpected path in candidate commit')
+            # A collaborator may edit a listed file after the initial hash.
+            # Check bytes in the commit, rather than trusting working files.
+            committed_hashes = {}
+            for name in files:
+                blob = subprocess.check_output(
+                    ['git', '-c', 'gc.auto=0', 'show', commit+':'+name], cwd=REPO)
+                committed_hashes[name] = hashlib.sha256(blob).hexdigest()
+            if committed_hashes != hashes:
+                raise RuntimeError('Owned file changed during checkpoint; no push attempted')
             result = subprocess.run(
                 ['git', '-c', 'gc.auto=0', 'push', 'origin', commit+':refs/heads/main'],
                 cwd=REPO, capture_output=True, text=True)
@@ -68,6 +77,7 @@ def main():
     receipt = {
         'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'commit':commit, 'owned_files':files, 'file_sha256':hashes,
+        'committed_blob_sha256':committed_hashes,
         'method':'isolated index, fast-forward hash push to refs/heads/main',
         'shared_head_before':before_head, 'shared_head_after':command(['rev-parse','HEAD']),
         'shared_index_before':before_index,

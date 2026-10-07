@@ -9,6 +9,13 @@ error calculation conditional on the preceding perfection/residual interface.
 It does not certify the whole companion. The 30% figure below records the
 earlier checkpoint; my later whole-companion audit estimate is 45%.
 
+Closing assigned-slice checkpoint (22:37 PDT): the cyclotomic note now
+includes an independent reconstruction of the preceding perfect/residual
+complex and the exact bounded real-place duality error, plus a formal
+universal convention repair. The assigned non-CM cyclotomic arithmetic
+audit is complete (100%), with no unsupported step found in that scope.
+Whole-companion promotion remains the root researcher's separate decision.
+
 Checkpoint: 2026-10-06 22:16 PDT (2026-10-07 05:16 UTC).
 Auditor: independent internal dependency agent. Estimated completion of a
 full independent audit of this companion: **30%**. This is an audit-progress

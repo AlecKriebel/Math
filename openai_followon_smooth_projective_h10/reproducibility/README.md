@@ -1,28 +1,47 @@
-# Reproduction and scope
+# Reproduction and verification scope
 
-This package currently establishes conditional implications. None of the finite checks certifies H10(Q) or the pointwise 2-converse.
+The main note states the geometric undecidability and height consequences using the pinned arithmetic input with the corrections explained in the manuscript and source audits. The height supplement isolates the published-modularity substitution under its explicitly stated geometric inputs. The source audits and derivations carry the mathematical argument. The finite computations below check selected interfaces; they do not alone prove Hilbert's tenth problem over the rationals, the pointwise 2-converse, or the full geometric theorem. Neither a successful build nor an automated review is formal verification or conventional human peer review.
 
-From the repository root, with Python 3.10 or later:
+## Clean build and finite checks
 
-```sh
-python3 openai_followon_smooth_projective_h10/reproducibility/arithmetic_checks.py
-python3 openai_followon_smooth_projective_h10/agent_notes/parity_matrix_check.py
-```
+Use Python 3.10 or later and an existing Tectonic installation. Both TeX documents are standalone, with their bibliographies included; no upstream checkout is needed to compile them. Tectonic needs its standard LaTeX packages available from its cache or package service. The driver does not install software or change any upstream source.
 
-The first output must match `arithmetic_checks.expected.json` as a JSON object. It checks exact quadratic-field identities and all 26 primes below 5000 satisfying the prescribed congruences. The second checks 1960 reciprocity-consistent matrix instances with seed 4003. These are finite interface checks; their scope is recorded in the accompanying source audits.
-
-The four-page conditional note is a standalone LaTeX document. It was compiled with the native Codex LaTeX compiler and exported using Tectonic 0.16.9. A clean build is:
+From the project directory, run:
 
 ```sh
-mkdir -p /tmp/smooth-projective-build
-cp openai_followon_smooth_projective_h10/manuscript/main.tex /tmp/smooth-projective-build/main.tex
-tectonic --outdir /tmp/smooth-projective-build /tmp/smooth-projective-build/main.tex
+python3 reproducibility/build_package.py
 ```
 
-The build needs standard LaTeX packages fetched or cached by Tectonic. No project file or bibliography outside `main.tex` is needed. PDF bytes can differ across toolchains; validate text, page count, equations, references and metadata. The checked local export is `manuscript/main.pdf`; hashes are in the checkpoint receipt.
+If Tectonic is outside `PATH`, give its installed path. The audited local invocation was:
 
-Source provenance is in `sources/PINNED_INPUT.json` and `sources/PINNED_COMPANIONS.json`. The upstream clone is read-only. The derived family004 build compatibility source omits only three unsupported pdfTeX PDF metadata primitives; its build receipt is `receipts/source_build.json`. A successful build is layout verification, not mathematical verification.
+```sh
+python3 reproducibility/build_package.py --tectonic /Users/alec/.local/bin/tectonic
+```
 
-`checkpoint.py` is an operational aid for safely publishing explicitly named owned files on shared main. It uses an isolated index and a fast-forward push of a commit hash, without changing the checkout, index, branch or HEAD. It is not needed to reproduce any mathematical result.
+The driver first runs all three finite checks with Python's isolated mode so environment settings cannot disable their assertions. It then copies each standalone source into a unique clean temporary directory under this project's `tmp/`, compiles both documents, verifies that no source or check input changed during the run, and exports `manuscript/paper.pdf` and `manuscript/height-repair.pdf`. Only after all checks and both builds succeed are the PDFs exported. Temporary build files are removed. The main PDF is compiled from `manuscript/main.tex`; the historical `manuscript/main.pdf`, if present, is not the publication export.
 
-There is no Zenodo payload manifest yet: an unconditional publication candidate has not passed the arithmetic gate.
+`receipts/candidate_build.json` records the software versions, source and verification-input SHA-256 hashes, exported PDF hashes and byte counts, exact check outputs, and UTC build timestamps. The local candidate build used Tectonic 0.16.9 and CPython 3.14.6; CPython 3.12.14 is also available in the bundled workspace runtime. A software version or build timestamp is distinct from a manuscript date or earliest public disclosure. The driver records the displayed dates from the actual TeX sources rather than treating its execution time as their date.
+
+The receipt identifies the actual exported PDF bytes. Byte-for-byte PDF reproducibility is not claimed across builds or toolchains. Inspect the rebuilt PDFs' text, equations, references, metadata, fonts and page layout; a compiler success and `%PDF` signature do not perform this visual inspection. The complete-package review records which exact exported versions were rendered and inspected.
+
+The checks can also be run separately from the project directory:
+
+```sh
+python3 -I -B reproducibility/arithmetic_checks.py
+python3 -I -B agent_notes/parity_matrix_check.py
+python3 -I -B verification/check_two_converse_programs.py
+```
+
+- The arithmetic output must equal `reproducibility/arithmetic_checks.expected.json` as a JSON object. It verifies exact quadratic-field identities and all 26 primes below 5000 satisfying the specified congruences.
+- The parity check must report 1960 generated reciprocity-consistent matrix instances with seed 4003. It exhausts the distinguished-prime toggles for each generated instance; it does not exhaust all possible matrix sizes or arithmetic realizations.
+- The graph-program check must report 62 active-group restrictions in dimensions 1 through 5, with three programs per restriction. It verifies the grounding, constant and degree-one pair identities over the two-element field. It does not verify the arithmetic theta correspondence.
+
+## Source provenance and supporting artifacts
+
+`sources/PINNED_INPUT.json` and `sources/PINNED_COMPANIONS.json` identify the exact upstream files and their SHA-256 hashes at commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`. They cover family 004 and the needed pointwise 2-converse companion. Use the pinned public source links in the manuscripts to obtain the upstream files, then compare their byte hashes with these records. The upstream clone remains read-only. The package excludes downloaded primary-source caches and upstream manuscript copies; source references and hashes provide provenance without redistributing those files.
+
+The current dependency ledger, verified corrections, scoped source audits, integration report and package reviews document which statements and interfaces were checked and their limits. They should be read together with the pinned sources. Historical research notes retain the status at their recorded time; later completed audits and the current ledger determine the candidate's present status.
+
+`receipts/source_build.json` records a separate compatibility build of the pinned family 004 source. That derived build omitted only three unsupported pdfTeX metadata primitives (`pdfinfoomitdate`, `pdftrailerid`, and `pdfsuppressptexinfo`); it did not change the mathematical text. Its success is a build check, not validation of the upstream proof, and it is not the clean build of this project's publication PDFs.
+
+`reproducibility/checkpoint.py` is an operational aid for publishing explicitly named owned files safely on shared `main`. It uses an isolated index and a fast-forward push without changing the shared checkout, real index, branch or HEAD. It is unnecessary to reproduce the mathematical artifacts. No repository publication or Zenodo operation is performed by `build_package.py`.

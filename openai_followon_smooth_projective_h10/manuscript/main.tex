@@ -5,7 +5,7 @@
 \usepackage{microtype}
 \usepackage{xcolor,hyperref}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black,
-pdftitle={Rational-point decision problems: a conditional transfer and dependency audit},pdfauthor={Alec Kriebel}}
+pdftitle={Rational-point undecidability for smooth projective varieties over the rational numbers},pdfauthor={Alec Kriebel}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -15,21 +15,23 @@ pdftitle={Rational-point decision problems: a conditional transfer and dependenc
 \newcommand{\Sel}{\operatorname{Sel}}
 \newcommand{\rank}{\operatorname{rank}}
 \setlength{\emergencystretch}{2em}
-\title{Rational-point decision problems:\\a conditional transfer and dependency audit}
+\title{Rational-point undecidability for smooth projective varieties over the rational numbers}
 \author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
 \date{October 6, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-We give explicit presentation and oracle conventions for Poonen's established
-transfer from rational polynomial solvability to rational-point existence on
-smooth projective geometrically integral varieties over $\Q$. A hypothetical
-decision procedure on this promised class would decide rational Hilbert's
-tenth problem. A computable bound on the height of one rational point, when
-one exists, would likewise decide existence. These implications are conditional
-with respect to the proposed undecidability conclusion: the arithmetic input
-in OpenAI's family 004 manuscript has not been certified by this audit.
-This research document makes no unconditional solution or publication claim.
+Combining OpenAI's negative solution of rational Hilbert's tenth problem
+with Poonen's established effective transfer, we obtain undecidability of
+rational-point existence for arbitrary smooth projective geometrically
+integral varieties over $\Q$. We specify a homogeneous-equation input
+promise and reconstruct the terminating contradiction algorithm. There is
+also no computable uniform bound on the height of one rational point in
+terms of the size of the presented equations. The arithmetic input is used
+with two explicit corrections documented here and in the accompanying
+verification supplement. This is a geometric consequence of that input;
+neither the geometric reduction nor the base undecidability theorem is
+claimed as a new independent solution.
 \end{abstract}
 
 \section{Inputs and precise scope}
@@ -55,13 +57,15 @@ The geometric construction and the decision transfer below are due to
 Poonen~\cite{Poonen}. His Remark 1.2(c) credits a prior $\Q$-case route to
 R.~Robinson, through Smory\'nski, \emph{Logical Number Theory I}, \S II.7.
 We do not claim a new reduction. Family 004~\cite{OpenAI} asserts the
-arithmetic undecidability input needed to turn this established implication
-into an unconditional geometric conclusion. Its validity is a separate
-issue; the statement appearing in a released manuscript is insufficient
-certification.
+arithmetic undecidability input that removes the hypothesis from this
+established implication. Section~\ref{sec:arithmetic} specifies the exact
+input used, its two proof corrections, and the scope of its source audit.
+The main contribution of this note is an explicit consequence with valid
+oracle queries and presentation conventions, together with the documented
+corrections. We make no assertion of first priority for the consequence.
 
 \section{Poonen's effective transfer and the promise}
-We use the following established input from Poonen's Theorem 1.3:
+We use the following established input from Poonen's Theorem 1.3,
 specialized to $\Q$: given a projective $\Q$-variety $X$ and an open $U\subseteq X$,
 one can algorithmically construct a regular projective variety $Y$ with a
 morphism $\pi:Y\to X$ whose image on rational points is exactly $U(\Q)$.
@@ -150,14 +154,18 @@ reduction, and in particular a Turing reduction. It does not establish a
 single-output many-one reduction into the promised geometrically integral
 class. No quantitative or dimension-preservation assertion is used.
 
-\begin{corollary}\label{cor:conditional}
-If $\mathrm{H10}(\Q)$ is undecidable, then no algorithm decides
-rational-point existence for the presented class $\mathrm{SPGI}(\Q)$.
+\begin{corollary}\label{cor:undecidable}
+No algorithm decides rational-point existence for every valid presentation
+in the class $\mathrm{SPGI}(\Q)$.
 \end{corollary}
-This corollary is conditional in the present audit. Its arithmetic antecedent
-must be verified independently before claiming that a hypothesis has been removed.
+\begin{proof}
+OpenAI's Theorem 1.1~\cite{OpenAI}, with the proof corrections recorded
+in Section~\ref{sec:arithmetic}, gives undecidability of $\mathrm{H10}(\Q)$
+with arbitrary input number of variables. Theorem~\ref{thm:transfer}
+would contradict it if the stated algorithm existed.
+\end{proof}
 
-\section{An explicit conditional height consequence}
+\section{An explicit height consequence}
 Specify a size parameter as follows. For $a\geq0$, let $b(a)$ be its binary
 representation, with $b(0)=0$, and let $\ell(a)$ be its length. Use the
 self-delimiting integer code $c(a)=1^{\ell(a)}0b(a)$.
@@ -169,13 +177,16 @@ The zero polynomial has zero monomials. These conventions specify a
 uniquely parsable finite string $e$; let $s(e)$ be its bit length.
 The size refers to this presentation and embedding, not to the isomorphism
 class of the abstract variety.
+The general connection between bounding the least height of a rational
+point and rational Hilbert's tenth problem is prior work; see
+Skorobogatov--Sofos~\cite{SkorobogatovSofos}, Section 1.2.
 
 For $P\in\mathbf P^N(\Q)$ choose its primitive integer coordinates
 $(z_0,\ldots,z_N)$ with the first nonzero coordinate positive, and set
 $H(P)=\max_j|z_j|$.
 
 \begin{corollary}
-Assume $\mathrm{H10}(\Q)$ is undecidable. There is no total computable
+There is no total computable
 function $B:\mathbb N\to\mathbb N$ such that for every valid $e$ with
 $X_e(\Q)\ne\varnothing$ there exists $P\in X_e(\Q)$ satisfying
 $H(P)\leq B(s(e))$.
@@ -186,7 +197,7 @@ $[-M,M]^{N+1}$ with first nonzero coordinate positive, and evaluate the
 $F_i$ exactly. Return YES if any vector satisfies every equation, and NO
 otherwise. The enumeration is finite. The hypothesized bound puts a point
 in the enumeration whenever one exists. This would decide
-$\mathrm{SPGI}(\Q)$, contradicting Corollary~\ref{cor:conditional}.
+$\mathrm{SPGI}(\Q)$, contradicting Corollary~\ref{cor:undecidable}.
 For $M=0$ the enumeration is empty, consistently with $H(P)\geq1$.
 \end{proof}
 
@@ -195,36 +206,111 @@ terminates on every valid input. It concerns the height of \emph{one} point
 when points exist. It makes no assertion about a fixed-dimensional family,
 finite rational-point sets, or all points on one variety.
 
-\section{Arithmetic validation gap and boundaries}
-Family 004's asserted main theorem has exactly the variable-count input
-convention above. Its proof uses finite rational tests, compactness,
-additive elliptic indices and arithmetic height estimates. The current
-audit has reconstructed the conditional transfer and several arithmetic
-interfaces, but has not certified all pivotal new companion arguments.
-No applicable complete Lean formalization of family 004 has been identified;
-this is a verification limit, not evidence that the theorem is false.
+\section{Arithmetic input and proof corrections}\label{sec:arithmetic}
+The external arithmetic theorem used is precisely Theorem 1.1 of
+\cite{OpenAI}: no algorithm decides the existence of a rational zero of
+an arbitrary integer polynomial, with the number of variables part of the
+input. Its proof is not a geometric argument. A hypothetical rational
+solvability algorithm decides each finite existential polynomial test in
+an effectively enumerated ring theory. Disequalities are replaced by
+inverse variables, and finite systems by sums of squares. If all tests
+succeed, compactness gives a term-generated ring in a nonstandard rational
+field, together with an injective additive elliptic index taking $1$ to $1$.
+Pole parity and a five-point height estimate bound the distinguished
+indices by ordinary integers, so the ring's distinguished roots are
+ordinary integers. An elementary diagram used to justify compactness is
+not queried by the algorithm. Dovetailing an integer-zero search with the
+finite-test search would decide integral Hilbert's tenth problem, yielding
+the contradiction. The source-body reconstruction and exact dependency
+checks are included in the verification supplement; finite computation
+alone is not this proof.
 
-One particularly precise remaining dependency occurs in its pole-parity
-argument. For the special curves
+The pole-parity application uses only the non-CM, full rational
+two-torsion branch of the new pointwise converse~\cite{TwoConverse}.
+For the curves
 \[
  E_l:\quad y^2=x(x-l)(x+3l),
 \]
-with $l$ restricted to the parameters selected by family 004's descent
-construction, that construction gives $\dim_{\mathbf F_2}\Sel_2(E_l/\Q)=3$ and
-full rational two-torsion. Hence
+with $l$ restricted to the parameters selected by family 004's descent,
+that construction gives $\dim_{\mathbf F_2}\Sel_2(E_l/\Q)=3$ and
+full rational two-torsion. Thus, with $r=\rank E_l(\Q)$,
 \[
- r+\dim_{\mathbf F_2}\Sha(E_l/\Q)[2]=1,
- \qquad r=\rank E_l(\Q).
+ r+\dim_{\mathbf F_2}\Sha(E_l/\Q)[2]=1.
 \]
-The desired realization of its extra Selmer class by a rational point
-follows if $\Sha(E_l/\Q)[2^\infty]$ is finite: the alternating perfect
-Cassels--Tate pairing then forces even dimension of $\Sha[2]$, yielding
-$r=1$ and $\Sha[2]=0$. Low Selmer corank alone does not supply that
-finiteness. The cited new pointwise $2$-converse~\cite{TwoConverse}
-is the upstream assertion intended to do so and remains under audit.
-This document does not assume its conclusion by silently replacing it with
-a named conjecture or a mismatched formalization.
+The extra Selmer class is realized by a rational point using the
+converse's finiteness conclusion for $\Sha(E_l/\Q)[2^\infty]$:
+the alternating perfect Cassels--Tate pairing forces even dimension
+of $\Sha[2]$, yielding $r=1$ and $\Sha[2]=0$.
+Low Selmer corank alone does not supply that finiteness.
+Indeed, the full $2^\infty$-Selmer corank is at most one, since the
+divisible corank of $\Sha[2^\infty]$ is at most
+$\dim_{\mathbf F_2}\Sha[2]$. This is the exact hypothesis of the converse.
+Each $E_l$ is fixed before its internal auxiliary twists are chosen;
+constants may depend on $E_l$. The internal odd twist discriminant must
+not be confused with $l\equiv3\pmod4$, whose quadratic field has even
+discriminant. No CM branch or arbitrary rational-two-torsion case is needed.
 
+Two technical substitutions are made in the proofs we use:
+\begin{enumerate}
+\item For the non-CM five-point height argument of \cite{OpenAI}, use
+coefficient primes $(5,2)$. Published Pan modularity at $5$~\cite{Pan}
+applies without a residual-image restriction; irreducibility, oddness,
+potential semistability and distinct Hodge--Tate weights are verified
+from the surface's Tate module. Prime-independent traces identify the
+same weight-two form at $2$, which supplies its conductor at $5$.
+The modular factor and isogeny-height deductions then give the required
+power bound. The standalone height supplement details every step and
+explicitly states its retained geometric inputs. Its five branch values
+come from the fixed discriminant-$210$ quotient, not arbitrary five points.
+\item In the non-CM cyclotomic determinant of \cite{TwoConverse}, reconcile
+inverse Frobenius with the direct Euler convention by the universal
+group-ring correction below. It is integral before character evaluation,
+has central value one, and introduces no factor of two per auxiliary prime.
+The real-place Tate error, smoothing denominators and fixed-base clearing
+are still bounded independently of the number of auxiliary primes.
+\end{enumerate}
+The supplied component reconstructions and integration audit check their
+joint use: actual Selmer-cone maps and homotopies, outer specializations,
+weighted theta traces, the nonvanishing estimates, and bounded central
+clearing all refer to the same finite arithmetic constructions. Their
+precise scopes and primary-source hypotheses are recorded in the supplement.
+No applicable complete Lean formalization of this deduction is claimed.
+
+\paragraph{Universal Euler correction.}
+Write $\Lambda=\Z_2[[t]]$, let $O$ be the completed localization at $(2)$,
+and let $G$ be the finite elementary two-group in that construction.
+For an auxiliary odd prime $q$, let $g_q\in G$ mark its active character
+and let $Z_q=\theta_q\gamma_q$, where $\theta_q^2=1$ and $\gamma_q$ is
+the cyclotomic group-like unit. For the local inertia-cohomology module
+$V_h(-1)$, the determinant is
+$P_q(Z)=1-(a_q/q)Z+(1/q)Z^2$. Put
+\[
+ r_q=\frac{P_q(Z_q)}{Z_q^2P_q(Z_q^{-1})},\qquad
+ U_q=1+\frac{r_q-1}{2}(1+g_q).
+\]
+The Euler denominators are $O[G]$-units in the construction.
+The identity $P_q(Z)-Z^2P_q(Z^{-1})=((q-1)/q)(1-Z^2)$ gives
+$r_q-1\in2O[G]$. At an unused character ($g_q=1$), $U_q=r_q$;
+at an active character ($g_q=-1$), $U_q=1$.
+Multiplying the inverse-convention universal class by
+$\prod_q\gamma_q^2\prod_qU_q$ therefore gives the required direct Euler
+factor at every unused prime and a unit $\gamma_q^2$ at each active one.
+These latter units specialize to one at $t=0$.
+For a smoothing integer $c$, set
+$A_c^{\pm}=c^2-c\gamma_c^{\pm1}$ and
+$R_c=A_c^+/(\gamma_cA_c^-)$.
+Since $A_c^+-\gamma_cA_c^-=c(c+1)(1-\gamma_c)$,
+$R_c$ is an integral unit congruent to one modulo two, with $R_c(0)=1$.
+Starting with the inverse-convention \emph{smoothed} class $z_{\rm raw}^-$,
+multiply by $\gamma_c\gamma_dR_cR_d\prod_q\gamma_q^2U_q$ before dividing
+by $A_c^+A_d^+$. This equals
+$\bigl(\prod_q\gamma_q^2U_q\bigr)z_{\rm raw}^-/(A_c^-A_d^-)$.
+It imposes the direct smoothing convention without changing central
+valuations. These are operations on the universal class, not divisions
+by character idempotents. The full Kato normalization and determinant
+calculation are in the supplement.
+
+\section{Boundaries, attribution and verification}
 Naive compactification cannot replace the effective transfer:
 $\operatorname{Spec}\Q[x,y]/(x^2+1)$ has no rational point, whereas
 its closure $V(X^2+Z^2)\subseteq\mathbf P^2$ contains $[0:1:0]$.
@@ -236,16 +322,26 @@ The issue is losing singular points or retaining boundary points introduced
 by compactification.
 
 No conclusion for curves, surfaces, fixed dimension, Fano varieties,
-general type, or a finite-point promise follows automatically. This audit
+general type, or a finite-point promise follows automatically. This note
 asserts neither a Turing degree nor quantitative bounds beyond the stated
 oracle implication. The height corollary is an elementary computability
 consequence and adds no independent arithmetic input.
 
-\paragraph{Disclosure and status.}
+The geometric implication was already established by Poonen, with a
+prior rational-field route credited in his Remark 1.2(c). The arithmetic
+breakthrough is attributed to OpenAI's manuscript-specific citation.
+The consequence and its elementary height corollary are not advertised
+as independent solutions of rational Hilbert's tenth problem or as a
+new geometric reduction. The accompanying priority audit records public
+source dates separately from manuscript dates and search limitations.
+
+\paragraph{Disclosure.}
 AI tools were used extensively in research, drafting and adversarial
 verification. Those automated reviews are not conventional human peer review.
-This is a local conditional research document; it has not been deposited
-as an unconditional solution or conventionally refereed.
+The preprint has not undergone conventional human peer review or refereeing
+at publication. The verification package supplies source identities,
+checkable derivations, independent automated review reports and exact
+finite checks; it does not claim formal verification of the full theorem.
 
 \begin{thebibliography}{9}
 \raggedright
@@ -263,5 +359,13 @@ Source version: commit \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
 \emph{A pointwise $2$-converse for elliptic curves with rational two-torsion},
 OpenAI Math Release preprint, September 24, 2026, same pinned commit.
 \href{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/A-pointwise-2-converse-for-elliptic-curves-with-rational-two-torsion-September-24-2026}{Pinned source and citation metadata}.
+\bibitem{Pan} Lue Pan,
+\emph{The Fontaine--Mazur conjecture in the residually reducible case},
+J. Amer. Math. Soc. \textbf{35} (2022), 1031--1169,
+Theorem 1.0.4, \href{https://doi.org/10.1090/jams/991}{doi:10.1090/jams/991}.
+\bibitem{SkorobogatovSofos} Alexei N. Skorobogatov and Efthymios Sofos,
+\emph{Schinzel Hypothesis on average and rational points},
+Invent. Math. \textbf{231} (2023), 673--739, Section 1.2.
+\href{https://doi.org/10.1007/s00222-022-01153-6}{doi:10.1007/s00222-022-01153-6}.
 \end{thebibliography}
 \end{document}
