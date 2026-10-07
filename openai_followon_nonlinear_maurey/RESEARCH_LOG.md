@@ -41,3 +41,9 @@ The strongest verified result is the complete arbitrary-subset, arbitrary-positi
 Priority disposition remains unchanged: the earlier public Naor September10 announcement plus established reductions implies the proposed target; no genuinely new in-scope theorem or mechanism was identified. The forthcoming full proof was not located. Production Zenodo publication is withheld under the original novelty condition, so there is no deposit/DOI or tracker operation to verify. The persistent publication goal is incomplete and remains active under its status rules. No external individual was contacted.
 
 Best-guess completion estimates: mathematical resolution 100%; complete verification package 100%; eligible novel publication 0%; tracker completion 0%. These percentages do not certify novelty or complete the original publication goal. Push only owned final administrative records, reviews and receipts onto current remote main without changing shared HEAD/index or unrelated files.
+
+## 2026-10-06 22:43:52 PDT (publication of final review records)
+
+Owned-only checkpoint d860b9cc2821b771bb66dfebde5c2fca8c13eb89 was accepted on remote main. All changed paths belong to this effort; shared HEAD and index hashes are unchanged. Committed payloads, both review reports, final status and final disposition match the checked local bytes. The fresh reviewer's separate read-only administrative QA found no substantive misstatement; no further build, numerical experiment or stable payload edit occurred. Preserve checkpoint04_push.json and final public-byte/administrative-QA receipts in a final owned metadata push.
+
+Completion estimates remain: mathematical resolution 100%; verification package 100%; eligible novel publication 0%; tracker completion 0%. Original persistent publication goal incomplete; no production deposit, DOI or tracker row.
