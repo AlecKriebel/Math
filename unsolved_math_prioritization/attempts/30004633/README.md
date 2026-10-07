@@ -4,7 +4,7 @@ Problem **30004633 / OWR-4990379-003**, queue rank 942. Status: **unsolved, 5/5 
 
 ## Accepted mathematical scope
 
-The four manuscripts concern the original Gallouët–Mérigot–Natale compact-domain, frozen-proximal Lagrangian particle scheme, not a substituted particle algorithm. Four separate AI-assisted independent mathematical audits accept their stated claims without a mathematical correction patch:
+The four manuscripts concern the original Gallouët–Mérigot–Natale compact-domain, frozen-proximal Lagrangian particle scheme, not a substituted particle algorithm. One AI reviewer, independent of the author, produced four separate mathematical audit reports accepting their stated claims without a mathematical correction patch:
 
 - [Approach 2](APPROACH_02_COMPACT_DOMAIN.md): positive-time Barenblatt profiles with support strictly separated from the physical wall, for every fixed dimension and exponent m>1.
 - [Approach 3](APPROACH_03_REGULAR_FREE_BOUNDARIES.md): smooth, uniformly nondegenerate moving free boundaries with uniform tubular geometry and wall clearance. The exact reference-solution regularity is a hypothesis.
@@ -19,7 +19,7 @@ Arbitrary irregular weak solutions, singular or degenerate interfaces, topology 
 
 One historical whole-space attempt plus the four new substantive author approaches accounts for 5/5. The historical first-attempt bytes were unavailable: they are neither reconstructed nor published, and are not a premise of any accepted argument. Retrieval, diagnostics, audits and packaging do not count as additional proof attempts.
 
-[Acceptance report](ACCEPTANCE_REPORT.md) and [audit manifest](AUDIT_MANIFEST.json) link the four separately reasoned audits to exact author hashes. These are AI-assisted mathematical assessments, not human peer review or formal proof certification. No novelty or literature-priority claim is made.
+[Acceptance report](ACCEPTANCE_REPORT.md) and [audit manifest](AUDIT_MANIFEST.json) link the four separately reasoned reports by that one reviewer to exact author hashes. These are AI-assisted mathematical assessments, not human peer review or formal proof certification. No novelty or literature-priority claim is made.
 
 The original author packet's pending-review wording and the audit's publication-not-performed wording are preserved historical statements. Current review status is the scoped acceptance above. Audit snapshots named FROZEN_APPROACH_02.md through FROZEN_APPROACH_05.md are omitted as redundant copies: their equality with the published manuscripts was checked, and the frozen manuscript hashes remain recorded in the audit manifest.
 
