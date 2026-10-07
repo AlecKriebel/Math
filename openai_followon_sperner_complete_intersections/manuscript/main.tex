@@ -1,0 +1,320 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={The Sperner property of Artinian complete intersections in characteristic zero},pdfauthor={Alec Kriebel},pdfsubject={An immediate consequence of Artinian EGH}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\gr}{gr}
+\newcommand{\m}{\mathfrak m}
+\newcommand{\N}{\mathbb Z_{\ge0}}
+\title{The Sperner property of Artinian complete intersections\\in characteristic zero}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We record the Sperner property for every standard graded Artinian complete
+intersection over an arbitrary characteristic-zero field: the maximum
+minimal number of generators of an ideal, including nonhomogeneous ideals,
+equals the largest coefficient of its complete-intersection Hilbert
+polynomial. The result is an immediate consequence of OpenAI's Artinian
+Eisenbud--Green--Harris theorem and the previously published implication
+of Harima, Wachi, and Watanabe. We give an explicit account of that
+implication, eliminate degree-one generators, justify the passage to all
+ideals by the associated graded filtration, and verify the field scope.
+No new proof of EGH or new Lefschetz assertion is claimed.
+\end{abstract}
+
+\section{Statement and attribution}
+Let \(k\) be a field and let \(A\) be a standard graded Artinian
+\(k\)-algebra with \(A_0=k\). Its unique maximal ideal is
+\(\m=A_{>0}\), and Nakayama's lemma gives
+\(\mu_A(I)=\dim_k(I/\m I)\) for every ideal \(I\).
+The Dilworth number is \(\max_{I\triangleleft A}\mu_A(I)\).
+The algebra has the \emph{Sperner property} when this equals
+\(\max_j\dim_k A_j\). The ideals in this definition include \(0\),
+\(A\), and nonhomogeneous ideals.
+
+\begin{theorem}\label{thm:main}
+Let \(k\) be any characteristic-zero field, let \(n\ge0\), and let
+\[
+ A=k[x_1,\ldots,x_n]/(f_1,\ldots,f_n),
+ \qquad d_i=\deg f_i\ge1,
+\]
+where the variables have degree one and the \(f_i\) form a homogeneous
+regular sequence. Then
+\begin{equation}\label{eq:target}
+ \max_{I\triangleleft A}\mu_A(I)
+ =\max_{j\ge0}\dim_k A_j
+ =\max_{j\ge0}[t^j]\prod_{i=1}^n(1+t+\cdots+t^{d_i-1}).
+\end{equation}
+If \(p\) is the last degree attaining the maximum, equality is attained
+by \(\m^p\). For \(n=0\), or when all \(d_i=1\), the algebra is \(k\),
+the product is \(1\), and the maximum is \(1\), attained by \(A\).
+\end{theorem}
+
+Harima--Wachi--Watanabe \cite[Theorem~11]{HWW} proved that EGH for a
+given graded complete intersection implies its Sperner property. Their
+Definition~2 already ranges over all ideals; their Proposition~8 invokes
+Watanabe's graded-ideal reduction \cite[Lemma~2.4]{Watanabe}.
+OpenAI's characteristic-zero EGH theorem \cite[Corollary~1.3]{OAI:EGH}
+supplies the previously conditional input. Its companion
+\cite[Theorem~1.1 and Corollary~1.2]{OAI:LPP} proves stronger Betti
+inequalities, which are not needed here.
+This note records the resulting consequence and checks its scope;
+neither the upstream breakthrough nor the known implication and
+reductions are claimed as new work of this author.
+The upstream manuscripts are dated September~23, 2026; the public
+collection announcement is dated October~6, 2026 \cite{Release}.
+No claim of first priority is made.
+
+\section{The exact EGH input and scope reductions}
+The only EGH assertion needed is the following Hilbert-function statement.
+For \(S=k[z_1,\ldots,z_q]\) and a full homogeneous regular sequence
+\(g_1,\ldots,g_q\) of degrees \(a_i\ge2\), every homogeneous ideal
+\(Q\supseteq(g_1,\ldots,g_q)\) has a homogeneous counterpart
+\(Q'\supseteq(z_1^{a_1},\ldots,z_q^{a_q})\) such that
+\begin{equation}\label{eq:EGH}
+ \dim_k(S/Q)_j=\dim_k(S/Q')_j\qquad\text{for every }j\ge0.
+\end{equation}
+The counterpart may have extra generators in degrees beyond those of
+\(Q\); no assertion about its generator count is required.
+OpenAI \cite[Theorem~1.1 and Corollary~1.2]{OAI:EGH} gives this over
+\(\mathbb C\) using commuting linear forms with division-algebra
+coefficients, an ordered basis, and monomial extraction. We invoke that
+external theorem explicitly, rather than deriving it in this note.
+
+For completeness, its full-length field descent needs no embedding of
+an arbitrary \(k\) into \(\mathbb C\). For a fixed \(Q\), choose a
+finitely generated coefficient field \(k_0\subseteq k\) over
+\(\mathbb Q\) containing coefficients of generators of \(Q\) and of
+the \(g_i\). Include the \(g_i\) in the chosen generators over \(k_0\).
+Regularity descends to \(k_0\) by faithful flatness. Embed \(k_0\) into
+\(\mathbb C\) and apply the complex theorem after base change.
+The resulting counterpart can be chosen monomial. Use the same monomial
+exponents to define it over \(k_0\) and then over \(k\).
+Dimensions of graded pieces are preserved by both field extensions from
+\(k_0\), proving \eqref{eq:EGH} over \(k\).
+Only full-length EGH is used; no general-length Artinian reduction is
+needed.
+
+If the original sequence has \(r\) linear members, these are linearly
+independent: dependence would give fewer than \(n\) generators for an
+ideal of height \(n\), contradicting the height theorem. A graded
+linear coordinate change eliminates them and gives
+\[
+ A\simeq k[z_1,\ldots,z_{n-r}]/(g_1,\ldots,g_{n-r}).
+\]
+The remaining forms retain their degrees, all at least two. Their
+Artinian quotient makes them a homogeneous system of parameters in a
+polynomial ring; Cohen--Macaulayness makes them a regular sequence.
+The graded isomorphism preserves all ideals, the numbers \(\mu_A(I)\),
+and all Hilbert dimensions. Each eliminated factor in
+\eqref{eq:target} is \(1\). If \(r=n\), the case \(A=k\) is immediate.
+
+Successive regular-sequence exact sequences give
+\begin{equation}\label{eq:hilbert}
+ \sum_j h_jt^j
+ =\prod_i(1+t+\cdots+t^{d_i-1}),
+ \qquad h_j=\dim_k A_j.
+\end{equation}
+Put \(c=\sum_i(d_i-1)\). Artinian complete-intersection duality gives
+\(A_c\simeq k\) and perfect multiplication pairings
+\(A_j\times A_{c-j}\to A_c\); equivalently the Koszul resolution
+gives the graded canonical module \(A(c)\).
+The Hilbert function is symmetric and unimodal. An elementary explanation
+of unimodality is the symmetric chain decomposition used next.
+
+\section{Matching and the homogeneous bound}
+We reproduce the mechanism of \cite[Propositions~7--8 and Theorem~11]{HWW}.
+Let
+\[
+ B=k[z_1,\ldots,z_q]/(z_1^{a_1},\ldots,z_q^{a_q}).
+\]
+Its monomial basis is the ranked product of chains
+\(0\le e_i\le a_i-1\).
+Such a product admits a symmetric saturated chain decomposition.
+One direct induction starts with the rectangle \(0\le i\le a\),
+\(0\le j\le b\), where \(a\le b\), and uses the chains
+\[
+ (r,0),(r,1),\ldots,(r,b-r),(r+1,b-r),\ldots,(a,b-r),
+ \qquad 0\le r\le a.
+\]
+They partition the rectangle and their endpoint ranks sum to \(a+b\).
+Applying this construction to each old chain times a new factor preserves
+symmetry about half the total rank. Rank sizes are therefore unimodal.
+Whenever \(h_j\le h_{j+1}\), each chain meeting rank \(j\) extends
+to rank \(j+1\): below the middle this follows from symmetry; at or
+above the middle no new chain starts, so an ending would force a strict
+decrease. Chain successors inject any rank-\(j\) subset into its
+upper shadow.
+
+Consequently, for every vector subspace \(W\subseteq B_j\),
+\begin{equation}\label{eq:matchingB}
+ h_j\le h_{j+1}\quad\Longrightarrow\quad
+ \dim_k W\le\dim_k B_1W.
+\end{equation}
+Indeed, echelonize a basis of \(W\) by a multiplicative monomial order.
+Its leading monomials form a set of size \(\dim W\). Each surviving
+variable multiple of a leading monomial is the leading monomial of the
+corresponding product. Its upper shadow thus lies in the leading
+monomial set of \(B_1W\), and the chain injection proves the inequality.
+
+For \(V\subseteq A_j\), apply \eqref{eq:EGH} to the preimage of
+the ideal \(AV\) in the polynomial ring, obtaining an ideal \(J\) of
+\(B\) with \(H_{A/AV}=H_{B/J}\). The algebras \(A,B\) have the same
+Hilbert function, and standard grading gives
+\[
+ \dim J_j=\dim V,\qquad \dim J_{j+1}=\dim A_1V.
+\]
+For \(V=0\) the conclusion is immediate. Otherwise, if
+\(h_j\le h_{j+1}\), \eqref{eq:matchingB} and the ideal property give
+\begin{equation}\label{eq:matchingA}
+ \dim V=\dim J_j\le\dim B_1J_j\le\dim J_{j+1}=\dim A_1V.
+\end{equation}
+This is the matching property of \(A\). In particular, Hilbert matching
+has not been used to assert equality of ideal-generator counts.
+
+Let \(p\) be the last maximal Hilbert degree. Matching holds in every
+degree \(j<p\), and symmetry gives \(c-p\le p\). If a homogeneous
+ideal \(I\) has initial degree \(\alpha<p\), its truncation
+\(I'=\bigoplus_{j\ge\alpha+1}I_j\) is an ideal and
+\begin{equation}\label{eq:truncate}
+ \mu(I')-\mu(I)=\dim A_1I_\alpha-\dim I_\alpha\ge0.
+\end{equation}
+This follows by counting the degree pieces of \(I/\m I\).
+Iterating, including the zero-ideal case, yields
+\begin{equation}\label{eq:compression}
+ \mu(I)\le\mu(I\cap\m^p).
+\end{equation}
+
+Now assume \(I\subseteq\m^p\), and set \(J=\Ann_A(\m I)\).
+Gorenstein duality gives
+\(\dim\Ann(U)=\dim A-\dim U\) for every ideal \(U\).
+To see the equality with the orthogonal complement, compose
+multiplication with projection onto \(A_c\). A vector orthogonal to
+the ideal \(U\) is orthogonal to every multiple of its elements;
+nondegeneracy then shows that it annihilates them.
+Since \(\m J\subseteq\Ann(I)\),
+\begin{equation}\label{eq:annmu}
+ \mu(J)\ge\dim\Ann(\m I)-\dim\Ann(I)=\mu(I).
+\end{equation}
+The graded perfect pairings also give
+\(\Ann(\m^u)=\m^{c-u+1}\) for \(0\le u\le c+1\):
+one inclusion follows by degree, and any nonzero lower-degree element
+pairs nontrivially with an element of \(\m^u\).
+Therefore
+\[
+ J\supseteq\Ann(\m^{p+1})=\m^{c-p}\supseteq\m^p.
+\]
+Applying \eqref{eq:compression} to \(J\) gives
+\(\mu(I)\le\mu(J)\le\mu(\m^p)=h_p\).
+Applying it first to any homogeneous \(I\) proves the homogeneous bound.
+
+\section{All ideals and equality}
+For an arbitrary ideal \(I\), use the finite filtration
+\(F^jA=\m^j=\bigoplus_{u\ge j}A_u\), and intersection filtrations
+on \(I\) and \(\m I\). Under the natural identification
+\(\gr_\m A\simeq A\), the initial ideal
+\[
+ J=\bigoplus_j (I\cap\m^j)/(I\cap\m^{j+1})
+\]
+is homogeneous. Its pieces are the lowest-degree initial parts of
+elements of \(I\). Multiplication of such initial parts shows
+\(\m J\subseteq\gr_F(\m I)\). Finite associated grading preserves
+total dimensions, so
+\[
+ \mu(I)=\dim J-\dim\gr_F(\m I)
+ \le\dim J-\dim\m J=\mu(J)\le h_p.
+\]
+Equality \(\gr_F(\m I)=\m J\) is neither assumed nor necessary.
+Finally \(\m^p/\m^{p+1}\simeq A_p\), so \(\m^p\) attains \(h_p\).
+This proves Theorem~\ref{thm:main}.
+
+The generator bound itself also descends along a field extension
+\(K/k\), if one is used: flatness gives
+\[
+ (IA_K)/(\m_KIA_K)\simeq (I/\m I)\otimes_kK,
+ \qquad \mu_{A_K}(IA_K)=\mu_A(I),
+\]
+and \(\dim_K(A_K)_j=h_j\). An upper bound over \(K\) descends to
+every ideal over \(k\); the equality witness already exists over \(k\).
+No descent of arbitrary ideals from \(K\) is asserted.
+
+\section{Examples and limitations}
+The following Hilbert functions are coefficient lists in increasing degree.
+They illustrate \eqref{eq:target}, rather than serve as evidence for EGH.
+\begin{center}
+\begin{tabular}{c|l|c}
+degrees & Hilbert function & maximum\\\hline
+\(\varnothing\) or \((1,1,1)\) & \(1\) & \(1\)\\
+\((1,2,4)\) & \(1,2,2,2,1\) & \(2\)\\
+\((2,2,2)\) & \(1,3,3,1\) & \(3\)\\
+\((2,3,4)\) & \(1,3,5,6,5,3,1\) & \(6\)\\
+\((3,3,3)\) & \(1,3,6,7,6,3,1\) & \(7\)\\
+eight quadrics & \(1,8,28,56,70,56,28,8,1\) & \(70\)
+\end{tabular}
+\end{center}
+For \(n\) quadrics the maximum is \(\binom n{\lfloor n/2\rfloor}\).
+For instance, in the eight-quadric case every ideal has at most
+\(70\) generators and \(\m^4\) has exactly \(70\).
+The accompanying integer program reproduces the examples by convolution
+and independent enumeration of bounded exponent vectors.
+
+The theorem concerns characteristic zero and standard graded Artinian
+complete intersections. It supplies no weak or strong Lefschetz property,
+no assertion for nongraded complete intersections, and no unrestricted
+positive-characteristic assertion. The downstream conditional argument
+and monomial matching work over any field; the restriction comes from
+the general EGH input used here.
+
+\paragraph{Disclosure and verification.}
+AI tools were used extensively in research, drafting, computation and
+verification. The mathematical input from OpenAI is itself attributed
+to OpenAI using the supplied manuscript citations. Internal automated
+adversarial audits are documented in the supplement; neither they nor
+the calculations constitute conventional human peer review. This
+preprint has not undergone conventional human peer review or refereeing
+at publication. No formalization of this follow-on theorem is claimed.
+The source/dependency hashes and reproduction instructions accompany it.
+
+\begin{thebibliography}{9}
+\bibitem{HWW}
+T. Harima, A. Wachi and J. Watanabe,
+\emph{The EGH Conjecture and the Sperner property of complete intersections},
+Proc. Amer. Math. Soc. \textbf{145} (2017), no.~4, 1497--1503.
+\href{https://doi.org/10.1090/proc/13347}{doi:10.1090/proc/13347};
+\href{https://arxiv.org/abs/1601.06928v1}{arXiv:1601.06928v1} (2016).
+
+\bibitem{Watanabe}
+J. Watanabe, \emph{The Dilworth Number of Artinian Rings and Finite Posets
+with Rank Function}, Adv. Stud. Pure Math. \textbf{11} (1987), 303--312.
+\href{https://doi.org/10.2969/aspm/01110303}{doi:10.2969/aspm/01110303}.
+
+\bibitem{OAI:EGH}
+OpenAI, \emph{Commuting Division-Coefficient Forms and the Artinian
+Eisenbud--Green--Harris Conjecture}, OpenAI Math Release preprint,
+September~23, 2026.
+\href{https://github.com/openai/math/blob/main/preprints/Commuting-Division-Coefficient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026/paper.pdf}{OAI:Commuting-Division-Coefficient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026}.
+Audited version: repository commit
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+
+\bibitem{OAI:LPP}
+OpenAI, \emph{The Artinian Lex-Plus-Powers Betti Theorem},
+OpenAI Math Release preprint, September~23, 2026.
+\href{https://github.com/openai/math/blob/main/preprints/The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026/paper.pdf}{OAI:The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026}.
+Audited version: repository commit
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+
+\bibitem{Release}
+OpenAI, \emph{Sharing AI progress in mathematics}, October~6, 2026.
+\url{https://openai.com/index/sharing-ai-progress-in-mathematics/}.
+\end{thebibliography}
+\end{document}

@@ -1,13 +1,13 @@
-# Exact target and status
+# Exact theorem and candidate status
 
-## Target (unresolved at initial checkpoint)
-Let k be any characteristic-zero field, n≥0, and A=k[x_1,…,x_n]/(f_1,…,f_n) for a homogeneous regular sequence with degrees d_i≥1 and standard grading. Define m=A_{>0} and μ_A(I)=dim_k I/mI for every ideal, including nonhomogeneous ideals, 0 and A. Prove
+The complete candidate proof is in manuscript/main.tex. It invokes the exact full-length Artinian EGH Hilbert-function theorem from OpenAI, pinned at adc7f1241b42e322a6451854ab7e4b4c146bf78a, and independently reproduces the established HWW implication. Central source arguments and the reductions have been scrutinized; no substantive gap has been identified. Complete-package review is pending. No publication is claimed yet.
+
+For any characteristic-zero field k, n≥0, and A=k[x_1,…,x_n]/(f_1,…,f_n) for a homogeneous regular sequence with degrees d_i≥1 and standard grading, define m=A_{>0} and μ_A(I)=dim_k I/mI for every ideal. The result is
 
 max_{I ideal of A} μ_A(I)=max_{j≥0} dim_k A_j=max_j [t^j] ∏_i(1+t+⋯+t^{d_i−1}).
 
-For n=0 or all d_i=1, A=k, the maximum is 1, attained by A. The zero ideal has 0 generators; A is never the zero ring under these assumptions. Linear generators should be eliminated by a graded algebra isomorphism.
+It covers nonhomogeneous ideals, 0 and A. If n=0 or all degrees are1, A=k, the maximum is1 attained by A, and the product is1. Linear elimination is a graded algebra isomorphism; removed factors equal1. Equality is attained by m^p for the last maximal Hilbert degree p. No WLP/SLP, nongraded or unrestricted positive-characteristic result is claimed.
 
-Success requires an audited EGH input or another complete argument. Conditional deductions must remain labelled. No weak/strong Lefschetz, nongraded or positive-characteristic conclusion is a target.
+This is an immediate consequence of the upstream EGH input and HWW's published theorem; the mechanism, all-ideal scope and reductions are inherited. No new EGH proof or first-priority assertion is made. No full follow-on formalization or human refereeing is claimed.
 
-## Strongest verified result so far
-The displayed Hilbert polynomial follows from the regular-sequence Hilbert series. The conditional EGH-to-Sperner implication is an established published theorem (HWW Theorem 11); its reductions are under independent check. The unreviewed upstream proof is not yet certified.
+Completion estimates at candidate checkpoint: mathematical resolution85%; package65%. Estimates are planning, not evidence. Independent full-package checks, exact reviewed payload freeze, production publication, tracker readback and final publication checkpoints remain.
