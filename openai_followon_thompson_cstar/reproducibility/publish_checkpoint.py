@@ -21,6 +21,9 @@ def main():
     env['GIT_INDEX_FILE'] = str(index)
     if index.exists(): index.unlink()
     git('read-tree', parent, env=env)
+    for rel in git('ls-files', '-z', PROJECT.name+'/', env=env).split('\0'):
+        if rel and not (ROOT / rel).exists():
+            git('update-index', '--force-remove', '--', rel, env=env)
     files = []
     for p in sorted(PROJECT.rglob('*')):
         if not p.is_file() or p.is_symlink(): continue
