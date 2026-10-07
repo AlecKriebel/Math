@@ -69,3 +69,21 @@ Mathematical resolution estimate: 97%. Publication package estimate: 80%.
 Reviewer one completed a new whole-package review after the substantive Euler repair. It independently reconstructed the H10 logic, fixed height geometry/Pan assumptions, local derivative/duality cones, same-class normalized Euler cancellation and A/O intersection; matched 25 pinned source files; verified all four payloads/61 archive entries; rebuilt both PDFs from the extracted archives; reran all finite programs; and found all ten rendered pages and layout text identical to the intended PDF payloads. It identified no remaining material mathematical defect in the restricted route. Report SHA256569bd0a966d314e8f49cac13568996d1984f5d3a113b131e39b69661e75ed0ba. This remains evidence rather than a formal or human proof certificate.
 
 A NEW complete-package reviewer was assigned from the original brief without inherited conversational history, to independently attempt falsification of the repaired exact candidate. Its review is ongoing and is mandatory before deposit. Payloads and manifest remain unchanged. Safe checkpoint05 pushed81 owned files at8b37dda50464420a38b5f64b60de3c1bac276800; committed blob hashes exactly matched, shared HEAD and real index unchanged. No Zenodo stage/publication or spreadsheet operation yet.
+
+## 2026-10-07T06:43:46.842189+00:00 — checkpoint 07: fresh complete-package review and verified production draft
+
+Mathematical resolution estimate: 100%. Publication package estimate: 90%.
+
+The NEW fresh reviewer independently examined the original brief, complete current mathematics, priority, metadata and all four frozen payloads. It rechecked 61 archive entries and 25 pinned source files, reproduced all finite checks and both clean builds, and visually inspected all ten actual PDF pages. Its last exact-candidate rehash at 06:40 UTC confirms unchanged source/payload bytes. No substantive issue remains identified. This verdict is evidence, not formal certification or conventional human refereeing; foundational published results were accepted after matching hypotheses, not independently reproved. The final retained review hash will be recorded after operational receipt preservation.
+
+Production tool check passed. Stage created draft23205305; a separate read-only inspect verified that same ID, reviewed metadata, file names, sizes and checksums, accepting only omitted creator affiliation to null. Four payload SHA256s and manifest/inventory hashes still exactly match the reviewed version. Publication is now requested for that verified ID; no new deposit, release or external outreach. Tracker work remains dependent on confirmed publication and assigned DOI.
+
+## 2026-10-07T06:46:36.922935+00:00 — checkpoint 08: production publication and tracker readback
+
+Mathematical resolution estimate: 100%. Publication package estimate: 98%.
+
+Production Zenodo publish and separate inspect --check-doi confirmed submitted record23205305, DOI10.5281/zenodo.23205305, exact reviewed metadata/file set/checksums and HTTP200 DOI resolution to the record. Nonsecret receipts preserve the complete documented separate-call sequence. The public GET-only download verifier encountered HTTP406; an independent agent is diagnosing content negotiation without credentials or any new publication action.
+
+Google Workspace CLI metadata resolved numeric tab1254632077 to Math Puzzles. Read the whole populated target range and actual four headers (Original Problem, Solution Chat URL, DOI, Notes); exact DOI, recordID and title had no match. Appended one RAW/INSERT_ROWS row, leaving the unknown chat URL blank and carrying title/author/date/scope/provenance/links in Notes. Separate readback exactly matches all four intended values at Math Puzzles!A52:D52, DOI in C52. No unrelated data or formulas modified.
+
+Fresh review and nonsecret stress/source-hash/remote retrieval evidence are preserved under reviews. Final full-review report SHA2564143972ca76836d1fabcdced8a15b141216955d9b38f31ef6e367e5ab43de7a4; only operational links changed after its original verdict and the frozen manifest/inventory/fourpayloads were rehashed unchanged. No conventional human refereeing, complete formal proof certificate, first-priority claim or external individual communication. Final public-download verification and final owned-file push remain.
