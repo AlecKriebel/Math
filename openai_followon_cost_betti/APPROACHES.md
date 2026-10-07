@@ -1,12 +1,13 @@
-# Independent approach families
+# Approach families at core-proof checkpoint
 
-| Family | Mechanism | Evidence | Status | Exact remaining gap |
-|---|---|---|---|---|
-| Invariant transfer | Squeeze group beta_1 by all Y_M costs; transfer to X | Primary Gaboriau statements; conditional proof | Conditional deduction verified provisionally | Validate U3 and especially U4-U7 |
-| Explicit measurable graphing | Marker for t; J supplied cheaply; 99 known heights propagate a-edges | group-actions.tex; independent reconstruction | Independent audit underway | Final line-referenced audit, hypotheses and ergodicity |
-| Measured amalgam compression | Compress finite S-classes, deploy factor edges, exhaust J by normal form | compression.tex and deployment.tex | Separate adversarial audit underway | Complete verification of arbitrary Borel/finite-measure cases |
-| Finite-model rank obstruction | Exact cocycle plus Bernoulli cylinders; expansion, planar matching and graph surgery | finite-models.tex, planar.tex, rank-surgery.tex | Full adversarial audit underway | Pivotal rank theorem and coefficient-sensitive planar argument |
-| Priority/duplication | Current primary corpus and citation-chain searches | Separate independent audit | Underway | Exact prior scope and correction/public-version check |
+| Family | Mechanism/evidence | Status | Exact remaining gap |
+|---|---|---|---|
+| Invariant transfer | Gaboriau2002 plus independent low-cost graphings; squeeze same group invariant | Verified; previously public conditionaltriage acknowledged | None in deduction |
+| Measurable upper graphing | Explicit t-marker and99height recurrence | Independently verified twice | None found |
+| Compression/deployment | Finite-class indexed contraction, sheetprojection, normalform | Complete separate adversarial audit;329027 finiteboundary checks support only finitecases | None found; noformalization |
+| Rank obstruction | Exact Bernoulli/cocycletransfer, expandingpermutations, coefficientplanarlemma, surgery | Full lower audit plus secondplanar read | None found in written proof; inherited upstreaminput |
+| Direct invariant computation | Free-basis S convolution via regular-tree layers; Foxtriangular d2; dimension and ordinaryacyclicity | New separate proof; fresh adversarial audit | Final package reviewers must verify integrated proof and metadata |
+| Euler/Mayer--Vietoris alone | chi=0 and equal vertex/edge Betti dimensions | Blocked as a standaloneroute | Gives onlybeta1=beta2; needsinjectivity, supplied by genuinely new directmechanism |
+| Priority | ExistingPSV implication, publictriage duplication, directcalculation audit | Qualified consequence-note eligibility | Final exact directproof novelty/attribution refresh |
 
-Reopen a blocked route only when a new mechanism or evidence appears. No route is currently declared blocked.
-
+No fundamental group-cost equality is claimed refuted. No new fixed-price construction is claimed.
