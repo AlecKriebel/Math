@@ -35,9 +35,15 @@ The deposit consists of `paper.pdf` and `source-and-verification.zip`.
 The source archive contains standalone `main.tex` (including its own
 bibliography), upstream supplied citation blocks, this README, a dependency
 ledger, dated priority and scoped mathematical audits, an upstream hash
-manifest and exact small algebraic check scripts/results. It contains no
+manifest, exact spin/graph/parity checks, analytic combinatorial checks and
+CM lattice enumerations with their results. It contains no
 upstream manuscript copies, third-party downloads, credentials or caches.
 `SHA256SUMS.json` covers the other source files; it does not hash itself.
+`ARCHIVE_MAP.json` maps archive names to research-project locations cited
+in the ledger and reports. Original path locators in those reports record
+provenance; archived reports and code are under `audit/` and `checks/`.
+The upstream manifest's paths are relative to the linked OpenAI snapshot,
+whose source files are not included in this archive.
 
 Extract the archive, then run:
 

@@ -34,6 +34,8 @@ def main():
         for code, result in [
             ("verify_local_spin_pairing.py", "local_spin_pairing_certificate.json"),
             ("verify_graph_signs.py", "graph_sign_certificate.json"),
+            ("check_identities.py", "identity_results.json"),
+            ("verify_hecke_counts.py", "hecke_counts.json"),
         ]:
             subprocess.run([os.sys.executable, str(work / "checks" / code)],
                            cwd=work, check=True, capture_output=True, text=True)

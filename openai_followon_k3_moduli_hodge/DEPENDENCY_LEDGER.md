@@ -80,14 +80,20 @@ makes the universal target include this base theorem.
    certificates support only the indicated algebraic identities.
 8. Full HC for CM abelian varieties is an additional upstream input, D3.
 
-**Validation status:** independent algebraic/Hodge-group, topology, realization
-and fresh analytic/category audits found no demonstrated substantive gap in
-their stated scopes. Root read the full comparison/curvature and propagation
-arguments. Complete-package review must still assess the chain and ordinary
-mirror theorem applicability. Absence of a counterexample is not substituted
-for the source proofs. Details are in `agent_notes/mixed_k3_audit.md`,
+**Validation basis:** independent algebraic/Hodge-group, topology, realization
+and fresh analytic/category audits rederived the indicated mechanisms and
+matched their pivotal primary-source hypotheses. Root read the full
+comparison/curvature and propagation arguments. The separate ordinary-HMS
+audit matched Seidel's generating enhanced quartic comparison and Abouzaid's
+finite-object faithful functor to the actual spheres/graphs; the source proves
+the needed graph fullness, uniform generation and product generation.
+No demonstrated substantive gap remains in these scoped deductions. The
+source proofs, rather than absence of a counterexample or agent verdicts,
+are the mathematical inputs. Complete-package acceptance is recorded
+separately by exact file hashes. Details are in `agent_notes/mixed_k3_audit.md`,
 `ks_tensor_audit.md`, `realization_audit.md`, `ks_geometry_audit.md`,
-`root_cm_and_deformation_audit.md`, and `reviews/analytic_falsification.md`.
+`root_cm_and_deformation_audit.md`, `reviews/analytic_falsification.md`, and
+`reviews/ordinary_hms_verifier.md`.
 
 ## D3 — CM rational HC and overlapping universal KS
 
@@ -103,9 +109,15 @@ Satake factors; good ordinary CM points and commuting Frobenius/Albanese;
 filtration-preserving idempotents and weak admissibility for both summands;
 actual-compositum conjugate ranks; final scalar descent. Root read tensor,
 moduli, Frobenius, CM-type and assembly sections. The independent theta/
-Satake pass found no substantive gap in its complementary scope. Fresh
-arithmetic falsification is in progress. Finite counts do not certify the
-theta or PEL constructions. See `agent_notes/cm_theta_audit.md` and root audit.
+Satake pass checked its complementary scope. A fresh arithmetic reviewer and
+distinct finite-locus/Hecke reviewer independently rederived the ordinary-point,
+full-tuple specialization, central normalization, complementary filtered
+projector, actual-compositum rank and assembly deductions, with no identified
+substantive gap. These audits rely on the precise standard moduli and p-adic
+comparison results cited, and do not reconstruct their general foundations.
+Finite counts do not certify theta or PEL geometry. See
+`agent_notes/cm_theta_audit.md`, `cm_arithmetic_falsification.md`,
+`cm_finite_locus_falsification.md` and root audit.
 
 **Universal KS companion:** OpenAI, *Algebraicity of Kuga–Satake
 Correspondences for K3 Surfaces*, cover date 3 October 2026, main theorem:

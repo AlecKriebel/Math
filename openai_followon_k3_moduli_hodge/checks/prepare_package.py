@@ -33,15 +33,22 @@ def main():
         "audit/PRIORITY_AUDIT.md": "agent_notes/priority_audit.md",
         "audit/analytic_falsification.md": "reviews/analytic_falsification.md",
         "audit/corner_rederive.md": "checks/analytic_falsification/corner_rederive.md",
+        "audit/ordinary_hms_verifier.md": "reviews/ordinary_hms_verifier.md",
     }
     for name in ["bulles_transfer", "mixed_k3_audit", "ks_tensor_audit",
                  "ks_geometry_audit", "realization_audit", "cm_theta_audit",
                  "root_cm_and_deformation_audit"]:
         selected[f"audit/{name}.md"] = f"agent_notes/{name}.md"
+    for name in ["cm_arithmetic_falsification", "cm_finite_locus_falsification"]:
+        selected[f"audit/{name}.md"] = f"agent_notes/{name}.md"
     for name in ["verify_local_spin_pairing.py", "verify_graph_signs.py",
                  "local_spin_pairing_certificate.json", "graph_sign_certificate.json"]:
         selected[f"checks/{name}"] = f"checks/mixed_k3_audit/{name}"
     selected["checks/check_finite_sign_identities.py"] = "checks/realization_audit/check_finite_sign_identities.py"
+    for name in ["check_identities.py", "identity_results.json"]:
+        selected[f"checks/{name}"] = f"checks/analytic_falsification/{name}"
+    for name in ["verify_hecke_counts.py", "hecke_counts.json"]:
+        selected[f"checks/{name}"] = f"checks/cm_arithmetic/{name}"
     with tempfile.TemporaryDirectory(prefix="assemble-", dir=PROJECT / "checks" / "builds") as raw:
         root = Path(raw)
         hashes = {}
@@ -51,6 +58,8 @@ def main():
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)
             hashes[name] = digest(target)
+        (root / "ARCHIVE_MAP.json").write_text(json.dumps(selected, sort_keys=True, indent=2) + "\n")
+        hashes["ARCHIVE_MAP.json"] = digest(root / "ARCHIVE_MAP.json")
         (root / "SHA256SUMS.json").write_text(json.dumps(hashes, sort_keys=True, indent=2) + "\n")
         env = os.environ.copy()
         env["SOURCE_DATE_EPOCH"] = EPOCH
@@ -62,7 +71,7 @@ def main():
         shutil.copy2(root / "reproduced" / "paper.pdf", KIT / "paper.pdf")
         (PROJECT / "publication" / "clean-build.json").write_text(json.dumps(report, indent=2) + "\n")
         with zipfile.ZipFile(KIT / "source-and-verification.zip", "w", compression=zipfile.ZIP_DEFLATED) as archive:
-            for name in sorted([*selected, "SHA256SUMS.json"]):
+            for name in sorted([*selected, "ARCHIVE_MAP.json", "SHA256SUMS.json"]):
                 info = zipfile.ZipInfo(name, date_time=(2026, 10, 6, 0, 0, 0))
                 info.compress_type = zipfile.ZIP_DEFLATED
                 info.external_attr = 0o100644 << 16

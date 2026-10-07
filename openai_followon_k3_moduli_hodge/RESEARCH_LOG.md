@@ -36,3 +36,13 @@ The conditional transfer is independently checked. Distinct source-proof audits 
 The four-page candidate PDF and source/verification ZIP were produced by a clean temporary-directory runner. PDF layout was inspected on every rendered page; all fonts are embedded and have Unicode mapping, bibliography/metadata are correct, and the desktop compiler succeeds. The first complete reviewer received the original request, exact files, metadata, source chain and check scripts; a fresh second reviewer will assess the repaired/reconciled package. Supporting analytic finite checks were rerun successfully.
 
 No production Zenodo draft or tracker row has been created. This checkpoint releases the candidate and its exact current validation limits, not a claim of completed publication.
+
+## 2026-10-06T21:59:58.127726-07:00 — V1 review repaired; V2 frozen for fresh review
+
+Mathematical resolution estimate: 90%. Publication-package estimate: 65%.
+
+The first complete reviewer inspected the original target, exact theorem, manuscript, PDF, metadata, dependency proofs, priority and clean reproduction; it found no concrete substantive mathematical defect and required completed audit/reproduction reconciliation. Its separate ordinary-HMS verifier matched the actual Seidel and Abouzaid hypotheses and the additional source graph/fullness/generation proof. The response preserves these findings and repairs R1/R2 globally, including the precise trivial finite scope of the range(k) placement loop.
+
+V2 contains all selected completed reports, analytic and CM script/results, portable archive/project mapping and a clean 32-source hash check. All finite checks passed and the exported PDF remains SHA256 483a6edff90202ef4d31560049a32ce946dcd1c6a999ab5b1f25b66a8f326612. Final V2 ZIP is SHA256 d68f68cbe03529d8951bd21e9bf266c869edb5fa214625d1c9196966013b5360. A NEW reviewer was launched without prior conversation context, with the original request and complete exact V2, and must independently assess proofs rather than accept previous verdicts. No reviewed deposit bytes or metadata will change while that review runs.
+
+Production tool local check passes. Correctly computed project-manifest state path has no prior deposit state. Production staging/publication and tracker actions remain withheld pending the fresh final gate.

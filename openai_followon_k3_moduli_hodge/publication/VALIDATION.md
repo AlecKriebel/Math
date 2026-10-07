@@ -31,9 +31,15 @@ extension proof and actual reference-hypothesis matching, reciprocal corners,
 ordinary child outputs, empty external words, Stokes, lattice/cost filtration,
 ultraproduct/copy limits, saturation and proper Serre projection. It explicitly
 excludes topology, ordinary HMS/generation and semiregularity, which require
-the separate geometry/algebraic checks. The root arithmetic audit and the
-independent theta/Satake audit together cover the initial CM proof slices;
-fresh arithmetic falsification and package review assess their reconciliation.
+the separate geometry/algebraic checks. The ordinary-HMS verifier matched the
+actual Seidel and Abouzaid hypotheses and checked the source's added graph
+fullness and uniform generation arguments. The root arithmetic audit and
+independent theta/Satake audit cover complementary CM proof slices; fresh
+arithmetic and finite-locus/Hecke auditors rederived the specialization,
+normalization, filtered projector, scalar-descent and assembly steps.
+Their reports identify the standard foundational inputs they accept and
+the constructions they do check. No full upstream formal certificate is
+inferred from these reading audits.
 
 ## Reproducible finite checks
 
@@ -45,6 +51,18 @@ fresh arithmetic falsification and package review assess their reconciliation.
 - Realization algebraic parity checks: 32 branch parity, 1,600 product
   orientation parity, 79 block parity cases. These do not construct analytic
   determinant orientations or moduli spaces.
+- Analytic combinatorial checks: 145 rooted labeled trees, 2,142 sector
+  assignments, 48,794 normalization orders, 1,015 additive-cost checks,
+  461 parity checks and 209 cyclic-placement counts. The analytic report
+  supplies general arguments separately; these finite checks do not prove
+  chart existence or Stokes on virtual moduli spaces.
+  The placement loop merely counts a prescribed index set `range(k)`;
+  it does not independently derive analytic cyclic weights. The normalized
+  boundary/Stokes derivation, rather than that loop, supplies multiplicities.
+- CM lattice counts for prime fields of orders 2, 3, 5, 7 and 11 check the
+  line/plane incidence numbers, distinguished-line graph multiplicities,
+  raw radial bracket factors and formal commuting cubic cancellation.
+  They do not establish geometric finite-flat specialization or theta theory.
 
 Exact scripts and expected outputs are in `checks/` in the source archive.
 They use only Python's standard library and fail on any mismatch. The
