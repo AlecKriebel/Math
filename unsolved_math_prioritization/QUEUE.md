@@ -950,7 +950,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 939 | 9900009 / AMR-098-0009 | Markovian-kernel characterization of mass-stationarity | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 942 | 30004633 / OWR-4990379-003 | Lagrangian Schemes for Irregular Porous-Medium Solutions | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 942 | 30004633 / OWR-4990379-003 | Lagrangian Schemes for Irregular Porous-Medium Solutions | 0.0952 | 5.5 | 3 | 2021 | unsolved | 5/5 |  | Partial only: original compact-domain frozen-proximal scheme converges for interior Barenblatt, smooth nondegenerate free boundaries, and symmetric reflecting-wall classes; four independent AI-assisted audits accept A2-A5 without mathematical patch. Exact stationary microbumps at epsilon=c*h^2 have delta_N^2/epsilon>0, outside the sufficient vanishing-error scaling. General irregular/singular interfaces and generic first wall impact remain open. [Proofs, audits, scope](attempts/30004633/README.md). |  |
 | 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 944 | 30004818 / OWR-8415345-008 | Genus-Reducing Local-Knot Concordance in Orientable Three-Manifolds | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 945 | 30004938 / OWR-8415362-003 | Polyhedrality of Totally Nonnegative Critical Varieties | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
