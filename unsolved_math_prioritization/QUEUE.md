@@ -987,7 +987,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | already_solved | 0/5 |  | Prior-literature resolution of the precise p-adic complex irreducible normalized-induction target: Beuzart-Plessis (JNT 2022), extending Feigon–Lapid–Offen, gives multiplicity 2^k for individually Galois-invariant factors, counting repetitions. Catalogue correction: whole-product invariance alone is false (paired-character GL2/Q3 example: multiplicity 1, not 4). Independent audit accepts unchanged; no novelty or broader-category claim. [Report and audit](attempts/30001738/ACCEPTANCE.md). |  |
 | 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 982 | 30001917 / OWR-11139-010 | Normality of Varieties of Minimal Rational Tangents | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
