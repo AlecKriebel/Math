@@ -1,0 +1,13 @@
+# Final program-three rendering guide
+
+This folder contains literal conditional templates only, not final postimages or an operator. Independent V5 SOURCE and proposed native DATA reviews passed, with no mandatory corrections. Actual native overlay publication/local installation and final metadata acceptance remain separate.
+
+Read only the exact three current program files: CURRENT_PROGRESS.json, CURRENT_PROGRESS.md and RESEARCH_LOG.md. Regenerate their final candidate bytes after the genuine completed ROOT_NATIVE_PUBLICATION_INSTALLATION_ACCEPTANCE_20261007.json exists, with its actual commit/tree, publication receipt, local installation, complete native 14/repair 9 full readbacks, protected-resource conservation and owned barrier cleanup. Use the accepted final metadata operator/plan; do not build another custody framework.
+
+Preserve all unrelated JSON keys, original historical records and the entire Markdown/log prefixes. Archive the existing last_completed_PR134 field family before replacing current last_completed bindings with actual PR140 provenance. Keep PR134's true qualification and 1/5 unchanged; do not change skipped 135–139 or unrelated outcomes. A late actual native commit is distinct from the already known original-head PR merge 3eb. Future metadata self-commit/readback IDs stay unset inside their own candidate bytes and belong in a separately authenticated actual receipt.
+
+The desired 24 completed /12 published /case100 state is conditional on both native and final metadata acceptance; no current count update occurs here. Clear current stale R1-in-progress/upload-false/native-pending labels only in the final acceptance-state rendering, retaining their dated snapshots as history. The final package manifest is 1793… while R1 genuinely reviewed 0d4f…; do not relabel it. Keep the least-period/source-convention restriction, exact later overlap credit, bounded priority and AI/unrefereed disclosure.
+
+Bind a genuine fresh ROOT goal observation. Preserve the actual response status and updatedAt/UTC without mutating the API or upgrading a blocked record to active. The persistent objective stays incomplete. Intake after 140 requires actual exact final metadata publication/local readbacks and owned writer release; it uses a fresh ascending original-status-only check, not this template's presumed next eligible PR.
+
+The metadata transaction updates only its exact own three program files and separately reviewed curated provenance. It preserves the installed native 14/repair 9 bodies and all other protected resources under their actual acceptance receipt. No native/proof/paper/DOI/tracker/PR/index/ref/global writer runs from this folder.
