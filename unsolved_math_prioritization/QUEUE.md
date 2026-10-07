@@ -957,7 +957,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 946 | 30005030 / OWR-9790360-001 | Spatial Regularity Versus Time Integrability for Fractional SDEs | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 947 | 30005079 / OWR-10252925-004 | Nondivisorial Valuations in Explicit Fano Degenerations | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 948 | 30005171 / OWR-11101913-005 | Stable Limits of Smooth Plane Curves | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | unsolved | 5/5 |  | Planar equal-side-average criterion equivalent to unique small-gamma global minimality; all triangles; parallelograms exactly rhombi; local non-parallelogram quadrilaterals near square; truncation obstruction. Full geometric classification unresolved. [Audited partials](attempts/30005209/README.md). |  |
 | 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
