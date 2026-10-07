@@ -958,7 +958,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 947 | 30005079 / OWR-10252925-004 | Nondivisorial Valuations in Explicit Fano Degenerations | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 948 | 30005171 / OWR-11101913-005 | Stable Limits of Smooth Plane Curves | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-07: accepted audited partials; odd Moore costs 486 vs 489, no sum/subdivision amplification, subcubic equivalence, missing field-systole family, credited logarithmic upper bound and planar equality. RP2/F2 source-example qualification only; main ratio unresolved. See attempts/30005353/README.md. |  |
 | 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
