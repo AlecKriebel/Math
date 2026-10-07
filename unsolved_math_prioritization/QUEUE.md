@@ -946,7 +946,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 935 | 9700033 / AMR-096-0033 | Unbounded component uniqueness in a SIRSN | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 936 | 9700036 / AMR-096-0036 | SIRSN subnetworks cannot be trees | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 937 | 9700042 / AMR-096-0042 | Near-one asymptotics for oriented-percolation flow | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 938 | 9900008 / AMR-098-0008 | Mass-stationarity of diffuse random measures via allocations | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
+| 938 | 9900008 / AMR-098-0008 | Mass-stationarity of diffuse random measures via allocations | 0.0960 | 5.5 | 4 | unknown | claimed_solved | 1/5 |  | Source-scoped negative answer: diffuse singular R^2 measure; every pointwise-covariant background-free preserving allocation fixes the rooted law, but joint mass-stationarity fails. Two AI-assisted audits pass with required Last-Thorisson 2015 Section 8 Proposition 1 product-lift and unequal-weight prior credit; no novelty, Markov/background, free-action, or positive-density claim. [Proof and scope](attempts/9900008/README.md). |  |
 | 939 | 9900009 / AMR-098-0009 | Markovian-kernel characterization of mass-stationarity | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
