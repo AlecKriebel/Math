@@ -15,6 +15,7 @@ From the extracted archive root:
 
 ```sh
 python3 verify.py
+mkdir -p build
 tectonic -X compile main.tex --outdir build --keep-logs
 ```
 

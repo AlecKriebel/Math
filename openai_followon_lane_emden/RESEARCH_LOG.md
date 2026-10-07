@@ -25,3 +25,11 @@ The actual Lean declaration has the correct Euclidean PDE semantics and no addit
 The built-in editor compiled the standalone source after one alignment correction. A local Tectonic export produced an actual PDF and all5 pages were visually inspected; the final version will be recompiled and checked after remaining edits. A bibliography draft entry was corrected against the actual supplied primary citation before review. The Google CLI documentation probe unexpectedly regenerated existing untracked shared helper documents; they remain unstaged and were not treated as owned project output. A project-local reference copy and current CLI schemas were retained; no spreadsheet API operation has occurred.
 
 Checkpoint0 was safely published on remote main by private index/commit-tree (6aae5e67bf5232c6aae4b8d540415dbd949279d9). Shared HEAD and index were unchanged. Upstream remote main still equals the pinned source. No deposit exists yet.
+
+## 2026-10-06 21:41 PDT — checkpoint 1a: clean reproduction and checkpoint hygiene repair
+
+Mathematical resolution estimate: **90%**. Publication package estimate: **50%**. First complete-package adversarial review is underway.
+
+Clean source extraction, source hashes, 648 rational scaling/hyperbola checks, and all614 floating-point interval diagnostics passed. The first clean TeX command failed because its output directory did not exist; README now creates that directory and the repeated clean compilation passed. Final source compiled in the native editor, with an actual independently exported five-page PDF.
+
+The private-index checkpoint helper inadvertently included its own two transient index/lock artifacts when the broad receipts directory was staged in checkpoint1. They contain Git index bookkeeping, not publication content. A project-local ignore rule now excludes these names, and this ordinary correction checkpoint removes the two absent files from current remote main without rewriting history or touching the shared checkout/index. No temporary index artifact is part of the Zenodo upload set. Documentation regeneration by the Google CLI remained unstaged.
