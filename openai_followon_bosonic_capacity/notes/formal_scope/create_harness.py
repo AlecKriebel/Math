@@ -1,6 +1,9 @@
 from pathlib import Path
-import subprocess,hashlib,json,re,datetime
-root=Path('/Users/alec/Desktop/math'); dest=Path('/Users/alec/Documents/Math/openai_followon_bosonic_capacity/notes/formal_scope'); harness=dest/'pinned_build'; pin='adc7f1241b42e322a6451854ab7e4b4c146bf78a'
+import subprocess,hashlib,json,re,datetime,argparse
+ap=argparse.ArgumentParser(description='Export exact selected Lean dependency closure from read-only upstream Git objects. Does not certify compilation.')
+ap.add_argument('--upstream',type=Path,required=True)
+ap.add_argument('--output',type=Path,required=True)
+a=ap.parse_args(); root=a.upstream.resolve(); dest=a.output.resolve(); dest.mkdir(parents=True,exist_ok=True); harness=dest/'pinned_build'; pin='adc7f1241b42e322a6451854ab7e4b4c146bf78a'
 mods=set(); extern=set(); pending=['OAI.InformationTheory.PhotonNumber.Inequality']
 while pending:
  m=pending.pop()

@@ -1,6 +1,6 @@
 # Private dynamic source: literal security defect and a repaired converse
 
-Checkpoint: 2026-10-06 21:33 Pacific (2026-10-07 04:33 UTC).
+Checkpoint: 2026-10-06 21:22:43 Pacific (2026-10-07 04:22:43 UTC), with the subsequent achievability supplement now available.
 
 This note records a substantive operational issue detected independently during the source audit. It **changes the qualification of the earlier conditional derivation**: the private region cannot be quoted as correct under the source paper's literal predecoded joint secrecy condition. The repair below applies to the conventional condition in which only **generated private information and generated key** must remain secret, while consumed private communication and consumed key may acquire correlations during use. The distinction must be explicit in any manuscript or target statement.
 

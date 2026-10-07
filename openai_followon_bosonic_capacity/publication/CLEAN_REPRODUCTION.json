@@ -1,0 +1,67 @@
+{
+  "time_utc": "2026-10-07T04:31:50.136184+00:00",
+  "python": "3.14.6",
+  "source_inventory_verified": 39,
+  "certificate_results_identical": true,
+  "rebuilt_kit_identical": true,
+  "rebuilt_pdf_extracted_text_identical": true,
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "code/verify_certificates.py"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"kind\": \"exact rational finite-instance checks, not universal formalization\",\n  \"otp\": [\n    {\n      \"d\": 2,\n      \"unhalved_trace_norm\": \"1\",\n      \"ideal_independent_decoder_success\": \"1/2\"\n    },\n    {\n      \"d\": 4,\n      \"unhalved_trace_norm\": \"3/2\",\n      \"ideal_independent_decoder_success\": \"1/4\"\n    },\n    {\n      \"d\": 8,\n      \"unhalved_trace_norm\": \"7/4\",\n      \"ideal_independent_decoder_success\": \"1/8\"\n    },\n    {\n      \"d\": 16,\n      \"unhalved_trace_norm\": \"15/8\",\n      \"ideal_independent_decoder_success\": \"1/16\"\n    }\n  ],\n  \"cones\": {\n    \"quantum_unit_vectors\": [\n      [\n        -2,\n        1,\n        -1\n      ],\n      [\n        2,\n        -1,\n        -1\n      ],\n      [\n        0,\n        -1,\n        1\n      ]\n    ],\n    \"private_unit_vectors\": [\n      [\n        -1,\n        1,\n        -1\n      ],\n      [\n        1,\n        -1,\n        0\n      ],\n      [\n        0,\n        -1,\n        1\n      ]\n    ],\n    \"OTP_is_in_displayed_N_zero_private_region\": true\n  },\n  \"passed\": true\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "notes/alternate_priority/repair_identity_audit/symbolic_checks.py"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"checks\": [\n    {\n      \"name\": \"second chain identity\",\n      \"residual_coefficients\": 0,\n      \"exact\": true\n    },\n    {\n      \"name\": \"second classical entropy remainder\",\n      \"residual_coefficients\": 0,\n      \"exact\": true\n    },\n    {\n      \"name\": \"third chain identity\",\n      \"residual_coefficients\": 0,\n      \"exact\": true\n    },\n    {\n      \"name\": \"third classical entropy remainder\",\n      \"residual_coefficients\": 0,\n      \"exact\": true\n    },\n    {\n      \"name\": \"third reliability/secrecy expression\",\n      \"residual_coefficients\": 0,\n      \"exact\": true\n    }\n  ],\n  \"count\": 5\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "notes/upstream_proof/check_interpolation.py"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"seed\": 27320261006,\n  \"trials_per_family\": 50000,\n  \"four_weight_2x2_max_target_to_hypothesis_ratio\": 0.9895938309000101,\n  \"upper_half_plane_max_B_imag\": -5.7706796669072294e-08,\n  \"upper_half_plane_max_minus_Bprime_imag\": -4.6166060221606845e-08,\n  \"status\": \"no sampled falsification; this is numerical evidence, not a theorem or interval certificate\"\n}\n"
+    },
+    {
+      "command": [
+        "tectonic",
+        "--keep-logs",
+        "--outdir",
+        "manuscript",
+        "manuscript/main.tex"
+      ],
+      "exit_code": 0,
+      "output": "note: Running TeX ...\nnote: Rerunning TeX because \"main.out\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `manuscript/main.pdf` (86.4892578125 KiB)\nnote: Writing `manuscript/main.log` (16.814453125 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n"
+    },
+    {
+      "command": [
+        "python3",
+        "code/build_package.py"
+      ],
+      "exit_code": 0,
+      "output": "{\n  \"source_files\": 39,\n  \"uploads\": [\n    {\n      \"path\": \"publication/paper.pdf\",\n      \"bytes\": 88565,\n      \"sha256\": \"01934fb5097920eff85c493d45ede2b436d5978c8e1d03ec555ba6c45e0ef2a3\",\n      \"md5\": \"7e992e6b1b03845a12cf3cc160f06d48\"\n    },\n    {\n      \"path\": \"publication/zenodo-upload-kit.zip\",\n      \"bytes\": 114236,\n      \"sha256\": \"26ed72c580b59f6bbee132efc75f81466b5a60005fc964ce3dc9e3b082e3309b\",\n      \"md5\": \"8ca5d26ab0af1646f5596e04341c8c18\"\n    }\n  ]\n}\n"
+    }
+  ],
+  "tested_uploads": [
+    {
+      "path": "publication/paper.pdf",
+      "bytes": 88566,
+      "sha256": "490c6d4d78eb4c2ae829d06f31df1ed1ace955174acec87279f5d5eb8dee8581",
+      "md5": "91b808c56979206207f3246f5c73abfc"
+    },
+    {
+      "path": "publication/zenodo-upload-kit.zip",
+      "bytes": 114236,
+      "sha256": "26ed72c580b59f6bbee132efc75f81466b5a60005fc964ce3dc9e3b082e3309b",
+      "md5": "8ca5d26ab0af1646f5596e04341c8c18"
+    }
+  ]
+}
