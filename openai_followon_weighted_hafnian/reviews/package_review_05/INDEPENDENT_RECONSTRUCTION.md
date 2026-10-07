@@ -1,0 +1,18 @@
+# Independent primary reconstruction before audit comparisons
+
+I reconstructed the current manuscript, both full proofs, and gadget/sampling implementation without reading previous review conclusions or the package audit reports.
+
+## Exact reduction
+The Horner DAG starts with one path and appends two new vertices for each later bit. The two old-sink extensions plus optional source arc implement 2w+b exhaustively. Creation order is topological. In the split graph, choosing any nonidentity edge forces one incoming and one outgoing arc at each visited internal vertex. Full matchings give exactly one source-sink path plus possible disjoint directed cycles; the DAG excludes the latter. Both terminals removed permits only cycles and therefore only identity edges. Single removal is odd order. W=1 leaves the single terminal edge and empty inactive interior. Thus signature (W,1,0,0), 4bits(W)-2 vertices, <=6bits(W)-5 edges.
+
+Each glued gadget has even interior; its matching restriction covers zero or two endpoints. Exactly one gadget covers each original vertex. Selected gadgets form an original perfect matching; selected local restrictions have W_e choices and inactive restrictions one. Unique ownership/fresh interiors imply a bijection and fiber product. Simple original support prevents cross-gadget original-terminal edge collisions; arbitrary orientation affects neither local count nor simplicity.
+
+D=product positive denominators and W_e=p_e D/q_e give integer weights of O(L) bits. Sum of gadget binary lengths is O(L^2), encoded graph O(L^2 log(L+2)). D^m has O(mL+1) bits. No unary expansion. Empty input has one matching; no support perfect matching gives exact zero by deterministic general matching. Disconnected, odd components, zero weights, weights below one and arbitrarily tiny positives are covered. A positive hafnian is at least D^-m.
+
+## Counting and sampling transfers
+The inherited theorem must provide nonnegative rational counts and worst-case polynomial bit time for finite simple graphs; zero inputs return zero but positive failed outputs may be zero. Support feasibility plus replacing failed zero by one fixes every-execution zero detection without changing a successful relative estimate. delta'=min(delta,1/4) extends the inherited range.
+
+Sampler witness tests discard exactly zero children. Forced children use no oracle or bits. At most s^2 count calls and s^2+1 witness calls. alpha=eta/(4s), gamma=eta/(4s^2), R=2^b>=4s^2/eta. Successful estimates normalize with TV<=alpha/(1-alpha); dyadic cumulative floors add <(j-1)/R. Fresh call randomness gives failure mass <=j gamma conditional on every actual full adaptive history; arbitrary nonnegative finite rational failed outputs can only consume that mass. All-zero estimates use a stored current witness, so every tape returns a feasible matching and terminates. Kernel coupling at common histories gives s alpha/(1-alpha)+s^2 gamma+s^2/R <5eta/6. The argument does not condition the final law on all calls succeeding. Rational output lengths are bounded on failed tapes by the oracle runtime. Exact sums/floors and fixed b-bit draws have polynomial bit cost. Uniform expanded matching pushes forward with exact weight fibers; deterministic projection contracts TV.
+
+## Initial gap assessment
+No central-difficulty transfer or circularity appears in the new exact reduction or self-reduction. Their polynomial claims require the cited upstream counting theorem and standard deterministic matching witness algorithm. Primary upstream validity and priority must be checked separately. The code supplies exponential test counters and oracle interfaces, and does not constitute a practical FPRAS implementation.

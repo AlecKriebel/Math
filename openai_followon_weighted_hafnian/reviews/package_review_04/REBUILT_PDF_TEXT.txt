@@ -1,0 +1,273 @@
+              Binary rational hafnians: an exact reduction and
+                 approximation and sampling consequences
+                                              Alec Kriebel
+                                      ORCID: 0009-0001-9320-500X
+
+                                           October 6, 2026
+
+
+                                                Abstract
+         We give a self-contained implementation of classical positive-integer weight removal for per-
+     fect matchings. A binary directed acyclic graph with W paths gives a simple two-terminal
+     graph with matching signature (W, 1, 0, 0) using 4 bits(W ) − 2 vertices. Gluing these gad-
+     gets and clearing denominators reduces every nonnegative binary rational hafnian to an un-
+     weighted simple-graph perfect-matching count with polynomial encoding length. Consequently,
+     the general-graph FPRAS of OpenAI gives a uniform FPRAS for this rational model, with exact
+     zero detection. We specify a bounded-bit counting self-reduction sampler with explicit total-
+     variation and runtime bounds. The approximation breakthrough, logarithmic weight removal,
+     and count-to-sample framework are inherited; this note supplies explicit proofs, bit bounds,
+     boundary cases, and reproducible ﬁnite checks. Its approximation conclusions rely on the cited
+     general-graph theorem and do not concern signed or complex hafnians.
+
+
+1    Scope and inherited results
+For a symmetric 2m × 2m matrix A with nonnegative rational oﬀ-diagonal entries, deﬁne
+                                                        X       Y
+                                 ZA = haf(A) =                        Aij .
+                                                   M ∈PM(K2m ) ij∈M
+
+The diagonal is irrelevant. Delete zero-weight edges. Then ZA > 0 exactly when the support has
+a perfect matching. For m = 0, ZA = 1 and the only matching is empty. Let L be the matrix’s
+binary encoding length; rational accuracy parameter encodings are included in the full algorithm
+input length. We impose no density, connectivity, or lower positive-weight bound.
+    The external approximation input is OpenAI’s Theorem 1.1 [1], pinned at repository commit
+adc7f1241b42e322a6451854ab7e4b4c146bf78a. It states a uniform FPRAS for every ﬁnite simple
+undirected graph, returning a nonnegative rational estimate with relative error ϵ and failure prob-
+ability at most δ, for rational 0 < ϵ < 1, 0 < δ < 1/2. Its worst-case bit time on every execution
+is polynomial in input length, ϵ−1 , and log δ −1 . On infeasible inputs every execution returns zero.
+This one-way zero property does not certify zero on positive inputs. We separately use Edmonds’
+polynomial-time matching algorithm [3] for exact feasibility and witnesses.
+    Logarithmic integer-weight removal predates this note. Dell–Husfeldt–Wahlén [4], and its ex-
+panded version [5], give binary weight gadgets for permanents. McQuillan [6, Section 7.2, Lem-
+mas 25 and 27] treats nonnegative binary rational fugacities and reduces them to simple unweighted
+perfect matching counts with an exact computable factor. Our Horner DAG is a self-contained vari-
+ant of established path and identity-edge machinery, not a new weighted-to-unweighted reduction.
+Counting self-reduction is likewise classical [7]; [1] gives an explicit unweighted deletion sampler.
+
+                                                    1
+    The newly available general-graph FPRAS is entirely credited to [1]. Its stated applications
+explicitly exclude compressed weights. Its entropy companion [2] includes weighted sums, but
+only a deterministic factor 512n approximation, not a relative FPRAS. The rational complexity
+consequence here was already implicit in the classical equivalence once the unweighted theorem
+became available. We make no ﬁrst-publication or new complexity-classiﬁcation claim. This note
+records the consequence, proof variant, explicit bit model, and veriﬁcation package.
+    Earlier hafnian approximation results address restrictions: Rudelson–Samorodnitsky–Zeitouni
+[8] analyze a Gaussian determinant estimator under expansion and spectral hypotheses, with subex-
+ponential multiplicative errors; Barvinok [9] gives deterministic approximation on matrix classes
+admitting a zero-free interpolation region. Neither provides the present unrestricted binary rational
+FPRAS. Yi [10] gives deterministic relative approximation for dense supports with ﬁxed positive
+weight bounds; this note has neither promise.
+
+
+2    A logarithmic exact gadget
+Lemma 1. For each integer W ≥ 1, there is a simple graph HW with distinct terminals u, v whose
+matching signature is
+        (# PM(HW ), # PM(HW − {u, v}), # PM(HW − u), # PM(HW − v)) = (W, 1, 0, 0).
+For ℓ = bits(W ) = 1 + blog2 W c, it has 4ℓ − 2 vertices, 4ℓ − 4 of them internal, and at most 6ℓ − 5
+edges.
+Proof. Start with a DAG containing s → t, representing the leading binary digit 1. For each
+subsequent digit b, introduce fresh a, z, add
+                           t → z,    t → a,   a → z,    and s → z if b = 1,
+and replace the sink t by z. Each old path has two extensions, and the additional direct path is
+present exactly for b = 1, so the recurrence is w 7→ 2w + b. The ﬁnal path count is W . Put each
+new a after the old vertices and z after a: every arc goes forward. The source has indegree zero,
+the ﬁnal sink outdegree zero, and there are no duplicate arcs. The DAG has 2 + 2(ℓ − 1) vertices
+and at most 1 + 4(ℓ − 1) arcs.
+    Split every internal vertex i into Li , Ri with an identity edge Li Ri . Keep only Ls = u and
+Rt = v at the terminals. Replace each arc i → j by an undirected edge Li Rj . The result is simple
+and bipartite with the asserted sizes.
+    In a full perfect matching, the chosen nonidentity edges give directed arcs. Each internal vertex
+either uses its identity edge or has one chosen incoming and one chosen outgoing arc. The source
+has one chosen outgoing arc, and the sink one chosen incoming arc. Such arcs form an s–t path and
+possibly disjoint directed cycles; acyclicity excludes all cycles. Conversely, a path ﬁxes its arc edges
+and all identity edges oﬀ the path uniquely. This proves the full count W . After removing both
+terminals, the chosen arcs have equal in- and out-degree at every vertex. Any nonempty such ﬁnite
+set contains a directed cycle, hence none can occur. The all-identity matching is unique. Removing
+exactly one terminal leaves odd order and cannot have a perfect matching.
+
+Theorem 2. A polynomial-bit-time construction maps A to an integer D ≥ 1 and a ﬁnite simple
+graph H such that
+                                   # PM(H) = Dm ZA .
+It has O(L2 ) vertices and edges and encoding length O(L2 log(L+2)). The scale Dm has O(mL+1)
+                                                 Q
+bits. Each original matching M has exactly Dm e∈M Ae lifts.
+
+                                                   2
+Proof. Write every positive support entry as pe /qe , with positive integers, and set
+                                          Y
+                                   D=          qe ,   We = pe (D/qe ).
+                                           e
+
+The empty product is 1. Reduction of the fractions is optional. The integers D and each We have
+O(L) bits, since the sum of denominator bit lengths and all numerator lengths are bounded by L.
+    Replace each original edge ij by a fresh HWe , identifying its terminals with i, j in a ﬁxed
+arbitrary orientation. Distinct gadgets share only original vertices. The resulting graph is simple:
+each internal vertex is fresh, and an edge between two original vertices can only come from their
+unique original edge’s gadget. There are no loops.
+    Assign each edge of a global perfect matching to its unique gadget. Every gadget’s even number
+of internal vertices is covered inside that gadget, so the number of original endpoints it covers is
+even: either zero or two. Since each original vertex is covered once, gadgets using two endpoints
+specify an original perfect matching M . Conversely, combine a full matching for each selected
+gadget and the unique terminal-deleted matching for each other gadget. This gives all global
+matchings without repetitions. The ﬁber size is
+                                          Y                Y
+                                                We = D m         Ae .
+                                         e∈M               e∈M
+
+Summing proves the identity. With r = O(L) positive support edges,
+                                 X                                      X
+              |V (H)| = 2m + 4        (bits(We ) − 1),      |E(H)| ≤         (6 bits(We ) − 5).
+                                  e                                      e
+
+Thus both are O(L2 ); endpoint indices add only a logarithmic factor. All integer products, exact
+divisions, and exponentiation have polynomial operand lengths and bit costs, and bits(Dm ) =
+O(mL + 1). No step expands We into We copies.
+
+
+3    Approximation and exact zero
+Corollary 3. Using [1], there is a uniform FPRAS for ZA for rational 0 < ϵ, δ < 1, with relative
+error at most ϵ and failure probability at most δ. Its every-execution bit time is polynomial in the
+full input length, ϵ−1 , and log δ −1 . On every execution its output is zero if and only if ZA = 0.
+
+Proof. For m = 0 return 1. Otherwise test the support’s matching feasibility exactly using [3];
+return 0 if infeasible. On feasible inputs construct H, D, then apply [1] with ϵ and δ 0 = min(δ, 1/4).
+If its estimate Cb is zero, replace it by 1; this changes no successful estimate since C = # PM(H) ≥ 1
+and (1 − ϵ)C > 0. Return C/D  b    m > 0. Exact scaling preserves relative error. The graph and scaling
+
+bounds above prove polynomial bit time; the external algorithm’s every-tape runtime also bounds
+its output length. If ZA is positive, then ZA ≥ D−m , so an extremely small value causes no
+unbounded-length scale.
+
+
+4    A bounded-bit sampling speciﬁcation
+Let T (B, a−1 , log d−1 ) bound every execution of the cited unweighted FPRAS, with B including
+graph and parameter encodings.
+
+
+
+
+                                                      3
+Lemma 4. For a feasible graph G on N = 2k ≥ 2 vertices and rational 0 < η < 1, a sampler
+always returns a perfect matching and is within η in TV of the uniform law. It makes at most
+C = k 2 counting calls, each with
+
+                           α = η/(4k),     γ = η/(4C),     b = dlog2 (4C/η)e
+
+as relative error, failure parameter, and categorical bit budget. Besides at most C + 1 polynomial
+feasibility/witness checks and polynomial arithmetic, its runtime is bounded by
+
+                                       C T (B 0 , 4k/η, log(4C/η))
+
+for polynomial B 0 . Its categorical draws use at most kb fair bits.
+
+Proof. Maintain an exact witness for the current graph, starting with one witness computation. At
+a stage take the least remaining vertex v. For each neighbor u, test exact feasibility of the child
+G − {v, u}. Discard infeasible children and store witnesses for the others. If only one child remains,
+take it without counting. Otherwise estimate each feasible child’s strictly positive count on fresh
+independent tapes with parameters α, γ, obtaining nonnegative rational a1 , . . . , aj . If all are zero,
+return the stored witness for the current graph, appended to edges already chosen. Otherwise put
+         P                              P
+qi = ai / h ah and cumulative Qi = h≤i qh , with Q0 = 0, Qj = 1. Using exactly b fair bits draw
+R uniformly in {0, . . . , 2b − 1} and choose the unique interval
+
+                                       b2b Qi−1 c ≤ R < b2b Qi c.
+
+Choose that edge vu and recurse on its child. The empty child has count 1 and returns the empty
+matching. All choices are feasible on every tape, so there are at most k stages. With 2h vertices
+there are at most 2h − 1 candidate neighbors; both the call count and the sum of outcome counts
+             P
+are at most kh=1 (2h − 1) = C.
+                                                                                    P
+    On successful estimates, true child counts ci give ideal probabilities pi = ci / h ch and
+                             1−α   qi   1+α                             α
+                                 ≤    ≤     ,            TV(p, q) ≤        .
+                             1+α   pi   1−α                            1−α
+
+Indeed |qi − pi | ≤ 2αpi /(1 − α) and TV is half the sum. The dyadic interval mass diﬀers by at most
+2 2−b per interval, giving TV at most j2−b .
+    Conditional on every past adaptive history, the current graphs and parameters are ﬁxed, and
+fresh independent tapes bound the probability that any current estimate fails by jγ. On that event
+use the trivial discrepancy bound 1. Couple to the ideal child-count recursion while histories agree.
+Each stage’s disagreement probability is at most α/(1 − α) + jγ + j2−b . Sum those conditional
+bounds until the ﬁrst disagreement, obtaining
+
+              c), Unif(PM(G))) ≤          kα
+         TV(L(M                              + Cγ + C2−b ≤ η/3 + η/4 + η/4 = 5η/6 < η,
+                                         1−α
+since α < 1/4. The ideal recursion is exactly uniform: matchings containing vu are in bijection
+with its child’s completions.
+    The ﬁxed-bit choice uses no rejection. Exact normalization, rational CDFs, and ﬂoor division
+have polynomial bit costs. Every count estimate’s length is bounded by T , including failed tapes;
+combining at most N rational estimates increases operand lengths polynomially. The accuracy
+parameters and b = O(log(N + 2) + log η −1 ) have the asserted bounds. Feasibility fallback and
+deterministic recursion give worst-case termination.
+
+                                                   4
+Corollary 5. For ZA > 0, there is a sampler within TV η of
+                                                    Q
+                                                        e∈M Ae
+                                        µA (M ) =                ,
+                                                        ZA
+with every-execution bit time polynomial in the full input length and η −1 . It always returns a
+support perfect matching. For ZA = 0 it reports infeasibility exactly; for m = 0 it returns the empty
+matching.
+Proof. Apply Lemma 4 to H and project each output to the original edges whose gadgets use
+                                                                             Q
+both endpoints. By Theorem 2, uniform matching on H gives probability Dm e∈M Ae /(Dm ZA ) =
+µA (M ) to each ﬁber. TV contracts under projection by the triangle inequality applied within each
+ﬁber. The size bound N = O(L2 ) and Lemma 4 give the explicit call and runtime bounds. No
+polynomial-in-log η −1 or pointwise almost-uniform guarantee is asserted.
+
+
+5    Veriﬁcation and limits
+The supplementary code constructs the gadgets, enumerates the four signatures for W = 1, . . . , 64,
+and compares exact rational hafnians with expanded matching counts on small boundary instances.
+It also integrates ﬁnite-bit sampling laws, including perturbed estimates and failure histories, to
+check TV bounds. Finite checks support the construction and wrapper but do not replace proofs or
+certify the external FPRAS. Exact enumeration helpers are exponential-time test tools; the sampler
+wrapper requires supplied polynomial counting and feasibility algorithms.
+    Disconnected support, zero counts, weights below one, and large denominators are covered.
+The nonnegative rational scope is essential. There is no signed or complex hafnian conclusion or
+unrestricted Gaussian-boson-sampling consequence.
+    The project records separate manuscript, formal-scope, priority, gadget and sampling audits
+and complete-package reviews. The real upstream Lean declaration was located and its state-
+ment’s semantics checked, but an independent kernel rebuild has not been reproduced here. No
+formalization of this follow-on theorem is claimed. AI tools were used extensively in research,
+drafting, implementation and automated adversarial veriﬁcation. This preprint has not undergone
+conventional human peer review or refereeing at publication. Automated reviews are evidence, not
+human peer review.
+
+
+References
+ [1] OpenAI. A Fully Polynomial Randomized Approximation Scheme for Perfect Matchings in
+     General Graphs. OpenAI Math Release preprint, September 23, 2026. Pinned source.
+ [2] OpenAI. Entropy and Face Dimension of the Perfect-Matching Polytope. OpenAI Math Release
+     preprint, September 23, 2026. Same pinned repository.
+ [3] J. Edmonds. Paths, trees,        and ﬂowers. Canadian J. Math. 17 (1965),              449–467.
+     doi:10.4153/CJM-1965-045-4.
+ [4] H. Dell, T. Husfeldt, M. Wahlén. Exponential Time Complexity of the Permanent and the
+     Tutte Polynomial. ECCC TR10-078, April 27, 2010. Report.
+ [5] H. Dell, T. Husfeldt, D. Marx, N. Taslaman, M. Wahlén. Exponential time complexity of
+     the permanent and the Tutte polynomial. ACM Trans. Algorithms 10(4) (2014), article 21.
+     arXiv:1206.1775.
+
+                                                    5
+[6] C. McQuillan. Approximating Holant problems by winding. 2013. arXiv:1301.2880.
+
+[7] M. R. Jerrum, L. G. Valiant, V. V. Vazirani. Random generation of combinatorial structures
+    from a uniform distribution. Theor. Comput. Sci. 43 (1986), 169–188.
+
+[8] M. Rudelson, A. Samorodnitsky, O. Zeitouni. Hafnians, perfect matchings and Gaussian ma-
+    trices. Ann. Probab. 44(4) (2016), 2858–2888. arXiv:1409.3905.
+
+[9] A. Barvinok. Approximating permanents and hafnians. Discrete Analysis 2017:2, 34 pp.
+    arXiv:1601.07518.
+
+[10] Z. Yi. Diﬀuse Gaussian Truncation For Deterministic Approximate Counting. 2026.
+     arXiv:2609.04079.
+
+
+
+
+                                             6
+

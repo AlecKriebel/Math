@@ -1,3 +1,9 @@
 # Independent package review 04
 
 2026-10-07T06:06:51.009601+00:00 — Began full v4 audit; read original request and AGENTS.md; independently hashed and extracted exact candidate. Mathematical audit 0%; package audit 10%. Prior favorable review conclusions not read.
+
+2026-10-07T06:08:13.217179+00:00 — Independently reconstructed exact reduction, bit model, positivity wrapper and adaptive sampler coupling; no substantive local defect found. Mathematical audit 45%; package audit 15%. Upstream and priority auditors working independently; earlier reviews not read.
+
+2026-10-07T06:13:28.745598+00:00 — Finished all exact v4 candidate-file readings, ZIP hash/source checks, complete six-page render and clean PDF reconstruction. All documented commands pass; same 28 payload files unchanged; 425 optional source hashes reproduced; five receipt collision cases rejected. Own finite attacks passed: 1098 DAGs, all64 orientations,8 adaptive laws incl enormous/tiny failed estimates and256 exact imperative draws. Sealed exact v4 bytes before any root title repair. Mathematical audit 85%; package audit 95% (final primary report comparison pending). Required title correction: add Nonnegative globally; this is wording, not a proof gap.
+
+2026-10-07T06:18:22.342287+00:00 — Completed full frozen-v4 review and saved PACKAGE_REVIEW_04.md: REQUIRED REPAIRS, title scope only. Fresh independent primary dependency and priority comparisons both complete; no further substantive concern found. Assigned mathematical-review coverage100%; assigned whole-package review coverage100%; package release readiness95% pending title repair and fresh exact-candidate review. Estimates are bookkeeping, not mathematical/novelty evidence. Root has regenerated v5 after the v4 seal; that changed candidate requires a NEW full review.
