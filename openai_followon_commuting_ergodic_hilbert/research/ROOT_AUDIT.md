@@ -1,0 +1,19 @@
+# Root independent reconstruction and dependency acceptance
+
+2026-10-06 22:18 PDT. Mathematical resolution estimate: 90%; package estimate: 35%, pending full-package adversarial review. Estimates are not evidence.
+
+Read original request, all local instructions, repository README, full theorem statement, finite-truncation preliminaries, count-to-variation completion, frequency refinement/heat/boundary proof and principal-value consequences. Independently reconstructed the restriction while the reduction agent worked separately, then checked agreement of constants and signed supports. The explicit constant is D_r=8·4^(2/3)C_r+π²/13.
+
+Finite annular representatives: Minkowski + translation invariance + Hölder give ≤2 log(b/a)||F||3||G||3 in L3/2; countably many containing annuli produce a common full-measure set and absolute continuity gives endpoint continuity. Root reconstructed the finite-menu measurable linearization, finite rectangles approximation on compact support, smooth density for finite menus, monotone rational exhaustion, and dyadic rank summation. The series Σ_(j≥0)(1+j)2^(j(1/r−1/2)) converges exactly for r>2. No output-independent partition is substituted.
+
+Frequency normalization checked: Dil_L ell_xi=(L/D) derivative_u[g_(qL²)(u)e^(i xi u/L)]; triple convolution preserves Dil_L; narrowed variance b'=θs, θ=1/(16D²), bounds exp(ω²ab'/(2(a−b'))) uniformly; Gaussian averaging identity holds with ω'=aω/(a−b'). Averaging shifted row-center heat adds 1−θ to plane heat 2+θ, giving 3. The invariant shearing map for the mixed Gaussian majorant is a lattice bijection. The proof's uniform bounds depend on the frequency-square condition at each output index, not suprema at each frequency.
+
+Scoped audits in reviews/upstream_energy_audit.md and upstream_frequency_audit.md reconstruct the remaining full matrix/heat/smooth and rough/frequency/completion dependency. They found no substantive gap. Their numerical probes were independently rerun and are not used as analytic proof. The audited continuous theorem is accepted as the cited pivotal input for drafting the consequence, subject to fresh package adversaries; acceptance is not formal verification or human peer review.
+
+Actual Lean Main.lean and formalization.yaml identify OAI.TriangularHilbert.main_estimate; the expression is MainEstimate for the older maximal operator, not full variation. No build of this inapplicable Lean target is relied upon. No theorem here is claimed formalized.
+
+Transference reconstruction checks p=3/2: lattice cube sums occur to powers 1/2, Cauchy–Schwarz after integration yields outer cardinality times ||f||3^(3/2)||g||3^(3/2). Inner/outer box ratio tends to one at fixed finite maximum M; monotone menu exhaustion follows. Null-set removal uses all finite group words, including for modulo-null commutation. Finite r-variation prohibits arbitrarily many disjoint separated jumps; countable maximal tail has integrable pth-power envelope (2H_*)^p.
+
+Priority source author/title corrections propagated to the manuscript before package review: math/0601277 is Demeter's Pointwise convergence of the ergodic bilinear Hilbert transform, not a different multi-author paper; 2603.20173 is Lars Becker–Polona Durcik, The shifted bilinear Hilbert transform. The result is a newly available corollary, with no assertion of first public disclosure. Exact first public availability of source manuscript remains unverified; its filename date is not evidence of earlier disclosure.
+
+Upstream clean build: exact pinned original compilation failed only on pdfTeX-specific glyph-map primitives under Tectonic 0.16.9. In a separate local build copy, a harmless two-argument no-op for pdfglyphtounicode and a count for pdfgentounicode were supplied, and the missing glyphtounicode-cmex.tex input was omitted. The paper then compiled to 263.35 KiB. No proof or mathematical expression was changed. Original hashes are preserved.
