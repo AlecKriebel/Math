@@ -1,4 +1,4 @@
-# Reproduce the candidate package
+# Reproduce the source and verification package
 
 Python 3.10+ standard library is sufficient for all algebraic certificates. Run from this directory:
 
@@ -12,10 +12,12 @@ Compile standalone main.tex with Tectonic 0.17.0 (or a compatible TeX engine wit
 
     tectonic -X compile --untrusted main.tex
 
-The desktop editor's built-in compiler was used for authoring diagnostics. The same bundled Tectonic executable was invoked separately to produce an actual PDF file for inspection and eventual upload. PDF text/metadata and all page renders are checked separately. A clean temporary-directory build and all certificates must pass before publication.
+The desktop editor's built-in compiler was used for authoring diagnostics. The same bundled Tectonic executable was invoked separately to produce an actual PDF file for inspection and upload. PDF text/metadata and all page renders are checked separately. The reviewed package was checked by clean temporary-directory compilation and all three certificates.
 
-Upstream proof input: https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a, family 362. PINNED_SOURCE.json lists exact source SHA256 hashes. Obtain sources from that public repository; third-party source/PDF copies are not included. No later source correction was observed in the intake remote check. Formalization scope is unit-mass positive-unit-charge one species only. Formal-scope audit and version receipt expressly record the failed build; no formal certification is claimed.
+Upstream proof input: https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a, family 362. PINNED_SOURCE.json lists exact source SHA256 hashes. Obtain sources from that public repository; third-party source/PDF copies are not included. No later source correction was observed in the intake and final priority remote checks. Formalization scope is unit-mass positive-unit-charge one species only. Formal-scope audit and version receipt expressly record the failed build; no formal certification is claimed.
 
 A full Lean reproduction requires Lean 4.34.1 and the Mathlib/package pins in the formal scope receipt, adequate disk, and the upstream repository instructions. We did not reproduce the final Main or comparator check and do not rely on that as validation.
 
 All executed checks and final file SHA256 values are recorded with reviewed-version receipts. Computational outputs do not establish priority or eliminate mathematical assumptions.
+
+ARCHIVE_MAP.json records all archive filenames and original project paths. The supplement basename references are normalized for the archive. Historical evidence paths pointing into excluded source/cache directories are provenance, not included files. Obtain those third-party inputs from the cited primary URLs and verify their recorded hashes.

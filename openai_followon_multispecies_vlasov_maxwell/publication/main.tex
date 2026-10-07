@@ -21,9 +21,8 @@
 \date{October 6, 2026}
 \begin{document}
 \maketitle
-\begin{center}\textbf{Internal proof candidate; mathematical and publication audits pending.}\end{center}
 \begin{abstract}
-We investigate the extension of the signed-impulse proof of the one-species
+We extend the signed-impulse proof of the one-species
 three-dimensional relativistic Vlasov--Maxwell theorem in OpenAI's family 362
 manuscript to a fixed finite collection of particle species. Mass normalization
 gives a common velocity law and constant species-dependent accelerations.
@@ -31,11 +30,11 @@ The entire source--receiver cancellation has coefficient $e_a e_b/m_a$;
 the source acceleration cancels before its sign is discarded. A positive
 mass-weighted energy controls a disjoint union of species label spaces,
 and the angular occupation and selected receiver coefficient use one
-simultaneous momentum bootstrap. This candidate states the resulting global
+simultaneous momentum bootstrap. We prove the resulting global
 classical theorem for nonnegative smooth compact phase data and compatible
 $C_b^\infty\cap L^2$ Maxwell fields, without smallness, symmetry or neutrality.
-Its pivotal analytic transfer and inherited dependencies require the audits
-recorded with the source package before publication.
+The universal geometric identity is inherited; the new estimates keep all
+source and receiver coefficients explicit and close the shared-field bootstrap.
 \end{abstract}
 
 \section{Problem, attribution and exact scope}
@@ -64,7 +63,7 @@ There is no background charge. A classical solution has $C^1$ densities and
 fields, solves these equations pointwise, has fields continuous into $L^2_x$,
 and has compact particle phase support on each compact time interval.
 
-\begin{theorem}[Candidate finite-species theorem]\label{thm:main}
+\begin{theorem}[Finite-species global theorem]\label{thm:main}
 For every fixed finite species list as above, initial data
 \begin{equation}\label{eq:data}
  0\le f_{a0}\in C_c^\infty(\R^6),\qquad
@@ -79,7 +78,10 @@ $\max_a\sup_{(x,v)\in\supp f_a(t)}|v|$ is a continuation criterion.
 
 $C_b^\infty$ means every spatial derivative is bounded. The field assumption
 does not require all derivatives to be square integrable. It permits a nonzero
-net charge and its Coulomb tail. Constants below may depend on the data,
+net charge and its Coulomb tail. Finite field energy supplies cone and
+spatial budgets, while bounded initial derivatives control homogeneous terms.
+Requiring all derivatives bounded is a convenient smooth-persistence class;
+no sharp minimal-regularity assertion is made. Constants below may depend on the data,
 the fixed horizon and all fixed masses and charges; no massless or infinite
 species limit is asserted. The first new special case is $N=2$,
 $m_1=m_2=1$, $e_1=1,e_2=-1$. Noncompact momentum tails, collisions and curved
@@ -90,7 +92,7 @@ selection mechanism are due to the OpenAI manuscript \cite{OAI362}, supplied
 as part of its October 2026 public repository release, with manuscript date
 September 23, 2026. We use its exact pinned version
 \texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}; the date printed on a
-manuscript is not evidence of an earlier public disclosure. This note's proposed
+manuscript is not evidence of an earlier public disclosure. This note's
 contribution is the signed cross-species estimate and its coupled closure,
 not an independent solution of the one-species problem. Glassey--Schaeffer
 \cite{GlasseySchaeffer1988} already use mass-normalized momentum and signed
@@ -99,6 +101,22 @@ signed phase-space density in $C^1$ and small compactly supported $C^2$
 fields, rather than arbitrary signed data. Momentum normalization,
 multispecies formulation and bounded-momentum continuation are classical;
 see Glassey \cite{Glassey} and Luk--Strain \cite{LukStrain}.
+
+If all charged species share a nonzero ratio $\lambda_a=\lambda$, set
+$g=\lambda^2\sum_{e_a\ne0}m_af_a$ and
+$(\widehat E,\widehat B)=\lambda(E,B)$. Then $g\ge0$ solves the
+unit-coefficient one-species system with these fields; its sources are the
+transformed Maxwell sources. Charged species can then be transported in
+that global field, and neutral species are free. This special case is already
+an immediate consequence of the inherited one-species theorem and known
+normalization. The extension requiring the estimates below has distinct
+charge-to-mass ratios, in particular the two unit-mass charges $+1,-1$.
+
+Recent multispecies work of Mattingly--Pankavich--Ben-Artzi
+\cite{MPB2026} sharpens decay and scattering for small globally neutral data.
+Its Theorem 1.1 recalls the earlier Glassey--Strauss small-data existence
+result; Theorems 1.5--1.6 concern scattering and decay. Those hypotheses do
+not duplicate the arbitrary-data, nonneutral theorem considered here.
 
 \section{Positive energy and separate label spaces}
 For species $a$, characteristics satisfy
@@ -642,8 +660,8 @@ Spatial cutoffs justify Maxwell energy without assuming $L^2$ field
 derivatives. Gronwall applied to
 $\sum_a\|\delta f_a\|_2^2+\|\delta(E,B)\|_2^2$ gives equality.
 Together with the signed estimate and momentum-doubling argument this
-completes the proposed proof of Theorem~\ref{thm:main}, subject to the
-candidate's recorded dependency and adversarial audits.
+completes the proof of Theorem~\ref{thm:main}. The dependency ledger and
+independent adversarial audit records describe the validation performed.
 
 \section{Checks, limitations and disclosure}
 If a receiver has $e_a=0$, its momentum is constant and all pair factors
@@ -672,9 +690,9 @@ theorem is not claimed to be Lean formalized; a source-library static scan
 or existence of comparator files is not formal certification.
 AI tools were used extensively in the research, drafting and verification.
 Automated adversarial reviews do not constitute conventional human peer
-review. This candidate has not undergone conventional human peer review or
-refereeing. Publication is pending completion of the specified independent
-reviews and priority audit.
+review. This preprint has not undergone conventional human peer review or
+refereeing. The ordinary analytic proof is the basis for the theorem; no
+reproduced Lean certificate is claimed.
 
 \begin{thebibliography}{9}
 \bibitem{OAI362} OpenAI.
@@ -698,5 +716,9 @@ neutral initial data. \emph{Commun. Math. Phys.} 119 (1988), 353--384.
 Classical solutions and the Glassey--Strauss theorem for the 3D
 Vlasov--Maxwell system. \emph{Arch. Ration. Mech. Anal.} 170 (2003), 1--15.
 \href{https://arxiv.org/abs/math/0301175}{arXiv:math/0301175}.
+\bibitem{MPB2026} G. Mattingly, S. Pankavich and J. Ben-Artzi.
+Sharp time decay and scattering of small data solutions to the relativistic
+Vlasov--Maxwell system. \href{https://arxiv.org/abs/2609.29013v1}{arXiv:2609.29013v1},
+submitted September 24, 2026.
 \end{thebibliography}
 \end{document}

@@ -1,11 +1,11 @@
-# Reserve: multispecies relativistic Vlasov–Maxwell
+# Global smooth finite multispecies relativistic Vlasov–Maxwell
 
-Independent research effort begun 2026-10-06. **The core global theorem is not yet proved; there is no publication or DOI.**
+This dedicated research effort studies the arbitrary fixed finite species theorem, including distinct positive masses and signed or zero charges. The ordinary proof candidate and exact publication kit are under independent complete-package review. No Zenodo publication or tracker entry is yet claimed.
 
-See THEOREM_TARGET.md for exact scope, DEPENDENCY_LEDGER.md for required inputs, APPROACH_TABLE.md for independent mechanisms, and RESEARCH_LOG.md for timestamped findings and separate progress estimates.
+The manuscript gives a signed estimate for each source/receiver pair, positive mass-weighted energy, angular occupation and selected-range bounds, a simultaneous common-field bootstrap, and bounded-momentum continuation for nonnegative C_c^∞ distributions and compatible C_b^∞∩L² Maxwell data in three dimensions. It attributes the one-species breakthrough and analytic machinery to pinned OpenAI family 362. The universal cancellation itself is inherited; the species-dependent transfer and coupled closure are the new work. Fixed-parameter constants are not uniform in a massless limit.
 
-Pinned upstream: https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a, family 362, authored/cited as OpenAI according to its manuscript README. Hash inventory: sources/PINNED_SOURCE.json. Local source copies are audit inputs, not publication files.
+Sources are pinned at adc7f1241b42e322a6451854ab7e4b4c146bf78a, recorded in sources/PINNED_SOURCE.json. Third-party source and reading copies are excluded from publication. All algebra certificates run with the Python standard library. The full follow-on theorem is not Lean formalized, and no reproduced one-species formal certificate is asserted.
 
-Author metadata for any eventual passing preprint: Alec Kriebel; ORCID https://orcid.org/0009-0001-9320-500X. AI tools are used extensively in research and verification. Automated audits do not constitute conventional human peer review.
+See publication/main.tex and publication/REPRODUCE.md, DEPENDENCY_LEDGER.md, THEOREM_TARGET.md, APPROACH_TABLE.md, RESEARCH_LOG.md, and immutable reviews/package_v1. Independent reviewers work against exact package hashes. Automated audits are not human peer review. This preprint has not undergone conventional human peer review or refereeing. Publication receipts and tracker readback will be recorded only after confirmed production publication.
 
-No external individuals are contacted. Only owned project files are checkpointed on remote main. No GitHub release is created. Production Zenodo and the specified tracker remain gated on full mathematical, priority and package checks.
+Only owned project files are checkpointed on remote main using an isolated index; concurrent checkout files, index and commits are preserved. No external individual communication, unrelated PR processing or GitHub release is authorized.
