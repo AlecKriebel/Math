@@ -1,13 +1,13 @@
-# Thompson family C*-simplicity: independent research effort
+# Thompson-family reduced C*-algebra consequence note
 
-Author: Alec Kriebel, ORCID <https://orcid.org/0009-0001-9320-500X>.
+Author: Alec Kriebel; ORCID https://orcid.org/0009-0001-9320-500X.
 
-Status: initial audit; no unconditional resolution, novelty, formalization, or publication claim is made yet.
+Current status: complete manually audited proof chain and compiled consequence-note candidate; full-package adversarial review and publication pending. No first-priority or new-criterion claim. No fresh Lean kernel build was performed.
 
-The targets are simplicity and uniqueness of the tracial state of the **reduced** group C*-algebras of standard Thompson groups F and T, Aut(F), and the abstract commensurator Comm(F). The proposed input is the OpenAI family 248 nonamenability manuscript, pinned at upstream commit `adc7f1241b42e322a6451854ab7e4b4c146bf78a`; the established reductions belong to Le Boudec and Matte Bon.
+The four groups are standard F and T, full abstract Aut(F), and abstract Comm(F). Simplicity follows by applying OpenAI family248 nonamenability to the established Le Boudec–Matte Bon equivalences. Unique trace follows from BKKO; T unique trace was already unconditional. The optional standard-circle overgroup statement is also inherited.
 
-All owned work stays in this directory. The upstream clone is read-only. No outside individuals will be contacted. No GitHub releases will be created. Production Zenodo publication and the specified spreadsheet update are authorized only after proof, priority, package, and independent review requirements pass.
+Paper/source: main.tex, paper.pdf. Intended separately downloadable publication artifacts: upload-kit/paper.pdf, upload-kit/thompson-cstar-source.zip, upload-kit/thompson-cstar-verification.zip. See PUBLICATION_README.md and reproducibility/BUILD.md for attribution, licensing, disclosures and checks actually completed.
 
-Research uses AI tools extensively. AI audits are not conventional human peer review.
+All owned work remains here. The upstream source clone is read-only and pinned; source hashes are in sources/SOURCE_MANIFEST.json. Internal AI reviewers are research tools, not external individuals or human referees. No outside individuals contacted and no GitHub release created.
 
-See [THEOREM_LEDGER.md](THEOREM_LEDGER.md), [DEPENDENCY_LEDGER.md](DEPENDENCY_LEDGER.md), [APPROACH_TABLE.md](APPROACH_TABLE.md), and [RESEARCH_LOG.md](RESEARCH_LOG.md).
+See THEOREM_LEDGER.md, DEPENDENCY_LEDGER.md, APPROACH_TABLE.md and RESEARCH_LOG.md.

@@ -10,8 +10,20 @@ Assigned four independent internal AI research tools: finite proof adversary, an
 
 Best-guess completion: **mathematical resolution 10%; publication package 3%**. Strongest verified result: source and target identification plus the proposed conditional established-equivalence chain. Exact remaining gap: dependency validation, fresh priority, full note, two complete-package audits, clean reproduction and authorized publication/tracker verification.
 
-## 2026-10-06 22:23 PDT: dependency audit and storage obstruction
+## 2026-10-06 22:16 PDT (approximate): dependency audit and storage obstruction
 
 Independent analytic and finite auditors find no material proof gap so far. The formalization has real Thompson/Main declarations, distinct from the intentional challenge sorry; no kernel reproduction yet. Primary chain reconstruction confirms four simplicity equivalences, plus action-level reductions. T unique trace is inherited and unconditional. Public repository commit timestamp is Oct 6, not the internal Sep 23 manuscript date.
 
 Root writes failed with errno 28 (disk full); project occupies only 56 KB and has no removable large temporary files. Asked user for cache-cleanup authorization while continuing small research artifacts. No cache deletion authorized yet. No external contacts or publication. Best-guess mathematical completion 55%; publication package 10%.
+
+## 2026-10-06 22:20 PDT: four-group proof-chain checkpoint
+
+Independent finite and analytic upstream audits and primary operator/trace audits found no material gap. Exact rational checks passed 1,969 transports, 31,504 covariance cells, 17 recursion identities and 1,024-cell image partition. Built-in editor compilation succeeded; actual exported PDF via Tectonic has four visually inspected pages. Source bytes checked against pinned Git, with 88 file hashes. Root read proof/source and reconstructed covariance/variance proof independently. Source-inspected Lean is explicitly not a fresh kernel result.
+
+First owned checkpoint pushed to main commit d0c5da137d4bd1eb9b41321720528d5351edd572 using isolated index; shared index checksum unchanged. No external individuals contacted. No deposit exists for this project yet. Best-guess mathematical completion 80%; publication package 40%. Remaining: full-package reviews, clean reproduction, final correction/priority refresh, conditional authorized publication and tracker.
+
+## 2026-10-06 22:25 PDT: clean reproduction and publication preflight
+
+Current complete candidate compiled from clean extracted source archive; rebuilt PDF text exactly matches inspected PDF. All PDF fonts embedded, author/title metadata correct, four pages visually checked. Payload checksums frozen; no third-party paper/formalization files bundled. Current upstream public main still equals pinned adc7f; bounded fresh priority refresh located no exact combined post-input duplicate, without absence/firstness certification. Target sheet ID resolves to Math Puzzles, headers Original Problem / Solution Chat URL / DOI / Notes; 43 populated rows, no Thompson matches. Project-local deposit state absent. No production deposit staged before reviews.
+
+Disk errors recur intermittently; removed only owned derived render/rebuild temporary files. User cache question still pending, no external caches removed and no formal rebuild counted. Best-guess mathematical completion 85%; publication package 60%. Complete-package reviewer one running.
