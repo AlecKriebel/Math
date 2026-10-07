@@ -984,7 +984,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | unsolved | 5/5 |  | Accepted scoped partial results: resistance-defect bounds, smooth planar and finite-polygon exclusions, regular two-bounce rigidity, symplectic branch constraints, and an exact Hausdorff-scattering counterexample. Independent audit requires no mathematical correction; general bounded piecewise-smooth almost-every-ray target remains unresolved; no novelty claim. [Packet](attempts/30001518/README.md). |  |
 | 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
