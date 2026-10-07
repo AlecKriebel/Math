@@ -54,3 +54,19 @@ Mathematical resolution estimate: 95%. Publication-package estimate: 75%.
 The second fresh complete reviewer rederived the actual mixed-K3 proof chain and independently assigned exact Bülles/Markman normalization and full CM theta/arithmetic/assembly audits. It found no substantive mathematical or package issue within its explicit source-audit limits. All 74 upstream hashes, 32 archive payload hashes, every finite result and all four PDF pages passed its checks; its clean build produced the exact deposit PDF. It independently verified that local triage already proposed the target/mechanism as a conditional research agenda, reinforcing the corollary/consolidation attribution rather than any first-recognition claim.
 
 Minor M1/M2 repairs accurately describe the queued editor request and completed source transcription. V3 rebuilt archive SHA256 8f44cd5f9c447e40a97a07a3bcc62998accdb7aad4fce94b4020c5fe87f77ce0; the PDF and metadata bytes remain unchanged. A NEW reviewer will assess the entire frozen V3 before the final gate. No production draft or tracker write exists. Read-only upstream remote-main recheck at 2026-10-07 05:09 UTC still matches the pin and the original clone remains clean.
+
+## 2026-10-06T22:26:00.922586-07:00 — third review and temporary storage pressure
+
+Mathematical resolution estimate: 95%. Publication-package estimate: 78%.
+
+Fresh V3 reproduction verifies all 32 source hashes, exact finite results and identical PDF; all four pages and all 74 upstream-source hashes passed independent inspection. Fresh CM, transfer/priority and analytic slices have reported no substantive mathematical gap within their explicit scopes. Complete-package reconciliation and closing exact hash check remain the final gate; staging has not begun. Additional finite CM label/switch scripts and results were retained outside the frozen deposit in checks/review3_checks; their copied-path run passes. These computations do not certify geometric Hodge algebraicity.
+
+Transient filesystem pressure interrupted saving one review report. Only nine regenerable root-owned candidate PNGs were deleted (2,418,294 bytes); source/PDF/metadata/reports, active review scratch and shared files were preserved. publication/storage-cleanup.json records the precise removal. A direct 64 KiB temporary write-and-remove probe succeeds; the child was advised to use direct text writes and preserve report text. No frozen V3 bytes changed and no service action was attempted.
+
+## 2026-10-06T22:29:28.643755-07:00 — final exact V3 accepted
+
+Mathematical resolution estimate: 100%. Publication-package estimate: 85%.
+
+Three distinct complete-package automated reviewers have completed independent source/hypothesis, scope/priority, reproducibility and artifact checking. Review->repair->fresh-review closed both V1 requirements and V2 minor wording issues. The NEW final V3 reviewer finds no substantive concern or required repair, with exact closing verification of all 19 package entries and 74 source entries. The mathematical conclusion is the original full core target as an assembled corollary, not an independently new base breakthrough; inherited inputs and all excluded scope/formal/human-review limits remain explicit. publication/ACCEPTANCE.json records exact approved bytes and supporting review hashes.
+
+Retained fresh CM/analytic check copies execute at their repository paths and reproduce all saved mathematical results. The analytic result includes a per-run timestamp; that metadata difference is recorded and the original reviewed result is preserved. These finite tests verify only the stated conventions, not the geometric theorem. Production remote staging/publication and verified tracker entry remain necessary before the persistent objective can be marked complete.
