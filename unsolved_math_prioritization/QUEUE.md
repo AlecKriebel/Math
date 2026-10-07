@@ -982,7 +982,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 971 | 30001278 / OWR-3480-009 | Sharper Ramification Bounds for Local Galois Representations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 972 | 30001285 / OWR-3481-002 | Comparison Maps in Motivic Cohomology of Central Simple Algebras | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | claimed_solved | 1 verified/5 |  |  [Accepted scoped counterexample](attempts/30001345/README.md): unrestricted multibranch summed rough K(K+D); delta 36, 7 to 12. Not unibranched parametric Conj. 3.8 or fine M; no novelty claim. Earlier-attempt count unavailable.  |  |
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
