@@ -46,3 +46,11 @@ The first complete reviewer inspected the original target, exact theorem, manusc
 V2 contains all selected completed reports, analytic and CM script/results, portable archive/project mapping and a clean 32-source hash check. All finite checks passed and the exported PDF remains SHA256 483a6edff90202ef4d31560049a32ce946dcd1c6a999ab5b1f25b66a8f326612. Final V2 ZIP is SHA256 d68f68cbe03529d8951bd21e9bf266c869edb5fa214625d1c9196966013b5360. A NEW reviewer was launched without prior conversation context, with the original request and complete exact V2, and must independently assess proofs rather than accept previous verdicts. No reviewed deposit bytes or metadata will change while that review runs.
 
 Production tool local check passes. Correctly computed project-manifest state path has no prior deposit state. Production staging/publication and tracker actions remain withheld pending the fresh final gate.
+
+## 2026-10-06T22:12:00.465761-07:00 — V2 complete review repaired; V3 frozen
+
+Mathematical resolution estimate: 95%. Publication-package estimate: 75%.
+
+The second fresh complete reviewer rederived the actual mixed-K3 proof chain and independently assigned exact Bülles/Markman normalization and full CM theta/arithmetic/assembly audits. It found no substantive mathematical or package issue within its explicit source-audit limits. All 74 upstream hashes, 32 archive payload hashes, every finite result and all four PDF pages passed its checks; its clean build produced the exact deposit PDF. It independently verified that local triage already proposed the target/mechanism as a conditional research agenda, reinforcing the corollary/consolidation attribution rather than any first-recognition claim.
+
+Minor M1/M2 repairs accurately describe the queued editor request and completed source transcription. V3 rebuilt archive SHA256 8f44cd5f9c447e40a97a07a3bcc62998accdb7aad4fce94b4020c5fe87f77ce0; the PDF and metadata bytes remain unchanged. A NEW reviewer will assess the entire frozen V3 before the final gate. No production draft or tracker write exists. Read-only upstream remote-main recheck at 2026-10-07 05:09 UTC still matches the pin and the original clone remains clean.

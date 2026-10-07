@@ -1,7 +1,7 @@
 # Target and exact success conditions
 
 ## Exact target
-Let S_1,...,S_r be complex projective K3 surfaces and α_i in Br(S_i). Let each M_i be a smooth projective moduli space of stable objects satisfying the exact hypotheses of Bülles, Theorem 0.1 (to be transcribed from the primary source), including untwisted stable sheaf moduli and Hilbert schemes. For every finite r and every integer p, the rational cycle map CH^p(∏ M_i)_Q → H^{2p}(∏ M_i,Q)∩H^{p,p} is surjective. Different K3 bases and repetitions are allowed.
+Let S_1,...,S_r be complex projective K3 surfaces and α_i in Br(S_i). Let each M_i be a smooth projective moduli space of stable objects satisfying the exact hypotheses of Bülles, Theorem 0.1, transcribed in manuscript/main.tex and DEPENDENCY_LEDGER.md, including untwisted stable sheaf moduli and Hilbert schemes. For every finite r and every integer p, the rational cycle map CH^p(∏ M_i)_Q → H^{2p}(∏ M_i,Q)∩H^{p,p} is surjective. Different K3 bases and repetitions are allowed.
 
 ## Required verification
 1. Exact applicability of the algebraic Chow-motive splitting, including quasi-universal/twisted constructions.

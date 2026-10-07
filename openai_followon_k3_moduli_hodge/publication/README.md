@@ -62,8 +62,9 @@ compile `main.tex` directly, but byte-identical PDF output is only claimed
 for the recorded Tectonic setup with the fixed timestamp environment.
 The finite checks do not validate the full geometric HC theorem.
 
-The main source was also opened and compiled successfully in Codex's
-built-in LaTeX editor. An actual exported PDF was independently generated,
+The main source was also sent to Codex's built-in LaTeX editor, and the
+built-in compiler reported success. The editor-opening request was queued.
+An actual exported PDF was independently generated,
 rendered and visually inspected. Publication file hashes and review
 snapshots are retained separately in the project publication records.
 
