@@ -27,6 +27,13 @@ for attempt in range(3):
     env = dict(os.environ, GIT_INDEX_FILE=temporary)
     try:
         git('read-tree', base, env=env)
+        # Earlier checkpoints may have caught concurrently created audit caches.
+        # Remove only these owned evidence-cache paths from the isolated index;
+        # the local files and all shared checkout state remain intact.
+        remote_files = git('ls-tree', '-r', '--name-only', base, '--', project.name).splitlines()
+        local_only = [x for x in remote_files if any(x.startswith(project.name+'/sources/'+y+'/') for y in ('priority_companions','provenance','priority','preprints','lean'))]
+        if local_only:
+            git('update-index', '--force-remove', '--', *local_only, env=env)
         git('add', '--', *owned, env=env)
         tree = git('write-tree', env=env)
         if tree == git('rev-parse', base+'^{tree}'):
@@ -46,7 +53,7 @@ head_after = git('rev-parse', 'HEAD')
 index_after = hashlib.sha256(index_path.read_bytes()).hexdigest()
 remote = git('ls-remote', 'origin', 'refs/heads/main').split()[0]
 ancestor = subprocess.run(['git','-C',str(repo),'merge-base','--is-ancestor',commit,remote]).returncode == 0 if remote == commit else None
-record = {'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'commit':commit,'base_remote_main':base,'remote_main_at_verification':remote,'exact_remote_match':remote==commit,'shared_head_before':shared_head,'shared_head_after':head_after,'shared_index_sha256_before':index_before,'shared_index_sha256_after':index_after,'shared_state_preserved':shared_head==head_after and index_before==index_after,'owned_files':owned,'message':message}
+record = {'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'commit':commit,'base_remote_main':base,'remote_main_at_verification':remote,'exact_remote_match':remote==commit,'shared_head_before':shared_head,'shared_head_after':head_after,'shared_index_sha256_before':index_before,'shared_index_sha256_after':index_after,'shared_state_preserved':shared_head==head_after and index_before==index_after,'owned_files':owned,'local_evidence_caches_removed_from_remote_tip':local_only,'message':message}
 (project/'receipts'/receipt_name).write_text(json.dumps(record,indent=2)+'\n')
 print(json.dumps({k:v for k,v in record.items() if k!='owned_files'},indent=2))
 if not record['shared_state_preserved']:
