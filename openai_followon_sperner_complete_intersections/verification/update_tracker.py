@@ -6,6 +6,7 @@ The receipt contains this project's own row, never other tracker entries.
 """
 from pathlib import Path
 import datetime
+import hashlib
 import json
 import re
 import subprocess
@@ -16,6 +17,11 @@ SPREADSHEET = "1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20"
 SHEET_ID = 1254632077
 GWS = "/Users/alec/.nvm/versions/node/v22.16.0/bin/gws"
 HEADERS = ["Original Problem", "Solution Chat URL", "DOI", "Notes"]
+
+
+def require(condition, message):
+    if not condition:
+        raise RuntimeError(message)
 
 
 def call(resource, operation, params, body=None):
@@ -31,26 +37,37 @@ def call(resource, operation, params, body=None):
 
 def main():
     publication = json.loads((ROOT / "receipts/zenodo_published_inspect.json").read_text())
-    assert publication["state"] == "published"
-    assert publication["environment"] == "production"
+    require(publication["state"] == "published", "Record is not confirmed published")
+    require(publication["environment"] == "production", "Record is not in production")
     doi = publication["doi"]
     record_id = publication["id"]
-    assert doi == "10.5281/zenodo." + str(record_id)
+    require(doi == "10.5281/zenodo." + str(record_id), "DOI does not match record ID")
     doi_url = "https://doi.org/" + doi
     record_url = "https://zenodo.org/records/" + str(record_id)
     manifest = json.loads((ROOT / "zenodo-deposit.json").read_text())
     title = manifest["metadata"]["title"]
+    require(publication["title"] == title, "Publication receipt belongs to another title")
+    candidate = json.loads((ROOT / "receipts/candidate_v2.json").read_text())
+    require(candidate["manifest_sha256"] == hashlib.sha256(
+        (ROOT / "zenodo-deposit.json").read_bytes()).hexdigest(), "Manifest differs from reviewed candidate")
+    expected = {f["name"]: (f["bytes"], f["sha256"]) for f in candidate["payload"]}
+    observed = {f["name"]: (f["size"], f["sha256"]) for f in publication["files"]}
+    require(observed == expected, "Publication receipt differs from reviewed payload")
+    for item in manifest["files"]:
+        path = ROOT / item["path"]
+        require((path.stat().st_size, hashlib.sha256(path.read_bytes()).hexdigest()) == expected[path.name],
+                "Local file differs from reviewed payload: " + path.name)
     date = manifest["metadata"]["publication_date"]
     metadata = call([], "get", {"spreadsheetId": SPREADSHEET})
     targets = [s["properties"] for s in metadata["sheets"]
                if s["properties"]["sheetId"] == SHEET_ID]
-    assert len(targets) == 1
+    require(len(targets) == 1, "Numeric target tab was not uniquely resolved")
     properties = targets[0]
     tab = "'" + properties["title"].replace("'", "''") + "'"
     full_range = tab + "!A1:AQ" + str(properties["gridProperties"]["rowCount"])
     rows = call(["values"], "get", {"spreadsheetId": SPREADSHEET,
         "range": full_range, "valueRenderOption": "UNFORMATTED_VALUE"}).get("values", [])
-    assert rows and rows[0][:4] == HEADERS
+    require(rows and rows[0][:4] == HEADERS, "Tracker headers differ from expected columns")
     values = [
         "Sperner property for every standard graded Artinian complete intersection "
         "over an arbitrary characteristic-zero field: max over all ideals of the "
@@ -74,10 +91,10 @@ def main():
                "tab_title": properties["title"], "headers": HEADERS,
                "doi": doi, "record_id": record_id}
     if matches:
-        assert len(matches) == 1, "Multiple matching rows require reconciliation"
+        require(len(matches) == 1, "Multiple matching rows require reconciliation")
         row_number, row = matches[0]
-        assert len(row) >= 3 and row[2] == doi_url, "Matching title with a different DOI"
-        assert row[:4] == values, "Existing matching row differs from intended project entry"
+        require(len(row) >= 3 and row[2] == doi_url, "Matching title with a different DOI")
+        require(row[:4] == values, "Existing matching row differs from intended project entry")
         updated_range = tab + f"!A{row_number}:D{row_number}"
         receipt["action"] = "existing row reconciled; no append"
     else:
@@ -88,13 +105,13 @@ def main():
             "responseValueRenderOption": "UNFORMATTED_VALUE"},
             {"majorDimension": "ROWS", "values": [values]})
         updated_range = response["updates"]["updatedRange"]
-        assert response["updates"]["updatedRows"] == 1
-        assert response["updates"]["updatedColumns"] == 4
+        require(response["updates"]["updatedRows"] == 1, "Append did not report exactly one row")
+        require(response["updates"]["updatedColumns"] == 4, "Append did not report exactly four columns")
         receipt.update({"action": "appended one row", "append_response": response})
         (ROOT / "receipts/tracker_append.json").write_text(json.dumps(receipt, indent=2) + "\n")
     readback = call(["values"], "get", {"spreadsheetId": SPREADSHEET,
         "range": updated_range, "valueRenderOption": "UNFORMATTED_VALUE"})
-    assert readback["values"] == [values]
+    require(readback["values"] == [values], "Tracker readback differs from intended row")
     receipt.update({"verified": True, "updated_range": updated_range,
                     "values": values, "readback": readback})
     (ROOT / "receipts/tracker_verified.json").write_text(json.dumps(receipt, indent=2) + "\n")
