@@ -42,7 +42,7 @@ with tempfile.TemporaryDirectory(prefix='private-index-',dir=PROJECT/'receipts')
 receipt['shared_head_after']=run(['rev-parse','HEAD']);receipt['shared_index_sha256_after']=digest(idx)
 receipt['shared_state_preserved']=(receipt['shared_head_before']==receipt['shared_head_after'] and before==receipt['shared_index_sha256_after'])
 receipt['remote_verified']=run(['merge-base','--is-ancestor',receipt['remote_commit'],run(['ls-remote','origin','refs/heads/main']).split()[0]])==''
-out=(PROJECT/a.receipt).resolve()
+out=(PROJECT/'receipts'/a.receipt).resolve()
 if not out.is_relative_to(PROJECT/'receipts'):raise SystemExit('Receipt must be project-local')
 out.write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({'commit':receipt['remote_commit'],'shared_state_preserved':receipt['shared_state_preserved'],'remote_verified':receipt['remote_verified'],'receipt':str(out)}))
