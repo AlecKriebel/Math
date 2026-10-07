@@ -1,6 +1,6 @@
 # Exact targets and current status
 
-Status: under validation; no unconditional solution or publishable novelty claim yet.
+Status: complete mathematical proof candidate, justified by the manually audited upstream analytic inequality and established existence/regularity inputs. Independent complete-package review and publication remain pending. No firstness or novel transfer machinery claim is made. No independent Lean rebuild was completed.
 
 Let n>=2 be ambient dimension. Write dω for the unnormalized round area measure on S^(n-1), ∇² for its covariant Hessian and I for the identity on its (n-1)-dimensional tangent spaces. A solution is a positive even C∞ support function h with Q(h)=∇²h+hI positive definite everywhere. Its body K is compact, full-dimensional, origin-symmetric and has smooth boundary with positive Gauss curvature. This admissible class is more precise than arbitrary positive functions or strict convexity without a curvature condition.
 

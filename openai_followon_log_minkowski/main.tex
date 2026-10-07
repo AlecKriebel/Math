@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sph}{S^{n-1}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\W}{\mathcal W}
+\newcommand{\Q}{Q}
+\hypersetup{pdftitle={Even Minkowski uniqueness as a consequence of logarithmic Brunn--Minkowski},pdfauthor={Alec Kriebel},pdfsubject={Convex geometry; logarithmic and Lp Minkowski problems}}
+\title{Even Minkowski uniqueness as a consequence of\newline logarithmic Brunn--Minkowski}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We record consequences of OpenAI's recently released origin-symmetric logarithmic Brunn--Minkowski inequality. For every ambient dimension $n\ge2$ and $0\le p<1$, every smooth strictly positive even density on $S^{n-1}$ has exactly one smooth positive even support-function solution of $h^{1-p}\det(\nabla^2h+hI)=f$, with positive curvature-radius matrix. For $0<p<1$, identical $L_p$ surface-area measures determine arbitrary full-dimensional origin-symmetric convex bodies. We give the nonsmooth first-variation and strictness argument explicitly and a local version of the smooth endpoint transfer of He--Liu. Existence and regularity are established inputs. These are consequences of the new inequality and known reductions, not a new proof of logarithmic Brunn--Minkowski or a claim of first public announcement. Equal-volume boxes exclude arbitrary-measure uniqueness at $p=0$.
+\end{abstract}
+
+\section{Scope, provenance and conventions}
+
+Throughout, $n$ denotes ambient dimension. A convex body is a compact convex subset of $\R^n$ with nonempty interior. For an origin-symmetric body $K=-K$, the origin is interior and its support function $h_K$ is positive and even on $\Sph$. Write $V(K)$ for volume, $S_K$ for ordinary surface-area measure, and $d\omega$ for unnormalized round area measure. Define
+\[
+ dS_{K,p}=h_K^{1-p}\,dS_K,\qquad
+ d\nu_K=\frac{h_K\,dS_K}{nV(K)}.
+\]
+Thus $\nu_K$ is a probability measure; the cone-volume measure itself is $h_KdS_K/n$. For a positive continuous $a$ on $\Sph$, set
+\[
+ \W[a]=\bigcap_{u\in\Sph}\{x\in\R^n:x\cdot u\le a(u)\}.
+\]
+In general $a$ need not be a support function.
+
+The new input is the following theorem of OpenAI~\cite{OAI}, at source commit
+\begin{center}\small\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.\end{center}
+\begin{equation}\label{LBM}
+ V(\W[h_K^{1-t}h_L^t])\ge V(K)^{1-t}V(L)^t,
+ \quad 0\le t\le1,
+\end{equation}
+for all origin-symmetric convex bodies, without smoothness restrictions. The public repository release was verified on October 6, 2026; September 23 is the upstream manuscript date. The deduction below uses only this inequality, not its equality classification.
+
+The logarithmic and $L_p$ volume/mixed-volume transfers originate in B\"or\"oczky--Lutwak--Yang--Zhang~\cite{BLYZ}. Strictness via Jensen and equal-measure volume comparison are established machinery; see also Kolesnikov--Milman~\cite[Proposition 11.1]{KM}. He--Liu~\cite[Theorem 4 and Section 3]{HL} supply the smooth endpoint transfer. The precise targets were recorded as Conjectures 9.4.3 and 9.4.4 in~\cite{BFR}. Stancu~\cite[Corollary 1 and Theorem 2]{Stancu} publicly announced smooth logarithmic uniqueness and the all-dimensional inequality in 2018, with flow-asymptotic details deferred. Accordingly, this note presents a newly available, checked consequence of the released inequality; it does not claim these implications or the targets were first proposed here.
+
+\begin{theorem}\label{main}
+Let $n\ge2$.
+\begin{enumerate}
+\item For every $0\le p<1$ and every strictly positive even $f\in C^\infty(\Sph)$, there exists exactly one positive even $h\in C^\infty(\Sph)$ satisfying
+\begin{equation}\label{PDE}
+ h^{1-p}\det\Q(h)=f,\qquad \Q(h)=\nabla^2h+hI>0.
+\end{equation}
+Here the Hessian is spherical and the determinant is on the $(n-1)$-dimensional tangent space. Equivalently, $h$ is the support function of a smooth origin-symmetric body with strictly positive Gauss curvature.
+\item If $0<p<1$ and $K,L$ are arbitrary origin-symmetric convex bodies with $S_{K,p}=S_{L,p}$, then $K=L$.
+\end{enumerate}
+\end{theorem}
+
+No volume-one condition is imposed. Dilating $K$ by $c>0$ multiplies $S_{K,p}$ by $c^{n-p}$, so fixed data determine scale. Evenness fixes the center and removes translations. At $p=0$, \eqref{PDE} gives $nV(K)=\int f\,d\omega$. The admissible support-function class and positive matrix condition are essential; the theorem is not an unconstrained equation for arbitrary functions.
+
+\section{First variation and positive-\texorpdfstring{$p$}{p} rigidity}
+
+We recall classical facts valid for nonsmooth full-dimensional bodies:
+\[
+ nV(K)=\int h_K\,dS_K,\quad
+ V_1(K,L)=\frac1n\int h_L\,dS_K
+ \ge V(K)^{(n-1)/n}V(L)^{1/n}.
+\]
+Equality in the latter is exactly positive homothety followed by translation. Surface-area measures converge weakly under Hausdorff convergence. These statements and their equality cases are classical Brunn--Minkowski theory~\cite{BFR}.
+
+\begin{lemma}\label{variation}
+Suppose $a_t>0$ is continuous on $\Sph$, $a_0=h_K$, and $(a_t-h_K)/t\to g$ uniformly as $t\to0$. Then
+\[
+ \left.\frac{d}{dt}V(\W[a_t])\right|_{t=0}=\int g\,dS_K.
+\]
+\end{lemma}
+\begin{proof}
+For $A=\W[a]$ one has $h_A\le a$ and $h_A=a$ $S_A$-almost everywhere. Indeed, every boundary point has an active defining half-space: otherwise compactness of the sphere would give a uniformly positive slack and the point would be interior. At a boundary point with unique outer normal, every active half-space has that normal. Boundary points without unique outer normal have boundary-area measure zero, proving the assertion.
+
+For $C=\W[b]$, Minkowski's first inequality consequently gives
+\[
+ \frac{\int(b-a)\,dS_C}{nV(C)^{(n-1)/n}}
+ \le V(C)^{1/n}-V(A)^{1/n}
+ \le\frac{\int(b-a)\,dS_A}{nV(A)^{(n-1)/n}}.
+\]
+Uniform convergence $a_t\to h_K$ and positivity imply $\W[a_t]\to K$ in Hausdorff distance, by the inclusions $(1-\varepsilon)K\subset\W[a_t]\subset(1+\varepsilon)K$ for small $t$. Apply the displayed bounds with $a=h_K,b=a_t$ and divide by $t$. Weak convergence of surface-area measures and uniform convergence of the quotient give the same limit in both bounds (their order reverses for $t<0$). The chain rule for the positive volume proves the formula.
+\end{proof}
+
+Taking $a_t=h_K\exp(t\log(h_L/h_K))$ in Lemma~\ref{variation}, the right derivative of \eqref{LBM} at zero yields
+\begin{equation}\label{LM}
+ \int\log(h_L/h_K)\,d\nu_K\ge\frac1n\log\frac{V(L)}{V(K)}.
+\end{equation}
+This is the familiar logarithmic Minkowski transfer~\cite[Lemma 3.2]{BLYZ}; Lemma~\ref{variation} records why it also applies to nonsmooth bodies.
+
+\begin{proposition}\label{strict}
+For every $p>0$ and origin-symmetric convex bodies $K,L$,
+\begin{equation}\label{mixed}
+ V_p(K,L):=\frac1n\int h_L^p h_K^{1-p}\,dS_K
+ \ge V(K)^{1-p/n}V(L)^{p/n}.
+\end{equation}
+Equality holds exactly when $L=cK$ for some $c>0$.
+\end{proposition}
+\begin{proof}
+Put $r=h_L/h_K$. Jensen's inequality and \eqref{LM} give
+\[
+ \frac{V_p(K,L)}{V(K)}=\int r^p\,d\nu_K
+ \ge\exp\left(p\int\log r\,d\nu_K\right)
+ \ge\left(\frac{V(L)}{V(K)}\right)^{p/n}.
+\]
+At equality, strict convexity of the exponential forces $r=c$ only $S_K$-almost everywhere, where $c=(V(L)/V(K))^{1/n}$. This does not imply pointwise equality of support functions when $S_K$ is singular. Instead,
+\[
+ V_1(K,L)=cV(K)=V(K)^{(n-1)/n}V(L)^{1/n}.
+\]
+Classical Minkowski equality implies $L=cK+x$. Origin symmetry forces $x=0$: two distinct centers would give invariance of a bounded body under a nonzero translation. Conversely, $L=cK$ attains equality directly.
+\end{proof}
+
+If $S_{K,p}=S_{L,p}=\mu$, then
+\[
+ V_p(K,L)=\frac1n\int h_L^p\,d\mu=V(L),\quad V_p(L,K)=V(K).
+\]
+Applying \eqref{mixed} in both orders and using $n-p>0$ shows $V(K)=V(L)$. Equality in Proposition~\ref{strict} then gives $K=L$. This proves Theorem~\ref{main}(2) and the uniqueness part of (1) for $p>0$.
+
+\section{The smooth logarithmic endpoint}
+
+We give a local-path version of the argument of He--Liu~\cite[Section 3]{HL}, so that no global regularity of a Wulff interpolation is presumed. Let $h_0,h_1$ be admissible solutions at $p=0$, and put $M=\int f\,d\omega$, $v=M/n$. Both bodies have volume $v$, and their cone-volume probability measure is $f\,d\omega/M$.
+
+For any symmetric body $L$ define the scale-invariant functional
+\[
+ F(L)=\frac1M\int f\log h_L\,d\omega-\frac1n\log V(L).
+\]
+Inequality \eqref{LM} says that each solution is a global minimizer of $F$. Applying it in both orders shows $F(h_0)=F(h_1)$; their equal volumes then imply that their logarithmic integrals agree.
+
+Set $w=\log(h_1/h_0)$ and $q_t=h_0e^{tw}$. For $t$ in a neighborhood of zero, $\Q(q_t)>0$ by openness of positive definiteness on the compact sphere. Hence $q_t$ is itself a smooth positive support function. For sufficiently small $t\ge0$, \eqref{LBM} implies $V(q_t)\ge v$. The logarithmic integral defining $F(q_t)$ is affine in $t$ and equal at the two endpoints, thus constant. Consequently $F(q_t)\le F(h_0)$, while global minimality gives the reverse inequality. It follows that $V(q_t)=v$ and that $q_t$ is a minimizer.
+
+Vary $q_t$ by an arbitrary smooth even $\eta$, preserving positivity and positive curvature for sufficiently small variations. The usual smooth first variation (or Lemma~\ref{variation}) gives
+\[
+ 0=\frac1M\int\frac{f\eta}{q_t}\,d\omega
+     -\frac{1}{nv}\int\eta\det\Q(q_t)\,d\omega.
+\]
+The integrand is even; since $nv=M$, arbitrary even tests show
+\begin{equation}\label{pathPDE}
+ q_t\det\Q(q_t)=f.
+\end{equation}
+It suffices to differentiate at zero from the right.
+
+Write $h=h_0$, $Q=\Q(h)$ and $A=\Q(hw)$. Since
+\[
+ \dot q_0=hw,\qquad \ddot q_0=hw^2,\qquad
+ \Q(hw^2)=2wA-w^2Q+2h\,\nabla w\otimes\nabla w,
+\]
+the first logarithmic derivative of \eqref{pathPDE} gives
+$\tr(Q^{-1}A)=-w$. The second gives
+\begin{equation}\label{endpoint}
+ 0=-\tr((Q^{-1}A)^2)-(n+1)w^2
+       +2h\,Q^{-1}(\nabla w,\nabla w).
+\end{equation}
+The trace is nonnegative: $Q^{-1}A$ is similar to the real symmetric matrix $Q^{-1/2}AQ^{-1/2}$. At both a maximum and a minimum of $w$, the gradient term vanishes, and \eqref{endpoint} forces $w=0$. Thus $w\equiv0$ and $h_0=h_1$. This proves smooth uniqueness at $p=0$, including $n=2$. The dimension convention and derivative calculation are given explicitly to avoid relying on notation or algebra slips in the cited presentation.
+
+\section{Existence, regularity and the endpoint boundary}
+
+For existence we apply the symmetry-preserving theorem of Bianchi, B\"or\"oczky, Colesanti and Yang~\cite[Theorem 1.7 and Proposition 7.3]{BBCY}: for $-n<p<1$ and a density bounded above and below by positive constants, there is a convex-body solution of the $L_p$ measure equation, preserving invariance under a closed subgroup of $O(n)$. Apply this with $G=\{I,-I\}$ and density $f$. The resulting full-dimensional symmetric body has $0\in\operatorname{int}K$, hence $h_K>0$.
+
+The standard positive-support regularity theorem, as stated and proved in Chou--Wang~\cite[Proposition 1.2 and Section 6]{CW}, gives $h\in C^{2,\alpha}$ and then $C^{k+2,\alpha}$ for smooth positive data. Local strict convexity needed there follows from positive bounded Monge--Amp\`ere density in affine support charts; see also Bianchi--B\"or\"oczky--Colesanti~\cite[Theorem 1.1(i),(iv)]{BBC}. The measure equation is nonsingular because $\min h>0$. For $n=2$ the chart equation is a scalar second-order equation and the same regularity conclusion follows directly. Convexity gives $\Q(h)\ge0$; the positive determinant in \eqref{PDE} makes every eigenvalue strictly positive. Interior elliptic bootstrapping yields $C^\infty$. This proves existence in Theorem~\ref{main}(1).
+
+The endpoint restriction is necessary. For the box $B(a)=\prod_{i=1}^n[-a_i,a_i]$, $a_i>0$, the atoms of $S_{B(a)}$ at $\pm e_i$ have mass $V(B(a))/(2a_i)$. Since $h_{B(a)}(\pm e_i)=a_i$, every atom of $S_{B(a),0}$ has mass $V(B(a))/2$. Thus $B(1,\ldots,1)$ and $B(s,s^{-1},1,\ldots,1)$, $s>0$, $s\ne1$, are distinct symmetric equal-volume bodies with identical $L_0$ measure. The corresponding cone-volume atoms have mass $V/(2n)$. Smooth positive data in Theorem~\ref{main}(1) exclude this singular example.
+
+\paragraph{Verification and disclosure.}
+The accompanying package records pinned source hashes, independent analytic dependency audits, priority searches, and exact rational checks of the upstream tensor identity. Finite checks support the audit; they are not a substitute for its general algebraic proof. The actual upstream Lean declaration is \texttt{OAI.LogBrunnMinkowski.}\allowbreak\texttt{main}, distinct from its intentionally unfinished comparator. Its source statement was checked; a kernel rebuild was attempted but could not be completed because of available disk space. No reproduced Lean certification is claimed, and the present follow-on theorem is not formalized. The mathematical basis is the audited analytic proof and the explicit deductions above. OpenAI's source collection contains work at different verification stages. This note has not undergone conventional human peer review or refereeing at publication. AI tools were used extensively for research, drafting and verification. Automated adversarial reviews are not human peer review.
+
+\begin{thebibliography}{10}
+\bibitem{OAI} OpenAI, \emph{The logarithmic Brunn--Minkowski conjecture}, OpenAI Math Release preprint, manuscript dated September 23, 2026. \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-logarithmic-Brunn-Minkowski-conjecture-September-23-2026/paper.pdf}{Pinned source manuscript}. Citation follows the manuscript-specific repository entry.
+\bibitem{BLYZ} K. J. B\"or\"oczky, E. Lutwak, D. Yang and G. Zhang, \emph{The log-Brunn--Minkowski inequality}, Adv. Math. 231 (2012), 1974--1997. \href{https://doi.org/10.1016/j.aim.2012.07.015}{doi:10.1016/j.aim.2012.07.015}.
+\bibitem{KM} A. V. Kolesnikov and E. Milman, \emph{Local $L^p$-Brunn--Minkowski inequalities for $p<1$}, Mem. Amer. Math. Soc. 277 (2022), no. 1360. \href{https://arxiv.org/abs/1711.01089v3}{arXiv:1711.01089v3}; \href{https://doi.org/10.1090/memo/1360}{doi:10.1090/memo/1360}.
+\bibitem{HL} W. He and J. Liu, \emph{On the uniqueness of even $L_p$-Minkowski problem}, October 24, 2025. \href{https://arxiv.org/abs/2510.21530v1}{arXiv:2510.21530v1}.
+\bibitem{BFR} K. J. B\"or\"oczky, A. Figalli and J. P. G. Ramos, \emph{Isoperimetric Inequalities, Brunn--Minkowski Theory and Minkowski-Type Monge--Amp\`ere Equations on the Sphere}, EMS Press, 2026. \href{https://www.renyi.hu/~carlos/Book-Brunn-Minkowski.pdf}{Author-hosted book}.
+\bibitem{Stancu} A. Stancu, \emph{A PDE approach to geometric inequalities}, in Convex Geometry and its Applications, Oberwolfach Reports 15 (2018), Report 54, 3262--3264. \href{https://doi.org/10.4171/OWR/2018/54}{doi:10.4171/OWR/2018/54}.
+\bibitem{BBCY} G. Bianchi, K. J. B\"or\"oczky, A. Colesanti and D. Yang, \emph{The $L_p$-Minkowski problem for $-n<p<1$}, Adv. Math. 341 (2019), 493--535. \href{https://arxiv.org/abs/1710.04401v2}{arXiv:1710.04401v2}; \href{https://doi.org/10.1016/j.aim.2018.10.032}{doi:10.1016/j.aim.2018.10.032}.
+\bibitem{CW} K.-S. Chou and X.-J. Wang, \emph{The $L_p$-Minkowski problem and the Minkowski problem in centroaffine geometry}, Adv. Math. 205 (2006), 33--83. \href{https://doi.org/10.1016/j.aim.2005.07.004}{doi:10.1016/j.aim.2005.07.004}.
+\bibitem{BBC} G. Bianchi, K. J. B\"or\"oczky and A. Colesanti, \emph{Smoothness in the $L_p$ Minkowski problem for $p<1$}, J. Geom. Anal. 30 (2020), 680--705. \href{https://doi.org/10.1007/s12220-019-00161-y}{doi:10.1007/s12220-019-00161-y} (published online 2019).
+\end{thebibliography}
+\end{document}
