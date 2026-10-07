@@ -997,7 +997,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 989 | 2800903 / AMR-027-0903 | 10 Lectures and 42 Open Problems — Tightness of k-median LP | 0.0908 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 989 | 2800903 / AMR-027-0903 | 10 Lectures and 42 Open Problems — Tightness of k-median LP | 0.0908 | 5.0 | 3 | 2015 | unsolved | 5/5 |  | [Accepted partials](attempts/2800903/ROOT_ACCEPTANCE.md): strict planar gap; line integrality; fixed-n Gaussian failure; near-one value ratio; replicated finite-sample gaps. Joint asymptotic question unresolved; independently audited; verifier/source wording corrections adopted. |  |
 | 990 | 30002760 / OWR-13487-001 | Optimal Adaptive Approximation of Transport-Dominated Equations | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 991 | 30002842 / OWR-13673-012 | Finiteness of Automorphism Groups of Rational Vertex Operator Algebras | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 992 | 30003081 / OWR-14222-009 | Higher-Dimensional Theory of Unexpected Curves | 0.0905 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
