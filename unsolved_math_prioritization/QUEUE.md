@@ -964,7 +964,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
-| 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | unsolved | 5/5 |  | 2026-10-07: Twelve scoped partial results accepted by independent audit without correction; full diameter constant and ratio three remain unresolved. Known typical distances credited to Lions; strict gap credited to Budzinski-Chapuy-Louf. Five approaches; 57,292 exact author controls plus 12 Decimal diagnostics and 15,042 independent controls. Source-free report, audit and portable verifier: [packet](attempts/30005926/README.md). No novelty or human peer-review claim. |  |
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
