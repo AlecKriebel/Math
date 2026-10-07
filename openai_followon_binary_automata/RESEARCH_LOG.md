@@ -148,3 +148,16 @@ FINAL_RESULT.md records results, scope, attribution, review cycles, service
 receipts and the still-unreproduced formal validation limitation. The four
 immutable deposit files retain their candidate04 identities. Live workflow
 ledgers now reflect completion; the ZIP keeps its historical reviewed copies.
+
+## 2026-10-06 21:38 PDT / 2026-10-07 04:38 UTC — final custody checkpoint
+
+Mathematical resolution: 100% best guess. Publication package: 100% best guess.
+Sources, frozen upload files, metadata, publication receipts and exact tracker
+readback were pushed on remote main at 3a6c1cebf1b0ac0b67e5cd28582931245a9a15f2.
+Read-only Git verification confirmed all five frozen identities plus final
+publication receipt, tracker receipt and FINAL_RESULT against remote blobs;
+shared main branch and checkout HEAD remain preserved. A separate final
+receipt auditor independently retrieved the public record/API, downloaded
+all four files and resolved the DOI, and cross-checked all tracker receipts
+and final claims. No inconsistency found. Its report and the Git verification
+receipt are included in this final documentation checkpoint.
