@@ -1,0 +1,685 @@
+{
+  "schema": "upstream-extra-adversarial-review/v1",
+  "receipt_created_utc": "2026-10-07T06:22:03Z",
+  "reviewer": "/root/complete_package_e/upstream_adversary",
+  "source_root": "/Users/alec/Desktop/math",
+  "pinned_commit": "adc7f1241b42e322a6451854ab7e4b4c146bf78a",
+  "source_clone_read_only": true,
+  "original_review_observed_head_matches_pin": true,
+  "original_review_observed_git_status_clean": true,
+  "receipt_write_root": "/Users/alec/Documents/Math/openai_followon_finite_fields/receipts/package_review_e_work/upstream_extra",
+  "claim_under_review": "The family142 upstream chain suffices for deterministic prime-field roots and polynomial factoring in time polynomial in degree and log(p), for all prime p, using the family029 all-cyclotomic zero-free theorem where needed.",
+  "outcome": "no_material_upstream_proof_gap_or_counterexample_identified_in_scoped_audit",
+  "outcome_is_full_formal_or_executable_certification": false,
+  "receipt_only_followup": true,
+  "checks_rerun_during_preservation": false,
+  "broad_package_tests_rerun": false,
+  "other_reviewer_verdicts_used_as_evidence": false,
+  "provenance": {
+    "scripts_existed_as_files_before_preservation": false,
+    "scripts_reconstructed_from_recorded_executed_tool_commands": true,
+    "analytic_script_reformatted_without_changing_calculation": true,
+    "algebra_scripts_and_stdout_match_child_supplied_original_byte_hashes": true,
+    "observed_stdout_is_preserved_original_execution_output": true,
+    "original_inline_commands_exit_code": 0,
+    "child_reviewer": "/root/complete_package_e/upstream_adversary/algebra_checks",
+    "independent_geometry_reviewer": "/root/complete_package_e/upstream_adversary/algebra_checks/geometry_adversary"
+  },
+  "checks": [
+    {
+      "id": "source-integrity-subset",
+      "script": "analytic_local_checks.py",
+      "observed_stdout": "analytic_local_observed_stdout.txt",
+      "result": "passed",
+      "manifest_files_checked": 28,
+      "mismatches": [],
+      "scope": "family142 build files, family029 build sections, and lean/docs/003.md, selected exactly by the preserved script",
+      "interpretation": "Integrity evidence; files included here are not all mathematically audited."
+    },
+    {
+      "id": "C-local-direct-enumeration",
+      "script": "analytic_local_checks.py",
+      "observed_stdout": "analytic_local_observed_stdout.txt",
+      "result": "passed",
+      "residue_prime": 13,
+      "sextic_character_generator": 2,
+      "t_values": [
+        0,
+        1,
+        3
+      ],
+      "k_values": [
+        0,
+        1,
+        2
+      ],
+      "J_values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cases": 54,
+      "maximum_absolute_error": 7.190186943645084e-11,
+      "failure_tolerance": 1e-08,
+      "failed_cases": [],
+      "arithmetic": "floating-complex",
+      "interpretation": "Finite consistency check of stripped local C-sum evaluation, including absent-modulus and unit-mask conventions; not a proof for arbitrary residue fields."
+    },
+    {
+      "id": "analytic-numerical-margins",
+      "script": "analytic_local_checks.py",
+      "observed_stdout": "analytic_local_observed_stdout.txt",
+      "result": "passed",
+      "arithmetic": "exact rational fractions",
+      "reflection_margin": "-1/6000",
+      "good_row_margin": "-377/300000",
+      "far_row_margin_at_epsilon_zero": "-5297/300000",
+      "interpretation": "These arithmetic identities check the displayed exponent margins. The far-frequency formula retains a positive 0.10001*epsilon correction; the recorded margin evaluates epsilon=0."
+    },
+    {
+      "id": "cyclic-coefficientwise-maximum",
+      "script": "maximum_and_digits.py",
+      "observed_stdout": "maximum_and_digits.stdout.txt",
+      "result": "passed",
+      "q_values": [
+        3,
+        5,
+        7
+      ],
+      "coefficient_range": [
+        -2,
+        2
+      ],
+      "constraint": "sum(e)=0",
+      "vectors_checked_by_q": {
+        "3": 19,
+        "5": 381,
+        "7": 8135
+      },
+      "arithmetic": "exact integer",
+      "assertion": "V-sigma(V)=E for V=max(0,E,E+sigma(E),...,E+...+sigma^(q-2)(E))",
+      "interpretation": "Finite exhaustive check of the identity, supplementing the direct cyclic-list proof."
+    },
+    {
+      "id": "primary-digit-recovery",
+      "script": "maximum_and_digits.py",
+      "observed_stdout": "maximum_and_digits.stdout.txt",
+      "result": "passed",
+      "q_values": [
+        3,
+        5,
+        7
+      ],
+      "s_values": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "exponents": "every exponent in [0,q^s) for each q,s",
+      "cases": 3700,
+      "arithmetic": "exact integer modular exponent representation",
+      "assertions": [
+        "Each next base-q digit is unique",
+        "Recovered integer equals original exponent",
+        "If q divides exponent, division gives a q-th root exponent"
+      ],
+      "interpretation": "Check in abstract cyclic exponent groups; does not implement field arithmetic or product-of-fields gcd partitioning."
+    },
+    {
+      "id": "infinity-lattice-obstruction",
+      "script": "infinity_lattice.py",
+      "observed_stdout": "infinity_lattice.stdout.txt",
+      "result": "passed",
+      "q_values": [
+        3,
+        5,
+        7,
+        11
+      ],
+      "r_values": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "a_values": "1<=a<=12, q does not divide a",
+      "N": "q^r*a",
+      "m": "1+(q-1)*r",
+      "initial_vector": "[-N,N,0,...,0]",
+      "cases": 160,
+      "arithmetic": "exact rational fractions",
+      "assertion": "Degree-zero divisions by 1-sigma are integral through W_m and the next division is nonintegral",
+      "interpretation": "Finite check of the integer lattice model underlying the separation obstruction; does not independently implement the curve/Jacobian arguments."
+    }
+  ],
+  "computation_source_locations": [
+    {
+      "family": "029",
+      "file": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/05-poisson.tex",
+      "line_ranges": [
+        [
+          498,
+          513
+        ],
+        [
+          552,
+          595
+        ]
+      ],
+      "labels": [
+        "eq:C-local-definition",
+        "eq:C-local-values",
+        "eq:C-local-bounds"
+      ],
+      "checks": [
+        "C-local-direct-enumeration"
+      ],
+      "source_sha256": "bd5e53c2d9436aa1c621dca2d1c423035b610b423f064f7d5b6e19f3d9f31992"
+    },
+    {
+      "family": "029",
+      "file": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/02a-coefficient-family.tex",
+      "line_ranges": [
+        [
+          69,
+          75
+        ]
+      ],
+      "checks": [
+        "analytic-numerical-margins"
+      ],
+      "source_sha256": "f1475ab4cd3f46283787c76d0301b63063cd602849d8f61f80c011ba54cfa940"
+    },
+    {
+      "family": "029",
+      "file": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/06-zero-free.tex",
+      "line_ranges": [
+        [
+          377,
+          385
+        ],
+        [
+          573,
+          580
+        ],
+        [
+          618,
+          626
+        ],
+        [
+          653,
+          664
+        ]
+      ],
+      "labels": [
+        "eq:good-numerical-margin",
+        "eq:far-frequency-exponent"
+      ],
+      "checks": [
+        "analytic-numerical-margins"
+      ],
+      "source_sha256": "c565166640d5e8210a2af70f00f6b9072112033a182ec7dede17e1517e76be33"
+    },
+    {
+      "family": "142",
+      "file": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/06-division.tex",
+      "line_ranges": [
+        [
+          100,
+          119
+        ]
+      ],
+      "labels": [
+        "div:maximum"
+      ],
+      "checks": [
+        "cyclic-coefficientwise-maximum"
+      ],
+      "source_sha256": "cf4edc99584ef070d2a7f24c9f217bc525c0b27a3f3aa422e9aeeb3ea4cef169"
+    },
+    {
+      "family": "142",
+      "file": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/02-finite-fields.tex",
+      "line_ranges": [
+        [
+          70,
+          94
+        ]
+      ],
+      "labels": [
+        "ff:digit"
+      ],
+      "checks": [
+        "primary-digit-recovery"
+      ],
+      "source_sha256": "a55ede868711f34fcca8c3adb788611e0c1bed4653bef1e568f67467fbe5dde2"
+    },
+    {
+      "family": "142",
+      "file": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/05-geometry.tex",
+      "line_ranges": [
+        [
+          412,
+          493
+        ]
+      ],
+      "labels": [
+        "geom:separation",
+        "geom:separation-data",
+        "geom:lattice-obstruction"
+      ],
+      "checks": [
+        "infinity-lattice-obstruction"
+      ],
+      "source_sha256": "a1291e26082593224df707cc5914976c0e764378bf633b87c2e5f3fde6d62094"
+    }
+  ],
+  "manual_audit_scope": {
+    "mapping_documents_read": [
+      "/Users/alec/Documents/Math/openai_followon_finite_fields/DEPENDENCY_LEDGER.md",
+      "/Users/alec/Documents/Math/openai_followon_finite_fields/sources/SOURCE_MANIFEST.json"
+    ],
+    "mapping_documents_used_as_proof_evidence": false,
+    "family142": {
+      "analytic_reviewer": "/root/complete_package_e/upstream_adversary",
+      "analytic_file_read_completely": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/10-analytic.tex",
+      "pivotal_lines": [
+        [
+          100,
+          157
+        ]
+      ],
+      "algebra_reviewer": "/root/complete_package_e/upstream_adversary/algebra_checks",
+      "algebra_sections_read_completely": [
+        "00-introduction.tex",
+        "01-table.tex",
+        "02-finite-fields.tex",
+        "03-norms.tex",
+        "04-divisors.tex",
+        "05-geometry.tex",
+        "06-division.tex",
+        "07-odd-split.tex",
+        "08-driver.tex",
+        "09-complexity.tex"
+      ],
+      "independent_secondary_geometry_scope": [
+        "04-divisors.tex",
+        "05-geometry.tex",
+        "06-division.tex"
+      ],
+      "specific_algebra_lines": {
+        "01-table.tex": [
+          [
+            47,
+            171
+          ],
+          [
+            179,
+            223
+          ]
+        ],
+        "02-finite-fields.tex": [
+          [
+            35,
+            62
+          ],
+          [
+            70,
+            94
+          ],
+          [
+            106,
+            206
+          ],
+          [
+            224,
+            272
+          ]
+        ],
+        "03-norms.tex": [
+          [
+            59,
+            210
+          ],
+          [
+            226,
+            352
+          ],
+          [
+            382,
+            520
+          ],
+          [
+            549,
+            595
+          ]
+        ],
+        "04-divisors.tex": [
+          [
+            79,
+            164
+          ],
+          [
+            182,
+            257
+          ],
+          [
+            266,
+            312
+          ],
+          [
+            328,
+            376
+          ]
+        ],
+        "05-geometry.tex": [
+          [
+            128,
+            280
+          ],
+          [
+            296,
+            401
+          ],
+          [
+            412,
+            493
+          ]
+        ],
+        "06-division.tex": [
+          [
+            49,
+            140
+          ]
+        ],
+        "07-odd-split.tex": [
+          [
+            108,
+            243
+          ]
+        ],
+        "08-driver.tex": [
+          [
+            44,
+            221
+          ]
+        ],
+        "09-complexity.tex": [
+          [
+            33,
+            302
+          ]
+        ]
+      },
+      "findings": [
+        "No algebraic proof gap was identified in the audited norm, divisor, forced-separation, division, driver, and complexity chain.",
+        "The analytic stage isolates its use of the all-cyclotomic family029 zero-free theorem; the narrower Lean family003 declarations are insufficient for this step.",
+        "The inspected analytic argument treats K=Q(mu_(12q),p^(1/q)), its degree-q cyclic extension over M=Q(mu_(12q)), discrimination log(D_K)+[K:Q]=O(B^3), and the positive main term at x=T*B^20000000; completely split degree-one first powers cancel in Psi_K-Psi_M/q."
+      ]
+    },
+    "family029": {
+      "reviewer": "/root/complete_package_e/upstream_adversary",
+      "sections_read_for_required_zero_free_chain": [
+        "02-arithmetic.tex",
+        "02a-coefficient-family.tex",
+        "03-theta.tex",
+        "04-reflection.tex",
+        "05-poisson.tex",
+        "06-zero-free.tex",
+        "10-whittaker-calculation.tex"
+      ],
+      "additional_scope": "Relevant family029 section01 theorem statements and exact scope",
+      "pivotal_final_mellin_lines": {
+        "file": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/06-zero-free.tex",
+        "line_ranges": [
+          [
+            691,
+            764
+          ]
+        ]
+      },
+      "findings": [
+        "No gap was identified in the required coefficient/reflection/Poisson/moment/Mellin chain under the cited primary-input hypotheses.",
+        "The final Mellin step gives holomorphy for Re(s)>1-1/20000 with field-dependent onset but fixed saving and nonzero correction, sufficient for the stated narrower Re(s)>1-1e-6 strip.",
+        "The local convention tests and exact numerical margins agree with the manuscript in their explicitly recorded finite scope."
+      ]
+    },
+    "family003_lean": {
+      "actual_declarations_read": [
+        {
+          "file": "lean/OAI/NumberTheory/DirichletL/Nonvanishing.lean",
+          "line_ranges": [
+            [
+              19,
+              24
+            ]
+          ],
+          "source_sha256": "d98c4a7e074469b429890e1c21b8cc76c410026525a776895293cdc0f9e6ae89"
+        },
+        {
+          "file": "lean/OAI/NumberTheory/DirichletL/Hecke/Nonvanishing.lean",
+          "line_ranges": [
+            [
+              13,
+              24
+            ]
+          ],
+          "source_sha256": "9e120752d0067e9b645f173846833396de6282dfa83dff7dc83b7fd500af47d5"
+        },
+        {
+          "file": "lean/OAI/NumberTheory/DirichletL/Hecke/Family.lean",
+          "line_ranges": [
+            [
+              13,
+              29
+            ],
+            [
+              91,
+              91
+            ]
+          ],
+          "source_sha256": "9871d175749b34ec40cf66ccc14b4faa0a9ef08831cb3fa901c944e57c7b9ec6"
+        },
+        {
+          "file": "lean/OAI/NumberTheory/DirichletL/Hecke/IdealBridge.lean",
+          "line_ranges": [
+            [
+              80,
+              100
+            ]
+          ],
+          "source_sha256": "6c1fc33b7372108323bf3af3d4ab6f6e454ea9896b89e78964463a8e35df735f"
+        }
+      ],
+      "finding": "Read declarations cover Dirichlet L-functions and the Eisenstein cyclotomic field K=CyclotomicField 3 Q. They do not establish the required all-cyclotomic zero-free claim. Comparator files containing sorry were not confused with the actual solution declarations.",
+      "kernel_build_performed": false,
+      "complete_transitive_lean_graph_audited": false
+    },
+    "primary_external_inputs_checked": [
+      {
+        "source": "Kazhdan-Patterson original metaplectic-forms paper",
+        "url": "https://pmihes.centre-mersenne.org/item/10.1007/BF02698770.pdf",
+        "checked": [
+          "Corollary I.3.6 uniqueness conditions for (r,n,c)=(2,3,2)",
+          "Theorem II.2.5 global nonzero and all-place uniqueness",
+          "I.6.4/I.6.5 complex-place conditions"
+        ]
+      },
+      {
+        "source": "Kazhdan-Patterson erratum",
+        "url": "https://www.numdam.org/item/PMIHES_1985__62__203_0.pdf",
+        "checked": [
+          "II.2.2/II.2.3 coefficient normalization T(S) correction and withdrawn spherical vanishing; audited appendix instead uses actual nonzero functional and local uniqueness"
+        ]
+      },
+      {
+        "source": "Goldmakher-Louvel",
+        "url": "https://arxiv.org/pdf/1112.1642",
+        "checked": [
+          "Definition 1 quadratic-family hypotheses including primitive characters, reciprocity, and conductor product"
+        ]
+      },
+      {
+        "source": "Hasanalizade-Shen-Wong Dedekind zero count",
+        "url": "https://www-math.nsysu.edu.tw/~pjwong/stuff/DedekindZeros.pdf",
+        "checked": [
+          "Corollary 1.2 / equation (1.3), pages 277-278, uniform log(D)+degree*log(T) error"
+        ]
+      }
+    ]
+  },
+  "uninspected_or_unverified": [
+    "A complete executable implementation of the upstream norm/curve/Jacobian algorithms was not run or certified.",
+    "The full transitive Lean dependency graph was not built or audited.",
+    "The cited classical results were checked for relevant statements and hypotheses, not completely reproved.",
+    "Later family029 primitive-root construction sections 07-12 were not audited as a complete chain; section10 Whittaker calculations were audited for the required earlier theorem.",
+    "Historical novelty and priority claims were not audited.",
+    "Finite tests and negative exponent arithmetic margins alone cannot establish the complete analytic theorem or the all-prime runtime theorem."
+  ],
+  "integrity_checked_manifest_entries": [
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/main.tex",
+      "bytes": 2664,
+      "sha256": "63f11345d68e1388434ab25559dc3d8c5acc2f5e32edc36e1da756ddac350a25"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/references.tex",
+      "bytes": 5419,
+      "sha256": "466e2fc1bb1741da914d2f604857392528d01a93d42c66d7f23b436bb53a94c8"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/00-introduction.tex",
+      "bytes": 15019,
+      "sha256": "a7048b62d7a31c5029827ad5db7e32187f5d29035138d6cc0677d48309a05af9"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/01-table.tex",
+      "bytes": 10335,
+      "sha256": "3cec5c2a6de5fe8b8759cdc20fd2c11723de54774c7e385626e3caa60ad92639"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/02-finite-fields.tex",
+      "bytes": 13407,
+      "sha256": "a55ede868711f34fcca8c3adb788611e0c1bed4653bef1e568f67467fbe5dde2"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/03-norms.tex",
+      "bytes": 28336,
+      "sha256": "25c456356962e8ccc68e22e2b7c81feb4f0dc854fba9e0f3bdcb8cfb0f762d2f"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/04-divisors.tex",
+      "bytes": 18116,
+      "sha256": "59a8b0d3e550838ef2cb507e2d06984bf21862d97d93f689e49488cf21e5a1d9"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/05-geometry.tex",
+      "bytes": 21790,
+      "sha256": "a1291e26082593224df707cc5914976c0e764378bf633b87c2e5f3fde6d62094"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/06-division.tex",
+      "bytes": 5885,
+      "sha256": "cf4edc99584ef070d2a7f24c9f217bc525c0b27a3f3aa422e9aeeb3ea4cef169"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/07-odd-split.tex",
+      "bytes": 10639,
+      "sha256": "b77810b3c92751113f2da014d96227970a5f8b89bdb21dac34d17c69a2abb02b"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/08-driver.tex",
+      "bytes": 10716,
+      "sha256": "2424818377cd664f42cf95da862733ad28932c525ce0b2fac18830443709440e"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/09-complexity.tex",
+      "bytes": 16081,
+      "sha256": "b9b69f8a0515a2af0d9b2a8e037809bab138aef74b0388b6ce74d8df3efb045a"
+    },
+    {
+      "path": "preprints/Deterministic-Polynomial-Factorization-over-Prime-Fields-October-4-2026/build/sections/10-analytic.tex",
+      "bytes": 7603,
+      "sha256": "61a920fb8ef1e22d487b8dbeaaf3d3bd98328d08992807b40ed20b467ce0645e"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/00-abstract.tex",
+      "bytes": 294,
+      "sha256": "de0df3726b43ba017a1b90a8b1fa2e64e790681b8335c469e045306298144ec6"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/01-introduction.tex",
+      "bytes": 11406,
+      "sha256": "5cb01a814c568efa5bb6324ecfb9d556ea367e11fa5d59f455a5b203f9ce390d"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/01a-reduction.tex",
+      "bytes": 8873,
+      "sha256": "1d8ea455588d7c1ab9fd9f9d17bb2003bb63ee65fa6bc6f54d6490e87b6904bf"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/02-arithmetic.tex",
+      "bytes": 28317,
+      "sha256": "892ce2d22b787810e4e7dc3dda9ac54877a3b749e5cc87c1e21868c1a72f492b"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/02a-coefficient-family.tex",
+      "bytes": 8186,
+      "sha256": "f1475ab4cd3f46283787c76d0301b63063cd602849d8f61f80c011ba54cfa940"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/03-theta.tex",
+      "bytes": 33823,
+      "sha256": "fb55e83219ef28a92f0be4f5fce77207be96c6573c3660e5182eb0f435016587"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/04-reflection.tex",
+      "bytes": 56788,
+      "sha256": "d76f23137518b7b6ffb491f86598570ec1a89adf43320775eafed5661ce30407"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/05-poisson.tex",
+      "bytes": 32657,
+      "sha256": "bd5e53c2d9436aa1c621dca2d1c423035b610b423f064f7d5b6e19f3d9f31992"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/06-zero-free.tex",
+      "bytes": 32624,
+      "sha256": "c565166640d5e8210a2af70f00f6b9072112033a182ec7dede17e1517e76be33"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/07-splitting.tex",
+      "bytes": 10268,
+      "sha256": "b8dc6a9385c2bf695544b5b81e8460dd053083f2346dc6a1d8a81f6dfc084a94"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/08-type-ii.tex",
+      "bytes": 25322,
+      "sha256": "97b1d9b0456a5951a25bbd9ee297da2c275a9c63e202aef139ad63e2c834794e"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/10-whittaker-calculation.tex",
+      "bytes": 23337,
+      "sha256": "79aee3e5e987775bf3d3fe834f5ec38c3a7775a7fa044c9891d7925abe31291a"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/11-sieve.tex",
+      "bytes": 10757,
+      "sha256": "e205e3b0098cad9dd3a0ede5ac5ef8f462e91ad0c90e84badc2f71352a125441"
+    },
+    {
+      "path": "preprints/Primitive-roots-for-every-admissible-integer-base-October-4-2026/build/sections/12-construction.tex",
+      "bytes": 32157,
+      "sha256": "9ab6c36980a0a20c2b9ff9460e0ba299f0c8e9c6e40b486acdfef294adde486a"
+    },
+    {
+      "path": "lean/docs/003.md",
+      "bytes": 1911,
+      "sha256": "41e52ed718260e6feb1db218f8e97287e703cb63c6f16e6c36f5563e6e2395ce"
+    }
+  ]
+}

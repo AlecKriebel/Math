@@ -9,3 +9,14 @@ Positive primary comparisons support treating the repeated quotient/degree invar
 Family142 depends on family029 uniform Hecke zero-freeness over varying cyclotomic fields containing the twelfth roots of unity, not solely family003 over Q(sqrt(-3)). Separate needed-source analytic and algebraic audits found no substantive gap; their precise limits are in the dependency ledger. No relevant Lean build or formal verification of this follow-on is claimed. The bounded exhaustive prime oracle is toy-only. No production deposit or tracker row has yet been made.
 
 Success requires a correct uniform bit model, complete proof or validated exact dependencies, current priority/attribution audit, reproducible code for feasible reductions, two complete-package review passes with final fresh review, actual production publication and verified tracker entry. Publication withheld if core dependency remains unsupported or proof is duplicated without a new in-scope contribution.
+
+## Verified final disposition
+
+## Verified production publication — 2026-10-07T06:32:15.674174+00:00
+
+Exact reviewed v5 is published as https://zenodo.org/records/23205034 with DOI10.5281/zenodo.23205034. DOI resolution is HTTP200 to that record. Public paper.pdf and verification.zip are byte-identical to the reviewed SHA256 values; remote metadata/file set passed the repository tool check->stage->inspect->publish--confirm-id23205034->inspect--check-doi sequence. Google Workspace CLI resolved numeric tabID1254632077 as Math Puzzles and appended one RAW row; independent read-back verified 'Math Puzzles'!A50:D50, exactly one DOI entry, and unchanged49 prior rows/formulas. No external individual was contacted, no GitHub release was made, and no duplicate deposit was created.
+
+Complete-package D/v4 identified runtime-portability and archival-pointer defects. Both were repaired; NEW fresh E/v5 passed the entire exact62-file package, including independent upstream and sparse proof scrutiny. Core dense consequences and the all-multiplicity sparse reduction are accepted on the explicitly documented cited-source/manual proof-review basis, not full formalization or conventional human peer review. The sparse contribution remains the compressed repeated quotient and denominator-degree invariant; classical methods/base breakthrough are attributed. No firstness or practical-efficiency claim is made.
+
+Mathematical resolution100%; publication/package completion100% subject only to recording the final owned repository push receipt. Percentages are work estimates, not evidence. The dated earlier decisions below remain historical.
+

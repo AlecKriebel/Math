@@ -1,5 +1,13 @@
 # Publication decision
 
+## Verified production publication — 2026-10-07T06:32:15.674174+00:00
+
+Exact reviewed v5 is published as https://zenodo.org/records/23205034 with DOI10.5281/zenodo.23205034. DOI resolution is HTTP200 to that record. Public paper.pdf and verification.zip are byte-identical to the reviewed SHA256 values; remote metadata/file set passed the repository tool check->stage->inspect->publish--confirm-id23205034->inspect--check-doi sequence. Google Workspace CLI resolved numeric tabID1254632077 as Math Puzzles and appended one RAW row; independent read-back verified 'Math Puzzles'!A50:D50, exactly one DOI entry, and unchanged49 prior rows/formulas. No external individual was contacted, no GitHub release was made, and no duplicate deposit was created.
+
+Complete-package D/v4 identified runtime-portability and archival-pointer defects. Both were repaired; NEW fresh E/v5 passed the entire exact62-file package, including independent upstream and sparse proof scrutiny. Core dense consequences and the all-multiplicity sparse reduction are accepted on the explicitly documented cited-source/manual proof-review basis, not full formalization or conventional human peer review. The sparse contribution remains the compressed repeated quotient and denominator-degree invariant; classical methods/base breakthrough are attributed. No firstness or practical-efficiency claim is made.
+
+Mathematical resolution100%; publication/package completion100% subject only to recording the final owned repository push receipt. Percentages are work estimates, not evidence. The dated earlier decisions below remain historical.
+
 ## Current stronger theorem — 2026-10-07 UTC
 
 Prepare the all-multiplicity sparse theorem for fresh full-package review.
