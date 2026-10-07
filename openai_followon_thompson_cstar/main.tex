@@ -1,0 +1,94 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Cr}{C^*_r}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Comm}{\operatorname{Comm}}
+\newcommand{\Homeo}{\operatorname{Homeo}}
+\title{Reduced C*-algebras of the Thompson family:\\ an attributed consequence of nonamenability}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Combining OpenAI's announced nonamenability theorem for the standard Thompson group $F$ with the published equivalences of Le Boudec and Matte Bon gives simplicity of the reduced group C*-algebras of $F$, $T$, $\Aut(F)$ and the abstract commensurator $\Comm(F)$. Their canonical traces are their unique tracial states by the discrete-group trace theorem of Breuillard, Kalantar, Kennedy and Ozawa. We record the exact hypotheses, countability and attribution, and the corresponding consequence for countable circle-homeomorphism overgroups of the standard action. The argument is an application of established reductions, not a new simplicity criterion or an independent proof of nonamenability. Unique trace for $T$ was already known unconditionally. All conclusions involving the new input have exactly the same dependency on its validity.
+\end{abstract}
+
+\section{Scope, definitions and inherited inputs}
+All groups carry the discrete topology. Thompson's group $F$ consists of the increasing piecewise-linear homeomorphisms of $[0,1]$ with finitely many pieces, dyadic breakpoints and slopes in $2^{\mathbb Z}$. It fixes both endpoints. Identifying them realizes the standard subgroup $F\leq\Homeo(\mathbb S^1)$, where $\mathbb S^1=\mathbb R/\mathbb Z$. Thompson's group $T$ consists of orientation-preserving circle homeomorphisms with finitely many dyadic linear pieces, slopes in $2^{\mathbb Z}$ and preservation of the dyadic points. Thus the specified $F$ is a subgroup of $T$.
+
+Here $\Aut(F)$ is the full abstract automorphism group, including orientation-reversing automorphisms in its line realization. The abstract commensurator $\Comm(F)$ is formed from isomorphisms between finite-index subgroups of $F$, with two identified if their restrictions agree on some common finite-index subgroup. Composition after restriction gives its group law. These are the full groups in \cite[Corollary~4.4]{LMB}, not just their orientation-preserving subgroups. Faithful line realizations are described by Brin and by Burillo--Cleary--R\"over \cite{Brin,BCR}.
+
+For a discrete group $G$, let $\lambda_g\delta_h=\delta_{gh}$ on $\ell^2(G)$. The reduced algebra $\Cr(G)$ is the norm closure of the linear span of the $\lambda_g$. Its canonical tracial state is
+\[
+ \tau_G(a)=\langle a\delta_e,\delta_e\rangle,
+ \qquad \tau_G(\lambda_g)=\begin{cases}1&g=e,\\0&g\ne e.\end{cases}
+\]
+A group is C*-simple when this \emph{reduced} algebra is simple.
+
+The nonamenability input is \cite[main theorem]{OAI}, whose manuscript is dated September~23, 2026. We pin its source at commit
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a} of \href{https://github.com/openai/math}{the OpenAI math repository}. The inspected public GitHub initial-commit timestamp is October~6, 2026, 21:58:50 UTC; the internal manuscript date does not establish earlier public availability. This note relies on that theorem. Its proof is not reproduced or reattributed here. The verification supplement records the source audit, the exact formalization scope and checks actually completed, and their limitations.
+
+\begin{theorem}[Established simplicity reductions, Le Boudec--Matte Bon]\label{thm:reductions}
+The following three statements are equivalent:
+\[
+ F\text{ is nonamenable},\qquad \Cr(F)\text{ is simple},\qquad \Cr(T)\text{ is simple}.
+\]
+The following three statements are also equivalent:
+\[
+ F\text{ is nonamenable},\quad \Cr(\Aut(F))\text{ is simple},\quad \Cr(\Comm(F))\text{ is simple}.
+\]
+If $F$ is nonamenable, every countable $G\leq\Homeo(\mathbb S^1)$ containing the specified standard subgroup $F$ is C*-simple.
+\end{theorem}
+These are exactly \cite[Corollaries~4.2 and 4.4, Theorem~4.1]{LMB}. The group identifications in Corollary~4.4 concern the full abstract groups defined above. Their proof uses the corresponding line action and Theorem~4.3. No assertion about an arbitrary abstract copy of $F$ in an unrelated action is used.
+
+\begin{theorem}[Discrete-group trace characterization, BKKO]\label{thm:trace}
+For a discrete group $G$, its reduced algebra has a unique tracial state if and only if its amenable radical $R_a(G)$ is trivial. Every C*-simple discrete group has trivial amenable radical.
+\end{theorem}
+Here $R_a(G)$ is the largest amenable normal subgroup. The characterization and the C*-simplicity consequence are \cite[Theorem~1.3 and Corollary~4.3]{BKKO}. More precisely, every tracial state on $\Cr(G)$ vanishes on $\lambda_g$ for $g\notin R_a(G)$ \cite[Theorem~4.1]{BKKO}. If the radical is trivial, density of the group algebra forces agreement with $\tau_G$. This is a theorem about reduced \emph{group} algebras; simplicity and unique trace are distinct properties of general C*-algebras.
+
+\section{The consequence and its proof}
+\begin{corollary}\label{cor:main}
+Using the nonamenability theorem of \cite{OAI}, each of
+\[
+ \Cr(F),\qquad \Cr(T),\qquad \Cr(\Aut(F)),\qquad \Cr(\Comm(F))
+\]
+is simple and has exactly one tracial state, its canonical trace.
+\end{corollary}
+\begin{proof}
+The input theorem concerns exactly the standard dyadic PL group $F$ defined above. Apply both equivalences in Theorem~\ref{thm:reductions} to obtain the four simplicity statements. Apply Theorem~\ref{thm:trace} separately to each discrete group to obtain a trivial amenable radical and therefore the unique canonical trace.
+
+For completeness, all four groups are countable, as required by the simplicity source. The finite dyadic descriptions make $F$ and $T$ countable, and $F$ is generated by two elements \cite{CFP}. An automorphism of $F$ is determined by the images of these generators, so $\Aut(F)$ is countable. A finitely generated group has finitely many subgroups of each fixed finite index: each is a point stabilizer for a permutation action on a finite set, and there are only finitely many possible images of a finite generating set in the relevant symmetric group. Each finite-index subgroup is finitely generated by Schreier's lemma. For each ordered pair of such subgroups, there are at most countably many homomorphisms, since finitely many generator images in the countable group determine one. The union of all their isomorphisms is countable, hence its quotient $\Comm(F)$ is countable.
+\end{proof}
+
+\begin{corollary}\label{cor:circle}
+Using the same input, every countable subgroup $G\leq\Homeo(\mathbb S^1)$ containing the standard circle action of $F$ has simple $\Cr(G)$ and unique canonical trace.
+\end{corollary}
+\begin{proof}
+Use Theorem~\ref{thm:reductions} and then Theorem~\ref{thm:trace}. The circle action is faithful, and the stated containment and countability are exactly the hypotheses in \cite[Theorem~4.1]{LMB}.
+\end{proof}
+The action-level formulation is inherited as well. For its mechanism, every nonempty open arc contains a smaller dyadic interval supporting an affine copy of $F$. Thus its rigid stabilizer (the pointwise stabilizer of the complement) is nonamenable. The rigid-stabilizer criterion \cite[Theorem~3.7]{LMB} applies. This explanation requires the specified local action; an arbitrary abstract embedding of $F$ is not a substitute for the containment hypothesis.
+
+\section{Prior status and verification boundaries}
+The implications used in Corollary~\ref{cor:main} were printed long before the new nonamenability input. Le Boudec--Matte Bon credit the direction from C*-simplicity of $T$ to nonamenability of $F$ to Haagerup--Olesen \cite[Theorem~5.5]{HO}. The new input belongs entirely to OpenAI. This note only collects its consequences under the existing reductions. We make no claim of a first observation, a new analytic mechanism, or an independent solution of the amenability problem.
+
+The unique-trace assertion for $T$ was already unconditional: $T$ is simple and nonamenable, hence has trivial amenable radical. Haagerup--Olesen explicitly record this and credit Dudko--Medynets \cite[discussion after Theorem~5.5]{HO}. The equivalence between nonamenability of $F$ and its reduced unique-trace property is also already explicit \cite[Remark~5.6]{HO}. Our fresh priority audit found no indexed earlier note combining the newly inspected input with this exact four-group package, but failed searches cannot prove absence or public priority. The supplement gives the dated queries and inspected corpus scope.
+
+Only reduced algebras are asserted. For any nontrivial group the full algebra $C^*(G)$ has the augmentation character and the distinct canonical regular trace pulled back from $\Cr(G)$; they differ on every nonidentity group element. Its augmentation kernel is proper and nonzero, so the full algebra is not simple. C*-simplicity also does not mean abstract group simplicity: $F$ has proper normal subgroups, including its derived subgroup \cite{CFP}. C*-simplicity of $V$ and $nV$ was already known \cite[Theorems~1.5 and 4.5]{LMB} and is not a new consequence claimed here.
+
+\paragraph{Disclosure.} AI tools were used extensively in research, source inspection, drafting and verification. The upstream work is itself attributed to OpenAI according to its supplied citation. Automated adversarial reviews are not human peer review. This preprint has not undergone conventional human peer review or refereeing at publication. The proofs and dependency records are provided for independent inspection; any material defect in the nonamenability input would remove the unconditional status of the conclusions depending on it, while the established conditional reductions and $T$'s unique trace would remain valid.
+
+\begin{thebibliography}{9}
+\bibitem{OAI} OpenAI, \emph{Thompson's group $F$ is nonamenable}, OpenAI Math Release preprint, 2026, manuscript dated September 23. \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Thompsons-group-F-is-nonamenable-September-23-2026/paper.pdf}{Pinned source and paper}.
+\bibitem{LMB} A. Le Boudec and N. Matte Bon, \emph{Subgroup dynamics and C*-simplicity of groups of homeomorphisms}, Ann. Sci. \`Ec. Norm. Sup\'er. (4) \textbf{51} (2018), 557--602. \href{https://doi.org/10.24033/asens.2361}{doi:10.24033/asens.2361}; \href{https://arxiv.org/abs/1605.01651}{arXiv:1605.01651}.
+\bibitem{BKKO} E. Breuillard, M. Kalantar, M. Kennedy and N. Ozawa, \emph{C*-simplicity and the unique trace property for discrete groups}, Publ. Math. IH\'ES \textbf{126} (2017), 35--71. \href{https://doi.org/10.1007/s10240-017-0091-2}{doi:10.1007/s10240-017-0091-2}.
+\bibitem{CFP} J. W. Cannon, W. J. Floyd and W. R. Parry, \emph{Introductory notes on Richard Thompson's groups}, Enseign. Math. (2) \textbf{42} (1996), 215--256. \href{https://doi.org/10.5169/seals-87877}{doi:10.5169/seals-87877}.
+\bibitem{Brin} M. G. Brin, \emph{The chameleon groups of Richard J. Thompson: automorphisms and dynamics}, Publ. Math. IH\'ES \textbf{84} (1996), 5--33. \href{https://doi.org/10.1007/BF02698834}{doi:10.1007/BF02698834}.
+\bibitem{BCR} J. Burillo, S. Cleary and C. E. R\"over, \emph{Commensurations and subgroups of finite index of Thompson's group $F$}, Geom. Topol. \textbf{12} (2008), 1701--1709. \href{https://doi.org/10.2140/gt.2008.12.1701}{doi:10.2140/gt.2008.12.1701}.
+\bibitem{HO} U. Haagerup and K. K. Olesen, \emph{Non-inner amenability of the Thompson groups $T$ and $V$}, J. Funct. Anal. \textbf{272} (2017), 4838--4852. \href{https://doi.org/10.1016/j.jfa.2017.02.003}{doi:10.1016/j.jfa.2017.02.003}. The arXiv version numbers the cited theorem and remark 4.5 and 4.6.
+\end{thebibliography}
+\end{document}
