@@ -1,11 +1,14 @@
-# Independent approach families
+# Independent approach families — checkpoint 02
 
 | Family | Mechanism | Evidence | Status | Exact remaining gap |
 |---|---|---|---|---|
-| A: upstream analytic/geometric | Stable cone reduction, orbifold curve, tensor weight estimate, fourfold base | Pinned sources; independent geometric audit | Active | Verify all central lemmas and cited hypotheses |
-| B: upstream algebraic/combinatorial | Jet interiority, adjoint lifting, exact saturation, filtrations, slice supremum bootstrap | Pinned sources; independent semigroup audit and root bootstrap inspection | Active | Falsify or prove lifting/saturation and Rees comparison |
-| C: metric transfer | Global Reeb minimization converts upper infimum bound to upper metric density | Li–Liu primary source; independent bridge audit | Active | klt/Q-canonical setup and normalization |
-| D: moduli transfer | Density bounds -> Cartier L -> Fujita cubic -> CM/GIT -> moduli continuity | Spotti–Sun primary §§3–5 | Active | Exact complex topology and modern coarse-space statement |
-| E: priority | Lower dimensions, smooth existence, modern higher-dimensional cubic literature and companion duplicates | Independent primary literature search | Active | Earliest public equivalent theorem, novelty attribution |
+| A: upstream geometric | Cone reduction, orbifold curve/tensor weights, fourfold base | Full scoped geometric audit + rational arithmetic | Audited, no blocker found | Published external inputs not reproved; no formal certification |
+| B: upstream algebraic | Jet moments, adjoint lifting, saturation, filtrations, slice supremum | Complete §§04–07 independent audit + root reading | Audited, no blocker found | External stable-degeneration/uniqueness assumptions inherited |
+| C: metric bridge | Reeb global minimum, density identity; cover split for top form | Complete Li–Liu proof inspection and cone hypotheses | Verified conditional transfer | Depends on algebraic gap input; smooth links only, singular links by iteration |
+| D: moduli | Cartier root, Fujita, CM positivity, complex continuity | Detailed primary-source transfer audit | Verified conditional transfer | Topological closed-point scope only |
+| E: new-resolution publication | Advertise n>=5 cubic comparison as new | Public stronger KSZZ theorem; known SS reduction | Blocked as proposed new-resolution route | No novel in-scope theorem/mechanism; cannot repair by scheme/stack/nodal upgrades also public |
+| F: alternative deduction/exposition | Assemble the upstream gap and established transfer | Local standalone audit note; adversarial priority review | Retained as research evidence | Different proof from KSZZ does not alone establish a new contribution; no novelty clearance |
 
-Routes will be marked blocked if they transfer the central difficulty to unsupported equivalent assertions. No route certified on appearance of an upstream theorem alone.
+| G: metric-only extension probe | DGP quasi-etale splitting + high Cartier index + reflexive-form vanishing | Primary OSS convention and recorded derivation | No novelty-cleared substitute; not promoted | Boundary isometry/root/RC hypotheses and precise priority still need independent checking; this does not resolve publication condition |
+
+A route is not a persistent-goal status. The goal remains unachieved; it is not marked complete or tool-blocked prematurely. No outreach, releases, duplicate deposit or tracker changes.

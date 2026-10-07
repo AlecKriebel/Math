@@ -1,11 +1,18 @@
 # Exact target and current status
 
-Status: hypothesis; unconditional resolution not established.
+## Mathematical consequence
 
-For each integer n>=5, let M_n^sm be the moduli of smooth complex cubic hypersurfaces in P^(n+1), endowed with their Kähler–Einstein metrics normalized by Ric(omega)=omega. The intended GH compactification retains complex structure: equivalence is biholomorphic isometry and convergence is the polarized complex GH convergence used by Spotti–Sun, not merely unmarked metric-space isometry.
+For n>=5, assume the unrestricted boundary-zero complex algebraic klt normalized-volume bound in every k=2,...,n. Then Li–Liu global Reeb minimization/density identity and Spotti–Sun Theorem1.3(2) give a natural homeomorphism
 
-Target: a natural homeomorphism of that compactification with the complex analytic topological space of the classical GIT quotient P(H^0(P^(n+1),O(3))) // SL(n+2). Its boundary represents the corresponding smoothable K-polystable Q-Fano limits in the closure of the smooth cubic locus, with -K=(n-1)L and Cartier ample L, L^n=3. State exactly which smoothing and coarse-space hypotheses the established transfer and modern K-moduli results supply.
+    complex/polarized GH compactification of smooth KE cubic n-folds
+        ≅ [P(H^0(P^(n+1),O(3))) // SL(n+2)](C)
 
-No scheme/stack isomorphism, moduli-functor equivalence, every nonclosed semistable point equivalence, or cubic-curve headline is part of the target. Smooth-cubic KE existence has separate established priority.
+with the analytic quotient topology. Equivalence retains complex structure (biholomorphic isometry); the bare unmarked metric GH quotient forgets it. Closed points correspond to Q-Gorenstein-smoothable K-polystable Fanos admitting smoothing to smooth cubics, with -K=(n-1)L, L Cartier ample and L^n=3. This is the good/coarse space of polystable representatives in the cubic smoothing closure, not all Fanos with that dimension/volume.
 
-Success criteria: checkable upper gap in dimensions 2,...,n; global Reeb minimization on needed smooth-link algebraic klt cones including irregular Reeb vectors; exact density normalization; verified Cartier polarization and cubic classification; continuity/bijection and compact Hausdorff topology; independent current priority and two full final-package review passes; verified production Zenodo record/DOI and tracker row.
+The gap upper bound is asserted by upstream family037 at pin adc7f1241b42e322a6451854ab7e4b4c146bf78a. Combined scoped audits found no substantive flaw in its needed routes; the input is a cited external theorem, not independently formalized or reproved here. Equality is unnecessary. The checkable conditional deduction and exact boundaries are in main.tex and agent_notes/.
+
+## Priority and publication
+
+A publicly downloaded current KSZZ manuscript states a stronger arbitrary-dimensional K/GIT comparison. Its route differs; we do not claim it contains our identical proof. Our cubic-specific mechanism is the established SS17 reduction instantiated with the new upstream gap, plus established LL minimization. No genuinely new in-scope theorem or mechanism has been established. Preserve the consequence audit in the project and public repository checkpoints; no new-solution preprint deposit is cleared. Earliest KSZZ public posting is unverified; current public access October6 PDT is verified.
+
+No scheme/stack isomorphism, functor equivalence, every nonclosed semistable point theorem, or cubic-curve headline is claimed by our deduction. No Zenodo publication/DOI/tracker row exists for this effort. Persistent publication goal is unachieved.

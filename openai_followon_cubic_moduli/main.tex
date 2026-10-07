@@ -1,0 +1,294 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Audit of the ordinary-double-point gap route to cubic compactifications},pdfauthor={Alec Kriebel},pdfsubject={Mathematical and priority audit; not a new-solution preprint}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}[proposition]{Corollary}
+\newcommand{\nv}{\widehat{\operatorname{vol}}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\PP}{\mathbb P}
+\title{Audit of the ordinary-double-point gap route\ to cubic compactifications}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This research audit records the precise deduction of the complex
+Gromov--Hausdorff compactification and GIT comparison for cubic $n$-folds from
+the unrestricted ordinary-double-point normalized-volume bound in every
+dimension $2\leq k\leq n$. It checks the global Reeb minimum, irregular
+cones, the retained Cartier polarization, and the scope of the moduli
+objects. The deduction uses Li--Liu and Spotti--Sun; it is not a new moduli
+mechanism. A publicly accessible manuscript of Kong, Shen, Junyan Zhao and Minghao Zhao
+already states a stronger comparison in arbitrary dimension. Consequently
+this note is recorded in public repository checkpoints as an audit artifact,
+not submitted as a new solution.
+\end{abstract}
+
+\paragraph{Status and provenance.}
+The upstream manuscript \cite{OAI} is pinned at repository commit
+\texttt{adc7f1241b42} (the full hash is in the source manifest). Its theorem is a
+principal external input, not a theorem reproved in this note. Separate
+scoped adversarial audits inspected its geometric and semigroup arguments
+and its sole fourfold companion. These are evidence, not formal
+certification. No Lean verification of the gap or this consequence is
+claimed. AI tools were used extensively in research, drafting, and
+verification. This note has not undergone conventional human peer review.
+Public repository checkpoints preserve the owned audit findings; no
+Zenodo preprint submission has been made.
+
+\section{Exact target and dependency diagram}
+Fix $n\geq5$ and let
+\[
+ G_n=\PP\bigl(H^0(\PP^{n+1},\mathcal O(3))\bigr)//\operatorname{SL}(n+2).
+\]
+The intended GH moduli object retains complex structure: its points are
+biholomorphic isometry classes of K\"ahler--Einstein cubic $n$-folds,
+with $\operatorname{Ric}(\omega)=\omega$, and its compactification is the
+complex/polarized GH compactification used in \cite{SS}. Bare metric-space
+isometry forgets complex structure and identifies conjugate varieties;
+it is not the moduli object in the comparison.
+
+The good moduli space on the K side has closed complex points representing
+K-polystable $\Q$-Fano varieties that admit a $\Q$-Gorenstein deformation
+to a smooth cubic. Equivalently one considers the corresponding closure
+of the smooth cubic locus in the smoothable K-moduli space, with its
+complex analytic topology. Equal dimension and volume alone do not select
+that smoothing locus. The established smoothable KE/GH correspondence is
+the relevant identification with these closed points \cite{LWX}.
+
+The dependency diagram for the proposed deduction is
+\[
+\begin{gathered}
+\nv(x,X)\leq2(k-1)^k\quad(2\leq k\leq n)\quad\text{\cite{OAI}}\\
+\Downarrow\quad\text{global Reeb minimum and density identity \cite{LL}}\\
+\Theta(C)\leq2(1-1/k)^k\quad\text{for isolated singular metric cones}\\
+\Downarrow\quad\text{iteration and Cartier-root theorem \cite{SS}}\\
+-K_Z=(n-1)L_Z,\quad L_Z\text{ Cartier},\quad L_Z^n=3\\
+\Downarrow\quad\text{Fujita classification; CM positivity; continuity \cite{Fujita,SS}}\\
+\overline{\mathcal M}_{n}^{\rm GH,\C}\ \cong_{\rm homeo}\ G_n(\C).
+\end{gathered}
+\]
+Only the upper gap bound is needed; its equality classification is not
+used. No scheme/stack isomorphism, equivalence of moduli functors, or
+assertion about every nonclosed semistable orbit is deduced here.
+
+\section{The infimum-to-metric implication}
+Write $\nv(x,X)=\inf_v A_X(v)^k\operatorname{vol}(v)$ for a
+boundary-zero complex algebraic klt germ of dimension $k$. Ordinary volume
+is normalized by $k!$ times the leading valuation-ideal colength.
+
+\begin{proposition}
+Assume the algebraic gap bound in dimension $k\geq2$. Then an isolated
+singular Ricci-flat K\"ahler cone with compact smooth Sasaki--Einstein
+link has density at most $b_k=2(1-1/k)^k$.
+\end{proposition}
+\begin{proof}
+Use the cone metric $dr^2+r^2g_Y$, with
+\[
+ \Theta(C(Y))=\frac{\operatorname{Vol}(Y)}{\operatorname{Vol}(S^{2k-1})}.
+\]
+The Sasakian cone has a normal affine algebraic completion; a
+quasi-regular CR-preserving approximation constructs it as an orbifold
+line-bundle cone \cite[\S3]{vC}. It is $\Q$-Gorenstein. The positive
+pluricanonical Reeb weight gives klt, by
+\cite[Lemma 6.1]{CS}. Rationality and $\Q$-Gorensteinness alone are not
+being substituted for this klt criterion. The cone germ has zero boundary.
+
+There is a convenient way to respect the genuine top-form hypothesis in
+the setup of Li--Liu \S6. If $\pi_1(Y)$ is nontrivial, Myers' theorem
+gives a finite universal covering of degree $d\geq2$. Bishop's inequality
+on that cover yields $\Theta(C(Y))\leq1/d\leq1/2\leq b_k$.
+If $Y$ is simply connected, the Ricci-flat punctured cone has a global
+parallel holomorphic top form. Its Euler weight is $k$; it extends
+reflexively across the vertex and is equivariant for the cone torus.
+This satisfies the canonical-form setup of Li--Liu.
+
+Li--Liu's Theorem 1.9 (=6.2) states that the metric Reeb valuation
+$v_\xi$ globally minimizes over \emph{all} real valuations centered at
+the vertex. The theorem includes irregular Reeb fields. Their Lemma 6.8
+and limiting proof use quasi-regular structures converging smoothly;
+these approximants are not incorrectly assumed to remain Einstein.
+Lemma 6.3 and the same limiting argument give
+\[
+ A_X(v_\xi)=k,\qquad
+ \nv_X(v_\xi)=k^k\Theta(C(Y)).
+\]
+The ratio to the round sphere cancels the fixed conversion between contact
+volume and Riemannian link volume. Both sides are continuous in the
+quasi-regular approximation. Thus, in the simply connected case,
+\[
+ k^k\Theta(C(Y))=\nv(o,X)\leq2(k-1)^k.
+\]
+An upper bound on the infimum alone would not imply this inequality for
+an arbitrary Reeb valuation. The global minimum is essential.
+\end{proof}
+
+Flat $\C^k$ has density $1$ and normalized volume $k^k$; it is excluded
+from the singular assertion. The ODP degree valuation has discrepancy
+$k-1$ and volume $2$, consistent with the stated normalization. No direct
+application of Li--Liu to a cone with singular link is made.
+
+\section{From density to polarized cubic limits}
+Spotti--Sun's constant $A'(n)$ is the supremum of the densities of
+products of a flat factor with an isolated singular cone having smooth
+link. Their iterated-cone argument treats other singular links
+\cite[Lemma 5.3 and Theorem 5.2]{SS}. The required transverse dimensions
+are exactly $k=2,\ldots,n$. A normal klt algebraic curve is smooth, and
+the relevant KE singular strata have complex codimension at least two.
+
+The sequence $b_k$ increases. For real $t>1$,
+\[
+ \frac{d}{dt}\log b_t
+ =\log(1-1/t)+\frac1{t-1}
+ =u-\log(1+u)>0,\qquad u=\frac1{t-1}.
+\]
+Products with Euclidean space do not change density, so the preceding
+proposition gives $A'(n)\leq b_n$.
+
+For a smooth cubic, adjunction gives
+\[
+ -K_X=(n-1)H,\qquad H^n=3,\qquad V=(-K_X)^n=3(n-1)^n.
+\]
+Spotti--Sun Theorem 5.2 requires
+\[
+ V>\tfrac12 A'(n)(n+1)^n.
+\]
+This follows strictly from
+\[
+ \tfrac12 b_n(n+1)^n
+ =(n-1)^n(1+1/n)^n<e(n-1)^n<3(n-1)^n.
+\]
+Its conclusion supplies both Gorenstein canonical singularities and the
+Cartier root $L_Z$ with $-K_Z=(n-1)L_Z$. Preserving canonical singularities
+alone would not preserve the required polarization. The theorem's proof
+uses the polarized smoothability of the limit, the tangent-cone Cartier
+index comparison, and quotient-smoothing/rigidity arguments. These are
+inherited hypotheses and conclusions, not consequences of density alone
+for arbitrary $\Q$-Fanos.
+
+Fujita's Gorenstein del Pezzo classification applies to $(Z,L_Z)$
+\cite{Fujita}. Its intermediate-cohomology hypothesis holds for all
+integer twists: Kawamata--Viehweg vanishing applies to $tL_Z$ for
+$t\geq2-n$, since $tL_Z-K_Z=(t+n-1)L_Z$ is ample. Serre duality applies
+the same argument at twist $-t-(n-1)$ for $t\leq-1$. These ranges cover
+all integers for $n\geq3$, and klt makes $Z$ Cohen--Macaulay.
+The degree-three case has $h^0(Z,L_Z)=n+2$ and $L_Z$ very ample, so it
+embeds $Z$ as a cubic hypersurface in $\PP^{n+1}$. This uses the canonical
+Gorenstein version, without imposing an extra terminality assumption.
+
+\section{Moduli continuity and the precise consequence}
+Here is an explicit positivity check for the relevant CM polarization.
+Put $S=\PP(H^0(\PP^{n+1},\mathcal O(3)))$, let $h$ and $s$ denote
+the hyperplane classes on $\PP^{n+1}$ and $S$, and put $r=n-1$.
+The universal cubic has class $3h+s$, and its relative anticanonical
+class is $rh-s$. In the standard Fano normalization,
+\[
+\begin{split}
+ c_1(\lambda_{\rm CM})
+ &=-\pi_*\bigl((rh-s)^{n+1}(3h+s)\bigr)\\
+ &=r^n\bigl(3(n+1)-r\bigr)s
+ =2(n+2)(n-1)^n s.
+\end{split}
+\]
+The expression is computed on the product; the universal-cubic factor
+implements pushforward from the hypersurface. Any positive conventional
+rescaling preserves the sign. The coefficient is strictly positive,
+so the CM polarization agrees in sign with the standard GIT polarization.
+
+Spotti--Sun \S5.2 applies their moduli continuity method from \S4.2.
+The initial Fermat cubic is KE; the smooth cubic moduli locus is connected.
+KE existence is open there, and the cubic-limit and CM facts make it
+closed. The map from the complex GH compactification to GIT is continuous;
+uniqueness of the KE metric on a fixed Fano variety gives injectivity.
+Its compact image contains the dense smooth GIT locus, giving
+surjectivity. Compactness and the Hausdorff analytic GIT topology give a
+homeomorphism. This is precisely the established transfer
+\cite[Theorem 1.3(2)]{SS}, rather than a new continuity theorem.
+
+\begin{corollary}[Audited conditional consequence]
+If the unrestricted algebraic normalized-volume gap holds in every
+dimension $2\leq k\leq n$, then for $n\geq5$ the complex GH
+compactification of smooth KE cubic $n$-folds is naturally homeomorphic
+to $G_n(\C)$. Its closed points also identify with the corresponding
+smoothable K-polystable Fano limits in the cubic smoothing locus.
+\end{corollary}
+
+Taking the upper-bound theorem of \cite{OAI} as the external input removes
+the dimension-by-dimension metric-gap hypothesis in \cite[Theorem
+1.3(2)]{SS}. That is the entire proposed moduli contribution. The
+topological result alone does not upgrade this deduction to schemes,
+stacks, or nonclosed semistable points.
+
+\section{Priority finding and publication decision}
+The lower-dimensional comparison is prior work: cubic surfaces by
+Odaka--Spotti--Sun, cubic threefolds by Liu--Xu, and cubic fourfolds by
+Liu \cite{OSS,LX,Liu}. Cubic curves are not included in a positive-KE
+Fano headline. Smooth KE existence should not be advertised as newly
+discovered here.
+
+The primary author page \cite{KSZZ} currently links a September 30, 2026
+manuscript, publicly downloaded on October 6, 2026 (Pacific time).
+Its Theorem 1.1 states the arbitrary-dimensional cubic comparison,
+including stacks and good moduli spaces; its proof uses refined local
+inequalities and tangent-sheaf semistability. The actual earliest web
+posting is unverified, and a manuscript date alone does not establish
+public priority. Its present public availability is verified. This
+audit does not independently certify every lemma of that separate paper.
+
+The requested theorem is therefore already publicly claimed in stronger
+form. Moreover, the proposed alternative mechanism is the known
+Spotti--Sun reduction with a new upstream input, whose gap proof belongs
+to OpenAI. No genuinely new in-scope extension has been established in
+this effort. The evidence supports a useful checked deduction and source
+audit; it does not support advertising a new resolution. In accordance
+with the project's priority conditions, no Zenodo deposit or DOI-tracker
+entry is made. The persistent publication objective remains unachieved.
+
+\begin{thebibliography}{99}
+\bibitem{OAI} OpenAI, \emph{The ordinary-double-point gap in every dimension},
+OpenAI Math Release preprint, September 24, 2026.
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-ordinary-double-point-gap-in-every-dimension-September-24-2026/paper.pdf}{Pinned manuscript}.
+Sole companion: \emph{The normalized-volume gap in dimension four}.
+\bibitem{LL} C. Li and Y. Liu, \emph{K\"ahler--Einstein metrics and volume
+minimization}, Adv. Math. 341 (2019), 440--492,
+\href{https://arxiv.org/abs/1602.05094}{arXiv:1602.05094v3}.
+\bibitem{SS} C. Spotti and S. Sun, \emph{Explicit Gromov--Hausdorff
+compactifications of moduli spaces of K\"ahler--Einstein Fano manifolds},
+Pure Appl. Math. Q. 13 (2017), 477--515,
+\href{https://arxiv.org/abs/1705.00377}{arXiv:1705.00377v1}.
+\bibitem{vC} C. van Coevering, \emph{Ricci-flat K\"ahler metrics on
+crepant resolutions of K\"ahler cones},
+\href{https://arxiv.org/abs/0806.3728}{arXiv:0806.3728v3}.
+\bibitem{CS} T. C. Collins and G. Sz\'ekelyhidi, \emph{Sasaki--Einstein
+metrics and K-stability}, Geom. Topol. 23 (2019), 1339--1413,
+\href{https://doi.org/10.2140/gt.2019.23.1339}{doi:10.2140/gt.2019.23.1339}.
+\bibitem{Fujita} T. Fujita, \emph{On singular del Pezzo varieties}, in
+\emph{Algebraic Geometry}, Lecture Notes in Math. 1417,
+Springer, 1990, 117--128,
+\href{https://doi.org/10.1007/BFb0083337}{doi:10.1007/BFb0083337}.
+\bibitem{LWX} C. Li, X. Wang and C. Xu, \emph{On the proper moduli spaces
+of smoothable K\"ahler--Einstein Fano varieties}, Duke Math. J. 168 (2019),
+1387--1459, \href{https://arxiv.org/abs/1411.0761}{arXiv:1411.0761v4}.
+\bibitem{OSS} Y. Odaka, C. Spotti and S. Sun, \emph{Compact moduli spaces
+of del Pezzo surfaces and K\"ahler--Einstein metrics}, J. Differential Geom.
+102 (2016), 127--172, \href{https://arxiv.org/abs/1210.0858}{arXiv:1210.0858}.
+\bibitem{LX} Y. Liu and C. Xu, \emph{K-stability of cubic threefolds},
+Duke Math. J. 168 (2019), 2029--2073,
+\href{https://arxiv.org/abs/1706.01933}{arXiv:1706.01933}.
+\bibitem{Liu} Y. Liu, \emph{K-stability of cubic fourfolds},
+J. Reine Angew. Math. 786 (2022), 55--77,
+\href{https://arxiv.org/abs/2007.14320}{arXiv:2007.14320v2}.
+\bibitem{KSZZ} B. Kong, Y. Shen, J. Zhao and M. Zhao,
+\emph{K-moduli of cubic hypersurfaces}, manuscript dated September 30, 2026,
+\href{https://sites.google.com/uic.edu/jzhao/research}{primary author page},
+\href{https://drive.google.com/file/d/1eB16wLGE2G5QrbV-pUDmw_ieLMiLlOcO/view}{public PDF}.
+Access checked October 6, 2026 Pacific time.
+\end{thebibliography}
+\end{document}

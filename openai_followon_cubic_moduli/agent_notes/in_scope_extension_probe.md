@@ -1,0 +1,37 @@
+# Metric-only cubic compactification extension probe
+
+Checkpoint: 2026-10-06 22:23 PDT. Probe completion estimate: 95%; clearance of a genuinely new publication result: 0%. No external individual was contacted. No Git operation or publication operation was performed. Primary manuscripts were inspected; no novelty inference is made from failed searches.
+
+## Verdict
+
+The proposed metric-only formulation is **not a novelty-cleared replacement target**. Forgetting complex structure and quotienting by complex conjugation is an explicit old moduli convention, not a newly discovered mechanism. Odaka–Spotti–Sun, arXiv:1210.0858v3, introduction immediately after Theorem 1.1, expressly identify the standard metric GH compactification with their algebraic moduli space modulo conjugation. Their Section 2 explains why their complex-preserving topology differs. This is stated for del Pezzo surfaces; it should not be falsely cited as the exact arbitrary-dimensional cubic theorem.
+
+There is nevertheless a concrete boundary-rigidity argument for n>=5, so the route need not simply assume the difficult holonomy statement. It combines established singular KE splitting with the unusually high **Cartier** cubic index. Its likely status is a standard consequence of the public K/GIT theorem and existing KE geometry. No exact first-public-disclosure conclusion for this higher-dimensional wording was established, and the argument below has not received a fresh adversarial audit. Accordingly, it does not authorize a substitute publication claiming a new solution.
+
+## Checkable mathematical mechanism
+
+Let X be an n-dimensional klt Fano carrying a weak KE metric, with -K_X=rL for L Cartier ample. If r>n/2+1, the following argument excludes every nontrivial KE product decomposition on a finite quasi-étale cover. For cubics, r=n-1 satisfies this strict inequality exactly when n>=5.
+
+1. Druel–Guenancia–Păun, *A decomposition theorem for Q-Fano Kähler–Einstein varieties*, Theorem A, gives a finite quasi-étale cover f:Y->X and an isometric algebraic product Y=product(Y_i), with each positive-dimensional factor a klt KE Fano and stable tangent sheaf. Their Theorem 2.6 and Section 5 explain the parallel stable summands and construction; no unjustified application of the smooth complete de Rham theorem to an incomplete regular locus is needed.
+2. Since f is quasi-étale, -K_Y=f*(-K_X)=r f*L. Restrict to Y_i times a regular point of the complementary product. The restriction L_i is Cartier ample and -K_{Y_i}=rL_i. This retains Cartierness: replacing L by a merely Q-Cartier root would invalidate the next step.
+3. For d=dim(Y_i), Kawamata–Viehweg vanishing gives H^q(Y_i,-jL_i)=0 for q>0 and 1<=j<=r-1, because -jL_i-K_{Y_i}=(r-j)L_i is ample. H^0 also vanishes by ampleness. Thus the degree-d Hilbert polynomial chi(Y_i,tL_i) has the r-1 distinct roots -1,...,-(r-1), so d>=r-1. At least two factors imply n>=2(r-1), contradicting r>n/2+1.
+4. The resulting single stable factor forces T_X stable as well: a proper summand or destabilizing subsheaf on X pulls back, up to reflexive hull/saturation, to one on Y; quasi-étaleness gives no codimension-one correction and slopes multiply by the degree. DGP already gives polystability downstairs.
+5. Let J' be a second parallel orthogonal complex structure on X_reg for the same metric. The (2,0) component, relative to J, of g(J'.,.) is parallel and holomorphic; it extends as a reflexive two-form. A klt Fano is rationally chain connected, and GKKP Theorem 5.1 gives H^0(X,Omega_X^[2])=0. Hence J' commutes with J. It is therefore a holomorphic complex-linear endomorphism of T_X on X_reg and extends reflexively. Stability implies simplicity, so J' is scalar on T_X^(1,0); (J')^2=-1 gives J'=J or -J.
+
+This avoids assuming simple connectedness of the regular locus, and avoids asserting full U(n) restricted holonomy. Irreducibility sufficient for the metric classification is the absence of parallel complex splittings plus the absence of reflexive two-forms; a stronger holonomy classification is unnecessary.
+
+## Metric quotient topology and exact remaining checks
+
+Assuming the public complex/polarized cubic GH/GIT homeomorphism and completing the rigidity details above, let Q_n be cubic GIT and sigma coefficientwise conjugation. The forgetful map from the compact complex GH space to metric-space GH closure is continuous and onto: polarized convergence implies metric convergence, and any metric limit has a polarized subsequential lift. A metric isometry preserves the metric regular locus, which matches algebraic regularity for these KE limits, and is smooth there. Rigidity then makes it holomorphic or antiholomorphic. Extension across normal singularities gives an algebraic isomorphism to X or its conjugate. One must explicitly verify preservation/uniqueness of the cubic hyperplane polarization, for example by the projective-hypersurface Picard Lefschetz theorem; an anticanonical root must not silently be assumed unique on every Fano. The fibers are therefore sigma-orbits. Compact-to-Hausdorff then gives Q_n(C)/<sigma> homeomorphic to the metric GH closure.
+
+The remaining **proof packaging gap** is exact citation and fresh verification of reflexive extension, the rational connectedness input, regular-locus preservation and hyperplane-root uniqueness in this boundary scope. These are established-geometry checks, not a replacement normalized-volume conjecture. The remaining **priority gap** is decisive: no evidence currently establishes a genuinely new theorem/mechanism beyond the established quotient convention and its routine high-index boundary justification. An unsupported assertion of novelty would block publication. No quantitative metric estimate was found: identifying the topology alone gives no modulus of continuity, GH distance bound, or effective degeneration rate.
+
+## Primary sources actually inspected
+
+- [Odaka–Spotti–Sun, arXiv:1210.0858v3](https://arxiv.org/html/1210.0858v3), Theorem 1.1 vicinity and Section 2; also Section 4.2 states coefficientwise conjugation on cubic-surface GIT.
+- [Spotti, thesis, arXiv:1211.5334v1](https://arxiv.org/pdf/1211.5334), Theorem 1.1.1, printed pp.14–15: multiple KE complex structures on a smooth Fano force a holomorphic/isometric product. This proves the smooth precursor and supplies attribution; its smooth argument alone does not prove the singular boundary case.
+- [Druel–Guenancia–Păun, arXiv:2008.05352](https://arxiv.org/html/2008.05352), Theorem A, Theorem 2.6, Theorem 4.14 and Section 5.
+- [Greb–Kebekus–Kovács–Peternell, *Differential forms on log canonical spaces*](https://www.numdam.org/item/10.1007/s10240-011-0036-0.pdf), Theorems 1.4 and 5.1, the latter printed p.102: reflexive-form vanishing on rationally chain connected klt spaces. The rational connectedness of klt Fanos remains a separately cited input to supply.
+- Donaldson–Sun II, local primary PDF/text already cached in this project, Section 2.1 on polarized GH convergence; Spotti–Sun local primary text, Section 1, explicitly says metric and algebraic singularities match and uses biholomorphic isometry classes.
+
+Route status: **mathematically promising standard deduction; not novelty-cleared; no new publication candidate recommended on current evidence**. Other proposed nodal, terminal, stack or all-semistable upgrades are already expressly covered by the inspected public sources and are not reopened here.
