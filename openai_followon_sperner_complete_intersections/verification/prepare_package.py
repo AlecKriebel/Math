@@ -6,6 +6,7 @@ import hashlib
 import json
 import shutil
 import zipfile
+import argparse
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,11 @@ def sha(path):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--candidate", required=True)
+    args = parser.parse_args()
+    if not args.candidate.isalnum():
+        raise SystemExit("candidate label must be alphanumeric")
     p = ROOT
     refs = []
     names = ["The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026",
@@ -95,7 +101,7 @@ def main():
     archive("verification.zip", verification_files)
     manifest = {"metadata": {"title": TITLE, "upload_type": "publication",
         "publication_type": "preprint", "publication_date": "2026-10-06",
-        "description": "For every standard graded Artinian complete intersection over an arbitrary characteristic-zero field, the maximum minimal number of generators over all ideals, including nonhomogeneous ideals, equals the largest coefficient of the complete-intersection Hilbert polynomial. This concise note records an immediate consequence of OpenAI's Artinian EGH theorem and the previously published EGH-to-Sperner implication of Harima, Wachi and Watanabe. It makes degree-one elimination, the empty/all-linear case, the all-ideal filtration argument and field scope explicit, with exact integer examples and scoped dependency/priority audits. No new EGH proof, first-priority claim, Lefschetz theorem, nongraded extension or unrestricted positive-characteristic conclusion is asserted. AI tools were used extensively in research, drafting and verification. Automated adversarial reviews are not conventional human peer review; this preprint has not undergone conventional human peer review or refereeing at publication. No formalization of the follow-on theorem is claimed.",
+        "description": "For every standard graded Artinian complete intersection over an arbitrary characteristic-zero field, the maximum minimal number of generators over all ideals, including nonhomogeneous ideals, equals the largest coefficient of the complete-intersection Hilbert series. This concise note records an immediate consequence of OpenAI's Artinian EGH theorem and the previously published EGH-to-Sperner implication of Harima, Wachi and Watanabe. It makes degree-one elimination, the empty/all-linear case, the all-ideal filtration argument and field scope explicit, with exact integer examples and scoped dependency/priority audits. No new EGH proof, first-priority claim, Lefschetz theorem, nongraded extension or unrestricted positive-characteristic conclusion is asserted. AI tools were used extensively in research, drafting and verification. Automated adversarial reviews are not conventional human peer review; this preprint has not undergone conventional human peer review or refereeing at publication. No formalization of the follow-on theorem is claimed.",
         "creators": [{"name": "Kriebel, Alec", "orcid": "0009-0001-9320-500X"}],
         "access_right": "open", "license": "cc-by-4.0",
         "keywords": ["Sperner property", "Artinian complete intersections", "Eisenbud-Green-Harris", "commutative algebra"],
@@ -104,12 +110,12 @@ def main():
             {"identifier": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a", "relation": "isDerivedFrom", "scheme": "url"}]},
         "files": [{"path": "publication/zenodo_upload_kit/files/" + name} for name in ["paper.pdf", "source.zip", "verification.zip"]]}
     (p / "zenodo-deposit.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    inventory = {"candidate": "v1", "timestamp_utc": ts, "manifest_sha256": sha(p / "zenodo-deposit.json"),
+    inventory = {"candidate": args.candidate, "timestamp_utc": ts, "manifest_sha256": sha(p / "zenodo-deposit.json"),
                  "payload": [{"name": f.name, "bytes": f.stat().st_size, "sha256": sha(f),
                               "md5": hashlib.md5(f.read_bytes()).hexdigest()} for f in sorted(kit.iterdir())],
                  "source_member_sha256": {name: sha(path) for name, path in source_files.items()},
                  "verification_member_sha256": {name: sha(path) for name, path in verification_files.items()}}
-    (p / "receipts/candidate_v1.json").write_text(json.dumps(inventory, indent=2) + "\n")
+    (p / "receipts" / ("candidate_" + args.candidate + ".json")).write_text(json.dumps(inventory, indent=2) + "\n")
     print(json.dumps({"candidate": inventory["candidate"], "payload": inventory["payload"]}, indent=2))
 
 
