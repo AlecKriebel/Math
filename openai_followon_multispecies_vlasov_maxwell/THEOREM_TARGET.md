@@ -1,6 +1,6 @@
 # Exact research target and certification state
 
-Status: **unproved research hypothesis**. Neither upstream release text nor a formalization catalogue is certification.
+Status: **complete proof candidate undergoing dependency/adversarial review**. The candidate is not yet certified or cleared for publication. Neither upstream release text nor a formalization catalogue is certification.
 
 For a fixed integer N≥1, masses m_a>0, real charges e_a, and speed of light and vacuum permittivity normalized to one, let F_a(t,x,p)≥0 be number densities in physical momentum. Set v=p/m_a and f_a(t,x,v)=m_a^3 F_a(t,x,m_a v). The velocity is u(v)=v/sqrt(1+|v|²). The proposed equations are
 
