@@ -61,3 +61,9 @@ The gws CLI resolved target numeric tab1254632077 to Math Puzzles and read its a
 Final public receipts, fresh-review report and delivery documentation are checkpointed on current remote main using an isolated index and ordinary fast-forward push. The shared checkout/HEAD/index are preserved; final push identities are in receipts/checkpoint04_push.json and the subsequent receipt archival checkpoint. No external individual was contacted and no GitHub release was created.
 
 A separate delivery auditor independently re-resolved the numeric tab, re-read the exact headers/row, compared all four values, and reverified public Zenodo files/metadata/DOI. Its nonsecret acceptance record is receipts/final_independent_delivery_audit.json. No delivery discrepancy was found.
+
+## 2026-10-06 22:03 PDT — checkpoint 5: final owned main publication confirmed
+
+Mathematical resolution estimate: **100%**. Publication package estimate: **100%**.
+
+Final delivery commit ac11716f9940e3c7a667d0b1337a4b533a709c7b was ordinarily pushed to remote main. Frozen source/PDF/archive/manifest bytes and the verified tracker receipt were independently compared with the committed remote-main tree and match. Shared HEAD remained 6c0de5e6e901dfd6f2569fdcb11e0c5ac76eca06; shared Git index SHA256 remained dccac4961f0fd603fc0b53c43c7bb5001c85c9546cae21b9c7ddef7661b0048e. This final documentation checkpoint archives the successful push receipt and complete program state. No additional research/publication/tracker work remains within the requested scope.
