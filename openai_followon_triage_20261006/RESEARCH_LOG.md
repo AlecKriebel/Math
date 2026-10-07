@@ -19,3 +19,11 @@ Ranked nine targets. Independent reviews accepted Minkowski/Costa, binary automa
 ## 2026-10-06T21:00:19.908688-07:00 — checkpoint 4 — 100% complete for research-path triage
 
 Final ranked report and six discipline reports saved, with independent geometry and quantum audits. Lane–Emden independent review accepted strict subcritical p,q>1 estimates and required fixed C2 domain for boundary bounds. Success criterion met: concrete targets, mechanisms, assumptions, gaps, impact/novelty qualifications and launch order. Completion is of agenda selection, not proofs or source validation. Preparing publication of only this folder’s authored Markdown and ignore rule through an isolated temporary Git index atop current remote main; shared checkout/index and concurrent work preserved. No release/DOI or external communication.
+
+## 2026-10-06T21:08:36.148485-07:00 — researcher-prompt checkpoint — 90% complete for prompt preparation
+
+User requested separate full-resolution/publication prompts. Drafted nine ranked prompts plus one clearly labeled optional multispecies Vlasov–Maxwell reserve, each self-contained with exact scope and boundary conditions. Retained independent fresh-review repair cycles; removed all PR/QUEUE gating and processing. Verified top-level Zenodo tool documentation and encoded production publication/readback plus idempotent gws tracker append after publication. No researcher chat, persistent goal, Zenodo deposit, or spreadsheet mutation was started by this prompt-writing task. Independent scope review underway.
+
+## 2026-10-06T21:08:58.807714-07:00 — researcher-prompt checkpoint — 100% complete
+
+Independent reviewer read all ten project sections and the identical shared protocol; no substantive issues found. Accepted clarification that formalization rebuilds run on project-local pinned copies, leaving upstream read-only. Final ten prompts, index, manifest and download ZIP prepared. Each prompt includes the entire review-to-publication-to-tracker protocol. Publishing these instructions only; none of the research/publication actions described inside them have been initiated.
