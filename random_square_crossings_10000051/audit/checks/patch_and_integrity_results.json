@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "original_optimized_corruption": "wrong influence accepted under -O; rejected normally",
+  "unified_patch_applied_and_verified": true,
+  "normal_result_bytes_unchanged": true,
+  "runs": [
+    {
+      "script": "exact_crossings.py",
+      "mode": "normal",
+      "exit_code": 0,
+      "guard_detected": false
+    },
+    {
+      "script": "exact_crossings.py",
+      "mode": "optimized",
+      "exit_code": 1,
+      "guard_detected": true
+    },
+    {
+      "script": "exact_crossings.py",
+      "mode": "environment_optimized",
+      "exit_code": 1,
+      "guard_detected": true
+    },
+    {
+      "script": "verify_rational.py",
+      "mode": "normal",
+      "exit_code": 0,
+      "guard_detected": false
+    },
+    {
+      "script": "verify_rational.py",
+      "mode": "optimized",
+      "exit_code": 1,
+      "guard_detected": true
+    },
+    {
+      "script": "verify_rational.py",
+      "mode": "environment_optimized",
+      "exit_code": 1,
+      "guard_detected": true
+    },
+    {
+      "script": "independent_audit.py",
+      "mode": "normal",
+      "mutation": "one added byte",
+      "exit_code": 1,
+      "mismatch_detected": true
+    },
+    {
+      "script": "independent_audit.py",
+      "mode": "optimized",
+      "mutation": "one added byte",
+      "exit_code": 1,
+      "mismatch_detected": true
+    }
+  ]
+}
