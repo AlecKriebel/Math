@@ -1,6 +1,6 @@
 # Wreath-product and planar triangle consequences
 
-Both exact targets established with credited audited inputs; complete preprint and75-file verification kit passed two fresh full-package reviews, clean reproduction and all-eight-page visual inspection. Confirmed Zenodo publication: https://doi.org/10.5281/zenodo.23203143 (record https://zenodo.org/records/23203143). Tracker Math Puzzles row39 read back and unique DOI verified. Final authored findings push remains at this checkpoint.
+Both exact targets established with credited audited inputs; complete preprint and75-file verification kit passed two fresh full-package reviews, clean reproduction and all-eight-page visual inspection. Confirmed Zenodo publication: https://doi.org/10.5281/zenodo.23203143 (record https://zenodo.org/records/23203143). Tracker Math Puzzles row39 read back and unique DOI verified. Final authored findings, fresh reviews and publication/tracker receipts committed and pushed on remote main. Persistent research program complete.
 
 Target A: finitely generated Hopfian A=C2,H with non-Hopfian standard restricted regular wreath product, explicit split epimorphism/kernel. Target B: L2=2/sqrt(3), P2=4/3 for the exact planar Schwartz programs. General AIM1.32, triangle attainment and optimizers remain outside scope.
 
