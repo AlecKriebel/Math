@@ -19,3 +19,9 @@ Mathematical resolution estimate: 40%. Publication package estimate: 5%.
 Independent central audits found no material defect in the needed exponential source proof. Separate geometry audits reconstructed original3n and compressed2n faces and all-N padding. Exact affine tight-slack closed-cone proof replaces a proper-lift duality shortcut. Six-page standalone source compiles in built-in editor; exported PDF rendered and all6 pages inspected with clean formulas/references/fonts/page breaks. Corrected prior bound and actual source-public chronology reconciled. Rights follow existing CC BY4/MIT package convention; third-party manuscript/proof copies excluded from Zenodo archives.
 
 Mathematical resolution estimate: 97%. Publication package estimate: 55%. Whole-package reviewers and external publication/tracker verification remain.
+
+## 2026-10-06T22:28:35-07:00 — whole-package review and documentation repair
+
+First complete-package reviewer examined exact frozen-v1 source/PDF/archives/metadata, central matching proof, affine slack, geometry, prior literature and version checks; no substantive issue identified. Fixed the noted directory-list ambiguity in repository README. Original reviewed archives and exact hashes preserved. Preparing candidate-v2 for fresh complete-package review; no mathematical or PDF change. Clean independent rebuild and finite reproduction passed.
+
+Mathematical resolution estimate: 99%. Publication package estimate: 75%. Publication and tracker are still unperformed.

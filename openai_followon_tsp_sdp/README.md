@@ -8,6 +8,8 @@ The central matching proof was reconstructed by independent mathematical audits;
 
 ## Contents and reproduction
 
+The contents map below describes the project repository. In the Zenodo deposit, `main.tex` is in the separate source archive and `paper.pdf` is a separate download; neither is duplicated inside the verification archive.
+
 - `main.tex`: standalone manuscript; `publication/paper.pdf`: actual downloadable six-page PDF.
 - `proofs/`: explicit geometric and upper-bound derivations.
 - `DEPENDENCY_LEDGER.md`, `THEOREM_LEDGER.md`, `APPROACH_TABLE.md`: accepted scope and exact dependency boundaries.
