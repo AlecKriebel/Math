@@ -9,7 +9,7 @@ checks=0; chords=0; rotation_cases=0
 
 def ck(p):
  global checks
- assert p
+ if not p:raise RuntimeError("Exact verification check failed")
  checks+=1
 
 def dot(x,y):return sum(a*b for a,b in zip(x,y))

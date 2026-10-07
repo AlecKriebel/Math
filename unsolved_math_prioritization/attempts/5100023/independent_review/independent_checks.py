@@ -8,7 +8,7 @@ import hashlib,json
 import sympy as s
 counts={}
 def ck(name,ok):
-    assert ok,name
+    if not ok:raise RuntimeError(name)
     counts[name]=counts.get(name,0)+1
 
 def dot(x,y):return sum(a*b for a,b in zip(x,y))
@@ -18,7 +18,7 @@ def neg(x):return tuple(-a for a in x)
 # Absolute-coordinate line system, different from the submitted focus-translated one.
 def anti(P,Q,h):
     r=(P[0]-h,P[1]);t=(Q[0]-h,Q[1]);D=det(r,t)
-    assert D!=0
+    if D==0:raise RuntimeError("Singular antipedal line system")
     p=dot(P,r);q=dot(Q,t)
     return ((p*t[1]-r[1]*q)/D,(r[0]*q-p*t[0])/D)
 

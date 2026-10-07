@@ -1,0 +1,307 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Cent}{\mathcal C}
+\title{The vertex centroid of focal antipedals\\of even elliptic billiards}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 7, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a periodic billiard in an ellipse with a strictly nested confocal
+elliptical caustic and even least period, we prove that the unweighted
+vertex centroids of the original antipedals about the center and the two
+foci are constant throughout its Poncelet family. The central centroid
+is zero; an explicit focal coefficient depends only on the axes,
+caustic parameter, period and perimeter. This answers invariant k405
+as posed without proof by Reznik, Garcia and Koiller. The proof uses
+opposite edges, an elementary finite circle action, and perimeter
+stationarity. Ferudun's subsequent deposited note states the same
+theorem and coefficient and uses the same pair-and-moment mechanism;
+we explicitly credit that overlap and make no absolute priority or
+independent-discovery claim.
+\end{abstract}
+
+\section{Statement, source and conventions}
+Let $a>b>0$, $c=\sqrt{a^2-b^2}$, and consider
+\[
+ E:\ \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,
+ \qquad E_\lambda:\ \frac{x^2}{a^2-\lambda}
+                  +\frac{y^2}{b^2-\lambda}=1,
+ \qquad 0<\lambda<b^2.
+\]
+Write $O=(0,0)$ and $F_\sigma=(\sigma c,0)$, $\sigma=\pm1$.
+A periodic billiard tangent to $E_\lambda$ extends to the smooth
+Poncelet family with the same caustic; we use this classical closure
+theorem in its usual confocal-ellipse form \cite{Stachel}.
+For successive billiard vertices $A,B$ and a pole $M$, define
+$Q_M(A,B)$ as the intersection of the full lines through $A$ and $B$
+perpendicular to $A-M$ and $B-M$, respectively. For an orbit of least
+period $N$, its \emph{antipedal vertex centroid} is
+\begin{equation}\label{defcent}
+ \Cent_M=\frac1N\sum_{i=0}^{N-1}Q_M(P_i,P_{i+1}),\qquad P_N=P_0.
+\end{equation}
+This is a vertex mean, not an area centroid or a mean of pedal feet.
+The antipedal belongs to the original orbit, not to its outer tangent
+polygon. All three poles lie strictly inside $E_\lambda$, so its tangent
+chords do not pass through them. The intersections in \eqref{defcent}
+are therefore finite and unique.
+
+\begin{samepage}
+\begin{theorem}\label{main}
+Suppose the oriented billiard has even least period $N$ (hence $N\ge4$)
+and caustic $E_\lambda$. Let $L$ be the perimeter of its Poncelet family,
+and put
+\[
+ K=a^2b^2-\lambda c^2,\qquad
+ H=\frac{a^2}{c^2}\left(1-\frac{bL}{2a\sqrt\lambda\,N}\right).
+\]
+Then throughout that family,
+\begin{equation}\label{answer}
+ \Cent_O=(0,0),\qquad
+ \Cent_{F_\sigma}=
+ \left(\sigma c\left[-1+\frac{KH}{a^2(b^2-\lambda)}\right],0\right).
+\end{equation}
+Both simple and primitive star orbits, and either traversal orientation,
+are allowed.
+\end{theorem}
+\end{samepage}
+
+The source is k405 in Table~5 of \cite{RGK21}, p.~348, and of
+\cite{RGK20}, printed p.~7. It specifies even $N$ and poles $O,F_1,F_2$
+in the confocal-ellipse setting, with proof and value left as questions.
+The source does not formally define least period. Its use of opposite
+vertices under central inversion in \cite[Section~3.7]{RGK20} supports
+the primitive-period interpretation used explicitly here. Repeating an
+even-period polygon leaves \eqref{defcent} unchanged; repeating an odd
+polygon an even number of times does not put it under this theorem.
+Degenerate two-bounce orbits, limiting degenerate caustics and hyperbolic
+caustics are outside the statement. In a circle the foci coincide with
+$O$ and the conclusion for even least period is zero by central symmetry;
+the coefficient above, which divides by $c^2$, is not used for a circle.
+
+The least-period restriction is substantive. For $a=2,b=1$, the
+billiard triangle with vertices $(2,0)$ and
+\[
+ \left(\frac{2(1-\sqrt{13})}{3},
+       \ \pm\frac{\sqrt{2\sqrt{13}-5}}{3}\right)
+\]
+has caustic $\lambda=(8\sqrt{13}-20)/9$ and origin antipedal centroid
+$((35-5\sqrt{13})/24,0)\ne0$; the reflected triangle has the opposite
+centroid. Repeating each twice gives six-entry lists with these same
+centroids. Exact reflection, tangency and centroid checks for this
+boundary example are supplied in the supplement.
+
+\section{Opposite vertices and two chord moments}
+\begin{lemma}\label{central}
+For the hypotheses of Theorem~\ref{main},
+$P_{i+N/2}=-P_i$.
+\end{lemma}
+\begin{proof}
+Let $T$ be the Poncelet tangent map, choosing the directed chord with
+the inner ellipse on its left. This is a smooth orientation-preserving
+homeomorphism of the outer oval; the other tangent gives its inverse.
+The Poncelet family premise gives $T^N=\mathrm{id}$, of order exactly
+$N$. Central inversion $S(P)=-P$ preserves the chosen side of a directed
+chord, so $S$ commutes with $T$.
+
+The finite group generated by $S$ and $T$ preserves the average of the
+pushforwards of arc-length probability measure over this group. This
+measure is nonatomic and positive on every nonempty arc. Its cumulative
+coordinate conjugates every group element to a rotation: an oriented
+measure-preserving map preserves all arc lengths in this coordinate.
+A rotation group has a unique element of order two. Both $S$ and
+$T^{N/2}$ have order two, so they agree.
+\end{proof}
+Opposite antipedal intersections for the pole $O$ are $Q$ and $-Q$.
+Lemma~\ref{central} already proves $\Cent_O=0$.
+
+Choose the orientation with the caustic to the left. Since $O$ is inside
+the caustic, $\det(A,B)>0$ for each directed edge. Lift its eccentric
+endpoint angles as $s-\delta,s+\delta$, with $0<\delta<\pi/2$, and write
+\[
+ C=\cos s,\quad S=\sin s,\quad U=\cos\delta,\quad V=\sin\delta,
+ \quad D^2=\frac{C^2}{a^2}+\frac{S^2}{b^2}.
+\]
+Then
+\begin{align*}
+ A&=(a(CU+SV),\ b(SU-CV)),\\
+ B&=(a(CU-SV),\ b(SU+CV)).
+\end{align*}
+The chord line is $xC/a+yS/b=U$. Tangency to $E_\lambda$ gives
+\begin{equation}\label{tangent}
+ U^2=1-\lambda D^2,\qquad V^2=\lambda D^2.
+\end{equation}
+Its positive length is
+\begin{equation}\label{length}
+ \ell=2V\sqrt{a^2S^2+b^2C^2}=2ab\sqrt\lambda\,D^2.
+\end{equation}
+
+\begin{lemma}\label{moments}
+The perimeter $L$ is constant on the Poncelet family, and its chord
+coordinates satisfy
+\begin{equation}\label{moments_eq}
+ \frac1N\sum_i C_i^2=H,\qquad \sum_i S_iC_i=0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Under independent tangent displacements of the billiard vertices,
+the first variation of perimeter is
+\[
+ dL=\sum_i (u_{i-1}-u_i)\mathbin{\cdot}dP_i,
+ \qquad u_i=\frac{P_{i+1}-P_i}{|P_{i+1}-P_i|}.
+\]
+The reflection law makes $u_{i-1}-u_i$ normal to $E$, so $dL=0$.
+This calculation does not require the polygon to be simple. Along the
+smooth Poncelet family it proves that $L$ has zero derivative and is
+constant on the connected circle of initial vertices.
+
+Summing \eqref{length} and using
+$D^2=b^{-2}-c^2C^2/(a^2b^2)$ yields the first identity in
+\eqref{moments_eq}. For the second, use the allowed comparison
+deformation $t_i\mapsto t_i+\epsilon$ of all eccentric vertex angles.
+It keeps each $\delta_i$ fixed and changes $s_i$ to $s_i+\epsilon$.
+The deformed chords need not preserve the caustic. Differentiate the
+first expression in \eqref{length} \emph{before} imposing a caustic
+constraint on the deformation. At the original billiard,
+\[
+ \left.\frac{d\ell_i}{d\epsilon}\right|_0
+ =\frac{2V_i c^2 S_iC_i}{\sqrt{a^2S_i^2+b^2C_i^2}}
+ =\frac{2\sqrt\lambda\,c^2}{ab}S_iC_i.
+\]
+Stationarity of $L$ gives the claimed sum, since $c,\lambda>0$.
+\end{proof}
+
+\section{The opposite-edge antipedal calculation}
+For a focus $F=(h,0)$, $h=\pm c$, set
+\[
+ m=(aCU,bSU),\quad v=(-aSV,bCV),\quad d=m-F,
+ \quad q=Q_F(A,B)-F.
+\]
+Thus $A=m-v$ and $B=m+v$. Adding and subtracting the equations of the
+two antipedal lines gives
+\begin{equation}\label{system}
+ q\cdot d=R:=|d|^2+|v|^2,\qquad
+ q\cdot v=T:=2d\cdot v.
+\end{equation}
+Its determinant is $bV(aU-hC)>0$. Indeed,
+\begin{equation}\label{denominator}
+ U^2-\frac{c^2C^2}{a^2}=(b^2-\lambda)D^2>0,
+\end{equation}
+so $aU>|hC|$.
+
+For clarity, Cramer's rule gives
+\[
+ q_x=\frac{bCVR-bSUT}{bV(aU-hC)},\qquad
+ q_y=\frac{(aCU-h)T+aSVR}{bV(aU-hC)}.
+\]
+For the opposite edge replace $(m,v)$ by $(-m,-v)$ in
+\eqref{system}, while keeping $F$ fixed. Adding the two resulting
+absolute intersections, with $h^2=c^2$, gives
+\begin{align}\label{pair_intermediate}
+ \bigl(Q_F(A,B)+Q_F(-A,-B)\bigr)_x
+   &=\frac{2hb^2(C^2-U^2)}{b^2-\lambda},\\
+ \bigl(Q_F(A,B)+Q_F(-A,-B)\bigr)_y
+   &=\frac{-2CSah\,[c^2(C^2-U^2)-b^2]}
+           {ba^2(U^2-c^2C^2/a^2)}.\nonumber
+\end{align}
+Here the first expression has used \eqref{denominator} and
+$D^2=C^2/a^2+S^2/b^2$. The remaining simplifications are
+\[
+ c^2(C^2-U^2)-b^2=-KD^2,\qquad
+ b^2(C^2-U^2)=-(b^2-\lambda)+\frac{K C^2}{a^2}.
+\]
+Consequently
+\begin{equation}\label{pair}
+ Q_F(A,B)+Q_F(-A,-B)
+ =\left(-2h+\frac{2hK C^2}{a^2(b^2-\lambda)},
+              \frac{2hK SC}{ab(b^2-\lambda)}\right).
+\end{equation}
+This local identity uses tangency but not closure or the reflection
+law. By Lemma~\ref{central}, summing its left side over all edges counts
+each antipedal intersection twice. Divide by $2N$ and apply
+Lemma~\ref{moments}. This proves \eqref{answer}. Reversing traversal
+only permutes the same full-line intersections, so it leaves the result
+unchanged.
+
+\section{Provenance, overlap and verification}
+Central symmetry, perimeter stationarity and confocal billiard
+conservation are classical; see, for example, \cite{BT,Stachel}.
+The arguments needed here have been supplied in full. Earlier related
+pedal-centroid and harmonic results in \cite{BT}, together with the
+classical skew-hodograph correspondence discussed in \cite{GT}, yield
+another reduction once the target-specific pair identity \eqref{pair}
+is inserted. These ingredients alone are not a located earlier proof
+of the focal antipedal theorem. Our bounded audit of primary literature
+did not establish an earlier complete answer to k405; it does not
+establish absolute priority.
+
+A proof was publicly posted in PR140 on September 30, 2026
+\cite{PR140}. Its archived original already contains the theorem and
+the pair formula. Ferudun's \emph{Original Antipedal Centroids in
+Elliptic Billiards} \cite{Ferudun} states the same scoped theorem and
+the same explicit coefficient. Its specific Zenodo record was created
+on October 1, 2026 at 23:58:07 UTC, with publication date October 2.
+Its proof also combines opposite-edge antipedal pairs with chord
+moments; a change to unit-normal coordinates gives the same identities.
+We credit this exact overlap. The documented dates concern those
+specific public records; they do not establish absolute priority,
+independent discovery, or any inference of copying or collaboration.
+The present note records a verified self-contained resolution of a
+question posed without proof in the 2020/2021 source, rather than
+claiming that the question remains unsolved at this note's publication.
+
+The accompanying verification package contains explicit-guard rational
+and symbolic checks of the local line systems, tangency and pair
+identities, length differentiation, and finite-rotation parity controls.
+Its finite computations support reproducibility; they do not prove
+Poncelet closure for arbitrary parameters or replace the all-period
+arguments above. Separate adversarial audits tested genuine elliptic
+orbits, parameter boundaries, repeated odd polygons and deliberately
+false identities. Audit results and limits are described in the
+supplement.
+
+\paragraph{AI assistance and review status.}
+AI tools were used extensively in developing, drafting, reproducing
+and adversarially auditing this work. Independent AI review passes
+are not conventional human peer review. This preprint is unrefereed
+and has not undergone conventional human peer review at publication.
+The proof and supplementary programs are supplied for independent
+checking.
+
+\begin{thebibliography}{9}
+\bibitem{RGK21} D. Reznik, R. Garcia and J. Koiller,
+\emph{Fifty New Invariants of N-Periodics in the Elliptic Billiard},
+Arnold Mathematical Journal \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{RGK20} D. Reznik, R. Garcia and J. Koiller,
+\emph{Eighty New Invariants of N-Periodics in the Elliptic Billiard},
+arXiv:2004.12497v11 (2020).
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11}.
+\bibitem{BT} M. Bialy and S. Tabachnikov,
+\emph{Dan Reznik's identities and more}, European Journal of
+Mathematics \textbf{8} (2022), 1341--1354; first published online 2020.
+\href{https://doi.org/10.1007/s40879-020-00428-7}{doi:10.1007/s40879-020-00428-7}.
+\bibitem{GT} E. Gutkin and S. Tabachnikov,
+\emph{Billiards in Finsler and Minkowski geometries}, Journal of
+Geometry and Physics \textbf{40} (2002), 277--301.
+\href{https://doi.org/10.1016/S0393-0440(01)00039-0}{doi:10.1016/S0393-0440(01)00039-0}.
+\bibitem{Stachel} H. Stachel,
+\emph{The geometry of billiards in ellipses and their Poncelet grids},
+Journal of Geometry \textbf{112} (2021), article 40.
+\href{https://doi.org/10.1007/s00022-021-00606-2}{doi:10.1007/s00022-021-00606-2}.
+\bibitem{PR140} A. Kriebel, \emph{5100023: prove the focal antipedal
+centroid invariant k405}, public PR140 and proof archive, September 30, 2026.
+\href{https://github.com/AlecKriebel/Math/pull/140}{github.com/AlecKriebel/Math/pull/140}.
+\bibitem{Ferudun} A. Ferudun,
+\emph{Original Antipedal Centroids in Elliptic Billiards}, version 1.0,
+Zenodo (publication date October 2, 2026).
+\href{https://doi.org/10.5281/zenodo.23092466}{doi:10.5281/zenodo.23092466}.
+\end{thebibliography}
+\end{document}

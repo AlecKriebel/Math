@@ -1,0 +1,5 @@
+# PR140 publication curation casefold repair
+
+Frozen v1 and v2 sources/seals remain preserved. V3 changes only load_inputs: it rejects original archive/manifest publication through case aliases and rejects every private-prefixed path component plus cache/.git after casefold. This closes the confirmed PRIVATE/Private_Controls leak in the general own-audit allowlist on case-insensitive macOS. Exact canonical native/progress path sets are unchanged. All36 other v2 functions are byte-identical.
+
+The v2 lifecycle rules remain: native14 plus explicit repairs, no program3; final completion requires all3 and local installation after genuine native receipt custody. Actual candidate curation must also exclude postimages14 duplicates, copyright/raw material and generation forests. Source data/plan reviews remain separate.87 author controls pass normally and optimized, including10 new publication-admission cases. No actual native/backend/data/operator/Git/provider operation ran. Preparation100%, no operation clearance.
