@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\hypersetup{pdftitle={A priori estimates across the subcritical Lane--Emden hyperbola},pdfauthor={Alec Kriebel},pdfsubject={Consequences of the OpenAI subcritical Liouville theorem}}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\title{A priori estimates across the subcritical\texorpdfstring{\\}{ }Lane--Emden hyperbola}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We record the consequences of the subcritical entire Liouville theorem in
+OpenAI's 2026 H\'enon--Lane--Emden preprint for the unweighted system
+$-\Delta u=v^p$, $-\Delta v=u^q$. For $n\ge3$, $p,q>1$, and
+$1/(p+1)+1/(q+1)>(n-2)/n$, the established reductions of
+Pol\'a\v{c}ik--Quittner--Souplet give universal pointwise estimates on
+arbitrary proper domains and zero-Dirichlet half-space nonexistence.
+We detail the resulting gradient and exterior estimates and the
+boundary blow-up argument giving uniform bounds and compactness on
+fixed bounded $C^2$ domains, with exact function spaces.
+The full subcritical scope is an immediate consequence of the cited
+Liouville input; no independent solution of that conjecture or new
+Liouville-to-estimate machinery is claimed.
+\end{abstract}
+
+\section{Scope, provenance, and statement}
+Let
+\begin{equation}\label{range}
+ n\ge3,\qquad p,q>1,\qquad
+ \frac1{p+1}+\frac1{q+1}>\frac{n-2}{n},
+ \qquad
+ \alpha=\frac{2(p+1)}{pq-1},\quad
+ \beta=\frac{2(q+1)}{pq-1}.
+\end{equation}
+Throughout, a domain is a nonempty connected open subset of $\R^n$.
+A nonnegative classical solution means $u,v\in C^2(\Omega)$,
+$u,v\ge0$, satisfying
+\begin{equation}\label{system}
+ -\Delta u=v^p,\qquad -\Delta v=u^q
+ \quad\text{pointwise in }\Omega.
+\end{equation}
+Zero-Dirichlet solutions additionally belong to $C(\overline\Omega)$
+and vanish on $\partial\Omega$. These statements do not assert
+regularity for arbitrary weak or distributional solutions.
+
+The entire Liouville theorem used here is the unweighted corollary of
+OpenAI \cite{OAI}, at the source version specified below.
+The passage from bounded entire nonexistence to the universal domain
+and half-space conclusions is already Theorems 4.2 and 4.3 of
+Pol\'a\v{c}ik--Quittner--Souplet \cite{PQS} (PQS).
+The fixed-domain Dirichlet reduction is also established; see
+Quittner--Souplet \cite[Theorem 4.1(ii) and Remark 4.1(ii)]{QS},
+whose remark credits the pure-power case to PQS.
+We include its blow-up argument to distinguish a boundary estimate
+from a uniform Dirichlet bound and to specify compactness.
+
+Thus the contribution of this consequence note is the explicit full-range
+formulation and checked compatibility of the input, boundary argument,
+and function spaces. Dimensions three and four, and portions of higher
+dimensions, already had the needed Liouville results; see
+\cite{PQS,Souplet,LiLiWei}. The newly available scope is the remaining
+portions of \eqref{range}, inherited from \cite{OAI}, rather than a
+new estimate formula. We do not claim priority for the transfer method
+or to be first to observe its implication. The source preprint carries
+September 24, 2026 as its manuscript date; the verified public release
+is October 6, 2026 \cite{release}. Our priority audit found no earlier
+explicit full-range application package in that release, but absence
+from a search does not certify priority.
+
+\begin{theorem}\label{main}
+Assume \eqref{range}. There is $C=C(n,p,q)>0$ such that every
+nonnegative classical solution of \eqref{system} on every proper
+domain $\Omega\ne\R^n$ satisfies, with $d(x)=\dist(x,\partial\Omega)$,
+\begin{equation}\label{distance}
+ \begin{aligned}
+ u(x)&\le C d(x)^{-\alpha},&
+ |\nabla u(x)|&\le C d(x)^{-\alpha-1},\\
+ v(x)&\le C d(x)^{-\beta},&
+ |\nabla v(x)|&\le C d(x)^{-\beta-1}.
+ \end{aligned}
+\end{equation}
+No boundary regularity or boundary condition is required.
+If $\Omega\supset\{x:|x|>R\}$ for some $R>0$, then for
+$|x|\ge2R$ the same estimates hold with $d(x)$ replaced by $|x|$
+(after changing $C$).
+
+Every nonnegative zero-Dirichlet classical solution on
+$H=\{x_n>0\}$ in $C^2(H)\cap C(\overline H)$ is zero, with no
+boundedness or growth assumption.
+
+For each fixed bounded $C^2$ domain $\Omega$, its nonnegative
+zero-Dirichlet classical solutions satisfy
+\begin{equation}\label{dirichlet}
+ \norm{u}_{L^\infty(\Omega)}+\norm{v}_{L^\infty(\Omega)}
+ \le C(\Omega,n,p,q).
+\end{equation}
+For every $1<r<\infty$ and $0<\gamma<1$, this solution set is bounded
+and sequentially compact in
+\[
+ [W^{2,r}(\Omega)\cap W^{1,r}_0(\Omega)]^2
+ \quad\text{and}\quad [C^{1,\gamma}(\overline\Omega)]^2,
+\]
+respectively, with the indicated norm topologies.
+If $\partial\Omega$ is $C^{2,\theta}$, $0<\theta<1$, there are uniform
+$C^{2,\theta}(\overline\Omega)$ bounds, and sequential compactness
+in $[C^{2,\eta}(\overline\Omega)]^2$ for every $0<\eta<\theta$.
+Constants for these norm bounds may depend on the fixed domain and the
+indicated regularity exponent. No $C^2(\overline\Omega)$ conclusion is
+asserted from $C^2$ boundary regularity alone.
+\end{theorem}
+
+\section{Entire input and interior normalization}
+\begin{lemma}\label{entire}
+Under \eqref{range}, the only bounded nonnegative classical solution
+of \eqref{system} on $\R^n$ is $(0,0)$.
+\end{lemma}
+\begin{proof}
+The unweighted corollary of \cite{OAI} excludes strictly positive
+$C^2(\R^n)$ solution pairs, even without boundedness. If either
+nonnegative component vanishes at a point, the strong maximum principle
+for its superharmonic equation makes it identically zero. Its equation
+then forces the other component to be zero. Otherwise both components
+are strictly positive, and the cited theorem applies.
+\end{proof}
+
+The source input is substantial, not a hypothesis hidden in notation.
+Our dependency audit inspected its Newton-potential reductions,
+localized virial identity, interval comparison, and energy-relative
+layer-loss estimate before the scaling contradiction. The accompanying
+package gives the exact source hashes and a reconstruction of the
+unweighted argument. The actual Lean source declaration is separately
+identified in the audit; its formal-verification status is reported
+there. A complete pinned Lean kernel build was not reproduced, and
+this follow-on theorem is not claimed to be formalized. The mathematical
+dependency acceptance here rests on the analytic proof audit.
+
+For clarity, we recall the normalization underlying PQS Theorem 4.3.
+The scaling identities are
+\begin{equation}\label{scaling}
+ p\beta=\alpha+2,\quad q\alpha=\beta+2,
+ \qquad U(y)=\lambda^\alpha u(x+\lambda y),\quad
+ V(y)=\lambda^\beta v(x+\lambda y).
+\end{equation}
+The pair $(U,V)$ satisfies the same equations. Put
+$M=u^{1/\alpha}+v^{1/\beta}$. For a nonzero solution, the maximum
+principle ensures $M>0$. If no universal bound for $Md$ exists,
+choose solutions with $M(y_k)d(y_k)>2k$.
+The doubling lemma \cite[Lemma 5.1]{PQS} selects $x_k$ with
+\[
+ M(x_k)\ge M(y_k),\quad M(x_k)d(x_k)>2k,\quad
+ M(z)\le2M(x_k)\quad (|z-x_k|\le k/M(x_k)).
+\]
+One can see the selection directly: whenever the last property fails,
+move by at most $k/M$ to a point with more than twice that value.
+The sum of movements is at most $2k/M(y_k)$, strictly less than
+$d(y_k)$; if the process never stops, local boundedness at its
+interior limit contradicts $M\to\infty$.
+
+With $\lambda_k=M(x_k)^{-1}$, the rescaled domains contain $B_k$,
+$U_k^{1/\alpha}(0)+V_k^{1/\beta}(0)=1$, and
+$U_k^{1/\alpha}+V_k^{1/\beta}\le2$ on $B_k$.
+Interior elliptic estimates first give local $W^{2,r}$ bounds,
+then $C^{1,\gamma}$ bounds for suitable $r>n$. Since $p,q>1$, the
+powers are Lipschitz on bounded nonnegative ranges. Interior Schauder
+estimates therefore give uniform $C^{2,\gamma}$ bounds on smaller
+balls. A diagonal subsequence converges in $C^2_{\mathrm{loc}}(\R^n)$
+to a bounded nonnegative pair satisfying the equations and the same
+nonzero normalization. This contradicts Lemma \ref{entire}.
+Consequently $Md\le C$, which proves the pointwise part of
+\eqref{distance} with constants depending only on $n,p,q$.
+
+\section{Gradients, exterior decay, and the half-space}
+Fix $x\in\Omega$ and $\rho=d(x)/2$. On $B_\rho(x)$ the distance
+is at least $d(x)/2$. Applying the pointwise bounds to the scaling
+\eqref{scaling} with $\lambda=\rho$ gives uniformly bounded
+$U,V$ and right sides on $B_1$. The interior gradient estimate for
+Poisson's equation yields
+\[
+ |\nabla U(0)|\le C(\norm{U}_{L^\infty(B_1)}+
+                           \norm{V^p}_{L^\infty(B_1)})\le C,
+\]
+and similarly for $V$. Rescaling proves the gradient part of
+\eqref{distance}. For the exterior conclusion, every boundary point
+lies in $\overline B_R$, so $d(x)\ge |x|-R\ge |x|/2$ when
+$|x|\ge2R$.
+
+PQS Theorem 4.2 assumes exactly the bounded nonnegative entire
+nonexistence of Lemma \ref{entire}, with $p,q>1$, and excludes every
+nontrivial nonnegative $C^2(H)\cap C(\overline H)$ zero-Dirichlet
+solution, bounded or unbounded. This proves the asserted half-space
+conclusion. Its full conclusion is needed here; an arbitrary-domain
+distance estimate by itself diverges at the boundary and would not
+prove \eqref{dirichlet}.
+
+\section{Fixed-domain boundary blow-up and compactness}
+We give the remaining argument explicitly. On a bounded $C^2$ domain,
+a classical zero-Dirichlet pair continuous on the closure already
+belongs to $W^{2,r}(\Omega)\cap W^{1,r}_0(\Omega)$ for every
+$1<r<\infty$: its right sides are bounded; solve the corresponding
+linear Dirichlet problems, and compare by the maximum principle.
+Indeed the difference is harmonic, continuous on the closure, and zero
+on the boundary. The global Poisson estimates on a $C^{1,1}$ domain
+(which a bounded $C^2$ domain is) give the stated regularity. We use
+also their local boundary versions and Sobolev embeddings; standard
+forms are in \cite{GT}.
+
+Suppose \eqref{dirichlet} fails. For a sequence of solutions set
+\[
+ A_k=\max_{\overline\Omega}
+       (u_k^{1/\alpha}+v_k^{1/\beta})\longrightarrow\infty,
+ \quad M_k(x_k)=A_k,\quad \lambda_k=A_k^{-1}.
+\]
+The maximizing points are interior. Scaling about $x_k$ gives
+$0\le U_k,V_k\le1$ and
+$U_k^{1/\alpha}(0)+V_k^{1/\beta}(0)=1$.
+If $d(x_k)/\lambda_k\to\infty$ along a subsequence, the interior
+argument just given produces a nontrivial bounded entire solution,
+a contradiction.
+
+Otherwise pass to a subsequence with
+$t_k=d(x_k)/\lambda_k\to t\ge0$. Then $d(x_k)\to0$.
+Choose a nearest boundary point $b_k$ and rotate its inward normal
+into the $y_n$ direction. Uniform $C^2$ boundary charts exist by
+compactness of $\partial\Omega$. Locally they have graphs
+$x_n=\varphi_k(x')$, with $\varphi_k(0)=D\varphi_k(0)=0$ and
+uniformly bounded second derivatives. After scaling at $b_k$, the
+graphs are
+\[
+ y_n=\psi_k(y')=\lambda_k^{-1}\varphi_k(\lambda_k y'),
+\]
+so $\psi_k\to0$ in $C^2$ on every fixed compact set; the point $x_k$
+becomes $(0,t_k)$. Pull back by
+$(y',y_n)\mapsto(y',y_n+\psi_k(y'))$.
+The resulting uniformly elliptic coefficients tend to those of the
+Laplacian, and the lower order coefficients tend to zero.
+The charts have uniform $C^{1,1}$ control, the solutions and right
+sides are uniformly bounded, and the flat-boundary trace is zero.
+Local boundary $W^{2,r}$ estimates therefore give uniform
+$C^{1,\gamma}$ bounds on smaller compact half-balls for any
+$0<\gamma<1$, choosing $r$ sufficiently large.
+
+A diagonal subsequence converges in $C^1$ on compact subsets of
+$\overline H$ and in $C^2$ on compact subsets of $H$ to a bounded
+nonnegative solution $(U,V)$, continuous and zero on $\partial H$.
+The transformed equations converge in distributions to the Laplacian
+equations; interior regularity upgrades the limit to $C^2(H)$.
+Normalization passes at $(0,t)$. If $t=0$, continuity and the zero
+trace contradict normalization. If $t>0$, the limiting pair is
+nontrivial, contradicting the half-space theorem. Both cases exclude
+the assumed blow-up, proving \eqref{dirichlet}.
+
+The uniform $L^\infty$ bound now gives uniform global $W^{2,r}$ bounds
+for every finite $r>1$. Compact Sobolev embeddings, using a larger
+$r$ if necessary, give a subsequence converging in
+$C^{1,\gamma}(\overline\Omega)$ for any fixed $\gamma<1$.
+The limiting pair retains nonnegativity and zero trace, and its equations
+hold in distributions and then classically in the interior. The right
+sides converge uniformly. For each finite $r>1$, the global linear
+Dirichlet estimate applied to differences gives
+\[
+ \norm{u_k-u}_{W^{2,r}}\le C_r\norm{v_k^p-v^p}_{L^r}\to0,
+ \qquad
+ \norm{v_k-v}_{W^{2,r}}\le C_r\norm{u_k^q-u^q}_{L^r}\to0.
+\]
+Thus the compactness is strong, not just weak $W^{2,r}$ compactness.
+On a $C^{2,\theta}$ domain, the already uniform Lipschitz bounds make
+the right sides uniformly $C^{0,\theta}$; global Schauder estimates
+give uniform $C^{2,\theta}$ bounds and compactness in $C^{2,\eta}$,
+$\eta<\theta$. This completes Theorem \ref{main}.
+
+\section{Limits and verification disclosure}
+The strict hyperbola and $p,q>1$ are used as stated. No critical or
+supercritical case, weighted boundary estimate, parabolic estimate,
+or weak-solution regularity assertion is included. The conditional
+asymptotically-power extension in PQS Theorem 7.3 is established work;
+we do not present it as a new extension here. Spatially varying
+coefficients are outside this note.
+
+The upstream input is the public commit
+\texttt{adc7f124} (full identity in the dependency ledger); source hashes,
+analytic dependency checks, priority evidence, and complete-package
+adversarial reviews accompany this note. Automated checks and reviews
+are evidence about a proof, not a substitute for it. AI tools were used
+extensively in research, drafting, and verification. This preprint has
+not undergone conventional human peer review or refereeing at publication.
+The author alone is listed; the upstream AI-produced theorem is
+attributed to OpenAI using its manuscript-specific citation.
+
+\begin{thebibliography}{9}
+\bibitem{OAI} OpenAI, \emph{The Subcritical H\'enon--Lane--Emden
+Conjecture}, OpenAI Math Release preprint (2026), manuscript dated
+September 24, 2026, public release October 6, 2026.
+\href{https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-Subcritical-Henon-Lane-Emden-Conjecture-September-24-2026}{Pinned manuscript and supplied citation}.
+\bibitem{PQS} P. Pol\'a\v{c}ik, P. Quittner, and Ph. Souplet,
+\emph{Singularity and decay estimates in superlinear problems via
+Liouville-type theorems. Part I: Elliptic equations and systems},
+Duke Math. J. \textbf{139} (2007), 555--579.
+\href{https://doi.org/10.1215/S0012-7094-07-13935-8}{doi:10.1215/S0012-7094-07-13935-8}.
+The theorem statements were checked in the
+\href{https://www-users.cse.umn.edu/~polacik/Publications/pqs1.pdf}{author-hosted preprint}.
+\bibitem{QS} P. Quittner and Ph. Souplet,
+\emph{Liouville theorems and universal estimates for superlinear
+elliptic problems without scale invariance}, preprint,
+\href{https://arxiv.org/abs/2407.04154v2}{arXiv:2407.04154v2} (2024),
+Theorem 4.1(ii) and Remark 4.1(ii).
+\bibitem{Souplet} Ph. Souplet, \emph{The proof of the Lane--Emden
+conjecture in four space dimensions}, Adv. Math. \textbf{221} (2009),
+1409--1427.
+\bibitem{LiLiWei} K. Li, M. Li, and J. Wei,
+\emph{On a new region for the Lane--Emden conjecture in higher dimensions},
+\href{https://arxiv.org/abs/2510.06613v1}{arXiv:2510.06613v1} (2025).
+\bibitem{GT} D. Gilbarg and N. S. Trudinger,
+\emph{Elliptic Partial Differential Equations of Second Order},
+Classics in Mathematics, Springer (2001), Chapters 6 and 9.
+\bibitem{release} OpenAI, \emph{Sharing AI progress in mathematics},
+October 6, 2026,
+\url{https://openai.com/index/sharing-ai-progress-in-mathematics/}.
+\end{thebibliography}
+\end{document}
