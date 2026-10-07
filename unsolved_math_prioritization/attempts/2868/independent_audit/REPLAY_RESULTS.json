@@ -1,0 +1,130 @@
+{
+  "author_archive_members": 8,
+  "independent_negative_controls": [
+    {
+      "control": "independent_zip_missing",
+      "reason": "archive member count",
+      "result": "REJECTED"
+    },
+    {
+      "control": "independent_zip_path",
+      "reason": "archive member set",
+      "result": "REJECTED"
+    },
+    {
+      "control": "independent_zip_changed_report",
+      "reason": "REPORT.md external pin mismatch",
+      "result": "REJECTED"
+    },
+    {
+      "control": "independent_zip_symlink",
+      "reason": "nonregular ZIP member",
+      "result": "REJECTED"
+    },
+    {
+      "control": "independent_zip_extra",
+      "reason": "archive member count",
+      "result": "REJECTED"
+    },
+    {
+      "control": "independent_zip_duplicate",
+      "reason": "archive member count",
+      "result": "REJECTED"
+    },
+    {
+      "control": "author_archive_bit_flip",
+      "reason": "archive external pin mismatch",
+      "result": "REJECTED"
+    },
+    {
+      "control": "author_external_manifest_rewrite",
+      "reason": "external external pin mismatch",
+      "result": "REJECTED"
+    },
+    {
+      "control": "duplicate_json_parser",
+      "reason": "duplicate JSON key",
+      "result": "REJECTED"
+    },
+    {
+      "control": "nonfinite_json_parser",
+      "reason": "nonfinite JSON",
+      "result": "REJECTED"
+    },
+    {
+      "control": "rehashed_source_forgery_external_anchor",
+      "reason": "archive external pin mismatch",
+      "result": "REJECTED"
+    }
+  ],
+  "internal_manifest_scope_probe": {
+    "classification": "Expected integrity boundary, not a mathematical or packaging correction. Never use an attacker-replaced manifest as its own trust anchor.",
+    "exact_external_archive_pin_rejects": true,
+    "internal_only_checker_accepts_rehashed_source_metadata": true
+  },
+  "normal_optimized_relocated_equal": true,
+  "result": "PASS_EXACT_BYTES_REPLAYS_AND_NEGATIVE_CONTROLS",
+  "runs": [
+    {
+      "all_members_unchanged": true,
+      "exit_code": 0,
+      "mode": "normal",
+      "rejected_negative_controls": [
+        "changed_report",
+        "missing_metadata",
+        "unexpected_file",
+        "rehashed_solved_claim",
+        "duplicate_json_key",
+        "unsafe_manifest_path",
+        "symlink_member"
+      ],
+      "result": "PASS_PACKAGE_INTEGRITY_ONLY"
+    },
+    {
+      "all_members_unchanged": true,
+      "exit_code": 0,
+      "mode": "optimized",
+      "rejected_negative_controls": [
+        "changed_report",
+        "missing_metadata",
+        "unexpected_file",
+        "rehashed_solved_claim",
+        "duplicate_json_key",
+        "unsafe_manifest_path",
+        "symlink_member"
+      ],
+      "result": "PASS_PACKAGE_INTEGRITY_ONLY"
+    },
+    {
+      "all_members_unchanged": true,
+      "exit_code": 0,
+      "mode": "relocated_normal",
+      "rejected_negative_controls": [
+        "changed_report",
+        "missing_metadata",
+        "unexpected_file",
+        "rehashed_solved_claim",
+        "duplicate_json_key",
+        "unsafe_manifest_path",
+        "symlink_member"
+      ],
+      "result": "PASS_PACKAGE_INTEGRITY_ONLY"
+    },
+    {
+      "all_members_unchanged": true,
+      "exit_code": 0,
+      "mode": "relocated_optimized",
+      "rejected_negative_controls": [
+        "changed_report",
+        "missing_metadata",
+        "unexpected_file",
+        "rehashed_solved_claim",
+        "duplicate_json_key",
+        "unsafe_manifest_path",
+        "symlink_member"
+      ],
+      "result": "PASS_PACKAGE_INTEGRITY_ONLY"
+    }
+  ],
+  "source_pdfs_or_corpus_in_archive": false
+}
