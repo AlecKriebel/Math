@@ -1,4 +1,4 @@
-# Independent approach families — checkpoint 03
+# Independent approach families — checkpoint 04
 
 | Family | Mechanism / evidence | Status | Exact remaining gap |
 |---|---|---|---|
@@ -9,6 +9,6 @@
 | C-alt | Aggregate h,g, finite label or moment lift; energy alone controls integrals but not support radius | **Blocked as a standalone global route** | Merely reformulates coupled problem; no new impulse estimate. Reopen only for new mechanism |
 | C-special | Common nonzero charge/mass ratio reduction to scalar system | Verified elementary conditional reduction | Depends on valid scalar theorem; excludes opposite-charge target and is not a novelty claim |
 | F | Pinned actual Lean semantics and static import/admission scan | Scope verified statically; **build unverified** | Mathlib extraction exceeded safe available disk. No formal claim can be made |
-| P | Primary exact theorem/citation audit, full 1988 nearly-neutral scope, current upstream input/disclosure | Preliminary priority evidence complete | Candidate-specific final priority audit being recorded; no firstness or exhaustive absence claim |
+| P | Primary exact theorem/citation audit, full 1988 nearly-neutral scope, current upstream input/disclosure | Preliminary priority evidence complete | Candidate-specific final priority audit completed on exact v1 target, with recommendations incorporated in current v4; no firstness or exhaustive absence claim |
 
 Strongest combined result is the complete ordinary theorem checked in a full v1 adversarial review; the latest revised exact package remains under review. A favorable scope report is not a complete package clearance.

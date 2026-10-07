@@ -9,7 +9,8 @@ files={
 'README.md':'publication/README.md','REPRODUCE.md':'publication/REPRODUCE.md','LICENSE.txt':'publication/LICENSE.txt',
 'DEPENDENCY_LEDGER.md':'DEPENDENCY_LEDGER.md','PRIORITY_AUDIT.md':'reviews/priority_final/REPORT.md',
 'PRELIMINARY_PRIORITY_AUDIT.md':'agent_notes/priority_primary/REPORT.md',
-'PRIORITY_SEARCH_LOG.json':'agent_notes/priority_primary/SEARCH_LOG.json',
+'PRIORITY_SEARCH_LOG.json':'sources/priority_final/SEARCH_LOG.json',
+'PRELIMINARY_PRIORITY_SEARCH_LOG.json':'agent_notes/priority_primary/SEARCH_LOG.json',
 'PINNED_SOURCE.json':'sources/PINNED_SOURCE.json',
 'SUPPLEMENT_PAIR_IDENTITY.md':'derivations/multispecies_derivation/PAIR_IDENTITY.md',
 'SUPPLEMENT_TRANSFER_LEMMA.md':'derivations/multispecies_derivation/TRANSFER_LEMMA.md',
@@ -23,7 +24,8 @@ files={
 'FORMAL_BUILD_LIMITATIONS.json':'checks/formal_scope/build_receipt.json',
 'FORMAL_SOURCE_INVENTORY.json':'checks/formal_scope/source_inventory.json',
 'FORMAL_STATIC_SCAN.json':'checks/formal_scope/static_scan.json',
-'PRIMARY_REFERENCE_PROVENANCE.md':'sources/continuation_alternative/README.md'
+'PRIMARY_REFERENCE_PROVENANCE.md':'sources/continuation_alternative/README.md',
+'ORIGINAL_CONTINUATION_ATTRIBUTION.json':'receipts/original_continuation_attribution.json'
 }
 packet=R/'reviews'/('package_'+a.version);packet.mkdir(exist_ok=False)
 source=packet/'source-and-verification';source.mkdir()
