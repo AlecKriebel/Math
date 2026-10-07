@@ -994,7 +994,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 983 | 6000001 / AMR-059-0001 | Realizing Statistical Manifolds in Dually Flat Manifolds | 0.0915 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 984 | 30002343 / OWR-12490-003 | Optimal Pluricanonical Bounds for Stable Log Surfaces | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 985 | 30002395 / OWR-12591-005 | Dini Spaces as Primitive Spectra of Amenable $C^*$-Algebras | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | unsolved | 5/5 |  | 2026-10-07: Unsolved after 5/5 approaches. Audited real-variable partial reductions, exact signed Mobius inversion, finite-tail annihilator exclusion, unilateral/bilateral separation, and local damped approximation; both requested methodological implications and global endpoint control remain unproved. Actual Mobius H2 moment diverges: the endpoint hypothesis is a failed-route diagnosis, not a viable RH approach. Full original/audit and separately rehashed optimization-safe adoption in attempts/30002495/; no RH or novelty claim. |  |
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 989 | 2800903 / AMR-027-0903 | 10 Lectures and 42 Open Problems — Tightness of k-median LP | 0.0908 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
