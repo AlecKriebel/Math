@@ -1,0 +1,28 @@
+# Complexity frontier triage
+
+Checkpoint: 2026-10-06, selection complete (100% of this screening task; no proof attempted).
+
+## Strongest complexity moonshot: NL is not contained in L/poly
+
+Conditional theorem impact: 9.7–10. This would imply L != NL and rule out even polynomial advice for deterministic logarithmic-space solutions of directed reachability. It would be a central complexity breakthrough. It does not imply P != NP.
+
+**Precise new bridge to seek.** For one fixed integer d, prove that every two-way deterministic finite automaton correctly deciding one-way liveness of height h on all relation words of length at most h^d requires h^{omega(1)} states. A binary encoding adds polynomial length/state overhead, already handled by the first-batch automata result. Such a family belongs to 2N/poly but not 2D. The classical characterization then implies NL is not contained in L/poly.
+
+**Verified primary bridge.** Kapoutsis–Pighizzini, *Two-way automata characterizations of L/poly versus NL*, Theory of Computing Systems 56 (2015), 662–685, Theorem 1, establishes L/poly contains NL iff 2D contains 2N/poly. The introduction explains the stronger alphabet-independent finite-length simulation. Author manuscript: https://www.andrew.cmu.edu/user/cak/reads/2015-TOCS/main.pdf . Official bibliographic record: https://air.unimi.it/handle/2434/290670 . These support the implication, not the missing lower bound.
+
+**Actual new mechanism inspected.** OpenAI family 129, `An-exponential-two-way-deterministic-state-lower-bound-for-one-way-liveness-September-25-2026/build/sections/introduction.tex`, converts an s-state 2DFA into a Brauer matching monoid of degree <=4(s+2)^2. Its full relation-monoid quotient forces degree >=2^{floor((h-2)/31)}. `rank.tex` establishes a common-support rank-loss amplification using 32 conjugates, 256 additions, and recursive corners on h-31 points. This is a real new lower-bound mechanism unavailable in older quadratic arguments, and it is what makes revisiting the finite-length problem justified.
+
+**Exact barrier, not concealed.** The current proof uses unrestricted products, inverse permutation powers, positive idempotent powers (`rank.tex` lines 90–92, 133, 257–258), minimum-rank idempotent lifts (230–248), and a quotient defined using all words. No polynomial witness-length bound is supplied. The introduction explicitly says no L-vs-NL result follows. Polynomially many bits describing a huge power do not make its expanded word polynomially long. A finitely generated monoid may require very long words to reach the required corners. The completed binary result removes alphabet growth, but leaves this entire issue intact.
+
+**First decisive research gate.** Rework one amplification step using a length-indexed partial product algebra and explicit word representatives. Seek either (a) a polynomial total length recurrence for the full rank amplification, or (b) enough amplification for h^{omega(1)} degree while retaining polynomial length. Every claimed improvement must include simultaneous state, alphabet, and expanded-input-length bounds. A theorem merely asserting existence of short representatives is the central unsupported claim, not progress. Test the finite diagram monoids for unavoidable long-order permutation components, and check whether they can be bypassed through rank-stable products without full idempotence.
+
+**Assessment.** New foothold is substantial, but no presently validated argument bridges it to short inputs. Recommend as a moonshot only, never as a now-straightforward consequence. On present evidence, a different field's high-impact target with a genuine quantified bridge may outrank it despite its lower maximum prestige. No duplicate short-input result found in original or batch-two agendas or family129 source.
+
+## Other plausible-looking complexity escalations rejected
+
+1. **Cubic border determinantal complexity (#108) to superpolynomial permanent complexity.** Source introduction explicitly says superpolynomial remains open. Its smooth-form obstruction is proportional to (degree-1)(variables-1); permanent restrictions have degree O(m) and at most m^2 variables, making the available obstruction intrinsically cubic. Iterating the same estimate does not escape that ceiling. A new invariant, not mere optimization, is required. Also superpolynomial determinantal complexity separates permanent from polynomial-size algebraic branching programs, not automatically VP from VNP.
+2. **Finite-field factorization / noncommutative hitting points (#142/#116) to general commutative PIT.** Efficient field arithmetic and free-noncommutative formula testing do not control cancellation modulo commutator identities or general circuit sharing. No inspected mechanism crosses that gap; calling it newly enabled general PIT would be misleading.
+3. **L=BPL (#103) to P=BPP.** Logarithmic-space algorithms do not simulate polynomial-space work tapes without exponential-size configuration graphs. The source already provides variable accuracy and certified accepting paths under an inverse-polynomial probability promise. Removing either resource/rarity barrier contains a different central difficulty.
+4. **Depth-three Boolean #112 to general circuit lower bounds.** The actual result is 2^{omega(sqrt(n))}, weaker than 2^{n^{1/2+epsilon}} for fixed epsilon. Its constants rely on fixed-width sparsification. No immediate standard depth reduction gives a central unrestricted separation at this exponent.
+
+No outreach, research execution, git changes outside this note, or claimed proof verification performed.
