@@ -58,3 +58,19 @@ python3 construction_reduction_examples.py --output ../data/construction_example
 ```
 
 Without --output the constructor prints only a summary. The project-level reproduce.py deletes the copied construction JSON, regenerates it, and then compares the fresh data, so stale archived fixtures cannot pass merely by being copied. It also compares saved direct/trace-check results, ignoring only Python-version and elapsed-time metadata. Historical v1/v2 clean-run receipts did not provide that regeneration evidence; see review B and its response for the correction.
+# Sparse continuation
+
+sparse_cartier.py is the all-multiplicity sparse-numerator/dense-denominator
+reference reduction. Run python3 -m unittest test_sparse_cartier -v for its
+seven check families. It keeps exponents and multiplicities as binary
+integers, handles signed cancellation, and verifies sparse output by original
+valuations and weighted degree. Do not call Factorization.reconstruct or
+Factorization.verify on enormous sparse multiplicities: those older dense
+helpers deliberately expand the powers. The prime oracle remains bounded
+exhaustive test code, not the upstream uniform algorithm.
+
+For the current full package use reproduce.py with the explicit argument
+--fileset PUBLICATION_FILESET.json. The default VERIFICATION_FILESET.json
+belongs to the historical version-3 record, whose matching files live in its
+archived ZIP. Current package reproduction deletes generated fixtures before
+running their writers, and compares every regenerated sparse fixture exactly.

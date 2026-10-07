@@ -3,9 +3,10 @@
 import argparse, hashlib, json, pathlib, shutil, subprocess, sys, tempfile, datetime
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--receipt',required=True);ap.add_argument('--compile-pdf',action='store_true');a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--receipt',required=True);ap.add_argument('--compile-pdf',action='store_true');ap.add_argument('--fileset',default='VERIFICATION_FILESET.json');a=ap.parse_args()
     root=pathlib.Path(__file__).resolve().parents[1]
-    manifest=json.loads((root/'VERIFICATION_FILESET.json').read_text())
+    fileset_path=root/a.fileset
+    manifest=json.loads(fileset_path.read_text())
     changed=[]
     for entry in manifest['files']:
         p=root/entry['path']
@@ -61,6 +62,20 @@ def main():
                 for key,bound in [('phase_checks',1e-10),('residue_extension_checks',1e-10),('C_value_checks',1e-8)]:
                     if any(not 0<=row['max_error']<bound for row in actual[key]):raise SystemExit('Numerical local tolerance failed: '+key)
             audit_results.append({'script':script,'exit_code':0,'saved_result_structure_equal':True,'result':actual,'comparison':'exact after removing numerical max_error fields; actual numerical tolerances checked'})
+        sparse_results=[]
+        if (clean/'code/sparse_cartier.py').is_file():
+            process=subprocess.run([sys.executable,'-m','unittest','-v','test_sparse_cartier.py'],cwd=clean/'code',text=True,capture_output=True,timeout=90)
+            if process.returncode:raise SystemExit('Sparse reduction tests failed\n'+process.stderr)
+            sparse_results.append({'script':'test_sparse_cartier.py','exit_code':0,'stderr':process.stderr})
+            sparse_scripts=['sparse_extension_independent_checks.py','sparse_rational_independent_checks.py','sparse_adversarial_checks.py','sparse_adversarial_recurrence_checks.py','sparse_adversarial_frobenius_checks.py']
+            for script in sparse_scripts:
+                generated=clean/'agent_notes'/pathlib.Path(script).with_suffix('.json')
+                generated.unlink()
+                process=subprocess.run([sys.executable,script],cwd=clean/'agent_notes',text=True,capture_output=True,timeout=90)
+                if process.returncode or not generated.is_file():raise SystemExit('Independent sparse check failed: '+script+'\n'+process.stderr)
+                actual=json.loads(generated.read_text());expected=json.loads((root/'agent_notes'/generated.name).read_text())
+                if actual!=expected:raise SystemExit('Regenerated sparse JSON differs: '+script)
+                sparse_results.append({'script':script,'exit_code':0,'data_regenerated':True,'saved_result_exactly_equal':True,'generated_sha256':hashlib.sha256(generated.read_bytes()).hexdigest()})
         compile_result=None
         if a.compile_pdf:
             version=subprocess.run(['tectonic','--version'],text=True,capture_output=True,check=True).stdout.strip()
@@ -70,7 +85,11 @@ def main():
             info=subprocess.run(['pdfinfo',str(clean/'manuscript/main.pdf')],text=True,capture_output=True,check=True).stdout
             compile_result['pdfinfo']=info
             if 'Overfull' in (clean/'manuscript/main.log').read_text():raise SystemExit('PDF has overfull layout warnings')
-        receipt={'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'python':sys.version,'fileset_sha256':hashlib.sha256((root/'VERIFICATION_FILESET.json').read_bytes()).hexdigest(),'source_hashes_verified':True,'clean_directory':True,'tests':results,'examples_byte_identical':output_matches,'construction_data_regenerated':True,'construction_json_identical':construction_matches,'direct_saved_results_equal_except_runtime_metadata':True,'coherence_certificate_equal':coherence_matches,'additional_source_audit_checks':audit_results,'pdf_build':compile_result,'scope':'finite consistency checks and standalone build; not analytic proof or novelty certification'}
+            if (root/'manuscript/paper.pdf').is_file():
+                def pdf_text(path):return subprocess.run(['pdftotext','-layout',str(path),'-'],text=True,capture_output=True,check=True).stdout
+                if pdf_text(clean/'manuscript/main.pdf')!=pdf_text(root/'manuscript/paper.pdf'):raise SystemExit('Clean PDF text differs from exported paper.pdf')
+                compile_result['exported_pdf_text_equal']=True
+        receipt={'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'python':sys.version,'fileset_sha256':hashlib.sha256(fileset_path.read_bytes()).hexdigest(),'source_hashes_verified':True,'clean_directory':True,'tests':results,'examples_byte_identical':output_matches,'construction_data_regenerated':True,'construction_json_identical':construction_matches,'direct_saved_results_equal_except_runtime_metadata':True,'coherence_certificate_equal':coherence_matches,'additional_source_audit_checks':audit_results,'sparse_checks':sparse_results,'pdf_build':compile_result,'scope':'finite consistency checks and standalone build; not analytic proof or novelty certification'}
     (root/a.receipt).write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps({'all_pass':True,'examples_byte_identical':output_matches,'construction_data_regenerated':True,'construction_json_identical':construction_matches,'receipt':a.receipt},indent=2))
 if __name__=='__main__':main()

@@ -1,5 +1,24 @@
 # Publication decision
 
+## Current stronger theorem — 2026-10-07 UTC
+
+Prepare the all-multiplicity sparse theorem for fresh full-package review.
+The new contribution is the compressed repeated quotient and denominator
+growth bound, not the classical tools or upstream prime-field breakthrough.
+Exact primary comparisons identify positive differences from partial-radical,
+dense descent and large-characteristic lacunary algorithms. Two independent
+proof audits found no substantive concern. No first-priority assertion is made.
+The complete Gianni–Trager1996 paper was inaccessible; its dense mechanism
+was traced through Lecerf's exact primary algorithms, with that limit exposed.
+
+The user has already authorized production publication and the tracker update
+once mathematical, priority and package conditions pass. Full-package reviews
+and exact-file preflight are still required. No deposit, DOI or tracker row
+exists yet. The original dense-only record and its three reviews remain in
+artifacts/finite_fields_research_record_v3.zip. The decision below is historical.
+
+## Historical dense-only record-v3
+
 Timestamp: 2026-10-07T04:47:04.363791+00:00 (2026-10-06 Pacific). State at the record-v3 freeze.
 
 The exact core algorithmic targets follow, on the accepted cited-source proof-review basis, from OpenAI family142 and established reductions. Independent primary-source priority checks positively located the trace-coordinate mechanism in Berlekamp1970 §5, construction in Shoup1988/1990 Theorems3.1/4.1, and the degree-md lift in Rai2024 Algorithm2. The first verified public Rai evidence here is ECCC TR24-147 on October4,2024, earlier than arXiv October5. No genuinely new mathematical extension has been established. Absence of an explicit combined all-field theorem in the audited family142 files is not novelty evidence; no literal duplicate of a single combined theorem is asserted.

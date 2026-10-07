@@ -61,3 +61,9 @@ review remain pending. No first-priority assertion is justified.
 
 Best guesses: dense mathematical core 100%; sparse reduction proof 85%;
 eligible new contribution 50% (not certified); publication package 40%.
+
+## 2026-10-07T05:54:57.370391+00:00 — complete revised candidate frozen
+
+The v4 review snapshot covers61 files:57 authored inputs, their verification fileset, exact upload ZIP, manifest and path list. Clean reproduction regenerated all fixtures and passed; the nine-page exported PDF matched a separate clean build and native compiler. No source clone changes or later upstream correction were found. Fresh complete reviewer D is running. The ZIP and metadata are frozen for that review; final review reports/receipts are kept separately to avoid self-referential archive hashes.
+
+Best guesses: dense mathematical core100%; sparse reduction95%; publication package75%; eligible new contribution85% on specific positive primary comparisons, subject to full adversarial review. These are estimates, not proof or novelty evidence.

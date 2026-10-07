@@ -161,14 +161,15 @@ Their entries have exactly m prime coordinates, each at most L bits. The
 largest residue product has degree C=(t-1)(b+1)D; all remaining dense
 linear algebra and polynomial products have dimensions polynomial in C.
 Known-root quotient fields have delta<=(b+1)D and m*delta prime coordinates.
-All exponents, signed weights, and final multiplicities have O(b+log(b+1))
-bits. Coefficient inverse Frobenius is powering by p^(m-1), using O(mL)
+Exponents and final multiplicities have O(b) bits. Signed weights, including
+the last unused multiplication by p, have O(b+L+log(b+1)) bits.
+Coefficient inverse Frobenius is powering by p^(m-1), using O(mL)
 field multiplications. No integer factorization, primitive root, random point,
 GRH, or field-element enumeration occurs in the reduction.
 
 For a deliberately loose explicit bookkeeping bound, put
 M=1+t+b+D+m+L. Excluding dense factorization and the representation check,
-M^20 schoolbook bit operations suffice for the operations just listed. The
+M^24 schoolbook bit operations suffice for the operations just listed. The
 total is at most 2b times the dense-factor bound at degree (b+1)D plus this
 polynomial (with a larger absolute constant). Substituting the audited prime
 bound gives an enormous polynomial, with no practical-efficiency promise.

@@ -1,5 +1,17 @@
 # Approach families
 
+## Sparse continuation — 2026-10-07 UTC
+
+| Family | Mechanism | Evidence | Status | Exact remaining gap |
+|---|---|---|---|---|
+| Sparse tame precursor | Padé log derivative and known-root exponent residues | Kaltofen, DSS and Mattarei exact primary overlaps | Inherited mechanism | Superseded by unrestricted route |
+| Sparse rational Cartier descent | Polynomial F=U/V, sparse U, dense V; signed residues; constant section | Full derivation, two independent proofs, root and independent exact prototypes | Mathematical reduction supported | Fresh complete revised-package reviews |
+| Degree control | rad(Fnew) subset rad(F), degVnew<=degV+D, numerator degree divides by p | Exact valuations/section identity and independent falsification attempts | Quantitative contribution to review | Full package and priority disposition |
+| Section Bézout alternative | Combine dense section gcds into an explicit sparse pth root | Independent adversarial derivation | No complexity promotion | Sparse support may grow across levels; no polynomial bound justified |
+| Optional binary roots | Smooth factors of gcd(r,q-1), primary-component projection | Exact AMM1977 antecedent, finite all-choice checks | Inherited, optional | None; omitted as headline |
+
+## Historical dense-only record-v3
+
 Current record revision: record-v3. Historical status and estimates are in RESEARCH_LOG.md; no status label is mathematical evidence.
 
 | Mechanism | Evidence | Status | Exact remaining gap |

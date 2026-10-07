@@ -14,6 +14,29 @@ Pinned input is commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. All cited sourc
 | Shoup 1990 Theorems3.1/4.1 | Prime construction reduces deterministically to prime-field polynomial factoring in poly(N,log p); arbitrary represented bases likewise | Primary paper read; independently derived prime-power cases, dimensions and oracle count, repaired 2-power exception | Inherited construction, trial division of numeric N legitimate for dense output; no poly(logN) claim |
 | Rai 2024 Algorithm2 / Theorem4.1 | Construct degree md over F_p, factor over supplied F_(p^m), select lexicographically first factor of degree d | Exact primary text read; independent Frobenius-orbit proof | This simple lift is also inherited; no new reduction claim |
 
-## Strongest verified result
+## Sparse continuation and current strongest result
+
+The sparse reduction is self-contained in manuscript/main.tex and
+SPARSE_CANDIDATE_DERIVATION.md. It uses the same audited dense oracle, with
+no new analytic or integer-factorization assumption.
+
+| Tool | Exact use | Primary validation | Attribution and limit |
+|---|---|---|---|
+| Kaltofen1988 §8 | Reduced Padé recovery at a known regular point | Actual algorithm/Theorem8.1/Corollary8.1 read | Reconstruction and doubling inherited; sparse exact identity checked here |
+| DSS2017/2022 §6.3 Theorem28 | rad_p omits p-divisible multiplicities | Author JACM version and characteristic-p scope read | Antecedent partial-radical result, not imported all-multiplicity algorithm |
+| Mattarei2005/2006 Theorem2 | Residue child valuations; e modp<=t−1 | Entire proof independently read, constructive valuation tested | Known-root residue mechanism and sparsity bound inherited |
+| Rowland–Yassawi2013/2014 Proposition1.9 | Cartier pull-out identity | Actual proposition/proof read | Classical identity; inverse coefficient Frobenius required |
+| Lecerf2007/2008 §2 | p-residue splitting and dense squarefree descent | Coefficient-vector model, Lemma2, Algorithms1/3, Proposition5 read | Descent inherited; compressed representation and degree invariant proved here |
+| Repeated quotient invariant | V|U, rad(Fnew) subset rad(F), degVnew<=degV+D, at most b levels | Exact proof, two independent adversarial derivations and prototypes | Fresh full-package review pending; no firstness asserted |
+
+Version/disclosure dates, hashes and scope comparisons are recorded in
+agent_notes/sparse_priority_audit.md, sparse_logder_priority_subaudit.md,
+sparse_priority_second.md and sparse_priority_second_recent.md. Actual primary
+comparators retain numeric input-degree/p dependence or partial-radical scope.
+The full Gianni–Trager1996 paper was inaccessible; its standard dense mechanism
+was traced through Lecerf's precise primary treatment, not inferred from an
+abstract. This limit remains explicit for full-package review.
+
+## Historical dense-only record-v3
 
 On the mathematical proof-review basis above, prime factoring supplies uniform deterministic complete factoring and degree-d irreducible construction over K=F_p[t]/h, with an irreducible h promise or deterministic check. Nonoracle reductions are polynomial in n,m,L (factoring) or d,m,L (construction); degrees d or r are numeric dense-output parameters. This is a consequence of OpenAI's prime-field theorem through established reductions. The priority audits found inherited consequences and no demonstrated new extension, so new-solution publication is withheld. Complete-record review A requested minor record corrections. Distinct reviewer B found a substantive consolidated construction-data checker defect in record-v2, while independently regenerated fixtures matched. That checker defect is repaired in record-v3, whose exact full-record fresh review is pending; historical receipts are not retroactively upgraded. No novelty or full-package certification is inferred from the mathematical audit.
