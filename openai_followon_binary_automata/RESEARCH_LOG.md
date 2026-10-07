@@ -107,3 +107,22 @@ PDF, TeX, README and publication metadata remain identical to initial full
 candidate. No new proof edits are planned. Source remote main still matches
 the pinned upstream commit. Production creation remains gated on the fresh
 second review, without requesting approval already granted by the user.
+
+## 2026-10-06 21:33 PDT / 2026-10-07 04:33 UTC — final fresh review passed
+
+Mathematical resolution: 100% best guess. Publication package: 90% best guess.
+The second complete-package reviewer independently checked the original
+proof chains, uniform binary reductions, exact quantitative formulas,
+primary priority sources, all 74 source hashes, all 28 ZIP members,
+clean reproduction, all six PDF pages and publication metadata. No
+substantive issue was found. One minor citation locator was corrected
+from Theorem 1 to Theorem 1.1 in the two upstream complementation
+references. Candidate04 is frozen; the fresh reviewer independently
+verified the exact two-string delta, rebuilt PDF, ZIP checksums and
+affected pages, then passed this exact package. Formal kernel builds
+remain unreproduced and expressly disclaimed.
+
+The four intended upload files and metadata have the exact hashes in
+reviews/candidate04_hashes.json. Local production check passed.
+Production stage, inspect, publish, confirmed readback and tracker remain
+pending. No DOI or publication status is claimed yet.

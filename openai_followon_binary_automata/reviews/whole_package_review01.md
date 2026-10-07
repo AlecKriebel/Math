@@ -233,3 +233,57 @@ This review's mathematical-checking and package-checking tasks are complete;
 their completion does not mark the parent publication objective achieved.
 I edited only this review and its private evidence artifacts, made no commits,
 and contacted no external individual.
+
+## Addendum: candidate04 bibliographic correction review
+
+Timestamp: 2026-10-06T21:33:37.926976-07:00 (America/Los_Angeles).
+
+A fresh reviewer found two bibliographic locator errors in candidate03 that
+my first review did not catch. The original complementation result is
+**Theorem 1.1**, rather than Theorem 1. Root corrected the inline citation
+at main.tex:253 and the bibliography locator at main.tex:355. The original
+candidate03 verdict and its evidence remain preserved above.
+
+I independently verified that reversing exactly these two locator strings
+reconstructs the candidate03 main.tex SHA-256
+`effc61c3809b0290f4b9a063c7a7dbc389e512d38e81683d0bea0cee42f19aa5`.
+Thus no mathematical text, transition, proof, quantitative bound, attribution
+claim or convention was changed. The pinned original paper.pdf explicitly
+labels the result Theorem 1.1 on page 1, and its build/paper.tex uses theorem
+numbering by section. The corrected locator is therefore verified directly
+against the primary source.
+
+The current four publication files and manifest were all hash-checked
+against reviews/candidate04_hashes.json:
+
+| File | Bytes | SHA-256 |
+|---|---:|---|
+| main.tex | 20426 | b6aa5b342c1b4a919d1f938f26f0b5f5242d7bbaac9e74540899621ff6441910 |
+| paper.pdf | 80290 | fc8fe182d3fc92cd61607e514cd811b268e0ab56cd84f170c6fb0f689980e215 |
+| README.md | 5370 | fca0eb6955d6c5794eaafcc132617a42706178fb16319bc1c4a6d75c3a8b3dd2 |
+| verification.zip | 74534 | 6169f978956c923664207e274f93ab2c13042965206f9bb17cd1f35869794ac1 |
+| zenodo-deposit.json | 2427 | fa6d151d0ce646e898cfb68ac7abb92c857c344488a593e138003e5cc290c5c0 |
+
+I independently rendered and visually inspected affected PDF pages 4 and 6,
+then checked their extracted text. Both locators now read Theorem 1.1;
+formulas, line breaks, margins and references are intact. The PDF still has
+six pages and correct title/author metadata. README and deposit metadata
+are byte-identical to candidate03.
+
+I verified all 27 ZIP content hashes and CRC, compared the current member
+manifest with the one in my original review, and confirmed that **only
+main.tex changed inside verification.zip**. In a fresh extraction of the
+exact candidate04 ZIP, I ran code/clean_reproduction.py successfully: all
+four verification scripts passed and the corrected standalone source built
+an actual PDF. The ZIP hash was unchanged before and after this check.
+Evidence: whole_package_review01_artifacts/candidate04/checks.json and
+whole_package_review01_candidate04_hashes.json.
+
+**No unresolved substantive or bibliographic issue was found in candidate04
+within this change review.** The earlier full mathematical and dependency
+review continues to apply because the exact source comparison establishes
+that its proof text and all supplementary code/audit content are unchanged.
+The formal-verification and publication/tracker limitations from the original
+review remain unchanged. This addendum is an automated review, not human
+peer review. No candidate file or external publication state was changed
+by this reviewer.
