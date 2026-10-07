@@ -13,4 +13,11 @@ Let S_1,...,S_r be complex projective K3 surfaces and α_i in Br(S_i). Let each 
 Boundary cases include r=0, empty moduli, dimension zero, p outside [0,dim], n=0 and n=1 Hilbert schemes, and non-fine moduli. No claim about arbitrary K3^[n] deformations, singular spaces, integral/generalized Hodge, abelian-surface moduli, or finite-dimensional motives is authorized by this target.
 
 ## Strongest verified result
-None at initialization.
+The conditional motive-theoretic implication is proved with explicit
+codimensions: rational HC on every mixed product of the relevant K3 bases
+implies rational HC on every specified mixed moduli product. The universal
+target and universal mixed-K3 assertion are equivalent under the reduction,
+because S^[1]=S. Main.tex records the proposed unconditional consequence of
+the upstream theorem, but publication awaits the fresh CM arithmetic audit
+and complete-package reviews. No specific substantive gap has been identified
+in the audited slices; that fact does not certify unreviewed slices.
