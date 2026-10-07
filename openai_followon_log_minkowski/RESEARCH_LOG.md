@@ -15,3 +15,11 @@ Independent agents assigned: upstream analytic proof/semantic audit; smooth He�
 Strongest verified result at this checkpoint: the endpoint p=0 must exclude singular measures. Equal-volume coordinate boxes give identical cone-volume measures. No all-dimensional unconditional target is yet certified.
 
 Early findings awaiting root verification: He–Liu has sphere-dimension convention changes and omissions in its p>0 second-derivative algebra, but corrected extrema argument appears to survive. The nonsmooth p>0 route avoids any need for full support of the surface-area measure by classical mixed-volume equality. Actual upstream Lean declaration is distinct from the comparator's intentional sorry; no claim of a reproduced build has been made.
+
+## 2026-10-06 21:15 PDT — Checkpoint publication correction
+
+Mathematical resolution: **20%**. Publication package: **3%**.
+
+Initial isolated-index push was commit 77dc822812677450ac4facca9b9b42515f992697. The broad project staging unintentionally included agents' downloaded third-party reference files before redistribution licensing review. Added explicit exclusions and removed those files from the current public tree; local evidence remains preserved. The historical commit is not rewritten or force-pushed. Final Zenodo package will contain owned work and references only. Subsequent checkpoint publishing enforces this exclusion.
+
+The smooth transfer can use a short local geometric-support path with positive curvature, eliminating any need to assert smoothness of every global Wulff interpolation. Detailed existence attribution needs symmetry-preserving generalized existence plus established interior regularity; He–Liu's abbreviated attribution alone is not sufficient. No all-dimensional unconditional target certified yet.
