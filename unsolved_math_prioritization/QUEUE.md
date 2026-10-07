@@ -962,7 +962,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
+| 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | unsolved | 5/5 |  |  Accepted corrected partials: 12 auxiliary results; slit-comb extension rigidity; restricted accessibility criteria; five approaches leave the full question open. Prime-end identification wording corrected; original, patch, corrected proof and independent audit preserved in attempts/5300048/. 5,963 author and 26,958 independent checks pass; no novelty or full-solution claim.  |  |
 | 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
