@@ -19,7 +19,8 @@ def main():
  for row in manifest['files']:
   q=upstream/row['path'];assert q.is_file() and q.stat().st_size==row['bytes'] and digest(q)==row['sha256'],row['path']
  r={'python':sys.version,'platform':platform.platform(),'source_pin':PIN,'upstream_hashes_checked':len(manifest['files']),'commands':[],'full_lean_build':False}
- with tempfile.TemporaryDirectory(prefix='riesz-clean-') as d:
+ tmp_root=ROOT/'reproducibility/temporary';tmp_root.mkdir(parents=True,exist_ok=True)
+ with tempfile.TemporaryDirectory(prefix='riesz-clean-',dir=tmp_root) as d:
   d=Path(d).resolve();(d/'paper').mkdir();source_bytes=(ROOT/'publication/main.tex').read_bytes();(d/'paper/main.tex').write_bytes(source_bytes)
   env=dict(os.environ,SOURCE_DATE_EPOCH='1791345600')
   r['commands'].append(run([args.tectonic,'--keep-logs','main.tex'],d/'paper',env))

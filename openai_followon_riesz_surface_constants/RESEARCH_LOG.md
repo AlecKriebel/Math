@@ -27,3 +27,13 @@ The standalone source is open in the native LaTeX editor and compiles successful
 The installed gws prerequisite file was missing; invoking its generator with `--help` unexpectedly generated instruction files in the shared root. Those newly untracked generated files were moved into the dedicated project's ignored reproduction folder; existing repository docs were preserved. The actual spreadsheet metadata resolves numeric tab 1254632077 to **Math Puzzles**, with four populated headers: Original Problem, Solution Chat URL, DOI, Notes. Read-only preflight succeeded. No tracker write or Zenodo staging/publication has occurred.
 
 Strongest verified result: a complete conventional consequence proof of both core mathematical targets using two audited versions of U, with all pair/covolume/area/tail conventions checked. Full priority wording and two independent complete-package reviews remain mandatory publication gates.
+
+## 2026-10-07T04:29:14.706773+00:00 — checkpoint 2: review, repair, fresh review
+
+Mathematical resolution: **98%** (estimate). Publication package: **80%** (estimate).
+
+The first whole-package reviewer independently reconstructed the core proof, inspected the needed main analytic sections and corrected classical theorem, searched current primary literature and companion sources, reproduced the actual archived package with all 34 source hashes and certificates passing, and obtained a byte-identical PDF. No substantive mathematical concern was found. The review required repairs to an omitted proof-file reference and superseded novelty wording, plus clarification of a research-checkout-only formal diagnostic. All findings were repaired; the original exact bytes and hashes are preserved in reviews/round1_input, with response in reviews/RESPONSE_ROUND1.md. Leblé's accent and temporary-copy location were also corrected.
+
+The revised PDF compiled in the native editor and was exported with Tectonic; all five pages were inspected again with no clipping, missing reference or overfull line. The explicit 28-file source archive excludes third-party source copies, secrets and caches. New candidate identity is f2bb18cca10e6df4162dd6bf1f9b1d4d0060bbb32ff7b8a617177bfd8d6c6d41. A NEW reviewer is reviewing this exact complete package from scratch, including source arguments and archive-based reproduction.
+
+Strongest verified result remains the complete conventional consequence proof with audited external U. Formal kernel verification is not claimed. No Zenodo deposit has yet been staged or published and no tracker write has occurred.

@@ -3,8 +3,14 @@
 Prepared independently on 2026-10-06 (America/Los_Angeles) for the dedicated
 `openai_followon_riesz_surface_constants` effort. This file makes no
 unconditional claim that the upstream universal-optimality theorem is valid.
-It isolates the exact dependency and proves the new reduction conditional on
-that dependency. No other agent's proof was consulted in preparing this file.
+It isolates the exact dependency and proves the finite-to-infinite reduction
+conditional on that dependency. No other agent's proof was consulted in
+preparing the original derivation. The reduction itself is established
+machinery: see Hardin–Saff–Simanek (2014), Theorem 3.2, and
+Hardin–Leblé–Saff–Serfaty (2018), Proposition 3.1. This supplement gives an
+explicit account in the conventions of the present note, not a novelty claim.
+The pivotal external theorem is separately audited in the accompanying
+source-audit reports; this reduction does not bypass that dependency.
 
 ## 1. Exact dependency and conventions
 

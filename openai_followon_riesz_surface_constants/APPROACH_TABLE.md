@@ -2,7 +2,7 @@
 
 | Family | Mechanism | Evidence | Status | Exact gap / boundary |
 |---|---|---|---|---|
-| Main cardinal interpolation | Gaussian Fourier minorants, finite interval checks, infinite correction/global signs | Complete analytic source audit; all 37,310 Bernstein + 10 tail comparisons and scalar budgets pass | Retained, independently audited | External theorem; full follow-on package review pending; no jellium scope imported |
+| Main cardinal interpolation | Gaussian Fourier minorants, finite interval checks, infinite correction/global signs | Complete analytic source audit; all 37,310 Bernstein + 10 tail comparisons and scalar budgets pass | Retained, independently audited | External theorem; full-package reviews recorded separately; no jellium scope imported |
 | Atomic interpolation | Atomic 20×20 blocks, summable tail Schur inverse, sign barriers | Separate full analytic/checker audit; exact checker twice; independent rational/diagnostic checks | Retained corroborating proof | No Lean build claim or numerical-agreement inference |
 | Formal route | Actual constructed GaussianPair, density LP, positive mixture, lattice attainment | Exact definitions and 227-module source closure/hashes inspected | Full verification unavailable | Missing compatible Mathlib; actual kernel build/axiom audit not completed; this is a limitation, not a theorem counterexample |
 | Gap periodization | Side √N motif, ε√N gaps, square-periodic disk row limit, density-one compression | Explicit uniform cross error 8ε^(-s)ζ_R(s−1)N^(1−s/2) | Proved using U | Limits ordered R, N, ε; established reduction machinery credited |

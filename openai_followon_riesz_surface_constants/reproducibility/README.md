@@ -1,6 +1,6 @@
 # Reproduction and exact verification scope
 
-The mathematical bridge is a proof, not a numerical experiment. Read publication/main.tex and proofs/bridge_independent.md. No numerical approximation establishes the Riesz constant.
+The mathematical bridge is a proof, not a numerical experiment. Read publication/main.tex and proofs/FINITE_TRANSFER.md. No numerical approximation establishes the Riesz constant.
 
 The standalone manuscript requires Tectonic (tested 0.16.9), or a current LaTeX distribution with the named packages. Its bibliography is embedded in main.tex. From publication, run `tectonic main.tex` to obtain main.pdf; the deposited copy is named paper.pdf. Rebuilt PDF metadata can differ while the source and content agree.
 
