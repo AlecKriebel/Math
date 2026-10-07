@@ -423,7 +423,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 412 | 2511 / KOU-21.2 | Kourovka Notebook Problem 21.2 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 413 | 2518 / KOU-21.9 | Kourovka Notebook Problem 21.9 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
-| 415 | 2531 / KOU-21.22 | Kourovka Notebook Problem 21.22 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 415 | 2531 / KOU-21.22 | Kourovka Notebook Problem 21.22 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 416 | 30004865 / OWR-8415352-007 | Completeness of Realignment and SIC-POVM Entanglement Tests | 0.1333 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 417 | 6200004 / AMR-061-0004 | Boundaries of Groups and Kleinian Groups — Problem 4 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 418 | 6200043 / AMR-061-0043 | Boundaries of Groups and Kleinian Groups — Problem 43 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |

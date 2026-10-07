@@ -1,0 +1,3 @@
+# Substantive author turn 3
+
+2026-10-02 20:05 UTC: Extended the basic-epimorphism theorem to perfect Hopfian bases with a center. The centerless quotient supplies surjectivity of the collapsed local map; perfectness and Hopficity turn commuting coordinate images into actual direct factors. Combined with the credited invariant-central-base lemma and turn2, this proves the full wreath Hopficity assertion for perfect central extensions of finite products of nonabelian simple groups. The finite central-product example records why shared centers obstruct independent shifts. All 72,670 exact controls pass. Original unresolved, 3/5, with two genuine turns remaining. No fourth author turn is included in this checkpoint. Subjective completion30%.
