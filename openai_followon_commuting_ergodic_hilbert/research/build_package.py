@@ -14,6 +14,15 @@ def archive(name,entries):
    z.writestr(info,(ROOT/source).read_bytes())
 source=[('main.tex','main.tex'),('README.md','README.md'),('research/PRIORITY_REFERENCES.bib','references.bib'),('research/restriction_geometry_check.py','restriction_geometry_check.py'),('reviews/frequency_audit_computations.py','frequency_audit_computations.py'),('sources/SOURCE_HASHES.json','SOURCE_HASHES.json')]
 supplement=['THEOREM_LEDGER.md','DEPENDENCY_LEDGER.md','APPROACH_TABLE.md','research/ROOT_AUDIT.md','research/restriction_independent.md','research/restriction_geometry_check.py','research/restriction_geometry_check_result.json','research/PRIORITY_AUDIT.md','research/PRIORITY_REFERENCES.bib','research/PRIORITY_EVIDENCE.json','reviews/upstream_energy_audit.md','reviews/upstream_frequency_audit.md','reviews/frequency_audit_computations.py','reviews/frequency_audit_computations.json','sources/SOURCE_HASHES.json','README.md']
+supplement += ['reviews/upstream_energy_bookkeeping.py',
+ 'reviews/upstream_energy_bookkeeping_output.txt',
+ 'reviews/upstream_energy_bookkeeping_environment.json',
+ 'reviews/upstream_energy_bookkeeping_README.md',
+ 'reviews/upstream_matrix_falsification_seed_9132784.py',
+ 'reviews/upstream_matrix_falsification_seed_9132784.output.txt',
+ 'reviews/upstream_matrix_falsification_seed_882064.py',
+ 'reviews/upstream_matrix_falsification_seed_882064.output.txt',
+ 'reviews/upstream_matrix_falsification_reproducibility.json']
 archive('source.zip',source)
 archive('verification-supplement.zip',[(p,p) for p in supplement])
 shutil.copyfile(ROOT/'publication/paper.pdf',KIT/'paper.pdf')

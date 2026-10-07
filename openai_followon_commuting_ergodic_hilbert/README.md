@@ -22,7 +22,17 @@ python3 restriction_geometry_check.py
 python3 frequency_audit_computations.py
 ```
 
-The checks use only the Python standard library (tested with Python 3.14.6). The geometry program checks 14,850 assertions covering signed kernels, supports, half-integer endpoints, and all anchored partitions through M=7 on reproducible random complex sequences. Decimal coefficients use 70-digit precision. Frequency probes are finite quadrature exploration and are explicitly not certified continuum counterexample searches. None of these computations proves the continuous theorem; the proofs and scoped audits carry that responsibility. A clean-directory build and rerun are recorded in the research repository. Exact PDF bytes can depend on the TeX engine; the fixed build epoch is supplied for reproducibility.
+The two checks above use only the Python standard library (tested with Python 3.14.6). The geometry program checks 14,850 assertions covering signed kernels, supports, half-integer endpoints, and all anchored partitions through M=7 on reproducible random complex sequences. Decimal coefficients use 70-digit precision. Frequency probes are finite quadrature exploration and are explicitly not certified continuum counterexample searches. None of these computations proves the continuous theorem; the proofs and scoped audits carry that responsibility. A clean-directory build and rerun are recorded in the research repository. Exact PDF bytes can depend on the TeX engine; the fixed build epoch is supplied for reproducibility.
+
+The supplement additionally includes the exact recovered matrix-audit probe programs, original outputs and environment records. With Python 3.12.14 and NumPy 2.3.5 (macOS arm64 Accelerate backend in the recorded runs), reproduce them from the extracted supplement with:
+
+```sh
+python3 reviews/upstream_energy_bookkeeping.py
+python3 reviews/upstream_matrix_falsification_seed_9132784.py
+python3 reviews/upstream_matrix_falsification_seed_882064.py
+```
+
+Other numerical backends may differ in the final digits. Eigenvalue cutoffs make these floating-point bookkeeping checks unsuitable as singular-support certificates. The exact analytic audit is the proof evidence. The prepublication ledgers in this fixed supplement record their checkpoint state; later complete-package review and publication receipts are retained in the repository.
 
 The `verification-supplement.zip` contains dependency/theorem ledgers, independent proof/audits, primary-source priority evidence, numerical result files, source hashes and reproduction information. Complete-package reviews and publication/tracker receipts are retained separately in the project's public repository so the reviewed payload itself does not change to include its own future review.
 
