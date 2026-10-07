@@ -1,4 +1,4 @@
-# Dependency ledger — checkpoint 05
+# Dependency ledger — checkpoint 09
 
 | Input | Exact scope needed | Validation basis | Status / limitation |
 |---|---|---|---|
@@ -21,6 +21,6 @@
 | Positive-Ricci local tensor step | Parallel orthogonal I commutes with J | Chern-curvature contraction on parallel (2,0) forms; separate isometry audit | Pointwise identity, no global integration/completeness/RCC needed |
 | Boundary isometry extension | GH regular sets agree, smooth local isometry, Hartogs inverse extension/GAGA | DSII Prop2.14 and2.4; independent exact-source audit | Actual cubic GH/smoothable scope only |
 | Hyperplane root uniqueness | Pic(X)=Z[O(1)] for global complete intersections dim>=3, singular allowed | SGA2 ExposeXII Cor3.7 primary statement; hypersurface section sequence | Verified actual Cartier hyperplane preserved |
-| Extension priority | Singular high-index criterion and all-boundary bare-metric fibers | Two independent current primary comparisons incl PW, DGP24, Hoering2026, Spotti/OSS, KSZZ | Modest attributed extension recommended conditionally; no first-priority certification; fresh full package review required |
+| Extension priority | Singular high-index criterion and all-boundary bare-metric fibers | Two independent current primary comparisons incl PW, DGP24, Hoering2026, Spotti/OSS, KSZZ | Modest attributed extension and exact v3 pass two fresh complete-package reviews; production publication and tracker verified; no first-priority certification |
 
 All detailed validation scopes and source locations are retained in agent_notes/. Third-party local reading caches are not publication payloads.
