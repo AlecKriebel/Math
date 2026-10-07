@@ -13,9 +13,6 @@ import zipfile
 
 project = Path(__file__).resolve().parents[1]
 version = sys.argv[1]
-target = project/'reviews'/(version+'_manifest.json')
-if target.exists():
-    raise RuntimeError('Refusing to overwrite an existing review version manifest')
 names = [
     'main.tex', 'README.md', 'CURRENT_THEOREM.md', 'DEPENDENCY_LEDGER.md',
     'APPROACH_TABLE.md', 'LICENSES.md', 'LICENSE_CODE.txt',
@@ -62,6 +59,9 @@ record = {'version': version, 'utc': datetime.datetime.now(datetime.timezone.utc
           'files': payload+[entry('paper.pdf'),entry('source-and-audit.zip'),entry('zenodo-deposit.json')],
           'archive_members': names+['SOURCE_ARCHIVE_MANIFEST.json'],
           'no_review_verdict_in_immutable_archive': True}
+target = project/'reviews'/(version+'_manifest.json')
+if target.exists():
+    raise RuntimeError('Refusing to overwrite an existing review version manifest')
 target.write_text(json.dumps(record,indent=2)+'\n')
 print(json.dumps({'manifest':str(target.relative_to(project)), 'scientific_files':len(record['files']),
                   'archive_members':len(record['archive_members']), 'archive':entry('source-and-audit.zip')},indent=2))

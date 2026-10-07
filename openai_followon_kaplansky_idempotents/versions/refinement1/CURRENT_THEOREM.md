@@ -1,0 +1,11 @@
+# Exact target and strongest verified result
+
+The original core follows from the audited pinned October 4 theorem and classical algebra: a finitely presented torsion-free group G with a finite 2D K(G,1), e=1-ba in F_2[G], e^2=e, e!=0,1; every characteristic-two coefficient extension preserves it. P=eR is nonzero, cyclic and projective, R≅R⊕P as right modules, and [P]=0 in K_0(R). All these consequences and their proof outline had already appeared in the author's public triage. Validation is new work but is not advertised as a new mathematical discovery.
+
+New quantitative refinement: in the unchanged seven-extra type/turn-weight model and any permitted inverse pairing, q=32 is the least dyadic q>=4 with spectral radius rho(M)<1. The exact three-class quotient and rational certificates prove word-mass contraction at 32 and growth at 4,8,16. All parameter-dependent source estimates remain valid at 32, giving a 532-edge rose construction (existential matching).
+
+Sharper inherited realization: a classical finite HNN embedding gives a two-generator finitely presented torsion-free H with a finite 2D K(H,1), transporting the same scalar witnesses and module properties to K[H]. If the source presentation has r relators, the resulting two-generator presentation is aspherical with r relators. Two is the least possible generator count for a torsion-free idempotent example; this is an application of classical machinery, not a new embedding theorem.
+
+The least-order assertion concerns the fixed dyadic turn-weight model; it excludes neither modified models nor other good matchings at lower q. The incidence data and exact scripts are finite supplemental certificates only. No numerical successful matching, relator list, reduced support, group-algebra multiplication certificate or full Lean formalization is supplied. No odd-characteristic, characteristic-zero or reduced-C*-algebra conclusion follows. No nonzero K_0 class is asserted.
+
+The new refinement has independent parameter, falsification and priority audits. Complete-package fresh review, exact-file publication and tracker readback are separate gates; no DOI or publication success is inferred from these mathematical checks.
