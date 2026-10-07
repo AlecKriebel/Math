@@ -23,6 +23,11 @@ def main():
         env=dict(os.environ,GIT_INDEX_FILE=str(Path(td)/'index'))
         run(['read-tree',parent],env=env)
         run(['add','--',PREFIX],env=env)
+        # Explicitly remove locally retained but ignored source copies and scratch artifacts
+        # from this snapshot, including those already tracked in a prior remote tree.
+        tracked=run(['ls-files','--',PREFIX],env=env).stdout.splitlines()
+        ignored=[p for p in tracked if run(['check-ignore','--no-index','-q',p],env=env,check=False).returncode==0]
+        if ignored: run(['rm','--cached','--ignore-unmatch','--',*ignored],env=env)
         changed=run(['diff','--cached','--name-only',parent],env=env).stdout.splitlines()
         if not changed: raise RuntimeError('No new project changes')
         if any(not p.startswith(PREFIX+'/') for p in changed): raise RuntimeError('Out of scope path')

@@ -9,3 +9,6 @@ Read the user's full attached brief, root AGENTS.md, triage geometry notes, upst
 Defined the precise claim and conditional bridge. Dispatched independent stabilization/map extraction, nonpolynomiality adversary, actual Lean scope audit, and priority/provenance audit. Source clone remains read-only. A theorem in a manuscript and a scope description are not certification. Initial triage did not certify nonpolynomiality.
 
 Strongest verified result: for any actual cylinder isomorphism, conjugated evaluation is a split retract. Exact remaining central gap: verify that the explicit A has both polynomial cylinder and nonpolynomial base. Publication is gated on that proof and priority audit; no deposit/tracker operation performed.
+
+### Checkpoint 01 correction — 2026-10-06 21:26 PDT
+The first private-index checkpoint inadvertently staged its own temporary index and local primary-source PDF/text copies because it used a broad folder add. No credentials were included. The publisher now excludes temporary indexes and source copies, and explicitly removes ignored prior paths from the remote snapshot. This correction is published immediately. Original papers remain local reading material only; source provenance is retained via hashes and links. Mathematical estimate remains 5%; publication package 0%.
