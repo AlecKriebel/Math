@@ -1,0 +1,41 @@
+# Theorems, dependencies, and validation scopes
+
+This is a static mathematical scope record for *Metric rigidity at the boundary of cubic compactifications*, version 1.0, manuscript dated October 6, 2026. The standalone `main.tex` gives the proofs and inline bibliography. This record makes no assertion about the timing or existence of a public deposit.
+
+## Singular Cartier-index rigidity
+
+Let X be an irreducible normal projective complex klt Fano of dimension m>=1, carrying a weak Kahler–Einstein current with bounded potentials, smooth on X_reg. Suppose L is ample Cartier, r is a positive integer, and omega_X^[-1] is isomorphic to L^r as an actual line-bundle identity. If r>m/2+1, then T_X and the tangent sheaf of every finite quasi-etale cover are slope stable for the anticanonical polarization. No such cover is a product of two positive-dimensional normal projective varieties. Every parallel orthogonal complex structure on (X_reg,g) equals the given J or -J.
+
+The proof uses the cited Druel–Guenancia–Paun stable-factor cover. Restriction to a fiber over a regular complementary point retains an actual ample Cartier root on each factor. Kawamata–Viehweg vanishing and absence of antiample sections give r-1 distinct negative roots of a degree-d Hilbert polynomial, hence d>=r-1. Two factors would imply m>=2(r-1). Saturated reflexive pullback and a complete-intersection curve calculation descend stability without a Q-factorial determinant hypothesis. Local positive-Ricci curvature kills parallel (2,0)-forms; commutation and stable-sheaf simplicity then fix the complex structure up to sign. No completeness of X_reg, full U(m) holonomy, Picard-rank restriction, or simple connectivity is assumed.
+
+The strict uniform threshold is sharp. For r>=2, P^(r-1) times P^(r-1) has dimension 2(r-1), the root O(1,1), and a product KE metric. Its mixed factor complex structure is neither J nor -J. This establishes sharpness in the general class and is not asserted to be a cubic example. An arbitrary weak KE metric completion requires its own regular-locus theorem; the criterion does not by itself classify isometries of every such completion.
+
+## Cubic boundary application
+
+For n>=5, let G_n be the projective GIT quotient of cubic hypersurfaces in P^(n+1) by SL(n+2), and let sigma be coefficientwise conjugation. Using the cited unrestricted ordinary-double-point upper gap bound in every dimension k=2,...,n, the established Li–Liu and Spotti–Sun transfer gives a homeomorphism from the complex/polarized GH compactification of smooth KE cubic n-folds to G_n(C). Its closed points represent K-polystable varieties in the cubic Q-Gorenstein smoothing closure. Equal dimension and volume alone do not identify this locus.
+
+All its boundary varieties have -K=(n-1)H, with H ample Cartier and H^n=3. The new index criterion applies because n-1>n/2+1 for n>=5. For these actual GH limits, the metric regular locus equals the algebraic regular locus; isometries are smooth there. The preceding rigidity, normal Hartogs extension, GAGA, and Pic(X)=Z[H] give holomorphic or antiholomorphic isometries that preserve the cubic hyperplane line bundle. Thus the ordinary unmarked metric GH compactification is homeomorphic to G_n(C)/<sigma>, including the entire singular boundary.
+
+The upper gap theorem is a principal external OpenAI input pinned at commit adc7f1241b42e322a6451854ab7e4b4c146bf78a. It is not reproved in this note. The complex comparison uses Spotti–Sun's established transfer; Kong–Shen–Zhao–Zhao already publicly state a stronger complex algebraic comparison by a distinct mechanism. The additional singular criterion and metric-fiber argument are presented with explicit attribution. No first-priority certification or first-solution claim is made.
+
+No scheme or stack comparison, moduli-functor equivalence, claim about every nonclosed semistable orbit, extension to cubic curves, effective GH distance, or full gap equality classification is asserted. The index equality example does not decide the cubic fourfold metric question.
+
+## Dependency and validation ledger
+
+| Input or step | Exact scope used | Validation basis and limit |
+|---|---|---|
+| OpenAI upper gap | Normal complex algebraic boundary-zero klt k-germs, k>=2; normalized volume at most 2(k-1)^k | Pinned source/PDF hashes, central-proof reading, distinct geometric and semigroup audits. External theorem; no full formal or human-refereed certification. |
+| Fourfold companion and low-dimensional bases | Unrestricted k=4 bound 162, quotient-surface bound, published threefold bound | Scoped complete-source inspection, clean copy build, exact constants, and cited primary statements. No new gap proof. |
+| Li–Liu global Reeb minimum | Minimum over all centered valuations for a smooth Sasaki–Einstein link, including irregular fields | Complete relevant Section 6 statement/proof audit; correct canonical normalization. It is not directly applied to every singular-link tangent cone. |
+| Density and klt eligibility | Reeb normalized volume k^k times density, positive canonical weight, boundary-zero affine cone | Li–Liu limiting identity, van Coevering and Collins–Szekelyhidi hypotheses; rational plus Q-Gorenstein alone is not substituted for klt. |
+| Spotti–Sun transfer | Metric gaps in all dimensions 2 through n, iteration, actual Cartier root, cubic smoothing compactification | Full relevant Sections 3–5 audit; exact threshold and Cartier cases. Established mechanism; upper bound suffices without equality classification. |
+| Fujita and CM/GIT | Degree-three Gorenstein classification with verified cohomological assumptions; positive CM sign; compact-Hausdorff topological bijection | Primary classification assumptions, KV and duality checks, universal cubic coefficient, cited continuity. Full 1990 proof is external; no scheme/stack upgrade. |
+| Smoothable coarse interpretation | Closed polystable points of the cubic Q-Gorenstein smoothing closure | Li–Wang–Xu's exact properness and smoothing hypotheses. Not every Fano of the same volume. |
+| Singular stable-factor cover | Weak KE klt Fanos with bounded potentials, finite quasi-etale product cover, stable factors | Published Druel–Guenancia–Paun Theorem A, Theorem 6 and final splitting proof; independent index and metric audits. Incomplete regular loci are treated by the cited theorem. |
+| Factorwise Cartier root and index bound | Actual line-bundle restriction, reflexive extension, all-integer Hilbert polynomial | Explicit derivation, klt KV vanishing, Stacks tags 0BEM/0BEL. This is a classical bound used in an additional singular deduction. |
+| Stability descent and sign rigidity | Saturated reflexive pullback, degree scaling, local curvature, stable simplicity | Independent proof audits. No Q-factoriality, global integration, completeness, or holonomy assertion silently imposed. |
+| Boundary regularity and extension | Algebraic and intrinsic regular sets of actual GH limits, smooth local isometry, normal holomorphic extension | Donaldson–Sun II Propositions 2.14 and 2.4, Hartogs/GAGA, exact-source isometry audit. Arbitrary metric completions are outside scope. |
+| Hyperplane uniqueness | Picard group generated by O(1) for global complete intersections of dimension at least three, singular cases included | SGA 2 Expose XII Corollary 3.7 and hypersurface section sequence; actual Cartier polarization retained. |
+| Prior-result comparison | Smooth stability and rigidity, singular splitting, conjugation convention, complex cubic comparison | Primary Peternell–Wisniewski, Spotti/OSS, DGP, Horing, and KSZZ scope comparisons. A finite source audit does not prove absence of other prior work. |
+
+The selected original proof notes preserve checkable derivations and their boundaries. The exact-arithmetic scripts verify specified constants and example equations, not the complete mathematical argument, weak KE existence, or priority. Full-package acceptance reports are separate external records so their own inclusion cannot create a circular review snapshot. AI tools were used extensively; internal AI audits and reviews are not conventional human peer review, and the preprint has not undergone conventional human peer review.
