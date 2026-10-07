@@ -24,3 +24,5 @@ Actual Lean sources were semantically inspected, copied with hashes and packaged
 - PROGRAM_STATE.json, RESEARCH_LOG.md and dependency/approach ledgers record the process and limits. Private raw spreadsheet reads and all caches are excluded from Git and the deposit.
 
 No GitHub release or duplicate publication pathway was used. Owned checkpoints were published to current remote main through a private index, preserving concurrent files, shared HEAD/index and other commits.
+
+Final publication sources and receipts push: `afb6185c9ae43344226ca4937ea1bfc18e5fb883`, verified on remote main; see receipts/final_publication_push.json. Core resolution, production publication and tracker entry are complete.
