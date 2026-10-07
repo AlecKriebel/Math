@@ -1,0 +1,865 @@
+{
+  "result": "PASS",
+  "checks": 88,
+  "expected_original_isolated_failures": 2,
+  "assert_statement_counts": {
+    "original/verify_inputs.py": 0,
+    "original/verify_planar.py": 0,
+    "original/verify.py": 0,
+    "original/arrangement.py": 0,
+    "accepted/verify_inputs.py": 0,
+    "accepted/verify_planar.py": 0,
+    "accepted/verify.py": 0,
+    "accepted/arrangement.py": 0,
+    "independent/independent_verifier.py": 0,
+    "independent/audit_artifacts.py": 0
+  },
+  "tests": [
+    {
+      "test": "original relocated certificate normal",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "original relocated certificate optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "original relocated certificate isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: No module named 'arrangement'"
+    },
+    {
+      "test": "original relocated certificate isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: No module named 'arrangement'"
+    },
+    {
+      "test": "original full corpus and six source pins normal",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "original full corpus and six source pins optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "original full corpus and six source pins isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "original full corpus and six source pins isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "original tamper raw_witness_bytes normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "original tamper raw_witness_bytes optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "original tamper repinned_coefficients normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "original tamper repinned_coefficients optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "original tamper repinned_sum normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "original tamper repinned_sum optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "original tamper repinned_coordinate normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "original tamper repinned_coordinate optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "original tamper missing_member normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/original missing_member/arrangement.py'"
+    },
+    {
+      "test": "original tamper missing_member optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/original missing_member/arrangement.py'"
+    },
+    {
+      "test": "original tamper manifest_file_set normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "original tamper manifest_file_set optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "original tamper raw_report normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "original tamper raw_report optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "original tamper raw_algorithm normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "original tamper raw_algorithm optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "accepted relocated certificate normal",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted relocated certificate optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted relocated certificate isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted relocated certificate isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted full corpus and six source pins normal",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "accepted full corpus and six source pins optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "accepted full corpus and six source pins isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "accepted full corpus and six source pins isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "5cf1b715f1c53414cd5d46920a7e2f1d14e7aba5fe1b6abca980041e7483f4b8"
+    },
+    {
+      "test": "accepted tamper raw_witness_bytes normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "accepted tamper raw_witness_bytes optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "accepted tamper raw_witness_bytes isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "accepted tamper raw_witness_bytes isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: witness.json"
+    },
+    {
+      "test": "accepted tamper repinned_coefficients normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "accepted tamper repinned_coefficients optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "accepted tamper repinned_coefficients isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "accepted tamper repinned_coefficients isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Witness identity mismatch"
+    },
+    {
+      "test": "accepted tamper repinned_sum normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_sum optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_sum isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_sum isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_coordinate normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_coordinate optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_coordinate isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper repinned_coordinate isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Full certificate mismatch: full"
+    },
+    {
+      "test": "accepted tamper missing_member normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/accepted missing_member/arrangement.py'"
+    },
+    {
+      "test": "accepted tamper missing_member optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/accepted missing_member/arrangement.py'"
+    },
+    {
+      "test": "accepted tamper missing_member isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/accepted missing_member/arrangement.py'"
+    },
+    {
+      "test": "accepted tamper missing_member isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: [Errno 2] No such file or directory: '/tmp/opg605 audit yzxujz_b/accepted missing_member/arrangement.py'"
+    },
+    {
+      "test": "accepted tamper manifest_file_set normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "accepted tamper manifest_file_set optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "accepted tamper manifest_file_set isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "accepted tamper manifest_file_set isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Manifest file set differs"
+    },
+    {
+      "test": "accepted tamper raw_report normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "accepted tamper raw_report optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "accepted tamper raw_report isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "accepted tamper raw_report isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Size mismatch: REPORT.md"
+    },
+    {
+      "test": "accepted tamper raw_algorithm normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "accepted tamper raw_algorithm optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "accepted tamper raw_algorithm isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "accepted tamper raw_algorithm isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: SHA-256 mismatch: arrangement.py"
+    },
+    {
+      "test": "external tamper input_bytes normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Input pin mismatch: catalog.json"
+    },
+    {
+      "test": "external tamper input_bytes optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Input pin mismatch: catalog.json"
+    },
+    {
+      "test": "external tamper input_bytes isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Input pin mismatch: catalog.json"
+    },
+    {
+      "test": "external tamper input_bytes isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Input pin mismatch: catalog.json"
+    },
+    {
+      "test": "external tamper complete_pair_hash normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Complete identity pair mismatch"
+    },
+    {
+      "test": "external tamper complete_pair_hash optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Complete identity pair mismatch"
+    },
+    {
+      "test": "external tamper complete_pair_hash isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Complete identity pair mismatch"
+    },
+    {
+      "test": "external tamper complete_pair_hash isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Complete identity pair mismatch"
+    },
+    {
+      "test": "external tamper duplicate_exact_id normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Exact-ID count mismatch"
+    },
+    {
+      "test": "external tamper duplicate_exact_id optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Exact-ID count mismatch"
+    },
+    {
+      "test": "external tamper duplicate_exact_id isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Exact-ID count mismatch"
+    },
+    {
+      "test": "external tamper duplicate_exact_id isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Exact-ID count mismatch"
+    },
+    {
+      "test": "external tamper source_bytes normal",
+      "flags": [],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Source pin mismatch: deza_xie.pdf"
+    },
+    {
+      "test": "external tamper source_bytes optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Source pin mismatch: deza_xie.pdf"
+    },
+    {
+      "test": "external tamper source_bytes isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Source pin mismatch: deza_xie.pdf"
+    },
+    {
+      "test": "external tamper source_bytes isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": "PASS",
+      "diagnostic": "FAIL: Source pin mismatch: deza_xie.pdf"
+    },
+    {
+      "test": "independent exact recomputation []",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "b766814b763e049b21d00f809f19c1d16cb9fcb055cc8804d564ebc92e5d962b"
+    },
+    {
+      "test": "independent exact recomputation ['-O']",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "b766814b763e049b21d00f809f19c1d16cb9fcb055cc8804d564ebc92e5d962b"
+    },
+    {
+      "test": "independent exact recomputation ['-I']",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "b766814b763e049b21d00f809f19c1d16cb9fcb055cc8804d564ebc92e5d962b"
+    },
+    {
+      "test": "independent exact recomputation ['-I', '-O']",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "b766814b763e049b21d00f809f19c1d16cb9fcb055cc8804d564ebc92e5d962b"
+    },
+    {
+      "test": "accepted ignores poisoned bytecode normal",
+      "flags": [],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted ignores poisoned bytecode optimized",
+      "flags": [
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted ignores poisoned bytecode isolated",
+      "flags": [
+        "-I"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    },
+    {
+      "test": "accepted ignores poisoned bytecode isolated_optimized",
+      "flags": [
+        "-I",
+        "-O"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": "PASS",
+      "output_sha256": "9bcb0746d1ef1f138c5ae4d9939488b721e10d940698b976f00202a1e1cac231"
+    }
+  ]
+}

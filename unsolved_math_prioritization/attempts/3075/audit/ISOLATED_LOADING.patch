@@ -1,0 +1,66 @@
+--- original/verify.py
++++ accepted/verify.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python3
+ """Verify integrity and the complete authored finite certificate."""
+-import hashlib,json,pathlib,sys
++import hashlib,json,pathlib,sys,types
+ ROOT=pathlib.Path(__file__).resolve().parent
+ EXPECTED_FILES={'REPORT.md','VERIFYING.md','arrangement.py','verify_planar.py','verify.py',
+                 'verify_inputs.py','witness.json','SOURCE_PINS.json','IDENTITY.json','AUTHOR_CHECKS.json'}
+@@ -11,12 +11,20 @@
+ def main():
+     manifest=json.loads((ROOT/'MANIFEST.json').read_text())
+     need(set(manifest)==EXPECTED_FILES,'Manifest file set differs')
++    verified={}
+     for name,pin in manifest.items():
+         b=(ROOT/name).read_bytes()
+         need(len(b)==pin['bytes'],'Size mismatch: '+name)
+         need(hashlib.sha256(b).hexdigest()==pin['sha256'],'SHA-256 mismatch: '+name)
+-    from arrangement import enumerate_arrangement
+-    from verify_planar import inspect
++        verified[name]=b
++    # Compile the already hash-checked bytes, independent of sys.path and .pyc caches.
++    def verified_module(name):
++        module=types.ModuleType('_verified_'+name)
++        module.__file__=str(ROOT/(name+'.py'))
++        exec(compile(verified[name+'.py'],module.__file__,'exec'),module.__dict__)
++        return module
++    enumerate_arrangement=verified_module('arrangement').enumerate_arrangement
++    inspect=verified_module('verify_planar').inspect
+     x=json.loads((ROOT/'witness.json').read_text())
+     rows=[[1,1,5],[1,2,-1],[1,4,2],[1,5,-2],[1,7,2],[1,8,-5],[1,9,-1],[1,10,-2]]
+     need(x['hyperplanes']==rows and x['delete_zero_based']==5,'Witness identity mismatch')
+--- original/VERIFYING.md
++++ accepted/VERIFYING.md
+@@ -1,6 +1,6 @@
+ # Replay and trust boundary
+ 
+-Run `python verify.py` from any directory. The script resolves all files relative to itself. It verifies the manifest before importing the mathematical implementations, pins the explicit witness coefficients, reconstructs both arrangements twice, and compares full certificates. Run `python -O verify.py` as well; validation uses explicit exceptions rather than assertions.
++Run `python -I verify.py` from any directory. The script resolves all files relative to itself. It verifies the manifest, then compiles the already checked bytes of the mathematical implementations directly, without module-search-path or bytecode-cache dependence. It pins the explicit witness coefficients, reconstructs both arrangements twice, and compares full certificates. Run `python -I -O verify.py` as well; validation uses explicit exceptions rather than assertions. The non-isolated `python verify.py` and `python -O verify.py` forms also work. This derivative repairs isolated-mode loading only; the authored mathematical report, algorithms, and witness are unchanged.
+ 
+ `verify_inputs.py CATALOG PROBLEMS REPORTS [SOURCE_DIRECTORY]` separately checks the byte identities of the three supplied corpus snapshots, the complete exact-ID problem/report pair, and optionally all locally retained scholarly-source bytes. These input files are deliberately absent from this publication packet. Omitting this check is not evidence that the corpus was verified. No copied source text or PDF is distributed.
+ 
+--- original/MANIFEST.json
++++ accepted/MANIFEST.json
+@@ -16,16 +16,16 @@
+     "sha256": "978df6099fdf7c1caa2982bfce62a85405561e336acad024fbf123f19dc76894"
+   },
+   "VERIFYING.md": {
+-    "bytes": 3791,
+-    "sha256": "f87366fe8a2e27dfdf7ddcf9cd8b98ea490e76222bd4324eb646e5c75e9996cb"
++    "bytes": 4097,
++    "sha256": "a5abc592f993ca6bbf39bf63dc73242b3638e0779a855311e270f2583fa03ada"
+   },
+   "arrangement.py": {
+     "bytes": 5098,
+     "sha256": "0c1fd0983e7b140269bad8ec71d3e4547e0eeeedeadbd7c6f2b5eb4071416ec2"
+   },
+   "verify.py": {
+-    "bytes": 2898,
+-    "sha256": "2f22151eec9020a827c7a16fb37ff7e8ae6d4c00ccf6570eb0785709fe45694f"
++    "bytes": 3310,
++    "sha256": "663874d3e7072aa1f87d226c4dea778e8a17756a2b8a9841284e163ead78b0fd"
+   },
+   "verify_inputs.py": {
+     "bytes": 2071,

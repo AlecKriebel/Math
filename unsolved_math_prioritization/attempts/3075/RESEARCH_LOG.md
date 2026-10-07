@@ -1,0 +1,7 @@
+# Publication checkpoint: OPG-605 / 3075
+
+2026-10-06 UTC. The completed author effort stopped after three of five approaches. Its exact signed identity, dimension-three criterion, and finite arbitrary-deletion obstruction were independently accepted as bounded partials. The remaining two approaches are not recorded as spent.
+
+The original arrangement-average conjecture remains unsolved in this effort. Finishing it requires a universal bound E + sigma >= 2 binom(n-2,d-1), another valid argument, or a genuine arrangement with S > dI. The partial identities are reformulations and the witness obstructs only an overly strong induction step. No theorem-resolution, novelty, or minimality claim is made. Best-guess progress toward full resolution: 10%, a subjective planning estimate rather than a proof-completion metric. Scope and limits are given in the exact original report and independent audit.
+
+Publication checkpoint: six immutable archive/manifest pins, 48 archive-member checks counting the separately frozen derivative, actual patch replay, exact derivative scope, external-input and adversarial replay, and remote-byte verification. The frozen audit's 88 conditions include two expected failed original isolated executions; the derivative passes all four Python modes. Queue intent: unsolved, 3/5; only Status and Turns change. A draft PR is the publication target. CI and remote-verification results are recorded separately in the publication receipt and must not be inferred from this log.
