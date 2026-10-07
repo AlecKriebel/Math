@@ -1,0 +1,412 @@
+{
+  "arithmetic": "Python integers/Fractions and exact SymPy polynomial algebra",
+  "checks": [
+    {
+      "name": "bd_no_constant",
+      "passed": true,
+      "period": 99,
+      "strict_minimum": 1,
+      "characteristic_polynomial": "(t - 1)**3*(t**3 - 4*t**2 + 3*t - 1)",
+      "infinite_order_reason": "A real eigenvalue lies in (3,4)."
+    },
+    {
+      "name": "bd_with_constant",
+      "passed": true,
+      "period": 47,
+      "strict_minimum": 1,
+      "characteristic_polynomial": "(t - 1)**3*(t**3 + 7*t - 1)",
+      "infinite_order_reason": "A real eigenvalue lies in (0,1)."
+    },
+    {
+      "name": "bcd_no_constant",
+      "passed": true,
+      "period": 65,
+      "strict_minimum": 1,
+      "characteristic_polynomial": "(t - 1)**6",
+      "infinite_order_reason": "M=I+N with N nonzero and N squared zero, so M^n=I+nN."
+    },
+    {
+      "name": "bcd_with_constant",
+      "passed": true,
+      "period": 65,
+      "strict_minimum": 1,
+      "characteristic_polynomial": "(t - 1)**6",
+      "infinite_order_reason": "M=I+N with N nonzero and N squared zero, so M^n=I+nN."
+    },
+    {
+      "name": "mutation_controls",
+      "passed": true,
+      "rejected": [
+        "wrong winner",
+        "wrong matrix entry",
+        "truncated return time",
+        "wrong constant status"
+      ]
+    },
+    {
+      "name": "bc_expanding_tangent_False",
+      "passed": true,
+      "base_ties": [
+        [
+          2
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          4
+        ]
+      ],
+      "automatically_selected_winners": [
+        2,
+        2,
+        1,
+        4
+      ],
+      "gaps": [
+        "1",
+        "a",
+        "a",
+        "0"
+      ],
+      "multiplier": "alpha>1, alpha^3-alpha^2-1=0"
+    },
+    {
+      "name": "bc_expanding_tangent_True",
+      "passed": true,
+      "base_ties": [
+        [
+          2
+        ],
+        [
+          1,
+          2,
+          5
+        ],
+        [
+          1,
+          4,
+          5
+        ],
+        [
+          4
+        ]
+      ],
+      "automatically_selected_winners": [
+        2,
+        2,
+        1,
+        4
+      ],
+      "gaps": [
+        "1",
+        "a",
+        "a",
+        "0"
+      ],
+      "multiplier": "alpha>1, alpha^3-alpha^2-1=0"
+    },
+    {
+      "name": "cd_expanding_tangent_False",
+      "passed": true,
+      "base_ties": [
+        [
+          2,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "automatically_selected_winners": [
+        2,
+        2,
+        4,
+        3
+      ],
+      "gaps": [
+        "1",
+        "a"
+      ],
+      "multiplier": "alpha>1, alpha^3-alpha^2-1=0"
+    },
+    {
+      "name": "cd_expanding_tangent_True",
+      "passed": true,
+      "base_ties": [
+        [
+          2,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "automatically_selected_winners": [
+        2,
+        2,
+        4,
+        3
+      ],
+      "gaps": [
+        "1",
+        "a"
+      ],
+      "multiplier": "alpha>1, alpha^3-alpha^2-1=0"
+    },
+    {
+      "name": "invalid_expanding_ray_control",
+      "passed": true,
+      "candidate": "Negative of the valid bc eigenray",
+      "rejected": true,
+      "actual_winners": [
+        2,
+        5,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "algebraic_sign_interval",
+      "passed": true,
+      "alpha_enclosure": [
+        "5/4",
+        "3/2"
+      ],
+      "method": "Exact rational interval bisection; no floating point."
+    },
+    {
+      "name": "b_symbolic_tangent_False",
+      "passed": true,
+      "base_ties": [
+        [
+          1,
+          5
+        ],
+        [
+          1
+        ],
+        [
+          5
+        ],
+        [
+          1
+        ],
+        [
+          5
+        ]
+      ],
+      "derived_return": "Matrix([[f], [-u + Max(f, v)], [c - v], [-v], [-d + e], [-d]])",
+      "three_return_orbit": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          -1,
+          1,
+          0
+        ]
+      ],
+      "equivariance": true
+    },
+    {
+      "name": "b_symbolic_tangent_True",
+      "passed": true,
+      "base_ties": [
+        [
+          1,
+          5,
+          -1
+        ],
+        [
+          1
+        ],
+        [
+          5
+        ],
+        [
+          1
+        ],
+        [
+          5
+        ]
+      ],
+      "derived_return": "Matrix([[f], [-u + Max(0, f, v)], [c - v], [-v], [-d + e], [-d]])",
+      "three_return_orbit": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          -1,
+          1,
+          0
+        ]
+      ],
+      "equivariance": true
+    },
+    {
+      "name": "exhaustive_support_partition",
+      "passed": true,
+      "excluded": [
+        [
+          "b"
+        ],
+        [
+          "b",
+          "c"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ],
+        [
+          "b",
+          "d"
+        ],
+        [
+          "c",
+          "d"
+        ]
+      ],
+      "surviving": [
+        [],
+        [
+          "c"
+        ],
+        [
+          "d"
+        ]
+      ],
+      "constant_statuses": 2,
+      "excluded_cases": 10
+    },
+    {
+      "name": "lynness_boundary_extension",
+      "passed": true,
+      "image": [
+        "0",
+        "A*y"
+      ],
+      "both_boundary_denominators": "(A+y)^2",
+      "parameter_necessity": "For A>0, finite order implies A^p=1 and hence A=1."
+    },
+    {
+      "name": "finite_order_logic_controls",
+      "passed": true,
+      "nonidentity_finite_order_example": [
+        [
+          "0",
+          "-1"
+        ],
+        [
+          "1",
+          "0"
+        ]
+      ],
+      "unit_circle_infinite_order_example": [
+        [
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ]
+    },
+    {
+      "name": "odd_floquet_formula_without_symmetry",
+      "passed": true,
+      "orders": [
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "survivor_positive_data_identity",
+      "passed": true,
+      "first_return": 6,
+      "role": "Consistency and least-period witness, not a substitute for the base rational identities."
+    },
+    {
+      "name": "survivor_positive_data_reciprocal",
+      "passed": true,
+      "first_return": 12,
+      "role": "Consistency and least-period witness, not a substitute for the base rational identities."
+    },
+    {
+      "name": "survivor_positive_data_homogeneous_d",
+      "passed": true,
+      "first_return": 18,
+      "role": "Consistency and least-period witness, not a substitute for the base rational identities."
+    },
+    {
+      "name": "survivor_positive_data_lyness_d",
+      "passed": true,
+      "first_return": 15,
+      "role": "Consistency and least-period witness, not a substitute for the base rational identities."
+    },
+    {
+      "name": "survivor_positive_data_lyness_c",
+      "passed": true,
+      "first_return": 16,
+      "role": "Consistency and least-period witness, not a substitute for the base rational identities."
+    }
+  ],
+  "all_passed": true
+}
