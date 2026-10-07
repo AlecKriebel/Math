@@ -24,8 +24,8 @@ The GH-limit clause supplies the precise metric/algebraic regular-locus theorem 
 
 Two separately delegated audits inspected materially different parts of the proof:
 
-- [Product-cover and Cartier-index audit](boundary_index_splitting_audit.md): exact DGP hypotheses, restriction to singular factors, all-integer Hilbert polynomial, stability descent without Q-factoriality, and threshold sharpness.
-- [Isometry and extension audit](boundary_isometry_extension_audit.md): curvature commutation, metric/algebraic regular loci, local smoothness of isometries, analytic and algebraic extensions, and uniqueness of the cubic polarization.
+- [Product-cover and Cartier-index audit](boundary_index_proof_notes.md): exact DGP hypotheses, restriction to singular factors, all-integer Hilbert polynomial, stability descent without Q-factoriality, and threshold sharpness.
+- [Isometry and extension audit](../agent_notes/boundary_isometry_extension_audit.md): curvature commutation, metric/algebraic regular loci, local smoothness of isometries, analytic and algebraic extensions, and uniqueness of the cubic polarization.
 
 The lead boundary auditor independently checked the central equations and primary theorem statements. These scoped AI checks do not constitute formal certification of DGP, Kawamata-Viehweg vanishing, SGA2, or Donaldson-Sun.
 
