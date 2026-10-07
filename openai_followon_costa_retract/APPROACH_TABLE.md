@@ -1,9 +1,9 @@
-# Approach families
+# Approach families — candidate v1
 
-| Family | Mechanism | Evidence | Status | Exact gap |
+| Family | Mechanism | Evidence | Status | Exact remaining gap |
 |---|---|---|---|---|
-| Explicit algebra | Δ exponential; fiber-adapted L,M; root modulo p³; fifth coordinate e | Source §2 identities | Active, independent extraction | Polynomial split maps and inverse verification |
-| LND obstruction | Valuation degeneration; Picard lift; nonpositive fiber shift; Mason–Stothers | Source §§3–6 | Active independent adversarial audit | Nonpolynomiality depends on every stage |
-| Formal proof | Actual Lean declarations and pinned build | lean/docs/047.md is a scope claim, not certification | Active semantic audit | Actual scope, assumptions and build reproducibility |
-| Classical retract bridge | Conjugate coefficient inclusion and evaluation w=0 | Elementary identities r i=id and e²=e | Conditional bridge verified | Cannot substitute for D2 or D3 |
-| Priority/attribution | Primary-source citation chains and corpus duplicate search | Saved triage is only a starting hypothesis | Active independent audit | Exact prior statement and novelty boundary |
+| Explicit algebra | Δ exponential, determinant-one frame, root mod p³, polynomial fifth coordinate | 32 exact identities, inverse maps, p=0 special-fiber projection | Passed scoped audit | Final-package review of presentation |
+| Written LND obstruction | Exact graded filtration; Picard lift; signed extraction; orbit-polynomial rigidity | Independent full written dependency reconstruction; separate bundle skeptic; determinant certificates | Passed scoped audit | Package reviewers attempt falsification from original sources |
+| Formal proof | Actual Lean solution closure, model, declarations and alternative mechanisms | 55 unchanged files, no textual holes, exact final statement | Semantic audit complete; mechanical route currently unavailable | Kernel build needs compatible compiled Mathlib and sufficient disk; no formal claim made |
+| Classical bridge | Conjugated inclusion/evaluation | Direct compositions with actual θ | Proven | No gap; classical inheritance limits novelty |
+| Priority | Primary citation chains and full-corpus search | Exact low-dimension statements, prior reduction, version/disclosure distinctions | Qualified no-conflict audit passed | No exhaustive first-priority claim permitted |

@@ -1,9 +1,9 @@
-# Costa retract follow-on research
+# Costa retract consequence note
 
 Author: Alec Kriebel. ORCID: https://orcid.org/0009-0001-9320-500X.
 
-This effort tests whether OpenAI family 047 supplies a rigorously validated complex algebra retract of a five-variable polynomial ring that has transcendence degree four and is not polynomial. The proposed transport from a cylinder is classical and is not an independent cancellation breakthrough.
+Current result: using OpenAI's independently audited written cancellation theorem, explicit split maps realize its smooth complex trdeg4 fourfold as a nonpolynomial retract of C^[5]. The accompanying five-component idempotent uses polynomial formulas valid at p=0. The four-variable question is not settled. The classical reduction and the upstream breakthrough are credited; this is an explicit-construction consequence note.
 
-Status: input validation in progress; no unconditional solution or publication claimed. No Zenodo draft has been created and no tracker entry made. No external individuals contacted.
+Status: complete candidate prepared; full-package independent reviews and production publication/tracker entry pending. No Zenodo draft has been created. No external individuals contacted. No reproduced Lean kernel-verification claim is made; actual-source scope and mechanical limits are documented.
 
-See THEOREM_LEDGER.md, DEPENDENCY_LEDGER.md, APPROACH_TABLE.md, RESEARCH_LOG.md and sources/PINNED_SOURCE_MANIFEST.json. The upstream clone is read-only.
+Read manuscript/main.tex and publication/PACKAGE_README.md. Checkable artifacts: verification/stabilization/check_stabilization.py, notes/nonpolynomiality/check_certificates.py, written proof audits in notes/, dependency ledger and source hashes. publication/upload-kit contains the exact intended deposit files.
