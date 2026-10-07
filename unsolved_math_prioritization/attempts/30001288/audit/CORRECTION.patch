@@ -1,0 +1,49 @@
+--- a/checks.py
++++ b/checks.py
+@@ -19,7 +19,8 @@
+         return 0
+     a = [[Q(x) for x in row] for row in rows]
+     m, n, r = len(a), len(a[0]), 0
+-    assert all(len(row) == n for row in a)
++    if not all(len(row) == n for row in a):
++        raise ValueError("rank requires a rectangular matrix")
+     for c in range(n):
+         pivot = next((i for i in range(r, m) if a[i][c]), None)
+         if pivot is None:
+@@ -168,8 +169,10 @@
+     manifest = json.loads((base/'AUTHOR_MANIFEST.json').read_text())
+     for entry in manifest['files']:
+         data = (base/entry['file']).read_bytes()
+-        assert len(data) == entry['bytes'], entry['file']
+-        assert hashlib.sha256(data).hexdigest() == entry['sha256'], entry['file']
++        if len(data) != entry['bytes']:
++            raise ValueError(f"Manifest byte-count mismatch: {entry['file']}")
++        if hashlib.sha256(data).hexdigest() != entry['sha256']:
++            raise ValueError(f"Manifest SHA-256 mismatch: {entry['file']}")
+     print('Manifest integrity: PASS')
+ 
+ def main():
+--- a/AUTHOR_MANIFEST.json
++++ b/AUTHOR_MANIFEST.json
+@@ -1,8 +1,8 @@
+ {
+   "schema_version": 1,
+   "problem_id": 30001288,
+-  "snapshot": "author-review-candidate-2026-10-07",
+-  "review_status": "pending independent review",
++  "snapshot": "review-corrected-candidate-2026-10-07",
++  "review_status": "scoped independent audit accepted as unresolved investigation; verifier correction applied",
+   "scope": "source-free authored mathematics, exact controls, and public verification metadata",
+   "manifest_excludes": [
+     "AUTHOR_MANIFEST.json"
+@@ -60,8 +60,8 @@
+     },
+     {
+       "file": "checks.py",
+-      "bytes": 8725,
+-      "sha256": "1dc7732dda839a4c3df2cd80170614be4a81476ab03fd6eb4adf633d89a1fbf3"
++      "bytes": 8908,
++      "sha256": "3e61850708a4b6ff45cb6003a4b96ad7d036a7dd72d1e406612259d101f88147"
+     }
+   ]
+ }
