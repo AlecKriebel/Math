@@ -1024,7 +1024,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1013 | 11000156 / AMR-109-0156 | Question 2.5 — Given two factorizations of the boundary twist δ as a product of positive Dehn twists along nonseparating curves in M… | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1015 | 1430 / GRAPH-043 | Word-Representable Graphs: Letter Copies Bound | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1016 | 1900002 / AMR-018-0002 | Geometry of Continued Fractions — Integer trigonometry and IKEA problem | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1016 | 1900002 / AMR-018-0002 | Geometry of Continued Fractions — Integer trigonometry and IKEA problem | 0.0900 | 5.5 | 3 | unknown | already_solved | 0/5 |  | Planar convex interpretation only: Dolan–Karpenkov, JTNB 37(3) (2025), Theorem 3.3; original 2017 question does not explicitly require convexity. Credited prior-result audit accepted; existential integer-witness criterion, not a total bounded-search algorithm. No nonconvex, higher-dimensional, cosine-rule, or novelty claim. [Audit](attempts/1900002/README.md). |  |
 | 1017 | 1919 / EP-84 | Erdős Problem #84 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1018 | 20000081 / AIM-ALGEBRAIC_GEOMETRY-0081 | Adjacent-power compression and gap states for nested full twists | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1019 | 20000093 / AIM-ALGEBRAIC_GEOMETRY-0093 | A complete rank-two central reconstruction and a higher-rank extension obstruction | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
