@@ -1,0 +1,365 @@
+--- traffic_30005735_authored/REPORT.md
++++ corrected_packet/REPORT.md
+@@ -77,7 +77,7 @@
+ [h]<0\ \Longrightarrow\ h_+=h^D(u_+).                              \tag{7}
+ \]
+ 
+-For their piecewise-$C^1$ class these conditions characterize the memory equation. A general BV extension must also specify the diffuse/Cantor part and convergence through unresolved thin layers. The mere phrase “DLM solution” does not supply these choices for a derivative-sign-dependent switching law. [S2–S4]
++For their piecewise-$C^1$ class, the endpoint conditions (7), together with the smooth-part conditions $h_t>0\Rightarrow h=h^A(u)$ and $h_t<0\Rightarrow h=h^D(u)$ (and feasibility), characterize the memory equation. The jump conditions alone do not do so. A general BV extension must also specify the diffuse/Cantor part and convergence through unresolved thin layers. The mere phrase “DLM solution” does not supply these choices for a derivative-sign-dependent switching law. [S2–S4]
+ 
+ The Eulerian conservation equations are $\rho_t+(\rho V)_x=0$ and $(\rho w)_t+(\rho Vw)_x=0$, while the memory derivative is material: $D_t h=h_t+Vh_x$. Thus the coordinate-covariant switching tests are $D_tV\gtrless0$, not the Eulerian partial derivative $V_t\gtrless0$. The printed Eulerian indicator notation should be read with that correction explicitly identified. Nothing below uses the ambiguous Eulerian notation.
+ 
+@@ -179,7 +179,13 @@
+ \partial_t|u-G(c,z_0(x))|-\partial_x|v-c|\le0.                    \tag{16}
+ \]
+ 
+-All moving waves leave $z$ unchanged. For stationary jumps, (10) forces equal velocity. The path $z=z(\theta)\in Z, u=G(c,z(\theta))$ has constant $V=c$ and remains scanning, hence is compatible with (4). This completes the restricted construction.
++All moving waves leave $z$ unchanged. For stationary jumps, (10) forces equal velocity. The path $z=z(\theta)\in Z, u=G(c,z(\theta))$ has constant $V=c$ and remains scanning, hence is compatible with (4). For a moving scanning shock, fix its common $z$. The flux $-V(\cdot,z)$ is strictly convex, so (16) selects $u_->u_+$. Let $\ell$ be the chord of $V$ between the endpoints. Strict concavity gives $\ell(u)-V(u,z)<0$ for $u_+<u<u_-$. The HARZ profile equation becomes
++
++\[
++B(u,z)V_u(u,z)u'=\ell(u)-V(u,z).
++\]
++
++Its positive left-hand coefficient and simple endpoint zeros give the decreasing heteroclinic profile, with limits at $\xi=\pm\infty$. Thus the moving-shock admissibility claimed above follows for this scanning chart. This completes the restricted construction.
+ 
+ **Exact gap:** a common scanning-only band excludes activation. An arbitrarily small perturbation of a reference state on a switching boundary need not have such a band. The result does not settle general small BV data near those states or data traversing a critical/degenerate region. It is a conventional scalar/frozen-parameter argument, not asserted to be new.
+ 
+@@ -306,7 +312,7 @@
+ u^D(h)<u<u^A(h),\qquad V_u>0,\quad V_h>0,
+ \]
+ 
+-with increasing $h^A,h^D$. Suppose a $C^2$ local entropy–flux pair $(\eta(u,h),q(u,h))$ is valid for **every** smooth scanning, acceleration and deceleration solution, in the sense $\eta_t+q_x\le0$, and suppose $\eta_{uu}>0$.
++with increasing $h^A,h^D$. Suppose a $C^2$ local entropy–flux pair $(\eta(u,h),q(u,h))$, defined on a neighborhood of the closed strip, is valid for **every** smooth scanning, acceleration and deceleration solution, in the sense $\eta_t+q_x\le0$, and suppose $\eta_{uu}>0$.
+ 
+ In scanning, $h_t=0, u_t=V_u u_x+V_h h_x$. Since smooth scanning gradients can have either sign, the inequality forces
+ 
+@@ -397,7 +403,7 @@
+ \operatorname{TV}u(t)=2N+2\sum_{n<N}e_n.                          \tag{36}
+ \]
+ 
+-Multiplying all $e_n$ by an arbitrarily small positive factor makes the initial norm arbitrarily small without removing the order-one-per-pulse spacing variation. The countably infinite locally finite pulse pattern gives an explicit glued rational solution with infinite **global** spacing variation at positive times, while its spacing perturbation remains $L^1$. This is an example in the local degenerate coefficient model, not a proof that every possible weak solution lacks BV and not a full-source counterexample.
++Multiplying all $e_n$ by an arbitrarily small positive factor makes the initial norm arbitrarily small without removing the order-one-per-pulse spacing variation. The countably infinite locally finite pulse pattern gives an explicit glued rational solution with infinite **global** spacing variation for every $0<t\le1$, while its spacing perturbation remains $L^1$. This is an example in the local degenerate coefficient model, not a proof that every possible weak solution lacks BV and not a full-source counterexample.
+ 
+ **Exact gap:** no conclusion against the strictly positive-slope, compact-patch problem follows. For $V_u\ge m>0$, the inverse estimate in (11) carries $m^{-1}$; the flat-scanning example explains why a lower-slope condition or a different norm matters. A complete global coefficient extension and an admissible uniqueness argument would be required to turn this local calculation into a counterexample to a fully specified source-level existence statement.
+ 
+@@ -416,10 +422,10 @@
+ ## Sources and verification
+ 
+ - **S1.** Andrea Corli, “Hysteresis and string stability in traffic flows,” OWR 52/2023, printed pp. 2968–2969. [Official report](https://ems.press/content/serial-article-files/48173), DOI [10.4171/OWR/2023/52](https://doi.org/10.4171/OWR/2023/52).
+-- **S2.** Andrea Corli and Haitao Fan, “The hysteretic Aw–Rascle–Zhang model,” Studies in Applied Mathematics 153(4), e12769 (2024). [Publisher full text](https://onlinelibrary.wiley.com/doi/full/10.1111/sapm.12769), [author-hosted PDF]$https://sfera.unife.it/retrieve/502a3b8a-a6fc-417a-814c-544d928b2ed1/2024_Corli-Fan-SAM.pdf$. Equations (11)–(16), Assumptions 1–3, Remark 2, Section 6 and Theorem 5 checked. The printed p. 7 coefficient signs were visually inspected and independently matched to publisher HTML. Publication date: 9 October 2024.
+-- **S3.** Andrea Corli and Haitao Fan, “Hysteresis and stop-and-go waves in traffic flows,” M3AS 29 (2019), 2637–2678, DOI [10.1142/S0218202519500568](https://doi.org/10.1142/S0218202519500568). [Author preprint]$https://iris.unife.it/retrieve/e309ade4-5dc1-3969-e053-3a05fe0a2c94/Corli-Fan_M3AS.pdf$. Sections 2–4 and the viscosity distinction checked.
++- **S2.** Andrea Corli and Haitao Fan, “The hysteretic Aw–Rascle–Zhang model,” Studies in Applied Mathematics 153(4), e12769 (2024). [Publisher full text](https://onlinelibrary.wiley.com/doi/full/10.1111/sapm.12769), [author-hosted PDF](https://sfera.unife.it/retrieve/502a3b8a-a6fc-417a-814c-544d928b2ed1/2024_Corli-Fan-SAM.pdf). Equations (11)–(16), Assumptions 1–3, Remark 2, Section 6 and Theorem 5 checked. The printed p. 7 coefficient signs were visually inspected and independently matched to publisher HTML. Publication date: 9 October 2024.
++- **S3.** Andrea Corli and Haitao Fan, “Hysteresis and stop-and-go waves in traffic flows,” M3AS 29 (2019), 2637–2678, DOI [10.1142/S0218202519500568](https://doi.org/10.1142/S0218202519500568). [Author preprint](https://iris.unife.it/retrieve/e309ade4-5dc1-3969-e053-3a05fe0a2c94/Corli-Fan_M3AS.pdf). Sections 2–4 and the viscosity distinction checked.
+ - **S4.** Haitao Fan and Chi-Wang Shu, “Existence and Computation of Solutions of a Model of Traffic Involving Hysteresis,” SIAM J. Appl. Math. 80(6) (2020), 2319–2337, DOI [10.1137/19M1269567](https://doi.org/10.1137/19M1269567). [NSF-hosted author manuscript](https://par.nsf.gov/servlets/purl/10226107). Definitions 3.1–3.2, Theorem 3.2, Theorems 5.1–5.2 and 6.1 inspected. Its conditional regularity hypothesis is retained.
+ - **S5.** Haitao Fan, “Conservation laws with hysteretic fluxes,” JDE 394 (2024), 1–30, DOI [10.1016/j.jde.2024.02.030](https://doi.org/10.1016/j.jde.2024.02.030). Publisher-indexed abstract/introduction inspected; a full-PDF proof audit was not completed. The two-parameter model was not substituted for HLWR/HARZ.
+ - **S6.** Paola Goatin and Stefan Moreti, “Well-posedness and Godunov approximation for nonlinear conservation laws with hysteresis,” NoDEA 33, 131 (2026), published 26 September 2026. [Publisher article](https://link.springer.com/article/10.1007/s00030-026-01271-7). The scalar Play equation and scope were checked, not its entire proof.
+ 
+-The accompanying calculation script uses only the Python standard library and exact rational arithmetic for its algebraic checks. It supports the displayed calculations; the analytic proofs are given above. Original source bodies, private coordination and corpus contents are not included in this authored packet.
++The accompanying calculation script uses only the Python standard library. Its rational root brackets, flat-scanning identities and bounds use exact rational arithmetic; explicitly labeled square-root illustrations use floating-point arithmetic. Runtime checks remain enabled under Python optimization. It supports the displayed calculations; the analytic proofs are given above. Original source bodies, private coordination and corpus contents are not included in this authored packet.
+--- traffic_30005735_authored/check_calculations.py
++++ corrected_packet/check_calculations.py
+@@ -1,10 +1,15 @@
+ #!/usr/bin/env python3
+-"""Reproduce exact algebra in the accompanying mathematical audit.
++"""Reproduce rational algebra and labeled numerical illustrations in the report.
+ No network, private data, source documents or third-party code required.
+ """
+ from fractions import Fraction as F
+ from math import sqrt
+ import json
++
++def require(condition, label):
++    """Run even under python -O/-OO; never use assert for verification."""
++    if not condition:
++        raise ValueError(label)
+ 
+ checks = {}
+ # Route 2. f(u)=u-(u-3)^2/4. w1=3, w2=3+delta, h0=0.
+@@ -14,31 +19,34 @@
+     d=F(1,2**k); a=d/2
+     # Rational interval [a/2, a] brackets the unique small root.
+     g=lambda h: 2*h-h*h/4-a
+-    assert g(a/2)<0 and g(a)>0
+-    assert a < d-d*d/4  # right state stays scanning
++    require(g(a/2)<0 and g(a)>0, "check_1: g(a/2)<0 and g(a)>0")
++    require(a < d-d*d/4 , "check_2: a < d-d*d/4 ")
++    # These square-root values are explicitly numerical illustrations;
++    # root bracketing, admissibility intervals and lower bounds above are exact.
+     H=2*float(a)/(2+sqrt(4-float(a))) # stable form of 4-2 sqrt(4-alpha)
+     r=5-2*sqrt(1-float(a))
+     f_local=lambda u:u-(u-3)**2/4
+-    assert abs(f_local(r)-(3+float(a)))<1e-13
+-    assert 3<r<3+float(d)
+-    assert abs(f_local(3+H)+H-(3+float(a)))<1e-13
+-    assert abs((3+H)-3-H)<1e-13
+-    assert abs(2*H-H*H/4-float(a))<1e-14
++    require(abs(f_local(r)-(3+float(a)))<1e-13, "check_3: abs(f_local(r)-(3+float(a)))<1e-13")
++    require(3<r<3+float(d), "check_4: 3<r<3+float(d)")
++    require(abs(f_local(3+H)+H-(3+float(a)))<1e-13, "check_5: abs(f_local(3+H)+H-(3+float(a)))<1e-13")
++    require(abs((3+H)-3-H)<1e-13, "check_6: abs((3+H)-3-H)<1e-13")
++    require(abs(2*H-H*H/4-float(a))<1e-14, "check_7: abs(2*H-H*H/4-float(a))<1e-14")
+     rows.append({'delta':float(d),'alpha':float(a),'generated_h':H,
+                  'h_over_alpha_delta':H/float(a*d),
+                  'rigorous_lower_bound_h_over_alpha_delta':float(1/(2*d))})
+-checks['switching_contact']=rows
++checks['switching_contact']={'exact_root_brackets_and_lower_bounds': True,
++ 'illustrative_float_rows':rows}
+ # Route 3. u rises from w to w+e, then returns; h is running maximum u-w.
+ # Final h=e lies strictly above the acceleration threshold a(w)=0,
+ # and strictly below the deceleration threshold d(w)=1.
+-e=F(1,8); assert 0<e<1
++e=F(1,8); require(0<e<1, "thin_pulse_amplitude")
+ checks['thin_pulse']={'epsilon':str(e),'TV_u':str(2*e),'TV_h':str(e),
+  'limit_u_jump':'0','limit_h_jump':str(e),'required_positive_jump_endpoint_h':'0'}
+ # Route 4. q integrability: eta_uh=(V_h/V_u)eta_uu>0.
+ # Integrating along fixed h contradicts eta_h(A)<=0<=eta_h(D).
+ checks['entropy_identity']='V_u * eta_uh = V_h * eta_uu'
+ # Route 5. f(r)=r-r^2/20 near r=2. Flat scanning V=f(h), u in [h,h+1].
+-f=lambda r:r-r*r/20
++f=lambda r:F(r)-F(r)*F(r)/20
+ rows=[]
+ for N in (1,2,4,8,16):
+     eps=[F(1,2**(n+6)) for n in range(N)]
+@@ -48,19 +56,19 @@
+         dv=f(2+e)-f(2)
+         s_up=-dv/(F(1,2)+e); s_down=-2*dv
+         # Rankine-Hugoniot for increasing and decreasing edges.
+-        assert s_up*(F(1,2)+e)+dv==0
+-        assert s_down*(-F(1,2))-dv==0
+-        assert F(-1,4)<s_down<s_up<0
++        require(s_up*(F(1,2)+e)+dv==0, "check_8: s_up*(F(1,2)+e)+dv==0")
++        require(s_down*(-F(1,2))-dv==0, "check_9: s_down*(-F(1,2))-dv==0")
++        require(F(-1,4)<s_down<s_up<0, "check_10: F(-1,4)<s_down<s_up<0")
+         # Increasing-edge chord lies above its scanning/boundary path.
+         # On acceleration part u=3+r, 0<=r<=e, the difference is quadratic.
+         # Its minimum is at an endpoint since derivative remains negative.
+-        assert (dv/(F(1,2)+e)) < F(4,5)-e/10
++        require((dv/(F(1,2)+e)) < F(4,5)-e/10, "check_11: (dv/(F(1,2)+e)) < F(4,5)-e/10")
+         # Decreasing-edge chord lies below f on [2,2+e] by concavity
+         # and the endpoint condition at 2+e; above that V is flat.
+-        assert dv-2*dv*e>0
++        require(dv-2*dv*e>0, "check_12: dv-2*dv*e>0")
+         mass += 2*dv
+     rows.append({'number_of_pulses':N,'initial_TV_h':str(tv0),
+                  'spacing_TV_at_positive_time':str(tvt),
+                  'spacing_L1_change_at_t_1':str(mass)})
+ checks['flat_scanning']=rows
+-print(json.dumps({'status':'all exact algebra checks passed','checks':checks},indent=2))
++print(json.dumps({'status':'exact rational checks and labeled numerical checks passed','checks':checks},indent=2))
+--- traffic_30005735_authored/README.md
++++ corrected_packet/README.md
+@@ -1,13 +1,11 @@
+-# Hysteretic traffic BV: bounded research packet
++# Hysteretic traffic BV: corrected partial-results packet
+ 
+-The general switching small-BV problem remains unresolved. The report gives five explicitly scoped partial deductions and the exact remaining obstructions. The known rational Riemann solver is credited to prior work.
++The general switching small-BV problem remains unresolved after five approaches. REPORT.md contains precisely scoped conditional results, proofs and limitations. No new approach or originality claim is made.
+ 
+-Files:
+-- REPORT.md: equations, source-scope audit, five approaches, proofs and limitations
+-- check_calculations.py: standalone exact-arithmetic/algebra checks
+-- CALCULATION_RESULTS.json: successful recorded output
+-- SOURCE_VERIFICATION.json: public-source identities, hashes, sizes and inspection limits
++- check_calculations.py: optimization-safe rational checks and separately labeled floating-point illustrations
++- CALCULATION_RESULTS.json: reproducible output
++- SOURCE_VERIFICATION.json: original public-source identity metadata
+ 
+-Run `python3 check_calculations.py` to reproduce the calculation output. The script requires only Python's standard library. It is not a substitute for the analytic arguments in the report.
++Run `python3 -B check_calculations.py`. The program also works under `-O` and `-OO`. It supports algebraic calculations, not the analytic PDE proofs.
+ 
+-No source-document bodies, datasets, private source material or coordination records are included.
++The independent audit is separate in AUDIT_REPORT.md, audit_exact.py, EXACT_AUDIT_RESULTS.json and REPRODUCIBILITY.json. No source bodies, datasets, private sources or coordination records are included.
+--- traffic_30005735_authored/CALCULATION_RESULTS.json
++++ corrected_packet/CALCULATION_RESULTS.json
+@@ -1,78 +1,81 @@
+ {
+-  "status": "all exact algebra checks passed",
++  "status": "exact rational checks and labeled numerical checks passed",
+   "checks": {
+-    "switching_contact": [
+-      {
+-        "delta": 0.125,
+-        "alpha": 0.0625,
+-        "generated_h": 0.03137303340311411,
+-        "h_over_alpha_delta": 4.0157482755986065,
+-        "rigorous_lower_bound_h_over_alpha_delta": 4.0
+-      },
+-      {
+-        "delta": 0.0625,
+-        "alpha": 0.03125,
+-        "generated_h": 0.015655637372693158,
+-        "h_over_alpha_delta": 8.015686334818897,
+-        "rigorous_lower_bound_h_over_alpha_delta": 8.0
+-      },
+-      {
+-        "delta": 0.03125,
+-        "alpha": 0.015625,
+-        "generated_h": 0.007820144332172,
+-        "h_over_alpha_delta": 16.015655592288255,
+-        "rigorous_lower_bound_h_over_alpha_delta": 16.0
+-      },
+-      {
+-        "delta": 0.015625,
+-        "alpha": 0.0078125,
+-        "generated_h": 0.003908159213554812,
+-        "h_over_alpha_delta": 32.01564027744102,
+-        "rigorous_lower_bound_h_over_alpha_delta": 32.0
+-      },
+-      {
+-        "delta": 0.0078125,
+-        "alpha": 0.00390625,
+-        "generated_h": 0.0019536020701310525,
+-        "h_over_alpha_delta": 64.01563263405433,
+-        "rigorous_lower_bound_h_over_alpha_delta": 64.0
+-      },
+-      {
+-        "delta": 0.00390625,
+-        "alpha": 0.001953125,
+-        "generated_h": 0.000976681738402266,
+-        "h_over_alpha_delta": 128.01562881586182,
+-        "rigorous_lower_bound_h_over_alpha_delta": 128.0
+-      },
+-      {
+-        "delta": 0.001953125,
+-        "alpha": 0.0009765625,
+-        "generated_h": 0.0004883110559609217,
+-        "h_over_alpha_delta": 256.0156269076397,
+-        "rigorous_lower_bound_h_over_alpha_delta": 256.0
+-      },
+-      {
+-        "delta": 0.0009765625,
+-        "alpha": 0.00048828125,
+-        "generated_h": 0.00024414807603537897,
+-        "h_over_alpha_delta": 512.0156259537471,
+-        "rigorous_lower_bound_h_over_alpha_delta": 512.0
+-      },
+-      {
+-        "delta": 0.00048828125,
+-        "alpha": 0.000244140625,
+-        "generated_h": 0.00012207217520199482,
+-        "h_over_alpha_delta": 1024.0156254768553,
+-        "rigorous_lower_bound_h_over_alpha_delta": 1024.0
+-      },
+-      {
+-        "delta": 0.000244140625,
+-        "alpha": 0.0001220703125,
+-        "generated_h": 6.103562191839287e-05,
+-        "h_over_alpha_delta": 2048.015625238423,
+-        "rigorous_lower_bound_h_over_alpha_delta": 2048.0
+-      }
+-    ],
++    "switching_contact": {
++      "exact_root_brackets_and_lower_bounds": true,
++      "illustrative_float_rows": [
++        {
++          "delta": 0.125,
++          "alpha": 0.0625,
++          "generated_h": 0.03137303340311411,
++          "h_over_alpha_delta": 4.0157482755986065,
++          "rigorous_lower_bound_h_over_alpha_delta": 4.0
++        },
++        {
++          "delta": 0.0625,
++          "alpha": 0.03125,
++          "generated_h": 0.015655637372693158,
++          "h_over_alpha_delta": 8.015686334818897,
++          "rigorous_lower_bound_h_over_alpha_delta": 8.0
++        },
++        {
++          "delta": 0.03125,
++          "alpha": 0.015625,
++          "generated_h": 0.007820144332172,
++          "h_over_alpha_delta": 16.015655592288255,
++          "rigorous_lower_bound_h_over_alpha_delta": 16.0
++        },
++        {
++          "delta": 0.015625,
++          "alpha": 0.0078125,
++          "generated_h": 0.003908159213554812,
++          "h_over_alpha_delta": 32.01564027744102,
++          "rigorous_lower_bound_h_over_alpha_delta": 32.0
++        },
++        {
++          "delta": 0.0078125,
++          "alpha": 0.00390625,
++          "generated_h": 0.0019536020701310525,
++          "h_over_alpha_delta": 64.01563263405433,
++          "rigorous_lower_bound_h_over_alpha_delta": 64.0
++        },
++        {
++          "delta": 0.00390625,
++          "alpha": 0.001953125,
++          "generated_h": 0.000976681738402266,
++          "h_over_alpha_delta": 128.01562881586182,
++          "rigorous_lower_bound_h_over_alpha_delta": 128.0
++        },
++        {
++          "delta": 0.001953125,
++          "alpha": 0.0009765625,
++          "generated_h": 0.0004883110559609217,
++          "h_over_alpha_delta": 256.0156269076397,
++          "rigorous_lower_bound_h_over_alpha_delta": 256.0
++        },
++        {
++          "delta": 0.0009765625,
++          "alpha": 0.00048828125,
++          "generated_h": 0.00024414807603537897,
++          "h_over_alpha_delta": 512.0156259537471,
++          "rigorous_lower_bound_h_over_alpha_delta": 512.0
++        },
++        {
++          "delta": 0.00048828125,
++          "alpha": 0.000244140625,
++          "generated_h": 0.00012207217520199482,
++          "h_over_alpha_delta": 1024.0156254768553,
++          "rigorous_lower_bound_h_over_alpha_delta": 1024.0
++        },
++        {
++          "delta": 0.000244140625,
++          "alpha": 0.0001220703125,
++          "generated_h": 6.103562191839287e-05,
++          "h_over_alpha_delta": 2048.015625238423,
++          "rigorous_lower_bound_h_over_alpha_delta": 2048.0
++        }
++      ]
++    },
+     "thin_pulse": {
+       "epsilon": "1/8",
+       "TV_u": "1/4",
+@@ -87,31 +90,31 @@
+         "number_of_pulses": 1,
+         "initial_TV_h": "1/32",
+         "spacing_TV_at_positive_time": "65/32",
+-        "spacing_L1_change_at_t_1": "0.024975585937499822"
++        "spacing_L1_change_at_t_1": "1023/40960"
+       },
+       {
+         "number_of_pulses": 2,
+         "initial_TV_h": "3/64",
+         "spacing_TV_at_positive_time": "259/64",
+-        "spacing_L1_change_at_t_1": "0.037469482421874645"
++        "spacing_L1_change_at_t_1": "6139/163840"
+       },
+       {
+         "number_of_pulses": 4,
+         "initial_TV_h": "15/256",
+         "spacing_TV_at_positive_time": "2063/256",
+-        "spacing_L1_change_at_t_1": "0.04684257507324174"
++        "spacing_L1_change_at_t_1": "24559/524288"
+       },
+       {
+         "number_of_pulses": 8,
+         "initial_TV_h": "255/4096",
+         "spacing_TV_at_positive_time": "65791/4096",
+-        "spacing_L1_change_at_t_1": "0.04977213591337115"
++        "spacing_L1_change_at_t_1": "6680303/134217728"
+       },
+       {
+         "number_of_pulses": 16,
+         "initial_TV_h": "65535/1048576",
+         "spacing_TV_at_positive_time": "33619967/1048576",
+-        "spacing_L1_change_at_t_1": "0.049966684977219344"
++        "spacing_L1_change_at_t_1": "439511609071/8796093022208"
+       }
+     ]
+   }
