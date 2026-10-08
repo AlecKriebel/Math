@@ -978,7 +978,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 967 | 30006191 / OWR-14299085-005 | Counterexamples to Strongly Continuous Many-Fermion Dynamics | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 968 | 30006223 / OWR-14299092-002 | Expander Degree Under Boundary Connected Sums | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 969 | 30006419 / OWR-14299521-012 | Infinitesimal Quasiconformality of Harmonic Spheres | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 970 | 30001260 / OWR-3477-004 | Rank-One-Isotropy Actions of $S_{5}$ on Spheres | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 970 | 30001260 / OWR-3477-004 | Rank-One-Isotropy Actions of $S_{5}$ on Spheres | 0.0919 | 5.5 | 3 | 2009 | unsolved | 5/5 |  |  2026-10-07: Five independently audited partial approaches; no smooth construction or nonexistence theorem. Credited linear obstruction; necessary n=3r+2 and C4/C2 fixed-set equality; compatible Sylow data; induction/join/thickening limits. The smooth standard-sphere realization gap remains; finite CW homotopy spheres are a different category. No novelty claim. [Full packet and audit](attempts/30001260/README.md).  |  |
 | 971 | 30001278 / OWR-3480-009 | Sharper Ramification Bounds for Local Galois Representations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 972 | 30001285 / OWR-3481-002 | Comparison Maps in Motivic Cohomology of Central Simple Algebras | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
