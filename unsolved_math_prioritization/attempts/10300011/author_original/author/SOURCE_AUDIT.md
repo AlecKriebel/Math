@@ -1,0 +1,15 @@
+# Source and status audit
+
+The primary statement was recovered from Calegari's arXiv:math/0209081v1, printed page 11, with definitions on printed page 2. The public arXiv record and PDF were inspected, and retained PDF bytes were rehashed and the question page rendered. Private source documents and full extracted texts are excluded from this packet. SOURCE_PINS.json gives public titles/URLs, version information, byte counts and hashes.
+
+The inherited record was OPEN-TRIAGE, containing literature statements rather than a mathematical solution. Its exact record and corpus bindings are recorded without publishing dataset content. Target-ID/title/branch searches and related PRs were checked beyond the stale main queue; the bounded negative result is in DUPLICATE_GATE.json.
+
+Classical facts actually used are essentiality inheritance, basic interval-bundle/surface classification, and compact incompressible-surface examples. Gabai–Kazez Lemma 1.6 explicitly credits essentiality inheritance to Gabai–Oertel. The original source's geometric/topological examples, Brittenham's carrier criterion, and the fiber/semifiber phenomenon are credited. The direct suspension proof is a special case of the original R-covered exclusion. No novelty is asserted.
+
+Brittenham's carrier proposition was inspected with its essential-carrier and full-support hypotheses. Agol–Li Theorems 4.6 and 5.2 were checked as ambient-existence algorithms, not fixed-lamination containment algorithms. Calegari's Promoting Essential Laminations v3 Lemma 3.4.2 is a minimal-foliation/fiber/genuine-sublamination reduction, not a complete exclusive characterization of the prescribed foliation.
+
+Literature searches did not establish a modern full characterization. This is a bounded research outcome, not proof of worldwide current openness. No stronger 2026 claim is needed for or used in the proofs here. Likewise no general genuineness-ascent theorem for covers or general orbit-union theorem is assumed. The report's gaps concern those specific attempted routes, not assertions that the corresponding missing statements are known to be false or open in the literature.
+
+All five approaches are mathematical proof-search routes, including one unsuccessful finite-certificate route. Source retrieval, duplicate checks, audit, computation and packaging do not consume turns. The main target remains unsolved by this work after five approaches. Independent mathematical review is pending; no remote publication was performed by this author worker.
+
+Classical genuine-minimal extraction is not listed as a missing theorem here. Gabai–Kazez Lemma 1.6 uses a dense-leaf sublamination and then, where needed, covering or Cantor thickening. Those changes should not be described as literal containment without checking the representative. No stronger universal hereditary-genuineness claim is needed by the present proof. The finite-cover gap specifically concerns adding translated witnesses, not removing leaves to find a minimal witness.

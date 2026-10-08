@@ -1012,7 +1012,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1001 | 30003536 / OWR-15577-004 | Maximum Principle for Intermediate Riesz Kernels | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1002 | 30003634 / OWR-15955-011 | Derived Pure Braid Groups in the Solvable Filtration | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1003 | 10300008 / AMR-102-0008 | Minimal surfaces — Question 4.2 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1004 | 10300011 / AMR-102-0011 | Sublaminations and superlaminations — Question 6.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1004 | 10300011 / AMR-102-0011 | Sublaminations and superlaminations — Question 6.1 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted scoped partials: finite compact-leaf characterization; circle-suspension exclusion; intrinsic-weight data insufficiency; restricted finite-cover witness descent. General characterization and fixed-lamination carrier-containment algorithm remain unproved. [Proof and audit](attempts/10300011/README.md). |  |
 | 1005 | 10300034 / AMR-102-0034 | Classical 3-manifold theory — Question 9.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1006 | 10300037 / AMR-102-0037 | Classical 3-manifold theory — Question 9.4 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
