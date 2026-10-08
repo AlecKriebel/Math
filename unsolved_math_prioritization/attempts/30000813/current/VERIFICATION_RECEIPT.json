@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "status": "PASS_FINITE_CHECKS_AND_PACKET_INTEGRITY",
+  "verified_utc": "2026-10-08T23:28:16.643866+00:00",
+  "manifest_sha256": "f721e67a8049bb65ad21192c04bdaef2887c82f211752ab7959ca09978101443",
+  "manifest_bytes": 1367,
+  "checked_payload_files": 7,
+  "euid": 1000,
+  "egid": 1000,
+  "packet_mode": "0o555",
+  "checker_mode": "0o444",
+  "python_version": "3.12.14",
+  "read_only_probes": [
+    {
+      "probe": "open_existing_checker_for_append",
+      "outcome": "PermissionError"
+    },
+    {
+      "probe": "create_new_file_in_packet",
+      "outcome": "PermissionError"
+    }
+  ],
+  "replays": [
+    {
+      "optimization": "none",
+      "exit_code": 0,
+      "stdout_bytes": 4400,
+      "stdout_sha256": "2c65e5b92aeae7ccfc299c6f21bd98abb797b174b2202a87d067ffc447b77c68",
+      "matches_frozen_results": true
+    },
+    {
+      "optimization": "-O",
+      "exit_code": 0,
+      "stdout_bytes": 4400,
+      "stdout_sha256": "2c65e5b92aeae7ccfc299c6f21bd98abb797b174b2202a87d067ffc447b77c68",
+      "matches_frozen_results": true
+    },
+    {
+      "optimization": "-OO",
+      "exit_code": 0,
+      "stdout_bytes": 4400,
+      "stdout_sha256": "2c65e5b92aeae7ccfc299c6f21bd98abb797b174b2202a87d067ffc447b77c68",
+      "matches_frozen_results": true
+    }
+  ],
+  "failure_controls": [
+    {
+      "control": "forced_false_condition",
+      "optimization": "none",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    },
+    {
+      "control": "forced_false_condition",
+      "optimization": "-O",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    },
+    {
+      "control": "forced_false_condition",
+      "optimization": "-OO",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    },
+    {
+      "control": "expected_active_determinant_64_changed_to_65",
+      "optimization": "none",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    },
+    {
+      "control": "expected_active_determinant_64_changed_to_65",
+      "optimization": "-O",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    },
+    {
+      "control": "expected_active_determinant_64_changed_to_65",
+      "optimization": "-OO",
+      "exit_code": 1,
+      "expected_failure_observed": true
+    }
+  ],
+  "payload_unchanged": true,
+  "scope": "Finite exact diagnostics, optimization safety, read-only execution and authored packet hashes only.",
+  "general_proof_audit": "Separate written mathematical analysis in AUDIT.md; not certified by this script.",
+  "formal_companion": "Static inspection only; no Lean build, axiom audit or downloaded companion execution."
+}
