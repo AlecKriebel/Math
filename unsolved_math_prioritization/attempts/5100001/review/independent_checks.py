@@ -11,7 +11,7 @@ root=Path(__file__).resolve().parent
 checks=0;families=0
 def ck(v):
  global checks
- assert v
+ if not v:raise RuntimeError('independent exact check failed')
  checks+=1
 def dot(v,w):return sum(x*y for x,y in zip(v,w))
 def sub(v,w):return tuple(x-y for x,y in zip(v,w))

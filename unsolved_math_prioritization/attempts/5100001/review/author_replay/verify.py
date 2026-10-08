@@ -8,7 +8,7 @@ from collections import Counter
 import json
 C=Counter()
 def ck(g,b):
- assert b,g
+ if not b:raise RuntimeError(g)
  C[g]+=1
 
 def field(d):
@@ -28,7 +28,7 @@ def field(d):
   __rmul__=__mul__
   def inv(self):
    norm=self.a*self.a-d*self.b*self.b
-   assert norm!=0
+   if norm==0:raise RuntimeError('zero quadratic-field norm')
    return Q(self.a/norm,-self.b/norm)
   def __truediv__(self,o):return self*Q(o).inv()
   def __rtruediv__(self,o):return Q(o)*self.inv()
@@ -39,7 +39,9 @@ def field(d):
    if not self.a:return sg(self.b)
    if sg(self.a)==sg(self.b):return sg(self.a)
    return sg(self.a)*sg(self.a*self.a-d*self.b*self.b)
-  def rational(self):assert self.b==0;return self.a
+  def rational(self):
+   if self.b!=0:raise RuntimeError('value is not rational')
+   return self.a
  return Q
 
 def dot(p,q):return p[0]*q[0]+p[1]*q[1]
