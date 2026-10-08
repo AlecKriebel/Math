@@ -25,3 +25,19 @@ Completion estimate:60% of PR147 audit/disposition. ROOT read and authenticated 
 ## 2026-10-08T04:55:45.513345+00:00: corrected bibliography priority gate
 
 Completion estimate:60% of PR147 audit/disposition. ROOT read and authenticated all44 corrected closed priority members and8 original input pins; full primary construction/table pages visually checked. Known four-period geometry and contemporary exact correction require credit. No explicit pre-attempt same-target correction located in bounded readings; no exclusive priority or independent discovery claim is supported. Prepare a self-contained corrective research note with these attributions and access limits, then new whole-package R1/R2. Original author2/5 retained; no new central proof approaches; no publication or merge yet.
+
+## 2026-10-08T05:13:22.643738+00:00: actual scientific checkpoint and manuscript preparation
+
+Completion estimate:65% of PR147 audit/disposition. Normal main checkpoint 9f5811ed2ea43acda528bb9904765c90d6e7ae0d contains exactly74 reviewed paths and preserves the parent tree outside them. ROOT independently read provider ancestry and all74 complete public bodies, authenticated408 closed publisher child records/full raw outputs and current controls. No local/native/cache/program3 installation occurred. The self-contained paper compiles; all5 portable diagnostic families reproduce normal/optimized baselines with12 true/false guard controls. Paper layout and support seal are being finalized; new whole-package R1/R2 and publication remain pending. Original author2/5, zero new proof approaches.
+
+## 2026-10-08T05:15:09.527392+00:00: complete candidate publication package sealed
+
+Completion estimate:70% of PR147 audit/disposition. The4-page note, credited prior geometry/contemporary correction, complete portable5-family normal/optimized reproduction and exact support archive are sealed. All4 latest pages visually checked; layout repairs changed no mathematics. Whole-package R1 and then a new independent R2 remain mandatory. No Zenodo upload, tracker row, PR147 merge or native promotion yet. Author2/5 and zero new central approaches retained.
+
+## 2026-10-08T05:35:11.169394+00:00: first full review repaired; corrected package and new reviewer
+
+Completion estimate:80% of PR147 audit/disposition. Fresh whole-package R1 fully closed with one mandatory provenance wording finding and no mathematical gap. Current manuscript/provenance distinguish the PR body description from the referenced original-head certificate. V1 and all historical evidence remain frozen. Corrected v2 compiles to4 pages, all4 visually checked; exact87-member archive and metadata equality verified. ROOT extracted-run reproduction completed10 family runs normal/optimized plus12 guard controls, all24 children closed and48 raw bodies fully authenticated. New independent whole-package R2 and an independent publication-service preparation review are active. No Zenodo staging/publication, sheet row, PR147 merge or native promotion yet; original2/5 and zero central discovery approaches retained.
+
+## 2026-10-08T05:50:13.718189+00:00: complete corrected package passes fresh R2
+
+Completion estimate:82% of PR147 audit/disposition. ROOT authenticated all277 sealed R2 review files and all90 unchanged candidate files;36 actual child records closed. New fresh reviewer independently derived the theorem, reproduced extracted checks, tested315 exact phase/boundary checks per mode and substantive malformed geometries/scientific mutants, and found no substantive gap. The first review provenance issue remains recorded and is globally corrected. Final mathematical/publication-package gate accepted; corrected operational-service source review remains pending. No actual upload/DOI, sheet row, merge or native promotion yet. Author2/5 and zero new central proof approaches remain unchanged.

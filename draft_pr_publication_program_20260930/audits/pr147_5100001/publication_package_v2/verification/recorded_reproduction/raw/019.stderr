@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import ast,sys;from collections import Counter;t=ast.parse(open(sys.argv[1],encoding='utf-8').read());f=[n for n in t.body if isinstance(n,ast.FunctionDef) and n.name==sys.argv[2]];ns={'C':Counter(),'checks':0};exec(compile(ast.Module(body=f,type_ignores=[]),'<actual guard>','exec'),ns);ns[sys.argv[2]]('control',sys.argv[3]=='True') if sys.argv[2]=='ck' and 'g' in f[0].args.args[0].arg else ns[sys.argv[2]](sys.argv[3]=='True','control') if sys.argv[2]=='require' else ns[sys.argv[2]](sys.argv[3]=='True')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "<actual guard>", line 14, in ck
+RuntimeError: independent exact check failed
