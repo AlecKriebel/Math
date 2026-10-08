@@ -1,0 +1,26 @@
+# Primary-source and inherited-work audit
+
+## Exact target
+
+Danny Calegari, *Problems in foliations and laminations of 3-manifolds*, arXiv:math/0209081v1, Question 10.1, printed p.22: https://arxiv.org/abs/math/0209081v1 . The full retained PDF was rehashed; the target page was freshly rendered and visually inspected. The private catalog and report agree on the intended question. The author statement is paraphrased, not redistributed source text. Its displayed quantifier is existential in the lifted leaf, and it asks for an open hyperbolic halfspace on each side. The problem itself does not display a closedness hypothesis. Our foliation-theoretic applications state closedness explicitly.
+
+## Used mathematical sources
+
+- Danny Calegari, *The Gromov norm and foliations*, Geom. Funct. Anal. 10 (2000), 1423–1447; arXiv:math/0007120v2, https://arxiv.org/abs/math/0007120v2 . Section 2.5, especially Theorem 2.5.5, the Fenley theorem stated as 2.5.6, and Corollary 2.5.8, supplies the global alternative. The retrieved version states that it reflects the publication. Full PDF retained privately; the relevant statements and surrounding proofs were inspected. We do not claim to have independently reverified the complete original proof of Fenley's 1998 theorem behind 2.5.6.
+- Sergio R. Fenley, *Geometry of foliations and flows I: Almost transverse pseudo-Anosov flows and asymptotic behavior of foliations*, arXiv:math/0502330v2, https://arxiv.org/abs/math/0502330v2 . Theorem 7.3 and Section 8 distinguish continuous extension from proper boundary image. The available arXiv manuscript has 56 pages; the later journal article is J. Differential Geom. 81 (2009), 1–89. Page references here are to the retained arXiv manuscript, not silently to the longer journal version.
+- Sergio R. Fenley, *Non R-covered Anosov flows in hyperbolic 3-manifolds are quasigeodesic*, arXiv:2210.09238v2, https://arxiv.org/abs/2210.09238v2 . The main theorem (p.2) and Section 12's final item E (p.85) were inspected. The publisher confirms the related version of record: Geom. Funct. Anal. 36 (2026), 412–508, published 23 March 2026, https://doi.org/10.1007/s00039-026-00733-5 . We retrieved the arXiv PDF, not the subscription publisher PDF, and do not assert their byte or text equality.
+- Ellis Buckminster, *Cannon–Thurston maps for Anosov foliations*, arXiv:2604.21201v1, https://arxiv.org/abs/2604.21201v1 . Sections 2.5 and 3 and Theorem A were inspected. This is a preprint. Its global surjective circle map does not alone determine any individual leaf limit set. The PDF is the controlling inspected file; no asserted PDF/HTML identity is made.
+
+The geometric limit-set, Hölder-covering, bounded-distance, interval-insertion, and flow-endpoint reductions are proved in the five approach files. Standard Morse stability, the quasifuchsian limit-circle characterization, and the classical Peano parameterization are identified dependencies, not finite-test outputs. No claim of new discovery is made.
+
+## Unresolved source lead
+
+Fenley, *Local and global properties of limit sets of foliations of quasigeodesic Anosov flows*, Trans. Amer. Math. Soc. 350 (1998), 3923–3941, https://doi.org/10.1090/S0002-9947-98-01973-4 . The publisher's indexed abstract appears to exclude a full sphere even for the union of stable-leaf limit sets under its quasigeodesic hypotheses. The full original PDF returned HTTP 403 through the available retrieval routes; the author bibliography listed it without a direct copy. This is not reconciled with the 2026 item E. We neither discard the older result nor rely on a search snippet to assert a theorem application. A specialist/source-complete reconciliation is needed before promoting the Anosov subcase.
+
+Likewise, the original *Limit sets of foliations in hyperbolic 3-manifolds*, Topology 37 (1998), 875–894, https://doi.org/10.1016/S0040-9383(97)00062-1 , is used only through the precisely identified statement in Calegari's primary article. Its independent full-original verification remains unavailable here.
+
+## Duplicate and inherited-attempt gate
+
+Read-only searches of actual AlecKriebel/Math PRs, branches, default-branch code, and retained artifacts were performed on 8 October 2026. Exact ID/code and separation-specific PR queries returned no match. Branch searches for the ID, Calegari ID family, hyperbolic/asymptotic/separation/branching/Fenley terms were exhausted through their returned cursors. Relevant results were other problems. The target appears in stale queue copies, but no retained mathematical target attempt was found. Corpus semantic screening located this exact separation question only at ID 10300039; Q10.3 is a distinct dimension/depth question. The imported target report is literature triage with no supplied argument, not an earlier substantive attempt.
+
+This bounded gate supports starting the current target; it is not an exhaustive all-history absence certificate. No rank was changed and no remote write was made. The live queue slice confirms rank 1007 and the stale queued/0-of-5 cells. Public metadata contains corpus hashes and match results only; no dataset records, copied source documents, source extracts, or private coordination files are in the author archive.
