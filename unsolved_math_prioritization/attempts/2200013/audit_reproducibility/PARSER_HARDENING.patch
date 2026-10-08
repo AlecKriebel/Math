@@ -1,0 +1,38 @@
+--- a/verify_math.py
++++ b/verify_math.py
+@@ -30,6 +30,10 @@
+     return d
+ 
+ 
++def reject_constant(value):
++    raise VerificationError("non-finite JSON number: " + value)
++
++
+ def sign(q):
+     return (q > 0) - (q < 0)
+ 
+@@ -53,10 +57,14 @@
+         require(type(c[k]) is int and 0 < c[k] < 1000000, "bounded integer: " + k)
+     require(c["v_denominator_power10"] == 6, "seed parameter")
+     for key in ["K", "N"]:
+-        require(type(c[key]) is str and c[key].isdigit() and len(c[key]) < 100, "integer string: " + key)
++        require(type(c[key]) is str and c[key].isascii() and c[key].isdigit() and len(c[key]) < 100, "integer string: " + key)
+     K, N = int(c["K"]), int(c["N"])
+     require(K >= 10**20 and K % 2 == 0, "large even K")
+     v = F(1, 10**c["v_denominator_power10"])
++    for key in ["factor_exponents", "expected_signs"]:
++        require(type(c[key]) is list and all(type(value) is int for value in c[key]), "integer vector: " + key)
++    for key in ["corrections", "sample_offsets"]:
++        require(type(c[key]) is list and all(type(row) is list and len(row) == 2 and all(type(value) is int for value in row) for row in c[key]), "integer pair vector: " + key)
+     es = c["factor_exponents"]
+     require(es == [5, 15, 25, 55], "seed odd exponents")
+     require(c["corrections"] == [[3, 2], [2, 6], [1, 12]], "seed corrections")
+@@ -154,7 +162,7 @@
+         require(args.certificate.is_file() and not args.certificate.is_symlink(), "regular nonsymlink certificate required")
+         raw = args.certificate.read_bytes()
+         require(len(raw) < 100000, "certificate too large")
+-        c = json.loads(raw, object_pairs_hook=unique_object)
++        c = json.loads(raw, object_pairs_hook=unique_object, parse_constant=reject_constant)
+         out = verify(c)
+         out["certificate_sha256"] = hashlib.sha256(raw).hexdigest()
+         print(json.dumps(out, sort_keys=True))
