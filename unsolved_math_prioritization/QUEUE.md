@@ -1077,7 +1077,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | exhausted | 5/5 |  | Corrected partial results only; full target unresolved, no novelty claim. Uniqueness requires admissible facewise geodesic interpolation, including for self-glued faces. Compatible-isometry energy equality survives; map identification is conditional. D and its weak closure remain distinct. Conditional edge balance, flat local folding and nonharmonic finite-energy cusp obstructions retain their stated scope. See attempts/30003946/ACCEPTANCE.md and corrected report. |  |
 | 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1071 | 30004167 / OWR-16941-008 | Prismatic Cohomology from Topological Cyclic Homology | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1072 | 30004168 / OWR-16941-009 | Prismatic Cohomology of Local Complete Intersections | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
