@@ -1,0 +1,3 @@
+# Research checkpoint
+
+2026-10-08 UTC: publication checkpoint. Five substantive author approaches remain unsolved, 5/5. Independent mathematical review accepted the five scoped partial developments with only an explicit inner principal-value clarification in the infinite-plane model. The original author record and audit remain unchanged; a separate corrected report and rehashed manifest adopt the exact correction patch. No additional proof-search turn is used. The unresolved goal remains the global full-vector estimate for all nonnegative smooth compactly supported densities in the intermediate exponent interval, or a genuine counterexample in that class.

@@ -1,0 +1,16 @@
+# Publication acceptance: intermediate Riesz maximum principle
+
+Date: 2026-10-08 UTC. Queue rank 1001, problem 30003536 / OWR-15577-004.
+Research disposition: **unsolved, 5/5**. Review, clarification and publication add zero proof-search turns.
+
+The independent mathematical audit accepts all five scoped analytic approaches: the antisymmetric moment and far-field estimate; the smooth radial multiscale obstruction to scalar majorization; a positive smooth d=8,s=2 construction with a strict local full-vector-norm maximum off support; the sign-changing three-point energy integrand; and the infinite-plane model with a surviving smooth support boundary layer. A strict local maximum off support does not prove failure for C=1 or for any global constant. The global full-vector estimate for nonnegative smooth compactly supported densities and 1<s<d-1 remains unresolved in this packet.
+
+Only one correction is adopted. The infinite d=4,s=2 plane field on its support requires symmetric inner principal-value cutoffs and outer tangential cutoffs. An ordinary norm integral there diverges at both zero and infinity. independent_audit/REGULARIZATION.patch reproduces corrected/REPORT.md exactly from original/REPORT.md; no proposition or inequality changes. corrected/MANIFEST.json is separately rehashed. Every other corrected author file is unchanged. The original author packet and original independent audit are preserved byte-for-byte under their frozen manifest hashes.
+
+Historical statements that the author packet had not yet been independently audited remain historical author-freeze metadata. The later acceptance is independent_audit/ACCEPTANCE.json. The separate corrected copy does not falsify the historical author claims or silently reuse the old manifest.
+
+The author checker contains 12,371 exact finite algebra/scope checks; the independent harness adds 4,294 exact checks. These finite controls are separate from the analytic review of Fubini, smoothing, support and limiting arguments. The independent audit reports six positive replays, 39 wrong-claim rejections, 24 malformed-claim rejections, 57 integrity/parser/path rejections, three read-only relocations, and six actual write denials across normal, -O and -OO child modes. Author controls separately report six positive replays, 36 wrong-claim, 12 malformed-claim and 24 integrity rejections, and three read-only relocations. Counts are not combined into a formal-proof claim.
+
+This source-free publication contains authored mathematics, scripts, the correction patch, audits, acceptance and public verification metadata only. It redistributes no source PDFs, copied source text, page images, datasets, private sources, personal data, or private coordination material. Public source titles, URLs, PDF hashes, byte counts and inspection scope remain in the frozen metadata. Bounded literature and duplicate checks are not exhaustive certification. The work is AI-assisted and unrefereed; no historical novelty, formal proof verification, conventional human peer review, or global current-open-status certification is claimed.
+
+The externally anchored bootstrap and manifest validate identity and finite replay only. Replacing all independently trusted code and digests lies outside this local integrity model. No merge, release or external outreach accompanies this draft.
