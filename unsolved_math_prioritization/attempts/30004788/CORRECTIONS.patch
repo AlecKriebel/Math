@@ -1,0 +1,179 @@
+# HISTORICAL CONTEXTUAL CORRECTION PATCH
+# Deleted lines are superseded authored text, not current claims.
+# The full superseded report and original packet are excluded.
+# Historical patch application is NOT_RUN in this public delivery.
+--- original/MANIFEST.json
++++ current_derivative/MANIFEST.json
+@@ -1,18 +1,18 @@
+ {
+   "PARTIAL_ANALYSIS.md": {
+-    "bytes": 9353,
+-    "sha256": "94298cd72f4e67b61b1443243014eb74d7313958fb611dacc42b08aaaeadb38c"
++    "bytes": 11049,
++    "sha256": "fed1d25384fccd2a4249c2225a338a90e9c5b8759dafecaf4f82df5c6b314edb"
+   },
+   "SOURCE_METADATA.json": {
+-    "bytes": 5192,
+-    "sha256": "f908f6faf545ae6e9d262ba60ee59dfd219e5428a72272606713b35a07494edf"
++    "bytes": 5439,
++    "sha256": "bf2afd9cab91aaec01cef9982697c6d43d7f2c27684b5308b7339e1f0c9c3e45"
+   },
+   "VALIDATION.md": {
+-    "bytes": 1631,
+-    "sha256": "c697bdcd632eaecd6ac254803bd37b695c0eea412ac95c1186b9beba42ec299b"
++    "bytes": 2113,
++    "sha256": "dd51eaec47d417a411f78526cf401997abe565a021d23fa957697110df5a62c0"
+   },
+   "check_exact.py": {
+-    "bytes": 4637,
+-    "sha256": "49873fdf00f55fedf509abb791705997b2c9df9fa425f97fef8afe8269aa783b"
++    "bytes": 4638,
++    "sha256": "48ffe1c5e0c28b91c9ec2768d15881d7e9a868a4ef00531f98a6951065f65a2a"
+   }
+ }
+--- original/PARTIAL_ANALYSIS.md
++++ current_derivative/PARTIAL_ANALYSIS.md
+@@ -1,6 +1,10 @@
+ # Iwahori restriction: known dependence and reconstruction obstructions
+ 
+ Status: partial analysis only. No general block model or novelty claim is made.
++
++Current audited derivative, 8 October 2026. This file adds categorical and
++normalization clarifications to the preserved original; it is not a new proof
++attempt or a solution of the full problem.
+ 
+ ## 1. Object and conventions
+ 
+@@ -11,8 +15,10 @@
+ 
+     M(pi) = (Res_H pi)^(I_H),
+ 
+-or, equivalently, the [T,1] Bernstein component of Res_H pi. This is generally
+-infinite-dimensional. It is not the restriction of the finite-dimensional space
++This is the Hecke module corresponding, under the Iwahori type equivalence,
++to the [T,1] Bernstein component of Res_H pi. The group representation and its
++Hecke module are objects in equivalent categories, not literally the same
++vector space. The Hecke module is generally infinite-dimensional. It is not the restriction of the finite-dimensional space
+ pi^(I_G) along an affine-Hecke inclusion.
+ 
+ Here “unramified generic” means irreducible, Whittaker-generic and spherical
+@@ -36,21 +42,41 @@
+ Weil–Deligne parameter must have a trivial one-dimensional summand whose
+ two-dimensional quotient corresponds to a generic GL_2 representation.
+ 
+-Choose a nontrivial unramified unitary character xi of F*. Then
++Choose a nontrivial unramified unitary character xi of F*; for example, set
++xi to be trivial on O_F* and xi(varpi)=-1 for a uniformizer varpi. Then
+ 
+     pi_0 = 1 x 1 x 1,        pi_1 = xi x xi x xi
+ 
+ are normalized GL_3 principal series. Each is irreducible: every ratio of
+ inducing characters equals 1, whereas the reducibility ratios are |.| and
+-|.|^(-1), neither of which is 1. Both are generic and K_G-spherical. Their
++|.|^(-1), neither of which is 1. Both are generic and K_G-spherical; their Weil-Deligne monodromy is zero. Their
+ parameters are 1⊕1⊕1 and xi⊕xi⊕xi. For pi_0 the complementary parameter
+ 1⊕1 gives the irreducible generic GL_2 principal series 1 x 1. The parameter
+ of pi_1 has no trivial summand. Consequently
+ 
+     Hom_GL2(pi_0,1) != 0,        Hom_GL2(pi_1,1) = 0.
+ 
+-Since 1 belongs to the GL_2 Iwahori block, M(pi_0) and M(pi_1) cannot be
+-isomorphic. This is an application of a 1993 theorem, not a new counterexample.
++These are maps from the restricted representation onto the trivial
++representation, not embeddings of that representation into the restriction.
++Let e_s denote the Bernstein projection for s=[T,1]. The trivial GL_2
++representation lies in s: its normalized cuspidal support is the unordered
++pair { |.|^(-1/2), |.|^(1/2) }, which consists of unramified characters.
++Orthogonality of Bernstein blocks gives
++
++    Hom_H(Res_H pi,1) = Hom_H(e_s Res_H pi,1).
++
++Any nonzero map here is surjective. Exactness of I_H-invariants over C
++(obtained by compact averaging) and the Iwahori type equivalence transport
++this to the corresponding Hecke-module quotient. Thus M(pi_0) and M(pi_1)
++cannot be isomorphic.
++
++The GL_3 central characters are 1 and xi^3. Equality of those characters is
++not required by the question or by Prasad's criterion. The center of the
++embedded GL_2 is not the center of GL_3. Nontrivial unitarity excludes
++xi=|.|^s for every real s, including s=0; xi^2=1 in the explicit choice
++introduces no reducibility, since the inducing-character ratios remain 1.
++The GL_2 complementary parameter 1+1 in the criterion is generic and is
++different from the trivial target representation. This is an application of a 1993 theorem, not a new counterexample.
+ 
+ Source: [Prasad, On the decomposition of a representation of GL(3) restricted to GL(2) over a p-adic field](https://doi.org/10.1215/S0012-7094-93-06908-6), Duke Math. J.69 (1993),167–177, Theorems1–2, pp.169–172.
+ 
+@@ -174,8 +200,9 @@
+ entire K_G-restrictions, while their GL_2 Iwahori blocks differ. Even all compact
+ types are insufficient without the action of translations outside K_G.
+ 
+-The finite-hyperspecial questions studied in [Wang, 2603.22931](https://arxiv.org/abs/2603.22931)
+-and [Wang, 2604.09138](https://arxiv.org/abs/2604.09138) do not supply these
++The finite-hyperspecial questions studied in [Wang, 2603.22931v2](https://arxiv.org/abs/2603.22931v2)
++and [Wang, 2604.09138v3](https://arxiv.org/abs/2604.09138v3), both with a
++characteristic-zero local-field hypothesis in the inspected PDFs, do not supply these
+ translation operators or the infinite-dimensional restricted module.
+ 
+ ## 8. Remaining problem and exact-check limits
+--- original/SOURCE_METADATA.json
++++ current_derivative/SOURCE_METADATA.json
+@@ -41,8 +41,10 @@
+       "url": "https://arxiv.org/abs/2212.05919v3",
+       "pdf_bytes": 840364,
+       "pdf_sha256": "46807f202a1ecd5cb1ed321fa8050fadb4746f590ca5b6c002ccac4f44f30262",
+-      "inspection": "Entire introduction and definitions, main Theorems4.1–4.2, algorithm and examples, bibliography; no complete audit of its 77-page proof.",
+-      "status": "Public arXiv v3 dated6 August2026; no journal acceptance claimed."
++      "inspection": "Entire introduction and definitions, main Theorems4.1–4.2, algorithm and examples, bibliography; no complete audit of its proof.",
++      "status": "Public arXiv v3 dated6 August2026; no journal acceptance claimed.",
++      "pdf_pages": 78,
++      "page_count_note": "Pinned PDF has 78 numbered pages; arXiv Comments says 72 pages. No complete proof audit is claimed."
+     },
+     {
+       "title": "Homological aspects of branching laws",
+@@ -65,7 +67,7 @@
+       "url": "https://arxiv.org/abs/2603.22931v2",
+       "pdf_bytes": 377104,
+       "pdf_sha256": "b4dc467d4f128b5bed2c0a63c340f6c0ca3a439164901e0722c8936a50c56987",
+-      "inspection": "Abstract, theorem statements and construction/scope; finite-hyperspecial representation question distinguished from full restriction.",
++      "inspection": "Abstract, theorem statements and construction/scope; finite-hyperspecial representation question distinguished from full restriction. The inspected PDF assumes a characteristic-zero local field.",
+       "status": "Public arXiv v2; no journal acceptance claimed."
+     },
+     {
+@@ -81,5 +83,6 @@
+     "The ICBS Prasad slides URL failed with HTTP502 and was not used to certify any claim.",
+     "Some web-reader PDF/link opens failed; successful public author/arXiv PDF routes were used.",
+     "Materializing an entire PDF does not imply every proof in it was audited. Inspection scope is stated per source."
+-  ]
++  ],
++  "audited_derivative_date": "2026-10-08"
+ }
+--- original/VALIDATION.md
++++ current_derivative/VALIDATION.md
+@@ -30,3 +30,12 @@
+ 
+ Only authored analysis/check code and public bibliographic verification metadata
+ belong in this packet. Source PDFs and text are not included.
++
++## Audited derivative
++
++This derivative adds the explicit Bernstein projection and quotient argument,
++clarifies the trivial target's normalized cuspidal support and central characters,
++and records both Wang papers' characteristic-zero hypotheses. It also corrects
++the pinned Chan v3 PDF page count to 78 and makes the support-test comment
++strictly algebraic. The mathematical outcome remains partial and unresolved.
++Independent rerun results are supplied in the accompanying audit.
+--- original/check_exact.py
++++ current_derivative/check_exact.py
+@@ -104,9 +104,9 @@
+     require(not monomial_member((1,0),j_generators),"Fitting ideals wrongly identified")
+     require(monomial_member((2,0),j_generators),"u squared missing from J")
+ 
+-    # On each non-bottom principal-series layer, a fixed beta coordinate
+-    # makes product_a product_j (X_a-beta_j) vanish. This checks only the
+-    # polynomial identity, not nilpotence or a p-adic center-action theorem.
++    # Pure polynomial samples: if one X coordinate equals a listed beta,
++    # product_a product_j (X_a-beta_j) has a zero factor. No assertion about
++    # a representation layer, center action, or nilpotence is tested here.
+     polynomial_cases=0
+     for n in range(1,6):
+         betas=list(range(2,n+3))
