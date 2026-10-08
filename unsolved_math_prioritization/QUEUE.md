@@ -948,7 +948,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 937 | 9700042 / AMR-096-0042 | Near-one asymptotics for oriented-percolation flow | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 938 | 9900008 / AMR-098-0008 | Mass-stationarity of diffuse random measures via allocations | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 939 | 9900009 / AMR-098-0009 | Markovian-kernel characterization of mass-stationarity | 0.0960 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
-| 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 940 | 30004549 / OWR-2654829-012 | Generic Vanishing of Anti-Invariant Cohomology in Dimension Four | 0.0957 | 5.5 | 3 | 2020 | claimed_solved | 4/5 |  | 2026-10-07: Integrability clause disproved by a compact smooth genus-two-curve times elliptic-curve counterexample with h_J^- >= 3; exact frozen proof accepted unchanged by two independent AI audits. Generic vanishing is the prior Tan-Wang-Zhang-Zhu theorem. AI-authored, unrefereed; novelty unestablished. See attempts/30004549/README.md. |  |
 | 941 | 4700011 / AMR-046-0011 | Periodic rational difference equations | 0.0957 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 942 | 30004633 / OWR-4990379-003 | Lagrangian Schemes for Irregular Porous-Medium Solutions | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
