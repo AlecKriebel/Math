@@ -954,7 +954,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 943 | 30004711 / OWR-7155449-015 | Completed $\Theta$-Twisted Volumes of Bordered-Curve Moduli | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 944 | 30004818 / OWR-8415345-008 | Genus-Reducing Local-Knot Concordance in Orientable Three-Manifolds | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 945 | 30004938 / OWR-8415362-003 | Polyhedrality of Totally Nonnegative Critical Varieties | 0.0952 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 946 | 30005030 / OWR-9790360-001 | Spatial Regularity Versus Time Integrability for Fractional SDEs | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 946 | 30005030 / OWR-9790360-001 | Spatial Regularity Versus Time Integrability for Fractional SDEs | 0.0947 | 5.5 | 3 | 2022 | already_solved | 0/5 |  | Source-scoped negative prior-result: HR arXiv:2604.23883v1 PREPRINT refutes the dimension-uniform higher-time-q scaling criterion for pathwise uniqueness, d>=2, H in (1/2,1), even L-infinity time. No new counterexample; full multiscale proof not independently verified. Restricted autonomous/d=1 positive results, H<1/2 and endpoint limitations retained. [Report + required addendum and audit](attempts/30005030/README.md). |  |
 | 947 | 30005079 / OWR-10252925-004 | Nondivisorial Valuations in Explicit Fano Degenerations | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 948 | 30005171 / OWR-11101913-005 | Stable Limits of Smooth Plane Curves | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
