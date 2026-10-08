@@ -1014,7 +1014,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1003 | 10300008 / AMR-102-0008 | Minimal surfaces — Question 4.2 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1004 | 10300011 / AMR-102-0011 | Sublaminations and superlaminations — Question 6.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1005 | 10300034 / AMR-102-0034 | Classical 3-manifold theory — Question 9.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1006 | 10300037 / AMR-102-0037 | Classical 3-manifold theory — Question 9.4 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1006 | 10300037 / AMR-102-0037 | Classical 3-manifold theory — Question 9.4 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Corrected accepted partials: parity/monodromy and filling controls; local foliation model; credited geometric subclasses. Unsolved by this packet; universal Delman-Roberts announcement credited, full manuscript not inspected; no worldwide-openness claim. See attempts/10300037/ACCEPTANCE.md and audit_original/AUDIT.md. |  |
 | 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
