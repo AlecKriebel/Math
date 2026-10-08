@@ -41,3 +41,15 @@ Completion estimate:80% of PR147 audit/disposition. Fresh whole-package R1 fully
 ## 2026-10-08T05:50:13.718189+00:00: complete corrected package passes fresh R2
 
 Completion estimate:82% of PR147 audit/disposition. ROOT authenticated all277 sealed R2 review files and all90 unchanged candidate files;36 actual child records closed. New fresh reviewer independently derived the theorem, reproduced extracted checks, tested315 exact phase/boundary checks per mode and substantive malformed geometries/scientific mutants, and found no substantive gap. The first review provenance issue remains recorded and is globally corrected. Final mathematical/publication-package gate accepted; corrected operational-service source review remains pending. No actual upload/DOI, sheet row, merge or native promotion yet. Author2/5 and zero new central proof approaches remain unchanged.
+
+## 2026-10-08T06:09:32.716345+00:00: reviewed corrected package checkpoint published
+
+Completion estimate:85% of PR147 audit/disposition. Normal main checkpoint f69178529da4b97de6204feb62fbc664d667c619 contains exactly110 selected/109 changed paths and preserves the parent tree outside them. ROOT independently authenticated provider ancestry, framed commit object, all110 complete selected public bodies, all actual publisher raw/child records and current controls. Corrected 4-page note and portable package passed the required fresh review loop; operational defects were separately repaired and cleanly re-audited. No local/native/cache/program3 installation occurred. Zenodo exact upload, one tracker row and original147head merge proceed next. Original author2/5 and zero new central proof approaches retained.
+
+## 2026-10-08T06:22:44.791740+00:00: actual publication, tracker and original-head merge
+
+Completion estimate:96% of PR147 audit/disposition. Zenodo DOI10.5281/zenodo.23231145 published with exact reviewed metadata and two complete matching public downloads. One four-cell tracker row57 appended and independently read back twice. Original502de head merged as e8621548039130d471eae99580a29b32925f3c8f. ROOT fully authenticated real service raw/process evidence, fresh32-path main preimages and both sealed native source preparations. Final native repair/provenance integration and program acceptance remain pending; original2/5 author effort and zero new central approaches are retained.
+
+## 2026-10-08T06:49:41.717545+00:00: actual native public/local acceptance
+
+Completion estimate:98% of PR147 audit/disposition. Actual native commit e9264db213becd7d7684c446cda4a0503773b988 has exactly19 changes and preserves the parent tree outside them. All32 selected public and local bodies/modes independently authenticated. Publisher192 and installer73 children, plus76 independent ROOT children in each public/final readback, retain full closed custody; owned barriers released. No real refs/index/config/cache or program3 changed. Original2/5 author ledger and13 unchanged originals retained. DOI23231145/tracker57/originalmergee862 remain complete. Final program checkpoint/readback still required; overall persistent goal ACTIVE and unfinished.
