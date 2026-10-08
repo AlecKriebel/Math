@@ -1,0 +1,837 @@
+{
+  "checked_at": "2026-10-08T19:58:10.903016+00:00",
+  "default_absent_inputs": {
+    "corpus_rehash": "NOT_RUN",
+    "full_original_patch_roundtrip": "NOT_RUN",
+    "original_full_reproduction": "NOT_RUN",
+    "source_pdf_rehash": "NOT_RUN"
+  },
+  "historical_runs_reused": false,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "python_executable_sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+  "readonly": {
+    "actual_create_denied": true,
+    "actual_existing_write_open_denials": 3
+  },
+  "runs": [
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 0,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 741,
+        "sha256": "50347ea4a762787b290d405bf262913de649a3e1d37c44f9d00bc313e1657023",
+        "text": "{\"check_names\": [\"flat_normal_harmonic\", \"flat_tangential_harmonic\", \"flat_normal_inward_derivative\", \"flat_tangential_normal_derivative\", \"flat_edge_flux_identically_zero\", \"flat_jacobian_identity\", \"flat_negative_interior_jacobian\", \"flat_positive_interior_jacobian\", \"chosen_points_inside_radius_two\", \"energy_area_polynomial_identity\", \"625_rational_matrix_regressions\", \"cusp_bump_first_derivative\", \"cusp_bump_second_derivative\", \"cusp_trig_bound_identity\", \"cusp_derivative_extremes\", \"cusp_energy_bound_constant\", \"cusp_nonharmonic_residual_numerator\", \"identity_energy_density\"], \"checks\": 18, \"optimization_level\": 0, \"rational_matrix_cases\": 625, \"scope\": \"finite algebra checks; not a proof of the conjecture\", \"status\": \"pass\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--negative-control"
+      ],
+      "exit_code": 1,
+      "label": "author_negative",
+      "optimization": 0,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 93,
+        "sha256": "52b706b308b59722ca2e712cef44ce7b4dde407bb14b86d2b59f2dfbad577b83",
+        "text": "{\"error\": \"deliberately_false_jacobian_identity\", \"optimization_level\": 0, \"status\": \"fail\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 1809,
+        "sha256": "727ce74b3e5b5551dff2299643dfd3d8d67516ec81115396952c0f561ec432ff",
+        "text": "{\"check_count\": 13, \"checks\": [{\"evidence\": {\"degree_bound\": 3, \"evaluations\": 50}, \"name\": \"flat_harmonicity_by_exact_differences\"}, {\"evidence\": {\"edge_tests\": 5}, \"name\": \"flat_edge_flux_by_exact_differences\"}, {\"evidence\": {\"degree_per_variable_at_most\": 2, \"grid_points\": 25}, \"name\": \"flat_jacobian_polynomial_interpolation\"}, {\"evidence\": {\"largest_radius_squared\": \"17/16 < 4\", \"negative\": \"-19/16\", \"positive\": \"29/16\"}, \"name\": \"flat_opposite_orientation_inside_domain\"}, {\"evidence\": {\"degree_bound\": 2, \"energy_prefactor\": 1, \"points\": 81}, \"name\": \"energy_area_exact_interpolation\"}, {\"evidence\": {\"nondegenerate_rational_cases\": 384}, \"name\": \"negative_curvature_strict_rank_two_term\"}, {\"evidence\": {\"max_qprime\": \"3\", \"min_qprime\": \"-1\"}, \"name\": \"cusp_remote_folds_and_upper_derivative\"}, {\"evidence\": {\"bump_at_seam\": \"0\", \"first_derivative\": \"1\", \"left_second_derivative\": \"0\", \"right_second_derivative\": \"4\"}, \"name\": \"cusp_seam_exact_regularities\"}, {\"evidence\": {\"density_bound\": \"10/y^2\", \"tail_bound\": \"10*w/Y\"}, \"name\": \"cusp_energy_majorant\"}, {\"evidence\": {\"q_times_residual_at_r_pi_over_4\": \"-8\"}, \"name\": \"cusp_is_not_harmonic\"}, {\"evidence\": {\"domain_pairing\": \"1/30\", \"total_flux\": \"0\"}, \"name\": \"collapsed_trace_tests_have_nontrivial_kernel\"}, {\"evidence\": {\"bottom_boundary_y_squared_at_midpoint\": \"1/4\", \"midpoint_x\": \"1/2\", \"midpoint_y_squared\": \"5/4\", \"scope\": \"local geometric obstruction only\"}, \"name\": \"quotient_trace_is_not_side_incidence\"}, {\"evidence\": {\"limit_energy\": \"0\", \"scope\": \"numerical inequality witness only\", \"sequence_energy\": \"1\"}, \"name\": \"lower_semicontinuity_is_only_one_sided\"}], \"mutation\": null, \"optimization_level\": 0, \"scope\": \"finite exact identities and logical witnesses, not analytic theorem certification\", \"status\": \"pass\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_laplacian"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_laplacian",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 144,
+        "sha256": "23410d1cbd8f2f9140870bbec142fd6fe31d2c28fe3dc567d18af1fc8efa9aab",
+        "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_orientation"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_orientation",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 147,
+        "sha256": "d5a4097e5ad728789dfd30039d2fbbdc071a941eb8c4fd88850fab2a0c3cdd64",
+        "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "area_normalization"
+      ],
+      "exit_code": 1,
+      "label": "mutation_area_normalization",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 142,
+        "sha256": "39e6f490f0a526a758ceadf528cd67d51b944b6f6e38293ab062206418c71058",
+        "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "curvature_sign"
+      ],
+      "exit_code": 1,
+      "label": "mutation_curvature_sign",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 146,
+        "sha256": "56da948ecc670fd6c02098fce7a5ffc2281e2e15f83c6d80426fb5c118025a14",
+        "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_amplitude"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_amplitude",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 145,
+        "sha256": "d0da0ad60928221b5d3780b9f9d94f5e7693f02fee12720ddf37a90d9989815d",
+        "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_harmonicity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_harmonicity",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 129,
+        "sha256": "0a3c0d56e44ba100e50388ef71865a3d227cfc6781ed5db761e17f4868db087d",
+        "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "collapsed_trace_injectivity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_collapsed_trace_injectivity",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 164,
+        "sha256": "2ed5cd6b5e8efe47014a0da5c0713893fab2b049e7d5f57905cbd5b1b8b0f398",
+        "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "weak_lower_semicontinuity_direction"
+      ],
+      "exit_code": 1,
+      "label": "mutation_weak_lower_semicontinuity_direction",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 166,
+        "sha256": "ac3c1649131e2a45a036e246a9a60f28d00f42aa503a7f254b8bbe79512e274f",
+        "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "quotient_trace_equals_side_incidence"
+      ],
+      "exit_code": 1,
+      "label": "mutation_quotient_trace_equals_side_incidence",
+      "optimization": 0,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 165,
+        "sha256": "cd32c8c253307bd6b6d21756e0cfb4c721338795230e40f8e8340f964b324315",
+        "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 0, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 1,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 741,
+        "sha256": "47f7ee9ac9eadca6e5432bab5000622d0769837829dc8ccba24498c98635da9e",
+        "text": "{\"check_names\": [\"flat_normal_harmonic\", \"flat_tangential_harmonic\", \"flat_normal_inward_derivative\", \"flat_tangential_normal_derivative\", \"flat_edge_flux_identically_zero\", \"flat_jacobian_identity\", \"flat_negative_interior_jacobian\", \"flat_positive_interior_jacobian\", \"chosen_points_inside_radius_two\", \"energy_area_polynomial_identity\", \"625_rational_matrix_regressions\", \"cusp_bump_first_derivative\", \"cusp_bump_second_derivative\", \"cusp_trig_bound_identity\", \"cusp_derivative_extremes\", \"cusp_energy_bound_constant\", \"cusp_nonharmonic_residual_numerator\", \"identity_energy_density\"], \"checks\": 18, \"optimization_level\": 1, \"rational_matrix_cases\": 625, \"scope\": \"finite algebra checks; not a proof of the conjecture\", \"status\": \"pass\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--negative-control"
+      ],
+      "exit_code": 1,
+      "label": "author_negative",
+      "optimization": 1,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 93,
+        "sha256": "5b86878a085969ddf6b9f43e3a793b0363dafb0e4fc8e0e0161ecb6c12825ee8",
+        "text": "{\"error\": \"deliberately_false_jacobian_identity\", \"optimization_level\": 1, \"status\": \"fail\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 1809,
+        "sha256": "7f820453c7cbae14b7c329f1034340088bece43907a440e6a7a767baed16f464",
+        "text": "{\"check_count\": 13, \"checks\": [{\"evidence\": {\"degree_bound\": 3, \"evaluations\": 50}, \"name\": \"flat_harmonicity_by_exact_differences\"}, {\"evidence\": {\"edge_tests\": 5}, \"name\": \"flat_edge_flux_by_exact_differences\"}, {\"evidence\": {\"degree_per_variable_at_most\": 2, \"grid_points\": 25}, \"name\": \"flat_jacobian_polynomial_interpolation\"}, {\"evidence\": {\"largest_radius_squared\": \"17/16 < 4\", \"negative\": \"-19/16\", \"positive\": \"29/16\"}, \"name\": \"flat_opposite_orientation_inside_domain\"}, {\"evidence\": {\"degree_bound\": 2, \"energy_prefactor\": 1, \"points\": 81}, \"name\": \"energy_area_exact_interpolation\"}, {\"evidence\": {\"nondegenerate_rational_cases\": 384}, \"name\": \"negative_curvature_strict_rank_two_term\"}, {\"evidence\": {\"max_qprime\": \"3\", \"min_qprime\": \"-1\"}, \"name\": \"cusp_remote_folds_and_upper_derivative\"}, {\"evidence\": {\"bump_at_seam\": \"0\", \"first_derivative\": \"1\", \"left_second_derivative\": \"0\", \"right_second_derivative\": \"4\"}, \"name\": \"cusp_seam_exact_regularities\"}, {\"evidence\": {\"density_bound\": \"10/y^2\", \"tail_bound\": \"10*w/Y\"}, \"name\": \"cusp_energy_majorant\"}, {\"evidence\": {\"q_times_residual_at_r_pi_over_4\": \"-8\"}, \"name\": \"cusp_is_not_harmonic\"}, {\"evidence\": {\"domain_pairing\": \"1/30\", \"total_flux\": \"0\"}, \"name\": \"collapsed_trace_tests_have_nontrivial_kernel\"}, {\"evidence\": {\"bottom_boundary_y_squared_at_midpoint\": \"1/4\", \"midpoint_x\": \"1/2\", \"midpoint_y_squared\": \"5/4\", \"scope\": \"local geometric obstruction only\"}, \"name\": \"quotient_trace_is_not_side_incidence\"}, {\"evidence\": {\"limit_energy\": \"0\", \"scope\": \"numerical inequality witness only\", \"sequence_energy\": \"1\"}, \"name\": \"lower_semicontinuity_is_only_one_sided\"}], \"mutation\": null, \"optimization_level\": 1, \"scope\": \"finite exact identities and logical witnesses, not analytic theorem certification\", \"status\": \"pass\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_laplacian"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_laplacian",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 144,
+        "sha256": "6c9dcc103058277d3615ee7111f90303f9c1916da4a549c06cda5c0721f05454",
+        "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_orientation"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_orientation",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 147,
+        "sha256": "83c2d32765447a00e300c8d61644d39bac0c332b5850e6c2cf22520f0c9116cd",
+        "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "area_normalization"
+      ],
+      "exit_code": 1,
+      "label": "mutation_area_normalization",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 142,
+        "sha256": "da6780865f95f99f4574a1d41225e296d5065e36725ef95d23652cd13d186232",
+        "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "curvature_sign"
+      ],
+      "exit_code": 1,
+      "label": "mutation_curvature_sign",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 146,
+        "sha256": "53ed0689b7d38583e8f38ad4a1dc519a9bbd6b9f4fd6c044fc5704c478bb3daa",
+        "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_amplitude"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_amplitude",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 145,
+        "sha256": "c00a7290941c65ff571b99ad0f90703b9eba122afc004bc50301fe12bb3260d0",
+        "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_harmonicity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_harmonicity",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 129,
+        "sha256": "97d733c13e92ab6de7bb4fab031446401d6e34d6ff8c0744ea3c565ccc219fa8",
+        "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "collapsed_trace_injectivity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_collapsed_trace_injectivity",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 164,
+        "sha256": "b6348cc14a6d0818e051788342e954d26b2983ffc0fe2ac2f1c1d220d274ddcd",
+        "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "weak_lower_semicontinuity_direction"
+      ],
+      "exit_code": 1,
+      "label": "mutation_weak_lower_semicontinuity_direction",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 166,
+        "sha256": "64f8f18980f1998609fe71294f70b11425533b1aa47d2ddc3b18782549d09d6d",
+        "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "quotient_trace_equals_side_incidence"
+      ],
+      "exit_code": 1,
+      "label": "mutation_quotient_trace_equals_side_incidence",
+      "optimization": 1,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 165,
+        "sha256": "9aea3df70e37dc91aed04f5c1987a38ace533a4dcf8838699443c8a554e8f496",
+        "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 1, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 2,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 741,
+        "sha256": "c2dcad11f5973190a0ba63956c6e0ec991b33826c75552b40d7f910b4724704b",
+        "text": "{\"check_names\": [\"flat_normal_harmonic\", \"flat_tangential_harmonic\", \"flat_normal_inward_derivative\", \"flat_tangential_normal_derivative\", \"flat_edge_flux_identically_zero\", \"flat_jacobian_identity\", \"flat_negative_interior_jacobian\", \"flat_positive_interior_jacobian\", \"chosen_points_inside_radius_two\", \"energy_area_polynomial_identity\", \"625_rational_matrix_regressions\", \"cusp_bump_first_derivative\", \"cusp_bump_second_derivative\", \"cusp_trig_bound_identity\", \"cusp_derivative_extremes\", \"cusp_energy_bound_constant\", \"cusp_nonharmonic_residual_numerator\", \"identity_energy_density\"], \"checks\": 18, \"optimization_level\": 2, \"rational_matrix_cases\": 625, \"scope\": \"finite algebra checks; not a proof of the conjecture\", \"status\": \"pass\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--negative-control"
+      ],
+      "exit_code": 1,
+      "label": "author_negative",
+      "optimization": 2,
+      "script": "verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 93,
+        "sha256": "6c8ab41182064819bc20acc1230136bea96c3bd27c82c71c2b72aaac7f8b5aae",
+        "text": "{\"error\": \"deliberately_false_jacobian_identity\", \"optimization_level\": 2, \"status\": \"fail\"}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 1809,
+        "sha256": "65dd419a06fda4864618691fad3d897b6cba3ec37e798b9582f71339a0949dac",
+        "text": "{\"check_count\": 13, \"checks\": [{\"evidence\": {\"degree_bound\": 3, \"evaluations\": 50}, \"name\": \"flat_harmonicity_by_exact_differences\"}, {\"evidence\": {\"edge_tests\": 5}, \"name\": \"flat_edge_flux_by_exact_differences\"}, {\"evidence\": {\"degree_per_variable_at_most\": 2, \"grid_points\": 25}, \"name\": \"flat_jacobian_polynomial_interpolation\"}, {\"evidence\": {\"largest_radius_squared\": \"17/16 < 4\", \"negative\": \"-19/16\", \"positive\": \"29/16\"}, \"name\": \"flat_opposite_orientation_inside_domain\"}, {\"evidence\": {\"degree_bound\": 2, \"energy_prefactor\": 1, \"points\": 81}, \"name\": \"energy_area_exact_interpolation\"}, {\"evidence\": {\"nondegenerate_rational_cases\": 384}, \"name\": \"negative_curvature_strict_rank_two_term\"}, {\"evidence\": {\"max_qprime\": \"3\", \"min_qprime\": \"-1\"}, \"name\": \"cusp_remote_folds_and_upper_derivative\"}, {\"evidence\": {\"bump_at_seam\": \"0\", \"first_derivative\": \"1\", \"left_second_derivative\": \"0\", \"right_second_derivative\": \"4\"}, \"name\": \"cusp_seam_exact_regularities\"}, {\"evidence\": {\"density_bound\": \"10/y^2\", \"tail_bound\": \"10*w/Y\"}, \"name\": \"cusp_energy_majorant\"}, {\"evidence\": {\"q_times_residual_at_r_pi_over_4\": \"-8\"}, \"name\": \"cusp_is_not_harmonic\"}, {\"evidence\": {\"domain_pairing\": \"1/30\", \"total_flux\": \"0\"}, \"name\": \"collapsed_trace_tests_have_nontrivial_kernel\"}, {\"evidence\": {\"bottom_boundary_y_squared_at_midpoint\": \"1/4\", \"midpoint_x\": \"1/2\", \"midpoint_y_squared\": \"5/4\", \"scope\": \"local geometric obstruction only\"}, \"name\": \"quotient_trace_is_not_side_incidence\"}, {\"evidence\": {\"limit_energy\": \"0\", \"scope\": \"numerical inequality witness only\", \"sequence_energy\": \"1\"}, \"name\": \"lower_semicontinuity_is_only_one_sided\"}], \"mutation\": null, \"optimization_level\": 2, \"scope\": \"finite exact identities and logical witnesses, not analytic theorem certification\", \"status\": \"pass\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_laplacian"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_laplacian",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 144,
+        "sha256": "f1a22059e2b32f9966449eda3915c237495e22d634285cc3e9dab414f7e7e818",
+        "text": "{\"failed_check\": \"flat_harmonicity_by_exact_differences\", \"mutation\": \"flat_laplacian\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "flat_orientation"
+      ],
+      "exit_code": 1,
+      "label": "mutation_flat_orientation",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 147,
+        "sha256": "9d684a418d9de22c2e7fdaf1a26eb4e702f2207d4f1892ed8feac2e39a5369ad",
+        "text": "{\"failed_check\": \"flat_jacobian_polynomial_interpolation\", \"mutation\": \"flat_orientation\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "area_normalization"
+      ],
+      "exit_code": 1,
+      "label": "mutation_area_normalization",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 142,
+        "sha256": "7dd6953775ead1c6c0bc89d71dc5a6cca157daa5b813534309e4713d0f6aac53",
+        "text": "{\"failed_check\": \"energy_area_exact_interpolation\", \"mutation\": \"area_normalization\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "curvature_sign"
+      ],
+      "exit_code": 1,
+      "label": "mutation_curvature_sign",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 146,
+        "sha256": "094c972166bbbe34864681377078e715d6b869fec1166d515761e73c7b57daa2",
+        "text": "{\"failed_check\": \"negative_curvature_strict_rank_two_term\", \"mutation\": \"curvature_sign\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_amplitude"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_amplitude",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 145,
+        "sha256": "869c2941c5e55515b48c4d121cde1aa5ff823bfa5acd2122605ebbdb5365b5dd",
+        "text": "{\"failed_check\": \"cusp_remote_folds_and_upper_derivative\", \"mutation\": \"cusp_amplitude\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "cusp_harmonicity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_cusp_harmonicity",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 129,
+        "sha256": "33d9cb9580003ab2b868ea4a8a81e98b9ff0088be8d80eef324acf9e86a0eed1",
+        "text": "{\"failed_check\": \"cusp_is_not_harmonic\", \"mutation\": \"cusp_harmonicity\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "collapsed_trace_injectivity"
+      ],
+      "exit_code": 1,
+      "label": "mutation_collapsed_trace_injectivity",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 164,
+        "sha256": "d5430c106f37566b8ec48507cec216e349a86086545d9a85c9f099a8920046dd",
+        "text": "{\"failed_check\": \"collapsed_trace_tests_have_nontrivial_kernel\", \"mutation\": \"collapsed_trace_injectivity\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "weak_lower_semicontinuity_direction"
+      ],
+      "exit_code": 1,
+      "label": "mutation_weak_lower_semicontinuity_direction",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 166,
+        "sha256": "04adb5907e9a5d82a759ec5e5a1e62df8734a64a78fc24c704688d9da1711c5e",
+        "text": "{\"failed_check\": \"lower_semicontinuity_is_only_one_sided\", \"mutation\": \"weak_lower_semicontinuity_direction\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "--mutation",
+        "quotient_trace_equals_side_incidence"
+      ],
+      "exit_code": 1,
+      "label": "mutation_quotient_trace_equals_side_incidence",
+      "optimization": 2,
+      "script": "independent_verify.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 165,
+        "sha256": "dcace2839f594e180829cda2fe8f0623b5eeee8b6e72d0f52687830c90e5eb76",
+        "text": "{\"failed_check\": \"quotient_trace_is_not_side_incidence\", \"mutation\": \"quotient_trace_equals_side_incidence\", \"optimization_level\": 2, \"status\": \"fail\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    }
+  ],
+  "schema": "variational-maps-fresh-runs-v1",
+  "tested_inputs_after": [
+    {
+      "bytes": 18357,
+      "git_blob": "a7c4e95c4f53b09e0b5bc959f09558f9ed15e116",
+      "mode": "0o444",
+      "path": "REPORT.md",
+      "sha256": "51d30cc4ab9af75c5d97824a441a4878c7d19cd214aaecbbe1ec9e236479fe06"
+    },
+    {
+      "bytes": 7210,
+      "git_blob": "e3f6c9fae416593a454b20ef6e24fa9b1ee445a8",
+      "mode": "0o444",
+      "path": "independent_verify.py",
+      "sha256": "be673dc6dc673ec6b377691d0942faf871653dcde524e00911baba319fb91a4f"
+    },
+    {
+      "bytes": 6932,
+      "git_blob": "8c08849fbc5c63fbf0960431bc3756471b5484a0",
+      "mode": "0o444",
+      "path": "verify.py",
+      "sha256": "1a2e619024644ecd599825d71a1fbebb8e5ff73f5e215133daf9176ee82b5c81"
+    }
+  ],
+  "tested_inputs_before": [
+    {
+      "bytes": 18357,
+      "git_blob": "a7c4e95c4f53b09e0b5bc959f09558f9ed15e116",
+      "mode": "0o444",
+      "path": "REPORT.md",
+      "sha256": "51d30cc4ab9af75c5d97824a441a4878c7d19cd214aaecbbe1ec9e236479fe06"
+    },
+    {
+      "bytes": 7210,
+      "git_blob": "e3f6c9fae416593a454b20ef6e24fa9b1ee445a8",
+      "mode": "0o444",
+      "path": "independent_verify.py",
+      "sha256": "be673dc6dc673ec6b377691d0942faf871653dcde524e00911baba319fb91a4f"
+    },
+    {
+      "bytes": 6932,
+      "git_blob": "8c08849fbc5c63fbf0960431bc3756471b5484a0",
+      "mode": "0o444",
+      "path": "verify.py",
+      "sha256": "1a2e619024644ecd599825d71a1fbebb8e5ff73f5e215133daf9176ee82b5c81"
+    }
+  ],
+  "uid": 1000
+}

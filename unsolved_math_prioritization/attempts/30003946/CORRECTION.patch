@@ -1,0 +1,94 @@
+PUBLICATION CORRECTION NOTICE
+All removed (-) mathematical assertions in this contextual diff are REJECTED OR SUPERSEDED where changed. They are retained only to identify the authored correction and are not accepted conclusions. In particular, quotient-edge preservation does not automatically make facewise interpolation admissible on self-glued faces; map identification in the isometry case remains conditional. The corrected derivative is authoritative for the accepted partial scope. This patch does not distribute the complete superseded report.
+
+--- frozen_v1/REPORT.md
++++ current_derivative/REPORT.md
+@@ -1,4 +1,8 @@
+ # Variationally minimizing maps on ideal hyperbolic complexes
++
++## Audit derivative notice
++
++This is an explicitly corrected derivative of the frozen report. The frozen original is unchanged. This audit does not spend another approach: the original five-approach limit and unresolved full target remain. The changes state the trace convention and make the admissibility assumption in the uniqueness argument explicit; the compatible-isometry case retains its energy conclusion but its map-identification conclusion is conditional. See CORRECTION_CONTEXT.md and the accompanying patch.
+ 
+ ## Status and scope
+ 
+@@ -6,7 +10,7 @@
+ 
+ Let X be a finite connected two-dimensional complex obtained by gluing triangle sides, with connected vertex links and at least two incident face sides at every edge. Remove its vertex set S. Give M=X\S two complete ideal hyperbolic metrics σ and τ. Every face is an ideal hyperbolic triangle, and side identifications are isometries. All maps below preserve each specified face and edge, not merely the collection of cells.
+ 
+-Write Y for the finite-energy facewise W^{1,2} class and D for its facewise-diffeomorphic subclass. Use
++Write Y for the source's finite-energy simplicial Sobolev class and D for its facewise-diffeomorphic subclass. Face traces on a common edge must match the prescribed edge map in the Sobolev trace sense; independent changes to measure-zero edge values do not define new admissible competitors. This trace convention does not by itself identify different side incidences of a self-glued face. The full target and its allowed complexes, including source-permitted self-identifications, are retained. Use
+ 
+ \[
+  E(f)=\sum_T\int_T |df|_{\sigma,\tau}^{2}\,dA_\sigma.
+@@ -20,10 +24,10 @@
+ 
+ ## 1. Strict convexity identifies a missing energy equality
+ 
+-### Lemma 1 (uniqueness in the regular unrestricted class)
+-Suppose f and g are continuous finite-energy minimizers in Y, C² in every open face. Suppose f is analytic there and its restriction to every open face is proper of degree one. Then f=g.
++### Lemma 1 (uniqueness conditional on admissible interpolation)
++Suppose f and g are continuous finite-energy minimizers in Y, C² in every open face. Suppose f is analytic there and its restriction to every open face is proper of degree one. Assume in addition that the pointwise geodesic interpolation in the chosen abstract target triangles gives a continuous admissible map in Y for every interpolation parameter. Then f=g. A sufficient condition is that both maps preserve the same specified side incidence in each face representative and their common Sobolev traces are compatible with the gluing. When a face has self-identified sides, preservation of a quotient edge alone must not be substituted for this condition.
+ 
+-**Proof.** On each face, join f(z) to g(z) by the geodesic inside the target ideal triangle and denote the interpolation by f_t(z). Triangles and their sides are geodesically convex. On a common side the facewise definitions agree, so f_t is admissible. Convexity of hyperbolic Dirichlet energy gives
++**Proof.** On each face, join f(z) to g(z) by the geodesic inside the target ideal triangle and denote the interpolation by f_t(z). Triangles and their sides are geodesically convex. Under the stated interpolation hypothesis, these facewise geodesics glue to an admissible map f_t. Under the sufficient side-incidence condition, both endpoints on each source side lie in the corresponding same target side, and the side isometries identify the resulting edge geodesics. Convexity on one abstract face, by itself, does not prove this compatibility when sides are self-identified. Convexity of hyperbolic Dirichlet energy gives
+ 
+ \[
+  E(f_t)\le (1-t)E(f)+tE(g)=m.
+@@ -42,9 +46,9 @@
+ 
+ A smooth proper degree-one map onto a two-dimensional face has a rank-two point: otherwise Sard's theorem contradicts surjectivity. The analytic Jacobian is consequently not identically zero; its nonzero set is dense in the connected open face. Continuity gives f=g on that face and then on its sides. Do this on every face. ∎
+ 
+-**Consequence.** Put m=E(u) and n=E(v). Once n=m is proved, Lemma 1 identifies u and v. A sequence d_k∈D with E(d_k)→m would suffice, since m≤n≤E(d_k). But weak convergence alone supplies only lower semicontinuity, not such an energy-recovery sequence. Constructing that sequence for a folded u is an unproved extra assertion. Convexity solves uniqueness after equality of energies; it does not establish the missing equality.
++**Consequence.** Put m=E(u) and n=E(v). Once n=m is proved and the interpolation hypothesis for u and v is verified, Lemma 1 identifies u and v. A sequence d_k∈D with E(d_k)→m would suffice for the energy equality n=m, since m≤n≤E(d_k); equality of the maps still uses the interpolation hypothesis. But weak convergence alone supplies only lower semicontinuity, not such an energy-recovery sequence. Constructing that sequence for a folded u is an unproved extra assertion. Convexity solves uniqueness after equality of energies and admissibility of interpolation have been established; it does not establish either missing requirement merely from quotient-cell preservation.
+ 
+-The proof above assumes the quoted properness/degree and regularity hypotheses. It is not a general uniqueness claim for arbitrary nonsmooth, nonproper maps or other target curvatures.
++The proof above assumes the quoted properness/degree and regularity hypotheses and the explicit interpolation hypothesis. It is not a general uniqueness claim for arbitrary nonsmooth, nonproper maps or other target curvatures.
+ 
+ ## 2. What target variations really test
+ 
+@@ -60,7 +64,7 @@
+  \int_e B(s)\,\zeta(h(s))\,ds=0. \tag{2.1}
+ \]
+ 
+-Postcomposition preserves the diffeomorphic class. It also preserves weak closure, by composing an approximating sequence with the same smooth flow. Properness makes the affected source region compact. Smooth tangential edge vector fields extend on each adjacent page to a compatible cell-preserving flow; support is kept away from the vertices.
++Postcomposition preserves the diffeomorphic class. For the weak-closure case, use the source topology and a compactly supported smooth flow with bounded derivative and inverse derivative in the finite local charts. Local Sobolev compactness gives strong convergence of the maps and weak convergence of their derivatives after a subsequence; the chain rule then identifies the weak limit of the compositions. The maps are unchanged outside the target support. This supplies the required weak-closure stability; it is not a general assertion that every nonlinear operation is weakly continuous. Properness makes the affected source region compact. Smooth tangential edge vector fields extend on each adjacent page to a compatible cell-preserving flow; support is kept away from the vertices.
+ 
+ ### Lemma 2 (conditional recovery of full balance)
+ Under the regularity just specified, if h is a C¹ diffeomorphism of edges with positive derivative, then B=0 distributionally.
+@@ -87,7 +91,7 @@
+ 
+ The following exact flat example demonstrates the gap in trying to obtain that sign purely from local harmonicity, page preservation and balance. It is deliberately **not** a counterexample to the ideal hyperbolic problem.
+ 
+-Take N Euclidean half-disks, all glued along their straight diameter x=0, and the corresponding N-page Euclidean book as target. On every page use
++Take N Euclidean half-disks, all glued along their straight diameter x=0, and a book of N full Euclidean half-planes as target. On every page use
+ 
+ \[
+  F(x,t)=(x,\ t^3-t-3tx^2). \tag{3.2}
+@@ -133,11 +137,11 @@
+ The expression in frames measures the anti-conformal part and is independent of the compatible oriented frame choices.
+ 
+ ### Proposition 3 (compatible facewise isometry case)
+-If there is a cell-preserving map F from (M,σ) to (M,τ) that is an isometry on every face, then u=v=F for the source's regular minimizers.
++If there is a cell-preserving map F from (M,σ) to (M,τ) that is an isometry on every face and belongs to D, then E(u)=E(v)=E(F)=2πq for the source's regular degree-one minimizers. If the interpolations comparing u to v and u to F satisfy Lemma 1's admissibility hypothesis, then u=v=F.
+ 
+-**Proof.** F has energy 2πq and belongs to D. Equation (4.2) applied to u and v bounds their energy below by 2πq, while minimality bounds it above by E(F). Both energies equal E(F), and Lemma 1 gives the claimed identification. ∎
++**Proof.** F has energy 2πq and belongs to D. Equation (4.2) applied to u and v bounds their energy below by 2πq, while minimality bounds it above by E(F). Both energies equal E(F). Under the extra interpolation hypotheses, Lemma 1 applies first to u and v and then to u and F, giving the conditional map identification. ∎
+ 
+-In particular this applies to identical metrics, with F the identity. This is an explicitly restricted result; existence of such an F for arbitrary shear parameters is false. For general metrics the nonnegative anti-conformal defect in (4.2) need not vanish. Comparing its infimum in two different map classes is just the missing variational problem again.
++In particular the energy conclusion applies to identical metrics, with F the identity; identification with that particular map still uses the stated interpolation hypothesis. This is an explicitly restricted result; existence of such an F for arbitrary shear parameters is false. For general metrics the nonnegative anti-conformal defect in (4.2) need not vanish. Comparing its infimum in two different map classes is just the missing variational problem again.
+ 
+ ## 5. Finite-energy cusps can contain arbitrarily remote folds
+ 
+@@ -170,9 +174,9 @@
+ 
+ ## Remaining gap and verification boundary
+ 
+-None of the five mechanisms establishes E(u)=E(v), excludes all edge backtracking for u, or derives unconstrained stationarity for v without extra hypotheses. The full conjecture remains unresolved by this work. The special isometry case and obstruction examples are not substituted for it.
++None of the five mechanisms establishes E(u)=E(v), excludes all edge backtracking for u, or derives unconstrained stationarity for v without extra hypotheses. The full conjecture remains unresolved by this work. The special isometry energy equality, its conditional map identification, and the obstruction examples are not substituted for it. For complexes with self-identified sides, the admissibility of the facewise geodesic interpolation is a separate condition in the uniqueness reduction, not an automatic consequence of preservation of quotient cells.
+ 
+-The companion verifier checks finite polynomial identities, selected exact rational values and constants used above. It does not verify PDE existence, the Hopf lemma, strict convexity, the degree formula, source theorems, or the original conjecture. Normal and optimized Python runs are robustness checks, not independent mathematical proofs. An independent adversarial review is still needed before promoting any claim beyond this report's stated scope.
++The companion verifier checks finite polynomial identities, selected exact rational values and constants used above. It does not verify PDE existence, the Hopf lemma, strict convexity, the degree formula, source theorems, or the original conjecture. Normal and optimized Python runs are robustness checks, not independent mathematical proofs. The accompanying independent audit checks the corrected scope and additional exact identities; it does not certify the analytic source theorems or solve the original conjecture.
+ 
+ ## Sources and literature boundary
+ 
