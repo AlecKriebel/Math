@@ -1,0 +1,6 @@
+# Research log
+
+- 2026-09-30 11:16 UTC: Read exact pinned record and embedded prior assessment; no separate matching research_results entry exists. Current queue, all-state PR, all-ref attempt history and related-target gates clean. Completion toward original radius goal:5%.
+- Approach1,11:17–11:19 UTC: Recovered Gaussian AR/MA models and exponential-base normalization. Investigated endpoint/spectral-continuation routes. Existing local analytic bounds and finite coefficient ratios do not rule out interior complex singularities; no global radius proof obtained. Route blocked at that exact gap. Completion toward original goal:10%.
+- Approach2,11:19–11:23 UTC: Derived the signed-simplex grading of the prior exact MA eigenvalue equation and proved the two all-order inverse-pi patterns conjectured after its Theorem3. Exact computation through order24 matches all eight printed coefficients. Restricted coefficient result complete pending review; original radius questions remain unresolved. Two of five substantive approaches used. No novelty claim.
+- Runtime model/reasoning settings inherited unchanged; exact model identifier not exposed to this worker. No external outreach or public write.
