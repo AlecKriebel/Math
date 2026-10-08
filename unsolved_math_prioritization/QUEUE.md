@@ -969,7 +969,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | unsolved | 5/5 |  | Accepted partial progress; broad maximal-average program UNSOLVED after five approaches. Explicit non-polynomial snapshot-EDMD instability and qualified weighted-penalty/coverage-LP convergence; routes 4/5 prove the same LP. Metadata-only correction: research_results target absent; mathematics unchanged. Strict-feasibility, limit-order and global-information qualifications retained. [Results](attempts/30006099/accepted/packet/RESULTS.md); [audit](attempts/30006099/accepted/audit/AUDIT.md); [checks](attempts/30006099/README.md). |  |
 | 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 964 | 30000853 / OWR-1730-006 | Boundary-Intersection Vanishing on Abelian-Variety Moduli | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
