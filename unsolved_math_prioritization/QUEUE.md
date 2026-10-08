@@ -1015,7 +1015,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1004 | 10300011 / AMR-102-0011 | Sublaminations and superlaminations — Question 6.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1005 | 10300034 / AMR-102-0034 | Classical 3-manifold theory — Question 9.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1006 | 10300037 / AMR-102-0037 | Classical 3-manifold theory — Question 9.4 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | [Corrected-v2 scoped partials and independent audit](attempts/10300039/README.md): side-domain criterion, compact-stabilizer and Holder/endpoint reductions, construction obstructions; credited closed-case proper-limit-set dichotomy. General separation unresolved; 1998 full-proof source gaps and AMS/2026 discrepancy retained; no Anosov resolution or current-openness certification. |  |
 | 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
