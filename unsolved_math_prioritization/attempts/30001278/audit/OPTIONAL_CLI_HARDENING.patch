@@ -1,0 +1,25 @@
+--- a/verify.py
++++ b/verify.py
+@@ -360,7 +360,7 @@
+     parser.add_argument("--expected-manifest-sha256",
+                         help="verify against a separately retained manifest fingerprint")
+     args = parser.parse_args()
+-    root = Path(__file__).resolve().parent
++    root = Path(__file__).absolute().parent
+     require(not (args.math_only and args.expected_manifest_sha256),
+             "math-only mode cannot verify an integrity trust anchor")
+     integrity = None if args.math_only else verify_integrity(root, args.expected_manifest_sha256)
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -67,9 +67,9 @@
+       "sha256": "e8e02e2f3056051a48bc9313bb4170685f4a36f94dd5f3243f0092daee348161"
+     },
+     {
+-      "bytes": 16548,
++      "bytes": 16549,
+       "path": "verify.py",
+-      "sha256": "08e874d5fb4c0166e5dc10ff996385164008396187bfb64499937a55ad5331dc"
++      "sha256": "cdb7a62bda98032a964dc9aff86da0fe8385446c900a92b97a0452284cf39ac1"
+     }
+   ],
+   "problem_id": 30001278,
