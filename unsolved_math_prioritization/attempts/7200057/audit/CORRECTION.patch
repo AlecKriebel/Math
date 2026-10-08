@@ -1,0 +1,80 @@
+CONTEXTUAL CORRECTION HISTORY: NOT THE ACCEPTED CURRENT REPORT.
+Removed hunks are rejected or superseded statements and are not endorsed.
+In particular, the removed unqualified floor-slack inequality is false for
+arbitrary real lower bounds. The accepted report is ../current/REPORT.md.
+The complete superseded original report is deliberately omitted. Consequently,
+full original replay and complete patch roundtrip are NOT_RUN in this public
+packet. The following authored patch records the accepted correction only.
+
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -38,17 +38,23 @@
+ 
+ ### A sufficient tightness criterion
+ 
+-Suppose L_k are valid lower bounds E_k(P) ≥ L_k for all admissible P, and there is a configuration attaining
++In this paragraph assume n >= 4, so m >= 1. (The n=3 case is immediate and is handled in Section 3.) Suppose L_k are valid lower bounds E_k(P) ≥ L_k for all admissible P, and there is a configuration attaining
+ 
+ c_n = A_n + sum a_k L_k.                                           (3)
+ 
+ Then every crossing minimizer has E_k = L_k for every k. Indeed, (2) minus (3) is a sum of nonnegative terms a_k(E_k−L_k), so equality forces each term to vanish. In particular every crossing minimizer has H = N−L_{m−1}; because that value is attained and is a universal upper bound, it equals h_n. This proves the target whenever a simultaneously sharp lower-bound certificate (3) is available. No enumeration of minimizers is needed.
+ 
+-A quantitative version is useful when the crossing optimum exceeds this bound. If C(P) is at most U and E_k ≥ L_k, then
++A quantitative version is useful when the crossing optimum exceeds this bound. If C(P) is at most U, E_k ≥ L_k, and L_{m−1} is an integer, then
+ 
+ E_{m−1}(P) − L_{m−1} ≤ floor((U−A_n−sum a_k L_k)/a_{m−1}).          (4)
+ 
+ The final coefficient is 1 for even n and 2 for odd n. Formula (4) bounds a slack relative to the chosen upper bound N−L_{m−1}; it does not identify h_n unless that bound is attained.
++
++For arbitrary real lower bounds, the valid rounded form is
++
++E_{m−1}(P) − L_{m−1} ≤ floor(L_{m−1} + (U−A_n−sum a_k L_k)/a_{m−1}) − L_{m−1}.  (4R)
++
++Only E_{m−1} is necessarily integral; its slack relative to a real L_{m−1} need not be. For example, at n=4 an interior-point configuration has C=0 and E_0=3. The valid universal bound L_0=5/2 and U=0 would make the unqualified version of (4) falsely read 1/2≤0. The integer qualification and (4R) explicitly correct that rounding defect; the tightness theorem and all later mechanisms do not use the defective rounding.
+ 
+ **Gap.** We did not establish simultaneous sharpness for arbitrary n. Individually optimal edge bounds need not have a common realizer. Replacing the feasible geometric profile set by arbitrary integer vectors can introduce spurious configurations. Literature determining the two extremal numbers separately [S2] must not be silently promoted to classification of every optimizer.
+ 
+--- a/check_claims.py
++++ b/check_claims.py
+@@ -168,6 +168,13 @@
+         for k in range(m):
+             require(w[k+1]-w[k]==n-3-2*k>0,'weight-difference identity failed')
+             checks += 1
++    # Regression for the audit correction: E is integral, E-L need not be.
++    # n=4, a triangular-hull configuration: C=0, E_0=3, A_4=-3, a_0=1.
++    lower = Fraction(5, 2)
++    slack = Fraction(3)-lower
++    budget = Fraction(0)-(-3)-lower
++    require(slack > budget//1, 'rational lower-bound counterexample lost')
++    require(slack <= (lower+budget)//1-lower, 'corrected real-bound rounding failed')
+     # Integer-profile exchange is realized by P and Q above.
+     delta=[0,1,-4,3]
+     require(sum(delta)==0 and sum(j*(6-j)*v for j,v in enumerate(delta))==0,'profile exchange not crossing neutral')
+--- a/STATUS.json
++++ b/STATUS.json
+@@ -17,6 +17,7 @@
+   "novelty_claimed": false,
+   "best_known_claimed": false,
+   "source_bodies_included": false,
+-  "independent_audit_status": "pending",
+-  "publication_performed": false
++  "independent_audit_status": "passed_after_explicit_rounding_correction",
++  "publication_performed": false,
++  "correction": "Equation (4) requires an integral final lower bound; (4R) covers arbitrary real lower bounds. The n=3 empty-index case is separated."
+ }
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -16,3 +16,5 @@
+ The external harness additionally checks rejection of an output path inside the packet, rejection of the writable working tree under required-read-only mode, a successful external-output path, and rejection of a deliberately mutated report while preserving the original hash pins. That deliberately altered negative-control copy is not part of the deliverable. The freeze receipt and per-mode output records are retained separately for independent auditing.
+ 
+ A permission-read-only freeze is tamper-evident through its hashes. This is not a claim of kernel-enforced filesystem immutability against the owner changing permissions. The verifier never changes its own payload.
++
++Independent audit correction: the checker now explicitly rejects the unqualified floor-slack inequality using n=4, E_0=3, L_0=5/2, U=0, and verifies the corrected real-bound rounding. The report restricts the simple form to an integral final lower bound.
+--- a/README.md
++++ b/README.md
+@@ -10,3 +10,5 @@
+ - `PAYLOAD_PINS.json`: byte counts and SHA-256 hashes for all other files.
+ 
+ Run `python -B check_claims.py`. For a read-only packet under UID 1000, run `python -B check_claims.py --require-readonly`, and repeat with `-O` and `-OO`. Output defaults to stdout; `--output` accepts only a destination outside this packet. No network access, external packages, or source files are required.
++
++This is the accepted current derivative after independent audit. The simple quantitative floor bound now states its integral-lower-bound hypothesis, and the report also supplies the valid real-bound form. The separate contextual correction patch labels removed hunks as superseded; the original report is not the accepted current version.

@@ -1,0 +1,21 @@
+# Accepted corrected partial results, 7200057
+
+Disposition: exhausted, 5/5 substantive mechanisms. The general conjecture is unresolved. No complete solution, certified finite counterexample, novelty or best-known claim is accepted. The independent audit is an agent audit, not conventional human peer review.
+
+The accepted current report is `current/REPORT.md`. Its original floor-slack inequality was invalid for real lower bounds: at n=4, E_0=3, L_0=5/2 and U=0, it falsely asserted 1/2 <= 0. The simple form (4) now requires an integral final lower bound; (4R) rounds the integral E before subtracting an arbitrary real bound. The n=3 empty-index case is separated. The positive-weight tightness theorem and downstream every-minimizer implication for 3 through 7 points, mutation/deletion lemmas, conditional propagation and nonoptimal eight-point witnesses are unchanged.
+
+`audit/AUDIT.md` reconstructs the proofs and checks their source quantifiers. `audit/CORRECTION.patch` carries its own explicit rejected/superseded-hunk label. Removed hunks are historical correction context, not endorsed mathematics. The complete superseded original report is omitted.
+
+## Public-only derivative
+
+All eight current files remain byte-identical to the accepted corrected payload. The independent checker is unchanged. Audit changes are confined to the patch preamble, the neutral subject in the original hash metadata, and corresponding fresh audit pins. Source titles, public URLs, PDF hashes/sizes, historical retrieval/inspection descriptions and public manuscript status are retained as verification metadata. No third-party source text, dataset body, private source, personal information, private coordination file or identifying metadata of private coordination files is included.
+
+The original full replay, complete baseline-to-current patch roundtrip, source/PDF/corpus reinspection, and archive reconstruction are NOT_RUN in this public packet. Historical acceptance and source statements in retained files describe their original audit stage and are not relabeled as fresh results. The historical 83,975-byte archive hash identifies that earlier source-free artifact only.
+
+## Fresh executable acceptance
+
+The public wrapper freshly executes the entire current and independent mathematical suites in normal Python, -O and -OO, with UID=EUID=1000. It stores complete stdout/stderr bytes and their hashes, compares all mode-specific baseline output bytes exactly, and compares the complete regenerated replay record with exact recursive JSON types. Ten semantic mutants must fail in every mode. Read-only denial tests cover every safe input file and directory; final whole-delivery tests additionally cover this acceptance file, outer receipts, manifests, verifier, bootstrap and the separately supplied actual QUEUE file. Before/after byte inventories must be identical. CLI controls cover successful external output and rejected internal/existing output and writable payloads. Public trust-boundary controls test schema, inventory, links/special files, hostile imports, modified/re-pinned content, acceptance and outer-receipt substitution.
+
+The complete delivery is anchored by a separately trusted SHA-256 of `BOOTSTRAP.py`, published outside the candidate packet. That bootstrap authenticates the publication manifest and verifier before executing candidate code. The manifest binds all delivered bytes except itself and the bootstrap; the external bootstrap binds both exceptions. The publication verifier embeds the immutable accepted byte records. Recomputing hashes from a modified candidate is not an independent trust anchor. `QUEUE_BINDING.json` additionally pins the exact base and updated QUEUE bytes; the actual separately supplied QUEUE file must match its exact byte count, SHA-256 and Git blob hash before and after replay. QUEUE tampering, links, special files and omitted arguments are rejected. Only this problem's Status, Turns and Findings cells change.
+
+Finite regressions support the proofs; they neither enumerate all order types nor certify a global extremum. Permission-read-only is tested by actual denied writes, not claimed as kernel immutability against an owner changing permissions.
