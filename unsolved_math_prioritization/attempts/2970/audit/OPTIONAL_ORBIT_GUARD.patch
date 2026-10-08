@@ -1,0 +1,11 @@
+--- a/verify.py
++++ b/verify.py
+@@ -125,6 +125,8 @@
+     require(product(map(order_three_lift,tp)) == NEG_I, 'check failed: product(map(order_three_lift,tp)) == NEG_I')
+     orbit_t = hurwitz_orbit(t,qgroup)
+     orbit_tp = hurwitz_orbit(tp,qgroup)
++    require((len(orbit_t), len(orbit_tp)) == (216, 144),
++            'check failed: complete orbit cardinalities must be 216 and 144')
+     require(orbit_t.isdisjoint(orbit_tp), 'check failed: orbit_t.isdisjoint(orbit_tp)')
+     for x in orbit_t:
+         require(product(map(order_three_lift,x)) == I, 'check failed: product(map(order_three_lift,x)) == I')
