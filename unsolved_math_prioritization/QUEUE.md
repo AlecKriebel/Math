@@ -980,7 +980,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 969 | 30006419 / OWR-14299521-012 | Infinitesimal Quasiconformality of Harmonic Spheres | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 970 | 30001260 / OWR-3477-004 | Rank-One-Isotropy Actions of $S_{5}$ on Spheres | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 971 | 30001278 / OWR-3480-009 | Sharper Ramification Bounds for Local Galois Representations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 972 | 30001285 / OWR-3481-002 | Comparison Maps in Motivic Cohomology of Central Simple Algebras | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 972 | 30001285 / OWR-3481-002 | Comparison Maps in Motivic Cohomology of Central Simple Algebras | 0.0919 | 5.5 | 3 | 2009 | unsolved | 5/5 |  | 2026-10-07: Audited partial results accepted after low-degree c_A correction; five approaches exhausted. Lifting, multiplier, coprime descent, generic detection, and conditional SK2 suspension reductions; known Platonov-Suslin-Wouters projection obstruction credited. General beta-versus-sigma comparison remains unresolved. [Packet and full audit](attempts/30001285/README.md). |  |
 | 973 | 30001288 / OWR-3481-005 | Motivic Albanese and Walker Abel–Jacobi Targets | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
