@@ -253,7 +253,7 @@ def main():
     snapshot,parsed=integrity(root,manifest_pin,bootstrap_pin);result=replay(snapshot,parsed)
     after,after_parsed=integrity(root,manifest_pin,bootstrap_pin)
     need(after==snapshot and same(after_parsed,parsed),'public packet changed during replay')
-    result.update(schema=1,problem_id=30006624,status='PASS',publication_files=len(FILES),optimization=sys.flags.optimize,uid=os.getuid(),euid=os.geteuid(),queue_status='unsolved',substantive_turns='5/5',manifest_sha256=manifest_pin,bootstrap_sha256=bootstrap_pin)
+    result.update(schema=1,problem_id=30006624,status='PASS',publication_files=len(FILES),optimization=sys.flags.optimize,uid=os.getuid(),euid=os.geteuid(),queue_status='exhausted',substantive_turns='5/5',manifest_sha256=manifest_pin,bootstrap_sha256=bootstrap_pin)
     print(json.dumps(result,sort_keys=True))
 
 

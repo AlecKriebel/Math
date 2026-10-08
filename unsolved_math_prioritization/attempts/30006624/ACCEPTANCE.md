@@ -38,7 +38,7 @@ A fresh source-free run per mode executes three positives and eleven intended ne
 
 ## Publication disposition
 
-Draft PR only, one target. The proposed repository diff consists of this target's source-free packet and only its QUEUE Status, Turns and Findings cells, with status `unsolved`, turns `5/5`, and acceptance link. This represents an exhausted five-family search budget, not a full solution or a reopened attempt. All other QUEUE bytes, including the leading literal sha line, chat/DOI links, unrelated notes and the 30006622 row, remain unchanged. No global state/history or score regeneration is included in this narrowly scoped publication. No merge, release, DOI creation, external outreach or additional proof-search turn is authorized by this packet.
+Draft PR only, one target. The proposed repository diff consists of this target's source-free packet and only its QUEUE Status, Turns and Findings cells, with canonical budget status `exhausted`, turns `5/5`, and mathematical verdict UNSOLVED, and acceptance link. This represents an exhausted five-family search budget, not a full solution or a reopened attempt. All other QUEUE bytes, including the leading literal sha line, chat/DOI links, unrelated notes and the 30006622 row, remain unchanged. No global state/history or score regeneration is included in this narrowly scoped publication. No merge, release, DOI creation, external outreach or additional proof-search turn is authorized by this packet.
 
 ## Public sources
 
