@@ -1,0 +1,128 @@
+--- original/RESULT.md
++++ reviewed/RESULT.md
+@@ -16,7 +16,7 @@
+ 
+ Use the normalized Böttcher coordinate B_P(z)/z -> 1 at infinity and the Green function G_P. An ordinary external ray follows the descending gradient trajectory with the prescribed Böttcher angle. It can stop at an escaping precritical point. The conventional generalized rays add the immediate-left and immediate-right continuations at every such collision. They are the one-sided limits of ordinary rays, not arbitrary choices of turns. This convention is described in [GM], Appendix A, and [PZ], section 2.2. The original short problem statement does not separately specify the collision convention. We therefore distinguish the smooth-ray domain from the generalized-ray domain rather than silently identifying them.
+ 
+-Let sigma_d(t)=d*t modulo 1. A nonempty compact invariant set A in the circle is a rotation set when sigma_d restricted to A has a continuous nondecreasing degree-one circle extension. Its rotation number is independent of the extension, since an orbit starting in A determines that number. For a finite set, this is the cyclic shift divided by the number of points; it is not the external angle itself. Several cycles can have the same rotation number.
++Let sigma_d(t)=d*t modulo 1. A nonempty compact forward-invariant set A in the circle (sigma_d(A) contained in A) is a rotation set when sigma_d restricted to A has a continuous nondecreasing degree-one circle extension. Its rotation number is independent of the extension, since an orbit starting in A determines that number. For a finite set on which sigma_d acts as a cyclic-order-preserving permutation, this is the cyclic shift divided by the number of points; it is not the external angle itself. Several cycles can have the same rotation number.
+ 
+ The relevant accessibility theorem is due to Levin and Przytycki [LP], with a precise restatement in [PZ], Theorem 2.1 and its introduction: at a repelling or parabolic periodic point the generalized landing angles form a nonempty rotation set. At a fixed point this uses sigma_d. A nondegenerate filled-Julia component gives a finite set of periodic angles. The main theorem of [PZ] additionally supplies a smooth ray in that case.
+ 
+@@ -77,35 +77,39 @@
+ 
+ If P_0 is in U_d and the filled-Julia component containing 0 is {0}, then rho(P)->rho(P_0) as P->P_0 in U_d.
+ 
+-Proof. We give the positive-potential details, which avoid an unsupported assertion about continuity of complete rays.
+-
+-For t>0, denote by V_t(P) the component containing 0 of {G_P<t}. At P_0 the closures of these nested domains shrink to {0}. Choose t so small that the closures of V_(dt)(P_0) and its inverse image V_t(P_0) lie in a neighborhood on which P_0 is univalent, and so that the levels t and dt avoid all critical values of G_(P_0). Then
++Proof. The argument uses only compact pieces at positive potential, not parameter continuity of complete rays.
++
++**Persistent degree-one domains.** Write V_r(P) for the component containing 0 of {G_P<r}. Its closure is compact. These nested closures shrink, as r decreases to zero, to the filled-Julia component containing 0. For the present P_0 their intersection is {0}: the intersection is connected, lies in K(P_0), and contains that whole component. Compactness then implies that the closures eventually lie in any prescribed neighborhood of 0.
++
++Choose a small disk D centered at 0 on which P_0 is univalent. It can be chosen so that |P_0'(z)-P_0'(0)|<|P_0'(0)|/3 on a slightly larger disk; integrating along line segments shows that all sufficiently nearby polynomials are univalent on D as well. Choose t>0 small enough that closure(V_(dt)(P_0)) lies in D. Also require t and dt to be regular levels of G_(P_0). Such a choice exists: the positive critical levels are among G_(P_0)(c)/d^n for the finitely many escaping critical points c and n>=0, and this collection is locally finite away from zero.
++
++A positive regular level of G_P is a finite disjoint union of smooth Jordan curves. Its sublevel components are Jordan domains: a bounded hole would contradict the maximum principle for the globally subharmonic function G_P. Consequently V_t(P_0) and V_(dt)(P_0) are bounded Jordan domains, with closure(V_t(P_0)) contained in V_(dt)(P_0). The functional equation G_P(P(z))=d*G_P(z) makes
+ 
+     P_0: V_t(P_0) -> V_(dt)(P_0)
+ 
+-is proper of degree one, and the closure of V_t(P_0) lies in V_(dt)(P_0).
+-
+-These same properties persist for nearby P. Here only positive-potential facts are needed: G_P varies continuously in (P,z), and smoothly away from the filled Julia set; the regular boundary curves persist by the implicit function theorem. The marked point remains inside them because P(0)=0 and G_P(0)=0. The mapping degree is constant under this perturbation. In particular the inverse branch maps V_(dt)(P) compactly into itself. Its iterates converge to 0, and the marked filled component remains a singleton.
+-
+-Let I(P) be the set of angles of generalized rays crossing the boundary of V_t(P). The finite-interval construction in the proof of [L], Proposition 2.3, applied to K_0=closure(V_(dt)(P)) and its inverse image, gives:
+-
+-- I(P) is a finite union of closed intervals;
+-- sigma_d|I(P) admits a nondecreasing degree-one extension;
+-- the landing rotation set A(P) is contained in I(P).
+-
+-Let h_P be a d-Lipschitz extension supplied by Lemma 2.1. Its rotation number is rho(P), because A(P) is nonempty and invariant and h_P agrees with sigma_d on A(P).
+-
+-We next need only the following one-sided persistence property:
+-
+-    If a ray of angle u has no collision down to potential t for P_0
+-    and crosses boundary(V_t(P_0)), then u belongs to I(P)
+-    for all sufficiently close P.
+-
+-To see this, start at a common large equipotential, where Böttcher coordinates depend continuously on P. Follow the normalized Green gradient flow on the compact ray segment down to level t. Its vector field is nonsingular along that segment, so ordinary differential-equation dependence on parameters and the persistent regular boundary give the assertion. This concerns a compact positive-potential segment, even if the full ray later breaks or fails to land.
+-
+-The angles just used are dense in I(P_0). Indeed only finitely many ray angles collide at potentials >=t. At any excluded endpoint which still crosses this boundary, its left or right continuation is the corresponding one-sided limit of ray segments. The crossing at potential t is transverse because t is a regular level. Thus the crossing is approximated from the appropriate side by collision-free segments. This is exactly the one-sided convergence of generalized rays in [PZ], section 2.2. No choice of an arbitrary sequence of turns is made.
+-
+-Now let P_j->P_0. After passing to a subsequence, the normalized lifts of h_(P_j) converge uniformly to a nondecreasing degree-one map h. The persistence property implies h(u)=sigma_d(u) on the dense collision-free subset of I(P_0). Continuity gives this equality on all of I(P_0), hence on A(P_0). Therefore rot(h)=rho(P_0). Lemma 2.2 proves rho(P_j)->rho(P_0) along this subsequence. Every subsequence admits such a further subsequence, proving the full limit. QED.
++a proper onto map. It has degree one because P_0 is univalent on D. Here V_t is the inverse-image component containing 0, not the full polynomial inverse image.
++
++The two boundary curves persist for nearby P. For completeness, on a compact subset of {G_(P_0)>0}, a common sufficiently large iterate lies in a common Böttcher neighborhood of infinity. There
++
++    G_P(z)=d^(-N)*log|B_P(P^N(z))|.
++
++The normalized Böttcher coordinate depends holomorphically on coefficients in that neighborhood. This formula gives uniform convergence of G_P and its spatial derivatives on the compact set. The implicit function theorem therefore supplies the unique nearby regular level curves at t and dt. They continue to surround 0, and compact containment and containment in D persist. The maximum principle identifies their interiors with V_t(P) and V_(dt)(P); no assertion about continuity of K(P) is needed. The same properness and univalence argument now applies to every nearby P.
++
++Let g_P:V_(dt)(P)->V_t(P) be the inverse branch fixing 0. Its image is relatively compact in V_(dt)(P). Conjugating by a Riemann map taking 0 to 0 gives a disk self-map f with f(0)=0 and f(Disk) contained in {|z|<=r} for some r<1. Schwarz's lemma applied to f/r gives |f(z)|<=r|z|, so the iterates contract to 0. The marked filled component lies in V_t(P), since it is connected and cannot cross a positive-level boundary. Every forward image of that component lies in the same component, so each of its points belongs to every g_P^n(V_(dt)(P)). The contraction just proved forces the component to be {0}.
++
++**Finite-interval circle extensions.** Let I(P) be the set of angles for which one of the prescribed generalized rays crosses boundary(V_t(P)). Apply the finite-interval construction in the proof of [L], Proposition 2.3, with its open domain K_0=V_(dt)(P) and its inverse branch g_P. It says that I(P) is a finite union of closed intervals, sigma_d restricted to I(P) has a continuous nondecreasing degree-one extension, and the nonempty landing rotation set A(P) is contained in I(P). The source's standard slope pi/2 is the ordinary Green-gradient convention used here.
++
++Choose a d-Lipschitz extension h_P by Lemma 2.1. Since it agrees with sigma_d on the forward-invariant set A(P), its circle rotation number is rho(P).
++
++**Persistence of the collision-free angles.** Let S(P_0) consist of angles u whose ordinary ray has no collision at potentials >=t and whose point at potential t belongs to boundary(V_t(P_0)). Then
++
++    u in S(P_0) implies u in I(P) for all P sufficiently close to P_0.
++
++Indeed, start the ray at a common large potential H in the Böttcher neighborhood. The initial point varies continuously with P. Along the compact reference segment from H down to t, the normalized vector field grad(G_P)/|grad(G_P)|^2 is smooth and has no singularity, uniformly for P sufficiently close to P_0. Ordinary differential-equation dependence gives a collision-free segment for P and a nearby endpoint at level t. A tubular neighborhood of the reference boundary contains only its continued level component, so that endpoint belongs to boundary(V_t(P)). The assertion is only for each fixed u; no uniform parameter neighborhood over all u is required.
++
++Furthermore, S(P_0) is dense in I(P_0). There are finitely many angles with a collision at potential >=t, by [PZ], section 2.2(I). At any exceptional angle belonging to I(P_0), choose the left or right ray that crosses the marked boundary. The one-sided uniform convergence in [PZ], section 2.2, approximates its point at potential t by points of ordinary rays at angles avoiding that finite exceptional set. Because t is regular and different level components are separated, these nearby points lie on the same boundary component. Thus the approximating angles belong to S(P_0). This also treats interval endpoints and does not permit arbitrary turns at a collision.
++
++**Taking the limit.** For any sequence P_j->P_0, the d-Lipschitz lifts of h_(P_j), normalized with value at 0 in [0,1], have a uniformly convergent subsequence on [0,1]. Its limit induces a continuous nondecreasing degree-one circle map h. For each fixed u in S(P_0), the persistence just proved gives h_(P_j)(u)=sigma_d(u) on the circle for all sufficiently large j. Hence h(u)=sigma_d(u). By density and continuity this holds on I(P_0), in particular on A(P_0). Therefore rot(h)=rho(P_0). Lemma 2.2 gives rho(P_j)->rho(P_0) along that subsequence. Applying the same argument to every subsequence proves the full limit. QED.
+ 
+ ### Corollary 3.3
+ 
+@@ -117,23 +121,33 @@
+ 
+ For the generalized convention, uniqueness of a continuous extension is immediate: U_d is contained in its domain by [LP] and is dense in X_d.
+ 
+-The smooth-ray domain is also dense in X_d. Here is the additional argument, to avoid assuming away broken rays.
+-
+-Fix a polynomial in U_d. If its Julia set is connected, the periodic-access theorem already gives a smooth ray. Otherwise make an arbitrarily small wringing twist of its escaping basin. In Böttcher coordinates the twist has the form
+-
+-    r*exp(i*v) -> r*exp(i*(v+s*log r)),
+-
+-with real s tending to zero. Its invariant Beltrami structure integrates to a quasiconformal conjugacy and a nearby monic polynomial; this is the usual wringing construction described in [L], section 4. Translate the image of the marked fixed point back to 0. Monicity is unchanged, and the multiplier remains repelling for small s by coefficient continuity.
+-
+-For each escaping critical point c, choose N with P^N(c) in the Böttcher domain near infinity. The Böttcher argument of its continued image is shifted by
+-
+-    s*G_P(P^N(c))/(2*pi) modulo 1.
+-
+-The slope is strictly positive. There are only finitely many escaping critical points. Excluding a countable set of s makes all these arguments irrational. A broken periodic ray would meet an escaping precritical point, and its eventual image at one of these critical orbits would have rational Böttcher argument, a contradiction. Thus the perturbed polynomial has no broken periodic rays.
+-
+-Its marked rotation set is either finite, in which case all of its periodic rays are smooth, or an infinite Cantor set, which contains smooth rays because there are only countably many broken-ray angles. Hence the marked point is smoothly accessible. Arbitrarily small twists prove density in U_d, and radial perturbation of a_1 proves density in X_d.
+-
+-Consequently there is at most one continuous extension even if the initial data use only smooth rays. This is an existence-free uniqueness statement. It does not supply the missing boundary limit.
++The smooth-ray domain is also dense in X_d. The following argument includes the normalization needed for the claimed angle shift.
++
++Fix P in U_d. If its Julia set is connected, the periodic-access theorem already supplies a smooth ray. Otherwise consider, for real s close to zero, the shear
++
++    F_s(r*exp(i*v))=r*exp(i*(v+s*log r)).
++
++In logarithmic coordinates x+i*y, this is L_s(x+i*y)=x+i*(y+s*x). It commutes with multiplication by d and hence F_s commutes with w->w^d. The complex derivatives of L_s are 1+i*s/2 and i*s/2, so its Beltrami coefficient has modulus |s|/sqrt(4+s^2)<1 and tends uniformly to zero as s->0.
++
++Pull its Beltrami structure back by B_P near infinity, extend it to the escaping basin using iterates of P, and put the standard structure on K(P). Commutation makes these definitions consistent and P-invariant almost everywhere; the critical/precritical set is negligible. This is the invariant-structure integration used in [L], section 4. The pure shear is written out here because the source's additional fixed-slope parametrization is not itself the specialization "stretching factor 1 with arbitrary twist."
++
++The measurable Riemann mapping theorem gives a quasiconformal H_s, initially normalized to fix 0, 1 and infinity, such that Q_s=H_s P H_s^(-1) is a degree-d polynomial. The dilatations tend to 1, so compactness of normalized quasiconformal maps gives H_s and H_s^(-1) tending locally uniformly to the identity; every limit is the normalized conformal map fixing 0, 1 and infinity. Thus Q_s tends coefficientwise to P.
++
++Near infinity, C_s=F_s B_P H_s^(-1) is conformal and satisfies C_s Q_s=(C_s)^d. Let b_s be its leading coefficient at infinity. It tends to 1: the maps C_s converge to B_P on a common sufficiently large circle, so their leading coefficients converge by the Laurent coefficient integral. Replace H_s by b_s H_s and Q_s by its conjugate under z->b_s*z, denoting the results by H_s and P_s again. Comparing leading coefficients in the displayed conjugacy shows that P_s is monic. The marked point is still 0, and the exact normalized identity is now
++
++    B_(P_s) H_s = F_s B_P
++
++near infinity. We have P_s->P coefficientwise, hence P_s remains in U_d for sufficiently small s. No preservation of the repelling multiplier by quasiconformal conjugacy is assumed.
++
++For each escaping critical point c of P, choose N_c so that P^(N_c)(c) is in that common Böttcher neighborhood. Quasiconformal conjugacy preserves local degree and escape, so c_s=H_s(c) accounts for all the escaping critical points of P_s. The displayed identity shifts the Böttcher angle of P_s^(N_c)(c_s) by exactly
++
++    s*G_P(P^(N_c)(c))/(2*pi) modulo 1.
++
++This slope is positive. For each of the finitely many c, the parameters s making that angle rational form a countable set. Choose arbitrarily small s outside their union. Then P_s has no broken periodic ray: if a periodic-angle ray collided with an escaping precritical point omega, an iterate would take omega to some c_s, and a further iterate to P_s^(N_c)(c_s) near infinity. The angle of that point would be an integer power of d times the original rational ray angle, contradicting the choice of s. This uses the ray-image rules in [PZ], section 2.2.
++
++The marked landing rotation set of P_s is either finite, consisting of periodic angles, or a minimal Cantor set, by the accessibility/dichotomy statement recalled in [PZ]. In the finite case every landing ray is now smooth. In the Cantor case there is a smooth landing ray because the set is uncountable while there are only countably many broken-ray angles. This proves density of the smooth-ray domain in U_d. Perturbing a boundary coefficient a_1 radially outward proves U_d dense in X_d and gives the asserted density in X_d.
++
++Whenever a smooth ray lands at the marked repeller, its forward rays remain smooth and lie in the generalized landing set. Its rotation data therefore agree with the generalized rotation used here. Two continuous circle-valued extensions agreeing with the smooth-ray data agree on this dense subset, and hence agree everywhere. This is an existence-free uniqueness statement. It supplies neither the missing neutral-boundary limit nor compatibility at an initially accessible indifferent point.
+ 
+ ## 5. What the multiplier inequalities do prove
+ 
