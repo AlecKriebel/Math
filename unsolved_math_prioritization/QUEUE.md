@@ -993,7 +993,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 982 | 30001917 / OWR-11139-010 | Normality of Varieties of Minimal Rational Tangents | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 983 | 6000001 / AMR-059-0001 | Realizing Statistical Manifolds in Dually Flat Manifolds | 0.0915 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 984 | 30002343 / OWR-12490-003 | Optimal Pluricanonical Bounds for Stable Log Surfaces | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 985 | 30002395 / OWR-12591-005 | Dini Spaces as Primitive Spectra of Amenable $C^*$-Algebras | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 985 | 30002395 / OWR-12591-005 | Dini Spaces as Primitive Spectra of Amenable $C^*$-Algebras | 0.0912 | 5.5 | 3 | 2013 | unsolved | 5/5 |  | [Corrected partials and independent AI audit](attempts/30002395/README.md): Alexandrov/open-cover/locally Hausdorff realization; credited doubled-limit AF example and construction obstructions. Pseudo-open T1 statement repaired to open onto image, ambient-open if onto. Universal Dini realization unresolved; no novelty claim. |  |
 | 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 988 | 10000051 / AMR-099-0051 | Crossings in random square tilings | 0.0908 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
