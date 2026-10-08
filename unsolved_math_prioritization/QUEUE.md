@@ -1045,7 +1045,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | already_solved | 0/5 |  | Prior April 29, 2026 robust-interpolation proof accepted by authored verification and independent audit relative to Bernstein strict-density and declared analytic imports; repeated nodes and complex polynomials included. Publicly attributed to Przemek Chojecki with GPT-5.5 Pro assistance. No new approach, novelty, external-consensus, effective-constants or formal-verification claim. [Acceptance](attempts/2508/ACCEPTANCE.md). |  |
 | 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
