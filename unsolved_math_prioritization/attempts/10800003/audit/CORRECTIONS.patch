@@ -1,0 +1,53 @@
+--- a/author/PROOF_AND_STATUS.md
++++ b/author/PROOF_AND_STATUS.md
+@@ -50,14 +50,14 @@
+ 
+ **Strategy.** Seek a genuine obstruction invisible to algebraic intersection by retaining the isotopy classes of vanishing curves, rather than only their homology classes.
+ 
+-Restrict to a plane-curve germ, so a smooth Milnor fiber is an oriented surface. Suppose a specified collision, with no other value collision, has an endpoint in the fixed Milnor representative. Transport the two vanishing curves along the lifted path. Near a Maxwell endpoint they are supported in disjoint Morse neighborhoods, and hence have geometric intersection number zero. Near an A2 endpoint the standard two curves in the local once-punctured torus intersect once. A common transport diffeomorphism preserves geometric intersection number. Therefore a necessary condition is
++Restrict to a plane-curve germ, so a smooth Milnor fiber is an oriented surface. Suppose the specified collision along the chosen two vanishing paths, with all other critical values fixed, has an endpoint in the fixed Milnor representative. The vanishing paths must be continued compatibly with that collision: near the endpoint, their pieces in a small collision disk are the two local vanishing paths, and their continuation to a common regular reference fiber uses a common tail. Transporting this local pair back identifies it with the original specified pair by the same fiber diffeomorphism. Separate Hurwitz changes involving other critical values are not permitted in this identification. Transport the two vanishing curves along the lifted path with this path-system convention. Near a Maxwell endpoint they are supported in disjoint Morse neighborhoods, and hence have geometric intersection number zero. Near an A2 endpoint the standard two curves in the local once-punctured torus intersect once. A common transport diffeomorphism preserves geometric intersection number. Therefore a necessary condition is
+ 
+     i_geom(a,b)=0 in the algebraic-intersection-zero case;
+     i_geom(a,b)=1 in the algebraic-intersection-±1 case.
+ 
+ In particular, an actual distinguished pair with algebraic intersection zero but positive geometric intersection would obstruct the required collision. The same conclusion holds for algebraic intersection ±1 and geometric intersection >1. This is a conditional, geometrically finer test, not an exhibited counterexample.
+ 
+-We tried to produce the requisite pair by Torelli twisting. If c is a separating essential curve and a is a nonseparating curve with i_geom(a,c)>0, then b=T_c(a) has [b]=[a], since [c]=0 and a separating Dehn twist acts trivially on H1. Thus the algebraic intersection of a,b is zero. The standard annulus/bigon calculation gives
++We tried to produce the requisite pair by Torelli twisting. If c is a separating essential curve and a is a nonseparating curve with i_geom(a,c)>0, then b=T_c(a) has [b]=[a], since a separating Dehn twist acts trivially on H1. On a surface with boundary, [c] need not be zero, but it has zero algebraic intersection with every homology class; the transvection formula therefore still gives [T_c(a)]=[a]. Thus the algebraic intersection of a,b is zero. The standard annulus/bigon calculation gives
+ 
+     i_geom(a,T_c(a)) = i_geom(a,c)² > 0.
+ 
+@@ -81,7 +81,7 @@
+ 
+ Here labels are continued along the path; an ordering of the unordered configuration is a harmless local choice, not an extra global covering hypothesis.
+ 
+-**Conditional continuation theorem.** Let K be a closed Euclidean ball of radius r centered at the initial parameter, compactly contained in a chosen valid miniversal representative. Suppose the prescribed values are distinct for t<1 and only the designated pair collides at t=1. Suppose, wherever the maximal lift remains in K,
++**Conditional continuation theorem.** Let K be a closed Euclidean ball of radius r>0 centered at an initial Morse parameter λ0, compactly contained in a chosen valid miniversal representative. Let the labelled prescribed value path v:[0,1]→C^μ be continuous, with v(0) equal to the labelled critical values of λ0, and continuously differentiable on [0,T] for every T<1. Suppose the prescribed values are distinct for t<1 and only the designated pair collides at t=1; for the target problem the other μ−2 labelled values are constant. Suppose there is a nonnegative Lebesgue-integrable function g on [0,1] such that, wherever the maximal lift remains in K,
+ 
+     ||A(λ(t))^(-1) v'(t)|| ≤ g(t),    g≥0,    integral_0^1 g(t) dt < r.
+ 
+--- a/freeze/AUTHOR_MANIFEST.json
++++ b/freeze/AUTHOR_MANIFEST.json
+@@ -32,9 +32,9 @@
+       "sha256": "df2a30ec2ab9627678fad40ee474d94cae1fd17c19071fa6480919491d0d39fa"
+     },
+     {
+-      "bytes": 18759,
++      "bytes": 19796,
+       "path": "PROOF_AND_STATUS.md",
+-      "sha256": "4ff8ee5ca8ba4e067c771f71043e1afd16b9e97793023e25c12385c8b5da1df1"
++      "sha256": "23c088a87ef91827d94ca2aee040892c46a2492166901810586d75c49669df41"
+     },
+     {
+       "bytes": 3239,
+--- a/freeze/bootstrap.py
++++ b/freeze/bootstrap.py
+@@ -2,7 +2,7 @@
+ """Externally authenticate this bootstrap before use. It authenticates payload before execution."""
+ from pathlib import Path
+ import hashlib,json,math,re,stat,subprocess,sys
+-MANIFEST_SHA256="90f41824fce3c028993e1dcd12651dbeb86c8b2728527e61052da9b54c2e33a7"
++MANIFEST_SHA256="9ddef9ad585717ca652952fddceef1d3cf0f753f2e23c59a5cdc581ff92e5850"
+ class Rejected(Exception):pass
+ def require(ok,msg):
+     if not ok:raise Rejected(msg)

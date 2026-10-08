@@ -1019,7 +1019,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Five approaches: local A1+A1/A2 models, rank-two monodromy, collision-compatible geometric obstruction, integrable lift criterion, and nonversal X9 obstruction rejected by full tangent interpolation. Audited correction adopts common path transport, bordered-surface radical argument, and explicit continuation regularity. General small-neighborhood lifting remains unresolved; global parabolic results credited. No target counterexample or novelty claim. |  |
 | 1012 | 11000112 / AMR-109-0112 | Problem 2.7 — Suppose that ta1ta2··· tan = 1 in Modg, where n≥ 1. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1013 | 11000156 / AMR-109-0156 | Question 2.5 — Given two factorizations of the boundary twist δ as a product of positive Dehn twists along nonseparating curves in M… | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
