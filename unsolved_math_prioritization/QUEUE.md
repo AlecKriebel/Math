@@ -1044,7 +1044,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | unsolved | 5/5 |  | Exact degree-10 counterexample accepted for both explicitly displayed repairs of the malformed Sigma definition: symmetric all-circle and inner-absolute-value whole-disk certificates, with globally univalent F and exact convolution zero at 999/1000 (x=0, rho=1/1000). Both independent audits pass. Historical source identity remains unresolved; no unconditional resolution of the original problem is claimed. See attempts/2306113/README.md. |  |
 | 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
