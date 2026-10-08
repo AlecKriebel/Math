@@ -1,0 +1,754 @@
+{
+  "after": {
+    "directory_mode": "0o555",
+    "files": {
+      "MANIFEST.json": {
+        "bytes": 735,
+        "mode": "0o444",
+        "sha256": "17801144470cef33242e5e0dde6fef457945642182644767adcefbdee502aad3"
+      },
+      "MATHEMATICAL_AUDIT.md": {
+        "bytes": 13317,
+        "mode": "0o444",
+        "sha256": "27572974eae9d9a1a5f65c3762ebbacaf8f8ad7cf53caf6e22646c6ff12247bc"
+      },
+      "README.md": {
+        "bytes": 1288,
+        "mode": "0o444",
+        "sha256": "7c0f2a2399bf94aa6edc694f140a02e0c27fc9f35bf951fdf1b78d66b38607a9"
+      },
+      "SOURCE_METADATA.json": {
+        "bytes": 3556,
+        "mode": "0o444",
+        "sha256": "3d9d08b5520a30bc43e2c45fffbf30287bc32aa1194fb6550a1b0e0c87aa1faf"
+      },
+      "VERIFICATION.json": {
+        "bytes": 1807,
+        "mode": "0o444",
+        "sha256": "db909dc39919fcceed8b6bc1851bcd01c3989c2daa4207fa70d6961fdc6eb32a"
+      },
+      "check_examples.py": {
+        "bytes": 9079,
+        "mode": "0o444",
+        "sha256": "3cb18eae17a6d27feeaa2d5405c049dc155c9debf958b5dd13c3eddd8bbdc0ef"
+      }
+    }
+  },
+  "before": {
+    "directory_mode": "0o555",
+    "files": {
+      "MANIFEST.json": {
+        "bytes": 735,
+        "mode": "0o444",
+        "sha256": "17801144470cef33242e5e0dde6fef457945642182644767adcefbdee502aad3"
+      },
+      "MATHEMATICAL_AUDIT.md": {
+        "bytes": 13317,
+        "mode": "0o444",
+        "sha256": "27572974eae9d9a1a5f65c3762ebbacaf8f8ad7cf53caf6e22646c6ff12247bc"
+      },
+      "README.md": {
+        "bytes": 1288,
+        "mode": "0o444",
+        "sha256": "7c0f2a2399bf94aa6edc694f140a02e0c27fc9f35bf951fdf1b78d66b38607a9"
+      },
+      "SOURCE_METADATA.json": {
+        "bytes": 3556,
+        "mode": "0o444",
+        "sha256": "3d9d08b5520a30bc43e2c45fffbf30287bc32aa1194fb6550a1b0e0c87aa1faf"
+      },
+      "VERIFICATION.json": {
+        "bytes": 1807,
+        "mode": "0o444",
+        "sha256": "db909dc39919fcceed8b6bc1851bcd01c3989c2daa4207fa70d6961fdc6eb32a"
+      },
+      "check_examples.py": {
+        "bytes": 9079,
+        "mode": "0o444",
+        "sha256": "3cb18eae17a6d27feeaa2d5405c049dc155c9debf958b5dd13c3eddd8bbdc0ef"
+      }
+    }
+  },
+  "checked_on_utc_date": "2026-10-08",
+  "euid": 1000,
+  "external_pin_negative_runs": 15,
+  "external_pin_scope": "all six files including original manifest",
+  "limitations": [
+    "No machine verification of imported representation-theoretic theorems.",
+    "No proof or counterexample for full-category-O k>=2 equality.",
+    "No certificate of comprehensive literature coverage, openness, or novelty."
+  ],
+  "mathematical_negative_runs": 24,
+  "original_packet": "frozen_v2",
+  "original_packet_unchanged": true,
+  "pin_negative_controls": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:modified_body"
+      ],
+      "expected_returncode": 1,
+      "mutation": "modified_body",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:modified_body"
+      ],
+      "expected_returncode": 1,
+      "mutation": "modified_body",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:modified_body"
+      ],
+      "expected_returncode": 1,
+      "mutation": "modified_body",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:body_and_internal_manifest"
+      ],
+      "expected_returncode": 1,
+      "mutation": "body_and_internal_manifest",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MANIFEST.json\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:body_and_internal_manifest"
+      ],
+      "expected_returncode": 1,
+      "mutation": "body_and_internal_manifest",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MANIFEST.json\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:body_and_internal_manifest"
+      ],
+      "expected_returncode": 1,
+      "mutation": "body_and_internal_manifest",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"external pin mismatch: MANIFEST.json\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:missing_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "missing_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:missing_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "missing_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:missing_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "missing_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:extra_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "extra_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:extra_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "extra_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:extra_file"
+      ],
+      "expected_returncode": 1,
+      "mutation": "extra_file",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"packet file set differs from external pins\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:symlink"
+      ],
+      "expected_returncode": 1,
+      "mutation": "symlink",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"not an ordinary file: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:symlink"
+      ],
+      "expected_returncode": 1,
+      "mutation": "symlink",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"not an ordinary file: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "verify_frozen.py",
+        "mutation_fixture:symlink"
+      ],
+      "expected_returncode": 1,
+      "mutation": "symlink",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"reason\": \"not an ordinary file: MATHEMATICAL_AUDIT.md\", \"status\": \"FAIL\"}\n"
+    }
+  ],
+  "positive_runs": 6,
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "read_only_probes": [
+    {
+      "denied": true,
+      "errno": 13,
+      "error": "Permission denied",
+      "operation": "create_new_file"
+    },
+    {
+      "denied": true,
+      "errno": 13,
+      "error": "Permission denied",
+      "operation": "open_existing_for_append"
+    }
+  ],
+  "runs": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "frozen_v2/check_examples.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"checks\": 678, \"independent_rank_oracle\": \"minors\", \"mutation_controls\": \"exterior sign and total rank rejected\", \"python_optimize\": 0, \"scope\": \"finite diagnostic examples only\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"none\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"cases\": [{\"DS\": [2, 2], \"factor_ranks\": [0, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [0, 1]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 1]}], \"event\": \"tensor_Kunneth\"}\n{\"all_integer_power_rule\": \"(1+epsilon)^a=1+a*epsilon; epsilon^2=0\", \"event\": \"tensor_ideal\", \"ideal\": \"((t_i-1)^2: 1<=i<=r)\", \"quotient_dimension\": \"2^r\"}\n{\"ann_u\": \"(v)\", \"ann_v\": \"(u)\", \"event\": \"universal_complex\", \"fiber_at_origin\": [1, 1], \"scope\": \"failure at origin, not a punctured-cone counterexample\", \"universal_cohomology\": 0}\n{\"checks\": 3885, \"event\": \"complete\", \"optimize\": 0, \"scope\": \"finite diagnostic identities; no full-conjecture claim\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "exterior-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"exterior-sign\", \"optimize\": 0, \"uid\": 1000}\n{\"checks\": 20, \"event\": \"complete\", \"mutation\": \"exterior-sign\", \"optimize\": 0, \"reason\": \"[e,f]=h1+h2\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-weight"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-weight\", \"optimize\": 0, \"uid\": 1000}\n{\"checks\": 15, \"event\": \"complete\", \"mutation\": \"wrong-weight\", \"optimize\": 0, \"reason\": \"[h1,e]=e\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-parity"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-parity\", \"optimize\": 0, \"uid\": 1000}\n{\"checks\": 21, \"event\": \"complete\", \"mutation\": \"wrong-parity\", \"optimize\": 0, \"reason\": \"representation has correct parity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "class-implies-object"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"class-implies-object\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"checks\": 955, \"event\": \"complete\", \"mutation\": \"class-implies-object\", \"optimize\": 0, \"reason\": \"zero reduced class does not imply zero object\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-moment"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-moment\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"checks\": 957, \"event\": \"complete\", \"mutation\": \"wrong-moment\", \"optimize\": 0, \"reason\": \"moment separation rejects Kac membership in projective span\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "drop-total-arrow"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"drop-total-arrow\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"checks\": 1038, \"event\": \"complete\", \"mutation\": \"drop-total-arrow\", \"optimize\": 0, \"reason\": \"total DS acyclicity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "action-rank-is-algebra-rank"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"checks\": 1372, \"event\": \"complete\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 0, \"reason\": \"rank-one Lie element can act with rank two\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "omit-Koszul-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 0, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"checks\": 1557, \"event\": \"complete\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 0, \"reason\": \"square-zero differential\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "frozen_v2/check_examples.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"checks\": 678, \"independent_rank_oracle\": \"minors\", \"mutation_controls\": \"exterior sign and total rank rejected\", \"python_optimize\": 1, \"scope\": \"finite diagnostic examples only\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"none\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"cases\": [{\"DS\": [2, 2], \"factor_ranks\": [0, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [0, 1]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 1]}], \"event\": \"tensor_Kunneth\"}\n{\"all_integer_power_rule\": \"(1+epsilon)^a=1+a*epsilon; epsilon^2=0\", \"event\": \"tensor_ideal\", \"ideal\": \"((t_i-1)^2: 1<=i<=r)\", \"quotient_dimension\": \"2^r\"}\n{\"ann_u\": \"(v)\", \"ann_v\": \"(u)\", \"event\": \"universal_complex\", \"fiber_at_origin\": [1, 1], \"scope\": \"failure at origin, not a punctured-cone counterexample\", \"universal_cohomology\": 0}\n{\"checks\": 3885, \"event\": \"complete\", \"optimize\": 1, \"scope\": \"finite diagnostic identities; no full-conjecture claim\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "exterior-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"exterior-sign\", \"optimize\": 1, \"uid\": 1000}\n{\"checks\": 20, \"event\": \"complete\", \"mutation\": \"exterior-sign\", \"optimize\": 1, \"reason\": \"[e,f]=h1+h2\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-weight"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-weight\", \"optimize\": 1, \"uid\": 1000}\n{\"checks\": 15, \"event\": \"complete\", \"mutation\": \"wrong-weight\", \"optimize\": 1, \"reason\": \"[h1,e]=e\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-parity"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-parity\", \"optimize\": 1, \"uid\": 1000}\n{\"checks\": 21, \"event\": \"complete\", \"mutation\": \"wrong-parity\", \"optimize\": 1, \"reason\": \"representation has correct parity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "class-implies-object"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"class-implies-object\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"checks\": 955, \"event\": \"complete\", \"mutation\": \"class-implies-object\", \"optimize\": 1, \"reason\": \"zero reduced class does not imply zero object\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-moment"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-moment\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"checks\": 957, \"event\": \"complete\", \"mutation\": \"wrong-moment\", \"optimize\": 1, \"reason\": \"moment separation rejects Kac membership in projective span\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "drop-total-arrow"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"drop-total-arrow\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"checks\": 1038, \"event\": \"complete\", \"mutation\": \"drop-total-arrow\", \"optimize\": 1, \"reason\": \"total DS acyclicity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "action-rank-is-algebra-rank"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"checks\": 1372, \"event\": \"complete\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 1, \"reason\": \"rank-one Lie element can act with rank two\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-O",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "omit-Koszul-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 1, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"checks\": 1557, \"event\": \"complete\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 1, \"reason\": \"square-zero differential\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "frozen_v2/check_examples.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"checks\": 678, \"independent_rank_oracle\": \"minors\", \"mutation_controls\": \"exterior sign and total rank rejected\", \"python_optimize\": 2, \"scope\": \"finite diagnostic examples only\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"none\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"cases\": [{\"DS\": [2, 2], \"factor_ranks\": [0, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [0, 1]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 0]}, {\"DS\": [0, 0], \"factor_ranks\": [1, 1]}], \"event\": \"tensor_Kunneth\"}\n{\"all_integer_power_rule\": \"(1+epsilon)^a=1+a*epsilon; epsilon^2=0\", \"event\": \"tensor_ideal\", \"ideal\": \"((t_i-1)^2: 1<=i<=r)\", \"quotient_dimension\": \"2^r\"}\n{\"ann_u\": \"(v)\", \"ann_v\": \"(u)\", \"event\": \"universal_complex\", \"fiber_at_origin\": [1, 1], \"scope\": \"failure at origin, not a punctured-cone counterexample\", \"universal_cohomology\": 0}\n{\"checks\": 3885, \"event\": \"complete\", \"optimize\": 2, \"scope\": \"finite diagnostic identities; no full-conjecture claim\", \"status\": \"PASS\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "exterior-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"exterior-sign\", \"optimize\": 2, \"uid\": 1000}\n{\"checks\": 20, \"event\": \"complete\", \"mutation\": \"exterior-sign\", \"optimize\": 2, \"reason\": \"[e,f]=h1+h2\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-weight"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-weight\", \"optimize\": 2, \"uid\": 1000}\n{\"checks\": 15, \"event\": \"complete\", \"mutation\": \"wrong-weight\", \"optimize\": 2, \"reason\": \"[h1,e]=e\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-parity"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-parity\", \"optimize\": 2, \"uid\": 1000}\n{\"checks\": 21, \"event\": \"complete\", \"mutation\": \"wrong-parity\", \"optimize\": 2, \"reason\": \"representation has correct parity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "class-implies-object"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"class-implies-object\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"checks\": 955, \"event\": \"complete\", \"mutation\": \"class-implies-object\", \"optimize\": 2, \"reason\": \"zero reduced class does not imply zero object\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "wrong-moment"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"wrong-moment\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"checks\": 957, \"event\": \"complete\", \"mutation\": \"wrong-moment\", \"optimize\": 2, \"reason\": \"moment separation rejects Kac membership in projective span\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "drop-total-arrow"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"drop-total-arrow\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"checks\": 1038, \"event\": \"complete\", \"mutation\": \"drop-total-arrow\", \"optimize\": 2, \"reason\": \"total DS acyclicity\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "action-rank-is-algebra-rank"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"checks\": 1372, \"event\": \"complete\", \"mutation\": \"action-rank-is-algebra-rank\", \"optimize\": 2, \"reason\": \"rank-one Lie element can act with rank two\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-OO",
+        "-B",
+        "independent_checks.py",
+        "--mutation",
+        "omit-Koszul-sign"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "{\"event\": \"runtime\", \"implementation\": \"independent Bareiss-minors rank\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 2, \"uid\": 1000}\n{\"basis\": [\"1\", \"e\", \"f\", \"ef\"], \"both_DS\": [0, 0], \"event\": \"projective\", \"parity\": [0, 1, 1, 0], \"rank_e\": 2, \"rank_f\": 2, \"weights_relative_to_a\": [0, 1, -1, 0]}\n{\"DS_e\": [1, 1], \"DS_f\": [0, 0], \"event\": \"Kac\", \"reduced_DS_e\": 0, \"reduced_DS_f\": 0}\n{\"Kac_moments\": [0, 1, -1], \"event\": \"Laurent_class_separation\", \"ideal_common_DS_kernels\": \"(t-1) R\", \"ideal_projectives\": \"(t-1)^2 R\", \"projective_moments\": [0, 0, -2]}\n{\"event\": \"bicomplex\", \"higher_differential\": \"a -> -d (via the v-preimage c of u(a)=b)\", \"iterated_DS\": [1, 1], \"quotient_representatives\": [\"a\", \"d\"], \"rank_total\": 2, \"rank_v\": 1, \"total_DS\": [0, 0]}\n{\"diagnostic_action_rank_u\": 2, \"event\": \"natural_Levi_ranks\", \"u\": 1, \"u_plus_v\": 2, \"v\": 1}\n{\"checks\": 1557, \"event\": \"complete\", \"mutation\": \"omit-Koszul-sign\", \"optimize\": 2, \"reason\": \"square-zero differential\", \"status\": \"FAIL\", \"uid\": 1000}\n"
+    }
+  ],
+  "source_pdf_checks": [
+    {
+      "bytes": 756610,
+      "file": "owr52_2018.pdf",
+      "match": true,
+      "sha256": "b33ed36eaa470877bc6cfb5b45b1019564f568925ea9d94e8dc7ee355879976e"
+    },
+    {
+      "bytes": 404925,
+      "file": "hps1712.00664v4.pdf",
+      "match": true,
+      "sha256": "1c8bb4b2f5481a68a3024114cbd94a15cad9bff0d02010eff53a17488b632ac4"
+    },
+    {
+      "bytes": 556643,
+      "file": "hps_author.pdf",
+      "match": true,
+      "sha256": "34a0b69fd3074ea7360576138007ec225a3c08d3e2b6f08aedeb5ae148a3af95"
+    },
+    {
+      "bytes": 454056,
+      "file": "cs_categoryo.pdf",
+      "match": true,
+      "sha256": "31be45045f6a3e6c7c6226f81572831591509246e64b2ead161d5d973bc4a6f2"
+    },
+    {
+      "bytes": 726131,
+      "file": "ghss2203.00529v2.pdf",
+      "match": true,
+      "sha256": "ae9d629d21c0174bf27049684fbede994f83e91dfde3bccf9f8a8bdc902a4e3e"
+    },
+    {
+      "bytes": 379972,
+      "file": "hirota2603.01390v1.pdf",
+      "match": true,
+      "sha256": "2a21dc12bac85e8ee6861488c255be0921561d44ca25d0849a84d7ff93bb5ca9"
+    },
+    {
+      "bytes": 406666,
+      "file": "hirota2603.01390_current.pdf",
+      "match": true,
+      "sha256": "2526e144536fab7afbe762d49f6b51cf3c8ac1c26424bc4455afe10f0209ce4e"
+    }
+  ],
+  "source_retrieval_scope": "Existing local PDF bytes independently rehashed; no new PDF download claimed.",
+  "status": "PASS",
+  "uid": 1000
+}

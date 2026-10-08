@@ -1078,7 +1078,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | exhausted | 5/5 |  | Independently accepted unchanged partial audit: credited A_1=S_1 and normalized S_k subset A_k; strict objectwise-span versus reduced-class-kernel distinction; reverse-DS and restricted Levi/tensor/universal-cohomology diagnostics. Full-category-O A_k subset S_k for k>=2 remains unresolved; no novelty claim. Source-free original and independent audit, complete mode-matched replay receipts and fixed external bootstrap at attempts/30004018/README.md. |  |
 | 1071 | 30004167 / OWR-16941-008 | Prismatic Cohomology from Topological Cyclic Homology | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1072 | 30004168 / OWR-16941-009 | Prismatic Cohomology of Local Complete Intersections | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1073 | 30004409 / OWR-17471-016 | Motion Groups of Hopf-Tree Links | 0.0893 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
