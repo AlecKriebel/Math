@@ -1066,7 +1066,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1055 | 30006636 / OWR-14299913-005 | Extending Trisection Invariants to Four-Dimensional TQFTs | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1057 | 3023 / KP-5.16 | Kirby Problem 5.16 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | exhausted | 5/5 |  | Independently accepted elementary partials: boundary cleanup, weak perturbation limit with corner-loss gap, n>=31d+30 deletion bound, grid lower bound, boundary-only threshold and nearest-ear criterion. Five routes exhausted; all-ell target and ell=4 unresolved. H=30, pentagon bound and 29-point witness are imported literature; no novelty, SAT replay or formal-proof claim. [Proof, audit and reproducibility](attempts/3091/README.md). |  |
 | 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
