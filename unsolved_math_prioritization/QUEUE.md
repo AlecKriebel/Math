@@ -1009,7 +1009,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 998 | 30003467 / OWR-15427-009 | Proper Three-Colorings for Pseudo-Disk Arrangements | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 999 | 30003471 / OWR-15427-013 | Dihedral Angle Comparison for Combinatorially Equivalent Polytopes | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1000 | 30003533 / OWR-15576-002 | High-Frequency Coercivity on Nonconvex Nontrapping Domains | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 1001 | 30003536 / OWR-15577-004 | Maximum Principle for Intermediate Riesz Kernels | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 1001 | 30003536 / OWR-15577-004 | Maximum Principle for Intermediate Riesz Kernels | 0.0903 | 5.5 | 3 | 2017 | unsolved | 5/5 |  | 2026-10-08 UTC: Five independently audited analytic partials: moment/far-field bound, scalar-majorant obstruction, smooth d=8,s=2 strict local maximum off support, sign-changing three-point energy, and surviving smooth boundary layer for the flat model. Explicit inner principal-value cutoff clarification adopted; no global full-vector counterexample or solution. Source-free corrected packet and unchanged audit: attempts/30003536. Unsolved 5/5; validation adds 0 turns. |  |
 | 1002 | 30003634 / OWR-15955-011 | Derived Pure Braid Groups in the Solvable Filtration | 0.0903 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 1003 | 10300008 / AMR-102-0008 | Minimal surfaces — Question 4.2 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1004 | 10300011 / AMR-102-0011 | Sublaminations and superlaminations — Question 6.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
