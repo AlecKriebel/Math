@@ -1,0 +1,792 @@
+{
+  "historical_runs_reused": false,
+  "launcher": "compile each authenticated authored script using its public relative pathname; preserve complete unmodified process stdout/stderr",
+  "readonly": {
+    "actual_create_denied": true,
+    "actual_existing_write_open_denials": 5
+  },
+  "runs": [
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 0,
+      "script": "original/check_groups.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 353,
+        "sha256": "aa4eec3c2672c446540939a92cb8cb8ca1882561631802ea9c1087d42c2785c8",
+        "text": "{\"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"optimization\": 0, \"q8_associativity_cases\": 512, \"q8_order_distribution\": {\"1\": 1, \"2\": 1, \"4\": 6}, \"scope\": \"Auxiliary finite checks only; smooth topology is a credited theorem input.\", \"signed_order_distribution\": {\"1\": 1, \"2\": 5, \"4\": 2}, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 516,
+        "sha256": "3bffbf4b32c72944409c33c3c6813b5aa88c79848431608226a1e4d9249b6e46",
+        "text": "{\"connected_cover_sheets\": 4, \"cover_components\": 2, \"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"full_decoration_sheets\": 8, \"labelled_group_order\": 4, \"limits\": \"Finite algebra and cover data only; smooth topology is imported.\", \"motion_group_order\": 8, \"mutant\": \"none\", \"optimization\": 0, \"oriented_labelled_group_order\": 2, \"presentation_associativity_cases\": 512, \"quaternion_lift_cases\": 64, \"rotation_cover_cases\": 64, \"sections_rejected\": 8, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "split_extension"
+      ],
+      "exit_code": 1,
+      "label": "independent_split_extension",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 474,
+        "sha256": "71d9eeab69519dd9a6d09823fb12bcd5d5187a3e62ada396086a494c56fbe58f",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 113, in main\n    need(power(a, 2, product) == central == power(b, 2, product),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: both half-turn lifts square to central full turn\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "commuting_generators"
+      ],
+      "exit_code": 1,
+      "label": "independent_commuting_generators",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 451,
+        "sha256": "bd2fea26982213e0ec26f07d5b775c40c7d6a776bbcb8faea5933004bc4e2952",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 115, in main\n    need(product(b, a) == product(power(a, 3, product), b),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: quaternion conjugation relation\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "single_orientation_reversal"
+      ],
+      "exit_code": 1,
+      "label": "independent_single_orientation_reversal",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "central_detected"
+      ],
+      "exit_code": 1,
+      "label": "independent_central_detected",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_lift"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_lift",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 484,
+        "sha256": "53533866736ca5adbe270292bb8a9089a6411e84702524c842dfdcd2b8c608ef",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 159, in main\n    need(len(set(lifts.values())) == 8, \"eight distinct universal-cover endpoints\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight distinct universal-cover endpoints\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_rotation"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_rotation",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 480,
+        "sha256": "5f33d73a518ab04170bc12b9099cd9d4db6b4c427eb5e73597f2685e406cdbd2",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 167, in main\n    need(rotations[a] == A and rotations[b] == B, \"correct exact half-turn rotations\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: correct exact half-turn rotations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "connected_eightfold_cover"
+      ],
+      "exit_code": 1,
+      "label": "independent_connected_eightfold_cover",
+      "optimization": 0,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 501,
+        "sha256": "b56eaa7d12eaff068c8a99173378478d41a78bce06422ae754ae9f0d336ad5cd",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 192, in main\n    need(len(orbits) == expected_components and {len(o) for o in orbits} == {4},\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight decorations form two connected four-sheeted components\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_scalar_product",
+      "optimization": 0,
+      "script": "mutants/submitted_wrong_scalar_product.py",
+      "stderr": {
+        "bytes": 422,
+        "sha256": "cb9d3bbc1e0650277d5a1f7cb3a6d3711235926154e5b4776bce3ee980bdd60a",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_scalar_product.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_scalar_product.py\", line 66, in main\n    require(all(qmul(qmul(a, b), c) == qmul(a, qmul(b, c))\n  File \"mutants/submitted_wrong_scalar_product.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Q8 associativity\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_false_trivial_kernel",
+      "optimization": 0,
+      "script": "mutants/submitted_false_trivial_kernel.py",
+      "stderr": {
+        "bytes": 439,
+        "sha256": "db253f708fbb4ff5aadee503a648f5ca5c3a1d8d9a213838192f457e9dee7a91",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_false_trivial_kernel.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_false_trivial_kernel.py\", line 104, in main\n    require(kernel == {one}, \"Dahm kernel equals central C2\")\n  File \"mutants/submitted_false_trivial_kernel.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Dahm kernel equals central C2\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_exchange_endpoint",
+      "optimization": 0,
+      "script": "mutants/submitted_wrong_exchange_endpoint.py",
+      "stderr": {
+        "bytes": 488,
+        "sha256": "7be05ad94bc82f8921a327b81480a6c6c62df0125a8ea403cbc78ff30927d946",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 127, in main\n    require(mv(b3, n1) == n2 and mv(b3, n2) == n1, \"exchange preserves normal orientations\")\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: exchange preserves normal orientations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 1,
+      "script": "original/check_groups.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 353,
+        "sha256": "38168aa7775962aae4a113db29ea76b6cabecebe7b4c49f1c5e7a65d48630940",
+        "text": "{\"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"optimization\": 1, \"q8_associativity_cases\": 512, \"q8_order_distribution\": {\"1\": 1, \"2\": 1, \"4\": 6}, \"scope\": \"Auxiliary finite checks only; smooth topology is a credited theorem input.\", \"signed_order_distribution\": {\"1\": 1, \"2\": 5, \"4\": 2}, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 516,
+        "sha256": "04b23c53e31e7a509071a17f2a9dc0986983d304bedd953e7cd662f6d0c0e060",
+        "text": "{\"connected_cover_sheets\": 4, \"cover_components\": 2, \"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"full_decoration_sheets\": 8, \"labelled_group_order\": 4, \"limits\": \"Finite algebra and cover data only; smooth topology is imported.\", \"motion_group_order\": 8, \"mutant\": \"none\", \"optimization\": 1, \"oriented_labelled_group_order\": 2, \"presentation_associativity_cases\": 512, \"quaternion_lift_cases\": 64, \"rotation_cover_cases\": 64, \"sections_rejected\": 8, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "split_extension"
+      ],
+      "exit_code": 1,
+      "label": "independent_split_extension",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 474,
+        "sha256": "71d9eeab69519dd9a6d09823fb12bcd5d5187a3e62ada396086a494c56fbe58f",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 113, in main\n    need(power(a, 2, product) == central == power(b, 2, product),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: both half-turn lifts square to central full turn\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "commuting_generators"
+      ],
+      "exit_code": 1,
+      "label": "independent_commuting_generators",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 451,
+        "sha256": "bd2fea26982213e0ec26f07d5b775c40c7d6a776bbcb8faea5933004bc4e2952",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 115, in main\n    need(product(b, a) == product(power(a, 3, product), b),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: quaternion conjugation relation\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "single_orientation_reversal"
+      ],
+      "exit_code": 1,
+      "label": "independent_single_orientation_reversal",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "central_detected"
+      ],
+      "exit_code": 1,
+      "label": "independent_central_detected",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_lift"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_lift",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 484,
+        "sha256": "53533866736ca5adbe270292bb8a9089a6411e84702524c842dfdcd2b8c608ef",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 159, in main\n    need(len(set(lifts.values())) == 8, \"eight distinct universal-cover endpoints\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight distinct universal-cover endpoints\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_rotation"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_rotation",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 480,
+        "sha256": "5f33d73a518ab04170bc12b9099cd9d4db6b4c427eb5e73597f2685e406cdbd2",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 167, in main\n    need(rotations[a] == A and rotations[b] == B, \"correct exact half-turn rotations\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: correct exact half-turn rotations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "connected_eightfold_cover"
+      ],
+      "exit_code": 1,
+      "label": "independent_connected_eightfold_cover",
+      "optimization": 1,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 501,
+        "sha256": "b56eaa7d12eaff068c8a99173378478d41a78bce06422ae754ae9f0d336ad5cd",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 192, in main\n    need(len(orbits) == expected_components and {len(o) for o in orbits} == {4},\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight decorations form two connected four-sheeted components\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_scalar_product",
+      "optimization": 1,
+      "script": "mutants/submitted_wrong_scalar_product.py",
+      "stderr": {
+        "bytes": 422,
+        "sha256": "cb9d3bbc1e0650277d5a1f7cb3a6d3711235926154e5b4776bce3ee980bdd60a",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_scalar_product.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_scalar_product.py\", line 66, in main\n    require(all(qmul(qmul(a, b), c) == qmul(a, qmul(b, c))\n  File \"mutants/submitted_wrong_scalar_product.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Q8 associativity\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_false_trivial_kernel",
+      "optimization": 1,
+      "script": "mutants/submitted_false_trivial_kernel.py",
+      "stderr": {
+        "bytes": 439,
+        "sha256": "db253f708fbb4ff5aadee503a648f5ca5c3a1d8d9a213838192f457e9dee7a91",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_false_trivial_kernel.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_false_trivial_kernel.py\", line 104, in main\n    require(kernel == {one}, \"Dahm kernel equals central C2\")\n  File \"mutants/submitted_false_trivial_kernel.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Dahm kernel equals central C2\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_exchange_endpoint",
+      "optimization": 1,
+      "script": "mutants/submitted_wrong_exchange_endpoint.py",
+      "stderr": {
+        "bytes": 488,
+        "sha256": "7be05ad94bc82f8921a327b81480a6c6c62df0125a8ea403cbc78ff30927d946",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 127, in main\n    require(mv(b3, n1) == n2 and mv(b3, n2) == n1, \"exchange preserves normal orientations\")\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: exchange preserves normal orientations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "author_positive",
+      "optimization": 2,
+      "script": "original/check_groups.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 353,
+        "sha256": "62cc129267969f143f1cb3603e0c15f7a98e0bb9ff45014e3c6640e9f61220aa",
+        "text": "{\"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"optimization\": 2, \"q8_associativity_cases\": 512, \"q8_order_distribution\": {\"1\": 1, \"2\": 1, \"4\": 6}, \"scope\": \"Auxiliary finite checks only; smooth topology is a credited theorem input.\", \"signed_order_distribution\": {\"1\": 1, \"2\": 5, \"4\": 2}, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 0,
+      "label": "independent_positive",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 516,
+        "sha256": "970bf984fb63b41655c405249defea560c85a8514a349ea2735f61d0b0846555",
+        "text": "{\"connected_cover_sheets\": 4, \"cover_components\": 2, \"dahm_homomorphism_cases\": 64, \"dahm_image_order\": 4, \"dahm_kernel_order\": 2, \"full_decoration_sheets\": 8, \"labelled_group_order\": 4, \"limits\": \"Finite algebra and cover data only; smooth topology is imported.\", \"motion_group_order\": 8, \"mutant\": \"none\", \"optimization\": 2, \"oriented_labelled_group_order\": 2, \"presentation_associativity_cases\": 512, \"quaternion_lift_cases\": 64, \"rotation_cover_cases\": 64, \"sections_rejected\": 8, \"status\": \"PASS\", \"uid\": 1000}\n",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "split_extension"
+      ],
+      "exit_code": 1,
+      "label": "independent_split_extension",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 474,
+        "sha256": "71d9eeab69519dd9a6d09823fb12bcd5d5187a3e62ada396086a494c56fbe58f",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 113, in main\n    need(power(a, 2, product) == central == power(b, 2, product),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: both half-turn lifts square to central full turn\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "commuting_generators"
+      ],
+      "exit_code": 1,
+      "label": "independent_commuting_generators",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 451,
+        "sha256": "bd2fea26982213e0ec26f07d5b775c40c7d6a776bbcb8faea5933004bc4e2952",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 115, in main\n    need(product(b, a) == product(power(a, 3, product), b),\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: quaternion conjugation relation\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "single_orientation_reversal"
+      ],
+      "exit_code": 1,
+      "label": "independent_single_orientation_reversal",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "central_detected"
+      ],
+      "exit_code": 1,
+      "label": "independent_central_detected",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 450,
+        "sha256": "f6248d21a2d7c4d31ffafc3d79a3f3ec90fb547e227282711a0fbc4592ff284c",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 128, in main\n    need(all(image[product(x, y)] == matmul(image[x], image[y])\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: 64 Dahm homomorphism cases\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_lift"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_lift",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 484,
+        "sha256": "53533866736ca5adbe270292bb8a9089a6411e84702524c842dfdcd2b8c608ef",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 159, in main\n    need(len(set(lifts.values())) == 8, \"eight distinct universal-cover endpoints\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight distinct universal-cover endpoints\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "wrong_exchange_rotation"
+      ],
+      "exit_code": 1,
+      "label": "independent_wrong_exchange_rotation",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 480,
+        "sha256": "5f33d73a518ab04170bc12b9099cd9d4db6b4c427eb5e73597f2685e406cdbd2",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 167, in main\n    need(rotations[a] == A and rotations[b] == B, \"correct exact half-turn rotations\")\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: correct exact half-turn rotations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [
+        "connected_eightfold_cover"
+      ],
+      "exit_code": 1,
+      "label": "independent_connected_eightfold_cover",
+      "optimization": 2,
+      "script": "audit/independent_cover_check.py",
+      "stderr": {
+        "bytes": 501,
+        "sha256": "b56eaa7d12eaff068c8a99173378478d41a78bce06422ae754ae9f0d336ad5cd",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"audit/independent_cover_check.py\", line 211, in <module>\n    main(sys.argv[1] if len(sys.argv) > 1 else \"none\")\n  File \"audit/independent_cover_check.py\", line 192, in main\n    need(len(orbits) == expected_components and {len(o) for o in orbits} == {4},\n  File \"audit/independent_cover_check.py\", line 17, in need\n    raise RuntimeError(label)\nRuntimeError: eight decorations form two connected four-sheeted components\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_scalar_product",
+      "optimization": 2,
+      "script": "mutants/submitted_wrong_scalar_product.py",
+      "stderr": {
+        "bytes": 422,
+        "sha256": "cb9d3bbc1e0650277d5a1f7cb3a6d3711235926154e5b4776bce3ee980bdd60a",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_scalar_product.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_scalar_product.py\", line 66, in main\n    require(all(qmul(qmul(a, b), c) == qmul(a, qmul(b, c))\n  File \"mutants/submitted_wrong_scalar_product.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Q8 associativity\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_false_trivial_kernel",
+      "optimization": 2,
+      "script": "mutants/submitted_false_trivial_kernel.py",
+      "stderr": {
+        "bytes": 439,
+        "sha256": "db253f708fbb4ff5aadee503a648f5ca5c3a1d8d9a213838192f457e9dee7a91",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_false_trivial_kernel.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_false_trivial_kernel.py\", line 104, in main\n    require(kernel == {one}, \"Dahm kernel equals central C2\")\n  File \"mutants/submitted_false_trivial_kernel.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: Dahm kernel equals central C2\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    },
+    {
+      "arguments": [],
+      "exit_code": 1,
+      "label": "submitted_wrong_exchange_endpoint",
+      "optimization": 2,
+      "script": "mutants/submitted_wrong_exchange_endpoint.py",
+      "stderr": {
+        "bytes": 488,
+        "sha256": "7be05ad94bc82f8921a327b81480a6c6c62df0125a8ea403cbc78ff30927d946",
+        "text": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 140, in <module>\n    main()\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 127, in main\n    require(mv(b3, n1) == n2 and mv(b3, n2) == n1, \"exchange preserves normal orientations\")\n  File \"mutants/submitted_wrong_exchange_endpoint.py\", line 11, in require\n    raise RuntimeError(message)\nRuntimeError: exchange preserves normal orientations\n",
+        "type": "inline_utf8"
+      },
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": "",
+        "type": "inline_utf8"
+      }
+    }
+  ],
+  "schema": "hopf-tree-fresh-runs-v1",
+  "tested_inputs_after": {
+    "audit/independent_cover_check.py": {
+      "bytes": 9067,
+      "git_blob": "8e74ad2b500d74b7a0038ca9d957d744944c92b2",
+      "sha256": "6253bfbc5712a0b551e9ec38c2ebdae8ec1550ffcb7a8df198a033ce1b2b0c3b"
+    },
+    "mutants/submitted_false_trivial_kernel.py": {
+      "bytes": 5767,
+      "git_blob": "923cb8cc1eac11b8a18022043633510c4b0bab67",
+      "sha256": "7c789d2c0046c6376cf46a096fef1cc4e6cb9d94c8e7720415b401457c8c7a17"
+    },
+    "mutants/submitted_wrong_exchange_endpoint.py": {
+      "bytes": 5770,
+      "git_blob": "a7e3e128d5f28482b8cf1b5df20ab5ad75b492bd",
+      "sha256": "6f0565900eb1caf2e071545bd15e95aa167364119f0bd6548f660e07f9530f58"
+    },
+    "mutants/submitted_wrong_scalar_product.py": {
+      "bytes": 5768,
+      "git_blob": "9450cfb555f3e1ad895f02bf45822b5ac1dc8f96",
+      "sha256": "b02ca6ba878645810caba0dd022c7e13d17e76075d6471970c02c8c89029853f"
+    },
+    "original/check_groups.py": {
+      "bytes": 5768,
+      "git_blob": "bcf5b24e752b7f588f3ab9cc060cc6272878aa9a",
+      "sha256": "7951e82b4cbba6d401fc4e146d2e2f1c5639cb61b0596ed487a44218aa79d2a4"
+    }
+  },
+  "tested_inputs_before": {
+    "audit/independent_cover_check.py": {
+      "bytes": 9067,
+      "git_blob": "8e74ad2b500d74b7a0038ca9d957d744944c92b2",
+      "sha256": "6253bfbc5712a0b551e9ec38c2ebdae8ec1550ffcb7a8df198a033ce1b2b0c3b"
+    },
+    "mutants/submitted_false_trivial_kernel.py": {
+      "bytes": 5767,
+      "git_blob": "923cb8cc1eac11b8a18022043633510c4b0bab67",
+      "sha256": "7c789d2c0046c6376cf46a096fef1cc4e6cb9d94c8e7720415b401457c8c7a17"
+    },
+    "mutants/submitted_wrong_exchange_endpoint.py": {
+      "bytes": 5770,
+      "git_blob": "a7e3e128d5f28482b8cf1b5df20ab5ad75b492bd",
+      "sha256": "6f0565900eb1caf2e071545bd15e95aa167364119f0bd6548f660e07f9530f58"
+    },
+    "mutants/submitted_wrong_scalar_product.py": {
+      "bytes": 5768,
+      "git_blob": "9450cfb555f3e1ad895f02bf45822b5ac1dc8f96",
+      "sha256": "b02ca6ba878645810caba0dd022c7e13d17e76075d6471970c02c8c89029853f"
+    },
+    "original/check_groups.py": {
+      "bytes": 5768,
+      "git_blob": "bcf5b24e752b7f588f3ab9cc060cc6272878aa9a",
+      "sha256": "7951e82b4cbba6d401fc4e146d2e2f1c5639cb61b0596ed487a44218aa79d2a4"
+    }
+  },
+  "uid": 1000
+}
