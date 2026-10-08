@@ -973,7 +973,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 964 | 30000853 / OWR-1730-006 | Boundary-Intersection Vanishing on Abelian-Variety Moduli | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 965 | 30000962 / OWR-1967-011 | Recursive Determination of Quantum Knot Invariants | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 965 | 30000962 / OWR-1967-011 | Recursive Determination of Quantum Knot Invariants | 0.0920 | 5.5 | 3 | 2008 | unsolved | 5/5 |  | [Corrected audited partials](attempts/30000962/README.md): invariant/full ideal bridge and uniform finite seeds; credited non-G2 and all-simple unknot cases; general G2 and unrestricted reductive center unresolved. |  |
 | 966 | 30001052 / OWR-2089-013 | Functorial Maps Between p-Local Finite-Group Classifying Spaces | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 967 | 30006191 / OWR-14299085-005 | Counterexamples to Strongly Continuous Many-Fermion Dynamics | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 968 | 30006223 / OWR-14299092-002 | Expander Degree Under Boundary Connected Sums | 0.0920 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
