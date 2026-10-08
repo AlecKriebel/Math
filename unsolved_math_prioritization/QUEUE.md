@@ -1016,7 +1016,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1005 | 10300034 / AMR-102-0034 | Classical 3-manifold theory — Question 9.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1006 | 10300037 / AMR-102-0037 | Classical 3-manifold theory — Question 9.4 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted unchanged scoped partials: homotopy bad-leaf-space length-gap reduction; fiber-period bound; meridional calibration; disk-filling transverse core; tiny non-geodesic trefoil countercontrol. No universal threshold or geodesic counterexample; homotopy is not isotopy, and genus/foliation-dependent bounds are not universal. [Proof and audit](attempts/10300043/README.md). |  |
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
