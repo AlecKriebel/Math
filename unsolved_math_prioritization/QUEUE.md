@@ -1047,7 +1047,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted partials: published-input universal SU(2) corollary for reduced nonzero slopes of absolute value <7 with numerator 4 times an odd prime power; exact trefoil exclusions and published-input universal nonclosure sequence. Through-8 extension remains preprint/foundations-conditional; full classification and 15/4, 24/5 unresolved by these methods. [Accepted audit](attempts/2673/ACCEPTANCE.md). |  |
 | 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1041 | 2689 / KP-1.30 | Kirby Problem 1.30 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1042 | 2719 / KP-1.60 | Kirby Problem 1.60 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
