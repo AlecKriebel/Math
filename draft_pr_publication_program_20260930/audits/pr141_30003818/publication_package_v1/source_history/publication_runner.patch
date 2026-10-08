@@ -1,0 +1,122 @@
+--- prepared_runner.py
++++ verification/run_diagnostics.py
+@@ -1,4 +1,4 @@
+-"""Preparation-only portable diagnostics with bounded and reaped subprocesses."""
++"""Portable supporting diagnostics with bounded and reaped subprocesses."""
+ from pathlib import Path
+ from datetime import datetime, timezone
+ from hashlib import sha256
+@@ -8,6 +8,7 @@
+ import signal
+ import subprocess
+ import sys
++import time
+ 
+ root = Path(__file__).resolve().parent
+ parser = argparse.ArgumentParser(description=__doc__)
+@@ -39,30 +40,73 @@
+ def child(name, command, timeout=45):
+     authenticate_sources()
+     begin = datetime.now(timezone.utc).isoformat()
+-    process = subprocess.Popen(command, cwd=output, stdout=subprocess.PIPE, stderr=subprocess.PIPE, start_new_session=True)
+-    timed_out = False
++    entry = {"name": name, "command": command, "started_utc": begin,
++             "timeout_seconds": timeout, "timed_out": False}
++    journal.append(entry)
++    process = None
++    out, err = b"", b""
++    failure = None
+     try:
++        process = subprocess.Popen(command, cwd=output, stdin=subprocess.DEVNULL,
++                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE,
++                                   start_new_session=True)
++        entry["pid"] = process.pid
+         out, err = process.communicate(timeout=timeout)
+-    except subprocess.TimeoutExpired:
+-        timed_out = True
+-        os.killpg(process.pid, signal.SIGKILL)
+-        out, err = process.communicate()
+-    finish = datetime.now(timezone.utc).isoformat()
+-    try:
+-        os.killpg(process.pid, 0)
++    except BaseException as exc:
++        failure = exc
++        entry["timed_out"] = isinstance(exc, subprocess.TimeoutExpired)
++        entry["exception_type"] = type(exc).__name__
++    finally:
+         group_absent = False
+-    except ProcessLookupError:
+-        group_absent = True
+-    (output / (name + ".stdout")).write_bytes(out)
+-    (output / (name + ".stderr")).write_bytes(err)
+-    journal.append({"name": name, "command": command, "pid": process.pid,
+-                    "started_utc": begin, "finished_utc": finish, "returncode": process.returncode,
+-                    "timeout_seconds": timeout, "timed_out": timed_out,
+-                    "reaped": process.poll() is not None, "process_group_absent": group_absent,
+-                    "stdout_size": len(out), "stdout_sha256": sha256(out).hexdigest(),
+-                    "stderr_size": len(err), "stderr_sha256": sha256(err).hexdigest()})
+-    (output / "CHILD_JOURNAL.json").write_text(json.dumps({"actual_runner_PID": os.getpid(), "children": journal}, indent=2) + "\n")
+-    if process.returncode or timed_out or not group_absent or err:
++        if process is not None:
++            try:
++                os.killpg(process.pid, 0)
++            except ProcessLookupError:
++                group_absent = True
++            except OSError as exc:
++                entry["group_probe_error"] = type(exc).__name__
++            if process.returncode is None or not group_absent:
++                try:
++                    os.killpg(process.pid, signal.SIGKILL)
++                except ProcessLookupError:
++                    pass
++                except OSError as exc:
++                    entry["group_kill_error"] = type(exc).__name__
++                if process.returncode is None:
++                    try:
++                        out, err = process.communicate(timeout=5)
++                    except BaseException as exc:
++                        entry["reap_error"] = type(exc).__name__
++            deadline = time.monotonic() + 1
++            while True:
++                try:
++                    os.killpg(process.pid, 0)
++                    group_absent = False
++                except ProcessLookupError:
++                    group_absent = True
++                except OSError as exc:
++                    group_absent = False
++                    entry["group_probe_error"] = type(exc).__name__
++                if group_absent or time.monotonic() >= deadline:
++                    break
++                time.sleep(0.05)
++            entry.update(returncode=process.returncode,
++                         reaped=process.returncode is not None,
++                         process_group_absent=group_absent)
++        else:
++            entry.update(returncode=None, reaped=False,
++                         process_group_absent=False,
++                         constructor_outcome_unresolved=True)
++        entry.update(finished_utc=datetime.now(timezone.utc).isoformat(),
++                     stdout_size=len(out), stdout_sha256=sha256(out).hexdigest(),
++                     stderr_size=len(err), stderr_sha256=sha256(err).hexdigest())
++        (output / (name + ".stdout")).write_bytes(out)
++        (output / (name + ".stderr")).write_bytes(err)
++        (output / "CHILD_JOURNAL.json").write_text(json.dumps(
++            {"actual_runner_PID": os.getpid(), "children": journal}, indent=2) + "\n")
++    if failure is not None:
++        raise failure
++    if process.returncode or not group_absent or err:
+         raise RuntimeError("bounded diagnostic child failed: " + name)
+     authenticate_sources()
+     return json.loads(out)
+@@ -102,8 +146,8 @@
+     print(json.dumps({"role": spec["role"], "normal_and_optimized": "PASS", "false_guards_both_modes": "REJECTED"}), flush=True)
+ 
+ authenticate_sources()
+-result = {"schema": "pr141-portable-preparation-diagnostic-run/v1",
+-          "status": "PREPARATION_ONLY_PRIORITY_AND_PACKAGE_CLEARANCE_PENDING",
++result = {"schema": "pr141-portable-diagnostic-run/v1",
++          "status": "DIAGNOSTICS_COMPLETED_NO_PUBLICATION_APPROVAL",
+           "verdict": "PASS_PORTABLE_DIAGNOSTIC_REPRODUCTION",
+           "actual_runner_PID": os.getpid(), "UTC": datetime.now(timezone.utc).isoformat(),
+           "library_environment": versions, "stdlib_environment": standard_versions,

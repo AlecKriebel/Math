@@ -1,0 +1,17 @@
+# PR141 final program-three renderer source preparation
+
+This folder contains a pure in-memory renderer and compact synthetic controls, not an actual PR141 completion receipt or final progress proposal. Source-only preparation is complete; the overall PR141 case remains at an estimated 96%, with native publication/local acceptance and final bookkeeping pending.
+
+The existing current program files remain the actual completed PR140 snapshot: 24 completed cases, 12 publications, and PR140 at 100%. Their complete body/mode pins, the genuine previous PR140 final acceptance, and PR141's actual publication, tracker, original-head merge, clean package, mathematical, priority and original archive records are bound in CONTRACT.json. The published theorem and frozen TEX/PDF/ZIP are unchanged.
+
+A future genuine ROOT_ACTUAL_NATIVE_ACCEPTANCE_20261007.json must use schema pr141-root-actual-native-acceptance/v1 and status ACCEPTED_NATIVE_PUBLIC_AND_LOCAL. The renderer requires the concrete full body/mode pin, strict identity/count/lineage fields and the exact 16-role evidence_pins table. It verifies successful distinct native publish/install receipts, their source/plan/review/commit custody, closed children and released operation locks, and the exact 18 public and 32 local whole-body/mode inventories against the reviewed native plan. The native commit is derived from that real gate; no prospective receipt, hash or event is constructed.
+
+The future private accepted-state proposal will contain 25 completed cases of the dated 99 (25.25%), 13 publications and PR141 at 100%. It archives the complete prior current140 and last_completed140 field families before replacing them. Existing unrelated JSON facts and complete Markdown/log prefixes survive. The original author effort remains 1/5, its author turn ledger was present, the original native transition ledger was absent, and zero new central proof-search turns were added. The finite-k joint transform scope, diagnostic limitations, bounded priority and AI/unrefereed disclosure are retained; no absolute/exclusive priority or independent discovery is claimed.
+
+The transaction's own future final commit, operation PID, operation UTC and readback identities remain unset and are supplied by a separate authenticated actual final metadata receipt. Proposed false pending flags describe the accepted end state; they confer no authority before publication, local installation, full readbacks and owned barrier release. No intake after PR141 is performed.
+
+Author controls: 42 materially distinct conservation/rejection checks pass normally and with optimization. Positive controls exercise the private pure transformation helper in memory; no actual native gate or real PR141 postimage is fabricated. Actual closing-gate acceptance and actual final DATA replay remain untested until the real late input exists. These controls are source preparation, not an independent SOURCE/PLAN/DATA approval.
+
+Future manifest schema: pr141-final-program3-postimages/v1. Its source, genuinegate and freshgoal are full pins; preimages/postimages contain exactly three full pins. replay contains context, contract and input_pins (all complete dependencies), with a separate contract_pin. Publisher replay calls render(preimages, gate_pin, goal_pin, bodies, context, contract) and compares every returned byte body. bodies maps each pinned path to {body: bytes, mode: actual int}. The renderer performs no I/O.
+
+Actual preparation UTC: 2026-10-07T22:40:23.036044+00:00; actual sealer PID: 82730.

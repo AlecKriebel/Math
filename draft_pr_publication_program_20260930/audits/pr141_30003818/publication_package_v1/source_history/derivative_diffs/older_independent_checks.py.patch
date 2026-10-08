@@ -1,0 +1,10 @@
+--- original_submitted_attempt/review/independent_checks.py
++++ scaffold/sources/older_independent_checks.py
+@@ -94,5 +94,5 @@
+   S=sum((-z)**j/Q(factorial(j)) for j in range(M+1));bound=z**(M+1)/factorial(M+1)
+   ck('factorial_envelope',max(abs(exact_lo-S),abs(exact_hi-S))<=bound)
+ root=Path(__file__).resolve().parent
+-result={'artifact_sha256':sha256((root/'author_replay/JOINT_LAW.md').read_bytes()).hexdigest(),'independent_assertions':sum(C.values()),'categories':dict(C),'target_order_configurations':ordercases,'scope':'Exact exit-transform ODE/series identities, harmonic target-order probabilities, physical-time region partitions and certified Taylor envelopes. These finite controls do not replace the Brownian proof.'}
+-(root/'independent_results.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
++result={'artifact_sha256':sha256((root.parent/'reference'/'JOINT_LAW.md').read_bytes()).hexdigest(),'independent_assertions':sum(C.values()),'categories':dict(C),'target_order_configurations':ordercases,'scope':'Exact exit-transform ODE/series identities, harmonic target-order probabilities, physical-time region partitions and certified Taylor envelopes. These finite controls do not replace the Brownian proof.'}
++print(json.dumps(result))
