@@ -1048,7 +1048,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted partials: definite-form finite homological monodromy, exact FDTC two-slope gap, standard positive Hopf-tree ADE exclusion, and exact Floer-triangle/spectral-cancellation obstruction models. Corrected BGH source scope and obsolete Li-Ni route; general double-cover conjecture remains unresolved. [Accepted audit](attempts/2681/ACCEPTANCE.md). |  |
 | 1041 | 2689 / KP-1.30 | Kirby Problem 1.30 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1042 | 2719 / KP-1.60 | Kirby Problem 1.60 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1043 | 2776 / KP-2.28 | Kirby Problem 2.28 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
