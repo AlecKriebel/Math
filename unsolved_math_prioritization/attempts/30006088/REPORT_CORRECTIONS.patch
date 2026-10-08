@@ -1,0 +1,60 @@
+--- original/REPORT.md
++++ corrected/REPORT.md
+@@ -71,7 +71,7 @@
+ 
+ ## Approach 2. Campbell disintegration and the CLE successor kernel
+ 
+-Let Γ be a simple locally finite point process of loops in its natural cutoff topology. Its counting measure is C_Γ=Σ_{γ∈Γ}δ_γ. Then
++Let Γ be a simple locally finite point process of loops on standard Borel loop and configuration spaces, with σ-finite intensity ν. For example, a countable exhaustion by windows with finite expected loop count suffices. Almost-sure local finiteness alone does not imply this intensity hypothesis. Its counting measure is C_Γ=Σ_{γ∈Γ}δ_γ. Then
+ 
+ N_2=E[C_Γ⊗C_Γ]-Δ_*ν,  ν=E C_Γ,                                  (2)
+ 
+@@ -129,7 +129,7 @@
+ 
+ ### Proposition 5: the missing probabilistic hypothesis
+ 
+-On a finite positive-mass restriction B, normalize two measures μ and ν to probabilities, and let T be annulus modulus. Assume standard Borel spaces, so regular conditional probabilities exist. Then ν=f(T)μ if and only if ν's modulus law is f(t) times μ's modulus law and their conditional laws of the **embedded pair given modulus** agree almost everywhere on the ν-modulus law.
++On a common measurable restriction B of finite positive mass for both measures, normalize μ and ν to probabilities, and let T be the measurable annulus modulus. Let f be a nonnegative measurable function. Assume standard Borel spaces, so regular conditional probabilities exist. Then ν=f(T)μ if and only if ν's modulus law is f(t) times μ's modulus law and their conditional laws of the **embedded pair given modulus** agree almost everywhere on the ν-modulus law.
+ 
+ **Proof.** If dν=f(T)dμ, integrate a bounded measurable h(pair) by disintegration over T. The conditional kernel of μ is also a conditional kernel of ν, with the modulus law reweighted by f. Conversely, inserting the common kernel and the assumed modulus marginal density into the disintegration formula gives ∫h dν=∫h f(T)dμ. ∎
+ 
+@@ -150,7 +150,7 @@
+ H_κ(λ) = a sin((κπ/4)s)/(s sin(π(1-κ/4))),
+ r_κ(λ) = C/cos(πs).
+ 
+-For λ>0, s is either nonnegative real or positive imaginary; the displayed expressions have their removable values at s=0 and are real and positive. The prior transform reads
++Theorem 1.7 permits λ>3κ/32+2/κ−1; our λ>0 lies strictly in that range for 8/3<κ≤4. Its modulus convention is A_τ={z:e^(−2πτ)<|z|<1}. For λ>0, s is either nonnegative real or positive imaginary; the displayed expressions have their removable values at s=0 and are real and positive. The prior transform reads
+ 
+ E[exp(-2πλ τ_j)]=H_κ(λ) r_κ(λ)^j.                                (7)
+ 
+@@ -181,7 +181,7 @@
+ 
+ ## Approach 5. Passing a discrete pair measure to a continuum law
+ 
+-The current Glazman–Harel–Zelesko version (April 19, 2026), §1.2, distinguishes macroscopic-loop results from general CLE convergence; it cites established percolation and critical-Ising cases. The full critical-Ising loop-ensemble convergence is treated by Benoist–Hongler. These facts permit a special-model strategy but do not erase the source's broader scope or its two-loop density question. [GHZ, BH]
++The inspected Glazman–Harel–Zelesko v3 (April 19, 2026), §1.2, distinguishes macroscopic-loop results from general CLE convergence; it cites established percolation and critical-Ising cases. Benoist–Hongler, Theorems 1 and 6, prove nested CLE_3 convergence for critical Ising interfaces in square-grid discretizations of a simply connected Jordan domain with + boundary conditions and their specified loop-collection metric. This is a model- and boundary-specific result; it is not a theorem for arbitrary finite graphs or all boundary conditions. These facts permit a special-model strategy but do not erase the source's broader scope or its two-loop density question. [GHZ, BH]
+ 
+ ### Proposition 6: sufficient convergence criterion
+ 
+@@ -195,7 +195,7 @@
+ 
+ ### Exact counterexample to omitting uniform integrability
+ 
+-For m≥2, let Γ_m be empty with probability 1-m^(-2), and otherwise contain m distinct concentric circles of radii in [1,2]. Let Γ be empty. Then Γ_m→Γ in probability in any topology in which equality of configurations implies closeness. Its first intensity has total mass 1/m→0. But the ordered distinct-pair intensity has total
++For m≥2, let Γ_m be empty with probability 1-m^(-2), and otherwise contain m distinct concentric circles of radii in [1,2]. Let Γ be empty. Then Γ_m→Γ in probability in any topology in which equality of configurations implies closeness. Indeed, on any common probability space carrying these configurations, Σ_m P(Γ_m≠∅)<∞, so the first Borel–Cantelli lemma gives Γ_m=∅ eventually almost surely. Thus the finite-matching hypothesis also holds. Its first intensity has total mass 1/m→0. But the ordered distinct-pair intensity has total
+ 
+ m(m-1)/m² = 1-1/m →1,
+ 
+@@ -207,9 +207,9 @@
+ 
+ ## Validation and disposition
+ 
+-The handwritten arguments above use bijections, Tonelli/disintegration, an injective polynomial, a geometric series, and uniform integrability. The accompanying executable independently exhausts finite subcubic graphs, verifying the lattice identities and first fugacity coefficient with rational arithmetic. It also checks the central-charge conversion and geometric-resolvent algebra symbolically and verifies the rare-event moment formulas exactly. These checks do not certify the imported CLE theorems or prove any continuum claim.
+-
+-The executable uses explicit exceptions rather than Python assertions. It is run normally, with -O, and with -OO, and an intentional failure is required to fail in each mode. Each run verifies 1,482 finite-graph cases, six symbolic identities, and 60 rare-event moment identities. Numerical simulation is not used as evidence. The source PDFs were retrieved privately and are excluded from the authored deliverable.
++The handwritten arguments above use bijections, Tonelli/disintegration, an injective polynomial, a geometric series, and uniform integrability. The accompanying executable exhausts the configurations of five selected finite subcubic graphs, verifying the lattice identities and first fugacity coefficient with rational arithmetic. It also checks the central-charge conversion and geometric-resolvent algebra symbolically and verifies the rare-event moment formulas exactly. These checks do not certify the imported CLE theorems or prove any continuum claim.
++
++The executable uses explicit exceptions rather than Python assertions. It is run normally, with -O, and with -OO, and an intentional failure is required to fail in each mode. Each run verifies 1,482 single/pair identity checks across those five graphs, six symbolic identities, and 60 rare-event moment identities. Numerical simulation is not used as evidence. The source PDFs were retrieved privately and are excluded from the authored deliverable.
+ 
+ The strongest established results here are Propositions 1–6 and the elementary consequences (8)–(9) of a credited prior theorem. The missing core is an actual identification of the CLE/model annulus factor **and** its action on the complete embedded-pair law, together with any required lattice convergence. The five-approach bound has been reached. The appropriate disposition is scoped partial progress with an exact gap, not solved or verified prior resolution.
+ 
