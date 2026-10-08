@@ -1053,7 +1053,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1042 | 2719 / KP-1.60 | Kirby Problem 1.60 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1043 | 2776 / KP-2.28 | Kirby Problem 2.28 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1044 | 2794 / KP-2.46 | Kirby Problem 2.46 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1045 | 2843 / KP-3.45 | Kirby Problem 3.45 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1045 | 2843 / KP-3.45 | Kirby Problem 3.45 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Accepted partials: exact connected-binding genus/support norm, conditional horizontal-page bound, Boothby-Wang characteristic numbers, and fixed-book weighted capping bounds; unrestricted support genus remains unresolved. July 2026 connected-sum maximum theorem imported as preprint. Separate minimal optimization correction; original 44 false passes and native true-to-1 limitation disclosed. [Acceptance](attempts/2843/ACCEPTANCE.md). |  |
 | 1046 | 2845 / KP-3.47 | Kirby Problem 3.47 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1047 | 2945 / KP-4.69 | Kirby Problem 4.69 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
