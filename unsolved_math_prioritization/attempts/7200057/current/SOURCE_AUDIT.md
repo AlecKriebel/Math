@@ -1,0 +1,11 @@
+# Source and status audit
+
+The exact universal conjecture and its parity conventions are recoverable from primary scholarly sources. S1, arXiv:math/0608610v2, states the question in §4 and defines the odd-order almost-halving convention in §3. The locally retained PDF is the 25 October 2006 preprint, not the author-hosted January 2007 revision. Both were inspected for the relevant formulation. The original work subsequently appeared in Discrete & Computational Geometry in 2007.
+
+S4 expressly labels itself an unreviewed November 2024 preprint. Its Conjecture 1 has the universal quantifier, and its introduction says the improved examples do not themselves refute the conjecture. The indexed primary text of its 2025 journal successor S3 likewise contains this formulation and qualification. Direct journal bytes were not retrieved, and no hash or complete-proof inspection of that version is claimed. S5's 32-point halving lower bound likewise does not supply a global crossing-minimum certificate.
+
+S2 reports exact extremal values through n=27. Determining c_n and h_n separately does not logically prove that every minimizer of the first attains the second. That stronger statement requires an optimizer argument, such as the tightness criterion proved in the report.
+
+The searches included exact phrases concerning crossing-minimizing sets and halving maximization, later papers mentioning the conjecture, and candidate-refutation discussions. No verified complete resolution of the exact implication was located. An absence-of-results search is not proof of openness. Nearby claims about halving-line upper bounds or ordinary topological crossing numbers have different conclusions and are not adopted as resolutions of this target.
+
+`SOURCE_MANIFEST.json` records complete-PDF byte counts and SHA-256 hashes where local public-source bytes were obtained, alongside version and inspection scope. It also records failed direct retrievals, rather than hiding them behind a successful alternate version. None of the PDF bytes, extracted text, images, source coordinates or private records is included in this packet. All example coordinates in the checker and report are independently authored. The source titles, public URLs, hashes, byte counts and public manuscript status are verification metadata only.
