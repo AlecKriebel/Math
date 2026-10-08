@@ -9,7 +9,7 @@ N=0
 counts={}
 def ck(b,group):
  global N
- assert b,group
+ if not b:raise RuntimeError(group)
  N+=1;counts[group]=counts.get(group,0)+1
 
 def solve(a,b):
