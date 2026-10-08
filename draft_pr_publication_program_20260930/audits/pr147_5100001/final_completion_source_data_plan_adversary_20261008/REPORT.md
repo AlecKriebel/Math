@@ -1,0 +1,37 @@
+# Independent PR147 final source/data/plan adversarial review
+
+PASS for the exact sealed final source and concrete request/postimages/protections/canonical plan. No mandatory finding remains. This is pre-operation clearance; actual final publication, local program installation, complete readbacks and owned barrier release remain ROOT obligations.
+
+## Exact binding
+
+- Final operator:31924 bytes, SHA74eef283454986dcd2d8678465465fab4141896d8bb77b69068a1eda52ca69a8.
+- Inherited dependency:66660 bytes, SHA9eed88db21f9018eedf6cd48ba79f3ea87b4499ea118c6d2817f8cd4574cc8ca.
+- Actual request:91090 bytes, SHA823e73f249cc6fa223e328d8ce4dd71fede5af14fb88e6b0aa0a87973078ba7d.
+- Actual canonical plan:161874 bytes, SHA4df5635137fa3196ec02dc130a59a45fab2aed8bf7c2d9e9e7d2eeb543b341fe.
+- Actual final native gate:3679 bytes, SHA9441474e1a6d5491ec04509094601f9e86ff53d31fc8577c54681eab18fb18b4.
+
+## Source and execution boundary
+
+Read the complete final wrapper, renderer, request helper, after-operation authenticator and focused fixture suite, and the critical inherited file/path/custody/sparse-overlay/private-object/installation mechanisms. The wrapper rejects public-only native gates and requires genuine native public19/local32 acceptance, exact original-head/native ancestry, complete actual native source/plan/review/publish/install receipts and ROOT final custody. Only the three program files and explicit own-case audit artifacts can enter the final overlay. Published package/archive replay is excluded. The source preserves actual native32, original20, package90, real repository controls, R backend/source/cache and the protected C absences. It uses a private object workspace with native read-only alternate, refuses missing ancestry without fetch, and checks the entire parent-tree delta. Normal nonforce main push, full public body/path/mode/blob readback, current real HEAD/main guards and exact reviewed pins remain execution requirements.
+
+Installation is a separate exact three-file operation requiring a completed matching public receipt and ROOT confirmation of cooperative exclusion of other selected writers. The source records per-file replacement intents and owned inode custody; it does not claim whole-install atomicity or compare-and-swap. No automatic retry/recovery erases uncertain child or replacement history. The focused suite's40 normal and40 optimized checks and four real tiny fixture children were read/authenticated; unknown constructor outcomes remain unresolved. No redundant backend copies or large fixture suites were made for this review.
+
+## Actual evidence and independent reconstruction
+
+Independently authenticated all raw/START/EXECUTION records for192 native publisher,73 native installer and76 ROOT final-readback children,32 complete captured provider bodies/public path/mode/blob records,32 current local body/mode/Git identities, four direct-main observations and the exact19-path native difference. Preserved the single legitimate publisher pre-acquisition missing-object probe exit128; the installer and ROOT final children all exited0. Genuine native commit e9264db213becd7d7684c446cda4a0503773b988 has recorded sole parent e8621548039130d471eae99580a29b32925f3c8f and original head502de2f863a63ca205814da4194411847797a7c3.
+
+The actual final request has exactly16 keys,23 remote changed paths (program3 plus20 compact explicit audit artifacts),64 current file protection pins,20 protected absences and seven complete closed directories. Independently checked every selected raw postimage, all current body/mode pins and directory topology including both refs, R cache, original20, package90, current native24 attempt and postimages23. Authenticated32 successful request-observation child records and every captured selected remote preimage/path/mode/body plus both direct-main observations. Reconstructed the full canonical plan independently from the request and actual receipts; all161874 bytes match. Then replayed the sealed source's pure proposal deterministically with all dispatch primitives blocked; it matches the same bytes. No publish/install/operation entrypoint was called.
+
+## Metadata and preserved history
+
+The actual C program baseline remains25 completed/13 published. All prior JSON historical records and both full Markdown prefixes remain exact. New historical entries preserve all PR141 current/last-completed fields and point to its genuine final acceptance. The proposed arrays append exactly PR147, producing conditional26 of the unchanged dated99 eligible cases and14 publications. Original literal2/5 real author ledger is retained, no native transition ledger is invented, and zero new central proof-search turns are recorded. Source intake142–146 is retained as untouched status-only nonclaimed skips; next numeric cursor148 requires fresh ascending status intake only after actual final metadata acceptance.
+
+The scope is the literal printed Table2 k107 product, disproved by primitive convex N=4 trajectories on one continuous strictly nested confocal caustic for ellipse semiaxes4 and3, with exact values288/625 and625/1152. No corrected all-period theorem is claimed. Garcia–Reznik geometry/area identities and Ferudun DOI10.5281/zenodo.23075934 are credited. The separately unidentified2020 manuscript access limitation remains explicit; no absolute/exclusive priority, independent discovery, copying/collaboration inference or PR50 exception is asserted. Extensive AI use, unrefereed status and absence of conventional human peer review are disclosed. Package PDF/TeX/ZIP and90-file manifest hashes match the frozen package. Zenodo DOI10.5281/zenodo.23231145 and tracker row57 match actual evidence. Review history is honest: original R1 found provenance wording, it was repaired globally, then a new fresh R2 was clean; two clean reviews are never claimed as PR147's review history.
+
+The goal observation is a genuine dated active ROOT tool response after native acceptance and immediately before rendering. Persistent goal completion remains false. Future final metadata commit/PID/UTC/readback identities remain null in the conditional postimage and are delegated to a separate actual final receipt. The current metadata does not fabricate completion of that future transaction.
+
+## Resolved helper finding and limits
+
+H-F1 was found in the request helper before execution: native runner namespace was paired with final-folder raw custody. ROOT corrected the helper to fresh native-scoped custody while preserving final-folder request/postimages; the sole actual request run then succeeded. The sealed final operator was unaffected. The new after-operation authenticator10597/SHA27bd0e4618da26eb6fc0a9f0480c1534e17cb3fc0186f5898092c3ecb3789dbb was fully read and no mandatory defect was observed. Its future actual operation results are not certified by this review.
+
+The source preparation's50-member manifest is a dated preparation inventory; newly created actual private request/action outputs are additional intended private artifacts. Remote observations are captured actual reads, not a claim that remote state cannot subsequently change; execution guards must recheck. Mathematical proof and publication clearance rely on the separately authenticated prior math/priority/package reviews, not a new proof-search effort here. ROOT still must accept actual final public/local full readbacks and operation-barrier release. Review completion100%; best-guess PR147 workflow98% before that final operation.
