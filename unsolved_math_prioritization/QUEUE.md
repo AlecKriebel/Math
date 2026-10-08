@@ -1062,7 +1062,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1052 | 2980 / KP-4.104 | Kirby Problem 4.104 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1054 | 30006624 / OWR-14299911-026 | Cartan-Hadamard Theorem without Uniform Local Medianity | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 1054 | 30006624 / OWR-14299911-026 | Cartan-Hadamard Theorem without Uniform Local Medianity | 0.0900 | 5.5 | 3 | 2026 | unsolved | 5/5 |  | [Accepted partials](attempts/30006624/ACCEPTANCE.md): complete almost modular spaces are modular by summable descent; global approximate-median existence remains open. Five families exhausted; shared local-median budget with 30006622. |  |
 | 1055 | 30006636 / OWR-14299913-005 | Extending Trisection Invariants to Four-Dimensional TQFTs | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1057 | 3023 / KP-5.16 | Kirby Problem 5.16 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
