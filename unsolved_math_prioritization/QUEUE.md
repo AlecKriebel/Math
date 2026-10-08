@@ -985,7 +985,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 974 | 30001345 / OWR-4086-003 | Semicontinuity of the $M$-Number in Plane-Curve Deformations | 0.0919 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 975 | 30001405 / OWR-4196-003 | Homotopy Groups of Definable Quotients | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 976 | 30001518 / OWR-4412-008 | Existence of Perfect Billiard Retroreflectors | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 977 | 30001525 / OWR-4413-009 | Integral Skyline Bases for Symmetric-Group Cohomology | 0.0917 | 5.5 | 3 | 2010 | unsolved | 5/5 |  | Audited corrected partials: cyclic skyline basis for S_n, n<=7, in all degrees; exact-order-8 third-Bockstein skyline family on S8. Full S8 and arbitrary-n bases unresolved after five approaches; no novelty claim. Compatible-lift and column-width clarifications; 20 assert guards replaced, with genuine optimized mutant rejection. [Corrected proof](attempts/30001525/independent_audit/patched/PROOF.md); [audit](attempts/30001525/independent_audit/INDEPENDENT_AUDIT.md); [portable checks](attempts/30001525/README.md). |  |
 | 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
