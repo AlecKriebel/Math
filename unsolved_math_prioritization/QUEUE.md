@@ -1073,7 +1073,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1063 | 5500054 / AMR-054-0054 | Traveling Salesman Problem in Solid Grid Graphs | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1064 | 7200057 / AMR-071-0057 | For each arrangement of points in which the rectilinear crossing number is minimized, is the number of halving lines maximized | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | exhausted | 5/5 |  | Audited partial results: exact distance and stopped radial identities, inversion nonsynchrony, sufficient off-diagonal stationary criterion, product-uniform rejection, and circular auxiliary moments. Both bounded-domain and disk-exterior questions remain unresolved; finite deterministic controls and auxiliary jumps do not establish Brownian nonconvergence. No novelty claim. See [report](attempts/9500005/author/REPORT.md) and [audit](attempts/9500005/audit/AUDIT.md). |  |
 | 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
