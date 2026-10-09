@@ -39,3 +39,10 @@ Estimated completion of candidate scouting: **100%**. This percentage refers sol
 - Recorded the finite belief-state recovery recursion and the collapse of unbounded restoration as a guard against superficial novelty.
 - Final deliverables: README.md (candidate dossier), BASELINE_CHECKS.md (retained proof artifacts), this log.
 - No researcher outreach, new automation, release, or DOI. Further research is not automatically started by this scouting task.
+
+## 2026-10-09T15:07:16.960181-07:00 — Publication checkpoint
+Candidate-scouting completion remains **100%**; remote publication is incomplete.
+
+- Scoped dossier committed on main as 3cc436559.
+- Ordinary non-forced push to origin main was rejected: the remote contains work absent locally (fetch-first rejection), consistent with the pre-existing divergence.
+- Did not force push, rebase, reset, switch branches, or incorporate unrelated working changes. Retained the complete local dossier and this publication receipt.
