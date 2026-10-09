@@ -90,7 +90,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | unsolved | 3/5 |  | 2026-09-30: Separate review passed finite-etale-product exclusion and the obstruction to a triple Kodaira fibration having a normal ample product image, plus numerical necessities. Nonnormal or nonample images remain unresolved.48002author and6731independent controls; three bounded routes. Related30003293 overlaps existence only, not its separate irregularity question. Draft PR: https://github.com/AlecKriebel/Math/pull/63. |  |
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
