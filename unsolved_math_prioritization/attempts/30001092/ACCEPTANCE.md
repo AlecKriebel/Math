@@ -1,0 +1,17 @@
+# Acceptance: scoped partial results, full target unresolved
+
+Accept the unchanged authored packet and independent audit for 30001092 / OWR-2487-003. The full source question remains unresolved by this work at 5/5 substantive approaches. There is no sixth construction route, no substantive correction, and no novelty, exhaustive-priority or present-day-openness claim.
+
+Read the complete authored/SCOPED_RESULTS.md, audit/AUDIT_REPORT.md and audit/CONTEXTUAL_SUPPLEMENT.md, together with authored/EXACT_STATEMENT_AND_SOURCES.md and audit/SCOPE_ACCEPTANCE.md. The 11 authored input files and separate public audit seal are preserved byte-for-byte. The supplement supplies contextual details and source attribution; it changes no accepted conclusion or hypothesis.
+
+Acceptance retains the exact source category: essentially free p.m.p. actions of one countable group on standard atomless probability spaces, without a global ergodicity assumption. Inessentiality uses a Borel complete section, invariant partition pieces and equality of restricted relations, modulo invariant null sets; a complete section need not have full measure. Smooth connectors and invariant slicings remain inessential.
+
+The fixed-splitting support criterion, recurrence, countable mixtures and non-FI ergodic extraction retain their exact measurability and aperiodicity hypotheses. This does not establish FI for almost every ergodic component of an FI action or select varying decompositions. The extension implication is FI extension implies FI factor under locally orbit-bijective morphisms; its contrapositive transfers non-FI upward. No FI-upward transfer or common-product ergodicity is asserted.
+
+Finite-index induction and the finite-normal-quotient reduction retain their stated directions. Reverse transport is established for a split finite direct factor only. These operations need a seed and do not construct one. Infinite-index counting-measure induction cannot simply be normalized to probability.
+
+The conditional integer-cocycle FI theorem requires a countable nonamenable group Gamma, Hom(Gamma,Z)=0, a free ergodic p.m.p. action on a standard atomless probability space, and Z-cocycle superrigidity of that action. TW arXiv:2410.11754v3 Lemma 5.1 requires ergodicity and supplies a full-domain aperiodic amenable free factor. Connes–Feldman–Weiss supplies its generator without requiring factor ergodicity. The full-domain aperiodic generator and countable measurable cocycle extension are indispensable. No action realizing a mixed pair is supplied.
+
+The Peterson–Sinclair obstruction concerns the stronger U_fin-superrigid Bernoulli route. It is not a Z-only theorem for arbitrary actions. Strong-treeability exclusions use aperiodicity and an essential measured decomposition, not ordinary group indecomposability or merely one treeable action.
+
+Mathematical acceptance rests on authored proofs and the independent audit, relative to precisely identified imported interfaces. No mathematical computation, sampled orbit certificate or computational proof certification is claimed. Publication software performs document/scope/integrity controls only. Historical source retrieval, hashes, page inspection and the audit-stage statements about execution are preserved as historical evidence, not fresh publication-stage source or proof replays. No source bodies or excluded private material are delivered. No QUEUE change is included.
