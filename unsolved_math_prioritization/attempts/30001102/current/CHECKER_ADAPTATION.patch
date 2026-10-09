@@ -1,0 +1,26 @@
+--- a/independent_checks.py
++++ b/independent_checks.py
+@@ -146,16 +146,19 @@
+ def expect_failure(operation, label):
+     try:
+         operation()
+-    except AuditFailure:
++    except AuditFailure as error:
++        reasons = {'positive_only': 'layer reconstruction', 'reverse_negative': 'layer reconstruction', 'omit_base': 'mutated ring', 'omit_chains': 'mutated ring', 'reverse_implication_shift': 'mutated ring', 'floor_instead_of_ceiling': 'floor-rounded assignment infeasible', 'omit_bipartition_sign_change': 'cover min fails', 'remove_subunit_layer': 'subunit removal infeasible', 'replace_hull_with_relaxation': 'LP point outside mixed hull', 'replace_hull_with_mixed_set': 'hull point need not be mixed integral', 'explicit_exception_control': 'explicit guard remains live'}
++        need(label in reasons and str(error) == reasons[label], 'unintended rejection reason')
+         return label
+     raise AuditFailure('mutant survived: ' + label)
+ 
+ 
+ def main():
+-    need(os.geteuid() != 0, 'nonroot execution is required')
+-    root = Path(__file__).resolve().parent / 'readonly_snapshot'
++    need(os.getuid() == os.geteuid() == 1000, 'UID=EUID=1000 required')
++    need(sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode, '-I -S -B required')
++    root = Path(__file__).resolve().parent
+     for name, expected in [
+-        ('CANDIDATE_PROOF.md', '8b492c49dbe0b7bd337ea183a51d44a345613c69ff38c6c81d613d7c0b9e167a'),
++        ('CURRENT_PROOF.md', 'c90d5a287718b26026cbee07f77d8710807a2c7a85f2057a1b7d00f5bb72ce32'),
+         ('exact_checks.py', 'd05fb84dff9f21e40bc66611a5b537cea4cd0b71db7c8d71f852d2b7865efb63')]:
+         path = root / name
+         need(hashlib.sha256(path.read_bytes()).hexdigest() == expected, 'snapshot hash mismatch')
