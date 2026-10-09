@@ -46,3 +46,13 @@ Candidate-scouting completion remains **100%**; remote publication is incomplete
 - Scoped dossier committed on main as 3cc436559.
 - Ordinary non-forced push to origin main was rejected: the remote contains work absent locally (fetch-first rejection), consistent with the pre-existing divergence.
 - Did not force push, rebase, reset, switch branches, or incorporate unrelated working changes. Retained the complete local dossier and this publication receipt.
+
+## 2026-10-09T15:48:30.333290-07:00 — Follow-up: depth of a new research tree
+Completion estimate for this comparative assessment: **100%**. No percentage is assigned to inventing a field; no novel structural result has yet been established.
+
+- User asked which candidate could be developed furthest into a new research tree.
+- Two fresh independent reviewers agreed: bounded-undo experimentation is the strongest candidate for a distinctive connected theory; finite reservoirs has the strongest route into established deep science; temporary helpers remains the easiest research laboratory.
+- Defined a conditional ladder from finite classification through structural laws, resource tradeoffs, composition, locality, and robustness. Every later stage must reuse earlier mathematics rather than merely add a familiar application area.
+- Refreshed primary-source comparison: restorable-system testing explicitly permits save/load; ordinary-action restoration of an unknown original state is distinct, but novelty remains unverified.
+- Saved DEPTH_ASSESSMENT.md with decision gates and failure conditions. No new program or automation started.
+- Existing remote divergence remains unresolved; retain scoped local checkpoints and use no force push or unrelated integration.
