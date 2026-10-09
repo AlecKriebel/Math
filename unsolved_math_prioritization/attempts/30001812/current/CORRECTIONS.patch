@@ -1,0 +1,125 @@
+--- a/COMPARISON_PROOF.md
++++ b/COMPARISON_PROOF.md
+@@ -14,12 +14,12 @@
+ 
+ ## Explicit source interfaces
+ 
+-1. Crowley–Löh, *Functorial semi-norms on singular homology and (in)flexible manifolds*, Theorem 4.2 and Corollary 3.2: G is a finite functorial seminorm. Rational classes are scalar images of fundamental classes, and every real class is a finite real linear combination of rational classes. Author manuscript, pp. 7–9: https://loeh.app.uni-regensburg.de/preprints/funcseminorms.pdf .
+-2. Löh–Moraschini, *Simplicial volume via normalised cycles*, arXiv:2003.02584v2, Lemmas 3.2–3.3: the rational-coefficient chain operator
++1. Crowley–Löh, *Functorial semi-norms on singular homology and (in)flexible manifolds*, Theorem 4.2 and Corollary 3.2: G is a finite functorial seminorm. On a path-connected target, rational classes are scalar images of connected-manifold fundamental classes. For an arbitrary target, split a class over its finitely many relevant path components and use a finite sum of such images. Every real class is a finite real linear combination of rational classes. Author manuscript, pp. 7–9: https://loeh.app.uni-regensburg.de/preprints/funcseminorms.pdf .
++2. Löh–Moraschini, *Simplicial volume via normalised cycles*, arXiv:2003.02584v2, Lemmas 3.2–3.3 state the result over real coefficients for the chain operator
+ 
+        S_n(sigma) = 1/(n+1)! sum_{pi in S_(n+1)} sign(pi) sigma o pi
+ 
+-   is chain homotopic to the identity, has operator norm at most 1, and satisfies partial_j(S_n c)=0 for every j when c is a cycle. This is the chain-level interface used here. Their Connes–Consani equality is not asserted to equal the present generated seminorm. https://arxiv.org/abs/2003.02584v2 .
++   is chain homotopic to the identity over R, has operator norm at most 1, and satisfies partial_j(S_n c)=0 for every j when c is a cycle. Its displayed formula also preserves rational chains. Rational output and preservation of the real homology class are exactly what this proof needs; no separate rational chain-homotopy claim is required. Their Connes–Consani equality is not asserted to equal the present generated seminorm. https://arxiv.org/abs/2003.02584v2 .
+ 3. Gaifullin's coloured realization, in the explicit form stated by Lafont–Pittet, *Comparing seminorms on homology*, pp. 376–377: if P is an oriented closed regularly (n+1)-coloured n-dimensional pseudomanifold with K top simplices, there are a finite cover pi:N→T_n of the Tomei manifold and a map h:N→P, with h_*[N]=q[P], q>0, and
+ 
+        degree(pi)/q = K/2^n.
+@@ -49,7 +49,7 @@
+ 
+     ||c||_1 < p_X(beta)+epsilon.
+ 
+-Here is an exact justification for rational coefficients. Start with a real near-minimal c_0 and a finite real 4-chain b_0 with c_0-z=partial b_0. On the finite union of the involved simplex supports, the equation c-z=partial b is an affine linear system with rational coefficients and rational right-hand side. A nonempty real solution set of such a system has a rational point and a rational basis for its direction space, by Gaussian elimination over Q. Thus rational solutions are dense in it. Choose a rational solution close enough to (c_0,b_0) to retain the strict norm bound. The equation itself, and therefore the represented class, remain exact.
++Here is an exact justification for rational coefficients. Start with a real near-minimal c_0 and a finite real 4-chain b_0 with c_0-z=partial b_0. Use the finite 3-simplex support containing c_0, z, and every face in partial b_0, together with the finite 4-simplex support of b_0. On these supports, the equation c-z=partial b is an affine linear system with rational coefficients and rational right-hand side. A nonempty real solution set of such a system has a rational point and a rational basis for its direction space, by Gaussian elimination over Q. Thus rational solutions are dense in it. Choose a rational solution close enough to (c_0,b_0) to retain the strict norm bound. The equation itself, and therefore the represented class, remain exact.
+ 
+ ### 3. Coloured realization without subdivision
+ 
+@@ -61,7 +61,7 @@
+ 
+ Fix i and a singular 2-simplex tau. The equation partial_i(mc')=0 says that the number of positive copies whose ith face is tau equals the number of negative such copies. Pair these occurrences. Identify each matched pair of faces by the identity in their standard face coordinates. Do this separately for every i and tau.
+ 
+-Each face is paired exactly once. Paired faces induce opposite orientations because they have the same omitted index and opposite tetrahedron signs. All gluings preserve vertex colours. Hence the quotient P is an oriented closed, regularly 4-coloured, finite face-paired 3-dimensional Delta-pseudomanifold. No tetrahedron is subdivided. If its dual graph has several components, retain their disjoint union. The map to X descends continuously because paired singular face maps are literally equal. With the specified orientations, its top cycle pushes forward exactly to mc'. Thus, writing P as the disjoint union of its components P_l,
++Each face is paired exactly once. Paired faces induce opposite orientations because they have the same omitted index and opposite tetrahedron signs. All gluings preserve vertex colours. Hence the quotient P is an oriented closed, regularly 4-coloured, finite face-paired 3-dimensional Delta-pseudomanifold. No tetrahedron is subdivided. Here a Delta-pseudomanifold means a finite pure Delta-complex with every codimension-one open face incident to exactly two top-simplex faces, coherent orientations, and connected top-simplex adjacency graph on each component; normality of lower links is not required. Colour-preserving gluings cannot identify two vertices of one tetrahedron or two different faces of that tetrahedron having distinct colour sets. They thus introduce no self-folding of a simplex. Form the quotient separately on each dual-graph component and retain the disjoint union. Each component is strongly connected, and its signed top-simplex chain is its integral fundamental cycle. The map to X descends continuously because paired singular face maps are literally equal. With the specified orientations, its top cycle pushes forward exactly to mc'. Thus, writing P as the disjoint union of its components P_l,
+ 
+     sum_l g_*[P_l]_R = m beta,
+     K := sum_l K_l = sum_sigma |n_sigma| = m||c'||_1.
+--- a/MATHEMATICAL_REPORT.md
++++ b/MATHEMATICAL_REPORT.md
+@@ -87,7 +87,7 @@
+ 
+ Proof. The one-term expression bounds G_X(alpha) above by |a|||M||, while functoriality bounds it below by ||alpha||_1. QED.
+ 
+-For connected CW targets, the bounded-cohomology mapping theorem shows that a map inducing an isomorphism on fundamental groups is isometric on ordinary real homology seminorms. Thus such a manifold realization is sufficient. This is the exact mechanism in Crowley–Löh Proposition 4.3. Their Theorem 3.1(2), which supplies the needed fundamental-group-preserving realization, has the explicit hypothesis d>=4. Thom realization alone has no such isometry conclusion. The cited source does not permit dropping that dimension hypothesis.
++For connected CW targets, the bounded-cohomology mapping theorem shows that a map inducing an isomorphism on fundamental groups is isometric on ordinary real homology seminorms. Thus such a manifold realization is sufficient. This is the exact mechanism in Crowley–Löh Proposition 4.3. Their Theorem 3.1(2), which supplies the needed fundamental-group-preserving realization, assumes d>=4 and that the connected CW target is homotopy equivalent to a CW-complex with finite 2-skeleton. Thom realization alone has no such isometry conclusion. The cited source does not permit dropping that dimension hypothesis.
+ 
+ Here is a concrete test of the weaker proposal that preserving the mapped class controls cost. Fix oriented closed hyperbolic3-manifolds M and H. For each positive integer r there is a degree-one pinch map
+ 
+@@ -113,7 +113,7 @@
+ 
+ The distinction between normalized chains and manifold cycles remains. The factorial loss has been removed, while the permutahedral realization cost remains larger than 1.
+ 
+-The efficient virtual-domination theorem of Derbez–Liu–Sun–Wang, *Positive simplicial volume implies virtually positive Seifert volume for 3-manifolds*, Geometry & Topology21(2017) 3159–3190, Theorem 1.9, has a target-independent but source-dependent factor c(M). Its statement does not give factor 1, and its targets are already3-manifolds. It cannot supply the missing efficient realization of an arbitrary third-homology class. https://msp.org/gt/2017/21-5/gt-v21-n5-p13-p.pdf .
++The efficient virtual-domination theorem of Derbez–Liu–Sun–Wang, *Positive simplicial volume implies virtually positive Seifert volume for 3-manifolds*, Geometry & Topology21(2017) 3159–3190, Theorem 1.9, starts with a closed oriented hyperbolic source 3-manifold M and has a target-independent but source-dependent factor c(M). Its statement does not give factor 1, and its targets are already3-manifolds. It cannot supply the missing efficient realization of an arbitrary third-homology class. https://msp.org/gt/2017/21-5/gt-v21-n5-p13-p.pdf .
+ 
+ ## 5. Approach4: singular links as potential obstructions
+ 
+--- a/check_coloured_cycles.py
++++ b/check_coloured_cycles.py
+@@ -4,6 +4,10 @@
+ from fractions import Fraction
+ from itertools import permutations
+ import json
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError(message)
+ 
+ def sign(p):
+     return (-1) ** sum(p[i] > p[j] for i in range(len(p)) for j in range(i+1,len(p)))
+@@ -31,18 +35,18 @@
+     return {s:a for s,a in out.items() if a}
+ 
+ original=boundary({tuple(range(5)):Fraction(1)})
+-assert not boundary(original)
++require(not boundary(original), 'Diagnostic failed: not boundary(original)')
+ normalized=sym(original)
+-assert not boundary(normalized)
+-assert all(not face(normalized,i) for i in range(4))
+-assert sum(map(abs,normalized.values())) == sum(map(abs,original.values())) == 5
++require(not boundary(normalized), 'Diagnostic failed: not boundary(normalized)')
++require(all(not face(normalized,i) for i in range(4)), 'Diagnostic failed: all(not face(normalized,i) for i in range(4))')
++require(sum(map(abs,normalized.values())) == sum(map(abs,original.values())) == 5, 'Diagnostic failed: sum(map(abs,normalized.values())) == sum(map(abs,original.values())) == 5')
+ m=24
+ copies=[]
+ for s,a in normalized.items():
+     n=a*m
+-    assert n.denominator==1
++    require(n.denominator==1, 'Diagnostic failed: n.denominator==1')
+     copies += [(s,1 if n>0 else -1)]*abs(n.numerator)
+-assert len(copies)==120
++require(len(copies)==120, 'Diagnostic failed: len(copies)==120')
+ parent=list(range(4*len(copies)))
+ def root(x):
+     while parent[x]!=x:
+@@ -59,22 +63,22 @@
+     for a,(s,orientation) in enumerate(copies):
+         by_face[s[:i]+s[i+1:]][orientation].append(a)
+     for f,sides in by_face.items():
+-        assert len(sides[1])==len(sides[-1])
++        require(len(sides[1])==len(sides[-1]), 'Diagnostic failed: len(sides[1])==len(sides[-1])')
+         for a,b in zip(sides[1],sides[-1]):
+             pairs.append((i,a,b))
+-            assert copies[a][1]==-copies[b][1]
++            require(copies[a][1]==-copies[b][1], 'Diagnostic failed: copies[a][1]==-copies[b][1]')
+             for j in range(4):
+                 if i!=j:
+-                    assert copies[a][0][j]==copies[b][0][j]
++                    require(copies[a][0][j]==copies[b][0][j], 'Diagnostic failed: copies[a][0][j]==copies[b][0][j]')
+                     union(4*a+j,4*b+j)
+-assert len(pairs)==240
++require(len(pairs)==240, 'Diagnostic failed: len(pairs)==240')
+ colors=defaultdict(set)
+ for k in range(4*len(copies)):
+     colors[root(k)].add(k%4)
+-assert all(len(c)==1 for c in colors.values())
+-assert Fraction(len(copies),m)==5
+-assert Fraction(24,8)==3
+-assert Fraction(1,8)*8==1
++require(all(len(c)==1 for c in colors.values()), 'Diagnostic failed: all(len(c)==1 for c in colors.values())')
++require(Fraction(len(copies),m)==5, 'Diagnostic failed: Fraction(len(copies),m)==5')
++require(Fraction(24,8)==3, 'Diagnostic failed: Fraction(24,8)==3')
++require(Fraction(1,8)*8==1, 'Diagnostic failed: Fraction(1,8)*8==1')
+ out={
+  'status':'PASS',
+  'test':'symmetrized boundary of an abstract4-simplex',
