@@ -1,0 +1,178 @@
+{
+  "analytic_constants": {
+    "A": "2475/4754",
+    "H": 96,
+    "K": 226,
+    "boundary_identities": 342,
+    "distance_bounds": 114,
+    "limitation": "Exact constant and factor controls, not executable verification of Jensen or Harnack.",
+    "pass": true
+  },
+  "arithmetic": "exact integers and fractions; standard library only",
+  "arithmetic_controls": {
+    "degrees": "0..9 at interval endpoints; 0..6 otherwise",
+    "larger_denominator_points": [
+      "91/100",
+      "101/110",
+      "9001/10000",
+      "9499/10000"
+    ],
+    "parameter_scope": "all reduced target rationals q<=50 plus four listed larger-denominator points",
+    "pass": true,
+    "polynomial_evaluations": 314862,
+    "polynomial_families": 314,
+    "reduced_parameters": 44,
+    "threshold_checks": 1884
+  },
+  "assertions_enabled": true,
+  "author_replay": {
+    "assertions_enabled": true,
+    "byte_exact_output_match": true,
+    "output_sha256": "70fbfebc2c399f858728a6771903efdf0068e6d1fdf3779b781111050c3fd652",
+    "pass": true,
+    "returncode": 0
+  },
+  "collision_controls": {
+    "all_positive_thresholds_for_each_tested_family": true,
+    "all_threshold_reason": "count is constant between critical values; RHS increases; infinite tail checked by limit",
+    "bin_partitions": 90,
+    "critical_thresholds": 89555,
+    "families": 63,
+    "ordered_binary_pairs": 86870,
+    "pass": true,
+    "word_lengths": [
+      1,
+      8
+    ]
+  },
+  "corruption_controls": [
+    {
+      "mutation": "edited_proof",
+      "rejected": true
+    },
+    {
+      "mutation": "missing_file",
+      "rejected": true
+    },
+    {
+      "mutation": "extra_source_file",
+      "rejected": true
+    },
+    {
+      "mutation": "manifest_change",
+      "rejected": true
+    },
+    {
+      "mutation": "symlink_entry",
+      "rejected": true
+    }
+  ],
+  "frozen_integrity": {
+    "archive_checked": true,
+    "archive_sha256": "443d5dc030e08c32e7a758c0eb1f5ab63eb8673f0a4dfd13930f2a60f568f228",
+    "manifest_sha256": "913457490b8f076c4a5035e6bcb32016a69dfe1a6c97a56ad396fc16882e23cf",
+    "pass": true,
+    "safe_file_count": 8
+  },
+  "frozen_integrity_after_replay": {
+    "archive_checked": true,
+    "archive_sha256": "443d5dc030e08c32e7a758c0eb1f5ab63eb8673f0a4dfd13930f2a60f568f228",
+    "manifest_sha256": "913457490b8f076c4a5035e6bcb32016a69dfe1a6c97a56ad396fc16882e23cf",
+    "pass": true,
+    "safe_file_count": 8
+  },
+  "lacunary_controls": {
+    "assignments": 4443,
+    "gamma": "1233098745477727276595884117/28373059581825909092198628039",
+    "limitation": "Only selected coefficient blocks are enumerated; conditioning extension is mathematical.",
+    "maximum_target_degree": 110,
+    "pass": true,
+    "selected_digit_families": 17
+  },
+  "limits": [
+    "Finite enumeration does not prove the target or its all-degree partial theorems.",
+    "Jensen, maximum principle, and Harnack are verified by mathematical audit, not this script.",
+    "Public-source bytes are separately corroborated; this offline script does not access the web."
+  ],
+  "negative_controls": [
+    {
+      "detected": true,
+      "mutation": "remove_modulus",
+      "witness": "Four negative polynomials at d=1; exp(.01)<=100/99<4."
+    },
+    {
+      "detected": true,
+      "mutation": "allow_d_zero_strict_target",
+      "witness": "The zero polynomial gives 1, whereas exp(0)=1."
+    },
+    {
+      "detected": true,
+      "mutation": "change_strict_threshold_to_closed",
+      "witness": "At x=9/10,d=1,t=1/10: strict count 1; closed count 3."
+    },
+    {
+      "detected": true,
+      "mutation": "replace_ternary_alphabet",
+      "witness": "Nine ternary versus four signed-binary vectors at d=1."
+    },
+    {
+      "detected": true,
+      "mutation": "drop_q_greater_than_two_for_injectivity",
+      "witness": "At 1/2 the different ternary polynomials x and 1-x evaluate equally."
+    },
+    {
+      "detected": true,
+      "mutation": "claim_binary_difference_map_is_injective",
+      "witness": "For three bits, 56 distinct ordered pairs produce only 26 nonzero ternary differences."
+    },
+    {
+      "detected": true,
+      "mutation": "halve_maximum_difference_multiplicity",
+      "witness": "Difference vector (1,0,...,0), length 8, has exactly 128 realizations, not at most 64."
+    },
+    {
+      "detected": true,
+      "mutation": "use_L21_with_positive_gamma",
+      "witness": "At 19/20 the proposed L=21 gamma is negative; its required positive threshold disappears."
+    },
+    {
+      "detected": true,
+      "mutation": "drop_product_separation",
+      "witness": "(1-x)^2 has coefficient -2."
+    },
+    {
+      "detected": true,
+      "mutation": "drop_origin_factor_from_localization",
+      "witness": "P=x^10000 at x=9/10 has f=1 and delta=1, but violates the lower bound with a^d deleted."
+    },
+    {
+      "detected": true,
+      "mutation": "claim_fewer_than_226_zeros_without_removing_origin",
+      "witness": "P=x^10000 has 10000 zeros at the origin; Jensen must be applied to f, not P."
+    },
+    {
+      "detected": true,
+      "mutation": "apply_Harnack_on_r_instead_of_zero_free_R",
+      "witness": "Positive harmonic h(z)=Re((R+z)/(R-z)) has h(b)/h(0)=96, above the r-disk factor 97/2."
+    },
+    {
+      "detected": true,
+      "mutation": "claim_bound_denominator_independent_by_prefactor",
+      "witness": "(q/Q)^d=5^d grows without bound; this refutes the estimate manipulation, not the target."
+    },
+    {
+      "detected": true,
+      "mutation": "read_probability_as_count",
+      "witness": "The missing conversion factor is 3^(d+1); at d=44,m=3 the actual bound is 3^42."
+    }
+  ],
+  "problem_id": 30003114,
+  "product_controls": {
+    "maximum_number_of_factors": 8,
+    "multiplicity_check": "all Taylor coefficients through the asserted order; leading coefficient exact",
+    "pass": true,
+    "superincreasing_sequences": 46
+  },
+  "target_resolved": false,
+  "verdict": "PASS_FOR_SCOPED_PARTIALS"
+}
