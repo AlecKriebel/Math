@@ -204,7 +204,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete characteristic-zero counterexample to the arbitrary-ideal finite-type Nullstellensatz, with nonempty actual-link zero set. Full-twist restriction defines a character of the entire finite-type algebra separating the vanishing invariant from the ideal radical. Separate source and singular-resolution audit passed; 8460 author and 20980 independent controls. Separate linking-number-generated ideal question remains excluded; priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/177. |  |
 | 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
