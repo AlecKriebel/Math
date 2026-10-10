@@ -1046,7 +1046,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 1038 | 2616 / KOU-21.107 | Kourovka Notebook Problem 21.107 | 0.0900 | 5.5 | 2 | 2026 | claimed_solved | 1/5 |  | Full negative ZFC proof accepted by two independent audits: countable Hausdorff nondiscrete Boolean group with standard free-ultrafilter Mathias topology, explicit countably infinite dense partition, and no expansive disjoint finite-block sequence. No special ultrafilter, priority, human peer-review or formal-verification claim. [Acceptance](attempts/2616/ACCEPTANCE.md). |  |
 | 1039 | 2673 / KP-1.14 | Kirby Problem 1.14 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1041 | 2689 / KP-1.30 | Kirby Problem 1.30 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
