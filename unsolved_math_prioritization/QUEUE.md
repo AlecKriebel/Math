@@ -776,7 +776,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 765 | 2235 / EP-655 | Erdős Problem #655 | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 766 | 2515 / KOU-21.6 | Kourovka Notebook Problem 21.6 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 767 | 2548 / KOU-21.39 | Kourovka Notebook Problem 21.39 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 768 | 2551 / KOU-21.42 | Kourovka Notebook Problem 21.42 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 768 | 2551 / KOU-21.42 | Kourovka Notebook Problem 21.42 | 0.1020 | 5.5 | 2 | 2026 | already_solved | 1/5 |  | 2026-10-05: Credited prior-literature consequence (1/5): every three-generated torsion-free nilpotent group of class three is self-similar, giving a negative answer to KOU-21.42. Dekimpe-Igodt-Pouseele (2003) positive-grading theorem imported; original proof unavailable, explicit Dekimpe-Dere restatement and Cornulier rational descent checked. Direct arbitrary-lattice contraction-to-faithful-tree bridge independently audited PASS; 4,455 author and 6,567 independent exact controls. No novelty, original-2003-proof audit, or editorial acceptance claimed; October 2026 Notebook still unmarked. Package: attempts/2551/. |  |
 | 769 | 2560 / KOU-21.51 | Kourovka Notebook Problem 21.51 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 770 | 2599 / KOU-21.90 | Kourovka Notebook Problem 21.90 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 771 | 2604 / KOU-21.95 | Kourovka Notebook Problem 21.95 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
