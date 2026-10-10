@@ -451,7 +451,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 440 | 30003786 / OWR-16160-016 | Embedding Independence of Congruence Subgroups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 441 | 30003840 / OWR-16167-010 | Conjugacy in Braided Thompson Groups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 442 | 6800004 / AMR-067-0004 | Biorthogonal curvature | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 443 | 6800009 / AMR-067-0009 | Bi-invariant metrics and multiplicity of conjugate points | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 443 | 6800009 / AMR-067-0009 | Bi-invariant metrics and multiplicity of conjugate points | 0.1286 | 6.0 | 3 | 2018 | already_solved | 1/5 |  |  |  |
 | 444 | 6800014 / AMR-067-0014 | Ricci pinching on solvable Lie groups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 445 | 30001005 / OWR-2045-001 | Mean-Curvature Flow from Isolated Conical Singularities | 0.1282 | 7.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 446 | 10000083 / AMR-099-0083 | Exponential upper bound for linear-time graph covering | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
