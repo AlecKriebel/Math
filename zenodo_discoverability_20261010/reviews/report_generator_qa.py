@@ -45,13 +45,40 @@ def main():
             "inventory_sha256": write(fixture / "INVENTORY.json", test_inventory),
             "all_versions_scope_evidence_sha256": write(fixture / "reviews/ALL_VERSIONS_SCOPE_EVIDENCE.json", scope),
         }
-        for relative in (f"patches/{entry['id']}.json", entry["independent_content_review"],
-                         f"receipts/{entry['id']}/before.json", f"receipts/{entry['id']}/after.json"):
+        baseline_manifest = {"records": {str(entry["id"]): {
+            "sha256": hashlib.sha256((BASE / f"receipts/{entry['id']}/before.json").read_bytes()).hexdigest()}}}
+        hashes["original_baseline_manifest_sha256"] = write(fixture / "reviews/ORIGINAL_BASELINE_HASHES.json", baseline_manifest)
+        tool_path = fixture / "audit_receipts.py"
+        shutil.copyfile(BASE / "audit_receipts.py", tool_path)
+        tool_hash = hashlib.sha256(tool_path.read_bytes()).hexdigest()
+        route_names = ("native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py")
+        route_hashes = {}
+        for name in route_names:
+            shutil.copyfile(BASE / name, fixture / name)
+            route_hashes[name] = hashlib.sha256((fixture / name).read_bytes()).hexdigest()
+        test_native_audit = {"passed": 1, "failed": 0,
+                             "tests": [{"test": "generator_fixture_only", "passed": True}],
+                             "source_sha256": route_hashes.pop("native_metadata.py"),
+                             "related_source_sha256": route_hashes}
+        write(fixture / "reviews/NATIVE_FINAL_AUDIT.json", test_native_audit)
+        test_controls = {"all_passed": True, "audit_tool_sha256": tool_hash,
+                         "controls": [{"name": "generator_fixture_only", "passed": True}]}
+        control_hash = write(fixture / "reviews/FINAL_RECEIPT_AUDIT_CONTROLS.json", test_controls)
+        audited_record = next(e for e in audit["records"] if e["id"] == entry["id"])
+        relatives = [f"patches/{entry['id']}.json", entry["independent_content_review"],
+                     f"receipts/{entry['id']}/first_staging_guard_stop.json",
+                     "reviews/FILES_DRAFT_REPRESENTATION_COMPARISON.json"]
+        relatives.extend(f"receipts/{entry['id']}/{name}.json" for name in audited_record["receipt_sha256"])
+        for relative in relatives:
             target = fixture / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(BASE / relative, target)
-        test_audit = {"approved_count": 1, "completed_count": 1, "pending_ids": [], "failed_ids": [],
-                      "records": [next(e for e in audit["records"] if e["id"] == entry["id"])], **hashes}
+        test_audit = {"status": "pass", "approved_count": 1, "completed_count": 1,
+                      "pending_ids": [], "failed_ids": [], "audit_tool_sha256": tool_hash,
+                      "first_record_representation": deepcopy(audit["first_record_representation"]),
+                      "falsification_controls": {"all_passed": True, "same_audit_tool": True,
+                                                  "count": 1, "sha256": control_hash},
+                      "records": [audited_record], **hashes}
         audit_path = fixture / "reviews/FINAL_RECEIPT_AUDIT.json"
         write(audit_path, test_audit)
         result = module.build_report(fixture)
@@ -90,6 +117,58 @@ def main():
         assert not module.build_report(fixture)["complete"]
         controls["stale_independent_audit_never_claims_complete"] = True
         write(audit_path, test_audit)
+
+        for name, mutate in (
+            ("global_audit_failure_blocks_completion", lambda d: d.update(status="fail")),
+            ("first_record_representation_failure_blocks_completion", lambda d: d["first_record_representation"].update(status="fail")),
+            ("failed_falsification_controls_block_completion", lambda d: d["falsification_controls"].update(all_passed=False)),
+            ("stale_audit_tool_controls_block_completion", lambda d: d["falsification_controls"].update(same_audit_tool=False)),
+        ):
+            changed_audit = deepcopy(test_audit)
+            mutate(changed_audit)
+            write(audit_path, changed_audit)
+            assert not module.build_report(fixture)["complete"]
+            controls[name] = True
+        write(audit_path, test_audit)
+
+        tool_bytes = tool_path.read_bytes()
+        tool_path.write_bytes(tool_bytes + b"\n# generator QA mutation\n")
+        assert not module.build_report(fixture)["complete"]
+        controls["current_audit_tool_hash_required"] = True
+        tool_path.write_bytes(tool_bytes)
+
+        review_path = fixture / entry["independent_content_review"]
+        review_bytes = review_path.read_bytes()
+        review_path.write_bytes(review_bytes + b"\nGenerator QA mutation.\n")
+        assert not module.build_report(fixture)["complete"]
+        controls["stale_content_review_blocks_completion"] = True
+        review_path.write_bytes(review_bytes)
+
+        stale_baseline = deepcopy(baseline_manifest)
+        stale_baseline["records"][str(entry["id"])]["sha256"] = "0" * 64
+        write(fixture / "reviews/ORIGINAL_BASELINE_HASHES.json", stale_baseline)
+        assert not module.build_report(fixture)["complete"]
+        controls["original_baseline_hash_required"] = True
+        write(fixture / "reviews/ORIGINAL_BASELINE_HASHES.json", baseline_manifest)
+
+        for name, relative in (
+            ("raw_stage_receipt_hash_required", f"receipts/{entry['id']}/stage.json"),
+            ("first_raw_guard_evidence_hash_required", f"receipts/{entry['id']}/first_staging_guard_stop.json"),
+            ("first_raw_comparison_evidence_hash_required", "reviews/FILES_DRAFT_REPRESENTATION_COMPARISON.json"),
+        ):
+            path = fixture / relative
+            original_bytes = path.read_bytes()
+            path.write_bytes(original_bytes + b"\n")
+            assert not module.build_report(fixture)["complete"]
+            controls[name] = True
+            path.write_bytes(original_bytes)
+
+        route_path = fixture / "native_metadata.py"
+        route_bytes = route_path.read_bytes()
+        route_path.write_bytes(route_bytes + b"\n# generator QA mutation\n")
+        assert not module.build_report(fixture)["complete"]
+        controls["current_native_route_audit_hash_required"] = True
+        route_path.write_bytes(route_bytes)
 
         scope["all_ids"].append(99999999)
         scope["all_versions_count"] = 2

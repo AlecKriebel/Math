@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-10T21:28:28.232289+00:00",
+  "generated_utc": "2026-10-10T21:33:11.562248+00:00",
   "controls": [
     {
       "control": "unchanged actual public receipt",
@@ -42,6 +42,7 @@
       "expected_failure": "preserved_native_pids",
       "failed_checks": [
         "after_public_native_identity_consistent",
+        "after_required_public_oai_identity",
         "preserved_native_pids"
       ],
       "passed": true
@@ -51,6 +52,7 @@
       "status": "fail",
       "expected_failure": "preserved_native_files",
       "failed_checks": [
+        "after_public_file_content_k108_counterexample.pdf",
         "preserved_native_files"
       ],
       "passed": true
@@ -102,11 +104,54 @@
       "passed": true
     },
     {
+      "control": "coherently changed original and final concept identities",
+      "status": "fail",
+      "expected_failure": "baseline_matches_original_inventory_identity",
+      "failed_checks": [
+        "frozen_original_baseline_hash",
+        "baseline_matches_original_inventory_identity"
+      ],
+      "passed": true
+    },
+    {
+      "control": "coherently deleted OAI from both original and final public views",
+      "status": "fail",
+      "expected_failure": "before_required_public_oai_identity",
+      "failed_checks": [
+        "frozen_original_baseline_hash",
+        "before_required_public_oai_identity",
+        "after_required_public_oai_identity"
+      ],
+      "passed": true
+    },
+    {
+      "control": "coherently altered original and final native file links",
+      "status": "fail",
+      "expected_failure": "frozen_original_baseline_hash",
+      "failed_checks": [
+        "frozen_original_baseline_hash",
+        "before_public_file_content_k108_counterexample.pdf",
+        "after_public_file_content_k108_counterexample.pdf"
+      ],
+      "passed": true
+    },
+    {
+      "control": "full native public record parent ID contradicts summarized identity",
+      "status": "fail",
+      "expected_failure": "full_native_public_record_parent_id_exact",
+      "failed_checks": [
+        "frozen_original_baseline_hash",
+        "full_native_public_record_parent_id_exact"
+      ],
+      "passed": true
+    },
+    {
       "control": "local approved patch changed after content review",
       "status": "fail",
       "expected_failure": "frozen_patch_hash",
       "failed_checks": [
         "frozen_patch_hash",
+        "frozen_original_baseline_hash",
         "complete_legacy_metadata_matches_frozen_target",
         "intended_native_subjects"
       ],
@@ -114,7 +159,7 @@
     }
   ],
   "all_passed": true,
-  "audit_tool_sha256": "ffba906bf5da8fcecb34882142e4876b04e0c566f7df3b91ae2b1de02227ce29",
+  "audit_tool_sha256": "7529b1cab6bcca02cd0bd0cc5227700147d5e53bfda344f12b4151c0fa5b6466",
   "source_receipt": "receipts/23271172/after.json",
   "remote_actions": false,
   "actual_receipts_or_patches_changed": false

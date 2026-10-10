@@ -1,0 +1,398 @@
+{
+  "offline_only": true,
+  "source_sha256": {
+    "preview_preservation.py": "39d6055a0bb70506baec50d86ca62be4db12b899ac67985515bf226ce5191188",
+    "repair_owned_preview.py": "23ba851152e3e5d28053b7fa404456bbf4ddf00765137df0e6921f108108acb6",
+    "native_metadata.py": "845ad83ec3011240b13525e46f3207ab7c356695297ed2447fc4c17a35fe2b6d",
+    "apply_reviewed.py": "14aa8d9bf3650e6d57c78684d1191ccda0d967c2d28ce98ad82f88baa1358cc9"
+  },
+  "tests": [
+    {
+      "test": "one scoped PUT restores original preview without public/file/PID/version changes",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "already preserved preview is fully verified and never rewritten",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": []
+      }
+    },
+    {
+      "test": "exact frozen legacy correction repaired 22770864",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/22770864/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "exact frozen legacy correction repaired 22929556",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/22929556/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "reject pre-repair drift order",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift checksum",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift uuid",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift file_metadata",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift file_access",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift file_count",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift extra_file",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift missing_file",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift changed_preview",
+      "passed": true,
+      "details": {
+        "error": "Draft file difference is not solely original preview lost to None",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift native_patched_extra",
+      "passed": true,
+      "details": {
+        "error": "Pending rich metadata differs from exact reviewed native target",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift native_unpatched",
+      "passed": true,
+      "details": {
+        "error": "Native metadata not included in the patch changed; do not publish",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift doi",
+      "passed": true,
+      "details": {
+        "error": "Pending draft record/PIDs/version identity changed",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift custom",
+      "passed": true,
+      "details": {
+        "error": "Native custom_fields changed unexpectedly; do not publish",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift access",
+      "passed": true,
+      "details": {
+        "error": "Native access changed unexpectedly; do not publish",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift public_files",
+      "passed": true,
+      "details": {
+        "error": "Public record or complete version registry changed before preview repair",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift public_metadata",
+      "passed": true,
+      "details": {
+        "error": "Public record or complete version registry changed before preview repair",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift versions",
+      "passed": true,
+      "details": {
+        "error": "Public record or complete version registry changed before preview repair",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject pre-repair drift version_registry",
+      "passed": true,
+      "details": {
+        "error": "Public record or complete version registry changed before preview repair",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session phase",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session id",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session environment",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session target",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session original",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session native_original",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session files",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session doi",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject non-owned reviewed session patch_fields",
+      "passed": true,
+      "details": {
+        "error": "Preview repair is not this exact owned reviewed metadata session",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject approval hash",
+      "passed": true,
+      "details": {
+        "error": "Preview repair patch differs from frozen reviewed metadata",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject approval missing",
+      "passed": true,
+      "details": {
+        "error": "Preview repair record lacks a frozen reviewed proposal",
+        "mutations": []
+      }
+    },
+    {
+      "test": "reject post-repair drift preview",
+      "passed": true,
+      "details": {
+        "error": "Preview restoration read-back did not preserve complete draft state",
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "reject post-repair drift checksum",
+      "passed": true,
+      "details": {
+        "error": "Preview restoration read-back did not preserve complete draft state",
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "reject post-repair drift metadata",
+      "passed": true,
+      "details": {
+        "error": "Pending rich metadata differs from exact reviewed native target",
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "reject post-repair drift public",
+      "passed": true,
+      "details": {
+        "error": "Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "uncertain PUT stops without retries or success receipt",
+      "passed": true,
+      "details": {
+        "error": "uncertain injected PUT response",
+        "mutations": [
+          [
+            "PUT",
+            "https://offline.invalid/api/records/23203732/draft"
+          ]
+        ]
+      }
+    },
+    {
+      "test": "durable receipt failure prevents mutation",
+      "passed": true,
+      "details": {
+        "error": "injected receipt persistence failure",
+        "mutations": []
+      }
+    },
+    {
+      "test": "existing request receipt prevents mutation retry",
+      "passed": true,
+      "details": {
+        "error": "Preview repair was already requested; inspect receipts without mutation retry",
+        "mutations": []
+      }
+    },
+    {
+      "test": "BoundClient.update performs one legacy PUT then one verified preserving native PUT",
+      "passed": true,
+      "details": null
+    },
+    {
+      "test": "legacy recovery cannot swallow preserving repair error and continue",
+      "passed": true,
+      "details": null
+    },
+    {
+      "test": "wrapper rejects extra patched native fields even when legacy target matches",
+      "passed": true,
+      "details": null
+    },
+    {
+      "test": "wrapper rechecks complete public version registry before publish",
+      "passed": true,
+      "details": null
+    },
+    {
+      "test": "generic recovery preserves raw original session and idempotently fills verified staged marker",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "passed": 45,
+  "failed": 0
+}
