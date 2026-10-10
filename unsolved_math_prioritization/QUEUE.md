@@ -1041,7 +1041,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1030 | 2200009 / AMR-021-0009 | Problems Around Polynomials — Conjecture 5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1031 | 2200013 / AMR-021-0013 | Problems Around Polynomials — Conjecture 8 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1032 | 2304003 / AMR-022-4003 | Research Problems in Function Theory — Problem 4.3 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | already_solved | 0/5 |  | Prior solution: Sheil-Small, explicitly recorded in Update 4.28; Bergweiler–Eremenko–Langley (2005), Theorem A, gives at least d−1 distinct nonreal zeros of P²+P′ outside P for every real polynomial of degree d≥2, including repeated roots. Sharp parity minimum 2 floor(d/2), attained by P=−z^d. Independent audit accepts unchanged; credited theorem/Fatou imports, no novelty claim. [Report and audit](attempts/2304028/ACCEPTANCE.md). |  |
 | 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
