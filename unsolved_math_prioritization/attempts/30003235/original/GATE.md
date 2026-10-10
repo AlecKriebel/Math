@@ -1,0 +1,7 @@
+# Bounded substantive-duplicate gate
+
+Checked 2026-10-07 before author drafting. The ID 30003235, OWR-15169-009, exact title, and phrases concerning badly approximable affine lines, Schmidt, Beresnevich and Velani were searched across available AlecKriebel/Math PR metadata. Exact ID/title and the most specific semantic searches returned no match. Broader affine and approximation searches returned unrelated subjects and were inspected by title and available body.
+
+Branches were searched for 30003235, bad, affine, diophantine, weighted, approximation, and winning. Available continuation cursors for affine, weighted and approximation were followed to terminal empty pages. Returned branches concerned unrelated topics. Default-branch file search for 30003235 returned no match. Local artifacts and the supplied problem and research-result catalogues were searched for the ID and semantic variants. The only target matches were queued catalogue/queue references, plus this newly created task; no substantive prior attempt was identified. The queued reference read before drafting records rank 995 and zero of five turns. No same-target research-results entry was identified.
+
+This is a bounded search, not an assertion that every historical/deleted ref or inaccessible artifact was examined. No prior flawed substantive attempt was ignored or reclassified as new. Gate lookups, source review, finite checking and packaging are not counted as author approaches. No remote write, publication or change to the queue was performed by this worker.
