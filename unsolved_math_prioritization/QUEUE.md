@@ -179,7 +179,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 168 | 5100006 / AMR-050-0006 | Elliptic-billiard invariant k_{114} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | claimed_solved | 2/5 |  | 2026-09-30: Complete explicit infinite skew-brace counterexample: an element has both required finite indices equal to2, while its additive double has an infinite-index fixed subgroup. Separate axioms, subgroup and original-source audit passed; 33512 author and 9562 independent controls. Audited reconciliation of a nearby lemma and cited theorem premises retained; no broad theorem-error or priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/156. |  |
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
