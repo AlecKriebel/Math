@@ -661,7 +661,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 650 | 5300071 / AMR-052-0071 | Uniform access to roots for relaxed Newton maps | 0.1071 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 651 | 30001184 / OWR-3392-012 | Extending Dilated E0-Semigroups Beyond GNS Representations | 0.1067 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 652 | 30005479 / OWR-12697711-015 | Equality of Tropical and Matroidal Amoeba-Dimension Formulas | 0.1066 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 653 | 4400005 / AMR-043-0005 | Pingree open problems — Ledrappier problem 1 | 0.1065 | 6.0 | 4 | 2010 | queued | 0/5 |  |  |  |
+| 653 | 4400005 / AMR-043-0005 | Pingree open problems — Ledrappier problem 1 | 0.1065 | 6.0 | 4 | 2010 | already_solved | 1/5 |  | Affirmative literature deduction for closed negatively curved manifolds of dimension >=2: Thompson specification plus Burguet universality and the dyadic odometer give a time-one-invariant probability not invariant at half-time; Quas-Soo Corollary 4 directly covers surfaces. Independent audit passed with source-inspection limits; no novelty claim. [Proof and audit](attempts/4400005/README.md). |  |
 | 654 | 30001988 / OWR-11575-015 | Splitting Sets Under Differential-Transcendental Extensions | 0.1061 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 655 | 30000403 / OWR-1188-004 | Optimal Descent Degrees in Reduced Hurwitz Spaces | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 656 | 30000492 / OWR-1274-008 | Settled Quadratic Polynomials and Markov Factorization Models | 0.1055 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
