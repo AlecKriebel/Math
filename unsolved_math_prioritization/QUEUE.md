@@ -736,7 +736,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 725 | 30002711 / OWR-13351-010 | Minimal Coefficient Rings for Cyclic Local Lifts | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 726 | 30002753 / OWR-13359-003 | Optimal Geodesic Curvature for Random Transpositions | 0.1040 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 727 | 30002829 / OWR-13500-010 | Rationality of Ueno-Type Varieties | 0.1038 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 728 | 30002830 / OWR-13500-011 | Birational Modifications Proving Rationality of a Ueno Variety | 0.1038 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 728 | 30002830 / OWR-13500-011 | Birational Modifications Proving Rationality of a Ueno Variety | 0.1038 | 5.5 | 3 | 2015 | unsolved | 5/5 |  |  |  |
 | 729 | 30003070 / OWR-14221-006 | Birational Sequences for Plabic Newton–Okounkov Bodies | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 730 | 30003114 / OWR-14603-013 | Exponential Small-Value Bounds for Littlewood Polynomials | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 731 | 30003229 / OWR-14754-016 | Stringy Euler Numbers under Mori Flips | 0.1035 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
