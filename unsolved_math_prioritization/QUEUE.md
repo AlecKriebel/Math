@@ -1069,7 +1069,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
+| 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | exhausted | 5/5 |  | Audited partial results: strict extreme vertices and vertex-only triangulations; compatible-packing lower bound ceil((sqrt(16n-23)-3)/8), strict-cap recursion, t(3)=t(4)=1 and t(5)=t(6)=2, and coplanar 3D lattice area-unit/spectrum constraints. Full t(n), sharp t_L(n,m), and unavoidable triple repetition unresolved; no novelty or best-known claim. See [report](attempts/3900016/author/REPORT.md) and [audit](attempts/3900016/audit/authored/AUDIT.md). |  |
 | 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1063 | 5500054 / AMR-054-0054 | Traveling Salesman Problem in Solid Grid Graphs | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1064 | 7200057 / AMR-071-0057 | For each arrangement of points in which the rectilinear crossing number is minimized, is the number of halving lines maximized | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
