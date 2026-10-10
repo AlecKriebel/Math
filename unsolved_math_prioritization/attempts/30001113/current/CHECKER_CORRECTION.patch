@@ -1,0 +1,13 @@
+--- a/check_conjugacy.py
++++ b/check_conjugacy.py
+@@ -21,6 +21,8 @@
+ M=[[one,e],[one,one]]
+ Mprime=[[one,e^e2],[one,one]]
+ C=[[one^e,e],[0,one]]
+-assert mm(Mprime,C)==scale(one^e,mm(C,M))
+-assert mm(M,M)==[[one^e,0],[0,one^e]]
++if mm(Mprime,C)!=scale(one^e,mm(C,M)):
++    raise RuntimeError("Projective conjugacy identity failed")
++if mm(M,M)!=[[one^e,0],[0,one^e]]:
++    raise RuntimeError("Involution identity failed")
+ print(json.dumps({"ring":"F_2[e]/(e^3)","encoding":"bit i is the coefficient of e^i", "conjugacy_identity":"M_(e+e^2) C = (1+e) C M_e", "conjugacy_verified":True, "involution_verified":True, "both_conjugacy_sides":mm(Mprime,C)},indent=2))
