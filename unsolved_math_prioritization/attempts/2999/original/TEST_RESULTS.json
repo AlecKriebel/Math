@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-06",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "check.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "math": {
+          "exact_polynomial_form_identities": "PASS",
+          "integral_kunneth_ranks_given_torsion_free_factors": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "nonclosedness_witness": 2,
+          "original_closed_form_problem_solved": false,
+          "topological_proof": "manual: see PROOF.md"
+        },
+        "python_optimization_level": 0,
+        "status": {
+          "scope_labels": "PASS"
+        }
+      }
+    },
+    {
+      "command": [
+        "python",
+        "check.py",
+        "--self-test"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "math": {
+          "exact_polynomial_form_identities": "PASS",
+          "integral_kunneth_ranks_given_torsion_free_factors": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "nonclosedness_witness": 2,
+          "original_closed_form_problem_solved": false,
+          "topological_proof": "manual: see PROOF.md"
+        },
+        "python_optimization_level": 0,
+        "self_test": {
+          "deliberately_false_checks_rejected": 3
+        },
+        "status": {
+          "scope_labels": "PASS"
+        }
+      }
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "check.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "math": {
+          "exact_polynomial_form_identities": "PASS",
+          "integral_kunneth_ranks_given_torsion_free_factors": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "nonclosedness_witness": 2,
+          "original_closed_form_problem_solved": false,
+          "topological_proof": "manual: see PROOF.md"
+        },
+        "python_optimization_level": 1,
+        "status": {
+          "scope_labels": "PASS"
+        }
+      }
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "check.py",
+        "--self-test"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "math": {
+          "exact_polynomial_form_identities": "PASS",
+          "integral_kunneth_ranks_given_torsion_free_factors": [
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          "nonclosedness_witness": 2,
+          "original_closed_form_problem_solved": false,
+          "topological_proof": "manual: see PROOF.md"
+        },
+        "python_optimization_level": 1,
+        "self_test": {
+          "deliberately_false_checks_rejected": 3
+        },
+        "status": {
+          "scope_labels": "PASS"
+        }
+      }
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "check.py",
+        "[with mutated original status]"
+      ],
+      "expected": "nonzero",
+      "actual_exit": 1,
+      "diagnostic": "CHECK FAILED: Overstated original status"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "check.py",
+        "--catalog",
+        "missing"
+      ],
+      "expected": "nonzero",
+      "actual_exit": 1,
+      "diagnostic": "CHECK FAILED: Supply all three dataset paths, or none"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "check.py",
+        "[three altered dataset files]"
+      ],
+      "expected": "nonzero",
+      "actual_exit": 1,
+      "diagnostic": "CHECK FAILED: catalog integrity mismatch"
+    }
+  ]
+}
