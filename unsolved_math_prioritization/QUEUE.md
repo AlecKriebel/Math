@@ -566,7 +566,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 555 | 30006308 / OWR-14299288-014 | Deformation Spaces of Smooth Complete Toric Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 556 | 30006359 / OWR-14299511-008 | Irreducible Forest Decomposition of Consistency-Equation Varieties | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 557 | 30006363 / OWR-14299512-001 | Topological Invariance of Helicity | 0.1150 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 558 | 30001242 / OWR-3472-013 | Uniform Generic Degree Bounds for Ideal Membership | 0.1149 | 4.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 558 | 30001242 / OWR-3472-013 | Uniform Generic Degree Bounds for Ideal Membership | 0.1149 | 4.5 | 3 | 2009 | already_solved | 1/5 |  | 2026-10-04: credited prior negative answer; the 2009 originals already deny ring-independent ordinary containment. The domain family R_N=k[x,y,z]/(x^N-y^(N-1)z) has generic linear-parameter cutoff N. Independent AI audit PASS; no novelty claim. Closure and fixed-ring variants excluded. [Proof and review](attempts/30001242/controls/PUBLICATION_GATE.md). |  |
 | 559 | 30001182 / OWR-3392-009 | Ambient-Algebra Independence of Exchangeable Independence | 0.1149 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 560 | 30004637 / OWR-4990379-007 | Fast Algorithms for Branching Brownian Unbalanced Transport | 0.1143 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 561 | 2700004 / AMR-026-0004 | Five Open Problems — Eternal finite-energy compressible Euler flow | 0.1142 | 6.0 | 4 | 2012 | queued | 0/5 |  |  |  |
