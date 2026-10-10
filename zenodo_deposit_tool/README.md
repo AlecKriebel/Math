@@ -1,10 +1,10 @@
 # Local Zenodo deposit tool
 
-This tool prepares a Zenodo draft, uploads files, verifies the remote file list and MD5 checksums, and publishes only through a separate explicit command. It uses Python 3.10+ and no third-party packages.
+This tool prepares Zenodo uploads and edits metadata on existing published records. It verifies metadata and file checksums, and publishes through a separate explicit command. It uses Python 3.10+ and no third-party packages.
 
 ## Set up the key
 
-Create a Zenodo personal access token with `deposit:write`. Add `deposit:actions` if you want to publish through the tool. Sandbox testing needs a separate sandbox account and token.
+Create a Zenodo personal access token with `deposit:write`. Add `deposit:actions` to publish, unlock published metadata for editing, or discard edits. Sandbox testing needs a separate sandbox account and token.
 
 Keep tokens in the shell environment (`ZENODO_TOKEN` or `ZENODO_SANDBOX_TOKEN`) or in the ignored repository file `.secrets/zenodo.env`:
 
@@ -42,6 +42,69 @@ Add `--sandbox` to **every** command in a sandbox run. Sandbox and production dr
 
 Zenodo API references: [developer guide](https://developers.zenodo.org/) and [sandbox](https://sandbox.zenodo.org/).
 
+## Edit an existing upload's metadata
+
+Zenodo supports metadata edits after publication, and publishing those edits [preserves the existing DOI](https://help.zenodo.org/docs/deposit/manage-records/#edit-published-records). These commands work with a specific published record ID, including compatible records uploaded through the website or GitHub. They do not require the original local manifest or files. Use the numeric ID from that version's `/records/ID` page, rather than its concept DOI identifier.
+
+Read the current API metadata:
+
+```sh
+python3 zenodo_deposit_tool/zenodo.py metadata 12345678
+```
+
+Copy [metadata.patch.example.json](metadata.patch.example.json) into the paper's folder and replace its placeholders. A patch contains exactly one `metadata` object with only the fields to change, for example:
+
+```json
+{
+  "metadata": {
+    "keywords": ["finite groups", "spectral graph theory", "Cayley graphs"],
+    "description": "<p>The exact result, its assumptions, and why it matters.</p><p>The deposit includes the paper, source, and reproducible verification.</p>"
+  }
+}
+```
+
+Preview, stage, review, and publish:
+
+```sh
+python3 zenodo_deposit_tool/zenodo.py update-metadata 12345678 path/to/metadata-patch.json
+python3 zenodo_deposit_tool/zenodo.py update-metadata 12345678 path/to/metadata-patch.json --confirm-id 12345678
+python3 zenodo_deposit_tool/zenodo.py metadata 12345678
+python3 zenodo_deposit_tool/zenodo.py publish-metadata 12345678 --confirm-id 12345678
+```
+
+Without `--confirm-id`, `update-metadata` is read-only and prints the field changes and full proposed metadata. `--dry-run` explicitly selects the same behavior. With confirmation, it unlocks the record using `actions/edit`, updates metadata, and verifies the saved proposal. The public record keeps its current metadata until the separate `publish-metadata` command. That command requires the saved proposal to match exactly before making the changes visible. No new record or DOI is created, and no files are uploaded, replaced, or deleted.
+
+Supported patch fields are `title`, `description`, `keywords`, `creators`, `related_identifiers`, `references`, `notes`, `method`, `publication_date`, `version`, `language`, `upload_type`, `publication_type`, and `image_type`. Omitted fields are preserved from the authenticated deposition response and checked against the native representation. Each supplied field replaces that entire field: lists such as `keywords`, `creators`, and `related_identifiers` replace the whole list. Include existing entries you want to retain when extending a list. Use `[]` to clear an optional list or an empty string to clear an optional text field; `null` is rejected. API validation still applies. DOI changes and API-generated fields (`prereserve_doi`, `relations`) are excluded from patches. The generated fields are omitted from the PUT payload; the existing DOI is preserved.
+
+Verification accepts only the existing description/creator representation exceptions plus two metadata-edit exceptions documented in [Zenodo's serializer](https://github.com/zenodo/zenodo-rdm/blob/master/site/zenodo_rdm/legacy/serializers/schemas/common.py): omission of an explicitly empty optional field (`keywords`, `references`, `locations`, `notes`, `method`, `language`, or `custom`), and addition of an inferred `doi` or `url` scheme to a related identifier with every other supplied value and its position unchanged. For other identifier types, provide the API `scheme` explicitly and use its canonical identifier. Substantive link changes, changed relationships, extra fields, and arbitrary loss of omitted metadata are rejected.
+
+The older API projects some rich native metadata into a simpler representation. Before staging, the tool reads the native representation using `Accept: application/vnd.inveniordm.v1+json` and refuses records whose metadata cannot be preserved by this workflow: organizational authors, multiple or structured affiliations, controlled subjects, multiple languages or licenses, nonempty custom fields, and unsupported additional metadata. This guard also runs on previews. Unpatched native fields, access settings, and identifiers are checked after staging and before publication; the complete staged native snapshot is checked again after publication. For richer records, use Zenodo's native editor. This is a conservative compatibility limit, not a requirement to simplify the record's metadata.
+
+To abandon an edit staged by this tool:
+
+```sh
+python3 zenodo_deposit_tool/zenodo.py discard-metadata 12345678 --confirm-id 12345678
+```
+
+Original metadata, proposed metadata, native snapshots, DOI, filenames, sizes, and MD5 checksums are saved before writes in the ignored `.zenodo-state/metadata-ID-ENVIRONMENT.json` file. Lost responses trigger one read-back and never an automatic second write. Rerunning the same staged patch resumes the saved edit; a different patch requires completing or discarding the pending one. Repeated publication/discard is read-only when the remote result already matches. A pending edit created elsewhere is rejected, and metadata/file/DOI drift stops further writes. Inspect an uncertain outcome with `metadata ID`, then reconcile the saved session before acting again. Preserve the session file until the workflow is complete; deleting it can lose the original snapshot. Add `--sandbox` to every sandbox command.
+
+Metadata writes use a local per-record process lock on macOS/Linux. Do not edit the same record concurrently through the browser or another machine: the older action API does not provide an atomic check-and-publish transaction. A verified remote action remains confirmed if writing its local receipt fails; output reports `receipt_saved: false`. Live validation of this extension used authenticated reads and previews only; action/failure behavior is covered by offline tests.
+
+These metadata commands edit published uploads. For an unpublished upload, use the existing manifest-based `stage` workflow. Metadata changes made here may make an old local deposit manifest differ from the live record; update that manifest separately if you want its `inspect` verification to pass.
+
+## Improve discoverability
+
+Zenodo [searches and ranks records using metadata terms](https://zenodo.org/help/search), including title and description. Use the metadata editor to make each paper easier to find and understand:
+
+- Use a precise title with the result's natural subject terms. Keep it consistent with the paper.
+- Open the description with the exact contribution and scope; explain significance, limitations, and what the downloadable verification provides.
+- Add relevant keywords covering the field, specific problem, named objects, and methods. Include common terminology researchers actually search for.
+- Keep author names consistent and include ORCID `0009-0001-9320-500X`. Replace a creators list only after preserving every coauthor and supplied identifier.
+- Add accurate `related_identifiers` linking the paper to its source, verification code, related papers, and any subsequent journal or arXiv version, with the appropriate relationship.
+- Keep the resource type and publication status accurate, and preserve the original publication date.
+
+These are recommendations for improving findability, not a measured publicity increase or a guarantee of search placement. [Zenodo's field guidance](https://help.zenodo.org/docs/deposit/describe-records/) describes titles, descriptions, keywords, and authors. Any outreach or curator communication must be handled by the human user under this repository's independent research policy.
+
 ## Diagnosing errors
 
 - An HTML 403 mentioning unusual traffic is identified as a traffic-filter response. The tool always sends its truthful client identity; it does not retry around the filter.
@@ -50,6 +113,7 @@ Zenodo API references: [developer guide](https://developers.zenodo.org/) and [sa
 - A creation failure with no saved ID may be ambiguous. Reconcile the account before restaging if the request could have reached Zenodo; the tool cannot recover an unknown draft ID automatically.
 
 Run the offline regression suite with `python3 -m unittest discover -s zenodo_deposit_tool -v`. The tests simulate publication; they do not create real deposits.
+Run the independent metadata serializer, native-preservation, and interrupted-staging probes with `python3 zenodo_deposit_tool/metadata_updates_20261010/adversarial_probes.py`.
 
 ## First production workflow
 
