@@ -198,7 +198,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | already_solved | 0/5 |  | 2026-09-30: Published Shkarin theorem gives disjoint-hypercyclic tuples of every finite size on every separable infinite-dimensional Frechet space over real or complex scalars. Separate source/similarity-proof audit passed exact common-vector same-time full-product scope; 32184 author and 3650 independent controls. Mixing/direct-sum input and earlier proofs credited; no extra commutativity requirement or discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/171. |  |
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
