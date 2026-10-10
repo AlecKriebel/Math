@@ -968,7 +968,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | unsolved | 5/5 |  |  Independent audit accepts scoped partials: generation in all dimensions through degree 8, binary linear formula through degree 13, all-degree distinct-letter obstruction, and sharp identity detection at degree 2m (m>=3). 109 exact rank cases, 2137 author controls, 319 independent controls; full audit and portable verifier in attempts/30006086/. Unrestricted generation and arbitrary nontrivial loop-pair classification remain unresolved; no novelty claim.  |  |
 | 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
