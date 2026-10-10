@@ -971,7 +971,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 963 | 30000717 / OWR-1465-011 | Gradient-Tentacle Certificates for Polynomial Nonnegativity | 0.0922 | 5.5 | 3 | 2007 | claimed_solved | 1/5 |  | Complete negative answer: classical Robinson sextic R>=0 but R+epsilon is not SOS modulo even the real vanishing ideal for any epsilon>=0, for both tangency-minor and explicit literal-product readings; (iii),(iv) fail. Both audits accept frozen v2 unchanged; classical ingredients credited, no novelty claim. [Proof](attempts/30000717/author/PROOF.md); [audit A](attempts/30000717/audit_a/report/FROZEN_ACCEPTANCE.md); [audit B](attempts/30000717/audit_b/AUDIT_REPORT.md); [reproduction](attempts/30000717/README.md). |  |
 | 964 | 30000853 / OWR-1730-006 | Boundary-Intersection Vanishing on Abelian-Variety Moduli | 0.0922 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 965 | 30000962 / OWR-1967-011 | Recursive Determination of Quantum Knot Invariants | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 966 | 30001052 / OWR-2089-013 | Functorial Maps Between p-Local Finite-Group Classifying Spaces | 0.0920 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
