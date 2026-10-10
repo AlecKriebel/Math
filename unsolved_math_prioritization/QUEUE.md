@@ -1020,7 +1020,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1012 | 11000112 / AMR-109-0112 | Problem 2.7 — Suppose that ta1ta2··· tan = 1 in Modg, where n≥ 1. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1012 | 11000112 / AMR-109-0112 | Problem 2.7 — Suppose that ta1ta2··· tan = 1 in Modg, where n≥ 1. | 0.0900 | 6.0 | 3 | unknown | already_solved | 0/5 |  | Published negative answer: Baykur (2022), genus 3 with 12 positive closed-surface identity twists and homology quotient Z^4 (b1=4>3). Audited credited reconstruction; imported Hamada relation and curve-to-word geometry; no new-result, minimality or pointed-lift claim. |  |
 | 1013 | 11000156 / AMR-109-0156 | Question 2.5 — Given two factorizations of the boundary twist δ as a product of positive Dehn twists along nonseparating curves in M… | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1014 | 11300004 / AMR-112-0004 | Quadrisecants of wild knots | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1015 | 1430 / GRAPH-043 | Word-Representable Graphs: Letter Copies Bound | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
