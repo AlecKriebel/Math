@@ -230,7 +230,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 221 | 5100014 / AMR-050-0014 | Elliptic-billiard invariant k_{303,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  |  |  |
 | 223 | 5100030 / AMR-050-0030 | Elliptic-billiard invariant k_{601} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
