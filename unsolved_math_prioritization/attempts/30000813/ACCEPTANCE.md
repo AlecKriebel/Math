@@ -1,0 +1,9 @@
+# Acceptance boundary
+
+Accept a credited PARTIAL prior resolution of Santos Question 5, 30000813 / OWR-1595-005, from Nikita Lebedev, arXiv:2609.32950v1. All seventeen written arguments are accepted by the complete authored audit. Minimum nonintegral dimension eleven and the complete smoothness criterion are accepted, with the odd-integer resonance exception. Strict-upper and additional sufficient normality bands are accepted, but the complete normality classification remains unresolved. Parameters outside those positive bands include known negative cases, and are not all open.
+
+The nine accepted inputs are preserved without correction. There is no new substantive turn or novelty claim. Official ancillary provenance and actual declaration statements were inspected statically only. No Lean compiler, downloaded proof code, author verification script, author mutation script or dependency installer was run. Formal-build and kernel-audit claims are NOT_RUN, not passed.
+
+The fresh independently authored finite suite enforces exactly 35 diagnostic identities and 496 calls, including six embedded negative-predicate controls. It checks eight additional intended mathematical mutations and one injected false condition separately. Integrity, schema, comparator, environment and hostile-import tests are not mathematical mutations. Exact raw outputs and recursive JSON types remain enforced under normal, -O and -OO with -I -S -B, UID/EUID 1000, physical read-only denials and unchanged byte snapshots. Finite computations do not replace the written infinite-parameter proofs or complete the remaining classification.
+
+All historical and pre-seal receipts are manifest-bound. Final external receipts are not included in their own hash inventory. Source/Lean contents and private material remain excluded; only public source/verification metadata is delivered.
