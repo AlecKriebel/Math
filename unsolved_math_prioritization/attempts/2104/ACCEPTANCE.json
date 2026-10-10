@@ -1,0 +1,79 @@
+{
+  "status": "ACCEPTED_WITH_AUTHORED_CORRECTIONS",
+  "audit_kind": "bounded prior-result proof audit",
+  "problem": "Erdos problem 413 / prime-factor barriers",
+  "rank": 1437,
+  "problem_id": 2104,
+  "source_version": "arXiv:2604.15042v2, June 24 2026",
+  "accepted_claims": [
+    {
+      "claim": "There exists an absolute C>0 and infinitely many positive integers n with omega(n-k)<=Omega(n-k)<=C log k for every integer 2<=k<n.",
+      "proof": "KERNEL_REPAIR.md + DISTINCT_OMEGA_RECONSTRUCTION.md + MULTIPLICITY_REPAIR.md"
+    },
+    {
+      "claim": "There exists one fixed epsilon>0 and infinitely many N such that m+epsilon*Omega(m)<=N for every positive integer m<N, hence the same with distinct omega.",
+      "proof": "N=n-1, epsilon=1/(C log 2); j=N-m, k=j+1, log(j+1)<=j log 2."
+    }
+  ],
+  "not_established": [
+    "Coefficient-one omega barrier at every positive m<N for infinitely many N.",
+    "Any claim that all broad-parameter lemmas or all printed proof steps of the source are correct.",
+    "Novelty or a whole-problem resolution."
+  ],
+  "terminal_window": "Coefficient one remains controlled only beyond a fixed cutoff; every smaller shift, including shift 1, remains a separate simultaneous obligation.",
+  "corrections": [
+    "Replace false complex-kernel L1 equality by exact local-factor separation and absolutely summed nonnegative-translation operators.",
+    "Use fixed moment orders, avoiding the source parameter mismatch.",
+    "Bound all higher-power CRT errors with a fixed A=100 budget and Q^s<=x^.02.",
+    "Keep signed CRT main terms but bound interval-count errors by absolute coefficient sums."
+  ],
+  "current_proof_files": [
+    {
+      "file": "KERNEL_REPAIR.md",
+      "current_sha256": "65aa09a1dcbb65e382b7e8f01d4defcf608d7243a0558102f91fef490a0f3b23",
+      "bytes": 8129
+    },
+    {
+      "file": "DISTINCT_OMEGA_RECONSTRUCTION.md",
+      "current_sha256": "a5436e77e81419d33f6410fbf362335a13e31ad9dab76839719d593f435f9aca",
+      "bytes": 13195
+    },
+    {
+      "file": "MULTIPLICITY_REPAIR.md",
+      "current_sha256": "fda6b2dcba1cf74942af852d402cc807a4fc1f5c4a38829b00a744c7056b81c3",
+      "bytes": 10759
+    }
+  ],
+  "external_state_changes": false,
+  "source_provided_script_execution": false,
+  "third_party_code_execution": false,
+  "lean_execution": false,
+  "new_open_target_attempt": false,
+  "novelty_claim": false,
+  "independent_review": {
+    "completed": true,
+    "kind": "independent internal AI review; unrefereed",
+    "complete_primary_derivations": [
+      "KERNEL_REPAIR.md",
+      "DISTINCT_OMEGA_RECONSTRUCTION.md",
+      "MULTIPLICITY_REPAIR.md"
+    ],
+    "complete_second_derivations": [
+      "SECOND_KERNEL_REPAIR.md",
+      "SECOND_DISTINCT_OMEGA_CHAIN.md",
+      "SECOND_MULTIPLICITY_AUDIT.md"
+    ],
+    "historical_distinct_only_scope": "Retained in the three earlier second-review documents; the full supplement extends their acceptance boundary.",
+    "formal_proof_assistant_certification": false,
+    "external_human_peer_review_claimed": false,
+    "journal_acceptance_claimed": false
+  },
+  "fixed_schedule": {
+    "A": 100,
+    "moment_order": "ceil(4 log k)",
+    "shift_range": "2<=k<=floor(x^.01)",
+    "larger_shifts": "deterministic factor-count bound",
+    "distribution": "one fixed squared-sieve weight for all queried shifts"
+  },
+  "edition_scope": "Authored proof corrections and public verification metadata. Complete analytic derivations are retained; numeric computational witnesses, scripts and raw certificates are excluded."
+}
