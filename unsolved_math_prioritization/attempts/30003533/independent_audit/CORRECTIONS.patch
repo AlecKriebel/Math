@@ -1,0 +1,115 @@
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -13,8 +13,8 @@
+       "sha256": "d356767df9b5392cd588ee5fd415ad4aa5056bd85fd57c6e3a9a5c5947eeb791"
+     },
+     "PROOFS.md": {
+-      "bytes": 21962,
+-      "sha256": "331a6b124d492566d29977cd6d2ac47ef58b8dab89f8c9ce979e431188bf548a"
++      "bytes": 21961,
++      "sha256": "3695b7105ca674174c667bcc342826ca5534846ae196cd124538a2cd15c5e569"
+     },
+     "REPLAY.json": {
+       "bytes": 128,
+@@ -33,20 +33,20 @@
+       "sha256": "bb04e6addd4a626cb70d66c913aec9aa62ffafd16c2f560d29a27d0d1a88e656"
+     },
+     "VALIDATION.md": {
+-      "bytes": 2062,
+-      "sha256": "cbdb74c3b0c66911d0343edb1a9ac5f20c76d6c79397cb93d3ceade0c6216013"
++      "bytes": 2253,
++      "sha256": "276ace6dcd4a989ac7657befa1bf99c51811d3fb99c50d5913bdedfe08a2cfa6"
+     },
+     "controls.py": {
+       "bytes": 3605,
+       "sha256": "afc5ffe798f8df154970ecfad9bbb9feba326fb6886c36affad73c81a961c232"
+     },
+     "selftest.py": {
+-      "bytes": 3696,
+-      "sha256": "64727a8d96daecb05cea5f04489e64d8372b6a914c9cf0c31b94ca93e859c1df"
++      "bytes": 4063,
++      "sha256": "b6dc6847a050b5fbf20d314f68e1cf3ca8b22fb3dba3e9860d5161c06c31179b"
+     },
+     "verify.py": {
+-      "bytes": 4362,
+-      "sha256": "5bc5edfec6d09b5c04e3235d3570c0f55f0ef75848c1be20f59ae225dfc71786"
++      "bytes": 4461,
++      "sha256": "cd71dcc1134da648a99b79a79b1691500d63824758f9ed0e75fcb27e1dc8e3cd"
+     }
+   },
+   "schema_version": 1
+--- a/PROOFS.md
++++ b/PROOFS.md
+@@ -131,7 +131,7 @@
+ 
+ Proof. λ(Av,v)=(PAv,v)−((P−λI)Av,v). The absolute value of the latter term is at most δ||A||||v||². Take real parts and divide by λ. ∎
+ 
+-Thus a coercive weighted form transfers only if this sufficient condition c>δ||A|| is verified. Two-sided bounds on P alone do not imply it. A frequency-dependent phase can be inserted by replacing A with e^(−iθ)A, with exactly the same proof.
++This criterion guarantees transfer when c>δ||A|| is verified; it is sufficient, not necessary. Two-sided bounds on P alone do not imply it. A frequency-dependent phase can be inserted by replacing A with e^(−iθ)A, with exactly the same proof.
+ 
+ ### Proposition 3.2 (uniform inverse and an equivalent coercive metric do not suffice)
+ 
+--- a/VALIDATION.md
++++ b/VALIDATION.md
+@@ -4,10 +4,10 @@
+ 
+ The mathematical checks use exact rational arithmetic. They cover the polar curvature identity and finite support samples, the positive-metric matrix identities, nilpotent weighted-shift telescoping controls, block-form inequalities, and finite diagonal-gap surrogates. They supplement the written proofs; they do not verify the boundary PDE, a microlocal representation, all geometric deformations, or a high-frequency coercivity theorem.
+ 
+-The self-test is required to pass in ordinary Python, `-O`, and `-OO`. It tests checksum corruption, extra and missing files, symlinks, rebound false solved and smooth-counterexample claims, a false curvature claim, boolean/integer type confusion, an unknown claim, duplicate JSON keys, non-finite numbers, and truncated JSON. False-claim payload hashes are deliberately updated, so rejection cannot be credited only to stale hashes. All semantic validation uses explicit exceptions, never `assert`.
++The self-test is required to pass in ordinary Python, `-O`, and `-OO`. It tests checksum corruption, extra and missing files, symlinks, rebound false solved and smooth-counterexample claims, a false curvature claim, boolean/integer type confusion in claims and attempt ordinals, an unknown claim, duplicate JSON keys, non-finite numbers, and truncated JSON. False-claim payload hashes are deliberately updated, so rejection cannot be credited only to stale hashes. All semantic validation uses explicit exceptions, never `assert`.
+ 
+-A separate relocated copy has all files set read-only and its directory nonwritable. All three modes must reproduce the exact normal output without changing the payload. The self-test creates and removes only disposable temporary directories.
++A separate relocated copy has all files set read-only and its directory nonwritable. All three modes must reproduce the exact normal output without changing the payload. The self-test creates and removes only disposable temporary directories. Mutation copies are made writable after copying, so replay also works when the source packet itself is read-only; the original packet is never made writable.
+ 
+-Expected final results: 4,455 exact controls; six successful original/relocated mode replays; twelve mutation cases, each rejected in all three modes (36 rejections). The final external validation receipt records the actual observed result. No independent audit is implied.
++Expected final results: 4,455 exact controls; six successful original/relocated mode replays; thirteen mutation cases, each rejected in all three modes (39 rejections). The final external validation receipt records the actual observed result. No independent audit is implied.
+ 
+ The manifest binds the source-free author packet but is not itself a signed trust root. Compare its SHA-256 with the separately reported freeze receipt. A party able to replace both executable code and all trusted hashes can change what any local verifier claims.
+--- a/selftest.py
++++ b/selftest.py
+@@ -20,12 +20,21 @@
+     m['files'][name]={'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+     (p/'MANIFEST.json').write_text(json.dumps(m,sort_keys=True,indent=2)+'\n')
+ 
++def mutable_copy(source,target):
++    shutil.copytree(source,target)
++    target.chmod(0o755)
++    for f in target.iterdir(): f.chmod(0o644)
++
+ def mutate(p,case):
+     if case=='altered_proof': (p/'PROOFS.md').write_text((p/'PROOFS.md').read_text()+'\ncorruption\n');return
+     if case=='extra_file': (p/'extra.txt').write_text('unexpected');return
+     if case=='missing_file': (p/'SOURCES.md').unlink();return
+     if case=='symlink':
+         (p/'RESULT.md').unlink();(p/'RESULT.md').symlink_to('PROOFS.md');return
++    if case=='ledger_bool_turn':
++        name='LEDGER.json';d=json.loads((p/name).read_text())
++        d['attempts'][0]['turn']=True
++        (p/name).write_text(json.dumps(d,indent=2)+'\n');rebind(p,name);return
+     name='CLAIMS.json';d=json.loads((p/name).read_text())
+     if case=='false_solved':d['status']='solved';d['original_target_resolved']=True
+     elif case=='false_smooth_counterexample':d['smooth_counterexample_proved']=True
+@@ -47,11 +56,11 @@
+     for mode in MODES:
+         r=invoke(ROOT,mode);need(r.returncode==0,'baseline failed: '+r.stderr)
+         baseline=baseline or r.stdout;need(r.stdout==baseline,'mode output mismatch');positive+=1
+-    cases=['altered_proof','extra_file','missing_file','symlink','false_solved','false_smooth_counterexample','false_curvature','bool_for_integer','unknown_claim','duplicate_key','nonfinite','truncated_json']
++    cases=['altered_proof','extra_file','missing_file','symlink','false_solved','false_smooth_counterexample','false_curvature','bool_for_integer','unknown_claim','duplicate_key','nonfinite','truncated_json','ledger_bool_turn']
+     with tempfile.TemporaryDirectory(prefix='coercivity_packet_test_') as temp:
+         temp=Path(temp)
+         for case in cases:
+-            p=temp/case;shutil.copytree(ROOT,p);mutate(p,case)
++            p=temp/case;mutable_copy(ROOT,p);mutate(p,case)
+             for mode in MODES:
+                 r=invoke(p,mode);need(r.returncode!=0,'mutation accepted: '+case+str(mode));negative+=1
+         p=temp/'readonly_relocated';shutil.copytree(ROOT,p)
+--- a/verify.py
++++ b/verify.py
+@@ -53,6 +53,7 @@
+     need(type(ledger.get('problem_id')) is int and ledger['problem_id']==30003533,'ledger problem identity')
+     need(ledger.get('status')=='unsolved' and ledger.get('turns')=='5/5' and ledger.get('original_target_resolved') is False and ledger.get('independent_review')=='pending','ledger scope')
+     attempts=ledger.get('attempts');need(type(attempts) is list and len(attempts)==5,'ledger attempts')
++    need(all(type(a) is dict and type(a.get('turn')) is int for a in attempts),'ledger turn type')
+     need([a.get('turn') for a in attempts]==[1,2,3,4,5],'ledger order')
+     need(all(all(type(a.get(k)) is str and a[k] for k in ['method','derived_result','gap']) for a in attempts),'ledger gaps')
+     result=run(claims)
