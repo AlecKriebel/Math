@@ -1,0 +1,36 @@
+--- a/packet/verify.py
++++ b/packet/verify.py
+@@ -39,7 +39,7 @@
+         if len(p)!=1:raise CheckError('negative power requires monomial')
+         k,v=next(iter(p.items()))
+         if v not in (1,-1):raise CheckError('nonunit monomial')
+-        return {tuple(i*n for i in k):v**n}
++        return {tuple(i*n for i in k):(1 if v == 1 or n % 2 == 0 else -1)}
+     k=next(iter(p)) if p else (0,)
+     r={tuple(0 for _ in k):1}
+     for _ in range(n):r=mul(r,p)
+--- a/AUTHOR_MANIFEST.json
++++ b/AUTHOR_MANIFEST.json
+@@ -43,9 +43,9 @@
+       "sha256": "b3b69c114c65698941a4b4f0c9012f2c04ead72961276557ff3a5a4bdbee894e"
+     },
+     {
+-      "bytes": 9577,
++      "bytes": 9608,
+       "path": "verify.py",
+-      "sha256": "b7c7167d51aa94a4728512cad6782fc7bc313e236869bb1467159f5f85b6c667"
++      "sha256": "695f62f0a39034c2d083b3ddbea89634917728fa4f3d2df995a544a53cee3a2b"
+     }
+   ],
+   "problem_id": 10400013,
+--- a/bootstrap.py
++++ b/bootstrap.py
+@@ -2,7 +2,7 @@
+ """Authenticate the complete source-free payload before executing any payload code."""
+ from pathlib import Path
+ import hashlib,json,subprocess,sys,re
+-EXPECTED_MANIFEST = "a8e8ce66abc1366122e72cd8086b9cba999e04e05b9f8d1b7b41111d3a2fbcd6"
++EXPECTED_MANIFEST = "32340d733f2fec7dc01d00c39a96767e69dfc2509be1b6c309461e40bb9fc251"
+ class VerificationError(Exception):pass
+ def require(ok,message):
+     if not ok:raise VerificationError(message)
