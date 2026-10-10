@@ -1,0 +1,128 @@
+--- v1/AUTHOR_MANIFEST.json
++++ v2/AUTHOR_MANIFEST.json
+@@ -3,7 +3,7 @@
+   "problem_number": "KOU-21.114",
+   "result": "unresolved_after_five_approaches",
+   "substantive_approaches": 5,
+-  "created_at_utc": "2026-10-05T18:51:27.940460+00:00",
++  "created_at_utc": "2026-10-05T19:08:32.983173+00:00",
+   "independent_audit": "pending",
+   "source_documents_or_raw_datasets_included": false,
+   "remote_writes": false,
+@@ -20,13 +20,13 @@
+     },
+     {
+       "path": "PROOFS.md",
+-      "bytes": 13480,
+-      "sha256": "1c05cba0db4085a9a0c0e1d388ec7c26368df0156b5747493a6068da82d6662f"
++      "bytes": 13482,
++      "sha256": "04d4dabfb5a7f29f481947cf07251f8ee582a026985254847b9767c10cda850d"
+     },
+     {
+       "path": "README.md",
+-      "bytes": 4302,
+-      "sha256": "8df256a6616b32a5256718d068be831068eb10390b0c2b38d0c4bd066fa934dd"
++      "bytes": 4457,
++      "sha256": "4db9d98f9030d5417a4ff2e231776820f04c204697e9126f003a5de3ed26e8d1"
+     },
+     {
+       "path": "RESEARCH_LOG.md",
+@@ -35,8 +35,8 @@
+     },
+     {
+       "path": "SOURCE_VERIFICATION.json",
+-      "bytes": 8647,
+-      "sha256": "5123cf5394a691e95898d6946c2b7ffebd33c59fd910b160e0685c1fbce69907"
++      "bytes": 9776,
++      "sha256": "1cfa58bc4b673b547fe915282df285d2a43ca8ee9b9adf8fbb472b3580cd9e4c"
+     },
+     {
+       "path": "verify_manifest.py",
+@@ -45,8 +45,16 @@
+     },
+     {
+       "path": "verify_math.py",
+-      "bytes": 8891,
+-      "sha256": "9855457f808a1cc08d24bf1d9beb64cc0d469186715d752b5c6bdfe6b5cc4221"
++      "bytes": 8893,
++      "sha256": "a939146722d0829c4bfe6b840d865d3cd3e06c61f31bf8726111cddf6168dfb3"
+     }
++  ],
++  "release_version": 2,
++  "previous_author_archive_sha256": "d1f66407e8a7ff1c7aceaf7531b959085877de50c4198558d5d69dc33983f0f4",
++  "previous_author_manifest_sha256": "5a59d7d8e527873107d7fa2ccb0338648efeedfb875eb0e109f39396dcad3a73",
++  "corrections_source_sha256": "9d52bb17e3d9a630e4bbeb95a348369f01bbc12da617a33857f2ac0cc2159576",
++  "applied_corrections": [
++    "C1",
++    "C2"
+   ]
+ }
+--- v1/PROOFS.md
++++ v2/PROOFS.md
+@@ -147,6 +147,6 @@
+ 
+ The Python checker constructs the groups from their multiplication formulas, checks every associativity triple, enumerates all subgroups for nine indicated small groups, and computes subgroup derived subgroups by generating all elementwise commutators. It also checks two additional wreath witnesses by exact tables. No floating-point arithmetic or external group database is used.
+ 
+-Subgroup enumeration starts from {1} and repeatedly adjoins one element. One representative from each right coset is enough because ⟨H,xh⟩=⟨H,x⟩ for h∈H. Every subgroup has a finite generating list, so induction on its length shows that the enumeration is complete. Duplicate subgroups are identified by their full element sets. Each produced subgroup is independently checked for multiplication closure and regenerated from its stored generators. The certificate is regenerated exactly on replay.
++Subgroup enumeration starts from {1} and repeatedly adjoins one element. One representative from each left coset xH is enough because ⟨H,xh⟩=⟨H,x⟩ for h∈H. Every subgroup has a finite generating list, so induction on its length shows that the enumeration is complete. Duplicate subgroups are identified by their full element sets. Each produced subgroup is independently checked for multiplication closure and regenerated from its stored generators. The certificate is regenerated exactly on replay.
+ 
+ The computations verify finite controls and expose false generalizations. The all-parameter results above are proved by the written arguments, not inferred from a finite sample. None establishes an absolute bound for the derived length of every weakly ab-maximal p-group, and none constructs such groups of unbounded derived length.
+--- v1/README.md
++++ v2/README.md
+@@ -6,7 +6,7 @@
+ 
+ ## Identity and literature
+ 
+-The October 2026 editor-maintained 21st edition was checked at printed/PDF page 194. Problem 21.114 has neither a solved marker nor an unverified-AI-solution marker. Its annotation cites Lisi–Sabatini's reduction to direct products of weakly ab-maximal p-groups. The same question already appears as Question A in their 2024 paper, so the catalogue's proposed year 2026 is an issue date rather than its earliest identified appearance.
++The October 2026 editor-maintained 21st edition was checked at printed/PDF page 194. Problem 21.114 has neither a solved marker nor an unverified-AI-solution marker. Its annotation cites Lisi–Sabatini's reduction to direct products of weakly ab-maximal p-groups. The same question appears in Lisi–Sabatini's 22 March 2022 preprint, titled Weakly-top groups, Section 3.3 (page 5), and as Question A in their 2024 article. The 2022 preprint is the earliest appearance identified in this audit, not a claim of absolute priority; the catalogue's proposed year 2026 labels the Notebook issue.
+ 
+ The original paper also constructs examples with arbitrarily large nilpotency class. Those examples are metabelian, so they do not refute a bound on derived length. Eberhard–Sabatini's 2025 paper resolves a different extremal-size question, Question C in the earlier paper, using class-two groups. It does not settle this target. The checked October 2026 source retains the target as open; literature search is not proof that no unindexed result exists.
+ 
+--- v1/SOURCE_VERIFICATION.json
++++ v2/SOURCE_VERIFICATION.json
+@@ -12,7 +12,7 @@
+     "printed_page": 194,
+     "pdf_page_one_based": 194,
+     "primary_annotations": "No solved marker or unverified-AI marker on 21.114. Annotation gives Lisi–Sabatini direct-product reduction.",
+-    "earliest_identified_appearance": "Lisi–Sabatini, 2024 article, Question A (arXiv version 4 inspected).",
++    "earliest_identified_appearance": "Lisi–Sabatini, Weakly-top groups, arXiv:2203.12021v1, 22 March 2022, Section 3.3, page 5; also Question A of the 2024 article. Earliest appearance identified in this audit, not absolute priority.",
+     "catalogue_year_interpretation": "2026 labels the Notebook issue; it is not the earliest identified appearance of the question.",
+     "finite_groups_only": true,
+     "weak_inequality": true,
+@@ -121,6 +121,25 @@
+       "public_status": "Author-maintained bibliography",
+       "inspection": "Inspected current listed papers and descriptions, with particular attention to 2024–2026 items.",
+       "relevance": "Later-work discovery and corroboration of published titles/status, not an exhaustive guarantee of unpublished work."
++    },
++    {
++      "title": "Weakly-top groups",
++      "authors": [
++        "Francesca Lisi",
++        "Luca Sabatini"
++      ],
++      "url": "https://arxiv.org/pdf/2203.12021v1",
++      "abstract_url": "https://arxiv.org/abs/2203.12021v1",
++      "bytes": 134230,
++      "sha256": "4c41c1a9490899454616c1358486ea7eb3b9cffaa3b375bb32dc91dc3e9c16d6",
++      "version_inspected": "arXiv v1, 22 March 2022, 5 pages",
++      "locations": [
++        "Definition in Section 1, page 1",
++        "Section 3.3, page 5"
++      ],
++      "inspection": "Independently downloaded complete PDF and inspected the definition and derived-length question during the 5 October 2026 audit. The original author freeze inspected v4, not v1.",
++      "public_status": "Public arXiv preprint. The 2024 published article is the later version with a changed title.",
++      "relevance": "Earliest appearance identified in this audit of the equivalent bounded-derived-length question, under the term weakly-top. No absolute priority claim."
+     }
+   ],
+   "repository_checks": {
+--- v1/verify_math.py
++++ v2/verify_math.py
+@@ -49,7 +49,7 @@
+     def ab_order(self,A):return len(A)//len(self.derived(A))
+ 
+     def subgroups(self):
+-        """Breadth-first adjoining one element, one representative per right coset.
++        """Breadth-first adjoining one element, one representative per left coset xH.
+         Every subgroup has a finite generating sequence; induction proves completeness.
+         """
+         identity=frozenset({0})
