@@ -1067,7 +1067,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1057 | 3023 / KP-5.16 | Kirby Problem 5.16 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | already_solved | 0/5 |  | Known complete classification: sticky Cantor sets in R^n exist iff n >= 4; no novelty claim. Direct n=1,2 proofs and explicit globally bounded-displacement isotopy bridge with joint inverse continuity and track bound 2D. n=3 imports Sher through inspected Frolkina v2 sections 1.6 and 3.2; original Sher proof uninspected. Krushkal construction inspected; spun-Bing shrinkability, geometric meridian identifications, Alexander duality and Stallings imported. Independently accepted; finite checks do not prove imported topology. See [audited classification](attempts/3422/README.md). |  |
 | 1060 | 3800015 / AMR-037-0015 | Shortest paths in line arrangements | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1061 | 3900016 / AMR-038-0016 | Triangulations with many distinct areas | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1062 | 5500016 / AMR-054-0016 | Simple Polygonalizations | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
