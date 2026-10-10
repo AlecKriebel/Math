@@ -751,7 +751,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 740 | 30003791 / OWR-16162-003 | Linkage and Vanishing in Kato–Milne Cohomology | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 741 | 30003859 / OWR-16169-001 | Rigidity of Hirzebruch–Kummer Coverings | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 742 | 30003975 / OWR-16628-004 | Stable Symbolic-Power Containments from a Single Containment | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 743 | 30003978 / OWR-16628-010 | Irrational Seshadri Constants from the Nagata Conjecture | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 743 | 30003978 / OWR-16628-010 | Irrational Seshadri Constants from the Nagata Conjecture | 0.1029 | 5.5 | 3 | 2018 | already_solved | 1/5 |  | Prior-preprint resolution: Laface–Ugaglia (2026, arXiv:2609.26521v2, r=9) and Malara–Merta–Szpond–Zieliński (2026, arXiv:2610.01783v1, r>=10 via n=2r-13) give ample integral examples for every r>=9, very general centers and evaluation point. Independent scoped geometric audit PASS; recent unrefereed preprints, not a proof of Nagata. |  |
 | 744 | 30005185 / OWR-11101915-009 | Modulo-Four Reduced Khovanov Rank of Ribbon Knots | 0.1026 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 745 | 30004169 / OWR-16941-010 | Zariski Descent for the Milnor–Witt Rost–Schmid Complex | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 746 | 30004324 / OWR-17296-007 | Characterizing Projective Space by Tangent Bundle Seshadri Constants | 0.1025 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
