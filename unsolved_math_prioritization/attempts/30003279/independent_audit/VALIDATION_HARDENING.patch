@@ -1,0 +1,226 @@
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -23,13 +23,13 @@
+     },
+     {
+       "path": "PORTABILITY_RESULTS.json",
+-      "bytes": 1542,
+-      "sha256": "ecd1e8b91f1ac0794368cb853d0bcd931dd3a078d97d4783a5e18001e8418108"
++      "bytes": 2322,
++      "sha256": "e87d38df9d639af7521a2c6aa5f0113cdc747323db07a2c10cfd37d7970c3edd"
+     },
+     {
+       "path": "README.md",
+-      "bytes": 1268,
+-      "sha256": "087b8c46ac4cfa4972ece644af9bb6ac1b8e8805270a352b4047dbd3668c4673"
++      "bytes": 1468,
++      "sha256": "36a71a85cd172f479c40af6337e9a03a28b1ffa74314242b862c1553bc687990"
+     },
+     {
+       "path": "REPORT.md",
+@@ -48,18 +48,18 @@
+     },
+     {
+       "path": "exact_checks.py",
+-      "bytes": 10422,
+-      "sha256": "4576a25d19f9dc4b4560a740a746bc4887a55c205a68b9c85af787403f31390c"
++      "bytes": 10838,
++      "sha256": "c564a91eac739b94a25da2f563945d7691395e0cf9a133bb47075a2c7a20417b"
+     },
+     {
+       "path": "test_packet.py",
+-      "bytes": 4951,
+-      "sha256": "60d010d1aef1500011d1dddc97312624035734fad35535168374ee36b4b46dbe"
++      "bytes": 6567,
++      "sha256": "b9ef0c09457d68badacc14270a1b687ff891245a92316b5ee3a36137427cebfe"
+     },
+     {
+       "path": "verify_packet.py",
+-      "bytes": 2981,
+-      "sha256": "604f605e122222392c8c6304eb7663abc24f33de7d7e93faef3c46bcdaf61ad6"
++      "bytes": 3402,
++      "sha256": "3efa571b0be74598d1871cd2f33e3e7acc1cda71cc2d6179cc2bf7967d6803a3"
+     }
+   ]
+ }
+--- a/PORTABILITY_RESULTS.json
++++ b/PORTABILITY_RESULTS.json
+@@ -1,5 +1,5 @@
+ {
+-  "negative_count": 39,
++  "negative_count": 63,
+   "negative_runs": [
+     "normal changed proof",
+     "normal missing file",
+@@ -14,6 +14,14 @@
+     "normal rebound false point",
+     "normal symlink member",
+     "normal rebound false expected results",
++    "normal boolean schema",
++    "normal floating schema",
++    "normal duplicate manifest key",
++    "normal duplicate claims key",
++    "normal floating Fibonacci norm",
++    "normal floating Fibonacci point",
++    "normal floating balanced point",
++    "normal nonfinite claims number",
+     "O changed proof",
+     "O missing file",
+     "O extra file",
+@@ -27,6 +35,14 @@
+     "O rebound false point",
+     "O symlink member",
+     "O rebound false expected results",
++    "O boolean schema",
++    "O floating schema",
++    "O duplicate manifest key",
++    "O duplicate claims key",
++    "O floating Fibonacci norm",
++    "O floating Fibonacci point",
++    "O floating balanced point",
++    "O nonfinite claims number",
+     "OO changed proof",
+     "OO missing file",
+     "OO extra file",
+@@ -39,7 +55,15 @@
+     "OO rebound malformed claims",
+     "OO rebound false point",
+     "OO symlink member",
+-    "OO rebound false expected results"
++    "OO rebound false expected results",
++    "OO boolean schema",
++    "OO floating schema",
++    "OO duplicate manifest key",
++    "OO duplicate claims key",
++    "OO floating Fibonacci norm",
++    "OO floating Fibonacci point",
++    "OO floating balanced point",
++    "OO nonfinite claims number"
+   ],
+   "positive_count": 6,
+   "positive_runs": [
+--- a/README.md
++++ b/README.md
+@@ -8,4 +8,6 @@
+ 
+ Independent audit pending. AI-assisted, unrefereed, no novelty or full-resolution claim.
+ 
+-Run `python -B test_packet.py --manifest-sha256 PIN` for all three interpreter modes, read-only relocated positive replays, and thirteen hostile controls per mode. PORTABILITY_RESULTS.json records the expected labels and counts.
++Run `python -B test_packet.py --manifest-sha256 PIN` for all three interpreter modes, read-only relocated positive replays, and twenty-one hostile controls per mode. PORTABILITY_RESULTS.json records the expected labels and counts.
++
++Validator hardening: supplied witness types, exact integer schema version, duplicate JSON keys and nonfinite JSON constants are checked explicitly. Mathematical statements and scope are unchanged.
+--- a/exact_checks.py
++++ b/exact_checks.py
+@@ -11,6 +11,20 @@
+     pass
+ 
+ COUNT = 0
++
++def strict_object(pairs):
++    out = {}
++    for key, value in pairs:
++        if key in out:
++            raise CheckError('duplicate JSON key: '+key)
++        out[key] = value
++    return out
++
++def reject_constant(value):
++    raise CheckError('nonfinite JSON number: '+value)
++
++def strict_json(text):
++    return json.loads(text, object_pairs_hook=strict_object, parse_constant=reject_constant)
+ 
+ def require(ok, message):
+     global COUNT
+@@ -138,11 +152,11 @@
+     b=c['four_point_witness'];require(type(b) is dict and set(b)=={'u','n','points'},'Fibonacci schema')
+     require(type(b['u']) is int and b['u']>=2,'bad Fibonacci parameter')
+     N,pts=fib_config(b['u']);require(N==b['n'] and pts==b['points'],'wrong Fibonacci identity')
+-    config(N,pts);require(admitted(N),'inadmissible Fibonacci witness')
++    config(b['n'],b['points']);require(admitted(N),'inadmissible Fibonacci witness')
+     g=c['general_sample'];require(type(g) is dict and set(g)=={'s','t','n','points'},'balanced schema')
+     require(type(g['s']) is int and 2<=g['s']<=4 and type(g['t']) is int and g['t']>=1,'bad balanced parameter')
+     N,pts,B=balanced(g['s'],g['t']);require(N==g['n'] and pts==g['points'],'wrong balanced identity')
+-    config(N,pts);require(admitted(N),'inadmissible balanced witness')
++    config(g['n'],g['points']);require(admitted(N),'inadmissible balanced witness')
+ 
+ def run(claims):
+     validate_claims(claims)
+@@ -228,7 +242,7 @@
+     p=argparse.ArgumentParser();p.add_argument('--claims',type=Path,default=Path(__file__).resolve().with_name('CLAIMS.json'))
+     args=p.parse_args()
+     try:
+-        ans=run(json.loads(args.claims.read_text()))
++        ans=run(strict_json(args.claims.read_text()))
+     except (CheckError,ValueError,TypeError,KeyError,OSError) as e:
+         print(json.dumps({'verdict':'FAIL','reason':str(e)},sort_keys=True));return 1
+     print(json.dumps(ans,sort_keys=True,indent=2));return 0
+--- a/test_packet.py
++++ b/test_packet.py
+@@ -50,7 +50,7 @@
+             finally:
+                 relocated.chmod(0o755)
+                 for q in relocated.iterdir():q.chmod(0o644)
+-            for case in ['changed proof','missing file','extra file','malformed manifest','duplicate entry','traversal entry','boolean byte count','rebound false scope old pin','rebound false scope new pin','rebound malformed claims','rebound false point','symlink member','rebound false expected results']:
++            for case in ['changed proof','missing file','extra file','malformed manifest','duplicate entry','traversal entry','boolean byte count','rebound false scope old pin','rebound false scope new pin','rebound malformed claims','rebound false point','symlink member','rebound false expected results','boolean schema','floating schema','duplicate manifest key','duplicate claims key','floating Fibonacci norm','floating Fibonacci point','floating balanced point','nonfinite claims number']:
+                 root=temp/(label+'-'+case.replace(' ','_'));shutil.copytree(source,root);pin=a.manifest_sha256
+                 mf=root/'MANIFEST.json'
+                 if case=='changed proof':(root/'REPORT.md').write_text('false proof\n')
+@@ -73,6 +73,22 @@
+                 elif case=='symlink member':
+                     external=temp/(label+'-external-report');shutil.copy2(root/'REPORT.md',external);(root/'REPORT.md').unlink();(root/'REPORT.md').symlink_to(external)
+                 elif case=='rebound false expected results':(root/'CHECK_RESULTS.json').write_text('{}\n');pin=rewrite_manifest(root)
++                elif case in ['boolean schema','floating schema']:
++                    m=json.loads(mf.read_text());m['schema']=True if case=='boolean schema' else 1.0
++                    mf.write_text(json.dumps(m));pin=digest(mf)
++                elif case=='duplicate manifest key':
++                    mf.write_text(mf.read_text().replace('"schema": 1,','"schema": 0, "schema": 1,',1));pin=digest(mf)
++                elif case=='duplicate claims key':
++                    cp=root/'CLAIMS.json';cp.write_text(cp.read_text().replace('"problem_id": 30003279,','"problem_id": 0, "problem_id": 30003279,',1));pin=rewrite_manifest(root)
++                elif case in ['floating Fibonacci norm','floating Fibonacci point','floating balanced point']:
++                    cp=root/'CLAIMS.json';c=json.loads(cp.read_text())
++                    if case=='floating Fibonacci norm':c['four_point_witness']['n']=float(c['four_point_witness']['n'])
++                    else:
++                        key='four_point_witness' if case=='floating Fibonacci point' else 'general_sample'
++                        c[key]['points'][0][0]=float(c[key]['points'][0][0])
++                    cp.write_text(json.dumps(c));pin=rewrite_manifest(root)
++                elif case=='nonfinite claims number':
++                    cp=root/'CLAIMS.json';cp.write_text(cp.read_text().replace('"route_count": 5,','"route_count": NaN,',1));pin=rewrite_manifest(root)
+                 p=run(root,pin,flags,cwd)
+                 need(p.returncode!=0,'mutant accepted: '+label+' '+case)
+                 negative.append(label+' '+case)
+--- a/verify_packet.py
++++ b/verify_packet.py
+@@ -12,6 +12,20 @@
+ class PacketError(Exception):
+     pass
+ 
++def strict_object(pairs):
++    out = {}
++    for key, value in pairs:
++        if key in out:
++            raise PacketError('duplicate JSON key: '+key)
++        out[key] = value
++    return out
++
++def reject_constant(value):
++    raise PacketError('nonfinite JSON number: '+value)
++
++def strict_json(text):
++    return json.loads(text, object_pairs_hook=strict_object, parse_constant=reject_constant)
++
+ def need(ok,why):
+     if not ok:raise PacketError(why)
+ 
+@@ -23,9 +37,9 @@
+     manifest=root/'MANIFEST.json'
+     need(manifest.is_file() and not manifest.is_symlink(),'missing manifest or symlink')
+     data=manifest.read_bytes();need(sha(data)==pin,'external manifest pin mismatch')
+-    m=json.loads(data)
++    m=strict_json(data)
+     need(type(m) is dict and set(m)=={'schema','files'},'manifest schema')
+-    need(m['schema']==1 and type(m['files']) is list,'manifest types')
++    need(type(m['schema']) is int and m['schema']==1 and type(m['files']) is list,'manifest types')
+     names=[]
+     for row in m['files']:
+         need(type(row) is dict and set(row)=={'path','bytes','sha256'},'entry schema')
