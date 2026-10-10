@@ -1,0 +1,5 @@
+# Research log: 5100014 / k303,a
+
+- 2026-10-01 04:58 UTC: Read pinned full statement and upstream report; recovered source Table 4 and definitions in both editions. Confirmed product of outer area and its pedal area for N congruent 2 mod 4 and every fixed point M. Checked exact-ID/code PRs, branch, available git history, inventory and prior-user context; no exact prior campaign attempt located. Upstream report is not an Alec attempt. Source triage is not a proof turn. Current full-target completion estimate: 0%; five substantive turns remain unless full resolution is found earlier.
+
+- 2026-10-01 05:10 UTC: Substantive author turn 1 derives a complete two-pole flag-curve candidate. After exact low-N and generic-phase controls, the proof identifies all possible pedal-area poles with the original-area pole set for N/2 odd, controls their orders, and uses genus-one Riemann–Roch plus reversal. Candidate completeness estimate 100%, correctness pending independent review; no full claim before PASS. Queue records candidate at 1/5.
