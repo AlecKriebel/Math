@@ -1,0 +1,59 @@
+--- a/author/PROOF.md
++++ b/author/PROOF.md
+@@ -166,9 +166,9 @@
+ 
+     E(Ψ∘π)≥8π,    E⁽⁰,¹⁾(Ψ∘π)≥4π
+ 
+-when the degree is zero, as in the relevant low-energy torus candidates. It cannot produce the strict improvement below 2√π required for a counterexample, at any modulus of the cover. Since the conjectured value is never larger than 2√π, even choosing a thin cover does not rescue this construction. If the base map is equatorial, its lift is equatorial too, and Approach 1 already computes its allowable trivial-spin values exactly.
+-
+-This is an obstruction only to *direct finite-cover pullbacks*. It neither classifies intrinsically trivial-spin maps nor excludes deformations of a cover map. In particular, an equality-energy lift might conceivably deform to lower energy while changing its induced metric. No stability theorem of the needed strength was obtained here. The direct covering counterexample route is closed; the full conjecture is not.
++when the degree is zero, as in the relevant low-energy torus candidates. Thus the pulled-back harmonic map and its associated eigenpair cannot themselves supply a sub-spherical energy witness. This does not give a lower bound for the first positive eigenvalue of the pulled-back metric: the cover may introduce additional, lower eigenmodes. In particular, an associated eigenvalue satisfying λ²Area≥4π is compatible with μ₁²Area<4π. If the base map is equatorial, its lift is equatorial too, and Approach 1 computes the allowable trivial-spin map energies exactly.
++
++This is an obstruction only to the low-energy harmonic-map witness obtained by direct finite-cover pullback. It does not exclude a counterexample found through a different eigenmode of the literal pullback metric, does not classify intrinsically trivial-spin maps, and does not exclude deformations of a cover map. In particular, an equality-energy lift might conceivably deform to lower energy while changing its induced metric. No spectral-ordering or stability theorem of the needed strength was obtained here. The direct low-energy map construction is obstructed; a general covering-based metric search and the full conjecture remain unresolved.
+ 
+ ## Approach 5: two-variable variational counterexample search
+ 
+@@ -186,7 +186,7 @@
+ 
+ It normalizes mean(f²)=1, uses |m|,|n|≤3 excluding zero, and 96×96 FFT trapezoidal quadrature. Seven conformal classes are tested: (a,b)=(0,1), (1/2,√3/2), (1/4,2), (0,π), (1/2,π), (1/4,4), (0,6). At each class there are 41 initial factors (including the flat one), followed by two bounded six-variable L-BFGS-B minimizations from the best nonconstant initial factors. The random seed is 30005600. Best factors and the best initially sampled nonconstant factors are re-evaluated at Fourier cutoffs 4 and 6 and quadrature sizes 128 and 192. Six flat-spectrum and three exact one-variable metric controls are run first.
+ 
+-Results: no computed value fell below the conjectured target. For the square and equilateral classes, the optimized cutoff-3 values fell below their flat values, as they should be allowed to do, but the cutoff-6 re-evaluations were approximately 4.9250 and 4.9641, respectively, still above 2√π≈3.5449. In the other five classes the best search factor was flat. This does not establish that flat is minimizing there: at b=2 the conjectured infimum is already strictly below the flat value, and this finite search simply missed the necessary concentration. The distinction is an important negative control on overinterpreting the optimization.
++Results: no computed value fell below the conjectured target. For the square and equilateral classes, the optimized cutoff-3 values fell below their flat values, as they should be allowed to do, but the cutoff-6 re-evaluations were approximately 4.9250 and 4.9641, respectively, still above 2√π≈3.5449. In the other five classes the best search factor was flat. This does not establish that flat is minimizing there: at b=2 the established spherical-bubbling upper bound 2√π is strictly below the flat value 2π/√2, so smooth sub-flat competitors exist. This finite search failed to capture that known comparison. No necessity of concentration or nonexistence of a smooth minimizer is inferred. The distinction is an important negative control on overinterpreting the optimization.
+ 
+ The actual FFT quadrature and dense generalized eigenvalue computations use floating-point arithmetic. Their outputs are not certified integral enclosures, rigorous spectral bounds, or a global optimization certificate. A candidate strict counterexample would require a new certified test-function inequality with explicit quadrature and rounding bounds. None was found. The finite Fourier space also poorly resolves concentrating bubbles; optimization convergence messages certify neither local nor global mathematical minimality.
+ 
+@@ -194,7 +194,7 @@
+ 
+ ## Final remaining problem and review challenges
+ 
+-The full target remains open in this work after five substantive approaches. The established comparison (1) settles b≥2π by credited prior theory; the exact family (5), the weighted bound (3), and the covering obstruction are scoped partial results. The unresolved ranges are π<b<2π for the flat-value lower bound and b≤π for the spherical-value lower bound, including b=π itself.
++The full target remains open in this work after five substantive approaches. The established comparison (1) settles b≥2π by credited prior theory; the exact family (5), the weighted bound (3), and the harmonic-map energy obstruction for covers are scoped partial results. The unresolved ranges are π<b<2π for the flat-value lower bound and b≤π for the spherical-value lower bound, including b=π itself.
+ 
+ The following checks were applied to the written arguments:
+ 
+@@ -205,10 +205,10 @@
+ - Harmonic-map energy is E=(1/2)∫|dΨ|² with unit target sphere. The relation E=2Λ² is why 4π rigidity only yields b>2π.
+ - At b=π the two conjectured formulas coincide, but equality has not been proved. At b=2π the value follows from the credited comparison; uniqueness is deliberately not asserted there.
+ - The one-variable theorem controls every x-Fourier sector, including skew-lattice quasiperiodicity. Without M≤F it supplies an explicit spectral branch, not the whole first eigenvalue.
+-- The covering result concerns literal pullbacks only. Perturbations and intrinsic trivial-spin harmonic maps remain outside it.
+-- Numerical Ritz tests cannot prove a lower bound. The known need for concentration at b=2 is not recovered by the low-order search, so lack of a numerical counterexample supplies very weak global evidence.
+-
+-No independent review has yet been performed on this author packet. The analytic steps are elementary deductions plus explicitly named prior theorems; the computational controls are finite arithmetic/numerical checks, not formal verification. In particular, neither the missing harmonic energy estimate nor the sharp weighted inequality (4) is assumed in any proved partial result.
++- The covering estimate concerns the energy of the literal pulled-back harmonic map and its associated eigenpair. Lower eigenmodes of the pullback metric, perturbations, and intrinsically trivial-spin harmonic maps remain uncontrolled.
++- Numerical Ritz tests cannot prove a lower bound. The established spherical-bubbling comparison supplies sub-flat competitors at b=2, behavior not recovered by the low-order search. Neither necessity of concentration nor nonexistence of a smooth minimizer is established.
++
++At the author freeze, no independent review had yet been performed. The accompanying audit accepts the scoped partial results with the cover and numerical-scope corrections incorporated in this reading copy. The analytic steps are elementary deductions plus explicitly named prior theorems; the computational controls are finite arithmetic/numerical checks, not formal verification. In particular, neither the missing harmonic energy estimate nor the sharp weighted inequality (4) is assumed in any proved partial result.
+ 
+ ## References
+ 
+--- a/author/RESEARCH_LOG.md
++++ b/author/RESEARCH_LOG.md
+@@ -28,7 +28,7 @@
+ 
+ ## 2026-10-07 17:07 UTC: approaches 4--5 and disposition
+ 
+-4. Spin-trivializing covers: proved that non-equatorial harmonic maps pulled back through a cover killing a nontrivial spin character have total energy at least 8π. Direct pullback cannot improve the spherical threshold. Intrinsic trivial-spin maps and cover deformations remain unclassified.
++4. Spin-trivializing covers: proved that non-equatorial harmonic maps pulled back through a cover killing a nontrivial spin character have total energy at least 8π. Their associated eigenpairs cannot supply a sub-spherical energy witness. Lower eigenmodes of the pullback metric remain uncontrolled, so this does not exclude a metric counterexample obtained from a literal cover. Intrinsic trivial-spin maps and cover deformations also remain unclassified.
+ 5. Two-variable Rayleigh--Ritz search: 287 initial factor evaluations and 14 bounded optimizations across seven classes found no strict numerical improvement below the conjectured target. The square/equilateral metrics do improve below their flat values, but remain above the target in the tested basis. Six flat controls and three exact one-variable controls passed. Best factors were tested at larger Fourier cutoffs. Floating-point quadrature is explicitly not certified. The inability to find the known sub-flat bubbling behavior at b=2 is recorded as a search limitation, not evidence for a false flat minimization theorem.
+ 
+ Full-goal completion estimate: 12%, heuristic and not a probability or measurement. Final disposition: unresolved after 5/5 mathematical approaches, with credited known regime and scoped partials. No sixth search route, queue edit, publication, release, or outreach is part of this packet. Self-checks and integrity checks may still be completed; independent review remains pending.

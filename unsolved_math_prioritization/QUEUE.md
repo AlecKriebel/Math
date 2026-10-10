@@ -960,7 +960,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 949 | 30005209 / OWR-11101918-009 | Stable Wulff Shapes for Crystalline Nonlocal Energies | 0.0947 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-07: accepted CORRECTED scoped partials; full pi-threshold conjecture unresolved. Trivial-spin one-variable full first eigenvalue under max f <= integral f; weighted kernel-corrected Rayleigh/Ritz formulas. Covers bound only the pulled-back map/eigenpair, not lower metric modes. Uncertified search misses known sub-flat comparison at b=2; no necessity-of-concentration claim. Known b>=2pi credited. [Proof, full audit, scope patch and replay](attempts/30005600/README.md). |  |
 | 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
