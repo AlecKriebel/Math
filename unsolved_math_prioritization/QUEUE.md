@@ -828,7 +828,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 817 | 30001006 / OWR-2045-003 | Sharp Ricci-Flow-Invariant Curvature Cones | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 818 | 30001054 / OWR-2090-003 | Realizability of Allowable Double-Permutation Sequences | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 819 | 30001066 / OWR-2090-019 | Helly Numbers for Isolated Line Transversals | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 820 | 4600024 / AMR-045-0024 | Extension of a block code II | 0.0986 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
+| 820 | 4600024 / AMR-045-0024 | Extension of a block code II | 0.0986 | 5.5 | 4 | 2008 | claimed_solved | 3/5 |  | Complete effective prescribed-map criterion via credited PRZ (2014) Theorem 4.2 and authored saturation argument; two independent AI audits pass. Irreducible two-sided sofic T, specified onto f; all radii/completions covered. Separate existential-over-map and CA-stability questions not solved; no novelty claim. [Proof and audits](attempts/4600024/README.md). |  |
 | 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 823 | 30001176 / OWR-3392-002 | Factorizations from Minimal Exchangeable Random Sequences | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
