@@ -1,0 +1,306 @@
+          Nonconvexity of fixed odd-power sum-of-squares cones
+                                              Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                            6 October 2026
+
+
+                                                Abstract
+          For a fixed odd integer q, consider the nonnegative real homogeneous forms whose qth powers
+      are sums of squares. We give a negative answer to the general-dimensional convexity question
+      recorded by Reznick in 2023. For sextics and q = 3, the cone is nonconvex in the explicit finite
+      dimension 3 · 1062 . For every odd q ≥ 3, it is nonconvex in some finite dimension depending
+      on q. The proof combines a classical modified Motzkin form with an SOS cube, separation
+      from the SOS cone, positivity of product truncated functionals, and elementary distinct-index
+      counting. An explicit rational moment functional gives the displayed dimension; its 220 × 220
+      local positivity certificate can be checked without floating-point arithmetic. No ternary or
+      smallest-dimension conclusion is made.
+
+
+1    The question and the result
+Let R[x1 , . . . , xn ]m be the real forms of degree m, where m is positive and even. For a positive odd
+integer q, set
+                        C(n, m, q) = {f ∈ R[x1 , . . . , xn ]m : f ≥ 0 on Rn , f q ∈ SOS}.
+Here SOS means a finite sum of squares of real polynomials. Nonnegativity is automatic from
+the second condition when q is odd. These sets are closed and stable under multiplication by
+nonnegative scalars; whether they are convex is a separate question. Reznick asks this for general
+n, m, q in his 2023 Oberwolfach contribution [1, p.779]. The same question appears in [2, §6].
+
+Theorem 1. Put N = 1062 and n = 3N . On disjoint variable triples (xi , yi , zi ), define
+
+                         pi = x4i yi2 + x2i yi4 + zi6 − x2i yi2 zi2 (1 ≤ i ≤ N ).
+                                                 ∑
+Each pi belongs to C(n, 6, 3), whereas N −1 N       i=1 pi does not. Thus C(3 · 10 , 6, 3) is not convex.
+                                                                                  62
+
+Moreover, for every fixed odd q ≥ 3 there is a finite n(q) for which C(n(q), 6, q) is not convex.
+
+    The explicit dimension is a suﬀicient bound, with no optimality claim. The theorem refutes the
+general convexity assertion; it does not settle the ternary fixed-power question, classify parameter
+triples, or give a common dimension for all odd exponents. Each counterexample persists on adding
+unused variables, because restriction of an SOS to those variables equal to zero is again SOS. The
+case q = 1 and classical cases in which every nonnegative form is SOS remain consistent with the
+theorem.
+    The ingredients are established. The exact modified Motzkin seed is due to Berg–Christensen–
+Jensen [3, Lemma 1]; its SOS cube is recorded in [1, 2]. Closure and positive-functional separation
+
+
+                                                     1
+are classical as well [3, Theorems 3–4]. Product pseudoexpectation positivity is explicit in Barak–
+Kelner–Steurer [4, Lemma A.5]. Distinct-index versus collision asymptotics appear, for example,
+in [5, Lemma 2.1] and [6, Proposition 6.4]. We apply these tools to obstruction at one prescribed
+odd power and supply an explicit finite certificate. The convexity of the union over odd powers in [2,
+Theorem 5.3] and [7, Theorem 2.2] allows the exponent to increase and does not imply fixed-power
+convexity.
+
+
+2    Disjoint-copy obstruction at a fixed odd power
+We write R[u]≤r for polynomials of total degree at most r in a fixed finite variable block u.
+
+Lemma 1. Let p ∈ R[u]m , let q be positive and odd, and put d = qm/2. Suppose L : R[u]≤2d → R
+satisfies
+                 L(1) = 1,       L(h2 ) ≥ 0 (deg h ≤ d),    a1 := L(p) < 0.
+For all suﬀiciently large finite integers s, the polynomial (p(u1 ) + · · · + p(us ))q on disjoint copies of
+u is not SOS.
+
+Proof. The local moment matrix M = (L(uα+β ))|α|,|β|≤d is positive semidefinite. On polynomials
+of degree at most 2d in each of the s blocks, define a product functional on monomials by
+                                       ( s       )
+                                         ∏ α         ∏s
+                                    Ls      ui i
+                                                   =    L(uαi ).
+                                            i=1          i=1
+
+The matrix controlling Ls (H 2 ) for all H of total degree at most d is a principal submatrix of M ⊗s ,
+hence is positive semidefinite. Consequently Ls is nonnegative on every sum of such squares. This
+is the standard product-positivity construction [4]. All spaces and products here are finite; no
+representing measure is assumed.                              ∑
+    Put aj = L(pj ) for 0 ≤ j ≤ q, so a0 = 1, and let Ss = si=1 p(ui ). Expansion by partitions of
+the q labelled factors gives
+                             ∑             ∏
+                 Ls (Ssq ) =        (s)|π|     a|B| ,   (s)r = s(s − 1) · · · (s − r + 1).         (1)
+                           π∈Part([q])     B∈π
+
+For each partition, assigning its distinct blocks to distinct copies has (s)|π| choices. The unique
+partition with q blocks is the singleton partition. Thus the expression is a polynomial in s of degree
+q, with leading coeﬀicient aq1 < 0; all collisions contribute lower degree. It is strictly negative for
+all suﬀiciently large integers s.
+    An SOS polynomial of degree at most 2d can involve only square summands of degree at most
+d: otherwise its highest-degree homogeneous part would be a nonzero sum of squares, and could
+not cancel. Therefore the negative value excludes every SOS representation of Ssq .
+
+Lemma 2. If a form p is not SOS and q is positive and odd, then with d = qm/2 there exists an
+L satisfying the hypotheses of Lemma 1.
+
+Proof. The cone of SOS polynomials of degree at most 2d is closed. Indeed, let v be the vector of all
+monomials of degree at most d and write a coeﬀicient-convergent SOS sequence as v T Qj v, Qj  0.
+For a standard Gaussian integral Γ, G = Γ(vv T ) is positive definite. Coeﬀicient convergence bounds
+Γ(v T Qj v) = tr(Qj G), which bounds tr Qj , and hence the matrices Qj . A convergent subsequence
+yields a positive semidefinite Gram matrix for the limit.
+
+                                                     2
+     The same highest-degree argument used above shows that a non-SOS form p is outside this
+larger finite-degree SOS cone. Finite-dimensional separation from a closed convex cone gives a
+functional L0 nonnegative on that cone with L0 (p) < 0. For suﬀiciently small ε > 0, L0 + εΓ
+still has negative value on p and has positive definite moment matrix. Its value on 1 is positive.
+Dividing by that value gives the required L. This is classical SOS duality [3].
+
+    The power map f 7→ f q is continuous in the coeﬀicient topology. The closedness just proved
+therefore also gives closedness of each fixed-power set C(n, m, q) as the inverse image of the fixed-
+degree SOS cone.
+    In particular, if a non-SOS nonnegative form p has an SOS qth power, its disjoint copies belong
+to the same ambient C, whereas a suﬀiciently large finite average does not. Convexity implies
+closure under every finite convex combination by induction, so that average refutes convexity. If a
+violating pair is desired, take the least failing prefix of the finite sum in the same ambient variable
+space; its preceding prefix and next summand are inside the cone. This asserts existence of a pair,
+without assigning an SOS power to any untested prescribed prefix.
+
+
+3     The classical seed
+Set
+                                   p = x4 y 2 + x2 y 4 + z 6 − x2 y 2 z 2 .                          (2)
+AM–GM gives x4 y 2 + x2 y 4 + z 6 ≥ 3x2 y 2 z 2 , hence p ≥ 0. The dehomogenization p(x, y, 1) is exactly
+the example in [3, Lemma 1]. Below we also independently certify p ∈    / SOS by a positive-on-squares
+functional with L(p) = −1. The credited SOS identity for p3 [1, 2] is displayed in Appendix A and
+checked by exact polynomial expansion in the supplement. For every odd q ≥ 3,
+                                                  (       )2
+                                      pq = p3 p(q−3)/2 ∈ SOS .
+
+Lemmas 1 and 2 therefore prove the second assertion of Theorem 1. The functional may depend
+on q; no degree 18 functional is reused outside its domain.
+
+
+4     An explicit rational functional for the cube
+For α ∈ N3 , let∏gα be the standard Gaussian moment: it is zero if any coordinate is odd, and
+otherwise gα = 3j=1 (αj − 1)!!, with (−1)!! = 1. We define µα = L(xα1 y α2 z α3 ) for |α| ≤ 18. Set
+all moments with an odd coordinate to zero. For even coordinates, put µ0 = 1, and µα = gα /1024
+when |α| = 2 or 4. For degree 6, write α = 2(a, b, c) and use
+
+                       (a, b, c) (3, 0, 0) (0, 3, 0) (2, 1, 0) (1, 2, 0) (0, 0, 3)
+                       µ2(a,b,c)      224       224          1         1         1
+                       (a, b, c) (1, 1, 1) (1, 0, 2) (0, 1, 2) (2, 0, 1) (0, 2, 1)
+                       µ2(a,b,c)         4       32        32     4096      4096
+
+For |α| = 2r, 4 ≤ r ≤ 9, put µα = Tr gα , where
+
+                              r        4      5     6  7    8     9
+                                                                                          (3)
+                              Tr   1016 1034 1053 1073 1094 10116 .
+                                                              ( )
+This table specifies the entire order-nine moment matrix, with 12
+                                                                3 = 220 monomials. Coordinate
+parity splits it into eight blocks of size at most 35.
+
+                                                      3
+Proposition 1. The functional specified above is positive on every nonzero square of degree at
+most 18: L(h2 ) > 0 for 0 6= h, deg h ≤ 9.
+Proof. Here is a compressed exact rational certificate and its verification rule. Order multi-indices
+lexicographically by increasing first coordinate, then second, then third, within the set |α| ≤ r;
+retain this order in each parity block. At order 3 the leading principal minors are as follows. The
+entries in each row list all such minors for that block.
+              Parity      Leading principal minors at order 3
+               000        1, 3071/1048576, 2047/268435456, 5117/274877906944
+               001        1/1024, 1015/1048576, 3109055/1048576, 1056109395/131072
+               010        1/1024, 32767/1048576, 16642474743/32768, 257328824345/1048576
+               100        1/1024, 32767/1048576, 16359/1048576, 257328824345/1048576
+           011,101,110    1/1024 each
+               111        4
+
+They are positive, so Sylvester’s criterion establishes order 3 positivity. For r = 4, . . . , 9, split each
+block with new degree-r monomials into old and new rows. It has the form
+                         (            )
+                            A     B
+                                        ,     G = (gα+β )       |α|=|β|=r         .
+                           B T Tr G                       α,β of the given parity
+
+The Gaussian matrix G is positive definite. The lower-degree block A is positive definite by induc-
+tion; B uses already specified moments. Let C = B T A−1 B. Exact rational calculations give
+
+                                           0 ≤ tr(G−1 C) < Tr                                           (4)
+
+for each of the four extending blocks at each order. The supplement’s rational witness file TENSOR_
+MOMENT_CERTIFICATE.json lists all 24 exact fractions, the old/new dimensions and strict bounds.
+Its standalone checker rebuilds A, B, G from the displayed moments, solves the rational systems and
+checks these fractions and inequalities; supplied positivity flags are not used. It also independently
+computes all 220 positive pivots of the full local blocks and verifies the exact LDL reconstruction.
+    Since C  0, the largest eigenvalue of G−1/2 CG−1/2 is at most its trace. Equation (4) therefore
+implies Tr G − C  0. The Schur complement makes every enlarged block positive definite. Blocks
+with no new rows are unchanged. Induction proves the proposition. The finite computations in
+this step are exact rational certificate checks, with no numerical eigensolver or SDP.
+
+
+5    The finite-dimensional counterexample
+Exact expansion using the moment table yields
+
+           a1 = L(p) = −1,      a2 = L(p2 ) = 11292 · 1053 ,    a3 = L(p3 ) = 35039520 · 10116 .        (5)
+
+The first value is 1 + 1 + 1 − 4. For the other two, homogeneity means all moments have degree 12
+or 18, respectively, so these are Gaussian polynomial moments times T6 or T9 . The checker expands
+               ∑ exactly. Proposition 1 and L(p) = −1 also prove that p is not SOS.
+both polynomials
+    For SN = N   i=1 pi , the cubic case of (1) is
+                            3
+                       LN (SN ) = N a3 + 3N (N − 1)a2 a1 + N (N − 1)(N − 2)a31 .
+
+Since a1 = −1 and a2 ≥ 1, we obtain
+                                        3
+                                   LN (SN ) ≤ N {a3 − (N 2 − 1)} < 0,
+
+                                                     4
+where the strict inequality follows from
+
+                        35039520 · 10116 < 10124 − 1 = N 2 − 1       (N = 1062 ).
+
+Lemma 1’s product positivity excludes every SOS for SN      3 , and positive scaling excludes one for
+        3         3
+(SN /N ) . Each pi has the credited SOS identity. Thus the average is a finite convex combination
+of elements of C(3N, 6, 3) outside that set, proving the first assertion of Theorem 1.
+    The functional L is not a measure on real points: its negative value on the nonnegative p
+prevents that interpretation. Only positivity on the required squares is asserted. The argument
+neither constructs an enormous matrix numerically nor assumes an infinite product probability
+measure.
+
+
+6   Verification, priority and disclosure
+The accompanying verification archive contains this standalone source, the complete rational certifi-
+cate, a Python-standard-library checker, expected deterministic output, hash/provenance records,
+the claim scope and a dated priority note. The checker uses integers and rational fractions to verify
+the local moment matrices, all initial minors and Schur traces, the credited cube identity, the three
+seed moments and the exact finite cubic sign. These computations support the finite certificate;
+the arbitrary finite product argument and the every-odd-q assertion are proved analytically above.
+No formal proof-assistant certificate is claimed.
+    Two independent extensive bounded priority audits identified no exact earlier fixed-power result
+in the sources examined. Their source versions, reading extents and remaining gaps are disclosed
+in the supporting note. The full final Papp–Alizadeh 2013 article and Schmüdgen 1979 body
+were unavailable; a captured Choi–Lam–Reznick 1995 scan was unread and unused. Classical ten-
+sor/separation ingredients have independently accessible primary proofs. Bibliographies, citation
+indexes and talk coverage have limits. This is not a worldwide-firstness guarantee or a certificate
+of present openness. The claim concerns the general question recorded in 2023.
+    AI tools were used extensively in derivation, literature comparison, reproduction, writing and
+adversarial verification. This is an unrefereed preprint and has not received human peer review.
+Mathematical and source claims remain open to independent correction. The author metadata
+does not imply aﬀiliation with a research institution.
+
+
+A The credited cube identity
+For the seed (2), put
+
+                  h1 = x 5 y 4 − x 3 y 4 z 2 ,              h2 = x 4 y 5 − x 4 y 3 z 2 ,
+                  h3 = x 4 y 2 z 3 − x 2 y 2 z 5 ,          h4 = x 2 y 4 z 3 − x 2 y 2 z 5 ,
+                  h5 = xy 2 z 6 − x3 y 4 z 2 ,              h6 = x2 yz 6 − x4 y 3 z 2 ,
+                  h7 = x 2 y 4 z 3 − x 4 y 2 z 3 ,          h8 = x4 y 5 − x2 yz 6 ,
+                  h9 = x5 y 4 − xy 2 z 6 .
+
+
+
+
+                                                     5
+Then the identity in [2], specialized to this seed, is
+
+                       3∑ 2
+                            9
+                    3
+                   p =   hj + (z 9 − 2x2 y 2 z 5 )2 + (xyz 7 − 2x3 y 3 z 3 )2
+                       2
+                           j=1
+
+                         + (x y − 2x3 y 4 z 2 )2 + (x3 y 5 z − 2x3 y 3 z 3 )2
+                              3 6
+
+                         + (x6 y 3 − 2x4 y 3 z 2 )2 + (x5 y 3 z − 2x3 y 3 z 3 )2 + 2(x3 y 3 z 3 )2 .
+
+Every square factor has degree 9 and every weight is positive. This is the modified coeﬀicient-1
+seed, not the coeﬀicient-3 original Motzkin form.
+
+
+References
+[1] B. Reznick, The Odd Powers of the Motzkin Polynomial, etc., in Real Algebraic Geometry with
+    a View toward Koopman Operator Methods, Oberwolfach Reports 14/2023, pp. 778–781.
+    doi:10.4171/OWR/2023/14.
+
+[2] G. Blekherman, K. Kozhasov and B. Reznick, On odd powers of nonnegative polynomials that
+    are not sums of squares, Forum of Mathematics, Sigma 14 (2026), e65.
+    doi:10.1017/fms.2026.10221.
+
+[3] C. Berg, J. P. R. Christensen and C. U. Jensen, A remark on the multidimensional moment
+    problem, Mathematische Annalen 243 (1979), 163–169. doi:10.1007/BF01420423.
+
+[4] B. Barak, J. Kelner and D. Steurer, Rounding Sum-of-Squares Relaxations, ECCC Report
+    TR13-184 (2013), Appendix A, Lemma A.5.
+    https://eccc.weizmann.ac.il/report/2013/184/.
+
+[5] J. Acevedo and G. Blekherman, Power Mean Inequalities and Sums of Squares,
+    arXiv:2303.11823v1 (2023). https://arxiv.org/abs/2303.11823.
+
+[6] G. Blekherman and C. Riener, Symmetric Nonnegative Forms and Sums of Squares,
+    arXiv:1205.3102v4 (2020), Proposition 6.4. https://arxiv.org/abs/1205.3102.
+
+[7] L. Baldi, G. Blekherman, K. Kozhasov, D. Plaumann, B. Reznick and R. Sinn, Stubborn
+    Polynomials, arXiv:2602.01191v1 (2026). https://arxiv.org/abs/2602.01191.
+
+
+
+
+                                                         6
+

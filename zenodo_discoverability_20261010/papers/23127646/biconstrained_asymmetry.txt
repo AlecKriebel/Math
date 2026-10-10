@@ -1,0 +1,200 @@
+           Non-symmetry of biconstrained two-step reachability
+                                                 Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                                October 3, 2026
+
+
+                                                   Abstract
+        The biconstrained reachability function ψ(x, y) is the largest fraction of the first part that
+     some vertex of the third part must reach in two steps, over all finite tripartite graphs satisfying
+     minimum-degree conditions in both directions on each adjacent pair. We answer its symmetry
+     question negatively: |ψ(13/27, 14/27) − ψ(14/27, 13/27)| ≥ 1/108. The proof establishes the
+     exact rational-boundary formula ψ(1 − θ, θ) = 1 − θ/d(θ), where d(θ) is a minimum integer
+     degree of a positive rational regular incidence template. An existing seven-type example and its
+     complement bound both relevant integers by four, making equality impossible. Neither exact
+     value nor their ordering is needed or asserted.
+
+
+1   The question
+For x, y ∈ (0, 1], consider finite simple graphs whose vertex set is partitioned into nonempty stable
+sets A, B, C, with no A–C edges, and with
+
+          |NB (a)| ≥ x|B|              (a ∈ A),               |NA (v)| ≥ x|A|            (v ∈ B),
+          |NC (v)| ≥ y|C|              (v ∈ B),               |NB (c)| ≥ y|B|            (c ∈ C).
+
+Such a graph is (x, y)-biconstrained. Define
+
+                                  |NA2 (c)|
+             ψ(x, y) = inf max              ,       NA2 (c) = {a ∈ A : NB (a) ∩ NB (c) ̸= ∅},
+                         G    c∈C   |A|
+
+where the infimum runs over all such finite graphs and partitions. Reached vertices are counted
+once, irrespective of the number of paths. Complete adjacent pairs show that the admissible class
+is nonempty. No attainment of this infimum is assumed.
+    Seymour asked whether ψ(x, y) = ψ(y, x) for all parameters [1, p. 47]. The detailed treatment
+[2] proves symmetry for the corresponding one-direction function ϕ, but explicitly leaves the bicon-
+strained question unresolved after Theorem 2.3. Reversing a particular graph exchanges the two
+directions but does not by itself equate the universal infima. We prove the following.
+
+Theorem 1. For the biconstrained function defined above,
+                                                   
+                                 13 14          14 13       1
+                             ψ     ,     −ψ       ,      ≥     .
+                                 27 27          27 27      108
+
+In particular, ψ is not symmetric.
+
+
+                                                       1
+2   An integer invariant on the rational boundary
+Fix a rational θ ∈ (0, 1). Let Rθ consist of finite binary matrices M with nonempty row set V and
+nonempty column set I, together with strictly positive rational probability vectors b = (bv )v∈V and
+q = (qi )i∈I satisfying
+                                    M q = θ1V ,       M T b = θ1I .                               (1)
+Require the columns of M to be pairwise distinct; rows may repeat. Set
+                                   X
+                       ∆(M ) = max     Mvi ,      d(θ) = min ∆(M ).
+                                  v∈V                         (M,b,q)∈Rθ
+                                        i∈I
+
+The degree ∆ counts distinct column types without weights. If θ = p/r in lowest terms, the r
+cyclic intervals of length p on r positions, with both weights uniform 1/r, give distinct columns
+and degree p. Thus Rθ is nonempty and 1 ≤ d(θ) ≤ p. By well-ordering of positive integers, this
+minimum is realized by a finite template. This is a separate fact from attainment of the graph
+infimum defining ψ.
+
+Theorem 2. For every rational θ ∈ (0, 1),
+
+                                                             θ
+                                        ψ(1 − θ, θ) = 1 −        .                                (2)
+                                                            d(θ)
+
+The value on this boundary is attained by a finite graph.
+
+Proof. First take any finite (1 − θ, θ)-biconstrained graph. Put
+
+                                                          |NA2 (c)|
+                                  m = |B|,       F = max            .
+                                                      c∈C   |A|
+
+If F = 1, the required lower bound is immediate. Suppose F < 1. Every c ∈ C misses some a ∈ A.
+Their B-neighborhoods are disjoint and have sizes at least θm and (1 − θ)m. Hence they partition
+B, with both size bounds attained. In particular, |NB (c)| = θm for every c. Every row has at
+least θ|C| neighbors in C. The B–C edge count is exactly θm|C|, so every row has exactly θ|C|
+neighbors.
+    Group the vertices of C by their distinct B-neighborhoods T1 , . . . , Tn . Let Mvi = 1v∈Ti , let
+bv = 1/m, and let qi be the fraction of C in class i. These positive rational weights satisfy (1). For
+each i, the vertices missed by a c of class i are exactly
+
+                                  Ai = {a ∈ A : NB (a) = B \ Ti }.
+
+Indeed, disjointness from Ti and the minimum degree force this equality of neighborhoods. The Ai
+are distinct, disjoint and nonempty. Writing pi = |Ai |/|A| and t = mini pi gives F = 1 − t. For
+every v ∈ B, all Ai with v ∈ Ti are nonneighbors of v, so the B-to-A constraint implies
+                                    X
+                                         pi ≤ θ,    t∆(M ) ≤ θ.
+                                   i:Mvi =1
+
+Additional vertices of A outside these classes are retained; they cannot weaken this inequality. As
+∆(M ) ≥ d(θ), F ≥ 1 − θ/d(θ) for every admissible graph.
+
+
+
+
+                                                  2
+    For the upper bound choose a template realizing d = d(θ), with n columns and supports
+Ti ⊆ V . Every support has b-weight θ. Strict positivity of b and distinctness of the columns make
+the supports pairwise incomparable. Set t = θ/d and δ = 1 − nt. The residual is nonnegative, since
+                                    X            X X
+                              nθ =      b(Ti ) =    bv     Mvi ≤ d.
+                                        i           v      i
+
+Build a weighted graph with row vertices v of weight bv in B, vertices ci of weight qi in C adjacent
+to Ti , and vertices ai of weight t in A adjacent to V \ Ti . If δ > 0, add a vertex a∗ of weight δ
+adjacent to all of B; if δ = 0, omit it. Each part has weight one and every retained type has positive
+weight.                                                                                P
+    Each ai sees B-weight 1 − θ, while a∗ sees one. Each row v sees A-weight 1 − t i Mvi ≥ 1 − θ.
+Both directions between B and C have neighbor weight exactly θ by (1). Thus all four constraints
+hold. The vertex ci misses ai , but reaches every aj for j ̸= i, since Ti \ Tj ̸= ∅. It also reaches a∗
+when present, because θ > 0. Its reached A-weight is therefore exactly 1 − t.
+    Finally, replace each weighted type by a positive integer number of twins proportional to its
+rational weight, using a common denominator within each part. Join entire type pairs according to
+the weighted adjacency. All middle types survive, so both the degree fractions and the reachability
+fractions are preserved exactly. This is an ordinary finite simple graph attaining F = 1 − t, which
+proves (2) and attainment.
+
+
+3   The asymmetric pair
+We use the regular bipartite template from Figure 1 of [2, p. 6; also Section 12, p. 71]. Its matrix
+and weights are
+                                  
+              1 0 1 1 1 0 0
+            0 1 1 1 1 0 0 
+                                  
+            0 0 1 0 0 1 1 
+                                            (5, 5, 3, 3, 3, 4, 4)T       (4, 4, 3, 3, 3, 5, 5)T
+      M =   0  0  0   1  0   1 1 ,
+                                         b =                        , q =                        .
+            0 0 0 0 1 1 1                             27                           27
+                                  
+            1 1 0 0 0 1 0 
+              1 1 0 0 0 0 1
+
+Direct multiplication gives M q = (13/27)1 and M T b = (13/27)1. The columns are distinct and
+the maximum row degree is four. The complement J − M , where J is the all-ones matrix, has the
+same positive weights, regularity 14/27, distinct columns, and maximum row degree four. Hence,
+with d = d(13/27) and e = d(14/27),
+                                                          13                             14
+          d, e ∈ {1, 2, 3, 4},   ψ(14/27, 13/27) = 1 −       ,   ψ(13/27, 14/27) = 1 −       .
+                                                         27d                             27e
+Equality would require 13e = 14d, impossible in this range. For the quantitative gap, if d = e the
+difference is 1/(27d) ≥ 1/108. If e > d, then 13e − 14d = 13(e − d) − d ≥ 10 and 27de ≤ 324. If
+d > e, then 14d − 13e = 14(d − e) + e ≥ 15 with the same denominator bound. Both latter cases
+give a larger gap. This proves Theorem 1.
+
+Explicit examples and their limits. The construction above applied to M with degree four
+gives part sizes (108, 27, 27), A-type sizes (13, 13, 13, 13, 13, 13, 13, 17), and B, C-type sizes given
+
+
+                                                   3
+by the numerators of b, q. Every c reaches 95 vertices of A. The complement gives A-type sizes
+(14, 14, 14, 14, 14, 14, 14, 10) and reaches 94 vertices of A. Thus ψ(14/27, 13/27) ≤ 95/108 and
+ψ(13/27, 14/27) ≤ 47/54. These are upper bounds, not exact evaluations; their inequality alone
+would not prove asymmetry. The universal boundary formula is indispensable. The true integers
+d, e, the exact values, and their ordering remain unevaluated here.
+
+
+4   Prior work, verification, and disclosure
+The finite weighted-graph framework and the seven-type matrix are prior work [2], not new con-
+structions of this note. Theorem 12.2 there concerns symmetry when ψ(x, y) attains its minimal
+value x; it does not establish general symmetry. The contribution here is the integer boundary
+formula, with universal lower and finite upper proofs, and its deduction of non-symmetry at an
+explicit rational pair. A dated literature audit accompanies the supplement. Its search has finite
+coverage and does not certify absence of all prior work.
+    The supplement contains the complete original proof records, exact arithmetic checkers, two
+independent mathematical audits, source identities and a portable verifier. It checks the matrix,
+both ordinary graphs, all sixteen possible integer gaps and controls for invalid inferences. The
+theorem is an elementary argument over all finite graphs; finite tests and file hashes supplement
+rather than replace its proof. No external optimization theorem, numerical approximation, or
+presumed extremizer for ψ is required.
+
+AI use and review status. AI tools were used extensively to develop and verify the proofs,
+write and run checking code, search the literature, draft this note, and conduct adversarial re-
+views. Independent AI review paths are documented in the accompanying research records. This
+manuscript is an unrefereed preprint and has not received external human peer review.
+
+
+References
+[1] P. Seymour, Concatenating bipartite graphs, Oberwolfach Reports 1/2019, pp. 46–47.
+    doi:10.4171/OWR/2019/1.
+
+[2] M. Chudnovsky, P. Hompe, A. Scott, P. Seymour, and S. Spirkl, Concatenating Bipartite
+    Graphs, Electronic Journal of Combinatorics 29(2) (2022), #P2.47. doi:10.37236/8451.
+
+
+
+
+                                                4
+

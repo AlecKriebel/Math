@@ -1,0 +1,1655 @@
+         Local Complete-Graph Optimality at Fitness Two and
+         Strong-Selection Rigidity under Death–Birth Updating
+                                           Alec Kriebel
+                                      Independent Researcher
+                                        me@aleckriebel.com
+                                    ORCID 0009-0001-9320-500X
+
+                                               August 2026
+
+
+                                                 Abstract
+         We study fixation from a uniformly random single mutant under death–Birth updating on
+     finite loopless directed weighted population structures. After normalizing each target’s incom-
+     ing weights, the dynamics are parametrized by a loopless row-stochastic replacement kernel;
+     let Jn denote the uniform complete kernel. We prove two complementary extremality results.
+     First, at mutant fitness two, Jn is a strict nondegenerate local maximizer in the full normalized
+     kernel polytope for every n ≥ 3. This includes arbitrary directed and nonreversible perturba-
+     tions. The proof represents the fixation committor as a completely alternating coverage func-
+     tion of a fair-geometric union dual, converts fixation into a stationary collision observable, and
+     decomposes the inverse-mean Hessian into standard, symmetric-balanced, and antisymmetric-
+     balanced permutation sectors with positive sector certificates valid for every population size,
+     using exact rational computer assistance over an explicitly finite range. Second, we close the
+     complete-support case left outside the prior strongly connected noncomplete-support obstruc-
+     tion. The leading strong-selection deficit is an explicit sum of squared discrepancies within
+     incoming columns, with equality exactly at Jn after normalization. Together with the prior ob-
+     struction and a source-component bound, this shows that no fixed finite directed weighting is a
+     strict amplifier for every beneficial fitness. We also prove global all-beneficial-fitness maximality
+     for positive weighted triangles and within two symmetric weighted K4 families. These results
+     establish strict local rigidity at fitness two and fixed-graph rigidity at strong selection, but not
+     global complete-graph maximality at fitness two.
+
+Keywords. death–Birth updating; fixation probability; evolutionary graph theory; coverage dual-
+ity; local optimality; strong selection.
+Mathematics Subject Classification (2020). 92D15; 60J10; 05C81.
+
+
+Author summary
+Spatial structure can make a beneficial mutation more or less likely to take over a finite population.
+For death–Birth updating, a natural unresolved question is whether the well-mixed population is
+globally extremal at fitness two. We prove two complementary pieces of that picture. At fitness
+two, the well-mixed kernel is strictly locally optimal against every infinitesimal perturbation of its
+normalized replacement kernel, including directed and nonreversible ones. In the strong-selection
+limit, every fixed finite structure is eventually suppressing unless its replacement dynamics are
+exactly well mixed. The local result comes from an exact ancestry process: fixation becomes a
+
+
+                                                      1
+coverage probability, then a stationary collision rate, whose curvature splits into three symmetry
+types. The second result comes from a sum of squares measuring unequal competitors for the
+same death event. Weighted triangles provide a global bridge: every nonuniform positive triangle
+suppresses fixation at every beneficial fitness. The results do not show that the complete graph is
+globally best at fitness two or exclude graph sequences whose size threshold depends on fitness.
+
+
+1    Introduction
+The Moran process is a foundational finite-population model of selection and genetic drift (Moran,
+1958). On a structured population, the fixation probability of a new mutant depends on both
+selection and the geometry of replacement. The complete graph is the well-mixed baseline, while
+directed and weighted evolutionary graphs can amplify or suppress selection under particular update
+rules and fitness ranges (Lieberman et al., 2005; Shakarian et al., 2012; Masuda and Ohtsuki, 2009;
+Allen et al., 2017, 2020). Birth–death and death–Birth updating behave especially differently
+(Kaveh et al., 2015): the latter exposes every mutant to a uniformly sampled death event before
+local competition, which severely constrains amplification (Hindersin and Traulsen, 2015; Tkadlec
+et al., 2020). Transient dB amplifiers have since been studied through exact computation and
+guided spectral edge deletion (Allen et al., 2020; Richter, 2023).
+    For a loopless directed weighting, multiply all incoming weights at a fixed target by the same
+positive number. This changes no death–Birth transition. The intrinsic object is therefore a loopless
+row-stochastic replacement kernel P , with a row indexed by the dead target and a column by a
+potential parent. Let Jn be the uniform off-diagonal kernel and write
+
+                                  Dn (P, r) = ρdB (Jn , r) − ρdB (P, r)                           (1.1)
+
+for the uniformly initialized fixation deficit. Global nonnegativity of Dn (P, 2) for every n and every
+kernel induced by an undirected weighting remains open. This paper resolves two transverse rigidity
+problems for the same surface Dn (P, r).
+    First, we approach the complete kernel in structure space while holding fitness fixed at two. For
+every n ≥ 3 and every nonzero loopless row-zero perturbation δ,
+
+                         Dn (Jn + εδ, 2) = κn (δ)ε2 + O(ε3 ),       κn (δ) > 0.                   (1.2)
+
+Thus Jn is a strict nondegenerate local maximizer among all positive loopless row-stochastic re-
+placement kernels. This is stronger than a reversible or undirected statement: column imbalance
+and directed circulation are both allowed. It is nevertheless genuinely local. Its neighborhood may
+depend on n, and it does not constrain a sequence that stays far from Jn . To our knowledge, no
+previous result establishes this strict local maximality in the full directed normalized kernel space.
+   Second, we hold an arbitrary finite structure fixed and let r → ∞. On complete directed
+support,
+                                                Edir (P )
+                                  Dn (P, r) = 2           + O(r−2 ),                             (1.3)
+                                               n (n − 2)r
+where Edir is an explicit incoming-column sum of squares. On the normalized kernel space its zero
+set is exactly P = Jn ; at the level of unnormalized weights, this is the class dynamically equivalent
+to Jn . Theorem 1 of Tkadlec et al. (2020) applies to every fixed strongly connected noncomplete
+population structure, including directed and weighted supports. Thus complete directed support
+with unequal normalized weights is the residual strongly connected case. Equation (1.3) closes it
+sharply; together with the cited theorem and a source-component bound for non-strong supports,
+it rules out one fixed finite directed weighting that amplifies for every r > 1.
+
+                                                   2
+                                 distance from Jn
+
+                                                                       fixed-structure
+                   strict local maximum
+                                                                  strong-selection rigidity
+           in every normalized direction
+
+
+                                                            global all-P statement at r = 2
+                                                            remains open
+                                                                                              r
+                                                      r=2
+
+Figure 1: The two proved axes of the same complete-kernel deficit. The fitness-two theorem is
+local in the full normalized structure space and valid for every population size; the strong-selection
+theorem is global in fixed finite structure and asymptotic in fitness.
+
+
+    The mechanism behind (1.2) is different from ordinary weak-selection perturbation. Branching
+and coalescing genealogical duals under selection have a substantial population-genetic history
+(Krone and Neuhauser, 1997; Etheridge and Griﬀiths, 2009; Mano, 2009); related spatial dB work
+constructs the process and its dual on integer lattices (Foo et al., 2024). Here we specialize this
+framework to arbitrary finite directed kernels at r = 2: the update is an additive Boolean OR
+of a fair-geometric number of potential parents. Reversing the graphical maps produces a finite
+union-valued ancestry chain; no independent-lineage approximation is made. Its stationary law
+represents the fixation committor as a completely alternating coverage function, and a marked
+one-sample factorization turns the stationary mean ancestral-set size into a collision probability.
+At Jn , the first variation vanishes by rank projection. The Hessian is an Sn -invariant quadratic
+form on all loopless row-zero matrices. The tangent space splits without multiplicity into standard,
+symmetric-balanced, and antisymmetric-balanced sectors. We prove all three scalars positive, for
+every population size, by rank-recursion and phase-contraction certificates. The standard sector is
+exactly the column-imbalance direction and requires a separate signed three-channel argument.
+    The global low-order results sharpen the picture. Every nonuniform positive weighted triangle is
+a strict suppressor for every r > 1. Two maximally symmetric weighted K4 families obey the same
+conclusion. These theorems are not inferred from local curvature; they follow from independent
+exact sum-of-squares certificates.
+    An earlier unrefereed research release established the strong-selection and low-order portions
+of this argument (Kriebel, 2026a). This manuscript incorporates and revises those proofs while
+adding the fitness-two theory. The following ledger makes that provenance explicit.
+
+
+
+
+                                                  3
+    Component                                            Status relative to the earlier release
+    Complete-support strong-selection expansion          Previously released; proof revised and integrated
+    and fixed-graph closure                              here.
+    Undirected support limit and support-degree          Previously released; proof revised and integrated
+    consequence                                          here.
+    Weighted triangles and the two symmetric K4          Previously released; reorganized here.
+    families
+    r = 2 coverage representation and active             First included here.
+    collision identity
+    Full directed Hessian decomposition and all-n        First included here.
+    positivity of its three sectors
+    Comparison of the local and strong-selection         First included here.
+    quantifier axes
+
+    The quantifiers matter. The fixed-graph theorem proves
+
+                                ∀P ∃r0 (P ) ∀r > r0 (P ) :        Dn (P, r) > 0
+
+unless P = Jn . It does not rule out a single fitness-independent sequence (Pn ) satisfying, for each
+fixed r, Dn (Pn , r) < 0 once n is suﬀiciently large. Such growing-family quantifiers are substantive:
+Svoboda et al. (2024) construct one family that is independent of fitness and whose suﬀiciently
+large members simultaneously amplify under both Bd and dB updating for every fixed 1 < r < 1.2.
+We keep this distinction explicit throughout. Separate unrefereed companion work by the present
+author constructs a fitness-independent family whose suﬀiciently large members simultaneously
+amplify both rules for every fixed 1 < r < Rhyb , where Rhyb > 3/2 and Rhyb ≈ 1.5028569128
+(Kriebel, 2026b). That bounded-interval construction does not resolve the all-r growing-family
+question.
+    The paper is organized as follows. Section 2 states the model and theorem suite. Sections 3–4
+prove the fitness-two local theorem. Section 5 treats fixed structures at strong selection. Section 6
+gives the global low-order classifications. The appendices contain the exact phase certificates, the
+symmetric K4 algebra, and a quantifier ledger.
+
+
+2     Model and main results
+Let V = {1, . . . , n} and let wuv ≥ 0 be the weight with which
+                                                          P     source u competes to replace target
+                                                      −
+v. We assume wvv = 0 and every incoming degree dv = u̸=v wuv is positive. Normalize
+                                                          wuv
+                                                 Pvu =        .                                          (2.1)
+                                                          d−
+                                                           v
+
+Write P (W ) for this kernel. Then P (W ) is loopless and row stochastic. Conversely, every such
+P is a normalized directed replacement structure. This quotient removes exactly the dynamically
+irrelevant positive rescalings of individual incoming columns. When weights rather than their
+normalized kernel are displayed, we use the shorthand ρdB (W, r) := ρdB (P (W ), r).
+    A uniformly chosen target dies. If the current mutant set is S and mutant fitness is r > 0, the
+probability that target v receives a mutant parent is
+                                                rPvS                       X
+                             fr (PvS ) =                  ,        PvS =         Pvu .                   (2.2)
+                                           1 + (r − 1)PvS
+                                                                           u∈S
+
+
+
+                                                      4
+The all-resident and all-mutant states are absorbing. We write ρdB (P, r) for fixation probability
+averaged over a uniformly random singleton mutant. For the complete kernel
+                                                       1
+                                         (Jn )vu =             (u 6= v),                        (2.3)
+                                                      n−1
+one-dimensional first-step equations give
+
+                                                      n − 1 1 − r−1
+                                   ρdB (Jn , r) =                     .                         (2.4)
+                                                        n 1 − r−(n−1)
+At r = 1, the right-hand side is understood by continuity and equals 1/n.
+   Let
+                                 Tn = {δ ∈ Rn×n : δii = 0, δ1 = 0}                              (2.5)
+be the tangent space to the normalized kernel polytope at Jn , and let
+
+                                         Bn = {δ ∈ Tn : 1T δ = 0}                             (2.5b)
+
+be its balanced, or bistochastic, tangent subspace.
+                                                                                                  (2)
+Theorem 1 (fitness-two strict local optimality). For every n ≥ 3 there is a quadratic form Rn
+on Tn such that, for every δ ∈ Tn and all suﬀiciently small ε for which Jn + εδ is nonnegative,
+                                     1                 1
+                                                 =       + ε2 R(2)        3
+                                                               n (δ) + O(ε ),                   (2.6)
+                             nρdB (Jn + εδ, 2)        mn
+where
+                                                      (n − 1)2n−2
+                                            mn =                  .                             (2.7)
+                                                        2n−1 − 1
+                       (2)
+The quadratic form Rn is positive definite on Tn . Consequently, the first variation vanishes for
+every δ ∈ Tn , and, for every nonzero δ ∈ Tn ,
+
+              d                                  d2                       2m2
+                 ρdB (Jn + εδ, 2) = 0,              2
+                                                      ρdB (Jn + εδ, 2) = − n R(2)
+                                                                              n (δ) < 0.        (2.8)
+              dε                 0               dε                   0    n
+
+Thus Jn is a strict nondegenerate local maximizer in the full positive loopless row-stochastic kernel
+polytope. For n = 2 every positive weighting induces the same two-vertex chain and ties the baseline.
+    For clarity, the positive-kernel hypothesis used by the duality proof loses no tangent direction.
+For fixed nonzero δ ∈ Tn , put M = maxi̸=j |δij |. Whenever |ε| < 1/[(n − 1)M ], every off-diagonal
+entry of Jn + εδ is strictly positive. The zero direction is trivial. Thus the expansion in Theorem 1
+is proved entirely inside the positive kernel polytope before being interpreted at its tangent space.
+    For a positive normalized kernel on complete directed support, define the scale-free defect
+                                                 X X (Pvu − Pvz )2
+                                   Edir (P ) =                             .                    (2.9)
+                                                 v     u<z
+                                                                Pvu Pvz
+                                                      u,z̸=v
+
+For unnormalized weights W , set Edir (W ) := Edir (P (W )); equivalently,
+                                                 X X (wuv − wzv )2
+                                  Edir (W ) =                              .                  (2.9b)
+                                                  v    u<z
+                                                                wuv wzv
+                                                      u,z̸=v
+
+
+                                                        5
+Theorem 2 (complete-support strong-selection correction). Let n ≥ 3 and suppose wuv > 0 for
+every u 6= v. For fixed W ,
+                                                   Edir (W )
+                    ρdB (Jn , r) − ρdB (W, r) =              + O(r−2 )          (r → ∞).          (2.10)
+                                                  n (n − 2)r
+                                                   2
+
+
+The defect vanishes if and only if, for every target v, all incoming weights wuv with u 6= v are
+equal. In that equality class the entire chain, not merely the asymptotic expansion, equals the
+complete-graph chain.
+Corollary 3 (no fixed finite universal dB amplifier). No finite loopless directed weighting with
+positive incoming degrees is a strict dB amplifier for every r > 1. More precisely, it is strictly sup-
+pressing for all suﬀiciently large fitness unless it has complete support and is dynamically equivalent
+to Jn ; in the latter case it ties the baseline for every fitness.
+    For undirected weights, write si for the number of positive-weight neighbors of i.
+Proposition 4 (undirected support limit). For every finite connected undirected weighted graph,
+
+                                                      1 X si
+                                                           n
+                                     lim ρdB (W, r) =           .                                 (2.11)
+                                    r→∞               n  si + 1
+                                                           i=1
+
+Hence an incomplete support has the positive limiting deficit
+                                n − 1 1 X si      X n − 1 − si
+                                     −          =               .                                 (2.12)
+                                  n    n si + 1     n2 (si + 1)
+                                             i              i
+
+    Finally, the complete kernel is globally extremal on the smallest nontrivial undirected order.
+Theorem 5 (weighted triangles). For every positive undirected weighted triangle and every r > 1,
+                                                                    2r
+                                  ρdB (W, r) ≤ ρdB (J3 , r) =             .                       (2.13)
+                                                                 3(r + 1)
+Equality holds if and only if the three edge weights are equal.
+   The two symmetric K4 families and their equality statements are recorded in Appendix B. They
+provide global four-vertex slices but are not needed for Theorems 1 or 2.
+
+
+3     Boolean ancestry, coverage, and collision
+This section is valid for every positive loopless row-stochastic P ; reversibility is not used.
+
+3.1   The fair-geometric union dual
+At fitness two, (2.2) becomes 2x/(1 + x). This is a finite additive graphical system in the sense of
+Harris (1978). Let L have the fair geometric law
+
+                                      P(L = ℓ) = 2−ℓ ,          ℓ ≥ 1,                             (3.1)
+
+and, conditionally on target v, draw U1 , . . . , UL independently from row Pv . For any mutant set S,
+                                                                         1 − PvS
+                            P(U1 , . . . , UL ∈
+                                              / S) = E(1 − PvS )L =              .                 (3.2)
+                                                                         1 + PvS
+
+                                                     6
+Thus the forward update at v is exactly the additive Boolean map
+
+                                        xv ←− xU1 ∨ · · · ∨ xUL .                             (3.3)
+
+The transpose graphical map sends a nonempty ancestral set A to
+                                (
+                                  (A \ {v}) ∪ {U1 , . . . , UL }, v ∈ A,
+                          A 7−→                                                               (3.4)
+                                  A,                              v∈/ A.
+
+Because Pvv = 0, the updated set in the first line omits v and is always nonempty; hence the dual
+remains a proper nonempty subset whenever it starts there.
+   Using the same graphical marks forward and backward gives the exact duality
+
+                                PS (Xt ∩ A 6= ∅) = PA (S ∩ At 6= ∅).                          (3.5)
+
+Lemma 6 (ergodicity of the union dual). If every off-diagonal entry of P is positive, then the
+chain in (3.4) is irreducible and aperiodic on the proper nonempty subsets of V .
+
+Proof. From any set A of size at least two, choose a target v ∈ A, take L = 1, and sample
+U1 ∈ A \ {v}. This removes v and changes no other element. Repetition reaches a singleton.
+Conversely, fix any proper nonempty destination B and choose x ∈    / B. A singleton can first be
+moved to {x} using a one-sample update. An update targeted at x whose finite geometric burst
+visits every element of B and no element outside B then has output exactly B. Every event just
+described has positive probability because P is positive off the diagonal and every finite value of
+L has positive probability. Hence the chain is irreducible. Finally, every proper A has a target
+outside A; choosing it leaves A unchanged, so every state has a positive self-loop and the chain is
+aperiodic.
+
+   Let ΠP denote its stationary law and put
+
+                                           m(P ) = EΠP |A|.                                   (3.6)
+
+For a set function f and i ∈
+                           / S, write
+                                                                   Y
+                  ∆i f (S) = f (S ∪ {i}) − f (S),        ∆T =          ∆i   (T ∩ S = ∅).    (3.6a)
+                                                                i∈T
+
+The difference operators in the product commute.
+
+Proposition 7 (coverage representation). The fixation committor at fitness two is
+
+                                   hP (S) = PA∼ΠP (A ∩ S 6= ∅),                               (3.7)
+
+and therefore
+                                                         m(P )
+                                          ρdB (P, 2) =         .                              (3.8)
+                                                          n
+Moreover, for every nonempty T disjoint from S,
+
+                        (−1)|T |+1 ∆T hP (S) = PΠP (A ∩ S = ∅, T ⊆ A) ≥ 0.                    (3.9)
+
+Thus hP is a normalized completely alternating coverage function.
+
+
+                                                    7
+Proof. The finite forward chain absorbs almost surely. Indeed, from every nonabsorbing mutant set,
+a sequence of resident-target deaths followed by mutant-parent choices gives a positive-probability
+path to V ; hence the finite chain has no other closed communicating class. Start the dual from V
+in (3.5). Its first active update sends V to V \{v} because all sampled parents differ from the target
+v; Lemma 6 then gives convergence to ΠP . Letting t → ∞, the left side converges to the fixation
+probability from S, giving (3.7). Averaging hP ({i}) = P(i ∈ A) over i proves (3.8). For fixed A, the
+indicator 1{A∩S̸=∅} has mixed difference (−1)|T |+1 ∆T equal to 1{A∩S=∅, T ⊆A} ; averaging proves
+(3.9).
+
+3.2    A one-sample active chain
+The geometric burst can be factored into one-sample steps. Two phase spaces are required:
+
+                Zn = {(C, v) : C ⊆ V \ {v}},       Yn = {(B, v) : ∅ 6= B ⊆ V \ {v}}.           (3.10)
+
+The pre-sampling space Zn permits the empty cache created when a singleton is stopped. Let
+A : Zn → Yn adjoin one source i sampled from row Pv . Let R : Yn → Zn be the fair continue-or-
+retarget channel: on continue it sends (B, v) to (B, v), while on stop it chooses w uniformly from
+B and sends (B, v) to (B \ {w}, w). Row laws act on the right, so K(P ) = RA is a kernel on Yn
+and M (P ) = AR is a kernel on Zn . Explicitly, from y = (B, v), with b = |B|, K(P ) is the following
+fair mixture:
+
+   1. sample i from row Pv and move to (B ∪ {i}, v);
+
+   2. choose w uniformly from B, sample i from row Pw , and move to ((B \ {w}) ∪ {i}, w).
+
+Each branch has probability 1/2. The first branch continues a geometric burst; the second stops it
+and retargets the active ancestral mark.
+
+Lemma 8 (active collision identity). The active kernel K(P ) is irreducible and aperiodic. Let ν(P )
+be its unique stationary law and put
+                                                     1
+                                        H(B, v) =       .                                     (3.11)
+                                                    |B|
+Then
+                                               1          1
+                                   ν(P )H =         =             .                            (3.12)
+                                              m(P )   nρdB (P, 2)
+The map P 7→ K(P ) is linear.
+
+Proof. We include the marked-current calculation because it is the bridge from the coverage law to
+the Hessian. Let Tv (A, B) be the transition kernel of one union-dual update with target fixed at v.
+Extend ΠP by zero off the proper nonempty subsets of V . For v ∈  / C, including C = ∅, define
+                                                      X
+                σv (C) = ΠP (C ∪ {v}),       ηv (C) =    ΠP (A)Tv (A, C) − ΠP (C).          (3.13a)
+                                                       A
+
+The subtracted term is exactly the passive current from A = C, for which v ∈   / A and no ancestral
+update occurs; hence ηv (C) is the nonnegative active current arriving at output (C, v). Stationarity
+of the union dual, after summing its n equally likely target updates, gives
+                                      X
+                                         ηv (B) = |B|ΠP (B).                                   (3.13)
+                                       ∈B
+                                      v/
+
+
+                                                  8
+If Av adjoins one sample from row Pv , the fair-geometric resolvent identity gives
+                                           σv + ηv
+                                    λv =           ,        η v = λ v Av .                 (3.14)
+                                              2
+For the rectangular channels just defined, after the sample, continuing contributes ηv (B)/2 to
+(B, v). Stopping, choosing w uniformly from B, and ending at (B \ {w}, w) contributes, by (3.13),
+ΠP (B)/2 = σw (B \ {w})/2. Hence λAR = λ. Thus λ is stationary on Zn for M = AR. Since
+η = λA, associativity gives ηRA = η; hence η is stationary on Yn for the active kernel K = RA.
+Both σv and ηv have total mass PΠP (v ∈ A), so
+                                       X
+                                          λv (C) = m(P ).                                  (3.15)
+                                           v,C
+
+Normalizing gives the probability laws λ/m(P ) on Zn and ν(P ) = η/m(P ) on Yn . The latter
+stationary law is unique: if |B| ≥ 2, a stop at w ∈ B followed by sampling a member of B \ {w}
+shrinks B by one. From a singleton state, one or two positive stop moves reach any prescribed
+singleton–target pair ({j}, v) with j 6= v. Positive continue moves then sample the remaining
+members of any prescribed active set. Hence K(P ) is irreducible; sampling an already present
+source on a continue move gives a self-loop, so it is also aperiodic. Dividing (3.13) by |B| and
+summing over B yields
+                                        X kΠP (|A| = k) 1       1
+                              ν(P )H =                     =        .                      (3.16)
+                                                m(P )    k    m(P )
+                                           k≥1
+
+Both active moves contain exactly one use of a row of P , proving linearity.
+
+   At the complete kernel, put N = n − 1. Direct substitution gives
+
+                                      |B|                             2N − 1     1
+                      ν0 (B, v) =            ,        c0 := ν0 H =            =    .       (3.17)
+                                    nN 2N −1                          N 2N −1   mn
+This agrees with (2.4) at r = 2.
+   The collision interpretation uses the conjugate sample-then-retarget chain, not the retarget-
+then-sample phase order of K = RA. Specifically,
+          λ     A   η             R   λ                     η     R   λ     A   η
+               −−→       = ν(P ) −−→       ,                     −−→       −−→       .    (3.18a)
+         m(P )     m(P )             m(P )                 m(P )     m(P )     m(P )
+
+Thus M (P ) = AR has stationary law λ/m(P ), while K(P ) = RA has stationary law η/m(P ) =
+ν(P ). In one M (P ) step, let I be the source drawn by A. The post-sampling set B contains I and
+has law ν(P ). If the subsequent fair coin in R stops, it chooses the new target W uniformly from
+that same set B. Consequently
+                                                             1
+                                      P(W = I | B, stop) =      ,
+                                                            |B|
+and averaging with (3.12) gives
+                                             1                                  1
+                     P(stop, W = I) =             ,        P(W = I | stop) =         .     (3.18)
+                                           2m(P )                              m(P )
+
+Thus maximizing fixation is equivalent to minimizing this stationary collision rate.
+
+
+
+                                                       9
+4     The complete-kernel Hessian
+Let Pε = Jn + εδ with δ ∈ Tn . By linearity,
+
+                                             K(Pε ) = K0 + ε∆.                                       (4.1)
+
+Because every off-diagonal entry of Jn is 1/(n − 1), each fixed δ admits ε0 > 0 such that Pε remains
+strictly positive off the diagonal for |ε| < ε0 . Thus all positive-kernel identities from Section 3 apply
+in the neighborhood used below. All entries are analytic there, and K0 is irreducible. Put
+
+                              q = H − c0 1,          G = (I − K0 + 1ν0 )−1 .                         (4.2)
+
+4.1   Vanishing first variation
+Let S average a function on Yn over all active states of the same rank |B|. Permutation symmetry
+gives SK0 = K0 S. A direct average of either active move shows
+
+                                                  S∆S = 0.                                           (4.3)
+
+Indeed, a uniformly random k-subset of V \ {v} contains a sample from any row with mean prob-
+ability k/N ; after retargeting the corresponding mean is (k − 1)/N . More explicitly, if fk is any
+rank function, the two branchwise perturbations at (B, v) are
+
+                           fk+1 − fk X                    fk−1 − fk X         X
+                                       δvi ,                                       δwi .           (4.3a)
+                               2                             2k
+                                       ∈B
+                                      i/                             w∈B i∈B\{w}
+
+Under the uniform rank-k orbit their respective row sums are
+                               N −k X                          k−1X
+                                      δvi = 0,                      δwi = 0.                       (4.3b)
+                                N                               N
+                                      i̸=v                            i̸=w
+
+This proves (4.3) without reversibility. Because q and Gq are rank functions and ν0 = ν0 S,
+
+                                       ν0 ∆Gq = ν0 S∆SGq = 0.                                        (4.4)
+
+    Stationary perturbation of the finite chain gives
+
+                              ν(Pε )q = εν0 ∆Gq + ε2 ν0 ∆G∆Gq + O(ε3 ).                              (4.5)
+
+Define
+                                         R(2)
+                                          n (δ) = ν0 ∆G∆Gq.                                          (4.6)
+Equations (3.12), (3.17), and (4.4)–(4.6) already prove expansion (2.6); it remains to prove that
+ (2)
+Rn is positive definite on the full tangent space.
+
+4.2   The three irreducible tangent sectors
+For δ ∈ Tn , let                             X                 X
+                                      sj =        δij ,             sj = 0,                          (4.7)
+                                              i                 j
+
+
+
+
+                                                          10
+and define the standard embedding
+
+                                    si + (n − 1)sj
+                         E(s)ij =                         (i 6= j),   E(s)ii = 0.                (4.8)
+                                       n(n − 2)
+
+Then E(s)1 = 0 and its column-sum vector is s. Consequently B = δ − E(s) has zero row and
+column sums, and
+                                           B + BT B − BT
+                                δ = E(s) +         +          .                      (4.9)
+                                              2          2
+The three terms are Frobenius-orthogonal. Their dimensions are
+
+                                         n(n − 3)             (n − 1)(n − 2)
+                             n − 1,               ,                          ,                  (4.10)
+                                            2                       2
+which sum to n(n − 2) = dim Tn . They are, respectively, the standard, symmetric row/column-
+balanced, and antisymmetric balanced irreducible Sn -modules. At n = 3 the symmetric module
+has dimension zero.
+    For completeness, the symmetric off-diagonal matrices form the two-subset permutation module
+1⊕V[n − 1, 1] ⊕ [n − 2, 2]; its row-balanced kernel is [n − 2, 2]. The antisymmetric balanced kernel
+is 2 [n − 1, 1] = [n − 2, 1, 1], while E(s) realizes [n − 1, 1]. Thus the three summands in (4.9) are
+pairwise nonisomorphic and occur with multiplicity one, including the stated n = 3 degeneration.
+    The quadratic form (4.6) is invariant under simultaneous relabeling of targets and sources.
+                                                                           (2)            (2)
+Multiplicity-freeness therefore makes the three spaces orthogonal for Rn as well, and Rn acts by
+one scalar on each. The balanced subspace is exactly
+
+                                           B n = Sn ⊕ A n ,                                   (4.10b)
+
+where Sn and An denote the symmetric- and antisymmetric-balanced summands in (4.9). The
+standard module E(s) is precisely the complementary column-imbalance direction.
+
+Theorem 9 (sector positivity). The standard scalar is positive for every n ≥ 3, the symmetric-
+balanced scalar is positive for every n ≥ 4, and the antisymmetric-balanced scalar is positive for
+every n ≥ 3.
+
+    The proof is in Appendix A. We summarize its architecture. For the standard sector, a signed
+three-channel quotient separates positive and negative orientations. Schur elimination turns each
+completed negative excursion into a nonnegative re-entry operator. Exact first-phase barriers and a
+uniform row-sum contraction control the entire alternating resolvent. For the antisymmetric sector,
+a one-feature reduction sends a rank Poisson gradient through a positive decreasing recurrence; the
+second perturbation is then a sum of nonnegative sampling-without-replacement terms, at least
+one strict. For the symmetric sector, the exact quotient has a good/bad block form
+                                                    
+                                               S C
+                                                                                              (4.11)
+                                              −D Q
+
+with S, C, D, Q nonnegative. Schur elimination converts every completed bad excursion into one
+factor of a nonnegative return operator A. Explicit positive phase barriers dominate the alternating
+resolvent (I + A)−1 . The computer-assisted part is finite and exact: rational stationary solves cover
+3 ≤ N ≤ 39, and rational phase-margin checks cover 40 ≤ N ≤ 287. Coeﬀicientwise polynomial
+and discriminant certificates prove the remaining range N ≥ 288. Appendix A states the finite
+computation as a formal lemma and identifies its exact verifier.
+
+                                                     11
+    For orientation, the first sector eigenvalues are
+
+                               n    λstd       λsym     λanti
+                               3    1/11      −−−        1/9
+                                                                                            (4.12)
+                               4   87/640     3/208    57/640
+                               5 8585/57314 359/26660 143/2100.
+
+These are the Frobenius-normalized quadratic eigenvalues; they are checks, not a finite extrapola-
+tion.
+                                                                          (2)
+Proof of Theorem 1. Theorem 9 and the decomposition (4.9) imply Rn (δ) > 0 for every nonzero
+δ ∈ Tn . Equations (3.12) and (4.5) give
+                                     1
+                                              = c0 + ε2 R(2)        3
+                                                         n (δ) + O(ε ).                     (4.13)
+                                nρdB (Pε , 2)
+
+Differentiation yields (2.8). To obtain a neighborhood rather than only directional statements,
+restrict the analytic fixation map to a small Frobenius ball around Jn in the aﬀine space Jn +
+                                                                            (2)
+Tn , chosen inside the strictly positive off-diagonal region. The smallest Rn -eigenvalue on the
+Frobenius unit sphere is positive. Taylor’s theorem with a uniform third-derivative bound on a
+smaller compact ball makes the negative quadratic term dominate the remainder. Hence every
+other kernel in that ball has strictly smaller fixation probability.
+
+Remark 10. The neighborhood in the last paragraph depends on n. No statement here prevents a
+population sequence from approaching a singular face, or from remaining a nonperturbative distance
+from Jn as n → ∞.
+
+
+5     Fixed structures at strong selection
+We now prove Theorem 2, Corollary 3, and Proposition 4.
+
+5.1   Complete-graph baseline
+Let ϕk be complete-graph fixation from k mutants and let γk be the ratio of the probabilities of
+decreasing and increasing k. First-step equations give
+                                                              −1
+                                                   XY
+                                                   n−1 j
+                                      ϕ 1 = 1 +             γk     .                       (5.1)
+                                                   j=1 k=1
+
+Under dB updating,
+                                              n − 1 + (r − 1)k
+                                   γk =                             ,                        (5.2)
+                                          r{n − 1 + (r − 1)(k − 1)}
+so the product telescopes and yields (2.4). For n ≥ 3,
+                                                n−1 n−1
+                               ρdB (Jn , r) =      −    + O(r−2 ).                           (5.3)
+                                                 n   nr
+    We use the following standard finite-state observation.
+
+
+
+                                                   12
+Lemma 11 (finite-state perturbation). Let a finite absorbing transition matrix depend analytically
+on ε near zero. If the transient restriction at ε = 0 has spectral radius below one, then all absorption
+probabilities are analytic near zero. More generally, if a limiting reachable transient class has a
+bounded fundamental matrix and one-step leakage is O(ε), then leakage before absorption is O(ε).
+
+Proof. Write the transient absorption equation as (I − Q(ε))h = b. The inverse exists near zero
+and is analytic by the adjugate formula. On a restricted limiting class, its bounded fundamental
+matrix times the leakage vector bounds the probability of leaving before absorption.
+
+5.2   Complete directed support
+Assume n ≥ 3 and wuv > 0 for u 6= v. Put
+
+                                                                      d−
+                                                                       v − wuv
+                                     ε = r−1 ,                auv =            .                     (5.4)
+                                                                         wuv
+Let qS (ε) be extinction probability from mutant set S. At ε = 0, every set with at least two mutants
+fixates, while q{i} (0) = 1/n. The limiting transient chain absorbs, so Lemma 11 gives analyticity.
+    Differentiate the exact first-step system. If 3 ≤ |S| ≤ n − 1, a first-order loss still leaves at least
+two mutants, whose zeroth-order extinction is zero. The derivative therefore satisfies
+                                                        X
+                                     (n − |S|)qS′ (0) =    ′
+                                                          qS∪{v} (0).                                 (5.5)
+                                                                    ∈S
+                                                                   v/
+
+Backward induction from qV′ (0) = 0 gives
+
+                                       qS (ε) = O(ε2 ),                  |S| ≥ 3.                    (5.6)
+
+   For a pair S = {i, j}, loss of target i has probability
+
+                                  1    ε(d−
+                                          i − wji )      εaji
+                                             −         =      + O(ε2 ),                              (5.7)
+                                  n wji + ε(di − wji )    n
+
+and similarly for target j. The leading self-loop mass is 2/n, the leading gain mass is (n − 2)/n,
+and a resulting singleton has extinction 1/n + O(ε). Hence
+                                                        aij + aji
+                                     q{i,j} (ε) =                 ε + O(ε2 ).                        (5.8)
+                                                        n(n − 2)
+
+   From singleton {i}, death of resident target v creates the pair {i, v} with probability
+                                  1        wiv          1
+                          tiv =              −         = (1 − aiv ε) + O(ε2 ).                       (5.9)
+                                  n wiv + ε(dv − wiv )  n
+
+Death of i causes extinction with probability 1/n. Removing holding probabilities gives
+                                           
+                                    X               1 X
+                              1 +      tiv  q{i} = +    tiv q{i,v} .                              (5.10)
+                                n                   n
+                                        v̸=i                              v̸=i
+
+Define                                       X                            X
+                                      Oi =            aiv ,        Ii =          aui .              (5.11)
+                                               v̸=i                       u̸=i
+
+
+                                                              13
+Substitution of (5.8) into (5.10) yields
+                                                                
+                                              1  ε      O i + Ii
+                                    q{i} (ε) = + 2 Oi +            + O(ε2 ).                      (5.12)
+                                              n n       n−2
+        P            P
+Since       i Oi =       i Ii =: Tdir (W ), uniform averaging gives
+
+                                                     n−1   Tdir (W )
+                                   ρdB (W, r) =          − 2         + O(r−2 ),                   (5.13)
+                                                      n   n (n − 2)r
+where
+                                                             X X d− − wuv
+                                                                      v
+                                               Tdir (W ) =                      .                 (5.14)
+                                                             v u̸=v
+                                                                          wuv
+
+    For each target column, the elementary identity
+                                        X 1               X (wuv − wzv )2
+                                   d−
+                                    v        − (n − 1)2 =                                         (5.15)
+                                         wuv              u<z
+                                                              wuv wzv
+                                        u̸=v
+                                                                   u,z̸=v
+
+gives
+                                        Tdir (W ) − n(n − 1)(n − 2) = Edir (W ).                  (5.16)
+Equations (5.3), (5.13), and (5.16) prove Theorem 2. Equality in (5.15) forces each incoming column
+to be constant. Such column constants cancel from every parent competition, so the full chain is
+exactly the Jn chain.
+
+5.3     Noncomplete supports and fixed-graph closure
+If the positive directed support is strongly connected but noncomplete, Theorem 1 of Tkadlec et
+al. (2020) proves eventual strict dB suppression. It remains to remove strong connectivity.
+    Consider the condensation DAG. If it has at least two source strongly connected components,
+then a uniformly initialized singleton leaves at least one source component entirely resident and
+unable to receive mutant ancestry; fixation is impossible. Otherwise let C ⊊ V be the unique source
+component. Initial mutants outside C cannot fixate. For i ∈ C, let s+    i be its positive out-support
+size. While i is the only mutant, its chance to make a first gain before dying is at most s+     +
+                                                                                            i /(si + 1).
+Thus
+                                             1 X s+           (n − 1)2
+                               ρdB (W, r) ≤          +
+                                                       i
+                                                           ≤           .                          (5.17)
+                                             n     s i + 1       n2
+                                               i∈C
+
+The complete baseline tends to (n − 1)/n, leaving limiting gap (n − 1)/n2 . Combining this case,
+the cited strongly connected noncomplete-support theorem, and Theorem 2 proves Corollary 3.
+
+5.4     Undirected incomplete support
+Fix an initial mutant i in a connected undirected support. At r = ∞, death of i causes extinction,
+while death of any one of its si neighbors creates an adjacent mutant pair. After deleting holding
+steps, the probability of reaching a pair first is si /(si + 1). Once an adjacent pair exists, the mutant
+set remains support-connected; every mutant has a mutant neighbor and cannot be replaced by a
+resident in the limiting chain, while every boundary resident death produces monotone growth. The
+limiting chain therefore reaches fixation almost surely from the pair. Lemma 11 controls O(1/r)
+leakage from this limiting class. Uniform averaging proves (2.11); elementary subtraction proves
+(2.12).
+
+                                                              14
+6   Global all-fitness slices at small order
+Local curvature at r = 2 does not imply global maximality. At order three, however, the full
+all-fitness comparison admits an exact centered sum-of-squares certificate.
+     Let an undirected triangle have positive edge weights (a, b, c). If Fi is fixation when i is the
+unique mutant and Gi when i is the unique resident, deleting holding probabilities gives six linear
+equations. For distinct i, j, k, put
+                                         rwij                wij
+                                uij =            ,  vij =             .                          (6.1)
+                                      rwij + wjk          rwjk + wij
+Then
+                                   (1 + uij + uik )Fi = uij Gk + uik Gj ,                           (6.2)
+                                 (1 + vij + vik )Gi = 1 + vij Fk + vik Fj .                         (6.3)
+The coeﬀicient matrix is a strictly diagonally dominant M -matrix, so its determinant is positive.
+   Put s1 = a + b + c, s2 = ab + ac + bc, and s3 = abc, and define
+                                  A = 3s3 (s1 s2 − 9s3 ),
+                                  D = 12s31 s3 − 45s1 s2 s3 + 4s32 − 27s23 ,
+                                                                                                    (6.4)
+                                  E = 4s2 (3s21 s2 − 3s1 s3 − 8s22 ),
+                                 Hr = A(r − 1)4 + Dr(r − 1)2 + Er2 .
+Exact elimination of (6.2)–(6.3) gives
+                                                                 r(r − 1)Hr
+                                 ρdB (W, r) − ρdB (J3 , r) = −              ,                       (6.5)
+                                                                 3(r + 1)Pr
+where Pr > 0 is the cleared determinant. More explicitly, if M is the coeﬀicient matrix of (6.2)–(6.3)
+and                                        Y
+                                    L=          (rp + q) > 0,
+                                            p,q∈{a,b,c}
+                                               p̸=q
+then Pr = L det(M )/3 > 0.
+   To sign the numerator, set
+               U = s21 − 3s2 ,    V = s22 − 3s1 s3 ,      W = s1 s2 − 9s3 ,     Z = s32 − 27s23 .   (6.6)
+Writing X = ab, Y = ac, Z0 = bc gives
+                    2U = (a − b)2 + (a − c)2 + (b − c)2 ,
+                    2V = (X − Y )2 + (X − Z0 )2 + (Y − Z0 )2 ,
+                                                                                                    (6.7)
+                     W = c(a − b)2 + b(a − c)2 + a(b − c)2 ,
+                     Z = s2 V + 3{Z0 (X − Y )2 + Y (X − Z0 )2 + X(Y − Z0 )2 }.
+The coeﬀicient identities
+                A = 3s3 W,         D = 12s1 s3 U + 3s2 V + Z,           E = 4s2 (3s2 U + V )        (6.8)
+show that A, D, E ≥ 0. If the weights are nonuniform then U > 0, hence E > 0 and Hr > 0 for
+r > 1. Equation (6.5) proves Theorem 5, including its equality class.
+   Appendix B gives analogous exact certificates for the 1 + 3 and 2 + 2 invariant positive weighted
+K4 families. Those families are included because they test the first genuinely higher-dimensional
+subset chains while retaining exact orbit reductions. We make no claim that they classify all
+weighted four-vertex graphs.
+
+                                                       15
+7     Implications, limitations, and reproducibility
+7.1   A necessary condition for asymptotic universal amplification
+The fixed-graph result does not interchange n and r. We first record the monotonicity needed for
+a useful support condition on graph sequences.
+Lemma 12 (fitness monotonicity). For every loopless row-stochastic replacement kernel P and
+every initial mutant set, the dB fixation probability is nondecreasing in mutant fitness r > 0.
+Proof. For 0 ≤ x ≤ 1,
+                 ∂fr (x)      x(1 − x)                 ∂fr (x)          r
+                         =                 ≥ 0,                =                 > 0.
+                   ∂r      [1 + (r − 1)x]2               ∂x      [1 + (r − 1)x]2
+Couple chains with r ≤ r′ by using the same dead target v and the same uniform threshold U at
+every update, declaring the replacement mutant when U ≤ fr (PvS ). If their current mutant sets
+satisfy S ⊆ T , then PvS ≤ PvT and the two displayed monotonicities preserve the inclusion after the
+update. Starting both chains from the same set, fixation of the r-chain therefore implies fixation
+of the r′ -chain.
+
+    Lemma 12 and Proposition 4 give, for every finite connected undirected graph,
+                                                   1X 1
+                                ρdB (W, r) ≤ 1 −                .                                (7.1)
+                                                  n      si + 1
+                                                         i
+
+Proposition 13 (support degree must diverge). Let Wn be connected undirected weighted graphs
+of order n → ∞. If, for every fixed r > 1, Wn is eventually a dB amplifier, then
+                                        1X 1
+                                                    −→ 0.                               (7.2)
+                                        n    si + 1
+                                            i
+
+Consequently the support degree of a uniformly chosen vertex tends to infinity in probability.
+Proof. At fixed R > 1, eventual amplification and (7.1) give
+                                1X 1                                  1
+                        lim sup             ≤ lim {1 − ρdB (Jn , R)} = .
+                          n→∞ n      si + 1    n→∞                    R
+                                   i
+
+Let R → ∞. For fixed K, the fraction with si ≤ K is at most (K +1) times the average in (7.2).
+
+   This excludes uniformly bounded-support families, but not supports completed by arbitrarily
+weak positive edges, diffuse perturbations, mesoscopic modules, or singular population-dependent
+kernels.
+
+7.2   What the local theorem does and does not say
+Theorem 1 proves strict negative fixation curvature in every nonzero normalized directed direction
+at fixed order. In particular, neither column imbalance nor directed circulation escapes the local
+maximum. The theorem does not supply a radius uniform in n, global concavity along rays, or a
+path from an arbitrary kernel to Jn on which fixation is monotone. The global conjecture
+
+                                       ρdB (P, 2) ≤ ρdB (Jn , 2)                                 (7.3)
+
+for every kernel P induced by an undirected weighting remains open.
+
+                                                  16
+7.3   Exact verification and proof status
+The archive contains independent exact implementations for the two theorem axes. The strong-
+selection suite constructs literal subset-state chains, checks row normalization and complete-graph
+lumpability, differentiates the absorption equations, verifies the incoming-column sum of squares,
+and replays the triangle and K4 certificates. The fitness-two suite independently builds the marked
+and active chains, verifies the collision normalization, reconstructs the rank Poisson equation, checks
+the tangent decomposition, and replays all three irreducible-sector certificates.
+    The standard sector has an analytic tail certificate for N ≥ 10 and exact rational closure for
+2 ≤ N ≤ 9. The symmetric sector uses exact solves for 3 ≤ N ≤ 39, exact rational phase margins for
+40 ≤ N ≤ 287, and a coeﬀicient/discriminant certificate for N ≥ 288. All arithmetic in these finite
+ranges is rational. The verifiers discharge the finite computer-assisted portions; sampled numerical
+values are never used to extend a quantifier. The universal directed strong-selection conclusion and
+the all-order antisymmetric-sector conclusion are proved analytically in Section 5 and Appendix A,
+respectively; their literal-chain executable checks are finite consistency tests.
+    The sole certified end-to-end replay, run from the root of the enclosing reproducibility package,
+is
+
+./run_all_referee_checks.sh
+
+It verifies the exact delivered file set and hashes, rejects links, special nodes, extra files or direc-
+tories, and bytecode/cache entries, safely extracts the verified source into a fresh disposable tree,
+provisions the pinned environment and private empty cache, invokes the bootstrap and verifier
+runner as internal stages, rebuilds the manuscript, and compares it byte-for-byte with the deliv-
+ered PDF. The bootstrap’s explicit development mode is a convenience rather than a certificate;
+the verifier runner is internal-only and rejects standalone invocation. Neither lower-stage status
+certifies package identity or execution of the delivered source. The package-level integration audit
+checks the complete active stationary law, the full tangent decomposition, all three physical sector
+normalizations, the strong-selection column identity, and conversion from inverse-mean to fixation
+curvature.
+
+
+Statements and Declarations
+Data and code availability. No empirical data are used. Complete LaTeX source, the com-
+piled manuscript, exact rational and symbolic verifiers, coeﬀicient certificates, pinned dependency
+specifications, and build and replay scripts for this version are supplied with the manuscript in an
+enclosing reproducibility package whose verified source payload is the standalone archive complete_
+graph_extremality_db_source_and_certificates.tar.gz. The adjacent file complete_graph_
+extremality_db_source_and_certificates.tar.gz.sha256 records the whole-archive SHA-256
+digest, the archive-root MANIFEST.sha256 checks every other archive member, and submission/
+BUNDLE_REPRODUCTION.md gives the clean-environment replay procedure. The package-root run_
+all_referee_checks.sh additionally checks exact node-set equality and is the certified entry point.
+An evolving development repository is available at https://github.com/AlecKriebel/Math. The
+earlier strong-selection and low-order version is archived at https://doi.org/10.5281/zenodo.
+21753405; that record does not contain the new fitness-two local theorem.
+Funding. No external funding supported this work.
+Competing interests. The author declares no competing interests.
+
+
+                                                  17
+Author contributions. A.K. determined the research questions, scope, and claim boundaries,
+reviewed the manuscript and reproducibility artifacts, and accepts responsibility for the work.
+Ethics approval and consent. Not applicable. This study uses no human participants, animals,
+or empirical biological data.
+AI-assisted research disclosure. Generative-AI systems were used substantively in mathemati-
+cal exploration, derivation, adversarial proof analysis, software development, exact verification, lit-
+erature support, visualization, and manuscript preparation. The named human author determined
+the scope and claims, reviewed the final manuscript and public artifacts, and accepts responsibility
+for the work. All exact certificates are supplied for independent replay, and numerical evidence is
+explicitly separated from proof. AI systems are not listed as authors.
+
+
+A Hessian-sector certificates for every population size
+This appendix proves Theorem 9. Throughout, N = n − 1 and
+                                      N −1
+                                           
+                                               k−1
+                                      πk =          ,         1 ≤ k ≤ N,                         (A.1)
+                                              2N −1
+is the complete active-rank law. Its rank chain has
+                                              N −k                         k−1
+                               Rk,k+1 =            ,          Rk,k−1 =         .                 (A.2)
+                                               2N                           2N
+Let h solve (I − R)h = k −1 − c0 modulo constants and put dk = hk − hk+1 for 1 ≤ k < N , with
+d0 = dN = 0. Subtracting adjacent Poisson equations gives
+                                                         
+                                                   1
+                   (N − k)dk − (k − 1)dk−1 = 2N      − c0 ,    1 ≤ k < N.               (A.3)
+                                                   k
+
+   Solving this recurrence gives, for 1 ≤ k < N ,
+                                     P −1 N −1
+                       2        22−N N r=k                       2(N − 2)       2
+                         − dk =            N −2
+                                               r
+                                                 ,                       ≤ dk ≤ .              (A.3a)
+                       k          (N − 1) k−1                      Nk           k
+
+For the lower bound, after clearing the positive denominator it is enough to show
+
+                                    X
+                                    N −1                                     
+                                             N −1                          N −2
+                             Nk                         ≤ 2N (N − 1)              .             (A.3b)
+                                               r                           k−1
+                                    r=k
+
+                                               −2
+                                                  
+For k ≤ N/2, use the full binomial sum and Nk−1     ≥ N − 2 away from the immediate endpoint
+k = 1; for k ≥ 2, N ≥ 4, the remaining comparison follows from N k ≤ N 2 /2 ≤ 2(N − 1)(N − 2).
+The case k = 1 is immediate. For k > N/2, symmetry and monotonicity of the lower half of the
+binomial row give
+                            X
+                            N −1                             
+                                   N −1             N −1 N −2
+                                          ≤ (N − k)               ,
+                                     r                k     k−1
+                              r=k
+
+and N (N − k) ≤ 2N completes the proof. The order N = 2 is direct.
+
+
+
+                                                         18
+A.1    Standard column-imbalance directions
+Let ξ ∈ RN +1 have coordinate sum zero and let E(ξ) be the standard embedding in (4.8). By
+SN +1 -invariance and irreducibility of the standard module, it is enough to calculate the scalar for
+the canonical vector ξ = ex − ey ; the resulting ratio then holds for every zero-sum ξ. Distinguish
+the labels x, y. The signed two-label quotient has positive channels
+
+                             Pk     v = x, x, y ∈
+                                                / B, 1 ≤ k < N,
+                             Qk     v = x, y ∈ B, 1 ≤ k ≤ N,
+                             Rk     v∈/ {x, y}, x ∈ B, y ∈
+                                                         / B, 1 ≤ k < N,
+
+with the negative orientation obtained by exchanging x, y. Use the channel orders
+
+                    G = (P1 , . . . , PN −1 , R1 , . . . , RN −1 ),   Q = (Q1 , . . . , QN ).
+
+In these coordinates the operator is                          
+                                                           S C
+                                                H=               ,                               (A.4s)
+                                                          −D Q
+where all four displayed blocks are nonnegative. The nonzero signed rows are
+                                        k      N −k−1         1
+                              Pk 7→       Pk +        Pk+1 +    Qk+1 ,                           (A.5s)
+                                       2N        2N          2N
+                              k2 − 1       N −k          k−1         N −k
+                     Qk 7→           Qk +        Qk+1 −      Pk−1 −       Pk
+                               2kN          2N           2kN         2kN                         (A.6s)
+                                 (k − 1)2        (k − 1)(N − k)
+                              −           Rk−1 −                Rk ,
+                                   2kN                2kN
+and                                         
+                        k     (k − 1)(N − k)        N −k−1            (k − 1)2
+             Rk 7→          +                  Rk +           Rk+1 +           Rk−1
+                       2N          2kN                  2N              2kN                      (A.7s)
+                          1        k−1          N −k
+                     +       Qk +        Pk−1 +      Pk .
+                        2kN        2kN          2kN
+Terms outside their physical ranges are absent. Define the binomial row
+                                    N −2
+                                         
+                                         k−1
+                           σ(Rk ) =             ,       σ(Pk ) = 0,      σ(Qk ) = 0,             (A.8s)
+                                        2N −2
+and the physical reward
+
+                    γ(Pk ) = kdk ,
+                                         (N + 1)(k − 1)
+                    γ(Rk ) = N dk +                     dk−1 ,                                   (A.9s)
+                                                k
+                                                           (N + 1)(k − 1)
+                    γ(Qk ) = −qk ,       qk = (N − k)dk +                 dk−1 > 0.
+                                                                 k
+The standard-sector scalar is
+                                              ΦN = σ(I − H)−1 γ.                                (A.10s)
+This is the physical, rather than an auxiliary, reward. Indeed the first perturbation has feature
+coeﬀicients
+                             kdk                       N dk          (k − 1)dk−1
+                ak =                  ,     bk =                  +              ,        (A.11s)
+                      2(N + 1)(N − 1)             2(N + 1)(N − 1)     2k(N − 1)
+
+                                                          19
+whose P, R, Q values are ak , bk , ak − bk . The averaged second perturbation annihilates the a feature
+and has bk coeﬀicient σ(Rk )/[2(N + 1)]. Therefore
+
+                                     (2)
+                                   Rn (E(ξ))         ΦN
+                                             =                   .                             (A.12s)
+                                     kξk 2     4(N + 1)2 (N − 1)
+
+The table in Section 4 instead uses Frobenius normalization on the embedded matrix. Direct
+summation of (4.8) gives
+                                               n−1
+                                  kE(ξ)k2F =          kξk2 ,                       (A.12n)
+                                             n(n − 2)
+and therefore the Frobenius-normalized standard eigenvalue is ΦN /[4N (N + 1)]. For example, the
+                       (2)
+canonical n = 3 ratio R3 (E(ξ))/kξk2 = 2/33 becomes the table value 1/11.
+   It remains to prove ΦN > 0. Put
+
+                       RS = (I − S)−1 ,      RQ = (I − Q)−1 ,     A = RS CRQ D,
+
+where the displayed rows give S1 ≤ (N − 1)1/N and (Q1)k = 1/2 − 1/(2kN ). Thus both inverses
+are convergent Neumann series and are entrywise nonnegative. Also put
+
+                            h = RQ q,        r0 = γS − Ch,        f 0 = R S r0 .               (A.13s)
+
+Schur elimination of the bad channel gives the exact alternating-phase identity
+
+                                           ΦN = σ(I + A)−1 f0 .                                (A.14s)
+
+   For N ≥ 6, define
+                                                         4N (k − 1)
+                W1 = 2N 2 d1 ,    W2 = 2N d1 ,    Wk =              dk−1      (3 ≤ k ≤ N ).    (A.15s)
+                                                             k
+Then (I − Q)W ≥ q. At ranks one and two the cleared residuals are 2(N 2 − N + 1)d1 and
+
+                            3N − 4      7(N − 2)      2(N − 2)(N − 6)
+                                   d1 −          d2 ≥                 .
+                              2            3                3N
+For k ≥ 3 the residual is Ak dk−1 − Bk dk , with
+
+                         (k − 1)(3kN − 2k 2 − k + 2)                 (3k + 1)(N − k)
+                  Ak =                               ,       Bk =                    .
+                                     k2                                   k+1
+Using (A.3a), it is at least 2P (N, k)/[N k 2 (k + 1)]. On setting a = k − 3 and m = N − k,
+
+                            P = a4 + a3 m + 10a3 + 5a2 m + 37a2 + 60a
+                                                                                               (A.16s)
+                                   + 2am(m − 1) + 6m2 − 22m + 32 > 0.
+
+the last quadratic has discriminant −284. Thus h ≤ W . Direct substitution now gives
+
+                          P1                          0
+                          Pk          k(k − 1)dk /(k + 1), 2 ≤ k < N
+                          R1                          0                                        (A.17s)
+                          R2                   N d2 + N d1 /2
+                          Rk             k (N + 1 − 2/k)dk−1 ,
+                                 N dk + k−1                     3≤k<N
+
+                                                   20
+for the coordinates of γS − CW . Hence f0 ≥ 0.
+    The bad exit and retention row sums satisfy
+                                     N −1                              1   1
+                             D1 =         1,          (Q1)k =            −   .            (A.18s)
+                                      2N                               2 2kN
+Consequently RQ D1 ≤ 1. With
+
+                              z(Pk ) = 1/N,          z(Rk ) = 2/(N + k),
+
+one has (I − S)z ≥ C1. The Pk gap is 1/(2N 2 ); after a = k − 1, m = N − k, the cleared Rk gap is
+
+                Z = 4a4 + 14a3 m + 18a3 + 14a2 m2 + 40a2 m + 30a2
+                                                                                          (A.19s)
+                     + 4am3 + 24am2 + 36am + 20a + 3m3 + 8m2 + 9m + 4 > 0.
+
+Applying the positive inverses proves
+                                                  2
+                                           A1 ≤      1.                                   (A.20s)
+                                                N +1
+    Two elementary barriers control the first phase. The supersolution u(Pk ) = 4, u(Rk ) = 8N
+gives 0 ≤ f0 ≤ 8N 1. Indeed its P residual is 2(N + 1)/N ≥ kdk , while its R residual exceeds the
+upper bound 2(2N + 1)/k for γ(Rk ) by 2(4N k − 4N + 1)/(N k). Separately, qk ≤ 2N and (A.18s)
+imply h ≤ 4N 1. For N ≥ 7, the subsolution ℓ(Pk ) = 0, ℓ(Rk ) = 2N then gives
+
+                                    f0 (Rk ) ≥ 2N,         σf0 ≥ 2N.                      (A.21s)
+
+At k = 1 the margin is 2N − 6 − (N + 1) ≥ 0; at k ≥ 2 it is [3N − 7 − 2k − 4/N ]/k ≥ 0.
+    Set cN = 2/(N + 1). Equations (A.20s)–(A.21s) and the Neumann series for (I + A)−1 yield,
+for N ≥ 10,
+                                          X j       2N (N − 9)
+                           ΦN ≥ 2N − 8N       cN =               > 0.                   (A.22s)
+                                                       N −1
+                                              j≥1
+
+The remaining exact values are
+
+               N         ΦN              N                    ΦN
+               2        24/11            6           5758562957/248448224
+               3       261/40            7      141339691089527/4988552903680             (A.23s)
+               4    343400/28657         8       15468663676289/466560376100
+               5   2268275/128288        9    19782952499295763/524622207176704.
+
+This proves the standard-sector sign for every population size. The supplementary verifier inde-
+pendently reconstructs the quotient, normalization, barriers, shifted polynomials, and every value
+in (A.23s).
+
+A.2   Antisymmetric balanced directions
+Let δ = −δ T have zero row sums and set
+                                                         X
+                                          x(B, v) =            δvi .                        (A.4)
+                                                         i∈B
+
+Direct expansion of the active moves gives
+                                              dk
+                                 ∆h(B, v) =      x(B, v),              k = |B|.             (A.5)
+                                              2
+
+                                                    21
+Lemma 14 (strict rank-Poisson gradients). The Poisson gradients satisfy
+                                     d1 > d2 > · · · > dN −1 > 0.                                (A.6)
+Proof. Realize the chain (A.2) on N −1 Boolean coordinates. At each step choose uniformly among
+these coordinates and one dummy slot; a genuine coordinate, when chosen, is refreshed to an
+independent fair bit, whereas the dummy leaves the configuration unchanged. If Kt is one plus the
+number of occupied coordinates, its transition probabilities are exactly (A.2). For f (k) = k −1 − c0 ,
+stationarity gives πf = 0, and finite ergodicity gives the convergent Poisson representation, modulo
+an irrelevant constant,                         X
+                                          hk =      Ek f (Kt ).
+                                                 t≥0
+
+   Couple configurations of ranks k and k + 1 that differ only at a distinguished bit a, using the
+same chosen slots and fair refreshes. Until the first refresh of a, write Xt for the number of occupied
+common coordinates. The forcing difference is
+                                                 1      1
+                                   g(Xt ) :=         −       > 0;
+                                               Xt + 1 Xt + 2
+after that refresh the two chains coalesce. Termwise summation of the Poisson series therefore gives
+dk > 0.
+    For 1 ≤ k ≤ N − 2, choose another bit b and a set S of k − 1 occupied bits, disjoint from a, b.
+Start four chains from
+                             S,     S ∪ {a},    S ∪ {b},    S ∪ {a, b},
+and again use identical refreshes. The first pair represents dk and the second represents dk+1 . The
+common configuration of the second pair contains that of the first until b is refreshed, after which
+the corresponding common configurations coincide. Since g is strictly decreasing, every summand
+for dk dominates the corresponding summand for dk+1 , and the inequality is strict already at time
+zero. Hence dk > dk+1 , proving the lemma.
+
+   For any rank sequence fk ,
+                                               kfk + (N − k − 1)fk+1
+                          K0 {fk x(B, v)} =                          x(B, v).                    (A.7)
+                                                        2N
+Thus G∆h = rk x, where rN = 0 and
+                                (2N − k)rk − (N − k − 1)rk+1 = N dk .                            (A.8)
+Backward induction using (A.6) gives
+                                                          N
+                                     0 ≤ rk+1 < rk ≤          dk .                               (A.9)
+                                                         N +1
+   Put T = kδk2F . Sampling without replacement and applying ∆ a second time yields
+                           T h k(N − k)
+           Ek [∆(rk x)] =                (rk − rk+1 ) + (N − k)rk+1
+                          2nN N − 1
+                                                                                   i            (A.10)
+                                  (k − 1)(N − k + 1)
+                                +                      (rk−1 − rk ) + (N − k + 1)rk .
+                                         N −1
+The coeﬀicient of the absent r0 − r1 term is zero. Every displayed term is nonnegative by (A.9),
+and the total is strict when T > 0. Averaging with (A.1) proves positivity of the antisymmetric
+sector for every N ≥ 2.
+
+                                                    22
+A.3    Symmetric balanced directions
+For a symmetric balanced δ, put
+                                            X                                X
+                               x(B, v) =            δvi ,         z(B) =             δwi .                   (A.11)
+                                            i∈B                              w,i∈B
+                                                                              w̸=i
+
+Functions in this sector have the form ak x + bk z. Transpose the exact two-channel rank operator
+and split its positive and negative channels:
+                                                         
+                                              T      S C
+                                      H=K =                 .                              (A.12)
+                                                    −D Q
+
+Every displayed block is entrywise nonnegative. The nonzero entries are
+                                      k                       N −k
+                              Sk,k =    ,            Sk,k−1 =      ,
+                                     2N                        2N
+                                     N (k − 2) + k            N −k−1
+                             Qk,k =                , Qk,k−1 =        ,                                       (A.13)
+                                          2kN                   2N
+                                      k(k − 1)                1
+                            Qk,k+1 =           ,     Dk,k−1 = ,
+                                     2(k + 1)N                N
+
+and
+                                        k−1            N −k
+                                    Ck−1,k =,   Ck,k =       .                        (A.14)
+                                        2kN            2kN
+The a channel is indexed by 1 ≤ k < N and the b channel by 2 ≤ k < N ; entries outside these
+ranges are zero. The positive source is
+                                                   dk                    dk−1
+                                         sak =        ,          sbk =        ,                              (A.15)
+                                                   2                      2k
+and the good/bad reward is
+                                        N −2
+                                                                            N −3
+                                                                                      
+                            gka =        k−1
+                                                  ,              gkb = − N −2k−2     .                       (A.16)
+                                    2N −1 (N + 1)                       2    (N + 1)
+
+   The normalization connecting this quotient to the physical Hessian is exact, not merely sign
+preserving. If (a, b) = (I − K)−1 s, set b1 = aN = bN = 0 and
+
+                                                            2(k − 1)
+                                          rk = a k −                 bk ,
+                                                             N −2
+then the fixed-count orbit identities give
+                      (2)    X  N −1
+                    Rn (δ)            N −k
+                           =   πk                rk = g T (I − K)−1 s =: SN .                                (A.17)
+                     kδkF
+                        2         (N − 1)(N + 1)
+                                k=1
+
+Here is the labelled normalization valid for every n. Let c = 1/[nN 2N −1 ] and write µ = ν0 ∆. For
+an output state (B, v) of rank k, the four predecessor families contribute, respectively,
+            c               c                         c                              c
+              kx(B, v),       (k − 1)x(B, v),           (N − k)x(B, v),                (N − k + 1)x(B, v).
+            2               2                         2                              2
+
+                                                            23
+Thus their sum is the exact labelled current µ(B, v) = x(B, v)/(n2N −1 ), including the boundary
+ranks. Define f (B, v) = a|B| x(B, v) + P
+                                        b|B| z(B). Conditional on a uniform rank-k orbit, sampling
+without replacement gives, with Rv = i δvi    2,
+
+
+                                k(N − k)                              2k(k − 1)(N − k)
+                  E[x2 | v] =             Rv ,        E[xz | v] = −                    Rv .       (A.17a)
+                                N (N − 1)                             N (N − 1)(N − 2)
+For the cross term, separate the two coincidences in the ordered triple from the all-distinct case;
+the row and column sums reduce the resulting full sums to −2Rv . Summing Rv over v gives kδk2F .
+Therefore
+                               NX−1                                    
+                       ν0 ∆f               N −k              2(k − 1)
+                             =      πk                  ak −          bk ,                 (A.17b)
+                       kδk2F           (N − 1)(N + 1)         N −2
+                                    k=1
+which is the first expression in (A.17). The identities
+                                      N −2
+                                                               
+                           N −k       k−1        k−1 N −2     N −3
+                        πk        = N −1 ,                 =
+                           N −1      2          N −2 k−1      k−2
+
+show that the coeﬀicients in (A.17b) are exactly gka , gkb . Hence the orbit average is g T (a, b) =
+g T (I − K)−1 s. This is a labelled derivation; the exact replay independently reconstructs it for
+4 ≤ n ≤ 12 before taking a sign.
+     Put RS = (I −S)−1 and RQ = (I −Q)−1 . Here S has row sums at most 1/2, while the displayed
+tridiagonal Q is substochastic and every communicating class reaches a strict boundary row. Hence
+both inverses are convergent entrywise-nonnegative Neumann series. Define
+
+                      W = RQ (−g b ),        r = g a − CW,                f0 = RS r,
+                                                                                                   (A.18)
+                       A = RS CRQ D, ℓ = (sa )T − (sb )T RQ D,            D = (sb )T W.
+Solving the bad equation first gives the exact Schur identity
+
+                                          SN = ℓ(I + A)−1 f0 − D.                                  (A.19)
+
+One factor of the nonnegative matrix A is one completed visit to the bad channel. The inverse
+in (A.19) therefore alternates successive re-entries, so a first-excursion estimate alone would not
+suﬀice.
+    We now give the full phase certificate. Put
+                                                            2N               2N + (k − 1)tk−1
+               v = RS g a ,      vk = tk gka ,      t1 =          ,   tk =                    .    (A.20)
+                                                           2N − 1                2N − k
+Induction gives
+                                                      N2 − k
+                                            tk ≤                  .                                (A.21)
+                                                   (N − 2)(N − k)
+The base difference is (5N − 1)/[(N − 2)(2N − 1)]; after one step and the substitution m = N − k,
+the remaining numerator is N 3 − N 2 + 2N m2 + 2N m + 2m3 + 3m2 + m > 0.
+   For N ≥ 24, let W = (7N/25)(−g b ). Direct substitution shows
+                                                                       14 a
+                                   (I − Q)W ≥ −g b ,           CW ≤       g .                      (A.22)
+                                                                       25
+For the first inequality, after clearing positive binomial factors the interior residual is
+
+                  PN (k) = 21N 2 k + 14N 2 − 64N k 2 − 57N k + 50k 3 + 36k 2 − 14k.                (A.23)
+
+                                                       24
+For N ≥ 25, disck PN = −8BN , where the coeﬀicients of B25+M are
+
+         (5733, 736211, 37934833, 982793213, 12893444604, 70866894144, 41021531998).          (A.24)
+
+Thus PN has one real, negative root and is positive for k ≥ 0; at N = 24 its exact minimum over
+the physical ranks is 24. Applying RQ in (A.22) yields
+
+                                              11
+                                                 v ≤ f0 ≤ v.                                  (A.25)
+                                              25
+   For 2 ≤ k < N , define
+                                            b        k
+                                            hk =        ga .                                  (A.26)
+                                                   N − 2 k−1
+Equations (A.13) and (A.21) give (I − Q)b
+                                        h ≥ Dv and
+
+                                                              2N − 5
+                                   Cb
+                                    h ≤ cN g a ,      cN =              .
+                                                             2N (N − 2)
+
+Indeed, the interior ratio in the first comparison is (N 2 − k + 1)/[N (N − 2)(N − k + 1)], and
+the largest row ratio in the second is at rank N − 2. At k = 2 the first boundary residual is
+(N + 1)/[N (N − 2)], equal to the interior formula; at k = N − 1 it is (N 2 + 1)/[2N (N − 2)], which
+exceeds the interior value (N 2 − N + 2)/[2N (N − 2)]. Thus (A.21) dominates every boundary row
+as well. Consequently
+                                             Av ≤ cN v.                                        (A.27)
+   For the left occupation debt, put
+
+                                           2(k + 1)
+                                   Yk =                    (2 ≤ k < N ).                      (A.28)
+                                          3k(k − 1)
+
+With B = QT , an interior substitution gives
+
+                                         1       4N k + 2N + 2k 3 − k 2 − 5k
+                    [(I − B)Y ]k −             =                             > 0,             (A.29)
+                                      k(k − 1)      3N k 2 (k − 1)(k + 1)
+
+while the boundary residuals at k = 2 and k = N − 1 are, respectively, (5N + 7)/(18N ) > 0 and
+(N 2 − N + 2)/[3N (N − 2)(N − 1)2 ] > 0. Since sbk ≤ 1/[k(k − 1)], this proves (sb )T RQ ≤ Y T and
+hence ℓ ≥ ℓ > 0, where
+                                        3N j + 3N − 8j − 10
+                                   ℓj =                      .                              (A.30)
+                                             3N j(j + 1)
+The absent bad state above the top rank only increases the final margin.
+   The bad debt and first phase now satisfy
+                              −2                                           N −1
+                            X                                       11 X
+                            N
+                                       4(j + 2)
+                       D≤                         ga,         ℓf0 ≥      ℓj tj gja .          (A.31)
+                                   3(j + 1)(N − 2) j                25
+                            j=1                                            j=1
+
+Define                                                                         −1
+                                              4(j + 2)              11
+                            βN =      max                              ℓ j tj         ,
+                                 1≤j≤N −2 3(j + 1)(N − 2)           25                        (A.32)
+                                 25 cN
+                            εN =           .
+                                 11 1 − cN
+
+                                                      25
+Lemma 15 (finite exact symmetric-sector certificate). The scalar SN is positive for 3 ≤ N ≤ 39.
+For each of the 248 integer orders 40 ≤ N ≤ 287, βN + εN < 1; the smallest certified margin occurs
+at N = 40 and is
+                                          639304267467075678841
+                         1 − β40 − ε40 =                            > 0.                    (A.33)
+                                         115369588296792467144716
+Computer-assisted proof. The included exact-arithmetic program
+                          verify_true_inverse_rank_symmetric_phase.py
+directly solves the rational systems for 3 ≤ N ≤ 39, recursively constructs the rational tj , βN , and
+εN for all 248 remaining finite orders, asserts every sign and the minimum in (A.33), and uses no
+floating-point arithmetic. Its SHA-256 is
+              7a1fa1f579c090cc32668392e67b9eb88e696b51ad602a90d069541e402aa512.
+Successful execution ends with
+                  PASS: stationary symmetric inverse-rank phase certificate
+and prints the three ranges 3 : 39, 40 : 287, and N ≥ 288 separately. The deterministic source bundle
+contains this exact file and its dependencies.
+                                                                   p
+    For N ≥ 288, induction in (A.20) gives tj ≥ N/(N − j + N/2). Indeed,      p      substituting the
+inductive bound leaves the numerator 2u(N − j + u) + u − N , where u = N/2; it is minimized
+at j = N − 1 and equals 3u > 0. Since u ≤ N/24 in this range, tj ≥ 24N/(25N − 24j). The bound
+βN < 19/20 follows, after clearing positive factors, from GN (j) > 0, where
+
+                  GN (j) = 1881N 2 j + 1881N 2 − 6250N j 2 − 21278N j − 10032N
+                                                                                               (A.34)
+                            + 6000j 3 + 12000j 2 + 10032j + 12540.
+
+Its discriminant is −500DN , and the coeﬀicients of D288+M are
+
+                        43034652243, 71940715263252, 50075984929826764,
+                         18577025353519361184, 3873653773133773223808,                         (A.35)
+                    430447522448513182675968, 19913301794000751100222464.
+
+Thus GN has one negative real root and is positive on every physical rank. Also εN < 1/20 for
+N ≥ 46: after clearing its positive denominator this is 22N 2 − 1066N + 2555 > 0, which holds at
+N = 46 and is increasing thereafter. Therefore βN + εN < 1 for all N ≥ 288.
+   Finally, (A.25), (A.27), and positivity of ℓ give
+
+                                    ℓ(I + A)−1 f0 − ℓf0 ≤ εN ℓf0 .
+
+Together with (A.31) this yields
+
+                                    SN ≥ (1 − βN − εN )ℓf0 > 0                                 (A.36)
+
+for every N ≥ 40. The finitely many orders 3 ≤ N ≤ 39 are solved exactly over Q by Lemma 15;
+the first values are S3 = 3/208 and S4 = 359/26660.
+    The supplementary verifier reconstructs every rational boundary solve, cleared polynomial,
+shifted coeﬀicient list, and the labelled normalizations (A.12s) and (A.17). Combining the three
+subsections proves Theorem 9.
+
+
+                                                 26
+B     Two symmetric weighted K4 families
+Let G13 (x) have one core vertex, three satellites, unit core–satellite weights, and satellite–satellite
+weight x > 0. Let G22 (x, y) have two vertex pairs, internal-pair weights x, y > 0, and four unit
+cross-pair weights. These are the full S1 × S3 and S2 × S2 invariant families after common scaling.
+
+                                                                            1
+                              1
+                         x
+                                                                   x                 y
+
+
+                             G13 (x)                                   G22 (x, y)
+
+        Figure 2: The two invariant weighted K4 families. Unlabeled edges have unit weight.
+
+   A two-class graph with class sizes p, q, internal weights α, β, and cross weight γ is strongly
+lumpable by mutant counts (i, j). The four state-changing probabilities follow directly from (2.2):
+
+                         i+1,j   p−i                 r(iα + jγ)
+                       Pi,j    =                                            ,
+                                 p + q r(iα + jγ) + (p − i − 1)α + (q − j)γ
+                         i−1,j     i             (p − i)α + (q − j)γ
+                       Pi,j    =                                              ,
+                                 p + q r((i − 1)α + jγ) + (p − i)α + (q − j)γ
+                         i,j+1   q−j                r(jβ + iγ)
+                       Pi,j    =                                            ,
+                                 p + q r(jβ + iγ) + (q − j − 1)β + (p − i)γ
+                         i,j−1     j             (q − j)β + (p − i)γ
+                       Pi,j    =                                              .                   (B.1)
+                                 p + q r((j − 1)β + iγ) + (q − j)β + (p − i)γ
+    For the 1 + 3 family, exact elimination gives
+                                                              3r2 (r − 1)(x − 1)2 F13
+                       ρdB (G13 (x), r) − ρdB (J4 , r) = −                            ,           (B.2)
+                                                                4(r2 + r + 1)P13
+where
+                F13 = 2r4 x2 + 2r4 x + 11r3 x2 + 14r3 x + 3r3 + 21r2 x2 + 29r2 x + 12r2
+                       + 16rx2 + 22rx + 8r + 4x2 + 5x + 1,
+and
+                   P13 = 8x2 (x + 1)(r6 + 1) + (6x4 + 36x3 + 46x2 + 16x)(r5 + r)
+                           + (27x4 + 73x3 + 85x2 + 59x + 12)(r4 + r2 )
+                           + (42x4 + 90x3 + 106x2 + 66x + 24)r3 .
+Every coeﬀicient is positive.
+   For the 2 + 2 family,
+                                                                r2 (r − 1)H22 (x, y, r)
+                     ρdB (G22 (x, y), r) − ρdB (J4 , r) = −                              .        (B.3)
+                                                              4(r2 + r + 1)P22 (x, y, r)
+The reduced P22 has 123 positive integer monomials. Independently, the holding-step-free transient
+matrix M22 satisfies
+                                                    P22
+                                        det M22 =        ,                                   (B.4)
+                                                  128L22
+
+                                                    27
+where
+                   L22 = (2r + x)(2r + y)(rx + 2)(ry + 2)(r + x + 1)(r + y + 1)
+                           × (rx + r + 1)(ry + r + 1) > 0.
+Absorption makes M22 a nonsingular M -matrix, so P22 > 0.
+           √            √     √
+   Set g = xy > 0, d = ( x − y)2 ≥ 0, and t = r − 1 > 0. Then
+
+                 H22 = C0 (g, t) + C1 (g, t)d + C2 (g, t)d2 + C3 (g, t)d3 + C4 (g, t)d4 .       (B.5)
+
+Here
+                                   C0 = 2t(g − 1)2 (g + 1)(t + 1)R0 ,
+                   R0 = (2g 2 + 2g)t4 + (g 3 + 10g 2 + 21g + 6)t3
+                         + (3g 3 + 26g 2 + 61g + 38)t2 + (4g 3 + 32g 2 + 80g + 64)t
+                         + 2g 3 + 16g 2 + 40g + 32,
+and
+            C1 = 2(g 4 + 4g 3 − 2g 2 + 4g + 1)t6 + (11g 4 + 108g 3 + 76g 2 + 60g + 17)t5
+                  + 2(40g 4 + 288g 3 + 393g 2 + 176g + 19)t4
+                  + (16g 5 + 331g 4 + 1704g 3 + 2766g 2 + 1360g + 39)t3
+                  + 2(28g 5 + 337g 4 + 1426g 3 + 2399g 2 + 1378g + 12)t2
+                  + 2(g + 2)(32g 4 + 263g 3 + 722g 2 + 661g + 2)t
+                  + 24g(g + 2)(g + 4)(g 2 + 4g + 5),
+            C2 = 2(g 2 + 1)t6 + 3(9g 2 + 26g + 5)t5 + 2(18g 3 + 120g 2 + 321g + 44)t4
+                  + 2(2g 4 + 105g 3 + 525g 2 + 1071g + 170)t3
+                  + (14g 4 + 474g 3 + 2201g 2 + 3648g + 689)t2
+                  + 2(8g 4 + 240g 3 + 1080g 2 + 1587g + 331)t
+                  + 6(g 4 + 30g 3 + 133g 2 + 186g + 40),
+            C3 = 13t5 + (6g 2 + 48g + 107)t4 + (35g 2 + 312g + 357)t3
+                  + (79g 2 + 744g + 608)t2 + (80g 2 + 768g + 529)t + 6(5g 2 + 48g + 31),
+            C4 = 6t4 + 39t3 + 93t2 + 96t + 36.
+Every displayed coeﬀicient is positive except for the single grouped factor
+
+                       g 4 + 4g 3 − 2g 2 + 4g + 1 = (g 2 − 1)2 + 4g(g 2 + 1) > 0.               (B.6)
+
+Thus Cj > 0 for j ≥ 1 and C0 ≥ 0. If d > 0, then C1 d > 0; if d = 0, H22 = C0 vanishes only at
+g = 1.
+
+Theorem 16 (symmetric weighted K4 families). For every r > 1,
+
+                  ρdB (G13 (x), r) ≤ ρdB (J4 , r),        ρdB (G22 (x, y), r) ≤ ρdB (J4 , r).
+
+Equality holds only at x = 1 in the first family and x = y = 1 in the second.
+
+   This is not a classification of the unrestricted six-edge weighted K4 .
+
+
+
+                                                     28
+C Quantifier and scope ledger
+The statements in this paper have deliberately different orders of quantification.
+Fitness-two local theorem. For every n ≥ 3 there is an ηn > 0 such that every positive loopless
+row-stochastic P with 0 < kP − Jn kF < ηn satisfies ρdB (P, 2) < ρdB (Jn , 2).
+Full-tangent curvature. For every n ≥ 3 and every δ ∈ Tn \ {0},
+
+                          DρdB (Jn , 2)[δ] = 0,    D 2 ρdB (Jn , 2)[δ, δ] < 0.
+
+Fixed-graph strong selection. For every fixed normalized kernel P 6= Jn , there is an r0 (P ) such
+that ρdB (P, r) < ρdB (Jn , r) for every r > r0 (P ).
+Triangle theorem. Every positive weighted triangle and every r > 1 obey complete-graph maxi-
+mality, with strictness away from equal weights.
+Open global fitness-two statement. It remains open whether every n and every kernel P
+induced by an undirected weighting satisfies ρdB (P, 2) ≤ ρdB (Jn , 2).
+Open asymptotic-family statement. It also remains open whether there is one sequence (Pn )
+such that, for every fixed r > 1, some n0 (r) makes every Pn with n ≥ n0 (r) an amplifier.
+   The proved rows do not imply either open row. In particular, local optimality has a radius ηn
+that need not be bounded below, and the strong-selection threshold r0 (Pn ) may diverge with n.
+
+
+References
+B. Allen, G. Lippner, Y.-T. Chen, B. Fotouhi, N. Momeni, S.-T. Yau, and M. A. Nowak.
+  Evolutionary dynamics on any population structure. Nature 544 (2017), 227–230.
+  doi:10.1038/nature21723.
+
+B. Allen, C. Sample, R. Jencks, J. Withers, P. Steinhagen, L. Brizuela, J. Kolodny, D. Parke,
+  G. Lippner, and Y. A. Dementieva. Transient amplifiers of selection and reducers of fixation for
+  death–Birth updating on graphs. PLoS Computational Biology 16 (2020), e1007529.
+  doi:10.1371/journal.pcbi.1007529.
+
+A. M. Etheridge and R. C. Griﬀiths. A coalescent dual process in a Moran model with genic
+  selection. Theoretical Population Biology 75 (2009), 320–330. doi:10.1016/j.tpb.2009.03.004.
+
+J. Foo, E. B. Gunnarsson, K. Leder, and D. Sivakoff. Dynamics of advantageous mutant spread in
+   spatial death–birth and birth–death Moran models. Communications on Applied Mathematics
+  and Computation 6 (2024), 576–604. doi:10.1007/s42967-023-00278-6.
+
+T. E. Harris. Additive set-valued Markov processes and graphical methods. The Annals of
+  Probability 6 (1978), 355–378. doi:10.1214/aop/1176995523.
+
+L. Hindersin and A. Traulsen. Most undirected random graphs are amplifiers of selection for
+  birth–death dynamics, but suppressors of selection for death–birth dynamics. PLoS
+  Computational Biology 11 (2015), e1004437. doi:10.1371/journal.pcbi.1004437.
+
+K. Kaveh, N. L. Komarova, and M. Kohandel. The duality of spatial death–birth and birth–death
+  processes and limitations of the isothermal theorem. Royal Society Open Science 2 (2015),
+  140465. doi:10.1098/rsos.140465.
+
+                                                  29
+A. Kriebel. No universal death–Birth amplifier on a finite weighted population structure.
+  Unrefereed predecessor manuscript in the version 1.0.0 source-and-software release (2026).
+  doi:10.5281/zenodo.21753405.
+
+A. Kriebel. Simultaneous amplification beyond fitness three halves. Unrefereed companion
+  manuscript in the version 1.0.0 source-and-software release (2026).
+  doi:10.5281/zenodo.21852072.
+
+S. M. Krone and C. Neuhauser. Ancestral processes with selection. Theoretical Population Biology
+   51 (1997), 210–237. doi:10.1006/tpbi.1997.1299.
+
+E. Lieberman, C. Hauert, and M. A. Nowak. Evolutionary dynamics on graphs. Nature 433
+  (2005), 312–316. doi:10.1038/nature03204.
+
+S. Mano. Duality, ancestral and diffusion processes in models with selection. Theoretical
+  Population Biology 75 (2009), 164–175. doi:10.1016/j.tpb.2009.01.007.
+
+N. Masuda and H. Ohtsuki. Evolutionary dynamics and fixation probabilities in directed
+  networks. New Journal of Physics 11 (2009), 033012. doi:10.1088/1367-2630/11/3/033012.
+
+P. A. P. Moran. Random processes in genetics. Mathematical Proceedings of the Cambridge
+  Philosophical Society 54 (1958), 60–71. doi:10.1017/S0305004100033193.
+
+H. Richter. Spectral dynamics of guided edge removals and identifying transient amplifiers for
+  death–Birth updating. Journal of Mathematical Biology 87 (2023), article 3.
+  doi:10.1007/s00285-023-01937-1.
+
+P. Shakarian, P. Roos, and A. Johnson. A review of evolutionary graph theory with applications
+  to game theory. BioSystems 107 (2012), 66–80. doi:10.1016/j.biosystems.2011.09.006.
+
+J. Svoboda, S. Joshi, J. Tkadlec, and K. Chatterjee. Amplifiers of selection for the Moran process
+   with both Birth–death and death–Birth updating. PLoS Computational Biology 20 (2024),
+   e1012008. doi:10.1371/journal.pcbi.1012008.
+
+J. Tkadlec, A. Pavlogiannis, K. Chatterjee, and M. A. Nowak. Limits on amplifiers of natural
+   selection under death–Birth updating. PLoS Computational Biology 16 (2020), e1007494.
+   doi:10.1371/journal.pcbi.1007494.
+
+
+
+
+                                                30
+

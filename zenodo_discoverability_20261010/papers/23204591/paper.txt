@@ -1,0 +1,257 @@
+    Bilinear ergodic Hilbert variation for commuting transformations
+             as a consequence of annular triangular variation
+                                               Alec Kriebel
+                                      ORCID: 0009-0001-9320-500X
+
+                                             October 6, 2026
+
+
+                                                 Abstract
+          We give an explicit restriction and transference consequence of OpenAI’s October 5, 2026
+      full annular variation theorem for the triangular Hilbert transform. For arbitrary commuting
+      invertible probability-preserving transformations S, T and complex f, g ∈ L3 , the symmetric
+      bilinear Hilbert sums have bounded pointwise r-variation in L3/2 for every r > 2, and converge
+      almost everywhere and in L3/2 . The restriction uses boxes of ﬁxed positive area and a uniformly
+      summable kernel error. The analytic breakthrough is the cited continuous theorem; the present
+      note supplies the discrete restriction and full measure-theoretic transfer.
+
+
+1     Statement and provenance
+Let (X, Σ, µ) be a probability space. Assume that S, T are invertible measurable measure-preserving
+transformations with measurable inverses, and ST = T S. For complex f, g ∈ L3 (X) put
+                                                           X   f (S n x)g(T n x)
+                 H0 (f, g) = 0,      HN (f, g)(x) =                                        (N ≥ 1).
+                                                       0<|n|≤N
+                                                                       n
+
+For a complex sequence (aN )N ≥0 deﬁne the homogeneous variation
+                                                                                          1/r
+                                                                    X
+                                                                    J
+                    V (aN : N ≥ 0) =
+                     r
+                                                 sup                                  r
+                                                                          |aNj − aNj−1 |          .      (1)
+                                                 J≥1                j=1
+                                         0≤N0 <···<NJ , Nj ∈Z
+
+If a0 = 0, prepending 0 to any list shows that restricting the supremum to N0 = 0 gives the same
+value. In particular supN |aN | ≤ Vr (a).
+
+Theorem 1. For every r > 2 there is a constant Dr < ∞, independent of the probability space and
+transformations, such that
+
+                              ∥ Vr (HN (f, g) : N ≥ 0)∥3/2 ≤ Dr ∥f ∥3 ∥g∥3 .                             (2)
+
+The maximal function satisﬁes the same bound with Vr replaced by supN ≥0 |HN |. The sums converge
+almost everywhere and in L3/2 to a complex bilinear operator H(f, g), and moreover
+
+                                   sup |HN (f, g) − H(f, g)|               −→ 0.                         (3)
+                                  N ≥m                               3/2
+
+
+                                                       1
+    The single-transformation Hilbert theorem of Demeter [3, Theorem 1.2] treats opposite powers
+of one transformation. Becker and Durcik [1, Corollary 1.4] prove sharp r > 2 variation for
+bilinear averages along opposite powers of one transformation; their discussion of equation (1.8)
+distinguishes the arbitrary commuting case. Demeter and Thiele [4, Section 6] relate the triangular
+transform to two commuting transformations. Calderón’s transference method [2] is established
+machinery; we include its ﬁnite-window argument rather than appeal to it without quantiﬁers.
+The continuous-to-lattice and orbit-array reductions already occur in [4, Section 6, footnote 36];
+positive-area phase integration also appears in [5, Section 5]. The ﬁxed-width singular-kernel
+bookkeeping below makes this particular consequence explicit.
+    The new input is the following continuous estimate, stated as Theorem 1.1 in the October 5
+annular manuscript [6]. For F, G ∈ L3 (R2 ) write
+                                                      Z
+                                                                                               dt
+                         Ba,b (F, G)(u, v) =                      F (u + t, v)G(u, v + t)         .
+                                                        a<|t|<b                                t
+Then, for every r > 2,
+                                                                     1/r
+                                            X
+                                            J
+                         sup                     |Btj−1 ,tj (F, G)|r                    ≤ Cr ∥F ∥3 ∥G∥3 .    (4)
+                         J≥1                j=1
+                 0<t0 <···<tJ , tj ∈Q
+                                                                             L3/2 (R2 )
+
+The supremum is inside the norm and partitions may depend on (u, v). It includes all positive scales,
+with unrestricted ﬁnite partition length. We use precisely this estimate, rather than a maximal,
+dyadic, or ﬁxed-partition norm-variation estimate. The upstream theorem is not reproved here;
+all conclusions below are consequences of it. The listed family 082 Lean scope concerns an older
+maximal theorem and does not formally verify (4) or this note.
+    Our contribution is the ﬁxed-width restriction proof in Section 2 and its explicit transfer in
+Section 3. We do not claim independent resolution of the continuous triangular Hilbert problem
+or invention of transference. Manuscript dates in the upstream collection are not assertions of ﬁrst
+public disclosure. The source repository version used is
+
+                           adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+
+2    Fixed-width restriction to the lattice
+For ﬁnitely supported arrays A, B : Z2 → C put
+                                                   X  A(i + k, j)B(i, j + k)
+                    hN (A, B)(i, j) =                                        ,                h0 = 0.
+                                              0<|k|≤N
+                                                                k
+
+All lattice norms use counting measure.
+Proposition 2. Assuming (4),
+
+                                                                                                        π2
+               ∥ Vr (hN : N ≥ 0)∥ℓ3/2 (Z2 ) ≤ Dr ∥A∥ℓ3 ∥B∥ℓ3 ,                    Dr = 8 42/3 Cr +         .   (5)
+                                                                                                        13
+Proof. Fix h = 1/8 and q = 1/16. Extend A, B to F, G on R2 by making them constant with their
+corresponding array values on
+
+                                            (i, j) + [−h, h]2       ((i, j) ∈ Z2 )
+
+                                                               2
+and zero elsewhere. Boundary values have no eﬀect and can be assigned arbitrarily. The boxes are
+disjoint and
+                       ∥F ∥3 = (4h2 )1/3 ∥A∥ℓ3 , ∥G∥3 = (4h2 )1/3 ∥B∥ℓ3 .                    (6)
+Evaluate at (u, v) = (i + a, j + b) with a, b ∈ (−q, q). If F (u + t, v)G(u, v + t) is nonzero, the ﬁxed
+coordinate v selects the second cell index j of F , and the ﬁxed coordinate u selects the ﬁrst cell
+index i of G. The moving coordinates require
+
+                        t ∈ k + [−h − a, h − a] and t ∈ l + [−h − b, h − b]
+
+for integers k, l. If these intervals overlap, then |k − l| ≤ 2h + |a − b| ≤ 3/8 < 1, so k = l.
+Consequently the integrand equals the single lattice product A(i + k, j)B(i, j + k) on k + Ia,b , where
+
+          Ia,b = [−h − min(a, b), h − max(a, b)],           ℓ(a, b) = |Ia,b | = 2h − |a − b| ≥ 1/8.    (7)
+
+Also ℓ ≤ 1/4 and every s ∈ Ia,b satisﬁes |s| ≤ 3/16. Diﬀerent integer windows are disjoint.
+   Set ρN = N + 1/2 for N ≥ 0. For k ̸= 0, the entire window k + Ia,b lies in |t| ∈ [|k| − 3/16, |k| +
+3/16]. Thus ρM < |t| < ρN includes that window exactly when M < |k| ≤ N . This veriﬁes negative
+as well as positive windows. The window at k = 0 lies in |t| ≤ 3/16 and is excluded even at the
+smallest endpoint ρ0 = 1/2. Hence for 0 ≤ M < N ,
+                                                     X
+                BρM ,ρN (F, G)(i + a, j + b) =              A(i + k, j)B(i, j + k)Kk (a, b),
+                                                 M <|k|≤N
+                                                 Z                                                     (8)
+                                                         ds
+                                   Kk (a, b) =               .
+                                                  Ia,b k + s
+
+There is no principal value in this identity. In particular k + s has the sign of k.
+   Writing Kk = ℓ/k + δk , the exact identity 1/(k + s) − 1/k = −s/[k(k + s)] gives the uniform
+bound
+                                    |δk (a, b)|   3 1
+                                                ≤          (k ̸= 0),                         (9)
+                                      ℓ(a, b)     13 k 2
+                                       P
+since |k+s| ≥ (13/16)|k|. Let EN = 0<|k|≤N δk A(i+k, j)B(i, j+k) and E0 = 0. For any increasing
+integer list, the radial shells of its increments are disjoint. The ℓr norm of the error increments is
+at most their ℓ1 norm, which is at most the sum of all absolute error terms. Therefore
+
+                                                         3 X |A(i + k, j)B(i, j + k)|
+                  ℓ−1 Vr (EN : N ≥ 0) ≤ e(i, j) :=                                    .
+                                                         13 k̸=0        k2
+
+Minkowski, Hölder, and translation invariance imply
+
+                                      3 X 1                       π2
+                          ∥e∥ℓ3/2 ≤               ∥A∥ ℓ 3 ∥B∥ℓ3 =    ∥A∥ℓ3 ∥B∥ℓ3 .                    (10)
+                                      13 k̸=0 k 2                 13
+
+This bounds the whole error variation, not merely each truncation.
+    Let W (F, G) denote the pointwise supremum in (4). The half-integer endpoints are rational.
+Taking the supremum over integer lists in (8), using the variation triangle inequality and ℓ−1 ≤ 8,
+gives
+                         Vr (hN )(i, j) ≤ 8W (F, G)(i + a, j + b) + e(i, j)                    (11)
+
+
+
+
+                                                     3
+for almost every (a, b) ∈ (−q, q)2 , for every (i, j). All lists are countable, so one common exceptional
+set suﬃces. Apply the L3/2 triangle inequality on the disjoint output boxes, whose area is 4q 2 =
+1/64. The left side is constant on each box, so (11), (4) and (6) give
+
+                       ∥ Vr (hN )∥ℓ3/2 ≤ 8(4q 2 )−2/3 Cr (4h2 )2/3 ∥A∥ℓ3 ∥B∥ℓ3 + ∥e∥ℓ3/2 .
+
+The coeﬃcient equals 8 42/3 Cr , proving the proposition. The restriction is carried by a ﬁxed set of
+positive area; no evaluation on a null set of suspension phases is used.
+
+
+3    Finite-window transference and convergence
+Proof of Theorem 1. Choose measurable representatives of f, g taking ﬁnite values outside their null
+sets. Remove all preimages of those null sets under ﬁnite words in S, S −1 , T, T −1 . The resulting
+invariant full-measure set carries every value in the ﬁnite sums. A change of representatives aﬀects
+only such a countable union of null sets. The same convention treats transformations commuting
+modulo null sets: remove all such word preimages of the failure set, after which all required identities
+hold on the invariant complement.
+    Fix an integer M ≥ 1. Let WM (x) be the maximum in (1) over lists with endpoints in {0, . . . , M }.
+There are ﬁnitely many such lists, so WM is measurable. For L ≥ 1 let QL = {−L, . . . , L}2 . At
+each x form ﬁnite arrays
+                                       Ax (i, j) = f (S i T j x)1QL+M (i, j),
+                                       Bx (i, j) = g(S i T j x)1QL+M (i, j).
+
+For (i, j) ∈ QL and |n| ≤ M , every required entry is in QL+M . Commutation gives exactly
+
+                           hN (Ax , Bx )(i, j) = HN (f, g)(S i T j x)        (0 ≤ N ≤ M ).
+
+Proposition 2, with p = 3/2, implies
+                                                                      1/2                            1/2
+              X                                  X                                 X
+                       WM (S i T j x)p ≤ Drp           |f (S i T j x)|3                |g(S i T j x)|3     .
+            (i,j)∈QL                             QL+M                              QL+M
+
+Integrating, measure invariance on the left and Cauchy–Schwarz on the right give
+                                                                         3/2       3/2
+                                  |QL |∥WM ∥pp ≤ Drp |QL+M |∥f ∥3 ∥g∥3 .
+
+The ﬁnite right side establishes integrability without assuming it in advance. For ﬁxed M , let
+L → ∞; |QL+M |/|QL | → 1. Finally WM increases to the full countable supremum (1). Monotone
+convergence proves (2). Partitions may depend on the output throughout.
+    Fix, for example, r = 3. The variation is ﬁnite almost everywhere. Any scalar sequence
+with ﬁnite r-variation is Cauchy: otherwise some ε > 0 admits arbitrarily late pairs of indices
+whose values diﬀer by at least ε. Recursively choose J strictly ordered disjoint pairs. A partition
+containing their endpoints has variation at least εJ 1/r , a contradiction. Completeness of C gives a
+ﬁnite limit H. It is measurable as the limit along integers, setting it to zero on the exceptional set.
+    Since H0 = 0, H∗ := supN |HN | ≤ V3 (HN ) belongs to Lp . Also |H| ≤ H∗ . The measurable tail
+supN ≥m |HN − H| tends to zero pointwise and is bounded by 2H∗ . Dominated convergence applied
+to its pth power proves (3), hence norm convergence. The maximal bound follows from (2); the
+limit bound follows from domination. Norm limits of the bilinear identities for HN show that H is
+complex bilinear on L3 × L3 .
+
+                                                           4
+4    Scope and veriﬁcation disclosure
+The truncations are symmetric and the kernel is odd. This proof gives no one-sided commuting
+Cesàro convergence, no noncommuting theorem, no r = 2 estimate, and no extension of the input
+exponents beyond L3 . No numerical evidence substitutes for the analytic estimate. Supplemental
+exact kernel checks test only Section 2 bookkeeping.
+   The continuous theorem is attributed to OpenAI using its supplied manuscript citation. The
+dependency ledger records the version and scope of independent automated proof audits. Such
+audits are evidence, not formal certiﬁcation. No theorem in this note is claimed to have been
+formalized. AI tools were used extensively in research, drafting and veriﬁcation. This preprint has
+not undergone conventional human peer review or refereeing at publication.
+
+
+References
+[1] L. Becker and P. Durcik, The shifted bilinear Hilbert transform, arXiv:2603.20173v1 (2026),
+    https://arxiv.org/abs/2603.20173.
+
+[2] A. P. Calderón, Ergodic theory and translation-invariant operators, Proc. Natl. Acad. Sci. U.S.A.
+    59 (1968), 349–353, doi:10.1073/pnas.59.2.349.
+
+[3] C. Demeter,     Pointwise convergence of the ergodic bilinear Hilbert                 transform,
+    arXiv:math/0601277v1 (2006), https://arxiv.org/abs/math/0601277.
+
+[4] C. Demeter and C. Thiele, On the two dimensional bilinear Hilbert transform, Amer. J. Math.
+    132 (2010), 201–256, https://arxiv.org/abs/0803.1268.
+
+[5] P. Durcik, V. Kovač, K. A. Škreb and C. Thiele, Norm-variation of ergodic averages with
+    respect to two commuting transformations, Ergodic Theory Dynam. Systems 39 (2019), 658–
+    688, https://arxiv.org/abs/1603.00631.
+
+[6] OpenAI, Annular variation of the triangular Hilbert transform at the symmetric point,
+    OpenAI Math Release preprint (manuscript dated October 5, 2026), source version
+    adc7f1241b42e322a6451854ab7e4b4c146bf78a, manuscript and source repository.
+
+
+
+
+                                                 5
+

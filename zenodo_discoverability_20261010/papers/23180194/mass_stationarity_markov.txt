@@ -1,0 +1,354 @@
+                    Measure-only preserving Markov transports
+                          characterize mass-stationarity
+                                                 Alec Kriebel∗
+
+                           6 October 2026        — Unrefereed research note
+
+
+                                                      Abstract
+            Let G be a locally compact second countable Hausdorff Abelian group, acting jointly mea-
+        surably on an arbitrary measurable space. Let Q be sigma-finite and let ξ be a covariant
+        locally finite Radon random measure, nonzero Q-almost everywhere. We prove that full am-
+        bient Q-invariance under every invariant, ξ-preserving, ξ-measurable Markov transport kernel
+        implies the joint Mecke identity, and hence mass-stationarity. Together with known transport
+        invariance this answers Last–Thorisson’s Problem 7.3 in the stated setting. The argument uses
+        oriented local symmetric transports away from periods of the measure and normalized period-
+        subgroup transports on the remaining set. It requires neither a standard Borel ambient space
+        nor a sigma-finite law of ξ, and imposes no finite-intensity assumption.
+
+
+1       Statement, conventions, and antecedents
+Write G additively and fix a Haar measure λ. Let M denote the nonnegative locally finite Radon
+measures on G, with the evaluation sigma-field, equivalently the Borel sigma-field of the vague
+topology. This is a standard Borel space. Its translations
+                                            (θu µ)(B) = µ(B + u)
+act jointly continuously in the vague topology. In particular M has a countable family of measurable
+sets separating its points. These standard measure-space facts concern M, not the ambient space
+below.
+    Let (Ω, F) be an arbitrary measurable space with a jointly measurable action (u, ω) 7→ θu ω,
+satisfying θ0 = id and θu θv = θu+v . Let Q be a sigma-finite measure on this space and let ξ : Ω → M
+be measurable and covariant:
+                                    ξθu ω = θu ξω ,      Q{ξ(G) = 0} = 0.
+Here ξω = ξ(ω), and EQ denotes integration, without requiring Q to be a probability measure.
+     A Markov transport kernel T from Ω×G to G has row mass one. It is invariant and ξ-preserving
+if, respectively,
+                                    T (θu ω, s − u, B − u) = T (ω, s, B),                                    (1)
+                                     ∫
+                                        T (ω, s, B) ξω (ds) = ξω (B)                                         (2)
+
+    ∗
+    ORCID: https://orcid.org/0009-0001-9320-500X. Discovery, checking, and manuscript preparation were ex-
+tensively AI-assisted. This is an unrefereed preprint without human peer review or a formal machine proof. Finite
+control computations do not prove the general theorem.
+
+
+                                                         1
+for every ω, s, u, B in their respective domains. It is ξ-measurable if T (·, ·, B) is σ(ξ) ⊗ B(G)-
+measurable for every B ∈ B(G). This is the definition in [2, Section 7]. The invariance hypothesis
+is                    ∫
+                   EQ f (θt ω) T (ω, 0, dt) = EQ f,  f : Ω → [0, ∞] measurable.                 (3)
+
+All nonnegative integrals below allow the value infinity.
+    For completeness, mass-stationarity here has the meaning of [2, Definition 6.1]. For relatively
+compact Borel C with λ(C) > 0 and λ(∂C) = 0, put λC = λ|C /λ(C) and let
+
+                                                     1C+s (v) ξω (dv)
+                                   TC (ω, s, dv) =
+                                                       ξω (C + s)
+
+when the denominator is positive, using δs in the zero-denominator branch. Mass-stationarity is
+the joint sampling identity
+                    ∫       ∫                                  ∫
+                 EQ λC (dr) TC (ω, −r, dv) g(θv ω, r + v) = EQ g(ω, r) λC (dr)              (4)
+
+for every nonnegative measurable g on Ω × G, together with nonzeroness. For the Palm measures
+obtained below the zero-denominator branch is immaterial: the origin lies in the support and r lies
+in int C for λC -almost every r.
+
+Theorem 1. In the setting above, Q is mass-stationary for ξ if and only if (3) holds for every
+invariant, ξ-preserving, ξ-measurable Markov transport kernel. In particular this hypothesis implies
+             ∫                        ∫
+        EQ g(θt ω, −t) ξω (dt) = EQ g(ω, t) ξω (dt),      g : Ω × G → [0, ∞] measurable.         (5)
+
+No standard Borel assumption on Ω, sigma-finiteness of Q ◦ ξ −1 , or finite-intensity condition is
+required.
+
+    The credited inputs are the classical Mecke/Palm equivalence, in the ambient formulation [2,
+(2.7)], the equivalence of Palm measures and mass-stationarity [2, Theorem 6.3], and transport
+invariance [2, Theorem 4.1]. The contribution of the proof below is deriving (5) from the Markov
+hypothesis with measure-only kernel dependence. The bounded weighted-kernel characterization
+was already proved in [2, Theorem 7.2]; a weighted kernel may have row mass different from one
+and cannot be substituted in our hypothesis. Theorem 1 answers precisely [2, Problem 7.3]. It also
+yields the canonical law-of-ξ specialization of the general all-Markov converse discussed in [5, pp.
+2692, 2694].
+    Important partial predecessors are [3, Propositions 3.6 and 3.8]: for discrete measures, measure-
+only Bernoulli tests recover Mecke reversal away from measure-periodic shifts, and give mass-
+stationarity in the aperiodic case (under the stated origin-in-support condition). The more general
+discrete theorem there allows dependence on an auxiliary state and assumes that state space is
+Borel; [3, Remark 3.11] expressly records the periodicity qualification. A positive-density result on
+Rd appears in [4, Theorem 6], formulated for the joint pair ((X, Z), ξ) with ξ(dt) = Zt dt, local
+integrability on every line and infinite integral on every half-line. Its density-field hypotheses are
+not silently identified with a version of Z observable from ξ alone. We cite the retained arXiv
+version specified in the bibliography; its complete final journal body has not been checked here.
+
+
+
+
+                                                     2
+2   Local Markov kernels and oriented reversal
+Define measurable involutions and a measurable factor map by
+
+                 R(ω, t) = (θt ω, −t),       R0 (µ, t) = (θt µ, −t),      ρ(ω, t) = (ξω , t).
+
+Covariance gives ρR = R0 ρ. Put
+
+                                         J = {(ω, t) : θt ξω = ξω }.
+
+The diagonal of the standard Borel space M is measurable, so J is measurable. It is R-invariant.
+Define the Campbell measure
+                                   c(dω, dt) = Q(dω) ξω (dt).
+Fix a countable measurable partition (Dj ) of Ω with Q(Dj ) < ∞. A compact exhaustion (Cn ) of
+G and local finiteness give the countable finite-mass product cover
+                        (                   )
+                 Pjnk = Dj ∩ {ξ(Cn ) ≤ k} × Cn ,        c(Pjnk ) ≤ kQ(Dj ), k ≥ 1.         (6)
+
+Thus c is sigma-finite. So is R∗ c, since R is a measurable involution. This does not assert sigma-
+finiteness of the marginal law of ξ.
+    Fix a symmetric compact neighborhood C of zero. For µ ∈ M and s, t ∈ G let
+                                                                      ∫
+                                     1C (t − s)
+              a(µ; s, t) =                              ,   r(µ, s) = a(µ; s, t) µ(dt).         (7)
+                           (1 + µ(s + C))(1 + µ(t + C))
+
+Evaluation of the translated measure makes all terms measurable, and local finiteness makes the
+denominators finite. Symmetry of C makes a symmetric in s, t; simultaneous translation leaves it
+unchanged. Moreover
+                                                µ(s + C)
+                                0 ≤ r(µ, s) ≤              ≤ 1.                             (8)
+                                              1 + µ(s + C)
+For a Borel R0 -invariant indicator b on M × G, set
+
+                          ab (µ; s, t) = a(µ; s, t) b(θs µ, t − s),
+                                         ∫
+                            rb (µ, s) = ab (µ; s, t) µ(dt),
+
+                        Kb (µ, s, dt) = ab (µ; s, t) µ(dt) + (1 − rb (µ, s))δs (dt).              (9)
+
+Kernel integration proves measurability. The equality
+
+                                      b(θs µ, t − s) = b(θt µ, s − t)
+
+makes ab symmetric. Its row integral is at most one, so Kb is Markov. Its covariance follows from
+the simultaneous covariance of ab and µ. For every nonnegative measurable φ on G, Tonelli and
+symmetry give         ∫       ∫                        ∫
+                          µ(ds)     ab (µ; s, t)φ(t) µ(dt) =      φ(t)rb (µ, t) µ(dt).
+                                   ∫
+Adding the holding contribution φ(t)(1 − rb (µ, t)) µ(dt) proves µKb = µ, including infinite total
+mass. Therefore Tb (ω, s, ·) = Kb (ξω , s, ·) satisfies every requirement of the hypothesis. The gates
+see ξ only.
+
+
+                                                      3
+   Let
+                                  m(dω, dt) = a(ξω ; 0, t)c(dω, dt).
+Its first marginal is bounded by Q, by (8). For a nonnegative measurable f with EQ f < ∞,
+invariance under Tb gives
+                       ∫                              ∫
+                         b(ξω , t)f (θt ω) m(dω, dt) = b(ξω , t)f (ω) m(dω, dt).      (10)
+
+Both jump integrals are finite: the outgoing term is bounded by EQ f , and the incoming term is
+bounded by the full invariant expectation EQ f . Subtracting the finite holding integral gives the
+displayed equality. No subtraction of infinite measures occurs.
+
+Lemma 1. For each C above, m and R∗ m agree on J c .
+
+Proof. Let A be a measurable subset of M and B a Borel subset of G. Define
+
+                     FA = {(µ, t) : µ ∈ A, θt µ ∈
+                                                / A},      F = FA ∩ (M × B).
+
+The sets F and R0 F are measurable and disjoint. Hence b = 1F + 1R0 F is an allowed invariant
+indicator. Let D ∈ F satisfy Q(D) < ∞ and apply (10) to f (ω) = 1D (ω)1A (ξω ). On ρ−1 F the
+incoming value of f vanishes; on ρ−1 (R0 F ) the outgoing value vanishes. Since ρR = R0 ρ, the
+surviving incoming term is the reversal of the surviving outgoing term. Thus
+                          (                  )        (                 )
+                       m (D × B) ∩ ρ−1 FA = R∗ m (D × B) ∩ ρ−1 FA .                       (11)
+
+   Here is the product-measure extension in detail. For the two measures restricted to ρ−1 FA ,
+taking D = Dj and B = G in (11) shows that both give mass at most Q(Dj ) to Dj × G. For
+arbitrary D, applying (11) to D ∩ Dj and summing over j proves equality on every rectangle
+D × B. On each block Dj × G, both restrictions are finite and agree on the rectangle pi-system
+generating the restricted product sigma-field. Finite-measure uniqueness on each block, followed by
+the countable sum, proves equality on every measurable subset of ρ−1 FA . This argument requires
+no countable generation of F.
+   Choose a countable separating family (Aℓ ) in M, including complements. If θt ξω 6= ξω , some
+Aℓ contains ξω and excludes θt ξω . Consequently
+                                                ∪
+                                          Jc =    ρ−1 FAℓ .
+                                                 ℓ
+
+Disjointify this countable cover. Equality on every measurable subset of each piece, already proved,
+then yields m|J c = (R∗ m)|J c .
+
+    Let w(ω, t) = a(ξω ; 0, t). Symmetry and covariance imply w ◦ R = w, hence R∗ m = wR∗ c.
+On Ω × C the function w is strictly positive. For any measurable E ⊂ J c ∩ (Ω × C), integrate
+1E min{k, 1/w} against the two equal weighted measures and let k ↑ ∞. Monotone convergence
+gives c(E) = R∗ c(E), even when either value is infinite.
+    A locally compact second countable group is sigma-compact: a countable cover by relatively
+compact open sets supplies compact sets Ln covering G. If C0 is a symmetric compact neighborhood
+of zero, then                                  ∪
+                                    Cn = C0 ∪     (Li ∪ (−Li ))
+                                                i≤n
+
+
+
+                                                     4
+is an increasing symmetric compact neighborhood exhaustion. Repeat the construction and Lemma
+1 separately for every Cn . For arbitrary measurable E ⊂ J c , equality on E ∩(Ω×Cn ) and monotone
+convergence now give
+                                           c|J c = (R∗ c)|J c .                               (12)
+This passage uses equality of measures on every member of a specified exhaustion; no unproved
+inference from a single local identity is used.
+
+
+3   Period transports and full ambient reversal
+For µ ∈ M, put
+                                      Hµ = {t ∈ G : θt µ = µ}.
+Continuity of translations in the vague topology makes Hµ a closed subgroup. Its graph is Borel,
+by the measurable diagonal of M. Since G is Abelian, Hθs µ = Hµ for every s. For a relatively
+compact Borel set B ⊂ G define
+
+                           wB (µ) = µ(Hµ ∩ B),
+                                      {
+                                        1Hµ ∩B (t)µ(dt)/wB (µ), wB (µ) > 0,
+                         κB (µ, dt) =
+                                        δ0 (dt),                wB (µ) = 0,
+                       KB (µ, s, A) = κB (θs µ, A − s).                                        (13)
+
+Integration of the Borel graph against the measure kernel shows that wB and κB are measurable;
+local finiteness gives wB < ∞. The last line is a measurable probability kernel and directly gives
+covariance. This construction chooses neither orbit representatives nor a measurable normalization
+of Haar measures.
+Lemma 2. For every µ ∈ M, KB preserves µ.
+Proof. Fix µ and set H = Hµ . Choose a Haar measure λH on this one closed subgroup, with
+any normalization. For every s ∈ G, the restriction (θs µ)|H is a locally finite Radon measure on
+H, invariant under H-translations. Indeed θh θs µ = θs µ for h ∈ H. Uniqueness of Haar measure
+therefore gives
+                              (θs µ)|H = cs λH for a finite cs ≥ 0,
+including the zero restriction. These coeﬀicients are used only in this fixed-µ argument.
+    Put β = λH (H ∩B) < ∞. If β = 0, every wB (θs µ) is zero, every row holds at s, and preservation
+is immediate. If β > 0, let
+
+                    E = {s : wB (θs µ) > 0},      νB (dh) = 1H∩B (h)λH (dh)/β.
+
+On E every displacement row of (13) equals the same probability νB , since cs cancels; off E it
+equals δ0 . The set E is measurable and H-invariant because θs+h µ = θs µ. Both µ and µ|E are
+H-invariant. For any Borel A ⊂ G, Tonelli gives
+                        ∫                      ∫
+                                                          (            )
+                          KB (µ, s, A) µ(ds) =   νB (dh) µ E ∩ (A − h)
+                          E                        H
+                                               = µ(E ∩ A).
+
+The holding rows on E c contribute µ(E c ∩ A). Adding proves µKB = µ. Infinite values are allowed
+throughout.
+
+                                                  5
+    Thus TB (ω, s, ·) = KB (ξω , s, ·) is an admissible measure-only preserving Markov kernel. Every
+displacement in κB (µ, ·) lies in Hµ (also in the zero branch), so it leaves µ and wB (µ) unchanged.
+Apply (3) to the nonnegative measurable function wB (ξω )f (ω). At a positive denominator its
+factor cancels the normalization; at a zero denominator both sides of the corresponding integrand
+are zero. We use the usual nonnegative-integral convention 0 · ∞ = 0. It follows that, for every
+nonnegative measurable f ,
+                                  ∫
+                                                               [             ]
+                             EQ           f (θt ω) ξω (dt) = EQ f (ω)wB (ξω ) .                 (14)
+                                 Hξ ∩B
+
+There is no integrability condition or subtraction in this step.
+    For each fixed µ, the restriction µ|Hµ is zero or a multiple of Haar measure on the Abelian group
+Hµ . Haar measure on an Abelian group is invariant under inversion, and therefore w−B (µ) = wB (µ).
+Applying (14) with −B gives
+                     ∫                                     ∫
+                 EQ 1Hξ (t)1B (−t)f (θt ω) ξω (dt) = EQ 1Hξ (t)1B (t)f (ω) ξω (dt).               (15)
+
+First this holds for relatively compact B. For arbitrary Borel B, apply it to B ∩ Cn and use
+monotone convergence on both sides. Taking f = 1D proves agreement of c|J and R∗ (c|J ) on every
+rectangle D × B. Because J is R-invariant, the latter measure equals (R∗ c)|J .
+    The extension from rectangles is again justified explicitly. The sets Pjnk in (6) are product
+sets of finite c-mass and cover Ω × G. The rectangle identity shows that R∗ (c|J ) has the same
+finite mass as c|J on each Pjnk . On each such product set, intersections with rectangles form a
+generating pi-system on which the two finite restrictions agree. Finite-measure uniqueness proves
+equality there; disjointifying the countable cover then yields
+
+                                           c|J = (R∗ c)|J .                                      (16)
+
+In particular hidden ambient information is retained: a shift in Hξ may change ω, and (14) tests
+arbitrary functions of that changed state.
+
+Completion of Theorem 1. Equations (12) and (16) give c = R∗ c, which is exactly (5). The estab-
+lished ambient Mecke characterization [2, (2.7)], credited there to Mecke [1], supplies a stationary
+sigma-finite measure P on (Ω, F) with Q = Pξ . By [2, Theorem 6.3], Q is mass-stationary in
+the sense of (4). Conversely mass-stationarity gives such a P , and [2, Theorem 4.1] gives (3) for
+every invariant ξ-preserving transport kernel, in particular the measure-only Markov kernels of the
+theorem.
+
+
+4   Boundaries and verification status
+No support assumption at the origin was added. It follows from the identity just proved. If
+S = {ω : 0 ∈
+           / supp ξω }, then covariance gives
+                                              ∫
+                           (R∗ c)(S × G) = EQ 1{t /∈supp ξω } ξω (dt) = 0.
+
+Thus c(S × Cn ) = 0 for every n. Nonzeroness and the exhaustion imply Q(S) = 0. This also verifies
+the assertion about the sampling denominator following (4). Atomic, diffuse, mixed, and periodic
+measures are all covered; if ξ|Hξ = 0, the period part of the Campbell measure is simply zero.
+
+
+                                                  6
+    The proof permits infinite Q(Ω), infinite ξ(G), and a non-sigma-finite law of ξ. The nonzero
+assumption is essential to the source convention: at the zero measure an origin shift can leave
+a canonical state fixed regardless of the sampling interpretation. Non-Abelian groups and non-
+locally-finite measures lie outside the stated theorem.
+    The general Markov question is distinct from Last’s narrower question about kernels obtained
+by applying deterministic allocations to the inserted Cox process [5, p. 2673]; see also the sepa-
+rate averaged-Cox question [3, Remark 4.8]. Theorem 1 does not establish that smaller-test-class
+converse and does not claim to resolve every question in the Oberwolfach report.
+    Two bounded literature reviews found no exact prior resolution in the primary bodies and
+repository records they checked. This is not an exhaustive literature certificate or a claim of
+worldwide firstness. In particular the complete final 2015 journal body and an identified 2016
+lecture were not reviewed. Finite computational controls from the development check examples
+of preservation, gates, and periods; they are supplementary finite controls, not a proof of the
+general result. The proof offered here is the measure-theoretic argument above. This version is an
+extensively AI-assisted, unrefereed research note, without human peer review or formal machine
+verification.
+
+
+References
+[1] J. Mecke, Stationäre zufällige Maße auf lokalkompakten Abelschen Gruppen, Z. Wahrschein-
+    lichkeitstheorie verw. Gebiete 9 (1967), 36–58.
+
+[2] G. Last and H. Thorisson, Invariant transports of stationary random measures and mass-
+    stationarity, Ann. Probab. 37 (2009), 790–813. doi:10.1214/08-AOP420. Checked version: oﬀi-
+    cial electronic reprint arXiv:0906.2062v1, 11 June 2009; its pagination differs from the journal.
+
+[3] G. Last and H. Thorisson, Characterization of mass-stationarity by Bernoulli and Cox trans-
+    ports, Commun. Stoch. Anal. 5 (2011), 251–269. doi:10.31390/cosa.5.2.01. Checked version:
+    complete published body from the LSU repository.
+
+[4] G. Last and H. Thorisson, Construction and characterisation of stationary and mass-stationary
+    random measures on Rd , arXiv:1405.7566v2, 17 July 2015; retained PDF internal date 24
+    April 2019. Associated journal publication: Stochastic Process. Appl. 125 (2015), 4473–4488,
+    doi:10.1016/j.spa.2015.07.006. The statements cited here were checked in the retained author
+    version; the complete final journal body was not read and is not asserted identical.
+
+[5] New Perspectives in Stochastic Geometry, Oberwolfach Report 47/2008, Oberwolfach Rep. 5
+    (2008), 2655–2702, published 30 September 2009. doi:10.4171/OWR/2008/47. Relevant contri-
+    butions: G. Last, pp. 2673–2674, and H. Thorisson, pp. 2692–2694.
+
+
+
+
+                                                 7
+

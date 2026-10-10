@@ -1,0 +1,346 @@
+                 Pure-loss bosonic dynamic capacities:
+        EPnI consequences and consumed-key secrecy accounting
+                                               Alec Kriebel
+                                       ORCID: 0009-0001-9320-500X
+
+                                             October 6, 2026
+
+
+                                                 Abstract
+          The ﬁnite-energy multimode entropy photon-number inequality proved in the OpenAI mathe-
+      matics release supplies the sharp entropy premise in the previously conditional pure-loss bosonic
+      dynamic-capacity converses. We give its precise classical, quantum and entanglement conse-
+      quence under an average photon constraint, including arbitrary entanglement across uses. For
+      public, private and secret-key resources, an operational correction is necessary: the printed cat-
+      alytic secrecy condition of Wilde–Hsieh protects consumed key jointly with generated secrets
+      and excludes the one-time pad. A zero-energy converse disproves the displayed region under
+      that literal condition. We establish the formula with an explicit generated-secret secrecy crite-
+      rion, corrected converse accounting, and direct key-assisted coding. The formulas and original
+      conditional reductions are inherited; this is a consequence and operational audit, not an inde-
+      pendent proof of EPnI. We rely on the cited unrefereed EPnI proof. Its analytical arguments
+      and formal-source semantics were audited, but its Lean build was not reproduced.
+
+
+1    Scope and attribution
+Let Lη be the one-mode pure-loss bosonic channel with an independent vacuum environment and
+η ∈ [1/2, 1]. Its complement is L1−η up to phase. For n uses the constraint is
+
+                                                       X
+                                                       n
+                         Tr Gn ρ̄n ≤ nN,        Gn =         a†j aj ,   0 ≤ N < ∞,                         (1)
+                                                       j=1
+
+averaged over classical messages, shared key and encoder randomness; for quantum messages the
+logical input is maximally mixed, equivalently the transmitted half of a maximally entangled refer-
+ence pair. Arbitrary internal multimode entanglement is allowed. No peak or per-codeword energy
+constraint is asserted; noiseless side resources are charged by rate rather than optical energy.
+    All logarithms and entropies are base two. Put g(u) = (u + 1) log2 (u + 1) − u log2 u, g(0) = 0.
+Dividing the natural-log EPnI entropy and its g by ln 2 leaves the photon-number inverse unchanged.
+We do not mix the occasional natural-log notation of [2] with its bit-rate formulas.
+    Positive rates generate resources and negative rates consume them. Communication resources
+are forward, without free feedback. We use the original ﬁnite gross generation/consumption rates
+and ﬁnite resource registers of exponential dimension, with vanishing errors, rather than unbounded
+superlinear catalysts. The (C, Q, E) unit conversions are teleportation (−2, 1, −1), superdense
+coding (2, −1, −1) and entanglement distribution (0, −1, 1). For (R, P, S) they are one-time pad
+(−1, 1, −1), private-to-public (1, −1, 0) and key distribution (0, −1, 1).
+
+
+                                                      1
+   Wilde–Hayden–Guha [2] gave both formulas, Gaussian ensembles and conditional converses; De
+Palma [3, Theorem 11 and Corollary 12] gave a convex-entropy-bound formulation. The entropy
+breakthrough belongs to OpenAI [1], at the pinned revision
+                             adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+The formulas already appear in arXiv:1105.0119v1 (April 30, 2011), and the unrestricted EPnI-
+conditional converses in v2 (May 19, 2011). OpenAI’s public release is dated October 6, 2026;
+the September label in the manuscript directory is not asserted as a public-priority date. Our
+contribution is an explicit consequence and operational correction. We claim neither an independent
+solution of EPnI nor ﬁrst discovery of these formulas or known coding machinery.
+
+
+2    Entropy transfer to arbitrary input ensembles
+Theorem 1 (External EPnI consequence). For ﬁnite n ≥ 1, any ﬁnite-energy n-mode state ρ and
+t ∈ [0, 1],
+                     H(L⊗n
+                        t (ρ))
+                               ≥ ft (H(ρ)/n),     ft (s) = g(tg −1 (s)).
+                         n
+Proof. Substitute the independent n-mode vacuum into the second port of [1, Theorem 1.1], apply
+increasing g, and change entropy units. No product, Gaussian, full-rank or ﬁnite-support condition
+is added to the ﬁrst input.
+
+    The dependency supplement audits the upstream interpolation, regularized minimum, Hes-
+sian, weak convolution and stationarity. Its actual Lean declaration OAI.EntropyPhotonNumber.
+entropy_photon_number_inequality uses full Fock states and explicit channel/entropy deﬁnitions.
+The comparator’s intentional sorry is not proof evidence. Dependency setup exhausted disk space
+before kernel compilation or an axiom report completed. No reproduced machine veriﬁcation is
+claimed for that input or these capacities.
+
+Lemma 2. ft is increasing and convex for 0 ≤ t ≤ 1, and increasing and concave for t ≥ 1.
+
+Proof. The cases t = 0, 1 are immediate. For u > 0, ft′ (g(u)) = tg ′ (tu)/g ′ (u). The sign of its
+derivative is the sign of (tu + 1)g ′ (tu) − (u + 1)g ′ (u). The function (u + 1) ln(1 + 1/u) is decreasing,
+since its derivative is ln(1 + 1/u) − 1/u < 0. Continuity extends the conclusions to zero.
+                                                                                  ⊗n
+   For an arbitrary ensemble {px , ρx } satisfying (1) write Bx = L⊗n
+                                                                   η (ρx ), Ex = L1−η (ρx ) and
+        P
+s = n−1 x px H(Bx ). Conditional states have ﬁnite energy almost surely. The thermal entropy
+maximum and subadditivity imply 0 ≤ s ≤ g(ηN ) and H(B̄) ≤ ng(ηN ). Choose λ ∈ [0, 1] so
+s = g(ηλN ); for N = 0 choose any λ. Degradation with κ = (1 − η)/η and Jensen give
+                                     X
+                               n−1       px H(Ex ) ≥ fκ (s) = g((1 − η)λN ),                            (2)
+                                     x
+                                     X
+                               n−1       px H(ρx ) ≤ g(g −1 (s)/η) = g(λN ).                            (3)
+                                     x
+
+For (3), average the entropy bound at η, apply convexity of fη , then invert. These are ﬁnite-mode
+statements for arbitrary entangled inputs. Countable or measurable ensembles follow by Jensen
+for integrable entropies; the ﬁnite average-energy bound controls their integrals. At η = 1, the
+environment is vacuum and input and output entropies coincide.
+
+
+
+                                                      2
+3    Classical, quantum and entanglement resources
+Theorem 3. Under (1) and the stated quantum resource conventions, the capacity region is the
+closure of the union over λ ∈ [0, 1] of
+                              C + 2Q ≤ g(λN ) + g(ηN ) − g((1 − η)λN ),                         (4)
+                               Q + E ≤ g(ηλN ) − g((1 − η)λN ),                                 (5)
+                          C + Q + E ≤ g(ηN ) − g((1 − η)λN ).                                   (6)
+Proof. The regularized quantum dynamic theorem [4] and its bosonic formulation [2, Proposition
+1] bound the three left sides by
+                 P                          P                                    P
+       H(B̄) +    x px [H(ρx ) − H(Ex )]      x px [H(Bx ) − H(Ex )]   H(B̄) −x px H(Ex )
+                                        ,                        ,                        ,
+                       n                               n                     n
+with vanishing normalized coding errors. Equations (2)–(3) give one common λ for each block and
+prove the converse. Section 6 justiﬁes all limiting operations.
+    For achievability purify the displaced thermal ensemble with conditional mean λN and
+Gaussian displacement variance (1 − λ)N . Its average input is thermal of mean N . The four
+entropies per use, respectively average B, conditional input, conditional B, conditional E, are
+g(ηN ), g(λN ), g(ηλN ), g((1 − η)λN ). The classically enhanced father protocol and noiseless
+conversions [7, 4, 2] attain the resulting polyhedron. Finite bounded-cost approximations with
+N ′ < N , followed by closure, enforce the exact stated budget.
+
+   The joint erratum [6] corrects generic optimization claims, not the regularized region. No
+eﬃcient optimization or generic additivity claim is used.
+
+
+4    A zero-energy obstruction to the literal private model
+The public/private/key formula of [2, Eq. (2)] is
+                                   R + P ≤ g(ηN ),                                              (7)
+                                   P + S ≤ g(ηλN ) − g((1 − η)λN ),                             (8)
+                               R + P + S ≤ g(ηN ) − g((1 − η)λN ).                              (9)
+Its coding source has an operational inconsistency. In [5, Section 5, before Eq. (14)], M, TA are
+generated private message and key, K, L public data, J consumed private communication, and SB
+consumed key. Writing U = (M, TA , J, SB ) and Z = (K, L, E n ), the predecoding secrecy criterion
+is
+                                   ∥ω U Z − π U ⊗ σ Z ∥1 ≤ ϵsec ,                             (10)
+where π is uniform on the whole product. It requires consumed secrets jointly independent of public
+data and all four private registers mutually independent. A related overconstraint occurs in [8, Eq.
+(4)]. It contradicts the resource protocols stated in the sources; the optimization erratum [6] does
+not correct it.
+Proposition 4. At N = 0, (10) and the source’s reliability condition with error ϵrel imply
+                                             1      ϵsec + ϵrel
+                                      1≤          +             .
+                                           dM dTA        2
+Thus vanishing errors exclude any nontrivial generated private/key register, regardless of consumed
+resources. The literal private region is not (7)–(9).
+
+                                                    3
+Proof. The positive number operator has one-dimensional vacuum kernel. Zero average energy
+forces every transmitted input and Bob’s channel output to be vacuum. Trace out K, E n in (10).
+In the comparison state, uniform W = (M, TA ) is independent of Bob’s full nonvacuum input
+(L, J, SB ). Any decoder reproduces W with probability at most 1/(dM dTA ). Trace contraction
+changes that probability by at most ϵsec /2. Reliability, Eq. (13) of [5], requires probability at least
+1 − ϵrel /2. The positive integer dM dTA must eventually be one when both errors vanish.
+    Yet the displayed N = 0 union contains one-time pad (−1, 1, −1). For independent uniform
+d-symbol M, SB and L = M + SB modulo d, M alone is exactly secret, whereas the minimum trace
+distance in (10) is 2(1 − 1/d). Each ﬁxed L supports only d of the d2 private pairs; comparison
+with a uniform pair gives the distance, also minimized over the public marginal.
+
+   This disproves the unchanged literal private target. It is not an entropy-inequality failure or
+merely a failure of one particular coding construction.
+
+
+5    The explicit generated-secret repair
+Keep signed forward resource accounting, the same encoding and decoding normal form, ﬁnite gross
+rates and correctness. Deﬁne X = (K, L), W = (M, TA ), V = (J, SB ), Y = (W, V ) and require
+                                           n               n
+                                   ∥ω W XE − π W ⊗ ω XE ∥1 −→ 0.                                   (11)
+
+Consumed V may correlate with W and public transcript. Eve does not receive the consumed key
+as an extra side channel. Generated public and private communication labels are fresh uniform
+messages initially independent of the preshared key. Arbitrary public common-randomness gener-
+ation is not identiﬁed with communication. This protects uniform generated private messages and
+keys; it does not claim semantic security for arbitrary message distributions. The change from (10)
+is explicit.
+
+Theorem 5. Under (11) and the remaining stated conventions, the private capacity region is the
+closed union of (7)–(9) over λ ∈ [0, 1].
+
+Corrected converse. Correctness, continuity on ﬁnite generated registers and data processing give
+decoding information bounds with o(n) errors. Secrecy gives I(W ; XE n ) = o(n) by conditional-
+entropy continuity on W at ﬁxed gross rates. It does not imply joint secrecy of W V . Let overbars
+                                                             e and log |V | = n(Pe + S).
+denote generated rates and tildes consumed rates; log |L| = nR                        e The ﬁrst
+bound is unchanged:
+
+                          n(R + P ) ≤ I(KM ; B n LJSB ) + o(n)
+                                      ≤ I(XY ; B n ) + H(L) + H(J) + o(n).
+
+This uses initial independence of KM from SB , the chain rule and I(KM ; LJ|SB ) ≤ H(LJ), as in
+the source’s ﬁrst bound. Subtract the consumed public/private rates.
+   For the second bound, correctness and secrecy yield n(P + S) ≤ I(W ; B n V |X) − I(W ; E n |X) +
+o(n). Expand the right side as
+
+                           I(Y ; B n |X) − I(Y ; E n |X)
+                              + I(W ; V |X) − I(V ; B n |X) + I(V ; E n |W X)
+                           ≤ I(Y ; B n |X) − I(Y ; E n |X) + H(V |X).
+
+
+                                                    4
+Indeed the two positive remaining terms sum to I(V ; W E n |X) ≤ H(V |X) for classical V . Subtract
+the consumed private/key rates.
+   Finally,
+
+                n(R + P + S) ≤ I(KW ; B n LV ) − I(W ; E n |X) + o(n)
+                              ≤ I(XY ; B n ) − I(Y ; E n |X) + H(L) + H(V ) + o(n).
+
+Expand the ﬁrst line into the desired diﬀerence, −I(LV ; B n ), and I(KW ; LV ) + I(V ; E n |KW L).
+The latter is at most H(L) + I(V ; KW E n |L) ≤ H(L) + H(V ). Subtract all three consumed rates.
+    For a degradable channel, pure spectral reﬁnement of mixed conditional inputs cannot decrease
+any private information bound: the extra diﬀerence is I(Z; B n |XY ) − I(Z; E n |XY ) ≥ 0 by data
+processing. For pure reﬁnements H(B n |XY ) = H(E n |XY ). The three bounds consequently reduce
+to at most H(B̄), H(B n |X)−H(E n |X), and H(B̄)−H(E n |X). Equation (2) gives all three claimed
+photon bounds.
+
+Achievability for generated-secret security. A ﬁnite cq ensemble px py|x ρxy has a generated-secret
+achievable corner                                                       
+                          (R, P, S) = I(X; B), I(Y ; B|X), −I(Y ; E|X) .
+Use HSW packing and quantum covering [10, 9, 11], not the inconsistent stronger criterion of [8].
+An outer public HSW code uses typical xn . For each x an independent inner random table is
+indexed by private message m and uniform consumed key s. Bob, given s, decodes below I(Y ; B)x .
+Averaging unknown s soft-covers Eve above key rate I(Y ; E)x . Paste the ﬁnitely many scalar
+codes over the positions of each x. Outer ensemble-average HSW decoding at I(X; B) and gentle
+measurement preserve inner decoding. Expected error and uniform-message trace secrecy tend to
+zero. This gives (11) without any claim of secrecy after revealing s. The supplement gives the
+precise packing, covering and mean-cost selection.
+    For the bosonic ensemble take independent Gaussian α, β of variances (1 − λ)N, λN and co-
+herent input |α + β⟩. The average input is thermal of mean N and the conditional input given
+α is displaced thermal of mean λN . Individual B, E outputs are pure. Thus the corner has
+I(X; B) = g(ηN ) − g(ηλN ), I(Y ; B|X) = g(ηλN ), I(Y ; E|X) = g((1 − η)λN ). The three classical
+unit conversions translate that corner to exactly (7)–(9); generated secrets remain protected when
+consumed resources are treated as consumed. Their composition is justiﬁed by trace-norm contrac-
+tion: the joint generated secret is uniform and independent of Eve and the public transcript, so
+it may supply a subsequent private-message or key resource. Subsequent uses discard consumed
+registers. Finite resource cancellation is the original net-rate convention, with any required seed
+charged as a ﬁnite gross input; errors of a ﬁxed ﬁnite composition add and vanish. No residual
+secrecy for consumed key is used. The ﬁnite approximations and cost argument below enforce the
+exact mean-energy constraint.
+
+
+6    Approximation, average cost and closure
+For ﬁxed ﬁnite n, oscillator entropy is ﬁnite and continuous on bounded mean-energy sets; see
+the cutoﬀ proof in [1, Lemma 2.2]. With PK = 1{Gn ≤K} , the map ΓK (ρ) = PK ρPK + Tr[(I −
+PK )ρ]|0⟩⟨0|
+       p     never increases energy. It converges in trace norm, also with references, with error at
+most 2 nN/(K + 1) + nN/(K + 1) under (1). Pure-loss output and environment of cutoﬀ inputs
+remain in the same ﬁnite number sector. In a converse, choose K separately for each block and ﬁnite
+resource dimension to make all decoding, secrecy and ﬁnite-reference continuity errors arbitrarily
+
+
+                                                 5
+small. Output entropy terms retain bounded energy. Then take blocklength limits. No uniform
+cutoﬀ or input product restriction is used.
+    For achievability ﬁrst ﬁx 0 < N ′ < N . Truncate Gaussian labels to compact sets and ap-
+proximate by ﬁnite atomic distributions. Trace continuity, bounded energy on compact sets and
+Gaussian ﬁrst-moment tails give convergence of average cost and all conditional entropy quantities.
+Next project each conditional input onto a one-mode number cutoﬀ and normalize. Its conditional
+mean energy cannot increase, since all removed number levels are higher than the retained lev-
+els. States, energies and entropies converge. Puriﬁcations compress to ﬁnite reference dimension;
+projected coherent states remain pure. For suﬃciently ﬁne approximation the mean cost µ < N .
+    On a ﬁxed cutoﬀ the cost observable has norm at most K per use. Random quantum father
+codes have expected input trace-close to the selected conditional product state [7, Propositions 2–3];
+the direct private construction has the same property by random sampling. Classical typical types
+change per-use cost by at most |X|δK, and expected-input trace error ϵn changes it by at most Kϵn .
+Thus expected code cost is at most n(µ + |X|δK + Kϵn ) < nN for small δ and large n. Markov
+gives a ﬁxed positive probability of cost at most nN . The probability that error or secrecy exceeds
+the square root of its vanishing expectation tends to zero. Their intersection therefore contains a
+feasible good code. This selects the original codes without postselecting quantum data or changing
+rates. Take coding limits, approximation limits and then N ′ ↑ N . At N = 0 the corrected model
+attains the conversion cones with vacuum channel inputs.
+    Both displayed unions are closed: for convergent rate triples, take a subsequence of their pa-
+rameters in compact [0, 1] and pass the inequalities by continuity. They are convex as well. Use
+s ∈ [0, g(ηN )] instead of λ. All right sides are concave in s by Lemma 2, because g(g −1 (s)/η) is
+concave and fκ (s) is convex. Their feasible sets in rate-plus-s space are convex; projection gives
+the unions. This handles time sharing and all required closures.
+
+
+7    Boundaries and veriﬁcation limits
+At N = 0 every right side is zero, giving the quantum and corrected private conversion cones.
+Proposition 4 is the diﬀerent literal-model conclusion. At λ = 0 the conditional entropy terms
+vanish; at λ = 1 they are the full thermal values. At η = 1/2, B, E have equal entropies, so
+Q + E ≤ 0 and P + S ≤ 0. At η = 1 the environment entropy is zero, giving the energy-constrained
+noiseless formulas. No argument divides by N , 1 − η or a zero entropy.
+    The unchanged literal private target is refuted; the positive private theorem has the explicit
+repaired convention. There is no claim for superlinear catalysts, stronger energy constraints, se-
+mantic security, thermal-channel quantum capacity, ampliﬁers or two-way assistance. Ordinary
+single-resource pure-loss capacities and ordinary classical two-receiver broadcast capacity are not
+new. The cited conﬁdential-broadcast η < 1/2 formula fails the η = 0 common-message check when
+Bob must decode; no conﬁdential-broadcast extension is included.
+
+Disclosure. AI tools were used extensively in research, drafting and veriﬁcation. Automated
+independent adversarial reviews are recorded in the supplement; they are not conventional hu-
+man peer review or refereeing. This note has not undergone conventional human peer review at
+publication. The upstream EPnI is an explicitly cited unrefereed external proved theorem whose
+soundness is required for its consequences; we do not silently assume an unproved entropy premise.
+No external individuals were contacted for this work.
+
+
+
+
+                                                  6
+References
+ [1] OpenAI, The entropy photon-number inequality, OpenAI Math Release preprint (2026),
+     pinned manuscript. Supplied key:
+     OAI:The-entropy-photon-number-inequality-September-24-2026.
+
+ [2] M. M. Wilde, P. Hayden and S. Guha, Quantum trade-oﬀ coding for bosonic communication,
+     Phys. Rev. A 86, 062306 (2012), doi:10.1103/PhysRevA.86.062306.
+
+ [3] G. De Palma, New lower bounds to the output entropy of multi-mode quantum Gaussian
+     channels, IEEE Trans. Inf. Theory 65, 5959–5968 (2019), arXiv:1805.12469v3.
+
+ [4] M. M. Wilde and M.-H. Hsieh, The quantum dynamic capacity formula of a quantum
+     channel, Quantum Inf. Process. 11, 1431–1463 (2012), arXiv:1004.0458v3.
+
+ [5] M. M. Wilde and M.-H. Hsieh, Public and private resource trade-oﬀs for a quantum channel,
+     Quantum Inf. Process. 11, 1465–1501 (2012), arXiv:1005.3818v3.
+
+ [6] M. M. Wilde and M.-H. Hsieh, Erratum to: The quantum dynamic capacity formula of a
+     quantum channel and Public and private resource trade-oﬀs for a quantum channel, Quantum
+     Inf. Process. (2012), doi:10.1007/s11128-012-0451-2.
+
+ [7] M.-H. Hsieh and M. M. Wilde, Entanglement-assisted communication of classical and
+     quantum information, IEEE Trans. Inf. Theory 56, 4682–4704 (2010), arXiv:0811.4227v4.
+
+ [8] M.-H. Hsieh and M. M. Wilde, Public and private communication with a quantum channel
+     and a secret key, Phys. Rev. A 80, 022306 (2009), arXiv:0903.3920v1.
+
+ [9] M.-H. Hsieh, Z. Luo and T. A. Brun, Secret-key-assisted private classical communication
+     capacity over quantum channels, Phys. Rev. A 78, 042306 (2008), arXiv:0806.3525.
+
+[10] I. Devetak, The private classical capacity and quantum capacity of a quantum channel, IEEE
+     Trans. Inf. Theory 51, 44–55 (2005), arXiv:quant-ph/0304127.
+
+[11] M. Hayashi and H. Nagaoka, General formulas for capacity of classical–quantum channels,
+     IEEE Trans. Inf. Theory 49, 1753–1768 (2003), arXiv:quant-ph/0206186v4, Lemma 2.
+
+
+
+
+                                               7
+
