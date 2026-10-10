@@ -1,0 +1,81 @@
+REJECTED / SUPERSEDED PREDECESSOR: CONTEXTUAL CORRECTION HISTORY ONLY
+The removed lines below belong to an earlier authored scope audit and are not
+accepted findings. The added lines and COMPARISON_SCOPE_AUDIT.md are the current
+corrected audit. This patch is published solely to make the correction history
+reviewable; it is not a second mathematical report or a complete proof certificate.
+The full superseded audit is excluded. No third-party source body is reproduced.
+
+--- a/COMPARISON_SCOPE_AUDIT.md
++++ b/COMPARISON_SCOPE_AUDIT.md
+@@ -1,12 +1,12 @@
+ # Relative TP, prismatic cohomology, and the Liu–Wang comparisons
+ 
+-Date: 2026-10-08. Classification: primary-literature overlap and global-scope hold. This is a source audit, not a new proof or a certificate of either complete conjecture. No new mathematical discovery is claimed.
++Date: 2026-10-08. Corrected scope-audit derivative. Classification: primary-literature overlap and global-scope hold. This is a source audit, not a new proof or a certificate of either complete conjecture. No new mathematical discovery is claimed.
+ 
+ ## Exact target and conventions
+ 
+-Fix a prime p. The affine presentation is P = Z_p[x_1,...,x_n] and R = P/(f_1,...,f_k), with (p,f_1,...,f_k) regular. Its spherical base is S_n = S[N^(n+1)]; z_0 maps to p and z_i to x_i. Put A = pi_0 TP(R/S_n), Gamma = pi_0 TP(R/S_n tensor S_n), and M_t = pi_t TP(R/S_n). Ext means comodule Ext for (A,Gamma), with the source's p- and Nygaard-completion conventions. For t=2i, M_t is the coefficient line carrying the indicated twist; odd t vanish.
++Fix a prime p. The affine presentation is P = Z_p[x_1,...,x_n] and R = P/(f_1,...,f_k), with (p,f_1,...,f_k) regular. Its spherical base is S_n = S[N^(n+1)]; z_0 maps to p and z_i to x_i. Put A = pi_0 TP(R/S_n), Gamma = pi_0 TP(R/S_n tensor S_n), and M_t = pi_t TP(R/S_n). Ext means comodule Ext for (A,Gamma), with the source's p- and Nygaard-completion conventions. For t=2i, M_t is the coefficient line carrying the indicated twist; odd t vanish. The affine spectral sequence is Ext^j_(A,Gamma)(A,M_t) => TP_(t-j)(R), with Ext understood in the comodule sense rather than as module Ext over Gamma.
+ 
+-The coupled global target has Y closed in P^n_(Z_p), with lci special fiber, embedded in P^n_(Z_p) x A^1 by x_0=p. Its spectral ambient object is T_n=P^n_S x_S A^1_S. The category P-Mod consists of sheaves of comodules for its relative-TP Hopf algebroid. Its coefficient is A_Y{i}, whose generator has coaction sigma -> epsilon^(-1)sigma and epsilon^(-1)phi(epsilon)=(x_0'^p-p)/(x_0^p-p).
++The coupled global target has Y closed in P^n_(Z_p), with lci special fiber, embedded in P^n_(Z_p) x A^1 by x_0=p. Its spectral ambient object is T_n=P^n_S x_S A^1_S. Put A_Y = pi_0 TP(O_Y/O_T_n) and Gamma_Y = pi_0 TP(O_Y/O_(T_n^2)). The category P-Mod consists of sheaves of Gamma_Y-comodules for this relative-TP Hopf algebroid. Its coefficient is A_Y{i}=BK^(tensor i), where BK is the rank-one A_Y-module with generator sigma and coaction sigma -> epsilon^(-1)sigma, with epsilon^(-1)phi(epsilon)=(x_0'^p-p)/(x_0^p-p). Thus the twist-i generator has coaction epsilon^(-i). The global spectral sequence is Ext^j_(P-Mod)(A_Y,A_Y{i}) => TP_(2i-j)(Y).
+ 
+ Both questions require the Ext identification AND identification of the associated spectral sequence. The source is [Wang, joint with Liu, OWR 29/2019](https://ems.press/content/serial-article-files/46808), §§3–17, especially pp.1768–1774. The ambient object is not an unspecified ordinary infinitesimal thickening.
+ 
+@@ -14,11 +14,20 @@
+ 
+ [Hahn–Raksit–Wilson, arXiv:2206.11208v3](https://arxiv.org/abs/2206.11208v3), Remark 1.3.10, explicitly compares Liu–Wang's local-field descent with BMS. The mechanism is the evenly-free augmentation THH(S[N])->S[N]. Corollary 2.2.17(2) supplies descent for the circle-Tate version of the even filtration. Theorem 5.0.3 identifies that filtration with BMS for p-complete p-quasisyntomic rings. Importantly, its proof on p.41 treats arbitrary spherical polynomial bases, not just one-variable local fields: the spherical-polynomial THH augmentation is shown evenly free by passing through MU and Proposition 4.2.4.
+ 
+-Thus the exact affine presentation meets a concrete existing comparison mechanism. With its even relative-THH terms and completed cobar interpretation, the object to compare is
++Thus the exact affine presentation meets a concrete existing comparison mechanism. After the source's implicit p-completion, put C^q = TP(R/S_n^(tensor(q+1))). The prior theorem application gives the natural multiplicative filtered equivalence
+ 
+-F^i = Tot_q tau_(>=2i) TP(R/S_n^(tensor(q+1))).
++F^i = Tot_q tau_(>=2i) C^q = Fil_BMS^i TP(R).
+ 
+-A check of the complete comodule category and spectral-sequence indexing is still required before a final acceptance report, but treating this affine comparison as an untouched open novelty target is unjustified. The journal records the paper as accepted on 28 February 2025 and forthcoming: [Annals publication record](https://annals.math.princeton.edu/articles/22003).
++Here is the hypothesis check for this application.
++
++- The p-completed affine ring has bounded p-power torsion (in this regular setting it is p-torsion-free) and p-complete cotangent amplitude [0,1]. Thus HRW's p-complete p-quasisyntomic hypothesis is met. This step does not treat the uncompleted polynomial ring as p-complete.
++- For every q, the repeated spherical base is again spherical polynomial. Its presentation adds diagonal-coordinate relations to the original regular presentation. The relative THH terms are even; their homotopy groups have bounded p-power torsion. The source's relative-THH computation supplies evenness. For the torsion check one may also use Guo's Corollary 4.4(2): the quotient by the degree-two class has divided-power coefficients over the p-torsion-free ring R, so the degreewise short exact sequences preserve p-torsion-freeness.
++- THH(R) to THH(R/S_n) is the pushout of THH(S_n) to S_n. The latter is evenly free by the spherical-polynomial argument in HRW's proof on p.41. Even freeness is preserved by pushout. The relative-THH cosimplicial object is its completed Cech object, not an unrelated resolution.
++- HRW Construction 2.1.14 evaluates the circle-Tate even filtration on an even term as its double-speed Postnikov filtration. Corollary 2.2.17(2) therefore identifies its totalization with the even filtration on TP(R); Theorem 5.0.3 identifies this with BMS. The comparison is in filtered commutative algebra objects, so multiplicativity is included.
++
++Taking associated graded gives Tot_q H(pi_(2i) C^q), shifted by 2i, equal to the completed absolute prismatic coefficient hat-Delta_R{i}[2i]. Consequently H^j of this coefficient cobar complex is H^j(hat-Delta_R{i}), with abutment degree 2i-j. Under the completed cobar interpretation asserted by OWR Theorem 7, this is the requested affine Ext comparison. The twist is supplied by the actual TP degree-two comodule, not by an arbitrary trivialization.
++
++This establishes a conditional prior-theorem corollary, not an unqualified certification of every categorical convention in the workshop statement. The exact completed comodule category, its derived invariants, and the correspondence between descent and double-speed spectral-sequence page conventions must be recorded before final acceptance. Equal abstract E2 groups alone do not suffice, but the filtered equivalence above is substantially stronger than such an equality. The journal records the HRW paper as accepted on 28 February 2025 and forthcoming: [Annals publication record](https://annals.math.princeton.edu/articles/22003).
+ 
+ ## What “prismatic cohomology” must mean here
+ 
+@@ -26,20 +35,22 @@
+ 
+ ## Recent primary inputs and their limits
+ 
+-1. [Guo, arXiv:2608.19829v1](https://arxiv.org/abs/2608.19829v1), Theorems 1.1/4.1 and Corollary 4.4, treats relatively quasiregular semiperfectoid quotients of spherical polynomial bases. It identifies the relative THH/TC-minus coefficients with Nygaard-completed Frobenius-twisted relative prismatic data, with regular-sequence formulas. Remark 6.5 compares the descent spectral sequence with the motivic one for the worked ring Z_p[x]/(px). That worked ring is not a replacement for every affine presentation or for the global sheaf question. Remarks 1.2 and 4.3 explicitly distinguish broader announced generality. This source is a preprint, not a journal acceptance claim.
+-2. [Guo, arXiv:2607.04931v2](https://arxiv.org/abs/2607.04931v2), Theorems 1.1–1.2 and Corollary 4.12, constructs covers of absolute prismatic sites from suitable relative quasiregular semiperfectoid presentations. Examples 5.1–5.6 make complete-comodule descriptions concrete. They substantially narrow the gap between the Hopf-algebroid and prismatic formulations. A site-theoretic cover alone does not verify the TP-induced coefficient twist or the whole filtered spectral comparison. This source is a preprint.
++1. [Guo, arXiv:2608.19829v1](https://arxiv.org/abs/2608.19829v1), Theorems 1.1/4.1 and Corollary 4.4, treats relatively quasiregular semiperfectoid quotients of spherical polynomial bases. It identifies relative THH, TC-minus, and TP coefficients with Nygaard-completed Frobenius-twisted relative prismatic data; the TP statements are explicitly Theorem 4.1(3) and Corollary 4.4(4). For the affine target, take k=F_p, d=x_0-p and the regular quotient by the f_i, with the required completions. The element d is distinguished, and the same construction applies to repeated bases using diagonal relations. Remark 6.5 compares THH descent with the motivic spectral sequence for the worked ring Z_p[x]/(px). That worked ring is not a replacement for every affine presentation or for the global sheaf question. Remarks 1.2 and 4.3 explicitly distinguish broader announced generality. This source is a preprint, not a journal acceptance claim.
++2. [Guo, arXiv:2607.04931v2](https://arxiv.org/abs/2607.04931v2), Theorems 1.1–1.2 and Corollary 4.12, constructs covers of absolute prismatic sites from suitable relative quasiregular semiperfectoid presentations. Examples 5.1–5.6 make complete-comodule descriptions concrete. They substantially narrow the gap between the Hopf-algebroid and prismatic formulations. For the affine target one may apply Lemma 4.5 to the identity cover R to R and its p-torsion-free, p-quasismooth polynomial delta-base, after the specified prism completion, and then apply Corollary 4.12. The resulting prismatic crystal description uses derived (p,I)-complete descent. It must not be silently identified with the Nygaard-completed Frobenius-twisted TP Hopf algebroid: that identification, including the completed tensor products and coefficient line, must be written explicitly. A site-theoretic cover by itself does not supply the filtered TP comparison. This source is a preprint.
+ 3. [Antieau–Krause–Nikolaus, arXiv:2310.12770v2](https://arxiv.org/abs/2310.12770v2), Theorem 1.2 and Corollary 6.11, supplies relative delta-pair comparison and descent while preserving Nygaard-completed data. Section 1.3 says the explicit connection with the topological approach is future work; this paper alone should not be cited as an explicit theorem settling the OWR pair. The [author's publication list](https://antieau.github.io/research/) describes it as to appear in Annales scientifiques de l'Ecole normale supérieure.
+ 4. [Liu–Wang, arXiv:2012.15014v4](https://arxiv.org/abs/2012.15014v4), introduction, still presents its BMS/prismatization comparison as conjectural. Its local-field computations and those historical conjectural remarks are superseded as evidence of present openness by the later specific comparison above. Its journal publication is Inventiones Mathematicae 230 (2022), 851–932.
+ 
+ ## Why the coupled global row is not certified solved
+ 
+-The printed global hypothesis on p.1773 says that the special fiber is lci. It does not explicitly require Y to be flat over Z_p. The earlier affine hypothesis is stronger and is not automatically a local chart for every Y allowed by that wording. The p-quasisyntomic hypothesis in the modern comparison theorems therefore cannot silently be substituted for the printed global hypothesis. This audit records a scope gap, not a counterexample to Conjecture 2.
++The printed global hypothesis on p.1773 says that the special fiber is lci. It does not explicitly require Y to be flat over Z_p. The earlier affine hypothesis is stronger and is not automatically a local chart for every Y allowed by that wording. The necessary applicability question is whether the p-completed local rings are p-quasisyntomic and possess the required even relative-THH presentations. Flatness over Z_p plus lci special fiber is a sufficient route to those affine presentations; p-flatness is not a necessary condition for p-quasisyntomicity, since nonflat complete intersections can also be p-quasisyntomic. The modern hypotheses cannot silently replace the printed global hypothesis. This is a scope gap, not a counterexample to Conjecture 2.
+ 
+-A complete global acceptance must verify:
++On a class of Y covered by compatible affine presentations satisfying these checks, the natural affine filtered equivalences can be descended over a Zariski cover. This is a prior-theorem application and descent verification, rather than a new general comparison theorem. To identify it with precisely the printed global Ext spectral sequence, the following work remains:
+ 
+-- the intended class of Y and the relation between its local presentations and the affine regularity assumptions;
+-- the source's exact sheaf-of-comodules Ext, including its completeness conditions, rather than ordinary module Ext over the arrow ring;
+-- descent of the relative coefficient line to the completed Breuil–Kisin twist;
+-- the global filtered equivalence, with all pages, indexing, multiplicative structure, and the stated abutment, not merely affine E2 groups.
++- specify the intended class of Y and verify the local p-quasisyntomic and even-presentation hypotheses; the printed special-fiber condition alone does not supply them;
++- specify the actual sheaf-of-comodules category P-Mod and its p/Nygaard-completed derived invariants, and verify that OWR Theorems 10–14 identify them with the global completed cobar construction, rather than ordinary module Ext over the arrow ring;
++- carry the source's degree-two coaction through the completed descent comparison, thereby identifying the global coefficient with the completed Breuil–Kisin twist;
++- carry the multiplicative filtered equivalence through Zariski descent and explicitly match descent versus double-speed Postnikov page/indexing conventions and abutment filtrations. The BMS bidegree (a,b) corresponds at the displayed E2 groups to the source indices j=a-b and 2i=-2b. This does not assert identical literal page numbering without the descent/Postnikov convention check.
+ 
+-The known affine mechanism and the recent prismatic presentations are substantial primary overlap. The appropriate next action is an attribution and exact-scope audit of this one coupled programme. It is not a second independent search budget for the global wording, and it is not a claim that both conjectures have been newly solved.
++The completed comodule comparison is a verification obligation concerning the exact source formulation. It is not evidence that a fresh affine comparison theorem is missing. The broader global wording remains uncertified until its hypotheses and category are resolved.
++
++The known affine mechanism and the recent prismatic presentations are substantial primary overlap. The coupled questions share this comparison mechanism, while the exact global scope and categorical interpretation require verification. No complete solution or new result is claimed.

@@ -1,0 +1,9 @@
+# Relative TP / prismatic comparison scope audit
+
+Read ACCEPTANCE.md and COMPARISON_SCOPE_AUDIT.md for the exact conditional disposition shared by targets 30004167 and 30004168. This packet performs delivery-integrity and source-scope checks, not computational mathematics or imported-theorem proof checking.
+
+The correction patch labels its removed predecessor text rejected/superseded. The checker reconstructs that authored predecessor internally to verify the exact patch history; the full predecessor is not delivered. Historical source inspection metadata remains explicitly historical; missing source bodies and datasets are NOT_RUN.
+
+Authenticate BOOTSTRAP.py against the external SHA-256 published in the draft PR before executing it. Supply packet directory, actual base QUEUE.md, and actual proposed QUEUE.md as its three arguments, with Python flags -I -S -B (and optionally -O or -OO). Files must be mode 0444, packet directory 0555, and UID/EUID 1000. Both queue inputs are mandatory, including for an otherwise intact packet. MUTATION_TESTS.py also requires the externally trusted bootstrap SHA-256 as its fourth argument.
+
+check_scope.py checks the exact delivered acceptance, metadata and patch history. Its complete deterministic stdout/stderr is compared to separately pinned mode-specific references with recursive exact-type checks; no PASS-only summaries or normalization are used. The mutation harness runs the complete fixed-bootstrap baseline plus schema, scope, queue, output and inventory negatives in all three modes. PREPARATION_RECEIPT.json records a pre-freeze scope check; final manifest and external-bootstrap validation include that receipt and this README in the authenticated delivery. Final replay receipts are kept separately to avoid a self-referential hash claim.
