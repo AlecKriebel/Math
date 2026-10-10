@@ -1,0 +1,298 @@
+{
+  "source": "zenodo_discoverability_20261010/native_metadata.py",
+  "source_sha256": "4c3d2db89d95478b349f0f6e95d547c4fd2baede0416f10032f11c9e16712bbd",
+  "offline_only": true,
+  "tests": [
+    {
+      "test": "translate subjects and language",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate adds ORCID without removing other identifiers or affiliations",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate dates, title, version, publication date and descriptions preserved",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate existing structured relation preserved exactly",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate does not mutate original",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 0",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 2",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 3",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 4",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 5",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 6",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject controlled-subject erasure",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject removing existing relation",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject pids drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject access drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject custom_fields drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject files drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject versions drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject scientific title drift",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "successful stage keeps public metadata and all protected fields",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "successful same-record publish preserves IDs, DOI, version, files, access, custom",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "published",
+          "doi": "10.5281/zenodo.21699161",
+          "record_url": "https://zenodo.org/records/21699161",
+          "files_and_identity_unchanged": true
+        }
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline metadata drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public metadata baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline pids drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline files drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public file/preview baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline access drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public access baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline custom_fields drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public custom_fields baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline versions drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline parent drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "pre-existing pending draft rejected before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Refusing to reuse a pre-existing pending edit",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "persistence failure stops before mutation",
+      "passed": true,
+      "details": {
+        "error": "OSError: injected persistence failure",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 1 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 2 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 3 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    }
+  ],
+  "passed": 34,
+  "failed": 0
+}

@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2021 CERN.
+# SPDX-FileCopyrightText: 2021-2024 Graz University of Technology.
+# SPDX-License-Identifier: MIT
+
+"""OAI ID PID Provider."""
+
+from flask import current_app
+from invenio_pidstore.models import PIDStatus
+
+from .base import PIDProvider
+
+
+class OAIPIDProvider(PIDProvider):
+    """OAI ID PID Provider."""
+
+    name = "oai"
+
+    def __init__(self, name, **kwargs):
+        """Constructor."""
+        super().__init__(
+            name,
+            pid_type="oai",
+            default_status=PIDStatus.REGISTERED,
+            managed=True,
+            **kwargs,
+        )
+
+    def generate_id(self, record, **kwargs):
+        """Generates an identifier value."""
+        # http://www.openarchives.org/OAI/2.0/guidelines-oai-identifier.htm
+        prefix = current_app.config.get("OAISERVER_ID_PREFIX", "")
+        return f"oai:{prefix}:{record.pid.pid_value}"
+
+    @classmethod
+    def is_enabled(cls, app):
+        """Determine if datacite is enabled or not."""
+        return True
+
+    def reserve(self, pid, record, **kwargs):
+        """Constant True.
+
+        PID default status is registered.
+        """
+        return True
