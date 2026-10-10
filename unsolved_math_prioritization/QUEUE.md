@@ -455,7 +455,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 444 | 6800014 / AMR-067-0014 | Ricci pinching on solvable Lie groups | 0.1286 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 445 | 30001005 / OWR-2045-001 | Mean-Curvature Flow from Isolated Conical Singularities | 0.1282 | 7.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 446 | 10000083 / AMR-099-0083 | Exponential upper bound for linear-time graph covering | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 447 | 10400067 / AMR-103-0067 | Problem 3.17 — Find a topological construction of the 2-loop polynomial P θ K. | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 447 | 10400067 / AMR-103-0067 | Problem 3.17 — Find a topological construction of the 2-loop polynomial P θ K. | 0.1280 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 448 | 10400167 / AMR-103-0167 | Problem 9.3 — (Y. | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 449 | 11000048 / AMR-109-0048 | Problem 4.11 — (Coarse Schottky problem). | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 450 | 2100406 / AMR-020-0406 | Open Problems in Integrable Systems — Geometry of caustics, invariant surfaces, and commuting billiard maps | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
