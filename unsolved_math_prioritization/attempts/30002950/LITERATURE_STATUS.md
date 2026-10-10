@@ -1,0 +1,15 @@
+# Literature check, 2026-10-10 UTC
+
+Search outcome: no proof or counterexample to the full nonbasic Chen–Viehmann a=1 single-orbit assertion was located. This is a bounded search result, not proof of absence. The partial reduction in the report carries no novelty claim.
+
+Primary sources checked:
+
+- Chen–Viehmann, arXiv:1507.02806v2 (2016-09-14), Conjecture 5.1, Section 5, and Remark 2.1. The conjecture and source’s isoclinic-only Proposition 5.11 were inspected in full source text; the conjecture page was visually inspected. https://arxiv.org/abs/1507.02806v2
+- Original OWR2015/39, PDF pages 33–35; page 35 was visually re-inspected and confirms that the assertion proposes dropping basicness. https://doi.org/10.4171/owr/2015/39
+- Viehmann, *Moduli spaces of p-divisible groups*, arXiv:math/0502320v3 (2007-04-27), Sections 3–4, especially Theorem 4.11 and Lemmas 4.12–4.13. Fresh full PDF obtained; pages 11–12 rendered and visually inspected. The cyclic formula has mixed-slope pair terms. https://arxiv.org/abs/math/0502320
+- Görtz–He–Nie, *Basic loci of Coxeter type with arbitrary parahoric level*, Canadian Journal of Mathematics 76(1) (2024), published online 2022. The official publisher page’s introduction explicitly fixes the basic element; the theorem concerns Coxeter type. This does not settle the present nonbasic assertion. https://doi.org/10.4153/S0008414X22000608
+- Shimada, *The Ekedahl–Oort stratification and the semi-module stratification*, arXiv:2309.03371; official abstract and publisher theorem scope checked. It compares these stratifications in the superbasic case. https://arxiv.org/abs/2309.03371
+- Shimada, *On J-strata with Parahoric Stabilizers in Affine Deligne-Lusztig Varieties*, arXiv:2606.03062v1 (2026-06-02). Fresh full PDF obtained, introduction and Section 4.1 read. Page 16 explicitly qualifies the a=1 single-orbit result as the basic case and cites Chen–Viehmann Proposition 5.11. Its main results concern basic loci. This is positive current scope evidence, not a nonbasic resolution. https://arxiv.org/abs/2606.03062
+- Li, *On the geometry of Certain Non-Basic Affine Deligne-Lusztig Varieties*, arXiv:2605.30929v2 (2026-06-15). Fresh full PDF obtained; introduction/main theorems and full-text term search checked. This is genuinely nonbasic work about reduction-to-Levi morphisms and affine-space fibers. It does not state the a-number-one orbit assertion; full-text searches found no a-number/a-invariant terminology or Chen–Viehmann reference. No inference from affine-space fibers to equality of f_M strata is made. https://arxiv.org/abs/2605.30929v2
+
+Queries included combinations of Chen, Viehmann, Conjecture 5.1, a-number, a-invariant, J-stratification, nonbasic/non-basic, and the source identifier 1507.02806. Broad lexical searches returned numerous unrelated hits; they were not treated as evidence. One official DOI open returned an internal error; the lowercase DOI publisher result succeeded and its text was inspected. The explicit v3 abstract URL for Viehmann returned an internal error, but the full PDF clearly identifies itself as v3 on its first page.
