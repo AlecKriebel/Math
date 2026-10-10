@@ -1,0 +1,85 @@
+--- a/REPORT.md
++++ b/REPORT.md
+@@ -62,11 +62,11 @@
+ \[
+ A(C+H)=A(C)+2V(C,H)+A(H).
+ \]
+ Here \(A\) is area. The two terms in (2.1) have degrees one and two, respectively. Thus the original assumptions imply continuity in this standard domain, but do not impose a single homogeneity degree. If \(\psi\) is even then \(H\) may be chosen centrally symmetric. The proofs below also apply directly to any valuation (2.1), so their geometric content does not depend on re-establishing the general classification from scratch.
+ 
+-For clarity, the classification argument is as follows. Homogeneous decomposition after normalization gives \(\psi=\psi_1+\psi_2\). The identities
++For clarity, the classification argument is as follows. Translation invariance makes the singleton value \(c_0\) independent of the point; monotonicity including the empty set gives \(c_0\ge0\). The function \(\psi=\varphi-c_0\chi\) remains a valuation and remains monotone: subtract the same constant for an inclusion between nonempty sets, and use \(\varphi(C)\ge c_0\) when comparing a nonempty set with the empty set. The continuity used here is Hausdorff continuity on the nonempty compact convex sets, with the empty-set value treated separately. After applying the cited monotone-continuity and continuous homogeneous-decomposition theorems, the degree-zero component vanishes: its value on any nonempty \(C\) is the limit of \(\psi(sC)\) as \(s\downarrow0\), namely the singleton value zero. No evenness hypothesis is used in these steps. Homogeneous decomposition after normalization gives \(\psi=\psi_1+\psi_2\). The identities
+ \[
+ \psi_1(C)=\lim_{s\downarrow0}\frac{\psi(sC)}s,
+ \qquad
+ \psi_2(C)=\lim_{s\to\infty}\frac{\psi(sC)}{s^2}
+ \]
+@@ -267,11 +267,40 @@
+ All terms linear in \(f,g\) integrate to zero by antipodal oddness. All mixed \(f,g\) terms vanish because the supports, including derivative supports, are disjoint. Therefore the two areas agree. The opposite radii are \(R\pm(f+f''+g+g'')\) for one body and \(R\pm(f+f''-g-g'')\) for the other. At every point one of the two bump components vanishes in a neighborhood, so the unordered pairs agree.
+ 
+ The support-function difference \(h_+-h_-=2g\) is not a first harmonic: it is nonzero and vanishes on an open interval. Hence the bodies are not translates. Likewise
+ \(h_-(\theta)-h_+(\theta+\pi)=2f(\theta)\) is not a first harmonic, excluding a point reflection followed by a translation.
+ 
+-It remains to prove the **exact** collar assertion, not merely an asymptotic equality. For each direction \(u(\theta)\), an open angular neighborhood of the opposite pair \(\theta,\theta+\pi\) avoids the support of either \(f\) or \(g\). On both local normal intervals the support patches of \(K_-\) therefore coincide either with those of \(K_+\), or with those of \(-K_+\). At the common difference-boundary point \(x_0=2Ru(\theta)\), the two intersecting copies of either body have a single contact point. Compactness implies that, for translations sufficiently close to \(x_0\), their entire nonempty intersection lies within the chosen contact neighborhoods. Thus its boundary uses only the two corresponding local patches. In the first case the lenses themselves coincide; in the second they agree with the lenses for \(-K_+\), whose perimeters equal those for \(K_+\). This proves equality on an open neighborhood of each \(x_0\). A finite subcover of the compact circle \(\partial DK_+\) yields a uniform collar. Outside the difference body both functions vanish. ∎
++It remains to prove the **exact** collar assertion, not merely an asymptotic equality. Here are the required local and compactness details.
++
++**Local body-germ lemma.** Suppose two smooth strictly convex bodies \(C,E\) have equal support functions on an open normal interval \(J\) around \(u\). Their support points at \(u\) coincide, since \(p_C(\theta)=h_C(\theta)u(\theta)+h_C'(\theta)u'(\theta)\). Denote this point by \(p\). Choose a smaller interval \(J_0\) whose closure lies in \(J\). For every normal \(v\notin J_0\), smoothness at \(p\) implies
++\[
++h_C(v)-\langle p,v\rangle>0,
++\qquad h_E(v)-\langle p,v\rangle>0.
++\]
++Compactness of the complementary normal set makes both gaps uniformly positive. On a sufficiently small ball \(B(p,\rho)\), all these complementary support inequalities are therefore strict. Membership in either body on that ball is decided entirely by the support inequalities for \(v\in J_0\), which coincide. Consequently
++\[
++C\cap B(p,\rho)=E\cap B(p,\rho).
++\]
++The same conclusion holds independently at the opposite support point.
++
++Fix \(\theta\). Antipodal oddness makes each bump's support antipodally invariant. Positive separation of the two closed supports gives paired normal intervals about \(\theta,\theta+\pi\) on which either \(g\) vanishes identically or \(f\) vanishes identically. In the first case set \(C=K_+\); in the second set \(C=-K_+\). Then \(E=K_-\) and \(C\) have equal support functions on both chosen intervals: in the second case
++\(h_{-K_+}(\eta)=h_+(\eta+\pi)=R-f(\eta)-g(\eta)=R-g(\eta)=h_-(\eta)\).
++Their support points \(p,q\) at \(u,-u\) agree. Since both have constant width \(2R\),
++\[
++p-q=2Ru=:x_0.
++\]
++The local body-germ lemma supplies equal membership near \(p\) and near \(q\).
++
++For either \(F=C\) or \(F=E\), the contact intersection \(F\cap(F+x_0)\) consists of the single point \(p\). Indeed its points must lie on the support line at \(u\), and strict convexity makes that face a singleton. For \(x\to x_0\), every nonempty lens \(F\cap(F+x)\) lies in an arbitrarily small prescribed neighborhood of \(p\), and every translated-back lens lies in the corresponding neighborhood of \(q\). To prove this, a contrary sequence \(x_j\to x_0\), \(z_j\in F\cap(F+x_j)\) has a subsequence with \(z_j\to z\), because \(F\) is compact. Closedness implies \(z\in F\) and \(z-x_0\in F\); hence \(z=p\) and \(z-x_0=q\), a contradiction. The assertion is vacuous for empty lenses.
++
++Choose a single neighborhood \(U_\theta\) of \(x_0\) that has this localization property for both \(C,E\). The equal local membership statements at \(p\) and \(q\) then give the exact set equality
++\[
++E\cap(E+x)=C\cap(C+x)\qquad(x\in U_\theta).
++\]
++When \(C=-K_+\), the map \(z\mapsto x-z\) carries \(K_+\cap(K_++x)\) onto \((-K_+)\cap((-K_++x)\); it is a point reflection and preserves perimeter. Thus the two perimeter covariograms agree throughout \(U_\theta\) in both cases, including empty and singleton intersections.
++
++Finally the union of these open neighborhoods contains the compact circle \(\partial DK_+\). A finite subcover exists, and its union has strictly positive distance from that circle to its closed complement (if the complement is empty, choose any \(\delta>0\)). Taking \(\delta\) smaller than this distance gives the asserted uniform collar, on both sides of the circle. Outside the difference body both functions vanish. This argument asserts no equality for translations farther into its interior. ∎
+ 
+ The integral of the full perimeter covariogram also agrees, by (3.1). Nevertheless Proposition 5.1 makes **no claim that the full covariograms agree in the interior**. It is an exact obstruction to a proposed proof from the recovered local and scalar data, not a counterexample to (Q).
+ 
+ The construction makes the obstruction explicit: smooth antipodal curvature patches can be switched across intervals on which the perturbations are flat. Analytic continuation rules out this construction in Theorem 4.3, but not in the arbitrary-body problem.
+ 
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -7,12 +7,12 @@
+   "maximum_turns": 5,
+   "created_at_utc": "2026-10-08T23:10:30.483610+00:00",
+   "files": [
+     {
+       "path": "REPORT.md",
+-      "bytes": 25376,
+-      "sha256": "8fd31d8a4e362825d40feba7a283390257e90ddfeb273d6c17f3fadc9eb06b7c"
++      "bytes": 28553,
++      "sha256": "51eb0a2c80d1b46b959fe6aab793e088d7c4d14f0af639e0c0ab92485505813e"
+     },
+     {
+       "path": "ROUTES.md",
+       "bytes": 5148,
+       "sha256": "fd4f5625770bbd08d7f3001fff4af15c8bf2d08cec3e226add9261e9e4bd5672"
+@@ -33,7 +33,9 @@
+       "sha256": "7169a26fab2cbc3a59cea1139b69357b6bc0fd49d5439862b84eacbb60ab037e"
+     }
+   ],
+   "source_bodies_included": false,
+   "github_mutations": false,
+-  "queue_mutations": false
++  "queue_mutations": false,
++  "reviewed_from_sha256": "8fd31d8a4e362825d40feba7a283390257e90ddfeb273d6c17f3fadc9eb06b7c",
++  "review_scope": "Proof-detail strengthening only; original five-route partial disposition unchanged."
+ }
