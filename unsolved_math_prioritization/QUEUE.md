@@ -613,7 +613,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 602 | 30004319 / OWR-17295-003 | Alternativity of Parameters for $A_2$-Graded Groups | 0.1121 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 603 | 30000583 / OWR-1326-004 | Projective Subspaces with Trivial Normal Bundle in Fano Manifolds | 0.1121 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 604 | 4300001 / AMR-042-0001 | Order of mixing | 0.1121 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
-| 605 | 10400107 / AMR-103-0107 | Problem 5.11 — (C. | 0.1120 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 605 | 10400107 / AMR-103-0107 | Problem 5.11 — (C. | 0.1120 | 5.5 | 3 | unknown | already_solved | 1/5 |  | Verified existing affirmative result: Ishikawa-Tanaka (2024), corrected all-degree natural realization of ordinary quandle cohomology for arbitrary quandles and abelian coefficients; literal Nosaka cone error excluded. Independent audit passed; no novelty claim. |  |
 | 606 | 30000706 / OWR-1460-013 | Four-Value-Sharing Meromorphic Functions with $\psi=1$ | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 608 | 30000750 / OWR-1537-002 | Reduced Length and Mahler-Measure Inequality | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
