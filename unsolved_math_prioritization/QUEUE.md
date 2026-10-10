@@ -1038,7 +1038,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1027 | 20002589 / AIM-PROBABILITY-0031 | A uniform-in-q product-chain cutoff and the Potts lower-bound gap | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1028 | 20002735 / AIM-REPRESENTATION_THEORY-0007 | Fixed vectors as compact-torus distinction | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
 | 1029 | 20003105 / AIM-TOPOLOGY-0193 | The forced length-spectrum max norm and a compatible-geodesic criterion | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
-| 1030 | 2200009 / AMR-021-0009 | Problems Around Polynomials — Conjecture 5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1030 | 2200009 / AMR-021-0009 | Problems Around Polynomials — Conjecture 5 | 0.0900 | 5.5 | 3 | unknown | already_solved | 0/5 |  | Prior solution credited to Leake-Ryder, arXiv:1712.02499v1 Theorem 1.4, Adv. Math. 374 (2020), 107334. Exact finite real constant-coefficient backward-shift target on degree <= m is resolved with zero outputs allowed; nonzero-only convention additionally requires degree(T(F_m)) = m. Independent audit PASS; universal convolution theorem is a credited import. No novelty or formal-proof claim. Public report and audit: attempts/2200009/README.md. |  |
 | 1031 | 2200013 / AMR-021-0013 | Problems Around Polynomials — Conjecture 8 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1032 | 2304003 / AMR-022-4003 | Research Problems in Function Theory — Problem 4.3 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
