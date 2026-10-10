@@ -811,7 +811,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 800 | 30005613 / OWR-14297736-021 | Dense Pure Point Spectrum on Quasi-Conical Domains | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 801 | 30005755 / OWR-14298157-005 | Canonical Decomposition Cones and TF Equivalence | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 802 | 30005902 / OWR-14298370-002 | Vanishing Lie Brackets for Non-Quasitriangular Hopf Algebras | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 803 | 30005995 / OWR-14298587-010 | Continuity of Gradient Distance for Monotone Equations | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 803 | 30005995 / OWR-14298587-010 | Continuity of Gradient Distance for Monotone Equations | 0.0994 | 5.5 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 804 | 30006060 / OWR-14298592-014 | Concordance of an Explicit Pair of Positive Three-Braid Knots | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 805 | 30000120 / OWR-744-003 | Chern-Class Generators for Wonderful Compactifications | 0.0992 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 806 | 30000263 / OWR-1050-014 | Discrete Interaction-Matrix Inequalities in Three Dimensions | 0.0990 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
