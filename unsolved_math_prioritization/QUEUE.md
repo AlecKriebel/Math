@@ -865,7 +865,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 854 | 2303030 / AMR-022-3030 | Research Problems in Function Theory — Problem 3.30 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 855 | 2305007 / AMR-022-5007 | Research Problems in Function Theory — Problem 5.7 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 856 | 2307028 / AMR-022-7028 | Research Problems in Function Theory — Problem 7.28 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 857 | 2307042 / AMR-022-7042 | Research Problems in Function Theory — Problem 7.42 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 857 | 2307042 / AMR-022-7042 | Research Problems in Function Theory — Problem 7.42 | 0.0975 | 6.0 | 3 | unknown | claimed_solved | 1/5 |  | Complete annular counterexample candidate to equality along a Green line: for D={1<abs(z)<e}, a=sqrt(e), the normalized minimal Martin kernel at -1 lies strictly below the one-sided Harnack envelope throughout a punctured neighborhood of a. Two independent AI mathematical reviews accept the unchanged proof. One substantive approach; unrefereed, novelty and current worldwide status unverified. No claim about isolated contact farther away. See attempts/2307042/README.md. |  |
 | 858 | 2780 / KP-2.32 | Kirby Problem 2.32 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 859 | 2781 / KP-2.33 | Kirby Problem 2.33 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 860 | 2844 / KP-3.46 | Kirby Problem 3.46 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
