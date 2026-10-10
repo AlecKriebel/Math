@@ -924,7 +924,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 913 | 2839 / KP-3.41 | Kirby Problem 3.41 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 914 | 2851 / KP-3.53 | Kirby Problem 3.53 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 915 | 2868 / KP-3.70 | Kirby Problem 3.70 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 916 | 2875 / KP-3.77 | Kirby Problem 3.77 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 916 | 2875 / KP-3.77 | Kirby Problem 3.77 | 0.0960 | 5.5 | 3 | unknown | unsolved | 4/5 |  |  |  |
 | 917 | 2894 / KP-4.18 | Kirby Problem 4.18 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 918 | 2910 / KP-4.34 | Kirby Problem 4.34 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 919 | 2928 / KP-4.52 | Kirby Problem 4.52 | 0.0960 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
