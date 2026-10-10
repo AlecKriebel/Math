@@ -191,7 +191,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 182 | 30002603 / OWR-12986-001 | Linear Segments in Optimal-Path Shape Functions | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 183 | 30002720 / OWR-13352-004 | Marginal Limits for Markov-Source Selection Processes | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 183 | 30002720 / OWR-13352-004 | Marginal Limits for Markov-Source Selection Processes | 0.1950 | 5.0 | 3 | 2014 | claimed_solved | 1/5 |  | 2026-09-30: Complete counterexample to universal fixed-rank marginal convergence: an explicit nonboundary continuity rank has non-tight sqrt(n) selection-cost marginals under every deterministic centering. Separate source, uniform cost bound and binomial-limit audit passed; 16642 author and 44602 independent controls. Known boundary-rank obstruction credited; no almost-everywhere classification or historical-priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/166. |  |
 | 184 | 30002879 / OWR-13681-013 | Hochschild-Cohomology Lie Structure of a Stratified Algebra | 0.1945 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 185 | 30003069 / OWR-14221-005 | Plabic Newton–Okounkov Bodies and FFLV Polytopes | 0.1940 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 186 | 4800017 / AMR-047-0017 | Multiple ergodic averages — Problem 17 | 0.1940 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
