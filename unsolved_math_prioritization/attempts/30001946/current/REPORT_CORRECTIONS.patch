@@ -1,0 +1,58 @@
+--- original/authored/REPORT.md
++++ REPORT_CORRECTED.md
+@@ -4,13 +4,13 @@
+ 
+ ## Disposition
+ 
+-**The full methodological question remains unresolved in this investigation.** Five materially distinct construction routes have been examined. This report gives an explicit sufficient geometric criterion, its proof and product-neighborhood consequences, and an explicit counterexample to two tempting universal intermediate claims. None is presented as a new theorem of the literature, and none is a counterexample to Friedman's question. Independent verification has not yet been performed.
++**The full methodological question remains unresolved in this investigation.** Five materially distinct construction routes have been examined. This report gives an explicit sufficient geometric criterion, its proof and product-neighborhood consequences, and an explicit counterexample to two tempting universal intermediate claims. None is presented as a new theorem of the literature, and none is a counterexample to Friedman's question. The accompanying independent audit accepts the corrected scoped statements below; the original general target remains unresolved.
+ 
+ The strongest positive statement below is a construction for a restricted class. The strongest negative statement is that removing a neighborhood of the entire genuine singular locus and simply coning the resulting manifold boundary can change the Witt signature. In the example, the lost middle class cannot even be represented in the regular locus.
+ 
+ ## 1. Exact target and conventions
+ 
+-Given any compact closed oriented PL stratified pseudomanifold X of dimension n satisfying the rational Witt condition, construct a compact oriented PL rational Witt space W of dimension n+1 with collared boundary X disjoint union -Y, where Y has only finitely many genuine singular points. Spaces need not be connected or normal. There are no codimension-one singular strata. Orientations are orientations of regular strata, with the usual boundary convention.
++Given any compact closed oriented PL stratified pseudomanifold X of dimension n satisfying the rational Witt condition, construct a compact oriented PL rational Witt space W of dimension n+1 with collared boundary X disjoint union -Y, where Y has only finitely many genuine singular points. Spaces need not be connected or normal. There are no codimension-one singular strata. Orientations are orientations of regular strata, with the usual boundary convention. In the cap constructions the orientations of M and N are retained, and each cone is oriented to cancel the induced orientation of its attaching boundary.
+ 
+ Here the Witt condition is the vanishing of lower-middle intersection homology in the middle degree of every even-dimensional link of an odd-codimensional singular stratum. Write IH for lower-middle intersection homology with Q coefficients, and cL for a closed cone when used in compact constructions. The boundary is not treated as an interior singular stratum.
+ 
+@@ -136,9 +136,9 @@
+ 
+ Use the explicit geometric pinch construction of [S83, II.3, pp.1076–1078]: collapse the middle slice E of a bicollar to a point and attach a collar to the target of the resulting mapping cylinder. Its outgoing boundary is J=Y union_v T, where the two cone vertices are identified. It has an explicit finite triangulation.
+ 
+-The only new potentially restrictive interior link is the suspension of E with its two suspension vertices identified. Its normalization is the suspension Sigma E. In dimension 2m the group IH_m(Sigma E) vanishes: allowable m-cycles avoid the suspension vertices, move to the equatorial cylinder, and bound allowable cones to either vertex. Normalization does not change traditional-perversity intersection homology. The vertex line in the outgoing collar has codimension 2m, so requires no extra vanishing. All other links are inherited from X. Thus the trace is Witt. This checks the actual geometry, rather than inferring a bordism from equality of invariants.
+-
+-If one wants disjoint caps, separate the identified vertices by a second trace. Start with V=Y disjoint-union T, form the mapping cylinder of the map identifying just their cone vertices, and attach a target collar. Near the merging event its link is the wedge of the suspensions of the two incoming cone links; its normalization separates these suspension pieces (and their connected components if needed). Each has vanishing IH_m by the same calculation. Away from the event the merged vertex line has odd-dimensional normal link, and the remaining local models are products of the original ones. Hence this is an oriented collared Witt bordism from V to J. Reverse it and concatenate. We obtain a geometric bordism from X to Y disjoint-union T.
++The only new potentially restrictive interior link is the suspension of E with its two suspension vertices identified. It has the same normalization as the suspension Sigma E. More precisely, if E is the disjoint union of its connected components E_a, their common normalization is the disjoint union of the suspensions Sigma E_a. Sigma E itself need not be normal when E is disconnected. In dimension 2m the group IH_m(Sigma E) vanishes: allowable m-cycles avoid the suspension vertices, move to the equatorial cylinder, and bound allowable cones to either vertex. Normalization does not change traditional-perversity intersection homology. The pinch event is a point of codimension 2m+1 and hence requires precisely this vanishing for its 2m-dimensional link. The vertex line in the outgoing collar has codimension 2m, so requires no extra vanishing. All other links are inherited from X. Thus the trace is Witt. This checks the actual geometry, rather than inferring a bordism from equality of invariants.
++
++If one wants disjoint caps, separate the identified vertices by a second trace. Start with V=Y disjoint-union T, form the mapping cylinder of the map identifying just their cone vertices, and attach a target collar. Write E_Y and E_T for the two copies of E, and place the merging event at time 0. The local trace is the quotient of (cE_Y times (-epsilon,epsilon)) disjoint-union (cE_T times (-epsilon,epsilon)) which identifies only the two apex rays at times t>=0. Its link is (Sigma E_Y) wedge (Sigma E_T), with only the two outgoing suspension poles identified; the incoming poles remain distinct. This quotient has a finite PL triangulation by triangulating the two product cones and identifying the common ray. Its normalization is the disjoint union of Sigma E_a over the connected components of E_Y and E_T. Each has vanishing IH_m by the same calculation. Away from the event the merged vertex line has odd-dimensional normal link, and the remaining local models are products of the original ones. Hence this is an oriented collared Witt bordism from V to J. Reverse it and concatenate. We obtain a geometric bordism from X to Y disjoint-union T.
+ 
+ ### Proof, part C: remove the residual component
+ 
+@@ -148,7 +148,7 @@
+ 
+ Suppose in the proposition that N is a finite disjoint union of product neighborhoods B_i×cL_i, with B_i and L_i closed oriented PL manifolds and the cone factors Witt. Then hypothesis4 holds.
+ 
+-Indeed, the boundary inclusion L_i→cL_i induces a surjection H_j(L_i;Q)→IH_j(cL_i;Q) in every degree: the cone formula is the identity below its cutoff and zero above it. The Künneth formula for a product with the manifold B_i therefore makes
++Indeed, for dim(L_i)>=1, the boundary inclusion L_i→cL_i induces a surjection H_j(L_i;Q)→IH_j(cL_i;Q) in every degree: the cone formula is the identity below its cutoff and zero at and above it. If a zero-dimensional L_i is allowed, the hypotheses that cL_i is a one-dimensional Witt pseudomanifold with no codimension-one singularities and boundary exactly L_i force the interval case, with two link points and a regular apex. Then H_0(L_i)→H_0(cL_i) is surjective directly, and all higher groups vanish; one must not apply the positive-dimensional cone cutoff formula at degree zero in that case. The Künneth formula for a product with the manifold B_i therefore makes
+ 
+ H_m(B_i×L_i;Q) → IH_m(B_i×cL_i;Q)
+ 
+@@ -174,7 +174,7 @@
+ 
+ ## 7. What has and has not been established
+ 
+-Established within the authored arguments, subject to independent review:
++Established in the corrected scoped arguments, as detailed in the accompanying independent audit:
+ 
+ - The standard direct-cone range, including all odd dimensions.
+ - A precise sufficient condition producing a finite explicit isolation bordism, with all new link tests and collars described.
+@@ -186,7 +186,7 @@
+ - A universal geometric construction for arbitrary compact oriented PL Q-Witt spaces.
+ - A counterexample to the original target; known bordism existence is respected.
+ - Novelty of any partial statement or example.
+-- An independent audit or full audit of the cited literature.
++- A full audit of the cited literature. The accompanying independent audit checks the scoped arguments and the specifically identified source passages only.
+ 
+ The five construction routes are stopped. The exact unresolved step is the geometric treatment of a capped singular neighborhood T with nonzero middle intersection homology, allowing twisted link bundles and higher-depth links while preserving the correct Witt class and decreasing singular complexity. An abstract choice of an isolated representative of w(T) is not the missing geometric operation.
+ 
