@@ -1,0 +1,90 @@
+{
+  "version": "1-reconstructed",
+  "checked_at": "2026-10-06T07:06:14.609881+00:00",
+  "author_replay_status": "PASS",
+  "independent_review_status": "NOT_YET_PERFORMED",
+  "runs": [
+    {
+      "command": "python verify.py",
+      "returncode": 0,
+      "result": {
+        "result": {
+          "boxes": 6,
+          "candidate_2d_minus_1_refuted": true,
+          "continuous_deletion_certificates": 6,
+          "dimension": 3,
+          "exact_hit_certificates": 30,
+          "minimal_pinning": true,
+          "pairwise_disjoint": true,
+          "unique_global_transversal": true
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "command": "python test_verifier.py",
+      "returncode": 0,
+      "result": {
+        "continuous_intervals_not_samples": true,
+        "modes": [
+          "normal",
+          "-O"
+        ],
+        "relocation": "PASS",
+        "semantic_or_input_mutations_rejected": 21,
+        "status": "PASS",
+        "tested_dimensions": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          12,
+          20
+        ]
+      }
+    },
+    {
+      "command": "python -O verify.py",
+      "returncode": 0,
+      "result": {
+        "result": {
+          "boxes": 6,
+          "candidate_2d_minus_1_refuted": true,
+          "continuous_deletion_certificates": 6,
+          "dimension": 3,
+          "exact_hit_certificates": 30,
+          "minimal_pinning": true,
+          "pairwise_disjoint": true,
+          "unique_global_transversal": true
+        },
+        "status": "PASS"
+      }
+    },
+    {
+      "command": "python -O test_verifier.py",
+      "returncode": 0,
+      "result": {
+        "continuous_intervals_not_samples": true,
+        "modes": [
+          "normal",
+          "-O"
+        ],
+        "relocation": "PASS",
+        "semantic_or_input_mutations_rejected": 21,
+        "status": "PASS",
+        "tested_dimensions": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          12,
+          20
+        ]
+      }
+    }
+  ],
+  "mathematical_claim": "Explicit minimal pinning lower bound 3d-3; broader problem unresolved here.",
+  "scope": "Tests check certificate implementation. The general theorem and conditional first-order theorem are proved in prose and still require independent review."
+}

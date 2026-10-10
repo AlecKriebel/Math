@@ -827,7 +827,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 816 | 30000801 / OWR-1591-003 | Strong Quantization for Fourth-Order Navier Problems | 0.0988 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 817 | 30001006 / OWR-2045-003 | Sharp Ricci-Flow-Invariant Curvature Cones | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 818 | 30001054 / OWR-2090-003 | Realizability of Allowable Double-Permutation Sequences | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 819 | 30001066 / OWR-2090-019 | Helly Numbers for Isolated Line Transversals | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 819 | 30001066 / OWR-2090-019 | Helly Numbers for Isolated Line Transversals | 0.0986 | 5.5 | 3 | 2008 | unsolved | 5/5 |  |  |  |
 | 820 | 4600024 / AMR-045-0024 | Extension of a block code II | 0.0986 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
 | 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
