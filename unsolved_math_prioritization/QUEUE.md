@@ -1042,7 +1042,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1031 | 2200013 / AMR-021-0013 | Problems Around Polynomials — Conjecture 8 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1032 | 2304003 / AMR-022-4003 | Research Problems in Function Theory — Problem 4.3 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1033 | 2304028 / AMR-022-4028 | Research Problems in Function Theory — Problem 4.28 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1034 | 2305005 / AMR-022-5005 | Research Problems in Function Theory — Problem 5.5 | 0.0900 | 6.0 | 3 | unknown | unsolved | 5/5 |  | Accepted qualified partials: slow polar-complement domain geometry; upper-envelope-only obstruction conditional on the attributed Fernandez theorem. Actual-image inradius limit remains unproved; no onto theorem claimed. Bloch/Cauchy, onto-density gap, parabola and lacunary controls audited. [Accepted audit](attempts/2305005/ACCEPTANCE.md). |  |
 | 1035 | 2305029 / AMR-022-5029 | Research Problems in Function Theory — Problem 5.29 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1036 | 2306113 / AMR-022-6113 | Research Problems in Function Theory — Problem 6.113 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1037 | 2508 / EP-1133 | Erdős Problem #1133 | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
