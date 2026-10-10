@@ -200,7 +200,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
-| 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | unsolved | 2/5 |  | 2026-09-30: Separate review passed strong expected-supremum Lq convergence for bounded locally Lipschitz nonlinear forward maps, including the exact initial-moment endpoint. General source target remains unresolved; the smooth globally Lipschitz example only defeats a quadratic moment estimate and is not a divergence counterexample. 1954 author and 3270 independent controls; exact scheme and prior conditional results retained. Draft PR: https://github.com/AlecKriebel/Math/pull/178. |  |
 | 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
