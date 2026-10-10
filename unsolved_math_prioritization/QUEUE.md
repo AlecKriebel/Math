@@ -1018,7 +1018,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1007 | 10300039 / AMR-102-0039 | Hyperbolic geometry — Question 10.1 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1008 | 10300043 / AMR-102-0043 | Hyperbolic geometry — Question 10.5 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1009 | 10400013 / AMR-103-0013 | Problem 1.13 — (A. | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1010 | 10400145 / AMR-103-0145 | Conjecture 7.30 — (K. | 0.0900 | 6.0 | 3 | unknown | claimed_solved | 1/5 |  | Accepted literal disproof of Ohtsuki Conjecture 7.30 (ordinary Habiro completion): third finite quotient forces affine first coefficients in rank, contradicted by Poincare values 0, -6, -24. Final v3 and two independent full mathematical/source audits; no mathematical correction. No novelty claim; modified completions, rank renormalizations and fixed-Lie-algebra Conjecture 7.29 excluded. [Proof and audits](attempts/10400145/README.md). |  |
 | 1011 | 10800003 / AMR-107-0003 | Problem 1C — Are there more refined restrictions to the collision of critical values? | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1012 | 11000112 / AMR-109-0112 | Problem 2.7 — Suppose that ta1ta2··· tan = 1 in Modg, where n≥ 1. | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1013 | 11000156 / AMR-109-0156 | Question 2.5 — Given two factorizations of the boundary twist δ as a product of positive Dehn twists along nonseparating curves in M… | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
