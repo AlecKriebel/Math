@@ -1,0 +1,1783 @@
+1                       Minimum Bell-Setting Complexity
+2                      for Qubit POVM–PVM Separation
+3                                                 Alec Kriebel
+                                            Independent Researcher
+                                             me@aleckriebel.com
+                                          https://aleckriebel.com/
+
+4                                                  July 2026
+
+
+5                                                   Abstract
+6            Vértesi and Bene exhibited a 3 × 2 Bell scenario in which qubit positive-operator-valued
+7         measurements (POVMs) outperform qubit projection-valued measurements (PVMs). We prove
+8         the matching setting lower bound. For arbitrary finite, input-dependent output alphabets, the
+9         shared-randomness convex hulls of bipartite qubit-POVM and qubit-PVM behaviors are equal
+10        when both parties have two inputs. Equivalently, no two-input linear Bell functional separates
+11        the two convexified sets. We also give a rational 3×2 functional, an exact qubit-POVM strategy,
+12        and a global analytic qubit-PVM upper bound with a strict exact gap. Hence 3 × 2 is the
+13        minimum input architecture, up to exchanging the parties. The equality proof combines a one-
+14        binary-party Lorentz-cone simulation, an extremal binary–ternary reduction, a physically exact
+15        Lorentz incidence manifold, finite-POVM duality, and a rank trichotomy based on the incidence
+16        second variation. The result concerns convexified behavior sets; it does not assert equality of
+17        the raw nonconvex strategy images or same-state simulation.
+
+18   Main Theorem. For every finite input-dependent output architecture (A0 , A1 ; B0 , B1 ),
+
+19                                 conv QPOVM
+                                         2    (A, B) = conv QPVM
+                                                             2   (A, B).
+
+20   For the rational 3 × 2 Bell functional in equation (1),
+                                                               √
+                                         √16          √   3 4+3 2
+21                   βPOVM ≥ L0 := 20 2 +    > U := 20 2 + +      ≥ βPVM .
+                                          25              5  250
+22   Consequently, up to exchanging the parties, three inputs for one party and two for the other are
+23   necessary and suﬀicient for a strict fixed-qubit POVM–PVM separation by a linear Bell functional.
+
+24   Throughout, “m × n” counts Bell inputs (measurement settings), not measurement outcomes.
+
+
+25   1   Introduction
+26   A positive-operator-valued measurement (POVM) is more general than a projection-valued measure-
+27   ment (PVM) on a fixed Hilbert space. Naimark dilation represents a POVM projectively only after
+28   adding degrees of freedom, so it does not preserve a fixed local dimension. Bell experiments there-
+29   fore offer an operational question: how many measurement inputs are needed before generalized
+30   measurements on local qubits generate correlations unavailable to projective qubit measurements?
+
+
+                                                        1
+31   This belongs to the broader study of Bell nonlocality and dimension-constrained quantum behavior
+32   [1, 2].
+33       Gisin asked whether some Bell inequality and quantum state can require nonprojective mea-
+34   surements for optimal violation, noting that binary outcomes cannot furnish such an example [3].
+35   Vértesi and Bene answered that existence question for two qubits using three inputs on Alice and
+36   two on Bob [4]; subsequent work refined that family [5], and related device-independent construc-
+37   tions certify nonprojective qubit measurements with larger input architectures [6]. These results
+38   do not settle the two-input behavior-set question.
+39       Two recent results approach nearby boundaries from different directions. Cerf and Ollivier de-
+40   velop a second-order perturbative method for (n, 2, d) Bell scenarios near deterministic correlations
+41   and propose, without resolving, a route to distinguish raw fixed-dimensional POVM and PVM
+42   correlation sets [7]. Their proved qubit result concerns local dichotomic geometry and neither es-
+43   tablishes nor implies the global, convexified arbitrary-output equality proved here. Panahi et al.,
+44   using an intermediate reduction attributed to Masanes together with Schmidt compression, show
+45   that when one party has two binary settings, every bipartite convexly extremal quantum correlation
+46   admits a two-qubit realization even if the other party has arbitrary settings and outcomes [8]. That
+47   is a Hilbert-space dimension theorem, not a projectivization of the arbitrary-output measurements.
+48   The one-binary-party theorem below instead supplies a common PVM mixture of the complete
+49   fixed-qubit behavior.
+50       To our knowledge, equality of the shared-randomness-convexified fixed-qubit POVM and PVM
+51   behavior sets for all bipartite two-input architectures with finite, input-dependent output alphabets,
+52   and the resulting 3 × 2 minimum-input classification, were not previously known. It also differs
+53   from operator-level projective simulability of individual POVMs [9, 10]: a Bell behavior may admit
+54   a projective realization using a different state even when the original local POVM is not itself a
+55   mixture of PVMs.
+56       Strong reductions are known when every measurement is dichotomic [11, 12]; genuine ternary
+57   effects are precisely what those arguments do not address. They also make exhaustive PVM con-
+58   ventions essential. A published ternary-measurement claim was later corrected after a qubit PVM
+59   with a zero effect was found to attain the same value [13, 14]. We therefore retain zero projectors,
+60   deterministic inputs, every support pattern, and stochastic postprocessing throughout.
+
+61   Contributions
+62   We work throughout with local Hilbert-space dimension at most two and with shared-randomness
+63   convexification. Our results are:
+
+64   1. An explicit rational 3 × 2 Bell functional has an exact algebraic qubit-POVM strategy above a
+65      global analytic upper bound for all qubit-PVM strategies (theorem 3.1).
+66   2. If one party has binary outcomes on both of its two inputs, every qubit POVM behavior is a
+67      common convex mixture of complete qubit-PVM behaviors (theorem 4.2).
+68   3. Any remaining strict two-input separator reduces to a pure entangled strategy with one binary
+69      PVM and one ternary rank-one POVM per party (theorem 4.5).
+70   4. The residual architecture cannot strictly exceed the PVM support function (theorem 9.3). The
+71      proof treats every smooth and singular rank of an exact Lorentz incidence model.
+72   5. Consequently 3 × 2 is the minimum input architecture, up to exchanging the parties (corol-
+73      lary 9.4).
+
+
+                                                       2
+                                                one additional input
+                                             reveals a strict advantage
+                            2 × 2 inputs                                   3 × 2 inputs
+                            POVM    PVM                                    PVM    POVM
+                           Q2    = Q2                                     Q2   ⊊ Q2
+
+                  arbitrary finite declared outputs              explicit rational Bell functional
+
+     Figure 1: The minimum input threshold at fixed local dimension two. Equality means equality
+     after shared-randomness convexification for each fixed finite declared-output architecture.
+
+     Table 1: The earlier 3×2 separator and the present exact classification. Both use the heterogeneous
+     output architecture (2, 2, 3)-by-(2, 2).
+      Feature                Vértesi–Bene [4]                       Present work
+      Role                   Establishes fixed-qubit POVM           Proves arbitrary-output convexified
+                             advantage at 3 × 2                     equality at 2 × 2, then combines it with
+                                                                    an exact 3 × 2 witness
+      Bell coeﬀicients       Algebraic ICH3 family                  Rational functional
+      Unrestricted-state     Numerical optimization supported       Analytic upper bound covering every
+      PVM comparison         by an NPA upper bound for the          two-qubit state and every PVM support
+                             displayed parameter choice
+      Global optimum         No                                     No; L0 is a lower bound and U an upper
+      claimed                                                       bound
+      Setting minimality     Not addressed                          3 × 2, up to party exchange
+
+
+74       The equality is not an operator identity between POVMs and PVMs, nor does it assert simula-
+75   tion on the same state. It is an equality of convex behavior sets. The distinction is central.
+
+76   Proof roadmap
+77   The exact separation combines a CHSH locking term with a three-state discrimination task. For the
+78   equality theorem, convex separation first turns any counterexample into a global Bell maximizer.
+79   A Lorentz-cone circuit argument handles every case in which one party is binary. A common-span
+80   filtering perturbation and extremal-POVM dimension bound reduce all other counterexamples to
+81   one binary and one ternary measurement per party.
+82        In the residual architecture, the five local effects form a unique binary-versus-ternary circuit.
+83   Lorentz coordinates describe the complete strategy by a 4 × 4 probability block P and a four-
+84   parameter metric g, subject to five quadratic null equations. Finite POVM duality makes every
+85   determinant multiplier strictly positive at a hypothetical strict separator. The constrained second
+86   variation then has ambient inertia (4, 12). If the metric differential has rank at least two, dimension
+87   alone forces an uphill direction. Rank one contradicts positivity through an exact projective-fiber
+88   theorem, while rank zero has an explicit deterministic decomposition.
+
+
+89   2   Model and convexified behavior sets
+90   Let X = Y = {0, 1} unless stated otherwise. Each input has a finite declared output alphabet Ax
+91   or By , which may depend on the input.
+
+92   Definition 2.1 (Fixed-qubit behavior). A single fixed-qubit POVM strategy consists of Hilbert
+
+                                                         3
+ 93   spaces HA , HB of dimensions at most two, a density operator ρ on HA ⊗ HB , and effects
+                                      X                             X y
+ 94                        Max ≥ 0,       Max = IA ,     Nby ≥ 0,       Nb = I B .
+                                         a∈Ax                                       b∈By
+
+ 95   It produces                                                       
+ 96                                       p(a, b|x, y) = Tr ρ(Max ⊗ Nby ) .
+ 97   The resulting set is denoted QPOVM
+                                    2    (A, B).
+ 98      A PVM strategy requires all effects in each measurement to be mutually orthogonal projections.
+ 99   Zero projections are permitted. Therefore a qubit PVM with arbitrarily many declared labels has at
+100   most two nonzero effects. No ancillary system or Naimark dilation may increase a local dimension
+101   above two.
+102      We denote the shared-randomness hulls by
+                    POVM                                                 PVM
+103             Q2         (A, B) := conv QPOVM
+                                           2    (A, B),                 Q2     (A, B) := conv QPVM
+                                                                                               2   (A, B).
+
+104   Local stochastic postprocessing is included on the PVM side.
+105      The raw sets QPOVM
+                          2      and QPVM
+                                      2    are strategy images and need not be convex: a single strategy
+106   has no external shared-randomness register. Their barred versions are convex hulls and do permit
+107   a common classical variable selecting the state and all local measurements simultaneously. For a
+108   Bell tensor c, define the support values
+
+109                                βX (c) := max hc, pi,              X ∈ {POVM, PVM}.
+                                                  X
+                                             p∈Q2
+
+110   Linearity gives the same maximum over the corresponding raw set, but equality of all support
+111   values determines only the convex hulls, not the raw sets.
+112   Lemma 2.2 (Convexification and postprocessing). For a linear Bell functional, shared randomness
+113   and stochastic postprocessing do not increase the optimum beyond one deterministic projective
+114   component.
+115   Proof. Linearity gives                          !
+                                        X                     X
+116                                 F        q λ pλ       =       qλ F(pλ ) ≤ max F(pλ ).
+                                                                                λ
+                                         λ                    λ
+117   A finite stochastic map is a convex combination of deterministic maps. Absorb all deterministic
+118   choices into the shared variable. A deterministic map merges mutually orthogonal projectors as-
+119   signed to the same displayed label and inserts zero projectors for unused labels, hence remains a
+120   declared- output PVM.
+
+121       For fixed finite alphabets, all strategy spaces above are compact. Indeed, density matrices and
+122   tuples of effects form closed bounded sets in finite-dimensional matrix spaces, and the Born map
+123   is continuous. The convex hull of a compact subset of a finite-dimensional aﬀine space is compact:
+124   aﬀine dependence reduces every convex combination to at most m + 1 points in aﬀine dimension
+125   m.
+126   Lemma 2.3 (Nearest-point separation). Let P be a compact convex subset of a finite-dimensional
+127   Euclidean space. If q ∈
+                            / P and p0 minimizes kq − pk over p ∈ P, then c = q − p0 satisfies
+
+128                                                       c · q > sup c · p.
+                                                                  p∈P
+
+
+                                                                  4
+129   Proof. For p ∈ P, differentiate kq −p0 −t(p−p0 )k2 at t = 0+ . Minimality gives (q −p0 )·(p−p0 ) ≤ 0,
+130   and strictness follows from q 6= p0 .
+
+131   Proposition 2.4 (Convex hulls and Bell support functions). For fixed finite alphabets,
+                   POVM         PVM
+132               Q2         = Q2       ⇐⇒     βPOVM (c) = βPVM (c) for every real Bell tensor c.
+
+133   This equivalence makes no claim that QPOVM
+                                            2    = QPVM
+                                                    2   .
+134   Proof. Equality of the convex sets implies equality of their maxima under every linear functional.
+135   Conversely, if the compact convex sets differed, a point in one but not the other would, by lemma 2.3,
+136   yield a linear functional with unequal maxima. Finally, a linear functional has the same maximum
+137   on a compact set and on its convex hull.
+                                                                                   POVM         PVM
+138   Remark 2.5 (Notation for arbitrary outputs). The shorthand Q2             (2, 2) = Q2 (2, 2) means
+139   an equality schema: the equality holds separately for every choice of finite (A0 , A1 ; B0 , B1 ). It is
+140   not an identification of behavior vectors living in different ambient spaces.
+
+
+141   3    An exact rational 3 × 2 separation
+142   For this section take Alice inputs x = 0, 1, 2, Bob inputs y = 0, 1, Alice labels a = 0, 1, 2, and Bob
+143   labels b = 0, 1. Define signs
+
+144                                 α0 = α2 = 1,    α1 = −1,          β0 = 1,     β1 = −1
+
+145   and correlators                                 X
+146                                          Exy =          αa βb p(a, b|x, y).
+                                                      a,b
+
+147   For x = 0, 1, Alice’s labels 0 and 2 have identical coeﬀicients and may be deterministically coarse-
+148   grained. Thus the common three-label notation is equivalent to the heterogeneous architecture
+149   (2, 2, 3)-by-(2, 2). Set
+
+                                B(p) = 10(E00 + E01 + E10 − E11 )
+150                                       3            3              4                                    (1)
+                                       + p(0, 0|2, 0) + p(1, 1|2, 0) + p(2, 0|2, 1).
+                                          5            5              5
+151   For this declared-output architecture, write
+
+152                          βPOVM (B) :=     sup     B(p),        βPVM (B) :=      sup B(p).
+                                               POVM                                  PVM
+                                            p∈Q2                                  p∈Q2
+
+153   Theorem 3.1 (Exact fixed-qubit separation). For the rational functional (1),
+                                                                         √
+                                     √     16           √      3 4+3 2
+154            βPOVM (B) ≥ L0 := 20 2 +       > U := 20 2 + +               ≥ βPVM (B).
+                                           25                  5      250
+155   The certified gap is                             √
+                                                 3(2 − 2)
+156                                     L0 − U =            > 0.
+                                                    250
+157   These are an attained POVM lower bound and a global PVM upper bound; neither is asserted to be
+158   the corresponding exact optimum.
+
+                                                              5
+159   3.1   The simple exact strategy
+160   Let X, Z be Pauli matrices and                               √
+161                                          |Φ+ i = (|00i + |11i)/ 2.
+162   Bob uses B0 = Z, B1 = X. Alice uses
+                                                √                          √
+163                                A0 = (Z + X)/ 2,           A1 = (Z − X)/ 2
+164   for her first two binary measurements, with a zero third label. Her final measurement is
+                                           M0 = (17I − 8X + 15Z)/50,
+165                                        M1 = (17I − 8X − 15Z)/50,
+                                           M2 = (16I + 16X)/50.
+166   The rank-one factorizations
+                                                                                 
+                           1 4                        1 1                         8 1
+167                M0 =           (4, −1),       M1 =       (1, −4),         M2 =       (1, 1)
+                          25 −1                       25 −4                       25 1
+168   prove positivity. Direct addition of the displayed matrices gives
+169                                              M0 + M1 + M2 = I,
+170   which proves normalization separately. Their nonzero eigenvalues are 17/25, 17/25, 16/25, so the
+171   measurement is not a PVM.
+172       The identity
+                                                         1
+173                                    hΦ+ |R ⊗ S|Φ+ i = Tr(RT S)
+                                                         2
+                        √
+174   gives CHSH value 2 2 and
+                                                                                   8
+175                                p(0, 0|2, 0) = p(1, 1|2, 0) = p(2, 0|2, 1) =      .
+                                                                                  25
+176   Thus the simpler value
+                                                         √    16
+177                                               L0 = 20 2 +
+                                                              25
+178   already exceeds U , since                             √
+                                                      3(2 − 2)
+179                                        L0 − U =              > 0.
+                                                         250
+180      At the ideal point the auxiliary term is a state-discrimination problem with
+                                   3                      3                 1
+181                         W0 =      (I + Z),    W1 =      (I − Z),    W2 = (I + X).
+                                   20                    20                 5
+182   The dual operator
+                                                      8    2
+183                                               Γ=    I+ X
+                                                    25    25
+184   satisfies Γ ≥ Wi and (Γ − Wi )Mi = 0, so the POVM value is 16/25. Explicitly,
+                                                                    
+                                       1 1                         1 4
+                             Γ − W0 =         (1, 4),     Γ − W1 =       (4, 1),
+                                       50 4                        50 1
+185                                       
+                                       3 1
+                             Γ − W2 =           (1, −1),
+                                       25 −1
+186   so dual feasibility is positive-semidefinite by inspection. Every one- or two-label qubit PVM support
+187   scores at most 3/5. The ideal discrimination advantage is therefore 1/25.
+
+                                                          6
+188   3.2     Global projective bound
+189   Write B = 10S + T . For a PVM strategy, the displayed CHSH observables are Hermitian unitaries,
+190   including possible values ±I. If one is degenerate, the CHSH identity
+
+191
+                                         2
+                                        CCHSH = 4I − [A0 , A1 ] ⊗ [B0 , B1 ]
+
+192   gives S ≤ 2, while T ≤ 7/5, which is below U .
+193       Otherwise optimize the state to a pure state and put it in Schmidt form
+                                      r              r
+                                        1+η            1−η
+194                           |ψη i =        |00i +         |11i,     0 ≤ η ≤ 1.
+                                          2              2
+195   Its correlation matrix is                     p               p
+196                                     R = diag(       1 − η2, −       1 − η 2 , 1).
+                                  √
+197   If u = |b0 · b1 | and δ = 2 2 − S, optimizing Alice’s directions first gives
+
+198                                    S ≤ kR(b0 + b1 )k + kR(b0 − b1 )k.
+
+199   The normalized sum and difference directions are orthogonal. Since the two largest eigenvalues of
+200   RT R sum to 2 − η 2 , Cauchy–Schwarz gives
+                                                p             √    η2
+201                                       S≤2       2 − η2 ≤ 2 2 − √ .
+                                                                    2
+
+202   The last comparison follows by squaring two nonnegative sides; their squared difference is η 4 /2.
+203   Independently, R is a contraction, so
+                                     √         √
+                                S ≤ 2 + 2u + 2 − 2u
+                                     q      p         p
+204                                                              √      u2
+                                  = 4 + 4 1 − u2 ≤ 8 − 2u2 ≤ 2 2 − √ .
+                                                                       2 2
+            √                         √
+205   Here 1 − u2 ≤ 1 − u2 /2 and 4 − u2 ≤ 2 − u2 /4; the exact squared differences and their nonneg-
+206   ative right sides are recorded in appendix A. Hence
+                                          √   η2                   √   u2
+207                                   S ≤2 2− √ ,              S ≤2 2− √ ,                              (2)
+                                               2                      2 2
+208   hence                                       √                    √
+209                                       η ≤ 21/4 δ,          u ≤ 23/4 δ.
+210       A ternary qubit PVM has one of the six labeled rank patterns obtained by permuting (2, 0, 0)
+211   or (1, 1, 0). For every singleton support and the pair {0, 1}, T ≤ 3/5 + 2(η + u)/5. A pair involving
+212   label 2 reduces to binary discrimination between
+                                                                   r        r      !
+                                      1                               1+η     1−η
+213                          Π(v) := (I + v · σ),     D = diag            ,           .
+                                      2                                2        2
+
+214   Writing e
+              by for the reflection of by induced by matrix transposition, the three score operators are
+                             3                     3                               4
+215                      K0 = DΠ(e
+                                 b0 )D,        K1 = DΠ(−e
+                                                        b0 )D,                 K2 = DΠ(e
+                                                                                       b1 )D.
+                             5                     5                               5
+
+                                                           7
+216   The reflection preserves z-coordinates, dot products, and u. In a pair involving label 2, write the
+217   two selected score operators as
+                                          3                       4
+218                                    G = DΠ(n)D,             H = DΠ(m)D.
+                                          5                       5
+219   With x = nz , y = mz , and r = n · m,
+                                                 p
+220                   20Fη = 7 + η(3x + 4y) +        [−1 + η(3x − 4y)]2 + 24(1 − η 2 )(1 − r).
+
+221   The exact comparison
+                                                   2η    3 2
+222                                     Fη ≤ F0 (r) + ≤ + (η + u)
+                                                    5    5 5
+223   is proved by the manifestly nonnegative polynomial certificate in appendix A. Consequently
+
+                              Nonzero labels   Rank pattern      Bound used for T
+                              {0}              (2, 0, 0)         Tr K0 ≤ 3(1 + η)/10
+                              {1}              (0, 2, 0)         Tr K1 ≤ 3(1 + η)/10
+224
+                              {2}              (0, 0, 2)         Tr K2 ≤ 2(1 + η)/5
+                              {0, 1}           (1, 1, 0)         Tr(K0 + K1 ) ≤ 3/5
+                              {0, 2}           (1, 0, 1)         Fη ≤ 3/5 + 2(η + u)/5
+                              {1, 2}           (0, 1, 1)         Fη ≤ 3/5 + 2(η + u)/5
+
+225   Each of the first four displayed estimates is no larger than the common bound 3/5 + 2(η + u)/5.
+226   Therefore
+                                   3 2             3     √         2
+227                           T ≤ + (η + u) ≤ + κ δ, κ = (21/4 + 23/4 ),
+                                   5 5             5               5
+             2
+                           √
+228   where κ = (16 + 12 2)/25. Completing the square,
+                                    √   3   √            √   3 κ2
+229                           B ≤ 20 2 + + κ δ − 10δ ≤ 20 2 + +   = U.
+                                        5                    5 40
+230   This covers every state, support pattern, direction, relabeling, and degeneracy. Lemma 2.2 covers
+231   shared randomness and postprocessing. A stronger algebraic strategy and its exact gap comparison
+232   are given separately in appendix B.
+
+
+233   4     Two-input reductions
+234   4.1   One binary party
+235   Lemma 4.1 (Circuits of a three-dimensional pointed cone). Let K be a pointed convex cone of real
+236   dimension at most three. Consider a support-minimal equality between positive sums of nonzero
+237   extreme-ray vectors of K, after canceling any ray that occurs on both sides. Positive coeﬀicients
+238   may be absorbed into the ray vectors. Then either the equality is a one-versus-one cancellation on
+239   the same ray, or K has dimension three and the relation has the form
+
+240                                             r0 + r1 = s 0 + s 1
+
+241   with four distinct rays. In particular, every nontrivial circuit is two-versus-two.
+
+
+
+
+                                                           8
+242   Proof. Move the two sums to opposite sides and attach the corresponding positive and negative
+243   coeﬀicients. Support minimality makes this a minimally supported linear dependence. Indeed, if
+244   a proper subset admitted any nonzero dependence, add a suﬀiciently small signed multiple of it to
+245   the original coeﬀicient vector and vary the multiple until one coeﬀicient first vanishes; all original
+246   signs remain weakly unchanged, yielding a smaller positive relation after cancellation. A minimally
+247   dependent set in dimension d has at most d + 1 vectors, so at most four rays occur.
+248       Pointedness excludes a dependence with all signs equal. If one side contained a single extreme
+249   ray and the other side contained at least two different rays, division by its positive coeﬀicient would
+250   express that extreme ray as a nontrivial positive sum of other cone rays, a contradiction. Thus a
+251   nontrivial relation contains at least two rays on each side and at most four total, forcing d = 3
+252   and the displayed two-versus-two form. A pointed cone of dimension one or two has at most two
+253   extreme rays, so only one-versus-one, same-ray cancellations remain there. A zero vector is not an
+254   extreme ray and is simply omitted.
+
+255   Theorem 4.2 (One-binary-party simulation). Suppose one party in a two-input bipartite qubit
+256   scenario has binary declared outputs on both inputs. The other party may have arbitrary finite
+257   outputs. Then every qubit-POVM behavior belongs to the convex hull of fixed-qubit PVM behaviors.
+258   The statement is symmetric under exchanging the parties.
+
+259   Proof. Decompose each binary qubit POVM into PVMs. If E has eigenvalues 0 ≤ µ ≤ λ ≤ 1 and
+260   P is the spectral projector for λ, then
+
+261                        {E, I − E} = (λ − µ){P, I − P } + µ{I, 0} + (1 − λ){0, I}.
+
+262   Taking the product of the decompositions for both inputs reduces, in each shared-random compo-
+263   nent, Bob to fixed binary PVMs with observables B0 , B1 .
+264      For Alice outcome a|x, let σa|x be Bob’s subnormalized steered state and define
+                                                                     
+265                                 ΦB (σ) = Tr σ, Tr(σB0 ), Tr(σB1 ) ∈ R3 .
+
+266   These data determine all joint probabilities:
+                                                1h                                  i
+267                            p(a, b|x, y) =      (ΦB σa|x )0 + (−1)b (ΦB σa|x )y+1 .
+                                                2
+268   No-signaling gives equality of the sums of the two compressed ensembles.
+269       If I, B0 , B1 are linearly independent, the image of the positive qubit cone is a three-dimensional
+270   Lorentz cone: the cone over the elliptical projection of the Bloch ball onto the span of the two
+271   Bloch axes. Parallel, antiparallel, or scalar observables give a two-dimensional simplicial cone or a
+272   local deterministic degeneration; these cases are included in appendix C.
+273       Decompose every compressed positive vector into extreme rays, retaining its original output
+274   label. Repeatedly extract a support-minimal positive subrelation and subtract the largest multiple
+275   that leaves every residual coeﬀicient nonnegative. At least one coeﬀicient vanishes at each step, so
+276   this circuit elimination terminates. By lemma 4.1, every nontrivial circuit is
+
+277                                               r0 + r1 = s 0 + s 1 .
+
+278   The original positive coeﬀicients have been absorbed into the displayed ray vectors. One-versus-
+279   one, repeated-ray, zero-ray, and lower-dimensional cases produce only the degenerate components
+280   described below.
+
+
+                                                           9
+281      Every extreme compressed ray has a unique positive rank-one lift inside spanR {I, B0 , B1 }. Thus
+282   the circuit lifts to
+283                                      R 0 + R 1 = S0 + S1 = Ω
+284   between rank-one positive operators. If Ω is invertible, the two rank-one decompositions become
+285   two orthonormal bases after applying Ω−1/2 . Define Alice’s two binary PVMs by
+                                            T                                  T
+                             = Ω−1/2 Ri Ω−1/2 ,                  = Ω−1/2 Si Ω−1/2
+                       (0)                                 (1)
+286                  Pi                                Pi                                 (i = 0, 1).
+
+287   Under the vectorization convention used here, the normalized canonical purification
+                                                p
+288                                 |ΨΩ i = (I ⊗ Ω/ Tr Ω)(|00i + |11i)
+
+289   obeys
+                      h                  i   Ri                     h                  i   Si
+                          (0)                                           (1)
+290                TrA (Pi ⊗ I)|ΨΩ ihΨΩ | =      ,               TrA (Pi ⊗ I)|ΨΩ ihΨΩ | =      .
+                                            Tr Ω                                          Tr Ω
+291   The transpose is required because TrA [(P ⊗ I)|Ω2 ihΩ2 |] = P T for |Ω2 i = |00i + |11i.
+292      Rank-one Ω, zero terms, and repeated rays require separate bookkeeping. If Ω = |ωihω| has
+293   rank one, every nonzero summand is collinear with Ω, so
+
+294                              Ri = ρi Ω,   Si = σi Ω,         ρ0 + ρ1 = σ0 + σ1 = 1.
+                      √
+295   Put |bω i = |ωi/ Tr Ω and use the product state |0i ⊗ |b ω i. For input 0, take the first projector onto
+      √          √                                                   √         √
+296     ρ0 |0i + ρ1 |1i; for input 1, take the first projector onto σ0 |0i + σ1 |1i. The complementary
+297   projectors give the second outcomes. This realizes both arbitrary binary weight vectors. Zero terms
+298   receive zero projectors. Collinear terms are combined only within their retained output labels; if the
+299   same geometric ray occurs under different labels, classical splitting restores those labels branchwise.
+300   Thus no outcome probability is lost when repeated rays are removed.
+301       Give this circuit strategy shared weight Tr Ω. Circuit elimination preserves total trace, so the
+302   weights sum to one. The retained output labels and fixed Bob PVMs reconstruct every original
+303   compressed vector and hence every joint probability. The shared variable records the binary-POVM
+304   decomposition choices, the circuit component, and any repeated-label split. Conditional on that
+305   single variable it fixes a state, both Alice PVMs, and both Bob PVMs simultaneously. This is one
+306   common decomposition of the complete behavior, not a separate decomposition for each input.
+
+307   4.2     Extreme residual architecture
+308   Lemma 4.3 (Extreme points of a compact hull). If K is compact in a finite-dimensional real
+309   vector space, every extreme point of conv K belongs to K.
+
+310   Proof. Every point of conv K is a finite convex combination of points of K. If an extreme point p
+311   had a representation containing two distinct positive-weight points, separating one term from the
+312   normalized sum of the others would express p as a nontrivial convex combination. Hence every
+313   positive-weight point in the representation equals p, and p ∈ K.
+
+314   Lemma 4.4 (Common-span filtering). Let Alice’s two POVMs have a common Hermitian combi-
+315   nation                           X              X
+316                              H=       sa|0 Ma|0 =     sa|1 Ma|1 .
+                                                a                  a
+
+
+
+
+                                                           10
+317   For suﬀiciently small ε > 0, define
+                                                            ±
+318                                     S± = I ± εH,       ra|x = 1 ± εsa|x ,
+319
+                                             ±      ±    −1/2        −1/2
+320                                         Ma|x = ra|x S±      Ma|x S±     .
+321   With
+                                                                   1/2          1/2
+                                                                 (S± ⊗ I)ρ(S± ⊗ I)
+322                           q± = Tr[(S± ⊗ I)ρ],        ρ± =                      ,
+                                                                        q±
+323   the original complete behavior satisfies
+                                                      q+      q−
+324                                              p=      p+ +    p− .
+                                                       2       2
+                                           P ±
+325   Proof. The effects normalize because a ra|x    Ma|x = S± , and q+ + q− = 2. Direct cyclicity of trace
+326   gives
+                                                            ±
+327                                    q± p± (a, b|x, y) = ra|x p(a, b|x, y).
+328   Averaging the signs proves the identity for all inputs and outputs.
+
+329   Theorem 4.5 (Residual-architecture reduction). If a Bell functional with two inputs per party has
+                                          PVM
+330   a strict qubit-POVM advantage over Q2 , a global maximizing component may be chosen with:
+
+331     (i) a pure full-Schmidt-rank two-qubit state;
+332    (ii) one nondegenerate binary PVM on each party;
+333   (iii) one extremal ternary rank-one POVM on each party;
+334    (iv) local real measurement spans intersecting only in RI.
+
+335   In particular, four-outcome extremal POVMs are unnecessary.
+
+336   Proof. Choose an extreme point p of the exposed maximizing face. Because an extreme point of a
+337   face is extreme in the whole convex set, lemma 4.3 supplies one unrandomized raw strategy realizing
+338   p.
+339       Pure state. Decompose its state into finitely many pure states while holding all measurements
+340   fixed. The resulting behaviors form a convex decomposition of p, so extremality forces every
+341   positive-weight behavior to equal p. A product component is local and cannot attain a strict value
+342   above the PVM support; choose a pure entangled component. Its two reduced states have full rank.
+343       Extremal measurements. For a fixed finite outcome alphabet, the POVM set is compact and
+344   convex in a finite-dimensional aﬀine space. An elementary induction on the dimension of its smallest
+345   containing face shows that it is the convex hull of its extreme points: if a point is not extreme,
+346   extend a nontrivial line segment through it to the relative boundary in both directions, then apply
+347   the induction to the two proper faces containing the endpoints. Aﬀine dependence reduces the
+348   resulting representation to a finite one. Apply such a decomposition to one input at a time while
+349   fixing the state and all other measurements. Again every positive-weight behavior equals p, so
+350   an extremal component may be retained for every input. Temporarily delete zero effects; they
+351   contribute no probabilities and their declared output labels can be reinserted at the end. Full-rank
+352   reduced states make every remaining outcome marginal strictly positive. For one party set
+
+353                                      Vx = spanR {Ma|x } ⊂ Herm(2).
+
+
+                                                          11
+354   If V0 ∩ V1 contained a nonscalar H, lemma 4.4 would split the behavior. Equality of both branch
+                                                                          ±
+355   behaviors would imply, using strictly positive outcome marginals, ra|x  = q± for every nonzero
+356   outcome, making all coeﬀicients equal and H scalar. Thus
+
+357                                               V0 ∩ V1 = RI.
+
+358       Since dimR Herm(2) = 4, one of V0 , V1 has dimension at most two. Every two-dimensional real
+359   operator system containing I has the form spanR {I, H} for a nonscalar Hermitian H. All of its
+360   elements commute. If H = h+ P+ +h− P− is the spectral decomposition, every effect Ma = αa I+βa H
+361   equals
+362                                      Ma = q(a|+)P+ + q(a|−)P− ,
+                                          P
+363   where q(a|±) = αa + βa h± ≥ 0 and a q(a|±) = 1. Thus the POVM is a stochastic postprocessing
+364   of the binary spectral PVM {P+ , P− }.
+365       Deterministic postprocessing. A finite stochastic map is a convex combination of deterministic
+366   maps. It therefore decomposes p into behaviors obtained from deterministic relabelings of the
+367   spectral PVM. Extremality retains one component realizing p; merging spectral projections and
+368   adding zero labels is again a PVM. Apply lemma 4.4 once more to that realization, so its two final
+369   spans still intersect only in RI. The PVM is nondegenerate: if it were deterministic, that party
+370   would have only one nontrivial input, and the behavior would be local.
+371       The other span has dimension at most three. Its nonzero effects are linearly independent; oth-
+372   erwise lemma 4.4 with H = 0 splits the extreme behavior. One nonzero effect would be I, a
+373   deterministic PVM. An extremal two-effect POVM is a PVM: diagonalizing one effect and perturb-
+374   ing either eigenvalue strictly between 0 and 1 would decompose it, so its eigenvalues are 0 or 1.
+375   A genuine nonprojective residual measurement therefore has at least three nonzero effects, while
+376   linear independence in a three-dimensional span gives at most three.
+377       For an extremal qubit POVM, support-preserving perturbations give
+                                              X
+378                                               rank(Ma )2 ≤ 4.
+                                              a
+
+379   The standard extremality criterion [15, 16] is reproved in appendix D for completeness. With three
+380   nonzero effects, any rank-two effect would make the rank-square sum at least 4 + 1 + 1 > 4; hence
+381   all three effects have rank one. If both spans on one party were at most two, theorem 4.2 would
+382   make the full behavior PVM-simulable. Apply the argument to both parties, then reinsert any
+383   deleted zero-output labels.
+
+
+384   5   Lorentz incidence model
+385   Write every Hermitian 2 × 2 matrix as
+
+386                                    X = x0 I + x1 σx + x2 σy + x3 σz
+
+387   and set J = diag(1, −1, −1, −1). Then
+
+388                                 det X = xT Jx,          Tr(XY ) = 2xT y,
+
+389   where the second pairing is the ordinary Euclidean coordinate pairing. Nonzero positive rank-one
+390   effects are precisely future-null vectors: x0 > 0, xT Jx = 0.
+
+
+                                                       12
+                                                  the unique local circuit         r3
+                                       r1
+
+                                                               u                   r4
+
+                                       r2
+                                                                                   r5
+                                 binary PVM
+                                  r1 + r2 = u                           ternary rank-one POVM
+                                                                            r3 + r4 + r5 = u
+
+      Figure 2: The local coeﬀicient circuit after choosing four effects as an operator basis. The physical
+      effects are future-null rays in a Lorentz metric.
+
+
+391        In the residual architecture label one party’s two binary effects by E1 , E2 and ternary effects by
+392   E3 , E4 , E5 . Set
+
+393               r1 = e 1 , r 2 = e 2 , r 3 = e 3 , r 4 = e 4 ,   r5 = (1, 1, −1, −1)T ,   u = (1, 1, 0, 0)T .
+
+394   Their unique coeﬀicient circuit is
+
+395                                               r1 + r2 = r3 + r4 + r5 = u.
+
+396       The first four physical effects form a real basis of Herm(2). Indeed, E1 , E2 span the binary
+397   operator system V0 , while the linearly independent ternary effects span V1 . Since V0 ∩ V1 = RI, the
+398   quotient V1 /RI has dimension two. The images of any two ternary effects are independent there:
+399   a dependence modulo I = E3 + E4 + E5 would give a linear dependence among all three ternary
+400   effects. After relabeling those two effects as E3 , E4 , the four operators E1 , E2 , E3 , E4 are a basis.
+401       Let EA contain their Lorentz vectors as columns and define g = ETA JEA . Nullness and normal-
+402   ization force                               
+                                       0 12 a b
+                                      1 0 c d
+403                              g=   2
+                                      a c 0 e ,
+                                                             e = a + b + c + d − 12 .                        (3)
+                                       b d e 0
+404   On the genuine residual stratum all distinct-ray products are positive; in particular a, b, c, d, e > 0
+405   and
+                                                                    1
+406                                     a + b, c + d, a + c, b + d < .
+                                                                    2
+407   Definition 5.1 (Strict residual domain). A metric g of the form (3) is strict residual when it has
+408   signature (1, 3), uT gu = 1, and the five g-null coeﬀicient rays are distinct and lie in one chosen
+409   future cone. Equivalently for this normal form, all products between distinct rays are positive,
+410   which includes
+                                                                               1
+411                             a, b, c, d, e > 0, a + b, c + d, a + c, b + d < .
+                                                                               2
+412   The genuine residual domain additionally requires P invertible, uT P u = 1, all five incidences below,
+413   strictly positive marginals uT P rj , and a full-rank reconstructed reduced state. These conditions ex-
+414   clude zero effects, repeated rays, product states, and loss of time orientation; all are open conditions
+415   around a genuine residual strategy.
+
+
+                                                                   13
+416   Lemma 5.2 (Lorentz representation of a residual strategy). Choose the first four effects on both
+417   parties as bases, with coordinate frames EA , EB , and let P be their 4 × 4 joint-probability block. For
+418   a normalized full-Schmidt-rank pure state
+
+                                         X
+                                         1
+419                          |ψΞ i =           Ξmn |mni,             Tr(Ξ† Ξ) = 1,    det Ξ 6= 0,
+                                       m,n=0
+
+
+420   let ΘΞ (N ) = ΞN T Ξ† and let LΞ be the real matrix of this map in Pauli coordinates. Then
+
+                                                P = 2ETA LΞ EB ,
+                                                 g = ETA JEA ,           h = ETB JEB ,
+421
+                                          LTΞ JLΞ = | det Ξ|2 J,
+                                         P T g −1 P = 4| det Ξ|2 h.
+
+422   Proof. If ei and fj are the Pauli-coordinate columns of the two frames, the Born rule and the trace
+423   pairing give
+424                                     Pij = Tr(Ei ΘΞ (Nj )) = 2eTi LΞ fj ,
+425   which is the first identity; the two Gram identities are definitions. Moreover,
+
+426                                 det ΘΞ (N ) = det(ΞN T Ξ† ) = | det Ξ|2 det N.
+
+427   In Pauli coordinates this says (LΞ x)T J(LΞ x) = | det Ξ|2 xT Jx for every real x. Polarizing the two
+428   quadratic forms yields LTΞ JLΞ = | det Ξ|2 J. Finally,
+
+                                     P T g −1 P = 4ETB LTΞ EA (ETA JEA )−1 ETA LΞ EB
+429
+                                                = 4ETB LTΞ JLΞ EB = 4| det Ξ|2 h,
+
+430   because EA (ETA JEA )−1 ETA = J.
+
+431       The complete table is
+432                                          pij = riT P rj ,          uT P u = 1.
+433   The final identity in lemma 5.2 and det Ξ 6= 0 show that P is invertible. With Q = g −1 , nullness of
+434   Bob’s five effects becomes
+
+435                               Fj (P, g) := (P rj )T Q(P rj ) = 0,          j = 1, . . . , 5.           (4)
+
+
+436   6    Physical exactness and smoothness
+437   Theorem 6.1 (Local physical completeness). Near every genuine residual point, every nearby (P, g)
+438   satisfying (3), the five incidence equations (4), normalization, Lorentz signature, and the strict time-
+439   orientation inequalities is realized by a genuine residual two-qubit strategy. Every incidence tangent
+440   therefore integrates to a two-sided physical curve.
+
+441   Proof. Because g has signature (1, 3), uT gu = 1, and the restriction to u⊥g is negative definite,
+442   choose at the reference metric three vectors spanning u⊥g . For nearby metrics, project these fixed
+443   vectors by
+444                                           v 7−→ v − (v T gu)u.
+
+                                                                14
+445   They remain independent. Ordinary Gram–Schmidt for the positive inner product −g on u⊥g
+446   produces a smooth negative orthonormal frame: all denominators stay nonzero in a neighborhood
+447   of the reference point. Mapping u to the standard time vector and this frame to the three standard
+448   spatial vectors gives a smoothly varying EA with
+
+449                                   ETA JEA = g,       EA u = (1, 0, 0, 0)T .
+
+450   Each ri is g-null and has positive product with u; hence EA ri is future null and represents a positive
+451   rank-one Alice effect. The circuit makes both measurements sum to the identity.
+452      Put xj = P rj and
+                                                        1
+453                                               sj = E−T     xj .
+                                                        2 A
+454   The factor 1/2 is forced by the Pauli trace pairing: if Sj has coordinate vector sj , then the four
+455   basis probabilities obey
+456                                        xj = (Tr(Ei Sj ))4i=1 = 2ETA sj .
+457   The incidence equations give sTj Jsj = 0, while 2(sj )0 = uT xj is the strictly positive Bob marginal.
+458   Thus sj represents a future-null positive rank-one steered operator Sj . The circuit yields
+
+459                                      S1 + S2 = S3 + S4 + S5 =: ρA .
+
+460   Normalization is explicit:
+461                                    Tr ρA = Tr(S1 + S2 ) = uT P u = 1.
+                                                              1/2
+462   Full rank is open near the original point. Let Ξ = ρA and set
+
+463                                             NjT = Ξ−1 Sj Ξ−† .
+
+464   The Nj are positive rank-one effects and normalize on both inputs. The reconstructed pure state
+                                                     X
+465                                          |ψΞ i =   Ξmn |mni
+                                                       m,n
+
+
+466   is normalized because hψΞ |ψΞ i = Tr(Ξ† Ξ) = Tr ρA = 1. Moreover
+
+467                                            Tr(Ei Sj ) = riT P rj ,
+
+468   so every reconstructed probability is the trace of a product of positive operators and is nonnegative,
+469   including when that trace is zero.
+470       The five incidence constraints and normalization have independent differentials by the calcula-
+471   tion in proposition 6.2. The elementary regular-level-set construction is obtained by choosing six
+472   coordinates in which the constraint Jacobian is invertible and solving those coordinates as smooth
+473   functions of the remaining fourteen. In that local chart, every kernel vector of the constraint dif-
+474   ferential is the derivative of a straight coordinate line, hence integrates to a curve in the incidence
+475   set. Signature, time orientation, positive marginals, and full rank are open conditions, giving a
+476   two-sided physical curve for suﬀiciently small parameter values even when a joint probability is
+477   zero.
+
+478   Proposition 6.2 (Smooth incidence manifold). Restricted to the open genuine residual stratum—
+479   in particular, where g has Lorentz signature, all strict time-orientation inequalities hold, and P is
+480   invertible—the normalized incidence space is a smooth real 14-dimensional manifold.
+
+                                                         15
+      Proof.
+481                                                            ∇P Fj = 2QP rj rjT .
+482   If a linear combination vanishes, invertibility of QP gives
+                                 X
+483                                  µj rj rjT = diag(µ1 , . . . , µ4 ) + µ5 r5 r5T = 0.
+                                      j
+
+484   Off-diagonal entries first give µ5 = 0, then diagonal entries give all other coeﬀicients zero. Nor-
+485   malization is independent because the radial variation δP = P annihilates every dFj but changes
+486   uT P u. There are 16 + 4 − 5 − 1 = 14 dimensions.
+
+487   Remark 6.3. The proposition is local to the open stratum used by the residual equality proof;
+488   singular normalized incidence points outside that stratum are not asserted to be smooth. The
+489   projected behavior image has dimension at most 14; no claim of exact projected dimension is
+490   needed for the equality theorem.
+
+
+491   7    Stationarity and strictly positive multipliers
+492   Every entry of the complete residual behavior is riT P rj . Thus, after collecting the original Bell
+493   coeﬀicients into numbers γij , its restriction to the incidence coordinates is the linear objective
+                                      X                                     X
+494                       Lc (P ) :=      γij riT P rj = Tr(BTc P ),  Bc :=    γij ri rjT .
+                                              i,j                                                  i,j
+
+495   At a stationary point, the six constraint gradients are linearly independent. Thus there are unique
+496   multipliers α, λ1 , . . . , λ5 , with sign convention
+                                                                                       X
+                                                                                       5
+497                                  Bc − αuuT = −2QP Λ,                          Λ=          λj rj rjT .   (5)
+                                                                                       j=1
+
+498   Stationarity in the four metric variables says λ ∈ ker DT , where D is defined in section 8.
+499   Lemma 7.1 (Finite POVM duality). For
+                                                                            X
+500                                                            max
+                                                                ∑               Tr(Kj Nj ),
+                                                    Nj ≥0,        j Nj =I   j
+
+501   there is a Hermitian Γ such that
+502                                                 Γ ≥ Kj ,           (Γ − Kj )Nj = 0.
+503   Proof. Weak duality is immediate. Strong duality follows by separating the closed finite-dimensional
+504   cone                                                                 
+                                X         X                                  
+505                                  Xj ,   Tr(Kj Xj ) − t : Xj ≥ 0, t ≥ 0
+                                                                             
+                                          j            j
+
+506   from (I, V + ε), where V is the primal optimum, and taking ε ↓ 0. Equality of primal and dual
+507   values gives                        X
+508                                           Tr[(Γ − Kj )Nj ] = 0.
+                                                           j
+
+509   Every summand is nonnegative, hence zero; for positive matrices, Tr(AB) = 0 implies AB = 0.
+510   Full details are included in appendix E.
+
+                                                                        16
+511   Lemma 7.2 (Determinant pullback for one input). At a stationary residual strategy, fix one Bob
+512   input y, write its effects as Nj|y , and let Kj|y be their Bell score operators. There is a Hermitian
+513   normalization multiplier Γ b y such that
+
+514                                       b y + 4| det Ξ|2 λj|y adj(Nj|y ) = 0
+                                   Kj|y − Γ                                                             (6)
+                                               
+515   for every outcome j. Here, for N = ac db ,
+                                                                            
+                                                                      d −b
+516                                                 adj(N ) :=
+                                                                      −c a
+
+517   is the matrix adjugate.
+
+518   Proof. By lemma 5.2,
+
+519                       Fj = (P rj )T g −1 (P rj ) = 4| det Ξ|2 rjT hrj = 4| det Ξ|2 det Nj|y .
+
+520   For an arbitrary Hermitian variation ∆N ,
+
+521                                            d(det)N [∆N ] = Tr(adj(N )∆N ),
+
+522   as follows by differentiating ad − bc. Hold the state,PAlice’s measurements, and Bob’s other input
+523   fixed. The first variation of the Bell objective is        P j|y ∆Nj|y ). Pulling the incidence La-
+                                                              j Tr(K
+524   grangian (5) back to these effect variables, and imposing j ∆Nj|y = 0 with a separate Hermitian
+525              b y , gives
+      multiplier Γ
+                           X          h                                               i
+526                              Tr               b y + 4| det Ξ|2 λj|y adj(Nj|y ) ∆Nj|y = 0.
+                                           Kj|y − Γ
+                             j
+
+527   The unconstrained outcome variations are arbitrary after introduction of the normalization multi-
+528   plier, so every coeﬀicient vanishes, proving (6).
+
+529   Proposition 7.3 (Strict multiplier positivity). At a residual global Bell maximizer whose value is
+530   strictly above the PVM support value,
+
+531                                          λj > 0    (j = 1, . . . , 5),   Λ > 0.
+
+532   Proof. For each Bob input y, hold the state and all other measurements fixed and collect the terms
+533   of Lc depending on that input as        X
+534                                                Tr(Kj|y Nj|y ).
+                                                      j∈By
+
+535   Apply lemma 7.1 separately to Bob’s binary and ternary inputs, with distinct dual operators Γy .
+536   Complementary slackness says (Γy − Kj|y )Nj|y = 0. Since Nj|y is nonzero rank one, every positive
+537   semidefinite matrix annihilating its range is a nonnegative multiple of its adjugate. Thus
+
+538                                        Γy − Kj|y = τj|y adj(Nj|y ),          τj|y ≥ 0,
+
+539   adj(Nj|y )Nj|y = 0.
+540      It remains to identify the normalization multiplier bΓy from lemma 7.2 with the finite-POVM
+541                                                                  b y − Γy )Nj|y = 0 for every j. Those
+      dual Γy . Both differences from Kj|y annihilate ran Nj|y , so (Γ
+
+                                                                17
+                                  P                        b
+542   ranges span C2 , because        j Nj|y = I; hence Γy = Γy .         Comparing the two adjugate coeﬀicients
+543   gives
+544                                            4| det Ξ|2 λj|y = τj|y ≥ 0.
+545      If λj|y = 0, then Kj|y = Γy . Replacing that entire input by the deterministic PVM Nj|y = I,
+546   Nk|y = 0 for k 6= j, preserves the score because both the old optimum and the replacement score
+547   equal Tr Γy .
+548      For completeness, the resulting behavior has an explicit local model. Let y∗ be Bob’s remaining
+549   nontrivial input, let q(ℓ) = pB (ℓ|y∗ ), and omit zero-weight ℓ. Use hidden variable ℓ, Alice response
+
+                                                                p(a, ℓ|x, y∗ )
+550                                            pA (a|x, ℓ) =                   ,
+                                                                    q(ℓ)
+551   and Bob response ℓ on y∗ and the fixed label j on the replaced input. This       Preproduces the y∗ block
+552   by construction and the deterministic block because nonsignaling gives ℓ p(a, ℓ|x, y∗ ) = pA (a|x).
+553   Expanding the local response probabilities into deterministic choices yields a convex combination
+554   of identity-and-zero qubit PVM behaviors. A strict value above the PVM support therefore forces
+555   every τj|y , and hence every λj , to be positive. Since r1 , . . . , r4 form a basis, Λ > 0.
+
+
+556   8     Exact second variation
+557   A tangent metric variation has the form
+                                                                                          
+                                                0    0          ȧ                ḃ
+                                              0     0          ċ                d˙       
+                                         d) = 
+                            H(ȧ, ḃ, ċ, ˙                                                .
+                                              ȧ                         ȧ + ḃ + ċ + d˙
+558
+                                                     ċ         0
+                                                ḃ   d˙ ȧ + ḃ + ċ + d˙         0
+
+559   Define                                                  
+                                                 y2 (y0 + y3 )
+                                               y3 (y0 + y2 )
+                                        Φ(y) =                
+560
+                                               y2 (y1 + y3 ) ,         yj = QP rj ,
+                                                y3 (y1 + y2 )
+561   and
+562                                        D : H 7−→ (y1T Hy1 , . . . , y5T Hy5 ).
+563   Then
+564                                     rank D = dim span{Φ(y1 ), . . . , Φ(y5 )}.
+565   Let K = ker DT , k = dim K = 5 − rank D. Metric stationarity says λ ∈ K.
+566      For a tangent (δP, H), set
+
+567                                      S = P T QP,           δP = P W + HQP.
+
+568   Since dQ = −QHQ, direct differentiation gives
+
+                                    dFj = 2(QP rj )T δP rj − (QP rj )T H(QP rj )
+569
+                                         = 2rjT SW rj + yjT Hyj .
+
+570   Thus the first-order equations dFj = 0 ask the metric differential D(H) to equal the vector with
+571   entries −2rjT SW rj . Finite-dimensional linear algebra says this equation is solvable exactly when
+
+                                                               18
+572   its right side is orthogonal to K = ker DT . Indeed, ran D = (ker DT )⊥ , because both spaces have
+573   dimension rank D. Therefore the Fredholm compatibility conditions are
+                                                                    X
+574                             Tr(SW Λµ ) = 0 (µ ∈ K),        Λµ =     µj rj rjT .
+                                                                                  j
+
+575   The compatible space
+576                                   HK = {W : Tr(SW Λµ ) = 0 ∀µ ∈ K}
+577   has dimension 16 − k. To see that the k displayed functionals are independent, suppose a combi-
+578   nation indexed by ν ∈ K vanishes for every W . Then Tr(SW
+                                                             P Λν ) = 0 for all W , so Λν S = 0. The
+579   matrix S = P T QP is invertible, and the map ν 7→ Λν = j νj rj rjT is injective by proposition 6.2;
+580   hence ν = 0.
+      Proposition 8.1 (Weighted second form).
+                           X
+581                            λj D2 Fj = 2q(W ),                 q(W ) = Tr(SW ΛW T ),
+                                 j
+
+582   and
+583                                             inertia(q) = (4, 12).
+584   Every positive-q compatible tangent can be adjusted to satisfy normalization without changing q.
+585   Proof. Differentiating g −1 twice and completing the square after δP = P W + HQP gives
+
+586                                        D2 Fj = 2(P W rj )T Q(P W rj ),
+
+587   and summing against λj yields the trace formula. The exact expansion is recorded in appendix F
+588   and independently checked by the verifier.
+589      The matrix S has signature (1, 3), while Λ > 0. Invertible congruences therefore reduce q to
+
+                                                      X
+                                                      4             X
+                                                                    4 X
+                                                                      4
+590                                        q0 (Z) =          2
+                                                            Z1j −              2
+                                                                              Zij ,
+                                                      j=1           i=2 j=1
+
+591   giving inertia (4, 12).
+592       For µ ∈ K,                              X                   X
+593                                  Tr(SΛµ ) =        µj rjT Srj =         µj Fj = 0.
+                                                  j                     j
+
+594   Hence the identity matrix belongs to HK . Taking µ = λ also gives q(I) = Tr(SΛ) = 0, while
+595   compatibility gives the polar cross term Tr(SW Λ) = 0. Thus q(W + tI) = q(W ). Adding tI
+596   changes the normalization derivative by
+
+597                                                   t uT P u = t,
+
+598   so choose t to impose uT δP u = 0.
+
+599         With the convention (5), a normalized physical curve has
+
+                                            d2
+600                                             Lc (P (t)) t=0 = 2q(W ).
+                                            dt2
+601   Hence local maximality requires q ≤ 0 on every normalized tangent.
+
+                                                             19
+                                                 metric differential D
+
+
+
+              rank D ≥ 2                            rank D = 1                               rank D = 0
+       compatible dimension ≥ 13              projective fiber rigidity                 base-ray permutation
+
+
+
+                                                  no strictly positive                  explicit deterministic
+          positive second variation
+                                                      multiplier                               mixture
+
+                           Every rank contradicts a strict non-PVM Bell maximum.
+
+                      Figure 3: The exhaustive rank trichotomy for the metric differential.
+
+
+602   9     Rank trichotomy and universal equality
+603   9.1    Rank at least two
+604   If rank D ≥ 2, then k ≤ 3 and
+605                                              dim HK = 16 − k ≥ 13.
+606   A subspace on which a form of inertia (4, 12) is nonpositive has dimension at most 12: projection to
+607   its twelve negative coordinates is injective. Therefore HK contains W with q(W ) > 0. Normalize it
+608   using proposition 8.1 and integrate it using theorem 6.1. The resulting physical curve has positive
+609   Bell second derivative, contradicting local maximality.
+
+610   9.2    Rank one
+611   The coeﬀicient form of the metric differential is the quadratic map
+                                                                                               T
+612                        Φ(y) = y2 (y0 + y3 ), y3 (y0 + y2 ), y2 (y1 + y3 ), y3 (y1 + y2 )        .
+
+613   Proposition 9.1 (Projective fiber theorem). On the strict g-null quadric, the base locus of Φ is
+614   exactly the five coeﬀicient rays [r1 ], . . . , [r5 ]. Away from the base locus, Φ is projectively injective,
+615   including on the exceptional divisors
+
+616                                    y2 = 0,     y3 = 0,    y 0 = y1 ,   y 2 = y3 .
+
+617   Proof. The generic rational inverse and the exact exceptional-divisor calculations are given in ap-
+618   pendix G. Each resultant and factorization is reproduced by the exact verifier. The strict metric
+619   inequalities exclude extra null roots without excluding any genuine residual point.
+
+620      If rank D = 1, all nonzero Φ(yj ) are projectively equal. The five yj = QP rj are distinct
+621   rays because QP is invertible. Proposition 9.1 therefore permits at most one nonzero row of D.
+622   Consequently
+623                                       ker DT = {µ : µj0 = 0}
+624   for some j0 , which contains no strictly positive vector. This contradicts λj > 0.
+
+                                                             20
+625   9.3   Rank zero
+626   If rank D = 0, every yj belongs to the five-ray base locus. Invertibility gives
+627                                                yj = tj rπ(j) ,         tj > 0,
+628   for a permutation π. Let ε = (1, 1, −1, −1, −1)T . The 4 × 5 matrix [r1 · · · r5 ] has one-dimensional
+629   kernel Rε. Applying the invertible map QP to its circuit gives
+                                               X
+630                                                εj tj rπ(j) = 0.
+                                                        j
+
+631   This coeﬀicient vector, reordered by π, must be a scalar multiple of ε. Positivity of the tj , together
+632   with the unequal cardinalities of the positive and negative parts of ε, forces π to preserve the
+633   binary pair {1, 2} and ternary triple {3, 4, 5}; coeﬀicient comparison then forces every tj to have
+634   one common positive value t. After relabeling, QP = tI, hence P = tg. Since uT P u = uT gu = 1,
+635   one has t = 1, and therefore
+636                                           QP = I,       P = g.
+637   Proposition 9.2 (Rank-zero deterministic simulation). Every rank-zero probability table pij =
+                                                                                              PVM
+638   riT grj is a convex combination of deterministic local behaviors, and hence belongs to Q2 .
+639   Proof. For i, j ∈ {3, 4, 5}, define directly from the Bell table
+640                         ai := p(1, i|0, 1),        bi := p(2, i|0, 1),              cij := p(i, j|1, 1).
+641   Because P = g = g T , the other mixed block satisfies
+642                                      p(i, 1|1, 0) = ai ,           p(i, 2|1, 0) = bi .
+643   Moreover cij = cji , and nullness gives cii = 0. Normalization and the two local circuits give
+                                    X                     X       X        1
+644                                     cij = ai + bi ,      ai =     bi = .
+                                                                           2
+                                      j̸=i                             i           i
+
+645   Appendix H constructs a matrix qij satisfying
+                                                                     X                       X
+646                        qii = 0,          0 ≤ qij ≤ cij ,               qij = bi ,              qij = aj .
+                                                                       j                       i
+
+647   For each ordered ternary pair (i, j), use the two deterministic branches
+                           weight     Alice binary Bob binary ternary outputs (A, B)
+648                          qij            1          2               (i, j)
+                          cij − qij         2          1               (i, j).
+649   The weights with ternary outputs (i, j) sum to cij , reproducing    P the ternary–ternary block. For fixed
+650   Alice
+      P ternary output i, the Bob-binary outcome-2 mass is j qij = bi , and its outcome-1            P mass is
+651
+        j (c ij − q ij ) = a i . For fixed Bob ternary output j, the Alice-binary outcome-1 mass  is   i qij = aj ,
+652   and its outcome-2 mass is bj . Finally,
+                                             X         1      X                1
+653                                              qij = ,         (cij − qij ) = ,
+                                                       2                       2
+                                             i,j                 i,j
+
+654   so the binary–binary block has probabilities 1/2 on (1, 2) and (2, 1), and zero on (1, 1) and (2, 2),
+655   exactly as rkT grℓ for k, ℓ ∈ {1, 2}. The four blocks are therefore reproduced simultaneously. Identity
+656   and zero projectors implement every deterministic branch.
+
+                                                                21
+657   9.4   Equality
+658   Theorem 9.3 (Universal two-input equality). For every finite input-dependent output architecture
+659   (A0 , A1 ; B0 , B1 ),
+                                          POVM              PVM
+660                                     Q2       (A, B) = Q2      (A, B).
+
+661   Proof. The PVM-to-POVM inclusion is immediate. Suppose the reverse inclusion failed. The
+662   nearest-point argument in lemma 2.3 would give a Bell functional whose global POVM maximum
+663   strictly exceeds its PVM maximum. Choose an extreme point of its exposed maximizing face.
+664   By theorem 4.5, a maximizing component lies in the genuine residual architecture. Every local
+665   measurement is therefore globally optimal with the other variables fixed, so proposition 7.3 applies.
+666       The metric differential has rank 0, 1, 2, 3, or 4. Rank at least two has an uphill physical di-
+667   rection; rank one cannot carry the required positive multiplier; rank zero is PVM-simulable by
+668   proposition 9.2. Every case contradicts a strict value above the PVM support function.
+
+669   Corollary 9.4 (Minimum input architecture). Up to exchanging the parties, 3 × 2 is the minimum
+670   input architecture for a strict fixed-qubit POVM-over-PVM Bell separation.
+
+671   Proof. With one input on either party every nonsignaling behavior is local, hence a deterministic
+672   PVM behavior maximizes every Bell functional. Two inputs on both parties are excluded by
+673   theorem 9.3. Theorem 3.1 supplies an exact 3 × 2 separation.
+
+
+674   10 Operational consequences and limitations
+675   For every Bell functional with two inputs per party, optimizing over fixed-qubit PVMs already
+676   provides the fixed-qubit POVM bound. Thus a value above that bound excludes all local-qubit
+677   realizations, not merely projective ones.
+678       Likewise, no qubit behavior with two inputs per party can certify that a nonprojective local
+679   measurement was indispensable: after shared-randomness convexification, a shared-randomness
+680   mixture of PVM realizations always exists. This does not identify the state or measurements in a
+681   particular laboratory realization, and it does not assert raw-set equality without shared randomness.
+682       Equivalently, the theorem rules out every two-input linear Bell-functional separation for bipar-
+683   tite qubits after shared-randomness convexification. It does not prove equality of the raw nonconvex
+684   behavior sets.
+685       We do not claim the exact global POVM or PVM optimum of (1). We also do not infer
+686   a private-randomness entropy bound: such a statement requires an adversarial extension of the
+687   convex decomposition, not only equality of observed behavior sets.
+
+
+688   11 Discussion
+689   The threshold result is special to local dimension two. Natural open questions include minimum-
+690   input laws in dimension three and higher, multipartite scenarios, equality without convexification,
+691   constructive simulation algorithms for generic two-input behaviors, instruments and sequential
+692   measurements, and experimentally robust exact 3 × 2 witnesses. Determining the exact two-qubit
+693   POVM and PVM optima of (1) is also open but unnecessary for the separation.
+694       The proof illustrates a distinction between operator-level and behavioral generality. Ternary
+695   qubit POVMs are genuine generalized measurements, yet two inputs do not provide enough Bell
+696   structure to make them indispensable after the state and shared-randomness decomposition may
+
+
+                                                       22
+697   change. A third input can lock the state and steering geometry while reserving another measurement
+698   for a discrimination advantage.
+
+
+699   Data, code, and verification
+700   The accompanying repository contains exact Bell coeﬀicients and strategies, the separation verifier,
+701   the exceptional-fiber identities, the closure verifier, and an independent rank-zero simulator. One
+702   offline command runs all exact checks. The code verifies finite algebraic identities and explicit
+703   constructions; the convexity, extremality, physical-reconstruction, and dimension arguments remain
+704   explicit manuscript proofs.
+
+
+705   AI-assisted research and verification
+706   Generative-AI systems were used substantively throughout the research workflow, including math-
+707   ematical exploration and derivation, adversarial proof analysis, symbolic and software work, litera-
+708   ture support, and manuscript preparation. The work was developed through an iterative, human-
+709   directed research process. The author determined the scope and claims released here, curated
+710   the resulting package, and assumes responsibility for the submitted manuscript and public veri-
+711   fication materials. The proof and exact artifacts are supplied to make the AI-mediated research
+712   independently checkable; no claim of prior independent expert human verification is made.
+
+
+713   Competing interests and funding
+714   The author declares no competing interests. This research received no external funding.
+
+
+715   A Exact algebra for the 3 × 2 separation
+716   We record the identities that make the projective bound independent of numerical optimization.
+717   For a pair involving auxiliary label 2, let
+                                      3                         4
+718                               Kn = DΠ(n)D,              Km = DΠ(m)D,
+                                      5                         5
+719   where x = nz , y = mz , r = n · m, and
+                                                   r           r         !
+                                                       1+η         1−η
+720                                     D = diag           ,                 .
+                                                        2           2
+
+721   Direct expansion, using knk = kmk = 1, gives
+                                                        3
+722                               det(Kn − Km ) = −       (1 − η 2 )(1 − r) ≤ 0.
+                                                       50
+723   Thus Kn − Km has eigenvalues of opposite signs, including a possible zero boundary eigenvalue,
+724   and the optimized complementary-projector score is
+
+                                           Tr Kn + Tr Km + kKn − Km k1
+725                                 Fη =                               .
+                                                        2
+
+
+                                                       23
+726   Its discriminant yields
+                                                  p
+727                     20Fη = 7 + η(3x + 4y) +        [−1 + η(3x − 4y)]2 + 24(1 − η 2 )(1 − r).
+
+728         At η = 0,
+                                                         7   1√
+729                                         F0 (r) =       +    25 − 24r.
+                                                        20 20
+730   Set                             √
+731                              q=       25 − 24r ≥ 1,         H = 8 − 3x − 4y ≥ 1.
+732   To prove Fη ≤ F0 (r) + 2η/5, it is enough to prove
+                             p
+733                            [−1 + η(3x − 4y)]2 + 24(1 − η 2 )(1 − r) ≤ q + ηH.
+
+734   The right side is at least one, so squaring is valid. Using q 2 = 25 − 24r, the squared difference is
+735   exactly
+                                     2η{η[8(1 − y)(4 − 3x) + 12(1 − r)]
+736
+                                           + (q − 1)(8 − 3x − 4y) + 8(1 − y)}.
+737   Every factor is nonnegative on
+
+738                                        0 ≤ η ≤ 1,       −1 ≤ x, y, r ≤ 1.
+
+739   No omitted compatibility condition among x, y, r can invalidate the estimate because it holds on
+740   the larger box.
+741      For u = |b0 · b1 |, both relevant pairs satisfy r ≥ −u. Moreover,
+
+742                                (5 + 8u)2 − (25 + 24u) = 8u(7 + 8u) ≥ 0,
+
+743   so
+                                              7      1√              3 2u
+744                                   F0 (r) ≤   +       25 + 24u ≤ +       .
+                                             20 20                   5    5
+745       For completeness, the scalar inequalities in the CHSH-deficit estimate have nonnegative squared
+746   differences                                 2
+                                                u2                   u4
+747                                         1−         − (1 − u2 ) =    ,
+                                                 2                    4
+748
+                                                  2
+                                                u2                   u4
+749                                         2−         − (4 − u2 ) =    .
+                                                 4                   16
+750   Their right sides are nonnegative on 0 ≤ u ≤ 1, so no sign reversal is introduced by squaring.
+
+
+751   B      The strengthened algebraic strategy
+752   Proposition B.1 (Strengthened attained lower bound). There is a fixed-qubit POVM strategy
+753   attaining                                    √
+                                             16 + 8 7813
+754                                     L1 =              > U.
+                                                  25
+755   Thus L1 is an attained POVM lower bound. No global POVM optimality is asserted.
+
+
+
+
+                                                           24
+756   Proof. Put                                                                           √
+                                   √                 1                      p            6   217
+757                           q=       7813,       η= ,                s=       1 − η2 =         .
+                                                     q                                      q
+758   Use                                          r                      r
+                                                       1+η                    1−η
+759                                      |ψη i =           |00i +                 |11i,
+                                                        2                      2
+760   Bob observables B0 = X, B1 = Z, and Alice observables
+                                    √                        √
+                                   6 217 X + qZ             6 217 X − qZ
+761                          A0 =                ,    A1 =               .
+                                        125                     125
+762   They square to the identity because
+
+763                                              36 · 217 + 7813 = 1252 .
+
+764   The CHSH value is S = 250/q.
+765      Set                                                      r
+                                                          3            q−1
+766                                                    k=
+                                                          5            q+1
+767   and                     2                                                                        
+                         1    k k                     1           k 2 −k                           1 − k2 0
+768                 M0 =            ,            M1 =                      ,            M2 =                  .
+                         2    k 1                     2           −k 1                               0    0
+769   These are positive rank-one effects and sum to the identity. The diagonal dual operator
+                                                                    
+                                                  2         6
+770                                     Γ = diag (1 + η), (1 − η)
+                                                  5        25
+
+771   dominates all three weighted steered score operators and annihilates the corresponding effect ranges.
+772   Hence
+                                             16 + 4η                  16 + 8q
+773                              T = Tr Γ =          ,     10S + T =           .
+                                                25                       25
+774      For the strict comparison with U ,
+                                     √                                     √
+775                           (6 + 80 7813)2 − 2 · 50032 = −56782 + 960 7813,
+
+776   and
+777                                9602 · 7813 − 567822 = 3 976 265 276 > 0.
+778   Both sides being compared are positive, these two exact square comparisons prove L1 > U .
+
+779   Remark B.2 (Scope of the strengthening). Within the one-parameter family used above,
+                                                         p                   16 + 4η
+780                                         f (η) = 20        2 − η2 +
+                                                                                25
+781   has
+                                           20η         4                                  40
+782                        f ′ (η) = − p           +      ,            f ′′ (η) = −                 < 0.
+                                        2 − η2         25                             (2 − η 2 )3/2
+                                         √
+783   Its unique critical point is η = 1/ 7813. This proves optimality only within that one-parameter
+784   family and is not a global POVM optimality claim.
+
+
+                                                                  25
+785   C Degenerate cases in the one-binary-party theorem
+786   If B0 , B1 are nondegenerate and have linearly independent Bloch axes, ΦB maps the positive cone
+787   onto a three-dimensional Lorentz cone. An extreme ray of the image lies on the boundary ellipse.
+788   Its minimum-norm Bloch lift in the plane of the two axes has norm one; a perpendicular component
+789   would exceed the Bloch ball. Thus the positive lift in spanR {I, B0 , B1 } is unique and rank one.
+790       If the Bloch axes are parallel or antiparallel, the image is the cone over an interval and has two
+791   extreme rays. Every positive relation reduces to one-versus-one cancellations or a two-versus-two
+792   relation with repeated zero-padded outcomes. The same purification construction applies.
+793       If one observable is scalar and the other nondegenerate, the image is again two-dimensional; the
+794   scalar input is deterministic and does not add a coordinate. If both are scalar, Bob is deterministic
+795   on both inputs and the behavior is local. A rank-deficient circuit sum Ω forces all lifted rays to be
+796   collinear and is realized by a product purification. Zero effects receive zero projectors. These cases
+797   also show that circuit weights remain nonnegative and sum to one at the boundary.
+
+
+798   D     Extremal qubit POVMs and the rank-square bound
+799   Let Ma be the nonzero effects of a POVM. For each a, let Va be the real vector space of Hermitian
+800   operators supported on ran Ma . It has dimension rank(Ma )2 . Consider the summation map
+                                 M                                   X
+801                                  Va −→ Herm(2),      (Ha )a 7−→     Ha .
+                                   a                                          a
+
+802   If it has a nonzero kernel, then for suﬀiciently small ε > 0, Ma ± εHa ≥ 0, and the two perturbed
+803   tuples are distinct POVMs whose average is M . Extremality therefore requires injectivity, giving
+                                      X
+804                                       rank(Ma )2 ≤ dimR Herm(2) = 4.
+                                       a
+
+805   This necessary condition is all that is used in theorem 4.5. Together with linear independence in a
+806   three-dimensional span, it leaves exactly three rank-one effects.
+
+
+807   E     Finite-dimensional POVM duality
+808   Let                                                  X
+809                                        V = max              Tr(Kj Nj ).
+                                                   ∑Nj ≥0   j
+                                                    j Nj =I
+
+810   Weak duality says that every Γ ≥ Kj obeys
+                                          X
+811                                           Tr(Kj Nj ) ≤ Tr Γ.
+                                               j
+
+812   For the reverse direction, consider the closed cone
+                                                                     
+                          X           X                                
+813                 C=           Xj ,   Tr(Kj Xj ) − t : Xj ≥ 0, t ≥ 0 ⊂ Herm(2) × R.
+                                                                       
+                              j        j
+                                                     P                                P
+814   Closedness follows because convergence of          j Xj bounds every 0 ≤ Xj ≤       k Xk .
+
+
+                                                           26
+815       The point (I, V + ε) is outside C. Nearest-point separation provides a nonzero functional
+
+816                                              ℓ(A, s) = Tr(Γε A) + γs
+
+817   nonnegative on C and negative at that point. Since (0, −t) ∈ C, γ ≤ 0. If γ = 0, positivity on all
+818   (X, Tr(Kj X)) would give Γε ≥ 0, contradicting Tr Γε < 0. Normalize γ = −1. Taking one nonzero
+819   Xj = X gives Γε ≥ Kj , while separation and weak duality give
+
+820                                                      V ≤ Tr Γε < V + ε.
+
+821   Fix one index j0 . Since Γε − Kj0 ≥ 0 and Tr Γε < V + ε, the positive matrix Γε − Kj0 has uniformly
+822   bounded trace and hence uniformly bounded operator norm. Thus Γε is bounded. A convergent
+823   subsequence as ε ↓ 0 yields dual attainment with Tr Γ = V .
+824      At a primal optimum,
+                                            X               X
+825                              0 = Tr Γ −    Tr(Kj Nj ) =     Tr[(Γ − Kj )Nj ].
+                                                     j                   j
+
+
+826   Each term is nonnegative, hence zero. For A, B ≥ 0, Tr(AB) = 0 implies A1/2 BA1/2 = 0, and
+827   therefore AB = 0. This proves complementary slackness.
+
+
+828   F    Square completion for the incidence Hessian
+829   Let xj = P rj , Q = g −1 , and vary
+
+830                                      P (t) = P + tδP,               g(t) = g + tH
+
+831   to first order. The inverse expansion is
+
+832                               (g + tH)−1 = Q − tQHQ + t2 QHQHQ + O(t3 ).
+
+833   Substitution in Fj = (P rj )T Q(P rj ) gives
+
+                                  1 2
+                                    D Fj = (δP rj )T Q(δP rj ) − 2(δP rj )T QHQ(P rj )
+834                               2
+                                            + (P rj )T QHQHQ(P rj ).
+
+835   Writing
+836                                                      δP = P W + HQP
+837   turns the right side into
+838                                                      (P W rj )T Q(P W rj ).
+839   Therefore            X                     X
+840                             λ j D 2 Fj = 2           λj rjT W T P T QP W rj = 2 Tr(SW ΛW T ).
+                            j                    j
+
+841   This expansion also fixes the sign convention used at a Bell maximum.
+
+
+
+
+                                                                  27
+842   G Projective fibers of the quadratic null-ray map
+843   Let
+844                                         Ng = {[x] ∈ RP3 : xT gx = 0}
+845   for a strict metric (3). To avoid collisions with the state and metric notation, write
+                                                                             
+846                                     Φ(x) = ξ0 (x), ξ1 (x), ξ2 (x), ξ3 (x) ,
+
+847   where
+                                    ξ0 (x) = x2 (x0 + x3 ), ξ1 (x) = x3 (x0 + x2 ),
+848
+                                    ξ2 (x) = x2 (x1 + x3 ), ξ3 (x) = x3 (x1 + x2 ).
+849   For a fixed target we suppress the argument x.
+
+850   G.1     Base locus and generic inverse
+851   If x2 = x3 = 0, nullness gives x0 x1 = 0, hence r1 , r2 . If exactly one of x2 , x3 vanishes, the remaining
+852   equations give r3 or r4 . If x2 x3 6= 0, all four components of Φ vanish only when
+
+853                                            x0 = x1 = −x2 = −x3 ,
+
+854   the ray r5 . Thus the base locus consists exactly of the five coeﬀicient rays.
+855      The identities
+                              ξ0 − ξ1 = x0 (x2 − x3 ),                 ξ2 − ξ3 = x1 (x2 − x3 ),
+856                           ξ0 − ξ2 = x2 (x0 − x1 ),                 ξ1 − ξ3 = x3 (x0 − x1 ),
+                          ξ0 ξ3 − ξ1 ξ2 = x2 x3 (x0 − x1 )(x2 − x3 )
+
+857   give                                                            
+                                        (ξ0 − ξ1 )(ξ0 − ξ2 )(ξ1 − ξ3 )
+                                      (ξ2 − ξ3 )(ξ0 − ξ2 )(ξ1 − ξ3 )
+                                                                      
+858
+                                       (ξ0 ξ3 − ξ1 ξ2 )(ξ0 − ξ2 )  = ω(x)x,
+                                          (ξ0 ξ3 − ξ1 ξ2 )(ξ1 − ξ3 )
+859   where
+860                                       ω(x) = x2 x3 (x2 − x3 )(x0 − x1 )2 .
+861   Hence [x] is recovered from [Φ(x)] whenever ω(x) 6= 0.
+
+862   G.2     Exceptional divisor x2 = 0
+863   Fix a nonbase source with x2 = 0. The base-locus analysis shows that x3 6= 0, and its nonzero
+864   target has the form [0 : ξ1 : 0 : ξ3 ]. For a candidate preimage z, the two target zeros give
+
+865                                        z2 (z0 + z3 ) = z2 (z1 + z3 ) = 0.
+
+866       On the direct branch z2 = 0, a nonzero target forces z3 6= 0. Scale z3 = 1. Equality of target
+867   ratios then gives (z0 , z1 ) = t(ξ1 , ξ3 ), and nullness is
+
+868                                          t2 ξ1 ξ3 + 2t(bξ1 + dξ3 ) = 0.
+
+
+
+                                                           28
+869   The root t = 0 is r4 ; after removing it, the remaining equation is linear in t. It cannot vanish
+870   identically: if ξ1 ξ3 = 0, positivity of b, d and (ξ1 , ξ3 ) 6= (0, 0) gives bξ1 + dξ3 6= 0. Hence there is at
+871   most one nonbase direct preimage.
+872       On the cross branch z2 6= 0, the target zeros force z0 = z1 = −z3 . A nonzero target also forces
+873   z3 6= 0, so scale z3 = 1 and write z2 = t. The two nonzero target coordinates of this branch are
+874   equal, so a cross preimage can occur only if ξ1 = ξ3 . Its null equation is
+
+875                                         z T gz = (1 − 2(b + d))(1 − t).
+
+876   Strictness b + d < 1/2 gives only t = 1, for which z = −r5 and Φ(z) = 0. Thus the cross branch
+877   contributes no nonbase preimage.
+
+878   G.3    Exceptional divisor x3 = 0
+879   Now fix a nonbase source with x3 = 0. Then x2 6= 0 and the target is [ξ0 : 0 : ξ2 : 0]. The target
+880   zeros give either the direct branch z3 = 0, or, when z3 6= 0, the cross equations z0 = z1 = −z2 .
+881       On the direct branch, a nonzero target permits the scale z2 = 1, and (z0 , z1 ) = t(ξ0 , ξ2 ). Nullness
+882   is
+883                                        t2 ξ0 ξ2 + 2t(aξ0 + cξ2 ) = 0.
+884   As above, t = 0 is the base ray r3 , and positivity of a, c excludes an identically zero residual linear
+885   equation. Thus there is at most one nonbase direct preimage.
+886       On the cross branch, scale z2 = 1 and write z3 = t. Such a target must satisfy ξ0 = ξ2 , and
+887   nullness becomes
+888                                         (1 − 2(a + c))(1 − t) = 0.
+889   Strictness a + c < 1/2 again leaves only t = 1, the base ray −r5 . Thus this cross branch also
+890   contributes no nonbase preimage.
+
+891   G.4    Exceptional divisor x0 = x1
+892   If x0 = x1 = 0, nullness reduces to 2ex2 x3 = 0. Since e > 0, the point is r3 or r4 , hence in the base
+893   locus. A nonbase point may therefore be scaled to x0 = x1 = 1. Put p = x2 , q = x3 . The null and
+894   target-ratio equations are
+
+895                                 N01 = 1 + 2(a + c)p + 2(b + d)q + 2epq = 0,
+896
+897                                      R01 = ξ1 p(1 + q) − ξ0 q(1 + p) = 0.
+898   Here the target is [ξ0 : ξ1 : ξ0 : ξ1 ] and is nonzero. Conversely, equality of the first and third, and
+899   of the second and fourth, target coordinates for a candidate z gives
+
+900                                         z2 (z0 − z1 ) = z3 (z0 − z1 ) = 0.
+
+901   If z0 6= z1 , then z2 = z3 = 0, so nullness makes z a base ray and Φ(z) = 0. Thus every nonbase
+902   candidate is on the direct branch z0 = z1 , and the preceding zero-coordinate check justifies the
+903   scale z0 = z1 = 1.
+904       The exact resultant in p is
+                                                                                          
+905                      Resp (N01 , R01 ) = −(q + 1) ξ1 + q ξ0 (2a + 2c − 1) + 2ξ1 (b + d) .
+
+906   At q = −1,
+907                                          N01 = (1 − 2(b + d))(1 + p),
+
+                                                           29
+908   so strictness gives p = −1, the base ray r5 . The second resultant factor is not identically zero: if
+909   ξ1 6= 0, its constant term is nonzero; if ξ1 = 0, then ξ0 6= 0 and 2(a + c) − 1 6= 0. It therefore
+910   supplies at most one nonbase value of q.
+911       For fixed q, the null equation is linear in p, with coeﬀicient 2(a + c) + 2eq and constant term
+912   1 + 2(b + d)q. Both could vanish only if
+
+913                                     2(a + c)(b + d) = a + b + c + d − 12 ,
+
+914   equivalent to
+915                                       (2(a + c) − 1)(2(b + d) − 1) = 0,
+916   which strictness excludes. Thus N01 determines at most one p for the remaining q, proving unique-
+917   ness on this divisor.
+
+918   G.5    Exceptional divisor x2 = x3
+919   If x2 = x3 = 0, nullness gives x0 x1 = 0, hence the base rays r1 , r2 . For a nonbase point scale
+920   x2 = x3 = 1 and put p = x0 , q = x1 . The equations are
+
+921                                 N23 = pq + 2(a + b)p + 2(c + d)q + 2e = 0,
+922
+923                                       R23 = ξ2 (p + 1) − ξ0 (q + 1) = 0.
+924   The target is [ξ0 : ξ0 : ξ2 : ξ2 ] and is nonzero. A candidate with these equal coordinate pairs obeys
+
+925                                        z0 (z2 − z3 ) = z1 (z2 − z3 ) = 0.
+
+926   The direct branch is z2 = z3 , where the base-locus check above justifies the scale z2 = z3 = 1. On
+927   the cross branch z2 6= z3 , one has z0 = z1 = 0; nullness becomes 2ez2 z3 = 0. Since e > 0, the
+928   candidate is r3 or r4 and has zero target. Hence no nonbase cross preimage exists.
+929      On the direct branch the exact resultant is
+
+930                      Resp (N23 , R23 ) = −(q + 1) [ξ0 q + 2ξ0 (a + b) + 2ξ2 (c + d) − ξ2 ] .
+
+931   At q = −1,
+932                                         N23 = (2(a + b) − 1)(1 + p),
+933   so strictness gives p = −1, the base ray r5 . The second factor is not identically zero: if ξ0 6= 0, its
+934   coeﬀicient of q is nonzero; if ξ0 = 0, then ξ2 6= 0 and its constant term ξ2 (2(c + d) − 1) is nonzero.
+935       For fixed q, N23 is linear in p, with coeﬀicient q + 2(a + b) and constant term 2(c + d)q + 2e.
+936   Both could vanish only if
+937                                     2(a + b)(c + d) = a + b + c + d − 12 ,
+938   equivalently
+939                                       (2(a + b) − 1)(2(c + d) − 1) = 0,
+940   which strictness excludes. Thus there is at most one nonbase direct preimage.
+941       Finally, ω(x) = 0 is exactly the union of the four divisors just treated. Their zero-coordinate
+942   intersections were included before each scale choice: x2 = x3 = 0 gives r1 , r2 , while x0 = x1 = 0
+943   gives r3 , r4 . All other intersections remain within the direct/cross alternatives above; none of those
+944   arguments divides by a target coordinate, and the cases ξi = 0 were retained in the resultant
+945   analysis. The four analyses therefore exhaust every exceptional intersection and prove projective
+946   injectivity away from the five-ray base locus.
+
+                                                           30
+947   H     Bounded transportation and the rank-zero simulation
+948   For three ternary labels, let cij = cji ≥ 0, cii = 0, and assume
+                                    X                              X            X       1
+949                                        cij = ai + bi ,               ai =       bi = .
+                                                                                        2
+                                    j̸=i                             i          i
+
+950   Seek qij with row sums bi , column sums aj , and 0 ≤ qij ≤ cij . Put
+                                                     cij
+951                                         qij =        + fij ,         fij = −fji ,
+                                                      2
+952
+                                                  bi − a i
+953                                        di =            ,       d1 + d2 + d3 = 0.
+                                                     2
+954   Set
+955                                f12 = t,           f13 = d1 − t,          f23 = d2 + t.
+956   The row and column equations are automatic. Capacity is equivalent to
+
+957                                                   t ∈ I12 ∩ I13 ∩ I23 ,
+
+958   where
+                                           I12 = [−c12 /2, c12 /2],
+959                                        I13 = [d1 − c13 /2, d1 + c13 /2],
+                                           I23 = [−d2 − c23 /2, −d2 + c23 /2].
+960   The inequalities
+                                                     a i + bi   cij + cik
+961                                               |di | ≤     =
+                                                         2          2
+962   show that every pair of intervals intersects, including zero-capacity endpoints. Three closed intervals
+963   on the real line with pairwise intersections have a common point: the largest left endpoint does
+964   not exceed the smallest right endpoint. Any common t gives the required bounded transportation
+965   matrix.
+966       The deterministic branch construction in proposition 9.2 then reproduces all four input blocks
+967   simultaneously. The supplied rational simulator independently checks the construction on an inte-
+968   rior symmetric instance; generality follows from the interval proof, not from that one executable
+969   example.
+
+
+970   I Verification boundary
+971   The exact verifier checks:
+
+972   1. dense and sparse Bell coeﬀicients and both explicit strategies;
+
+973   2. POVM normalization, rank-one factorizations, exact Bell values, and discrimination dual certifi-
+974      cates;
+
+975   3. the determinant, discriminant, robust-comparison, deficit, and complete-square identities in the
+976      projective bound;
+
+977   4. the Lorentz metric identities, quadratic map, generic inverse, all exceptional resultants and
+978      factorizations;
+
+                                                               31
+ 979   5. an exact pure-state conformal-Lorentz instance and the weighted Hessian square completion;
+
+ 980   6. independence witnesses for the five incidence constraints;
+
+ 981   7. bounded-flow identities and an independent rank-zero simulation.
+
+ 982      The scripts do not replace the manuscript arguments establishing compactness, extremal re-
+ 983   duction, cone circuits, physical completeness, multiplier signs, dimension bounds, or exhaustion of
+ 984   cases. Some symbolic checks are exact regression instances rather than formal proofs of general
+ 985   matrix identities; the corresponding general identities are derived above.
+
+
+ 986   References
+ 987    [1] Nicolas Brunner, Daniel Cavalcanti, Stefano Pironio, Valerio Scarani, and Stephanie Wehner. Bell
+ 988        nonlocality. Reviews of Modern Physics, 86(2):419–478, 2014. doi: 10.1103/RevModPhys.86.419. URL
+ 989        https://doi.org/10.1103/RevModPhys.86.419.
+ 990    [2] Miguel Navascués, Adrien Feix, Mateus Araújo, and Tamás Vértesi. Characterizing finite-dimensional
+ 991        quantum behavior. Physical Review A, 92(4):042117, 2015. doi: 10.1103/PhysRevA.92.042117. URL
+ 992        https://doi.org/10.1103/PhysRevA.92.042117.
+ 993    [3] Nicolas Gisin. Bell inequalities: Many questions, a few answers. In Wayne C. Myrvold and Joy Christian,
+ 994        editors, Quantum Reality, Relativistic Causality, and Closing the Epistemic Circle: Essays in Honour
+ 995        of Abner Shimony, volume 73 of The Western Ontario Series in Philosophy of Science, pages 125–
+ 996        138. Springer, Dordrecht, 2009. doi: 10.1007/978-1-4020-9107-0_9. URL https://doi.org/10.1007/
+ 997        978-1-4020-9107-0_9.
+ 998    [4] Tamás Vértesi and Erika Bene. Two-qubit Bell inequality for which positive operator-valued measure-
+ 999        ments are relevant. Physical Review A, 82(6):062115, 2010. doi: 10.1103/PhysRevA.82.062115. URL
+1000        https://doi.org/10.1103/PhysRevA.82.062115.
+1001    [5] Johanna F. Barra, Esteban S. Gómez, Gustavo Cañas, Waldimar A. T. Nogueira, Leonardo Neves, and
+1002        Gustavo Lima. Higher quantum bound for the Vértesi–Bene–Bell inequality and the role of positive
+1003        operator-valued measures regarding its threshold detection eﬀiciency. Physical Review A, 86(4):042114,
+1004        2012. doi: 10.1103/PhysRevA.86.042114. URL https://doi.org/10.1103/PhysRevA.86.042114.
+1005    [6] Esteban S. Gómez, Santiago Gómez, Pablo González, Gustavo Cañas, Johanna F. Barra, Aldo Delgado,
+1006        Guilherme B. Xavier, Adán Cabello, Matthias Kleinmann, Tamás Vértesi, and Gustavo Lima. Device-
+1007        independent certification of a nonprojective qubit measurement. Physical Review Letters, 117(26):
+1008        260401, 2016. doi: 10.1103/PhysRevLett.117.260401. URL https://doi.org/10.1103/PhysRevLett.
+1009        117.260401.
+1010    [7] Sacha Cerf and Harold Ollivier. The perturbative method for quantum correlations, March 2026. URL
+1011        https://arxiv.org/abs/2603.26875.
+1012    [8] Yasamin Panahi, Maria Ciudad Alañón, Daniel Centeno, Ralph Jason Costales, Luca Mrini, Soham
+1013        Bhattacharyya, and Elie Wolfe. Upper bounding Hilbert space dimensions which can realize all the
+1014        quantum correlations, 2025. URL https://arxiv.org/abs/2505.20519.
+1015    [9] Michał Oszmaniec, Leonardo Guerini, Peter Wittek, and Antonio Acín. Simulating positive-operator-
+1016        valued measures with projective measurements. Physical Review Letters, 119(19):190501, 2017. doi:
+1017        10.1103/PhysRevLett.119.190501. URL https://doi.org/10.1103/PhysRevLett.119.190501.
+1018   [10] Leonardo Guerini, Jessica Bavaresco, Marcelo Terra Cunha, and Antonio Acín. Operational framework
+1019        for quantum measurement simulability. Journal of Mathematical Physics, 58(9):092102, 2017. doi:
+1020        10.1063/1.4994303. URL https://doi.org/10.1063/1.4994303.
+1021   [11] Lluís Masanes. Extremal quantum correlations for N parties with two dichotomic observables per site,
+1022        2005. URL https://arxiv.org/abs/quant-ph/0512100.
+1023   [12] Benjamin Toner and Frank Verstraete. Monogamy of Bell correlations and Tsirelson’s bound, 2006.
+1024        URL https://arxiv.org/abs/quant-ph/0611001.
+
+
+                                                           32
+1025   [13] Sacha Schwarz, Bänz Bessire, André Stefanov, and Yeong-Cherng Liang. Bipartite Bell inequalities
+1026        with three ternary-outcome measurements—from theory to experiments. New Journal of Physics, 18
+1027        (3):035001, 2016. doi: 10.1088/1367-2630/18/3/035001. URL https://doi.org/10.1088/1367-2630/
+1028        18/3/035001.
+1029   [14] Sacha Schwarz, Bänz Bessire, André Stefanov, and Yeong-Cherng Liang. Corrigendum: Bipartite Bell
+1030        inequalities with three ternary-outcome measurements—from theory to experiments. New Journal
+1031        of Physics, 20(4):049502, 2018. doi: 10.1088/1367-2630/aabe5c. URL https://doi.org/10.1088/
+1032        1367-2630/aabe5c. The correction is also incorporated into arXiv:1511.05253v3.
+1033   [15] Giacomo Mauro D’Ariano, Paoloplacido Lo Presti, and Paolo Perinotti. Classical randomness in quan-
+1034        tum measurements. Journal of Physics A: Mathematical and General, 38(26):5979–5991, 2005. doi:
+1035        10.1088/0305-4470/38/26/010. URL https://doi.org/10.1088/0305-4470/38/26/010.
+1036   [16] Erkka Haapasalo, Teiko Heinosaari, and Juha-Pekka Pellonpää. Quantum measurements on finite
+1037        dimensional systems: Relabeling and mixing. Quantum Information Processing, 11(6):1751–1763, 2012.
+1038        doi: 10.1007/s11128-011-0330-2. URL https://doi.org/10.1007/s11128-011-0330-2.
+
+
+
+
+                                                         33
+                       Table 2: Notation used in the separation and equality arguments.
+Symbol                           Meaning
+QX2                              Raw behavior set from one fixed-qubit strategy of type X ∈ {POVM, PVM}
+  X
+Q2                               Shared-randomness convex hull conv QX2
+βX (c)                           Support value of Bell tensor c on the convexified set
+B, S, T                          The 3 × 2 Bell functional, its CHSH term, and its auxiliary term
+Ξ                                2 × 2 coeﬀicient matrix of a pure two-qubit state
+ΘΞ , L Ξ                         Steering map N 7→ ΞN T Ξ† and its Lorentz-coordinate matrix
+J                                Minkowski matrix diag(1, −1, −1, −1)
+EA , EB                          Lorentz-coordinate frames formed by four local effects
+g, h, Q                          Alice and Bob Gram metrics and Q = g −1
+r1 , . . . , r 5 , u             Coeﬀicient rays and their common normalization vector
+P                                4 × 4 block of joint probabilities in the two local effect bases
+Fj                               Null-incidence constraint (P rj )T g −1 (P rj ) = 0
+Bc                               Matrix representing Bell tensor c in P the incidence coordinates
+λ, Λ                             Determinant multipliers and Λ = j λj rj rjT
+D, K                             Metric differential and K = ker DT
+HK , q                           Compatible W -space and weighted second form
+Kj|y , Γy                        Local score operators and finite-POVM dual operators
+
+
+
+
+                                                      34
+

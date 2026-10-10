@@ -1,0 +1,735 @@
+{
+  "source": "zenodo_discoverability_20261010/native_metadata.py",
+  "source_sha256": "9d713f81290b29c54b5d37667f3d1fe3a280f273d7b9b66eb98c2cbeb195eb34",
+  "offline_only": true,
+  "tests": [
+    {
+      "test": "translate subjects and language",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate adds ORCID without removing other identifiers or affiliations",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate dates, title, version, publication date and descriptions preserved",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate existing structured relation preserved exactly",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "translate does not mutate original",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 0",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 2",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 3",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 4",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 5",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject prohibited or unsafe translation 6",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject controlled-subject erasure",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject removing existing relation",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject pids drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject access drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject custom_fields drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject files drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject versions drift after session captured",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject scientific title drift",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization copies draft and records exact raw/original evidence",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects non-boolean-draft flag False",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects non-boolean-draft flag None",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects non-boolean-draft flag 1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects non-boolean-draft flag 'true'",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects wrong_record",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects wrong_provider",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects extra_oai_field",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization rejects missing_other_pid",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "OAI normalization preserves every additional PID exactly",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "successful OAI-omitting draft stage keeps public metadata and all protected fields",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "successful same-record publish restores exact public OAI and preserves IDs, DOI, version, files, access, custom",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "published",
+          "doi": "10.5281/zenodo.21699161",
+          "record_url": "https://zenodo.org/records/21699161",
+          "files_and_identity_unchanged": true
+        }
+      }
+    },
+    {
+      "test": "successful same-record stage with exact original draft PIDs",
+      "passed": true,
+      "details": {
+        "error": null,
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject unexpected draft PID shape changed_oai",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "reject unexpected draft PID shape changed_doi",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "reject unexpected draft PID shape missing_doi",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "reject unexpected draft PID shape extra_pid",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline metadata drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public metadata baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline pids drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline files drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public file/preview baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline access drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public access baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline custom_fields drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native public custom_fields baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline versions drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "preflight rejects saved-baseline parent drift before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record/concept/version history baseline drift",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "pre-existing pending draft rejected before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Refusing to reuse a pre-existing pending edit",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "persistence failure stops before mutation",
+      "passed": true,
+      "details": {
+        "error": "OSError: injected persistence failure",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 1 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 2 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": null
+      }
+    },
+    {
+      "test": "uncertain mutation 3 fails without retry or later mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: injected uncertain operation failure",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject changed reviewed patch hash before mutation",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native reviewed patch hash changed",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "reject unapproved record before mutation",
+      "passed": true,
+      "details": {
+        "error": "StopIteration: ",
+        "mutations": [],
+        "result": null
+      }
+    },
+    {
+      "test": "reject publication read-back drift version_registry",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native publication changed complete concept/version history",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift native_file_auxiliary",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native file attributes/preview/order/access changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift legacy_description",
+      "passed": true,
+      "details": {
+        "error": "DepositError: Remote metadata differs at 'description'; inspect the draft",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift legacy_title",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native publication changed protected metadata.title",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift native_dates",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native metadata differs from the reviewed target",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift snapshot_native_date",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native final public rich metadata differs from reviewed target",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift snapshot_native_custom",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native final public custom_fields differs from original",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift snapshot_native_access",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native final public access differs from original",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift snapshot_native_oai",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native publication changed complete concept/version history",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift public_oai_missing",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift public_oai_changed",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native record identity/PIDs/versions/files/access/custom fields changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    }
+  ],
+  "passed": 62,
+  "failed": 0,
+  "related_source_sha256": {
+    "native_views.py": "9e1ce726a3247eb2b2b9b044918a8ee8a5345b6360e853b51d34ae3f5b421a4f",
+    "apply_reviewed.py": "758d4ebcdb54881e78c6da0d0c85b4a9e3a82ed4a8b98321c6ff38c1c3cf3cce",
+    "baseline.py": "b597b7d8bbcc9856b4345e99b7c2526c3c8d2438d52e9f858ff9585822fa3038"
+  }
+}
