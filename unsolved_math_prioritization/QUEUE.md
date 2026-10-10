@@ -853,7 +853,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 842 | 30002439 / OWR-12725-016 | Height Counts for Closed Projective Immersions | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 843 | 30002618 / OWR-13102-007 | Monodromy Exactness for Isocrystals on Semistable Curves | 0.0975 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 844 | 10300026 / AMR-102-0026 | Leaf spaces and transverse structures — Question 8.3 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 845 | 10300029 / AMR-102-0029 | Leaf spaces and transverse structures — Question 8.6 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 845 | 10300029 / AMR-102-0029 | Leaf spaces and transverse structures — Question 8.6 | 0.0975 | 6.0 | 3 | unknown | unsolved | 3/5 |  | 2026-10-06: independent AI audit accepts a credited scoped partial. Universal radius and manifold-only radius uniform over all finite markings are negative; effective supplied-marking radius and prescribed preferred markings remain unresolved. Full problem unsolved; no novelty claim. [Result](attempts/10300029/author/RESULT.md); [audit](attempts/10300029/audit/AUDIT.md). |  |
 | 846 | 10400124 / AMR-103-0124 | Conjecture 7.9 — (Topological interpretations of the dj ’s) Let Mj be the union of components of the moduli space of flat connections… | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 847 | 10400215 / AMR-103-0215 | Conjecture 12.10 — (D. | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 848 | 11100062 / AMR-110-0062 | Unstable homotopy theory 3 — Suppose X is a simply connected finite complex. | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
