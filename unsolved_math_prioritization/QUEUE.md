@@ -617,7 +617,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 606 | 30000706 / OWR-1460-013 | Four-Value-Sharing Meromorphic Functions with $\psi=1$ | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 608 | 30000750 / OWR-1537-002 | Reduced Length and Mahler-Measure Inequality | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | unsolved | 5/5 |  | [Audited partial](attempts/30000971/PROOF.md): general v2(P40) to P46 fiber reg=2, length(Q)/c=10/6 refutes stronger comparison; main n/c+1 bound unresolved. Independent AI audit; unrefereed; priority unverified. |  |
 | 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 611 | 30004404 / OWR-17471-010 | Free Subgroups Avoiding All Dehn-Surgery Kernels | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 612 | 30004456 / OWR-1703863-005 | $L^2$ Euler Characteristics and HNN Splittings | 0.1116 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
