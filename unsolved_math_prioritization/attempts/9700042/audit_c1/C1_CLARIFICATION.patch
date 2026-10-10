@@ -1,0 +1,24 @@
+--- TURN_C1_MARKED_DEFECT_BOUND.md
++++ TURN_C1_CLARIFIED.md
+@@ -22,7 +22,7 @@
+ 
+ ## C1 outcome
+ 
+-The argument below proposes the genuinely new upper estimate
++The argument below derives the following upper estimate (no novelty claim)
+ 
+ \[
+ \boxed{\limsup_{q\downarrow0}\frac{1-v(1-q)}{\sqrt{2q}}\leq\frac e2.}
+@@ -50,7 +50,11 @@
+ V_n=c_L+c_B+T_N. \tag{1}
+ \]
+ 
+-Here is the cut argument, including the directional point. Prescribe all source boundary vertices to lie in the source side and all sink boundary vertices in the sink side. The interface between these sides contains a component joining the midpoint of e_L to the midpoint of e_B. In the face dual graph this component contains a path between the designated two corner faces. Traverse it with the source side on the appropriate fixed side. A forward dual crossing is an outward primal edge, while a reverse crossing is an inward primal edge and contributes zero to a directed cut. Additional interface components have nonnegative cost. Consequently every primal cut costs at least c_L+c_B+T_N. Conversely, a simple corner-to-corner face-dual path, supplemented by its two forced boundary crossings, separates the prescribed source and sink boundary arcs. Take the vertices on the source side as a cut; its outward crossings are exactly the forward dual crossings and e_L,e_B. This yields the other inequality by max-flow/min-cut. A minimum dual path can be chosen simple because all its costs are nonnegative: remove cycles from any minimizing walk.
++Here is the cut argument, including faces where the interface has degree four. Prescribe all source boundary vertices to lie in the source side S and all sink boundary vertices outside S. For each primal edge whose endpoints have different cut labels, draw its dual crossing, oriented with S on its right in the original physical embedding. Include separate exterior endpoints at the midpoints of e_L and e_B. At each bounded primal face the numbers of incoming and outgoing crossings agree, because the transitions between the two binary corner labels alternate cyclically. This includes a checkerboard face, with two incoming and two outgoing crossings. The exterior endpoint at e_L has one outgoing crossing and the endpoint at e_B has one incoming crossing. No other outer-boundary edge has different cut labels at its endpoints.
++
++There is therefore a directed route from the first exterior endpoint to the second: otherwise the vertices reachable from the first endpoint would have no outgoing crossing, contradicting the sum of their outdegree-minus-indegree balances. Extract a directed path, or erase loops from an extracted walk. In reflected face coordinates, its east/north crossings are precisely outward primal crossings; its west/south crossings are inward primal crossings. Its cost is at most the directed cut cost, since only outward crossings contribute and all capacities are nonnegative. This proves that every primal cut costs at least c_L+c_B+T_N.
++
++Conversely, a vertex-simple corner-to-corner face-dual path, extended through its two forced outer-boundary crossings, is a non-self-intersecting crosscut of the primal square and meets no primal vertex. By planar separation, it divides the square into two sides. Take as S the primal vertices on the side containing the prescribed source boundary arc. This arc is on the right of the path traversed from e_L to e_B. The outward cut crossings are exactly the forward dual crossings and e_L,e_B, while the reverse crossings contribute zero. This proves the reverse inequality by max-flow/min-cut. A minimum dual path can be chosen simple because all costs are nonnegative: removing any cycle from a minimizing walk cannot increase its cost. For n=2 the same argument has no internal dual step and gives T_0=0.
+ 
+ For a simple dual path P, let b(P) count its west and south steps and k(P) count its closed east and north steps. Its forward-step count is exactly 2N+b(P), hence its cost equals
+ 
