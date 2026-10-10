@@ -967,7 +967,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 957 | 30005960 / OWR-14298581-007 | Stability Conditions from Surface Degenerations | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 958 | 30005990 / OWR-14298587-002 | Boundary Frequency Gap for Optimal Partitions | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 959 | 30005994 / OWR-14298587-009 | Gradient-Constrained Ginzburg-Landau Minimizers | 0.0932 | 5.5 | 3 | 2024 | unsolved | 5/5 |  | Accepted source-qualified partial report; original general C1 convex-potential question UNSOLVED after five approaches. Proved large-epsilon and zero-angular-mean subcases; supporting-quadratic corollary depends on credited quartic-only arXiv:2609.35398 theorem. Published gradient theorem has C2 hypotheses. Exact obstructions are not target counterexamples. [Report](attempts/30005994/author/REPORT.md); [acceptance](attempts/30005994/audit/ACCEPTANCE.md); [portable checks](attempts/30005994/README.md). |  |
 | 960 | 30006086 / OWR-14298797-002 | Algebraic Generators and Equivalence of Loop Invariants | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 961 | 30006099 / OWR-14298803-003 | Data-Driven Estimation of Maximal Time Averages | 0.0932 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 962 | 30000347 / OWR-1111-001 | Three-Terminal Distance-Interdiction Complexity | 0.0924 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
