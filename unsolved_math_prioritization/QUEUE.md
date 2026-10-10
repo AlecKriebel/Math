@@ -93,7 +93,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed filling-homology, Rokhlin-exclusion and spun-lens-space control calculations. All constructed boundaries are standardS3, so no nonzero integral-to-mod2 homology-cobordism kernel class is established.312author and118054independent controls; two bounded approaches and exact boundary-class gap retained. Draft PR: https://github.com/AlecKriebel/Math/pull/72. |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | partial | 1/5 |  | Verified connected genus-three quotient counterexample; Auroux-Giroux ingredients credited; novelty and intended connectedness priority unestablished; partial disposition, no paper. |  |
