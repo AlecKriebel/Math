@@ -792,7 +792,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 781 | 30004618 / OWR-4990375-010 | Kodaira Dimension of Odd Minimal Strata | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 782 | 30004620 / OWR-4990375-013 | Effective Surface Cone of Principally Polarized Abelian Threefolds | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 783 | 30004730 / OWR-8415335-002 | Consistent Conical Bicombings in Metric Spaces | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 784 | 30004831 / OWR-8415347-009 | Monoidal Invariance of Hopf-Algebra Cohomological Dimension | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 784 | 30004831 / OWR-8415347-009 | Monoidal Invariance of Hopf-Algebra Cohomological Dimension | 0.1016 | 5.5 | 3 | 2021 | already_solved | 0/5 |  | Prior negative answer credited to Ruipeng Zhu, Example 4.11: monoidally equivalent Hopf algebras have dimensions 1 and infinity; order-two reconstruction independently AI-audited; 0/5 new attempts. See attempts/30004831/README.md. |  |
 | 785 | 30004953 / OWR-8415364-011 | Optimal Great-Subsphere Concentration for the Negative-$p$ Aleksandrov Problem | 0.1016 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 786 | 30005012 / OWR-9790358-010 | Nonsingularity of Bernstein-Basis Collocation Matrices | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 787 | 30005024 / OWR-9790359-005 | Finite-Mean Coding Radius for Finitely Dependent Processes | 0.1010 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
