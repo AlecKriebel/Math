@@ -992,7 +992,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 982 | 30001917 / OWR-11139-010 | Normality of Varieties of Minimal Rational Tangents | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 983 | 6000001 / AMR-059-0001 | Realizing Statistical Manifolds in Dually Flat Manifolds | 0.0915 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
-| 984 | 30002343 / OWR-12490-003 | Optimal Pluricanonical Bounds for Stable Log Surfaces | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 984 | 30002343 / OWR-12490-003 | Optimal Pluricanonical Bounds for Stable Log Surfaces | 0.0912 | 5.5 | 3 | 2013 | unsolved | 5/5 |  | Accepted unchanged partials: literal ordinary-canonical pair wording fails on P2 with smooth quartic; intended log/5I question unresolved. Weighted threshold five, cyclic-cover thresholds and conductor-jet distinction checked. For I>=2, degree five separates length-two schemes contracted by degree three or avoiding the degree-two base locus; degree-two generation implies degree-five very ampleness. Full independent audit; no universal or novelty claim. See [packet](attempts/30002343/README.md). |  |
 | 985 | 30002395 / OWR-12591-005 | Dini Spaces as Primitive Spectra of Amenable $C^*$-Algebras | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 986 | 30002495 / OWR-12866-002 | Real-Variable Proof of the Nyman Criterion | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 987 | 30002555 / OWR-12875-003 | Veech Groups with Prescribed End Spaces | 0.0910 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
