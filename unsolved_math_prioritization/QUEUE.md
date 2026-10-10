@@ -276,7 +276,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 265 | 3413 / OPG-37131 | Realisation problem for the space of knots in the 3-sphere | 0.1800 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 267 | 9700040 / AMR-096-0040 | Stationary law of a drift-jump particle process | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 268 | 30004313 / OWR-17294-014 | Yang–Baxter Solutions from Generalized Left Semi-Braces | 0.1794 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 268 | 30004313 / OWR-17294-014 | Yang–Baxter Solutions from Generalized Left Semi-Braces | 0.1794 | 5.0 | 3 | 2019 | unsolved | 5/5 |  | 2026-10-01: Five substantive turns; independently reviewed scoped partials for meet, projection, Rees retractions and Clifford components. Exact all-size subclass criteria and counterexamples retained; arbitrary two-argument addition with general completely regular component coupling remains unresolved. All three Yang–Baxter coordinates and source inverse conventions audited; 436,129 author and 2,760,310 independent exact diagnostic controls. No novelty or historical-openness claim. [Result](../attempts/30004313/RESULT.md); [independent review](../attempts/30004313/independent_review/INDEPENDENT_REVIEW.md). |  |
 | 269 | 30004630 / OWR-4990378-001 | Quadratic Growth without Quadratic Control Regularization | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 270 | 5100013 / AMR-050-0013 | Elliptic-billiard invariant k_{204} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 271 | 5100016 / AMR-050-0016 | Elliptic-billiard invariant k_{304} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
