@@ -51,7 +51,8 @@ def main():
         tool_path = fixture / "audit_receipts.py"
         shutil.copyfile(BASE / "audit_receipts.py", tool_path)
         tool_hash = hashlib.sha256(tool_path.read_bytes()).hexdigest()
-        route_names = ("native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py")
+        route_names = ("native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py",
+                       "preview_preservation.py", "repair_owned_preview.py")
         route_hashes = {}
         for name in route_names:
             shutil.copyfile(BASE / name, fixture / name)
@@ -81,6 +82,24 @@ def main():
                       "records": [audited_record], **hashes}
         audit_path = fixture / "reviews/FINAL_RECEIPT_AUDIT.json"
         write(audit_path, test_audit)
+        account_checker = fixture / "final_account_check.py"
+        shutil.copyfile(BASE / "final_account_check.py", account_checker)
+        test_account = {
+            "utc": "generator_fixture_only", "method": "GET",
+            "path": "/api/deposit/depositions?size=100&page=1&all_versions=true",
+            "owned_record_count": 1, "paper_count": 1, "excluded_count": 0, "excluded_ids": [],
+            "same_owned_record_ids": True, "all_papers_published_match_verified_receipts": True,
+            "all_excluded_metadata_files_dois_states_unchanged": True,
+            "input_sha256": {"APPROVED_PROPOSALS.json": hashes["approved_manifest_sha256"],
+                             "SOURCE_CATALOG.json": hashes["source_catalog_sha256"],
+                             "INVENTORY.json": hashes["inventory_sha256"],
+                             "reviews/ALL_VERSIONS_SCOPE_EVIDENCE.json": hashes["all_versions_scope_evidence_sha256"],
+                             "final_account_check.py": hashlib.sha256(account_checker.read_bytes()).hexdigest()},
+            "after_receipt_sha256": {str(entry["id"]): audited_record["receipt_sha256"]["after"]},
+            "authenticated_response_sha256": "f" * 64,
+        }
+        account_path = fixture / "ACCOUNT_FINAL_CHECK.json"
+        write(account_path, test_account)
         result = module.build_report(fixture)
         assert result["complete"]
         controls["genuine_public_receipt_pair_and_matching_audit_passes"] = True
@@ -169,6 +188,42 @@ def main():
         assert not module.build_report(fixture)["complete"]
         controls["current_native_route_audit_hash_required"] = True
         route_path.write_bytes(route_bytes)
+
+        incomplete_native_audit = deepcopy(test_native_audit)
+        incomplete_native_audit["related_source_sha256"].pop("preview_preservation.py")
+        write(fixture / "reviews/NATIVE_FINAL_AUDIT.json", incomplete_native_audit)
+        assert not module.build_report(fixture)["complete"]
+        controls["complete_reviewed_six_source_set_required"] = True
+
+        extra_native_audit = deepcopy(test_native_audit)
+        extra_native_audit["related_source_sha256"]["unreviewed_extra.py"] = "0" * 64
+        write(fixture / "reviews/NATIVE_FINAL_AUDIT.json", extra_native_audit)
+        assert not module.build_report(fixture)["complete"]
+        controls["arbitrary_extra_route_sources_rejected"] = True
+        write(fixture / "reviews/NATIVE_FINAL_AUDIT.json", test_native_audit)
+
+        account_bytes = account_path.read_bytes()
+        account_path.unlink()
+        assert not module.build_report(fixture)["complete"]
+        controls["final_account_receipt_required"] = True
+        account_path.write_bytes(account_bytes)
+        for name, mutate in (
+            ("account_after_receipt_hash_required", lambda d: d["after_receipt_sha256"].update({str(entry["id"]): "0" * 64})),
+            ("account_frozen_input_hash_required", lambda d: d["input_sha256"].update({"SOURCE_CATALOG.json": "0" * 64})),
+            ("account_exclusion_preservation_required", lambda d: d.update(all_excluded_metadata_files_dois_states_unchanged=False)),
+            ("account_record_counts_must_match_scope", lambda d: d.update(owned_record_count=2)),
+        ):
+            changed_account = deepcopy(test_account)
+            mutate(changed_account)
+            write(account_path, changed_account)
+            assert not module.build_report(fixture)["complete"]
+            controls[name] = True
+        account_path.write_bytes(account_bytes)
+        checker_bytes = account_checker.read_bytes()
+        account_checker.write_bytes(checker_bytes + b"\n# generator QA mutation\n")
+        assert not module.build_report(fixture)["complete"]
+        controls["account_checker_source_hash_required"] = True
+        account_checker.write_bytes(checker_bytes)
 
         scope["all_ids"].append(99999999)
         scope["all_versions_count"] = 2

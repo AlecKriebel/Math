@@ -154,7 +154,8 @@ def build_report(base: Path) -> dict:
                                       for key, path in first_evidence_paths.items()))
     native_audit_path = base / "reviews/NATIVE_FINAL_AUDIT.json"
     native_audit, native_audit_hash = read_json(native_audit_path) if native_audit_path.exists() else ({}, None)
-    native_source_names = {"native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py"}
+    native_source_names = {"native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py",
+                           "preview_preservation.py", "repair_owned_preview.py"}
     native_source_hashes = {"native_metadata.py": native_audit.get("source_sha256"),
                             **native_audit.get("related_source_sha256", {})}
     native_tests = native_audit.get("tests", [])
@@ -232,7 +233,8 @@ def build_report(base: Path) -> dict:
         audit_after_hash = audit_receipt_hash.get("after") if isinstance(audit_receipt_hash, dict) else audit_receipt_hash
         audit_before_hash = audit_receipt_hash.get("before") if isinstance(audit_receipt_hash, dict) else before_hash
         allowed_receipt_names = {"before", "after", "stage", "publish", "native_staged",
-                                 "native_published", "native_public_before_discard"}
+                                 "native_published", "native_public_before_discard",
+                                 "preview_repair_pre", "preview_repair_post"}
         raw_receipts_current = (isinstance(audit_receipt_hash, dict)
                                 and {"before", "after"} <= set(audit_receipt_hash)
                                 and set(audit_receipt_hash) <= allowed_receipt_names
@@ -296,6 +298,31 @@ def build_report(base: Path) -> dict:
     pending = [r["id"] for r in records if r["status"] == "pending"]
     failed = [r["id"] for r in records if r["status"] == "failed"]
     independent_verified = [r for r in verified if r["independently_verified"]]
+    account_path = base / "ACCOUNT_FINAL_CHECK.json"
+    account, account_hash = read_json(account_path) if account_path.exists() else ({}, None)
+    checker_path = base / "final_account_check.py"
+    checker_hash = hashlib.sha256(checker_path.read_bytes()).hexdigest() if checker_path.is_file() else None
+    account_inputs_expected = {"APPROVED_PROPOSALS.json": approved_hash, "SOURCE_CATALOG.json": catalog_hash,
+                               "INVENTORY.json": inventory_hash,
+                               "reviews/ALL_VERSIONS_SCOPE_EVIDENCE.json": scope_hash,
+                               "final_account_check.py": checker_hash}
+    account_after_expected = {str(record["id"]): record["after_receipt_sha256"] for record in records}
+    response_hash = account.get("authenticated_response_sha256", "")
+    account_current = (account.get("method") == "GET"
+                       and account.get("path") == "/api/deposit/depositions?size=100&page=1&all_versions=true"
+                       and account.get("owned_record_count") == len(owned_ids)
+                       and account.get("paper_count") == expected_papers
+                       and account.get("excluded_count") == len(excluded)
+                       and account.get("excluded_ids") == sorted(record["id"] for record in excluded)
+                       and all(account.get(key) is True for key in (
+                           "same_owned_record_ids", "all_papers_published_match_verified_receipts",
+                           "all_excluded_metadata_files_dois_states_unchanged"))
+                       and checker_hash is not None
+                       and account.get("input_sha256") == account_inputs_expected
+                       and all(account_after_expected.values())
+                       and account.get("after_receipt_sha256") == account_after_expected
+                       and isinstance(response_hash, str) and len(response_hash) == 64
+                       and all(char in "0123456789abcdef" for char in response_hash))
     complete = (len(verified) == expected_papers and not pending and not failed
                 and len(independent_verified) == expected_papers
                 and audit.get("approved_count") == expected_papers
@@ -305,6 +332,7 @@ def build_report(base: Path) -> dict:
                 and audit.get("status") == "pass" and controls_current
                 and first_evidence_current
                 and native_audit_current
+                and account_current
                 and audit.get("first_record_representation", {}).get("status") == "pass")
     invariant_counts = Counter(key for record in verified for key, passed in record["public_invariant_checks"].items() if passed)
     excluded_inventory = {r["id"]: inventory_by_id.get(r["id"], {}) for r in excluded}
@@ -326,6 +354,7 @@ def build_report(base: Path) -> dict:
             "independent_receipt_audit_global_status": audit.get("status", "missing"),
             "first_record_raw_representation_evidence_current": first_evidence_current,
             "native_metadata_route_audit_current": native_audit_current,
+            "account_final_check_current": account_current,
             "after_receipts_present": sum(r["after_receipt_artifact"] is not None for r in records),
             "pending_record_ids": pending, "failed_record_ids": failed,
             "excluded_records": len(excluded), "published_field_counts": dict(verified_fields),
@@ -361,7 +390,18 @@ def build_report(base: Path) -> dict:
             "native_metadata_route_audit_sha256": native_audit_hash,
             "native_metadata_route_audit_tests_passed": native_audit.get("passed", 0),
             "native_metadata_route_source_sha256": native_source_hashes,
+            "account_final_check_artifact": artifact(account_path, base) if account_path.exists() else None,
+            "account_final_check_sha256": account_hash,
+            "account_final_checker_source_sha256": checker_hash,
+            "account_authenticated_response_sha256": account.get("authenticated_response_sha256"),
         },
+        "account_final_check": {"verified": account_current, "utc": account.get("utc"),
+                                "owned_record_count": account.get("owned_record_count"),
+                                "paper_count": account.get("paper_count"),
+                                "excluded_count": account.get("excluded_count"),
+                                "excluded_ids": account.get("excluded_ids", []),
+                                "input_sha256": account.get("input_sha256", {}),
+                                "after_receipt_sha256": account.get("after_receipt_sha256", {})},
         "scope": "Published manuscript records, including the existing line-numbered qubit presentation. Supporting codebase, dataset, source, manifest deposits and the unpublished draft were excluded.",
         "method": "Manuscript-first specialist metadata proposals based on checksum-bound exact published PDF texts, independently cross-reviewed before metadata-only publication, with public before/after receipt comparisons and independent final auditing.",
         "impact": {"search_rank_improvement_measured": False, "readership_improvement_measured": False,
@@ -399,6 +439,8 @@ def render_markdown(report: dict) -> str:
             rows += ["The first publication's raw representation evidence must match the independent audit before final results are counted.", ""]
         if not summary["native_metadata_route_audit_current"]:
             rows += ["The native metadata workflow audit awaits passing tests bound to the current workflow source files before completion can be claimed.", ""]
+        if not summary["account_final_check_current"]:
+            rows += ["The final account-wide listing check must match the current scope, checker and every final public receipt before completion can be claimed.", ""]
     rows += [report["method"], "", report["impact"]["statement"], "",
              f"Scope: {summary['approved_paper_records']} approved paper records and {summary['excluded_records']} excluded records; "
              f"{summary['scope_records_accounted_for']}/{summary['owned_all_versions_records']} owned records accounted for.", "",
@@ -424,8 +466,18 @@ def render_markdown(report: dict) -> str:
         rows.append(f"| {cell(check.replace('_', ' '))} | {count} |")
     rows += ["", "The report binds each result to its frozen approved patch hash, exact manuscript source, "
              "independent content review, and public receipts. Detailed evidence and receipt hashes are in [RESULTS.json](RESULTS.json).", "",
-             "## Paper records", "", f"All {summary['approved_paper_records']} approved records are listed, including those still pending in a provisional report.", "",
+             "## Paper records", "", (f"All {summary['approved_paper_records']} approved records are verified below."
+                                         if report["complete"] else
+                                         f"All {summary['approved_paper_records']} approved records are listed, including those still pending in this provisional report."), "",
              "| Paper | Status | Metadata fields | Added specialist terms |", "| --- | --- | --- | --- |"]
+    if summary["account_final_check_current"]:
+        account = report["account_final_check"]
+        evidence_line = (f"The final read-only account listing at {account['utc']} confirms all "
+                         f"{account['owned_record_count']} owned record IDs: {account['paper_count']} paper records "
+                         f"match their verified publications, and all {account['excluded_count']} excluded records "
+                         "retain their original metadata, files, DOIs and states. The account check is bound to "
+                         "the current source, frozen inputs and every final receipt.")
+        rows[rows.index("## Paper records"):rows.index("## Paper records")] = ["## Account-wide verification", "", evidence_line, ""]
     for record in report["records"]:
         status = {"verified": "Public update verified", "pending": "Pending", "failed": "Needs review"}[record["status"]]
         if record["independently_verified"]:
@@ -447,6 +499,7 @@ def render_markdown(report: dict) -> str:
              "- [Original inventory](INVENTORY.json)",
              "- [Frozen original public baselines](reviews/ORIGINAL_BASELINE_HASHES.json)",
              "- [Final native metadata workflow audit](reviews/NATIVE_FINAL_AUDIT.json)",
+             "- [Final read-only account coverage and exclusion check](ACCOUNT_FINAL_CHECK.json)",
              "- [Independent final receipt audit](reviews/FINAL_RECEIPT_AUDIT.md)",
              "- Per-paper before/after receipts and content-review paths are listed in [RESULTS.json](RESULTS.json).", ""]
     if report["evidence"]["all_versions_scope_artifact"]:

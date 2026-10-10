@@ -116,6 +116,80 @@ with tempfile.TemporaryDirectory(prefix='receipt-falsification-', dir=ROOT / 're
     patch_path.write_text(json.dumps(p))
     run('local approved patch changed after content review', actual_after, 'frozen_patch_hash')
 
+# Exercise the exact reviewed name-order repair and the newly bound raw preview
+# evidence on independent clones. These are application-schema controls, not
+# edits to the original receipts or a broadened permission to rename authors.
+repair_entry = next(x for x in json.loads((ROOT / 'APPROVED_PROPOSALS.json').read_text())['records'] if x['id'] == 22770864)
+with tempfile.TemporaryDirectory(prefix='receipt-preview-falsification-', dir=ROOT / 'reviews') as temporary:
+    audit.HERE = place = Path(temporary)
+    (place / 'patches').mkdir()
+    (place / 'reviews').mkdir()
+    repair_dest = place / 'receipts/22770864'
+    shutil.copytree(ROOT / 'receipts/22770864', repair_dest)
+    shutil.copyfile(ROOT / 'patches/22770864.json', place / 'patches/22770864.json')
+    shutil.copyfile(ROOT / repair_entry['independent_content_review'], place / repair_entry['independent_content_review'])
+    repair_actual = {name: json.loads((repair_dest / (name + '.json')).read_text())
+                     for name in ('after', 'preview_repair_pre', 'preview_repair_post')}
+    repair_baseline = {'22770864': {'sha256': hashlib.sha256((repair_dest / 'before.json').read_bytes()).hexdigest()}}
+
+    def repair_run(name, mutate=None, required_failure=None):
+        clones = copy.deepcopy(repair_actual)
+        if mutate:
+            mutate(clones)
+        for key, value in clones.items():
+            (repair_dest / (key + '.json')).write_text(json.dumps(value))
+        r = audit.audit_one(repair_entry, inventory, catalog, repair_baseline)
+        failures = [x['check'] for x in r['errors']]
+        correct = r['status'] == ('pass' if required_failure is None else 'fail')
+        if required_failure:
+            correct = correct and required_failure in failures
+        results.append({'control': name, 'status': r['status'], 'expected_failure': required_failure,
+                        'failed_checks': failures, 'passed': correct})
+        if not correct:
+            raise RuntimeError(name + ': auditor did not reject the intended alteration')
+
+    repair_run('exact reviewed name-order repair and original-preview restoration')
+    repair_run('unauthorized creator rename after reviewed reversal',
+               lambda x: x['after']['native']['metadata']['creators'][0]['person_or_org'].update(name='Unapproved, Author'),
+               'intended_native_creators')
+    repair_run('identifier loss during approved creator correction',
+               lambda x: x['after']['native']['metadata']['creators'][0]['person_or_org'].update(identifiers=[]),
+               'intended_native_creators')
+    repair_run('affiliation loss during approved creator correction',
+               lambda x: x['after']['native']['metadata']['creators'][0].update(affiliations=[]),
+               'intended_native_creators')
+    repair_run('creator role changed during approved correction',
+               lambda x: x['after']['native']['metadata']['creators'][0].update(role={'id':'other'}),
+               'intended_native_creators')
+    repair_run('unsafe preview payload carries PID operation',
+               lambda x: x['preview_repair_pre']['payload'].update(pids={}),
+               'preview_repair_payload_only_original_display_and_reviewed_metadata')
+    repair_run('unsafe preview payload carries file entries',
+               lambda x: x['preview_repair_pre']['payload']['files'].update(entries={}),
+               'preview_repair_payload_only_original_display_and_reviewed_metadata')
+    repair_run('unsafe preview payload carries access change',
+               lambda x: x['preview_repair_pre']['payload'].update(access={'record':'restricted'}),
+               'preview_repair_payload_only_original_display_and_reviewed_metadata')
+
+    def wrong_route(clones):
+        for route in clones['after']['verification']['mutation_routes']:
+            if route['path'] == '/api/records/22770864/draft':
+                route['path'] = '/api/records/99999999/draft'
+    repair_run('preview restoration targets a different record', wrong_route,
+               'record_bound_mutation_route_PUT_/api/records/99999999/draft')
+    repair_run('preview restoration owner session belongs to another record',
+               lambda x: x['preview_repair_pre']['session'].update(id=99999999),
+               'preview_repair_owned_exact_reviewed_session')
+
+    def change_file_access(clones):
+        entry = next(iter(clones['preview_repair_post']['draft']['files']['entries'].values()))
+        entry['access']['hidden'] = True
+    repair_run('preview restoration changes hidden file setting with checksum unchanged', change_file_access,
+               'preview_repair_post_full_files_exact_after_precise_draft_omissions')
+    repair_run('preview raw evidence has a stale reviewed patch hash',
+               lambda x: x['preview_repair_post'].update(patch_sha256='0'*64),
+               'preview_repair_post_record_and_frozen_patch')
+
 out = {'generated_utc': datetime.now(timezone.utc).isoformat(), 'controls': results,
        'all_passed': all(x['passed'] for x in results),
        'audit_tool_sha256': hashlib.sha256((ROOT / 'audit_receipts.py').read_bytes()).hexdigest(),
