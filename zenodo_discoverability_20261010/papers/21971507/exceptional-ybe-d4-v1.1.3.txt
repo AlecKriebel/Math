@@ -1,0 +1,681 @@
+             An exceptional four-dimensional unitary
+                  Hecke Yang–Baxter operator
+                                              Alec Kriebel
+                                        Independent researcher
+                        me@aleckriebel.com · ORCID 0009-0001-9320-500X
+
+                                            16 August 2026
+
+
+                                                Abstract
+         We construct an explicit 16 × 16 unitary Yang–Baxter operator in the class
+                                                         
+                                                  iπ/3 1
+                                                e     , ,4 .
+                                                       2
+     This realizes the smallest-dimensional previously unresolved class in the exceptional even-
+     dimensional family left open in Lechner’s 2026 classification preprint, and that class corresponds
+     to the ordinary-localization question highlighted by Galindo, Hong, and Rowell for the C(sl3 , 6)
+     Jones–Wenzl sequence. Writing C4 ∼    = C2 ⊗ C2 , the associated reflection has a five-word real
+     Pauli–Clifford expansion. Four words combine into an involution M , a fifth involution E anti-
+     commutes with M , and the braid relation restricts the reflection circle αM + βE to the four
+     points
+                                                 2             1
+                                            α2 = ,      β2 = .
+                                                 3             3
+                           p          √
+     Choosing (α, β) = ( 2/3, −1/ 3) gives the displayed operator. The resulting spectral projec-
+     tion has both unnormalized partial traces equal to 214 , so normalized matrix trace induces the
+     η = 1/2 Markov trace. Hence the tensor-space representation induces a faithful representation
+     of Hn (3, 6) for every n, providing an ordinary unitary localization of the C(sl3 , 6) Jones–Wenzl
+     sequence. Together with the known dimension-two obstruction and a dimension-three argument,
+     this proves that the minimum local dimension is four. Consequently, the Rowell–Wang local-
+     ization conjecture, in the form of GHR Conjecture 1.5, is confirmed for the C(sl3 , 6) generator,
+     a case Galindo, Hong, and Rowell singled out as a possible counterexample.
+
+Keywords. Yang–Baxter operator; Hecke algebra; braid group representation; unitary localiza-
+tion; fusion category.
+2020 Mathematics Subject Classification. 20C08 (primary); 20F36, 16T25, 81R50 (sec-
+ondary).
+
+
+1    Introduction and main result
+Let V be a finite-dimensional complex Hilbert space. A unitary R ∈ End(V ⊗ V ) is a Yang–Baxter
+operator when
+                    (R ⊗ 1V )(1V ⊗ R)(R ⊗ 1V ) = (1V ⊗ R)(R ⊗ 1V )(1V ⊗ R).                 (1)
+Lechner [4] classified the possible characters of non-involutive unitary R-matrices with two eigen-
+values, up to one exceptional family. In his normalization the two eigenvalues are −1 and q, the
+(−1)-spectral projection P has normalized trace
+                                                   rank P
+                                             η=             ,
+                                                  (dim V )2
+
+                                                     1
+Exceptional Hecke localization                                                           A. Kriebel
+
+
+and the classes left unresolved by that analysis are
+                                                  
+                                        iπ/3 1
+                                      e     , , 2m             (m ≥ 1).
+                                             2
+The class in base dimension two is empty; base dimension four was therefore the smallest unresolved
+member of this remaining family.
+    The ordinary-localization framework and conjecture were introduced by Rowell and Wang [6].
+The specific question here was highlighted in the case study of Galindo, Hong, and Rowell [1,
+§5.6]. They showed that the Jones–Wenzl representations associated with C(sl3 , 6) have a two-
+dimensional unitary quasi-localization and an 8 × 8 (3, 1)-generalized localization, but no two-
+dimensional ordinary unitary localization. They wrote that the sequence did not appear to have
+an ordinary localization and noted it as a possible counterexample to the Rowell–Wang localization
+conjecture, restated as GHR Conjecture 1.5. Lechner isolated this family as the sole remaining case
+in his classification preprint and explicitly identified it with the unknown localization arising from
+the GHR C(sl3 , 6) case study [4, p. 16, discussion following Proposition 3.6]. The present paper
+supplies an explicit operator in that family. The dimension-four construction and localization
+proof are independent of Lechner’s classification; the minimality argument in Section 6 uses [4,
+Lemma 3.1 and Theorem 3.4].
+    The following is the central result of this paper.
+Theorem 1.1. Let                                        √
+                                                  1+i 3
+                                                  iπ/3
+                                      q=e       =         .
+                                                      2
+There is an explicit unitary R ∈ End(C4 ⊗ C4 ) such that
+
+                        (R + 116 )(R − q116 ) = 0,             R 1 R2 R1 = R2 R1 R2 ,
+
+and each eigenvalue −1, q has multiplicity eight. With the conventions Tr1 = Tr ⊗ id and Tr2 =
+id ⊗ Tr, its (−1)-spectral projection P satisfies
+
+                                      Tr1 (P ) = Tr2 (P ) = 214 .
+
+Therefore                                                   
+                                                         1
+                                             e   iπ/3
+                                                        , , 4 ̸= ∅,
+                                                         2
+and the associated tensor-space representations induce faithful embeddings
+                                                       
+                              Hn (3, 6) ,→ End (C4 )⊗n       (n ≥ 2).
+
+Under the identification in [1, §5.6], these embeddings form an ordinary unitary localization of the
+C(sl3 , 6) Jones–Wenzl representation sequence.
+Corollary 1.2. The minimum local dimension of an ordinary unitary localization of this Jones–
+Wenzl sequence is four.
+    The formula for R is given in Section 2; the matrix identities are proved in Sections 3 and 4.
+Section 5 proves the full localization claim rather than only the two-site spectral statement. The
+minimality argument is in Section 6. Section 7 records a generalized Yang–Baxter normal form,
+Section 8 records verification and provenance, and Section 9 discusses related work, novelty, and
+limitations.
+
+                                                          2
+Exceptional Hecke localization                                                            A. Kriebel
+
+
+2     The five-word construction
+Put V = C2 ⊗ C2 ∼
+                = C4 , and define the real matrices
+                                                                             
+                    1 0              0 1              1 0                      0 −1
+              I=           , X=             , Z=             ,        J=              .
+                    0 1              1 0              0 −1                     1 0
+
+Here J = XZ = −iY , so {I, X, Z, J } is the real Pauli–Clifford basis of M2 (C); every tensor word
+in this basis is a real signed orthogonal matrix. A word such as ZIZZ denotes Z ⊗ I ⊗ Z ⊗ Z on
+V ⊗ V . Define
+                             1        1        1        1
+                      H = − √ ZIZZ − √ ZIJJ − √ JIZJ + √ JIJZ
+                              6        6        6        6
+                                                                                                  (2)
+                             1
+                          − √ XIXX,
+                              3
+and                                                       √               √
+                             q−1        q+1         −1 + i 3         3+i 3
+                       R=        116 +        H=              116 +          H.                    (3)
+                               2          2             4               4
+Equations (2)–(3) are an exact specification of all 256 matrix entries in the computational basis.
+The visible identity in the second qubit is not an ordinary two-site identity amplification of a 4 × 4
+Yang–Baxter operator: the active part uses one qubit of the first four-dimensional site and both
+qubits of the second. Section 7 identifies it instead as a (3, 2)-generalized operator.
+   The relevant multiplication table is
+
+                                    X 2 = Z 2 = I,      J 2 = −I,
+
+                   XZ = J = −ZX,          XJ = Z = −JX,             JZ = X = −ZJ.
+Thus every product of tensor words reduces to a signed word over {I, X, Z, J }.
+
+
+3     A circle of reflections
+The five terms in (2) have a compact algebraic explanation. Set
+
+                 A = ZIZZ,    B = ZIJJ,     C = JIZJ,     D = JIJZ,        E = XIXX
+
+and
+                                            −A − B − C + D
+                                      M=                   .                                      (4)
+                                                  2
+Lemma 3.1. The operators A, B, C, D, E are real symmetric involutions. The first four commute,
+D = ABC, and E anticommutes with each of A, B, C, D. Consequently
+
+                                M 2 = E 2 = 116 ,       M E = −EM.
+
+For real α, β,
+                                       H(α, β) = αM + βE
+satisfies
+                                     H(α, β)2 = (α2 + β 2 )116 .
+
+
+                                                    3
+Exceptional Hecke localization                                                              A. Kriebel
+
+
+Proof. The word multiplication table gives every stated commutation relation and D = ABC. One
+may also prove M 2 = 1 without expanding. Simultaneously diagonalize A, B, C, and let their joint
+eigenvalues be x, y, z ∈ {±1}. Since D = ABC, the eigenvalue of M is
+                                         −x − y − z + xyz
+                                                          ∈ {±1}.
+                                                2
+The anticommutation M E = −EM then makes the cross term in (αM + βE)2 vanish.
+
+Remark 3.2 (Graph-phase form). If x = (−1)a , y = (−1)b , z = (−1)c , then
+                                    −x − y − z + xyz
+                                                     = −(−1)ab+ac+bc .
+                                           2
+Thus in the joint stabilizer eigenbasis, M is the negative phase associated with the triangle graph,
+while E flips all three syndrome bits. This explains the four-plus-one support in (2); no graph-state
+formalism is needed in the proof.
+
+
+4     The cubic certificate and Yang–Baxter equation
+For any K ∈ End(V ⊗ V ), write
+
+                                     K1 = K ⊗ 1V ,       K2 = 1V ⊗ K.
+
+The Yang–Baxter equation for (3) will follow from a cubic identity for H.
+Proposition 4.1. On the unit circle α2 + β 2 = 1,
+                                                                         1                     
+         H(α, β)1 H(α, β)2 H(α, β)1 − H(α, β)2 H(α, β)1 H(α, β)2 =         H(α, β)1 − H(α, β)2      (5)
+                                                                         3
+if and only if
+                                               1           2
+                                         β2 = ,       α2 = .
+                                               3           3
+In particular, the four signed points with these squared coordinates are exactly the solutions on this
+reflection circle.
+Proof. Reduce the left side of (5), minus its right side, in the six-letter word basis. Exactly the
+following 18 words survive:
+
+    coeﬀicient                             words
+    −α(3β − 1)/6
+          2
+                                           IIJIJZ, JIZJII, ZIJJII, ZIZZII
+    +α(3β 2 − 1)/6                         IIJIZJ, IIZIJJ, IIZIZZ, JIJZII
+    −β(3α2 − 3β 2 − 1)/3                   IIXIXX
+    +β(3α2 − 3β 2 − 1)/3                   XIXXII
+    +α(α2 − 2β 2 )/2                       JIJZXX, JIZJXX, XIJXZJ, ZIZZXX
+    −α(α2 − 2β 2 )/2                       XIJXJZ, XIZXJJ, XIZXZZ, ZIJJXX
+
+This is a finite certificate: each row follows by repeated use of the displayed 2 × 2 multiplication
+table. Since {I, X, Z, J } is a basis of M2 (C), its sixfold tensor words form a basis of End((C2 )⊗6 ).
+Hence the residual vanishes if and only if every displayed coeﬀicient vanishes. On α2 + β 2 = 1,
+
+                           α2 − 2β 2 = 1 − 3β 2 ,    3α2 − 3β 2 − 1 = 2(1 − 3β 2 ).
+
+                                                     4
+Exceptional Hecke localization                                                            A. Kriebel
+
+
+Hence all coeﬀicients vanish when 3β 2 = 1. Conversely, if α = 0, the coeﬀicient of IIXIXX is
+4β/3 ̸= 0. If β = 0, the coeﬀicient of IIJIJZ is α/6 ̸= 0. If αβ ̸= 0, the first coeﬀicient group
+forces 3β 2 = 1, and the unit-circle condition then gives α2 = 2/3. The claim follows.
+
+    Choosing                                 r
+                                                 2                1
+                                      α=           ,        β = −√
+                                                 3                 3
+in H(α, β) gives exactly (2). Lemma 3.1 and Proposition 4.1 therefore give
+                                                                       1
+                 H ∗ = H,      H 2 = 116 ,        H1 H2 H1 − H2 H1 H2 = (H1 − H2 ).               (6)
+                                                                       3
+Every word in (2) contains a traceless factor, so Tr H = 0. The eigenvalues +1 and −1 thus both
+have multiplicity eight.
+
+Proof of the matrix part of Theorem 1.1. Put
+                                             q−1                  q+1
+                                     a=          ,           b=       ,
+                                              2                    2
+so R = a1 + bH. Since Hi2 = 1, direct expansion gives
+                                                                              
+              R1 R2 R1 − R2 R1 R2 = b a2 (H1 − H2 ) + b2 (H1 H2 H1 − H2 H1 H2 ) .
+
+But
+                                             a   q−1   i
+                                               =     =√ ,
+                                             b   q+1    3
+so a2 + b2 /3 = 0. Equation (6) proves the Yang–Baxter equation.
+    On the +1-eigenspace of H, R = a + b = q; on the −1-eigenspace, R = a − b = −1. Therefore
+
+                                (R + 1)(R − q1) = 0,               R∗ R = 1,
+
+with both eigenvalues of multiplicity eight. The (−1)-spectral projection is
+
+                                                       116 − H
+                                              P =              ,
+                                                           2
+so P = P ∗ = P 2 , rank P = 8, and η = 8/16 = 1/2. Finally, each word in H has a traceless factor
+on each four-dimensional site. Hence
+
+                        Tr1 (H) = Tr2 (H) = 0,              Tr1 (P ) = Tr2 (P ) = 214 .
+
+
+
+
+5     The full localization statement
+We now verify that the construction localizes the whole Jones–Wenzl tower, not merely its two-site
+generator. Let Hn (q) be the specialized Hecke algebra of type An−1 , generated by g1 , . . . , gn−1 ,
+with the braid and far-commutativity relations and
+
+                                       (gi + 1)(gi − q1) = 0.
+
+                                                        5
+Exceptional Hecke localization                                                                   A. Kriebel
+
+
+Its idempotent generators ei are related to the braid generators by
+
+                                           gi = q1 − (1 + q)ei .
+
+The Yang–Baxter and Hecke relations define a representation
+
+                   ρn : Hn (q) −→ End(V ⊗n ),            ρn (gi ) = Ri ,       ρn (ei ) = Pi .
+
+Let
+                                           τn (T ) = 4−n Tr(T )
+be normalized matrix trace.
+   Equip Hn (q) with the conjugate-linear involution
+
+                              e∗i = ei ,      equivalently         gi∗ = gi−1 .
+
+Since Pi = Pi∗ and Ri is unitary, each ρn is a unital ∗-representation. If ιn : Hn (q) → Hn+1 (q) is
+the standard inclusion, then
+                                    ρn+1 (ιn (x)) = ρn (x) ⊗ 14 .                                (7)
+For the η = 1/2 Markov trace, write
+                           n                                             o
+                                        (n)
+                  Annn = x ∈ Hn (q) : tr1/2 (yx) = 0 for every y ∈ Hn (q) .
+
+Proposition 5.1. The traces τn ◦ ρn are the Markov traces with parameter η = 1/2:
+                                                   1
+                      τn+1 ((ρn (x) ⊗ 14 )Pn ) =     τn (ρn (x))           (x ∈ Hn (q)).                (8)
+                                                   2
+For every n,
+                                             ker ρn = Annn .
+Consequently ρn induces an injective representation of the semisimple quotient
+
+                                       Hn (3, 6) = Hn (q)/ Annn .
+
+Proof. Taking the partial trace over the last tensor factor and using Tr2 (P ) = 214 gives
+
+                    τn+1 ((ρn (x) ⊗ 14 )Pn ) = 4−(n+1) Tr(ρn (x) Trn+1 (Pn ))
+                                                                     1
+                                             = 4−(n+1) 2 Tr(ρn (x)) = τn (ρn (x)).
+                                                                     2
+Moreover,
+                                     τn+1 (ρn (x) ⊗ 14 ) = τn (ρn (x)),
+so the traces are consistent under the standard inclusions. Together with normalization and tra-
+ciality, this is the defining Markov property. Uniqueness of the Markov trace with prescribed
+  (n)
+tr1/2 (ei ) = 1/2 identifies it with the trace defining Hn (3, 6) [7, Eq. (3.2)]. Explicitly, in the
+normalization used for this quotient,
+
+                                         1 − q −2     1
+                            η6,3 =                −3
+                                                     = ,              q = eiπ/3 .
+                                     (1 + q)(1 − q )  2
+
+
+                                                     6
+Exceptional Hecke localization                                                         A. Kriebel
+
+
+This is the Wenzl Markov parameter for Hn (3, 6). GHR §5.6 identifies this quotient tower with
+the C(sl3 , 6) Jones–Wenzl sequence, and Theorem 5.28 uses that identification for its generalized
+localization.
+                             (n)
+    The equality τn ◦ ρn = tr1/2 now gives both kernel inclusions explicitly. If x ∈ Annn , then
+
+                         x ∈ Annn =⇒ 0 = tr1/2 (x∗ x) = τn (ρn (x)∗ ρn (x))
+                                                   (n)
+
+
+                                    =⇒ ρn (x) = 0,
+because normalized matrix trace is faithful. Conversely, for every y ∈ Hn (q),
+                                             (n)
+                          ρn (x) = 0 =⇒ tr1/2 (yx) = τn (ρn (y)ρn (x)) = 0,
+so x ∈ Annn . Thus the kernel is exactly the annihilator and the induced map on the quotient is
+injective.
+Remark 5.2 (Conventions in GHR §5.6). The published text of GHR §5.6 uses two q-normalizations:
+its opening paragraph prints q = e2πi/3 , whereas the braid eigenvalues and Theorem 5.28 use
+q = e2πi/6 . We use the latter eigenvalue normalization. The proof of Theorem 5.28 also prints
+η = (1 − q −2 )/(1 + q 3 ), whose denominator vanishes at this value. The Wenzl parameter used in
+Proposition 5.1 is η6,3 = 1/2.
+    Equation (7) and Proposition 5.1 give the quotient-tower compatibility explicitly:
+                              x ∈ ι−1
+                                   n (Annn+1 ) ⇐⇒ ρn+1 (ιn (x)) = 0
+                                                       ⇐⇒ ρn (x) ⊗ 14 = 0
+                                                       ⇐⇒ ρn (x) = 0
+                                                       ⇐⇒ x ∈ Annn .
+Thus the inclusions descend to the semisimple quotients and give the commuting square
+                                                   ι
+                                Hn (3, 6)     −−−n−→         Hn+1 (3, 6)
+                                                               
+                                    
+                                 ρn y
+                                                                ρ
+                                                                y n+1
+                                             T 7→T ⊗1
+                               End(V ⊗n ) −−−−−−→
+                                                4
+                                                  End(V ⊗(n+1) ).
+   Galindo, Hong, and Rowell recall the braid-equivariant isomorphism
+                             C ρX (Bn ) ∼
+                                        = EndC (X ⊗n ) ∼
+                                                       = Hn (3, 6)
+for the simple tensor generator X of C(sl3 , 6), with FPdim(X) = 2 [1, §5.6]. Since the braid image
+is the entire algebra being localized, the compatible quotient embeddings above are precisely the
+injective algebra maps required by [1, Definition 1.3]. Equivalently, by [1, Proposition 4.12 and
+Definition 4.13], they define an ordinary unitary Hilbf -localization of the Jones–Wenzl sequence.
+Corollary 5.3. The Rowell–Wang localization conjecture [6, Conjecture 3.1, p. 601], as restated
+in [1, Conjecture 1.5], holds for the simple tensor generator X of C(sl3 , 6): one has
+                                            FPdim(X)2 = 4,
+and the associated Jones–Wenzl sequence admits an ordinary unitary localization. Hence the case
+singled out in [1, Remark 6.2(2)] is not a counterexample.
+Proof. Theorem 1.1 supplies the asserted localization, and GHR §5.6 gives FPdim(X) = 2. This
+does not contradict [1, Theorem 5.27]: that result excludes a fiber functor by showing that one
+would force a localization of dimension exactly FPdim(X) = 2, whereas the present ordinary
+localization has local dimension four.
+
+                                                         7
+Exceptional Hecke localization                                                             A. Kriebel
+
+
+6   Minimality and amplification
+Proof of Corollary 1.2. A one-dimensional local space cannot carry the required two-eigenvalue
+generator. Galindo, Hong, and Rowell prove that no two-dimensional ordinary unitary localization
+exists [1, Lemma 5.26]. That lemma quotes the two-dimensional classification up to an overall
+scalar: a representative with spectrum {−χ, χq} is normalized by multiplication by χ−1 , which
+leaves its spectral projection and Markov parameter unchanged.
+    It remains to exclude local dimension three. Suppose such an ordinary unitary localization
+existed, with local braid operator F ∈ End(C3 ⊗ C3 ). Since a localization intertwines the braid
+generators,
+                                     (F + 19 )(F − q19 ) = 0.
+Injectivity at two strands rules out either spectral projection vanishing, so both eigenvalues −1
+and q occur. Thus F belongs to one of the dimension-three Hecke classes in [4, Theorem 3.4].
+At q = eiπ/3 , the possible Markov parameters are 1/3, 1/2, 2/3. The value 1/2 is impossible
+in dimension three because it would require a projection of rank 9/2. By [4, Lemma 3.1], the
+normalized matrix character of each such Hecke operator is the corresponding positive Markov
+trace.
+    We now exclude the two remaining parameters directly. In H3 (q), put
+                                      q       1
+                              c=           2
+                                             = ,              T = e1 e2 e1 − ce1 .
+                                   (1 + q)    3
+The projection-form Hecke relation is
+
+                                     e1 e2 e1 − e2 e1 e2 = c(e1 − e2 ).
+                       (3)         (3)
+For the Markov trace trη with trη (ei ) = η, multiply the displayed projection-form Hecke relation
+on the right by e2 . Cyclicity and the Markov property give
+
+                       η (e1 e2 e1 e2 ) = trη (e2 e1 e2 ) + c trη (e1 e2 ) − c trη (e2 )
+                     tr(3)                  (3)                 (3)              (3)
+
+                                         = η 2 − cη + cη 2 ,
+and hence
+                                    ∗
+                                η (T T ) = trη (e1 e2 e1 e2 ) − 2cη + c η
+                              tr(3)          (3)                   2   2
+
+                                             = (1 − c)η(η − c).
+Thus a parameter-1/3 candidate kills T : its normalized matrix trace is faithful on its image, while
+the displayed squared norm is zero. In the target η = 1/2 quotient, however,
+                                                               1
+                                           tr1/2 (T ∗ T ) =
+                                             (3)
+                                                                  > 0,
+                                                               18
+so T is nonzero. In particular, the constructed η = 1/2 Hecke representation does not factor
+through the Temperley–Lieb quotient.
+   For the remaining case put fi = 1 − ei . The complemented projections satisfy the same relation
+with the same c, since
+                                                                  
+                       f1 f2 f1 − f2 f1 f2 = − e1 e2 e1 − e2 e1 e2 = c(f1 − f2 ),
+
+and their Markov parameter is 1 − η. At η = 2/3, therefore, the candidate kills
+
+                                             T ⊥ = f1 f2 f1 − cf1 ,
+
+                                                       8
+Exceptional Hecke localization                                                            A. Kriebel
+
+
+whereas in the target quotient
+                                                     1       
+                                       (3)         ⊥ ∗    ⊥
+                                     tr1/2       (T ) T  > 0.     =
+                                                      18
+Neither dimension-three candidate is faithful. Theorem 1.1 supplies dimension four.
+
+   There is also an immediate infinite family. For vector spaces V, W , let Σ23 : (V ⊗ W )⊗2 →
+V ⊗2 ⊗ W ⊗2 exchange the middle tensor factors.   For R ∈ End(V ⊗2 ) and S ∈ End(W ⊗2 ), define
+the reshuffled tensor product
+                                   R ⊠ S = Σ−123 (R ⊗ S)Σ23 .
+
+Taking S = 1W ⊗2 with W = Cm gives a unitary Yang–Baxter operator on the base space V ⊗W , of
+dimension 4m [4, §3]. Its two eigenvalues and normalized spectral rank are unchanged. Therefore
+                                              
+                                     iπ/3 1
+                                   e     , , 4m ̸= ∅   (m ≥ 1).                             (9)
+                                          2
+
+This does not settle the remaining base dimensions 6, 10, 14, . . ..
+
+
+7     A (3,2)-generalized normal form
+The visible identity in the second qubit of every word in (2) does have a precise chain-level interpre-
+tation, but a coordinate swap is essential. We use the generalized braid placement of [1, Eq. (3.9)
+and Remark 3.10(2)] and the associated tower and localization conventions of [1, Example 4.23
+and Definition 4.24]. Write the i-th four-dimensional site as
+
+                                                 Vi = C2ai ⊗ C2bi ,
+
+let Σ(u ⊗ v) = v ⊗ u be the within-site qubit swap, and put
+
+                                                   Un = Σ⊗n .
+
+In the factor order obtained after applying Un ,
+
+                                             (b1 , a1 , b2 , a2 , . . .),
+
+define
+                                                 q−1      q+1
+                                      K=             18 +     KH
+                                                  2        2
+and
+                                    ZZZ + ZJJ + JJZ − JZJ  XXX
+                           KH = −            √            − √ .                                   (10)
+                                               6             3
+      (n)
+Let ρR denote the standard braid representation generated by the adjacent copies of R.
+
+Proposition 7.1. The two-site operator factors after the sitewise swap as
+
+                                      U2 RU2∗ = 1b1 ⊗ Ka1 ,b2 ,a2 .
+
+The operator K ∈ End((C2 )⊗3 ) is unitary and satisfies the (3, 2)-generalized Yang–Baxter equation
+
+                     (K ⊗ 14 )(14 ⊗ K)(K ⊗ 14 ) = (14 ⊗ K)(K ⊗ 14 )(14 ⊗ K)                       (11)
+
+
+                                                          9
+Exceptional Hecke localization                                                              A. Kriebel
+
+
+
+on (C2 )⊗5 , together with far commutativity. If ρK denotes the resulting (3, 2)-generalized braid
+                                                         (n)
+
+representation, explicitly
+                                 (n)        ⊗2(i−1)        ⊗2(n−i−1)
+                                ρK (σi ) = 12       ⊗ K ⊗ 12         ,
+then for every n and every x ∈ CBn ,
+
+                                    Un ρR (x)Un∗ = 1b1 ⊗ ρK (x).
+                                         (n)                       (n)
+
+
+Moreover, for the standard inclusion ιn : CBn ,→ CBn+1 , the placement formula gives
+                                     (n+1)                 (n)
+                                    ρK       (ιn (x)) = ρK (x) ⊗ 14 .
+
+Consequently K gives a faithful unitary (3, 2)-localization of the tower {Hn (3, 6)}n≥2 .
+
+Proof. Conjugating the five words in (2) by U2 puts the identity factor first and leaves exactly (10)
+on (a1 , b2 , a2 ). This proves the factorization and unitarity. On a chain, adjacent copies of K act on
+triples shifted by two qubits. After factoring out the global spectator b1 , the ordinary Yang–Baxter
+equation (1) is precisely (11); nonadjacent triples are disjoint, so far commutativity holds. The
+displayed chain conjugacy follows generator by generator. The same placement formula gives the
+displayed compatibility with ιn . Tensoring by a spectator identity does not change the kernel, and
+Proposition 5.1 proves faithfulness on Hn (3, 6).
+
+    Equivalently, any (3, 2)-generalized operator K on W ⊗3 blocks into an ordinary operator 1W ⊗
+K on the local space W ⊗ W , in the displayed ordering; the ordinary braid relation is 1W tensored
+with (11). This elementary blocking observation explains why the present 8 × 8 active operator
+yields a 16 × 16 ordinary one.
+    There is an exact tensor-structural distinction from the known operator KGHR in [1, Eq. (5.2),
+Theorem 5.28, and Remark 5.29(1)]. For an operator L on three qubits, define
+
+                             Ym (L) = (L ⊗ 12m )(12m ⊗ L)(L ⊗ 12m )
+                                         − (12m ⊗ L)(L ⊗ 12m )(12m ⊗ L).
+
+Direct exact calculation gives, with ∥ · ∥F the Frobenius norm,
+
+                                                ∥Y1 ( · )∥2F     ∥Y2 ( · )∥2F
+                                   KGHR             0                48
+                                    K               24                0
+
+Thus the displayed GHR operator is of type (3, 1), while the present operator is of type (3, 2).
+The distinction concerns tensor placement, not the two matrices as bare normal operators: they
+have the same two eigenvalues with the same multiplicities and hence are unitarily similar after
+forgetting tensor structure. The (3, 2) shift is what permits the spectator blocking 12 ⊗ K into
+an ordinary operator on the local space C2 ⊗ C2 ; the GHR operator does not yield this ordinary
+blocking in its displayed (3, 1) tensor structure.
+     GHR also records a different (3, 2) operator in Example 3.14. Its two eigenvalues have projective
+ratio i (up to inversion), whereas the ratio for K is −q = e−2πi/3 (up to inversion). Those two
+local operators are therefore not unitarily conjugate up to a phase. In particular, being of type
+(3, 2) is not by itself the new feature here; what is new is the exceptional Hecke spectrum together
+with a faithful localization of the Hn (3, 6) Jones–Wenzl tower.
+
+                                                     10
+Exceptional Hecke localization                                                              A. Kriebel
+
+
+8    Verification and provenance
+The public package supplies three supported exact-verification routes: a hardened SymPy route
+based on the original discovery-era checker; an independently written standard-library
+                                                                                 √ √ route us-
+ing a separate sparse exact-arithmetic representation and code path over Q( 2, 3, i); and a
+matrix-free Pauli-word route checking the complete 18-word certificate in Proposition 4.1. They
+check the displayed matrix identities, partial traces, both dimension-three obstructions, the six-
+dimensional three-strand Hecke image, the generalized operator and far commutativity, and the
+exact comparison with the GHR matrix. All comparisons are exact, and negative tests deliberately
+mutate each route. The README records the commands and scope. These finite checks do not
+replace the printed tower-faithfulness proof, Lechner’s dimension-three classification step, or the
+literature-based priority assessment.
+    The five-word support was originally found by an AI-assisted structured numerical search in a
+real Pauli–Clifford basis. The discovery code and random seeds were not retained. Accordingly,
+this paper makes no claim that the search was reproducible, exhaustive, or established uniqueness.
+The generative-AI systems identified in the declaration below were also used for mathematical
+exploration and derivation, adversarial proof analysis, verifier development, literature support,
+and manuscript preparation. Every theorem claim is supported by the printed derivation, and the
+finite identities are checked by the exact programs. No conclusion depends on accepting model
+output as evidence or reproducing the original numerical search.
+
+
+9    Related work, novelty, and limitations
+Rowell and Wang introduced the localization framework and conjecture [6]. Galindo, Hong, and
+Rowell’s 2012 advance publication then studied the C(sl3 , 6) sequence, excluded ordinary local
+dimension two, and supplied quasi- and (3, 1)-generalized localizations, but no ordinary dimension-
+four operator [1, §5.6]. Rowell’s quaternionic model and the unitary-braided-vector-space literature
+provide close prior art [5, 2]. Lechner then identified [eiπ/3 , 1/2, 2m] as the sole remaining existence
+family up to braid-character equivalence and stated that its dimension-two member is empty [4,
+p. 16, discussion following Proposition 3.6].
+    A focused search through 16 August 2026 found no earlier construction realizing [eiπ/3 , 1/2, 4]
+and no previously published ordinary four-dimensional localization of this Jones–Wenzl sequence.
+The construction therefore appears new and answers the open class identified in [4]. This negative
+search is not proof of absolute priority; unindexed, unpublished, paywalled, differently parameter-
+ized, or concurrent work may exist.
+    The broad ordinary-localization question dates to Rowell and Wang; the specific C(sl3 , 6) case
+was highlighted by GHR in 2012, and the exact 16×16 formulation was isolated in 2026. The result
+does not classify the exceptional family in every even dimension, prove uniqueness, or identify an
+intertwiner with the known quaternionic (3, 1) model.
+
+
+Data, code, and source availability
+The source, exact verifiers, frozen outputs, and audit materials are maintained in the public
+source package in the AlecKriebel/Math repository. The curated source package supplies SHA-
+256 checksums and explicit manuscript and code licenses. The maintained project page links
+the current edition. No empirical dataset was generated or analyzed. The public source pack-
+age contains the exact code, frozen outputs, and sources supporting the computational claims.
+
+
+                                                   11
+Exceptional Hecke localization                                                         A. Kriebel
+
+
+The version-specific Zenodo record for this manuscript and its exact-verification package is iden-
+tified by doi:10.5281/zenodo.21971507 [3].
+
+
+CRediT authorship contribution statement
+Alec Kriebel: Conceptualization, formal analysis, investigation, methodology, software, validation,
+writing–original draft, and writing–review and editing.
+
+
+Funding
+This research received no external funding.
+
+
+Declaration of competing interest
+The author declares no competing interests.
+
+
+Declaration of generative AI and AI-assisted technologies in the
+manuscript preparation process
+During preparation of this work, the author used OpenAI GPT-5.6 Sol in Pro mode through
+ChatGPT at chatgpt.com and OpenAI GPT-5.6 Sol in Ultra mode through Codex in the Chat-
+GPT desktop application for research support, review, and composition, and Anthropic Claude
+through claude.ai for review. The author reviewed and edited the content as needed and takes full
+responsibility for the content of the publication.
+
+
+References
+ [1] C. Galindo, S.-M. Hong, and E. C. Rowell, Generalized and quasi-localizations of braid group
+     representations, Int. Math. Res. Not. 2013 (2013), no. 3, 693–731. doi:10.1093/imrn/rnr269.
+ [2] C. Galindo and E. C. Rowell, Braid representations from unitary braided vector spaces, J.
+     Math. Phys. 55 (2014), 061702. doi:10.1063/1.4880196.
+ [3] A. Kriebel, An exceptional four-dimensional unitary Hecke Yang–Baxter operator, Zenodo,
+     version 1.1.3 (2026). doi:10.5281/zenodo.21971507.
+ [4] G. Lechner, The classification problem for unitary R-matrices with two eigenvalues,
+     arXiv:2603.20158v1 (20 March 2026). doi:10.48550/arXiv.2603.20158; https://arxiv.org/
+     abs/2603.20158v1.
+ [5] E. C. Rowell, A quaternionic braid representation (after Goldschmidt and Jones), Quantum
+     Topol. 2 (2011), 173–182. doi:10.4171/QT/18.
+ [6] E. C. Rowell and Z. Wang, Localization of unitary braid group representations, Comm. Math.
+     Phys. 311 (2012), 595–615. doi:10.1007/s00220-011-1386-7.
+ [7] H. Wenzl, Hecke algebras of type An and subfactors, Invent. Math. 92 (1988), 349–383.
+     doi:10.1007/BF01404457.
+
+
+                                                12
+

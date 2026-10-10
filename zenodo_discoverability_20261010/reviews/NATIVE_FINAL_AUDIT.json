@@ -1,5 +1,5 @@
 {
-  "source": "zenodo_discoverability_20261010/native_metadata.py",
+  "source": "/Users/alec/Documents/Math/zenodo_discoverability_20261010/native_metadata.py",
   "source_sha256": "9d713f81290b29c54b5d37667f3d1fe3a280f273d7b9b66eb98c2cbeb195eb34",
   "offline_only": true,
   "tests": [
@@ -150,6 +150,191 @@
     },
     {
       "test": "OAI normalization preserves every additional PID exactly",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "file-links normalization restores only omitted generated links on copied draft",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference missing_file",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference extra_file",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference uuid",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference checksum",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference size",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference metadata",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference access",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference link_change",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference partial_links",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference empty_links",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference preview",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference order",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference enabled",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference total_bytes",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "reject draft full-file difference count",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "public/non-boolean draft does not normalize missing links False",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "public/non-boolean draft does not normalize missing links None",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "public/non-boolean draft does not normalize missing links 1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "public/non-boolean draft does not normalize missing links 'true'",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard draft_omitted",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard public_exact",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard draft_changed_link",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard public_missing_link",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard missing_file",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard extra_file",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard uuid",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard checksum",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard metadata",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper every-GET full-file guard access",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery raw",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery canonical",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery saved_mismatch",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery guard_missing",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery raw_mismatch",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery original_mismatch",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "test": "wrapper owned recovery target_mismatch",
       "passed": true,
       "details": ""
     },
@@ -723,9 +908,61 @@
           "unchanged_doi": "10.5281/zenodo.21699161"
         }
       }
+    },
+    {
+      "test": "reject publication read-back drift public_file_links_missing",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native file attributes/preview/order/access changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject publication read-back drift public_file_links_changed",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native file attributes/preview/order/access changed",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft/actions/publish"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
     }
   ],
-  "passed": 62,
+  "passed": 101,
   "failed": 0,
   "related_source_sha256": {
     "native_views.py": "9e1ce726a3247eb2b2b9b044918a8ee8a5345b6360e853b51d34ae3f5b421a4f",

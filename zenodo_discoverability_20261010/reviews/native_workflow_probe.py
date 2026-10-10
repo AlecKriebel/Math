@@ -17,7 +17,7 @@ def original():
       'access':{'record':'public','files':'public','embargo':{'active':False}},
       'custom_fields':{'code:repository':'https://github.com/example/preserved'},
       'files':{'enabled':True,'default_preview':'paper.pdf','order':['paper.pdf'],'count':1,'total_bytes':12,
-               'entries':{'paper.pdf':{'id':'unchanged-file-id','key':'paper.pdf','checksum':'md5:'+'a'*32,'size':12,'access':{'hidden':False}}}},
+               'entries':{'paper.pdf':{'id':'unchanged-file-id','key':'paper.pdf','checksum':'md5:'+'a'*32,'size':12,'access':{'hidden':False},'links':{'self':'https://offline.invalid/file','content':'https://offline.invalid/content'}}}},
       'metadata':{'title':'Original scientific paper title','publication_date':'2026-08-30','version':'1.1.0',
         'resource_type':{'id':'publication-preprint','title':{'en':'Preprint'}},
         'creators':[{'person_or_org':{'type':'personal','name':'Kriebel, Alec','family_name':'Kriebel','given_name':'Alec','identifiers':[{'scheme':'gnd','identifier':'preserve'}]},'affiliations':[{'id':'institution-id','name':'Preserve affiliation'}]}],
@@ -94,10 +94,87 @@ def normalization_tests():
     view,note=mod.normalized_draft(dd,oo)
     record('OAI normalization preserves every additional PID exactly',view['pids']==oo['pids'] and note is not None)
 
+def file_normalization_tests():
+    o=original();d=copy.deepcopy(o);d['is_draft']=True;d['files']['entries']['paper.pdf'].pop('links')
+    before=copy.deepcopy(d);view,omitted=mod.normalized_draft_files(d,o['files'])
+    record('file-links normalization restores only omitted generated links on copied draft',view==o['files'] and omitted==['paper.pdf'] and d==before)
+    session={'protected':mod.protected(o),'original':o,'target_metadata':o['metadata']}
+    for kind in ['missing_file','extra_file','uuid','checksum','size','metadata','access','link_change','partial_links','empty_links','preview','order','enabled','total_bytes','count']:
+        changed=copy.deepcopy(d);entry=changed['files']['entries']['paper.pdf']
+        if kind=='missing_file':changed['files']['entries'].pop('paper.pdf')
+        elif kind=='extra_file':changed['files']['entries']['extra.pdf']=copy.deepcopy(entry)
+        elif kind=='uuid':entry['id']='different-id'
+        elif kind=='checksum':entry['checksum']='md5:'+'b'*32
+        elif kind=='size':entry['size']=13
+        elif kind=='metadata':entry['metadata']={'description':'new metadata'}
+        elif kind=='access':entry['access']['hidden']=True
+        elif kind=='link_change':entry['links']={'self':'https://offline.invalid/changed','content':'https://offline.invalid/content'}
+        elif kind=='partial_links':entry['links']={'self':'https://offline.invalid/file'}
+        elif kind=='empty_links':entry['links']={}
+        elif kind=='preview':changed['files']['default_preview']='other.pdf'
+        elif kind=='order':changed['files']['order']=[]
+        elif kind=='enabled':changed['files']['enabled']=False
+        elif kind=='total_bytes':changed['files']['total_bytes']=13
+        elif kind=='count':changed['files']['count']=0
+        try:mod.require_state(changed,session,False)
+        except Exception:record('reject draft full-file difference '+kind,True)
+        else:record('reject draft full-file difference '+kind,False)
+    for flag in [False,None,1,'true']:
+        changed=copy.deepcopy(d);changed['is_draft']=flag
+        view,omitted=mod.normalized_draft_files(changed,o['files'])
+        record('public/non-boolean draft does not normalize missing links '+repr(flag),view==changed['files'] and omitted==[])
+
+def wrapper_file_and_recovery_tests():
+    spec=importlib.util.spec_from_file_location('wrapper_audit_target',ROOT/'apply_reviewed.py')
+    wrapper=importlib.util.module_from_spec(spec);spec.loader.exec_module(wrapper)
+    o=original();baseline=mod.snapshot(Fake(o),RID)
+    c=wrapper.BoundClient.__new__(wrapper.BoundClient);c.baseline=baseline;c.record_id=RID;c.first_native=False;c.native_normalizations=[]
+    for kind in ['draft_omitted','public_exact','draft_changed_link','public_missing_link','missing_file','extra_file','uuid','checksum','metadata','access']:
+        changed=copy.deepcopy(o);changed['is_draft']=kind!='public_exact' and kind!='public_missing_link'
+        entry=changed['files']['entries']['paper.pdf']
+        if kind=='draft_omitted':entry.pop('links')
+        elif kind=='draft_changed_link':entry['links']['self']='changed'
+        elif kind=='public_missing_link':entry.pop('links')
+        elif kind=='missing_file':changed['files']['entries'].pop('paper.pdf')
+        elif kind=='extra_file':changed['files']['entries']['extra.pdf']=copy.deepcopy(entry)
+        elif kind=='uuid':entry['id']='different-id'
+        elif kind=='checksum':entry['checksum']='md5:'+'b'*32
+        elif kind=='metadata':entry['metadata']={'unreviewed':'new'}
+        elif kind=='access':entry['access']['hidden']=True
+        exc=None
+        with patch.object(wrapper.PacedClient,'native_get',lambda *a,**kw:copy.deepcopy(changed)):
+            try:c.native_get(RID,draft=changed['is_draft'])
+            except Exception as e:exc=str(e)
+        record('wrapper every-GET full-file guard '+kind,(exc is None)==(kind in ['draft_omitted','public_exact']))
+    for kind in ['raw','canonical','saved_mismatch','guard_missing','raw_mismatch','original_mismatch','target_mismatch']:
+        with tempfile.TemporaryDirectory(prefix='wrapper_recovery_probe_',dir=ROOT/'reviews') as temp:
+            d=Path(temp);rd=d/'receipts'/str(RID);rd.mkdir(parents=True);(d/'patches').mkdir()
+            pp=d/'patches'/f'{RID}.json';p={'keywords':['reviewed']};pp.write_text(json.dumps({'metadata':p}))
+            (d/'APPROVED_PROPOSALS.json').write_text(json.dumps({'records':[{'id':RID,'patch_sha256':hashlib.sha256(pp.read_bytes()).hexdigest()}]}))
+            b=copy.deepcopy(baseline);b['legacy_compatible']=True;(rd/'before.json').write_text(json.dumps(b))
+            raw=copy.deepcopy(b['native']);raw['metadata']['subjects']=[{'subject':'reviewed'}];raw['pids'].pop('oai')
+            canonical=copy.deepcopy(raw);canonical['pids']=copy.deepcopy(o['pids'])
+            session={'phase':'update_requested','original_metadata':wrapper.updates.editable_metadata({'metadata':b['metadata']}),'native_original':b['native'],'native_staged':raw if kind=='raw' else canonical}
+            session['target_metadata']={**session['original_metadata'],**p}
+            if kind=='saved_mismatch':session['native_staged']['access']['unexpected']=True
+            if kind=='original_mismatch':session['original_metadata']['description']='unreviewed'
+            if kind=='target_mismatch':session['target_metadata']['keywords']=['unreviewed']
+            receipt=copy.deepcopy(raw)
+            if kind=='raw_mismatch':receipt['custom_fields']['changed']=True
+            if kind!='guard_missing':(rd/'first_staging_guard_stop.json').write_text(json.dumps({'native_staged':receipt}))
+            sp=d/'session.json';sp.write_text(json.dumps(session));reached=[];exc=None
+            def stop_client(*a,**kw):reached.append(True);raise RuntimeError('offline reached guarded client boundary')
+            with patch.object(wrapper,'HERE',d),patch.object(wrapper.updates,'snapshot_path',lambda *a:sp),patch.object(wrapper,'BoundClient',stop_client):
+                try:wrapper.run_one(RID)
+                except Exception as e:exc=str(e)
+            saved=json.loads(sp.read_text())
+            okay=bool(reached) and saved['native_staged']==canonical if kind in ['raw','canonical'] else not reached and bool(exc)
+            record('wrapper owned recovery '+kind,okay)
+
 class Fake:
     base='https://offline.invalid'
     def __init__(self,orig,drift=None,pending=False,fail=None,post_drift=None,draft_pid_drift=None):
-        self.public=copy.deepcopy(orig);self.original_oai=copy.deepcopy(orig['pids'].get('oai'));self.draft=None;self.calls=[];self.pending=pending;self.fail=fail;self.post_drift=post_drift;self.published=False;self.post_public_reads=0;self.draft_pid_drift=draft_pid_drift
+        self.public=copy.deepcopy(orig);self.original_files=copy.deepcopy(orig['files']);self.original_oai=copy.deepcopy(orig['pids'].get('oai'));self.draft=None;self.calls=[];self.pending=pending;self.fail=fail;self.post_drift=post_drift;self.published=False;self.post_public_reads=0;self.draft_pid_drift=draft_pid_drift
         if drift:
             key=drift
             if key=='files':self.public[key]['entries']['paper.pdf']['checksum']='md5:'+'b'*32
@@ -141,6 +218,7 @@ class Fake:
         if self.fail==len([c for c in self.calls if c[0]!='GET']):raise RuntimeError('injected uncertain operation failure')
         if method=='POST' and url.endswith('/draft'):
             self.draft=copy.deepcopy(self.public);self.draft['is_draft']=True;self.draft['is_published']=False
+            for entry in self.draft['files']['entries'].values():entry.pop('links',None)
             if self.draft_pid_drift!='keep_oai':self.draft['pids'].pop('oai',None)
             if self.draft_pid_drift=='changed_oai':self.draft['pids']['oai']={'identifier':'oai:zenodo.org:wrong','provider':'oai'}
             if self.draft_pid_drift=='changed_doi':self.draft['pids']['doi']['identifier']='10.1234/new'
@@ -151,11 +229,14 @@ class Fake:
             self.draft['metadata']=copy.deepcopy(payload['metadata']);self.draft['custom_fields']=copy.deepcopy(payload['custom_fields'])
         elif method=='POST' and url.endswith('/draft/actions/publish'):
             self.public=copy.deepcopy(self.draft);self.public['is_draft']=False;self.public['is_published']=True;self.published=True
+            for name,entry in self.public['files']['entries'].items():entry['links']=copy.deepcopy(self.original_files['entries'][name]['links'])
             if self.original_oai:self.public['pids']['oai']=copy.deepcopy(self.original_oai)
             if self.post_drift=='native_file_auxiliary':self.public['files']['entries']['paper.pdf']['mimetype']='changed-value'
             if self.post_drift=='native_dates':self.public['metadata']['dates'][0]['date']='2026-08-21'
             if self.post_drift=='public_oai_missing':self.public['pids'].pop('oai',None)
             if self.post_drift=='public_oai_changed':self.public['pids']['oai']['identifier']='oai:zenodo.org:wrong'
+            if self.post_drift=='public_file_links_missing':self.public['files']['entries']['paper.pdf'].pop('links')
+            if self.post_drift=='public_file_links_changed':self.public['files']['entries']['paper.pdf']['links']['self']='changed'
         else:raise AssertionError('Unexpected mutation route: '+method+' '+url)
         return copy.deepcopy(self.draft or self.public)
 
@@ -198,6 +279,8 @@ def case(name,drift=None,pending=False,fail=None,publish=False,save_fail=False,p
 
 translate_tests()
 normalization_tests()
+file_normalization_tests()
+wrapper_file_and_recovery_tests()
 case('successful OAI-omitting draft stage keeps public metadata and all protected fields')
 case('successful same-record publish restores exact public OAI and preserves IDs, DOI, version, files, access, custom',publish=True)
 case('successful same-record stage with exact original draft PIDs',draft_pid_drift='keep_oai')
@@ -210,7 +293,7 @@ case('persistence failure stops before mutation',save_fail=True)
 for f in [1,2,3]:case('uncertain mutation '+str(f)+' fails without retry or later mutation',fail=f,publish=True)
 case('reject changed reviewed patch hash before mutation',approval='hash')
 case('reject unapproved record before mutation',approval='missing')
-for f in ['version_registry','native_file_auxiliary','legacy_description','legacy_title','native_dates','snapshot_native_date','snapshot_native_custom','snapshot_native_access','snapshot_native_oai','public_oai_missing','public_oai_changed']:
+for f in ['version_registry','native_file_auxiliary','legacy_description','legacy_title','native_dates','snapshot_native_date','snapshot_native_custom','snapshot_native_access','snapshot_native_oai','public_oai_missing','public_oai_changed','public_file_links_missing','public_file_links_changed']:
     case('reject publication read-back drift '+f,publish=True,post_drift=f)
 out={'source':str(source),'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'offline_only':True,'tests':RESULTS,
      'passed':sum(r['passed'] for r in RESULTS),'failed':sum(not r['passed'] for r in RESULTS)}
