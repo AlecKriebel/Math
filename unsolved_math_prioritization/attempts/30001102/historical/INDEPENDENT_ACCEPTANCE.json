@@ -1,0 +1,124 @@
+{
+  "target_id": 30001102,
+  "code": "OWR-2489-008",
+  "date_utc": "2026-10-09",
+  "disposition": "accepted_exact_target_with_nonblocking_scope_clarification",
+  "claim": "Polynomial-bit exact rational linear optimization, improving integral recession witness when unbounded, strong separation, and exact convex-hull membership for the unrestricted-sign rational bipartite mixed-integer system.",
+  "candidate": {
+    "bytes": 19460,
+    "sha256": "8b492c49dbe0b7bd337ea183a51d44a345613c69ff38c6c81d613d7c0b9e167a"
+  },
+  "blocking_mathematical_gaps": [],
+  "nonblocking_clarification": "Section 3 broader difference-system remark should require a nonempty mixed feasible set and finite continuous optimum. Those hypotheses already hold in the exact target. Separate reviewed patch; original preserved.",
+  "report": {
+    "file": "INDEPENDENT_AUDIT.md",
+    "bytes": 20056,
+    "sha256": "724bba6c20dd71614572a2feabbeff557336071f9deeae6550b4495a770374c9"
+  },
+  "patch": {
+    "file": "PROXIMITY_SCOPE.patch",
+    "bytes": 716,
+    "sha256": "e766ebe65431e1a753b68d74336e5d9fa70c3b3d90f934ff5f6a3d4d0bf340d8",
+    "validation": "GNU patch --dry-run --fuzz=0 succeeded at exact line 30; not applied to original"
+  },
+  "test_code": {
+    "sha256": "e439850ce1bac4aa9ca47d8999667790ec638299e9e80bec8c2b796dc4ca1fe9",
+    "uses_python_assertions": false,
+    "effective_uid": 1000
+  },
+  "frozen_checker_counts": {
+    "instances": 24,
+    "slice_lps": 5380,
+    "submodular_pairs": 65014,
+    "proximity_steps": 1723,
+    "layer_vectors": 1000,
+    "ring_checks": 1692,
+    "negative_checks": 9
+  },
+  "independent_checker_counts": {
+    "layer_vectors": 2601,
+    "signed_difference_checks": 106080,
+    "instances": 17,
+    "slices": 531,
+    "submodular_pairs": 14530,
+    "removal_checks": 395,
+    "ring_instances": 189,
+    "ring_subsets": 1029,
+    "boundary_checks": 4,
+    "unbounded_ray_checks": 4,
+    "ring_extension_pairs": 256,
+    "nonroot_readonly_probes": 3
+  },
+  "killed_function_mutants": [
+    "positive_only",
+    "reverse_negative",
+    "omit_base",
+    "omit_chains",
+    "reverse_implication_shift"
+  ],
+  "rejected_counterexample_controls": [
+    "floor_instead_of_ceiling",
+    "omit_bipartition_sign_change",
+    "remove_subunit_layer",
+    "replace_hull_with_relaxation",
+    "replace_hull_with_mixed_set",
+    "explicit_exception_control"
+  ],
+  "test_receipts": [
+    {
+      "path": "checks/replay_normal.json",
+      "bytes": 421,
+      "sha256": "d9fc6ea737f364ebe008be4a8fa1f2ab15f8266bba73285e3c113e41a7e5f17c",
+      "python_optimize": 0,
+      "status": "PASS_FINITE_DIAGNOSTICS"
+    },
+    {
+      "path": "checks/replay_O.json",
+      "bytes": 421,
+      "sha256": "72e7b34c84a69b311ae661ccf8b7237e598bf1038bd30f8ff9a88bf4b689dd1e",
+      "python_optimize": 1,
+      "status": "PASS_FINITE_DIAGNOSTICS"
+    },
+    {
+      "path": "checks/replay_OO.json",
+      "bytes": 421,
+      "sha256": "8a7b0cd31f3771f9b1a043a0d5a36e7483d8458bf157f5e3bb8c43dae0ebfc7c",
+      "python_optimize": 2,
+      "status": "PASS_FINITE_DIAGNOSTICS"
+    },
+    {
+      "path": "checks/independent_normal.json",
+      "bytes": 1001,
+      "sha256": "739e10a34f01d384d5073205678b0da897ef2d295c7a352c0a27c53197e99d2e",
+      "python_optimize": 0,
+      "status": "PASS_INDEPENDENT_FINITE_DIAGNOSTICS"
+    },
+    {
+      "path": "checks/independent_O.json",
+      "bytes": 1001,
+      "sha256": "99cefd465054328f47e8cfe4821261c85aa79cf59779f28aa0ef53bd8dae7797",
+      "python_optimize": 1,
+      "status": "PASS_INDEPENDENT_FINITE_DIAGNOSTICS"
+    },
+    {
+      "path": "checks/independent_OO.json",
+      "bytes": 1001,
+      "sha256": "674df0bbe99d2b2996523986945b058afa55ebbe4126ab0f5bd18780b4574b26",
+      "python_optimize": 2,
+      "status": "PASS_INDEPENDENT_FINITE_DIAGNOSTICS"
+    }
+  ],
+  "source_interface_verified": {
+    "Schrijver": "Actual author manuscript Sections 3\u20136; ring family minimal/containing-member interface.",
+    "GLS": "Actual author-hosted 1988 book Definitions 6.2.1\u20136.2.2 and Theorem 6.4.9, proof included.",
+    "LP": "Standard exact rational LP bit-complexity theorem imported."
+  },
+  "original_manifest_files_preserved": 30,
+  "limitations": [
+    "Finite tests do not prove universal validity or complexity.",
+    "No production SFM or exact-separation implementation.",
+    "No novelty or worldwide openness guarantee.",
+    "No resolution of the distinct subtree-hull conjecture.",
+    "No GitHub, queue, source-body publication, or further substantive approach."
+  ]
+}

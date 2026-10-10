@@ -1,0 +1,101 @@
+{
+  "euid": 1000,
+  "patch_checks": [
+    {
+      "base_sha256": "8b492c49dbe0b7bd337ea183a51d44a345613c69ff38c6c81d613d7c0b9e167a",
+      "exit_code": 0,
+      "patch": "current/PROXIMITY_SCOPE.patch",
+      "result_sha256": "6ed3b365cde45efd9b720afd40beb288701358ec1b10cb991f37e7242edd44b1",
+      "role": "Local pre-seal application against omitted superseded authored proof; original unchanged.",
+      "stderr": "",
+      "stdout": "patching file authored/CANDIDATE_PROOF.md\n",
+      "target": "Authored proof after accepted scope-only clarification; cumulative current revision is checked separately.",
+      "zero_fuzz": true
+    },
+    {
+      "base_sha256": "8b492c49dbe0b7bd337ea183a51d44a345613c69ff38c6c81d613d7c0b9e167a",
+      "exit_code": 0,
+      "patch": "current/CURRENT_PROOF.patch",
+      "result_sha256": "c90d5a287718b26026cbee07f77d8710807a2c7a85f2057a1b7d00f5bb72ce32",
+      "role": "Pre-seal local application against preserved omitted authored bases; not part of public final replay.",
+      "stderr": "",
+      "stdout": "patching file CANDIDATE_PROOF.md\n",
+      "target": "current/CURRENT_PROOF.md",
+      "zero_fuzz": true
+    },
+    {
+      "base_sha256": "e439850ce1bac4aa9ca47d8999667790ec638299e9e80bec8c2b796dc4ca1fe9",
+      "exit_code": 0,
+      "patch": "current/CHECKER_ADAPTATION.patch",
+      "result_sha256": "1c8895b73a8b4c309313fcc5e178cd21ec41eeda90228e9be95b08ba310f9901",
+      "role": "Pre-seal local application against preserved omitted authored bases; not part of public final replay.",
+      "stderr": "",
+      "stdout": "patching file independent_checks.py\n",
+      "target": "current/independent_checks.py",
+      "zero_fuzz": true
+    }
+  ],
+  "problem_id": 30001102,
+  "runs": [
+    {
+      "all_thirteen_raw_outputs_equal_fixed_contracts": true,
+      "exception_guards": 1,
+      "exit_code": 0,
+      "function_mutants": 5,
+      "intended_rejections": 11,
+      "mathematical_counterexamples": 5,
+      "optimization": 0,
+      "positive_checker_runs": 2,
+      "script": "run_finite_checks.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 7821,
+        "sha256": "8e1287fcd2388ef63da45a4456acec5b3f6f09b2e1a50c809a57656f0f373f91"
+      }
+    },
+    {
+      "all_thirteen_raw_outputs_equal_fixed_contracts": true,
+      "exception_guards": 1,
+      "exit_code": 0,
+      "function_mutants": 5,
+      "intended_rejections": 11,
+      "mathematical_counterexamples": 5,
+      "optimization": 1,
+      "positive_checker_runs": 2,
+      "script": "run_finite_checks.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 7821,
+        "sha256": "2eab4bf782420c6788ef4312703e8cae3b651dd32240b48d9057c201ffc4f2a4"
+      }
+    },
+    {
+      "all_thirteen_raw_outputs_equal_fixed_contracts": true,
+      "exception_guards": 1,
+      "exit_code": 0,
+      "function_mutants": 5,
+      "intended_rejections": 11,
+      "mathematical_counterexamples": 5,
+      "optimization": 2,
+      "positive_checker_runs": 2,
+      "script": "run_finite_checks.py",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 7821,
+        "sha256": "282a113d45fa59689bddc34240ca680bce71fde57ede5f281e64177e7fa22801"
+      }
+    }
+  ],
+  "schema": 1,
+  "stage": "Pre-seal current-checker raw reference capture; final sealed replay receipts external. Historical references used as data; original snapshot and capture harness not replayed by final verifier.",
+  "uid": 1000
+}
