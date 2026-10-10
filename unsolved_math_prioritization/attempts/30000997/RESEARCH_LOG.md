@@ -1,0 +1,8 @@
+# Research log
+
+- 2026-10-03 06:18 UTC: Source and prior gate passed provisionally. Full scope distinguished from a local restricted-cost reading. Both pinned full corpus hashes verified against the live repository manifest. No matching imported report or exact prior user/repository attempt located. Gate completion 100%; global mathematical completion 0%.
+- 2026-10-03 06:24 UTC: Author turn 1 completed. Explicit analytic complete warped surface gives strict A3w on a small product neighborhood and negative full MTW there. It is globally inadmissible because its Gaussian curvature becomes negative. Global target remains unresolved; completion estimate 5%.
+- 2026-10-03 06:30 UTC: Author turn 2 constructs an explicit complete positively curved sphere family failing NNCC. Global A3w remains unverified; the noncompact positive-warp completion route is ruled out. Completion estimate 5%.
+- 2026-10-03 06:35 UTC: Author turn 3 proves strict A3w on the complete non-antipodal equatorial slice of the compact family, with an exact scalar Jacobi argument. Global completion estimate 10%.
+- 2026-10-03 06:42 UTC: Author turn 4 replaces the small-distance sign with the explicit value 7/10−8/π² at separation π/2, and records the known flat-product obstruction. Coarse numerical negatives are rejected as evidence because of instability and unverified minimization. Completion estimate 10%.
+- 2026-10-03 06:45 UTC: Author turn 5 derives the complete 2D quartic null-pair criterion and freezes the exact remaining global injectivity-domain sign problem. Budget exhausted 5/5, no global resolution. Completion estimate 10%.
