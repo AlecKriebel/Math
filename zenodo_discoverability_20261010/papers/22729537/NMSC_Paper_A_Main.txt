@@ -1,0 +1,1894 @@
+Direct Sequence Laws under the Network Multispecies
+                    Coalescent
+ A genealogy equivalence, canonical coalescent-response behavior,
+  and ﬁnite determination with an epoch-complexity obstruction
+                                         Alec Kriebel
+                                    Independent Researcher
+                  ORCID: 0009-0001-9320-500X          DOI: 10.5281/zenodo.22729537
+
+                                       September 5, 2026
+
+
+                                             Abstract
+       We determine the exact population-level information in multilocus sequence alignments gen-
+   erated by a temporal species network under the independent-lineage Network Multispecies Coa-
+   lescent (NMSC), without treating estimated gene trees or concordance factors as observed data.
+   With known nonrecombining locus boundaries, contemporaneous labelled sampling, and one
+   shared irreducible stationary reversible ﬁnite-state continuous-time Markov chain, the indexed
+   family of length-L locus laws is equivalent to the stationary distribution, the trace-normalized
+   substitution generator, and the mutation-scaled metric-genealogy law. The ﬁrst step is a com-
+   pact moment theorem for the random conditional site-pattern tensor. A determinant coordinate
+   then recovers each realized additive gene-tree metric, while a continuum in the ancestral coa-
+   lescence tail identiﬁes the shared generator, including JC, K2P, K3P, and repeated-eigenvalue
+   GTR strata.
+       We compile every ﬁnite temporal NMSC presentation into a ﬁnite typed continuous-time
+   response system on partition–occupancy states. Its canonical reachable–observable residual be-
+   havior, denoted CCR, is coordinate independent, removes analytically invisible event times, and
+   is unique up to typed linear isomorphism. Equality of CCR is equivalent to equality of normal-
+   ized metric-genealogy laws. The minimal time-indexed realization has an intrinsic positive cone,
+   but its ﬁnite analytic encoding does not supply a stochastic occupancy basis or an NMSC graph.
+   Literal graph recovery is impossible on the strict physical domain: arbitrary sample-unary tem-
+   poral funnels have identical response in every context. Species trees are nevertheless recovered
+   pointwise with all exposed population rates. For one-reticulation presentations we give an ex-
+   act ﬁnite port-response quotient and a graph theorem on the incidence-separated subclass; the
+   reduced level-1 result additionally assumes scalar-separator faithfulness, and no unconditional
+   level-1 or level-2 graph theorem is claimed.
+       The ﬁnite-locus hierarchy has two complementary conclusions. On every ﬁxed ﬁnite union of
+   compact semianalytic ﬁnite-presentation charts, one ﬁnite locus length determines the complete
+   indexed family. The proof uses the Frisch–Siu Noetherian ring of analytic germs along a com-
+   pact set and remains valid at coalescent–substitution resonances. No determining length can
+   depend only on the number of sampled taxa, reticulations, alphabet size, and sampling design
+   if demographic epoch count is unbounded. For every L we construct two strict two-taxon, zero-
+   reticulation, known-JC demographic histories with identical laws through length L and diﬀerent
+   length-(L + 1) laws. A Vandermonde Jacobian and the implicit-function theorem make the
+   collision exact. We ﬁnally separate Borel inversion, ﬁnite proposed-model equivalence testing,
+   moment approximation, and statistical consistency.
+
+
+                                                  1
+1     Introduction
+Reticulate species histories are latent twice over in sequence data. The species network ﬁrst gen-
+erates a random metric gene genealogy through lineage transport, coalescence, and reticulation
+routing; the genealogy then generates an alignment through a substitution process. The observable
+object is therefore the direct alignment law after both layers have been integrated out. Replacing
+this law by estimated gene trees changes the statistical experiment and cannot establish direct-
+sequence identiﬁability.
+    Previous direct-sequence results establish generic unrooted species-tree recovery under broad
+reversible substitution models [1, 8], and logDet distances recover substantial level-1 network topol-
+ogy under an NMSC–GTR model [2]. At the gene-tree-summary layer, quartet distributions recover
+the tree of blobs and portions of level-1 or galled tree-child structure [3–5]. Full-likelihood intro-
+gression models also possess exact label-switching ambiguities, notably bidirectional introgression
+[16]. None of these facts by itself classiﬁes the complete family of within-locus sequence laws.
+    Earlier work distinguishes displayed-tree sets from NMSC distributions and shows that distin-
+guishability depends on sampling. Some networks remain indistinguishable even when gene-tree
+branch lengths are included [17]. Our sample-unary-funnel theorem proves contextual replacement
+for the complete metric-genealogy law under the sampling convention stated here. Metric-genealogy
+ambiguity itself is not new.
+    The present paper separates four questions that are often conﬂated:
+ 1. What mixing measure is determined by all within-locus laws?
+ 2. Can one invert a conditional sequence tensor to a realized metric genealogy and a shared
+    substitution generator?
+ 3. What ﬁnite object classiﬁes the NMSC metric-genealogy behavior when literal network realiza-
+    tion is nonunique?
+ 4. Does one ﬁnite locus length suﬃce, and what complexity must its bound depend on?
+    The answer to the ﬁrst two questions is a universal sequence–genealogy equivalence. The answer
+to the third is a ﬁnite typed linear behavior, CCR. The fourth has a positive compact ﬁnite-
+presentation theorem and a matching negative theorem showing that unbounded demographic
+epoch count cannot be omitted from any universal complexity bound.
+
+1.1   Contributions and deliberate limits
+The load-bearing positive theorem is pointwise, not merely generic. It covers any ﬁnite labelled
+temporal NMSC presentation in the strict domain and any irreducible stationary reversible gener-
+ator. Repeated substitution eigenvalues are handled by matrix-semigroup arguments rather than
+spectral-coordinate division. The response theorem allows rectangular boundary maps and chrono-
+logically constrained timed words. The ﬁnite-order theorem is pointwise across resonances because
+the sequence map is treated by matrix-exponential analyticity, not by rational expressions that
+divide by rate diﬀerences.
+    Two limits are equally important. First, CCR is a canonical behavior rather than a canoni-
+cal phylogenetic graph. Second, compact moment determinacy produces a mathematical inverse
+from the complete indexed hierarchy; it is not a ﬁnite-query algorithm. We prove graph recov-
+ery completely for sampled-complete species trees. The companion studies the strongly tree-child
+level-at-most-two graph inverse; none of its results is used here. Unknown stationary nonreversible
+generator recovery remains outside the theorem.
+
+
+                                                  2
+2     Model and observation objects
+2.1   Temporal species-network presentations
+Let X be a ﬁnite labelled taxon set, let S be a ﬁnite set of labelled sampled lineages, and ﬁx
+a known surjection s : S → X. A presentation on X has exactly the taxa in X as its labelled
+terminal populations; thus every graph leaf is sampled, possibly by several lineages. This sampled-
+complete convention is part of the literal graph object. Present time is 0. A ﬁnite temporal NMSC
+presentation consists of a ﬁnite rooted directed acyclic population graph with a time coordinate
+increasing backward in time, a ﬁnite event list
+
+                                   0 = t0 < t1 < · · · < tJ < ∞,
+
+a ﬁnite set of extant population arcs in each open epoch (tj , tj+1 ), a positive ﬁnite pairwise co-
+alescence rate on every such arc, and an ancestral root population extending from tJ to inﬁnity
+with positive ﬁnite rate. Tree boundaries transport lineages deterministically. At a binary reticu-
+lation, each lineage independently selects one of two parents with probability γ ∈ (0, 1). All ﬁnite
+epoch durations are positive. Additional degree-two vertices are allowed only when they record a
+demographic rate change; their number is part of presentation complexity.
+    This formulation encompasses binary species networks, reticulation stacks, parallel temporal
+arcs, and ﬁnite piecewise-constant demography. Parameter-free degree-two subdivisions are presen-
+tations of the same process. A population subnetwork through which at most one sampled ancestral
+lineage can ever pass is not silently deleted; its exact invisibility is proved in section 11.
+
+2.2   Genealogy law
+Backward in time, current gene lineages move deterministically at tree boundaries, route indepen-
+dently at reticulations, and coalesce pairwise on a common population arc according to Kingman’s
+rate convention [12]. Loci are independent. Every site in one nonrecombining locus shares the same
+realized rooted metric genealogy G. Let
+
+                                µN,η ∈ P(GS ),       η = (τ, λ, γ, s),
+
+be the law on the standard Borel space of rooted labelled metric genealogies, including topology
+and coalescence times. Under the strict domain, merger times are distinct and avoid species-event
+times almost surely; contracted boundary trees are nevertheless included in GS to make the space
+closed under limits.
+
+2.3   Substitution model and scale
+The alphabet has 2 ≤ κ < ∞ labelled states. A row generator Q satisﬁes Q1 = 0, Qab ≥ 0 for
+a 6= b, is irreducible, and has a positive stationary row vector π. Zero oﬀ-diagonal entries are
+allowed; irreducibility requires the directed transition graph to be connected by directed paths.
+The principal theorem assumes reversibility,
+
+                                Dπ Q = QT Dπ ,       Dπ = diag(π).
+
+Equivalently, the conductances wab = πa Qab = wba ≥ 0 have connected undirected support. They
+give analytic coordinates Qab = wab /πa with row sums determining the diagonal. Irreducibility,
+rather than positivity of each conductance, is suﬃcient for every sequence–genealogy argument
+
+
+                                                 3
+below. In particular, uniformization gives strictly positive transition probabilities at every positive
+time, and reversible symmetric similarity remains valid when some conductances vanish. Set
+
+                           r(Q) = − tr Q > 0,                  Q0 = Q/r(Q),            tr Q0 = −1,
+
+and write mutation-scaled time and coalescence rates as
+
+                                               t̄ = r(Q)t,             λ̄ = λ/r(Q).
+
+Changing the physical time unit by c > 0 acts as
+
+                                               (τ, λ, Q) 7−→ (cτ, λ/c, Q/c).                                       (1)
+
+It leaves Q∆t and λ∆t invariant.
+
+2.4    Direct indexed locus laws
+For a realized genealogy G, let
+                                                               
+                              VQ (G) = pQ,π (a | G) a∈[κ]S ∈ ∆d−1 ,                     d = κ|S| ,
+
+be its one-site conditional pattern vector, and let
+
+                                                        νξ = (VQ )∗ µN,η .
+
+The observed population law of an ordered length-L nonrecombining-locus alignment is
+                                           Z    Y
+                                                L                                     Z        Y
+                                                                                               L
+                  (L)
+                 Pξ (a1 , . . . , aL ) =              pQ,π (aℓ | G) dµN,η (G) =                    vaℓ dνξ (v).    (2)
+                                           GS ℓ=1                                       ∆d−1 ℓ=1
+
+
+The identiﬁability object is the indexed family (P(L) )L≥1 . It is not an unordered set, an inﬁnite
+observed locus, or a pooled single-site distribution.
+
+
+3     Main classiﬁcation theorem
+Deﬁnition 3.1 (Principal model class). For ﬁxed (X, S, s), the principal class M(X, S, s, κ) consists
+of ﬁnite temporal NMSC presentations as above, with contemporaneous labelled sampling, known
+nonrecombining locus boundaries, independent loci, independent lineage routing, positive ﬁnite rates
+and durations, inheritance probabilities in (0, 1), and one shared irreducible stationary reversible κ-
+state generator. We assume |S| ≥ 2.
+   The ﬁnite response object used in the theorem is constructed in section 8. Informally, it is the
+typed isomorphism class of the minimal future-response spaces of the normalized metric-genealogy
+density, together with the intrinsically visible event times.
+Theorem 3.2 (Direct-sequence classiﬁcation). For ξ, ξ 0 ∈ M(X, S, s, κ),
+                                                (L)       (L)
+                                               Pξ     = Pξ 0       for every L ≥ 1                                 (3)
+
+if and only if
+
+                  π = π0,         Q0 = Q00 ,                                  ∼ CCR(N 0 , τ̄ 0 , λ̄0 , γ 0 ; s).
+                                                        CCR(N, τ̄ , λ̄, γ; s) =                                    (4)
+
+                                                                   4
+ Equivalently, the indexed sequence family and the normalized triple
+
+                                               (π, Q0 , µ̄metricGT )
+
+are connected by mutually inverse Borel maps on the principal model image. In physical units
+the universal scale ambiguity is (1). Beyond scale, equality is exactly equality of CCR behavior.
+This identiﬁes the universal behavioral ﬁber; positive graph realizations are interpreted only on
+the species-tree, incidence-separated one-reticulation, and scalar-separator-faithful level-1 subclasses
+proved below.
+ Theorem 3.3 (Finite-locus hierarchy). The following two statements hold.
+(a) Let K be a ﬁnite union of compact semianalytic normalized charts with ﬁxed ﬁnite presentations,
+    ﬁxed sampling design, and a compact family of strict reversible generators. There exists a ﬁnite
+    L∗ (K) such that for all ξ, ξ 0 ∈ K,
+                          (L (K))       (L (K))               (L)      (L)
+                        Pξ ∗        = Pξ 0 ∗       ⇐⇒       Pξ      = Pξ0 for every L ≥ 1.
+
+    The conclusion is pointwise, including repeated eigenvalues and rate resonances, but the proof
+    is generally non-eﬀective.
+ (b) There is no function L∗ (n, r, κ, s) with this property when the number of ﬁnite demographic
+     rate epochs is unbounded and omitted from the complexity argument. More precisely, for every
+     L ≥ 1 there are two strict two-taxon, zero-reticulation, known-normalized-JC models with the
+     same sampling design and ﬁnite positive piecewise-constant demography such that their locus
+     laws agree for 1 ≤ ℓ ≤ L and disagree at L + 1.
+ Theorem 3.4 (Graph content and sharp impossibility). Global pointwise identiﬁability over the
+ full strict temporal-network class fails through strict-interior collisions: replacing a sample-unary
+ temporal funnel by another strict sample-unary funnel with the same temporal boundary produces
+ the same metric-genealogy and direct sequence laws. In contrast:
+ (i) on the sampled-complete species-tree class, the rooted labelled topology, divergence times, every
+     exposed maximal constant-rate demographic epoch, and the ancestral-root rate are recovered
+     pointwise in mutation units; an entire terminal demographic schedule is recovered exactly when
+     at least two lineages are sampled from that terminal species;
+(ii) every one-reticulation presentation, including a zero-reticulation result of reduction, has a ﬁnite
+     canonical port-response quotient encoded by all-partition preﬁx/suﬃx matrices at a law-deﬁned
+     common time; equality of these quotients is necessary and suﬃcient for normalized genealogy
+     equivalence, and together with equality of the separately recovered π, Q0 , for indexed-sequence
+     equivalence;
+(iii) on the incidence-separated one-reticulation and scalar-separator-faithful, locally incidence-
+      separated reduced level-1 subclasses, the graph ports and inheritance probability are recovered
+      up to parent exchange γ ↔ 1 − γ and the universal reductions; parent-corridor demography is
+      recovered through its exact all-partition port-response ﬁber rather than a generally false linkage
+      of hidden parent words.
+ No unconditional level-1, strongly tree-child level-2, or general-network graph realization theorem is
+ asserted.
+     The remainder of the paper proves these statements. The technical supplement gives the com-
+ plete timed-Hankel, breakpoint, analytic-germ, and collision-transversality details.
+
+                                                        5
+ 4    Indexed moment recovery
+Theorem 4.1 (Multilocus moment theorem). Let ν be a probability measure on the compact simplex
+∆d−1 and let (2) deﬁne an indexed family of ordered categorical laws. Then:
+                                                                   RQ
+ (i) a word (a1 , . . . , aL ) records the mixed monomial moment        ℓ vaℓ dν;
+
+(ii) P(L) determines every moment of total degree at most L by marginalizing trailing coordinates;
+(iii) the indexed family (P(L) )L≥1 determines ν uniquely, and ν determines the family.
+The statement retains repeated site patterns and is unchanged if sites are recorded as exchangeable
+counts rather than ordered words, provided multinomial multiplicities are retained.
+ Proof. Conditional independence of sites given V = v gives (2). Summing the last L−ℓ coordinates
+                               P
+ multiplies the integrand by ( a va )L−ℓ = 1, so all lower moments are recovered. If two measures
+ agree on the indexed family, they agree on every coordinate monomial and hence every polynomial.
+ Coordinate polynomials form a unital point-separating subalgebra of C(∆d−1 ); Stone–Weierstrass
+ makes them uniformly dense. Equality against all continuous functions and the Riesz representation
+ theorem give equality of measures. The converse is immediate.
+
+Proposition 4.2 (Measurability and marginalization). Metric genealogy space is a ﬁnite disjoint
+union of labelled topology cones, glued along contracted-edge faces. The pruning map G 7→ VQ (G)
+is continuous on each cone and Borel globally. Although coalescence times are unbounded, its
+image lies in the compact simplex. Summing character states outside a sampled subset commutes
+with products and integration, so the indexed law determines every sampled-subset law and mixing
+measure.
+ Proof. Transition matrices are continuous functions of edge lengths and pruning uses ﬁnitely many
+ sums and products. The topology-cone partition is ﬁnite for ﬁxed S, proving Borel measurability.
+ The marginalization assertion follows from applying the corresponding linear simplex map at every
+ site.
+
+
+ 5    From a conditional tensor to a metric genealogy
+ For a pair of sampled leaves i, j, let Jij (v) be the κ × κ marginal of a conditional tensor v. Let uij
+ and wij be the two branch-time distances from their gene-tree MRCA to the leaves.
+ Lemma 5.1 (Pair determinant identity). For every stationary ﬁnite-state CTMC, reversible or
+ not,
+                                 T               det Jij
+                         Jij = eQ uij Dπ eQwij ,         = e(tr Q)(uij +wij ) .           (5)
+                                                 det Dπ
+ Hence det Jij > 0 at every ﬁnite genealogy and
+
+                           δij (v) := − log det(Dπ−1 Jij (v)) = r(Q)(uij + wij ).                    (6)
+
+ Proof. Conditioning on the MRCA state gives the ﬁrst identity. Since det eAt = et tr A and tr QT =
+ tr Q, taking determinants gives the second. Irreducibility and ﬁnite branch lengths make Dπ and
+ both exponentials nonsingular.
+
+ Theorem 5.2 (Conditional metric-genealogy inversion). For |S| ≥ 2, the map
+
+                                      v = VQ (G) 7−→ (δij (v))i,j∈S
+
+                                                     6
+recovers the mutation-scaled canonical contracted unrooted metric genealogy. If samples are contem-
+poraneous, its unique equidistant point restores the temporal root and every normalized coalescence
+time. The inverse from the set of valid conditional tensors to canonical rooted metric genealogies
+is Borel. For |S| = 2 the root is the midpoint of the single recovered edge.
+
+Proof. By lemma 5.1, (δij ) is an additive tree metric. The Buneman four-point reconstruction
+recovers every positive split edge and its length; zero split lengths are contracted [7, 14]. On
+each region deﬁned by strict four-point inequalities, the edge lengths are linear combinations of
+distance entries. Fixing a deterministic tie rule on equality faces therefore yields a Borel canonical
+reconstruction.
+    A contemporaneous rooted genealogy is ultrametric. Its root is the unique point equidistant
+from all leaves: choose a diameter pair and take its midpoint; ultrametricity forces every other leaf
+to the same radius. This remains valid after zero-edge contraction and specializes to the ordinary
+midpoint for two leaves. Vertex times follow from root-to-vertex distances. The construction uses
+ﬁnitely many inequalities and arithmetic operations on each stratum, so it is Borel.
+
+    The support of ν may contain the limiting independent pair matrix with determinant zero,
+corresponding to inﬁnite pair distance. It receives no probability mass under a ﬁnite-rate NMSC.
+All inversions above are therefore almost sure: deﬁne the inverse on the positive-determinant valid-
+tensor set and extend it by one arbitrary ﬁxed default genealogy on the null complement. The
+determinant-zero point is not a contracted ﬁnite genealogy.
+
+
+6    Recovery of an unknown shared reversible generator
+Lemma 6.1 (Ancestral support tail). For every sampled pair in a strict ﬁnite NMSC, there is a
+ﬁnite time T0 after which both surviving lineages occupy the ancestral root population. Conditional
+on survival to T0 , their coalescence time has a positive exponential density on (T0 , ∞). Consequently,
+the support of the pair-matrix pushforward contains a nondegenerate tail of the conditional pair
+curve.
+
+Proof. The ﬁnite population graph has a ﬁnal ancestral population. Every routing history reaches
+it by T0 = tJ , and survival through ﬁnitely many positive-duration epochs has positive probability.
+The root population has positive ﬁnite Kingman rate, so the additional waiting time has full support
+(0, ∞). Continuity of the pair-matrix map transfers this interval to support.
+
+    Under reversibility, (5) simpliﬁes to
+
+                                 Jij = Dπ eQdij ,       dij = uij + wij .                           (7)
+
+Set s = − log det(Dπ−1 J) = r(Q)d. Thus the observed tail is intrinsically parameterized as
+
+                                        M (s) = Dπ−1 J = eQ0 s .                                    (8)
+
+Theorem 6.2 (Shared reversible generator recovery). The conditional-tensor mixing measure ν
+generated by the principal model determines π and Q0 = Q/(− tr Q) pointwise on the labelled
+alphabet. The result includes JC, K2P, K3P, and every repeated-eigenvalue reversible stratum.
+
+Proof. Every one-leaf marginal of every conditional tensor equals π, so π is read directly from ν.
+Pairwise marginalization gives the exact pair-matrix distribution and its support. By lemma 6.1,
+
+
+
+                                                    7
+that support contains an open tail of (8); the determinant gives the value of s at each matrix.
+Therefore the analytic graph s 7→ M (s) is known on an interval, and
+
+                                        Q0 = M 0 (s)M (s)−1 .
+
+This uses no eigenspace choice and is unchanged by repeated eigenvalues.
+   For an independent veriﬁcation, choose two tail values s2 > s1 . Reversibility makes Q0 similar
+          1/2
+through Dπ to a real symmetric matrix with nonpositive eigenvalues. Hence
+
+                                    M (s2 )M (s1 )−1 = eQ0 (s2 −s1 )
+
+has positive real eigenvalues and its principal matrix logarithm is uniquely Q0 (s2 − s1 ). Dividing
+by the observed determinant-coordinate diﬀerence gives Q0 . A global state permutation is an
+ambiguity only if the observed alphabet itself is declared unlabelled.
+
+Remark 6.3 (One conditional pair matrix already suﬃces). Any positive-distance realized condi-
+tional pair matrix J in the recovered mixing law gives
+                                                                                         Log(A)
+             A = Dπ−1 J = esQ0 ,     s = − log det A = r(Q)d > 0,                 Q0 =          .
+                                                                                           s
+Here d is the total pair path length, twice the pair coalescence age for contemporaneous sampling.
+Reversible symmetric similarity gives positive spectrum for A, so its real principal logarithm is
+exactly sQ0 , including repeated eigenvalues and irreducible zero-conductance faces. This observation
+concerns a conditional matrix recovered through the mixing measure, not the population-averaged
+pair matrix; the support-tail proof above also remains valid.
+
+
+7    Universal direct sequence–genealogy equivalence
+Let µ̄ be the pushforward of the physical metric-genealogy law after multiplying every genealogy
+length by r(Q).
+Theorem 7.1 (Sequence–genealogy equivalence). On M(X, S, s, κ),
+                              (L)
+                            (Pξ )L≥1      ⇐⇒     νξ    ⇐⇒       (π, Q0 , µ̄ξ ).                     (9)
+
+The equivalence is pointwise and Borel.
+Proof. The ﬁrst equivalence is theorem 4.1. The space P(∆d−1 ) of probability measures on the
+compact tensor simplex is compact metrizable in the weak topology. The full coordinate-moment
+map is continuous and injective by Stone–Weierstrass, hence is a homeomorphism onto its image.
+Thus the indexed sequence family recovers ν through an explicit Borel inverse, without a global
+image theorem.
+    One-leaf marginals recover π. For a sampled pair, push ν forward to its pair-matrix law. Its
+support is a closed subset of a ﬁnite-dimensional Euclidean space and the support map is Borel in
+the Eﬀros structure. Strict ancestral coalescence supplies two positive-determinant support points
+with distinct determinant coordinates. A Borel pair is obtained by enumerating pairs of disjoint
+rational matrix boxes with separated determinant-coordinate closures, selecting the ﬁrst pair that
+meets the support, and then using nested rational subboxes to select one support point from each.
+Order the selected matrices M1 , M2 so that
+
+                        s2 = − log det(Dπ−1 M2 ) > s1 = − log det(Dπ−1 M1 ).
+
+                                                   8
+Put Ki = Dπ−1 Mi . The principal-logarithm formula from theorem 6.2 gives
+                                                1
+                                      Q0 =           Log(K2 K1−1 ),
+                                             s2 − s1
+and continuity of the principal logarithm on matrices with positive real spectrum makes this selector
+Borel. Apply the ﬁnite-stratum Borel tree reconstruction of theorem 5.2 to ν-almost every tensor
+and push forward to obtain µ̄.
+    Conversely, pruning with (π, Q0 ) on each normalized genealogy is Borel and gives ν; (2) then
+gives every indexed law. These explicit constructions prove the claimed mutually inverse Borel
+maps.
+
+Proposition 7.2 (Physical-unit conversion for a ﬁxed normalized realization). Fix one normal-
+ized physical realization (N, τ̄ , λ̄, γ, Q0 , π, s). Its remaining conversion between mutation units and
+physical time is exactly
+                                   (τ, λ, Q) 7−→ (cτ, λ/c, Q/c),       c > 0.
+If an external calibration ﬁxes the substitution-rate scale or one nonzero physical interval, this action
+is removed. The complete observational ﬁber may additionally contain non-scale CCR-equivalent
+realizations, including sample-unary funnel replacements, parent-presentation changes, latent-role
+switches, and the qualiﬁed sister-triangle equivalences treated in the companion paper.
+Proof. Write Q = rQ0 within the ﬁxed normalized realization. Physical genealogy times are the
+normalized times divided by r, and physical coalescence rates are rλ̄. Replacing r by r/c gives
+precisely (1), and every positive choice of physical conversion scale arises this way. This argument
+compares physical-unit representations of the ﬁxed normalized realization; it makes no assertion
+that all realizations of the same observable law share the same graph or normalized parameterization.
+
+
+
+8     Finite typed NMSC response systems
+We now compress the normalized metric-genealogy law without presuming a unique positive network
+realization.
+
+8.1    Raw partition–occupancy realization
+Fix an open population epoch e and a partition P of S into current gene-lineage blocks. Let Ωe,P
+be the ﬁnite set of allowable assignments of those blocks to population arcs present in epoch e.
+Deﬁne the row state space
+                                         He,P = RΩe,P .
+For ω ∈ Ωe,P , let np (ω) be the number of blocks assigned to population p. The no-merger generator
+is diagonal,                                                  !
+                                                   X np (ω)
+                                   Ae,P (ω, ω) = −              λ̄p .                          (10)
+                                                    p      2
+If blocks B, C ∈ P occupy the same population p, the marked merger map
+                                      B,C
+                                     Ce,P : He,P −→ He,P/(B∼C)
+
+has entry λ̄p to the assignment obtained by replacing B, C by B ∪ C; all other entries are zero. At
+a population boundary, a rectangular stochastic map transports assignments. A tree boundary is
+
+                                                    9
+deterministic. At a reticulation, each block routes independently, so an assignment of m blocks
+contributes a product γ k (1−γ)m−k . Simultaneous boundaries are represented by their chronological
+matrix product.
+   For an admissible ranked labelled merger history h = (m1 , . . . , m|S|−1 ) with absolute merger
+times 0 < s1 < · · · < s|S|−1 , insert every species event between consecutive merger times. Its
+density is the scalar matrix product
+
+                        bh (s1 , . . . , s|S|−1 ) = αE0 Cm1 E1 R1 E2 · · · Cm|S|−1 Ef β,        (11)
+
+where each E = eA∆ , every C is a marked rectangular merger map, every R a rectangular population
+boundary, α is the sampled initial assignment, and β = 1 after the ﬁnal merger. Only chronologically
+and type-compatible products are admissible.
+
+Proposition 8.1 (Finite analytic response representation). For ﬁxed S and a ﬁnite presentation,
+there are ﬁnitely many types, marks, boundary maps, and ranked history chambers. Every density
+(11) is real analytic in the absolute merger times and strict physical parameters on each chamber.
+These densities, with their natural Lebesgue reference measures, determine the normalized metric-
+genealogy law.
+
+Proof. There are ﬁnitely many partitions of S, ﬁnitely many occupancy assignments, and ﬁnitely
+many ranked binary merger histories. Matrix exponentials are entire in their matrix entries and
+duration. Products with the ﬁnite boundary maps are analytic. Strict NMSC genealogies have no
+merger atoms at species-event times and no simultaneous mergers, so the law is the ﬁnite collec-
+tion of these chamber densities. Conversely, integrating them over Borel subsets of the chambers
+reconstructs the law.
+
+8.2    Timed residual behavior
+A timed preﬁx is an admissible partial history ending at an interior time t with a speciﬁed epoch–
+partition type q = (e, P). A timed suﬃx begins at the same (q, t) and completes the history.
+Concatenation pz is allowed only when all types, marks, and times match. Let b(pz) be the
+corresponding scalar density.
+
+Deﬁnition 8.2 (Future-response space). For a preﬁx p ending at (q, t), deﬁne its residual future
+function
+                                     rp,t : z 7−→ b(pz).
+The canonical future-response space is
+
+                                   Vq,t = span{rp,t : p ends at (q, t)}.
+
+   Every raw preﬁx reaches a row vector xp ∈ Hq and rp,t (z) = xp Φ(z)β. Hence dim Vq,t ≤ dim Hq .
+   For an epoch–partition type q and an interior time t, let Rq (t) ⊆ Hq be the span of all raw
+preﬁx row states reaching q at time t.
+
+Lemma 8.3 (Analytic preﬁx-span saturation). Let t < t0 lie in the same open epoch and let Aq be
+the no-mark generator for the ﬁxed target type q. Then
+                                                                 0
+                                         Rq (t0 ) = Rq (t)eAq (t −t) .
+
+This includes preﬁxes whose last merger occurs in (t, t0 ).
+
+
+                                                      10
+ Proof. Fix an admissible merger-mark pattern ending in type q, and let its free merger times range
+ over an ordered open simplex. If sk is its ﬁnal merger time and G(s) is the row immediately after
+ that mark, write the row at target time u as
+
+                        G(s)eAq (u−sk ) = H(s)eAq u ,         H(s) := G(s)e−Aq sk .
+
+ If the last transition into q is instead a ﬁxed boundary at time a, use H(s) := G(s)e−Aq a ; for an
+ empty pattern the same formula has constant H. In every case H is an Hq -valued real-analytic map
+ independent of the target time. The simplex cut out by requiring all current-epoch mergers to occur
+ before t is a nonempty open subset of the corresponding simplex before t0 whenever the pattern is
+ admissible; mergers have no minimum holding time, and t, t0 cross no population boundary.
+     Let ℓ ∈ Hq∗ annihilate the values of H on the smaller simplex. The scalar analytic function ℓH
+ vanishes on a nonempty open set, so it vanishes on the connected larger simplex. Thus the spans of
+ the H-values are equal for this mark pattern. There are only ﬁnitely many admissible mark patterns
+ leading to q; intersecting their annihilators proves equality of their total spans. Multiplication by
+                                               0
+ the genuinely common factors eAq t and eAq t now gives
+                                                          0                0
+                              Rq (t0 ) = Rq (t)e−Aq t eAq t = Rq (t)eAq (t −t) .
+
+ Rectangular marked maps cause no diﬃculty because analyticity and the annihilator argument take
+ place only in the ﬁxed target space Hq .
+
+ Theorem 8.4 (Canonical minimal typed realization). The future-response spaces have the following
+ properties.
+ (i) They are ﬁnite dimensional, reachable by construction, and observable because a future function
+     is zero exactly when it vanishes on every suﬃx.
+(ii) No-mark extension, labelled merger, and population-boundary extension induce linear maps
+     between the appropriate typed spaces.
+(iii) Inside one open epoch, no-mark transport between any two interior times is an isomorphism.
+(iv) For every ﬁnite raw realization, restricting each raw type to its reachable subspace and quoti-
+     enting by its complete observational nullspace yields a realization canonically isomorphic to the
+     future-response system.
+ (v) Any two reachable–observable typed realizations of the same behavior are related by a unique
+     typed linear isomorphism intertwining all ﬂows, marks, boundaries, initial states, and terminal
+     functionals.
+ Proof. Finiteness was just proved. Preﬁx extension deﬁnes the typed operations and reachability.
+ Observability is literal equality of future functions.
+     For interior transport, lemma 8.3 proves surjectivity on raw reachable spans. For injectivity,
+ suppose a reachable raw residual x becomes observationally zero after no-mark propagation from
+ t to t0 . Fix an entire admissible suﬃx mark pattern in the current epoch and everything after the
+ next ﬁxed boundary, if any. Its ordered merger times range over a connected open simplex, and the
+ scalar response of x is jointly real analytic in all those times. The hypothesis makes it zero on the
+ nonempty open sub-simplex on which every current-epoch mark occurs after t0 . The multivariate
+ identity theorem therefore makes it zero on the whole simplex, including the region with marks
+ between t and t0 . Mark-free suﬃxes are handled by the same one-variable ﬂow argument. Taking
+ the ﬁnite union over mark patterns shows that x was already observationally null at t. Hence
+ no-mark transport is injective on the observational quotients and therefore an isomorphism.
+
+                                                     11
+   Let Rq ⊆ Hq be the span of raw preﬁx states and
+
+                     Nq = {x ∈ Rq : xΦ(z)β = 0 for every admissible suﬃx z}.
+
+The map x + Nq 7→ [z 7→ xΦ(z)β] is well deﬁned, injective, and surjective onto Vq . Operations
+preserve Nq and descend. This proves (iv).
+    For uniqueness, map the state reached by every preﬁx in the ﬁrst minimal realization to the state
+reached by the same preﬁx in the second. If two linear combinations of preﬁx states agree in the
+ﬁrst, their diﬀerence has zero response against every suﬃx; equality of behaviors and observability
+make the corresponding diﬀerence zero in the second. Thus the map is well deﬁned and injective.
+Reachability makes it surjective. Its deﬁnition forces every intertwining relation and uniqueness.
+
+   This is a continuous-time typed version of the classical ﬁnite-Hankel principle for minimal linear
+representations [6, 10]. The proof veriﬁes the hypotheses needed here, including constrained timed
+words and rectangular type changes.
+
+Proposition 8.5 (Finite analytic encoding of the residual bundle). The minimal realization is in-
+dexed by absolute time. For each raw epoch choose an interior anchor a, also in the ﬁnal unbounded
+epoch. For each partition type q, no-mark transport identiﬁes every interior ﬁber with Rq (a)/Nq (a).
+In these coordinates no-mark transport is the identity, while a merger q → q 0 at time t is induced
+by
+                                      eAq (t−a) Cq,q0 e−Aq0 (t−a) .
+Boundary maps and initial/terminal data are obtained by the corresponding anchor transports.
+Fixed quotient bases therefore give a ﬁnite encoding by raw matrices, exponential formulas, and
+ﬁnite linear maps. The time-dependent merger matrices need not be constant, even when all rele-
+vant ﬁbers have dimension one.
+
+Proof. Preﬁx-span saturation gives Rq (t) = Rq (a)eAq (t−a) . Null preservation and injectivity of
+interior transport give Nq (t) = Nq (a)eAq (t−a) . Conjugating the actual merger map at t gives the
+displayed formula, which consequently preserves the reachable and null subspaces needed to induce
+the quotient map. Its entries are analytic functions of t in ﬁxed quotient bases. A boundary at h
+between anchors a− , a+ has the induced matrix
+
+                                       eA− (h−a− ) Rh e−A+ (h−a+ ) .
+
+The same transport formulas apply to the ﬁnite initial endpoint and terminal functional. A ﬁnite
+anchor in the root epoch works for every ﬁnite t there; no evaluation at inﬁnity is used. There are
+ﬁnitely many raw epochs, partition types, and matrices. This proves ﬁnite encodability without
+assuming autonomous generators on the ﬁxed-time minimal spaces.
+
+8.3   Intrinsic breakpoints and the deﬁnition of CCR
+Deﬁnition 8.6 (Visible event time). A temporal event time tj is visible if at least one scalar
+ranked-history density fails to admit a real-analytic continuation through tj after identifying its left
+and right history coordinates. Otherwise it is invisible.
+
+Proposition 8.7 (Finite breakpoint test). For every pair of adjacent ranked-history chambers
+meeting along a face sj = h, where h is the event under test, let f− , f+ be the analytic extensions
+of their raw scalar density formulas. Choose one point s∗ of that open face. In coordinate si , let
+
+
+                                                    12
+n−
+ ϵ,i , nϵ,i be the raw dimensions immediately before and after its merger in formula fϵ , for ϵ ∈ {−, +},
+        +
+
+and set
+                                       Di = n −     +      −    +
+                                               −,i n−,i + n+,i n+,i .
+
+The event is invisible if and only if, for every such face pair,
+
+                           ∂1k1 · · · ∂m
+                                       km
+                                          (f− − f+ )(s∗ ) = 0   (0 ≤ ki < Di ).
+
+This is a ﬁnite test. Its verdict is independent of hidden-state basis and raw event reﬁnement; the
+displayed suﬃcient bound uses raw formula dimensions, not minimal ﬁxed-time residual dimensions.
+Simultaneous boundaries compose.
+
+Proof. Each raw formula is a ﬁnite matrix-exponential product and is entire in the merger coor-
+                                                     −
+dinates. In coordinate si its variable factor is eA si Ce−A si , with constant factors absorbed on
+                                                             +
+
+
+either side. Diﬀerentiation acts by the Sylvester operator X 7→ A− X − XA+ on a matrix space of
+dimension n− n+ . The direct sum of the two side operators has dimension Di and gives a constant-
+coeﬃcient derivative recurrence for f− − f+ , uniformly in the other coordinates. Cayley–Hamilton,
+applied one coordinate at a time, determines all Taylor coeﬃcients from the displayed mixed box.
+Its vanishing is therefore equivalent to equality of the analytic extensions. There are ﬁnitely many
+histories and chamber faces. Checking every open face glues the chamber formulas; their entire
+extensions also agree at intersections of faces. Thus the test is exactly scalar analytic continuation.
+This proves invariance of its verdict. Identity boundaries leave every scalar formula unchanged,
+and consecutive simultaneous boundary maps compose in chronological order.
+
+Deﬁnition 8.8 (Canonical coalescent-response behavior). The canonical coalescent-response be-
+havior
+                                       CCR(N, η̄; s)
+is the typed linear-isomorphism class of the time-indexed reachable–observable future-response sys-
+tem, with its ﬁnite analytic encoding from proposition 8.5, after all invisible event times have been
+removed and simultaneous visible boundaries have been composed. Removing an invisible boundary
+glues the analytic scalar behavior and its residual transports; it does not assert that the resulting
+interval is one constant-generator raw population epoch. The supplement proves this gluing directly
+from the continued Hankel kernels.
+
+Theorem 8.9 (CCR equality theorem). Two ﬁnite normalized NMSC presentations have isomor-
+phic CCR if and only if their normalized metric-genealogy laws agree. CCR is ﬁnite and coordinate
+independent. Every residual ﬁber has the intrinsic closed, pointed, generating cone
+
+                      Cq,t = {f ∈ Vq,t : f (z) ≥ 0 for every compatible suﬃx z},
+
+and legal preﬁx extensions preserve this family of cones. This construction does not provide a
+simplicial cone, stochastic occupancy basis in the minimal dimension, or NMSC network realization.
+
+Proof. Reﬁne the two ﬁnite event lists to their union. Equality of laws gives equality almost every-
+where of the corresponding Radon–Nikodym densities on every common ranked-history chamber.
+Their diﬀerence is real analytic there, so almost-everywhere equality implies equality everywhere
+on the connected chamber. The systems therefore have identical residual future functions, visible
+breakpoints, and canonical operations. Conversely, a typed isomorphism preserves every complete
+preﬁx–suﬃx scalar pairing, so all common-chamber densities agree; proposition 8.1 then gives
+equality of laws. Finiteness and uniqueness follow from theorem 8.4 and proposition 8.5. The
+
+                                                     13
+construction uses future functions in absolute time, so it is independent of coordinates. Each suﬃx
+evaluation is a linear functional, making the displayed cone closed and convex. If both f and −f
+lie in it, all evaluations vanish, hence f = 0. Actual preﬁx residuals are nonnegative and span
+the ﬁber, so the cone is generating. Preﬁx extension evaluates f on suﬃxes beginning with that
+extension, proving preservation. These assertions concern a compatible cone family; they do not
+choose a simplicial cone or biological occupancy coordinates.
+
+    Combining theorems 7.1 and 8.9 proves theorem 3.2.
+
+8.4   Finite equality testing for proposed exact systems
+Proposition 8.10 (Chamberwise ﬁnite-jet criterion). Suppose two proposed raw response systems
+are supplied over an exact domain in which the ﬁnitely many matrix exponentials used below and
+equality of their entries have a terminating zero test. Reﬁne to the union of their event lists and
+take the signed diﬀerence. For each common ranked-history chamber c, choose one interior time
+vector sc . If its jth merger changes a state space of dimension d−                        +
+                                                                  c,j to one of dimension dc,j in the
+signed direct-sum realization, set
+                                            Dc,j = d−     +
+                                                     c,j dc,j .
+
+The two behaviors are equal if and only if, for every c, the signed density fc satisﬁes
+
+                             ∂1k1 · · · ∂m
+                                         km
+                                            fc (sc ) = 0    (0 ≤ kj < Dc,j ).
+
+For a zero-dimensional chamber this means equality of its single scalar value. Hence proposed-model
+CCR equality has a ﬁnite exact test. The criterion is not the unrestricted closure of preﬁx states
+under generator powers: chronological chamber constraints remain part of the test.
+
+Proof. Fix a chamber and one absolute merger-time coordinate sj , holding the other coordinates
+ﬁxed. Around the corresponding marked map Cj , all dependence on sj has the form
+                                                 −         +
+                                              eAj sj Cj e−Aj sj
+
+up to factors independent of sj . After vectorization its derivatives are powers of the Sylvester
+operator
+                                    Lj (X) = A− j X − XAj
+                                                          +
+
+
+on a space of dimension Dc,j . Cayley–Hamilton therefore gives a constant-coeﬃcient recurrence
+of order at most Dc,j for the derivatives in sj , uniformly in the other merger times. Applying
+these recurrences one coordinate at a time shows that the displayed ﬁnite box of mixed derivatives
+determines every Taylor coeﬃcient at sc . If the ﬁnite box vanishes, analyticity makes fc zero near
+sc , and the real-analytic identity theorem makes it zero on the connected chamber. The converse is
+immediate. There are ﬁnitely many reﬁned ranked-history chambers, and their densities determine
+the law by proposition 8.1. Every required derivative is a ﬁnite chronologically constrained matrix
+product, so the stated exact-domain assumption makes the test terminating; no bit-complexity
+claim is made for arbitrary black-box reals.
+
+
+9     Coordinate invariance and ordered-simplex integration
+Absolute merger times are the primary coordinates in deﬁnition 8.8. The following calculation
+explains precisely why a complete gap spectrum is not canonical.
+
+
+                                                      14
+   Within a ﬁxed-duration epoch, let u0 + · · · + um = ∆. A term ce−hρ,ui satisﬁes
+
+                                                   e−hρ+a1,ui = e−a∆ e−hρ,ui .
+
+Omitting gap uj gives                                                                                      
+                                                                                     X
+                                       ce−hρ,ui = ce−ρj ∆ exp−                             (ρi − ρj )ui  .                              (12)
+                                                                                     i6=j
+
+Thus only the exponent class modulo R1 is intrinsic. Choosing another omitted gap is an invertible
+aﬃne change of the relative interior of the simplex, and pullback preserves all linear relations and
+residual spaces.
+    Nested coalescence integrations are governed by conﬂuent divided diﬀerences, not products of
+one-dimensional integrals.
+
+Theorem 9.1 (Ordered-simplex formula). Use the convention
+
+                                                            f [a1 , . . . , am ] − f [a0 , . . . , am−1 ]
+                                   f [a0 , . . . , am ] =
+                                                                              am − a0
+for distinct endpoints, with the usual Hermite conﬂuent extension. Then
+                                   Z                        P
+     Im (a0 , . . . , am ; ∆) :=          ui ≥0
+                                                       e−      i
+                                                                   ai ui
+                                                                           du0 · · · dum−1 = (−1)m [a0 , . . . , am ]e−∆x .               (13)
+                                     u0 +···+um =∆
+
+In particular,
+                                                                                     ∆m −A∆
+                                                Im (A, . . . , A; ∆) =                  e   .
+                                                                                     m!
+                                                                    P                       −αj ∆ with deg p
+For arbitrary multiplicities, Im is a ﬁnite sum                            j pj (∆)e                               j less than the multiplicity
+of αj .
+
+Proof. Put ui = ∆ti . The Hermite–Genocchi formula gives
+                                                   Z                                                 !
+                                                                                      X
+                         [a0 , . . . , am ]f = P                           f   (m)
+                                                                                             ti ai       dt0 · · · dtm−1 .
+                                                        ti =1,ti ≥0                     i
+
+For f (x) = e−∆x , f (m) = (−∆)m e−∆x , and the Jacobian contributes ∆m , proving (13). At a
+repeated node, a divided diﬀerence becomes the corresponding derivative divided by factorial, giving
+the full-resonance formula. Grouping arbitrary repeated nodes in the Hermite interpolation formula
+gives the stated exponential-polynomial form [9].
+
+   No proof in this paper inverts ai − aj on a locus where it can vanish. More generally, every
+ﬁxed-presentation sequence coordinate is real analytic on a neighborhood of the strict parameter
+domain: scale each ﬁnite integration chamber to a ﬁxed unit simplex, use the entire dependence
+of matrix exponentials on their entries, and diﬀerentiate under the integral. The inﬁnite root
+epoch is an integral of a uniformly stable ﬁnite matrix semigroup and equals a stable inverse
+on the transient subspace. Repeated substitution eigenvalues, repeated hazards, and coalescent–
+substitution resonances therefore cause no singularity in the physical map.
+
+
+
+
+                                                                       15
+ 10     Species-tree tomography
+ For two sampled lineages i, j in a species tree, let Tij be their coalescence time and Sij (t) = Pr(Tij >
+ t). Sampling consistency reduces their process to two lineages.
+
+ Lemma 10.1 (Pair survival response). Let τij be the time at which the two species paths ﬁrst enter
+ a common population. Then
+                                                                 d
+                            Sij (t) = 1   (t < τij ),        −      log Sij (t) = λp(t)
+                                                                 dt
+ for almost every t > τij , where p(t) is their common population arc. Every strict demographic
+ breakpoint on that shared path appears as a hazard breakpoint.
+
+ Proof. Before τij the lineages occupy distinct populations and cannot coalesce. Afterward, condi-
+ tional survival over an interval is the exponential of minus the integrated pairwise Kingman rate.
+ Taking the logarithmic derivative gives the result.
+
+ Theorem 10.2 (Complete species-tree inversion). The normalized metric-genealogy law of a species
+ tree identiﬁes pointwise:
+ (i) the rooted labelled species-tree topology and every divergence time;
+(ii) every actual demographic rate-change time and maximal constant-rate epoch on an internal
+     population path exposed to two sampled ancestral lineages;
+(iii) the ancestral-root rate;
+(iv) the complete pendant demographic schedule for taxon x if and only if at least two lineages are
+     sampled from x.
+The remaining quotients are parameter-free degree-two suppression, the complete pendant demo-
+graphic schedule of every singleton-sampled taxon, and the physical scale action. Adjacent epochs
+with equal rates are one maximal epoch and do not deﬁne an observable breakpoint.
+
+ Proof. The support threshold of Tij is τij . The matrix (τij ) is the cophenetic ultrametric of the
+ rooted species tree; its nested equal-threshold clusters recover the rooted labelled topology and diver-
+ gence times. By lemma 10.1, the piecewise logarithmic hazards recover every common-population
+ rate and demographic boundary. For an internal population edge, choose sampled descendants
+ in two child clusters. Conditional on no earlier coalescence, both lineages occupy the edge with
+ positive probability, so its hazard is exposed. The root rate is the eventual tail hazard.
+     With one lineage from terminal species x, no pair can coalesce anywhere on its pendant path,
+ so every rate, rate-change time, and epoch subdivision on that path is absent from every genealogy
+ density. With two sampled lineages from x, their pair process begins together at time zero and its
+ complete piecewise logarithmic hazard recovers the pendant schedule. These arguments give both
+ necessity and suﬃciency.
+
+     The proof uses metric support and hazards, not the most probable topological gene tree, and
+ is unaﬀected by anomaly zones.
+
+
+
+
+                                                        16
+11     Graph versus behavior
+11.1    Strict universal graph impossibility
+Deﬁnition 11.1 (Sample-unary temporal funnel). A temporal subnetwork between boundary pop-
+ulations a at time ta and b at time tb > ta is sample-unary if every reachable sampled-lineage
+conﬁguration contains at most one lineage in its interior and no sampled lineage can enter through
+an interior side population.
+
+Theorem 11.2 (Contextual funnel invisibility). Replace a sample-unary funnel by any other ﬁnite
+strict two-terminal sample-unary temporal split–merge subnetwork with the same lower and upper
+boundary populations and times and no interior side contact with the surrounding context. Assign
+arbitrary positive ﬁnite population rates and inheritance probabilities in (0, 1) internally. The nor-
+malized metric-genealogy law, CCR, and every direct locus law remain unchanged. The replacement
+is valid inside an arbitrary common surrounding context.
+
+Proof. At most one lineage traverses the funnel, so no Kingman merger can occur there and every
+internal population rate drops out. Temporal compatibility makes every traversing route take the
+same elapsed time tb − ta . Summing the probabilities of all independent routing histories gives
+one. Thus a present lineage enters at a and exits at b with the same time and state under every
+replacement. Conditioning on all external history before and after the funnel proves contextual
+equality.
+
+    This generalizes the obstruction mechanism but does not claim priority for the ﬁrst funnel exam-
+ples. Published bidirectional-introgression models provide additional full-likelihood role switches
+[16].
+
+11.2    One-reticulation port-response quotient
+For the graph statements below, a presentation is reduced when parameter-free degree-two vertices
+are suppressed, adjacent equal-rate epochs on an unchanged population are merged, simultaneous
+raw boundaries are composed, and every maximal sample-unary two-terminal corridor is contracted.
+A two-parent corridor from h to its ﬁrst common reconvergence is anchor free when no sampled
+side lineage can enter either parent population or share a population with a routed one-block sector
+before that reconvergence. A private side certiﬁcate for parent P is a labelled lineage z and an open
+interval on which a child lineage routed to P has positive ﬁrst-merger density with z, while the
+competing route has zero such density. An ancestor–descendant contrast is a sampled lineage on
+the directed interval between nested parents whose labelled merger-support onset diﬀers between
+the two routes. Conﬁgurations with none of these certiﬁcates, including an unresolved bi-unary
+sister orientation, remain classiﬁed by reduced port behavior but are outside the incidence-level
+graph corollary.
+    Let Tµ be the ﬁnite set of visible event times of the normalized law, and set
+                                              (
+                                                  1
+                                                  2 min Tµ ,   Tµ 6= ∅,
+                                 a = a(µ) =
+                                               1,              Tµ = ∅.
+
+This is a common intrinsic time for law-equal presentations. An invisible raw boundary at a is
+removed by analytic continuation; a supplied reticulation time is not retained as a distinguished
+interface.
+
+
+
+                                                    17
+    For every labelled partition q of S, split complete histories at a. A preﬁx sector speciﬁes a
+ranked merger pattern from the discrete partition to q and its merger-time intervals relative to
+Tµ ∪ {a}; a suﬃx sector speciﬁes a ranked completion from q to one block and its corresponding
+intervals. Include zero-density sectors. The resulting domains are products of open preﬁx and suﬃx
+chambers, and
+                                          Hq,a (p, z) = b(pz)
+is the actual unnormalized complete-history kernel. The suﬃx is empty when q has one block.
+
+Proposition 11.3 (Finite intrinsic port encoding). There are ﬁnite linearly independent preﬁx and
+suﬃx feature lists ϕq , ψq , and a unique ﬁnite coeﬃcient matrix Cq , such that
+
+                                    Hq,a (p, z) = ϕq (p)Cq ψq (z).                            (14)
+
+Each feature is an absolute-time exponential monomial on one sector and zero on the others. Poly-
+nomial factors may be included in a general exponential-polynomial matrix encoding; the diagonal
+raw NMSC generators require only degree-zero polynomial factors. Distinct exponent vectors are
+combined before coeﬃcients are recorded; features whose resulting coeﬃcient rows or columns van-
+ish are discarded. The sector domains, feature functions and matrices are determined by µ, and
+rank Hq,a = rank Cq .
+
+Proof. Every raw complete density is a ﬁnite exponential polynomial. On a chamber deﬁned by
+visible times, the ﬁnitely many raw formulas separated only by invisible faces have the same
+entire continuation. Indeed adjacent formulas agree on an open neighbourhood of the removed
+face, and the raw subdivision of the connected chamber has connected adjacency graph. Thus
+one exponential polynomial represents the whole intrinsic chamber. Split each exponent vector
+and polynomial monomial into its preﬁx and suﬃx coordinates and collect coeﬃcients. Distinct
+exponential-polynomial features are linearly independent on an open chamber; features on diﬀerent
+sectors have disjoint interiors. This proves uniqueness and the rank equality. There are ﬁnitely
+many partitions, ranked histories, sectors and raw terms. No assertion of a constant generator on
+an intrinsic interval is needed.
+
+Deﬁnition 11.4 (Intrinsic one-reticulation port behavior). The reduced port behavior B consists
+of Tµ , a(µ), and the ﬁnite typed sector/feature/coeﬃcient data in (14), up to reachable–observable
+interface isomorphism. Explicitly, a rank factorization Cq = Lq Rq gives the lower feature map
+ϕq Lq and upper feature map Rq ψq ; diﬀerent minimal factorizations are identiﬁed by their unique
+intertwiner. A zero matrix has a zero-dimensional port. This construction also applies when sample-
+unary reduction removes the sole reticulation and leaves a species tree.
+
+Theorem 11.5 (Complete one-reticulation response classiﬁcation). Two presentations with at most
+one reticulation have equal normalized metric-genealogy laws if and only if their reduced port be-
+haviors are related by typed reachable–observable isomorphisms. For ﬁxed identiﬁed physical parent
+incidences, allowing all ﬁnite demographic words and event times to vary, the complete positive
+parameter ﬁber is equality of the intrinsic visible-time/sector records and the ﬁnite all-partition
+equations
+                          Cq (θ) = Cq (θ0 )  for every labelled partition q,                   (15)
+where absent features are padded by zero in the union of the two feature lists. Equivalently, the
+synchronized ﬁnite-jet equations of proposition 8.10 compare all raw exterior and parent-word re-
+sponses on their common reﬁnement. This is a ﬁnite comparison for every pair of supplied ﬁnite
+presentations, including diﬀerent word lengths.
+
+                                                 18
+   When the incidences, h, and all demographic words are ﬁxed and only inheritance varies, choose
+ﬁnite raw preﬁx-row and future-column bases Aq , Dq immediately below and above the sole routing
+boundary. They are independent of γ. The exact inheritance ﬁber is
+
+                            Aq Bh,q (γ)Dq = Aq Bh,q (γ 0 )Dq    for every q,                        (16)
+
+a ﬁnite polynomial system of degree at most |S|. Parent exchange sends γ to 1 − γ. Inheritance
+is absent exactly when all these pairing matrices are constant in γ. Coincident one-block parent
+futures remove only the aﬃne one-block witness; pair routing can still identify γ by lemma 11.7.
+Distinct known one-block futures make γ unique up to exchange.
+
+Proof. Equal laws have the same visible times and anchor. Analyticity upgrades almost-everywhere
+density equality to equality on every common chamber, so their kernels and unique coeﬃcient ma-
+trices coincide. Minimal rank factorizations give the typed intertwiners. Conversely, every complete
+history outside the zero-probability boundary set has a unique split at a, including histories with
+every merger on one side. Preserving all pairings in (14) therefore preserves every density and hence
+the entire law. This also proves (15), including its exterior demographic scope; proposition 8.10
+gives the stated equivalent synchronized ﬁnite system.
+    For the inheritance specialization, no routing occurs below or above the sole boundary, so Aq , Dq
+do not depend on γ. Independent choices make every raw entry of Bh,q polynomial of degree at
+most the number of blocks, at most |S|. Every complete pairing is a linear combination of the
+ﬁnite basis pairings, and conversely, proving (16). This polynomial claim is made before a possibly
+parameter-dependent minimal basis is chosen. Equality of γu + (1 − γ)v and γ 0 u + (1 − γ 0 )v for
+ﬁxed known u 6= v forces γ = γ 0 .
+
+Remark 11.6 (Why the common time is necessary). Take arcs R → U, V , two parallel arcs U → H,
+and H → x, V → y, z. With rates one, inheritance 1/2, and ages (τ (R), τ (U ), τ (V )) = (5, 4, 2) log 2,
+the choices τ (H) = log 2 and 3 log 2 give the same complete law: the x corridor carries one lineage
+until U . Yet the raw-cut type q = {{y, z}, {x}} has reachable–observable dimensions zero and
+one, since the later preﬁx merger probability is 1 − e− log 2 = 1/2. Deleting only the symbol h
+cannot identify these interfaces. Relocating a cut must repartition complete histories across all
+intervening marked strips: b(pwz) becomes Hq,t (p, wz) or Hq0 ,t0 (pw, z) according to the cut. This
+ﬁnite coeﬃcient rearrangement allows diﬀerent q-dimensions. The supplement gives the explicit
+tree and retained-reticulation regressions.
+
+Lemma 11.7 (Pair-exposed inheritance germ). Suppose two labelled child lineages can survive
+separately to h. On the ﬁrst boundary-free parent interval, conditional on that survival, their no-
+merger response is
+
+                      S(u) = 2γ(1 − γ) + γ 2 e−λ1 u + (1 − γ)2 e−λ2 u ,      u > 0,                 (17)
+
+with λ1 , λ2 > 0. This germ identiﬁes {γ, 1 − γ}, including when λ1 = λ2 , and makes h visible
+against the single child-population semigroup below it.
+
+Proof. The two lineages choose diﬀerent parents with probability 2γ(1 − γ) and then cannot merge
+on this interval; the two same-parent assignments give the exponential terms. Uniqueness of positive
+ﬁnite exponential sums recovers the mass r = 2γ(1 − γ) at exponent zero, so
+                                            (        √         √       )
+                                                1−   1 − 2r 1 + 1 − 2r
+                             {γ, 1 − γ} =                  ,             .
+                                                     2          2
+
+                                                     19
+If the positive exponents coalesce, their combined coeﬃcient 1 − r gives the same result. The
+nonzero constant component prevents this analytic germ from being a single positive-rate exponen-
+tial, proving visibility.
+
+Lemma 11.8 (Finite law-deﬁned child decoder). For each pair of sampled labels i, j, its survival
+function has, on a boundary-free one-sided neighborhood of a cut t, the frozen form
+                                               X
+                                               r
+                          Sij (t + u) = p0 +         wk e−λk u ,    wk , λk > 0,
+                                               k=1
+
+where the positive rates are distinct after equal atoms are combined. On the left, derivatives at t
+mean the local analytic extension evaluated at the boundary; no frozen physical evolution beyond its
+epoch is asserted. Put
+                            (k)
+              mk = (−1)k Sij (t),      Hr = (ma+b+2 )0≤a,b<r ,            vr = (ma+1 )0≤a<r .
+
+The unnormalized mass qij (t) of an unmerged co-occupied pair is the law-deﬁned ﬁnite-jet expression
+
+                                         qij (t) = vrT Hr−1 vr .                                 (18)
+
+The positive-atom count is certiﬁed by Hr positive deﬁnite and det Hr+1 = 0; count zero is certiﬁed
+by m1 = 0, in which case qij = 0.
+    In a reduced one-reticulation presentation with at least two sampled descendants below its retic-
+ulation, the unique negative-jump time of these scalar functions is its routing time h. The graph of
+pairs with qij (h+) − qij (h−) < 0 is exactly the complete graph on its sampled child cluster C.
+
+Proof. In a frozen population epoch an unmerged pair either occupies distinct populations and
+cannot merge, or occupies one population with a positive constant rate. The displayed positive
+exponential mixture follows after summing its actual route assignments; it concerns current occu-
+pancy, not an observed historical route. With Vak = λak ,
+
+                            Hr = V diag(wk λ2k )V T ,         vr = V (wk λk )k .
+
+The Vandermonde matrix is invertible, proving (18) and the moment-rank certiﬁcate. An extra
+distinct positive atom would make Hr+1 positive deﬁnite, so its zero determinant certiﬁes the exact
+count. Only ﬁnitely many one-sided derivatives are required.
+    Every surviving pair in C occupies the child population immediately below the sole reticulation.
+Its co-occupancy jump is
+
+                            qij (h+) − qij (h−) = −2γ(1 − γ)Sij (h) < 0.
+
+A pair outside this clique cannot lose co-occupancy there. Tree transport, including a multifurca-
+tion, gives only nonnegative jumps; demographic changes give none. An unrelated simultaneous
+tree event cannot involve the two lineages in the reticulation’s child population and so cannot cancel
+a negative clique entry. Positive temporal arcs rule out an uncomposed zero-time tree–reticulation
+chain. With only one reticulation there is no other negative routing event. This proves a com-
+mon decoder independently of the choice of ﬁnite manifest and without requiring distinct ages for
+unrelated events.
+
+
+
+
+                                                     20
+Deﬁnition 11.9 (Incidence separation). A ﬁnite scalar child certiﬁcate for (C, h) is a manifest
+for the decoder of lemma 11.8: for every labelled pair it records the two one-sided positive-atom
+counts at h, veriﬁes the corresponding ﬁnite shifted-Hankel positivity and singularity predicates,
+and veriﬁes that the negative co-occupancy jump support is precisely the complete graph on C, with
+|C| ≥ 2. Count-zero pairs use the m1 = 0 predicate. These are scalar ﬁnite-jet conditions involving
+no hidden occupancy state. Every pair-exposed one-reticulation presentation admits such a ﬁnite
+manifest, including equal positive rates, multifurcations, and unrelated simultaneous event ages.
+    A reduced one-reticulation presentation is incidence separated when it has this certiﬁcate for its
+child cluster and time and each parent incidence is additionally certiﬁed by at least one of: a private
+side certiﬁcate, an ancestor–descendant contrast, or the two unordered sides of an anchor-free pair-
+exposed child marginal as in lemma 11.7. Every remaining parameter ambiguity is compared through
+the exact all-partition equation (15), not through an unnamed graph move.
+
+    A singleton child’s raw routing time is not identiﬁed by a coincident event elsewhere: it can move
+inside the positive interval below its ﬁxed parental contacts while its outlet times, route weights,
+and complete law stay unchanged. It remains covered by the universal intrinsic port-response
+theorem, but cannot satisfy a child-time identiﬁcation certiﬁcate. This separates the behavioral
+classiﬁcation from the qualiﬁed incidence conclusion.
+
+Deﬁnition 11.10 (CCR-balanced suﬃx exchange). Let t be a cut at which a type-compatible
+operator σt exchanges two physical parent continuations. It is CCR-balanced if, for every labelled
+cut partition q,
+
+        r(σt − I)o = 0   for all actual reachable rows r ∈ Rt,q and future columns o ∈ Ot,q .     (19)
+
+Replacing the two continuation suﬃxes at t preserves the complete marked-history law if and only
+if (19) holds.
+
+   The ﬁnal assertion is immediate by cutting every complete density at t: equality after the pro-
+posed switch is exactly the vanishing of all displayed preﬁx–suﬃx pairings. It is basis independent
+and tests actual reachable mixtures, not latent parent basis vectors.
+
+Proposition 11.11 (Strict posterior-balance collision). There are two strict, sampled-complete, re-
+duced one-reticulation presentations with the same rooted incidence graph, reticulation time, and in-
+heritance probability, but diﬀerent parent-corridor demographic words and identical complete metric-
+genealogy laws. They are not related by global parent exchange or the universal presentation reduc-
+tions.
+
+Proof. Take X = {A, B} and sampled lineages x, y 7→ A, z 7→ B. Let x, y reach a reticulation at h,
+let the two parent corridors have no sampled side contact before reconverging, and let z join only
+above that reconvergence. Put γ = 1/3. On a ﬁrst parent chamber of length log 4, use rates 1, 2.
+On a second positive chamber use rates (3, 4) in N and (4, 3) in N 0 , with every other time and rate
+common and positive. Conditional on x, y surviving to h, the ﬁrst-chamber survival is
+                                               4 1 −u 4 −2u
+                                    S1 (u) =    + e + e .
+                                               9 9    9
+At its upper boundary the same-parent survivor weights balance:
+                                     1 − log 4 4 −2 log 4  1
+                                       e      = e         = .
+                                     9         9           36
+
+
+                                                  21
+Consequently both second-chamber survivals equal
+                                               4  1       1
+                                    S2 (v) =     + e−3v + e−4v ,
+                                               9 36      36
+and −S20 (v) gives the same marked merger density. Once x, y merge, one block traverses the
+anchor-free remainder and its parent role is unobservable; if they remain split, both enter the same
+population at reconvergence. The common surrounding process, including z, therefore composes
+with the same complete local kernel. Yet the parent rate words are
+
+                                 {(1, 3), (2, 4)}   and {(1, 4), (2, 3)},
+
+which neither the identity nor a global parent swap matches. All durations, rates, and inheritance
+probabilities are strict. This is (19) with equal two-block posterior weights.
+
+   For an anchor-free corridor carrying at most two child blocks, write the two same-route survivor
+weights at a chamber boundary as
+
+                              w1 = γ 2 e−A1 (t) ,    w2 = (1 − γ)2 e−A2 (t) .
+
+If w1 6= w2 , the weights link the unordered exponential atoms across that boundary. If w1 = w2 ,
+exchanging the two complete continuation words is CCR-balanced. For arbitrary higher-block
+interfaces, no claim is made that permutations exhaust every positive solution of (15); the ﬁnite
+all-partition equation is the exact ﬁber.
+
+Corollary 11.12 (One-reticulation graph content). For any two incidence-separated presentations
+with isomorphic CCR, the labelled downstream cluster, h, unordered parent-incidence pair, and
+{γ, 1 − γ} agree. Species-tree inversion identiﬁes every exposed exterior tree parameter. Parent-
+corridor demography is compared through the exact reduced port behavior and equation (15), which
+includes CCR-balanced suﬃx exchanges such as proposition 11.11; raw parent-word linkage is not
+claimed.
+
+Proof. The ﬁnite scalar child certiﬁcate and lemma 11.8 recover the same C and h from an equal law,
+independently of the supplied manifest. A private side cell locates its labelled parent incidence by
+its support onset; its ﬁrst exponential hazard gives the adjacent rate and its normalized coeﬃcient
+gives the route weight. A sampled intervening path orders nested parents by unequal support
+thresholds. With no side anchor, lemma 11.7 identiﬁes the unordered inheritance weights, while its
+constant split component and the later disappearance of that component locate the two endpoints of
+the unique reduced anchor-free cycle. The exterior pieces follow from theorem 10.2. What remains
+is precisely the actual all-partition port behavior of theorem 11.5; proposition 11.11 proves why it
+cannot generally be replaced by linked latent parent schedules.
+
+11.3    Reduced level-1 gluing
+For a labelled cluster C ⊆ S, an interior cut t, and a labelled partition q of C at t, let PC,t,q be the
+admissible timed C-preﬁx histories ending at (t, q), with complementary lower lineages integrated
+under their common law, and let ZC,t,q be the compatible full continuations. Deﬁne the scalar cut
+kernel from the common-chamber Radon–Nikodym density by
+
+                                           HC,t,q (p, z) = b(pz).
+
+
+
+                                                     22
+     For a suﬃx cylinder A ⊆ ZC,t,q write
+                                                 Z
+                             HC,t,q (p, A) =          b(pz) dz,      1C,t,q = ZC,t,q .
+                                                  A
+
+ All quantities in this subsection are therefore functions of the marked-history law, not of an occu-
+ pancy presentation.
+
+ Lemma 11.13 (Canonical continuation at a scalar cut). Suppose HC,t,q is nonzero and rank one.
+ Then
+                                                                  HC,t,q (p, A)
+                 αC,t,q (p) := HC,t,q (p, 1C,t,q ), βC,t,q (A) :=
+                                                                   αC,t,q (p)
+ are well deﬁned on positive preﬁx rows, βC,t,q is independent of p, and βC,t,q (1C,t,q ) = 1. They
+ are the unique positive rank-one factors with this normalization. Conversely, independence of the
+ displayed ratio from p is equivalent to rank one. Hence α and β are invariants of the scalar law
+ and remove the reciprocal row–column gauge.
+
+ Proof. Write a positive rank-one factorization as H(p, A) = a(p)c(A). Integrating over all com-
+ pletions gives α(p) = a(p)c(1), so the displayed ratio is c(A)/c(1) and is independent of p. Its
+ total mass is one. This ﬁxes the reciprocal factorization gauge, proving uniqueness. Conversely,
+ H(p, A) = α(p)β(A) is rank one.
+
+       For s < t, let ω = ((e1 , u1 ), . . . , (em , um )) be a labelled binary C-merger word: s < u1 <
+ · · · < um < t, ej is the speciﬁed pair of current blocks merged at uj , no other C-merger occurs
+ on (s, t), and q · ω = q 0 is the terminal partition. Put u0 = s and um+1 = t. For a positive ﬁnite
+ piecewise-constant pair-rate word λ deﬁne
+                                                                        !Z                    
+                                       Y
+                                       m                      X
+                                                               m
+                                                                 |q| − j        uj+1             
+                   Kλ;s,t (q, ω) =          λ(uj ) exp −                             λ(v) dv       .   (20)
+                                                                     2       uj                 
+                                       j=1                     j=0
+
+ The empty word is included. This is the density of the speciﬁed labelled Kingman word, not the
+ density summed over target pairs.
+
+ Deﬁnition 11.14 (Law-scalar continuation component). Fix 2 ≤ |C| ≤ |S|. An open interval J is
+ law scalar for C if:
+(S1) for every t ∈ J, no marked history with a C–S \ C merger below t has positive support; this
+     condition is vacuous for C = S;
+(S2) for every t ∈ J and every feasible labelled partition q of C, HC,t,q is nonzero and rank one, with
+     the canonical factors of lemma 11.13;
+(S3) there is a positive ﬁnite piecewise-constant rate word λJ on J such that, for every s < t in J,
+     every feasible (q, ω, q 0 ), and every compatible suﬃx cylinder A at (t, q 0 ),
+
+                                       βC,s,q (ωA) = KλJ ;s,t (q, ω) βC,t,q0 (A).                        (21)
+
+ Here a feasible starting partition has a positive preﬁx row. All label-compatible merger words from
+ that partition are tested, including words with zero observed density; feasibility does not discard
+ such words. If their terminal kernel vanishes, the test fails: the positive Kingman word has positive
+
+
+
+                                                          23
+total continuation mass. A complete scalar-separator component is a maximal connected law-scalar
+interval J with nonempty interior. It is recorded as
+                                                             
+                 P = C, J, a, b, λP , (αC,t,q , βC,t,q )t∈J,q ,   (a, b) = (inf J, sup J),
+
+and its canonical law key is the entire record, denoted κµ (P ). Distinct intervals with the same
+cluster remain distinct records. The unique unbounded component, denoted Ω, is the ancestral-
+root record and has cluster S; ﬁnite full-S components are retained too. A proper cluster has ﬁnite
+upper endpoint because it eventually has supported cross-mergers in the root population. The labelled
+terminal atoms are Ax with their known sampling blocks Sx = s−1 (x), not separate species leaves
+for samples in one taxon. No unexposed singleton demographic word is inserted. Lemma 11.16
+justiﬁes the asserted root convention.
+
+Lemma 11.15 (Observable boundary composition and maximality). Let J− = (a, d) and J+ =
+(d, b) be law-scalar intervals for the same C. They belong to one complete component if and only
+if their rate words concatenate to a positive ﬁnite piecewise-constant λ and (21) holds for every
+spanning choice s < d < t, including the empty word and every labelled target-pair word. It
+is enough to check such choices in one two-sided neighborhood of d. An unequal rate jump may
+therefore lie in one component, while adjacent equal rates form one maximal epoch. The criterion
+mentions no raw boundary, population name, or physical port.
+     Every ﬁnite endpoint of a complete component is law determined: attempted extension either
+creates a supported cross-merger history, a nonzero 2 × 2 rank minor, or failure of a spanning
+cocycle on a labelled merger word and suﬃx cylinder. Isolated rank-one resonances do not create
+components.
+
+Proof. On the non-unary support, the ratio of a speciﬁed-pair merger density to the correspond-
+ing no-merger density recovers λ almost everywhere, so the rate word is unique. If the spanning
+identities hold near d, split any merger word at d and apply the two within-interval cocycles; the
+Kingman factors multiply, proving the identity for every s < d < t. The converse is immediate
+from restriction. If a measure identity fails, a cylinder fails because the marked cylinders generate
+the continuation sigma-ﬁeld. Finite presentations have ﬁnitely many analytic strata, so nonextend-
+ability has one of the stated ﬁnite support, minor, or cylinder witnesses. All tests use H, α, and β
+only.
+
+    A physical population bridge satisﬁes the continuation cocycle by the strong Markov property
+and its Kingman generator. This includes every demographic rate change. Conversely, a raw routing
+boundary is glued only if its complete labelled continuation law is exactly scalar; no observation in
+µ can then justify retaining it as a separator.
+    The rooted bridge/blob tree contracts each nontrivial level-1 blob to a vertex, retains ordinary
+branching vertices and terminal taxa, and suppresses demographic degree-two subdivisions while
+retaining their bridge rate words. Unary nontrivial blobs are retained. The ancestral root corridor
+lies above the top vertex; singleton terminal corridors retain their incidence without unexposed
+demographic words. Ordinary branching vertices are allowed zero temporal span, and attachments
+to one blob can occur at diﬀerent ages.
+    Call a reduced level-1 presentation scalar-separator faithful when its non-unary proper-cluster
+bridge corridors are in incidence-preserving bijection with the corresponding maximal law-scalar
+components and their ﬁnite endpoints are the adjacent component or terminal boundaries. This
+is the proper-cluster graph-domain hypothesis, imposed separately on each presentation, not an
+ingredient in κµ . Full-S corridors obey the same correspondence without an additional hypothesis
+
+
+                                                      24
+by the next lemma. Call it locally incidence separated when every blob response conditioned at its
+incident canonical law ports satisﬁes the preceding incidence certiﬁcates.
+
+Lemma 11.16 (Full-sample corridors and the root record). In a strict sampled-complete level-1
+presentation, the complete law-scalar components for C = S are precisely its maximal full-S physical
+bridge corridors. There is exactly one unbounded component Ω. Adding these records imposes no
+further faithfulness restriction.
+
+Proof. A full-S bridge has the Kingman cocycle by the Markov property. Conversely, choose a cut
+in a full-S scalar interval away from every raw boundary and scalar-rate breakpoint, and condition
+on the positive preﬁx with no sample merger. On a suﬃciently short following interval, (S3) gives
+the complete marked Kingman law. Freeze the raw population conﬁguration and rates there. Its
+probability of complete coalescence by elapsed time u is an entire matrix-exponential function, equal
+for small u > 0 to the Kingman completion probability. The identity theorem extends equality to
+every u > 0, so its limit is one. Any posterior occupancy assignment using two populations would
+remain split forever in the frozen process and give a positive deﬁcit. Thus every reachable no-merger
+assignment is co-occupied.
+    Strict independent routing and positive ﬁnite survival make the support of route assignments
+a product over sampled labels. With at least two labels, that product is entirely co-occupied
+only when every label has the same singleton accessible-population set. The common arc is a
+bridge: inside a nontrivial level-1 cycle, a sampled descendant of its reticulation has positive routes
+on both temporally overlapping arms, contradicting singleton accessibility. Maximality and the
+spanning-cocycle rule now identify exactly the full-S corridors. The eventual root population
+supplies an unbounded one; two distinct maximal intervals cannot both be unbounded. This frozen
+continuation is an exact identiﬁability argument, not a stable extrapolation procedure.
+
+Lemma 11.17 (Occurrence order reconstructs incidence). For distinct complete records write P ≺
+Q when                                                           
+                       CP ⊊ CQ or CP = CQ and bP ≤ aQ ,
+and write Ax ≺ P exactly when Sx ⊆ CP . Distinct terminal atoms are incomparable. On the
+scalar-separator-faithful class this is the physical corridor-ancestry order, with unique maximum Ω.
+    Make a vertex vP for every record and join each nonmaximal record or atom to its unique least
+older record. Identify Ax with vP when its cover is P , aP = 0, and CP = Sx . The resulting rooted
+tree Tµ is the bridge/blob tree. At each nonterminal vP , the upper incident port is P ; its lower
+incident list is exactly the records and singleton terminal atoms immediately below P . These lists
+are determined before any local response is extracted.
+
+Proof. By faithfulness and lemma 11.16, records correspond to non-unary physical corridors. In
+the physical rooted tree, intersecting corridor clusters lie on one ancestor chain: otherwise their
+disjoint descendant subtrees would have disjoint nonempty sampled clusters. Strict inclusion gives
+that chain’s direction. Equal clusters can repeat, but their distinct nonempty temporal intervals
+are ordered, and the younger corridor ends no later than the older one begins. This proves exactly
+the displayed order, including terminal atoms. All older corridors above any object lie on one ﬁnite
+chain ending at Ω, so the least older record is unique.
+    Associate P to the younger vertex of its corridor. Every retained nonterminal vertex has at
+least two sampled descendants: branching gives two sampled branches, while a unary blob with
+only one descendant sample was a contracted sample-unary funnel. Thus each such vertex has
+its non-unary upper record; the top uses Ω. A multisampled terminal also has a pendant record,
+whereas a singleton terminal is its atom. Any retained vertex intervening between two corridors
+
+                                                  25
+therefore supplies an intermediate record. Conversely an intermediate record lies on that path.
+Covers are consequently exactly adjacent physical vertices. The sole redundant atom link is the
+speciﬁed zero-time link to its own multisampled terminal record. This proves the incidence formula.
+    No positive gap is required at an ordinary tree vertex: lower endpoints can meet at bQ = aP .
+Same-cluster pieces meeting across a scalar degree-two boundary have already concatenated by
+lemma 11.15. A positive-duration unary gall instead lies between distinct ordered occurrences.
+Disjoint branches can overlap in time or have simultaneous events; their disjoint clusters keep them
+incomparable.
+
+    For example, an anchor-free gall with child cluster C = {x, y} routes at log 2, reconverges at
+2 log 2, and meets an outside lineage at 3 log 2. Its distinct records include
+
+                           (C, (0, log 2))    and        (C, (2 log 2, 3 log 2)).
+
+The occurrence order retains the intervening unary blob. Arbitrarily many nested galls produce
+an ordered chain of repeated clusters, including full-S chains above all sampled taxa. A set-valued
+cluster Hasse diagram would erase these vertices.
+
+Lemma 11.18 (Private-side ﬁxed-cut certiﬁcate). Let child labels x, y route independently at time
+h, and let a private label z occupy parent population P of rate λ > 0. Take C = {x, y, z} ⊊ S and
+an outside label w ∈ S \ C. Fix t = h + D before the next boundary of P , choose 0 < u1 < u2 < D,
+and then choose δ > 0 so that t + δ precedes the next relevant population or demographic boundary
+and the parent reconvergence. Let pu be the observed preﬁx density in which xz is the ﬁrst merger
+at h + u and no second merger occurs before the common cut t; every pu ends in q = {{x, z}, {y}}.
+In the co-occupied sector the two q-blocks remain together in P at rate λ throughout [t, t + δ]; in
+the split sector they cannot meet there. Marginalize w over all its compatible future histories (its
+common factor cancels from the minor), and let zM , zS specify, respectively, merger and survival of
+the two q-blocks over that interval. With
+
+                          a(u) = γ(1 − γ)λe−λu ,          c(u) = γ 2 λe−λD−2λu ,
+
+the four scalar density entries are
+
+                   H(pu , zM ) = c(u)(1 − e−λδ ),        H(pu , zS ) = a(u) + c(u)e−λδ .
+
+Their 2 × 2 determinant is
+                                                                      
+                              (1 − e−λδ ) c(u1 )a(u2 ) − c(u2 )a(u1 ) > 0.
+
+Thus this concrete nonbridge cut violates (S2) using actual rows at one ﬁxed cut.
+
+Proof. The split assignment contributes a(u) and cannot realize zM . The co-occupied three-block
+assignment contributes c(u); after the ﬁrst merger it realizes zM with probability 1 − e−λδ and zS
+with probability e−λδ . Since c(u)/a(u) is a positive constant times e−λu , the determinant is positive
+for u1 < u2 .
+
+    This lemma proves that a nontrivial (S2) witness is realizable, and positive early cross-merger
+support gives further suﬃcient certiﬁcates against many nonbridge cuts. These examples are not as-
+serted to exhaust arbitrary level-1 presentations; exhaustion is exactly the scalar-separator-faithful
+hypothesis. Anchor-free factorization may instead persist to the true reconvergence component,
+while wholly one-block corridors are removed by reduction.
+
+                                                    26
+Lemma 11.19 (Canonical port matching and gluing). The family Pµsep , its complete keys, and the
+tree Tµ with every incident list Pv are determined by µ, equivalently by CCR. Cut at the incident
+ports of a vertex recovered by lemma 11.17. All-completions normalization of this joint multi-cut
+kernel gives a canonical typed local response Lµ (v) whose synthetic ports retain their individual keys.
+The collection of these keyed local responses has at most one global behavioral assembly.
+Proof. Equality of laws gives equality of every H, hence of the normalized factors, cocycle tests,
+maximal intervals, endpoints, keys, and reconstructed incident lists. Choose interior cuts in the
+records on such a list, and time zero at a known terminal atom. Singleton pendant transport
+contributes no demographic factor; ordinary tree vertices permit a zero-span deterministic local
+response. The lower incident clusters partition the upper cluster in the one recovered tree. Positivity
+supplies a joint positive no-merger entry cylinder at every feasible tuple of incident partitions. Let
+HPv (p, A) be the scalar kernel obtained by making those law-speciﬁed cuts in the original law. The
+Markov property of the faithful bridge decomposition makes it rank one between the joint lower
+histories and the conditioned local response. Normalize it directly by
+                                                                    HPv (p, A)
+                           αPv (p) = HPv (p, 1),        βPv (A) =              .
+                                                                     αPv (p)
+This is a joint law normalization; no product of separately marginalized entry factors is assumed.
+Integrating nonlocal continuations against βPv (1) = 1 recovers Lµ (v) without choosing a latent
+port basis.
+    If two keyed assemblies ﬁrst diﬀered in one local marked cylinder, attach to it the common
+positive joint entry cylinder at its lower incident keys and the all-completions columns at its upper
+keys, and integrate all disjoint modules over their normalized completions. Joint rank one and
+(21) make every attached factor common and positive, so the resulting global marked-cylinder
+densities would diﬀer. Thus disjoint blobs cannot compensate. Matching and reattachment use
+κµ (P ) only.
+
+Theorem 11.20 (Scalar-separated level-1 quotient). For any two reduced scalar-separator-faithful,
+locally incidence-separated level-1 presentations with isomorphic CCR, the rooted bridge/blob trees,
+local parent incidences, and inheritance probabilities agree modulo independent parent exchange.
+Their global assemblies of reduced local port behaviors agree. Raw demographic gluing is compared
+only through the all-partition ﬁbers (15), including every applicable CCR-balanced suﬃx exchange
+and any other positive solution, together with the universal reductions and physical scale gauge.
+Proof. Isomorphic CCRs give the same marked-history law and hence the same canonical port
+records. Lemmas 11.16 and 11.17 reconstruct their common rooted bridge/blob tree and every
+incident port list, retaining repeated clusters and the full-S root sector. Only then does lemma 11.19
+extract each local keyed response without deleting samples.
+    For this local application, a synthetic port retains every block of its arriving partition as a
+separate labelled lineage, together with its port key and entry time. Strict ﬁnite survival makes
+the all-singleton entry tuple feasible with positive probability. Fix that tuple and take each pair’s
+own restriction of the normalized keyed local response. A block entering later can be kept in its
+own isolated placeholder until its known entry time; such an entry can only increase co-occupancy.
+Every child-entry block is already present below the component’s sole reticulation, so lemma 11.8
+recovers its negative child clique and routing time exactly as in the one-reticulation case. The
+retained keys convert the clique into child-port incidence, and the same local law supplies the
+stated parent certiﬁcates. Thus the use of corollary 11.12 does not collapse a multi-lineage port to
+one lineage or assume that certiﬁcates survive deletion of an attached module.
+
+                                                   27
+    Local incidence separation and corollary 11.12 recover the local parent incidences and inheri-
+tance weights modulo independent parent exchange. The gluing lemma reattaches them uniquely
+at the behavioral level. Equation (15) and proposition 11.11 give exactly the retained demographic
+quotient.
+
+    No unconditional level-1 theorem is advertised. Sample-unary galls, unresolved sister cases,
+non-faithful scalar separators, and positive all-partition port ﬁbers remain explicit parts of the
+observable quotient. Existing quartet-level classiﬁcations have their own, coarser ambiguity mech-
+anisms and cannot be transferred to CCR without proof [4].
+
+
+12     The ﬁnite-locus hierarchy
+12.1    Compact ﬁnite-presentation determination
+Deﬁnition 12.1 (Compact normalized presentation chart). A chart Ki is a compact semianalytic
+subset of the strict normalized parameter domain of one ﬁxed raw presentation and event ordering.
+It has ﬁnitely many topology and demographic epochs, bounded normalized event times, positive
+rates bounded above and away from zero, inheritance probabilities bounded away from 0 and 1,
+and a compact semianalytic family of irreducible stationary reversible generators with trace −1. A
+                                                               F
+compact ﬁnite-presentation class is a ﬁnite disjoint union K = i Ki .
+
+    The substitution family may meet zero-conductance faces while remaining irreducible. In the
+conductance coordinates of section 2, allow signed conductances on a small ambient neighborhood,
+retaining positive π and nonzero trace-normalization denominator. This gives an analytic extension
+of the ﬁnite-time formulas. At every physical point, ancestral transient matrices are invertible be-
+cause positive root coalescence causes absorption; their inverses remain analytic on a neighborhood.
+Compactness gives the needed ambient neighborhoods of each chart pair. Thus the analyticity
+hypothesis does not impose positivity on every substitution oﬀ-diagonal entry.
+    For a length-L word a, let
+
+                                  fL,a (θ, θ0 ) = Pθ (a) − Pθ0 (a).
+                                                 (L)        (L)
+
+
+By the analyticity argument after theorem 9.1, every fL,a is real analytic on a neighborhood of
+each compact chart pair.
+
+Theorem 12.2 (Compact ﬁnite separation). Every compact ﬁnite-presentation class K has a ﬁnite
+determining length L∗ (K).
+
+Proof. Fix an ordered chart pair C = Ki × Kj . Let A(C) be the ring of germs along C of real-
+analytic functions deﬁned on neighborhoods of C. The ambient chart-pair manifold is a coherent
+real-analytic space, and C is compact semianalytic. Frisch’s compact-semianalytic theorem [11,
+Theorem I.9], in the explicit real-analytic criterion of Siu [15, Theorem 2 and the ﬁnal Remark con-
+cerning statement (1)], therefore makes A(C) Noetherian. The supplement checks these hypotheses
+directly, including ﬁnite connectedness via semianalytic triangulation. Let I ⊆ A(C) be the ideal
+generated by all sequence-coordinate diﬀerences fL,a . Noetherianity gives ﬁnitely many generators.
+Because I is generated by the displayed family, a ﬁnite subset of the actual fL,a already generates
+it: expand ﬁnite ideal generators as ﬁnite combinations of the original family and collect all family
+elements used.
+    Let Lij be the largest length in that ﬁnite subset. If two points of C have equal length-Lij
+laws, marginalization gives equality for every selected shorter coordinate. Every other diﬀerence
+
+                                                 28
+germ is a ﬁnite analytic combination of the selected diﬀerences on some neighborhood of the entire
+compact set C, hence vanishes at the pair. Thus all indexed laws agree. The converse is trivial.
+There are ﬁnitely many ordered chart pairs; take L∗ (K) = maxi,j Lij .
+
+   This proof is global along the compact set. It does not rely on an unsafe intersection of inﬁnitely
+many shrinking local neighborhoods. It gives no practical numerical bound and makes no statement
+about a ﬁxed presentation over an unrestricted noncompact parameter domain.
+
+12.2    Exact arbitrarily-high-order JC collisions
+Consider two taxa, one sampled lineage per taxon, a positive divergence time τ , no reticulation,
+and known trace-normalized JC. Let T = τ + Y be the pair coalescence time. For a ﬁxed positive
+JC decay constant β, set
+                                     X = e−βT ∈ (0, 1).
+A speciﬁed diagonal and oﬀ-diagonal pair pattern have conditional probabilities
+                                          1 + 3X                       1−X
+                                 d(X) =          ,        o(X) =           .                     (22)
+                                            16                          16
+Consequently every length-L pair-alignment word has conditional probability polynomial in X of
+degree at most L.
+
+Lemma 12.3 (JC moment equivalence). The length-L pair-alignment law is determined by mk =
+E[X k ], 0 ≤ k ≤ L. Conversely the collection of length-L word probabilities determines these
+moments. If two laws agree through mL and diﬀer at mL+1 , their length-(L + 1) laws diﬀer.
+
+Proof. Products of the aﬃne functions in (22) have degree at most L. Conversely X = 4(d − o),
+so products and linear combinations of pair-pattern indicators recover every power through degree
+L. The all-diagonal word d(X)L+1 has nonzero coeﬃcient (3/16)L+1 on X L+1 , proving the last
+assertion after lower moments cancel.
+
+   We now realize enough moment directions by strict demography. Fix 0 < a1 < · · · < am , λ0 > 0,
+and for small θ ∈ Rm set the ancestral pair hazard, measured from divergence, to
+                                                      X
+                                                      m
+                                      λθ (t) = λ0 +         θj 1{t≥aj } .                        (23)
+                                                      j=1
+
+All cumulative rates are positive in a neighborhood of 0. The survival function is
+                                                                            
+                                                          X
+                                 Sθ (t) = exp−λ0 t −          θj (t − aj )+  .
+                                                          j
+
+For s > 0, integration by parts gives
+                                                              Z ∞
+                             Lθ (s) = E[e−sY ] = 1 − s              e−st Sθ (t) dt,
+                                                              0
+
+and diﬀerentiation at 0 yields
+
+                                    ∂Lθ (s)    s
+                                            =         e−(s+λ0 )aj .                              (24)
+                                     ∂θj 0 (s + λ0 )2
+
+
+                                                     29
+Theorem 12.4 (Arbitrary-order strict collision). For every L ≥ 1, there are two distinct strict
+ﬁnite-epoch demographic models of the form (23) whose direct locus laws agree for all lengths 1, . . . , L
+and diﬀer at length L + 1.
+Proof. Take m = L + 1 and sk = kβ. Since mk (θ) = e−sk τ Lθ (sk ), the Jacobian of (m1 , . . . , mm ) at
+0 has entries (24) times e−sk τ . After removing nonzero row and column factors, its core is
+                              (e−kβaj )m         k m
+                                       k,j=1 = (xj )k,j=1 ,            xj = e−βaj .
+Its determinant is                               
+                                           Y          Y
+                                              xj          (xj − xi ) 6= 0.
+                                           j          i<j
+
+Thus the ﬁrst L moment map has rank L, while the map including mL+1 has rank L+1. The implicit-
+function theorem gives a one-dimensional real-analytic level manifold of (m1 , . . . , mL ) through 0.
+The diﬀerential of mL+1 is nonzero on its tangent line, so mL+1 is nonconstant there. Parameterize
+the level curve analytically as c(u) with c(0) = 0. Its tangent vector has no zero coordinate,
+since deleting any column of the ﬁrst L Vandermonde rows leaves an invertible L × L generalized
+Vandermonde matrix. Every coordinate of c(u) therefore has a nonzero linear term and is nonzero
+for all suﬃciently small u 6= 0. Choose two suﬃciently close such points with diﬀerent mL+1 values.
+All cumulative rates in (23) remain positive, all intervals aj+1 −aj remain positive, and the terminal
+hazard is ﬁnite and positive. The moment equalities are exact by construction. Lemma 12.3
+transfers them to the locus laws.
+
+   Since n = 2, r = 0, κ = 4, and the sampling design remain ﬁxed while only the number of
+demographic epochs grows, theorem 12.4 proves part (b) of theorem 3.3. It does not refute the
+compact theorem or assert failure of a global bound for a ﬁxed presentation size on an unrestricted
+noncompact domain.
+
+
+13     Reconstruction and statistical consequences
+13.1    Four diﬀerent senses of reconstruction
+The complete indexed moment sequence identiﬁes ν but does not by itself provide a ﬁnite-query
+terminating algorithm. We distinguish:
+ 1. the Borel inverse of theorem 7.1, whose input is the complete indexed population law;
+ 2. ﬁnite exact equality testing for two proposed raw systems, given by proposition 8.10;
+ 3. ﬁnite reconstruction on a speciﬁed compact class once a suﬃcient L∗ (K) is known;
+ 4. numerical approximation from ﬁnitely many empirical moments.
+Proposition 13.1 (Truncated moment approximation). Let ν be a probability measure on ∆d−1
+and let CL be the set of probability measures matching all its mixed moments through degree L. In
+the bounded-Lipschitz (equivalently weak) metric,
+                                           sup dBL (ρ, ν) −→ 0.
+                                           ρ∈CL
+
+Proof. The probability-measure space on the compact simplex is compact metrizable. The sets CL
+are nonempty, nested, and closed. Their intersection is {ν} by theorem 4.1. If the displayed con-
+vergence failed, choose ρL ∈ CL a ﬁxed distance away and extract a weakly convergent subsequence.
+Every ﬁxed moment eventually matches, so the limit lies in the intersection, a contradiction.
+
+                                                        30
+13.2    Fixed-length consistency on compact classes
+Let K be a compact ﬁnite-presentation class and L∗ = L∗ (K). The ﬁnite alignment alphabet has
+size D = dL∗ . Let FL∗ : K → ∆D−1 be the direct law map and let Y = FL∗ (K).
+Theorem 13.2 (Fixed-length quotient consistency). From independent length-L∗ loci generated at
+θ0 ∈ K, let PbK be the empirical full-alignment distribution and choose
+
+                                      ybK ∈ arg min kPbK − yk1 .
+                                                y∈Y
+
+Then ybK → FL∗ (θ0 ) almost surely. Thus the exact sequence-equivalence/CCR quotient is strongly
+consistently estimated. Raw parameter consistency is asserted only when a chosen representative is
+unique and the local inverse is continuous.
+Proof. Continuity of matrix exponentials and ﬁnite integrations makes Y compact. The strong law
+gives PbK → FL∗ (θ0 ). Since the true point lies in Y , the triangle inequality bounds the minimizer’s
+error by twice the empirical error. Theorem 12.2 identiﬁes the image point with the full sequence
+quotient.
+
+13.3    Increasing-order designs
+For all-length classes without a supplied determining length, use the product metric
+                                               X
+                                 d∞ (P, Q) =         2−ℓ kP (ℓ) − Q(ℓ) k1 .
+                                               ℓ≥1
+
+Write
+                                                X
+                                                L
+                                 d≤L (P, Q) =         2−ℓ kP (ℓ) − Q(ℓ) k1
+                                                ℓ=1
+for its truncation. Below, δK is this truncated distance between the empirical marginal vector and
+the true vector through order LK ; marginalization is an ℓ1 contraction. If K independent loci all
+have known length LK → ∞, their preﬁxes estimate every order ℓ ≤ LK . A suﬃcient growth
+condition for simultaneous empirical control is
+                                             dLK
+                                                 −→ 0.                                           (25)
+                                              K
+Alternatively, one may receive separate independent samples at every retained length.
+Theorem 13.3 (Increasing-order quotient consistency). On a nested sequence of compact nor-
+malized ﬁnite-presentation sieves whose union contains the true ﬁnite model, a minimum-distance
+estimator in the truncated product metric is strongly consistent for the indexed sequence-law point,
+provided the sieve index and LK grow slowly enough that empirical error and optimization error
+vanish, for example under (25). Through theorem 3.2, this is consistency for the CCR equivalence
+class in the observable quotient topology induced by d∞ .
+                                                     q
+Proof. The standard bound EkPbK − PK k1 ≤ dLK /K follows from Cauchy–Schwarz. The ℓ1
+error changes by at most 2/K when one locus is replaced, so McDiarmid’s inequality and Borel–
+Cantelli control its deviation from the expectation. Equation (25) therefore gives an almost-sure
+retained-law error δK → 0. Once the nested sieve contains the true ﬁnite model, an εK -approximate
+minimizer ybK satisﬁes directly
+                                    d≤LK (ybK , P0 ) ≤ 2δK + εK ,
+
+                                                     31
+ because the true law P0 is an available competitor. The omitted product-metric tail is at most
+ 2−LK +1 , so
+                             d∞ (ybK , P0 ) ≤ 2δK + εK + 2−LK +1 −→ 0.
+ Compactness is used only to obtain exact minimizers on each active sieve; no precompactness of
+ their increasing union is required.
+
+
+ 14     Parameter ﬁbers and sampling exposure
+ Let θ be the normalized genealogy and substitution parameter vector for one raw presentation, and
+ let Bθ denote its complete scalar genealogy response behavior. The identiﬁable coordinates π, Q0
+ are included separately when deﬁning a sequence-equivalence ﬁber.
+Theorem 14.1 (Exact local ﬁber and inﬁnitesimal observability). Work in a suﬃciently small
+ﬁxed event-order analytic chart through θ. Choose ﬁxed absolute evaluation points in every reference
+reduced chamber, avoiding all raw boundaries, and shrink the neighborhood so their raw chamber
+assignments remain ﬁxed. Form a ﬁnite analytic response map F whose coordinates are (a) π, Q0 ,
+(b) the raw times corresponding to the reference intrinsic visible events, (c) chamber jets at the ﬁxed
+points with a uniform signed-pair bound from proposition 8.10, and (d) the left–right invisibility jets
+for each reference-invisible raw event from proposition 8.7. Use order bounds large enough also for
+ﬁrst variations: 4n−   +                         − +
+                    i ni suﬃces in (c), where ni , ni are the raw merger dimensions in the chamber
+containing the selected point, and 2Di suﬃces in (d), with all orders strictly below the indicated
+bound in each coordinate. The supplement gives the augmented-operator proof. The level set of
+F itself enforces persistence of the reference visibility pattern; this pattern need not be assumed of
+every parameter in the neighborhood. For a direction v, the following are equivalent:
+ (i) the variations of π, Q0 , every intrinsic visible event time, and every scalar chamber germ of Bθ
+     vanish, including both extensions at reference-invisible boundaries;
+(ii) every ﬁrst parameter derivative of every coordinate of F vanishes;
+(iii) v belongs to the linearized tangent space of the local sequence-equivalence ﬁber, namely ker DFθ .
+The exact local sequence-equivalence ﬁber is the ﬁnite real-analytic set X = F −1 (F (θ)). The equa-
+tions ﬁxing π, Q0 keep substitution coordinates physical even if the ambient analytic chart permits
+signed conductances. Let I be the local analytic ideal generated by all the coordinate equations, with
+all their analytic combinations included, and let in I be its associated-graded initial ideal. Its real
+arc tangent cone is
+
+               Carc (X, θ) = {v : some analytic arc θ(t) = θ + tm v + o(tm ) lies in X}.
+
+ Real-analytic curve selection supplies these arc directions, and
+
+                                   Carc (X, θ) ⊆ VR (in I) ⊆ ker DFθ .
+
+The ﬁrst inclusion can be strict over R; after complexiﬁcation, VC (in I) is the usual analytic tangent
+cone. At a regular constant-rank point all real tangent directions equal ker DFθ , and the local
+ﬁber dimension is its nullity. An event time is globally invisible exactly when every reduced scalar
+response analytically continues across it.
+ Proof. The ﬁnite invisibility equations enforce analytic gluing at every reference-invisible event by
+ proposition 8.7. The visible-time equations align the remaining chambers. Equality of the ﬁxed-
+ point jets then gives equality of every reduced chamber density by the signed-pair recurrences of
+
+                                                   32
+proposition 8.10; conversely equal behavior gives each of these equations. Including π, Q0 and
+applying the bridge proves the exact level-set assertion.
+   For derivatives, an operator L(θ) on a d-dimensional matrix space has its ﬁrst variation repre-
+sented by the 2d-dimensional block operator
+                                                      !
+                                               L L̇
+                                                    .
+                                               0 L
+
+The product rule also diﬀerentiates constant factors, which lie in the same base/ﬁrst-variation space.
+Thus the stated enlarged mixed boxes determine all scalar ﬁrst-variation germs. For invisible-face
+jets evaluated at a moving face, the chain-rule terms from its moving evaluation point vanish at
+the reference parameter because the entire signed side diﬀerence is zero there. Visible times have
+separate coordinates. This proves (i)⇔(ii), and (iii) is the deﬁnition of the linearized equation
+kernel. The leading term of every arc in the level set annihilates every initial form of its full
+equation ideal; its linear forms give the second inclusion. Real-analytic curve selection, complex
+analytic tangent-cone theory, and the constant-rank theorem give the remaining statements. The
+ﬁnal assertion is the scalar deﬁnition and ﬁnite test of visible breakpoints.
+
+    This criterion separates global inﬂuence from ﬁrst-order sensitivity. A rate can inﬂuence data
+only through a reachable state with at least two blocks in its population and an observable continua-
+tion. An inheritance parameter can inﬂuence data only if at least one reachable routed conﬁguration
+has parent assignments with distinct future responses. Either condition is globally suﬃcient when
+it makes the corresponding reduced analytic response nonconstant. Its derivative at a particular
+parameter is nonzero only when the ﬁrst derivative of that response is nonzero there; symmetric
+routing points can be ﬁrst-order singular even when the parameter is locally identiﬁable by higher-
+order terms. The global ﬁber may nevertheless include parent exchange, bidirectional-introgression
+role switches, the scale gauge, unary-funnel topology changes, or singular nonlinear CCR collisions.
+
+
+15     Extensions and boundaries
+Proposition 15.1 (Finite routing kernels). Replace independent reticulation routing by any speci-
+ﬁed ﬁnite stochastic kernel on incoming block conﬁgurations, including common inheritance, ﬁnite
+correlated inheritance, or a ﬁnite latent reticulation state. For ﬁxed kernels the moment, deter-
+minant, shared-generator, raw response, minimal-realization, compact ﬁnite-order, and consistency
+theorems remain valid after replacing the boundary matrices. Parameterized kernels give the same
+pointwise bridge and response equivalence; the analytic ﬁnite-order and local ﬁber theorems require
+their entries to extend real analytically on the stated parameter charts, and compact minimum-
+distance results require the corresponding continuity. The resulting CCR, and any separately proved
+graph interpretation, are convention speciﬁc.
+
+Proof. The sequence–genealogy bridge uses the same common positive-rate ancestral population
+and is independent of the earlier ﬁnite routing convention. The pointwise response proof needs
+ﬁnite boundary matrices; time analyticity holds for any ﬁxed such matrices. Parameter analyticity
+and continuity enter only in the stated parameterized results. Diﬀerent kernels generally produce
+diﬀerent multilineage routing correlations, so no identiﬁability statement is transferred between
+conventions.
+
+Proposition 15.2 (Serial calibration). With known serial sampling dates, the determinant still
+recovers the additive normalized gene-tree metric. Root restoration becomes a dated-tree problem.
+
+                                                 33
+If at least two distinct sampling dates are ﬁxed in physical units and the dated root is identiﬁable,
+their normalized root-to-tip distance diﬀerence identiﬁes r(Q) and breaks the global scale action. If
+all dates are shifted and scaled only up to an unknown aﬃne time unit, the corresponding time-unit
+gauge remains.
+Proof. For leaves i, j sampled at known dates, root-to-tip physical path diﬀerences equal the date
+diﬀerence. The normalized additive metric multiplies these diﬀerences by r(Q). A nonzero known
+date diﬀerence therefore determines the multiplier.
+
+    The determinant part of the bridge also holds for stationary nonreversible Q. What fails is
+(7): pair matrices trace a two-sided product rather than one observed semigroup. Higher-order
+conditional tensors may identify Q0 up to time reversal or a smaller quotient, but a complete
+theorem is not proved here. A separate companion manuscript [13] studies the graph inverse
+problem for positive raw strongly tree-child presentations of level at most two. No result from that
+companion is used in the proofs of this paper.
+    Unknown locus boundaries and within-locus recombination change (2). Pooled sites retain only
+E[V ]. Site- or locus-rate mixtures can confound mutation scale and genealogy time unless a ﬁnite
+parametric family is speciﬁed. These models are outside the principal classiﬁcation.
+
+
+16     Information hierarchy and literature comparison
+Observation object      Exact retained information     Principal loss or result
+Pooled single sites     E[V ]                          All nonlinear within-locus moments are lost.
+Fixed length L          Moments of V through           Finite on compact charts; no epoch-uniform
+                        degree L                       order.
+All indexed lengths     Full ν                         Equivalent to (π, Q0 , µ̄metricGT ).
+Metric genealogies      Ranked topology and all        Equivalent to ﬁnite CCR, not necessarily a
+                        coalescence times              graph.
+Topological gene        Topology probabilities         Metric thresholds and hazards lost.
+trees
+Quartet or quintet      Low-taxon topology             Higher routing correlations and metric data
+CFs                     marginals                      lost.
+
+    The direct species-tree and logDet results cited above use pooled expectations or distances,
+while the present bridge uses the entire within-locus dependence. The tree-of-blobs and level-
+1/galled results from concordance factors concern coarser projections [3–5]. The funnel theorem is
+an arbitrary-context formulation of an obstruction type already visible in metric-genealogy work;
+it is not presented as the ﬁrst funnel phenomenon. Bidirectional-introgression role switching is
+attributed to Yang and Flouri [16]. Classical Hankel minimality, divided diﬀerences, and compact
+analytic Noetherianity are used as mathematical infrastructure rather than claimed as inventions
+[9–11, 15].
+
+
+17     Discussion
+The positive scientiﬁc object is not an estimated gene-tree distribution. The complete indexed
+alignment law ﬁrst recovers a compact mixing measure of conditional phylogenetic tensors. Deter-
+minants and a shared semigroup then recover the normalized metric-genealogy law. Only after this
+direct bridge is established do we ask what species history generated that law.
+
+                                                 34
+    The universal inverse problem does not have a graph-valued answer. CCR is the ﬁnite canonical
+observable behavior. This is stronger than merely naming equality of distributions: it provides ﬁnite
+typed state spaces, analytic ﬂows, marks, boundaries, an intrinsic breakpoint set, minimality, and a
+ﬁnite proposed-model equality criterion. It is weaker than a canonical positive network realization,
+and the distinction is unavoidable.
+    The ﬁnite-locus result is also genuinely two-sided. A ﬁxed compact ﬁnite presentation is ﬁnitely
+separated because its analytic coordinate ideal along the compact parameter-pair set is Noetherian.
+Yet a bound that ignores demographic complexity is impossible even for two taxa and known JC.
+The collision theorem exposes why: ﬁnite locus length samples only ﬁnitely many Laplace moments,
+while each additional demographic epoch supplies another independent moment direction.
+    Further graph interpretation can compare two positive raw presentations through their common
+response, without requiring a positive realization theorem for every abstract CCR. The companion
+manuscript investigates this problem for the strongly tree-child level-at-most-two class. A separate
+substitution extension is recovery of an unknown stationary nonreversible generator from higher-
+order conditional tensors.
+
+
+18      Conclusion
+For the principal direct-sequence NMSC model,
+                          (L)
+                        (Pξ )L≥1 ⇐⇒ (π, Q0 , µ̄metricGT ) ⇐⇒ (π, Q0 , CCR).
+
+This is the exact all-length observational quotient. Species trees admit a unique graph interpretation
+with precisely exposed demographic parameters. One-reticulation systems admit an exact ﬁnite port
+quotient; on the incidence-separated subclass the child cluster, parent incidences, and inheritance
+weight are recovered, while corridor demography remains in the all-partition port ﬁber. Unrestricted
+literal networks do not admit unique graph recovery. Finite locus length suﬃces on every ﬁxed
+compact semianalytic ﬁnite-presentation class, but no order can ignore unbounded demographic
+epoch count.
+
+
+A      Notation and theorem dependencies
+
+     Symbol                 Meaning
+     S                      labelled sampled-lineage set
+     N, η                   temporal population presentation and NMSC parameters
+     Q, π                   substitution generator and stationary distribution
+     r(Q), Q0               − tr Q and trace-normalized generator
+     G, µ                   rooted metric genealogy and its NMSC law
+     VQ (G), ν              conditional site-pattern vector and its mixing law
+     P(L)                   indexed direct law of a length-L locus
+     µ̄                     metric-genealogy law in mutation-scaled time
+     He,P                   raw partition–occupancy row space
+     A, C, R                no-merger generator, marked merger map, boundary/routing map
+     Vq,t                   canonical future-response space
+     CCR                    canonical coalescent-response behavior
+
+
+
+                                                 35
+   L∗ (K)                   ﬁnite determining locus length for compact class K
+
+   The logical chain is
+                               moments ⇒ ν ⇒ (π, Q0 , µ̄) ⇒ CCR,
+with graph inversion and ﬁnite-order theorems branching afterward. The technical supplement
+supplies expanded proofs of measurability, timed-Hankel reduction, breakpoint jets, the compact-
+germ theorem’s application, and the implicit-function collision.
+
+
+References
+ [1] Elizabeth S. Allman, Colby Long, and John A. Rhodes. Species tree inference from genomic
+     sequences using the log-det distance. SIAM Journal on Applied Algebra and Geometry, 3(1):
+     107–127, 2019. doi: 10.1137/18M1194134.
+
+ [2] Elizabeth S. Allman, Héctor Baños, and John A. Rhodes. Identiﬁability of species network
+     topologies from genomic sequences using the logdet distance. Journal of Mathematical Biology,
+     84(5):35, 2022. doi: 10.1007/s00285-022-01734-2.
+
+ [3] Elizabeth S. Allman, Héctor Baños, Jonathan D. Mitchell, and John A. Rhodes. The tree
+     of blobs of a species network: identiﬁability under the coalescent. Journal of Mathematical
+     Biology, 86(1):10, 2023. doi: 10.1007/s00285-022-01838-9.
+
+ [4] Elizabeth S. Allman, Héctor Baños, Marina Garrote-López, and John A. Rhodes. Identiﬁability
+     of level-1 species networks from gene tree quartets. Bulletin of Mathematical Biology, 86(9):
+     110, 2024. doi: 10.1007/s11538-024-01339-4.
+
+ [5] Elizabeth S. Allman, Cécile Ané, Héctor Baños, and John A. Rhodes. Beyond level-1: identi-
+     ﬁability of a class of galled tree-child networks. Bulletin of Mathematical Biology, 2025. doi:
+     10.1007/s11538-025-01545-8.
+
+ [6] Jean Berstel and Christophe Reutenauer. Noncommutative Rational Series with Applications.
+     Cambridge University Press, 2011. doi: 10.1017/CBO9780511760860.
+
+ [7] Peter Buneman. The recovery of trees from measures of dissimilarity. Mathematics in the
+     Archaeological and Historical Sciences, pages 387–395, 1971.
+
+ [8] Julia Chifman and Laura Kubatko. Identiﬁability of the unrooted species tree topology under
+     the coalescent model with time-reversible substitution processes, site-speciﬁc rate variation,
+     and invariable sites. Journal of Theoretical Biology, 374:35–47, 2015. doi: 10.1016/j.jtbi.2015.
+     03.006.
+
+ [9] Carl de Boor. Divided diﬀerences. Surveys in Approximation Theory, 1:46–69, 2005.
+
+[10] Michel Fliess. Matrices de hankel. Journal de Mathématiques Pures et Appliquées, 53:197–222,
+     1974.
+
+[11] Jacques Frisch. Points de platitude d’un morphisme d’espaces analytiques complexes. Inven-
+     tiones Mathematicae, 4:118–138, 1967. doi: 10.1007/BF01425245.
+
+[12] J. F. C. Kingman. The coalescent. Stochastic Processes and their Applications, 13(3):235–248,
+     1982. doi: 10.1016/0304-4149(82)90011-4.
+
+                                                 36
+[13] Alec Kriebel. Raw strongly tree-child level-2 species networks from metric genealogy laws
+     under the NMSC: Signed pair co-occupancy, rooted graph reconstruction, and demographic
+     ﬁbers, 2026. Preprint, Zenodo. doi:10.5281/zenodo.22729545.
+
+[14] Charles Semple and Mike Steel. Phylogenetics. Oxford University Press, 2003.
+
+[15] Yum-Tong Siu. Noetherianness of rings of holomorphic functions on stein compact sub-
+     sets. Proceedings of the American Mathematical Society, 21(2):483–489, 1969. doi: 10.1090/
+     S0002-9939-1969-0247135-7.
+
+[16] Ziheng Yang and Tomáš Flouri. Estimation of cross-species introgression rates using genomic
+     data despite model unidentiﬁability. Molecular Biology and Evolution, 39(5):msac083, 2022.
+     doi: 10.1093/molbev/msac083.
+
+[17] Sha Zhu and James H. Degnan. Displayed trees do not determine distinguishability under
+     the network multispecies coalescent. Systematic Biology, 66(2):283–298, 2017. doi: 10.1093/
+     sysbio/syw097.
+
+
+
+
+                                              37
+

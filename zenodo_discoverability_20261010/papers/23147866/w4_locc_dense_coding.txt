@@ -1,0 +1,251 @@
+ Asymptotic LOCC dense coding with the symmetric four-qubit W
+                            state
+                                            Alec Kriebel
+                                       Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                            October 4, 2026
+
+
+                                                Abstract
+         The distributed dense-coding question posed by Bruß and collaborators asks whether the
+     symmetric four-qubit W state gives a strict advantage when two independent senders each
+     transmit one qubit to a diﬀerent receiver and the receivers decode using local operations and
+     classical communication (LOCC). We give an aﬃrmative answer in their asymptotic unitary-
+     encoding model. Independent Pauli encodings followed by a complete Bell measurement at
+     one receiver produce a ﬁnite classical–quantum multiple-access channel whose entire output is
+     local to the other receiver. Winter’s coding theorem gives an achievable sum-rate supremum of
+     3/2+h2 (1/4) = 2.311278 . . . bits per resource copy. In particular, both senders can transmit 9/8
+     bits per copy with vanishing average error. This settles the stated W-state classiﬁcation question
+     using established measurement and coding ingredients; it does not determine the optimal LOCC
+     capacity or assert a one-copy advantage.
+
+
+1    The question and operational model
+Distributed dense coding was formulated in Ref. [1], where the LOCC usefulness of the four-qubit
+W state was left open. The question was repeated in the 2005 Oberwolfach report, in Bruß’s
+contribution on pp. 203–205 [2], and the classiﬁcation was elaborated in Ref. [3]. We use exactly
+the symmetric resource
+
+                       |W4 iA1 A2 B1 B2 = 12 (|1000i + |0100i + |0010i + |0001i).                         (1)
+
+Initially sender i owns Ai and receiver i owns Bi . For n copies the senders have independent,
+uniformly distributed messages M1 , M2 , separate ﬁxed codebooks, and local unitary encoders. Each
+sends Ani noiselessly to receiver i, costing n qubits per sender. The receivers may perform joint
+operations within their own laboratories and communicate classically across Ln : Rn , where L =
+A1 B1 and R = A2 B2 . No additional shared entanglement, sender message disclosure, feedback
+to senders, or quantum transmission between receivers is supplied. Local decoder ancillas and
+predetermined codebooks are allowed.
+    A rate pair (R1 , R2 ) is achievable if separate codebooks with log2 Ni (n)/n −→ Ri admit such
+an LOCC decoder with uniform average error tending to zero. Let CLOCC (W4 ) be the supremum
+of achievable sum rates in this model. All entropies and rates below use base-two logarithms,
+and h2 (t) = −t log2 t − (1 − t) log2 (1 − t). We also give the bridge to the source’s asymptotic
+accessible-information formulation. Neither zero error nor maximal-error convergence is required.
+
+
+                                                     1
+Theorem 1. For the resource and routing above, every nonnegative rate pair satisfying
+
+                            R1 < 32 ,         R2 < 23 ,        R1 + R2 < 23 + h2 (1/4)                 (2)
+
+is achievable. Consequently,
+
+                                      CLOCC (W4 ) ≥        3
+                                                           2 + h2 (1/4)   > 2.                         (3)
+
+The pair (9/8, 9/8) is strictly interior. In the local-unitary classiﬁcation of Refs. [1, 3], W4 is
+therefore LOCC-DC.
+
+
+2    A Bell instrument with a local quantum output
+                           √
+Let |ψ + i = (|01i + |10i)/ 2. In the receiver ordering L : R, Eq. (1) is
+
+                                                 |ψ + iL |00iR + |00iL |ψ + iR
+                                      |W4 i =                 √                .                       (4)
+                                                                2
+This paired Bell decomposition appears in Cao–Song’s secure-communication protocol [4]; Bell
+forwarding in a W-state dense-coding setting is also present in Pradhan–Agrawal–Pati [5]. The
+rate improvement here uses a retained quantum output at the second receiver and asymptotic
+independent-message coding.
+    The sender alphabets are P = {I, X, Z, XZ}, independently uniform. For letters x, y, sender 1
+applies Ux to A1 and sender 2 applies Uy to A2 .√Receiver 1 measures L in the√complete Bell basis
+{Φ+ , Φ− , Ψ+ , Ψ− }, where |Φ± i = (|00i ± |11i)/ 2 and |Ψ± i = (|01i ± |10i)/ 2. Every outcome
+j is forwarded to receiver 2; no branch is discarded. Before encoding, the unnormalized residual
+vectors on R are
+                        vΦ+ = vΦ− = 12 |ψ + i,    vΨ+ = √12 |00i,   vΨ− = 0.                  (5)
+
+A Pauli on A1 permutes the Bell projectors. Writing its induced permutation as πx (irrelevant
+branch phases disappear), the normalized output is
+                                    X
+                          JR
+                         ωxy =            |jihj|J ⊗ (Uy ⊗ I)|vπx (j) ihvπx (j) |(Uy† ⊗ I).             (6)
+                                      j
+
+The classical register J and both qubits of R are now at receiver 2. Thus (x, y) 7→ ωxy is a
+ﬁnite memoryless classical–quantum multiple-access channel with a single local output laboratory.
+Applied copywise, it respects the original receiver cut.
+
+
+3    Exact channel entropies
+              P                   P                  1 P
+Write ω̄x = 41 y ωxy , ω̄y = 14     x ωxy , and ω̄ = 16 x,y ωxy . The spectra, including multiplicities of
+positive eigenvalues, are
+
+                      State       Positive eigenvalues                         Entropy
+                      ωxy         1/2, 1/4, 1/4                                3/2
+                      ω̄x         1/4 twice, 1/16 eight times                  3
+                      ω̄y         1/8 eight times                              3
+                      ω̄          3/32 eight times, 1/32 eight times           3 + h2 (1/4)
+
+
+                                                           2
+Here each output space has dimension 16, and all unlisted eigenvalues are zero. For completeness,
+these spectra follow directly from Eq. (5). Each conditional Bell block is rank one, with weights
+1/4, 1/4, 1/2, 0. Averaging the A2 Paulis maps an operator T on A2 B2 to IA2 /2 ⊗ TrA2 T . The two
+Φ blocks become I4 /16; the Ψ+ block becomes IA2 /4 ⊗ |0ih0|B2 . This proves the ω̄x row, up to the
+permutation πx .
+    Averaging x distributes each residual branch equally among the four classical labels. Each J
+block of ω̄y is therefore (Uy ⊗ I)ρR (Uy† ⊗ I)/4, with ρR = (|00ih00| + |ψ + ihψ + |)/2, whose nonzero
+eigenvalues are 1/2, 1/2. Finally ρB2 = diag(3/4, 1/4), so every J block of ω̄ is IA2 /8 ⊗ ρB2 , namely
+diag(3, 1, 3, 1)/32 in the A2 B2 basis. Its entropy is 5 − (3/4) log2 3 = 3 + h2 (1/4).
+    For independent uniform inputs, the conditional Holevo quantities and sum quantity are conse-
+quently
+                                                X                  X
+                         χ(X : RJ | Y ) = 41        S(ω̄y ) − 16
+                                                              1
+                                                                         S(ωxy ) = 23 ,
+                                             y                     x,y
+
+                         χ(Y : RJ | X) = 2 ,
+                                         3
+
+                           χ(XY : RJ) = 23 + h2 (1/4).                                             (7)
+
+
+4    Coding and implementation of the decoder
+Winter’s ﬁnite classical–quantum multiple-access coding theorem [6], Theorem 9 of the cited
+preprint, states that for a product input distribution, rates strictly below the individual condi-
+tional Holevo quantities and the joint Holevo quantity admit separate deterministic codebooks
+and a joint output POVM with vanishing uniform average error. The channel in Eq. (6) has
+ﬁnite alphabets, dimension 16, and product priors, and Eq. (7) gives all three constraints. This
+is an application of that established theorem, rather than a new multiple-access coding theorem.
+General multiple-access dense-coding applications already appear in Huang–Zhang–Hou [7].
+    The resulting sender encoders are simply products of the single-qubit Pauli letters in their
+respective codewords. To see explicitly that the theorem’s decoder is permitted here, let Dm1 m2 be
+its POVM on J n Rn . Every channel output is diagonal in J n . Replacing each POVM element by
+                                        X
+                             0
+                            Dm 1 m2
+                                    =       (|jihj|J n ⊗ I)Dm1 m2 (|jihj|J n ⊗ I)
+                                        j
+
+preserves positivity, completeness, and every decoding probability. For a received classical string j,
+its diagonal block is a POVM on Rn , wholly within receiver 2’s laboratory. Receiver 1 performs the
+Bell measurements and forwards j; receiver 2 performs this conditional POVM and may report the
+decoded labels classically to receiver 1. Only receiver-to-receiver classical communication is used.
+    For N1 N2 ≥ 2, if the decoder has average error en for the uniform message pair M = (M1 , M2 ),
+Fano’s inequality gives
+                             c) ≥ log (N1 N2 ) − h2 (en ) − en log (N1 N2 − 1).
+                       I(M ; M                                                                     (8)
+                                     2                            2
+
+When N1 N2 = 1, the sole message pair is decoded without error and carries zero information, so this
+case is handled directly. For any ﬁxed positive sum rate, en → 0 makes this information per copy
+approach R1 + R2 , verifying the accessible-information interpretation as well. Taking rate pairs in
+Eq. (2) approaching its sum face proves the supremum lower bound in Eq. (3). In particular,
+
+                            h2 (1/4) = 2 − 34 log2 3 > 34     ⇐⇒          27 < 32,
+
+so (9/8, 9/8) is strictly interior and has sum 9/4 > 2.
+
+                                                      3
+    To identify the source’s classiﬁcation shell, each one-qubit marginal of W4 has eigenvalues
+3/4, 1/4, and each two-qubit marginal has eigenvalues 1/2, 1/2, 0, 0. The local-unitary LO expres-
+sion in Refs. [1, 3] is therefore
+
+                 [1 + S(B1 ) − S(A1 B1 )] + [1 + S(B2 ) − S(A2 B2 )] = 2h2 (1/4) < 2.
+
+Allowing the source’s classical fallback gives the comparison value two, without a strict LO ad-
+vantage. The strict achieved LOCC advantage establishes LOCC-DC in that convention. This
+completes the proof of Theorem 1.
+
+
+5    Scope, attribution, and veriﬁcation
+The contribution is the speciﬁc achieved lower bound and W-state classiﬁcation for the original
+split-receiver asymptotic model. The old Bell decomposition [4], Bell forwarding [5], and multiple-
+access framework [7, 6] are credited ingredients. The one-copy two-bit Bell-to-Bell construction of
+Ref. [5], Sec. 4.2.3, is not a converse for the present block protocol. For the uniform 16-letter product
+ensemble here, measuring both receiver pairs in the Bell basis produces mutual information exactly
+two bits: its conditional outcomes are four equiprobable pairs, while its average has 16 equiprobable
+pairs. That calculation concerns this particular measurement only; the second receiver’s quantum
+output is retained in our coding construction.
+    Nearby work on the same receiver topology derives LOCC capacity upper bounds [8, 9]; an
+upper bound above two is not an achieved W-state rate. This comparison refers to the inspected
+arXiv versions speciﬁed in those references. Hayashi–Wang [10] studies a diﬀerent sender/receiver
+ownership and routing model; its direct formula cannot be transplanted across the present A1 B1 :
+A2 B2 cut. Our literature audit found no earlier explicit or established-equivalent achievability
+resolution of this exact target. The supplement records the inspected corpus, attribution, and
+access limitations. This bounded audit does not certify categorical worldwide ﬁrstness or that the
+problem remained open in every subsequent source.
+    The result is asymptotic with uniform average error. It gives neither an exact optimal capacity,
+a one-copy advantage, a zero-error or maximal-error code, nor a constructive ﬁnite-blocklength
+error bound. The coding existence theorem is essential; the ﬁnite calculations alone do not prove
+achievability. The accompanying standard-library Python veriﬁer reconstructs all 64 channel blocks
+from the four-qubit basis using rational arithmetic, checks their spectra by power sums through
+order 16, and veriﬁes the displayed marginals, entropy coeﬃcients, strict inequality, and both-Bell
+comparison. Its 551 checks certify the ﬁnite algebra, with ﬂoating-point values used only for display.
+The paper’s coding and operational arguments remain analytical.
+
+AI assistance and review status. AI tools were used extensively in developing the solution,
+drafting the manuscript, reproducing its calculations, and conducting adversarial reviews. These
+AI reviews do not constitute conventional human peer review or refereeing. This research note is
+an unrefereed preprint.
+
+
+References
+ [1] D. Bruß, G. M. D’Ariano, M. Lewenstein, C. Macchiavello, A. Sen(De), and
+     U. Sen, Distributed quantum dense coding, Phys. Rev. Lett. 93, 210501 (2004).
+     doi:10.1103/PhysRevLett.93.210501; arXiv:quant-ph/0407037v3.
+
+
+                                                   4
+[2] D. Bruß, distributed dense-coding contribution, pp. 203–205 in S. Albeverio, G. Dell’Antonio,
+    and F. De Martini, Entanglement and Decoherence: Mathematics and Physics of Quan-
+    tum Information and Computation, Oberwolfach Reports 2, no. 1, 185–255 (2005), report
+    4. doi:10.4171/OWR/2005/04.
+
+[3] D. Bruß, G. M. D’Ariano, M. Lewenstein, C. Macchiavello, A. Sen(De), and U. Sen,
+    Dense coding with multipartite quantum states, Int. J. Quantum Inf. 4, 415–428 (2006).
+    doi:10.1142/S0219749906001888; arXiv:quant-ph/0507146v1.
+
+[4] H.-J. Cao and H.-S. Song, Quantum secure direct communication with W state, Chin. Phys.
+    Lett. 23, 290–292 (2006). doi:10.1088/0256-307X/23/2/005.
+
+[5] B. Pradhan, P. Agrawal, and A. K. Pati, Teleportation and superdense coding with genuine
+    quadripartite entangled states, arXiv:0705.1917v1 (2007), Sec. 4.2.3.
+
+[6] A. Winter, The capacity of the quantum multiple-access channel, IEEE Trans. Inf. Theory 47,
+    3059–3065 (2001). doi:10.1109/18.959287; arXiv:quant-ph/9807019v3, Theorem 9.
+
+[7] M. Huang, Y. Zhang, and G. Hou, Classical capacity of a quantum multiple-access channel,
+    Phys. Rev. A 62, 052106 (2000). doi:10.1103/PhysRevA.62.052106; arXiv:quant-ph/9911120v5,
+    Sec. VI.
+
+[8] T. Das, R. Prabhu, A. Sen(De), and U. Sen, Distributed quantum dense cod-
+    ing with two receivers in noisy environments, Phys. Rev. A 92, 052330 (2015).
+    doi:10.1103/PhysRevA.92.052330; inspected body: arXiv:1412.6247v1, Sec. II.
+
+[9] A. Muhuri, R. Gupta, S. Ghosh, and A. Sen(De), Superiority in dense coding through non-
+    Markovian stochasticity, Phys. Rev. A 109, 032616 (2024). doi:10.1103/PhysRevA.109.032616;
+    inspected body: arXiv:2211.13057v2, Eqs. (6)–(7).
+
+[10] M. Hayashi and K. Wang, Dense Coding with Locality Restriction on Decoders:
+     Quantum Encoders versus Superquantum Encoders, PRX Quantum 3, 030346 (2022).
+     doi:10.1103/PRXQuantum.3.030346.
+
+
+
+
+                                               5
+

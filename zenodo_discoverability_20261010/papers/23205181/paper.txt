@@ -1,0 +1,335 @@
+                        A sharp dyadic threshold in a
+                 characteristic-two random-cone construction
+                                             Alec Kriebel
+                                       ORCID: 0009-0001-9320-500X
+
+                                           October 6, 2026
+
+
+                                                Abstract
+         OpenAI’s October 4 construction uses a projective plane of order q = 128 and seven extra
+     letters to obtain a ﬁnitely presented torsion-free group with a ﬁnite two-dimensional classifying
+     complex and a characteristic-two group algebra that is not directly ﬁnite. We determine the least
+     dyadic order q ≥ 4 at which its unchanged squared turn weights have exponential word-mass
+     decay: it is q = 32. A three-class reduction and exact rational certiﬁcates prove contraction at
+     32 and exponential growth at 4, 8, 16. Checking the remaining parameter-dependent estimates
+     yields the same construction on a 532-edge rose. This is a threshold for this speciﬁed model,
+     rather than an optimum among all group-algebra examples. Classical HNN embedding also
+     gives a two-generator realization. We spell out the inherited scalar idempotent and nonzero
+     absorbed cyclic projective module, which remain valid over every characteristic-two ﬁeld. The
+     construction is existential; no numerical matching or group-ring multiplication certiﬁcate is
+     claimed.
+
+
+1    Scope and inherited input
+For a torsion-free group G and ﬁeld K, the scalar idempotent conjecture asks whether e2 = e in
+K[G] forces e ∈ {0, 1} [2, Problem 1(c)]. The positive-characteristic version includes characteristic
+two. The pivotal input here is the exact October 4 manuscript [1, Theorem 1.1], at repository
+commit adc7f124: it constructs a ﬁnitely presented torsion-free group with a ﬁnite 2-dimensional
+K(G, 1) and scalar elements
+
+                             ab = 1,       ac = 0,       c 6= 0    in F2 [G].                            (1)
+
+The breakthrough and construction belong to OpenAI. Its probabilistic and geometric framework
+also draws on its September 23 zero-divisor manuscript [7]. Our independent source audits found
+no substantive gap in the arguments used; their precise scope is recorded in the supplement. The
+earlier family-197 Lean example has torsion and does not formalize this October 4 theorem. No
+full formal veriﬁcation or conventional human refereeing is claimed.
+     Our contribution is the exact dyadic threshold for the unchanged seven-extra model in Section 2,
+together with the parameter check in Section 3. The defect-idempotent and module consequences
+were already publicly recorded in the author’s triage [6]; they are included for interpretation, not
+oﬀered as a new discovery. The two-generator specialization in Section 4 uses classical machinery.
+We make no ﬁrst-priority claim and no characteristic-zero, odd-characteristic or reduced group
+C ∗ -algebra projection claim.
+
+
+
+                                                     1
+2    The exact squared-word threshold
+Let q = 2k with k ≥ 2, v = q 2 + q + 1 and p = (q + 1)/v. The source’s signed alphabet T consists
+of the v points of PG(2, q) and seven extra letters. Pair each extra with a distinct ordinary letter,
+and pair the remaining v − 7 ordinary letters among themselves; write t̄ for the inverse of t. For a
+reduced turn u 6= t̄, retain exactly the source weights
+                                
+                                       −1
+                                
+                                (q + 1) ,            t̄, u both ordinary,
+                    w(t, u) =        p,               t̄, u of diﬀerent kinds,              w(t, t̄) = 0.
+                                
+                                
+                                1/2,                 t̄, u both extra,
+                                     ∏h−1
+For W = t1 · · · th , set P (W ) =        i=1 w(ti , ti+1 ). These are turn-frequency weights, not probabilities
+assigned to words.
+Theorem 1. In this model, for any allowed inverse pairing, q = 32 is the least dyadic q ≥ 4 for
+which M = (w(t, u)2 ) has spectral radius below one. At q = 32, for every h ≥ 1,
+                                           ∑                          (          )h−1
+                                                               5376       987
+                                                   P (W )2 ≤                            .
+                                                                 5        1000
+                                          W ∈T h
+
+For each q ∈ {4, 8, 16} the same sum is at least Cq (503/500)h−1 , where Cq > 0 is explicit below.
+Proof. Partition the actual letters into E (the seven extras), S (their seven ordinary mates), and
+O (the remaining v − 7 ordinary letters). Vectors constant on these classes are invariant under M .
+In class order (E, S, O) their exact quotient is
+                                                                                           
+                                      7p2 6/(q + 1)2 (v − 7)/(q + 1)2
+                                                                     
+                             Q(q) = 3/2     7p2        (v − 7)p2     .                                     (2)
+                                      7p 7/(q + 1) (v − 8)/(q + 1)
+                                        2          2                2
+
+
+For a row in E, its inverse excludes one S successor; for a row in S, its inverse excludes one E
+successor; for a row in O, its inverse excludes one O successor. This proves the quotient formula
+for every permitted pairing. Q is strictly positive. Its positive Perron eigenvector lifts to a positive
+eigenvector of M , so ρ(M ) = ρ(Q). The following certiﬁcates also prove the bounds directly,
+without numerical eigenvalues.
+    At q = 32, lift f = (1, 13/5, 1). The three ratios (Qf )i /fi are
+                                 95146189                579417             857592557
+                                          ,                     ,                     ,                      (3)
+                                 96562235                592826             869060115
+each strictly below λ = 987/1000. Hence M f ≤ λf . As 1 ≤ f and 1T f = 5376/5, nonnegativity
+gives
+                                    1T M h−1 1 ≤ λh−1 1T f.
+The left side is exactly the stated sum over words. Thus the source’s decay lemma holds, for
+example with δ = − 41 log λ > 0 for all suﬃciently large h.
+   For q = 4, 8, 16, use x = (193/500, 1, 97/250), with x ≤ 1. The exact ratios (Qx)i /xi are
+
+                    q         E                S               O
+                   4    480733/303975     26959/21000    500011/305550
+                   8 10342603/9256473 5726739/5329000 10523789/9304434
+                   16 35146373/34932807 3571543/3549000 2078707/2065518
+
+                                                               2
+Every entry exceeds µ = 503/500 > 1. Therefore M x ≥ µx and
+                                                        193               97
+                   1T M h−1 1 ≥ µh−1 1T x,     Cq = 7       + 7 + (v − 7)     > 0.
+                                                        500               250
+This proves ρ(M ) > 1 for 4, 8, 16, completing the least-order claim.
+
+    The lower bound excludes the source’s squared-word decay statement at these orders. It does
+not prove nonexistence of good matchings or idempotents there, or exclude a modiﬁed type model or
+another method. Order 2 is outside the theorem’s domain: the unchanged extra-count prescription
+would require both 3m − 1 and 3(m − 1) divisible by four, which is impossible. Exact rational
+veriﬁcation is supplied as verification/verify_parameter.py.
+
+
+3    Carrying the construction to order 32
+Proposition 2. The October 4 random-cone construction remains valid at q = 32 with the same
+seven-extra types. It gives a ﬁnitely presented torsion-free group G generated by at most 532 ele-
+ments, a ﬁnite 2-dimensional K(G, 1), and the scalar triple (1).
+Proof. Here v = 1057, p = 33/1057 and |T | = 1064. For suﬃciently large m ≡ 1 (mod 4), take m
+vertices in every line class on side A and m − 1 on side B, with n = vm. Each ordinary outgoing set
+is its 33-point line. Give the distinguished A vertex all seven extras; for each complement of a Fano
+line assign that four-element extra set at (33m − 1)/4 vertices of A and 33(m − 1)/4 of B, evenly
+among line classes. All other extra sets are empty. Fix xB ∈ B before choosing the matchings.
+The line-capacity coeﬃcient is 7 · 33/(4 · 1057) = 33/604 < 1, so disjoint assignments exist for all
+suﬃciently large m. Each extra is in four complements and each extra pair in two, while ordinary
+lines have odd intersection size. Thus the source’s exact inverse-slot balances and parity identities
+persist. Degrees are now 33, 37, 40, with minimum 33 and maximum d∗ = 40.
+     The decay input is Theorem 1. The remaining estimates in [1, Sections 3–5] are veriﬁed as
+follows. Choose a ﬁxed c0 > 0 satisfying c0 log(2|T |/p) < 1 and 2c0 log d∗ < 1; c0 = 1/100 works.
+The short-cycle switching proof then has the same error rn = O(log n + n2c0 log d∗ ) = o(n) and
+supplies the same conditioned edge-prescription bounds. It uses only ﬁxed T, p, d∗ , these strict
+inequalities, and exact slot balance, all of which hold here.
+     For the diameter argument, a k-vertex set without factor-two expansion forces at least r =
+d33k/2e prescribed edges in a 2k-vertex set, with 16.5k ≤ r ≤ 17k. The source’s union bound
+becomes                                              (             )k
+                                   Pr(failure at k) ≤ C3 (k/n)29/2 .
+                                                                                                  √
+A ﬁxed small η > 0 can satisfy 17η < p/4 and C3 η 29/2 < 1/2. Summing separately over k ≤ n
+      √
+and n < k ≤ ηn gives o(1); the ﬁrst sum uses exponent 29/4 > 0. The ball-packing argument
+then gives the same dL component diameter bound, where L = bc0 log nc. The supplemental exact
+certiﬁcate even permits η = 10−6 with an explicit conservative bound for C3 .
+     All bounded-path estimates in Section 4 of the source use the ﬁxed alphabet, the positive min-
+imum turn weight, the just-established prescription bound and exponential squared-word decay.
+Their constants may change but their order of quantiﬁers does not: choose the unpaired fraction
+ﬁrst, then any ﬁxed path-count, length and comparison bounds. The multiplicity-stage ﬁrst mo-
+ments do not require independence between stages. In the planar reduction, deleting at most two
+incident edges leaves degree at least 31 ≥ 3, so the short-closure lemma is unchanged; the Euler
+characteristic and separator estimates contain no further projective-plane order requirement. Con-
+sequently the probability of a reduced spherical arrangement tends to zero in this conditioned model.
+
+                                                 3
+These statements follow by applying the cited proofs with the displayed replacements, rather than
+treating their originally ﬁxed-128 theorems as unproved general-parameter theorems.
+    Select one suﬃciently large matching outcome with these properties. The deterministic cone
+criterion in [1, Section 6] uses no q parameter: it gives asphericity and protects the two roots. The
+parity proposition in its Section 2 yields (1). Coning all graph components onto the 532-edge rose
+yields a ﬁnite 2-dimensional classifying complex. It is homotopy equivalent to the presentation
+complex on the rose edges with one relator for each non-tree graph edge, so G is generated by at
+most 532 elements. Torsion-freeness follows as in the source from its ﬁnite-dimensional classifying
+complex.
+
+     For completeness, after choosing an outcome, choose a root and spanning tree in every com-
+ponent, taking xA and xB as the roots of their respective components A0 , B 0 , and let wx be the
+                                                           → y impose wx twy−1 . At the designated-
+                                                            t
+tree-path word to x. For each oriented non-tree edge x −
+                                                  ∑                 ∑                   ∑
+root components A0 , B 0 , the witnesses are a = x∈A0 wx , b = x∈A0 wx−1 and c = y∈B 0 wy−1 .
+Product-graph parity gives ab = 1, ac = 0; root protection makes the identity coeﬃcient of c equal
+to one. The order-32 incidence plane and inverse pairing have a reproducible ﬁnite certiﬁcate in
+the supplement. No numerical m satisfying all asymptotic requirements, matching outcome, relator
+list, reduced support of e, or target group-ring multiplication certiﬁcate is supplied.
+
+
+4    Classical two-generator realization
+The number 532 describes this random-cone recipe, not the smallest possible group generating
+set. We record explicitly why classical HNN embedding [8, 9] already yields two generators while
+preserving the stronger ﬁnite classifying-space condition.
+
+Proposition 3. Every group G with a ﬁnite 2-dimensional K(G, 1) embeds in a group H gen-
+erated by two elements with a ﬁnite 2-dimensional K(H, 1). If G has an aspherical presentation
+on g1 , . . . , gs with r relators, H has an aspherical presentation on two generators with r relators.
+Torsion-freeness is preserved.
+
+Proof. Set B = G ∗ F (x, y), and in B deﬁne
+
+                  u0 = y,    v0 = x,      ui = x−i yxi ,   vi = y −i xgi y i   (1 ≤ i ≤ s).
+
+The ui freely generate: they are a ﬁnite subset of the standard free basis of the kernel of F (x, y) → Z,
+x 7→ 1, y 7→ 0. Projection killing G sends the vi to the corresponding free-basis subset with x, y
+interchanged, and proves they freely generate too. The HNN extension with relations t−1 ui t = vi
+therefore embeds B. Its zeroth relation gives y = txt−1 ; the others give gi = x−1 y i t−1 x−i yxi ty −i .
+Substituting for y expresses gi by the word
+
+                                 Wi = x−1 txi t−2 x−i txt−1 xi t2 x−i t−1 .
+
+Thus H = hx, ti, and its presentation is hx, t | Rj (W1 , . . . , Ws ), 1 ≤ j ≤ ri.
+    Let X be the ﬁnite classifying complex for G, with its maximal 1-skeleton tree collapsed. The
+vertex space X ∨ R2 is a ﬁnite K(B, 1). Attach the mapping cylinder of a rose with s + 1 petals
+via the two injective maps representing ui and vi . This gives a ﬁnite complex of dimension at
+most two for H. Its universal cover is a tree of contractible vertex and edge spaces; successively
+adjoining ﬁnite subtrees gives contractible homotopy pushouts. Sphere maps have compact image
+contained in a ﬁnite subcomplex, and hence a ﬁnite subtree, so the cover is contractible. This
+
+
+                                                     4
+proves asphericity. Finite-order elements of an HNN extension are conjugate into its base; the base
+free product is torsion-free when G is, proving the assertion.
+    To see that the ﬁnal two-generator presentation itself is aspherical, ﬁrst consider the subcomplex
+having only the s+1 HNN deﬁning cells. Each gi occurs once in its own such cell and in no other such
+cell, so those generator-cell pairs can be collapsed there; then collapse y with the zeroth deﬁning
+cell. The resulting retraction to the (x, t) rose sends gi to Wi . Homotopy invariance of attaching
+cells carries the original r relators to Rj (W ), proving homotopy equivalence with the displayed
+presentation complex. This uses these speciﬁc eliminations, not arbitrary Tietze moves.
+
+    An embedding G ,→ H induces an injective map K[G] → K[H] because distinct group elements
+remain distinct basis elements. The scalar triple is preserved. No support is shortened or computed
+by this transport. A torsion-free group generated by at most one element is trivial or inﬁnite cyclic;
+its group algebra over a ﬁeld is a domain. Consequently two is the least possible number of
+generators for such an idempotent example, but the embedding mechanism is classical.
+
+
+5    Ring and right-module proof
+The reduction to a scalar idempotent is classical [3, Proposition kaplansky_relations]; the split-
+ting is the regular right-module interpretation of direct ﬁniteness [4, p. 9]. We include the maps to
+ﬁx handedness.
+
+Proposition 4. Let R be a nonzero unital ring and suppose (1) holds in R. Then e = 1 − ba is
+an idempotent other than 0 and 1, and P = eR has all the right-module and K0 properties in the
+consequence theorem below. No characteristic assumption is needed for this proposition.
+
+Proof. Put f = ba. Then f 2 = b(ab)a = f , so e2 = (1 − f )2 = 1 − 2f + f 2 = 1 − f = e. Also
+ec = c − b(ac) = c 6= 0, whence e 6= 0. If e = 1, then ba = 0, and a = a(ba) = 0 contradicts ab = 1
+in a nonzero ring. Thus e 6= 1.
+    The complementary idempotents f and e satisfy f e = ef = 0 and f + e = 1. Therefore
+R = f R + eR. If x = f r = es, then x = f x = f es = 0, giving the direct sum
+
+                                          RR = baR ⊕ eR.                                           (4)
+
+Since baR ⊆ bR and b = bab, the reverse inclusion holds as well: baR = bR. Left multiplication by
+b is a right R-linear isomorphism RR → bR, with inverse left multiplication by a. Indeed abr = r
+for every r, and ba(br) = br for every br ∈ bR.
+    Consequently (4) identiﬁes RR with RR ⊕ P . For a fully explicit pair of inverse maps, use
+
+                    Φ(r) = (ar, er),      Ψ(u, p) = bu + p   (r, u ∈ R, p ∈ eR).
+
+The identities ae = eb = 0, ep = p, and ab = 1 give ΨΦ(r) = bar + er = r and ΦΨ(u, p) = (u, p).
+They also show ker(r 7→ ar) = eR; in particular c ∈ P .
+   The module P is a direct summand of the free right module RR , hence projective. It is cyclic,
+generated by e, and nonzero because it contains e = e · 1 6= 0. By deﬁnition, K0 (R) is the group
+completion of the direct-sum monoid of ﬁnitely generated projective right modules [5, Chapter II,
+Section 2]. Hence the isomorphism implies [R] = [R] + [P ] and therefore [P ] = 0 in that abelian
+group. It does not imply P = 0. Rather, R ⊕ 0 = ∼ R ⊕ P with 0 6=∼ P exhibits failure of projective
+cancellation.
+
+
+
+                                                  5
+Theorem 5. There is a two-generator ﬁnitely presented torsion-free group H with a ﬁnite 2-
+dimensional K(H, 1) and a scalar e ∈ F2 [H], e2 = e, e 6= 0, 1. For every characteristic-two ﬁeld K,
+its same image is nontrivial in S = K[H] and P = eS is a nonzero cyclic projective right module
+              ∼ SS ⊕ P and [P ] = 0 in K0 (S).
+satisfying SS =
+
+Proof. Apply Propositions 2 and 3 and transport a, b, c to F2 [H]. Proposition 4 gives e = 1 − ba
+and the right-module properties. The unique unital embedding F2 ,→ K induces an injective ring
+map F2 [H] → K[H]: the elements of H are a basis over each ﬁeld. Thus e and e−1 remain nonzero,
+and all scalar identities persist. Apply the ring proposition again over K[H].
+
+   For R = F2 [H], vanishing of this one class does not assert K0 (R) = 0. The scalar inclusion
+F2 → R and augmentation R → F2 split oﬀ K0 (F2 ) = Z from K0 (R). The characteristic-two ﬁeld
+embedding supplies no coeﬃcient map to a ﬁeld of odd characteristic or characteristic zero.
+
+
+6    Priority, validation and limitations
+The published triage [6], commit f27318d83bd7000ef817957a9a4b3087de28d198, already states
+e = 1 − ba, P = eR, R =     ∼ R ⊕ P and [P ] = 0, conditional on checking the October 4 input.
+Those core consequences are duplicated. The present note’s additional result is Theorem 1 and
+the source adaptation in Proposition 2. The inspected pinned manuscript ﬁxes 128; the relevant
+companions and triage do not supply this exact calibration or its lower-order obstruction. A ﬁnite
+literature search cannot establish universal priority, and we assert neither a ﬁrst solution of a named
+conjecture nor a new embedding or idempotent mechanism.
+    The supplement retains separate audits of the actual probabilistic and cone-picture proofs, a
+parameter-speciﬁc adversarial audit, primary source identities, exact rational checks, the ﬁnite
+incidence model, and the embedding word calculation. They certify their stated portions; ﬁnite
+computations do not certify an unlisted matching or replace the proof of group existence. No
+characteristic-zero or odd-characteristic conclusion, matrix-only substitute, nonzero K0 class or
+full Lean formalization is inferred.
+
+Disclosure. AI tools were used extensively in research, drafting and veriﬁcation, including inde-
+pendent automated adversarial audits. This preprint has not undergone conventional human peer
+review or refereeing. OpenAI is the supplied author of the upstream AI-produced construction; no
+aﬃliation or coauthor is inferred.
+
+
+References
+ [1] OpenAI, A Torsion-Free Group Algebra That Is Not Directly Finite, OpenAI Math Release
+     preprint, October 4, 2026, Theorem 1.1. Pinned source commit adc7f124.
+
+ [2] Johan Öinert, Units, zero-divisors and idempotents in rings graded by torsion-free groups,
+     arXiv:1904.04847v3, July 20, 2023 (ﬁrst submitted April 9, 2019).
+
+ [3] Giles Gardam, The Kaplansky conjectures, lecture notes, source version February 20, 2024,
+     commit ec842e6, Proposition kaplansky_relations.
+
+ [4] P. Ara, K. R. Goodearl, K. C. O’Meara and E. Pardo, Separative cancellation for projective
+     modules over exchange rings, May 1996 report no. 142, p. 9, institutional full text.
+
+
+                                                  6
+[5] Charles A. Weibel, The K-book: An Introduction to Algebraic K-theory, AMS, 2013, Chapter
+    II, author’s chapter.
+
+[6] Alec Kriebel, Ten further research paths opened by the OpenAI mathematics release, public
+    research triage, October 6, 2026, report, Section 4; accompanying algebra notes, Section 1.
+
+[7] OpenAI, A Torsion-Free Group Algebra with Zero Divisors, OpenAI Math Release preprint,
+    September 23, 2026, pinned source.
+
+[8] G. Higman, B. H. Neumann and H. Neumann, Embedding theorems for groups, J. London
+    Math. Soc. 24 (1949), 247–254, Theorems I and IV, doi:10.1112/jlms/s1-24.4.247.
+
+[9] A. Morozov and P. Schupp, Computable permutations and word problems, Enseign. Math. 64
+    (2018), 143–160, Observation 3.4, p. 151, doi:10.4171/LEM/64-1/2-6.
+
+
+
+
+                                               7
+

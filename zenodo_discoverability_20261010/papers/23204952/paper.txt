@@ -1,0 +1,405 @@
+                           Metric rigidity at the boundary
+                             of cubic compactiﬁcations
+                                             Alec Kriebel
+                                     ORCID: 0009-0001-9320-500X
+
+                                           October 6, 2026
+
+
+                                               Abstract
+         We deduce a sharp Cartier-index criterion for complex-structure rigidity on singular Kähler–
+     Einstein Fano varieties. If −KX = rL with L ample Cartier and r > dim(X)/2 + 1, then
+     the tangent sheaf is stable and every parallel orthogonal complex structure on the regular lo-
+     cus equals the given one or its negative. The proof combines the decomposition theorem of
+     Druel–Guenancia–Păun with a Hilbert-polynomial index bound and local positive-Ricci curva-
+     ture. Applied to cubic n-fold limits, n ≥ 5, it identiﬁes the ordinary metric Gromov–Hausdorﬀ
+     compactiﬁcation with cubic GIT modulo conjugation, including the singular boundary. We
+     also record the complex-preserving comparison as an attributed consequence of the unrestricted
+     ordinary-double-point gap, Li–Liu’s global Reeb minimum, and Spotti–Sun’s established trans-
+     fer. The complex algebraic comparison is already publicly stated in stronger form by Kong–
+     Shen–Zhao–Zhao; no ﬁrst-solution claim is made.
+
+Status and provenance. The upstream manuscript [1] is pinned at repository commit
+adc7f1241b42 (the full hash is in the source manifest). Its theorem is a principal external input,
+not a theorem reproved in this note. Separate scoped adversarial audits inspected its geometric and
+semigroup arguments and its sole fourfold companion. These are evidence, not formal certiﬁcation.
+No Lean veriﬁcation of the gap or these consequences is claimed. AI tools were used extensively in
+research, drafting, and veriﬁcation. This note has not undergone conventional human peer review.
+The additional assertion concerns singular metric rigidity and the ﬁbers of the forgetful map. The
+splitting principle, the conjugation convention, and the complex cubic comparison are credited to
+their original sources.
+
+
+1    Exact target and dependency diagram
+Fix n ≥ 5 and let                                         
+                               Gn = P H 0 (Pn+1 , O(3)) // SL(n + 2).
+The complex GH moduli object retains complex structure: its points are biholomorphic isome-
+try classes of Kähler–Einstein cubic n-folds, with Ric(ω) = ω, and its compactiﬁcation is the
+complex/polarized GH compactiﬁcation used in [3]. Bare metric-space isometry forgets complex
+                    GH,metric
+structure. Write Mn           for the closure of the underlying compact metric spaces of smooth KE
+cubics, with ordinary metric GH topology. Write σ for coeﬃcientwise conjugation on Gn (C). We
+prove that conjugation orbits are exactly the ﬁbers of the forgetful map on the entire boundary.
+    The good moduli space on the K side has closed complex points representing K-polystable
+Q-Fano varieties that admit a Q-Gorenstein deformation to a smooth cubic. Equivalently one
+
+                                                    1
+considers the corresponding closure of the smooth cubic locus in the smoothable K-moduli space,
+with its complex analytic topology. Equal dimension and volume alone do not select that smoothing
+locus. The established smoothable KE/GH correspondence is the relevant identiﬁcation with these
+closed points [7].
+    The dependency diagram for the proposed deduction is
+                               c
+                               vol(x, X) ≤ 2(k − 1)k      (2 ≤ k ≤ n)      [1]
+                         ⇓   global Reeb minimum and density identity [2]
+                      Θ(C) ≤ 2(1 − 1/k)k        for isolated singular metric cones
+                             ⇓    iteration and Cartier-root theorem [3]
+                             −KZ = (n − 1)LZ ,       LZ Cartier,       LnZ = 3
+                     ⇓    Fujita classiﬁcation; CM positivity; continuity [6, 3]
+                                       Mn
+                                          GH,C    ∼homeo Gn (C).
+                                                  =
+
+Only the upper gap bound is needed; its equality classiﬁcation is not used. No scheme/stack
+isomorphism, equivalence of moduli functors, or assertion about every nonclosed semistable orbit
+is deduced here.
+
+Theorem 1 (Sharp Cartier-index rigidity). Let X be an irreducible normal projective klt Fano of
+dimension m ≥ 1 carrying a weak KE current with bounded potentials, smooth on Xreg . Suppose an
+                                                                                              [−1]
+ample Cartier line bundle L and a positive integer r satisfy the actual line-bundle identity ωX ≃
+L⊗r and r > m/2 + 1. Then TX , and the tangent sheaf of every ﬁnite quasi-étale cover, is slope
+stable for the anticanonical polarization. No such cover is a product of two positive-dimensional
+normal projective varieties. Every parallel orthogonal complex structure on (Xreg , g) is J or −J.
+The strict numerical threshold is sharp in this class.
+
+Theorem 2 (Cubic metric boundary). For n ≥ 5, using the upper gap theorem of [1], there are
+natural homeomorphisms
+                             GH,C                       GH,metric
+                          Mn        ≃ Gn (C),       Mn              ≃ Gn (C)/⟨σ⟩.
+
+The ﬁrst space has the closed-point interpretation in the cubic smoothable K-polystable coarse space
+described above. Every metric isometry between its KE boundary varieties is holomorphic or anti-
+holomorphic; in the latter case it is a holomorphic isomorphism to the conjugate variety. In either
+formulation the cubic hyperplane Cartier line bundle is preserved.
+
+    The ﬁrst comparison uses the displayed established transfer. The additional argument for the
+second comparison is
+
+            singular KE stable-factor cover [12] =⇒ dim(Yi ) ≥ r − 1 =⇒ TX stable
+                    =⇒ I = ±J =⇒ all metric ﬁbers are conjugation orbits
+                         =⇒ compact–Hausdorﬀ quotient homeomorphism.
+
+The inequality is about a genuine Cartier root, not an arbitrary Q-Cartier divisor. The metric
+isometry statement uses the regular-locus theorem for the actual GH limits; no claim about arbitrary
+metric completions of nonsmoothable weak KE varieties is needed.
+
+
+
+
+                                                    2
+2    Cartier index and parallel complex structures
+Proof of Theorem 1. Druel–Guenancia–Păun [12, Theorem A] supply a ﬁnite quasi-étale cover f :
+Y → X and an isometric algebraic product of positive-dimensional weak KE klt Fanos Yi with stable
+tangent sheaves. Their theorem treats the incomplete regular locus; we do not apply complete de
+Rham splitting there. Put M = f ∗ L. Quasi-étaleness gives ωY ≃ M ⊗r .
+                                                                   [−1]
+
+    For each factor choose a regular point b of the complementary product. The restriction Mi =
+M |Yi ×{b} is ample Cartier. On Yi,reg × {b} the smooth product canonical formula identiﬁes ωY with
+ωYi tensored with the ﬁxed one-dimensional space det(Tb∗ B). Normal reﬂexive extension therefore
+gives ωYi ≃ Mi⊗r globally. This also works for the factors of any algebraic product cover: quasi-
+        [−1]
+
+étale pullback is klt, and adjoining smooth coordinates tests klt on a factor.
+    Let Z be such a factor, of dimension d, with −KZ = rA and A ample Cartier. For j = 1, . . . , r−1,
+klt Kawamata–Viehweg vanishing applies to −jA, since −jA−KZ = (r−j)A is ample [18, Theorem
+2.22]. Negative ampleness gives H 0 (Z, −jA) = 0 as well. Hence the nonzero degree-d polynomial
+PZ (t) = χ(Z, A⊗t ) has the r − 1 distinct roots −1, . . . , −(r − 1), so d ≥ r − 1. Euler characteristic
+is polynomial at every integer, including negative integers [15, Lemma 33.45.1]. Two factors would
+imply m ≥ 2(r − 1), contradicting the strict index bound. The DGP cover therefore has one factor
+and TY is stable.
+    Stability descends without a Q-factoriality assumption. If a proper saturated F ⊂ TX had slope
+at least µ(TX ), pull it back on the ﬁnite étale big open set and extend reﬂexively and saturate to
+G ⊂ TY . Both complements have codimension at least two. Choose a general complete-intersection
+curve of large anticanonical degree in that big open set. On its étale inverse image, ordinary bundle
+degrees multiply by deg f , giving
+
+               µf ∗ (−KX ) (G) = deg(f )µ−KX (F),       µ−KY (TY ) = deg(f )µ−KX (TX ).
+
+This contradicts stability upstairs. The same hypotheses hold on every ﬁnite quasi-étale cover,
+proving its tangent stability as well.
+    Let I be another parallel orthogonal complex structure on Xreg . The real two-form η(u, v) =
+g(Iu, v) is parallel. Its (2, 0) part relative to J is parallel. On a KE manifold with Ric(g) = λg,
+λ > 0, contraction of Chern curvature on Λp T ∗(1,0) is −pλ Id, up to the common curvature sign
+convention. A parallel section has zero curvature action, so this contraction annihilates it. Thus no
+nonzero parallel (2, 0) part exists. This is a local identity, requiring no completeness or integration.
+    Consequently η is of type (1, 1), equivalently −JIJ = I, so IJ = JI. The parallel endomorphism
+I of TX1,0reg is holomorphic. The reﬂexive sheaf Hom(TX , TX ) extends it across the codimension-two
+complement; GAGA makes it algebraic [19, Theorem 2]. A stable sheaf is simple: the kernel/image
+slope inequalities exclude a nonzero endomorphism of intermediate generic rank. Characteristic
+polynomial coeﬃcients extend to global regular functions on normal projective X, hence are con-
+stant. Subtracting a complex eigenvalue then gives an endomorphism of deﬁcient generic rank,
+which must be zero. Thus I = c Id. The equation I 2 = −1 gives c = ±i, or I = ±J as a real
+endomorphism.
+    For sharpness take X = Pr−1 × Pr−1 , r ≥ 2, and L = O(1, 1). Then m = 2r − 2 and −KX = rL.
+The product of equally normalized Fubini–Study metrics is KE. Conjugation on only one factor
+is an isometry whose pullback complex structure is (−J1 , J2 ), neither J nor −J. This falsiﬁes
+including equality in the uniform criterion; it is not a cubic counterexample.
+
+
+
+
+                                                    3
+3    The inﬁmum-to-metric implication
+Write c
+      vol(x, X) = inf v AX (v)k vol(v) for a boundary-zero complex algebraic klt germ of dimension
+k. Ordinary volume is normalized by k! times the leading valuation-ideal colength.
+
+Proposition 3. Assume the algebraic gap bound in dimension k ≥ 2. Then an isolated singular
+Ricci-ﬂat Kähler cone with compact smooth Sasaki–Einstein link has density at most bk = 2(1 −
+1/k)k .
+
+Proof. Use the cone metric dr2 + r2 gY , with
+
+                                                    Vol(Y )
+                                     Θ(C(Y )) =                 .
+                                                   Vol(S 2k−1 )
+
+The Sasakian cone has a normal aﬃne algebraic completion; a quasi-regular CR-preserving ap-
+proximation constructs it as an orbifold line-bundle cone [4, §3]. It is Q-Gorenstein. The positive
+pluricanonical Reeb weight gives klt, by [5, Lemma 6.1]. Rationality and Q-Gorensteinness alone
+are not being substituted for this klt criterion. The cone germ has zero boundary.
+    There is a convenient way to respect the genuine top-form hypothesis in the setup of Li–Liu §6.
+If π1 (Y ) is nontrivial, Myers’ theorem gives a ﬁnite universal covering of degree d ≥ 2. Bishop’s
+inequality on that cover yields Θ(C(Y )) ≤ 1/d ≤ 1/2 ≤ bk . If Y is simply connected, the Ricci-
+ﬂat punctured cone has a global parallel holomorphic top form. Its Euler weight is k; it extends
+reﬂexively across the vertex and is equivariant for the cone torus. This satisﬁes the canonical-form
+setup of Li–Liu.
+    Li–Liu’s Theorem 1.9 (=6.2) states that the metric Reeb valuation vξ globally minimizes over
+all real valuations centered at the vertex. The theorem includes irregular Reeb ﬁelds. Their Lemma
+6.8 and limiting proof use quasi-regular structures converging smoothly; these approximants are
+not incorrectly assumed to remain Einstein. Lemma 6.3 and the same limiting argument give
+
+                             AX (vξ ) = k,      c X (v ) = k k Θ(C(Y )).
+                                                vol   ξ
+
+The ratio to the round sphere cancels the ﬁxed conversion between contact volume and Riemannian
+link volume. Both sides are continuous in the quasi-regular approximation. Thus, in the simply
+connected case,
+                                              c
+                               k k Θ(C(Y )) = vol(o, X) ≤ 2(k − 1)k .
+An upper bound on the inﬁmum alone would not imply this inequality for an arbitrary Reeb
+valuation. The global minimum is essential.
+
+   Flat Ck has density 1 and normalized volume k k ; it is excluded from the singular assertion. The
+ODP degree valuation has discrepancy k −1 and volume 2, consistent with the stated normalization.
+No direct application of Li–Liu to a cone with singular link is made.
+
+
+4    From density to polarized cubic limits
+Spotti–Sun’s constant A′ (n) is the supremum of the densities of products of a ﬂat factor with an
+isolated singular cone having smooth link. Their iterated-cone argument treats other singular links
+[3, Lemma 5.3 and Theorem 5.2]. The required transverse dimensions are exactly k = 2, . . . , n. A
+normal klt algebraic curve is smooth, and the relevant KE singular strata have complex codimension
+at least two.
+
+
+                                                  4
+    The sequence bk increases. For real t > 1,
+               d                           1                                    1
+                  log bt = log(1 − 1/t) +     = u − log(1 + u) > 0,       u=       .
+               dt                         t−1                                  t−1
+Products with Euclidean space do not change density, so the preceding proposition gives A′ (n) ≤ bn .
+   For a smooth cubic, adjunction gives
+
+                  −KX = (n − 1)H,        H n = 3,        V = (−KX )n = 3(n − 1)n .
+
+Spotti–Sun Theorem 5.2 requires
+                                       V > 12 A′ (n)(n + 1)n .
+This follows strictly from
+
+                    2 bn (n + 1) = (n − 1) (1 + 1/n) < e(n − 1) < 3(n − 1) .
+                    1           n         n         n          n          n
+
+
+Its conclusion supplies both Gorenstein canonical singularities and the Cartier root LZ with −KZ =
+(n − 1)LZ . Preserving canonical singularities alone would not preserve the required polarization.
+The theorem’s proof uses the polarized smoothability of the limit, the tangent-cone Cartier in-
+dex comparison, and quotient-smoothing/rigidity arguments. These are inherited hypotheses and
+conclusions, not consequences of density alone for arbitrary Q-Fanos.
+    Fujita’s Gorenstein del Pezzo classiﬁcation applies to (Z, LZ ) [6]. Its intermediate-cohomology
+hypothesis holds for all integer twists: Kawamata–Viehweg vanishing applies to tLZ for t ≥ 2 − n,
+since tLZ − KZ = (t + n − 1)LZ is ample. Serre duality applies the same argument at twist
+−t − (n − 1) for t ≤ −1. These ranges cover all integers for n ≥ 3, and klt makes Z Cohen–
+Macaulay. The degree-three case has h0 (Z, LZ ) = n + 2 and LZ very ample, so it embeds Z as a
+cubic hypersurface in Pn+1 . This uses the canonical Gorenstein version, without imposing an extra
+terminality assumption.
+
+
+5    Moduli continuity and the precise consequence
+Here is an explicit positivity check for the relevant CM polarization. Put S = P(H 0 (Pn+1 , O(3))),
+let h and s denote the hyperplane classes on Pn+1 and S, and put r = n − 1. The universal cubic
+has class 3h + s, and its relative anticanonical class is rh − s. In the standard Fano normalization,
+                                                                 
+                        c1 (λCM ) = −π∗ (rh − s)n+1 (3h + s)
+                                                     
+                                 = rn 3(n + 1) − r s = 2(n + 2)(n − 1)n s.
+
+The expression is computed on the product; the universal-cubic factor implements pushforward
+from the hypersurface. Any positive conventional rescaling preserves the sign. The coeﬃcient is
+strictly positive, so the CM polarization agrees in sign with the standard GIT polarization.
+    Spotti–Sun §5.2 applies their moduli continuity method from §4.2. The initial Fermat cubic is
+KE; the smooth cubic moduli locus is connected. KE existence is open there, and the cubic-limit
+and CM facts make it closed. The map from the complex GH compactiﬁcation to GIT is continuous;
+uniqueness of the KE metric on a ﬁxed Fano variety gives injectivity. Its compact image contains
+the dense smooth GIT locus, giving surjectivity. Compactness and the Hausdorﬀ analytic GIT
+topology give a homeomorphism. This is precisely the established transfer [3, Theorem 1.3(2)],
+rather than a new continuity theorem.
+
+
+                                                 5
+Corollary 4 (Audited conditional consequence). If the unrestricted algebraic normalized-volume
+gap holds in every dimension 2 ≤ k ≤ n, then for n ≥ 5 the complex GH compactiﬁcation of
+smooth KE cubic n-folds is naturally homeomorphic to Gn (C). Its closed points also identify with
+the corresponding smoothable K-polystable Fano limits in the cubic smoothing locus.
+
+   Taking the upper-bound theorem of [1] as the external input removes the dimension-by-
+dimension metric-gap hypothesis in [3, Theorem 1.3(2)]. This is the inherited complex-moduli
+deduction. The topological result alone does not upgrade this deduction to schemes, stacks, or
+nonclosed semistable points.
+
+
+6    Isometries on the singular cubic boundary
+Proof of Theorem 2. The complex comparison is the preceding corollary with [1]. Its KE boundary
+varieties are normal klt cubic hypersurfaces, and adjunction gives −KX = (n − 1)HX with HX
+ample Cartier. Since n − 1 > n/2 + 1 for n ≥ 5, Theorem 1 applies.
+    Donaldson–Sun [13, Proposition 2.14] identify the metric singular set and the analytic singular
+set in this GH-limit setting. A metric isometry F : X → Z therefore maps Xreg onto Zreg . Myers–
+Steenrod makes it a smooth Riemannian isometry locally there; this local assertion requires no
+completeness of the regular locus. Thus I = F ∗ JZ is parallel and orthogonal. Theorem 1 gives
+I = JX or −JX with a single global sign. Hence F is holomorphic on the regular locus, or
+holomorphic to Z.
+    To extend it, choose an analytic chart about F (x) and a neighborhood of x whose continuous
+image lies in that chart. Each target coordinate composed with F is holomorphic on the regular
+locus and locally bounded. Normal Riemann extension makes these functions holomorphic on the
+whole neighborhood. They equal the continuous original coordinates by density and satisfy the
+target equations. Repeat for F −1 . This gives a global holomorphic isomorphism, algebraic by
+GAGA [19, Proposition 15], with target Z or Z. The metric and analytic topologies agree in the
+GH algebraization; the local extension principle also appears in [13, Proposition 2.4].
+    Grothendieck’s Picard Lefschetz theorem [14, Exposé XII, Corollaire 3.7] applies to global
+projective complete intersections of dimension at least three, including singular ones. It gives
+Pic(X) = Z[HX ]. Canonical preservation implies (n − 1)(F ∗ HZ − HX ) = 0, taking Z in the an-
+tiholomorphic case. The Picard group is torsion free, so F ∗ HZ = HX . The complete hyperplane
+system is the cubic embedding, since the hypersurface sequence gives h0 (X, HX ) = n + 2. Accord-
+ingly these isomorphisms give precisely the corresponding projective cubic GIT points and their
+conjugates.
+    The forgetful map from the complex GH compactiﬁcation to ordinary metric GH space is
+continuous. Any metric limit of smooth KE cubics has a polarized subsequential lift by polarized
+                                         GH,metric
+compactness, so its image is exactly Mn            . The preceding isometry classiﬁcation makes its
+ﬁbers σ-orbits. Conversely complex conjugation changes both J and the real Kähler two-form by
+sign, preserving the Riemannian metric. The induced map from Gn (C)/⟨σ⟩ is therefore a continuous
+bijection from a compact space to a Hausdorﬀ space, hence a homeomorphism.
+
+   No eﬀective GH-distance estimate or modulus of continuity is asserted. The sharpness example
+in Theorem 1 concerns general Fanos; it does not establish a failure of cubic metric rigidity in
+dimension four.
+
+
+
+
+                                                6
+7    Prior results and the additional deduction
+The lower-dimensional comparison is prior work: cubic surfaces by Odaka–Spotti–Sun, cubic three-
+folds by Liu–Xu, and cubic fourfolds by Liu [8, 9, 10]. Cubic curves are not included in a positive-KE
+Fano headline. Smooth KE existence should not be advertised as newly discovered here.
+    The primary author page [11] currently links a September 30, 2026 manuscript, publicly down-
+loaded on October 6, 2026 (Paciﬁc time). Its Theorem 1.1 states the arbitrary-dimensional cubic
+comparison, including stacks and good moduli spaces; its proof uses reﬁned local inequalities and
+tangent-sheaf semistability. The actual earliest web posting is unveriﬁed, and a manuscript date
+alone does not establish public priority. Its present public availability is veriﬁed. This audit does
+not independently certify every lemma of that separate paper.
+    The complex cubic comparison is therefore prior public work. Our gap-based account instan-
+tiates the known Spotti–Sun reduction; the unrestricted gap proof belongs to OpenAI, and global
+Reeb minimization to Li–Liu.
+    Theorem 1 and the singular metric-ﬁber argument are the additional deductions recorded here.
+Smooth cubic tangent stability already follows from Peternell–Wiśniewski [16, Corollary 1.5 and
+Theorem 2.3]. Smooth positive-KE rigidity up to factorwise conjugation is explained by Spotti
+[17, Theorem 1.1.1]. Odaka–Spotti–Sun expressly give the ordinary metric quotient by conjugation
+for their singular del Pezzo-surface compactiﬁcations [8, §§1–2]. The present argument checks the
+singular higher-dimensional boundary by the Cartier-index exclusion of product covers, reﬂexive
+endomorphisms, and the GH regular-locus theorem. It uses DGP’s splitting, not a newly invented
+decomposition principle. The threshold’s product counterexample is elementary.
+    Primary-source comparisons distinguish these exact scopes; they do not certify ﬁrst public dis-
+closure of every possible equivalent corollary. We make no ﬁrst-priority claim and do not advertise
+a new solution of the complex cubic K/GIT problem. The contribution is a modest, explicitly
+attributed singular metric-rigidity criterion and its boundary application.
+
+
+References
+ [1] OpenAI, The ordinary-double-point gap in every dimension, OpenAI Math Release preprint,
+     September 24, 2026. Pinned manuscript. Sole companion: The normalized-volume gap in di-
+     mension four.
+
+ [2] C. Li and Y. Liu, Kähler–Einstein metrics and volume minimization, Adv. Math. 341 (2019),
+     440–492, arXiv:1602.05094v3.
+
+ [3] C. Spotti and S. Sun, Explicit Gromov–Hausdorﬀ compactiﬁcations of moduli spaces of Kähler–
+     Einstein Fano manifolds, Pure Appl. Math. Q. 13 (2017), 477–515, arXiv:1705.00377v1.
+
+ [4] C. van Coevering, Ricci-ﬂat Kähler metrics on crepant resolutions of Kähler cones,
+     arXiv:0806.3728v3.
+
+ [5] T. C. Collins and G. Székelyhidi, Sasaki–Einstein metrics and K-stability, Geom. Topol. 23
+     (2019), 1339–1413, doi:10.2140/gt.2019.23.1339.
+
+ [6] T. Fujita, On singular del Pezzo varieties, in Algebraic Geometry, Lecture Notes in Math. 1417,
+     Springer, 1990, 117–128, doi:10.1007/BFb0083337.
+
+ [7] C. Li, X. Wang and C. Xu, On the proper moduli spaces of smoothable Kähler–Einstein Fano
+     varieties, Duke Math. J. 168 (2019), 1387–1459, arXiv:1411.0761v4.
+
+                                                  7
+ [8] Y. Odaka, C. Spotti and S. Sun, Compact moduli spaces of del Pezzo surfaces and Kähler–
+     Einstein metrics, J. Diﬀerential Geom. 102 (2016), 127–172, arXiv:1210.0858.
+
+ [9] Y. Liu and C. Xu, K-stability of cubic threefolds, Duke Math. J. 168 (2019), 2029–2073,
+     arXiv:1706.01933.
+
+[10] Y. Liu, K-stability of cubic fourfolds, J. Reine Angew. Math. 786 (2022), 55–77,
+     arXiv:2007.14320v2.
+
+[11] B. Kong, Y. Shen, J. Zhao and M. Zhao, K-moduli of cubic hypersurfaces, manuscript dated
+     September 30, 2026, primary author page, public PDF. Access checked October 6, 2026 Paciﬁc
+     time.
+
+[12] S. Druel, H. Guenancia and M. Păun, A decomposition theorem for Q-Fano Kähler–Einstein
+     varieties, Comptes Rendus Math. 362, Special issue S1 (2024), 93–118, doi:10.5802/crmath.612.
+
+[13] S. Donaldson and S. Sun, Gromov–Hausdorﬀ limits of Kähler manifolds and algebraic geometry,
+     II, J. Diﬀerential Geom. 107 (2017), 327–371, arXiv:1507.05082v1.
+
+[14] A. Grothendieck, Cohomologie locale des faisceaux cohérents et théorèmes de Lefschetz locaux et
+     globaux (SGA 2), North-Holland, 1968; corrected edition by M. Raynaud, arXiv:math/0511279.
+
+[15] The Stacks Project Authors, The Stacks Project, tag 0BEM, Lemma 33.45.1; tag 0BEL, Section
+     33.45. Accessed October 6, 2026 Paciﬁc time.
+
+[16] T. Peternell and J. A. Wiśniewski, On stability of tangent bundles of Fano manifolds with
+     b2 = 1, J. Algebraic Geom. 4 (1995), 363–384, arXiv:alg-geom/9306010v2.
+
+[17] C. Spotti, Degenerations of Kähler–Einstein Fano manifolds, doctoral thesis, 2012,
+     arXiv:1211.5334.
+
+[18] C. Hacon, Math 7800 notes, 2018, primary notes, Theorem 2.22 (klt Kawamata–Viehweg
+     vanishing).
+
+[19] J.-P. Serre, Géométrie algébrique et géométrie analytique, Ann. Inst. Fourier 6 (1956), 1–42,
+     primary article.
+
+
+
+
+                                                 8
+

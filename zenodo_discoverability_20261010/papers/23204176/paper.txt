@@ -1,0 +1,178 @@
+                 Rational Hodge classes on mixed products
+                               of K3 moduli spaces
+                                                  Alec Kriebel∗
+
+                                                October 6, 2026
+
+
+
+                                                     Abstract
+              Combining OpenAI’s rational Hodge theorem for arbitrary mixed products of projective
+          K3 surfaces with Bülles’ Chow-motive decomposition, we record rational Hodge in every codi-
+          mension for ﬁnite mixed products of the smooth projective K3 moduli spaces covered by that
+          decomposition. The factors may have diﬀerent K3 bases and include Hilbert schemes, twisted
+          stable-sheaf moduli, and eligible moduli of Bridgeland-stable objects. We give the explicit pull-
+          push argument, retaining smoothness, projectivity, and stability hypotheses. The contribution
+          is an assembled corollary of the cited results; it supplies neither a new proof of the base K3
+          theorem nor a new motivic reduction.
+
+
+1        Statement and provenance
+For a smooth projective complex variety X, write
+
+                                      Hdgp (X) = H 2p (X, Q) ∩ H p,p (X, C).
+
+Rational Hodge in codimension p means surjectivity of cl : CHp (X)Q → Hdgp (X). Here Chow
+groups and all correspondences have rational coeﬃcients.
+
+Theorem 1. Let S1 , . . . , Sr be complex projective K3 surfaces and let αi ∈ Br(Si ). For each i, let
+Mi be a smooth projective moduli space of Gieseker-stable αi -twisted sheaves, or a smooth projective
+moduli space of σi -stable objects in Db (Si , αi ) for a generic Bridgeland stability condition σi , as in
+Bülles’ Theorem 0.1 [3]. Then the rational Hodge conjecture holds in every codimension on
+
+                                                         ∏
+                                                         r
+                                                   X=          Mi .
+                                                         i=1
+
+The K3 bases may be diﬀerent or repeated. In particular, the conclusion holds for every ﬁnite mixed
+                            [n ]
+product of Hilbert schemes Si i , ni ≥ 0.
+
+    The sheaf data and polarization deﬁning each Gieseker moduli problem are ﬁxed. Genericity
+for Bridgeland stability is relative to the ﬁxed numerical data of that moduli problem. Smoothness
+and projectivity of the actual stable moduli space are hypotheses, rather than conclusions about
+arbitrary numerical data or stability conditions. The theorem does not add a primitivity or ﬁne-
+moduli assumption to Bülles’ statement. Its exact stable-object scope is that of the cited theorem.
+    ∗
+        ORCID: 0009-0001-9320-500X.
+
+
+                                                         1
+   The principal input is OpenAI’s theorem [7, Theorem 1.1] that rational Hodge holds on every
+ﬁnite product of projective complex K3 surfaces, with arbitrary distinct or repeated factors. We
+use the public OpenAI Math Release snapshot at the following commit, accessed October 6, 2026:
+                          adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+Manuscript cover dates in the references are not assertions about their earliest public disclosure.
+    Arapura had already proved conditional Hodge transfers to Hilbert schemes and K3 sheaf mod-
+uli [1, Theorems 5.4 and 5.7(3)], and a broader transfer for motivated varieties [2, Lemma 4.2 and
+Theorems 7.4, 7.8]. Bülles supplies the precise unconditional Chow-motive splitting for twisted
+sheaves and the eligible Bridgeland moduli [3, Theorem 0.1]. The earlier OpenAI quadratic-locus
+companion already records the moduli and self-power application on its restricted locus [5, Corol-
+lary 9.5]. Its general exact Kuga–Satake criterion, together with the later universal Kuga–Satake
+theorem [6], also yields the unrestricted-base self-power application. We record the mixed-moduli
+assembly: the extra mixed-base quantiﬁer is supplied by [7], and the reduction itself is inherited.
+We make no claim of a ﬁrst proof or substantial independent novelty.
+
+
+2      The transfer with degrees made explicit
+For a smooth projective V of dimension dV and a smooth projective W , a correspondence A ∈
+CHa (V × W )Q acts by                           (          )
+                                  A∗ z = (prW )∗ pr∗V z · A .
+On cohomology this sends a rational (p, p) class to a rational (p + a − dV , p + a − dV ) class. Cycle
+classes commute with this action. If B ∈ CHb (W × V )Q , then B ◦ A has codimension a + b − dim W
+in V × V .
+Proposition 2. Suppose a smooth projective X is a direct summand of a ﬁnite sum of Tate-
+twisted rational Chow motives of smooth projective varieties Kj . If rational Hodge holds in every
+codimension on each Kj , it holds in every codimension on X.
+Proof. The split maps and projectors give homogeneous rational algebraic correspondences
+
+                         Aj ∈ CHaj (X × Kj )Q ,          Bj ∈ CHbj (Kj × X)Q ,
+
+with                                                        ∑
+                         aj + bj = dim X + dim Kj ,               B j ◦ Aj = ∆ X .                 (1)
+                                                              j
+
+Using the actual cycle codimensions avoids any convention-dependent sign for a Tate twist. Let
+z ∈ Hdgp (X) and put qj = p + aj − dim X. The class Aj∗ z lies in Hdgqj (Kj ). If qj is in the
+cohomological range, choose Zj ∈ CHqj (Kj )Q with cl(Zj ) = Aj∗ z by the assumed Hodge conjecture.
+Outside that range the target is zero, and take Zj = 0. Then
+                          ∑                                         ∑
+                     Z=        Bj∗ Zj ∈ CHp (X)Q ,        cl(Z) =        Bj∗ Aj∗ z = z.
+                           j                                         j
+
+The codimension is qj +bj −dim Kj = p by (1), and the ﬁnal equality uses the diagonal identity.
+
+Proof of Theorem 1. First assume that all factors are nonempty and positive dimensional. Bülles
+gives split maps                        ⊕       k
+                             h(Mi ) −→      h(Si ij )(tij ) −→ h(Mi )
+                                           j∈Ji
+
+
+                                                     2
+whose composite is the identity, with ﬁnite Ji , 1 ≤ kij ≤ dim Mi , and integers tij . Tensor these
+maps in rational Chow motives and distribute the ﬁnite sums. The motive of X is a summand of
+a ﬁnite sum of Tate twists of motives of
+                                   ∏
+                                   r
+                                          kiji                                  ∏
+                            KJ =         Si      ,   J = (j1 , . . . , jr ) ∈       Ji .
+                                   i=1                                          i
+
+At the level of correspondences these are exterior products of the individual split maps; their
+composite sum is the exterior product of the diagonals, hence ∆X . Their codimensions add, so
+they satisfy (1). The rational Hodge theorem for mixed K3 products [7] applies to every KJ .
+Proposition 2 therefore proves the claim.
+     An empty factor gives an empty product. A smooth projective zero-dimensional factor over C
+is a ﬁnite disjoint union of points; remove it on each component and apply the preceding argument.
+The empty product is a point. Codimensions outside [0, dim X] have zero target. For n ≥ 1,
+S [n] is the smooth projective moduli of rank-one ideal sheaves with Mukai vector (1, 0, 1 − n) and
+is in the untwisted sheaf case. For n = 0 it is a point. This proves the stated Hilbert-scheme
+consequence.
+
+Remark 3 (Non-ﬁne and twisted moduli). The split maps used here are Bülles’ algebraic Chow
+correspondences. We do not construct them by presuming that an honest universal family exists. The
+cited construction uses quasi-universal/twisted data and the normalized diagonal identity underlying
+Markman’s result [4, Section 3]. Raw duplication of a universal family does not preserve its Ext
+diagonal formula: multiplicities must be normalized. The present argument needs only the actual
+rational motive splitting, which already covers the Brauer classes in Theorem 1.
+
+
+3    Scope and veriﬁcation
+The transfer explicitly uses Hodge for mixed products KJ ; separate self-power theorems alone do
+not supply this premise. Conversely, S [1] = S shows that the unrestricted mixed-moduli conclusion
+includes the mixed-K3 base theorem. Thus, given Bülles’ established reduction, these two universal
+assertions are equivalent. This explains exactly where the principal mathematical input lies.
+    No claim is made about arbitrary deformations of K3[n] type, singular moduli or semistable com-
+pactiﬁcations, moduli on arbitrary abelian surfaces, the integral or generalized Hodge conjecture,
+or ﬁnite-dimensionality of Chow motives.
+    The veriﬁcation materials distinguish the explicit correspondence argument from the unformal-
+ized geometric input in [7]. The upstream Kuga–Satake Lean module checks rational Cliﬀord/tensor
+identities; it does not formalize algebraic cycles, the universal Kuga–Satake theorem, or the the-
+orem of this note. Reproducible small linear-algebra and sign checks are supporting evidence for
+parts of the upstream audit, not certiﬁcates for its full geometry.
+
+AI use and review status. AI tools were used extensively in research, source and priority checks,
+drafting, and veriﬁcation. The cited OpenAI manuscripts are attributed to OpenAI according to
+their supplied citation information. This note has not undergone conventional human peer review
+or refereeing. Automated adversarial reviews are not human peer review.
+
+
+References
+[1] D. Arapura, Hodge cycles on some moduli spaces, arXiv:math/0102070v5, 2002.
+
+                                                       3
+[2] D. Arapura, Motivation for Hodge cycles, Adv. Math. 207 (2006), 762–781,
+    doi:10.1016/j.aim.2006.01.005.
+
+[3] T.-H. Bülles, Motives of moduli spaces on K3 surfaces and of special cubic fourfolds,
+    Manuscripta Math. 161 (2020), 109–124, arXiv:1806.08284v1, doi:10.1007/s00229-018-1086-0.
+
+[4] E. Markman, Generators of the cohomology ring of moduli spaces of sheaves on symplectic
+    surfaces, J. reine angew. Math. 544 (2002), 61–82, arXiv:math/0009109v4.
+
+[5] OpenAI, Algebraic Kuga–Satake correspondences and Hodge conjectures on a K3 quadratic
+    locus, OpenAI Math Release preprint, cover date September 30, 2026, pinned public
+    manuscript.
+
+[6] OpenAI, Algebraicity of Kuga–Satake Correspondences for K3 Surfaces, OpenAI Math Release
+    preprint, cover date October 3, 2026, pinned public manuscript.
+
+[7] OpenAI, The rational Hodge conjecture for products of K3 surfaces, OpenAI Math Release
+    preprint, cover date October 4, 2026, pinned public manuscript.
+
+
+
+
+                                              4
+

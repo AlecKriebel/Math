@@ -1,0 +1,208 @@
+                Irreducibility of exposed-point varieties of discotopes
+                                                   Alec Kriebel∗
+
+                                      September 30, 2026         (version 1.0)
+
+
+
+                                                      Abstract
+              We prove that the complex Zariski closure of the exposed points of any finite Minkowski sum
+          of ellipsoidal discs of dimension at least two is irreducible. No genericity or full-dimensionality
+          assumption is needed. This proves the exposed-point irreducibility conjecture stated by Meroni
+          in the 2023 Oberwolfach report. Under an explicit generic condition on the summand spans, we
+          also prove that this closure equals the purely nonlinear part defined by Gesmundo and Meroni,
+          thereby proving their 2022 irreducibility conjecture. The proof uses a connected real-analytic
+          support-point parametrization. A nongeneric example shows why the two varieties must be
+          distinguished.
+
+Status. Unrefereed preprint. Generative AI was used extensively in developing and checking the
+result and preparing this manuscript; no human peer review or formal proof certification is claimed.
+
+
+1        The conjectures and the result
+A disc is a linear image of a closed Euclidean unit ball. Thus it is an ellipsoidal ball in its linear
+span and is centered at the origin. A discotope is a finite Minkowski sum D = D1 + · · · + DN ⊂ Rd ,
+with N ≥ 1. A point of a compact convex set K is exposed if it uniquely maximizes some nonzero
+real linear functional on K. Write
+                                                              Zar,C
+                                           E(K) = Exp(K)              ⊂ Cd .
+
+Meroni’s Conjecture 1 in [3, p. 830] asks whether E(D) is irreducible for generic discotopes whose
+summands have dimension at least two. We prove the following stronger statement.
+
+Theorem 1. Let D = D1 + · · · + DN ⊂ Rd be a discotope, with every Di of dimension at least two.
+Then E(D) is irreducible over C, without genericity or full-dimensionality assumptions.
+                                                                                      ∑
+    Gesmundo and Meroni proved irreducibility for generic discotopes in the range i (dim Di −
+1) ≤ d − 1 (Theorem 4.3), and for generic sums of two-dimensional discs (Theorems 4.3 and 6.1).
+Remark 3.4 treats sums whose summands are all full-dimensional. Their Section 5 already uses the
+support-gradient parametrization. The contribution here is the general irreducibility conclusion for
+arbitrary summand ranks at least two, together with the generic identification of the two varieties.
+The proof uses elementary analytic and convex facts rather than an asserted irreducibility theorem
+for a complex critical locus.
+    ∗
+        Independent researcher. ORCID: 0009-0001-9320-500X.
+
+
+
+
+                                                          1
+    There is a distinction between this target and the earlier formulation. Gesmundo and Meroni
+define the purely nonlinear part [1, Definition 3.3] by
+                                    Zar,C              ∑
+                  S(D) = D∂ ∩ ∂D            ,   D∂ =       ∂ Li D i ,   Li = span Di ,             (1)
+                                                       i
+
+where each summand boundary is relative to its own span. Their Conjecture 8.2 asks for S(D) to
+be irreducible for generic discotopes with no one-dimensional summands. In Section 3 we prove
+S(D) = E(D) under an explicit condition holding generically, which proves that conjecture too. The
+two varieties can differ outside generic position, as Section 4 demonstrates. We do not address the
+separate questions about degrees, birationality, or the entire complex critical locus of the addition
+map.
+
+
+2   A connected analytic parametrization
+We first record two elementary facts. The analytic fact is a standard identity-theorem argument.
+Kucharz and Kurdyka explicitly record its real Zariski version in the proof of Proposition 4.3 of [2,
+p. 95]. We include the complex version for completeness.
+
+Lemma 2. The complement in Rd of a finite union of real linear subspaces of codimension at least
+two is nonempty, open, and path connected.
+
+Proof. A finite union of proper real subspaces cannot fill Rd : choose a nonzero linear form vanishing
+on each subspace; their product is a nonzero polynomial. The complement is open because the union
+is closed. Let x, y be in the complement. If the excluded subspaces are Mi , each Mi + Rx and
+Mi + Ry has dimension at most d − 1. Choose z outside their finite union. If (1 − t)x + tz ∈ Mi for
+0 < t ≤ 1, then z ∈ Mi + Rx, a contradiction. The same holds for the segment from y to z. These
+two segments give the required path.
+
+Lemma 3. If U ⊂ Rd is nonempty, open, and connected and F : U → Rm is real analytic, the
+complex Zariski closure of F (U ) is irreducible.
+
+Proof. Let I ⊂ C[X1 , . . . , Xm ] be the ideal of polynomials vanishing on F (U ). It is proper. If
+P Q ∈ I and P ∈   / I, there is a nonempty open subset of U on which P ◦ F ̸= 0, so Q ◦ F = 0
+there. The real-analytic identity theorem, applied to the real and imaginary parts on connected U ,
+implies Q ◦ F = 0 throughout U . Hence I is prime. It is exactly the vanishing ideal of the complex
+Zariski closure, so that closure is irreducible.
+   For completeness, analytic uniqueness here requires only connected openness. The points where
+a real-analytic function vanishes on a neighborhood form an open set. At a limit point in U ,
+continuity of every derivative makes its Taylor coeﬀicients zero; its convergent Taylor series makes
+the function zero on a neighborhood. Thus that set is also relatively closed, and connectedness
+completes the argument.
+
+Proof of Theorem 1. Choose injective linear maps Ai : Rmi → Rd , with mi = dim Di ≥ 2, such that
+Di = Ai (B mi ), and put Qi = Ai ATi . Such maps exist by restricting a singular-value decomposition
+to its nonzero singular directions. For a normal u ∈ Rd , the support value of Di is
+                                                        √
+                                      hi (u) = ∥ATi u∥ = uT Qi u.
+
+
+
+
+                                                  2
+When ATi u ̸= 0, equality in Cauchy–Schwarz gives the unique maximizing point
+
+                                                 Ai ATi u    Qi u
+                                     pi (u) =             =√         .                               (2)
+                                                 ∥Ai u∥
+                                                    T
+                                                             uT Qi u
+
+When ATi u = 0, the entire positive-dimensional disc maximizes.
+    The face of a Minkowski sum exposed by u is the sum of the individual faces: support values
+add, and equality in their sum is equivalent to equality term by term. A sum of nonempty faces is a
+singleton exactly when each face is a singleton. Indeed, fixing a point in every other face translates
+any nonsingleton face injectively into the sum. Therefore, with
+                                      ∪                               ∑       Qi u
+                           U = Rd \         ker ATi ,       F (u) =       √             ,            (3)
+                                       i                              i       uT Qi u
+
+we have the exact set equality Exp(D) = F (U ). The origin is excluded from U , so every normal
+used is nonzero.
+   Every excluded kernel has codimension mi ≥ 2. Lemma 2 makes U connected and open. On U ,
+every radicand is ∥ATi u∥2 > 0. The positive real inverse square root is real analytic on (0, ∞), so
+F is real analytic on all of U . Lemma 3 now proves the assertion.
+
+    This argument allows repeated discs, coincident spans, dependent quadratic radicals, noninjec-
+tive support parametrizations, and lower-dimensional sums. It neither chooses a global complex
+square-root branch nor assumes a rank condition on the differential of F .
+
+
+3    The generic purely nonlinear part
+Theorem 4. Suppose D is full-dimensional, every Di has dimension at least two, and its summand
+spans satisfy     (∑ )            ( ∑            )
+              dim      Li = min d,        dim Li    for every J ⊆ {1, . . . , N }.        (GP)
+                        i∈J                    i∈J
+
+Then S(D) = E(D); in particular S(D) is irreducible over C.
+Proof. Every exposed point is a sum∑  of the points (2), each on its relative summand boundary, so
+E(D) ⊆ S(D). Conversely, take x = i xi ∈ D∂ ∩ ∂D, where xi ∈ ∂Li Di . A supporting hyperplane
+at x has a nonzero normal u. Since support values add and each support deficit is nonnegative,
+every xi maximizes u on its summand. Let J = {j : ATj u = 0}. For i ∈          / J, uniqueness gives
+xi = pi (u).
+    All Lj , j ∈ J, lie in u⊥ . Condition (GP) forces their total dimension to be at most d − 1:
+otherwise their sum would have dimension d. It then gives equality between the dimension of their
+sum and the sum of their dimensions. Thus the concatenated matrix AJ = [Aj ]j∈J is injective and
+ATJ is surjective. Write xj = Aj vj with ∥vj ∥ = 1; the relative boundary condition and injectivity
+justify this representation. Choose w ∈ Rd such that ATj w = vj for every j ∈ J.
+    If J is empty, x is already exposed. Otherwise, for ε > 0, set uε = u + εw. Then
+
+                           ATj uε = εvj ,        pj (uε ) = Aj vj = xj    (j ∈ J).
+
+For every remaining index, ATi uε stays nonzero when ε is suﬀiciently small, and pi (uε ) → pi (u) = xi .
+Finiteness gives one such bound for all indices. Consequently uε ∈ U and F (uε ) → x. Every point
+generating S(D) is a Euclidean limit of exposed points. Since the complex algebraic set E(D) is
+Euclidean closed, S(D) ⊆ E(D). Theorem 1 completes the proof.
+
+                                                        3
+     For prescribed sizes mi ≤ d, (GP) is a nonempty real Zariski-open condition on the full-rank
+matrices Ai . Each failure of maximal concatenated rank is defined by minors. A simultaneous real
+witness is obtained by partitioning distinct Vandermonde columns (1, t, . . . , td−1 )T into blocks of
+sizes mi . Every set of at most d columns is independent, and every larger set has rank d. When
+∑
+   i mi ≥ d, this also ensures full dimensionality. This matches the bases-parametrized genericity
+convention in [1, Section 2]. As in that paper, a smaller ambient span may be replaced by the span
+of the discotope. Thus Theorem 4 proves its Conjecture 8.2 for every feasible generic type with no
+one-dimensional summands.
+
+
+4   Why the hypotheses and the distinction matter
+One-dimensional summands cannot be admitted indiscriminately. The interval [−1, 1] has exposed-
+point closure {−1, 1}, which is reducible. The planar sum of the unit disc and [−a, a]e1 , a > 0, has
+exposed points on two open semicircles. Its complex Zariski closure is the union of the two distinct
+conics (X − a)2 + Y 2 = 1 and (X + a)2 + Y 2 = 1.
+   Nor does S = E hold in arbitrary nongeneric position. In R3 , take two identical unit discs in
+the xy-plane and one in the xz-plane. The point e3 = e1 + (−e1 ) + e3 belongs to D∂ ∩ ∂D, since
+the normal e3 exposes the face 2Bxy2 + e . But E(D) lies in the zero set of
+                                         3
+
+                     P (X, Y, Z) = (X 2 + Y 2 + Z 2 − 5)2 − 4(4 − Y 2 )(1 − Z 2 ).
+Indeed, for regular normals, write r2 = u21 + u22 , s2 = u21 + u23 , a = 2u1 /r, and b = u1 /s. Then
+X = a + b, a2 + Y 2 = 4, and b2 + Z 2 = 1, giving X 2 + Y 2 + Z 2 − 5 = 2ab and P = 0. As
+P (0, 0, 1) = 16, we obtain e3 ∈ S(D) \ E(D). This is algebraic separation, not merely a failure of
+exposure by a selected normal.
+
+
+Verification and use of AI
+The accompanying verification package contains the manuscript source, exact symbolic checks
+with a pinned environment, source provenance, and independent adversarial reviews. The finite
+checks verify the separating polynomial, concrete general-position perturbations (including non-
+orthonormal ellipses), and boundary examples. They corroborate the formulas and do not replace
+the proofs of the universal theorems above.
+    Generative AI tools were used extensively for proof development, literature triage, manuscript
+preparation, adversarial mathematical review, and symbolic-check design. AI review is not human
+peer review or a formal proof certificate. This preprint is unrefereed. A dated priority audit is
+included in the package; historical first priority is not asserted.
+
+
+References
+[1] F. Gesmundo and C. Meroni, The Geometry of Discotopes, Le Matematiche 77(1) (2022), 143–
+    171. doi:10.4418/2022.77.1.8. arXiv:2111.01241.
+[2] W. Kucharz and K. Kurdyka, Rationality of semialgebraic functions, in Analytic and Algebraic
+    Geometry 2, Łódź University Press, Łódź, 2017, 85–96. doi:10.18778/8088-922-4.14.
+[3] C. Meroni, Two convex conjectures for different flavours, in New Directions in Real Algebraic
+    Geometry, Oberwolfach Reports 20 (2023), Report 15/2023, 829–832; Conjecture 1, p. 830.
+    doi:10.4171/OWR/2023/15.
+
+                                                  4
+

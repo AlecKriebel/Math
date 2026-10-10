@@ -1,0 +1,285 @@
+                      Binary consequences of relation-liveness
+                              automata lower bounds
+                                               Alec Kriebel
+                                       ORCID: 0009-0001-9320-500X
+
+                                            October 6, 2026
+
+
+                                                 Abstract
+          We give explicit ﬁxed-binary-alphabet consequences of OpenAI’s two relation-liveness lower
+      bounds. Encoding each relation on h points by its h2 adjacency bits gives a language recognized
+      by a one-way nondeterministic automaton with Nh = (3h3 − h)/2 + 2 states. Every equivalent
+      two-way deterministic automaton, and every two-way nondeterministic automaton for its full
+                                                   1/3
+      binary complement, requires 2Ω(h) = 2Ω(Nh ) states. We specify all transition rules, including
+      an exact sh2 -state pullback for an s-state binary target. The binary language rejects incomplete
+      blocks; a fooling set proves that its one-way nondeterministic state complexity is Θ(h3 ). The
+      exponential obstructions are inherited from the two upstream theorems; binary adjacency coding
+      is established machinery.
+
+
+1    Scope, provenance, and conventions
+Sakoda and Sipser introduced the state cost of deterministic simulation of two-way nondeterministic
+automata [1]. Here we take as inputs the two explicit relation-language lower bounds in [2, 3]. Both
+sources state their growing-alphabet scope. Our contribution is an explicit transfer to one binary
+alphabet with full-word semantics, exact state counts, and a matching cubic order for the chosen
+source encoding. We do not give an independent proof of the upstream exponential obstructions.
+    Adjacency-bit encoding already appears in Kapoutsis’s discussion of binary one-way liveness [4,
+Section 5] and [5, Section 8], there for deterministic targets with few reversals. That discussion does
+not specify the treatment of incomplete binary blocks. Our cubic source-size claim concerns exactly
+the total language deﬁned below. Other encodings can have diﬀerent source costs. A public binary-
+construction record [9] also uses standard coding and target pullback, with a quadratic inherited
+lower bound. Neither antecedent supplies the unrestricted exponential inputs used here. We make
+no claim to have invented binary coding or to have independently resolved the base conjecture.
+    For comparison, Adeogun–Kapoutsis [6, Theorem 1] proved a quadratic unrestricted determin-
+istic lower bound for relation liveness. Their later method limitation [7, Theorem 2.1] bounds a
+particular chain method, rather than every possible proof. Guillon–Prigioniero–Taheri [8, Section 1]
+describe read-only 2NFA complementation as open; their polynomial complementation theorem
+uses 1-limited automata, which may rewrite cells. Our results concern read-only machines. The
+upstream manuscript dates are September 25, 2026; the public repository release was veriﬁed on
+October 6, 2026. These dates should not be conﬂated with priority claims.
+    Our marked model has one initial state and a set of accepting states. The head starts on the
+left endmarker of ◁x▷; the two endmarkers are distinct, including on empty input. A transition
+depends on the state and scanned symbol, chooses a new state and a move in {−1, 0, 1}, and moves
+
+
+                                                     1
+the head accordingly. Outward moves at endmarkers are disabled. Partial transitions are allowed.
+Acceptance is reachability of an accepting state by a ﬁnite run, including zero transitions. Missing
+transitions and inﬁnite nonaccepting runs do not accept. A 2DFA has at most one transition per
+row; a 2NFA may have several. All states are counted. Our one-way source moves right on every
+body bit; its only stay is the accepting move at the right marker. We also give an ordinary epsilon-
+free 1NFA, whose acceptance is tested after consuming the whole word. The distinction matters
+for empty input. Requiring a positive ﬁnite accepting run is also covered below.
+
+
+2     Language and exact source compiler
+Fix h ≥ 2, let H = {0, . . . , h − 1}, and let Σh be all relations on H. Products are in path order:
+(p, r) ∈ RS exactly when some q has (p, q) ∈ R and (q, r) ∈ S. Write
+
+                     Lh = {R1 · · · Rk ∈ Σ∗h : R1 · · · Rk 6= ∅},      R1 · · · R0 = IH .
+
+Set b = h2 . The bit at oﬀset t = ph + q of enc(R) is 1 exactly when (p, q) ∈ R. Extend enc by
+concatenation, with enc(ε) = ε, and deﬁne on every binary word
+
+                                        Kh = enc(Lh ) ⊆ {0, 1}∗ .
+
+Every length-b binary block codes exactly one relation. Thus Kh rejects all words whose lengths
+are not divisible by b, and otherwise tests nonemptiness of the decoded product. It contains ε.
+Lemma 1. Kh has a marked one-way NFA with exactly Nh = (3h3 − h)/2 + 2 states, and an
+ordinary epsilon-free 1NFA with Nh − 1 states.
+Proof. The marked states are a nonaccepting initial state i, an accepting state a, and
+
+          U (p, t) (0 ≤ p < h, 0 ≤ t < (p + 1)h),          V (q, t)   (0 ≤ q < h, q + 1 ≤ t < b).
+
+The oﬀset is the next bit to be read. U retains the preceding vertex before choosing an outgoing
+                                                                             ◁,+1
+edge; V retains the chosen next vertex. The rules at the left marker are i −−−→ U (p, 0) for all
+                                                                                            ▷,0
+p ∈ H. At the right marker, precisely the states U (p, 0) have the rule U (p, 0) −−→ a. State a has
+no rules. For a body bit c, give U (p, t) the following rules:
+    • If t < (p + 1)h − 1, it may skip the bit and move right to U (p, t + 1).
+
+    • If c = 1 and bt/hc = p, put q = t mod h. It may move right to V (q, t + 1) when t < b − 1,
+      and to U (q, 0) when t = b − 1.
+From V (q, t) either body bit moves right to V (q, t + 1) for t < b − 1, and to U (q, 0) for t = b − 1.
+All rules not listed are absent. Every listed destination is in the displayed state ranges: a chosen
+edge at oﬀset ph + q gives t + 1 ≥ q + 1. There are no left moves.
+    A surviving branch through a full block must choose exactly one 1 in the row of its preceding
+vertex. It then arrives at the next block as U (q, 0), precisely when the block relation contains that
+edge. Skipping the entire row is impossible because the last row oﬀset has no skip rule. Induction
+on complete blocks identiﬁes surviving boundary vertices with endpoints of paths through the
+decoded relations. Only complete boundaries can accept at the right marker. This proves rejection
+of partial blocks as well as correctness on valid words. On empty input, the initial right move and
+the accepting stay give acceptance because H is nonempty. All accepting runs have at least two
+transitions, so positive-run acceptance gives the same source language.
+
+                                                     2
+    The two families have sizes
+                      ∑
+                      h−1
+                                         h3 + h2       ∑
+                                                       h−1
+                                                                                  h2 + h
+                            (p + 1)h =           ,           (b − q − 1) = h3 −          .
+                      p=0
+                                            2          q=0
+                                                                                     2
+
+Adding i, a proves the marked count. For an ordinary 1NFA, retain U, V , replace i, a by one new
+initial state i0 , and make i0 and all U (p, 0) ﬁnal. Its bit row at i0 is the union of the bit rows at
+U (p, 0) over all p. All other bit rows are as above, with their right moves interpreted as ordinary
+consumption. There are no transitions to i0 . The empty word accepts at i0 ; every nonempty word
+simulates the ﬁrst bit from some starting vertex and then the marked source’s bit computation.
+Final states test full consumption at a complete boundary. The count is Nh − 1.
+
+Proposition 2. Every ordinary 1NFA recognizing Kh has at least h3 states. The same bound holds
+for a marked right-only source in our ﬁnite-run model. Consequently the one-way state complexity
+of this strict-block language is Θ(h3 ).
+Proof. Let Pp = {(p, p)} and z = enc(IH ). For p ∈ H and 0 ≤ t < b, put
+                         xp,t = enc(Pp ) pref t (z),       yp,t = suﬀ b−t (z) enc(Pp ).
+Here the preﬁx and suﬃx lengths add to b, including t = 0. For each matching pair, xp,t yp,t encodes
+Pp IH Pp = Pp , so belongs to Kh . A crossed pair with t 6= u has length 3b + t − u, which is not
+divisible by b, since 0 < |t − u| < b. When t = u but p 6= r, the crossed word encodes Pp IH Pr = ∅.
+Thus all hb = h3 diagonal pairs accept and all oﬀ-diagonal crossed pairs reject.
+    Choose an accepting run for each diagonal pair and its state at the cut between x and y. If
+two cuts had the same state, splicing the preﬁx of one run to the suﬃx of the other would accept
+a crossed word. The cuts must therefore occupy distinct states. This is the standard fooling-set
+argument, here with its explicit witnesses. For a marked source, an accepting run cannot accept
+before visiting the right marker: otherwise the same ﬁnite preﬁx of its run accepts an extension by
+one bit, whose length is malformed. Such a run therefore has a cut after the preﬁx before reading
+the suﬃx, and the same splicing argument applies. Stay moves, if allowed in a right-only source,
+can be assigned to either side of the cut and do not aﬀect the argument.
+
+
+3    Exact pullback for all two-way targets
+Lemma 3. An s-state binary 2NFA T has an explicit sb-state 2NFA T enc over Σh satisfying
+                               T enc accepts w       ⇐⇒      T accepts enc(w).
+Determinism is preserved. This equivalence holds for both zero-step and positive-run acceptance,
+with partial transitions and nonaccepting inﬁnite runs allowed.
+Proof. If Q is the state set of T , use Q × {0, . . . , b − 1}. The initial state is (q0 , 0); (q, t) accepts
+exactly when q accepts. At a relation letter R, inspect its bit at oﬀset t. For every transition
+(q, c) 7→ (q 0 , d) of T , where c = enc(R)t , use
+                                        d       new oﬀset real move
+                                        0           t          0
+                                  +1, t < b − 1   t+1          0
+                                  +1, t = b − 1     0        +1
+                                   −1, t > 0      t−1          0
+                                   −1, t = 0      b−1        −1
+
+                                                       3
+with ﬁrst state coordinate q 0 . At the left marker, use T ’s left-marker row independently of t: a stay
+retains t, and a right move sets it to 0 and moves right. At the right marker, use its right-marker
+row: a stay retains t, and a left move sets it to b − 1 and moves left. Outward moves are disabled
+as in T . No transition is supplied for a missing row.
+     On a relation word of length k, map a conﬁguration at real body cell j ∈ {1, . . . , k} with state
+(q, t) to the binary conﬁguration with state q at position (j − 1)b + t + 1. At either real marker,
+map all phases to the corresponding binary marker with state q. The rules above show that each
+transition maps to exactly one transition of T , and that every transition of T from the image
+conﬁguration lifts from each corresponding pullback conﬁguration. Marker phases need not be
+unique, because marker rows ignore them. On the empty word, moves between its adjacent markers
+remain correct under this mapping. Starting from the prescribed initial states, induction on run
+length proves ﬁnite-run equivalence, with the same length. Acceptance and time-zero acceptance
+are preserved; hence positive-run acceptance is preserved too. Transition-by-transition lifting also
+preserves inﬁnite runs. An inﬁnite run supplies no new ﬁnite accepting witness on either side. The
+construction has exactly sb states and at most one rule per row if T does.
+
+
+4    The two binary lower bounds
+We state explicitly the two external results used. For h ≥ 2, every s0 -state marked 2DFA for Lh
+satisﬁes
+                                      2b(h−2)/31c ≤ 4(s0 + 2)2                                (1)
+under either ﬁnite-run convention [2, Theorem 1.1]. Under zero-step acceptance its stronger bound
+uses s0 + 1. Every s0 -state marked 2NFA for Σ∗h \ Lh satisﬁes
+
+                                        2b(h−2)/127c ≤ 2(s0 + 1)                                    (2)
+
+[3, Theorem 1.1]. The latter source uses zero-step acceptance. Both inputs quantify over all ﬁnite
+relation words and unrestricted read-only two-way targets.
+
+Theorem 4. For every h ≥ 2, the explicit language Kh ⊆ {0, 1}∗ of Section 2 has the source bounds
+of Lemma 1. If an s-state marked 2DFA recognizes Kh , then
+
+                                                              2b(h−2)/31c/2−1 − 2
+                       2b(h−2)/31c ≤ 4(sh2 + 2)2 ,       s≥                       .                 (3)
+                                                                      h2
+If an s-state marked 2NFA recognizes its complement in all binary words, then
+
+                                                              2b(h−2)/127c−1 − 1
+                        2b(h−2)/127c ≤ 2(sh2 + 1),       s≥                      .                  (4)
+                                                                      h2
+                                                 1/3
+In particular, both target state costs are 2Ω(Nh ) . There is no polynomial state bound for either
+simulation or complementation on this one ﬁxed alphabet.
+
+Proof. Fixed-length coding is injective on all Σ∗h and enc(w) ∈ Kh if and only if w ∈ Lh . Apply
+Lemma 3 to a deterministic binary recognizer and insert s0 = sh2 into (1). Taking square roots
+gives (3). For complementation, the full universe satisﬁes
+
+                             {0, 1}∗ \ Kh = {x : b ∤ |x|} ∪ enc(Σ∗h \ Lh ),
+
+
+
+                                                     4
+a disjoint union. The pullback sees valid codewords, and for every relation word w,
+
+                            enc(w) ∈ {0, 1}∗ \ Kh       ⇐⇒   w ∈ Σ∗h \ Lh .
+
+Thus it recognizes the entire upstream complement. Apply (2) with s0 = sh2 and rearrange.
+Empty input is absent from both complements; malformed binary inputs are included in the binary
+complement. Finally h3 ≤ Nh ≤ 2h3 for h ≥ 2. The exponential factors in (3)–(4) absorb
+polynomial denominators and constant subtractions as h → ∞, proving the stated asymptotics.
+The ordinary source count Nh − 1 has the same cubic order.
+
+    For a complementing target using positive-run acceptance, add a new nonaccepting initial state
+with the old initial state’s transition row, whose destinations remain old states. Under zero-step
+acceptance this s+1-state machine accepts exactly the old positive-run language: its ﬁrst transition
+is the required positive ﬁrst step. Hence the complementation statement remains stretched expo-
+nential, with the explicit variant 2b(h−2)/127c ≤ 2((s + 1)h2 + 1). The deterministic formula already
+covers both conventions. If a convention requires total transition rows, an additional nonaccepting
+sink with legal stay loops supplies missing rules; adding a sink changes the source bound by one
+and does not weaken a lower bound for the larger partial model. Conventions requiring acceptance
+at the right endmarker or halting before accepting form subclasses of the target model; the same
+lower bounds apply.
+    The exponent here is proportional to the cube root of the binary source size. We do not assert
+2Ω(n) for n source states, or a uniform complexity separation such as L 6= NL. The transition
+tables of relation-alphabet pullbacks can be large; this is a state-count argument, not a small-table
+uniform algorithm claim.
+
+
+5    Veriﬁcation and disclosure
+The upstream pin is adc7f1241b42e322a6451854ab7e4b4c146bf78a. Independent automated au-
+dits inspected both original proof mechanisms, the actual Lean theorem statements and machine
+semantics, and ﬁnite algebraic counterexample checks. The new reduction is proved above; its com-
+piler and exhaustive tiny-instance simulator accompany the paper. The simulator tests malformed
+lengths, empty input, legal marker behavior, partial transitions, stays, both head directions, initial
+acceptance, positive acceptance, and loops by conﬁguration reachability. Finite tests are falsiﬁca-
+tion checks, not substitutes for uniform proofs. A project-local attempt to rebuild the upstream
+Lean inputs was prevented by insuﬃcient disk capacity. We make no claim of reproduced formal
+veriﬁcation, and the binary results in this note are not formalized. The package records exact
+source hashes, commands, scope and limitations.
+    AI tools were used extensively in research, drafting and veriﬁcation. Independent automated
+adversarial reviews are documented with the package. This preprint has not undergone conventional
+human peer review or refereeing. The upstream model-produced work is attributed to OpenAI as
+instructed by its manuscript-speciﬁc citations. No aﬃliation or coauthor is asserted.
+
+
+
+
+                                                    5
+References
+[1] W. J. Sakoda and M. Sipser. Nondeterminism and the Size of Two Way Finite Automata.
+    STOC 1978, 275–286. doi:10.1145/800133.804357.
+
+[2] OpenAI. An exponential two-way deterministic state lower bound for one-way liveness. OpenAI
+    Math Release preprint, 2026. Pinned manuscript, Theorem 1.1.
+
+[3] OpenAI. An exponential state lower bound for two-way nondeterministic complementation.
+    OpenAI Math Release preprint, 2026. Pinned manuscript, Theorem 1.1.
+
+[4] C. A. Kapoutsis. Nondeterminism Is Essential in Small 2FAs with Few Reversals. ICALP 2011.
+    doi:10.1007/978-3-642-22012-8_15.
+
+[5] C. Kapoutsis. Nondeterminism Is Essential in Small Two-Way Finite Automata with Few
+    Reversals. Information and Computation 222 (2013), 208–227. doi:10.1016/j.ic.2012.11.001.
+
+[6] K. Adeogun and C. Kapoutsis. A Quadratic Lower Bound for 2DFAs against One-Way Live-
+    ness. arXiv:2602.24279v2, July 6, 2026.
+
+[7] K. Adeogun and C. A. Kapoutsis. Unrestricted 2DFA Simulation of 1NFAs: A Quadratic
+    Limitation to a New Lower Bound. arXiv:2609.13793v2, September 15, 2026.
+
+[8] B. Guillon, L. Prigioniero and J. Taheri. Polynomial Complementation of Nondeterministic
+    Two-Way Finite Automata by 1-Limited Automata. STACS 2026, LIPIcs 364, 48:1–48:18.
+    doi:10.4230/LIPIcs.STACS.2026.48.
+
+[9] TheoremDB. Public record R816, The one-way-liveness bound transfers to a ﬁxed binary
+    alphabet, accessed October 6, 2026. Public antecedent for coding; no exponential lower bound
+    or peer-review status is inferred.
+
+
+
+
+                                              6
+

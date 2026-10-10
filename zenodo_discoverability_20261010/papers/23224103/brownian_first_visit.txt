@@ -1,0 +1,309 @@
+                      An explicit joint Laplace transform
+                 for Brownian ﬁrst-visit cell lengths on a circle
+                                               Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                             October 7, 2026
+
+
+                                                  Abstract
+          We give a complete analytic-transform answer to Georgakopoulos’s question about the
+      lengths of the sets ﬁrst visited by independent Brownian particles on a circle, with uniform
+      random or equally spaced starting points. For every ﬁnite number of particles, the joint Laplace
+      transform is an absolutely convergent series whose coeﬃcients are ﬁnite sums of ordinary in-
+      tegrals of explicit interval-exit kernels. The integration regions are speciﬁed linear inequalities
+      in cumulative physical hitting times. The outer series has a uniform factorial remainder bound
+      and uniquely determines the probability measure. The result also applies to arbitrary ﬁxed
+      distinct starting points. The construction uses classical heat kernels, strong Markov iteration,
+      and bounded-support moments. Earlier competing-walk painting results are credited and dis-
+      tinguished. No compact density, eﬃcient numerical algorithm, or absolute historical priority is
+      asserted.
+
+
+1    The question and the model
+Georgakopoulos’s question on printed p. 1452 of Oberwolfach Report 23/2018 asks for the joint
+lengths of ﬁrst-visit cells of k independent Brownian particles started uniformly at random or at
+equally spaced points of S 1 [1]. The report belongs to the 2018 volume and was published on April
+12, 2019. We answer the ﬁnite-k distribution question by an explicit transform law; no named
+density or large-k limit is imposed in that question.
+    Normalize the circle to T = R/Z, with Lebesgue measure one. Let k ≥ 1 and let Wi be indepen-
+dent Brownian motions with generator 12 d2 /dx2 , starting at distinct labeled points pi . The particles
+continue moving independently through all encounters, seeds, and previously visited territory. Put
+                                                                                        Z
+      Ti (x) = inf{t ≥ 0 : Wi (t) = x},        I(x) = min arg min Ti (x),        Li =       1{I(x)=i} dx.   (1)
+                                                             1≤i≤k                      T
+
+We justify measurability and the irrelevance of ties below. For circumference c > 0, the lengths are
+cLi , so replace each Laplace variable θi by cθi . A common positive diﬀusivity change rescales all
+clocks equally and leaves ownership unchanged.
+
+
+
+
+                                                      1
+2     Explicit deterministic coeﬃcients
+For 0 < α < ℓ and t > 0, deﬁne
+                                               ∞
+                                             π X        nπα −n2 π2 t/(2ℓ2 )
+                              f0 (t; α, ℓ) = 2    n sin    e                ,                                  (2)
+                                            ℓ n=1        ℓ
+                                                  ∞
+                                               π X                nπα −n2 π2 t/(2ℓ2 )
+                              f1 (t; α, ℓ) =    2
+                                                    (−1)n+1 n sin    e                .                        (3)
+                                               ℓ n=1               ℓ
+
+These are the nonnegative densities of interval exit at 0 and ℓ, respectively. The series are absolutely
+convergent at each t > 0. They are summed before any improper integration near t = 0; no termwise
+integration of the signed Fourier series is required.
+    For a nonempty ﬁnite set A ⊂ T and z ∈        / A, lift the component of T \ A containing z to
+(a, b) ⊂ R, and represent z by ze ∈ (a, b). Set ℓ = b − a, α = ze − a, and, for q ∈ A, deﬁne
+
+                        KA (t; z, q) = 1{a mod 1=q} f0 (t; α, ℓ) + 1{b mod 1=q} f1 (t; α, ℓ).                  (4)
+
+Integer changes of lift do not change this formula. For a singleton A = {q}, both endpoints represent
+q, ℓ = 1, and the kernel is f0 + f1 . Previously visited targets are not absorbing.
+    Fix m ≥ 1 distinct query points x = (x1 , . . . , xm ), none a seed. Write Sm for the permutations
+of {1, . . . , m}. For π ∈ Sm and particle i, let
+
+                   Aπr = {xπ(r) , . . . , xπ(m) },         zi,0 = pi ,           zi,r−1 = xπ(r−1)   (r ≥ 2).
+
+For ui = (ui1 , . . . , uim ) ∈ (0, ∞)m , set
+                                                          Y
+                                                          m
+                                    Diπ (ui ; x, pi ) =         KAπr (uir ; zi,r−1 , xπ(r) ).                  (5)
+                                                          r=1
+
+For π = (π1 , . . . , πk ) ∈ Sm
+                              k , reconstruct the physical hitting times, rather than comparing the
+
+separate increments:
+                                                                      πi−1 (j)
+                                                                       X
+                                                hij (u, π) =                     uir .                         (6)
+                                                                       r=1
+For a label vector a = (a1 , . . . , am ) ∈ {1, . . . , k}m , put
+
+                      Ca (π) = {u > 0 : haj ,j (u, π) < hij (u, π) for every j and i 6= aj },                  (7)
+                                    X Z          Y
+                                                 k                           Y
+                                                                             k Y
+                                                                               m
+                   Qa (x; p) =                         Diπi (ui ; x, pi )                duir .                (8)
+                                    k     Ca (π) i=1                         i=1 r=1
+                                 π∈Sm
+
+Thus Qa is speciﬁed by (m!)k nonnegative, km-dimensional integrals of the explicit scalar series,
+over strict linear inequalities with integer coeﬃcients. Impossible orders have zero factors.
+   For θi ≥ 0, let θ∗ = maxi θi , deﬁne M0 (θ; p) = 1, and put
+                                                                 
+                                Z         X              Y
+                                                         m
+                 Mm (θ; p) =                                  θaj  Qa (x; p) dx1 · · · dxm        (m ≥ 1).   (9)
+                                 Tm
+                                      a∈{1,...,k}m       j=1
+
+Assign arbitrary bounded values on the excluded query conﬁgurations; they have zero Lebesgue
+measure. All coeﬃcient deﬁnitions are deterministic. In particular, they contain no unknown
+Brownian hitting probability, conditional law, or integral-equation solution.
+
+                                                                  2
+Theorem 1. For every ﬁnite k ≥ 1 and every distinct seed vector p, L = (L1 , . . . , Lk ) is well
+                                                   P
+deﬁned almost surely, lies in the simplex {li ≥ 0 : i li = 1}, and has the joint Laplace transform
+                                                 P               ∞
+                                                                 X (−1)m
+                                             −
+                             Lp (θ) = Ep e         θL
+                                                  i i i    =                  Mm (θ; p).                   (10)
+                                                                m=0
+                                                                        m!
+The series is absolutely convergent, 0 ≤ Mm ≤ θ∗m , and, for every N ≥ 0,
+                                          X
+                                          N
+                                            (−1)m                             θ∗N +1
+                               Lp (θ) −                    Mm (θ; p) ≤                .                    (11)
+                                          m=0
+                                                     m!                      (N + 1)!
+The coeﬃcients uniquely determine the entire joint probability measure. For equally spaced seeds
+use pi = (i − 1)/k. For independent uniform seeds, the answer is
+                                                 ∞
+                                                 X       Z
+                                                   (−1)m
+                                Lunif (θ) =                             Mm (θ; p) dp,                      (12)
+                                                 m=0
+                                                          m!       Tk
+
+with the same bound (11).
+
+
+3    Proof
+Lemma 1. The kernels in (2)–(4) are the next-target exit-time/place densities, and
+              Z ∞                          Z ∞                               XZ ∞
+                    f0 dt = 1 − α/ℓ,              f1 dt = α/ℓ,                      KA (t; z, q) dt = 1.   (13)
+               0                             0                             q∈A 0
+
+Proof. The classical Dirichlet heat kernel, obtained from the interval sine basis and space–time
+scaling, is
+                                      2X        nπα     nπβ −n2 π2 t/(2ℓ2 )
+                         H(t; α, β) =       sin     sin    e                .               (14)
+                                      ℓ n≥1      ℓ       ℓ
+See also Lalley’s Exercise 6(C) [2] for the unit interval. If τ is the interval exit time, stopping Bt2 − t
+at τ ∧ t bounds E(τ ∧ t) uniformly, since the stopped position stays in [0, ℓ]. Hence τ < ∞ almost
+surely. Optional stopping for the bounded stopped coordinate gives exit probabilities 1 − α/ℓ and
+α/ℓ.
+    The Markov property therefore gives
+                                                          Z ℓ
+                            Pα (τ > t, Bτ = 0) =                H(t; α, β)(1 − β/ℓ) dβ.
+                                                           0
+
+For t > 0, locally uniform convergence permits diﬀerentiation. Use Ht = Hββ /2, integrate twice by
+parts, and use the Dirichlet boundary values. The negative derivative is 21 Hβ (t; α, 0) = f0 (t; α, ℓ).
+With weight β/ℓ it is − 21 Hβ (t; α, ℓ) = f1 (t; α, ℓ). This proves nonnegativity, the density interpreta-
+tion, and the ﬁrst two identities in (13), without improper Fourier interchanges. Circle continuity
+identiﬁes the next target with the exit endpoint of its lifted component. Summing both endpoints,
+including their identiﬁcation for a singleton, proves the last identity.
+
+    For comparison, the familiar interval-exit Laplace transforms are
+                Z ∞                                 √             √ !
+                      −st               sinh((ℓ − α) 2s) sinh(α 2s)
+                     e (f0 , f1 ) dt =           √        ,       √                        (s > 0).        (15)
+                 0                         sinh(ℓ 2s)       sinh(ℓ 2s)
+These follow from v 00 /2 = sv with the corresponding endpoint data; see, for example, Ernst–Shepp
+[4]. They are normalization checks, not new interval formulas.
+
+                                                            3
+Lemma 2. Diπ is the joint density of the order π and elapsed increments between successive newly
+visited queries for particle i. Moreover,
+    X Z                                                                                        X
+                   Diπ (ui ) dui = 1,   Qa (x; p) = Pp (I(x1 ) = a1 , . . . , I(xm ) = am ),       Qa (x; p) = 1.
+               m
+    π∈Sm (0,∞)                                                                                 a
+
+Proof. Stop a single walker when it ﬁrst reaches the ﬁnite query set, remove that reached target,
+and repeat with the remaining set. At each step the current point lies outside the remaining targets.
+These are ﬁnite stopping times by Lemma 1. Distinct queries cannot be reached simultaneously
+by a continuous path. The strong Markov property [3, Theorem 2.16] gives exactly the product
+(5); repeated normalization in (13) gives its total mass. This argument tracks the same physical
+walker, which may cross already visited queries and other particles’ territory.
+    Independence gives the product of the k ordered densities. Equation (6) reconstructs each
+physical ﬁrst-hitting time, so the owner event is exactly (7). A ﬁxed query’s individual hitting-time
+distribution is atomless by the singleton kernel. Independent walkers thus have no tie at a ﬁxed
+query, almost surely. The ﬁnite union over queries is still null; equivalently the equality boundaries
+are proper hyperplanes of zero measure for these densities. Integrating and summing all orders
+proves the assertions about Qa .
+
+Proof of Theorem 1. On continuous-path space, the visited set up to a ﬁxed time t is compact. Its
+distance from x is the inﬁmum of the distances from positions at rational times in [0, t], together
+with the position at t. Hence (path, x) 7→ Ti (x) is jointly measurable. For each nonseed x, every
+particle reaches it in ﬁnite time and the independent hitting times are atomless. Fubini shows that,
+almost surely, locations with any inﬁnite hitting time or an earliest tie have measure zero. Thus
+                                                        P
+(1) deﬁnes a measurable partition up to a null set and i Li = 1. This is not an assertion that ties
+are absent simultaneously R
+                             at every location.
+              P
+    Put Z = i θi Li = T θI(x) dx, so 0 ≤ Z ≤ θ∗ . Tonelli and Lemma 2 yield Ep Z m = Mm (θ; p)
+and 0 ≤ Mm ≤ θ∗m . The exponential series is absolutely dominated by eθ∗ ; termwise expectation
+proves (10). Taylor’s theorem for e−z on z ≥ 0 bounds the degree-N remainder by z N +1 /(N + 1)!,
+giving (11).
+    The homogeneous moment polynomials give all mixed moments, or these can be recovered by
+diﬀerentiation of the transform at zero, justiﬁed by bounded support. Polynomials are dense in
+continuous functions on the compact simplex by Stone–Weierstrass. Consequently its ﬁnite Borel
+measures are uniquely determined by these moments. The remainder and absolute bounds are
+uniform in distinct p. Coincident independent-uniform seeds have measure zero, so integration in p
+and interchange with the series prove (12). Equally spaced starts are already a ﬁxed-p instance.
+
+   A random rotation of equally spaced seeds leaves lengths unchanged. If seeds instead receive
+labels after circular ordering, integrate the same ﬁxed-p transform against that ordered seed law.
+Formula (12) uses independent uniform labels. For k = 1 the transform is e−θ1 . If every θi = t,
+then Mm = tm and the transform is e−t . Uniform starts are exchangeable; equally spaced starts
+have cyclic and dihedral symmetry. Both give ELi = 1/k; full permutation exchangeability for
+equally spaced labels is not asserted.
+
+
+4     Attribution, priority and veriﬁcation
+First-arrival painting is an established model. Gomes Júnior et al. [5] treat a two-walker periodic
+lattice and a one-point scaling probability. Miller [6] studies ownership correlations and asymp-
+totic volume variance on transient graph families. Chatterjee–Nabahi–Terlov [7] analyze expected
+
+                                                          4
+interfaces on a discrete cycle. Baccara’s joint real-line competitive-range limit [8, Section 6, Propo-
+sition 8] remains a Brownian functional characterization; Si [9] studies strategic painting payoﬀs,
+including a reﬂected-Brownian interval limit. These are relevant predecessors with diﬀerent observ-
+ables or regimes.
+    Moment-based transforms and exit-increment constructions are classical; see Kac’s product-
+moment framework as reviewed by Fitzsimmons–Pitman [11] and the multitime single-walker span
+laws of Régnier et al. [12]. The reduction here makes every ﬁnite-query ownership probability
+explicit while preserving each walker’s correlated ﬁrst-hitting times, then determines the joint
+circle volume law. No novelty is claimed for the model, interval kernels, strong Markov property,
+moment expansion, or moment determinacy.
+    Our bounded primary-source audit of October 7, 2026 did not identify an earlier complete
+characterization of this ﬁnite-k circle law, or a general explicit result directly supplying all its
+coeﬃcients. The full Gomes 1996 article and Dicker’s related higher-dimensional thesis [10] were
+inaccessible; only the former’s publisher abstract and later primary discussions, and the latter’s
+primary index, were available. Direct Zenodo registry searches also failed. These limitations, search
+records, and theorem-scope comparisons are retained in the supplement. No absolute priority,
+exhaustive absence, or independent-discovery claim is made.
+    The supplied diagnostics reproduce exact ﬁnite-chain order, clock, and moment identities and
+compare scalar exit ﬂuxes by independent spectral and reﬂected-Gaussian formulas. They test
+supporting calculations; they are not a Brownian limit proof or a certiﬁcate of numerical quadrature.
+The proof above establishes the Brownian result. The outer bound (11) does not bound numerical
+errors in the coeﬃcient integrals or a truncation of their inner kernel series. A compact density,
+named distribution, and eﬃcient evaluator remain possible reﬁnements.
+
+AI and review disclosure. AI tools were used extensively in developing, drafting, reproducing,
+and adversarially verifying this work. Independent AI reviews are not conventional human peer
+review. This preprint is unrefereed and has not undergone conventional human peer review.
+
+
+References
+ [1] A. Georgakopoulos, Voronoi-like decomposition of S 1 with randomness, in Enumerative Com-
+     binatorics, Oberwolfach Report 23/2018, Oberwolfach Reports 15 (2018), no. 2, 1381–1464,
+     item on p. 1452. Published April 12, 2019. doi:10.4171/OWR/2018/23.
+
+ [2] S. Lalley, Brownian Motion, course notes, Exercise 6(A)–(C). https://galton.uchicago.
+     edu/~lalley/Courses/312/BrownianMotion312.pdf.
+
+ [3] P. Mörters and Y. Peres, Brownian Motion, Cambridge University Press, 2010, Theorem 2.16,
+     pp. 43–44. https://www.mi.uni-koeln.de/~moerters/book/book.pdf.
+
+ [4] P. Ernst and L. Shepp, On the time for Brownian motion to visit every point on a circle, J.
+     Statist. Plann. Inference 171 (2016), 130–134. doi:10.1016/j.jspi.2015.10.010.
+
+ [5] S.R. Gomes Júnior, L.S. Lucena, L.R. da Silva and H.J. Hilhorst, Coloring of a one-dimensional
+     lattice by two independent random walkers, Physica A 225 (1996), 81–88. doi:10.1016/0378-
+     4371(95)00424-6.
+
+ [6] J. Miller, Painting a graph with competing random walks, Ann. Probab. 41 (2013), 636–670.
+     doi:10.1214/11-AOP713.
+
+
+                                                  5
+ [7] S. Chatterjee, N. Nabahi and G. Terlov, Interface between competing random walks on a cycle,
+     2026. https://arxiv.org/abs/2608.21312v1.
+
+ [8] M. Baccara, On the range of competing random walks, 2026. https://arxiv.org/abs/2607.
+     02406v1.
+
+ [9] I.M. Si, Strategic geometry of competing ﬁrst-passage random walks, 2026. https://arxiv.
+     org/abs/2608.24837v1.
+
+[10] L. Dicker, Coloring a d ≥ 3 dimensional lattice with two independent random walks, master’s
+     thesis, 2006. Title and year from the primary UPenn thesis index; full text was unavailable
+     during the audit. https://www2.math.upenn.edu/~pemantle/papers/Papers.html.
+
+[11] P.J. Fitzsimmons and J. Pitman, Kac’s moment formula and the Feynman–Kac formula
+     for additive functionals of a Markov process, Stochastic Process. Appl. 79 (1999), 117–134.
+     doi:10.1016/S0304-4149(98)00081-7.
+
+[12] L. Régnier, M. Dolgushev, S. Redner and O. Bénichou, Complete visitation statistics of one-
+     dimensional random walks, Phys. Rev. E 105 (2022), 064104. doi:10.1103/PhysRevE.105.
+     064104.
+
+
+
+
+                                               6
+

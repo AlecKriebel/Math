@@ -1,0 +1,433 @@
+         Consistent spectral recovery of smooth reversible
+                     diﬀusion tensors at a ﬁxed lag
+                                            Alec Kriebel
+                                       Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                                           October 5, 2026
+
+
+                                                Abstract
+         We give an almost surely consistent spectral-equation estimator for a general smooth sym-
+     metric diﬀusion tensor and an unknown smooth invariant density on a known bounded con-
+     nected smooth domain. Observations are stationary exact positions at one known ﬁxed positive
+     lag; reﬂection is conormal, and ﬁxed ellipticity and density bounds are known. A symmetric
+     ﬁnite-rank estimate of the stationary pair kernel supplies all its positive empirical eigenpairs.
+     Transition-eigenvalue fourth powers and vanishing ridge regularization give a basis-invariant
+     ﬁt. We prove full spectral-jet excitation and construct the required derivative-consistent ker-
+     nels from the dependent data. The tensor and its separately ﬁtted divergence converge locally
+     uniformly; an ellipticity-clipped tensor converges globally in L2 . This provides a convergence
+     analysis for the spectral reconstruction question posed by Reiß in OWR24/2017, in the explicit
+     smooth model stated here. No rate or numerical implementation is claimed. Spectral ﬁtting
+     and eigenvalue-power weighting have established predecessors.
+
+
+1    Problem, model and contribution
+Reiß’s contribution with Chorowski, Gobet and Hoﬀmann asks for convergence analysis of re-
+construction of a matrix coeﬃcient from empirical generator eigenpairs and invariant density [1,
+pp. 1507–1509]. The report leaves the estimator and retained spectral count to be speciﬁed. We
+provide both, for the following class.
+   Let D ⊂ Rd , d ≥ 2, be known, bounded and connected with C ∞ boundary. Fix a known lag
+∆ > 0. The unknown ﬁelds S = S T and µ are C ∞ (D) and satisfy known bounds
+                                                                         Z
+                   0 < ℓI ≤ S(x) ≤ ΛI,         0 < c ≤ µ(x) ≤ C,              µ dx = 1.                  (1)
+                                                                          D
+
+Here smoothness on the closed domain means smoothness up to its boundary. The stationary
+reversible reﬂected diﬀusion has generator
+
+                           Lu = µ−1 div(S∇u),           n · S∇u = 0    on ∂D.                            (2)
+
+We observe Yi = Xi∆ , 0 ≤ i ≤ N , exactly, without observations between these times. The
+covariance in the interior stochastic diﬀerential equation is Σ = 2S/µ and its drift is β = (div S)/µ,
+                   P
+where (div S)j = i ∂i Sij . The boundary condition in (2) is essential: ordinary normal reﬂection
+cannot be substituted for anisotropic conormal reﬂection.
+
+
+                                                    1
+   Let p∆ be the transition density relative to Lebesgue measure and q(x, y) = µ(x)p∆ (x, y) the
+symmetric stationary pair density. The estimator below ﬁts the eigenfunction equations
+
+                              div(S∇uk ) = νk µuk ,       κk = e∆νk > 0.                           (3)
+
+Its contribution is consistency of this speciﬁed empirical spectral ﬁt, including an actual statistical
+construction and a proved excitation condition. It is pointwise in every ﬁxed (S, µ) satisfying
+(1), with no known smoothness norm or known spectral gap required for its tuning. We do not
+establish rough-coeﬃcient or nonreversible results, additional sensor-noise inference, a convergence
+rate, minimax optimality, computational eﬃciency, or error control for approximate quadrature
+and eigensolvers.
+
+Established foundations and priority scope. Fixed-lag identiﬁcation of a reversible generator
+is established by Hansen–Scheinkman [2, Proposition 5.5]; multivariate spectral and Dirichlet-
+form foundations appear in Chen–Hansen–Scheinkman [3]. Crommelin–Vanden-Eijnden already
+proposed nonparametric drift/tensor spectral residual ﬁtting [4]; their 2011 author manuscript uses
+powers of transition eigenvalues as weights [5, Eq. (4.7)]. Neither idea is introduced here. Gobet–
+Hoﬀmann–Reiß and Chorowski develop scalar one-dimensional spectral inference [6, 7]. Nickl,
+Giordano–Wang and Alberti–Barnes–Jambhale–Nickl supply multidimensional scalar-conductivity
+ﬁxed-lag theory [8, 9, 10]. In particular, [10, Lemma 3.8] is a close gradient-excitation predecessor
+for our cutoﬀ-jet argument and credits earlier work of Alberti. Deterministic matrix inversion from
+internal solutions has gradient/Hessian and variational predecessors [11, 12].
+    A dated bounded primary-source audit located no theorem encompassing the particular tensor
+spectral-consistency result proved here. This is not a worldwide priority guarantee. In partic-
+ular the full 2011 text inspected was the CWI author manuscript revised August 31, 2011; the
+publisher-ﬁnal text was inaccessible, and identity with it is not assumed. Statements about its de-
+ferred sample/discretization and inﬁnite-expansion analyses refer to that manuscript [5, Sections 3.2
+and 4.2]. Further edition and access limits are recorded in the supplement. Classical nonlinear in-
+verse regularization [15] also yields an alternative estimator-existence argument when its diﬀusion
+forward-map hypotheses are supplied; a separately veriﬁed derivation of that application accompa-
+nies this note. That current derivation is not a located earlier publication and does not establish
+consistency of the spectral ﬁt studied here. No claim of being the ﬁrst possible consistent tensor
+estimator is made.
+
+
+2    The empirical estimator
+We ﬁrst specify a deterministic smoothing kernel that depends only on D. The notation C a,b
+denotes the supremum of all mixed derivatives of orders at most a and b in the respective variables.
+
+Lemma 1 (Known-domain smoothing). There are real, jointly Borel     R
+                                                                       kernels Kh (x, z), z ∈ D, with
+x in a ﬁxed neighborhood of D, smooth in x, such that Rh f (x) = D Kh (x, z)f (z) dz converges to
+f in C 2 (D) for f ∈ C 3 (D) as h ↓ 0. For each ﬁxed derivative order r,
+
+                              sup |∂xα Kh (x, z)| ≤ Ar h−d−|α|   (|α| ≤ r).                        (4)
+                              x,z
+
+
+On smooth functions of two variables, Rh ⊗ Rh converges to the identity in C 2,2 (D × D).
+
+
+
+
+                                                   2
+Proof. Choose a ﬁnite smooth boundary atlas and partition of unity with chart cutoﬀs. In a
+ﬂattened chart with inward coordinate t ≥ 0, extend a cutoﬀ function to a small exterior collar by
+
+                   X
+                   7
+ (Ef )(x′ , t) =         αa f (x′ , −at),   t < 0,       (α1 , . . . , α7 ) = (28, −112, 210, −224, 140, −48, 7). (5)
+                   a=1
+               P
+The identities 7a=1 αa (−a)k = 1 for 0 ≤ k ≤ 6 match derivatives through order six. Take the collar
+small enough for all reﬂected arguments to remain in their charts, and add exterior cutoﬀs. Interior
+pieces extend by zero after their cutoﬀ. Summing gives a linear compactly supported extension
+equal to f on D and bounded in each C r norm, r ≤ 6.
+    Let η be a ﬁxed real Cc∞ (Rd ) molliﬁer of integral one and set Rh f = ηh ∗ Ef on the indicated
+neighborhood. In each reﬂected integral change variables back to z ∈ D. The chart maps have
+bounded Jacobians bounded away from zero on their cutoﬀ supports; the resulting ﬁnite sum is
+a jointly Borel kernel. Diﬀerentiating the molliﬁer gives (4) for any ﬁxed r. Molliﬁcation of a
+C 3 extension converges in C 2 . Apply the extension independently in both variables to obtain the
+mixed assertion. The kernels can be signed and need not preserve mass; neither positivity nor exact
+mass preservation is used.
+
+    Set Kh (x, z) = 0 for z ∈ ∂D. This is a Borel convention for every sample in D; under station-
+arity, P(Yi ∈ ∂D) = 0 for every i, so it changes no almost-sure conclusion.
+    For N ≥ 2 put j = ⌊log2 N ⌋, n = 2j and h = h0 /(j + 1), where h0 > 0 is a suﬃciently small
+constant chosen from the known charts. Use the ﬁrst n + 1 states and deﬁne
+
+                                    1 X  n
+                         ej (x) =
+                         µ                  Kh (x, Yi ),                                                         (6)
+                                  n + 1 i=0
+                                   X
+                                 1 n−1                                                    
+                    qj (x, y) =        Kh (x, Yi )Kh (y, Yi+1 ) + Kh (y, Yi )Kh (x, Yi+1 ) .                     (7)
+                                2n i=0
+
+Choose a ﬁxed smooth saturation ψ : R → [c/2, 2C] equal to the identity on [3c/4, 3C/2], and set
+                                                                        Z
+                                               ej )
+                                             ψ(µ
+                                        µj =        ,          Zj =               ej ) dx.
+                                                                                ψ(µ                              (8)
+                                              Zj                            D
+
+In every sample, µj ≥ c/(4C vol(D)). It is smooth, positive and normalized. The kernel qj is real,
+symmetric and smooth, of rank at most n + 1, although it can be signed, indeﬁnite, and have a
+marginal diﬀerent from µj .                                                              q
+   On H = L2 (D, dx) deﬁne the real self-adjoint ﬁnite-rank operator Tj with kernel qj (x, y)/ µj (x)µj (y).
+For every positive eigenvalue κj,k choose a real orthonormal basis ϕj,k of its eigenspace and put
+                                                  √
+                                     uj,k = ϕj,k / µj ,            νj,k = ∆−1 log κj,k .                         (9)
+
+All positive eigenvalues are retained; negative and zero ones are omitted. Nonzero modes are
+smooth because they lie in the span of the smooth kernel sections. No labeling relative to population
+eigenvectors is imposed.
+    For a smooth u deﬁne the column jet and matching unknown vector
+                                                               T
+                    Ju = (∂ii u)i , (2∂ij u)i<j , (∂i u)i           ,                                           (10)
+                                                              T
+                         θ = (Sii )i , (Sij )i<j , (div S)i        ∈R , m
+                                                                                   m = d(d + 1)/2 + d.
+
+
+                                                               3
+Thus (Ju)T θ = div(S∇u). For each x ∈ D let
+                                                                                            
+                      X                                                                     
+                                 4                                         2
+ θbj (x) = arg min              κj,k (Juj,k (x))T z − νj,k µj (x)uj,k (x)        + λj |z|2       ,       λj = (j + 1)−1 . (11)
+           z∈Rm                                                                             
+                      κj,k >0
+
+The minimizer is unique even if there are no positive modes. Write its tensor part as the symmetric
+matrix Sbj , and its remaining part as vbj . The latter estimates div S separately; it is not the
+divergence of Sbj . Let Sbjc be the pointwise Frobenius projection of Sbj onto {M = M T : ℓI ≤ M ≤
+ΛI}. At sample size N , use these estimators indexed by j; any ﬁxed admissible tensor may be used
+for the ﬁnitely many smaller sample sizes.
+
+Theorem 2 (Fixed-lag tensor consistency). Under (1)–(2) and the stationary exact observation
+model above, the speciﬁed estimators are measurable and, on one probability-one event, for every
+compact E ⋐ D,
+
+                     Sbj − S            + ∥vbj − div S∥C(E) −→ 0,                Sbjc − S            −→ 0.               (12)
+                                C(E)                                                        L2 (D)
+
+
+Also µj → µ in C 2 (D), so 2Sbj /µj and vbj /µj recover the covariance and drift locally uniformly. The
+limits hold along all N → ∞ by the dyadic preﬁx convention. Any positive deterministic λj → 0 in
+(11) gives the same consistency conclusion.
+
+
+3    Derivative convergence from the dependent observations
+We give the
+          R
+             statistical part explicitly,
+                               R
+                                          including overlapping pairs. The form of −L on L2 (µ dx) is
+E(f, f ) = D ∇f T S∇f dx. If D f µ dx = 0, the Neumann Poincaré constant CD gives
+           Z                        Z                               Z                                Z
+                 f 2 µ dx = min            (f − a)2 µ dx ≤ C min         (f − a)2 dx ≤ CCD               |∇f |2 dx.
+             D                  a      D                        a    D                               D
+
+Consequently P = e∆L contracts mean-zero functions by ρ ≤ exp[−∆ℓ/(CCD )] < 1.
+                                                                         √ = E[Z0 | Y1 = z] and
+   For a bounded pair observable F (Yi , Yi+1 ), center it as Zi . Let r(z)
+s(z) = E[Z0 | Y0 = z]. They have mean zero and L2 (µ) norms at most Var F . Stationarity and
+the Markov property, conditioning at the endpoints, give
+
+                                    Cov(Z0 , Za ) = ⟨r, P a−1 s⟩L2 (µ) ,           a ≥ 1.                                (13)
+
+This includes the overlapping case a = 1. Hence | Cov(Z0 , Za )| ≤ ρa−1 Var F , and
+                                                           !
+                                      X
+                                    1 n−1                           1 + 2/(1 − ρ)
+                                Var       F (Yi , Yi+1 )        ≤                 ∥F ∥2∞ .                               (14)
+                                    n i=0                                 n
+
+The analogous state-observable bound follows with P a . These inequalities apply separately to each
+bandwidth-dependent observable; independence of pairs is never assumed.
+
+Lemma 3 (Population regularity and empirical limits). The kernel q is smooth on D × D. Almost
+surely,
+         ej −→ µ in C 2 (D),
+         µ                       qj −→ q in C 2,2 (D × D),     µj −→ µ in C 2 (D).       (15)
+
+
+
+
+                                                            4
+Proof. The smooth elliptic conormal realization has compact resolvent. If −Luk = γk uk , the
+min–max principle and (1) compare γk with the Neumann Laplacian eigenvalues; their counting is
+polynomial. Smooth elliptic graph regularity and Sobolev embedding give
+
+                  ∥f ∥H 2a (D) ≤ Ba ∥(I − L)a f ∥L2 (µ) ,           ∥uk ∥C r (D) ≤ Br (1 + γk )br   (16)
+
+for suﬃciently high integer a and some ﬁnite br . The graph estimates are the standard smooth
+conormal elliptic estimates; see [13, Theorem 2.2 and Corollary 2.3] and the Sobolev embedding
+[14, Corollary 6.12]. The weighted and ordinary L2 norms are equivalent; use the positive shift
+I − L to include the constant mode. Thus every ﬁxed diﬀerentiated series
+                                                         X
+                                    q(x, y) = µ(x)µ(y)        e−∆γk uk (x)uk (y)
+                                                          k
+
+converges absolutely uniformly. This proves the asserted positive-time regularity, using population
+elliptic theory rather than estimated modes.
+    Reversibility and stationarity give Eµej = Rh µ and Eqj = (Rh ⊗ Rh )q; their deterministic biases
+vanish in the displayed norms by Lemma 1. For |α|, |β| ≤ 2, each diﬀerentiated summand of (7) is
+bounded by a constant times (j + 1)2d+4 . By (14) its average has variance at each (x, y) at most
+B(j + 1)4d+8 2−j . A deterministic net of D × D with spacing εj = 2−j/(4d) has at most B2j/2 points.
+Chebyshev’s inequality and a union bound yield
+                                                                   
+                    P       max |∂xα ∂yβ (qj − Eqj )| > (j + 1)−1       ≤ B(j + 1)4d+10 2−j/2 .     (17)
+                            net
+
+The bound is summable. The derivatives in question, and their expectations, are Lipschitz on the
+ﬁxed neighborhood with bound B(j+1)2d+5 , by one further derivative in (4). Interpolation from the
+net costs at most B(j + 1)2d+5 εj → 0. The neighborhood makes the short line segments legitimate
+even if D is not convex. Borel–Cantelli gives uniform convergence of the centered derivatives.
+    For (6), the state-observable bound, derivative bound B(j + 1)d+2 and a d-dimensional net
+with the same spacing give the summable probability bound B(j + 1)2d+6 2−3j/4 at threshold (j +
+1)−1 . There are only ﬁnitely many derivative indices, so all the asserted limits hold on one event
+of probability one. Uniform   convergence eventually places µej in [3c/4, 3C/2], making saturation
+                      R
+inactive. Then Zj → D µ dx = 1, proving the last limit. No mixing parameter or truth-dependent
+regularity constant was used in the tuning sequence.
+
+
+4    Basis-invariant deterministic reconstruction
+The argument below also explains why a ﬁxed number of modes or individual
+                                                                      p       eigenvector con-
+sistency is unnecessary. On H = L2 (D, dx), let T have kernel q(x, y)/ µ(x)µ(y). Multiplica-
+        √                                                              √
+tion by µ conjugates P to T ; its orthonormal eigenfunctions are ϕk = µuk , with eigenvalues
+κk = e−∆γk > 0, including the stationary constant eigenfunction. Zero is only an accumulation
+                   −1/2
+point. Put Mj = µj , M = µ−1/2 and Wj = Mj Tj , W = M T .
+    Fix E ⋐ D. Lemma 3, the common density lower bound, and Cauchy–Schwarz in the kernel’s
+second variable imply
+
+                               ∥Tj − T ∥op −→ 0,        ∥Wj − W ∥H→C 2 (E) −→ 0.                    (18)
+
+For clarity, the needed deterministic hypotheses are merely uniform convergence of µj , local C 2
+convergence of µj , global L2 convergence of qj , and supx∈E ∥∂xα (qj − q)(x, ·)∥L2 (D) → 0 for |α| ≤ 2.
+
+                                                         5
+Multiplication and its derivatives are controlled by the positive lower bound. The global kernel
+bound gives Hilbert–Schmidt, hence operator, convergence of Tj ; diﬀerentiating the Wj kernel gives
+the second assertion of (18).
+     Deﬁne bounded operators Bj (x) : H → Rm and ej (x) : H → R by Bj (x)f = J(Wj f )(x) and
+ej (x)f = (Wj f )(x), and similarly B, e. Their norms converge uniformly on E. Set
+                                     (                            (
+                                      t2    t > 0,                t2 log t    t > 0,
+                            g(t) =                       h(t) =                                      (19)
+                                      0     t ≤ 0,                0           t ≤ 0.
+
+Both are continuous at zero. The normal equation for (11) is
+                                                                                 µj
+                 θbj = (Aj + λj I)−1 rj ,      Aj = Bj g(Tj )Bj∗ ,        rj =      Bj h(Tj )e∗j .   (20)
+                                                                                 ∆
+Indeed Wj ϕj,k = κj,k uj,k , so the outer factors supply two eigenvalue powers and the middle function
+supplies two more. These identities apply to the entire ﬁnite spectrum, including negative modes,
+without taking their logarithms. They are invariant under orthogonal basis changes within repeated
+eigenspaces.
+    The spectra lie eventually in a common bounded interval by (18). Polynomial approximation
+of continuous functions on that interval, and continuity of each polynomial in a bounded operator,
+show that g(Tj ) → g(T ) and h(Tj ) → h(T ) in operator norm. Therefore
+
+              Aj −→ A = Bg(T )B ∗ ,           rj −→ r = (µ/∆)Bh(T )e∗            uniformly on E.     (21)
+
+This includes empirical eigenvalue splits, crossings through zero and small positive eigenvalues. Ini-
+tial eigenvalues greater than one cause no problem and are not interpreted as population generator
+eigenvalues.
+Proposition 4 (Full spectral-jet excitation). For every x ∈ D, A(x) is positive deﬁnite and r(x) =
+A(x)θ(x). For each compact E ⋐ D there is a truth-dependent aE > 0 with A(x) ≥ aE I on E.
+Proof. Spectral expansion of the bounded-functional formulas gives
+                          X                                       X
+                 A(x) =        κ4k Juk (x)Juk (x)T ,     r(x) =       κ4k νk µ(x)uk (x)Juk (x).
+                           k                                      k
+
+These series converge by the smoothing already proved (or by Parseval for the bounded functionals).
+Equation (3) gives r = Aθ. If ξ T A(x)ξ = 0, each nonnegative term vanishes and ξ T Juk (x) = 0 for
+every k, since all κk > 0. Every f ∈ Cc∞ (D) belongs to every power domain of I − L: successive
+applications of the local diﬀerential operator retain interior support and satisfy all iterated conormal
+conditions. Its spectral partial sums converge in each graph norm. Equation (16) and Sobolev
+embedding, choosing 2a > d/2 + 2, imply convergence in C 2 (D). Thus ξ T Jf (x) = 0 for every such
+f.
+    Multiply aﬃne and quadratic polynomials centered at x by a cutoﬀ equal to one near x. Their
+gradients and symmetric Hessians can be prescribed arbitrarily; the resulting jets span Rm . Hence
+ξ = 0. Finally A(x) is continuous by continuity of the evaluation functionals; compactness of
+E gives aE > 0. This proves excitation rather than assuming an unveriﬁed rank condition. No
+class-uniform conditioning bound is claimed.
+
+Consistency in Theorem 2. Work on the event of Lemma 3. By (21), eventually Aj ≥ aE I/2
+uniformly on E. The exact identity
+                                                                                      
+                          θbj − θ = (Aj + λj I)−1 (rj − r) + (A − Aj )θ − λj θ
+
+                                                         6
+proves local uniform convergence for any positive λj → 0. No relative noise/ridge rate is needed
+because the limiting local matrix is positive deﬁnite. This also proves the stated local drift and
+covariance limits, using the density lower bound.
+   Projection onto the closed convex matrix interval in Frobenius norm is nonexpansive and ﬁxes S.
+On a countable compact exhaustion of D, the projected tensor converges pointwise in the interior
+and is uniformly bounded by the known matrix interval. Since D has ﬁnite volume, dominated
+convergence gives the global L2 limit. There is no corresponding global claim about the ﬁtted
+divergence or derivatives of the tensor estimate. All sample sizes use a dyadic index tending to
+inﬁnity. Measurability is proved next, completing the theorem.
+
+
+5    Finite-feature measurability and veriﬁcation
+The eigenbasis in (9) need not be chosen measurably. The following equivalent formulas avoid it.
+                                   √
+For 0 ≤ i ≤ n put fi = Kh (·, Yi )/ µj and vi = Kh (·, Yi )/µj . Let V : Rn+1 → H have columns fi ,
+and let Cn be the symmetric matrix with adjacent entries (Cn )i,i+1 = (Cn )i+1,i = 1/(2n) and all
+others zero. Then
+
+                     Tj = V Cn V ∗ ,    G = V ∗ V ≥ 0,       Hn = G1/2 Cn G1/2 .
+
+Let Dx have columns Jvi (x) and let v(x) be the column of vi (x). The formulas in (20) become
+
+                            Aj (x) = Dx Cn G1/2 g(Hn )G1/2 Cn DxT ,                           (22)
+                                     µj (x)
+                            rj (x) =        Dx Cn G1/2 h(Hn )G1/2 Cn v(x).
+                                       ∆
+To check them, Bj = Dx Cn V ∗ and ej = v(x)T Cn V ∗ , and
+
+                                 V ∗ a(V Cn V ∗ )V = G1/2 a(Hn )G1/2
+
+holds ﬁrst for polynomials a and then for continuous a by uniform approximation. No inverse of
+G is used, so singular feature Gram matrices are allowed. Kernel sections and their derivatives are
+Borel functions of the data; known-domain integrals deﬁning Zj and G are Borel as well. Positive
+square root and continuous functional calculus of ﬁnite symmetric matrices are continuous, and
+Aj + λj I is invertible. Thus (22) proves joint measurability and continuity in x. Separability on
+compact sets, and the bounded projected output, give the usual C(E) and L2 (D) random-element
+measurability. Multiplicities, rank loss and zero crossings require no eigenvector selection.
+    The supplement contains the source, a portable ﬁnite-control runner, expected scientiﬁc out-
+puts, exact source-edition notes, and the separately veriﬁed classical regularization application.
+Its controls check algebra, signed-kernel moments, covariance identities, spectral collisions and
+boundary/model distinctions. They supplement the analytic proof and do not prove an inﬁnite-
+dimensional theorem, simulate the estimator’s asymptotic performance, or supply a general-domain
+numerical implementation.
+
+AI use and review status. AI tools were used extensively in deriving, checking and writing this
+work, including separate adversarial mathematical and priority audits. Their checks are disclosed
+as AI-assisted veriﬁcation, not independent human peer review or a proof-assistant certiﬁcate. This
+preprint is unrefereed and has not undergone human peer review. The author takes responsibility
+for the claims and for the explicit scope and source-access limitations.
+
+
+                                                  7
+References
+ [1] M. Reiß (with J. Chorowski, E. Gobet and M. Hoﬀmann), SDE estimation from discrete ob-
+     servations as inverse problems, in Oberwolfach Reports 24/2017, 1507–1509. Report published
+     April 28, 2018. doi:10.4171/OWR/2017/24.
+ [2] L. P. Hansen and J. A. Scheinkman, Back to the Future: Generating Moment Implications for
+     Continuous-Time Markov Processes, NBER Technical Working Paper 141, September 1993.
+     Inspected working-paper Proposition 5.5. Primary working paper.
+ [3] X. Chen, L. P. Hansen and J. Scheinkman, Nonlinear principal components and long-run
+     implications of multivariate diﬀusions, Ann. Statist. 37 (2009), 4279–4312. doi:10.1214/09-
+     AOS706.
+ [4] D. Crommelin and E. Vanden-Eijnden, Reconstruction of diﬀusions using spectral data from
+     timeseries, Commun. Math. Sci. 4 (2006), 651–668. doi:10.4310/CMS.2006.v4.n3.a9.
+ [5] D. Crommelin and E. Vanden-Eijnden, Diﬀusion estimation from multiscale data by oper-
+     ator eigenpairs, Multiscale Model. Simul. 9 (2011), 1588–1623. doi:10.1137/100795917. Body
+     inspected: CWI author manuscript, revised August 31, 2011; publisher-ﬁnal body uninspected.
+ [6] E. Gobet, M. Hoﬀmann and M. Reiß, Nonparametric estimation of scalar diﬀusions based on
+     low frequency data, Ann. Statist. 32 (2004), 2223–2253. doi:10.1214/009053604000000797.
+ [7] J. Chorowski, Nonparametric volatility estimation in scalar diﬀusions: Optimality across
+     observation frequencies, Bernoulli 24 (2018), 2934–2990. doi:10.3150/17-BEJ950. Inspected
+     arXiv:1507.07139v2, March 31, 2016.
+ [8] R. Nickl, Consistent inference for diﬀusions from low frequency measurements, Ann. Statist.
+     52 (2024), 519–549. doi:10.1214/24-AOS2357.
+ [9] M. Giordano and S. Wang, Statistical algorithms for low-frequency diﬀusion data: A PDE
+     approach, Ann. Statist. 53 (2025), 1150–1175. doi:10.1214/25-AOS2496.
+[10] G. S. Alberti, D. Barnes, A. Jambhale and R. Nickl, On low frequency inference for diﬀusions
+     without the hot spots conjecture, Math. Stat. Learn. 8 (2025), 305–322. doi:10.4171/MSL/53.
+     Inspected arXiv:2410.19393v2, July 22, 2025, especially Lemma 3.8.
+[11] G. Bal and G. Uhlmann, Reconstruction of coeﬃcients in scalar second-order elliptic equa-
+     tions from knowledge of their solutions, Comm. Pure Appl. Math. 66 (2013), 1629–1652.
+     doi:10.1002/cpa.21453. Inspected author manuscript, April 10, 2013; publisher-ﬁnal identity
+     not assumed.
+[12] R. V. Kohn and B. D. Lowe, A variational method for parameter identiﬁcation, M2AN 22
+     (1988), 119–158, especially Section 5. Primary journal archive.
+[13] G. Grubb, Regularity of spectral fractional Dirichlet and Neumann problems, Math. Nachr.
+     289 (2016), 831–844. doi:10.1002/mana.201500041.
+[14] G. Grubb, Distributions and Operators, Chapter 6, Sobolev spaces, Corollary 6.12. Author’s
+     chapter.
+[15] F. Lenzen and O. Scherzer, Tikhonov type regularization methods: History and recent progress,
+     ECCOMAS 2004, especially Section 3, Theorem 3.2. Author’s full paper.
+
+
+                                                8
+

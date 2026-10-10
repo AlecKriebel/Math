@@ -1,0 +1,738 @@
+                     Technical Supplement to
+      Symmetry-Stratiﬁed Identiﬁability of Strongly Tree-Child
+                 Level-2 Phylogenetic Networks
+                                             Alec Kriebel
+
+                                           September 2026
+
+
+1     Purpose and dependency boundary
+This supplement records the detailed physical-domain calculations, the expanded ported-blob proof-
+interface obligations, the proof-dependency crosswalk, and the exact ﬁnite replays underlying the
+synthesis paper: symmetry saturation, the representation-theoretic triangle tangent theorem, and
+the bounded cross-model classiﬁcation. It does not reproduce the model-speciﬁc topology atlases,
+contextual triangle-section constructions, interval boxes, or strict collision parameters. Those re-
+main in the four companion papers and their replay packages [3, 2, 4, 1].
+
+
+2     Fourier domains and strict physical operations
+2.1   Inverse Fourier rows
+
+For a K3P edge with spectrum (1, c, g, t), the ﬁrst transition row is
+                    1
+                      (1 + c + g + t, 1 + c − g − t, 1 − c + g − t, 1 − c − g + t).
+                    4
+Hence strict transition positivity on the positive-eigenvalue branch is
+
+            0 < c, g, t < 1,   1 + c − g − t > 0,   1 − c + g − t > 0,   1 − c − g + t > 0.
+
+K2P is obtained by setting c = t = s, giving
+                               1
+                                 (1 + 2s + g, 1 − g, 1 − 2s + g, 1 − g),
+                               4
+so its principal positive domain is 0 < s, g < 1 with g > 2s − 1. JC is the isotropic specialization
+c = g = t = x ∈ (0, 1).
+
+2.2   Strict continuous time
+
+For a symmetric group-based generator on Z2 × Z2 , write the three nontrivial substitution-rate
+classes as α, β, γ > 0 and edge time as τ > 0. With a ﬁxed character convention,
+
+                        c = e−2(β+γ)τ ,     g = e−2(α+γ)τ ,     t = e−2(α+β)τ .
+
+                                                    1
+Solving for the rates shows that strict positivity of all three rate classes is equivalent to
+
+                                    c > gt,     g > ct,      t > cg.
+
+Under K2P this reduces to g > s2 ; under JC every 0 < x < 1 has a strict continuous-time realization.
+No shared generator, clock, or common rate ratio is imposed across edges.
+
+
+2.3   Composition and strict subdivision
+
+Serial composition multiplies nontrivial Fourier eigenvalues coordinatewise. The following proposi-
+tion supplies the physical divisibility used by root movement, marginal sections, and bridge gluing.
+
+Proposition 2.1 (Strict local subdivision). Every edge spectrum in a principal positive domain,
+and separately every edge spectrum in a strict continuous-time domain, can be written locally and
+analytically as the coordinatewise product of two strict spectra in the same domain.
+
+Proof. For JC, choose ρ ∈ (x, 1) and write x = ρ(x/ρ). For K2P, choose an isotropic factor (ρ, ρ)
+suﬃciently close to (1, 1) that (s/ρ, g/ρ) remains strict; in continuous time require additionally
+g/ρ > (s/ρ)2 , possible for ρ close enough to one. For K3P, choose (ρ, ρ, ρ) with
+
+                            ρ > max{c, g, t, g + t − c, c + t − g, c + g − t}
+
+in the positive domain and
+                                   ρ > max{c, g, t, gt/c, ct/g, cg/t}
+in strict continuous time. Then the isotropic factor and the divided spectrum both satisfy the
+relevant strict inequalities. Shrinking the target neighborhood makes the choice analytic.
+
+
+3     Expanded ported-blob proof-interface obligations
+The main paper groups the concrete model-speciﬁc interfaces into four blocks. The following
+expanded list is an audit crosswalk to the exact companion statements and the explicitly identiﬁed
+synthesis completion, not a separately axiomatized arbitrary-model theorem. In particular, A8
+contains the simultaneous global-germ/right-inverse interface used for suﬃciency.
+
+A1. Physical divisibility and root movement.
+     Every strict edge parameter admits a local analytic factorization into two strict edge pa-
+     rameters. Moving the root among admissible rootings of the same standard semi-directed
+     mixed graph preserves the physical image up to analytic reparameterization. When a root-
+     containing factor must be given a real incoming boundary, admissibility of that boundary
+     rooting is a separate graph obligation.
+
+A2. Bridge-tree transfer.
+     If N ⪯reg,fd N ′ with N, N ′ ∈ STC2 on the same ﬁnite labelled leaf set, then the labelled
+     bridge splits and reduced bridge-incidence trees agree, including the distinction between
+     ordinary trivalent components and nontrivial factors.
+
+
+
+
+                                                   2
+A3. Local physical bridge gauge.
+     At every retained regular strong-class component-incidence chart used by the proof, the
+     germ of a ﬁxed-output contraction has exactly one positive scale per retained component–
+     bridge incidence and tying sector, and no additional bridge gauge. Its physical ﬁbre is the
+     incidence orbit intersected with the complete local physical- realization locus in contraction-
+     coordinate space, including component realizability. Internal component-parameter ﬁbres
+     are quotiented out; the contraction ﬁbre has a local product chart and no bridge-tree holon-
+     omy.
+
+A4. Physical marginal localization.
+     Every selected graph-derived marginal is a physical submersion onto its eﬀective child do-
+     main with local analytic sections. A ﬁnite semialgebraic-cover argument ﬁxes one target
+     incoming/completion type on a source-open stratum, and remote factors cannot compensate
+     for a local separator.
+
+A5. Primitive graph grammar.
+     Every root-containing factor admits an admissible tree-child presentation at a real labelled
+     leaf-bearing incoming boundary under the ﬁxed one-step convention. In such a presen-
+     tation, every complete nontrivial factor induced by STC2 has a cycle core or one of four
+     directed theta cores and is uniquely speciﬁed by mandatory child ports and labelled ordered
+     subdivision words.
+
+A6. Local rigidity and restoration.
+     A regular full-dimensional projective containment between complete ported factors implies
+     labelled mixed-graph isomorphism or a full-factor transport that forgets only the role and
+     two incoming heads at one licensed ordinary- triangle site. Every oﬀ-site arrowhead, role,
+     incidence, and ordered port word is restored coherently. The site may lie inside a theta; the
+     complete factor need not itself be a three-cycle.
+
+A7. Triangle suﬃciency in context.
+     The three ordinary-triangle orientations share a regular germ full-dimensional relative to
+      their local images, with analytic physical right inverses into every orientation parameter
+      space. The germ and its right inverses survive any unchanged labelled multilinear context,
+      including reconnection of two triangle terminals inside a theta factor.
+
+A8. Simultaneous physical gluing.
+      Corresponding isomorphic or triangle-related factor germs along a common bridge tree admit
+      compatible physical bridge choices whose contraction is a common regular global germ full-
+      dimensional in both complete image germs, with analytic physical right inverses into both
+      global parameter spaces.
+
+The grouping used in the main paper is T1=(A1–A3), T2=(A4–A5), T3=A6, and T4=(A7–A8).
+
+
+4    Model-speciﬁc dependency crosswalk
+Each row below refers to one immutable companion snapshot. Where the synthesis supplies an
+additional proof object, the row names it expressly. This indirection keeps the row text readable
+without weakening the binding.
+
+
+                                                 3
+J.    JC v1.1.7, DOI 10.5281/zenodo.22089373, article SHA-256 ae01c6beba01da624bba7060e9
+      f3adfce74a5e568e5808f4db168300d7873084. The separate certiﬁcate archive has DOI
+      10.5281/zenodo.22064121, archive SHA-256 ffcce5398c8be387d6d808620fc939490f31ac41
+      fb48592e22608cf0e7b05db4, and source commit fef87ba874b3476ff0383095c67c031ba8
+      c0dc23. No separate manuscript-source commit is asserted. The deposited inner verify.sh
+      does not itself reject optimized Python, while some checks use assert. The bound referee-
+      package entrypoint therefore authenticates these immutable bytes, extracts them safely into
+      a fresh bounded temporary tree, and runs them through the external normal-Python wrapper
+      research/run_jc_bound_replay.py; it refuses -O, -OO, and PYTHONOPTIMIZE, ﬁxes the shell
+      path, and sanitizes Python startup variables without modifying the DOI archive.
+
+K2. K2P v1.0.5-r1, DOI 10.5281/zenodo.22168797, article SHA-256 e49e72c09183679f04362a
+    fe37917e410f0b8b6fe5dc98f423a0b642dce78cf4, full-archive SHA-256 477c160057f7
+    a729215dfd37960063d283ddbedcf95396a8239a9fd22e94ac62, accepted-evidence commit
+    e2f6e32e6fe885e90c8e83a8c5b00785e663a4ae, manuscript commit 5628a08f6bf3e5573e
+    bbbf3e2dd8636ad00b338e, and packaging commit 9148bd0bd8a48c6faebdc8ed48233d0b68
+    27c3a0.
+
+K3. K3P v1.0.0, DOI 10.5281/zenodo.22178672, article SHA-256 590eee94dd352c8d4211fd48
+    5572b3c316ce5419d89c4e9c561246f8d12aae32, full-archive SHA-256 4f84417f40b4e5
+    ddae80b36d87dc7bb6d00389a573a58d0b82a2592c9f7c6403, compact-veriﬁer SHA-256
+    c9944a49681c00cdb75308d116869a9b1dab523391e58d2deb149396e4925cf0, and source
+    commit 0b76dd8e38f262ebe9ba8c1d23281853e334fef2.
+
+C.    Tree–theta collision deposited content v1.2.7, DOI 10.5281/zenodo.22136869, article SHA-256
+      7f1ecd0e70504736146eb8f2d4ebfb43980fd1feef50cf39bbe7e751ad5afa8f, full-archive
+      SHA-256 7c603e15f6afb7546f618b88bbefdc52ee264b656399f6656fc742aeabb786c7,
+      tag k2p-k3p-theta-v1.2.7, and source commit 19cf11f65ed448cf031842b666e4bfc7e0
+      2a9ab7. The deposited ﬁles identify themselves as v1.2.7; the Zenodo/DataCite structured
+      version ﬁeld says v1.2.6.
+
+Here P means the principal positive domain and CT means strict continuous time. Every row
+binds an exact article proof passage. Paths are relative to the corresponding released certiﬁcate
+or reproducibility root and are given only where ﬁnite evidence exists. “Human proof” marks an
+interface whose full claim rests on the cited article argument; any listed computation has only
+the ﬁnite proof-bearing or regression role stated in that row. The extended theorem-to-evidence
+inventory, including supporting paths, is preserved as DEPENDENCY_MATRIX.md in the full synthesis
+reproducibility release.
+
+
+4.1   Controlling crosswalk for embedded triangle sites
+
+The immutable K2P Deﬁnition 2.5 uses “three-cycle factor,” and K3P Deﬁnition 3.5 requires isomor-
+phism of “nontriangle complete factors.” If read as whole-factor statements, neither phrase covers
+an ordinary-triangle site inside a complete theta. The synthesis therefore does not use those deﬁni-
+tions alone for A6–A8. The main paper’s factorwise-site lemma and companion sitewise-crosswalk
+proposition record the graph equivalence and the following proof-bearing translation.
+
+J.    JC Deﬁnition 3.2 and Theorems 6.1, 6.3 with Lemma 6.4 already use a local ordinary-triangle
+
+
+                                                 4
+      redirection while preserving the complete surrounding graph. Lemmas 6.5–6.6 prove contex-
+      tual physical sections and simultaneous gluing, including theta reconnection.
+
+K2. Necessity is taken from the full-factor ﬁnite proof of Theorem 6.3 together with Lemma 5.5
+    and the arbitrary-word probe transport. The released function package/referee/k2p_offl
+    ine_sweep_portable/atlas/k2p_atlas_core.py::mixed_relation_exact enumerates an
+    ordinary triangle anywhere in the complete selected graph and compares the full incidence
+    graphs after erasing exactly that site’s heads; the ﬁle SHA-256 is afafe6c4289870a02226
+    516e2b7ff207c57b844f4c45fc6864cedf826e9ec742. The probe manifest proof_compre
+    ssion_submission/probe/PROBE_WORD_COVERAGE.json has SHA-256 c2e32b37d32eda
+    11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660, and its veriﬁer has SHA-256
+    8dcc191cc3af59a5b4f5950d6b15202823c943015be30cdd5ee21db62482ed28. Lemma 7.2
+    supplies contextual sections and joint gluing when terminals reconnect inside another level-2
+    factor; Corollary 10.1 supplies the CT scope.
+
+K3. Necessity is taken from Theorem 8.2, Propositions 9.1–9.2, and Theorem 9.3 after the synthe-
+    sis’s incoming-boundary completion. The frozen classiﬁer’s candidate comparison predicate
+    is input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py::mixed_relation_exact
+    (SHA-256 cd598cd8c2d2bb44004e245bd93df679966001f4a2f377bf8abcc4e92cf2
+    bdf6); it enumerates underlying three-cycles and is not by itself the licensed- triangle
+    check. Completeness of the equality terminals is checked by four_port_atlas/full
+    _universe_replay/verify_full_four_port_replay.py (SHA-256 582866886bd7
+    057e11c2040931568bebd5d5a1687a5f7dfef3d894fff60077a3) against its artifact
+    (SHA-256 b07f57d1fc4e5ebd0b4bce2261931fa64399c791f539e02f46eff1146dcb76
+    f4), and by anchor_universe/verify_non_four_anchor_universe.py (SHA-256
+    3ad4d91673e8b3efe88a816de87d4cadaeb5b774c8f037cbd5daf1f81053639f) against
+    its artifact (SHA-256 050037e966c4de88305f86165262d4e5d454884a9f03f62926ef
+    1793c171238c). The coherent-probe certiﬁcate and semantic veriﬁer have SHA-256 val-
+    ues 5c0534a0844de7362830f6ec31c1193db1b7f1c428224350b8d76d02f311b82f and
+    eeb2290d187db16af3e0699341bd5074e56b0653168ce2b69610e02c5fa8595f, respectively.
+    The veriﬁer checks that every used transport has exactly two site heads into one common
+    reticulation on each side and preserves all oﬀ-site data. Lemma 5.3 proves contextual physi-
+    cal sections for a triangle inside a theta, and Lemma 10.2 glues them globally; Corollary 2.4
+    supplies the CT scope.
+
+The licensed-predicate, completeness, and probe checks are proof-bearing for the ﬁnite equality-
+terminal typing used by the cited local proofs; they do not replace the human analytic arguments.
+The DOI snapshots remain unchanged, and the sitewise translation is a stated synthesis corollary
+rather than a silent amendment of their wording.
+The distinction is nonvacuous. Let a theta have pole paths pq, prq, and pxyzq, with leaves R, X, Y, Z
+attached at r, x, y, z. Keep the heads x → y, z → y and redirect the triangle pqr from p → r, q → r
+to q → p, r → p. Both endpoints lie in STC2 ; their marked full graphs agree, but their complete
+theta factors are not labelled mixed-graph isomorphic because the neighbour of R is reticulate
+only in the ﬁrst. The standard-library replay research/verify_embedded_triangle_scop
+e.py checks binary simplicity, level two, all admissible rootings (nine versus seven), strong tree-
+childness, nonisomorphism, and marked-graph equality. It is a bounded graph-semantic regression
+only; contextual lemmas, not this witness or any point collision, prove the common full-dimensional
+germ.
+
+
+                                                 5
+snapshot   duty   proof object                      scope   role; evidence/replay
+   J       A1     Section 2, paragraph after (1);   P=CT    Divisibility/root invariance. Human proof;
+                  Lemma 3.1 lem:root is                     no dedicated certiﬁcate for the full analytic
+                  narrower                                  statement. Structural regressions:
+                                                            reviews/root_probe/parameter_submers
+                                                            ion_certificate.json, reviews/root_pro
+                                                            be/root_probe_certificate.json; replay
+                                                            reviews/root_probe/verify_active_str
+                                                            uctural.py.
+   J       A2     Theorem 4.3 thm:cuts; Lemma P=CT          Transfers labelled cuts and
+                  4.4 lem:cut-certificate;                  trivalent/nontrivial decoration. independ
+                  Corollary 4.5 cor:bridge-tree             ent/bridge_cut/cut_certificate.json;
+                                                            replay
+                                                            independent/bridge_cut/verify_cut.py.
+   J       A3     Theorem 5.1                 P=CT          Human proof supplies the complete
+                  thm:bridge-fiber; Lemma 5.3               one-sector physical ﬁbre/product chart.
+                  lem:product-chart                         independent/bridge_cut/bridge_certif
+                                                            icate.json; replay independent/bridge_c
+                                                            ut/verify_bridge.py; exact ﬁnite bridge
+                                                            support.
+   J       A4     Lemma 5.4 lem:finite-cover; P=CT          Localizes one physical factor and excludes
+                  Proposition 5.5                           remote compensation. Human submersion
+                  prop:localize; Lemma 6.2                  proof; selected-restriction bindings in atla
+                  lem:marginal-open                         s/ATLAS_EVIDENCE_BINDINGS.jsonl.gz;
+                                                            replay verifiers/evidence_bindings.py.
+   J       A5     Lemmas 3.1–3.2 lem:root,          graph   Supplies the complete primitive grammar.
+                  lem:theta-events;                         Human proof; regression primary/certif
+                  Proposition 3.3 prop:cores                icates/core_universe.json; replay
+                                                            reviews/final_standard_convention/ve
+                                                            rify_conventions.py--check-bundled.
+   J       A6     Theorems 6.1, 6.3 thm:local,      P=CT    Supplies local rigidity, restoration, and
+                  thm:atlas; Lemma 6.4                      coherent words. atlas/RESTORATION_CLOS
+                  lem:probes                                URE_BINDINGS.jsonl.gz, atlas/DIRECT_A
+                                                            NCHOR_CLOSURE_BINDINGS.jsonl.gz,
+                                                            atlas/COMPACT_PATH_CLOSURE_BINDINGS.
+                                                            jsonl.gz; replays
+                                                            verifiers/evidence_bindings.py,
+                                                            reviews/bounded_directed_relation_cl
+                                                            eanroom/cleanroom_verify.py,
+                                                            reviews/direct_anchor_probe_closure/
+                                                            verify_direct_anchor_probes.py.
+   J       A7     Lemma 6.5 lem:T-germ              P=CT    Human proof supplies the contextual germ
+                                                            and explicit physical sections.
+                                                            primary/certificates/jc_triangle_red
+                                                            irection_active.json; replay
+                                                            reviews/triangle_redirection_cleanro
+                                                            om/cleanroom_verify.py; these certify the
+                                                            base tensor/rank, not contextual
+                                                            persistence.
+   J       A8     Lemma 6.6                         P=CT    Glues all factor germs simultaneously.
+                  lem:physical-gluing                       Human proof using A3 and A7; no separate
+                                                            machine certiﬁcate is claimed.
+
+
+
+
+                                                      6
+snapshot   duty   proof object                   scope       role; evidence/replay
+
+  K2       A1     Lemmas 3.1–3.2                 P; CT by    Human analytic
+                  lem:subdivision,               Cor. 10.1   subdivision/root-movement proof.
+                  lem:root-movement; Corollary               work/domain_rooting_closure/domain_r
+                  10.1 cor:ct                                ooting_certificate.json; replay
+                                                             work/domain_rooting_closure/verify_d
+                                                             omain_rooting.py; exact ﬁnite
+                                                             domain/root support.
+  K2       A2     Lemma 3.3 lem:quartet;        P; CT by     Transfers bridge tree and trivalent
+                  Corollary 3.4 cor:tree-blobs; Cor. 10.1    decoration. work/quartet_separation_cl
+                  Lemma 3.5 lem:Ti; Corollary                osure/quartet_logic_certificate.json,
+                  10.1 cor:ct                                work/quartet_separation_closure/quar
+                                                             tet_terminal_binding_certificate.json,
+                                                             work/final_theorem_release/triangle_
+                                                             sunlet_certificate.json; replays
+                                                             work/quartet_separation_closure/veri
+                                                             fy_quartet_logic.py,
+                                                             work/quartet_separation_closure/veri
+                                                             fy_quartet_terminal_bindings.py,
+                                                             work/final_theorem_release/no_assert
+                                                             _triangle_sunlet.py.
+  K2       A3     Lemma 4.1 lem:paired-scale; P; CT by       Human proof supplies the two-sector
+                  Theorem 4.2                 Cor. 10.1      physical ﬁbre/product chart. work/bridg
+                  thm:bridge-fibre; Lemma 4.3                e_marginal_closure/certificate.json;
+                  lem:physical-product;                      replay work/bridge_marginal_closure/v
+                  Corollary 10.1 cor:ct                      erify_bridge_marginal.py; exact ﬁnite
+                                                             bridge support.
+  K2       A4     Lemma 5.1 lem:marginal;        P; CT by    Human submersion/localization proof; the
+                  Propositions 5.2, 5.4          Cor. 10.1   A3 bridge/marginal replay gives exact
+                  prop:marginal-descriptor,                  ﬁnite support.
+                  prop:localization; Lemma
+                  5.3 lem:finite-cover;
+                  Corollary 10.1 cor:ct
+  K2       A5     Lemma 6.1                      graph       Supplies the complete primitive grammar.
+                  lem:root-reduction;                        work/final_theorem_release/corrected
+                  Proposition 6.2 prop:cores                 _universe_certificate.json; replay
+                                                             work/final_theorem_release/verify_co
+                                                             rrected_universe_independent.py.
+  K2       A6     Lemma 5.5 lem:restoration; P; CT by        Supplies bounded rigidity, the full-graph
+                  Theorem 6.3 thm:bounded;      Cor. 10.1    sitewise terminal, and arbitrary restored
+                  synthesis Proposition prop:si              words. The controlling crosswalk above
+                  tewise-companion-crosswalk;                binds mixed_relation_exact and its
+                  Corollary 10.1 cor:ct                      hashes. proof_compression_submission/p
+                                                             robe/PROBE_WORD_COVERAGE.json,
+                                                             proof_compression_submission/restora
+                                                             tion/RESTORATION_ARCHETYPE_VERIFICAT
+                                                             ION.json, and
+                                                             package/referee/k2p_offline_sweep_po
+                                                             rtable/DIRECT_CLOSURE_LOCK.json;
+                                                             replays proof_compression_submission/p
+                                                             robe/verify_probe_word_theorem.py,
+                                                             proof_compression_submission/restora
+                                                             tion/verify_restoration_archetypes.py,
+                                                             and package/referee/k2p_offline_swee
+                                                             p_portable/verify_direct_closure_rel
+                                                             ease.py.
+
+
+
+
+                                                   7
+snapshot   duty   proof object                  scope      role; evidence/replay
+  K2       A7     Lemmas 7.1–7.2                P and CT   Human proof supplies physical
+                  lem:triangle-germ,                       sections/context; work/final_theorem_rel
+                  lem:context-triangle;                    ease/triangle_sunlet_certificate.json
+                  Corollary 10.1 cor:ct                    and replay work/final_theorem_release
+                                                           /no_assert_triangle_sunlet.py certify
+                                                           the base tensor/rank.
+  K2       A8     ﬁnal paragraph of Lemma 7.2   P and CT   Exact human gluing proof. Supporting
+                  lem:context-triangle;                    regression work/bridge_marginal_closure
+                  Corollary 10.1 cor:ct                    /certificate.json; replay
+                                                           work/bridge_marginal_closure/verify_
+                                                           bridge_marginal.py; no dedicated A8
+                                                           certiﬁcate is claimed.
+  K3       A1     Lemmas 4.1–4.2               P and CT    The deposited lemmas prove analytic
+                  lem:subdivision,                         subdivision and invariance between
+                  lem:root-movement; synthesis             already-admissible rootings; the synthesis
+                  Lemma                                    supplies admissibility of the needed
+                  lem:root-factor-reduction                incoming-boundary rooting and its
+                  and Corollary cor:physical-r             projective physical consequence. model_do
+                  oot-factor-reduction                     main/primary_exact_evidence.json;
+                                                           exact ﬁnite support. Full-archive replay
+                                                           reproducibility/verify_primary.py;
+                                                           compact alternative reproducibility/ve
+                                                           rify_k3p_same_classification.py--art
+                                                           ifact-only--no-write-report.
+  K3       A2     Proposition 4.3             P; CT by     Transfers strong-class cuts and decoration;
+                  prop:true-cut; Lemma 4.4    Cor. 2.4     no arbitrary-network pointwise noncut
+                  lem:displayed-tree-noncut;               claim. cut_recovery/strong_crossbridg
+                  Proposition 4.5                          e/global_transfer/GLOBAL_TRANSFER_CE
+                  prop:generic-noncut;                     RTIFICATE.json; replay
+                  Corollary 4.6                            cut_recovery/strong_crossbridge/glob
+                  cor:target-source-cut;                   al_transfer/verify_release.py. Literal
+                  Lemmas 4.7–4.8                           separator:
+                  lem:balanced-compression,                three_port/literal_separator_v2/K3P_
+                  lem:one-active; Theorem 4.9              TREE_SUNLET_LITERAL_SEPARATOR_V2.json;
+                  thm:cut-transfer; Lemma                  replay three_port/literal_separator_v
+                  10.1                                     2/verify_literal_separator_v2.py.
+                  lem:trivalent-decoration;
+                  Corollary 2.4 cor:ct-main
+  K3       A3     Theorem 6.1                 P and CT     Human proof supplies the three-sector
+                  thm:bridge-fibre; Lemma 6.2              physical incidence chart. bridge_fibre/K
+                  lem:physical-product                     3P_BRIDGE_FIBRE_CERTIFICATE.json;
+                                                           replay global_infrastructure/verify_g
+                                                           lobal_infrastructure.py is ﬁnite
+                                                           support.
+  K3       A4     Lemma 7.1 lem:marginal;       P; CT by   Human proof localizes one physical factor
+                  Propositions 7.2, 7.4         Cor. 2.4   and excludes remote compensation.
+                  prop:marginal-descriptor,                marginals/K3P_MARGINAL_SUBMERSION_CE
+                  prop:localization; Lemma                 RTIFICATE.json; replay global_infrastru
+                  7.3 lem:finite-cover;                    cture/verify_global_infrastructure.py
+                  Corollary 2.4 cor:ct-main                is ﬁnite support.
+
+
+
+
+                                                  8
+   snapshot   duty   proof object                 scope      role; evidence/replay
+      K3      A5     Synthesis Lemma              graph      The synthesis ﬁrst proves the admissible
+                     lem:root-factor-reduction;              real-boundary presentation omitted from
+                     Proposition 8.1 prop:cores              the deposited K3P preamble; Proposition
+                                                             8.1 then supplies the complete primitive
+                                                             grammar. Human proofs; regression
+                                                             four_port_atlas/full_universe_replay
+                                                             /artifacts/FULL_FOUR_PORT_REPLAY.json;
+                                                             replay
+                                                             four_port_atlas/full_universe_replay
+                                                             /verify_full_four_port_replay.py.
+      K3      A6     Lemma 7.5                    P; CT by   Supplies fourteen-orbit rigidity, the licensed
+                     lem:fixed-restoration;       Cor. 2.4   full-graph sitewise terminal, restoration,
+                     Theorem 8.2 thm:fourteen;               and probes after the synthesis-supplied
+                     Propositions 9.1–9.2                    incoming-boundary reduction. The
+                     prop:restoration,                       controlling crosswalk distinguishes the
+                     prop:probes; Theorem 9.3                broad candidate predicate from the
+                     thm:local; Corollary 2.4                full-four/non-four completeness replays and
+                     cor:ct-main; synthesis Lemma            the licensed-transport semantic veriﬁer.
+                     lem:root-factor-reduction,              restoration/RESTORATION_MANIFEST.json,
+                     Corollary cor:physical-roo              probes/K3P_PROBE_COHERENCE_CERTIFICA
+                     t-factor-reduction, and                 TE.json; replays
+                     Proposition prop:sitewise-c             restoration/verify_k3p_restoration.py,
+                     ompanion-crosswalk                      probes/verify_k3p_probes_semantic.py,
+                                                             and reproducibility/verify_k3p_same_
+                                                             classification.py--artifact-only--n
+                                                             o-write-report.
+      K3      A7     Theorem 5.2 thm:H14; Lemma   P and CT   Human proof supplies the H14 common
+                     5.3 lem:H14-context                     germ, physical sections, and contextual
+                                                             persistence. triangle_h14/K3P_H14_CONTE
+                                                             XT_CERTIFICATE.json; replay
+                                                             global_infrastructure/verify_global_
+                                                             infrastructure.py is ﬁnite support.
+      K3      A8     Lemma 10.2 lem:gluing        P and CT   Human proof glues all factor germs
+                                                             simultaneously with physical sections.
+                                                             global_infrastructure/K3P_GLOBAL_GLU
+                                                             E_AND_RECONSTRUCTION_CERTIFICATE.json,
+                                                             global_infrastructure/GLOBAL_INFRAST
+                                                             RUCTURE_MANIFEST.json; replay
+                                                             global_infrastructure/verify_global_
+                                                             infrastructure.py; mutation replay
+                                                             global_infrastructure/test_global_in
+                                                             frastructure_mutations.py are regression
+                                                             support.
+
+
+
+4.2   Other imported theorem bindings
+
+The following four suites support the uniform sharpness theorem and the separate outer-class phase-
+diagram claim. They are not A1–A8 premises, but they are logical premises of the displayed results
+in the main article and are therefore bound at the same release granularity.
+
+
+
+
+                                                    9
+ID   article objects             scope        evidence/replay                 proof boundary
+J    Theorem 1.3                 P=CT;        sharpness/omega/inputs/jc_om    Proof-bearing for the base
+     thm:sharpness;              n≥4          ega_move.json; replays          mixed graphs, rooting
+     Propositions 9.1–9.2                     sharpness/omega/cleanroom/ve    census, exact common
+     prop:omega-topology,                     rify_omega_release.py and sh    tensor, and rank-nine
+     prop:omega-overlap;                      arpness/omega/cleanroom/veri    minors. The all-n topology,
+     cherry lift in the proof                 fy_omega_rank_readability.py    cherry persistence, and
+     following equation                                                       dimension increment are
+     eq:cherry                                                                graph/analytic induction in
+                                                                              the article.
+K2   Theorem 11.1                strict CT    work/weak_sharpness_closure/    Proof-bearing for base
+     thm:sharpness; exact        (hence P);   weak_sharpness_certificate.j    equality/rank, CT
+     coordinate order and cherry n ≥ 3        son; replay                     inequalities,
+     minor in equations                       work/weak_sharpness_closure/    rooting/relation, and the
+     eq:sharp-order,                          verify_weak_sharpness.py.       cherry determinant. The
+     eq:cherry-det                            Independent audit:              independent audit checks
+                                              work/weak_sharpness_audit/au    the actual transformed edge
+                                              dit_certificate.json and        pairs. The all-n inverse and
+                                              work/weak_sharpness_audit/au    lift/prune argument is
+                                              dit_weak_sharpness.py.          analytic/graph induction in
+                                              Column binding:                 the article.
+                                              proof_compression_submission
+                                              /analysis/WEAK_SHARPNESS_COL
+                                              UMN_CROSSWALK.json and
+                                              proof_compression_submission
+                                              /analysis/verify_weak_sharpn
+                                              ess_column_crosswalk.py
+K3   Theorem 2.5                 strict CT    sharpness/K3P_SHARPNESS_KRAW    Proof-bearing
+     thm:sharpness;              (hence P);   CZYK_CERTIFICATE.json and       interval/Krawczyk base
+     Propositions 13.1–13.2      n≥3          sharpness/K3P_SHARPNESS_TOPO    equality, rank, CT
+     prop:sharp-topology,                     LOGY_ALL_N_CERTIFICATE.json;    inequalities, and base
+     prop:krawczyk; Lemma                     replays sharpness/independen    topology. The universal
+     13.3 lem:cherry                          t_krawczyk_replay.py and        dimension and topology are
+                                              sharpness/independent_topolo    proved by the exact cherry
+                                              gy_alln_replay.py; binding      inverse and graph induction.
+                                              manifest sharpness/K3P_SHARPN   The veriﬁer reconstructs,
+                                              ESS_REPLAY_MANIFEST.json        from frozen rational data, a
+                                                                              producer intermediate
+                                                                              absent from the public
+                                                                              archive; that intermediate is
+                                                                              not assumed.
+
+
+
+
+                                                  10
+    ID    article objects              scope       evidence/replay                 proof boundary
+    C     Theorems 4, 7 thm:k2p,       strict       certificate_k2p_simple.json,   Proof-bearing for the ﬁnite
+          thm:k2p-ct; Proposition 8    stochastic P certificate_k2p_continuous_t   equalities, ranks, tangent
+          prop:k2p-rank; Lemma 9       and          ime.json,                      data, and strict physicality.
+          lem:local-fibers;            edgewise     certificate_k3p.json, jacobi   The local manifold/ﬁbre
+          Corollary 10                 strict CT;   an_certificate_k3p.json,       conclusions combine those
+          cor:k2p-geometry;            complete     continuous_time_certificate_   checks with the article’s
+          Theorem 12 thm:k3p;          tensor; one k3p.json; complete replay       constant-rank and
+          Proposition 13               theta        verify.py; focused replays     implicit-function argument.
+          prop:k3p-rank; Corollaries   replacement verify_k2p_simple.py, verify    All-n ≥ 3 grafting is the
+          14–15 cor:k3p-ct,            at any       _k2p_displayed_trees.py,       human proof in Lemma 18
+          cor:genuine-k3p-nearby;      chosen       src/verify_k2p_extended.py,    and Theorem 19;
+          Corollary 16                 internal     src/verify_k2p_rank_family.p   src/verify_k2p_four_leaf
+          cor:zariski-density;         vertex of    y, and src/verify_k3p.py       _graft.py is regression only.
+          Lemma 18                     every                                       The two K3P sidecars are
+          lem:common-kernel;           labelled                                    transport mirrors checked
+          Theorem 19                   unrooted                                    for release consistency, not
+          thm:single-theta-            binary tree                                 independent mathematical
+          replacement                  on n ≥ 3                                    evidence.
+                                       leaves; no
+                                       shared
+                                       generator or
+                                       clock
+
+
+Some K2P paths above live only in the immutable full DOI archive rather than the curated repos-
+itory subset. Every named K3P certiﬁcate exists in the imported release, but reproducibilit
+y/verify_primary.py requires the full archive because its primary input lock is absent from
+the compact bytes. The compact executable alternative is reproducibility/verify_k3p
+_same_classification.py--artifact-only--no-write-report; regeneration by the full
+K3P producer pipeline is also an archive-level operation. The K2P theorem-artifact crosswalk is
+proof_compression_submission/crosswalk/THEOREM_ARTIFACT_CROSSWALK.md. These bound-
+aries prevent a local subset from being mistaken for the deposited proof object. The separate
+K2P/K3P tree–theta collision release is not an A1–A8 premise; its exact use in the outer-class
+obstruction is bound in the additional table above.
+
+
+5        Symmetry-orbit veriﬁcation
+Let C3 = {(g1 , g2 , g3 ) ∈ G3 : g1 + g2 + g3 = 0}. The source release contains the script
+research/verify_symmetry_orbits.py, which performs the following ﬁnite checks without
+numerical approximation:
+
+    (i) enumerate all sixteen elements of C3 ;
+ (ii) construct the blockwise stabilizers for the partitions [3], [2 + 1], and [1 + 1 + 1];
+(iii) compute their diagonal coordinate orbits, obtaining 5, 10, and 16;
+ (iv) remove the normalization orbit to obtain ambient dimensions 4, 9, and 15;
+                                                        (   )
+ (v) verify ar = r(r + 7)/2 and ar − (5r − 1) = r−1
+                                                 2 ;
+
+ (vi) verify that A3 is transitive on the nonzero characters but has six raw coordinate orbits,
+      demonstrating why arbitrary subgroup indexing is redundant for the JC edge model.
+
+                                                       11
+The expected output is:
+
+model,r,|B|,consistent_orbits,normalized_ambient,triangle_rank,codimension
+JC,1,6,5,4,4,0
+K2P,2,2,10,9,9,0
+K3P,3,1,16,15,14,1
+A3_warning: same nonzero tying as JC, but 6 raw coordinate orbits versus 5
+            after symmetry saturation
+
+The script veriﬁes the ﬁnite orbit arithmetic. The ranks are independently recomputed by the
+representation-theoretic replay below.
+
+
+6     Representation-theoretic triangle replay
+At the common strict continuous-time point
+
+            a = b = c = d = e = (1/2, 1/2, 1/2),               f = (1/3, 1/3, 1/3),    λ = 1/2,
+
+the normalized K3P ordinary-sunlet diﬀerential is equivariant for the simultaneous S3 action on
+the three nonzero characters. The source script research/verify_triangle_representation.py
+diﬀerentiates the literal map over Q and veriﬁes
+                                  ∼ 71 ⊕ 6V,
+                          Tθ ΘK3P =                           ∼ 41 ⊕ 5V ⊕ sgn .
+                                                       Tq A15 =
+
+It then computes selected maximal minors of the full 4 × 7 trivial and 5 × 6 standard multiplicity
+maps:                                        
+                                  1 1 0 1
+                                1 0 1 1/4
+                                             
+                           J0 =              ,       det J0 = −1/2,
+                                0 1 1 1/4
+                                  1 1 1 1
+and                                                           
+                             1        1       0 0    1
+                            1
+                                     0       1 3/4 1/4 
+                                                        
+                                                       
+                      J⊥ =  0        1       1 1/4 1/4  ,           det J⊥ = −1/4.
+                                                       
+                           −1        1       0 0    0 
+                             −1       0       1 1/2 −1/2
+Although the displayed determinant values depend on the chosen ordered coordinates, their nonva-
+nishing, and hence the ranks, is basis-independent. Thus the full trivial and standard multiplicity
+maps have ranks 4 and 5; each available anisotropy line adds ﬁve rank directions, and the tied
+restrictions have parameter/rank/kernel triples
+
+                                 (7, 4, 3),      (13, 9, 4),       (19, 14, 5).
+
+The same script symbolically permutes the eight monomials of FH14 , veriﬁes that the quartic
+transforms by the sign character, and checks that its nonzero diﬀerential at the common tensor
+spans the dual sign conormal and annihilates the complete triangle tangent image. Under the
+standard invariant coordinate pairing, its metric-dual gradient spans the complementary output
+sign line.
+The expected terminal output is:
+
+                                                      12
+ordinary-triangle representation verification
+input S3 decomposition: 7*trivial + 6*standard
+output S3 decomposition: 4*trivial + 5*standard + 1*sign
+trivial multiplicity map: shape 4x7, rank 4
+selected columns a,b,c,f: det(J0) = -1/2
+standard multiplicity map: shape 5x6, rank 5
+selected columns a,b,c,d,f: det(Jperp) = -1/4
+JC parameter/rank/kernel = 7/4/3
+K2P parameter/rank/kernel = 13/9/4
+K3P parameter/rank/kernel = 19/14/5
+uniform formulas: rank = 5r-1; kernel = r+2
+H14 differential spans the dual sign conormal and annihilates the tangent image
+PASS
+
+
+7    Bounded cross-model replay
+The main paper proves that no regular full-dimensional containment can point from a strictly richer
+classical model to a poorer one. Conversely, whenever the target model reﬁnes the source, every
+triangle-equivalent strong-class pair admits a cross-model containment by composing the source-
+model section with the tying-reﬁnement embedding. It also classiﬁes all ordered pairs among the
+three-leaf tree T and the three labelled ordinary-sunlet orientations S1 , S2 , S3 under JC, K2P, and
+K3P. Containment holds exactly when the target model is at least as rich as the source and the
+tree/triangle observable quotients agree.
+The script research/verify_cross_model_reconnaissance.py independently expands the six
+K3P circuit factorizations from the literal sunlet map. It then applies the proved directionality,
+separator, and constructive-embedding cases as an explicit classiﬁcation table over the 122 = 144
+ordered model/topology pairs. The enumeration audits the theorem’s count consequences; it is not
+an independent proof of the two analytic global propositions. Its exact count is
+
+                        classiﬁcation row                             count
+                        containment                                      60
+                        exclusion                                        84
+                           target-symmetry obstruction                   48
+                           tree–sunlet separator                         36
+                        constructive same-topology embedding             24
+                        triangle redirection followed by embedding       36
+
+The table is also emitted as research/cross_model_three_leaf_sweep.csv. This replay does not
+claim to classify any remaining coarser-source, richer-target, diﬀerent-quotient case beyond three
+leaves within STC2 .
+
+
+8    Exploratory four-leaf triage
+To assess whether the remaining reﬁnement directions were close enough for this paper, we also
+ran a separate exploratory linear screen. It is not used as theorem evidence. A rooted-insertion
+
+
+                                                 13
+generator produced 117 labelled four-leaf mixed graphs after ﬁltering to standard semi-directed
+strongly tree-child level at most two and deduplicating by labelled mixed-graph isomorphism: 3
+trees, 30 one-reticulation networks, and 84 two-reticulation networks.
+For the 1172 = 13,689 ordered JC-source/K2P-target pairs, an exact projective linear-invariant
+screen over three primes excluded 8,610 pairs and left 5,079 survivors, of which 4,962 have diﬀerent
+mixed graphs. For every one of the 117 K3P targets, the corresponding projective coeﬃcient
+matrix has full rank 64 modulo 1,000,003, so no nonzero linear invariant exists over the rational
+conservation-supported coordinate space.
+These numbers are triage, not a classiﬁcation. The generated universe is not identiﬁed with the
+companions’ canonical quotient atlas, triangle redirection is not canonicalized, and the independent-
+switching-weight projective map supplies only a necessary linear screen. In particular, survival does
+not imply containment. The scripts and full outputs are kept in research/exploratory/; the
+theorem-grade conclusion remains the exact reduction in the main paper, within STC2 , to upward,
+diﬀerent-quotient cases beyond the classiﬁed three-leaf universe.
+
+
+9    Certiﬁcate and dimension summary
+
+ object                  ambient      image rank      consequence
+ JC ordinary                4              4          ambient-open common germ
+ triangle
+ K2P ordinary               9              9          ambient-open strict-CT common germ
+ triangle
+ K3P ordinary              15              14         relative common germ on irreducible H14
+ triangle
+ K2P outer theta           9               9          dominant map; tree rank 6; ﬁxed-output ﬁbre 11
+ K3P outer theta           15              15         dominant map; tree rank 9; ﬁxed-output ﬁbre 14
+
+
+For the weak-class all-n families, identical-cherry extension gives slopes 2r. The certiﬁed dimensions
+are 2n + 1 for the JC Omega family, 4n − 3 for K2P, and 6n − 3 for K3P. These are dimensions of
+common regular germs full-dimensional in both images, not claims of equality of complete stochastic
+images.
+
+
+References
+[1] Alec Kriebel. Exact tree–theta-trinet collisions under the Kimura 2- and 3-parameter models. Zenodo
+    preprint, 2026. Deposited content version 1.2.7; Zenodo/DataCite structured version ﬁeld 1.2.6;
+    published 28 August 2026. doi:10.5281/zenodo.22136869.
+[2] Alec Kriebel. Generic identiﬁability and directed containment for strongly tree-child level-2 networks
+    under the Kimura two-parameter model: The principal positive domain and strict continuous time.
+    Zenodo preprint, 2026. Version 1.0.5-r1, published 30 August 2026. doi:10.5281/zenodo.22168797.
+[3] Alec Kriebel. Strong tree-childness is a sharp generic-identiﬁability boundary for level-2 Jukes–Cantor
+    networks. Zenodo preprint, 2026. Version 1.1.7, published 23 August 2026.
+    doi:10.5281/zenodo.22089373.
+[4] Alec Kriebel. Triangle hypersurfaces and a sharp identiﬁability boundary for level-2 K3P networks.
+    Zenodo preprint, 2026. Version 1.0.0, published 30 August 2026. doi:10.5281/zenodo.22178672.
+
+
+
+                                                    14
+

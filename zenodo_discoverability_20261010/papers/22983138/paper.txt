@@ -1,0 +1,200 @@
+           Equality in the Fradelizi–Paouris–Schütt
+                      second-moment inequality
+                                            Alec Kriebel
+                                     Independent researcher
+                                   ORCID: 0009-0001-9320-500X
+
+                           23 September 2026           (version 1.0.0)
+
+
+                                                Abstract
+        Fradelizi, Paouris, and Schütt proved a sharp lower bound for the second moment of a
+     convex body whose extreme points lie outside an open Euclidean ball. They characterized
+     equality for polytopes and conjectured the same characterization for arbitrary convex
+     bodies. We prove this conjecture: equality holds precisely for nondegenerate simplices
+     whose vertices lie on the bounding sphere. The proof extends their simplex argument
+     by an almost-everywhere partition into countably many simplices with extreme-point
+     vertices. An exact nonnegative deﬁcit identity retains the equality information for this
+     partition.
+
+
+1    Statement and relation to the original problem
+A convex body is a compact convex subset of Rn with nonempty interior. Write |K| for its
+n-dimensional volume and deﬁne
+                                   Z                                Z
+                              1                                1
+                      gK =              x dx,      C2 (K) =             ∥x∥22 dx.
+                             |K|    K                         |K|   K
+
+The inequality below and its equality characterization for polytopes are [1, Theorem 1.1]. The
+conjecture immediately following that theorem asks for the same equality characterization
+for all convex bodies. It was also recorded in [2, p. 2908], and is the question catalogued
+as OWR-4136-011 in [3]. Our contribution is the general-body equality case; the inequality
+and the simplex moment formula are due to [1].
+
+Theorem 1. Let n ≥ 1, r > 0, and let K ⊂ Rn be a convex body satisfying ∥v∥2 ≥ r for
+every v ∈ ext K. Then
+                                         r2 + (n + 1)∥gK ∥22
+                                C2 (K) ≥                     .                           (1)
+                                               n+2
+Equality holds if and only if K is a nondegenerate n-simplex and all its vertices have norm
+r.
+
+   The norm hypothesis is explicitly non-strict: the original sources’ prose uses “greater
+than,” while their equality statement includes vertices of norm r. Under the strictly greater
+hypothesis equality is impossible. Neither gK = 0 nor 0 ∈ K is assumed. The catalogue asks
+the question for n > 2; the theorem includes these dimensions and also n = 1, 2.
+
+
+
+
+                                                   1
+2    An extreme-point simplex partition
+Lemma 2. Every convex body K ⊂ Rn admits a ﬁnite or countable family (Sj ) of nonde-
+generate n-simplices with pairwise disjoint interiors, vertices in ext K, and
+
+                                              [
+                                        K\        Sj = 0.
+                                              j
+
+The construction may start with any nondegenerate simplex whose vertices are extreme points
+of K.
+
+Proof. The ﬁnite-dimensional extreme-point theorem gives K = conv(ext K). Thus ext K
+aﬃnely spans Rn . Choose distinct extreme points v1 , . . . , vn+1 that are aﬃnely independent.
+Because every subspace of Euclidean space is second countable, ext K has a ﬁnite or countable
+dense subset D containing these points. Enumerate D without repetition, with these points
+ﬁrst, and set
+                          Pm = conv(v1 , . . . , vm ),  m ≥ n + 1.
+If D is ﬁnite, stop at its last point. A subsequently inserted point v = vm+1 is outside
+Pm , since otherwise it would be a convex combination of other points of K, contradicting
+extremality.
+   We recall explicitly the ﬁnite shell construction. Use a facet representation
+
+                          Pm = {x : aF · x ≤ bF for every facet F }.
+
+Call F visible from v if aF · v > bF . Then
+                                                  [
+                              Pm+1 = Pm ∪                 conv(v, F ).                      (2)
+                                              F visible
+
+Indeed, for x ∈ Pm+1 \ (Pm ∪ {v}), the ray from v through x ﬁrst meets Pm at a point y
+lying on a visible facet. Otherwise every facet inequality active at y would hold at v; all
+inactive inequalities would still be strict just before y, contradicting ﬁrst intersection. Also
+x ∈ [v, y]. The apex v is covered because at least one visible facet exists. Distinct visible
+pyramids have disjoint interiors: an interior point determines a unique ﬁrst intersection of
+its ray with Pm , in the relative interior of its base facet. Their interiors lie outside Pm .
+     A ﬁnite polytope can be partitioned into simplices using only its vertices. To see this,
+induct on dimension, choosing a vertex and coning it to vertex partitions of all facets not
+containing that vertex. Rays through interior points give disjoint interiors and coverage;
+closure gives the boundary. The base case is a point. Apply this construction to every visible
+facet in (2), and cone its (n − 1)-simplices to v. Each resulting n-simplex is nondegenerate
+and has vertices in D. Starting with Pn+1 and retaining every earlier simplex gives a ﬁnite
+                                                               S
+or countable family with disjoint interiors and union C = m Pm = conv D. Compatibility
+of subdivisions along lower-dimensional faces is unnecessary.
+     Density gives C = K. The convex set C has nonempty interior, so int C = int C = int K.
+One can see the nontrivial inclusion by surrounding any interior point of C with a small
+simplex and approximating its vertices by points of C; a suﬃciently small perturbation
+still surrounds that point. Thus K \ C is contained in ∂K, which has zero n-dimensional
+volume.
+
+
+
+
+                                                  2
+3    The deﬁcit identity and equality
+                                                                                           P
+For a nondegenerate simplex S = conv(x0 , . . . , xn ) put cS = (n + 1)−1                   i xi   and qS =
+         P
+(n + 1)−1 i ∥xi ∥22 . Uniform barycentric coordinates satisfy
+                               2                                   1
+                Eλ2i =                  ,        Eλi λk =                       (i ̸= k).
+                         (n + 1)(n + 2)                      (n + 1)(n + 2)
+                                                                                                    Q
+These follow by integrating monomials on the standard simplex; more generally E i λai i =
+   Q          P                                                 P
+n! i ai !/(n + i ai )! for nonnegative integers ai . Expanding ∥ i λi xi ∥22 gives the identity
+of [1, Lemma 3.2]:
+                                 P            P
+                                  i ∥xi ∥2 + ∥ i xi ∥2
+                                         2           2       qS + (n + 1)∥cS ∥22
+                      C2 (S) =                           =                       .                      (3)
+                                     (n + 1)(n + 2)                n+2
+
+Proof of Theorem 1. Use Lemma 2, and let wj = |Sj |/|K|, cj = cSj , and qj = qSj . All
+weights are positive, and null overlaps and countable additivity give
+                 X                   X                                  X
+                      wj = 1,             wj cj = gK ,       C2 (K) =       wj C2 (Sj ).
+                  j                   j                                 j
+
+All points and centroids lie in the bounded set K, so every series used here and below is
+absolutely convergent. Each qj ≥ r2 . Applying (3) and the weighted variance identity yields
+
+                                   r2 + (n + 1)∥gK ∥22
+                  ∆r (K) := C2 (K) −
+                                           n+2
+                              1 X                  n+1X                                                 (4)
+                           =       wj (qj − r2 ) +       wj ∥cj − gK ∥22 .
+                             n+2 j                 n+2 j
+
+Both sums are nonnegative, proving (1). If equality holds, every positive-weight summand
+vanishes. Thus qj = r2 and cj = gK for every j. The ﬁrst condition forces every vertex of
+every Sj to have norm r. The second condition forces the family to consist of one simplex:
+the centroid of a nondegenerate simplex is in its interior, and two simplices with the same
+centroid cannot have disjoint interiors. The union in the construction is dense in K, so
+the sole closed simplex is K. Conversely, an inscribed simplex has qS = r2 , and (3) gives
+equality.
+
+
+
+
+                                                    3
+4    A ﬁnite witness to strictness
+The preceding proof gives a useful quantitative check on the passage from polytopes to
+arbitrary bodies. Start with an extreme-point simplex S = conv(v0 , . . . , vn ). If K ̸= S, there
+is an extreme point u ∈ / S. Insert u next. Choose a strictly visible facet opposite vi and put
+T = conv(u, {vj : j ̸= i}). Both S and T are retained in the partition, have positive volumes
+a, b, and satisfy cT − cS = (u − vi )/(n + 1). Completing the square in their two variance
+terms in (4) gives
+                                            ab ∥u − vi ∥22
+                            ∆r (K) ≥                            > 0.                           (5)
+                                      (n + 1)(n + 2)|K|(a + b)
+Equivalently, apply the ﬁnite deﬁcit identity on each Pm retaining S, T , replace |Pm | by the
+larger |K|, and pass to the limit in bounded volume integrals. This supplies a second route
+to equality rigidity without assuming a countable partition in advance.
+
+Corollary 3. Under the hypotheses of Theorem 1, equality in C2 (K) ≥ r2 /(n + 2) holds
+exactly for simplices with all vertices of norm r and centroid zero.
+
+   For the strengthened inequality (1), regularity is never required. For example, the non-
+regular triangle with vertices (1, 0), (0, 1), (−1, 0) has gK = (0, 1/3) and C2 (K) = 1/3, giving
+equality with r = 1. In dimension one the equality interval is [−r, r].
+
+Veriﬁcation and provenance. The proof is analytic and does not depend on computa-
+tion. The accompanying standard-library Python script checks simplex moments by exact
+polynomial integration and ﬁnite shell identities by independent polygon moment formulas.
+The package also contains a separate ﬁnite-approximation proof and adversarial audit notes.
+These checks are not a proof-assistant formalization. A bounded literature audit completed
+on 23 September 2026 found no earlier general-body equality resolution in the sources exam-
+ined; it does not certify priority. This unrefereed, AI-assisted manuscript was prepared with
+OpenAI Codex from a candidate supplied by the author from prior AI-assisted work, with
+separate AI veriﬁcation agents.
+
+
+References
+[1] M. Fradelizi, G. Paouris, and C. Schütt, Simplices in the Euclidean ball, Canad. Math.
+    Bull. 55 (2012), no. 3, 498–508. doi:10.4153/CMB-2011-142-1.
+
+[2] M. Fradelizi (joint work with G. Paouris and C. Schütt), Simplices in the Euclidean ball,
+    in Convex Geometry and its Applications, Oberwolfach Rep. 6 (2009), no. 4, 2907–2909.
+    doi:10.4171/OWR/2009/53.
+
+[3] UnsolvedMath, OWR-4136-011: Simplex Equality Cases
+    in Convex Geometric Inequalities, reviewed statement v1.7, accessed 23 September 2026.
+
+
+
+
+                                                4
+

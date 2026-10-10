@@ -1,0 +1,215 @@
+               A four-period counterexample to the conjectured
+                         elliptic billiard invariant k107
+                                                Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                              7 October 2026
+
+
+                                                 Abstract
+          Table 2 of Reznik,
+                        ∏ Garcia and Koiller’s 2020 preprint and 2021 article conjectures the con-
+      stancy of (A′ /A) i sin(θi /2) when the period is divisible by four. Here A′ is the area of the
+      outer tangent polygon and the angles belong to the original billiard polygon. Two primitive
+      convex four-periodic trajectories in the same confocal caustic family give, exactly, 288/625 and
+      625/1152. We give a self-contained geometric certiﬁcate of the common continuous family and
+      the contradiction. The four-period construction and its area identities are prior work. The same
+      correction appears in Ferudun’s contemporary note, which we credit explicitly. No exclusive pri-
+      ority or independent discovery is claimed.
+
+
+1    The precise assertion and contribution
+Let the billiard boundary be
+                                E:     x2 /a2 + y 2 /b2 = 1,        a > b > 0.
+For an ordered orbit P = (P1 , . . . , PN ), let Pi′ be the intersection of the tangents to E at Pi , Pi+1 ,
+with cyclic indices. Use signed shoelace areas A = A(P ), A′ = A(P ′ ), and let θi be the original
+polygon’s internal angles. Table 2 of the version-speciﬁc preprint [1] and the published article [2],
+p. 345, lists
+                                       ∏
+          k103 = A′ /A,       k105 =       sin(θi /2),       k107 = k103 k105    (N ≡ 0 (mod 4)).
+                                       i
+
+The last constancy assertion is marked unproved. We refute this literal product at the admissible
+primitive period N = 4; we do not substitute a quotient, change the angle convention, or assert a
+corrected all-period theorem.
+    The simple four-period family, its caustic, its area extrema and the identity AA′ = 8a2 b2 are
+already given by Garcia and Reznik [3], Proposition 4.9 and Appendix B.3, pp. 58, 68–69; the
+construction is also in their January 2021 preprint [4], p. 18. These geometric building blocks are
+not claimed as new. The contribution here is the explicit diagnosis of the retained k107 entry, with
+a complete checkable counterexample.
+    Ferudun [5] gives the same exact witnesses and a general family formula. The original repository
+disclosure [6] has provider creation/update times of 30 September 2026; the retrieved Zenodo record
+for [5] was created on 1 October 2026. The saved PR body states the two values and describes
+the continuous-family certiﬁcate in the referenced original-head proof. This records the available
+chronology, without establishing exclusive global priority or independence between the works.
+
+                                                         1
+2    A common continuous family of genuine billiards
+The following standard normal-coordinate parametrization also appears in [5]. We prove every
+property needed for the counterexample rather than infer common-family membership from two
+isolated examples.
+    Put M = diag(a2 , b2 ), S = a2 + b2 , D = a2 b2 , and λ = D/S. For φ ∈ R, set
+                                                        √             √
+     n = (cos φ, sin φ), m = (− sin φ, cos φ), h = nT M n, k = mT M m, η = nT M m.
+
+Thus h, k > 0, h2 + k 2 = S, and h2 k 2 − η 2 = D > 0. Deﬁne
+
+                      P = M n/h,       Q = M m/k,          Pφ = (P, Q, −P, −Q).
+
+Lemma 1. Every Pφ is a primitive, strictly convex, counterclockwise four-period billiard orbit in
+E. All its segments are tangent, with contacts strictly in their interiors, to the same strictly nested
+confocal ellipse of shape matrix C = M − λI. The orbits vary continuously with φ.
+
+Proof. Both vertices lie on E, with outward unit normals n, m. In the positively oriented orthonor-
+mal coordinates (n, m), the matrix M and vertices are
+                              (        )
+                                h2 η
+                        M=           ,         P = (h, η/h),    Q = (η/k, k).
+                                η k2
+
+As hk > |η|,
+                                  hk − η                           hk + η
+                        Q−P =            (−h, k),        P +Q=             (h, k).
+                                    hk                               hk
+                                                                               √
+Both coeﬃcients are √ positive. The unit incoming direction at P is (h, k)/ S and the unit outgoing
+direction is (−h, k)/√S. Reﬂection in  √ the tangent x = h interchanges them. At Q, reﬂection in
+y = k sends (−h, k)/ S to (−h, −k)/ S. Central negation proves the other two physical reﬂection
+equations.
+    Since 0 < λ < b2 , C is positive deﬁnite and its ellipse is strictly inside E. Its squared semiaxes
+are
+                                              a4                  b4
+                                    a2 − λ = ,        b2 − λ = ,
+                                              S                   S
+whose diﬀerence is a2 − b2 , proving confocality. The ﬁrst chord has line normal w+ = (k, h) and
+oﬀset u+ = hk + η > 0. The support identity
+                           T
+                          w+ Cw+ = 2h2 k 2 + 2hkη − λS = (hk + η)2 = u2+
+
+proves tangency to the caustic. The second chord has w− = (k, −h), u− = η −hk < 0, and similarly
+ T Cw = u2 . For a positive deﬁnite centered ellipse of shape C, a tangent w T X = u ̸= 0 has its
+w−    −     −
+unique contact at Cw/u. Direct substitution gives
+
+                      Cw+      k2                       Cw−      h2
+                          = P + (Q − P ),                   = Q + (−P − Q).
+                       u+      S                         u−      S
+
+Both segment parameters lie strictly between zero and one; the other contacts are their negatives.
+Finally det(P, Q) = D/(hk) > 0. Hence the four vertices form a strictly convex central parallelo-
+gram in the asserted order and are distinct, so the oriented billiard trajectory cannot have a smaller
+period. All formulas are continuous, with no zero denominator.
+
+                                                    2
+3    Exact nonconstancy
+Theorem 1. For every a > b > 0, the literal k107 product is nonconstant on the ﬁxed-caustic family
+in Lemma 1. In particular, a = 4, b = 3 gives exact values 288/625 and 625/1152.
+
+Proof. The consecutive outer tangent intersections, in the (n, m) coordinates, are
+
+                               (h, k),     (−h, k),       (−h, −k),     (h, −k).
+
+Therefore
+                                         2D
+                                          A=,     A′ = 4hk.
+                                         hk
+                                            √                 √
+The internal angle at P is between
+                              √    (−h, −k)/ S and (−h, k)/ S.  √ Its cosine is (h − k )/S, so its
+                                                                                  2   2
+
+positive half-angle sine is k/ S. At Q the half-angle sine is h/ S; opposite angles repeat these
+values. Consequently
+
+                               ∏
+                               4
+                                                    h2 k 2              A′    2h4 k 4
+                        H :=         sin(θi /2) =          ,     K :=      H=         .            (1)
+                               i=1
+                                                     S2                 A      DS 2
+
+At φ = 0, the orbit is the axis diamond
+                                                                               2D
+                            (a, 0), (0, b), (−a, 0), (0, −b),           KD =      .
+                                                                               S2
+                      √
+At φ = π/4, h = k =    S/2, and the orbit is the axis-aligned rectangle
+                                  √       √             √       √
+                             (a2 / S, b2 / S), (−a2 / S, b2 / S),
+                           √        √          √          √             S2
+                     (−a2 / S, −b2 / S), (a2 / S, −b2 / S),        KR =    .
+                                                                        8D
+As S 2 − 4D = (a2 − b2 )2 > 0, we have KD < 1/2 < KR . Lemma 1 connects these primitive orbits
+through one ﬁxed nondegenerate caustic, completing the contradiction.
+    For a = 4, b = 3, the caustic is x2 /(256/25) + y 2 /(81/25) = 1, and all displayed coordinates and
+values are rational:
+                           diamond rectangle
+                      A       24    576/25
+                                                                625   288   58849
+                      A′      48       50                           −     =        > 0.
+                                                               1152 625     720000
+                      H    144/625    1/4
+                      K    288/625 625/1152
+
+
+
+    All areas used above are positive. Reversing traversal negates both signed areas and preserves
+their ratio; taking absolute areas likewise preserves the witnesses. The excluded circular limit a = b
+gives the coincident value K = 1/2. No degenerate caustic, self-intersection, repeated shorter orbit
+or inﬁnite outer intersection is involved. Formula (1) is a four-period identity only. Its equivalent
+expression K = 32D3 /(S 2 A4 ) combines the known area geometry with the half-angle product and
+also follows from [5]; it is not a new general-period invariant.
+
+
+
+
+                                                          3
+4    Priority and veriﬁcation scope
+Our bounded primary-source audit, closed 8 October 2026 UTC, read the original source tables, the
+prior low-period construction, Stachel’s relevant billiard and motion results, Connes–Zagier’s paral-
+lelogram result, and Garcia–Koiller–Reznik’s spatial-integral paper [7, 8, 9, 10]. It found no explicit
+pre-disclosure correction of this product in those readings. A 2020 reference to an in-preparation
+explicit-expression manuscript could not be separately identiﬁed and read; its relationship to the
+later low-period paper was not assumed. The audit does not establish absence from all literature,
+and the contemporary overlap above is part of the current literature.
+    The support archive contains the standalone source, precise source and priority comparisons,
+and exact Python veriﬁcation. The two ﬁnite witnesses are checked independently by rational
+arithmetic for boundary membership, physical reﬂection, caustic contact interiors, convexity, tan-
+gent intersections, areas and internal half angles. Symbolic identities and a nonsymmetric phase
+provide additional diagnostics. Replayed original checkers have explicit failure guards eﬀective un-
+der Python optimization. Finite checks and symbolic reductions support, but do not replace, the
+analytic continuous-family proof. They are not proof-assistant formalization.
+    AI tools were used extensively in developing, drafting, reproducing and adversarially verifying
+the work. Independent AI reviews are not conventional human peer review. This preprint is
+unrefereed and has not undergone conventional human peer review.
+
+
+References
+ [1] D. Reznik, R. Garcia and J. Koiller, Eighty New Invariants of N-Periodics in the Elliptic Billiard,
+     arXiv:2004.12497v11, 29 October 2020. Version-speciﬁc preprint.
+ [2] D. Reznik, R. Garcia and J. Koiller, Fifty New Invariants of N-Periodics in the Elliptic Billiard, Arnold
+     Mathematical Journal 7 (2021), 341–355. doi:10.1007/s40598-021-00174-y.
+ [3] R. Garcia and D. Reznik, Exploring self-intersected N-periodics in the elliptic billiard, Annales Mathe-
+     maticae et Informaticae 55 (2022), 49–75. doi:10.33039/ami.2022.02.001.
+ [4] R. Garcia and D. Reznik, Invariants of Self-Intersected N-Periodics in the Elliptic Billiard,
+     arXiv:2011.06640v3, 19 January 2021. Version-speciﬁc preprint.
+ [5] A. Ferudun, Four-Periodic Counterexamples to Two Elliptic Billiard Invariants, version 1.0, 1 October
+     2026. doi:10.5281/zenodo.23075934.
+ [6] A. Kriebel, 5100001: exact four-period counterexample to printed k107, repository pull request 147,
+     30 September 2026, original head 502de2f863a63ca205814da4194411847797a7c3. Dated repository
+     disclosure.
+ [7] H. Stachel, The geometry of billiards in ellipses and their Poncelet grids, Journal of Geometry (2021).
+     doi:10.1007/s00022-021-00606-2.
+ [8] H. Stachel, On the motion of billiards in ellipses, European Journal of Mathematics (2022).
+     doi:10.1007/s40879-021-00524-2.
+ [9] A. Connes and D. Zagier, A Property of Parallelograms Inscribed in Ellipses, American Mathematical
+     Monthly 114 (2007), 909–914. Author-hosted full text.
+[10] R. Garcia, J. Koiller and D. Reznik, Estimating Elliptic Billiard Invariants with Spatial Integrals (2022).
+     doi:10.1007/s10883-022-09608-y.
+
+
+
+
+                                                       4
+

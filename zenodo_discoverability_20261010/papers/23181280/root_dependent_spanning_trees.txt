@@ -1,0 +1,195 @@
+    NP-completeness of aggregate root-dependent spanning-tree cost
+                                             Alec Kriebel
+                                        Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                             6 October 2026
+
+
+                                                   Abstract
+          An undirected spanning tree induces an arborescence at every vertex root. Given an inde-
+      pendent arc-cost vector for each root, we prove that deciding whether the sum of the costs of
+      these entire rooted orientations is at most a given threshold is NP-complete, even when every
+      cost belongs to {0, 1, 2}. A reduction from satisﬁability uses two hubs, variable vertices, and
+      clause vertices. A symmetric cost vector at one hub forces a tree at threshold to encode an
+      assignment with one selected literal per clause; the corresponding clause-root costs test those
+      literals. Uniformly shifting the costs yields the same conclusion for costs in {1, 2, 3}. This re-
+      solves Problem 1 in Volker Kaibel’s November 2018 Oberwolfach workshop contribution, whose
+      report was published in December 2019. Exact ﬁnite checks accompany the all-size proof.
+
+
+1    Problem and result
+Let G = (V, E) be a ﬁnite connected simple undirected graph with N = |V | ≥ 1, and let A =
+{(u, v), (v, u) : {u, v} ∈ E}. For every r ∈ V , the input supplies an independent cost vector
+cr : A → Z≥0 . All 2N |E| entries are explicitly encoded in binary. For a spanning tree T , let T r
+denote its entire edge set oriented away from r, and deﬁne
+                                                  ∑        ∑
+                                       F (T ) =                   cr (u, v).                               (1)
+                                                  r∈V (u,v)∈T r
+
+The decision question is whether F (T ) ≤ K for some spanning tree, where K ∈ Z is part of the
+input. The same common undirected tree is used at every root; the costs charge all its oriented
+edges. Reversing every input cost, c′r (u, v) = cr (v, u), gives the equivalent inward-orientation
+convention.
+    Kaibel’s Problem 1 asks for the hardness of minimizing precisely this all-root objective with
+real arc-cost vectors [1]. The nonnegative integral subclass below therefore answers that opti-
+mization question under ordinary ﬁnite input encoding. Kaibel motivates the question by integer
+optimization over Martin’s extension of the spanning-tree polytope. That formulation is classical,
+as described in the inspected expositions of Conforti, Cornuéjols and Zambelli [3, Section 6.1] and
+Friesen [4, Proposition 2]: common edge variables satisfy zr (u, v) + zr (v, u) = x{u,v} , with z ≥ 0,
+root indegree zero and all other indegrees one. For integral common edge variables these constraints
+select one tree, and its root orientations are determined uniquely. Integrality of the projection onto
+the edge variables does not establish integrality of the full joint lift under arbitrary objectives on
+all z variables. The formulation and this interpretation are not contributions of this note.
+Theorem 1. The decision problem for (1) is NP-complete even when every cost belongs to {0, 1, 2}.
+Consequently it is strongly NP-complete, and ﬁnding a minimum-cost tree is NP-hard.
+
+                                                       1
+    Membership in NP follows by checking that the proposed N − 1 edges form a spanning tree,
+traversing it from each root, and summing the supplied binary costs. The number of operations
+and the lengths of intermediate integers are polynomial in the explicit input size.
+
+
+2    Reduction
+We reduce from satisﬁability of a conjunctive normal form whose clauses have at most three literals,
+using the standard NP-completeness result for this restriction [2]. Remove repeated literals within
+each clause and discard tautological clauses. An empty clause gives a ﬁxed no-instance: two vertices
+joined by one edge, all four root-arc costs equal to 1, and threshold 1. Its unique tree has aggregate
+cost 2. If no clauses remain, use the same graph with all costs zero and threshold zero, a ﬁxed
+yes-instance. Delete unused variable declarations and relabel the variables that actually occur
+densely. Thus n is the number of occurring variables, regardless of their original labels. It remains
+to consider n ≥ 1 variables x1 , . . . , xn and m ≥ 1 nonempty clauses C1 , . . . , Cm , each with at most
+three distinct variables and without both signs of a variable in one clause.
+    The graph has two hubs t, f , a vertex vi for every variable, and a vertex qj for every clause. Its
+edges are
+
+        {t, f },    {t, vi }, {f, vi } (1 ≤ i ≤ n),         {qj , vi } when a literal on xi occurs in Cj .
+
+It is connected and simple, with N = n + m + 2 vertices and at most 1 + 2n + 3m edges. Set
+
+                                                   K = 2m + n.                                               (2)
+
+    At root t, assign the same cost to both orientations of each edge:
+
+                                                              ct (t, f ) = ct (f, t) = 0,
+                              ct (t, vi ) = ct (vi , t) = ct (f, vi ) = ct (vi , f ) = 1,                    (3)
+                                                       ct (qj , vi ) = ct (vi , qj ) = 2.
+
+At root qj , the only potentially nonzero costs are variable-to-hub arcs for variables occurring in Cj :
+
+                                      literal in Cj     cqj (vi , t) cqj (vi , f )
+                                            xi               0            1                                  (4)
+                                           ¬xi               1            0
+
+All other costs at qj are zero, including the reverse hub-to-variable arcs. The vectors at f and
+all variable roots are identically zero. These prescriptions specify every entry of the input table,
+without using any tree-dependent data.
+
+Lemma 1 (Structural threshold). If a spanning tree has F (T ) ≤ K, it contains the hub edge, every
+clause vertex is a leaf, and every variable has exactly one hub attachment.
+
+Proof. Let q be the number of clause-variable edges in T , p the number of hub-variable edges, and
+h ∈ {0, 1} the indicator of the hub edge. Each clause vertex has positive degree and is incident only
+to clause-variable edges, each of which meets exactly one clause vertex. Hence q ≥ m. Counting
+all edges in the tree gives p + q + h = n + m + 1. By the symmetric costs at t,
+                                     ∑
+                        Ft (T ) :=           ct (a) = p + 2q = K + (1 − h) + (q − m).                        (5)
+                                     a∈T t
+
+
+                                                          2
+All other root costs are nonnegative. The two terms after K are nonnegative integers, so F (T ) ≤ K
+forces h = 1 and q = m. Every clause vertex is therefore a leaf. Deleting these leaves leaves a tree
+on the hubs and variables containing the hub edge. Each variable must meet at least one hub, and
+meeting both would create a triangle with the hub edge. Each meets exactly one.
+
+     Call a tree of this form structured. Encode an assignment by making xi true exactly when
+{t, vi } is present. Each clause leaf selects its unique neighboring variable and hence its unique
+literal in that clause. Conversely, any assignment together with one selected literal in each clause
+gives a structured tree, with Ft (T ) = K.
+
+Lemma 2 (Literal costs). For every structured tree,
+
+                       F (T ) = K + #{j : the literal selected by qj is false}.                   (6)
+
+Proof. Root the structured tree at qj , and let vi be its unique neighbor. The path into the hub core
+begins qj → vi → hi , where hi is the selected hub of vi . Thus this variable’s hub edge is directed
+from the variable to its hub. Every other variable’s hub edge is directed from its hub toward that
+variable: the core consists of two stars joined by the hub edge, and the route from qj enters every
+other variable from the hub side. Accordingly, the only arc that can have nonzero cost at root qj
+is vi → hi . Table (4) assigns this arc cost zero precisely when the selected literal is true, and one
+otherwise. All clause edges, the hub edge, and the remaining root vectors contribute zero beyond
+the base cost. Summing over the clause roots proves the identity.
+
+    If the formula is satisﬁable, attach every variable to its truth-value hub and attach every clause
+leaf to a true literal. The resulting tree has cost K. Conversely, a tree of cost at most K is
+structured by Lemma 1; Lemma 2 makes each selected literal true, so every clause is satisﬁed. This
+proves the equivalence of the two decision instances.
+    The graph, all N cost vectors, and the threshold are computable in polynomial time. There
+are 2N |E| explicitly supplied entries, each in {0, 1, 2}, and K = 2m + n ≤ 2N . This completes the
+proof of Theorem 1, including hardness under unary numerical encoding.
+
+Corollary 1. The same decision problem is strongly NP-complete when every cost belongs to
+{1, 2, 3}.
+
+Proof. Add one to every arc cost at every root and replace K by K +N (N −1). Every spanning tree
+has N − 1 arcs at each of the N roots, so every objective changes by exactly this same constant.
+
+    The original audited choice placed B = n + 1 on clause-variable edges. For that same construc-
+tion at any integer B ≥ 2, with KB = Bm + n, the unrestricted base identity is
+
+                        Ft (T ) = p + Bq = KB + (1 − h) + (B − 1)(q − m).
+
+The choice B = 2 above is a consequence of that identity and the same literal test. The transpose
+and positive shift are likewise consequences of the same result. Equation (6) is asserted only for
+structured trees; it does not describe the unrestricted global optimum by the minimum number of
+unsatisﬁed clauses.
+
+
+
+
+                                                  3
+3    Veriﬁcation, attribution and status
+The accompanying standard-library Python package constructs full explicit cost tables and enu-
+merates all spanning trees for small test instances. It sums costs by independently orienting each
+whole tree from every root and also by partitioning roots across each edge cut. It checks the unre-
+stricted base identity, individual clause-root costs, both reduction directions, inward transposition,
+uniform positive shifts, normalization with sparse variable labels, and trivial cases. Deliberately
+false guards, corrupted costs and an incorrect proof binding are rejected under normal Python
+and Python -O. Finite computations supplement the written all-size proof; they do not establish
+NP-hardness or historical priority.
+    The question is attributed to Kaibel’s workshop contribution of 4–10 November 2018, printed
+on pages 3014–3015 of the report published 17 December 2019 [1]. No earlier proof of the exact
+objective was located in the source and model audit completed on 6 October 2026. That dated audit
+has incomplete historical coverage and does not certify absolute ﬁrst discovery or continued open
+status in 2026. Its source scopes and access limitations are recorded in the supporting provenance.
+The result concerns this exact whole-orientation objective; no claim is made here about Kaibel’s
+neighboring Problem 2.
+
+AI assistance and review. AI tools were used extensively in solving, drafting, literature check-
+ing, code generation, veriﬁcation and adversarial audits. Automated audits are not conventional
+human peer review. This manuscript has not received conventional human peer review or refereeing.
+
+
+References
+[1] V. Kaibel, Open Problem: Arborescences and NP-hardness, in Combinatorial Optimization,
+    Oberwolfach Reports 15 (2018), Report 50, pp. 3014–3015. Workshop 4–10 November 2018;
+    report published 17 December 2019. doi:10.4171/OWR/2018/50.
+
+[2] R. M. Karp, Reducibility among combinatorial problems, in R. E. Miller and J. W.
+    Thatcher (eds.), Complexity of Computer Computations, Plenum Press, 1972, pp. 85–103.
+    doi:10.1007/978-1-4684-2001-2_9.
+
+[3] M. Conforti, G. Cornuéjols and G. Zambelli, Extended Formulations in Combinatorial Op-
+    timization, November 2009, revised February 2010, Section 6.1, pp. 25–26. Primary author
+    manuscript.
+
+[4] M. Friesen, Extended Formulations for Higher Order Polytopes in Combinatorial Optimization,
+    dissertation, Otto-von-Guericke-Universität Magdeburg, 2019, Proposition 2, p. 8. Primary dis-
+    sertation.
+
+
+
+
+                                                  4
+
