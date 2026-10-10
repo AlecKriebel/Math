@@ -1,0 +1,3 @@
+# Turn2 checkpoint
+
+2026-10-02 07:46 UTC. Strengthened moment obstruction to every p>1 and every grid index≥2. The exact SPDE is constructed by Lipschitz localization and compared with a scalar inverse-BES6 process, giving finite fixed-time moments below3/2. This forces infinite coupled error in every moment above1, including mean-square. Negative answer to the superlinear half-order claim is now a proof candidate; the distinct bounded-test weak-rate question is retained and unresolved. Completion estimate55%, low confidence for the full source bundle. Independent review required; no novelty certification.
