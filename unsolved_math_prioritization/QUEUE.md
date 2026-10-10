@@ -237,7 +237,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 226 | 5100062 / AMR-050-0062 | Elliptic-billiard invariant k_{903,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | unsolved | 5/5 |  | 2026-10-01: five substantive turns; independently reviewed partials. Exact integral point-pushing lattice, relative disk obstruction, restricted completion no-go and ordered nonabelian quotient criterion. Actual 48-factor genus-nine cap is homologically removable; full based nonabelian words/actions and the original positive-identity lifting gap remain unresolved. Hillman-Pedrotti, Smith and Baykur-Hamada inputs credited; 1,102 independent exact controls and four author replays. See attempts/30003301/RESULT.md and independent_review/. |  |
 | 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
