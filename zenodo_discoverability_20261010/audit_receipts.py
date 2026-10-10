@@ -11,6 +11,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 HERE = Path(__file__).resolve().parent
 ALLOWED_PATCH_FIELDS = {
@@ -166,7 +167,7 @@ def expected_native(original, patch):
     return md
 
 
-def audit_one(entry, inventory, catalog):
+def audit_one(entry, inventory, catalog, baseline_hashes=None):
     rid = entry['id']
     dest = HERE / 'receipts' / str(rid)
     patch_path = HERE / 'patches' / f'{rid}.json'
@@ -196,9 +197,19 @@ def audit_one(entry, inventory, catalog):
         check('catalog_is_paper', catalog.get(rid, {}).get('status') == 'paper')
         before = read(before_path)
         result['receipt_sha256']['before'] = sha(before_path)
+        if baseline_hashes is not None:
+            check('frozen_original_baseline_hash', result['receipt_sha256']['before'] ==
+                  baseline_hashes.get(str(rid), {}).get('sha256'))
         check('original_published_state', before['id'] == rid and before['submitted'] is True
               and before['state'] == 'done')
         old_inventory = inventory[rid]
+        check('baseline_matches_original_inventory_identity', before['doi'] == old_inventory['doi']
+              and str(before['conceptrecid']) == str(old_inventory['conceptrecid'])
+              and before['identity']['id'] == str(rid)
+              and before['identity']['parent_id'] == str(old_inventory['conceptrecid'])
+              and before['identity']['pids']['doi']['identifier'] == old_inventory['doi']
+              and before['identity']['parent_pids']['doi']['identifier'] ==
+                  '10.5281/zenodo.' + str(old_inventory['conceptrecid']))
         check('baseline_matches_original_inventory_metadata', before['metadata'] == old_inventory['metadata'],
               diffs(old_inventory['metadata'], before['metadata']))
         if rid == 21699069 and not old_inventory.get('files'):
@@ -249,10 +260,19 @@ def audit_one(entry, inventory, catalog):
                   and record['doi'] == ident['pids']['doi']['identifier']
                   and record['metadata']['doi'] == record['doi']
                   and str(record['conceptrecid']) == ident['parent_id'])
+            check(side + '_required_public_oai_identity', record['native']['pids'].get('oai') ==
+                  {'identifier': f'oai:zenodo.org:{rid}', 'provider': 'oai'})
             check(side + '_native_file_manifest_matches_legacy', native_files_projection(record['native_files']) == record['files'])
             nf = record['native_files']
             check(side + '_native_file_totals_valid', nf['count'] == len(nf['entries'])
                   and nf['total_bytes'] == sum(x['size'] for x in nf['entries'].values()))
+            for name, file in nf['entries'].items():
+                for link, suffix in [('self',''), ('content','/content')]:
+                    url = urlsplit(file.get('links', {}).get(link, ''))
+                    check(side + '_public_file_' + link + '_' + name,
+                          url.scheme == 'https' and url.hostname == 'zenodo.org'
+                          and unquote(url.path) == f'/api/records/{rid}/files/{name}{suffix}'
+                          and not url.query and not url.fragment)
         for field in ('doi', 'conceptrecid', 'files', 'native_files'):
             check('preserved_' + field, before[field] == after[field], diffs(before[field], after[field], field))
         for field in ('pids', 'access', 'custom_fields'):
@@ -310,6 +330,7 @@ def audit_one(entry, inventory, catalog):
                 check('full_native_public_record_access_exact', rec['access'] == before['native']['access'])
                 check('full_native_public_record_custom_fields_exact', rec['custom_fields'] == before['native']['custom_fields'])
                 check('full_native_public_record_parent_pids_exact', rec['parent']['pids'] == before['identity']['parent_pids'])
+                check('full_native_public_record_parent_id_exact', rec['parent']['id'] == before['identity']['parent_id'])
                 check('full_native_public_record_versions_exact', rec['versions'] == before['identity']['versions'])
         result['legacy_metadata_changed_fields'] = sorted(k for k in set(before['metadata']) | set(after['metadata'])
                                                          if before['metadata'].get(k) != after['metadata'].get(k))
@@ -367,6 +388,7 @@ def write_reports(result):
         f"{round(100 * result['completed_count'] / max(1,result['approved_count']))}%. Overall audit status: **{result['status']}**.", '',
         'This independent audit reads local receipts, the original inventory/catalog and frozen approved proposal hashes. It uses no Zenodo/client imports, credentials, network operations, Git actions or patch writes. It validates public record/deposition state, full DOI/OAI PIDs, parent concept PIDs, complete version identities/count, full file entry/settings/link dictionaries, checksums/sizes, original inventory/source correspondence, access/custom fields and all unpatched native metadata. Changed native fields are independently reconstructed from the frozen scholarly proposal, while controlled-vocabulary display titles are ignored only inside intentionally changed vocabulary fields. Existing native relation objects and author structures remain protected exactly. Description preservation or exact reviewed-description equality binds the scientific scope to the content reviews.', '',
         'The local snapshots represent the recorded authenticated public read-backs. This audit does not perform a new live query, download file bytes, re-certify the scientific proofs or close manuscript priority/access gaps. Pending receipts never count as completed.', '',
+        'The separate original-baseline hash manifest is append-only for newly approved records. It freezes the unchanged recorded public snapshots when this independent audit is installed and prevents later coherent edits to both before/after receipts from escaping detection. Earlier native snapshot authenticity remains grounded in the recorded API provenance and inventory/native cross-checks, rather than a claim that local hashes retroactively authenticate an API response.', '',
         f"Falsification controls: {result.get('falsification_controls', {}).get('count', 0)} controls; "
         f"all passed={result.get('falsification_controls', {}).get('all_passed', False)}; "
         f"bound to current audit-tool bytes={result.get('falsification_controls', {}).get('same_audit_tool', False)}. "
@@ -403,7 +425,29 @@ def main():
     approved = read(HERE / 'APPROVED_PROPOSALS.json')
     inventory = {x['id']: x for x in read(HERE / 'INVENTORY.json')['records']}
     catalog = {x['id']: x for x in read(HERE / 'SOURCE_CATALOG.json')}
-    records = [audit_one(x, inventory, catalog) for x in approved['records']]
+    scope_evidence = HERE / 'reviews/ALL_VERSIONS_SCOPE_EVIDENCE.json'
+    if scope_evidence.exists():
+        # Keep original inventory entries immutable; augment only records that
+        # the independent all_versions=true read discovered were missing.
+        scope = read(scope_evidence)
+        for original in scope['new_since_inventory_or_previous_versions']:
+            inventory.setdefault(original['id'], original)
+    baseline_path = HERE / 'reviews/ORIGINAL_BASELINE_HASHES.json'
+    baseline_manifest = read(baseline_path) if baseline_path.exists() else {
+        'frozen_utc': datetime.now(timezone.utc).isoformat(), 'records': {}}
+    additions = False
+    for entry in approved['records']:
+        rid = str(entry['id'])
+        path = HERE / 'receipts' / rid / 'before.json'
+        if path.exists() and rid not in baseline_manifest['records']:
+            baseline_manifest['records'][rid] = {'sha256':sha(path),
+                'initial_freeze_utc':datetime.now(timezone.utc).isoformat()}
+            additions = True
+    if additions:
+        temp = baseline_path.with_suffix('.json.tmp')
+        temp.write_text(json.dumps(baseline_manifest, indent=2) + '\n')
+        temp.replace(baseline_path)
+    records = [audit_one(x, inventory, catalog, baseline_manifest['records']) for x in approved['records']]
     first = first_record_check()
     pending = [x['id'] for x in records if x['status'] == 'pending']
     failed = [x['id'] for x in records if x['status'] == 'fail']
@@ -414,10 +458,10 @@ def main():
               'pending_ids': pending, 'failed_ids': failed,
               'approved_manifest_sha256': sha(HERE / 'APPROVED_PROPOSALS.json'),
               'audit_tool_sha256': sha(Path(__file__)),
+              'original_baseline_manifest_sha256': sha(baseline_path),
               'inventory_sha256': sha(HERE / 'INVENTORY.json'),
               'source_catalog_sha256': sha(HERE / 'SOURCE_CATALOG.json'),
               'first_record_representation': first, 'records': records}
-    scope_evidence = HERE / 'reviews/ALL_VERSIONS_SCOPE_EVIDENCE.json'
     if scope_evidence.exists():
         result['all_versions_scope_evidence_sha256'] = sha(scope_evidence)
     controls_path = HERE / 'reviews/FINAL_RECEIPT_AUDIT_CONTROLS.json'
@@ -428,6 +472,16 @@ def main():
             'all_passed': controls['all_passed'],
             'same_audit_tool': controls.get('audit_tool_sha256') == result['audit_tool_sha256'],
         }
+        if controls.get('audit_tool_sha256') == result['audit_tool_sha256'] and not controls['all_passed']:
+            result['status'] = 'fail'
+            result['audit_errors'] = ['Current falsification controls did not all pass']
+        elif controls.get('audit_tool_sha256') != result['audit_tool_sha256'] and result['status'] == 'pass':
+            result['status'] = 'pending'
+            result['audit_errors'] = ['Falsification controls are not bound to current audit tool; rerun controls']
+    elif result['status'] == 'pass':
+        result['status'] = 'pending'
+        result['audit_errors'] = ['Falsification controls artifact is absent']
+    status = result['status']
     write_reports(result)
     print(json.dumps({k: result[k] for k in ('status','approved_count','completed_count','pending_ids','failed_ids')}, indent=2))
     if status == 'fail' or (args.require_complete and status != 'pass'):

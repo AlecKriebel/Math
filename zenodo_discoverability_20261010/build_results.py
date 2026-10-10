@@ -129,6 +129,48 @@ def build_report(base: Path) -> dict:
     audit, audit_hash = read_json(audit_path) if audit_path.exists() else ({}, None)
     audit_by_id = {e["id"]: e for e in audit.get("records", [])}
     inventory, inventory_hash = read_json(base / "INVENTORY.json")
+    baseline_path = base / "reviews/ORIGINAL_BASELINE_HASHES.json"
+    original_baselines, baseline_hash = read_json(baseline_path) if baseline_path.exists() else ({}, None)
+    audit_tool_path = base / "audit_receipts.py"
+    audit_tool_hash = hashlib.sha256(audit_tool_path.read_bytes()).hexdigest() if audit_tool_path.is_file() else None
+    controls_path = base / "reviews/FINAL_RECEIPT_AUDIT_CONTROLS.json"
+    controls, controls_hash = read_json(controls_path) if controls_path.exists() else ({}, None)
+    audit_controls = audit.get("falsification_controls", {})
+    controls_current = (audit_controls.get("all_passed") is True
+                        and audit_controls.get("same_audit_tool") is True
+                        and audit_controls.get("sha256") == controls_hash
+                        and controls.get("all_passed") is True
+                        and controls.get("audit_tool_sha256") == audit_tool_hash
+                        and audit_tool_hash is not None
+                        and audit.get("audit_tool_sha256") == audit_tool_hash
+                        and audit_controls.get("count", 0) == len(controls.get("controls", [])) > 0)
+    first_evidence_paths = {
+        "first_staging_guard_stop": base / "receipts/23271172/first_staging_guard_stop.json",
+        "draft_file_comparison": base / "reviews/FILES_DRAFT_REPRESENTATION_COMPARISON.json",
+    }
+    first_evidence_hashes = audit.get("first_record_representation", {}).get("evidence_sha256", {})
+    first_evidence_current = (set(first_evidence_hashes) == set(first_evidence_paths)
+                              and all(path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest() == first_evidence_hashes[key]
+                                      for key, path in first_evidence_paths.items()))
+    native_audit_path = base / "reviews/NATIVE_FINAL_AUDIT.json"
+    native_audit, native_audit_hash = read_json(native_audit_path) if native_audit_path.exists() else ({}, None)
+    native_source_names = {"native_metadata.py", "native_views.py", "apply_reviewed.py", "baseline.py"}
+    native_source_hashes = {"native_metadata.py": native_audit.get("source_sha256"),
+                            **native_audit.get("related_source_sha256", {})}
+    native_tests = native_audit.get("tests", [])
+    native_audit_current = (native_audit.get("failed") == 0
+                            and native_audit.get("passed") == len(native_tests) > 0
+                            and all(test.get("passed") is True for test in native_tests)
+                            and set(native_source_hashes) == native_source_names
+                            and all((base / name).is_file()
+                                    and hashlib.sha256((base / name).read_bytes()).hexdigest() == digest
+                                    for name, digest in native_source_hashes.items()))
+    audit_inputs_current = (audit.get("approved_manifest_sha256") == approved_hash
+                            and audit.get("source_catalog_sha256") == catalog_hash
+                            and audit.get("inventory_sha256") == inventory_hash
+                            and baseline_hash is not None
+                            and audit.get("original_baseline_manifest_sha256") == baseline_hash
+                            and audit.get("all_versions_scope_evidence_sha256") == scope_hash)
     inventory_by_id = {e["id"]: e for e in inventory["records"]}
     records = []
     planned_fields, verified_fields = Counter(), Counter()
@@ -156,6 +198,8 @@ def build_report(base: Path) -> dict:
         before_path = base / "receipts" / str(record_id) / "before.json"
         after_path = before_path.with_name("after.json")
         before, before_hash = read_json(before_path)
+        if original_baselines.get("records", {}).get(str(record_id), {}).get("sha256") != before_hash:
+            problems.append("Public before receipt differs from the frozen original baseline hash")
         old_metadata = before["metadata"]
         if old_metadata["title"] != entry["title"]:
             problems.append("Approved title differs from the original public title")
@@ -187,14 +231,22 @@ def build_report(base: Path) -> dict:
         audit_receipt_hash = audit_entry.get("receipt_sha256", {})
         audit_after_hash = audit_receipt_hash.get("after") if isinstance(audit_receipt_hash, dict) else audit_receipt_hash
         audit_before_hash = audit_receipt_hash.get("before") if isinstance(audit_receipt_hash, dict) else before_hash
+        allowed_receipt_names = {"before", "after", "stage", "publish", "native_staged",
+                                 "native_published", "native_public_before_discard"}
+        raw_receipts_current = (isinstance(audit_receipt_hash, dict)
+                                and {"before", "after"} <= set(audit_receipt_hash)
+                                and set(audit_receipt_hash) <= allowed_receipt_names
+                                and all((before_path.parent / f"{name}.json").is_file()
+                                        and hashlib.sha256((before_path.parent / f"{name}.json").read_bytes()).hexdigest() == digest
+                                        for name, digest in audit_receipt_hash.items()))
         audit_bound = (audit_entry.get("status") == "pass"
                        and audit_after_hash == after_hash and audit_before_hash == before_hash
                        and audit_entry.get("patch_sha256") == patch_hash
                        and audit_entry.get("content_review_sha256") == review_hash
-                       and audit.get("approved_manifest_sha256") == approved_hash
-                       and audit.get("source_catalog_sha256") == catalog_hash
-                       and audit.get("inventory_sha256") == inventory_hash
-                       and audit.get("all_versions_scope_evidence_sha256") == scope_hash)
+                       and audit_inputs_current and controls_current and raw_receipts_current
+                       and first_evidence_current
+                       and audit.get("status") in {"pending", "pass"}
+                       and audit.get("first_record_representation", {}).get("status") == "pass")
         if audit_entry.get("status") in {"fail", "failed"}:
             problems.extend(f"Independent audit: {error}" for error in audit_entry.get("errors", []))
             public_status = "failed"
@@ -234,6 +286,8 @@ def build_report(base: Path) -> dict:
             "after_receipt_sha256": after_hash,
             "independent_content_review": artifact(review_path, base), "manuscript_sources": source_summary,
             "independent_content_review_sha256": review_hash,
+            "independent_raw_receipt_evidence_current": raw_receipts_current,
+            "independent_raw_receipt_evidence_hashes": audit_receipt_hash,
             "public_invariant_checks": checks, "independent_receipt_audit_status": audit_entry.get("status", "pending"),
             "errors": problems,
         })
@@ -247,7 +301,11 @@ def build_report(base: Path) -> dict:
                 and audit.get("approved_count") == expected_papers
                 and audit.get("completed_count") == expected_papers
                 and not audit.get("pending_ids") and not audit.get("failed_ids")
-                and not unaccounted_owned_ids and scope_verified)
+                and not unaccounted_owned_ids and scope_verified
+                and audit.get("status") == "pass" and controls_current
+                and first_evidence_current
+                and native_audit_current
+                and audit.get("first_record_representation", {}).get("status") == "pass")
     invariant_counts = Counter(key for record in verified for key, passed in record["public_invariant_checks"].items() if passed)
     excluded_inventory = {r["id"]: inventory_by_id.get(r["id"], {}) for r in excluded}
     for record in excluded:
@@ -258,11 +316,16 @@ def build_report(base: Path) -> dict:
 
     return {
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "status": "complete" if complete else ("needs_review" if failed else "in_progress"),
+        "status": "complete" if complete else ("needs_review" if failed or audit.get("status") == "fail" else "in_progress"),
         "complete": complete,
         "summary": {
             "approved_paper_records": expected_papers, "verified_public_updates": len(verified),
             "independently_verified_public_updates": len(independent_verified),
+            "independent_receipt_audit_inputs_current": audit_inputs_current,
+            "independent_receipt_audit_controls_current": controls_current,
+            "independent_receipt_audit_global_status": audit.get("status", "missing"),
+            "first_record_raw_representation_evidence_current": first_evidence_current,
+            "native_metadata_route_audit_current": native_audit_current,
             "after_receipts_present": sum(r["after_receipt_artifact"] is not None for r in records),
             "pending_record_ids": pending, "failed_record_ids": failed,
             "excluded_records": len(excluded), "published_field_counts": dict(verified_fields),
@@ -284,11 +347,20 @@ def build_report(base: Path) -> dict:
             "approved_proposals_utc": approved.get("approved_utc"),
             "source_catalog_artifact": "SOURCE_CATALOG.json", "source_catalog_sha256": catalog_hash,
             "original_inventory_artifact": "INVENTORY.json", "original_inventory_sha256": inventory_hash,
+            "original_baseline_manifest_artifact": artifact(baseline_path, base) if baseline_path.exists() else None,
+            "original_baseline_manifest_sha256": baseline_hash,
             "all_versions_scope_artifact": artifact(scope_path, base) if scope_path.exists() else None,
             "all_versions_scope_sha256": scope_hash,
             "independent_receipt_audit_artifact": artifact(audit_path, base) if audit_path.exists() else None,
             "independent_receipt_audit_sha256": audit_hash,
             "independent_receipt_audit_generated_utc": audit.get("generated_utc"),
+            "independent_receipt_audit_tool_sha256": audit_tool_hash,
+            "independent_receipt_audit_controls_sha256": controls_hash,
+            "first_record_raw_representation_evidence_hashes": first_evidence_hashes,
+            "native_metadata_route_audit_artifact": artifact(native_audit_path, base) if native_audit_path.exists() else None,
+            "native_metadata_route_audit_sha256": native_audit_hash,
+            "native_metadata_route_audit_tests_passed": native_audit.get("passed", 0),
+            "native_metadata_route_source_sha256": native_source_hashes,
         },
         "scope": "Published manuscript records, including the existing line-numbered qubit presentation. Supporting codebase, dataset, source, manifest deposits and the unpublished draft were excluded.",
         "method": "Manuscript-first specialist metadata proposals based on checksum-bound exact published PDF texts, independently cross-reviewed before metadata-only publication, with public before/after receipt comparisons and independent final auditing.",
@@ -317,6 +389,16 @@ def render_markdown(report: dict) -> str:
             rows += ["Records requiring review: " + ", ".join(map(str, summary["failed_record_ids"])) + ".", ""]
         if summary["unaccounted_owned_record_ids"]:
             rows += ["Owned records awaiting scope disposition: " + ", ".join(map(str, summary["unaccounted_owned_record_ids"])) + ".", ""]
+        if not summary["independent_receipt_audit_inputs_current"]:
+            rows += ["The independent receipt audit awaits regeneration against the current approval, source catalog and ownership scope. Older audit results are not counted as matching final audits.", ""]
+        if not summary["independent_receipt_audit_controls_current"]:
+            rows += ["The independent audit and its falsification controls must be rerun against the current audit-tool bytes before final audit results are counted.", ""]
+        if summary["independent_receipt_audit_global_status"] == "fail":
+            rows += ["The independent receipt audit reports a global failure. Completion is blocked until that failure is resolved.", ""]
+        if not summary["first_record_raw_representation_evidence_current"]:
+            rows += ["The first publication's raw representation evidence must match the independent audit before final results are counted.", ""]
+        if not summary["native_metadata_route_audit_current"]:
+            rows += ["The native metadata workflow audit awaits passing tests bound to the current workflow source files before completion can be claimed.", ""]
     rows += [report["method"], "", report["impact"]["statement"], "",
              f"Scope: {summary['approved_paper_records']} approved paper records and {summary['excluded_records']} excluded records; "
              f"{summary['scope_records_accounted_for']}/{summary['owned_all_versions_records']} owned records accounted for.", "",
@@ -363,6 +445,8 @@ def render_markdown(report: dict) -> str:
     rows += ["", "## Evidence files", "", "- [Frozen reviewed proposals](APPROVED_PROPOSALS.json)",
              "- [Exact manuscript source catalog](SOURCE_CATALOG.json)",
              "- [Original inventory](INVENTORY.json)",
+             "- [Frozen original public baselines](reviews/ORIGINAL_BASELINE_HASHES.json)",
+             "- [Final native metadata workflow audit](reviews/NATIVE_FINAL_AUDIT.json)",
              "- [Independent final receipt audit](reviews/FINAL_RECEIPT_AUDIT.md)",
              "- Per-paper before/after receipts and content-review paths are listed in [RESULTS.json](RESULTS.json).", ""]
     if report["evidence"]["all_versions_scope_artifact"]:

@@ -27,5 +27,102 @@
       "status": "pass",
       "failed_checks": []
     }
-  ]
+  ],
+  "repair_recheck": {
+    "generated_utc": "2026-10-10T21:33:27.693094+00:00",
+    "audit_tool_sha256": "7529b1cab6bcca02cd0bd0cc5227700147d5e53bfda344f12b4151c0fa5b6466",
+    "controls": [
+      {
+        "case": "actual unchanged completed receipt",
+        "status": "pass",
+        "required_failures": [],
+        "failed_checks": [],
+        "passed": true
+      },
+      {
+        "case": "both receipt concept identities changed away from original inventory",
+        "status": "fail",
+        "required_failures": [
+          "baseline_matches_original_inventory_identity",
+          "frozen_original_baseline_hash"
+        ],
+        "failed_checks": [
+          "frozen_original_baseline_hash",
+          "baseline_matches_original_inventory_identity"
+        ],
+        "passed": true
+      },
+      {
+        "case": "both receipt original public OAI entries dropped",
+        "status": "fail",
+        "required_failures": [
+          "before_required_public_oai_identity",
+          "after_required_public_oai_identity",
+          "frozen_original_baseline_hash"
+        ],
+        "failed_checks": [
+          "frozen_original_baseline_hash",
+          "before_required_public_oai_identity",
+          "after_required_public_oai_identity"
+        ],
+        "passed": true
+      },
+      {
+        "case": "both receipt native file links changed",
+        "status": "fail",
+        "required_failures": [
+          "before_public_file_content_k108_counterexample.pdf",
+          "after_public_file_content_k108_counterexample.pdf",
+          "frozen_original_baseline_hash"
+        ],
+        "failed_checks": [
+          "frozen_original_baseline_hash",
+          "before_public_file_content_k108_counterexample.pdf",
+          "after_public_file_content_k108_counterexample.pdf"
+        ],
+        "passed": true
+      },
+      {
+        "case": "full native public receipt has different parent id",
+        "status": "fail",
+        "required_failures": [
+          "full_native_public_record_parent_id_exact"
+        ],
+        "failed_checks": [
+          "full_native_public_record_parent_id_exact"
+        ],
+        "passed": true
+      },
+      {
+        "case": "both original and final native rich affiliation changed",
+        "status": "fail",
+        "required_failures": [
+          "frozen_original_baseline_hash"
+        ],
+        "failed_checks": [
+          "frozen_original_baseline_hash"
+        ],
+        "passed": true
+      },
+      {
+        "case": "both original and final version lists coherently expanded",
+        "status": "fail",
+        "required_failures": [
+          "frozen_original_baseline_hash"
+        ],
+        "failed_checks": [
+          "frozen_original_baseline_hash"
+        ],
+        "passed": true
+      },
+      {
+        "case": "fresh unchanged positive after all original-baseline mutants",
+        "status": "pass",
+        "required_failures": [],
+        "failed_checks": [],
+        "passed": true
+      }
+    ],
+    "all_passed": true
+  }
 }

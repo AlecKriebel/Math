@@ -21,6 +21,7 @@ entry = next(x for x in json.loads((ROOT / 'APPROVED_PROPOSALS.json').read_text(
 inventory = {x['id']: x for x in json.loads((ROOT / 'INVENTORY.json').read_text())['records']}
 catalog = {x['id']: x for x in json.loads((ROOT / 'SOURCE_CATALOG.json').read_text())}
 actual_after = json.loads((ROOT / 'receipts/23271172/after.json').read_text())
+baseline_hashes = {'23271172': {'sha256': hashlib.sha256((ROOT / 'receipts/23271172/before.json').read_bytes()).hexdigest()}}
 results = []
 with tempfile.TemporaryDirectory(prefix='receipt-falsification-', dir=ROOT / 'reviews') as temporary:
     audit.HERE = place = Path(temporary)
@@ -34,7 +35,7 @@ with tempfile.TemporaryDirectory(prefix='receipt-falsification-', dir=ROOT / 're
 
     def run(name, mutant, required_failure=None):
         target.write_text(json.dumps(mutant))
-        r = audit.audit_one(entry, inventory, catalog)
+        r = audit.audit_one(entry, inventory, catalog, baseline_hashes)
         failed_checks = [x['check'] for x in r['errors']]
         correct = r['status'] == ('pass' if required_failure is None else 'fail')
         if required_failure:
@@ -76,6 +77,37 @@ with tempfile.TemporaryDirectory(prefix='receipt-falsification-', dir=ROOT / 're
     m = copy.deepcopy(actual_after)
     m['native']['metadata']['languages'][0]['id'] = 'fra'
     run('wrong native language while legacy English remains', m, 'intended_native_languages')
+    before_path = place / 'receipts/23271172/before.json'
+    actual_before = json.loads(before_path.read_text())
+    m_before, m = copy.deepcopy(actual_before), copy.deepcopy(actual_after)
+    for rec in (m_before, m):
+        rec['conceptrecid'] = '99999996'
+        rec['identity']['parent_id'] = '99999996'
+        rec['identity']['parent_pids']['doi']['identifier'] = '10.5281/zenodo.99999996'
+    before_path.write_text(json.dumps(m_before))
+    run('coherently changed original and final concept identities', m, 'baseline_matches_original_inventory_identity')
+    before_path.write_text(json.dumps(actual_before))
+    m_before, m = copy.deepcopy(actual_before), copy.deepcopy(actual_after)
+    for rec in (m_before, m):
+        rec['native']['pids'].pop('oai')
+        rec['identity']['pids'].pop('oai')
+    before_path.write_text(json.dumps(m_before))
+    run('coherently deleted OAI from both original and final public views', m, 'before_required_public_oai_identity')
+    before_path.write_text(json.dumps(actual_before))
+    m_before, m = copy.deepcopy(actual_before), copy.deepcopy(actual_after)
+    for rec in (m_before, m):
+        rec['native_files']['entries']['k108_counterexample.pdf']['links']['content'] = 'https://example.invalid/changed'
+    before_path.write_text(json.dumps(m_before))
+    run('coherently altered original and final native file links', m, 'frozen_original_baseline_hash')
+    before_path.write_text(json.dumps(actual_before))
+    raw = {'id':'23271172','is_published':True,'is_draft':False,
+           **copy.deepcopy(actual_after['native']), 'files':actual_after['native_files'],
+           'parent':{'id':'99999995','pids':actual_after['identity']['parent_pids']},
+           'versions':actual_after['identity']['versions']}
+    raw_path = place / 'receipts/23271172/native_published.json'
+    raw_path.write_text(json.dumps(raw))
+    run('full native public record parent ID contradicts summarized identity', actual_after, 'full_native_public_record_parent_id_exact')
+    raw_path.unlink()
     # Even a changeset that exactly matches its forged receipt must not count if
     # its local patch bytes differ from the frozen content-review hash.
     patch_path = place / 'patches/23271172.json'

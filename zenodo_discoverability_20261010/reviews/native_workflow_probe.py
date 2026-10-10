@@ -129,6 +129,8 @@ def wrapper_file_and_recovery_tests():
     wrapper=importlib.util.module_from_spec(spec);spec.loader.exec_module(wrapper)
     o=original();baseline=mod.snapshot(Fake(o),RID)
     c=wrapper.BoundClient.__new__(wrapper.BoundClient);c.baseline=baseline;c.record_id=RID;c.first_native=False;c.native_normalizations=[]
+    temp=tempfile.TemporaryDirectory(prefix='wrapper_file_probe_',dir=ROOT/'reviews');old_here=wrapper.HERE;wrapper.HERE=Path(temp.name)
+    (wrapper.HERE/'patches').mkdir();(wrapper.HERE/'patches'/f'{RID}.json').write_text(json.dumps({'metadata':{'keywords':['original subject']}}))
     for kind in ['draft_omitted','public_exact','draft_changed_link','public_missing_link','missing_file','extra_file','uuid','checksum','metadata','access']:
         changed=copy.deepcopy(o);changed['is_draft']=kind!='public_exact' and kind!='public_missing_link'
         entry=changed['files']['entries']['paper.pdf']
@@ -146,6 +148,7 @@ def wrapper_file_and_recovery_tests():
             try:c.native_get(RID,draft=changed['is_draft'])
             except Exception as e:exc=str(e)
         record('wrapper every-GET full-file guard '+kind,(exc is None)==(kind in ['draft_omitted','public_exact']))
+    wrapper.HERE=old_here;temp.cleanup()
     for kind in ['raw','canonical','saved_mismatch','guard_missing','raw_mismatch','original_mismatch','target_mismatch']:
         with tempfile.TemporaryDirectory(prefix='wrapper_recovery_probe_',dir=ROOT/'reviews') as temp:
             d=Path(temp);rd=d/'receipts'/str(RID);rd.mkdir(parents=True);(d/'patches').mkdir()
@@ -225,8 +228,10 @@ class Fake:
             if self.draft_pid_drift=='missing_doi':self.draft['pids'].pop('doi')
             if self.draft_pid_drift=='extra_pid':self.draft['pids']['other']={'identifier':'unexpected','provider':'unknown'}
         elif method=='PUT' and url.endswith('/draft'):
-            assert set(payload)=={'metadata','custom_fields'}
+            assert set(payload)=={'metadata','custom_fields','files'}
+            assert payload['files']==mod.display_file_options(self.original_files)
             self.draft['metadata']=copy.deepcopy(payload['metadata']);self.draft['custom_fields']=copy.deepcopy(payload['custom_fields'])
+            self.draft['files'].update(copy.deepcopy(payload['files']))
         elif method=='POST' and url.endswith('/draft/actions/publish'):
             self.public=copy.deepcopy(self.draft);self.public['is_draft']=False;self.public['is_published']=True;self.published=True
             for name,entry in self.public['files']['entries'].items():entry['links']=copy.deepcopy(self.original_files['entries'][name]['links'])
@@ -297,7 +302,7 @@ for f in ['version_registry','native_file_auxiliary','legacy_description','legac
     case('reject publication read-back drift '+f,publish=True,post_drift=f)
 out={'source':str(source),'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'offline_only':True,'tests':RESULTS,
      'passed':sum(r['passed'] for r in RESULTS),'failed':sum(not r['passed'] for r in RESULTS)}
-out['related_source_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ['native_views.py','apply_reviewed.py','baseline.py']}
+out['related_source_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ['native_views.py','apply_reviewed.py','baseline.py','preview_preservation.py','repair_owned_preview.py']}
 dest=ROOT/'reviews'/('NATIVE_WORKFLOW_PROBE_INITIAL.json' if 'audited_initial' in source.name else 'NATIVE_FINAL_AUDIT.json')
 dest.write_text(json.dumps(out,indent=2)+'\n')
 print(json.dumps({'source_sha256':out['source_sha256'],'passed':out['passed'],'failed':out['failed'],'failures':[r['test'] for r in RESULTS if not r['passed']]},indent=2))

@@ -18,6 +18,7 @@ import zenodo
 import metadata_updates as legacy
 from baseline import PacedClient, identity, snapshot
 from native_views import normalized_draft, normalized_draft_files
+from preview_preservation import display_file_options
 
 ALLOWED_FIELDS = {'keywords', 'language', 'creators', 'related_identifiers', 'description', 'notes'}
 
@@ -195,7 +196,8 @@ def run(record_id, patch_path, publish=False):
         require_state(draft, session, changed=False)
         save(place, session, 'update_requested')
         client.request('PUT', client.base + f'/api/records/{record_id}/draft',
-                       {'metadata': target, 'custom_fields': original['custom_fields']},
+                       {'metadata': target, 'custom_fields': original['custom_fields'],
+                        'files':display_file_options(original['files'])},
                        accept='application/vnd.inveniordm.v1+json')
         draft = read_native(client, record_id, draft=True)
         require_state(draft, session, changed=True)
