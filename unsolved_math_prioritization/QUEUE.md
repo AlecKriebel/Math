@@ -1074,7 +1074,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1063 | 5500054 / AMR-054-0054 | Traveling Salesman Problem in Solid Grid Graphs | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1064 | 7200057 / AMR-071-0057 | For each arrangement of points in which the rectilinear crossing number is minimized, is the number of halving lines maximized | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
+| 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | exhausted | 5/5 |  | Audited restricted shy-coupling reductions; corrected boundary-spanning constant-distance synchrony and jointly measurable occupation lemma. Full existential implication unresolved; no sixth approach or novelty claim. See [accepted report](attempts/9500007/REPORT_CORRECTED.md) and [acceptance](attempts/9500007/ACCEPTANCE.md). |  |
 | 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
