@@ -231,7 +231,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 221 | 5100014 / AMR-050-0014 | Elliptic-billiard invariant k_{303,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 223 | 5100030 / AMR-050-0030 | Elliptic-billiard invariant k_{601} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 223 | 5100030 / AMR-050-0030 | Elliptic-billiard invariant k_{601} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 | https://github.com/AlecKriebel/Math/pull/205 | Separately reviewed proof of odd-period ordinary focal-pedal sum product via Stachel parametrization and classical Jacobi/zeta telescoping; primitive stars and repetitions covered; no novelty claim. |  |
 | 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 226 | 5100062 / AMR-050-0062 | Elliptic-billiard invariant k_{903,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
