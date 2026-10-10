@@ -1,0 +1,11 @@
+--- a/check_gamma_orders.py
++++ b/check_gamma_orders.py
+@@ -42,7 +42,6 @@
+     if not not good:
+         raise RuntimeError('Diagnostic invariant failed')
+     out = {'kind': 'Scalar and finite-label diagnostic, conditional on the cited analytic interfaces', 'all_three_FLO_order_hypotheses_checked': True, 'all_zero_pole_checks_passed': True, 'tested_labels_mod_global_twist': 16, 'surviving_labels': good, 'computed_Hom_space': False, 'gamma_checks': rows}
+-    Path(__file__).with_name('GAMMA_ORDER_RESULTS.json').write_text(json.dumps(out, indent=2) + '\n')
+-    print(json.dumps({k: v for k, v in out.items() if k != 'gamma_checks'}, indent=2))
++    print(json.dumps(out, indent=2, sort_keys=True))
+ if __name__ == '__main__':
+     main()

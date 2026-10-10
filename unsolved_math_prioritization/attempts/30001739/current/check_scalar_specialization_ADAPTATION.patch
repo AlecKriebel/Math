@@ -1,0 +1,13 @@
+--- a/check_scalar_specialization.py
++++ b/check_scalar_specialization.py
+@@ -93,8 +93,6 @@
+  'scope':'Exact rational scalar and Corollary 13.6 endpoint checks, not a calculation of Hom spaces',
+  'all_10_pairs_checked':True,'scalar_rows':rows,'all_30_order_conditions':order_checks,
+  'linked_pairs_used':[['E','D'],['B','A'],['E','C'],['D','B'],['C','A']],
+- 'nested_swaps_used':[['D','C'],['C','B']],
+- 'source_proof_sha256':hashlib.sha256(PROOF_BYTES).hexdigest()
++ 'nested_swaps_used':[['D','C'],['C','B']]
+ }
+-(ROOT/'SCALAR_SPECIALIZATION_RESULTS.json').write_text(json.dumps(result,indent=2)+'\n')
+-print(json.dumps({'status':'PASS','pair_count':10,'scalar_rows':len(rows),'order_checks':len(order_checks)},indent=2))
++print(json.dumps(result, indent=2, sort_keys=True))
