@@ -989,7 +989,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 978 | 30001591 / OWR-4429-002 | Borderline Soliton–Potential Interactions | 0.0917 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 979 | 30001738 / OWR-4804-006 | Multiplicity Formulas for Galois-Invariant Induced Representations | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 980 | 30001810 / OWR-5158-010 | Ordinary Versus Immersive Simplicial Volume | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 981 | 30001840 / OWR-11127-008 | Galois Images in Genus-Two Real-Multiplication Families | 0.0916 | 5.5 | 3 | 2011 | unsolved | 5/5 |  | Accepted scoped partials: generic mod-2 F20/D5, geometric linear mod-3 order 120, full geometric/arithmetic local Tate images for primes >=7, rational moduli t^2, and t=0 fiber C4. Expanded proof and optimization-safe checks accepted; prospective integral bridge excluded from image coverage. Rational-fiber, adelic and bad-prime packet gaps remain; no novelty claim. [Proof, audit and scope](attempts/30001840/ACCEPTANCE.md). |  |
 | 982 | 30001917 / OWR-11139-010 | Normality of Varieties of Minimal Rational Tangents | 0.0916 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 983 | 6000001 / AMR-059-0001 | Realizing Statistical Manifolds in Dually Flat Manifolds | 0.0915 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 984 | 30002343 / OWR-12490-003 | Optimal Pluricanonical Bounds for Stable Log Surfaces | 0.0912 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
