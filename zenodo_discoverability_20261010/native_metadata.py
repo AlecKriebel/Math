@@ -18,7 +18,7 @@ import zenodo
 import metadata_updates as legacy
 from baseline import PacedClient, identity, snapshot
 from native_views import normalized_draft, normalized_draft_files
-from preview_preservation import display_file_options
+from preview_preservation import display_file_options, public_unchanged
 
 ALLOWED_FIELDS = {'keywords', 'language', 'creators', 'related_identifiers', 'description', 'notes'}
 
@@ -43,6 +43,24 @@ def protected(record):
             'parent_id': record['parent']['id'], 'parent_pids': record['parent']['pids'],
             'versions': record['versions'], 'access': record['access'],
             'files': file_state(record), 'custom_fields': record['custom_fields']}
+
+def require_reviewed_session(session,record_id,patch,baseline):
+    """Reconstruct the exact original/protected/target session before publish."""
+    if (session.get('id') != record_id or session.get('patch') != patch or
+        baseline['id'] != record_id or baseline['identity']['id'] != str(record_id)):
+        raise RuntimeError('Native staged session belongs to a different reviewed record or patch')
+    original=session['original']
+    if (original['id'] != baseline['identity']['id'] or
+        any(original[key] != baseline['native'][key] for key in ('metadata','pids','custom_fields','access')) or
+        original['files'] != baseline['native_files'] or
+        original['parent']['id'] != baseline['identity']['parent_id'] or
+        original['parent']['pids'] != baseline['identity']['parent_pids'] or
+        original['versions'] != baseline['identity']['versions']):
+        raise RuntimeError('Native saved original differs from the reviewed public baseline')
+    if session['protected'] != protected(original):
+        raise RuntimeError('Native saved protected state differs from reviewed original')
+    if session['target_metadata'] != translate(original,patch):
+        raise RuntimeError('Native saved target differs from reconstructed frozen reviewed patch')
 
 def translate(original, patch):
     if not patch or set(patch) - ALLOWED_FIELDS:
@@ -131,6 +149,9 @@ def run(record_id, patch_path, publish=False):
         if publish:
             if not session or session['patch'] != patch or session['phase'] != 'staged':
                 raise RuntimeError('Only a fully verified matching staged session can publish')
+            before = json.loads((receipt_dir / 'before.json').read_text())
+            require_reviewed_session(session,record_id,patch,before)
+            public_unchanged(client,record_id,before)
             current = read_native(client, record_id, draft=True)
             require_state(current, session, changed=True)
             save(place, session, 'publish_requested')
@@ -142,7 +163,6 @@ def run(record_id, patch_path, publish=False):
             if not current.get('is_published') or current.get('is_draft'):
                 raise RuntimeError('Native publication outcome not confirmed')
             after = snapshot(client, record_id)
-            before = json.loads((receipt_dir / 'before.json').read_text())
             if after['identity'] != before['identity']:
                 raise RuntimeError('Native publication changed complete concept/version history')
             for key in ('doi', 'conceptrecid', 'files', 'native_files'):

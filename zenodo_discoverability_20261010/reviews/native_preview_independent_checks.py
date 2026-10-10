@@ -47,6 +47,8 @@ class NativeFake:
         path=urlsplit(url).path;self.calls.append({'method':method,'path':path,'payload':copy.deepcopy(payload)})
         root=f'/api/records/{self.rid}'
         if method=='GET' and path==root+'/versions':return copy.deepcopy(self.versions)
+        if method=='GET' and path==root:return copy.deepcopy(self.public)
+        if method=='GET' and path==root+'/draft':return copy.deepcopy(self.draft)
         yes('file' not in kw,'file upload')
         if method=='POST' and path==root+'/draft':
             yes(payload is None,'edit payload included fields');yes(self.state=='done','reuse edit')
@@ -165,6 +167,20 @@ def tampered_staged_target():
         rejected(c.publish)
         yes(not any(x['path'].endswith('publish') for x in c.client.calls),'unreviewed target reached publish')
 check('native_tampered_staged_target_rejected_before_publish',tampered_staged_target)
+
+for label,fn in [('session_id',lambda s:s.update(id=999)),('original_metadata',lambda s:s['original']['metadata'].update(description='unreviewed')),('protected_snapshot',lambda s:s['protected'].update(id='999'))]:
+    def t(fn=fn):
+        with Context(21699069) as c:
+            c.stage();place=c.state/f'native-metadata-{c.rid}-production.json';saved=json.loads(place.read_text());fn(saved);save(place,saved)
+            rejected(c.publish);yes(not any(x['path'].endswith('publish') for x in c.client.calls),'inconsistent saved session reached publish')
+    check('native_staged_integrity_'+label+'_rejected_before_publish',t)
+
+for label,fn in [('version_registry',lambda c:c.versions['hits']['hits'].append({'id':'999'})),('public_rich_metadata',lambda c:c.public['metadata'].update(description='unreviewed')),('public_full_files',lambda c:next(iter(c.public['files']['entries'].values()))['metadata'].update(unreviewed=1))]:
+    def t(fn=fn):
+        with Context(21699069) as c:
+            c.stage();fn(c.client);rejected(c.publish)
+            yes(not any(x['path'].endswith('publish') for x in c.client.calls),'public drift reached publish')
+    check('native_prepublication_original_'+label+'_drift_rejected',t)
 
 def postfiles():
     with Context(21699069) as c:

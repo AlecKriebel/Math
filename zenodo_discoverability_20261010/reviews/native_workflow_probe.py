@@ -216,7 +216,9 @@ class Fake:
         return r
     def request(self,method,url,payload=None,**kw):
         if method=='GET' and '/versions' in url:
-            self.calls.append((method,url,payload));hits=[copy.deepcopy(self.public)];hits += [{'id':'unexpected-new-version'}] if self.published and self.post_drift=='version_registry' else [];return {'hits':{'total':len(hits),'hits':hits}}
+            self.calls.append((method,url,payload));hits=[copy.deepcopy(self.public)];hits += [{'id':'unexpected-new-version'}] if (self.published and self.post_drift=='version_registry') or getattr(self,'pre_version_extra',False) else [];return {'hits':{'total':len(hits),'hits':hits}}
+        if method=='GET':
+            self.calls.append((method,url,payload));return self.native_get(RID,draft=url.endswith('/draft'))
         self.calls.append((method,url,payload))
         if self.fail==len([c for c in self.calls if c[0]!='GET']):raise RuntimeError('injected uncertain operation failure')
         if method=='POST' and url.endswith('/draft'):
@@ -245,7 +247,7 @@ class Fake:
         else:raise AssertionError('Unexpected mutation route: '+method+' '+url)
         return copy.deepcopy(self.draft or self.public)
 
-def case(name,drift=None,pending=False,fail=None,publish=False,save_fail=False,post_drift=None,approval=None,draft_pid_drift=None):
+def case(name,drift=None,pending=False,fail=None,publish=False,save_fail=False,post_drift=None,approval=None,draft_pid_drift=None,tamper=None,prepublish_drift=None):
     with tempfile.TemporaryDirectory(prefix='native_probe_',dir=ROOT/'reviews') as temp:
         d=Path(temp);rd=d/'receipts'/str(RID);rd.mkdir(parents=True)
         o=original();versions={'hits':{'total':1,'hits':[o]}}
@@ -264,6 +266,26 @@ def case(name,drift=None,pending=False,fail=None,publish=False,save_fail=False,p
         with patch.object(mod,'HERE',d), patch.object(mod.zenodo,'STATE_DIR',d/'states'),patch.object(mod.zenodo,'token_for',lambda e:'offline-dummy'),patch.object(mod,'PacedClient',lambda e,t:client),patch.object(mod.legacy,'record_lock',lambda *a:contextlib.nullcontext()),patch.object(mod.zenodo,'save_state',save):
             try:
                 result=mod.run(RID,pp)
+                if tamper:
+                    sp=d/'states'/f'native-metadata-{RID}-production.json';saved=json.loads(sp.read_text())
+                    if tamper=='id':saved['id']=123
+                    elif tamper=='original_metadata':saved['original']['metadata']['description']='Unreviewed original'
+                    elif tamper=='original_files':saved['original']['files']['entries']['paper.pdf']['metadata']={'unreviewed':'extra'}
+                    elif tamper=='original_parent':saved['original']['parent']['id']='wrong-parent'
+                    elif tamper=='original_versions':saved['original']['versions']['index']=3
+                    elif tamper=='protected':saved['protected']['access']['changed']=True
+                    elif tamper=='patch':saved['patch']['keywords']=['Unreviewed patch']
+                    elif tamper in ['target','target_keywords']:
+                        field='description' if tamper=='target' else 'subjects'
+                        saved['target_metadata'][field]='Unreviewed claim' if field=='description' else [{'subject':'Unreviewed keyword'}]
+                        client.draft['metadata']=copy.deepcopy(saved['target_metadata'])
+                    sp.write_text(json.dumps(saved))
+                if prepublish_drift:
+                    if prepublish_drift=='version_registry':client.pre_version_extra=True
+                    elif prepublish_drift=='files':client.public['files']['entries']['paper.pdf']['metadata']={'unreviewed':'extra'}
+                    elif prepublish_drift=='metadata':client.public['metadata']['description']='Unreviewed public change'
+                    elif prepublish_drift=='pids':client.public['pids']['oai']['identifier']='oai:zenodo.org:wrong'
+                    elif prepublish_drift in ['custom_fields','access']:client.public[prepublish_drift]['changed']=True
                 if publish:result=mod.run(RID,pp,True)
             except Exception as e:exc=type(e).__name__+': '+str(e)
         mut=[c for c in client.calls if c[0]!='GET']
@@ -271,6 +293,8 @@ def case(name,drift=None,pending=False,fail=None,publish=False,save_fail=False,p
             passed=bool(exc) and not mut
         elif post_drift:
             passed=bool(exc) and len(mut)==3 and not (rd/'after.json').exists()
+        elif tamper or prepublish_drift:
+            passed=bool(exc) and len(mut)==2 and not (rd/'after.json').exists()
         elif fail:
             passed=bool(exc) and len(mut)==fail and not any('/newversion' in c[1] or '/pids/' in c[1] or '/files/' in c[1] for c in mut)
         elif draft_pid_drift not in (None,'keep_oai'):
@@ -300,6 +324,10 @@ case('reject changed reviewed patch hash before mutation',approval='hash')
 case('reject unapproved record before mutation',approval='missing')
 for f in ['version_registry','native_file_auxiliary','legacy_description','legacy_title','native_dates','snapshot_native_date','snapshot_native_custom','snapshot_native_access','snapshot_native_oai','public_oai_missing','public_oai_changed','public_file_links_missing','public_file_links_changed']:
     case('reject publication read-back drift '+f,publish=True,post_drift=f)
+for f in ['id','original_metadata','original_files','original_parent','original_versions','protected','patch','target','target_keywords']:
+    case('reject saved native session tamper before publish '+f,publish=True,tamper=f)
+for f in ['version_registry','files','metadata','pids','custom_fields','access']:
+    case('reject public drift after native stage before publish '+f,publish=True,prepublish_drift=f)
 out={'source':str(source),'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'offline_only':True,'tests':RESULTS,
      'passed':sum(r['passed'] for r in RESULTS),'failed':sum(not r['passed'] for r in RESULTS)}
 out['related_source_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ['native_views.py','apply_reviewed.py','baseline.py','preview_preservation.py','repair_owned_preview.py']}

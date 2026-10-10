@@ -1,6 +1,6 @@
 {
   "source": "/Users/alec/Documents/Math/zenodo_discoverability_20261010/native_metadata.py",
-  "source_sha256": "845ad83ec3011240b13525e46f3207ab7c356695297ed2447fc4c17a35fe2b6d",
+  "source_sha256": "6a797eca29794f5527255a6d499e04bb34222acf6c386b93da7f18aeabdd91ac",
   "offline_only": true,
   "tests": [
     {
@@ -960,9 +960,339 @@
           "unchanged_doi": "10.5281/zenodo.21699161"
         }
       }
+    },
+    {
+      "test": "reject saved native session tamper before publish id",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native staged session belongs to a different reviewed record or patch",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish original_metadata",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved original differs from the reviewed public baseline",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish original_files",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved original differs from the reviewed public baseline",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish original_parent",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved original differs from the reviewed public baseline",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish original_versions",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved original differs from the reviewed public baseline",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish protected",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved protected state differs from reviewed original",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish patch",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Only a fully verified matching staged session can publish",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish target",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved target differs from reconstructed frozen reviewed patch",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject saved native session tamper before publish target_keywords",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Native saved target differs from reconstructed frozen reviewed patch",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish version_registry",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish files",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish metadata",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish pids",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish custom_fields",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
+    },
+    {
+      "test": "reject public drift after native stage before publish access",
+      "passed": true,
+      "details": {
+        "error": "RuntimeError: Public record or complete version registry changed before preview repair",
+        "mutations": [
+          [
+            "POST",
+            "https://offline.invalid/api/records/21699161/draft"
+          ],
+          [
+            "PUT",
+            "https://offline.invalid/api/records/21699161/draft"
+          ]
+        ],
+        "result": {
+          "id": 21699161,
+          "state": "ready_to_publish_metadata",
+          "unchanged_doi": "10.5281/zenodo.21699161"
+        }
+      }
     }
   ],
-  "passed": 101,
+  "passed": 116,
   "failed": 0,
   "related_source_sha256": {
     "native_views.py": "9e1ce726a3247eb2b2b9b044918a8ee8a5345b6360e853b51d34ae3f5b421a4f",

@@ -112,7 +112,7 @@ def legacy_compare(original, actual, patch):
     return expected, notes
 
 
-def expected_native(original, patch):
+def expected_native(original, patch, record_id=None):
     """Independent reconstruction of intended native fields from frozen patch."""
     md = copy.deepcopy(original)
     if 'keywords' in patch:
@@ -135,7 +135,20 @@ def expected_native(original, patch):
         for author, addition in zip(md['creators'], patch['creators']):
             person = author['person_or_org']
             if person['name'] != addition['name']:
-                raise ValueError('Creator identity changed')
+                # This one frozen, independently source-reviewed correction
+                # reverses a wrongly serialized given/family name. Every
+                # identifier, affiliation, role and other creator field stays
+                # in the original copied structure; no general rename rule.
+                if not (record_id == 22770864 and len(md['creators']) == 1
+                        and addition == {'name': 'Kriebel, Alec',
+                                         'affiliation': 'Independent Researcher',
+                                         'orcid': '0009-0001-9320-500X'}
+                        and person.get('type') == 'personal'
+                        and person['name'] == 'Alec, Kriebel'
+                        and person.get('given_name') == 'Kriebel'
+                        and person.get('family_name') == 'Alec'):
+                    raise ValueError('Creator identity changed')
+                person.update(name='Kriebel, Alec', given_name='Alec', family_name='Kriebel')
             old = person.get('identifiers', [])
             wanted = {'scheme': 'orcid', 'identifier': addition['orcid']}
             orcids = [x for x in old if x['scheme'] == 'orcid']
@@ -165,6 +178,82 @@ def expected_native(original, patch):
             raise ValueError('Unrecognized reviewed resource classification change')
         md['resource_type'] = {'id': 'publication-preprint'}
     return md
+
+
+def audit_preview_repair(rid, dest, before, after, patch_hash, result, check):
+    """Bind and independently verify an existing-record preview restoration.
+
+    The only writable file fields must equal the original display settings.
+    Raw draft differences are precisely original OAI/generated links omitted,
+    and, before restoration only, an original selected preview lost to None.
+    """
+    paths = {name: dest / (name + '.json') for name in ('preview_repair_pre', 'preview_repair_post')}
+    if not any(path.exists() for path in paths.values()):
+        return False
+    errors_before = len(result['errors'])
+    check('preview_repair_both_raw_receipts_present', all(path.exists() for path in paths.values()))
+    if not all(path.exists() for path in paths.values()):
+        return False
+    data = {}
+    for name, path in paths.items():
+        result['receipt_sha256'][name] = sha(path)
+        data[name] = read(path)
+        check(name + '_record_and_frozen_patch', data[name].get('id') == rid
+              and data[name].get('patch_sha256') == patch_hash)
+        check(name + '_no_automatic_mutation_retry', data[name].get('automatic_mutation_retry') is False)
+    pre, post = data['preview_repair_pre'], data['preview_repair_post']
+    check('preview_repair_phases', pre.get('phase') == 'repair_requested' and post.get('phase') == 'preview_restored')
+    session = pre['session']
+    writable_original = {k: v for k, v in before['metadata'].items() if k not in {'prereserve_doi', 'relations'}}
+    patch = read(HERE / 'patches' / f'{rid}.json')['metadata']
+    check('preview_repair_owned_exact_reviewed_session', session.get('id') == rid
+          and session.get('environment') == 'production'
+          and session.get('phase') in {'update_requested', 'staged'}
+          and session.get('original_metadata') == writable_original
+          and session.get('target_metadata') == {**writable_original, **patch}
+          and session.get('patch_fields') == list(patch)
+          and session.get('native_original') == before['native']
+          and session.get('files') == before['files'] and session.get('doi') == before['doi'])
+    original_files = before['native_files']
+    display = {k: copy.deepcopy(original_files[k]) for k in ('enabled', 'default_preview', 'order')}
+    check('preview_repair_original_preview_is_existing_file', isinstance(display['default_preview'], str)
+          and display['default_preview'] in original_files['entries'])
+    payload = pre['payload']
+    check('preview_repair_payload_only_original_display_and_reviewed_metadata',
+          set(payload) == {'metadata', 'custom_fields', 'files'}
+          and payload.get('files') == display
+          and payload.get('metadata') == pre['draft']['metadata'] == after['native']['metadata']
+          and payload.get('custom_fields') == before['native']['custom_fields'])
+    public = pre['public']
+    check('preview_repair_pre_public_original_exact', str(public.get('id')) == str(rid)
+          and public.get('is_published') is True and public.get('is_draft') is False
+          and public['files'] == original_files
+          and all(public[k] == before['native'][k] for k in ('metadata', 'pids', 'access', 'custom_fields'))
+          and public['parent']['id'] == before['identity']['parent_id']
+          and public['parent']['pids'] == before['identity']['parent_pids']
+          and public['versions'] == before['identity']['versions'])
+    draft_pids = {k: v for k, v in before['native']['pids'].items() if k != 'oai'}
+    for label, record in [('pre', pre), ('post', post)]:
+        raw = record['draft']
+        check('preview_repair_' + label + '_raw_draft_identity_exact', str(raw.get('id')) == str(rid)
+              and raw.get('is_draft') is True and raw.get('is_published') is True
+              and raw['pids'] == draft_pids
+              and raw['parent']['id'] == before['identity']['parent_id']
+              and raw['parent']['pids'] == before['identity']['parent_pids']
+              and raw['versions'] == before['identity']['versions'])
+        check('preview_repair_' + label + '_raw_draft_metadata_access_custom_exact',
+              raw['metadata'] == after['native']['metadata']
+              and raw['access'] == before['native']['access']
+              and raw['custom_fields'] == before['native']['custom_fields'])
+        restored = copy.deepcopy(raw['files'])
+        for name, file in restored['entries'].items():
+            if 'links' not in file and name in original_files['entries']:
+                file['links'] = copy.deepcopy(original_files['entries'][name]['links'])
+        if label == 'pre':
+            check('preview_repair_pre_only_selected_preview_missing', restored.get('default_preview') is None)
+            restored['default_preview'] = display['default_preview']
+        check('preview_repair_' + label + '_full_files_exact_after_precise_draft_omissions', restored == original_files)
+    return len(result['errors']) == errors_before
 
 
 def audit_one(entry, inventory, catalog, baseline_hashes=None):
@@ -290,7 +379,7 @@ def audit_one(entry, inventory, catalog, baseline_hashes=None):
         unpatched_after = {k: v for k, v in amd.items() if k not in changed}
         check('all_unpatched_native_metadata_exact', unpatched_before == unpatched_after,
               diffs(unpatched_before, unpatched_after, 'native.metadata'))
-        native_expected = expected_native(bmd, patch)
+        native_expected = expected_native(bmd, patch, rid)
         for field in changed:
             wanted, actual = native_expected.get(field), amd.get(field)
             if field in {'languages', 'resource_type', 'related_identifiers', 'additional_descriptions'}:
@@ -311,10 +400,14 @@ def audit_one(entry, inventory, catalog, baseline_hashes=None):
         else:
             check('scientific_scope_description_frozen_reviewed_target', amd.get('description') == patch['description'])
         check('receipt_claim_matches_patch_hash', after.get('verification', {}).get('reviewed_patch_sha256') == entry['patch_sha256'])
+        preview_repair_valid = audit_preview_repair(rid, dest, before, after, entry['patch_sha256'], result, check)
         for item in after.get('verification', {}).get('mutation_routes', []):
             base = f'/api/deposit/depositions/{rid}'
+            routes = {('POST', base + '/actions/edit'), ('PUT', base), ('POST', base + '/actions/publish')}
+            if preview_repair_valid:
+                routes.add(('PUT', f'/api/records/{rid}/draft'))
             check('record_bound_mutation_route_' + item['method'] + '_' + item['path'],
-                  (item['method'], item['path']) in {('POST', base + '/actions/edit'), ('PUT', base), ('POST', base + '/actions/publish')})
+                  (item['method'], item['path']) in routes)
         for name in ('stage.json', 'publish.json', 'native_staged.json', 'native_published.json'):
             path = dest / name
             if not path.exists():
@@ -339,7 +432,9 @@ def audit_one(entry, inventory, catalog, baseline_hashes=None):
         result['concept_doi'] = after['identity']['parent_pids'].get('doi', {}).get('identifier')
         result['version_ids'] = after['identity']['version_ids']
         result['version_count'] = after['identity']['version_count']
-        result['route'] = 'legacy-compatible' if before['legacy_compatible'] else 'native-rich'
+        result['legacy_compatible'] = before['legacy_compatible']
+        result['route'] = ('native-preserving' if before['legacy_compatible'] else 'native-rich') \
+            if (dest / 'native_published.json').exists() else ('legacy-with-preview-restoration' if preview_repair_valid else 'legacy')
         result['status'] = 'fail' if result['errors'] else 'pass'
     except Exception as exc:
         result['errors'].append({'check': 'audit_exception', 'detail': f'{type(exc).__name__}: {exc}'})
@@ -386,13 +481,14 @@ def write_reports(result):
         f"Checkpoint: {result['generated_utc']}. Verified {result['completed_count']}/{result['approved_count']} completed public receipts; "
         f"{len(result['pending_ids'])} pending and {len(result['failed_ids'])} failed. Completion estimate for the final receipt audit: "
         f"{round(100 * result['completed_count'] / max(1,result['approved_count']))}%. Overall audit status: **{result['status']}**.", '',
-        'This independent audit reads local receipts, the original inventory/catalog and frozen approved proposal hashes. It uses no Zenodo/client imports, credentials, network operations, Git actions or patch writes. It validates public record/deposition state, full DOI/OAI PIDs, parent concept PIDs, complete version identities/count, full file entry/settings/link dictionaries, checksums/sizes, original inventory/source correspondence, access/custom fields and all unpatched native metadata. Changed native fields are independently reconstructed from the frozen scholarly proposal, while controlled-vocabulary display titles are ignored only inside intentionally changed vocabulary fields. Existing native relation objects and author structures remain protected exactly. Description preservation or exact reviewed-description equality binds the scientific scope to the content reviews.', '',
+        'This independent audit reads local receipts, the original inventory/catalog and frozen approved proposal hashes. It uses no Zenodo/client imports, credentials, network operations, Git actions or patch writes. It validates public record/deposition state, full DOI/OAI PIDs, parent concept PIDs, complete version identities/count, full file entry/settings/link dictionaries, checksums/sizes, original inventory/source correspondence, access/custom fields and all unpatched native metadata. Changed native fields are independently reconstructed from the frozen scholarly proposal, while controlled-vocabulary display titles are ignored only inside intentionally changed vocabulary fields. Existing native relation objects and author identifiers, affiliations, roles and other structure remain protected exactly. The sole source-reviewed name-order correction on 22770864 changes only the reversed given/family/name fields; other creator changes only add the reviewed missing ORCID. Description preservation or exact reviewed-description equality binds the scientific scope to the content reviews.', '',
+        'Four existing metadata drafts required restoration of an original selected preview that the legacy endpoint omitted. The audit hashes both raw preview-repair receipts and independently checks the exact original public snapshot, owned reviewed session, intended metadata, draft identity, full file dictionaries and payload. Only original writable display options accompany reviewed metadata/custom fields in the exact same-record draft PUT; PIDs, access, file entries/uploads and unreviewed metadata are forbidden. All final public file settings must equal the original exactly.', '',
         'The local snapshots represent the recorded authenticated public read-backs. This audit does not perform a new live query, download file bytes, re-certify the scientific proofs or close manuscript priority/access gaps. Pending receipts never count as completed.', '',
         'The separate original-baseline hash manifest is append-only for newly approved records. It freezes the unchanged recorded public snapshots when this independent audit is installed and prevents later coherent edits to both before/after receipts from escaping detection. Earlier native snapshot authenticity remains grounded in the recorded API provenance and inventory/native cross-checks, rather than a claim that local hashes retroactively authenticate an API response.', '',
         f"Falsification controls: {result.get('falsification_controls', {}).get('count', 0)} controls; "
         f"all passed={result.get('falsification_controls', {}).get('all_passed', False)}; "
         f"bound to current audit-tool bytes={result.get('falsification_controls', {}).get('same_audit_tool', False)}. "
-        'Cloned-data mutants test DOI/concept/version/OAI/file-link/file-access/affiliation/scope/tag/language/patch alteration while optimistic receipt booleans remain true.', '',
+        'Cloned-data mutants test DOI/concept/version/OAI/file-link/file-access/affiliation/scope/tag/language/patch alteration while optimistic receipt booleans remain true, plus unauthorized creator renames, identifier/affiliation/role loss and unsafe or wrong-record preview-restoration evidence.', '',
         '## First-record draft/public representation check', '',
         f"Record 23271172: **{result['first_record_representation']['status']}**. The raw first guard-stop snapshot contains precisely the original DOI PID with the original OAI PID omitted in the draft. The separate raw file comparison contains precisely omitted generated per-file links. The completed public receipt must restore the full original OAI/DOI dictionary and the full original file dictionary, including those links; no public-boundary normalization is allowed. Only keywords/language change.", '',
         '## Completed receipts', '',
