@@ -1,0 +1,1623 @@
+--- a/MANIFEST.json
++++ b/MANIFEST.json
+@@ -1,26 +1,33 @@
+ {
+   "schema": 1,
+-  "scope": "exact authored safe packet; excludes source documents and private records",
++  "version": 2,
++  "status": "candidate_complete; final delta audit pending",
++  "scope": "exact authored safe v2 packet, copied review analyses and metadata, historical verifier; excludes source documents and private records",
+   "files": [
+     {
+       "path": "README.md",
+-      "bytes": 1324,
+-      "sha256": "9d281c29a8d3f0f40d61087af030694f2d663331d7a639b29c3a0ec99de25d17"
++      "bytes": 3358,
++      "sha256": "1196b96658defd9e969132bedaea53be19bf9462c583ba20cefb5c5a0a8a0f52"
++    },
++    {
++      "path": "REVIEW_HISTORY.md",
++      "bytes": 2893,
++      "sha256": "68cf11ee1554cc69219a2e500eb68066947830376b06855e70bbad3b89122b6f"
+     },
+     {
+       "path": "approaches.md",
+-      "bytes": 1810,
+-      "sha256": "587652d5bc1e5c2b00ef3bfb1f95086ee899b6f692b1cbc0a8b2639876a2f7d1"
++      "bytes": 1918,
++      "sha256": "c100c8d488d1ed148aea636088706a52cdc3aac28b56d33a554aefe32a40a55f"
+     },
+     {
+       "path": "audit_questions.md",
+-      "bytes": 1969,
+-      "sha256": "eea2e20cc94286d6e29286da48e10832c53e3bf25e1bffc0922b401bc56bc2d7"
++      "bytes": 2408,
++      "sha256": "52261cf144aaff466e57d978b9a99d303da4c865361a8ac13f3570b84c8695b0"
+     },
+     {
+       "path": "candidate_proof.md",
+-      "bytes": 10612,
+-      "sha256": "eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1"
++      "bytes": 18747,
++      "sha256": "dcad7d7677b1fff7fe1b659fd5b2f2c97e4daa0f0fe7b914a7752f19ad89c5a8"
+     },
+     {
+       "path": "checks.py",
+@@ -38,9 +45,24 @@
+       "sha256": "b836bf89e8f60ffaeceebf7f043b279f410ffb092375cc31a4b37ae8c9487115"
+     },
+     {
++      "path": "historical/v1_verify_manifest.py",
++      "bytes": 1414,
++      "sha256": "fe67729ae7947a1d5712dbf96a2af306a5d7c47e2a05e1fab784328993dddf2f"
++    },
++    {
+       "path": "hypothesis_audit.md",
+       "bytes": 5473,
+       "sha256": "0ef9db735381c46b21196d95e4e79ae2b6c43fe2adf22afed1829f9f1264add8"
++    },
++    {
++      "path": "original_bindings.json",
++      "bytes": 2291,
++      "sha256": "5d71a925a989877e572203cf01fe6a341da83bfb5b14bcdf0e071401bfaedec2"
++    },
++    {
++      "path": "replay.py",
++      "bytes": 1204,
++      "sha256": "3e8583f594205a4d4347e74333fa5ccd77f1acaa53fbf96c1baea487630c83b2"
+     },
+     {
+       "path": "retrieval_metadata.json",
+@@ -48,19 +70,69 @@
+       "sha256": "e5d7201816e06630d74fec96ccda349a30d9aa639551ddb2f25f5c99a08134db"
+     },
+     {
++      "path": "review/first_audit_source_metadata.json",
++      "bytes": 8551,
++      "sha256": "3b7569c2a440f5459ce95eb3e4bc69b7374d24ddead755cb64df5fe1b9d1f0d9"
++    },
++    {
++      "path": "review/first_audit_verdict.json",
++      "bytes": 767,
++      "sha256": "22c74facc51f5de1d2fc1edde7002cc6403913a2f1c6a36f6585fcbdf5e2dca3"
++    },
++    {
++      "path": "review/first_geometry_audit.md",
++      "bytes": 23785,
++      "sha256": "0e5408a47ccb7f00425b972b8b4367c1e68a2124fea7eb55aade576418a73644"
++    },
++    {
++      "path": "review/original_integrity_finding.md",
++      "bytes": 1679,
++      "sha256": "4d80efb260c2c9f312c3ed5981452c3c6157b987e1cc7e44fe48be3bbc49fe5d"
++    },
++    {
++      "path": "review/second_audit_source_metadata.json",
++      "bytes": 4722,
++      "sha256": "6ad4a0bc540a1b7c11c20e35933e98a33ea6466477dcd6d063698a9b8dc0de5f"
++    },
++    {
++      "path": "review/second_audit_verdict.json",
++      "bytes": 1653,
++      "sha256": "d660c3e3caef4974e725e7844ee7d908c71a58519f1a5e849d5b9140a05d4cee"
++    },
++    {
++      "path": "review/second_geometry_audit.md",
++      "bytes": 21008,
++      "sha256": "357c2e44ca5f8448c93f49733b5d9ba1f97ee131de374f467e424eaab2307f9b"
++    },
++    {
++      "path": "review_bindings.json",
++      "bytes": 2025,
++      "sha256": "dd12c08ee7a50cda23c4b45e29205dbe45f68436f83128b73c109b4859af04c6"
++    },
++    {
+       "path": "sources.json",
+-      "bytes": 5278,
+-      "sha256": "7ef273b79b17d692f598d897bdf6c453822c6a411e58ddeddfed9c8176c2ee7a"
++      "bytes": 8039,
++      "sha256": "fec5aa25be34f730ad9b46451abd94aa3ed82489af8d502ea2331f54ef1595fe"
++    },
++    {
++      "path": "status.json",
++      "bytes": 734,
++      "sha256": "ea751761e4885964ca431acd2aff92b7744fb366af79e2d1bcfe476a328b0364"
+     },
+     {
+       "path": "test_integrity.py",
+-      "bytes": 1723,
+-      "sha256": "140f29260cc0e5becdfc63aa1300abcdc6331de81e61f3296bd958fb5e1727dc"
++      "bytes": 2661,
++      "sha256": "92693a4824863c2d22ab90c43f137b8a39fab2f997eb010f86b4163b01972f9f"
++    },
++    {
++      "path": "test_nested_manifest_regression.py",
++      "bytes": 1526,
++      "sha256": "af85d60e69b58a2fff5b148c2fdd7d528a1d8d25f57ef4423b138525e171a530"
+     },
+     {
+       "path": "verify_manifest.py",
+-      "bytes": 1414,
+-      "sha256": "fe67729ae7947a1d5712dbf96a2af306a5d7c47e2a05e1fab784328993dddf2f"
++      "bytes": 2734,
++      "sha256": "f1ea37b72d00627eae52e71b5c9bd29d41cb8cf57836eb0bb2e44d9f734734fe"
+     }
+   ]
+ }
+--- a/README.md
++++ b/README.md
+@@ -1,17 +1,43 @@
+-# Problem 30004324: tangent-bundle Seshadri characterization
++# Tangent-bundle Seshadri characterization: expanded candidate v2
+ 
+-Author freeze prepared 2026-10-05. Status: candidate complete proof, pending fresh independent mathematical audit. No remote publication has been performed by the author worker.
++Problem 30004324 / OWR-17296-007. Prepared 2026-10-05.
+ 
+-Target: OWR-17296-007, the one-point Fulger--Murayama conjecture for smooth projective varieties over algebraically closed fields of arbitrary characteristic.
++**Status: candidate_complete.** Two independent AI geometry audits of the original candidate reported PASS with no essential gap. This expanded derivative awaits an independent final delta audit. It is not externally peer-reviewed, a historical-priority certification, or an accepted resolution.
+ 
+-The central deliverable is `candidate_proof.md`: a pointed minimal-degree rational-curve family is compactified by stable maps; degree minimality excludes all boundary; very freeness makes its evaluation cover X; its contracted marking section forces numerical Picard rank one; this yields Fano and invokes the already proved Fano case.
++`candidate_proof.md` gives the full argument for a smooth integral projective variety over an algebraically closed field of arbitrary characteristic, with positive tangent-bundle Seshadri constant at one arbitrary closed point. An absolute pointed degree minimum removes all stable-map boundary; a very free normalization gives surjective proper evaluation; the contracted marking section forces numerical Picard number one; the anticanonical divisor becomes ample, and the established Fano theorem applies.
+ 
+-The source record, status distinctions, unsuccessful shortcut, explicit controls, and reproducibility files are separate. A claimed general proof must not be presented as established before the independent audit. No historical novelty or human peer review is claimed.
++The revision explicitly supplies four details requested by both reviews:
+ 
+-Run with Python 3 standard library only:
++1. Minimal degree remains minimal over geometric field extensions.
++2. The actual inertia-free evaluation fiber is finite over the full projective coarse scheme; no arbitrary closed coarse-space base-change claim is made.
++3. The marking supplies a relative degree-one line bundle, so the universal curve is projective.
++4. A closed point of the generic evaluation fiber supplies the numerical multisection, including inseparable degree.
++
++## Readiness and integrity history
++
++The original freeze remains unchanged. Its original verifier received **REVISE_REQUIRED (integrity tooling only)**: it ignored extra nested files named MANIFEST.json. The actual original archive had no such extra file and passed strict inventory checks. Both geometry verdicts were PASS.
++
++The v2 root `verify_manifest.py` is the authoritative strict replacement, copied byte-for-byte from the first independent audit. The vulnerable code is retained only as `historical/v1_verify_manifest.py`, explicitly for the regression demonstration. Do not use it to validate this package.
++
++The complete original audit reports and source-verification metadata are preserved under `review/`. Their verdicts bind the original proof, not a yet-unperformed v2 delta audit. `REVIEW_HISTORY.md` and `status.json` distinguish these stages.
++
++## Reproduce
++
++Python 3 standard library only. Run the complete portable replay:
++
++    python3 replay.py
++
++Or run the component checks:
+ 
+     python3 checks.py
+     python3 verify_manifest.py
+     python3 test_integrity.py
++    python3 test_nested_manifest_regression.py
+ 
+-The tests check finite algebraic/combinatorial controls and package integrity, not algebraic geometry or theorem dependencies. Source documents and extracted text are deliberately excluded.
++Optionally bind the root manifest externally:
++
++    python3 verify_manifest.py . EXPECTED_MANIFEST_SHA256
++
++The original 909,136 finite mathematical controls are unchanged. The strict verifier's fixture suite accepts a clean packet and rejects 14 mutations. The dedicated regression demonstrates historical v1 acceptance of a nested manifest and v2 rejection. These programs do not prove the geometry.
++
++No source PDFs, source extracts, page images, raw catalog data, private sources, or private coordination records are included. No remote write or publication is performed by this revision. No additional substantive approach was used: the count remains two, with a five-approach budget. A queue label `claimed_solved, 2/5` is proposed only after the final delta audit; no queue is changed here.
+--- /dev/null
++++ b/REVIEW_HISTORY.md
+@@ -0,0 +1,29 @@
++# Review history and v2 changes
++
++## Original author freeze
++
++The original 13-file tree and 19,163-byte archive are preserved unchanged. The archive SHA-256 is 6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01. Its manifest SHA-256 is 4869e62250a25e64fc6e4096ea56842a7b23400789f3ba00c14ba81c2c8cd8f7. `original_bindings.json` records every original file's hash and size.
++
++The original proof's SHA-256 is eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1. Its status was a proposed complete proof, not yet independently reviewed.
++
++## First independent audit
++
++Mathematics: PASS; no essential gap found. Exact original archive: PASS. Original verifier: REVISE_REQUIRED, because a nested extra file named MANIFEST.json was skipped by its basename filter. This was a reproducible tooling flaw, not a hidden mathematical objection. It was absent from the actual original archive.
++
++The full report and finding are retained verbatim as `review/first_geometry_audit.md` and `review/original_integrity_finding.md`. The audit supplied a strict verifier, fourteen negative controls, and additional source-backed details. The v2 verifier is that exact strict implementation; its test suite is the audit's exact implementation under the v2 test filename.
++
++## Second independent geometry audit
++
++Mathematics: PASS; no essential gap found. The full report is retained verbatim as `review/second_geometry_audit.md`. It independently justified the fixed-point, arbitrary-characteristic moduli and Picard bridge and recommended four expository expansions.
++
++## This derivative
++
++The proof expands geometric-field minimality, replaces compressed coarse-fiber wording with the finite map to the full coarse scheme, makes projectivity of the universal curve explicit through the marking's relative degree-one bundle, and uses a generic-fiber closed point for numerical descent. Source references and their hypothesis matching are expanded. The theorem and the two-approach count are unchanged.
++
++The original verifier is superseded. A direct regression retains the vulnerable code under `historical/` solely to show the old acceptance and new rejection of the demonstrated extra-file case. It must not be treated as an alternative authoritative verifier.
++
++The first audit linked some Stacks results through section-level URLs; the revised proof links the exact propositions or lemmas (04SZ and 0EX7). The copied reports are historical records and have not been silently edited.
++
++## Current limit
++
++A final independent delta audit must check this v2 proof and tooling before publication. The two earlier PASS verdicts are not presented as approval of unseen changed bytes. None of these AI reviews is formal verification, external human peer review, acceptance by the mathematical community, or proof of historical novelty. Specialist review and a thorough priority search remain outstanding.
+--- a/approaches.md
++++ b/approaches.md
+@@ -10,4 +10,4 @@
+ 
+ The new direction minimizes a fixed very ample degree among all rational images through x, rather than minimizing anticanonical degree or assuming a general point. The stable-map boundary has a component through x; its degree already exhausts the total minimum. Stability then removes contracted trees with the sole marking. This yields a proper pointed family. Very freeness supplies smooth evaluation at a chosen map in any characteristic. Properness upgrades dominance to surjectivity. The contracted marking section trivializes the descent of each fiberwise degree-zero divisor pullback, forcing every divisor to be proportional to the chosen very ample class. The anticanonical class is thus ample, reducing to the proven Fano case.
+ 
+-The full proposed argument and all dependencies are in candidate_proof.md. The author stopped after this candidate completion, without inventing three additional approaches to fill the five-approach budget. Acceptance requires a fresh uninvolved audit, especially of the moduli, section, and positive-characteristic steps. Numerical tests cannot substitute for that review.
++The full proposed argument and all dependencies are in candidate_proof.md. The author stopped after this candidate completion, without inventing three additional approaches to fill the five-approach budget. Two independent geometry audits of the original candidate subsequently passed; this expanded v2 remains subject to a final delta audit, especially of the explicit moduli, section, and positive-characteristic justifications. Numerical tests cannot substitute for that review.
+--- a/audit_questions.md
++++ b/audit_questions.md
+@@ -1,6 +1,6 @@
+-# Required independent mathematical audit
++# Final delta-audit questions
+ 
+-The proof is intended to be complete, but remains an author candidate. A fresh uninvolved auditor must determine whether its bridge from one-point positivity to Fano is correct. Do not infer correctness from test counts or from the author finding no gap.
++Two independent geometry audits of the original proof reported PASS. This derivative remains a candidate and requires a final independent delta audit. Compare it to the exact original and both reports. Do not infer correctness of new bytes from earlier verdicts or from finite test counts.
+ 
+ 1. Verify the exact OWR target, FM21 definition, Frobenius slope normalization, Corollary 4.6, and Proposition 4.8(1) directly from primary sources.
+ 2. Try to produce a degree-d stable-map limit over x in which the mark lies on a contracted tree and no rational component through x has degree at most d. If this cannot happen, check every equality forcing a single birational nonconstant component.
+@@ -10,3 +10,6 @@
+ 6. Check the Picard reduction: is each e^*(O(dD) tensor A^{-b}) fiberwise trivial, does base change and the marking section make it globally trivial, and does proper surjective evaluation imply numerical triviality downstairs?
+ 7. Verify whether the final use of the established Fano case is independent of the conjecture and valid in every characteristic.
+ 8. If any bridge fails, identify the first precise unproved or false step and downgrade the packet. Preserve proven slope, product, and blow-up controls. If the bridge survives, report it as an independently checked candidate with no historical novelty or external-peer-review claim.
++
++9. Verify all four requested expansions without strengthening the theorem: geometric-field minimality; proper quasi-finite coarse target; relative degree-one marking bundle; and generic-fiber closed-point multisection.
++10. Confirm the root verifier is the strict replacement; reproduce the nested-manifest regression and all fourteen negative controls. Keep the original tooling REVISE_REQUIRED visible as history.
+--- a/candidate_proof.md
++++ b/candidate_proof.md
+@@ -1,6 +1,6 @@
+ # A pointed minimal-rational-curve route to the tangent-Seshadri conjecture
+ 
+-Author candidate, 2026-10-05. Not yet independently audited. This is an AI-assisted mathematical argument, not a published or refereed resolution. Historical novelty is not established.
++Expanded author candidate v2, 2026-10-05. Two independent AI geometry audits of the original candidate found no essential gap. This version makes their four recommended justifications explicit and awaits a final delta audit. It is not a published or refereed resolution, and historical novelty is not established.
+ 
+ ## Exact target
+ 
+@@ -8,15 +8,26 @@
+ 
+ The conjecture is [FM21, Conjecture 4.9], corresponding to [FM19v2, Conjecture 5.9] and Fulger's contribution to OWR 53/2019, printed p. 3289. No Fano, nef-tangent, general-point, or characteristic-zero hypothesis is added.
+ 
+-## Dependencies (precise uses)
++## Definition and imported results
+ 
+-1. [FM21, Corollary 3.21 and Example 3.20]: the normalized-curve formula for vector-bundle Seshadri constants. On P^1 its slope invariant is the least splitting degree, in every characteristic.
+-2. [FM21, Corollary 4.6]: the positivity hypothesis implies X is uniruled (indeed separably rationally connected). Its proof explicitly also supplies a rational curve through x. Only existence of such a curve is required below. An alternative from uniruledness is to take a dominating family of rational curves of fixed ample degree, compactify it by stable maps, and specialize the marked evaluation to x; a component reached through the contracted subtree carrying the mark is a rational curve through x.
+-3. [AO, Theorem 2.8 and Section 2.5]: for a projective embedding X in P^N over k, the stack of one-pointed stable maps of genus zero and fixed embedding degree d is a proper Artin stack with finite stabilizers and projective coarse moduli scheme. This formulation holds in arbitrary characteristic; do not assume the whole stack is Deligne--Mumford in positive characteristic.
+-4. Standard deformation theory of maps from a smooth curve: obstructions to deforming f while fixing its value at distinct points 0 and infinity lie in H^1(P^1,f^*T_X(-0-infinity)); if this group vanishes, evaluation at infinity from the scheme of maps taking 0 to x is smooth at f. This can also be checked directly by the usual Cech lifting argument on the domain. There is no appeal to characteristic-zero generic smoothness.
+-5. Cohomology and base change for a proper smooth family of genus-zero curves: a line bundle trivial on every geometric fiber is the pullback of its pushforward, which is a line bundle. A section trivializing its pullback then trivializes that line bundle on the base.
+-6. Ampleness is invariant under numerical equivalence of divisors on a projective variety.
+-7. [FM21, Proposition 4.8(1)]: a smooth Fano variety over an algebraically closed field, in any characteristic, with epsilon(T_X;x)>0 at some point is P^n. Its cited input is Mori's theorem as [Kollar, Rational Curves on Algebraic Varieties, V.3.2]. This final reduction is not an application of the conjecture itself.
++For a vector bundle E on X, use the quotient projective bundle rho:P(E)=Proj_X Sym(E)->X and its tautological class xi. The relative Seshadri constant is the infimum of xi.Gamma / mult_x(rho_*Gamma) over integral curves Gamma in P(E) whose image contains x and which are not contracted by rho. The multiplicity of the pushforward includes the full generic mapping degree. Global nefness of E is not required.
++
++Equivalently, for normalizations nu:Ctilde->C of integral curves C through x,
++
++epsilon(E;x) = inf_C mu_bar_min(nu^*E) / mult_x C.
++
++Here mu_bar_min is the minimum quotient slope in characteristic zero. In characteristic p>0 it is the limit of p^(-e) mu_min(F^{e*}(nu^*E)). This normalization is essential on a general curve. On P^1 it is exactly the smallest splitting degree in every characteristic.
++
++The following inputs are used with their stated hypotheses. The independent reports are supporting checks, not substitutes for these mathematical sources.
++
++1. **Curve formula.** Fulger--Murayama, *Seshadri constants for vector bundles*, J. Pure Appl. Algebra 225 (2021), no.4, 106559, [DOI 10.1016/j.jpaa.2020.106559](https://doi.org/10.1016/j.jpaa.2020.106559), Example 3.20 and Corollary 3.21. The [public manuscript](https://par.nsf.gov/servlets/purl/10198624), pp.9--10, is the inspected final-numbering source. It applies to projective schemes over algebraically closed fields and does not assume the bundle globally nef.
++2. **Existence at the specified point.** The same paper, Corollary 4.6 and its proof, p.16, deduces uniruledness and separable rational connectedness from the exact one-point hypothesis; its proof explicitly produces a rational curve through that point. Only that existence conclusion is needed here. We do not replace x by a general point.
++3. **Stable maps in arbitrary characteristic.** Abramovich--Oort, *Stable maps and Hurwitz schemes in mixed characteristic*, [Theorem 2.8 and Section 2.5](https://arxiv.org/pdf/math/9808074), p.5: for a projective finite-presentation target embedded in projective space, fixed genus, number of marks, and embedding degree give a proper finite-presentation Artin stack with finite stabilizers and projective coarse moduli scheme. We take base Spec(k), genus zero, one mark, and embedding degree d. The entire stack need not be Deligne--Mumford in characteristic p.
++4. **Inertia-free stacks and proper quasi-finite spaces.** [Stacks Project, Proposition 94.13.3, Tag 04SZ](https://stacks.math.columbia.edu/tag/04SZ) identifies an algebraic stack with trivial inertia as an algebraic space. [Proposition 67.50.2, Tag 03XX](https://stacks.math.columbia.edu/tag/03XX) makes a separated locally quasi-finite algebraic space over a scheme a scheme. [Lemma 37.44.1, Tag 02LS](https://stacks.math.columbia.edu/tag/02LS) then makes a proper quasi-finite morphism finite. These results are applied to the actual evaluation fiber, not to an assumed closed base change of a coarse-space construction.
++5. **Pointed map deformations.** For a fixed smooth proper source curve and smooth target, the obstruction group for maps with prescribed values at a finite set of distinct source points is H^1 of the pulled-back tangent bundle tensored with the ideal of those points. Its vanishing gives the corresponding smooth Hom/evaluation morphism. The two-point evaluation calculation is given explicitly in [Gounelas, *Free Curves on Varieties*, Proposition 4.7 and proof](https://ems.press/content/serial-article-files/26314?nt=1), Documenta Math.21 (2016), printed p.299, citing Kollar II.3.5. Lemma 4 below supplies the fixed-value Cech lifting argument used here; it does not use characteristic-zero generic smoothness.
++6. **Cohomology, base change, and descent.** [Stacks Project, Lemma 36.30.4, Tag 0B91](https://stacks.math.columbia.edu/tag/0B91) applies to a proper flat morphism of finite presentation and an invertible sheaf, making derived pushforward perfect and compatible with arbitrary base change. Fiber cohomology h^0=1, h^1=0 then gives the rank-one pushforward and adjunction isomorphism used below. Alternatively [Lemma 37.33.2, Tag 0EX7](https://stacks.math.columbia.edu/tag/0EX7) directly gives descent of a fiberwise-trivial bundle over a reduced base when the structure-sheaf pushforward is universally the structure sheaf; the latter hypothesis holds for this P^1-family, also by [Lemma 53.20.12, Tag 0GKA](https://stacks.math.columbia.edu/tag/0GKA).
++7. **Numerical ampleness.** Nakai--Moishezon, in arbitrary characteristic, says that a Cartier divisor on a complete scheme is ample if its top intersections with every positive-dimensional integral subvariety are positive. A characteristic-free statement is [Fujino--Miyamoto, *Nakai--Moishezon ampleness criterion for real line bundles*, Theorem 1.3](https://www.math.kyoto-u.ac.jp/~fujino/Nakai-Moishezon3.pdf). Only the Cartier-divisor case is needed; positive tensor powers do not change ampleness.
++8. **The established Fano case.** Fulger--Murayama, Proposition 4.8(1), p.16 of the cited public manuscript, states that a smooth projective Fano variety over an algebraically closed field of any characteristic with epsilon(T_X;x)>0 at some point is P^n. This clause invokes Mori's theorem as Kollar, *Rational Curves on Algebraic Varieties*, V.3.2; it does not invoke Conjecture 4.9. The separate characteristic-zero general-point clause 4.8(2) is unused. The full Kollar monograph is not claimed to have been independently inspected or re-proved; the exact imported proposition is directly inspected in FM21.
+ 
+ ## Lemma 1: every rational curve through x is very free
+ 
+@@ -34,11 +45,15 @@
+ 
+ d=min{A.C : C is an integral rational curve through x}.
+ 
+-This is a positive integer and is attained. Consider any geometric stable map
++This is a positive integer and is attained.
++
++The lower bound d persists after an algebraically closed field extension K/k. Indeed, a rational image of degree c<d through x_K would give its normalization map P^1_K->X_K of degree c. Reparametrize a preimage of x_K to 0. This is a K-point of the finite-type degree-c Hom scheme over k with evaluation at 0 equal to x. A nonempty finite-type scheme over the algebraically closed field k has a k-point. That k-map has a rational image through x of A-degree at most c, contradicting the minimum. This verifies the bound at all geometric residue fields of the stable-map stack without an uncountability assumption.
++
++Consider any geometric stable map
+ 
+ (g:D -> X, p), with genus(D)=0, g(p)=x, deg(g^*A)=d.
+ 
+-The dual graph of D is a tree, and each component is P^1. Starting with the component carrying p, follow components contracted to x until reaching a nonconstant component D_v. Such a component exists since d>0. Its image C_v is an integral rational curve through x. If its mapping degree onto its image is e_v, then
++The dual graph of D is a tree, and each component is P^1. Starting with the component carrying p, follow components contracted to x until reaching a nonconstant component D_v. Such a component exists since d>0. Its image C_v is an integral rational curve through x: the function field of a nonconstant image of P^1 is rational by Luroth's theorem, including in positive characteristic. If its mapping degree onto its image is e_v, then
+ 
+ d = sum_{w nonconstant} e_w(A.C_w) >= e_v(A.C_v) >= A.C_v >= d.
+ 
+@@ -56,13 +71,23 @@
+ 
+ Let M_x be the fiber over x of the evaluation morphism from the proper stable-map stack in dependency 3, with genus zero, one mark, and A-degree d. It is proper and nonempty. Lemma 2 shows that every geometric object has smooth domain P^1 and is birational onto its image.
+ 
+-Such an object has trivial automorphism group scheme. An automorphism preserving the map is the identity on the open set where the map is an isomorphism onto its image. The same assertion infinitesimally follows because its vector field lies in the kernel of the generically injective differential of a birational normalization map. Therefore it vanishes. Thus there is no hidden nonreduced stabilizer in positive characteristic.
++Such an object has trivial automorphism group scheme. An automorphism preserving g is the identity on the dense open set where g is an isomorphism onto its image. The only geometric automorphism is therefore the identity. To exclude a nonreduced stabilizer in positive characteristic as well, its tangent space consists of vector fields on P^1 vanishing at the mark and killed by dg. Because the birational normalization map is generically an isomorphism to a smooth curve in X, dg is generically injective. Such a vector field is zero. A finite group scheme with one geometric point and zero tangent space is the reduced identity group scheme, by Nakayama applied to its maximal ideal.
+ 
+-For clarity, take the reduced structure and then an irreducible component H of M_x containing a chosen normalization f:P^1->X of a degree-d rational curve through x with marked preimage 0. A stack with trivial inertia is an algebraic space; here it agrees with its projective coarse moduli space. Hence H is a proper projective scheme. The universal curve restricts to a smooth proper family
++The finite inertia morphism restricted to M_x is consequently the identity. To check the possible nonreduced base, use its identity section to split the finite pushforward algebra into the structure sheaf and its augmentation ideal. That ideal has zero geometric residue fibers and hence is zero by Nakayama. Dependency 4 now identifies M_x with an algebraic space.
+ 
+-pi:U -> H
++Let Q be the full projective coarse scheme of the one-marked degree-d stable-map stack. The natural morphism M_x->Q is proper: M_x is proper over k and Q is separated over k. It is quasi-finite because the coarse morphism identifies geometric points with isomorphism classes of stable maps, so every geometric fiber of this restricted morphism has at most one point. By Tag 03XX, M_x is a scheme; by Tag 02LS, M_x->Q is finite. A finite morphism is projective, so M_x is projective over k.
+ 
+-with every geometric fiber P^1, a marking section sigma:H->U, and evaluation e:U->X. We have e composed with sigma identically x. All fibers have A-degree d. Degrees of every line bundle pulled back from X are constant on the connected base H. One may equivalently use the normalized pointed RatCurves construction; the stable-map argument was chosen to make the boundary explicit.
++This argument does not assert that formation of a coarse space commutes with taking an arbitrary closed fiber in wild characteristic. It only uses the map from the inertia-free actual evaluation fiber to the full coarse scheme.
++
++Choose a normalization f:P^1->X of a degree-d rational curve through x and a preimage 0 of x. Take the reduced irreducible component H of M_x through [f,0]; Lemma 4 justifies uniqueness of its local component at this point. H is an integral projective scheme. Restricting the universal curve of the stable-map stack to H gives an actual family
++
++pi:U->H,
++
++with marking section sigma:H->U and evaluation e:U->X, satisfying e composed with sigma identically x. The family is proper, flat, and finitely presented. All geometric fibers are smooth P^1 by Lemma 2, so pi is smooth.
++
++The total space U is projective. A section of a smooth relative curve is an effective Cartier divisor; consequently O_U(sigma) has degree one on every fiber. Cohomology and base change give a locally free rank-two sheaf pi_*O_U(sigma), and the fiberwise surjective evaluation map presents U as its projective-line bundle. In particular pi is projective, and so is U because H is projective. This also verifies explicitly that the marking is available globally, not merely after an unidentified cover.
++
++The total space is integral: smoothness over the reduced H gives reducedness, and flatness with geometrically integral fibers over the integral H gives irreducibility. The degree on fibers of every line bundle pulled back from X is locally constant in this proper flat family, hence constant on connected H. In particular the A-degree is always d.
+ 
+ ## Lemma 4: the universal evaluation covers X
+ 
+@@ -70,7 +95,7 @@
+ 
+ H^1(P^1, f^*T_X(-0-infinity))=direct_sum_i H^1(P^1,O(a_i-2))=0.
+ 
+-By dependency 4, evaluation at infinity on Hom(P^1,X;0 maps to x) is smooth at f. Also H^1(P^1,f^*T_X(-0))=0, so this pointed Hom scheme is smooth at f and has a unique local irreducible component there. Quotienting locally by Aut(P^1,0) maps that local component to the unique local component of M_x through [f,0], which is H. Equivalently, nearby pointed maps and the point infinity define points of U over H. The smooth evaluation supplies an open neighborhood of f(infinity) in the image of e.
++By dependency 5, evaluation at infinity on Hom(P^1,X;0 maps to x) is smooth at f. Explicitly, for a square-zero extension one lifts a map into the smooth target on an affine cover of P^1, prescribing the given values at 0 and infinity. Differences of local lifts form a Cech cocycle in f^*T_X(-0-infinity) tensored with the extension ideal. The displayed H^1 vanishes, so the cocycle can be corrected and the lifts glued. Finite presentation upgrades this infinitesimal lifting to smoothness near f. This is the relative lifting problem for the value at infinity while the value at 0 remains x. Also H^1(P^1,f^*T_X(-0))=0, so this pointed Hom scheme is smooth at f and has a unique local irreducible component there. Quotienting locally by Aut(P^1,0) maps that local component to the unique local component of M_x through [f,0], which is H. Equivalently, nearby pointed maps and the point infinity define points of U over H. The smooth evaluation supplies an open neighborhood of f(infinity) in the image of e.
+ 
+ Since H and U are proper, e(U) is closed in X. Since X is irreducible and the image contains a nonempty open subset, e(U)=X. This step uses smoothness at the chosen very free map, not generic smoothness of an arbitrary evaluation morphism.
+ 
+@@ -80,13 +105,15 @@
+ 
+ L=O_X(dD) tensor A^(-b).
+ 
+-It has degree zero on every fiber image. Thus e^*L restricts to O_{P^1} on every geometric fiber of pi. By dependency 5, e^*L=pi^*B for a line bundle B on H. Pull back by sigma. Because e composed with sigma is the constant map to x, sigma^*e^*L is a trivial line bundle. Hence B is trivial, and e^*L is trivial.
++It has degree zero on every fiber image. Thus e^*L restricts to O_{P^1} on every geometric fiber of pi. By dependency 6, e^*L=pi^*B for a line bundle B on H. Pull back by sigma. Because e composed with sigma is the constant map to x, sigma^*e^*L is a trivial line bundle. Hence B is trivial, and e^*L is trivial.
+ 
+-A line bundle whose pullback by a surjective proper morphism of projective varieties is numerically trivial is numerically trivial. Here is the curve argument, including positive characteristic: for any integral curve Gamma in X, choose a component of e^(-1)(Gamma) dominating Gamma, and cut by sufficiently many general hyperplanes to obtain an integral complete curve Gamma' mapping onto Gamma with finite generic degree q>0. The projection formula gives
++A line bundle whose pullback by a surjective proper morphism of projective varieties is numerically trivial is numerically trivial. Here is the curve argument without a separability or Bertini assumption. Let Gamma be any integral curve in X, including a curve avoiding x or of positive genus, and let eta be its generic point. Because e is surjective, the finite-type k(Gamma)-scheme U_eta is nonempty. Choose a closed point z of U_eta. Its residue field is a finite extension of k(Gamma), of total degree q>0. The reduced closure Gamma' of z in U is an integral proper curve dominating Gamma: it has function field k(z), which has transcendence degree one over k. Its generic degree over Gamma is q, including any inseparable degree.
+ 
+-0=deg(e^*L|Gamma')=q deg(L|Gamma),
++The projection formula gives
+ 
+-so deg(L|Gamma)=0. Thus
++0=deg(e^*L|Gamma')=q deg(L|Gamma).
++
++These are integer intersection degrees, not elements of k. Thus even if the characteristic divides q, the positive integer q is nonzero in this equality, and deg(L|Gamma)=0. Thus
+ 
+ d[D] = b[A] in N^1(X)_R.
+ 
+@@ -100,12 +127,20 @@
+ 
+ [-K_X]=(b/d)[A], where b/d>0.
+ 
+-So -K_X is ample by numerical invariance of ampleness. X is Fano. Dependency 7 then gives X isomorphic to P^n.
++For any positive-dimensional integral subvariety Z of dimension r, the numerical equality gives
++
++(-K_X)^r.Z=(b/d)^r A^r.Z>0.
++
++Since X is smooth, -K_X is Cartier. Nakai--Moishezon (dependency 7) shows it is ample. Thus X is Fano. Dependency 8, the established Fano clause for the original point x and the same field k, gives X isomorphic to P^n.
+ 
+ This completes the proposed argument for every n>=1 and every characteristic. For n=1 one can instead use epsilon(T_X;x)=deg(T_X)=2-2g, so positivity forces g=0. Dimension zero is harmless if included by convention: a smooth integral projective zero-fold over k is already P^0.
+ 
+-## Author's verification boundary
++## Verification boundary and review status
+ 
+-No internal gap is currently asserted in this proposed proof. Its acceptance nevertheless depends on fresh independent scrutiny. In particular the reviewer should challenge: (a) minimal A-degree across all rational images through x; (b) the contracted-mark boundary analysis; (c) trivial inertia and existence of the universal family in positive characteristic; (d) smooth evaluation on the correct component; and (e) descent of a fiberwise degree-zero line bundle using the contracted section.
++The proposed argument retains smoothness, projectivity, an algebraically closed field of arbitrary characteristic, and positivity at the original arbitrary closed point. No global-nef, Fano, general-point, or characteristic-zero assumption has been added. No step relies on a finite computation.
+ 
+-The retrieved 2025 toric paper still presents the unrestricted assertion as a conjecture. That makes a short general proof a reason for unusually careful review, not a reason to assert priority or quietly add hypotheses. The finite checks elsewhere in this packet cannot verify any of dependencies 1--7 or the geometric assertions of these lemmas.
++Two uninvolved AI geometry audits of the original frozen candidate reported PASS and no essential gap. Their complete authored reports are preserved in review/first_geometry_audit.md and review/second_geometry_audit.md. This v2 makes explicit their geometric-field minimality, proper quasi-finite coarse-target argument, relative degree-one marking bundle, and generic-fiber numerical multisection. A final independent delta audit of this derivative is still required before publication.
++
++The first audit also found a separate exact-file-set defect in the original integrity verifier. The historical REVISE_REQUIRED finding is preserved in review/original_integrity_finding.md; the strict replacement is authoritative in v2. This tooling correction has no mathematical role in the proof.
++
++No internal geometric gap is currently identified. This remains an AI-assisted, independently checked candidate; neither the audits nor this revision establish historical novelty, external peer review, or acceptance by the mathematical community. The retrieved 2025 toric paper still frames the unrestricted assertion as conjectural. Specialist review and a thorough priority search remain appropriate before any claim that the conjecture has been settled.
+--- /dev/null
++++ b/historical/v1_verify_manifest.py
+@@ -0,0 +1,34 @@
++#!/usr/bin/env python3
++"""Fail closed on missing, extra, linked, changed, or wrongly-sized files."""
++import hashlib
++import json
++from pathlib import Path
++
++def verify(root):
++    root=Path(root)
++    manifest=root/'MANIFEST.json'
++    if manifest.is_symlink() or not manifest.is_file():
++        raise ValueError('manifest is missing or linked')
++    m=json.loads(manifest.read_text())
++    listed={x['path']:x for x in m['files']}
++    if len(listed)!=len(m['files']):
++        raise ValueError('duplicate manifest path')
++    if any(Path(p).is_absolute() or '..' in Path(p).parts or p=='MANIFEST.json' for p in listed):
++        raise ValueError('unsafe manifest path')
++    actual=set()
++    for p in root.rglob('*'):
++        if p.is_symlink():
++            raise ValueError('linked object')
++        if p.is_file() and p.name!='MANIFEST.json':
++            actual.add(p.relative_to(root).as_posix())
++    if actual!=set(listed):
++        raise ValueError('file set mismatch')
++    for rel,entry in listed.items():
++        b=(root/rel).read_bytes()
++        if len(b)!=entry['bytes'] or hashlib.sha256(b).hexdigest()!=entry['sha256']:
++            raise ValueError('file integrity mismatch: '+rel)
++    return len(listed)
++if __name__=='__main__':
++    import sys
++    n=verify(Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).resolve().parent)
++    print(json.dumps({'manifest_files_verified':n,'status':'pass'},sort_keys=True))
+--- /dev/null
++++ b/original_bindings.json
+@@ -0,0 +1,75 @@
++{
++  "original_archive": {
++    "filename": "TANGENT_SESHADRI_30004324_AUTHOR_SAFE_FREEZE.zip",
++    "bytes": 19163,
++    "sha256": "6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01"
++  },
++  "files": [
++    {
++      "path": "MANIFEST.json",
++      "bytes": 1931,
++      "sha256": "4869e62250a25e64fc6e4096ea56842a7b23400789f3ba00c14ba81c2c8cd8f7"
++    },
++    {
++      "path": "README.md",
++      "bytes": 1324,
++      "sha256": "9d281c29a8d3f0f40d61087af030694f2d663331d7a639b29c3a0ec99de25d17"
++    },
++    {
++      "path": "approaches.md",
++      "bytes": 1810,
++      "sha256": "587652d5bc1e5c2b00ef3bfb1f95086ee899b6f692b1cbc0a8b2639876a2f7d1"
++    },
++    {
++      "path": "audit_questions.md",
++      "bytes": 1969,
++      "sha256": "eea2e20cc94286d6e29286da48e10832c53e3bf25e1bffc0922b401bc56bc2d7"
++    },
++    {
++      "path": "candidate_proof.md",
++      "bytes": 10612,
++      "sha256": "eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1"
++    },
++    {
++      "path": "checks.py",
++      "bytes": 3420,
++      "sha256": "ed641dd127164214ce715a896059a6b9edd5674ac8125be72e88806c6276bd31"
++    },
++    {
++      "path": "controls.md",
++      "bytes": 3898,
++      "sha256": "78af6de752392f9da7ceef78628fdbd86a2f669852c61d077df230cc2da0992a"
++    },
++    {
++      "path": "expected_results.json",
++      "bytes": 334,
++      "sha256": "b836bf89e8f60ffaeceebf7f043b279f410ffb092375cc31a4b37ae8c9487115"
++    },
++    {
++      "path": "hypothesis_audit.md",
++      "bytes": 5473,
++      "sha256": "0ef9db735381c46b21196d95e4e79ae2b6c43fe2adf22afed1829f9f1264add8"
++    },
++    {
++      "path": "retrieval_metadata.json",
++      "bytes": 1466,
++      "sha256": "e5d7201816e06630d74fec96ccda349a30d9aa639551ddb2f25f5c99a08134db"
++    },
++    {
++      "path": "sources.json",
++      "bytes": 5278,
++      "sha256": "7ef273b79b17d692f598d897bdf6c453822c6a411e58ddeddfed9c8176c2ee7a"
++    },
++    {
++      "path": "test_integrity.py",
++      "bytes": 1723,
++      "sha256": "140f29260cc0e5becdfc63aa1300abcdc6331de81e61f3296bd958fb5e1727dc"
++    },
++    {
++      "path": "verify_manifest.py",
++      "bytes": 1414,
++      "sha256": "fe67729ae7947a1d5712dbf96a2af306a5d7c47e2a05e1fab784328993dddf2f"
++    }
++  ],
++  "preservation": "Original directory and archive remain unchanged. This is an independently versioned derivative."
++}
+--- /dev/null
++++ b/replay.py
+@@ -0,0 +1,24 @@
++#!/usr/bin/env python3
++"""Portable local replay of controls and exact-copy bindings; does not prove geometry."""
++import hashlib
++import json
++from pathlib import Path
++import subprocess
++import sys
++
++root=Path(__file__).resolve().parent
++runs=[]
++for name in ['verify_manifest.py','checks.py','test_integrity.py','test_nested_manifest_regression.py']:
++    r=subprocess.run([sys.executable,str(root/name)],cwd=root,capture_output=True)
++    if r.returncode:
++        sys.stderr.buffer.write(r.stderr)
++        raise SystemExit(f'Replay failed: {name}')
++    payload=json.loads(r.stdout)
++    runs.append({'program':name,'exit_code':0,'stdout_sha256':hashlib.sha256(r.stdout).hexdigest(),'result':payload})
++bindings=json.loads((root/'review_bindings.json').read_text())['bindings']
++for b in bindings:
++    raw=(root/b['v2_path']).read_bytes()
++    if len(raw)!=b['bytes'] or hashlib.sha256(raw).hexdigest()!=b['sha256']:
++        raise AssertionError('Copied review/tool binding mismatch: '+b['v2_path'])
++print(json.dumps({'status':'PASS','scope':'portable integrity and finite controls, not geometry verification',
++                 'copied_bindings_verified':len(bindings),'program_runs':runs},indent=2,sort_keys=True))
+--- /dev/null
++++ b/review/first_audit_source_metadata.json
+@@ -0,0 +1,167 @@
++{
++  "schema": 1,
++  "source_pdfs": [
++    {
++      "id": "FM21",
++      "title": "Seshadri constants for vector bundles",
++      "authors": "Mihai Fulger and Takumi Murayama",
++      "public_url": "https://par.nsf.gov/servlets/purl/10198624",
++      "bytes": 528251,
++      "sha256": "0c6930bb26fc8137ef3078659918e33aeae3cb320b54fd2ca0e8ff885de1dd2b",
++      "retrieved_utc": "2026-10-05T15:39:59Z",
++      "http_status": 200,
++      "version": "2021 journal-layout manuscript",
++      "inspected_locations": "Pages 9–10 (Example 3.20, Corollary 3.21), 16–17 (Corollary 4.6, Proposition 4.8, Conjecture 4.9)",
++      "visually_inspected_pdf_pages_1based": [
++        16,
++        17
++      ],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review",
++      "matches_author_recorded_pdf_bytes_and_hash": true
++    },
++    {
++      "id": "FM19v2",
++      "title": "Seshadri constants for vector bundles",
++      "authors": "Mihai Fulger and Takumi Murayama",
++      "public_url": "https://arxiv.org/pdf/1903.00610v2",
++      "bytes": 550573,
++      "sha256": "21199a5105b6672afb80363c8ca761b422b96f98116cf06928ad4080a9910d15",
++      "retrieved_utc": "2026-10-05T15:40:03Z",
++      "http_status": 200,
++      "version": "arXiv v2, 2019-03-05",
++      "inspected_locations": "Version-number comparison: Proposition 5.8 and Conjecture 5.9",
++      "visually_inspected_pdf_pages_1based": [],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review",
++      "matches_author_recorded_pdf_bytes_and_hash": true
++    },
++    {
++      "id": "OWR2019",
++      "title": "Mini-Workshop: Seshadri Constants; Fulger contribution",
++      "authors": "Mihai Fulger, joint work with Takumi Murayama",
++      "public_url": "https://publications.mfo.de/bitstream/handle/mfo/3816/OWR_2019_53.pdf?isAllowed=y&sequence=1",
++      "bytes": 388531,
++      "sha256": "f17d3dee524ed52ccfe366bf673954c87bfdb957760ce8381e334a39297ee26b",
++      "retrieved_utc": "2026-10-05T15:40:10Z",
++      "http_status": 200,
++      "version": "OWR 53/2019",
++      "inspected_locations": "Printed pages 3287–3289, relative definition and exact conjecture",
++      "visually_inspected_pdf_pages_1based": [
++        19
++      ],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review",
++      "matches_author_recorded_pdf_bytes_and_hash": true
++    },
++    {
++      "id": "AO",
++      "title": "Stable maps and Hurwitz schemes in mixed characteristic",
++      "authors": "Dan Abramovich and Frans Oort",
++      "public_url": "https://arxiv.org/pdf/math/9808074",
++      "bytes": 172584,
++      "sha256": "ed937eca00dc1365486b47e90d72f6f377564d60db0bc012c8c390c0e2801b76",
++      "retrieved_utc": "2026-10-05T15:40:13Z",
++      "http_status": 200,
++      "version": "arXiv submission 1998; PDF internal date 2018-11-08",
++      "inspected_locations": "Sections 2.1–2.5; Theorem 2.8 and projective-target extension, page 5",
++      "visually_inspected_pdf_pages_1based": [
++        5
++      ],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review",
++      "matches_author_recorded_pdf_bytes_and_hash": true
++    },
++    {
++      "id": "Chang2025",
++      "title": "The Seshadri Constants of Tangent Sheaves on Toric Varieties",
++      "authors": "Chih-Wei Chang",
++      "public_url": "https://arxiv.org/pdf/2211.17172v2",
++      "bytes": 441428,
++      "sha256": "c09e5efeae5490f65ed412113d7994f922f2109c217795877b1ba40bfa6d0f3a",
++      "retrieved_utc": "2026-10-05T15:40:16Z",
++      "http_status": 200,
++      "version": "arXiv v2, 2025-07-10",
++      "inspected_locations": "Pages 1–2: characteristic convention, equation (1.1), Conjecture 0.1, Theorem 0.2, singular counterexample scope",
++      "visually_inspected_pdf_pages_1based": [
++        2
++      ],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review",
++      "matches_author_recorded_pdf_bytes_and_hash": true
++    },
++    {
++      "id": "ConradKM",
++      "title": "The Keel–Mori Theorem via Stacks",
++      "authors": "Brian Conrad",
++      "public_url": "https://math.stanford.edu/~conrad/papers/coarsespace.pdf",
++      "bytes": 234815,
++      "sha256": "31535943dd0f1e8351046c4b842a65477ba6c22651c23324ef2bd451c93411d2",
++      "retrieved_utc": "2026-10-05T15:43:47Z",
++      "http_status": 200,
++      "version": "2005-11-27",
++      "inspected_locations": "Pages 1–2: Theorem 1.1 and coarse restriction to open subspaces",
++      "visually_inspected_pdf_pages_1based": [],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review"
++    },
++    {
++      "id": "Gounelas2016",
++      "title": "Free Curves on Varieties",
++      "authors": "Frank Gounelas",
++      "public_url": "https://ems.press/content/serial-article-files/26314?nt=1",
++      "bytes": 288580,
++      "sha256": "06f736b48604408f4c434da8eb7e95fa7321d9a035d377cca1bf7c5a35216e05",
++      "retrieved_utc": "2026-10-05T15:47:06Z",
++      "http_status": 200,
++      "version": "Documenta Mathematica 21 (2016), 287–308",
++      "inspected_locations": "Proposition 4.7, printed page 299: evaluation cohomology and smoothness in arbitrary characteristic",
++      "visually_inspected_pdf_pages_1based": [],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review"
++    },
++    {
++      "id": "FujinoMiyamoto",
++      "title": "Nakai–Moishezon ampleness criterion for real line bundles",
++      "authors": "Osamu Fujino and Keisuke Miyamoto",
++      "public_url": "https://www.math.kyoto-u.ac.jp/~fujino/Nakai-Moishezon3.pdf",
++      "bytes": 105726,
++      "sha256": "60e5ae0ab9e26eeec7b0d931d91232ba8ac9baca9bd5d93679e3724d546174eb",
++      "retrieved_utc": "2026-10-05T15:47:11Z",
++      "http_status": 200,
++      "version": "Author-hosted manuscript version 0.09, 2020-11-29",
++      "inspected_locations": "Pages 1–2: any-characteristic convention and Theorem 1.3",
++      "visually_inspected_pdf_pages_1based": [],
++      "inspection_scope": "Fresh complete PDF download; selected relevant text sections inspected; no claim of full-paper review"
++    }
++  ],
++  "supplementary_web_sources": [
++    {
++      "title": "The Stacks Project, Proposition 94.13.3",
++      "public_url": "https://stacks.math.columbia.edu/tag/03YR",
++      "inspected": "Equivalence of trivial inertia and representability by an algebraic space",
++      "retrieved_utc_date": "2026-10-05",
++      "retrieval_format": "Public rendered HTML inspected; no HTML body included"
++    },
++    {
++      "title": "The Stacks Project, Lemma 37.33.2",
++      "public_url": "https://stacks.math.columbia.edu/tag/0BEZ",
++      "inspected": "Fiberwise-trivial vector bundle descent over a reduced base; full hypotheses checked",
++      "retrieved_utc_date": "2026-10-05",
++      "retrieval_format": "Public rendered HTML inspected; no HTML body included"
++    },
++    {
++      "title": "The Stacks Project, Lemma 53.20.12",
++      "public_url": "https://stacks.math.columbia.edu/tag/0GKA",
++      "inspected": "Universal structure-sheaf pushforward for proper connected nodal curve families",
++      "retrieved_utc_date": "2026-10-05",
++      "retrieval_format": "Public rendered HTML inspected; no HTML body included"
++    },
++    {
++      "title": "The Stacks Project, Section 36.32",
++      "public_url": "https://stacks.math.columbia.edu/tag/0BDM",
++      "inspected": "Cohomology/base-change applications and constancy of Euler characteristic",
++      "retrieved_utc_date": "2026-10-05",
++      "retrieval_format": "Public rendered HTML inspected; no HTML body included"
++    }
++  ],
++  "retrieval_notes": [
++    "The public-web PDF fetch of the NSF manuscript returned HTTP 502; a separate ordinary direct HTTP read returned HTTP 200 and the exact recorded source bytes. No access restriction was bypassed.",
++    "Primary publications and author-hosted manuscripts underpin the theorem checks. Search results on third-party aggregators were not used as theorem evidence.",
++    "Bibliography, hashes, byte counts, and inspection locations only; no PDFs, source extracts, screenshots, raw datasets, or private coordination records are included."
++  ],
++  "novelty_limit": "Bounded searches and the 2025 primary toric paper support cautious conjectural-status reporting, not exhaustive historical priority."
++}
+--- /dev/null
++++ b/review/first_audit_verdict.json
+@@ -0,0 +1,15 @@
++{
++  "problem_id": "30004324",
++  "audit_date": "2026-10-05",
++  "mathematical_verdict": "PASS",
++  "mathematical_gap_found": false,
++  "original_verifier_verdict": "REVISE_REQUIRED",
++  "original_freeze_exact_bytes_verdict": "PASS",
++  "single_packet_readiness_label": "REVISE_REQUIRED (integrity tooling only)",
++  "proof_hypotheses_changed": false,
++  "proof_revision_required_by_this_audit": false,
++  "publication_status": "Independently checked AI-assisted candidate; not external peer review, accepted resolution, or historical priority certification",
++  "report": "AUDIT_REPORT.md",
++  "candidate_sha256": "eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1",
++  "author_archive_sha256": "6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01"
++}
+--- /dev/null
++++ b/review/first_geometry_audit.md
+@@ -0,0 +1,183 @@
++# Independent adversarial audit: tangent-Seshadri candidate 30004324
++
++Audit date: 2026-10-05. This report concerns the exact frozen author candidate identified below. It is an AI-assisted mathematical audit, not external peer review, formal proof verification, or a historical priority certificate.
++
++## Verdicts
++
++- **Mathematical proof: PASS.** This first independent audit found no essential mathematical gap in the five-lemma argument. The arbitrary fixed point and arbitrary characteristic are retained. The new bridge to Picard number one and Fano is justified below, including the compressed coarse-space step.
++- **Original integrity verifier: REVISE_REQUIRED.** A reproducible extra-file bypass exists: an unexpected nested file named `MANIFEST.json` is ignored. This does not change any mathematical conclusion and was not present in the actual frozen archive. A strict replacement and independent negative controls accompany this report.
++- **Actual author freeze: PASS.** All 13 archive files match the author directory byte for byte, including the manifest; all supplied external hashes match. No source PDF, extracted source text, or dataset is in that archive.
++- **Publication posture:** independently checked candidate, awaiting further specialist scrutiny. This audit does not turn a manuscript into an accepted resolution. The unrestricted statement is still presented as a conjecture in the independently retrieved 2025 toric paper.
++
++If a single packet-readiness label is required before repair of the original verifier, use **REVISE_REQUIRED (integrity tooling only)**, not mathematical failure or a partial proof. No proof-level revision is required by this audit. The explanatory insertions in Sections 4 and 5 are recommended for a self-contained exposition.
++
++## 1. Exact binding and target
++
++Author archive: `TANGENT_SESHADRI_30004324_AUTHOR_SAFE_FREEZE.zip`.
++
++- Bytes: 19,163
++- SHA-256: `6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01`
++- Root author manifest SHA-256: `4869e62250a25e64fc6e4096ea56842a7b23400789f3ba00c14ba81c2c8cd8f7`
++- `candidate_proof.md`: 10,612 bytes; SHA-256 `eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1`
++- `audit_questions.md`: 1,969 bytes; SHA-256 `eea2e20cc94286d6e29286da48e10832c53e3bf25e1bffc0922b401bc56bc2d7`
++
++Both the proof and audit questions were read completely before forming a verdict. The author freeze was not edited.
++
++The target is: for a smooth integral projective n-fold X over an algebraically closed field k, positivity of the Fulger–Murayama relative tangent-bundle Seshadri constant at one closed point x implies X is isomorphic to P^n. No Fano, nef-tangent, characteristic-zero, or general-point hypothesis is added.
++
++The exact target was independently recovered from the OWR contribution, printed page 3289, and the research paper, Conjecture 4.9. The 2019 arXiv numbering is 5.9. The [primary OWR report](https://publications.mfo.de/bitstream/handle/mfo/3816/OWR_2019_53.pdf?isAllowed=y&sequence=1) and [published-layout manuscript](https://par.nsf.gov/servlets/purl/10198624) were freshly downloaded and inspected. Version numbering must not be mixed.
++
++## 2. Dependency audit
++
++The essential imported results have the following scopes.
++
++1. **Normalized-curve slope formula.** FM21 Example 3.20 and Corollary 3.21 apply to a coherent sheaf on a projective scheme over an algebraically closed field. No global nefness is assumed. Positive characteristic uses normalized Frobenius minimal slope. Its specialization to split bundles on P^1 is exact.
++2. **Rational curve through the specified point.** FM21 Corollary 4.6 assumes smoothness, projectivity, and positivity at some closed point over an algebraically closed field. Its proof explicitly produces a rational curve through that point, rather than merely through a general point.
++3. **Fano conclusion.** FM21 Proposition 4.8(1) assumes smooth projective Fano X and the same positivity at some point; it has no characteristic restriction. The characteristic-zero general-point clause is a distinct alternative (2) and is not used. The proof of (1) invokes Mori's characterization, not Conjecture 4.9. These three FM dependencies were checked directly in the [research manuscript](https://par.nsf.gov/servlets/purl/10198624), pages 9–10 and 16–17.
++4. **Stable maps.** [Abramovich–Oort](https://arxiv.org/pdf/math/9808074), Theorem 2.8 and Section 2.5, provide the proper finite-presentation Artin stack of fixed degree stable maps into a projective finite-presentation target, with finite stabilizers and projective coarse moduli scheme. Set the base to Spec k, genus to zero, number of marks to one, and use the embedding defined by A. The entire stack need not be Deligne–Mumford in characteristic p.
++5. **Coarse restriction.** [Conrad, Theorem 1.1 and Section 2](https://math.stanford.edu/~conrad/papers/coarsespace.pdf), supply the finite-inertia coarse-space facts used below: properness and compatibility with flat base change, in particular restriction to an open coarse subspace. [Stacks, Proposition 94.13.3](https://stacks.math.columbia.edu/tag/03YR) identifies an algebraic stack with trivial inertia as an algebraic space. No arbitrary non-flat coarse-space base change is assumed.
++6. **Deformations.** For a fixed smooth proper source curve and smooth target, H^1 of the pulled-back tangent bundle, with the prescribed points subtracted, is an obstruction space. Its vanishing gives smoothness of the appropriate Hom/evaluation morphism. This applies in every characteristic. The cohomological evaluation calculation is also explicitly used in [Gounelas, Proposition 4.7](https://ems.press/content/serial-article-files/26314?nt=1), printed page 299. The audit gives the exact pointed calculation in Section 5.
++7. **Descent.** Proper flat finite-presentation morphism, geometrically connected P^1 fibers, and an invertible sheaf of fiber degree zero give a rank-one pushforward and an isomorphic adjunction pullback. The H^0=1, H^1=0 calculation proves this by cohomology and base change. Alternatively, the candidate's reduced base meets [Stacks, Lemma 37.33.2](https://stacks.math.columbia.edu/tag/0BEZ), with universal pushforward of the structure sheaf supplied by [Lemma 53.20.12](https://stacks.math.columbia.edu/tag/0GKA).
++8. **Ampleness.** Ampleness of Cartier divisors on a projective variety is numerical, in arbitrary characteristic. Equivalently, apply the Nakai–Moishezon criterion to the positive rational multiple of A obtained in Section 7. The any-characteristic scope is also explicit in [Fujino–Miyamoto, Theorem 1.3](https://www.math.kyoto-u.ac.jp/~fujino/Nakai-Moishezon3.pdf). This is not a nef-plus-positive-on-some-curves shortcut.
++
++The audit accepts published theorems as mathematical inputs after checking their statements and hypotheses. It does not claim to have newly proved all the foundational theorems behind those inputs, or to have independently inspected the complete Kollár monograph. The exact Fano statement needed here is independently stated and proved in FM21, which suffices as the cited dependency.
++
++## 3. Lemmas 1–2: positivity and all pointed boundaries
++
++### 3.1 Splitting and normalization
++
++Let C be an integral rational curve through x, and f:P^1→X its normalization map. Write f*TX as the sum of O(a_i). The curve formula gives min(a_i) ≥ mult_x(C)·epsilon(TX;x)>0. Consequently every a_i≥1, hence f is very free. Frobenius multiplies every splitting degree by p^e, so dividing the minimum by p^e gives the same minimum. There is no substitution of the characteristic-zero slope criterion on an arbitrary curve.
++
++Because f is birational onto C, it is an isomorphism over a nonempty smooth open subset of C. Its differential is therefore generically nonzero even in characteristic p. A nonzero map O(2)→f*TX requires some a_i≥2. Thus -KX·C≥n+1. The argument needs only its weaker positive-degree consequence later.
++
++The differential conclusion is deliberately restricted to normalization maps. A purely inseparable multiple cover can have zero differential; this does not contradict the proof and is separately excluded by the degree argument.
++
++### 3.2 Absolute minimality
++
++Choose very ample A. The existence input makes the set of positive integers A·C, for rational images through x, nonempty. Its minimum d exists. This minimum is over **all** such images, not just one irreducible family and not just very free maps chosen in advance.
++
++Consider a one-pointed degree-d stable map evaluated at x. The arithmetic-genus-zero nodal source has a tree dual graph and P^1 components. If the mark is on a contracted component, every contracted component in the connected contracted cluster containing it maps to x. A first nonconstant component reached from that cluster has image containing x: the attaching node maps to x. A nonconstant image of P^1 is rational by Lüroth's theorem, also in positive characteristic.
++
++For this distinguished component, write the total field-extension degree onto its image as e≥1, including any inseparable degree, and the image's A-degree as c≥d. All other active components have strictly positive A-degree contributions. Thus
++
++    d = e c + (sum of other positive contributions) ≥ e c ≥ c ≥ d.
++
++Equality forces e=1, c=d, and no other nonconstant components. This also disposes of multiple covers with the same image, and multiple active components whose images coincide.
++
++With exactly one active vertex, every connected contracted subtree meets it at exactly one edge. A subtree of t>0 contracted vertices and m≤1 marks has 2(t−1)+1+m≤2t special-point incidences. Stability would require at least 3t. This is impossible. Therefore no contracted component remains, and the source is smooth irreducible P^1 with birational map.
++
++**Geometric-field qualification.** Minimality initially refers to k-curves. A lower-degree rational image over an algebraically closed extension K would give a K-point of the finite-type degree-c Hom scheme with 0 mapped to x, for c<d. A nonempty finite-type scheme over algebraically closed k has a k-point. Its image is a rational curve through x of degree at most c, contradicting d. Thus extending geometric residue fields does not defeat the argument. Equivalently, it is enough to rule out every closed point of a putative finite-type boundary.
++
++### 3.3 Genuine negative examples checked
++
++A contracted component carrying two marks and one attaching node is stable. A contracted component carrying one mark and joining two active components is also stable. Neither is a counterexample: the former belongs to a two-pointed compactification; the latter requires extra positive degree. The proof only eliminates boundaries in the one-pointed degree-d evaluation fiber. It never says that the two-pointed stable-map space has smooth domains everywhere.
++
++**Verdict for Lemmas 1–2: PASS.** No contracted-mark escape, inseparable-cover escape, or omitted lower-degree-family escape remains.
++
++## 4. Lemma 3: full scheme/projectivity justification
++
++This is the most compressed sentence in the candidate and deserves expansion. The following supplies a complete route rather than assuming coarse spaces commute with taking a closed fiber.
++
++Let M be the proper Artin stack of genus-zero, one-pointed A-degree-d stable maps to X, and q:M→S its projective coarse moduli scheme. Evaluation ev:M→X factors through a map of algebraic spaces S→X by the coarse universal property. Set M_x=ev^{-1}(x). It is proper and nonempty.
++
++At every geometric point of M_x the map f is birational from P^1. An ordinary automorphism preserving f acts identically on the dense open where f is an isomorphism, so is the identity. An infinitesimal automorphism is a vector field on P^1 vanishing at the mark, killed by df. Since df is generically injective and a vector field cannot be nonzero only on a finite set, this vector field is zero. The finite stabilizer group scheme therefore has a single geometric point and zero tangent space. A nontrivial finite local group scheme would have a nonzero cotangent space at the identity by Nakayama; hence the stabilizer is the trivial group scheme. Counting only automorphism k-points would not have sufficed.
++
++The stack M has finite inertia I→M. The locus W where this inertia is the identity is open. One way to see this is to use the identity section to split the finite pushforward algebra as O_M plus the kernel of augmentation. The latter is coherent, and its support is closed; outside its support the inertia is exactly the identity. All of M_x lies in W. This argument also excludes hidden infinitesimal inertia over a nonreduced base.
++
++The coarse map q is a proper universal homeomorphism on the underlying stack topology, so W is the inverse image of an open V⊂S. By flat base change for coarse moduli along the open immersion V→S, W→V is a coarse morphism. But W has trivial inertia, hence is already an algebraic space. The universal property makes W→V an isomorphism.
++
++Now M_x is a closed substack of W and therefore a closed subscheme of V. In particular it is a scheme. Its composite immersion into the projective scheme S is proper: M_x is proper over k and S is separated over k. A proper immersion is a closed immersion. Thus M_x is projective. This uses only open/flat coarse restriction; the possibly invalid closed-fiber coarse base change is unnecessary.
++
++Take the reduced irreducible component H containing the chosen point. It is integral projective. Restrict the universal stable curve to obtain U→H, with its actual marking section σ and evaluation e. The universal curve is projective and flat of finite presentation. Every geometric fiber has just been shown to be smooth P^1, so the morphism is smooth. U is an integral projective variety: smoothness gives reducedness over the reduced base, and flatness plus geometrically integral fibers gives irreducibility.
++
++Degrees of pullbacks of line bundles from X are locally constant in this flat proper family, since degree is determined by the Euler characteristic on its genus-zero fibers. They are constant on connected H. The marking satisfies e∘σ=x as a morphism, not just on a dense set.
++
++**Verdict for Lemma 3: PASS.** The scheme and projectivity claims are correct. The explicit paragraph above is an expository strengthening, not an additional geometric assumption or unresolved essential lemma.
++
++## 5. Lemma 4: deformation on the correct component
++
++Put E=f*TX. For distinct source points 0 and infinity, with f(0)=x,
++
++    H^1(P^1,E(-0-infinity)) = direct sum H^1(P^1,O(a_i-2)) = 0,
++    H^1(P^1,E(-0)) = direct sum H^1(P^1,O(a_i-1)) = 0.
++
++The second equality makes Hom(P^1,X;0↦x) smooth at f. The exact sequence
++
++    0 → E(-0-infinity) → E(-0) → E|infinity → 0
++
++makes the evaluation differential H^0(E(-0))→E|infinity surjective. Deformation theory, or the smooth-source/smooth-target differential criterion, makes evaluation at infinity smooth at f. No generic-smoothness theorem is invoked.
++
++The group Aut(P^1,0) is a smooth two-dimensional group in all characteristics. Its action here has trivial scheme-theoretic stabilizer. Smooth pointed P^1 families with a section are locally trivial for this purpose, so quotienting gives the smooth-source locus of the pointed stable-map stack. Hence the pointed Hom scheme maps smoothly to M_x near f. Smoothness of the Hom scheme implies smoothness of M_x at [f,0], so that point lies on a unique local irreducible component. The nearby Hom maps therefore land in the chosen H, not an unidentified component.
++
++Evaluation at infinity lifts those maps to points of the ordinary universal curve U. Its image in X contains a nonempty open subset, because the Hom evaluation is smooth at f and hence open near f. Properness of U makes e(U) closed. Since X is irreducible, a closed subset containing a nonempty open subset is all of X. Therefore e is surjective.
++
++At the marking section the evaluation is constant; smoothness there is neither asserted nor needed. Nor is the universal curve confused with the open space of pairs of distinct markings. One can identify it with a stabilized two-marked construction, but the resulting ghost at collision does not change the one-pointed source family used here.
++
++For a dimension check, if b=-KX·C then dim H=b−2 locally at f, and dim U=b−1. The bound b≥n+1 is consistent with surjective evaluation. The proof does not secretly assume dim H=n−1 or that e is generically finite; neither is needed.
++
++**Verdict for Lemma 4: PASS.** The fixed point may be special. Positive characteristic causes no separability gap because smooth evaluation is proved directly at the very free map.
++
++## 6. Lemma 5: numerical Picard reduction
++
++Let D be any Cartier divisor on X. Write b=D·C for a fiber image. Since all fiber maps are birational, this is the degree of e*O_X(D) on a fiber and is constant on H. Set
++
++    L = O_X(dD) tensor A^(-b).
++
++The restriction of e*L to any fiber has degree db−bd=0. A degree-zero line bundle on P^1 is trivial. Cohomology and base change apply because π:U→H is proper and flat and e*L is invertible, hence flat over H. On every fiber the cohomology dimensions are h^0=1 and h^1=0. Consequently B=π_*(e*L) is a line bundle and the adjunction π*B→e*L is an isomorphism, as can also be checked on every fiber followed by Nakayama.
++
++Pulling back along σ gives
++
++    B = σ*π*B = σ*e*L = (constant map to x)*L,
++
++which is the trivial line bundle tensored with the one-dimensional vector space L_x. Thus e*L is actually trivial, stronger than numerical triviality.
++
++To test L against an arbitrary integral curve Γ⊂X, take an integral component Z of e^{-1}(Γ) dominating Γ. Such a component exists because e is proper surjective. A sufficiently general sequence of ample hyperplane cuts yields a complete curve in Z with at least one integral component Γ' dominating Γ. More explicitly, the generic fiber has dimension dim Z−1, and that many hyperplane cuts have positive finite degree on it; hence a horizontal curve component survives. No smoothness or separability of Γ'→Γ is required. After normalization the map has finite positive total degree q, possibly divisible by the characteristic. The projection formula gives
++
++    0 = deg(e*L|Γ') = q·deg(L|Γ).
++
++These are ordinary integers, not elements of k, so characteristic p does not turn q into zero in the equation. Therefore L·Γ=0 for every Γ. It follows that d[D]=b[A] in N^1(X)_R. Since A has nonzero numerical class and n≥1, the Picard number is exactly one.
++
++This is the required bridge from a covering family to numerical generation. It does not infer Picard rank one merely from coverage, rational connectedness, or the presence of one very free curve. The contracted global section and the proper P^1 family are indispensable.
++
++**Verdict for Lemma 5: PASS.** The line-bundle descent and numerical descent both hold in the precise setup used.
++
++## 7. Fano reduction and final cited theorem
++
++Use D=-KX. Its degree on the normalization of C is the sum of the positive a_i, so b>0. Lemma 5 gives -KX numerically equivalent to (b/d)A. For any positive-dimensional integral subvariety Z of dimension r, the top intersection is therefore
++
++    (-KX)^r·Z = (b/d)^r A^r·Z > 0.
++
++Nakai–Moishezon makes -KX ample; equivalently one may use numerical invariance of ampleness directly. Smoothness ensures KX is Cartier. The proof has now established the missing Fano hypothesis rather than assumed it. Applying the established FM21 Proposition 4.8(1) gives X≅P^n. Clause (2), with its general-point and characteristic-zero restrictions, is unused.
++
++For n=1, deg TX=2−2g independently gives the same result. If dimension zero is admitted, an integral smooth projective zero-fold over an algebraically closed field is a point.
++
++**Verdict: PASS.** The conclusion follows from the candidate's unchanged hypotheses and the checked dependencies.
++
++## 8. Countermodel search and scope checks
++
++- **Products:** a ruling in P^a×P^b has a trivial tangent quotient of positive rank, so cannot satisfy the positivity hypothesis. They do not refute the Picard reduction.
++- **Very free curves alone:** the (1,1) curves in P^1×P^1 have ample pulled-back tangent bundle. They are not absolute minimal-degree rational curves through x for O(1,1); rulings have smaller degree. Their compactified family acquires reducible members. This refutes two tempting weakened versions of the argument, but neither is the candidate's statement.
++- **Blow-ups of projective space:** on the exceptional locus the normal quotient has negative degree. Outside it, a strict transform of a line meeting the center has anticanonical degree at most n, contrary to the necessary n+1 bound. These familiar higher-Picard-rank spaces fail the starting hypothesis.
++- **Inseparable maps:** a p-fold Frobenius cover has zero differential but mapping degree p>1, so is excluded by the minimum-degree equality. Birational normalization maps remain generically separable onto their image.
++- **Singular targets:** the candidate requires smooth X. The singular toric counterexample in [Chang's paper](https://arxiv.org/pdf/2211.17172v2) concerns a different hypothesis and does not invalidate this proof.
++- **Two-marked ghosts:** real, accepted by controls, and irrelevant to the claimed boundary-free one-marked evaluation fiber.
++- **Coarse moduli in characteristic p:** arbitrary closed base change is not used in the supplied complete justification.
++- **General-point substitutions:** none. Every evaluation and minimum is anchored at the given x.
++
++No countermodel satisfying the exact hypotheses and contradicting an essential step was found. This negative finding is an audit result, not an exhaustive classification claim independent of the proof.
++
++## 9. Computational and integrity checks
++
++The frozen author's 909,136 numerical/graph assertions and ten integrity controls were rerun successfully. Their significance is limited to the identities and finite cases they implement.
++
++A separately written checker enumerates labeled trees by edge subsets rather than the author's Prüfer construction. It checks 50,069 one-mark/one-active configurations across 1,442 trees, the minimum-degree bookkeeping, 3,905 positive splitting cases, and 6,525 blow-up numeric cases. It has 85,247 bounded mathematical-control assertions, including genuine negative controls. Every one passes.
++
++None of these finite calculations proves stable-map properness, descent, deformation smoothness, numerical ampleness, the Fano characterization, or the conjecture. The mathematical verdict rests on Sections 2–7.
++
++The new strict manifest verifier rejects 14 independent mutations and accepts the clean fixture. In particular it rejects an extra nested `MANIFEST.json`, which the original verifier incorrectly accepts. The actual frozen author archive separately passes this stricter verifier. See `STRICT_INTEGRITY_FINDING.md` for the exact issue and correction.
++
++## 10. Recommended next review
++
++A fresh specialist should first read the candidate independently and attempt to break absolute pointed minimality, characteristic-p stabilizers, the correct-component deformation argument, and the global contracted-section descent. The fully expanded proof above should then be compared with that independent assessment. The 2025 source's continued conjectural framing warrants unusually careful scrutiny; it is not by itself a mathematical objection.
++
++No source text, source PDFs, raw datasets, or private coordination records are included in this audit packet. Bibliographic information, public URLs, hashes, byte counts, inspection history, original analysis, and reproducible controls are included.
+--- /dev/null
++++ b/review/original_integrity_finding.md
+@@ -0,0 +1,13 @@
++# Original verifier extra-file bypass
++
++Status: REVISE_REQUIRED for the original verifier's advertised exact-file-set guarantee. This is not a mathematical proof gap, and the actual 13-file author freeze contains no unexpected file.
++
++The frozen `verify_manifest.py` scans all descendants but excludes every file whose basename is `MANIFEST.json`. Thus it excludes both the intended root manifest and an unexpected file such as `extra/MANIFEST.json`.
++
++In an isolated temporary copy, adding `extra/MANIFEST.json` with arbitrary text and leaving every original byte unchanged resulted in exit code 0 and a reported pass with twelve payload files verified. The freeze itself was never edited. The author's ten negative controls do not cover this case.
++
++The accompanying independent verifier excludes only the exact root-relative path `MANIFEST.json`. It also validates canonical relative paths, duplicate entries, nonnegative integer sizes, SHA-256 format, regular file types, symlinks, exact file sets, and optional external binding of the root manifest.
++
++The accompanying adversarial test accepts a clean generated fixture and rejects fourteen mutations, including the demonstrated nested-manifest case. It runs only in temporary fixtures. The independently authored audit packet and the original exact author directory both pass the strict verifier.
++
++Before presenting the original verifier as fail-closed, replace it in a separately versioned derivative packet or clearly supersede it with the strict verifier. Preserve the old freeze and its audit binding. Any derivative packet needs a new manifest and external archive hash. No change to the proof is required by this finding.
+--- /dev/null
++++ b/review/second_audit_source_metadata.json
+@@ -0,0 +1,100 @@
++{
++  "schema": 1,
++  "inspection_date_utc": "2026-10-05",
++  "sources": [
++    {
++      "id": "FM21",
++      "title": "Seshadri constants for vector bundles",
++      "public_url": "https://par.nsf.gov/servlets/purl/10198624",
++      "bytes": 528251,
++      "sha256": "0c6930bb26fc8137ef3078659918e33aeae3cb320b54fd2ca0e8ff885de1dd2b",
++      "inspection": "Example 3.20 and Corollary 3.21; Corollary 4.6; Proposition 4.8; Conjecture 4.9. Text inspected; page 16 visually inspected.",
++      "source_bytes_included": false
++    },
++    {
++      "id": "AO",
++      "title": "Stable maps and Hurwitz schemes in mixed characteristic",
++      "public_url": "https://arxiv.org/pdf/math/9808074",
++      "bytes": 172584,
++      "sha256": "ed937eca00dc1365486b47e90d72f6f377564d60db0bc012c8c390c0e2801b76",
++      "inspection": "Theorem 2.8, Section 2.5, and coarse-projectivity discussion. Text inspected; page 5 visually inspected.",
++      "source_bytes_included": false
++    },
++    {
++      "id": "OWR2019",
++      "title": "Mini-Workshop: Seshadri Constants, contribution by Mihai Fulger",
++      "public_url": "https://publications.mfo.de/bitstream/handle/mfo/3816/OWR_2019_53.pdf?isAllowed=y&sequence=1",
++      "bytes": 388531,
++      "sha256": "f17d3dee524ed52ccfe366bf673954c87bfdb957760ce8381e334a39297ee26b",
++      "inspection": "Printed p.3289 visually inspected.",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Chang2025",
++      "title": "The Seshadri Constants of Tangent Sheaves on Toric Varieties",
++      "public_url": "https://arxiv.org/pdf/2211.17172v2",
++      "bytes": 441428,
++      "sha256": "c09e5efeae5490f65ed412113d7994f922f2109c217795877b1ba40bfa6d0f3a",
++      "inspection": "Pages 1–3 text inspected: characteristic convention, Conjecture 0.1, Theorem 0.2, singular counterexample and introduction.",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Stacks04SZ",
++      "title": "Algebraic stacks and algebraic spaces",
++      "public_url": "https://stacks.math.columbia.edu/tag/04SZ",
++      "inspection": "Proposition 94.13.3, trivial inertia equivalence.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Stacks03XX",
++      "title": "Separated, locally quasi-finite morphisms",
++      "public_url": "https://stacks.math.columbia.edu/tag/03XX",
++      "inspection": "Proposition 67.50.2, algebraic space to scheme criterion.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Stacks02LS",
++      "title": "Applications of Zariski’s Main Theorem, I",
++      "public_url": "https://stacks.math.columbia.edu/tag/02LS",
++      "inspection": "Lemma 37.44.1, proper quasi-finite implies finite.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Stacks0EX7",
++      "title": "Theorem of the cube",
++      "public_url": "https://stacks.math.columbia.edu/tag/0EX7",
++      "inspection": "Lemma 37.33.2, fiberwise trivial vector bundle descends over reduced base.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "Stacks0B91",
++      "title": "Cohomology and base change, VI",
++      "public_url": "https://stacks.math.columbia.edu/tag/0B91",
++      "inspection": "Lemma 36.30.4, proper flat perfect pushforward and arbitrary base change.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "NO2009",
++      "title": "Rational curves and bounds on the Picard number of Fano manifolds",
++      "public_url": "https://iris.unito.it/bitstream/2318/1852269/2/0905.4388-NO2-RCBound.pdf",
++      "inspection": "Lemmas 2.12 and Corollary 2.13: consistency comparison only, not a characteristic-free proof dependency.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    },
++    {
++      "id": "OP2010",
++      "title": "Rationally cubic connected manifolds I: manifolds covered by lines",
++      "public_url": "https://arxiv.org/pdf/1003.4936",
++      "inspection": "Preprint Proposition 4.3 and preceding discussion, consistency comparison only.",
++      "access_method": "web read; full-byte hash not computed",
++      "source_bytes_included": false
++    }
++  ],
++  "dependency_boundary": "FM21 Proposition 4.8(1) is directly inspected and used as an established theorem. The full text of its underlying Kollar V.3.2 classification theorem was not separately inspected or re-proved.",
++  "novelty_search_scope": "Bounded primary-source searching only; no historical-priority conclusion."
++}
+--- /dev/null
++++ b/review/second_audit_verdict.json
+@@ -0,0 +1,42 @@
++{
++  "schema": 1,
++  "audit_date_utc": "2026-10-05",
++  "mathematical_verdict": "PASS",
++  "verdict_scope": "Independently checked candidate; no essential gap found. Not formal verification, external peer review, or historical novelty certification.",
++  "first_essential_gap": null,
++  "author_archive": {
++    "filename": "TANGENT_SESHADRI_30004324_AUTHOR_SAFE_FREEZE.zip",
++    "bytes": 19163,
++    "sha256": "6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01"
++  },
++  "candidate": {
++    "filename": "candidate_proof.md",
++    "bytes": 10612,
++    "sha256": "eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1"
++  },
++  "author_manifest_sha256": "4869e62250a25e64fc6e4096ea56842a7b23400789f3ba00c14ba81c2c8cd8f7",
++  "strict_integrity_checks": {
++    "zip_unique_names": true,
++    "zip_exact_inventory": true,
++    "local_exact_inventory": true,
++    "no_symlinks": true,
++    "all_declared_byte_counts_and_hashes_match": true,
++    "all_local_and_frozen_bytes_match": true
++  },
++  "strict_inventory_count": 13,
++  "author_files_modified": false,
++  "remote_writes": false,
++  "finite_checks_prove_geometry": false,
++  "recommended_exposition": [
++    "Extension-field persistence of the pointed degree minimum",
++    "Proper quasi-finite map of the inertia-free evaluation fiber to the full projective coarse scheme",
++    "Relative degree-one marking bundle makes the universal curve projective",
++    "Generic-fiber closed-point closure supplies a multisection, including inseparable degree"
++  ],
++  "excluded_material": [
++    "Source PDFs",
++    "Extracted source text",
++    "Source page images",
++    "Private source or coordination records"
++  ]
++}
+--- /dev/null
++++ b/review/second_geometry_audit.md
+@@ -0,0 +1,183 @@
++# Second independent geometry audit: tangent-Seshadri candidate 30004324
++
++Date: 2026-10-05.
++
++## Verdict
++
++**PASS, as an independently checked mathematical candidate.** I found no essential mathematical gap in the frozen argument. In particular, its passage from positivity at one arbitrary point to Picard number one and then to the Fano case survives this audit in arbitrary characteristic.
++
++This is a review of an argument, not a refereed resolution, formal verification, or priority determination. The shortness of the argument compared with the stated literature status warrants review by a specialist before any announcement that the conjecture has been settled. Finite tests are not evidence for the geometric assertions.
++
++**First essential gap:** none found. Some compressed standard steps deserve the explicit justifications given below, especially projectivity of the evaluation fiber. None requires an additional hypothesis on X, the point, or the characteristic.
++
++The mathematical assessment was formed by reconstructing the frozen candidate from its hypotheses and checking its primary sources, rather than treating any earlier verdict as mathematical evidence.
++
++## Object reviewed
++
++- Candidate: `candidate_proof.md`, 10,612 bytes, SHA-256 `eb96aab30ab17aca553ef83102145c5dd51b2c36895be2b2a028f5090b9aedc1`.
++- Author archive: `TANGENT_SESHADRI_30004324_AUTHOR_SAFE_FREEZE.zip`, 19,163 bytes, SHA-256 `6483242536c534a84072815ae4c3aa9de57fd2769386eb2e5e1ad85041cc6a01`.
++- Author manifest SHA-256: `4869e62250a25e64fc6e4096ea56842a7b23400789f3ba00c14ba81c2c8cd8f7`.
++- The candidate in the archive was compared byte-for-byte with the candidate inspected. They agree. The author files were not edited.
++
++The assertion reviewed is: if X is a smooth integral projective n-fold, n at least one, over an algebraically closed field of any characteristic and epsilon(T_X;x)>0 for one closed point x, then X is isomorphic to projective n-space. The proof does not replace x by a general point.
++
++## 1. Source and hypothesis checks
++
++The OWR contribution, printed p. 3289, matches the intended one-point characterization. FM21 Conjecture 4.9 supplies the precise smooth-projective, algebraically closed formulation. The final-numbering FM21 manuscript was inspected directly, including the relevant page images.
++
++The exact FM21 dependencies checked were Example 3.20 and Corollary 3.21 for the normalized-curve formula; Corollary 4.6 for a rational curve through the specified point; and Proposition 4.8(1) for the Fano conclusion in arbitrary characteristic. The restriction to characteristic zero and to a general point belongs to the separate clause 4.8(2). The final invocation of clause (1) is consequently noncircular.
++
++AO Theorem 2.8 and Section 2.5 were inspected directly. They provide the proper Artin stack of stable maps of fixed embedding degree and a projective coarse scheme over the field in question. Using an Artin stack here is important: inseparable stable maps can have nonreduced stabilizers. The proof need not claim that the entire moduli stack is Deligne–Mumford.
++
++Public primary sources:
++
++- Fulger–Murayama, [Seshadri constants for vector bundles](https://par.nsf.gov/servlets/purl/10198624).
++- Fulger's contribution to [Mini-Workshop: Seshadri Constants](https://publications.mfo.de/bitstream/handle/mfo/3816/OWR_2019_53.pdf?isAllowed=y&sequence=1).
++- Abramovich–Oort, [Stable maps and Hurwitz schemes in mixed characteristic](https://arxiv.org/pdf/math/9808074).
++
++The proof can cite the established FM21 proposition directly. I did not independently re-prove Mori's classification or inspect the full text of Kollár V.3.2: the public publisher access located for the book was limited. This is a dependency boundary, not a substitution of a stronger general-point theorem for the proposition actually used.
++
++## 2. Curve positivity and existence
++
++For the normalization f:P1 -> C -> X of an integral rational curve containing x, write f^*T_X as the direct sum of O(a_i). Its asymptotic normalized minimum slope is min(a_i). In positive characteristic, every Frobenius pullback multiplies the splitting degrees by the corresponding power of the characteristic, which is canceled by the normalization in that slope invariant.
++
++The normalized-curve formula therefore yields
++
++    min(a_i) >= mult_x(C) epsilon(T_X;x) > 0.
++
++Every a_i is an integer, so all a_i are at least one. Thus every rational normalization through this very same x is very free. This is stronger than the existence of some very free curve through x, and that distinction is decisive later.
++
++The anticanonical intersection on C is the degree of f^*T_X and is positive. The optional stronger estimate n+1 is also justified: f is birational onto its image, hence generically an isomorphism to an open subset of C. Over the perfect base field C is generically smooth. The differential T_P1 -> f^*T_X is consequently generically injective; it is a nonzero map from O(2). One splitting degree is at least two.
++
++This differential argument is not valid for a purely inseparable multiple cover, but the candidate expressly applies it to normalizations, where that problem does not arise.
++
++Existence is furnished by the cited one-point corollary, whose proof explicitly produces a rational curve through x. No assertion that every positive-characteristic rationally connected variety is separably rationally connected is inserted here. The candidate's alternate specialization argument from a proper compactification of a covering family would also give a rational component through x, but the alternate route is unnecessary.
++
++## 3. Why the pointed minimum excludes all boundaries
++
++Choose very ample A. The set of A-degrees of rational images containing x is a nonempty set of positive integers, so its minimum d exists and is attained.
++
++For a genus-zero stable map of A-degree d with its sole marked point mapping to x, the domain has rational components and a tree as dual graph. Starting at the marked component, any components encountered before the first nonconstant component are contracted to x. The first nonconstant component therefore has image C_v containing x. That image is rational: a nonconstant image of P1 has rational function field by Lüroth's theorem, also in positive characteristic.
++
++The total degree is the sum of positive integers e_w(A.C_w), where e_w is the full function-field degree, including inseparable degree. Thus
++
++    d >= e_v(A.C_v) >= A.C_v >= d.
++
++Equality forces e_v=1 and leaves no positive degree for any other nonconstant component. This rules out reducible positive-degree limits and multiple covers at once.
++
++There is a minor quantifier worth making explicit. The minimum was initially taken over curves over k, whereas properness is checked at all geometric points, including extension fields. A rational image of smaller degree over an algebraically closed extension would give a point of a finite-type Hom scheme over k, with the marked evaluation constrained to x. Nonemptiness of that scheme implies a k-point because k is algebraically closed. The k-map's rational image would have degree at most that smaller map degree, contradicting the definition of d. Hence the minimum remains a lower bound at the required geometric points. This uses neither uncountability nor a very-general-point choice.
++
++Once there is only one nonconstant component, any connected contracted subtree has exactly one attaching edge to it. For t contracted vertices and m markings in that subtree, its total special-point count is
++
++    2(t-1) + 1 + m <= 2t,
++
++because the entire curve has only one mark. Stability would require at least 3t. No nonempty such subtree exists. Hence the complete domain is a smooth P1 and the map is birational onto its image.
++
++The mark can initially lie on a ghost: the path argument accounts for this before the counting argument eliminates it. The proof does not assume that the mark initially lies on a nonconstant component.
++
++## 4. Stabilizers, the actual scheme, and the actual universal curve
++
++### 4.1 Full stabilizer group scheme
++
++For a birational normalization f:P1 -> X, an automorphism preserving f is the identity on the dense open set where f is an isomorphism to its image. Thus the only geometric automorphism is the identity.
++
++That statement alone would not remove nonreduced stabilizers in positive characteristic. The tangent space at the identity of the automorphism group is a space of vector fields v on P1, vanishing at the mark, with df(v)=0. Since df is generically injective and T_P1 is torsion-free, such a field vanishes. The finite stabilizer group scheme has one geometric point and zero tangent space, hence is the reduced identity group scheme. This is a full group-scheme argument, not just a count of automorphisms.
++
++The inertia morphism for the proper stable-map stack is finite. On the evaluation fiber all its geometric fibers are the identity. The identity section then gives an isomorphism: locally, its augmentation ideal is a finite module with zero residue fibers, so Nakayama applies. The evaluation fiber is therefore an algebraic space. See [Stacks Project, Proposition 94.13.3, Tag 04SZ](https://stacks.math.columbia.edu/tag/04SZ).
++
++### 4.2 Projectivity without assuming arbitrary coarse base change
++
++This is the most useful expansion of the candidate's compressed wording.
++
++Let M be the full proper one-marked stable-map stack and Q its projective coarse scheme. Let F=M_x be the evaluation fiber, now known to be an algebraic space. The restricted morphism
++
++    F -> Q
++
++is proper, because F is proper over k and Q is separated. It is quasi-finite: the coarse map identifies geometric points with isomorphism classes, so every geometric fiber has at most one point. Consequently F is a scheme and F -> Q is finite. Since a finite morphism is projective and Q is projective over k, F is projective. The selected reduced irreducible component H is therefore a projective integral scheme.
++
++The scheme assertion follows from [Stacks Project, Proposition 67.50.2, Tag 03XX](https://stacks.math.columbia.edu/tag/03XX), and finiteness from [Lemma 37.44.1, Tag 02LS](https://stacks.math.columbia.edu/tag/02LS), after that assertion. This argument avoids relying on unrestricted formation of coarse moduli spaces under closed base change in wild characteristic. It is enough for everything in the candidate, even without a claim that F equals the scheme-theoretic evaluation fiber of Q.
++
++### 4.3 Universal family and projectivity of its total space
++
++There is a universal curve over the stable-map stack by the definition of its objects. Restricting to H gives a genuine family pi:U -> H, not merely a family on the coarse space whose descent is unproved. All its geometric fibers are smooth P1 by Section 3. The family is flat and finitely presented, so it is smooth, as well as proper. The marked section sigma is an actual section and e sigma is the constant map to x.
++
++For completeness, U is projective too. The section of a smooth relative curve is an effective Cartier divisor. The line bundle O_U(sigma) has degree one on every fiber; its pushforward has rank two and its fiberwise evaluation gives the usual presentation of U as a projective-line bundle. Alternatively the relative anticanonical bundle supplies a relative ample line bundle. Thus the later use of complete curves in U is legitimate.
++
++## 5. Dominance comes from deformation smoothness, not generic smoothness
++
++Let f be the chosen normalization, with f(0)=x and infinity distinct from 0. Put E=f^*T_X. Since each a_i is at least one,
++
++    H^1(P1,E(-0)) = 0,
++    H^1(P1,E(-0-infinity)) = 0.
++
++The first vanishing makes the Hom scheme fixing the value at 0 smooth at f. The second gives smoothness at f of its evaluation at infinity.
++
++One can check the latter directly: for a square-zero extension, lift a map into the smooth target locally on an affine cover of P1, imposing the specified values at 0 and infinity. Differences of lifts form a Cech cocycle in E(-0-infinity) tensored with the extension ideal. Its H^1 vanishes, so the local lifts can be corrected and glued. Finite presentation then gives smoothness. This works over any field characteristic. Equivalently, the tangent evaluation is surjective by the cohomology sequence, with the same vanishing controlling obstructions.
++
++The quotient group Aut(P1,0) is smooth. The parametrized Hom scheme presents the moduli of smooth pointed domains locally as its quotient by this group. At f the pointed moduli fiber is consequently smooth and has a unique local irreducible component. It is the component selected in the candidate. One may shrink to a neighborhood whose maps lie in that component.
++
++The evaluation of the corresponding local family at infinity factors through e:U -> X. Smooth morphisms are open, so e(U) contains a nonempty open subset of X. On the other hand U is proper, so e(U) is closed. Since X is integral, the nonempty open subset is dense, and e is surjective.
++
++None of this says that the fixed point x is general. None uses characteristic-zero generic smoothness. A mere dominance argument for an inseparable evaluation map would be inadequate; the explicit H^1 argument is what avoids that issue.
++
++## 6. Descent and numerical generation
++
++Let D be any Cartier divisor on X. The number b=deg(f_h^*O_X(D)) is constant on connected H: the Euler characteristic of an invertible sheaf on a proper flat family of curves is locally constant, and the genus is zero. Every f_h is birational onto its image, so this degree equals D.C_h. Similarly A.C_h=d.
++
++For L=O_X(dD) tensor A^(-b), the restriction of e^*L to every geometric fiber of pi has degree zero. On P1 a degree-zero line bundle is trivial; this implication would fail on a positive-genus fiber, but those do not occur here.
++
++Cohomology and base change gives B=pi_*e^*L locally free of rank one, with the evaluation pi^*B -> e^*L an isomorphism. A direct supporting reference is [Stacks Project, Lemma 37.33.2, Tag 0EX7](https://stacks.math.columbia.edu/tag/0EX7); its properness, flatness, reduced-base and structure-sheaf base-change assumptions hold. The stronger cohomology statement also follows from [Tag 0B91](https://stacks.math.columbia.edu/tag/0B91) and the fiber cohomology of O_P1.
++
++Pullback along the genuine section gives
++
++    B = sigma^*e^*L = (e sigma)^*L = L_x tensor O_H.
++
++The last line bundle is trivial. A canonical choice of its trivialization is unnecessary. Hence e^*L is trivial on U.
++
++To deduce numerical triviality downstairs, no separable multisection theorem is needed. For any integral curve Gamma in X, take its generic point eta. Because e is surjective, U_eta is nonempty. Choose a closed point of this finite-type k(Gamma)-scheme. Its residue field is a finite extension of k(Gamma). Its closure Gamma' in U, with the reduced structure, is an integral proper curve dominating Gamma with finite generic degree q>0. This is an especially economical substitute for cutting by general hyperplanes.
++
++The projection formula yields
++
++    0 = deg(e^*L | Gamma') = q deg(L | Gamma).
++
++Here q includes any inseparable degree. It is a positive integer in an equality of integer intersection numbers, not a scalar in k that might vanish modulo the characteristic. Thus deg(L | Gamma)=0 for every Gamma.
++
++It follows that d[D]=b[A] in N^1(X). Since D was arbitrary and A is ample on a positive-dimensional variety, rho(X)=1. Notice that this argument tests *all* integral curves Gamma on X, including curves avoiding x and curves of positive genus. It does not silently assume that rational curves generate all numerical curve classes.
++
++## 7. Fano reduction
++
++Apply Section 6 to D=-K_X. Section 2 gives b=-K_X.C>0. Thus d(-K_X) is numerically equivalent to bA, which is ample. Numerical invariance of ampleness and invariance under positive tensor powers show that -K_X is ample. This proves the required Fano hypothesis rather than assuming it.
++
++FM21 Proposition 4.8(1) now applies with the original point x. This concludes the proposed characterization in every characteristic. For n=1 the argument is compatible with the direct degree calculation for the tangent bundle of a smooth projective curve.
++
++## 8. Attempts to break the argument
++
++1. **Purely inseparable covers:** their full degree contributes to e_v, so they cannot appear at the pointed minimum. They do not spoil the stabilizer argument.
++2. **A contracted component containing the mark:** following the contracted tree still reaches a rational image through x. The one-mark stability count then removes the entire contracted tree.
++3. **Two-marked ghosts:** they really do exist. One contracted component with two markings and one node has three special points. This does not contradict Section 3, which concerns the one-marked moduli space. The actual universal curve has unmarked points that may coincide with the existing marked point; no claim that every associated two-marked stable domain is irreducible is used.
++4. **Only one very free rational curve through x:** insufficient. It can degenerate to a smaller non-very-free curve through x. The candidate assumes positivity along every rational normalization through x, so the minimum still has the required freeness.
++5. **Product P1 times a positive-dimensional smooth variety:** tangent restriction along a ruling fiber has a trivial quotient, so the positivity premise fails. The fixed-point family of ruling fibers does not cover the product.
++6. **Blowing up Pn at a point:** away from the exceptional divisor, the strict transform of the line joining the point to the center lies in a ruling fiber of the projection to P^(n-1). The tangent restriction has a trivial quotient when n>1, so this familiar source of quasi-lines does not satisfy the premise. Very free curves elsewhere cannot replace the minimum through x.
++7. **A complete unpointed family:** does not suffice for the descent argument. The contracted section supplies the essential trivialization on the base, and is genuinely present here.
++8. **A general-point theorem transplanted to a special point:** absent. The numerical argument is reconstructed directly for this point, and the final theorem used is the fixed-point Fano clause.
++9. **Closed coarse base change in wild characteristic:** the finite-map construction in Section 4.2 removes the potential hidden assumption.
++10. **The characteristic dividing q or d:** harmless. Numerical equivalence and intersection degrees are taken over integers or real numbers, not in the field k.
++
++## 9. Comparison with standard family theory and literature status
++
++The numerical-generation conclusion is consistent with the standard theory of unsplit rational-curve families. For example, Novelli–Occhetta's [Rational curves and bounds on the Picard number of Fano manifolds](https://iris.unito.it/bitstream/2318/1852269/2/0905.4388-NO2-RCBound.pdf), Lemma 2.12 and Corollary 2.13, record generation for the locus swept out from a point by an appropriate proper family. The latter corollary is stated at a general point because it starts only with generic local unsplitness. It does not forbid the candidate's conclusion, where properness at the particular x has already been proved. This source is a consistency check, not an imported positive-characteristic theorem.
++
++Occhetta–Paterno's [Rationally cubic connected manifolds I](https://arxiv.org/pdf/1003.4936), in the inspected preprint's Proposition 4.3, similarly connects a proper pointed connecting family with projective space in its complex setting. Again, its additional setting is not used as a substitute for the candidate's proof.
++
++Chang's [2025 revision on toric tangent sheaves](https://arxiv.org/pdf/2211.17172v2), pp. 1–2, states the unrestricted assertion as a conjecture and proves the smooth projective toric case. Its singular counterexample reinforces the necessity of smoothness. These observations justify caution about declaring a new solution; they do not identify a false inference in the present proof. Bounded searching is not a historical novelty certificate.
++
++## 10. Recommended exposition, without changing the theorem
++
++Before a specialist-facing revision, I recommend inserting four short details:
++
++- Explain persistence of the minimal degree over algebraically closed extension fields.
++- Replace the abbreviated projective-coarse-fiber sentence with the proper quasi-finite map to the full coarse scheme in Section 4.2.
++- Note that the marking provides O_U(sigma) of relative degree one, so the universal total space is projective.
++- Use the closure of a closed point in the generic evaluation fiber for the numerical pullback argument, avoiding unnecessary Bertini language.
++
++These are explicit justifications of available standard steps, not repairs requiring a new geometric hypothesis. The frozen argument remains untouched. This report includes original mathematical analysis and public bibliographic references; no source PDFs, extracted source text, or source page images are included.
+--- /dev/null
++++ b/review_bindings.json
+@@ -0,0 +1,54 @@
++{
++  "bindings": [
++    {
++      "v2_path": "review/first_geometry_audit.md",
++      "source_package": "tangent_seshadri_30004324_independent_audit",
++      "source_filename": "AUDIT_REPORT.md",
++      "bytes": 23785,
++      "sha256": "0e5408a47ccb7f00425b972b8b4367c1e68a2124fea7eb55aade576418a73644",
++      "byte_exact_copy": true
++    },
++    {
++      "v2_path": "review/second_geometry_audit.md",
++      "source_package": "tangent_seshadri_30004324_second_audit",
++      "source_filename": "GEOMETRY_AUDIT.md",
++      "bytes": 21008,
++      "sha256": "357c2e44ca5f8448c93f49733b5d9ba1f97ee131de374f467e424eaab2307f9b",
++      "byte_exact_copy": true
++    },
++    {
++      "v2_path": "review/original_integrity_finding.md",
++      "source_package": "tangent_seshadri_30004324_independent_audit",
++      "source_filename": "STRICT_INTEGRITY_FINDING.md",
++      "bytes": 1679,
++      "sha256": "4d80efb260c2c9f312c3ed5981452c3c6157b987e1cc7e44fe48be3bbc49fe5d",
++      "byte_exact_copy": true
++    },
++    {
++      "v2_path": "verify_manifest.py",
++      "source_package": "tangent_seshadri_30004324_independent_audit",
++      "source_filename": "verify_manifest.py",
++      "bytes": 2734,
++      "sha256": "f1ea37b72d00627eae52e71b5c9bd29d41cb8cf57836eb0bb2e44d9f734734fe",
++      "byte_exact_copy": true
++    },
++    {
++      "v2_path": "test_integrity.py",
++      "source_package": "tangent_seshadri_30004324_independent_audit",
++      "source_filename": "test_manifest_adversarial.py",
++      "bytes": 2661,
++      "sha256": "92693a4824863c2d22ab90c43f137b8a39fab2f997eb010f86b4163b01972f9f",
++      "byte_exact_copy": true
++    },
++    {
++      "v2_path": "historical/v1_verify_manifest.py",
++      "source_package": "tangent_seshadri_30004324",
++      "source_filename": "verify_manifest.py",
++      "bytes": 1414,
++      "sha256": "fe67729ae7947a1d5712dbf96a2af306a5d7c47e2a05e1fab784328993dddf2f",
++      "byte_exact_copy": true
++    }
++  ],
++  "copied_reports_unmodified": true,
++  "reports_verdict_target": "original v1 candidate; v2 delta audit remains pending"
++}
+--- a/sources.json
++++ b/sources.json
+@@ -95,5 +95,57 @@
+       "visually_inspected_pdf_pages_1based": []
+     }
+   ],
+-  "excluded": "All source PDFs, extracted text, page images, full HTML, catalog datasets, and private retrieval/coordination records"
++  "excluded": "All source PDFs, extracted text, page images, full HTML, catalog datasets, and private retrieval/coordination records",
++  "v2_primary_web_checks": [
++    {
++      "title": "Proposition 94.13.3: trivial inertia and algebraic spaces",
++      "public_url": "https://stacks.math.columbia.edu/tag/04SZ",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    },
++    {
++      "title": "Proposition 67.50.2: separated locally quasi-finite space over a scheme",
++      "public_url": "https://stacks.math.columbia.edu/tag/03XX",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    },
++    {
++      "title": "Lemma 37.44.1: proper quasi-finite morphisms are finite",
++      "public_url": "https://stacks.math.columbia.edu/tag/02LS",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    },
++    {
++      "title": "Lemma 37.33.2: fiberwise-trivial vector-bundle descent",
++      "public_url": "https://stacks.math.columbia.edu/tag/0EX7",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    },
++    {
++      "title": "Lemma 53.20.12: universal structure-sheaf pushforward",
++      "public_url": "https://stacks.math.columbia.edu/tag/0GKA",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    },
++    {
++      "title": "Lemma 36.30.4: proper flat cohomology and base change",
++      "public_url": "https://stacks.math.columbia.edu/tag/0B91",
++      "inspected_utc_date": "2026-10-05",
++      "inspection": "Exact statement and hypotheses inspected; source body not included"
++    }
++  ],
++  "v2_additional_primary_source_checks": [
++    {
++      "title": "Free Curves on Varieties",
++      "authors": "Frank Gounelas",
++      "public_url": "https://ems.press/content/serial-article-files/26314?nt=1",
++      "inspection": "Proposition 4.7 and proof, printed page 299: two-point evaluation and vanishing; public web text inspected 2026-10-05. Source document not included."
++    },
++    {
++      "title": "Nakai-Moishezon ampleness criterion for real line bundles",
++      "public_url": "https://www.math.kyoto-u.ac.jp/~fujino/Nakai-Moishezon3.pdf",
++      "inspection": "The first independent audit inspected Theorem 1.3 with arbitrary-characteristic convention. v2 uses that verified dependency and the elementary Cartier special case; an author web reopen returned an internal error. No claim of an additional successful author download."
++    }
++  ],
++  "review_metadata_location": "The complete first and second audit source-verification metadata are preserved under review/ with their original inspection scope."
+ }
+--- /dev/null
++++ b/status.json
+@@ -0,0 +1,24 @@
++{
++  "problem_id": "30004324",
++  "version": 2,
++  "status": "candidate_complete",
++  "theorem_scope_changed": false,
++  "substantive_approaches": 2,
++  "approach_budget": 5,
++  "original_geometry_audits": [
++    "PASS",
++    "PASS"
++  ],
++  "v2_delta_audit": "pending",
++  "historical_original_verifier": "REVISE_REQUIRED: nested MANIFEST.json extra-file bypass",
++  "v2_authoritative_verifier": "Strict replacement from first independent audit, copied byte-exactly",
++  "proposed_queue_update_after_final_delta_audit": {
++    "status": "claimed_solved",
++    "turns": "2/5"
++  },
++  "remote_writes": false,
++  "queue_changed": false,
++  "external_peer_review": false,
++  "historical_novelty_established": false,
++  "accepted_resolution_claimed": false
++}
+--- a/test_integrity.py
++++ b/test_integrity.py
+@@ -1,36 +1,50 @@
+ #!/usr/bin/env python3
+-"""Isolated negative controls. Does not mutate the frozen source packet."""
++"""Isolated manifest controls. Never modifies an author or audit freeze."""
++import hashlib
+ import json
++from pathlib import Path
+ import shutil
+ import subprocess
+ import sys
+ import tempfile
+-from pathlib import Path
+-src=Path(__file__).resolve().parent
+ 
+-def run(root):
+-    return subprocess.run([sys.executable,str(root/'verify_manifest.py'),str(root)],
+-                          capture_output=True).returncode==0
+-
+-cases=[]
+-for case in ['clean','edit','truncate','delete','extra','symlink','manifest_size','manifest_hash','duplicate_entry','traversal_entry']:
+-    with tempfile.TemporaryDirectory() as d:
+-        dst=Path(d)/'packet';shutil.copytree(src,dst)
+-        target=dst/'controls.md'
+-        if case=='edit':target.write_bytes(target.read_bytes()+b'changed')
+-        elif case=='truncate':target.write_bytes(b'')
+-        elif case=='delete':target.unlink()
+-        elif case=='extra':(dst/'extra.txt').write_text('extra')
+-        elif case=='symlink':target.unlink();target.symlink_to(src/'controls.md')
+-        elif case.startswith('manifest_') or case in ['duplicate_entry','traversal_entry']:
+-            m=json.loads((dst/'MANIFEST.json').read_text())
+-            if case=='manifest_size':m['files'][0]['bytes']+=1
+-            elif case=='manifest_hash':m['files'][0]['sha256']='0'*64
+-            elif case=='duplicate_entry':m['files'].append(m['files'][0].copy())
+-            elif case=='traversal_entry':m['files'][0]['path']='../outside'
+-            (dst/'MANIFEST.json').write_text(json.dumps(m))
+-        passed=run(dst)
+-        if passed != (case=='clean'):
+-            raise AssertionError(case)
+-        cases.append({'case':case,'accepted':passed})
+-print(json.dumps({'status':'pass','cases':cases},indent=2,sort_keys=True))
++HERE=Path(__file__).resolve().parent
++VERIFY=HERE/'verify_manifest.py'
++CASES=('clean','content_edit','truncate','delete','ordinary_extra','nested_manifest_extra',
++       'nested_symlink','manifest_symlink','duplicate_path','traversal','absolute_path',
++       'noncanonical_path','bad_size','bad_hash','external_binding_mismatch')
++results=[]
++for name in CASES:
++    with tempfile.TemporaryDirectory() as td:
++        p=Path(td)/'packet'; p.mkdir()
++        (p/'payload.txt').write_text('independent control\n')
++        data=(p/'payload.txt').read_bytes()
++        m={'schema':1,'files':[{'path':'payload.txt','bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}]}
++        (p/'MANIFEST.json').write_text(json.dumps(m))
++        expected=None
++        if name=='content_edit': (p/'payload.txt').write_text('changed\n')
++        if name=='truncate': (p/'payload.txt').write_bytes(b'')
++        if name=='delete': (p/'payload.txt').unlink()
++        if name=='ordinary_extra': (p/'extra.txt').write_text('extra')
++        if name=='nested_manifest_extra':
++            (p/'extra').mkdir(); (p/'extra'/'MANIFEST.json').write_text('extra')
++        if name=='nested_symlink': (p/'link').symlink_to(p/'payload.txt')
++        if name=='manifest_symlink':
++            q=Path(td)/'outside.json'; shutil.copy2(p/'MANIFEST.json',q)
++            (p/'MANIFEST.json').unlink(); (p/'MANIFEST.json').symlink_to(q)
++        if name in ('duplicate_path','traversal','absolute_path','noncanonical_path','bad_size','bad_hash'):
++            if name=='duplicate_path': m['files'].append(m['files'][0].copy())
++            if name=='traversal': m['files'][0]['path']='../payload.txt'
++            if name=='absolute_path': m['files'][0]['path']='/payload.txt'
++            if name=='noncanonical_path': m['files'][0]['path']='./payload.txt'
++            if name=='bad_size': m['files'][0]['bytes']+=1
++            if name=='bad_hash': m['files'][0]['sha256']='0'*64
++            (p/'MANIFEST.json').write_text(json.dumps(m))
++        if name=='external_binding_mismatch': expected='0'*64
++        args=[sys.executable,str(VERIFY),str(p)]+([expected] if expected else [])
++        r=subprocess.run(args,capture_output=True)
++        accepted=r.returncode==0
++        if accepted != (name=='clean'): raise AssertionError(name)
++        results.append({'case':name,'accepted':accepted})
++out={'status':'PASS','cases':results,'case_count':len(results)}
++print(json.dumps(out,indent=2,sort_keys=True))
+--- /dev/null
++++ b/test_nested_manifest_regression.py
+@@ -0,0 +1,35 @@
++#!/usr/bin/env python3
++"""Demonstrate the historical defect and its strict replacement on isolated fixtures."""
++import hashlib
++import json
++from pathlib import Path
++import subprocess
++import sys
++import tempfile
++
++HERE=Path(__file__).resolve().parent
++OLD=HERE/'historical'/'v1_verify_manifest.py'
++NEW=HERE/'verify_manifest.py'
++
++def accepted(verifier,root):
++    return subprocess.run([sys.executable,str(verifier),str(root)],capture_output=True).returncode==0
++
++with tempfile.TemporaryDirectory() as td:
++    root=Path(td)/'fixture';root.mkdir()
++    data=b'regression fixture\n'
++    (root/'payload.txt').write_bytes(data)
++    manifest={'schema':1,'files':[{'path':'payload.txt','bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}]}
++    (root/'MANIFEST.json').write_text(json.dumps(manifest))
++    assert accepted(OLD,root)
++    assert accepted(NEW,root)
++    (root/'extra').mkdir()
++    (root/'extra'/'MANIFEST.json').write_text('unlisted file\n')
++    old_accepts=accepted(OLD,root)
++    new_accepts=accepted(NEW,root)
++    assert old_accepts is True, 'Historical behavior changed'
++    assert new_accepts is False, 'Strict replacement still bypassed'
++    print(json.dumps({'status':'PASS','historical_v1_verdict':'REVISE_REQUIRED',
++          'original_actual_archive_had_extra_file':False,
++          'clean_accepted_by_both':True,'v1_accepts_unlisted_nested_manifest':old_accepts,
++          'v2_accepts_unlisted_nested_manifest':new_accepts,
++          'authoritative_verifier':'root verify_manifest.py'},indent=2,sort_keys=True))
+--- a/verify_manifest.py
++++ b/verify_manifest.py
+@@ -1,34 +1,65 @@
+ #!/usr/bin/env python3
+-"""Fail closed on missing, extra, linked, changed, or wrongly-sized files."""
++"""Strict exact-file-set manifest verifier. Only the root manifest excludes itself."""
+ import hashlib
+ import json
+-from pathlib import Path
++from pathlib import Path, PurePosixPath
++import re
++import stat
++import sys
+ 
+-def verify(root):
++
++def verify(root, expected_manifest_sha256=None):
+     root=Path(root)
++    if root.is_symlink() or not root.is_dir():
++        raise ValueError('Root is missing, linked, or not a directory')
+     manifest=root/'MANIFEST.json'
+     if manifest.is_symlink() or not manifest.is_file():
+-        raise ValueError('manifest is missing or linked')
+-    m=json.loads(manifest.read_text())
+-    listed={x['path']:x for x in m['files']}
+-    if len(listed)!=len(m['files']):
+-        raise ValueError('duplicate manifest path')
+-    if any(Path(p).is_absolute() or '..' in Path(p).parts or p=='MANIFEST.json' for p in listed):
+-        raise ValueError('unsafe manifest path')
++        raise ValueError('Manifest is missing or linked')
++    raw=manifest.read_bytes()
++    if expected_manifest_sha256 is not None and hashlib.sha256(raw).hexdigest()!=expected_manifest_sha256:
++        raise ValueError('External manifest binding mismatch')
++    m=json.loads(raw)
++    if not isinstance(m,dict) or not isinstance(m.get('files'),list):
++        raise ValueError('Invalid manifest schema')
++    listed={}
++    for item in m['files']:
++        if not isinstance(item,dict) or set(item)!={'path','bytes','sha256'}:
++            raise ValueError('Invalid file entry')
++        p=item['path']
++        if not isinstance(p,str) or not p or '\\' in p or p=='MANIFEST.json':
++            raise ValueError('Invalid path')
++        q=PurePosixPath(p)
++        if q.is_absolute() or any(x in ('','..','.') for x in p.split('/')) or q.as_posix()!=p:
++            raise ValueError('Unsafe or noncanonical path')
++        if p in listed:
++            raise ValueError('Duplicate path')
++        if type(item['bytes']) is not int or item['bytes']<0:
++            raise ValueError('Invalid byte count')
++        if not isinstance(item['sha256'],str) or not re.fullmatch('[0-9a-f]{64}',item['sha256']):
++            raise ValueError('Invalid SHA-256')
++        listed[p]=item
+     actual=set()
+     for p in root.rglob('*'):
+-        if p.is_symlink():
+-            raise ValueError('linked object')
+-        if p.is_file() and p.name!='MANIFEST.json':
+-            actual.add(p.relative_to(root).as_posix())
+-    if actual!=set(listed):
+-        raise ValueError('file set mismatch')
+-    for rel,entry in listed.items():
++        s=p.lstat()
++        if stat.S_ISLNK(s.st_mode):
++            raise ValueError('Linked object')
++        if stat.S_ISDIR(s.st_mode):
++            continue
++        if not stat.S_ISREG(s.st_mode):
++            raise ValueError('Nonregular object')
++        rel=p.relative_to(root).as_posix()
++        if rel!='MANIFEST.json':
++            actual.add(rel)
++    if actual != set(listed):
++        raise ValueError('Exact file-set mismatch')
++    for rel,item in listed.items():
+         b=(root/rel).read_bytes()
+-        if len(b)!=entry['bytes'] or hashlib.sha256(b).hexdigest()!=entry['sha256']:
+-            raise ValueError('file integrity mismatch: '+rel)
++        if len(b)!=item['bytes'] or hashlib.sha256(b).hexdigest()!=item['sha256']:
++            raise ValueError('File binding mismatch: '+rel)
+     return len(listed)
++
+ if __name__=='__main__':
+-    import sys
+-    n=verify(Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).resolve().parent)
+-    print(json.dumps({'manifest_files_verified':n,'status':'pass'},sort_keys=True))
++    root=Path(sys.argv[1]) if len(sys.argv)>1 else Path(__file__).resolve().parent
++    expected=sys.argv[2] if len(sys.argv)>2 else None
++    n=verify(root,expected)
++    print(json.dumps({'status':'PASS','bound_payload_files':n},sort_keys=True))
