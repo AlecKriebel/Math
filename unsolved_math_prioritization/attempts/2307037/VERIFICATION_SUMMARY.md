@@ -1,0 +1,11 @@
+# Verification summary
+
+The mathematical verdict and its limits are in AUDIT.md. The accepted original and distributed document identities are distinguished by byte counts and SHA-256 hashes in ACCEPTANCE.json. Exact source dependencies are identified in SOURCE_DEPENDENCIES.json.
+
+The audit's supplementary controls independently check eight symbolic identities, five angular integrals, twelve radial integrals, 5,005 scalar mesh points, and five complex disk-kernel cases. Ordinary and optimized Python produce byte-identical results. These finite controls supplement the analytic audit and do not certify the imported theorems.
+
+All four directly retained source PDFs match their specified hashes. Fifteen relevant pages of the Levine–Peres author manuscript and arXiv v2 have equal whitespace-normalized extracted text. The complete PDF bytes differ; no complete-version identity is claimed. The original proof, source-hypothesis argument and source identities were authenticated against their recorded hashes.
+
+Historical audit integrity checks used an external hash anchor, exact inventory, duplicate and unsafe path rejection, byte counts, SHA-256 digests, source identities and accepted theorem scope. Twelve deliberate mutation types were rejected in both ordinary and optimized Python, for 24 rejections in total. They tested changed or missing authored files or source PDFs, unlisted files and programs, duplicate manifest paths, symlinks, incorrect external anchors, rehashed tampered packages and tampered original proof or source identities. Programs, copied source documents, renders, extracted text, generated certificates and raw outputs are not distributed. These integrity and finite computational checks are supplementary verification history; no omitted executable, dataset or generated certificate is a dependency of the analytic proof.
+
+Publication preparation replayed the frozen audit integrity checks in normal, -O and -OO Python. Its finite mathematical recomputation was also replayed; the frozen verifier invokes optimized recomputation in -O mode for either optimized verifier mode. A separate direct -OO recomputation reproduced the same mathematical output. No formal proof-assistant verification, external human peer review or exhaustive novelty determination is claimed. The manuscript and audit are unrefereed.
