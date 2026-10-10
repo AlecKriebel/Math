@@ -1,0 +1,37 @@
+{
+  "executed_at_utc": "2026-10-04T18:08:42Z",
+  "python": "Python 3.12.14",
+  "commands": [
+    {
+      "command": "python3 run_tests.py",
+      "result": "6 tests passed: small-class classifications, independent edge direction agreement, certificate, and rejection of missing Borel/wrong values/nonpredecessor mutations."
+    },
+    {
+      "command": "python3 check_certificate.py certificate.json",
+      "result": {
+        "all_predecessor_vertices_outside": true,
+        "arithmetic": "exact fractions and integers",
+        "borels_covered": 24,
+        "certificate_rows_verified": 24,
+        "length": 3,
+        "rank_condition_fixed_flags": 8
+      }
+    },
+    {
+      "command": "python3 verify_faces.py --output enumeration.json",
+      "result": {
+        "n2_nonrepresentable": [],
+        "n3_nonrepresentable": [],
+        "n4_nonrepresentable": [
+          "2413",
+          "3412",
+          "4231"
+        ],
+        "smooth_nonrepresentable": [
+          "2413"
+        ]
+      }
+    }
+  ],
+  "independent_external_audit": "Not yet performed; two algorithm implementations here were authored by the same investigator."
+}
