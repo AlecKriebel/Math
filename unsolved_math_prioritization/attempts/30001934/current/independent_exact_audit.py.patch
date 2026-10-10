@@ -1,0 +1,11 @@
+--- a/independent_exact_audit.py
++++ b/independent_exact_audit.py
+@@ -14,7 +14,7 @@
+ import sys
+ 
+ sys.dont_write_bytecode = True
+-PACKET = Path(os.environ.get('GREEDY_PACKET', Path(__file__).resolve().parents[2] / 'greedy_spanning_tree_30001934'))
++PACKET = Path(__file__).resolve().parents[1] / 'author'
+ spec = importlib.util.spec_from_file_location('author_exact_model', PACKET / 'tests/exact_model.py')
+ author = importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(author)
