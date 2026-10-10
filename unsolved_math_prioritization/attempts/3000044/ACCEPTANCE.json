@@ -1,0 +1,123 @@
+{
+  "problem_id": 3000044,
+  "alias": "AMR-029-0044",
+  "audit_date_utc": "2026-10-10",
+  "analytic_verdict": "ACCEPTED_STRUCTURAL_PARTIAL",
+  "full_problem_resolved": false,
+  "target_counterexample": false,
+  "novelty_claim": false,
+  "accepted_analytic_results": [
+    "Necessary local bipartite matching condition for the exact source path hypothesis.",
+    "All-pairs unique-overlap theorem: terminalwise paths, local matchings, and coherent independent trees are equivalent; every local matching choice works.",
+    "Stronger theorem: uniqueness imposed only on different-root overlaps; same-root overlaps are unrestricted, using the proved pool reduction and credited common-root theorem.",
+    "Original hypothesis implies coherent trees for DAGs with no three-arc directed path.",
+    "The unbounded shared-chain family has arbitrary roots, overlap multiplicity, and depth within the structural class.",
+    "Nine-vertex valid but unextendable fixed prefix has a valid global family; no conjecture counterexample."
+  ],
+  "remaining_case": "Alternative directed vertex paths in different-root overlaps; arbitrary root/overlap source problem remains unresolved.",
+  "ai_assisted": true,
+  "unrefereed": true,
+  "external_human_peer_review_claim": false,
+  "journal_acceptance_claim": false,
+  "formal_proof_assistant_certification_claim": false,
+  "bibliographic_priority_certified": false,
+  "preexisting_current_openness_certified": false,
+  "analytic_proof_preserved_in_full": true,
+  "schema_version": 1,
+  "distinct_target": "The rainbow-arborescence problem 30004008 is a distinct target.",
+  "proof": {
+    "name": "PROOF.md",
+    "bytes": 20551,
+    "sha256": "5586cc0e905fda93c8f25052c18558aaf314e9fd7f945d7c4c8b14fc3dfb50ad"
+  },
+  "audit": {
+    "name": "MATHEMATICAL_AUDIT.md",
+    "bytes": 17545,
+    "sha256": "e16ee3526502cf3066dcf8bd754e6345688e91cd664470fb0b13012be59ead06"
+  },
+  "acceptance_basis": "Complete written structural proofs, root-group reduction and accompanying analytic audit. The base theorem is self-contained; the stronger theorem explicitly depends on Frank–Fujishige–Kamiyama–Katoh, Theorem 4, with Theorem 5 algorithm hypotheses checked. Finite evidence is supplementary only.",
+  "preserved_precision_corrections": "Precisely distinguish self-contained base from credited refinement; explicitly remove singleton tasks and verify weak connectivity for the source algorithm.",
+  "edition_mathematical_proof_corrections": false,
+  "recorded_computational_evidence": {
+    "role": "SUPPLEMENTARY_ONLY",
+    "required_for_analytic_acceptance": false,
+    "normal_and_optimized": "PASS",
+    "independent_results": {
+      "status": "PASS",
+      "independent_oracle": "DFS vertex/arc path sets, backtracking local systems, backwards parent reconstruction; construction under test is author code",
+      "census": {
+        "graphs": 1024,
+        "triples": 504836,
+        "residual": 149344,
+        "local_feasible": 37380,
+        "coherent": 37380,
+        "unique_overlap_instances": 138124,
+        "cross_root_unique_instances": 141632,
+        "cross_root_unique_feasible": 36002,
+        "unique_overlap_feasible": 36002
+      },
+      "all_matching_choices": {
+        "graphs": 64,
+        "cross_unique_triples": 8824,
+        "matching_families": 5744,
+        "base_matching_families": 5744
+      },
+      "controls_and_stress": {
+        "rejected_prefix_extensions": 4,
+        "explicit_global_witness": 1,
+        "rejected_missing_parent": 3,
+        "boundary_instances": 7,
+        "rejected_nonconvex": 1,
+        "heterogeneous_multigraph_instances": 2000,
+        "heterogeneous_set_instances": 1955,
+        "same_root_nonunique_overlap_instances": 1594,
+        "singleton_group_instances": 469,
+        "random_multigraph_instances": 4000,
+        "random_local_feasible": 3346,
+        "random_cross_unique_instances": 3975,
+        "random_cross_unique_feasible": 3342
+      }
+    },
+    "author_census_counts": {
+      "graphs": 1024,
+      "triples": 504836,
+      "residual": 149344,
+      "local_feasible": 37380,
+      "coherent": 37380,
+      "unique_overlap_instances": 138124,
+      "unique_overlap_feasible": 36002,
+      "depth_two_instances": 63024,
+      "depth_two_feasible": 16546,
+      "cross_root_unique_instances": 141632,
+      "cross_root_unique_feasible": 36002
+    },
+    "author_mixed_root_multigraph_instances": 2000,
+    "sampled_feasible_counts": {
+      "n8": 950,
+      "n10": 3125,
+      "layered": 2066
+    }
+  },
+  "recorded_source_inspection": {
+    "full_primary_text_read": true,
+    "public_author_pdf_reopened": true,
+    "locally_rendered_pdf_pages_visually_inspected": [
+      1,
+      4,
+      7
+    ],
+    "public_url": "https://andrasfrank.web.elte.hu/cikkek/FrankJ63.pdf",
+    "pdf_sha256": "d40a08b63338bc6137855424683eb3b6b43325880946e876eac6dcd0a5d5b04a",
+    "pdf_bytes": 232496,
+    "credited_dependencies": [
+      "Theorem 4 common-root DAG existence",
+      "Theorem 5 common-root O(km) algorithm; weakly connected and non-singleton assumptions handled",
+      "Theorems 6 and 7 overlap-at-most-two boundaries"
+    ]
+  },
+  "edition_preparation_check_rerun": false,
+  "programs_raw_outputs_or_datasets_distributed": false,
+  "analytic_verdict_depends_on_omitted_code": false,
+  "queue_modified": false,
+  "review_status_note": "Completed accompanying AI-assisted audit supersedes pre-audit status wording. No external human review is claimed."
+}
