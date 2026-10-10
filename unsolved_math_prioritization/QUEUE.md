@@ -221,7 +221,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 4/5 |  | 2026-10-01: four documented recovered author turns; historical interrupted count unknown, not reset. Full interior non-C2 existence candidate independently PASS: smooth strictly Kahler boundary data, credited Ross–Witt Nystrom finite-time contact-arc construction plus Green/Legendre argument. No novelty claim; earlier conditional routes retained as history. See attempts/30004690/. |  |
 | 214 | 30004757 / OWR-8415338-004 | Dirac-Mass Tangent Cones in Monge–Ampère Equations | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 215 | 5100004 / AMR-050-0004 | Elliptic-billiard invariant k_{110} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
