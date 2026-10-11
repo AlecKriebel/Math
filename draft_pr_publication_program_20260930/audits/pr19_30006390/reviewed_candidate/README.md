@@ -1,0 +1,9 @@
+# Verified partial analysis of random projective-plane transversals
+
+The original growing-ratio and logarithmic lower-bound conjectures remain unsolved after two original attempts. Three current independent blocker, probability and primary/container families pass the elementary classical Bruen lower bound, standard alteration upper bound, all-minimal-blocker reduction, dependence countercontrols and direct complete-line container parameter obstructions. No growing lower factor, new discovery or general container impossibility is established.
+
+BASELINE.md contains the universal proof and exact remaining weighted-enumeration gap. CURRENT_SOURCE_SCOPE.md corrects the original prime-power domain and all-section versus nonempty-section convention. Imported records and the original2/5 turn ledger are unchanged historical provenance. Historical review/REVIEW.md and verdict remain bound to the original BASELINE hash; they are not current acceptance of this annotated copy. The current manifest binds all current files; a fresh complete adversarial acceptance review is pending.
+
+Original author and historical independent outputs reproduce byte-identically. Root also reproduces fresh families:104,600 blocker controls and dual counting,4,958 probability controls, and exact container certificates; mathematical fields agree, with only recorded UTC timestamps differing. Universal proofs supply asymptotic conclusions; exact small-plane diagnostics cannot establish the unsolved rates.
+
+Workflow75%, proposed QUEUE unsolved2/5, duplicate30006391 is the same target. No paper, Zenodo deposit, DOI or tracker row is appropriate. Extensive AI tools and independent AI audits were used, without human peer-review or formal-certification claims.

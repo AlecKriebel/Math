@@ -1,0 +1,4 @@
+# PR46 actual post operator V2 preparation research log
+
+2026-10-03T09:20:13.840772+00:00: V2 SOURCE preparation 85%; discovery 0%; actual ROOT post readiness pending. Narrow pins-order correction and independently parsed ROOT improvements retained. Exact PR373 post-epoch append qualifies only the old foreign-prefix predicate; live whole bodies/modes and HEAD/index remain checked. Failed88416 and all earlier source/phase/capture families preserved. Proposed production source has not been executed/imported/compiled.
+2026-10-03T09:22:07.135188+00:00: V2 SOURCE100%; discovery0%; ROOT actual inspection pending. Full final source manually read, pins now defined before complete phase argv loop; independent actual-source parser/canonical/original checks retained. Separate exact old-prefix qualification/current append readback kept outside22 keys. No proposed source execution/import/compile or ROOT/foreign writes. READY for ROOT.

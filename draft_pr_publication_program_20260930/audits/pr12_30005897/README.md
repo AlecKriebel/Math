@@ -1,3 +1,3 @@
-# PR12: shadowing without bounded distortion
+# PR12: accepted credited known-method result
 
-Exact head `19dfaccb52a7640eec79af28a778b4f22f93479a` is frozen in source_snapshot. Two independent mathematical families and the primary-source scope audit pass. The exact-question search is complete with bounded fulltext gaps; an older equivalent spectral mechanism is undergoing independent falsification, including a defective algebraic identity in the broader old proof that the needed implication must avoid. No priority or acceptance decision has been promoted. No paper or deposit has been created. PRs 9–11 are complete.
+The full theorem, measurable bands and density criterion pass independent audits and fresh complete adversarial review. The older stronger scalar decomposition supplies the central mechanism by a verified translation. QUEUE is already_solved, explicitly meaning a credited derived corollary; no earlier literal corollary or first priority is asserted. PR12 merged and remotely verified at 2026-10-01T14:07:48Z. No new paper, DOI or tracker row. See acceptance.json, final_canonical_receipt.json and final_adversary.

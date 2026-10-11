@@ -1,0 +1,7 @@
+# Research log
+
+2026-10-03T16:29:49Z: mathematical validation 5%, SOURCE immutable, discovery credit0. Original checker inspected. Early independent mechanisms and falsifiable boundaries recorded before historic review/checkers. No execution yet. Proof target is exact literal per-element additive distortion after one common topological conjugacy.
+
+2026-10-03T16:47:49.867393+00:00: mathematical validation95%, discovery credit0. Original6665 exact assertions reproduce byte-exact receipt. Independent45577 exact checks pass, including208 complete finite interval certificates. Universal proof covers all countable line maps and both orientations. Fresh primary theorem statement/relevant proof support credited finite increasing case, no earliest priority claim. Historical report/checker read only after own mechanism/proof/controls formed;5 final manifest entries and old/final formatting diff checked. Toroidal intended geometry remains unknown outside the verified literal scope.
+
+2026-10-03T16:51:48.141062+00:00: mathematical validation100% for exact literal target; one fresh adversarial validation family, discovery credit0, original1/5 unchanged. Packaging readback child92749 failed on its own pending postreceipt; failed source/stdio preserved, repair93412 passed. OriginalSOURCE remains unchanged. Final report/explicit verdict assembled; prepare exact immutable index/READY, leave ROOT helpers unexecuted. Historical geometric interpretation remains undetermined.

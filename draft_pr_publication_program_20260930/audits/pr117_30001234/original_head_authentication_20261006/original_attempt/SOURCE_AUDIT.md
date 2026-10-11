@@ -1,0 +1,9 @@
+# Source, prior work and quantifier audit
+
+The exact full source is Takagi’s contribution in OWR 21/2009, printed 1136–1139. Proposition 5 defines the augmented exponent matrix, objective and closed rational polytope. Its displayed condition on p.1138 quantifies over every other optimal solution; Question 8 on p.1139 adds monomial-freeness and minimal binomial generators, with no regular-sequence or dimension-three restriction. Both pages were rendered and visually checked. The condition is reproduced mathematically in CANDIDATE.md.
+
+The source asks for a singleton image fiber at some optimizer, not for a singleton set of optimal image vectors. Because the objective is the sum of the last augmented coordinates, a feasible point in an optimizer’s fiber is automatically optimal. The candidate shows that all optimizers occupy one nontrivial fiber.
+
+Shibuta–Takagi’s complete primary v3 preprint confirms Proposition 2.1/Question 2.2 and the narrower positive theorems. Publisher metadata was checked; its subscription-only full text was not downloaded. LaClair’s full published 2025 article was retrieved, with its added subset constraints and Remark 3.15 checked. Its LP differs from the original one; its triangle subset constraint removes our optimum. Blanco–Encinas’s general threshold algorithm is related prior work. None of those threshold computations is required by the direct counterexample. These checks are not an exhaustive priority search. No novelty claim is made.
+
+The complete pinned record and null prior report were read. The current queue, all-state 115 PR inventory, exact branch and attempt history, state and related groups showed no previous attempt. A dataset search found no exact duplicate; the odds-ratio geometry record 20001181 is distinct. No queue or shared state file is modified.

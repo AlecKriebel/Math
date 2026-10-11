@@ -1,0 +1,13 @@
+# Scope of the corrected acceptance proposal
+
+ExactPR27head84d7f6103b087e431d7afb751501380ebd7ffd42,basec6975ca76f9f667f1250ba403d0e6da2aafe14d0:13attempt files plus selectedQUEUE row,14paths. Proposed dispositionunsolved, original1/5 and blocked all-degree route retained. Audit/reproduction adds0substantive attempts; no paper/DOI/tracker/novelty/worldwide-openness credit.
+
+Three independent families sealed before old note/reviewer/code reads. Root read complete reports/proofs/actualcode and independently reproduced original2receipts BYTEEXACT,13character models/153classpairs/4mutants,24fullCE models/131nonemptyblocks/21naturalityblocks and232source/type controls/8mutants. All54listed first-party family members (22character,13homological,19primary) match closed manifests. Root independently reconstructs universal CE splitting, proper right-free resolution, exact exterior coinvariants, boundaries and full credited Powellproof, plus new120permutation base-case checks and3mutants. Root reconstruction is disclosed synthesis after family exposure, not a fourth blind family. Finite checks are not unrestricted proofs.
+
+Current note clarifies right/left module conventions and bounded source status, preserving every displayed homology formula/credited range. Current chronology/PDF-variant/historical execution qualifiers are global. Original13blobs/history and originalPARTIAL/README/readiness archives remain exact. All old review files are archival; their PASS does not transfer to changed current prose. Current source data/ledger/sourcechecksums and old scripts/receipts are unchanged. An old family's advice to regenerate legacycatalog/QUEUE is not adopted: that generator erases current acceptance annotation/columns. Present source-bound state/history will be added after verifiedremote merge, preserving all prior records and unrelated12-columnQUEUE fields, original1/5 and no invented historical readiness transitions. Staticcatalog/assessment/manualreadyreopening limits remain explicit.
+
+A NEW complete current22-file gate remains required, including current livePRscope and all support bindings. Mainbranch only. No external individual communication/publication is authorized by this partial disposition.
+
+## First complete gate correction
+
+The first full gate requires the Powell v4 Lemma5.2 n2 boundary qualification, now supplied globally in CURRENT_POWELL_RANGE_QUALIFICATION.md. Only n>=3 is used in the cited induction, with separate r3 base; current homology formulas are unchanged. The initial22candidate/65support gate and all seals remain archival and exact. The corrected current23candidate requires a NEW different complete fresh gate. The superseding root addendum and exact root controls are bound alongside the first full gate.

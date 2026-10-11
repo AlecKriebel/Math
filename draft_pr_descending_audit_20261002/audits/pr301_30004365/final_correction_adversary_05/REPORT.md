@@ -1,0 +1,61 @@
+# Fresh final-correction adversarial review — PR301
+
+Final content verdict: **PASS for the exact priority_correction_final_v04 packet**, subject to the stated scientific scope. No unresolved content or mathematical issue remains. This review grants **no operational writer authority**. It does not clear a paper, new-resolution claim, merge, close, DOI, upload, tracker action, branch change, release, or public metadata change.
+
+Original head:125d90fa3f5a4f90b813fec7a7c0f1918914d885; original submitted claimed_solved; author1/5. Qualified current operational outcome: already_solved. The corrected proof remains a valid terminating theoretical certificate procedure for the known invariant; broad new-computability/first-resolution priority is defeated. Exact earlier publication of this particular composed theorem, rational search, and explicit puncture correction remains unknown. Known local defects prevent universal acceptance of earlier software. These qualifications are part of what this PASS accepts.
+
+## Independence and sequence
+
+The reviewer inherited parent context, including adverse-priority findings. This is not blind review. INITIAL_OBLIGATIONS.md and INDEPENDENT_SOURCE_FIRST_CHECKPOINT.md were preserved before consulting any earlier reviewer report or ROOT acceptance. The reviewer read the whole corrected proof and directly checked native primary PPP, LP, APS and Vegter–Yap sources, visually inspecting the latter's printed pages107/111. Only after preserving that independent deduction did the reviewer compare the six supplied prior reports/derivations and earlier content acceptance. No outside individual or peer was contacted.
+
+## Mathematical obligations and outcomes
+
+| Obligation | Independently checked mechanism | Outcome |
+|---|---|---|
+| Finite gentle input and fixed field | PPP blossom construction uses finite incidence/relation tables; permitted cycles are excluded by finite dimension. APS conventions use a base field k without an algebraic-closure assumption. | PASS |
+| Surface and repeated occurrences | Labeled lozenge gluing and dual disk decomposition preserve sector occurrences; boundary collars and puncture neighborhoods are both removed. | PASS |
+| Decidable geometric certificates | Rational determinants/seams; cuts by side/sector copies; ribbon-neighborhood genus and connected planar-complement predicates. These certify embedded geometry, not merely an abstract intersection matrix. | PASS |
+| Universal termination | Ordinary surface classification supplies existence; simultaneous general position and joint rational seam approximation preserve the finite topology. Enumeration is exhaustive, with no complexity bound or negative-decision oracle. | PASS |
+| Winding | APS signed white-left/right rule applies between consecutive dissection crossings, after local orthogonal smoothing without curls. Disk and square-zero-loop conventions are explicit. | PASS |
+| Complete numerical key | Paired count/winding data over every b+p compact-core boundary; LP all-boundary classifier followed by the unrestricted APS line-field/derived bridge. Handles negate but peripheral integers agree under the two convention reversals. | PASS |
+| Higher-genus arithmetic | Peripheral radical decides when Arf descends; raw basis windings are excluded from the key. An explicit radical counterexample confirms why an unrestricted handle-only Arf would fail. | PASS |
+| Empty/disconnected inputs | Empty multiset denotes zero category; connected factors are detected by projective orthogonality/cohomology without finite global dimension. | PASS |
+| Puncture witness | All36 A(m,n),m,n=3..8 path counts and dimensions checked directly; the two named puncture lists differ despite equal outer formulas. Primary APS6.1/LP require all ends. | PASS with numerical surface formulas also checked by the already supplied independent families; this review's fresh path controls alone are not a fresh full PPP witness computation |
+
+LP v1 (19January2018), Theorem1.2.5, and v5 Theorem1.2.4 require every compact boundary winding. Applying that result to b+p ends repairs the literal puncture-truncated range in APS7.4. The unrestricted categorical bridge is APS6.1/7.2 (v1 equivalents4.1/5.2), so LP's separate homologically smooth algebra hypothesis is not silently imported. A line field is restricted to the core and extended through cylindrical ends up to homotopy, never over topology caps.
+
+## Priority challenge
+
+Vegter–Yap1990 Lemma4.3 explicitly produces separated simple one-crossing pairs; Lemmas4.8/4.9 give connected planar complement. Its closed-input hypothesis is retained. The finite end conversion shrinks and moves labeled cap disks into that complement, fixes earlier caps, tracks finite PL homeomorphisms, and pulls the graph back. The line field is not extended over caps and winding is recalculated on the resulting curves in the original core. This avoids transferring the central difficulty to an unknown homeomorphism or geometric-basis oracle. Some elementary maintenance details in the extended abstract are referred to a full paper; this review does not claim an independent implementation or verification of its entire complexity bound.
+
+PPP v2 (13July2018), LP v1 and APS v1 (4April2019) supply the other essential finite construction, winding and line-field/classification inputs. Their composition defeats an unqualified new general algorithm/mechanism claim;4April2019 dates the ingredients, not an earlier published exact gentle-specific composition. The six credited reports/derivations consistently retain that distinction. A direct LPVV2001 primary read and visual checks of PDF pages3/7 also confirm Theorem1's closed-input canonical PL generators, noninterleaving at the common basepoint and computed connected-sum decomposition; the2013 HAL deposit is distinguished from the2001 proceedings date.
+
+Retained primary QPA commit metadata authenticates addition13June2024, fix18June2024 and official releasev1.36 published28May2025. Fresh local Git-object hashing matches the fixed source blob f881ef7ad6eecfce1ad2191ce47f0c6e952c70ea and byte-identical tagged source. The numerical tree/cotree, genus-decreasing cut/join and comparison bodies were inspected, not only method names. Source inspection independently confirms square-zero-loop occurrence collision, IsSubset multiplicity loss and the repeated A parity loop. No GAP execution or universal permutation-correctness claim is made.
+
+The exact21March2025 applet compressed payload matches the CDX SHA1 digest X4VKTOZ4ITQYBAWZMC6JZGTDMWLGXAQQ, its decode matches SHA25699a8209e6f54b3f24ad68b463e0a5ae83fc4487af8481b76a38271dff83644ba, and Memento/original modification dates match. All11 indexed historical method bodies were independently hashed and inspected. They disclose finite numerical extraction; their primary Arf arithmetic and all input incidence routines are not universally certified by this review. No feature date is inferred from a2020 footer, and no thesis theorem is inferred from an unavailable thesis title.
+
+A fresh native EMS issue read confirms volume17(1) publication10February2021, distinct from workshop19–25January2020 and report3/2020. Existing date qualifications remain accurate.
+
+## The v03 metadata issue and v04 repair
+
+V03 said packet_review_pending=false and packet_content_review_accepted=true, while the authentic acceptance6c40f4... covers the exact earlier v02 and V03 preparation says fresh review pending. README/DISPOSITION omitted that version distinction. This was a scope ambiguity in current metadata, not a refutation of the accepted scientific bodies. V03 and its preparation are byte-preserved.
+
+V04 removes those blanket current-version booleans, identifies accepted_prior_packet_version=priority_correction_packet_v02, and names current_final_metadata_revision with current_final_metadata_review_pending_at_preparation=true. README/DISPOSITION now explicitly distinguish earlier accepted v02 from the final revision's fresh review. Native custody verifies exactly those three bodies and the recomputed manifest changed; all other41 prepared files remain unchanged. Earlier acceptance status, timestamp, SHA and all45 exact earlier v02 pins are authenticated. Thus final metadata no longer falsely claims its own pre-review acceptance. The frozen preparation-time pending fields remain truthful history after this review; a later operational receipt may record later review/publication events separately.
+
+## Package custody and provenance
+
+The exact final packet has45 files:43 target files plus PR body/title. Its current public manifest binds42 target files and excludes only itself. All17 original target artifacts are byte-preserved in history/original_submission;13 also remain unchanged at their old current paths. Only the four designated current wrappers differ from original. The old16-entry public manifest and inherited review manifests resolve within the archive; deliberately omitted source_record/upstream/source PDF inputs remain explicitly omitted. Original stale review/claimed-status/readback wording is visibly historical and does not supersede current authority. Native complete45-file read and206 structural/metadata checks passed. No target or parent artifact was written by this reviewer.
+
+The public correction is a compact credited note, not a full private-evidence/software verification release. It excludes copyrighted primary PDF and applet bodies and discloses AI assistance, absence of human peer review/formal proof verification, no runtime bound/full search implementation, and the no-paper/no-DOI/unmerged/unclosed disposition. All claims of original author-turn history remain1/5.
+
+## Independent controls and failures
+
+The new independent exact control executed481623 explicit check/raise checks (no Python assert dependence): all28 nondegenerate alternating forms in dimension4; all720 symplectic bases for each form; all16 quadratic refinements and Gauss sums; polarization;28561 negative/positive even integer winding assignments; genus-one sign and peripheral detour gcd; radical behavior;36 A(m,n) path/dimension cases. These are finite supplements to proofs, not a universal halting test, full search implementation, or old-software certificate.
+
+The two unchanged original scripts were rerun and their whole JSON outputs equal saved records. Their reported result counters1328 and32291 are retained as reported finite-control counts; this review does not assert that1328 equals every literal hidden Python assertion execution in the author helper.
+
+Failures are preserved: an exploratory reader exceeded Vegter–Yap's731 extracted lines; reviewer custody v01 excluded the historical manifest by basename; reviewer custody v03 required dictionary-schema equality despite an extra Git-hash field. Separate repaired helpers passed. A first LPVV end-of-Section4 render selected the adjacent PDF page8; the correct PDF page7 was subsequently rendered and visually inspected. Poppler emitted font warnings while exiting0; the actual inspected pages are legible and their full warning streams are retained. The native v02 custody deliberately exited1 after reporting the authentic V03 metadata ambiguity. None of these exits is relabeled as success. All actual native PIDs, exact recorder/driver source pins, complete compressed stdout/stderr and executed source versions are retained. Mode pins inside captures describe execution-time modes; the namespace is later intentionally frozen0444/0555 without changing source or stream bytes.
+
+## Final limits
+
+No unresolved substantive issue remains for the qualified exact V04 correction content. Unknown particular presentation/correction priority, universal old-software proof and full software/complexity results are explicit exclusions, not claimed achievements. Existing-branch correction, public readback and campaign disposition remain the parent's separate reviewed operational work. Final native custody passed234 checks over23 preceding captures; its own completed native capture is separately authenticated during closure, for24 captures total. Content-review estimate100%; parent mathematics100%, bounded priority100%, workflow80% preparation only.

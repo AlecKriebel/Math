@@ -1,0 +1,11 @@
+--- exact_algebra_controls.py
++++ algebra_resultant_guard_removed.py
+@@ -146,7 +146,7 @@
+     bw, bh = forms(bf,bg)
+     br = resultant(bf,bg)
+     weak_accepts = normalized(bw) and homogeneous_divides(bw,bh,20)
+-    accepts = weak_accepts and (args.omit_resultant or br != 0)
++    accepts = weak_accepts and (True)
+     check(br == 0, 'degenerate degree-11 pair has a base point')
+     check(weak_accepts, 'normalization/divisibility alone admit base-point artifact')
+     check(not accepts, 'resultant guard rejects base-point artifact')

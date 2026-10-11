@@ -1,0 +1,15 @@
+# Frozen initial independent analytic conclusion
+
+Verdict: PASS for the all-real-alpha sufficient coefficient criterion and its stated open-unit-disk scope. No mathematical counterexample or unsupported central implication was found. This verdict was frozen before opening the original review, original verification scripts, or another family's report. Novelty is not evaluated.
+
+Let a=|1-alpha|, b=|alpha|, d=a+2b-1, and k=(d+sqrt(d^2+8b))/4. If alpha is nonzero, b>0 and k>0. If alpha=0, k=0. For nonzero alpha, k is the positive root of 2k^2-dk-b=0, so a/(1+2k)+b/k=1. The coefficient hypothesis is T=sum n[1+k(n-1)]|a_n| <= 1.
+
+Independent disk-local proof: for 0<r<1 define A_r=sum |a_n|r^(n-1), B_r=sum n|a_n|r^(n-1), X_r=B_r-A_r, and Y_r=sum n(n-1)|a_n|r^(n-1). Then T_r=B_r+kY_r <= rT <= r < 1. At alpha=0 only B_r is needed; no global Y is assumed. We have A_r <= B_r/2 and B_r<1, hence |f(z)/z-1|<=A_r<1 and |f'(z)-1|<=B_r<1 when |z|=r. Both required factors are nonzero.
+
+The power-series identities yield |zf'/f-1|<=X_r/(1-A_r) and |zf''/f'|<=Y_r/(1-B_r). If alpha=0, the first ratio is <1 because X_r=B_r-A_r<1-A_r. If alpha is nonzero and f is not the identity, Y_r>=2X_r>0 and D_r=1-B_r>kY_r>=2kX_r. Thus X_r/(D_r+X_r)<1/(1+2k) and Y_r/D_r<1/k. Multiplication by a,b and the root identity gives |J_alpha[f](z)-1|<1. At zero or for the identity J=1. Consequently Re J>0 throughout the disk.
+
+This proof works directly at T=1, without passing to limits of classes or assuming strict positivity survives a limiting process. It handles arbitrary complex phases, all negative alpha, and all finite positive alpha. Analyticity is an input hypothesis; all differentiated power-series identities hold on each smaller disk. For alpha nonzero the budget also implies global Y<infinity. For alpha=0, coefficients |a_n|=1/[n^2(n-1)] provide T=B=1 while Y=sum 1/n diverges, demonstrating that no global second moment may be silently required.
+
+Independent source inspection completed: full relevant Hayman 2018 page printed 141 / PDF 142 inspected as text and rendered image; complete Kumar-Ravichandran 2017 article read, and its printed 368 / PDF 4 majorant visually inspected. Hayman's target uses real alpha, analytic normalized f, the nonzero product, and a sufficient-condition generalization question. It does not state a necessary-and-sufficient or global-optimality requirement. Kumar-Ravichandran Theorem 2.1 uses 0<=alpha<=1 for alpha-convex radii under pointwise coefficient envelopes; its two-denominator estimate is a direct precedent. Other parts of that paper discuss a different beta-dependent derivative expression, which is not the all-real-alpha class claim under audit.
+
+The candidate's separate one-parameter sharpness claim for 0<alpha<=1 is consistent with direct algebra: for f_c=z-cz^2 and x=cz, J=[1-(4+alpha)x+4x^2]/[(1-x)(1-2x)]. Its first positive numerator zero is c_*=1/[2(1+k)], and choosing c_*<c<min(1/2,1/[2(1+lambda)]) gives an interior negative witness whenever 0<=lambda<k. This is exactly the stated restricted sharpness, not global coefficient-region optimality.

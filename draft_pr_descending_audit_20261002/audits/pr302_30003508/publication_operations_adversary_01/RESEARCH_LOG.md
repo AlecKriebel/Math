@@ -1,0 +1,5 @@
+# PR302 prepared publication operator adversary 01
+
+2026-10-05T07:57:41.540399+00:00 — Authenticated all four requested source bodies, repository kit and README, exact metadata, and all 23 frozen public files. Scientific clearance is absent. Review 20%; no execution or publication authority. All writes remain in this review namespace. Exploratory CLI text decoding failed because the CLI is a native binary; the actual reported error is retained with its limited tool provenance.
+
+2026-10-05T08:10:54.294849+00:00 — Actual local suite PID63096 completed all41 cases, exit0, full prelaunch source/interpreter/request/start/streams authenticated. G1 mandatory operator/evidence contract and G2 mandatory tracker full-evidence binding confirmed. Complete report/verdict/read scope retained. Review100%; approval readiness80%; authorized execution0%. Whole original nine inputs and all23 candidate files unchanged. No services/Git/PR/shared control touched. Closing only this namespace to444/555; historical prelaunch source modes remain historical, while final manifest gives current modes.

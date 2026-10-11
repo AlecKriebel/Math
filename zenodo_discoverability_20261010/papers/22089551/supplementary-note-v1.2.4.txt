@@ -1,0 +1,99 @@
+                                    Supplementary Note:
+    Positive Recurrence for Single-Linkage Bimolecular
+     Weakly Reversible Stochastic Reaction Networks
+                                                  Alec Kriebel
+                                              Independent researcher
+                                           ORCID: 0009-0001-9320-500X
+
+                                Supplementary Note — 22 August 2026
+
+                                                     Abstract
+         This supplementary note collects edge-case clariﬁcations and reproducibility interfaces supporting the
+      main manuscript. The ﬁnite-trace and embedded-chain-to-continuous-time propositions, including their
+      proofs, remain in the main manuscript.
+
+
+1     Trace-chain and physical-time details
+1.1    Labelled-channel marking
+The augmented state records the target of the actual labelled channel that ﬁred. If two channels have the
+same population displacement but diﬀerent sources or targets, their post-jump populations can agree while
+their carried targets or transition probabilities diﬀer. They therefore remain separate. Only channels with
+identical source and target may be aggregated.
+
+1.2    Nonemptiness of the Foster set
+The ﬁnite set K in the episode-drift construction is nonempty, not merely ﬁnite. The global-minimum
+argument is pathwise: the residual log-factorial potential has a global minimum, and every possible episode
+endpoint has potential at least that minimum. No optional-stopping or integrability claim is needed at this
+step because every episode has uniformly bounded ﬁnite length.
+
+1.3    Hitting versus positive return
+The trace-chain proof distinguishes ﬁrst hitting from positive return. From k ∈ K, one ordinary jump
+is taken before the next hit of K, so the resulting return time is positive. There are only ﬁnitely many
+successors of states in K, and the endpoint-chain drift estimate gives ﬁnite expected hitting of K from each
+successor. The ﬁnite trace chain is considered only after this step. A uniform ﬁnite-block chance of reaching
+one selected trace state gives ﬁnite expected positive trace return; the random trace excursions are then
+expanded into ordinary embedded jumps using the strong Markov property and Tonelli’s theorem.
+
+1.4    Stationary occupation balance
+The return construction gives a ﬁnite expected number of embedded jumps and a ﬁnite expected amount
+of physical time before the positive return to the selected state x∗ . During a complete return cycle, the
+number of arrivals at any state y ̸= x∗ equals the number of departures from y pathwise. At x∗ the
+initial departure and terminal arrival also balance. Taking expectations and weighting each visit by its
+exponential holding-time mean gives the statewise stationary balance equations for the normalized mean
+
+
+                                                         1
+occupation measure displayed in the manuscript. This is the elementary cycle-level interface behind the
+cited regenerative occupation theorem.
+
+1.5    Nonexplosion in physical time
+The population embedded chain is constructed before nonexplosion is known. The ﬁnite-mean return result
+for that embedded chain supplies a population state x∗ visited inﬁnitely often. At each visit, the following
+holding time has the same exponential law with one ﬁxed ﬁnite rate. The strong Markov construction makes
+these holding times independent copies, and their inﬁnite sum diverges almost surely. Total physical time
+dominates this subseries, so jump times cannot accumulate at a ﬁnite time. This recovers nonexplosion for
+the present subclass; broader bimolecular weakly reversible nonexplosion is already known, as cited in the
+main manuscript. Once nonexplosion is established, the uniform positive lower bound on total rates and the
+ﬁnite mean embedded return give ﬁnite expected physical return by Tonelli’s theorem.
+
+1.6    Absorbing singletons
+Absorbing singleton reachability classes are handled before channel augmentation and carry their point-
+mass stationary laws. In a nonabsorbing irreducible class every population state enables a genuine channel;
+otherwise that state would itself be absorbing, and symmetry of accessibility would force its reachability
+class to be the singleton.
+
+
+2     Computational veriﬁcation boundary
+The accompanying dependency-free Python package performs deterministic, exact-arithmetic checks of the
+falling-factorial identity and source-probability rewrite. It also tests state-cycle lifting and accessibility
+symmetry on ﬁnite calibration networks, scalar-envelope branch conditions and monotonicity, the bimolecular
+top-complex classiﬁcation with certiﬁcate-validated witnesses, absorbing-singleton handling, the corrected
+κ2 ↓ 0 rate-example limit, the exact logarithmic coeﬃcient, the exact Anderson–Cappelletti–Kim Example 4.1
+comparison included in the paper, and the stationary return-cycle normalization on a ﬁnite chain.
+   The reproducer runs the complete test suite, emits the canonical report twice, requires those reports to
+be byte-identical, and compares the result with the committed report. Environment information is recorded
+separately so that it does not destabilize the canonical JSON. The canonical report is veriﬁed on CPython
+3.11 through 3.14; no claim is made for future interpreter versions until they are added to the test matrix.
+   These computations are falsiﬁcation and regression aids. No ﬁnite atlas proves the universal theorem, no
+random test proves recurrence, and no computation enumerates the analytic Foster set K or certiﬁes a useful
+bound on its cardinality, location, or diameter. Those universal conclusions come only from the manuscript’s
+analytic argument.
+
+
+3     Reproduction pointers
+From the tagged Version 1.2.4 release directory, run:
+
+cd code
+./reproduce.sh
+
+   The canonical output is code/verification_report.json; an identical durable copy is retained
+as supplement/verification_report.json. The reproducibility environment, release identiﬁers, and
+complete clean-checkout replay procedure are recorded in REPRODUCIBILITY.env and validation/; the
+release manifest is supplement/MANIFEST.sha256. The package archive is created deterministically by
+supplement/build_release_archive.py and checked byte-for-byte in continuous integration.
+
+
+
+
+                                                        2
+

@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Replay unchanged original diagnostics and all three new exact controls privately."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+
+ap=argparse.ArgumentParser()
+ap.add_argument('--output',type=Path)
+args=ap.parse_args()
+here=Path(__file__).resolve().parent
+original=here.parent/'source_snapshot'
+out=(args.output or here/'replay_run').resolve()
+out.mkdir(parents=True,exist_ok=True)
+
+
+def sha(b):return hashlib.sha256(b).hexdigest()
+
+
+def run(name,script,expected):
+    d=out/name
+    d.mkdir(parents=True,exist_ok=True)
+    target=d/script.name
+    shutil.copyfile(script,target)
+    p=subprocess.run([sys.executable,str(target)],capture_output=True)
+    (d/'stdout.json').write_bytes(p.stdout)
+    (d/'stderr.txt').write_bytes(p.stderr)
+    assert p.returncode==0 and not p.stderr,(name,p.returncode,p.stderr.decode())
+    assert p.stdout==expected.read_bytes(),name
+    return {'name':name,'script_sha256':sha(script.read_bytes()),'exit_code':p.returncode,
+            'stderr_empty':not p.stderr,'stdout_sha256':sha(p.stdout),
+            'stdout_byte_exact':True,'data':json.loads(p.stdout)}
+
+
+spec=[('original_author',original/'verify.py',original/'verification.json'),
+      ('original_independent',original/'review/independent_checks.py',original/'review/independent_results.json'),
+      ('new_linking',here/'linking_controls.py',here/'linking_controls_results.json'),
+      ('new_candidate',here/'candidate_controls.py',here/'candidate_controls_results.json'),
+      ('new_prior',here/'prior_controls.py',here/'prior_controls_results.json')]
+r=[run(*s) for s in spec]
+
+# All original diagnostics actually still pass under these false adjacent texts.
+# Thus their successful algebra checks cannot certify prose or a global result.
+original_text=(original/'OBSTRUCTION.md').read_text()
+false_claims={
+    'false_solved':'A full universal proof of nonzero linking has been established.',
+    'false_regular':'Every smooth injective spherical binormal has nonvanishing derivative.',
+    'false_normal_substitution':'Every injective normal framing may be substituted for a compatible binormal.'}
+mutants=[]
+for name,claim in false_claims.items():
+    prose=original_text+'\n\nFALSE CONTROL CLAIM: '+claim+'\n'
+    d=out/name
+    d.mkdir(parents=True,exist_ok=True)
+    (d/'OBSTRUCTION.md').write_text(prose)
+    programs=[]
+    for label,script,expected in spec[:2]:
+        program_dir=d/label
+        program_dir.mkdir(parents=True,exist_ok=True)
+        (program_dir/'OBSTRUCTION.md').write_text(prose)
+        programs.append(run(name+'/'+label,script,expected))
+    mutants.append({'name':name,'false_claim':claim,'mutated_prose_sha256':sha(prose.encode()),
+                    'original_diagnostics_pass_unchanged':all(x['stdout_byte_exact'] for x in programs),
+                    'programs':[{k:v for k,v in z.items() if k!='data'} for z in programs]})
+
+print(json.dumps({'runs':r,'false_adjacent_prose_controls':mutants,
+                 'new_exact_assertions':79+25+13,'new_candidate_mutants_rejected':7,
+                 'verification_attempts_added':0,
+                 'scope':'Actual private deterministic replays; successful original algebra tests are not global linking or prose certificates.'},indent=2))

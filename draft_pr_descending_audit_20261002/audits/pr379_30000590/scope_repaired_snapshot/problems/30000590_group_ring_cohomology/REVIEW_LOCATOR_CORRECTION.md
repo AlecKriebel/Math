@@ -1,0 +1,3 @@
+# Additive review correction: Davis book locator
+
+The frozen SOURCE_SCOPE.md cites Davis, *Infinite group actions on polyhedra*, Section 7.2 as printed page 223 / PDF233. In the exact bound PDF with SHA-256 03cb81989cba58654f65037cb8e57366e9bcd9642388bae1a2b177c954189d44, the correct locator is **printed page 229 / PDF page 233**. The finite-length projective-resolution definition of FP is unchanged and was rechecked on that page. This corrects a bibliographic locator only. All 41 files in the original final author packet, including its manifest and the earlier Sharifi locator correction, remain byte-for-byte unchanged. Five substantive author turns remain the final count.

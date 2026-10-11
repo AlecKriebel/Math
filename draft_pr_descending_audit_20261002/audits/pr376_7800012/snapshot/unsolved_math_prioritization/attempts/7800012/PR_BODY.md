@@ -1,0 +1,17 @@
+## Result
+
+7800012 / AMR-077-0012: **unsolved, 5/5**, with a full independent scoped source/proof PASS.
+
+The unrestricted large-lattice quarter-filled optimal-flux question remains unresolved. Arbitrary spatial phases and both torus loop holonomies are retained; the cited half-filled theorem is not substituted for this problem.
+
+## Precise partial progress
+
+The five turns establish the global4×4 optimum, a universal all-large-size energy-gap bound from exact moments, complete holonomy optimization inside the uniform pi/2 class, an exact8×8 strict local minimum modulo gauge, and a canonical thermodynamic comparison framework with phase separation allowed.
+
+The8×8 Hessian certificate covers every phase direction, with63 gauge zeros and65 positive physical directions. This is local and size-specific. Uniform-class twist optimization is not arbitrary-flux optimization, and the polynomial-defect optimum is not an energy optimum. The bulk lower and upper bounds do not meet.
+
+## Verification
+
+All102,005 author assertions replay byte-for-byte, with157 manifest bindings and three local primary-source identities verified. The independent audit adds984 controls and checks all five proofs and the complete symbolic Hessian implementation. Author replay is standard-library Python; independent replay additionally requires SymPy. Source verification is optional in a source-free checkout and is explicitly distinguished from the portable mathematical replay.
+
+Only this target folder and its own QUEUE status/turn cells change. Fresh main, final author ancestry and every frozen author/review byte are preserved. No raw source redistribution, merge or release.

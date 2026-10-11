@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Portable exact diagnostics for the research note; Python 3.10+, stdlib only.
+
+No finite run proves NP-hardness. All tests use every root and whole orientation.
+This adapted checker uses the audited mechanism with B=2 and B=n+1.
+"""
+import argparse
+import datetime
+import hashlib
+import itertools
+import json
+import os
+from collections import Counter
+from functools import lru_cache
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+COUNTS = Counter()
+
+
+def require(condition, message):
+    """An explicit guard, deliberately independent of removable assert syntax."""
+    if not condition:
+        raise AssertionError(message)
+    COUNTS[message] += 1
+
+
+def sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def normalize(clauses):
+    """Signed nonzero integer labels; remove duplicates/tautologies, then relabel.
+
+    No unused declaration or largest numeric label contributes to n. An empty
+    clause dominates even if other clauses are tautologies. At most 3 raw
+    literals are accepted; every raw clause is validated before any empty-clause
+    shortcut. Malformed-input rejection is independent of clause order.
+    """
+    raw_clauses = tuple(tuple(clause) for clause in clauses)
+    for clause in raw_clauses:
+        require(len(clause) <= 3, 'at_most_three_input_literals')
+        require(all(type(lit) is int and lit != 0 for lit in clause),
+                'literal_labels_are_nonzero_integers')
+    if any(not clause for clause in raw_clauses):
+        return {'kind': 'no', 'clauses': [], 'symbols': []}
+    cleaned = []
+    for clause in raw_clauses:
+        distinct = set(clause)
+        if any(-lit in distinct for lit in distinct):
+            continue
+        cleaned.append(tuple(sorted(distinct, key=lambda lit: (abs(lit), lit))))
+    if not cleaned:
+        return {'kind': 'yes', 'clauses': [], 'symbols': []}
+    symbols = sorted({abs(lit) for clause in cleaned for lit in clause})
+    dense = {symbol: i + 1 for i, symbol in enumerate(symbols)}
+    clauses = [tuple(dense[abs(lit)] * (1 if lit > 0 else -1)
+                     for lit in clause) for clause in cleaned]
+    return {'kind': 'ordinary', 'clauses': clauses, 'symbols': symbols}
+
+
+def construct(clauses, B=2, shift=0):
+    normalized = normalize(clauses)
+    require(type(B) is int and B >= 2, 'B_integer_at_least_two')
+    require(type(shift) is int and shift >= 0, 'nonnegative_integer_shift')
+    if normalized['kind'] != 'ordinary':
+        val = int(normalized['kind'] == 'no')
+        instance = {'N': 2, 'edges': [(0, 1)],
+                    'costs': [[val + shift, val + shift] for _ in range(2)],
+                    'K': (1 if val else 0) + 2 * shift,
+                    'normalization': normalized, 'B': B, 'shift': shift}
+        return instance
+    cs = normalized['clauses']
+    n, m = len(normalized['symbols']), len(cs)
+    N = n + m + 2
+    edges = {(0, 1)} | {(hub, i + 2) for hub in (0, 1) for i in range(n)}
+    for j, clause in enumerate(cs):
+        edges.update((abs(lit) + 1, n + 2 + j) for lit in clause)
+    edges = sorted(edges)
+    arcs = [arc for u, v in edges for arc in ((u, v), (v, u))]
+    index = {arc: k for k, arc in enumerate(arcs)}
+    # Every root explicitly supplies every directed edge cost, including zeros.
+    costs = [[shift for _ in arcs] for _ in range(N)]
+    for u, v in edges:
+        value = 0 if (u, v) == (0, 1) else B if v >= n + 2 else 1
+        costs[0][index[u, v]] += value
+        costs[0][index[v, u]] += value
+    for j, clause in enumerate(cs):
+        for lit in clause:
+            # The false hub: f=1 for positive literals; t=0 for negative ones.
+            costs[n + 2 + j][index[abs(lit) + 1, int(lit > 0)]] += 1
+    return {'N': N, 'edges': edges, 'costs': costs,
+            'K': B * m + n + shift * N * (N - 1),
+            'normalization': normalized, 'B': B, 'shift': shift}
+
+
+def validate_table(instance):
+    N, edges, costs = instance['N'], instance['edges'], instance['costs']
+    require(N >= 1 and len(edges) == len(set(map(tuple, edges))), 'simple_graph')

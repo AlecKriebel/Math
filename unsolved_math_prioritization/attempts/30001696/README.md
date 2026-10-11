@@ -1,0 +1,7 @@
+# Accepted classical-priority correction for30001696
+
+Accepted already_solved partial; complete workflow100%. Both universal spectral and classical proofs verify the whole PL sphere–ball product. The conservative classification credits Klee–Novik's stronger embedded coordinate collapse and classical PL collar/regular-neighborhood theory. Earlier explicit printing and historical recognition remain unverified; no new-unsolved-problem discovery is claimed.
+
+Three independent mathematical families, two complete priority families and a new full current acceptance adversary passed. Root reproduced the original diagnostic receipts,393658 family mathematical controls and101284 final fresh controls. Finite computations supplement universal proofs. Extensive AI assistance and AI audits; unrefereed, with no human peer-review or formal certification claim.
+
+PROOF.md changes only its administrative acceptance header relative to the reviewed version; sections1 onward are exact current-reviewed bytes, sections2–8 also exact original bytes. Both sealed classical adapters, control proofs, all original source records, old reviews, scripts and receipts remain unchanged. ACCEPTANCE.md and acceptance.json bind the original head, complete current review, canonical bytes and original1/5 budget. REVIEWED_CANDIDATE_* preserve every administratively updated current review input. No paper, new DOI, deposit, release or tracker row.

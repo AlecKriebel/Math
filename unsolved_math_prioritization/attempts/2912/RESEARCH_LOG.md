@@ -1,0 +1,1 @@
+2026-10-03T02:17:16.736894+00:00 — actual administrative freeze; publication workflow75%, discovery0%. Scoped standard partial deductions accepted by genuine ROOT reading; full problem UNSOLVED. Original2/5,new0,audit0. NEW whole-current review PENDING. No paper/new DOI/tracker.

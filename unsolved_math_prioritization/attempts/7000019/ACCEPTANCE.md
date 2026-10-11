@@ -1,0 +1,9 @@
+# Accepted partial disposition:7000019 /AMR-069-0019
+
+PR28 is remotely merged as an attributed **unsolved partial**, original2/5, zero new substantive attempts. The strongest verified theorem is spherical rigidity for compact convex bodies with C^(2,alpha) boundary,0<alpha<1, and one global constant-strip width0<h<2inradius. The remaining fixed-width range and nonsmooth case are unresolved; novelty is unconfirmed.
+
+Three distinct early-independent families, root universal/source reconstruction and replays, and a NEW complete corrected28-file adversary pass. Root fully read the final report/code and reproduced original1056/1056/266 byte-exact outputs, family40/20/35 and fresh30 exact controls/13 rejected falsifiers. The full applicable Reichel rigidity proof was checked. PROOF hash b4f039ad86e2c3121b8afebb8c1637e2fc9185ac20d5ee1ff4ba358e61c9e811 is exact, with every mathematical section2onward unchanged. Historical source/prior/script/receipt/log/review/ledger and ORIGINAL/REVIEWED_CANDIDATE administration remain exact.
+
+Exact original head 90a81313f3f65a7914fb6d5a9950fa087ea7467e is merged as 93e71b12926a28f48a5f3c061c941c9972504d78 at 2026-10-01T23:50:06Z, with parents 3410fb3daf401507cb9ec9113222d422360a0f0e, 90a81313f3f65a7914fb6d5a9950fa087ea7467e. Remote MERGED/non-draft/head/commit, ancestry and both parents verified. Only selected status/budget/findings columns of the full premerge12-column QUEUE were changed; unrelated bytes remain exact.
+
+Present acceptance mirror is recorded separately in the parent state_mirror_receipt.json, preserving existing state/history and original budgets. Historical source/model/query/pre-header attestations and static catalog/legacy-generator/manual-ready limits remain explicit; no historical ready/proof transition is invented. Extensive AI use; unrefereed, no humanpeer-review/proof-assistant certification. No paper, DOI/deposit, release or tracker entry. Workflow100% for this accepted disposition.

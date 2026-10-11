@@ -1,0 +1,1 @@
+2026-10-02T00:09:28.318769+00:00 — Initial inline integrity harness expected29 members plus manifest for the phrase current30. Actual current MANIFEST has30 bound members, with31 total files including its self-excluding manifest. Failure occurred before mutation/replay; corrected harness uses declared30 bound members/31 physical files. No input failure established.

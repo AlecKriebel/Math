@@ -1,0 +1,98 @@
+--- PRE_WHOLE_AND_FORMAT_SOURCE/pr46_guards.py
++++ pr46_guards.py
+@@ -31,7 +31,7 @@
+ MIRROR_SHA = 'ca7576ece5bc37a6e569a62764541de773243d38bffa811f4d1174f25635667f'
+ ADMIN = {'independent_review/verdict.json', 'status.json', 'readiness.json'}
+ IMMUTABLE = {'independent_review/independent_results.json', 'independent_review/review_summary.json', 'turns.json', 'source_record.json', 'independent_review/REVIEW.md', 'SOURCE_STATUS.md', 'verification.json', 'provenance.json', 'verify.py', 'independent_review/independent_checks.py'}
+-WHOLE_VERDICT = 'PASS_WHOLE_CURRENT_SCOPED_NO_MANDATORY_CORRECTION'
++WHOLE_VERDICT = 'PASS_EXACT_CURRENT_KNOWN_RESULT_NO_MANDATORY_CORRECTION'
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty', 'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
+ NATIVE = {'draft_pr_publication_program_20260930/inventory.json'} | {'unsolved_math_prioritization/' + n for n in ['QUEUE.md','state.json','history.jsonl','catalog.json','assessments.json','queue.py','policy.json','manifest.json','cache/problems.json','cache/research_results.json','cache/catalog.sqlite','review_v2/related_target_groups.json']}
+ IGNORED_CACHE3 = {'unsolved_math_prioritization/cache/problems.json', 'unsolved_math_prioritization/cache/research_results.json', 'unsolved_math_prioritization/cache/catalog.sqlite'}
+@@ -159,10 +159,19 @@
+         if k in obj: require(type(obj[k]) is int and obj[k]==len(rr),'Declared count/type differs')
+     check(base,rr); exact(base,{z['path'] for z in rr}|{name})
+     for z in rr:
+-        if z['path'].endswith('.json'): parse(regular(base,z['path']).read_bytes())
++        raw=regular(base,z['path']).read_bytes()
++        if z['path'].endswith('.json'):
++            # Historical literal empty failed stdout is preserved, never a PASS object.
++            if z['path']=='family_evidence/projective_algebra_family/failed01_run_stdout.json' and Path(base) in {C,K}:
++                require(raw==b'' and z['bytes']==0 and z['sha256']=='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855','Exact literal empty failed stdout only')
++            else:parse(raw)
+         if z['path'].endswith('.jsonl'):
+-            raw=regular(base,z['path']).read_bytes(); require(not raw or raw.endswith(b'\n'),'Incomplete JSONL')
+-            for line in raw.splitlines(): parse(line)
++            archives={'original_preparation_archive/original_native_selected/assessment_history.jsonl':'0c7d72e9e188763a743e59ea13367ba23d66bf8dbaa5c67d7d0f325cee8ffeb5','original_preparation_archive/original_native_selected/history.jsonl':'cd650a0dec4b3ff77299d73300268e7bd465484f4b296636336f28ecdd79ae31'}
++            if z['path'] in archives and Path(base) in {C,K}:
++                require(sha(raw)==archives[z['path']],'Exact historically named JSONL selected-history object bytes');record=parse(raw);required(record,{'selection_only':True,'selected_problem_id':ID,'complete_selected_objects':[],'priority_or_claim_verification':False},'Historical selected-history JSON object, not event ledger')
++            else:
++                require(not raw or raw.endswith(b'\n'),'Incomplete actual JSONL')
++                for item in raw.splitlines():parse(item)
+     if frozen:frozen_files(base,rr,name)
+     return rr
+ 
+@@ -312,7 +321,7 @@
+     references=inputs['external_input_rows'];require(type(references) is list and len(references)==inputs['external_input_count'],'Whole individual external count')
+     names=set()
+     for z in references:
+-        keyset(z,{'path','bytes','sha256'},'Complete absolute excluded input identity');p=resolve_foreign_literal(z['path']);raw=p.read_bytes();require(type(z['bytes']) is int and len(raw)==z['bytes'] and sha(raw)==digest(z['sha256']),'Full excluded input changed');names.add(p.relative_to(R).as_posix())
++        keyset(z,{'path','bytes','sha256','full_mode'},'Complete absolute excluded input identity');p=resolve_foreign_literal(z['path']);raw=p.read_bytes();require(type(z['bytes']) is int and len(raw)==z['bytes'] and sha(raw)==digest(z['sha256']),'Full excluded input changed');require(type(z['full_mode']) is int and stat.S_IMODE(p.stat().st_mode)==z['full_mode'],'Full excluded input mode changed');names.add(p.relative_to(R).as_posix())
+     require(len(names)==len(references),'No repeated absolute external identity')
+     historical={'draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/QUEUE.md','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'};dated_head=deps['current_main_head'];dated=load(A/'ROOT_CURRENT_INPUT_PREIMAGES.json');require(dated['current_head']==dated_head,'Frozen epoch never rebound');native={z['path']:z for z in rows(dated['files'])};require(set(native)==NATIVE,'Exact dated13')
+     require((NATIVE-historical)<=names and not historical.intersection(names),'Dated Git native4 plus stable live9 distinction')
+@@ -321,6 +330,7 @@
+     verdict=parse(bound(inputs['closed_whole_result']));require(equal(verdict,load(HERE/'EXPECTED_WHOLE_VERDICT.json')),'Entire typed actual whole verdict');require(verdict['mandatory_corrections']==[],'Whole mandatory corrections must be empty')
+     bound(inputs['closed_whole_report']);rootref=exact_reference(approved['root_whole_inspection']);require(equal(rootref,inputs['closed_root_whole_inspection']),'Genuine actual ROOT full whole-read pin')
+     root=parse(bound(rootref));require(equal(root,load(HERE/'EXPECTED_ROOT_WHOLE_REVIEW.json')) and equal(root['complete_VERDICT_object'],verdict),'Entire genuinely completed ROOT whole record and typed verdict')
++    required(root,{'schema':'pr46-root-complete-closed-whole-inspection/v1','status':'PASS_ROOT_COMPLETE_CLOSED_WHOLE_INSPECTION','candidate_manifest_sha256':CURRENT_SHA,'closed_whole_manifest_sha256':wm['sha256'],'first_party_members':245,'individually_bound_foreign_inputs':1877,'personal_report_and_verdict_fully_read':True,'all_first_party_whole_bytes_and_modes_checked':True,'all_external_individual_whole_bytes_checked':True,'exact_self_only_recursive_closure_checked':True,'closing_and_postexit_capture_chronology_checked':True,'ROOT_actual_inner45_complete_read':True,'frozen_inner43_honest_prefix':True,'dated_native4_current_HEAD_not_future_acceptance_authority':True,'mandatory_defects':[],'mandatory_corrections':[],'original_substantive_attempts':0,'original_source_verification_responses':1,'new_substantive_attempts':0,'audit_turns':0,'full_problem_solved_by_project':False,'future_execution_approved':False,'future_acceptance_approved':False,'paper_created':False,'new_DOI_created':False,'tracker_row_created':False,'human_peer_review_claimed':False},'Entire standalone genuine ROOT known-result whole record');
+     require(root['future_execution_approved'] is False,'Whole reading supplies no future execution approval');require(utc_clock(inputs['root_whole_read_completed_utc'],'Actual whole read')<=utc_clock(approved['created_utc'],'Actual ROOT approval'),'Whole reading before approval')
+     freeze=load(A/'ROOT_ACTUAL_CURRENT_FREEZE_INSPECTION.json');require(equal(freeze,load(HERE/'EXPECTED_ROOT_CURRENT_FREEZE.json')),'Complete genuinely finished original inner/outer ROOT record')
+     required(freeze,{'schema':'pr46-root-complete-actual-current-freeze-readback/v2','status':'PASS_COMPLETED_ORIGINAL_INNER_OUTER_FULL_READBACK','packet_files_count':946,'packet_directories':142,'frozen_inner_prefix_commands':43,'final_original_inner_commands':45,'all_dependency_members_read':826,'ROOT_full_command_record_and_outer_streams_personally_read':True,'old_PASS_transferred':False,'future_acceptance_approved':False},'Exact after-exit current evidence, historical prefix not final')
+--- PRE_WHOLE_AND_FORMAT_SOURCE/independent_controls.py
++++ independent_controls.py
+@@ -43,7 +43,7 @@
+     except (ValueError,TypeError,KeyError,AssertionError,FileNotFoundError,FileExistsError):check(name,True)
+     else:raise AssertionError('Accepted mutant '+name)
+ def git(name, *tail):
+-    root=H/'OWN_READONLY_GIT';root.mkdir(exist_ok=True);d=root/name;d.mkdir();operator=Path(__file__).read_bytes()
++    root=H/'OWN_READONLY_GIT_V2';root.mkdir(exist_ok=True);d=root/name;d.mkdir();operator=Path(__file__).read_bytes()
+     argv=['git',*tail];pre={'argv':argv,'cwd':str(R),'source_sha256':sha(operator),'operator_pid':os.getpid(),'created_utc':now(),'stdin_supplied':False}
+     put(d/'PRELAUNCH_SOURCE.py',operator);put(d/'PRELAUNCH.json',enc(pre));start=now();child=subprocess.Popen(argv,cwd=R,stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,GIT_OPTIONAL_LOCKS='0'));out,err=child.communicate();finish=now()
+     capture={**pre,'actual_execution':True,'completed':True,'pid':child.pid,'exit_code':child.returncode,'started_utc':start,'finished_utc':finish,'source_unchanged':Path(__file__).read_bytes()==operator}
+@@ -60,10 +60,12 @@
+     names={p.name};dirs=set()
+     for z in rows:
+         relative(z['path']);names.add(z['path']);dirs|={d.as_posix() for d in PurePosixPath(z['path']).parents if d.as_posix()!='.'};raw=read(p.parent/z['path'],z,frozen=True)
+-        if z['path'].endswith('.json') and raw:parse(raw)
+-        if z['path'].endswith('.jsonl'):
++        if p.parent==C and z['path'].endswith('.json') and raw:parse(raw)
++        if p.parent==C and z['path'].endswith('.jsonl'):
+             assert not raw or raw.endswith(b'\n')
+-            for line in raw.splitlines():parse(line)
++            if z['path'] in {'original_preparation_archive/original_native_selected/assessment_history.jsonl','original_preparation_archive/original_native_selected/history.jsonl'}:parse(raw)
++            else:
++                for line in raw.splitlines():parse(line)
+     actual_files=set();actual_dirs=set()
+     for q in p.parent.rglob('*'):
+         assert not q.is_symlink() and (q.is_dir() or q.is_file());n=q.relative_to(p.parent).as_posix();relative(n)
+@@ -101,7 +103,9 @@
+         for k,v in o.items():
+             if k.startswith('root_') and k.endswith('_completed'):check('unfabricated pending '+n+' '+k,v is False)
+         check('new whole pending '+n,o['independent_whole_current_pass'] is False)
+-    inputs=parse(read(H/'INPUT_BINDINGS.json'));check('honest pending whole gate',inputs['whole_binding_completed'] is False and inputs['closed_whole_manifest'] is None and inputs['closed_whole_result'] is None and inputs['closed_root_whole_inspection'] is None)
++    inputs=parse(read(H/'INPUT_BINDINGS.json'));check('genuine now completed whole binding',inputs['whole_binding_completed'] is True and inputs['closed_whole_manifest']['sha256']=='be3fa099c6a080d5f9cddcf42f39ac51b51c8f89cd76d09fb5d360a99d1990e2' and inputs['closed_root_whole_inspection']['sha256']=='ed0cc07fd852881a0b9a9893e6c2ec7f25e6e6d2f3d1bfb26bfa88a7a0b17b54');inspect_manifest(A/'current_whole_adversary_family/MANIFEST.json',245)
++    for z in inputs['external_input_rows']:
++        b=read(Path(z['path']),z);check('normalized actual external full mode '+z['path'],stat.S_IMODE(Path(z['path']).stat().st_mode)==z['full_mode'])
+     for z in inputs['pins'].values():read(R/z['path'],z)
+     prior=parse(read(R/inputs['previous_mirror']['path'],inputs['previous_mirror']));check('all35 earlier primary membership',len(prior['entries'])==35 and sorted(e['pr'] for e in prior['entries'])==prior['required_completed_prs'] and 46 not in prior['required_completed_prs'])
+     for e in prior['entries']:
+@@ -110,7 +114,7 @@
+         b=read(R/e['budget']['ledger']['path']);assert sha(b)==e['budget']['ledger']['sha256'];check('typed actual prior budget '+str(e['pr']),type(e['budget']['used']) is int and type(e['budget']['limit']) is int)
+     post=parse(read(R/inputs['previous_post']['path'],inputs['previous_post']));rootpost=parse(read(R/inputs['previous_root_post']['path'],inputs['previous_root_post']));check('complete genuine PR45 ROOT entire_post equality',same(post,rootpost['entire_post']) and rootpost['schema']=='pr45-root-complete-actual-post-inspection/v1' and rootpost['completed_primary_prs']==35)
+     production=['pr46_guards.py','seal_final_evidence.py','capture_root_final_operation.py','integrate_reviewed_partial.py','state_mirror_reconciliation.py','verify_post_acceptance.py'];texts={n:source_text(H/n) for n in production}
+-    check('proposed no child approval production text',all('PENDING_ROOT' in texts[n] or n not in [] for n in production))
++    check('proposed explicit ROOT authority gates in source text',"root_binding_input" in texts['pr46_guards.py'] and "g.require(a.execute" in texts['seal_final_evidence.py'] and "g.args(p)" in texts['verify_post_acceptance.py'])
+     check('original14-path diff guard text',"splitlines())==14,'Original14 changed paths'" in texts['pr46_guards.py'])
+     check('explicit object zero-turn native guard text',"'kind':'pr46_exact_original_zero_turn_object'" in texts['state_mirror_reconciliation.py'] and "'turns_used':0" in texts['verify_post_acceptance.py'])
+     # This required private check catches the inherited empty-JSON parse trap before
