@@ -749,7 +749,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 738 | 30003676 / OWR-15962-002 | Sharp Virulence Thresholds for Stationary SIS Infection | 0.1032 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 739 | 30003759 / OWR-16157-001 | Uniform Minimal Control Time for Advection–Diffusion | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 740 | 30003791 / OWR-16162-003 | Linkage and Vanishing in Kato–Milne Cohomology | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 741 | 30003859 / OWR-16169-001 | Rigidity of Hirzebruch–Kummer Coverings | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 741 | 30003859 / OWR-16169-001 | Rigidity of Hirzebruch–Kummer Coverings | 0.1029 | 5.5 | 3 | 2018 | unsolved | 5/5 |  |  |  |
 | 742 | 30003975 / OWR-16628-004 | Stable Symbolic-Power Containments from a Single Containment | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 743 | 30003978 / OWR-16628-010 | Irrational Seshadri Constants from the Nagata Conjecture | 0.1029 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 744 | 30005185 / OWR-11101915-009 | Modulo-Four Reduced Khovanov Rank of Ribbon Knots | 0.1026 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
