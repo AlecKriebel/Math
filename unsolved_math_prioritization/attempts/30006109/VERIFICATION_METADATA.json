@@ -1,0 +1,222 @@
+{
+  "schema": "fare_zone_public_preparation_verification_v1",
+  "problem_id": 30006109,
+  "audit_identifier_row": 1688,
+  "prepared_date_utc": "2026-10-11",
+  "status": "PASS_LOCAL_PREPARATION",
+  "supplied_input_pins": {
+    "AUDIT_MANIFEST.json": {
+      "bytes": 2095,
+      "sha256": "9216483da0ccc72dfbcf819d1cae1d7ec0e0c84e1c44a296dcc138f52d823c06"
+    },
+    "PROOF_AND_MODEL_CORRECTION.md": {
+      "bytes": 16006,
+      "sha256": "eb3b281c76067ac8e81f224a6571a0c39433accb68a2bd7c97d34d58b9a6995c"
+    },
+    "AUDIT_REPORT.md": {
+      "bytes": 7789,
+      "sha256": "a852e096813d4c8d80337bb5a8852c0aab4a3298c5863b35ab0a55885eae13fd"
+    }
+  },
+  "input_manifest_disposition": "Local-only provenance. Its old allowlist is not publication authority; the executable checker is excluded from the new packet.",
+  "individually_checked_input_artifacts": [
+    {
+      "artifact_name": "PROOF_AND_MODEL_CORRECTION.md",
+      "bytes": 16006,
+      "sha256": "eb3b281c76067ac8e81f224a6571a0c39433accb68a2bd7c97d34d58b9a6995c",
+      "matches_input_manifest": true,
+      "public_disposition": "byte-identical public copy"
+    },
+    {
+      "artifact_name": "AUDIT_REPORT.md",
+      "bytes": 7789,
+      "sha256": "a852e096813d4c8d80337bb5a8852c0aab4a3298c5863b35ab0a55885eae13fd",
+      "matches_input_manifest": true,
+      "public_disposition": "full audit with two mapped editorial replacements"
+    },
+    {
+      "artifact_name": "PUBLIC_SOURCE_METADATA.json",
+      "bytes": 5472,
+      "sha256": "da917075ecde327e14920683b2eaa6dc7aedd239f38e2fd1a415fb21d1af6691",
+      "matches_input_manifest": true,
+      "public_disposition": "byte-identical public copy"
+    },
+    {
+      "artifact_name": "MATHEMATICAL_CHECKS.json",
+      "bytes": 1029,
+      "sha256": "4e9c49e51bc74c5ff6cb967ceab208e4df8008b775680d522e9fb590c9fa1671",
+      "matches_input_manifest": true,
+      "public_disposition": "byte-identical public copy"
+    },
+    {
+      "artifact_name": "verify_mathematics.py",
+      "bytes": 9498,
+      "sha256": "f79b91606cdb0de8733b6feb7f2f7f34ab858ad69757d95d5ca4342b70075b02",
+      "matches_input_manifest": true,
+      "public_disposition": "local-only executable; excluded"
+    }
+  ],
+  "mathematical_preservation": {
+    "proof": {
+      "source": {
+        "bytes": 16006,
+        "sha256": "eb3b281c76067ac8e81f224a6571a0c39433accb68a2bd7c97d34d58b9a6995c"
+      },
+      "public": {
+        "bytes": 16006,
+        "sha256": "eb3b281c76067ac8e81f224a6571a0c39433accb68a2bd7c97d34d58b9a6995c"
+      },
+      "byte_identical": true,
+      "replacements": []
+    },
+    "audit": {
+      "source": {
+        "bytes": 7789,
+        "sha256": "a852e096813d4c8d80337bb5a8852c0aab4a3298c5863b35ab0a55885eae13fd"
+      },
+      "public": {
+        "bytes": 7989,
+        "sha256": "1552a6f6186b7eb97bab0ca5d5434b028188a8afb8b11fd30fcb83b8d9060f36"
+      },
+      "replacements": [
+        {
+          "old": "The authored verify_mathematics.py has no external dependencies, network access, or source-author code. It checks finite examples in addition to the mathematical proof. It does not turn a finite enumeration into a proof of the general result.",
+          "new": "The locally retained authored finite-check program has no external dependencies, network access, or source-author code. It checks finite examples in addition to the mathematical proof. It does not turn a finite enumeration into a proof of the general result. The executable program is not included in this public packet; only its identity and aggregate results are published.",
+          "reason": "Clarify the local-only status of the finite-check executable; no mathematical statement is changed."
+        },
+        {
+          "old": "The local audit makes no publication, repository, queue, source-author-code, or outreach changes. Copied third-party PDFs and rendering/extraction files are not among the authored public artifacts identified by AUDIT_MANIFEST.json.",
+          "new": "The audit itself made no publication, repository, queue, source-author-code, or outreach changes. This prepared packet is governed by PUBLICATION_MANIFEST.json. Copied third-party PDFs, source text, images, executable programs, raw finite-instance data, and private coordination files are excluded.",
+          "reason": "Replace the upstream public-artifact reference with this packet's narrower publication allowlist."
+        }
+      ],
+      "all_other_bytes_unchanged": true
+    }
+  },
+  "finite_checker": {
+    "program_identity": {
+      "bytes": 9498,
+      "sha256": "f79b91606cdb0de8733b6feb7f2f7f34ab858ad69757d95d5ca4342b70075b02"
+    },
+    "publicly_distributed": false,
+    "runs": {
+      "normal": {
+        "status": "PASS",
+        "output": {
+          "bytes": 1029,
+          "sha256": "4e9c49e51bc74c5ff6cb967ceab208e4df8008b775680d522e9fb590c9fa1671"
+        },
+        "matches_audited_aggregate_bytes": true
+      },
+      "O": {
+        "status": "PASS",
+        "output": {
+          "bytes": 1029,
+          "sha256": "4e9c49e51bc74c5ff6cb967ceab208e4df8008b775680d522e9fb590c9fa1671"
+        },
+        "matches_audited_aggregate_bytes": true
+      },
+      "OO": {
+        "status": "PASS",
+        "output": {
+          "bytes": 1029,
+          "sha256": "4e9c49e51bc74c5ff6cb967ceab208e4df8008b775680d522e9fb590c9fa1671"
+        },
+        "matches_audited_aggregate_bytes": true
+      }
+    },
+    "aggregate_results": {
+      "status": "PASS",
+      "scope": "Finite checks, not a proof of the general theorem",
+      "enumeration": "Ground-set size 0 through 3; 0 through 3 listed constraints; all subsets, capacities 0 through path size, and commodity weights 0,1,2",
+      "counts": {
+        "greedy_instances": 234946,
+        "exchange_instances": 9050,
+        "exchange_triples": 55975,
+        "graph_bijection_instances": 4600,
+        "graph_bijection_subsets": 35132,
+        "gadget_optimum_instances": 260
+      },
+      "gadget_random_seed": 30006109,
+      "witness": [
+        {
+          "mask": 0,
+          "hard_feasible": true,
+          "hard_feasible_value": 0,
+          "dropout_value": 0
+        },
+        {
+          "mask": 1,
+          "hard_feasible": true,
+          "hard_feasible_value": 3,
+          "dropout_value": 3
+        },
+        {
+          "mask": 2,
+          "hard_feasible": true,
+          "hard_feasible_value": 3,
+          "dropout_value": 3
+        },
+        {
+          "mask": 3,
+          "hard_feasible": false,
+          "hard_feasible_value": null,
+          "dropout_value": 4
+        }
+      ],
+      "rational_capacity_flooring": "PASS"
+    },
+    "limitation": "Finite checks supplement the authored proof and are not formal certification. No raw instance collection is published."
+  },
+  "source_pdf_pin_checks": [
+    {
+      "source_id": "owr2024_50",
+      "bytes": 509794,
+      "sha256": "50e0e930fd4253bfb0463f25c366efb86f2da607c6db7c670f70aca80dabc792",
+      "matches_recorded_source_pin": true,
+      "included_in_public_packet": false
+    },
+    {
+      "source_id": "fare2512",
+      "bytes": 992344,
+      "sha256": "7f7e6ef2864c30ff927146a6400133827d808628b06bf8e0e0a5430c5ef9f3d6",
+      "matches_recorded_source_pin": true,
+      "included_in_public_packet": false
+    },
+    {
+      "source_id": "mestre_preview",
+      "bytes": 235568,
+      "sha256": "a0383442af848b2a123733761f447135fef09c5c04a8121a86b1af6f03ddae6b",
+      "matches_recorded_source_pin": true,
+      "included_in_public_packet": false
+    },
+    {
+      "source_id": "gabow1611v1",
+      "bytes": 747680,
+      "sha256": "49246d78e5c74dffe1cd30d5816218b28327e0e3f30de103d8bb1557dfb0c2d3",
+      "matches_recorded_source_pin": true,
+      "included_in_public_packet": false
+    }
+  ],
+  "frozen_inputs": {
+    "audit_input_tree_unchanged": true,
+    "candidate_bytes_unchanged": true,
+    "candidate_pin": {
+      "bytes": 4751,
+      "sha256": "adac9eda645c63fbe5e76a9db8c65a0ba1eb3f62a8c971d82cb9cfe6981c4b20",
+      "matched_before_and_after": true
+    },
+    "queue_writes_performed": 0,
+    "git_changes_performed": false,
+    "publication_performed": false
+  },
+  "certification": {
+    "ai_assisted": true,
+    "external_human_certification": false,
+    "formal_proof_assistant_certification": false,
+    "novelty_claim": false,
+    "sharp_ratio_claim": false,
+    "full_original_problem_resolved": false
+  },
+  "public_scope": "Authored full proof and audit, acceptance report, public bibliographic references and aggregate verification metadata only. No copied source documents/text/images, programs, raw datasets, or private coordination material."
+}
