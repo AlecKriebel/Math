@@ -19,3 +19,9 @@ The descending chat explicitly returned the shared remote MAIN writer window at 
 ## 2026-10-11T22:30:57.674115+00:00 — preprint preparation checkpoint (45%)
 
 Prepared the five-page full-classification research note and portable support materials. Built-in compilation succeeded; all five exported pages visually inspected. ROOT replay: 21,508 exact checks, 30 prior-method theta cases and 33 full-classification theta cases passed. Core checks also pass under Python -O; diagnostic scripts reject -O. Primary-source audit found no explicit earlier proof of the exact target, while crediting the classical parametrization and pole-removal method and disclosing the unavailable DG2023 full text. No publication, tracker append or PR149 merge has occurred. Next: fresh whole-package adversary, repairs, then a new independent whole-package adversary. Persistent program active.
+
+## 2026-10-11T22:39:27.031581+00:00 — fresh whole-package R1 and repair (55%)
+
+New independent reviewer verified the full mathematical theorem, primary-source scope and bounded priority wording, reproduced all packaged checks and visually inspected all five PDF pages. R1 PASS with zero substantive issues. Repaired its P3 provenance nit by replacing unbundled review-file references in both diagnostics with the manuscript, and regenerated actual outputs. New R2 must review the resulting package. No publication/DOI149, tracker append or PR149 merge yet; goal active.
+
+2026-10-11T22:52:39.881422+00:00 — Fresh independent whole-package R2 PASS, no substantive issues or required repairs. Root read the full report, paper and source resolution and rechecked all16 current candidate hashes. R1 PASS locator nit repaired globally before R2. Full mathematical scope accepted, bounded priority/DG2023 gap disclosed; ready for authorized Zenodo publication. Case estimate70%; program27 completed/15 published; goal active.
