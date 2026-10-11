@@ -1,0 +1,15 @@
+# Five substantive approaches
+
+All work concerns 4000018 / AMR-039-0018. Source reconstruction and duplicate checks preceded the mathematical approaches and are not counted as an extra approach. The approaches are logically distinct.
+
+1. **Normalization and extremal-constant analysis.** Compared generator acceleration and metric scaling with the Gamma definition. Outcome: exact transformation laws (Proposition 5); the transport coefficient has units of squared distance per time, while the BE dimension survives generator acceleration. Both admissible coefficient sets are upward closed. Limitation: this only blocks a raw identification, not a normalized quantitative relation.
+
+2. **Finite-dimensional transport/gradient duality.** Retrieved the full primary Kuwada and EKS preprints and inspected the original formula, exact theorem assumptions and relevant proofs. Derived the explicit all-pairs W1 estimate C=2N exp(KT) from their W2 bound, with C>2N sufficient on a suitably small horizon. Outcome: rigorous positive implication in smooth finite-dimensional and RCD* canonical heat-flow settings. Limitation: W1 does not give the reverse W2 inequality; C=2N is an infimum bound, not shown attained, and the sharp N-1 coefficient is not recovered.
+
+3. **Euclidean Gaussian calibration.** Computed the exact unequal-time W2 distance using Gaussian covariance, and used a Dirac endpoint and local Hessian expansion to force C at least n-1 for generator half-Laplacian. A scaled one-dimensional test forces C strictly positive. Outcome: n-1 ≤ C* ≤ n and a direct obstruction to claiming C=n-1 universally. Limitation: curvature is zero and the optimal coefficient for general n is not determined.
+
+4. **Drift/infinite-dimension obstruction.** Used the explicit Ornstein–Uhlenbeck transition mean and Gamma calculus. Outcome: exact positive same-time contraction and BE(lambda,infinity), but no finite uniform unequal-time coefficient on the unbounded space, even at arbitrarily short unequal times. Limitation: this shows the inadequacy of the infinity condition, not failure of the finite-dimensional sufficient theorem.
+
+5. **Nonlocal reset construction and sharp BE profile.** Constructed a reversible reset semigroup on arbitrary bounded metric spaces, proved the full time-pair inequality by an explicit coupling and AM–GM, computed its Gamma and Gamma2 exactly, and tested arbitrarily small positive-measure sets. Outcome: fixed transport data (kappa,C,T)=(1,16,1/4) on compact geodesic spaces of unbounded/infinite Hausdorff dimension, with BE(1,infinity) but no finite BE(1,N). Limitation: nonlocal and noncanonical; a lowered BE curvature admits finite dimension, and no equivalence is disproved in the canonical diffusion class.
+
+Conclusion after all five approaches: substantial scoped results; the source's open-ended dimensional-relationship problem is not declared solved. Freeze follows reproducibility and source-metadata checks. The independent audit is a later stage and must not be confused with any author self-check.
