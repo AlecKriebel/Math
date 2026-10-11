@@ -206,7 +206,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete classical local square-root obstruction to exact sections on open sets covering all R6 including the zero parameter: no admissible cover exists even with infinite cardinality. Separate literal published-source audit passed; 5618 author and 14891 independent controls. Source finite-genus hint is incompatible as written; punctured, repaired and approximate variants are not resolved, no novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/179. |  |
 | 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 200 | 20002560 / AIM-PROBABILITY-0002 | Exact parity projection and a certified bracket for RBM(3,1) | 0.1920 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
