@@ -294,7 +294,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 283 | 30000170 / OWR-783-002 | Prox-Regularity of Polynomial Stability Abscissas | 0.1761 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 284 | 10400036 / AMR-103-0036 | Problem 2.14 — (M. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 285 | 10400139 / AMR-103-0139 | Problem 7.24 — (S. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 286 | 10400196 / AMR-103-0196 | Question 10.21 — (F. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 286 | 10400196 / AMR-103-0196 | Question 10.21 — (F. | 0.1760 | 5.5 | 3 | unknown | unsolved | 5/5 |  | [Reviewed scoped partials](attempts/10400196/RESULT.md): canonical odd-Chern lift; unrestricted refinement unresolved |  |
 | 287 | 10400216 / AMR-103-0216 | Problem 12.11 — (D. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 288 | 10400219 / AMR-103-0219 | Problem 12.14 — (N. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 289 | 10400220 / AMR-103-0220 | Problem 12.15 — (M. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
