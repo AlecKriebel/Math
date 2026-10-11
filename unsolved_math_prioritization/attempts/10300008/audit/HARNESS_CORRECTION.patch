@@ -1,0 +1,12 @@
+--- a/test_bootstrap.py
++++ b/test_bootstrap.py
+@@ -14,6 +14,9 @@
+     dest.mkdir()
+     for name in ('AUTHOR_MANIFEST.json','bootstrap.py'):shutil.copy2(base/name,dest/name)
+     shutil.copytree(base/'packet',dest/'packet')
++    # Only disposable fixtures are made writable; frozen sources stay untouched.
++    for p in dest.rglob('*'):
++        p.chmod(0o755 if p.is_dir() else 0o644)
+ def command(root,mode):
+     flags=[] if mode=='normal' else [mode]
+     return subprocess.run([sys.executable,'-I','-S','-B']+flags+[str(root/'bootstrap.py')],
