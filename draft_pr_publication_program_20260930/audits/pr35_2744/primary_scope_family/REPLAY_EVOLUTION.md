@@ -1,0 +1,3 @@
+# Actual replay history
+
+Initial source_priority_controls execution passed107 assertions. Its full results are preserved as EARLIER_107_RESULTS.json. After fresh recovery of CRS-v1 and the published2022 primary PDF, four further transport byte/hash assertions were added (retrieval and bytes/text for each). The unchanged original program replays and all actual mutant families were rerun; final111 assertions pass. Final result and exact program bytes are bound by MANIFEST. The initial107result is an earlier actual run, not a verdict on later additional input. Two preceding setup failures are separately preserved and qualified. Neither was silently converted to a passing initial run.

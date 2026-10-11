@@ -1,0 +1,26 @@
+{
+  "label": "inspect_historical_body_leads",
+  "kind": "executed_subprocess",
+  "started_at_utc": "2026-10-04T16:57:43.477623+00:00",
+  "finished_at_utc": "2026-10-04T16:57:43.523437+00:00",
+  "elapsed_seconds": 0.045672499982174486,
+  "recorder_pid": 66985,
+  "subprocess_pid": 66993,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/exact_target_priority_20261004",
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path;import re,hashlib,json; b=Path('/Users/alec/.cache/pr66_exact_target_priority_20261004'); s=(b/'stoimenow_papers.html').read_text(); [(print(s[max(0,m.start()-900):m.end()+600])) for m in re.finditer(r'inv.pdf|New knot and link|nvi.pdf|braiding sequences',s)]; p=b/'abe_journal_oldpdf.pdf'; print(json.dumps({'abe_oldpdf_bytes':p.stat().st_size,'abe_oldpdf_head':repr(p.read_bytes()[:70]),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}))"
+  ],
+  "returncode": 1,
+  "stdout": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/inspect_historical_body_leads.stdout",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/Users/alec/.cache/pr66_exact_target_priority_20261004/raw/inspect_historical_body_leads.stderr",
+    "bytes": 1046,
+    "sha256": "abfc4f4931d36515d713a34ace8825665bf7da10d155a0de412307e57e5d39ad"
+  }
+}

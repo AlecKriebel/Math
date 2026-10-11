@@ -1,0 +1,31 @@
+# Independent first priority conclusion
+
+Fixed before reading the original candidate, author SOURCES, prior reviews, ROOT or sibling findings. FIRST_SOURCE_ONLY.md remains unchanged.
+
+The exact W4 target was explicitly open in 2004/2005. The primary literature read in this independent pass does not supply an affirmative strict advantage theorem or an equivalent achieved asymptotic rate for independent unitary senders A1 -> B1, A2 -> B2 and receiver decoding across A1B1:A2B2. This is a bounded corpus finding, not novelty clearance or a proof that the target remains open today.
+
+## Citation descendants and scope checks
+
+| Primary source | Full input and portions actually reviewed | Exact priority relevance |
+| --- | --- | --- |
+| Bruß et al., PRL 93, 210501 (2004); quant-ph/0407037v3 (8 Dec 2004) | Full four-page bodies, printed PRL pp. 210501-1 through -4 | Exact historical W4 problem explicitly unknown; two independent senders and receiver cut fixed. |
+| Bruß, OWR 4/2005, printed pp. 203-205 | Complete contribution and references | Exact question; cites the PRL. |
+| Bruß et al., quant-ph/0507146v1 (15 Jul 2005), later IJQI 4, 415 (2006) | Full 14-page text in segments; decisive pages visually checked | Asymptotic unitary model and shell exclusion of LO-DC. GHZ rate 3, no W4 achieved rate. |
+| Sen(De), Sen, Lewenstein, quant-ph/0505137v2 (29 Mar 2006), PRA 74, 052332 (2006) | Four-page full input, main definitions, lower-bound derivation, examples, conclusion | Generic local-subentropy lower bound. Paper's general LOCC statement is restricted to 2 x n; each target lab is 4-dimensional. It supplies no W4 rate above 2 or product-sender code. |
+| Pradhan, Agrawal, Pati, arXiv:0705.1917v1 (14 May 2007) | Full 40-page input; complete dense-coding Sec. 4, state definitions and conclusion | Centralized Alice holds both sent qubits. Sec. 4.1.2 gives global W rate 3 via eight orthogonal states. Sec. 4.2.3 gives four distinguishable states / 2 bits for the split receivers. This is one-copy zero-error analysis, not an asymptotic converse or affirmative strict advantage. |
+| Horodecki, Piani, quant-ph/0701134v2 (11 Sep 2009), JPA 45, 105306 (2012) | Full eight-page input; abstract, model, full sender hierarchy, asymptotic sections | Sender-side LO/LOCC preprocessing and one global receiver; identical LOCC-DC notation refers to another hierarchy. No exact two-receiver W4 resolution. |
+| Song, arXiv:0711.2787v2 (25 Nov 2007), CPL 26, 060303 (2009) | Full three-page input, bound derivation, all examples, dense-coding equation (11), conclusion | Multi-receiver upper-bound descendant of PRL2004. No W4 achieved rate. |
+| Das et al., arXiv:1412.6247v1 (19 Dec 2014), PRA 92, 052330 (2015) | Full 11-page input; entire body read in segments | Exact topology, but only capacity upper bounds (4), (11), (25), GHZ examples; general LOCC achievability explicitly not established. |
+| Roy et al., arXiv:1707.02449v3 (14 Jun 2018), PLA 382, 1709 (2018) | Full input; abstract, whole operational model Sec. 2, W-family result scope | Deterministic many-sender / single global receiver model. W advantage there does not settle target. |
+| Gupta et al., arXiv:2012.05865v2 (18 Mar 2021), PRA 103, 032608 (2021) | Full input; model equations, Sec. III B 3 and preprocessing scope | Two-receiver work is explicitly on an upper bound and may add preprocessing/classical communication. No W4 strict achieved asymptotic rate. |
+| Hayashi, Wang, arXiv:2109.12518v1 (26 Sep 2021); published PRX Quantum 3, 030346 (28 Sep 2022) | Full arXiv and full published 35-page PDF retained; published model Sec. IV A, main Theorems 1-3, role of Assumption 1 and conclusion read | One sender transmits A -> B; helper F keeps the other system. Main direct theorem requires multiplicity-free group representation. Grouping target A1B1 into A and A2B2 into F makes sender action U_A1 tensor I_B1 have multiplicity 2 and leaves an independently encoded A2 on helper side. Grouping all senders together changes the decoder cut. Thus no direct exact-target corollary was established. |
+| Muhuri et al., arXiv:2211.13057v2 (24 Mar 2024), PRA 109, 032616 (2024) | Full input; introduction, complete operational model and entire two-receiver Sec. III C, figures, conclusion | Same two-receiver W4 topology, but Eq. (6)-(8) and Fig. 3 use upper bounds B2/Bnoise2, not achieved rates. Intro states general exact capacity unknown. Loose use of 'capacity'/'advantage' later does not convert the bound into a protocol. |
+| Hullamballi et al., arXiv:2503.16122v2 (7 Jul 2026; v1 20 Mar 2025) | Full input; abstract, original model Sec. II B, new model Sec. IV and one-way Sec. V B | One sender, coherent control, auxiliary qubits and routing superposition. Current version, but resources and topology differ; not exact W4 priority. |
+
+## Search scope and evidentiary limits
+
+Searches covered exact W4/LOCC-DC phrases, four-party W, two-receiver capacity, locally accessible information, and 2025/2026 distributed coding descendants. Native search captures 2-7 are stored privately with actual call timing; the initial search is in the conversation transcript but was not separately saved before this capture convention began. Search snippets were used only to find primary bodies. No conclusion is grounded in absence from search results.
+
+APS published full PDFs for PRA 92, 052330; PRA 109, 032616; and PRA 103, 032608 were attempted via the primary harvest endpoint, but all failed (curl child exit 56, empty stdout), and empty-input extraction attempts failed (exit 1). Therefore comparison of these arXiv texts against final journal bodies remains an explicit full-text gap. The open-access PRX published full PDF was retrieved and extracted successfully. The Das v1 and 2024 v2 are primary author preprints, not merely abstracts; they suffice to classify their own claims, but final-version identity is not assumed.
+
+Remaining gap: literature search is not an exhaustive proof of priority. A discovered achieved rate/strict-advantage protocol must still be compared theorem by theorem with the immutable candidate; a generic coding theorem must match independent sender message structure, resource accounting and the receiver split. No candidate correctness conclusion is made here.

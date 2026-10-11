@@ -1,0 +1,74 @@
+{
+  "immutable_original_gate_sha256": "2b613efcc4d41616277c7fd259d1357dbcc69e0aeb4d330efb9618167442a2de",
+  "staged_gate_sha256": "1b64c7a4728c41ff2467241e5471338d4a1830e339befb0c5d6f11c36dbc2ab0",
+  "stage_descriptor_sha256": "820cd232c67ca3510e104cba68f8f5afae1b086ac225651d02e4bdf95984dac9",
+  "full_diff_sha256": "296cc4e3ca6af9bfa07bb779da5e3aa929505c29c509eee2e677ad3159e4e156",
+  "literal_replacements": [
+    {
+      "old": "def main():\n",
+      "new": "def main():\n    global HEAD,PARENT,TREE,PREPARED_SHA\n",
+      "occurrences": 1
+    },
+    {
+      "old": "parser.add_argument('--source-dir',required=True)",
+      "new": "parser.add_argument('--source-dir',required=True)\n    parser.add_argument('--stage-descriptor',required=True)\n    parser.add_argument('--stage-descriptor-sha256',required=True)\n    parser.add_argument('--stage-input',action='append',required=True)",
+      "occurrences": 1
+    },
+    {
+      "old": "    original_manifest=json.loads",
+      "new": "    descriptor_bytes=pathlib.Path(args.stage_descriptor).read_bytes()\n    assert sha(descriptor_bytes)==args.stage_descriptor_sha256\n    descriptor=json.loads(descriptor_bytes)\n    assert descriptor['schema']==1 and descriptor['pr']==374\n    assert descriptor['immutable_original_gate_sha256']=='2b613efcc4d41616277c7fd259d1357dbcc69e0aeb4d330efb9618167442a2de'\n    stages=descriptor['stages'];assert stages and len({s['name'] for s in stages})==len(stages)\n    first=stages[0]\n    assert (first['head'],first['parent'],first['tree'],first['input_metadata_sha256']['accepted_pr_body.txt'])==(HEAD,PARENT,TREE,PREPARED_SHA)\n    stage_roots={}\n    for value in args.stage_input:\n        name,separator,path=value.partition('=');assert separator and name and path and name not in stage_roots\n        stage_roots[name]=pathlib.Path(path)\n    assert set(stage_roots)=={s['name'] for s in stages}\n    input_names={'snapshot_manifest.json','repaired_snapshot_manifest.json','queue_repair_receipt.json','accepted_pr_body.txt','merge_body.txt'}\n    for s in stages:\n        assert set(s['input_metadata_sha256'])==input_names\n        assert s['input_metadata_sha256']['snapshot_manifest.json']=='989de56033f3d980c2a1f8f79829ebab74f57580af2e283a73b9462deb244612'\n        assert s['input_metadata_sha256']['merge_body.txt']==MERGE_BODY_SHA\n        root=stage_roots[s['name']]\n        for name,digest in s['input_metadata_sha256'].items():assert sha((root/name).read_bytes())==digest\n    current=stages[-1];assert inputs==stage_roots[current['name']]\n    previous_head=ORIGINAL if len(stages)==1 else stages[-2]['head']\n    HEAD,PARENT,TREE,PREPARED_SHA=current['head'],current['parent'],current['tree'],current['input_metadata_sha256']['accepted_pr_body.txt']\n    original_manifest=json.loads",
+      "occurrences": 1
+    },
+    {
+      "old": "repair['parents']==[ORIGINAL,PARENT]",
+      "new": "repair['parents']==[previous_head,PARENT]",
+      "occurrences": 1
+    },
+    {
+      "old": "    # Fetch every unique immutable remote blob independently.",
+      "new": "    original_and_current_unique_API_blobs=len(blob_expectations)\n    assert original_and_current_unique_API_blobs==descriptor['original_and_current_unique_API_blobs']\n    historical_commits=[];stage_maps=[];stage_repairs=[];last_head=ORIGINAL\n    for s in stages:\n        root=stage_roots[s['name']]\n        mf=json.loads((root/'repaired_snapshot_manifest.json').read_bytes());rr=json.loads((root/'queue_repair_receipt.json').read_bytes())\n        assert mf['head']==s['head'] and mf['base']==s['parent']\n        assert rr['parents']==[last_head,s['parent']] and rr['tree']==s['tree']\n        rows={f['path']:f for f in mf['files']};assert len(mf['files'])==len(rows)==46 and set(rows)==set(newrows)\n        assert set(git('stage_changed_paths_'+s['name'],'diff','--name-only',s['parent'],s['head']).decode().splitlines())==set(newrows)\n        st=treemap(s['head'],'stage_head_tree_'+s['name']);parent=treemap(s['parent'],'stage_parent_tree_'+s['name'])\n        assert canonical_tree_sha(st)==s['tree'] and {p for p in st if p.startswith(PREFIX+'/')}==targetpaths\n        expected=dict(parent)\n        for path in targetpaths|{QUEUE}:expected[path]=st[path]\n        assert expected==st,'stage changed an unrelated parent path or mode'\n        for path in sorted(rows):\n            data=(root/'repaired_snapshot'/path).read_bytes();f=rows[path]\n            assert (len(data),sha(data))==(f['bytes'],f['sha256'])\n            assert blobsha(data)==st[path][1] and getblob(s['head'],path)==data\n            if 'git_blob_sha' in f:assert f['git_blob_sha']==st[path][1]\n            if path in targetpaths:assert data==(inputs/'snapshot'/path).read_bytes() and st[path]==original_tree[path]\n            blob_expectations[blobsha(data)]=data\n        body=(root/'accepted_pr_body.txt').read_bytes();text=body.decode()\n        assert sha(body)==s['input_metadata_sha256']['accepted_pr_body.txt']\n        assert 'unsolved, 5/5' in text and 'None supplies the missing all-host comparison' in text and 'No novelty certification' in text\n        assert s['head'] in text and s['parent'] in text and ORIGINAL in text and WIP in text\n        historical_commits.extend([check_commit(s['head'],[last_head,s['parent']],s['tree']),check_commit(s['parent'])])\n        stage_maps.append({'name':s['name'],'head':s['head'],'parent':s['parent'],'tree':s['tree'],'prepared_body_sha256':sha(body),'scope_paths':46,'unchanged_target_files':45,'all_other_parent_paths_and_modes_preserved':True})\n        stage_repairs.append(rr);last_head=s['head']\n    assert len(blob_expectations)==descriptor['all_stage_unique_API_blobs']\n    # Fetch every unique immutable remote blob independently.",
+      "occurrences": 1
+    },
+    {
+      "old": "    queue_refreshed=queue_delta(PARENT,HEAD,'refreshed')",
+      "new": "    queue_stages=[]\n    for s,rr in zip(stages,stage_repairs):\n        delta=queue_delta(s['parent'],s['head'],s['name'])\n        assert delta['old_row']==rr['old_row'] and delta['new_row']==rr['new_row']\n        queue_stages.append(delta)\n    queue_refreshed=queue_delta(PARENT,HEAD,'refreshed')",
+      "occurrences": 1
+    },
+    {
+      "old": "    assert HEAD in text and ORIGINAL in text and WIP in text and PARENT in text",
+      "new": "    assert HEAD in text and ORIGINAL in text and WIP in text and PARENT in text\n    assert TREE in text\n    for s in stages:assert s['head'] in text and s['parent'] in text",
+      "occurrences": 1
+    },
+    {
+      "old": "check_commit(HEAD,[ORIGINAL,PARENT],TREE),check_commit(PARENT)",
+      "new": "*historical_commits",
+      "occurrences": 1
+    },
+    {
+      "old": "'original_head':ORIGINAL,'original_base':ORIGINAL_BASE",
+      "new": "'original_head':ORIGINAL,'previous_reviewed_head':previous_head,'refresh_stages':stage_maps,'normal_refresh_every_other_parent_path_preserved':True,'original_base':ORIGINAL_BASE",
+      "occurrences": 1
+    },
+    {
+      "old": "'unique_original_and_refreshed_API_blobs':len(api_blobs)",
+      "new": "'unique_original_and_refreshed_API_blobs':original_and_current_unique_API_blobs,'unique_all_stage_API_blobs':len(api_blobs)",
+      "occurrences": 1
+    },
+    {
+      "old": "'queue_original':queue_original,'queue_refreshed':queue_refreshed",
+      "new": "'queue_original':queue_original,'queue_historical_stages':queue_stages,'queue_refreshed':queue_refreshed",
+      "occurrences": 1
+    },
+    {
+      "old": "'commits':commits",
+      "new": "'stage_descriptor_sha256':sha(descriptor_bytes),'stage_input_metadata_sha256':{s['name']:s['input_metadata_sha256'] for s in stages},'immutable_original_gate_sha256':'2b613efcc4d41616277c7fd259d1357dbcc69e0aeb4d330efb9618167442a2de','commits':commits",
+      "occurrences": 1
+    }
+  ],
+  "all_initial_checks_retained": true,
+  "all_three_stages_checked_independently": true,
+  "original_and_round1_code_and_inputs_unmodified": true,
+  "original_current_API_blob_count": 47,
+  "all_stage_API_blob_count": 48,
+  "count_difference_explanation": "The second native refresh carries independently changed other queue bytes, adding one prior-stage queue blob to the original/current union."
+}

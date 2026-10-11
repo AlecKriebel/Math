@@ -1,0 +1,225 @@
+                The Sperner property of standard graded
+           Artinian complete intersections in characteristic zero
+                                                    Alec Kriebel
+                                          ORCID: 0009-0001-9320-500X
+
+                                                 October 6, 2026
+
+
+                                                       Abstract
+         We record the Sperner property for every standard graded Artinian complete intersection
+     over an arbitrary characteristic-zero ﬁeld: the maximum minimal number of generators of an
+     ideal, including nonhomogeneous ideals, equals the largest coeﬃcient of its complete-intersection
+     Hilbert series. The result is an immediate consequence of OpenAI’s Artinian Eisenbud–Green–
+     Harris theorem and the previously published implication of Harima, Wachi, and Watanabe. We
+     give an explicit account of that implication, eliminate degree-one generators, justify the passage
+     to all ideals by the associated graded ﬁltration, and verify the ﬁeld scope. No new proof of EGH
+     or new Lefschetz assertion is claimed.
+
+
+1    Statement and attribution
+Let k be a ﬁeld and let A be a standard graded Artinian k-algebra with A0 = k. Its unique
+maximal ideal is m = A>0 , and Nakayama’s lemma gives µA (I) = dimk (I/mI) for every ideal I.
+The Dilworth number is maxI◁A µA (I). The algebra has the Sperner property when this equals
+maxj dimk Aj . The ideals in this deﬁnition include 0, A, and nonhomogeneous ideals.
+Theorem 1. Let k be any characteristic-zero ﬁeld, let n ≥ 0, and let
+
+                          A = k[x1 , . . . , xn ]/(f1 , . . . , fn ),         di = deg fi ≥ 1,
+
+where the variables have degree one and the fi form a homogeneous regular sequence. Then
+                                                                        ∏
+                                                                        n
+                    max µA (I) = max dimk Aj = max[tj ]                     (1 + t + · · · + tdi −1 ).    (1)
+                    I◁A                j≥0                   j≥0
+                                                                        i=1
+
+If p is the last degree attaining the maximum, equality is attained by mp . For n = 0, or when all
+di = 1, the algebra is k, the product is 1, and the maximum is 1, attained by A.
+    Harima–Wachi–Watanabe [1, Theorem 11] proved that EGH for a given graded complete in-
+tersection implies its Sperner property. Their Deﬁnition 2 already ranges over all ideals; their
+Proposition 8 invokes Watanabe’s graded-ideal reduction [2, Lemma 2.4]. OpenAI’s characteristic-
+zero EGH theorem [3, Corollary 1.3] supplies the previously conditional input. Its companion [4,
+Theorem 1.1 and Corollary 1.2] proves stronger Betti inequalities, which are not needed here. This
+note records the resulting consequence and checks its scope; neither the upstream breakthrough
+nor the known implication and reductions are claimed as new work of this author. The upstream
+manuscripts are dated September 23, 2026; the public collection announcement is dated October 6,
+2026 [5]. No claim of ﬁrst priority is made.
+
+                                                             1
+2    The exact EGH input and scope reductions
+The only EGH assertion needed is the following Hilbert-function statement. For S = k[z1 , . . . , zq ]
+and a full homogeneous regular sequence g1 , . . . , gq of degrees ai ≥ 2, every homogeneous ideal
+Q ⊇ (g1 , . . . , gq ) has a homogeneous counterpart Q′ ⊇ (z1a1 , . . . , zq q ) such that
+                                                                           a
+
+
+                               dimk (S/Q)j = dimk (S/Q′ )j                   for every j ≥ 0.                (2)
+We may sort the degrees, since every permutation of a homogeneous system of parameters in the
+Cohen–Macaulay ring S is regular; relabeling the pure-power variables then restores the original
+indexing. The counterpart may have extra generators in degrees beyond those of Q; no assertion
+about its generator count is required. OpenAI [3, Theorem 1.1 and Corollary 1.2] gives this over
+C using commuting linear forms with division-algebra coeﬃcients, an ordered basis, and monomial
+extraction. We invoke that external theorem explicitly, rather than deriving it in this note.
+    For completeness, its full-length ﬁeld descent needs no embedding of an arbitrary k into C.
+For a ﬁxed Q, choose a ﬁnitely generated coeﬃcient ﬁeld k0 ⊆ k over Q containing coeﬃcients of
+generators of Q and of the gi . Include the gi in the chosen generators over k0 . Regularity descends
+to k0 by faithful ﬂatness. Embed k0 into C and apply the complex theorem after base change. The
+resulting counterpart can be chosen monomial. Use the same monomial exponents to deﬁne it over
+k0 and then over k. Dimensions of graded pieces are preserved by both ﬁeld extensions from k0 ,
+proving (2) over k. Only full-length EGH is used; no general-length Artinian reduction is needed.
+    If the original sequence has r linear members, these are linearly independent: dependence would
+give fewer than n generators for an ideal of height n, contradicting the height theorem. A graded
+linear coordinate change eliminates them and gives
+                                      A ≃ k[z1 , . . . , zn−r ]/(g1 , . . . , gn−r ).
+The remaining forms retain their degrees, all at least two. Their Artinian quotient makes them
+a homogeneous system of parameters in a polynomial ring; Cohen–Macaulayness makes them a
+regular sequence. The graded isomorphism preserves all ideals, the numbers µA (I), and all Hilbert
+dimensions. Each eliminated factor in (1) is 1. If r = n, the case A = k is immediate.
+   Successive regular-sequence exact sequences give
+                         ∑                ∏
+                                hj tj =        (1 + t + · · · + tdi −1 ),          hj = dimk Aj .            (3)
+                           j               i
+        ∑
+Put c = i (di − 1). Artinian complete-intersection duality gives Ac ≃ k and perfect multiplication
+pairings Aj × Ac−j → Ac ; equivalently the Koszul resolution gives the graded canonical module
+A(c). The Hilbert function is symmetric and unimodal. An elementary explanation of unimodality
+is the symmetric chain decomposition used next.
+
+
+3    Matching and the homogeneous bound
+We reproduce the mechanism of [1, Propositions 7–8 and Theorem 11]. Let
+                                          B = k[z1 , . . . , zq ]/(z1a1 , . . . , zqaq ).
+Its monomial basis is the ranked product of chains 0 ≤ ei ≤ ai − 1. Such a product admits a
+symmetric saturated chain decomposition. One direct induction starts with the rectangle 0 ≤ i ≤ a,
+0 ≤ j ≤ b, where a ≤ b, and uses the chains
+               (r, 0), (r, 1), . . . , (r, b − r), (r + 1, b − r), . . . , (a, b − r),          0 ≤ r ≤ a.
+
+                                                                2
+They partition the rectangle and their endpoint ranks sum to a + b. Applying this construction to
+each old chain times a new factor preserves symmetry about half the total rank. Rank sizes are
+therefore unimodal. Whenever hj ≤ hj+1 , each chain meeting rank j extends to rank j + 1: below
+the middle this follows from symmetry; at or above the middle no new chain starts, so an ending
+would force a strict decrease. Chain successors inject any rank-j subset into its upper shadow.
+   Consequently, for every vector subspace W ⊆ Bj ,
+
+                             hj ≤ hj+1    =⇒     dimk W ≤ dimk B1 W.                             (4)
+
+Indeed, echelonize a basis of W by a multiplicative monomial order. Its leading monomials form a
+set of size dim W . Each surviving variable multiple of a leading monomial is the leading monomial
+of the corresponding product. Its upper shadow thus lies in the leading monomial set of B1 W , and
+the chain injection proves the inequality.
+    For V ⊆ Aj , apply (2) to the preimage of the ideal AV in the polynomial ring, obtaining an
+ideal J of B with HA/AV = HB/J . The algebras A, B have the same Hilbert function, and standard
+grading gives
+                             dim Jj = dim V,      dim Jj+1 = dim A1 V.
+For V = 0 the conclusion is immediate. Otherwise, if hj ≤ hj+1 , (4) and the ideal property give
+
+                       dim V = dim Jj ≤ dim B1 Jj ≤ dim Jj+1 = dim A1 V.                         (5)
+
+This is the matching property of A. In particular, Hilbert matching has not been used to assert
+equality of ideal-generator counts.
+    Let p be the last maximal Hilbert degree. Matching holds in every degree j < p, and symmetry
+                                                                                        ⊕
+gives c − p ≤ p. If a homogeneous ideal I has initial degree α < p, its truncation I ′ = j≥α+1 Ij is
+an ideal and
+                               µ(I ′ ) − µ(I) = dim A1 Iα − dim Iα ≥ 0.                          (6)
+This follows by counting the degree pieces of I/mI. Iterating, including the zero-ideal case, yields
+
+                                         µ(I) ≤ µ(I ∩ mp ).                                      (7)
+
+   Now assume I ⊆ mp , and set J = AnnA (mI). Gorenstein duality gives dim Ann(U ) =
+dim A − dim U for every ideal U . To see the equality with the orthogonal complement, compose
+multiplication with projection onto Ac . A vector orthogonal to the ideal U is orthogonal to every
+multiple of its elements; nondegeneracy then shows that it annihilates them. Since mJ ⊆ Ann(I),
+
+                            µ(J) ≥ dim Ann(mI) − dim Ann(I) = µ(I).                              (8)
+
+The graded perfect pairings also give Ann(mu ) = mc−u+1 for 0 ≤ u ≤ c + 1: one inclusion follows by
+degree, and any nonzero lower-degree element pairs nontrivially with an element of mu . Therefore
+
+                                  J ⊇ Ann(mp+1 ) = mc−p ⊇ mp .
+
+Applying (7) to J gives µ(I) ≤ µ(J) ≤ µ(mp ) = hp . Applying it ﬁrst to any homogeneous I proves
+the homogeneous bound.
+
+
+
+
+                                                 3
+4    All ideals and equality
+                                                                    ⊕
+For an arbitrary ideal I, use the ﬁnite ﬁltration F j A = mj = u≥j Au , and intersection ﬁltrations
+on I and mI. Under the natural identiﬁcation grm A ≃ A, the initial ideal
+                                             ⊕
+                                     J=          (I ∩ mj )/(I ∩ mj+1 )
+                                             j
+
+is homogeneous. Its pieces are the lowest-degree initial parts of elements of I. Multiplication of
+such initial parts shows mJ ⊆ grF (mI). Finite associated grading preserves total dimensions, so
+
+                   µ(I) = dim J − dim grF (mI) ≤ dim J − dim mJ = µ(J) ≤ hp .
+
+Equality grF (mI) = mJ is neither assumed nor necessary. Finally mp /mp+1 ≃ Ap , so mp attains hp .
+This proves Theorem 1.
+    The generator bound itself also descends along a ﬁeld extension K/k, if one is used: ﬂatness
+gives
+                   (IAK )/(mK IAK ) ≃ (I/mI) ⊗k K,       µAK (IAK ) = µA (I),
+and dimK (AK )j = hj . An upper bound over K descends to every ideal over k; the equality witness
+already exists over k. No descent of arbitrary ideals from K is asserted.
+
+
+5    Examples and limitations
+The following Hilbert functions are coeﬃcient lists in increasing degree. They illustrate (1), rather
+than serve as evidence for EGH.
+                          degrees        Hilbert function                 maximum
+                        ∅ or (1, 1, 1)   1                                   1
+                          (1, 2, 4)      1, 2, 2, 2, 1                       2
+                          (2, 2, 2)      1, 3, 3, 1                          3
+                          (2, 3, 4)      1, 3, 5, 6, 5, 3, 1                 6
+                          (3, 3, 3)      1, 3, 6, 7, 6, 3, 1                 7
+                       eight quadrics    1, 8, 28, 56, 70, 56, 28, 8, 1      70
+                                 (  n    )
+For n quadrics the maximum is ⌊n/2⌋     . For instance, in the eight-quadric case every ideal has at
+                            4
+most 70 generators and m has exactly 70. The accompanying integer program reproduces the
+examples by convolution and independent enumeration of bounded exponent vectors.
+    The theorem concerns characteristic zero and standard graded Artinian complete intersections.
+It supplies no weak or strong Lefschetz property, no assertion for nongraded complete intersections,
+and no unrestricted positive-characteristic assertion. The downstream conditional argument and
+monomial matching work over any ﬁeld; the restriction comes from the general EGH input used
+here.
+
+Disclosure and veriﬁcation. AI tools were used extensively in research, drafting, computation
+and veriﬁcation. The mathematical input from OpenAI is itself attributed to OpenAI using the
+supplied manuscript citations. Internal automated adversarial audits are documented in the supple-
+ment; neither they nor the calculations constitute conventional human peer review. This preprint
+has not undergone conventional human peer review or refereeing at publication. No formalization
+of this follow-on theorem is claimed. The source/dependency hashes and reproduction instructions
+accompany it.
+
+                                                      4
+References
+[1] T. Harima, A. Wachi and J. Watanabe, The EGH Conjecture and the Sperner prop-
+    erty of complete intersections, Proc. Amer. Math. Soc. 145 (2017), no. 4, 1497–1503.
+    doi:10.1090/proc/13347; arXiv:1601.06928v1 (2016).
+
+[2] J. Watanabe, The Dilworth Number of Artinian Rings and Finite Posets with Rank Function,
+    Adv. Stud. Pure Math. 11 (1987), 303–312. doi:10.2969/aspm/01110303.
+
+[3] OpenAI, Commuting Division-Coeﬃcient Forms and the Artinian Eisenbud–Green–Harris
+    Conjecture, OpenAI Math Release preprint, September 23, 2026. OAI:Commuting-Division-
+    Coeﬃcient-Forms-and-the-Artinian-Eisenbud-Green-Harris-Conjecture-September-23-2026. Au-
+    dited version: repository commit adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+[4] OpenAI, The Artinian Lex-Plus-Powers Betti Theorem, OpenAI Math Release preprint, Septem-
+    ber 23, 2026. OAI:The-Artinian-Lex-Plus-Powers-Betti-Theorem-September-23-2026. Audited
+    version: repository commit adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+[5] OpenAI, Sharing AI progress in mathematics, October 6, 2026. https://openai.com/index/
+    sharing-ai-progress-in-mathematics/.
+
+
+
+
+                                             5
+

@@ -1,0 +1,31 @@
+{
+  "UTC": "2026-10-05T02:40:51.356185+00:00",
+  "calls": [
+    "git('show', BASE + ':' + native.QUEUE)",
+    "run(['git', '--no-optional-locks', *args])",
+    "run(['/opt/homebrew/bin/python3', '-E', '-B', str(F / 'get_approved_git_endpoint.py')])",
+    "git('show', COMMIT + ':' + native.QUEUE)",
+    "git('show', COMMIT + ':' + entry['path'])",
+    "run(['/opt/homebrew/bin/gh', 'pr', 'view', '80', '--repo', 'AlecKriebel/Math', '--json', 'number,state,isDraft,headRefOid,baseRefName,mergeCommit,mergedAt,title,body'])",
+    "git('diff', '--name-only', '-z', 'HEAD')",
+    "git('diff', '--binary', 'HEAD', '--', *sorted(dirty))",
+    "git('ls-files', '--stage', '-z')",
+    "git('ls-files', '-v', '-z')",
+    "run(['/opt/homebrew/bin/gh', 'pr', 'view', '80', '--repo', 'AlecKriebel/Math', '--json', 'number,state,headRefOid,baseRefName,mergeCommit,mergedAt'])",
+    "git('diff', '--cached', '--name-only', '-z')",
+    "git('diff', '--name-only', '-z', BASE, COMMIT)",
+    "git('diff', '--cached', '--name-only', '-z')",
+    "git('branch', '--show-current')",
+    "git('branch', '--show-current')",
+    "git('show', '-s', '--format=%P', COMMIT)",
+    "git('rev-parse', 'HEAD')",
+    "git('ls-remote', endpoints['endpoint'], 'refs/heads/main')",
+    "git('ls-remote', 'origin', 'refs/heads/main')",
+    "git('rev-parse', 'HEAD')",
+    "git('ls-remote', endpoints['endpoint'], 'refs/heads/main')",
+    "git('ls-tree', COMMIT, '--', entry['path'])"
+  ],
+  "only_Git_read_verbs": true,
+  "receipt_exclusive_fsynced_readback": true,
+  "helper_not_executed": true
+}

@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-03T04:30:49.359993+00:00: Source-first fetch/read/render completed, independent exact reconstruction and full control outputs hash-sealed. Completion estimate: 40% of this scoped audit; 0% claim toward proving the full conjecture. No candidate/history read yet. Disclosed identity, mechanism labels and claimed replay totals recorded as exposure. Original downloaded sources stay private.
+- 2026-10-03T04:31:10.590272+00:00: Source-first v2 corrects two transcription typos; original seal and content unchanged. Completion estimate: 40%. Candidate/history read still not begun.
+- 2026-10-03T04:36:44.694546+00:00: Candidate source/Turn1 semantic comparison completed. Candidate exact-minimum theorem independently checked after exposure; original source-first reconstruction established finite decision, not that extra minimum argument. All 47 frozen files verify; all complete author/old stdout receipts replay, with source_files_checked=0 and accurate omission. Completion estimate: 100% of scoped source/effective/replay work, pending coordinated adversarial sign-off. Original arrangement conjecture not solved by packet. No candidate writes.

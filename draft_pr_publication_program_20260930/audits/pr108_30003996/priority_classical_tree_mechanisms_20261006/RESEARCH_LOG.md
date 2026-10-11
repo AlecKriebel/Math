@@ -1,0 +1,9 @@
+# Classical tree mechanism priority audit research log
+
+- 2026-10-06T05:05:12.331405+00:00: Checkpoint1. Independent mechanism freeze and first primary search completed before current peer conclusions. Full Kaibel and repaired candidate read; exact target pinned. Family audit10%; mathematical gate inherited100%; novelty0%.
+- 2026-10-06T05:05:12.331598+00:00: Checkpoint2. Full JLRK1977 theorem2 proof checked; all-root tree model in Tilk–Irnich2016 checked against flow objective; MTO2008 full theorem1–2 proofs checked; shared2016 relevant complete model checked. No exact prior target implication found. Family audit50%; novelty0%. Later source leads from root explicitly distinguished from independent discovery.
+
+- 2026-10-06T05:13:39.148829+00:00: Checkpoint3. Full relevant MINCCA2014 and RainbowArborescence v2 hardness/common-tree proofs checked; candidate restrictions compared. Fixed-core leaf separability derived as a model-comparison lemma and checked on four supports; K4 checks retained. Family review90%; novelty0%; new central proof-search approaches0.
+- 2026-10-06T05:13:39.148829+00:00: Checkpoint4. Bounded audit packet assembled, source scope/access failures and search precision recorded; no exact earlier literal-target implication authenticated. Packet completion100%; broader priority/discovery goal0% established, with Hu1974 and antecedent coverage gaps. No authority escalation.
+
+- 2026-10-06T05:16:58.140640+00:00: Checkpoint5. Scope extended to concrete MINCCA antecedent: retrieved revised2013 author preprint, checked both complete hardness reductions and exact quadratic model; original2011 chronology version remains unavailable. Reassessed family review95% during extension, then sealed bounded packet100%. Independent GO to fresh combined review/narrow2018-question note if it passes; NO-GO for absolute-priority/novelty certification. Broader novelty establishment0%; original2/5 and extra proof routes0 retained.

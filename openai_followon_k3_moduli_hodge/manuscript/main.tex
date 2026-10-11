@@ -1,0 +1,247 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Rational Hodge classes on mixed products of K3 moduli spaces},pdfauthor={Alec Kriebel},pdfsubject={Rational Hodge conjecture; K3 surfaces; moduli spaces; Chow motives}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\CH}{\operatorname{CH}}
+\newcommand{\Hdg}{\operatorname{Hdg}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\Br}{\operatorname{Br}}
+\title{Rational Hodge classes on mixed products\newline of K3 moduli spaces}
+\author{Alec Kriebel\thanks{ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Combining OpenAI's rational Hodge theorem for arbitrary mixed products of
+projective K3 surfaces with B\"ulles' Chow-motive decomposition, we record
+rational Hodge in every codimension for finite mixed products of the smooth
+projective K3 moduli spaces covered by that decomposition. The factors may
+have different K3 bases and include Hilbert schemes, twisted stable-sheaf
+moduli, and eligible moduli of Bridgeland-stable objects. We give the explicit
+pull-push argument, retaining smoothness, projectivity, and stability
+hypotheses. The contribution is an assembled corollary of the cited results;
+it supplies neither a new proof of the base K3 theorem nor a new motivic
+reduction.
+\end{abstract}
+
+\section{Statement and provenance}
+For a smooth projective complex variety $X$, write
+\[
+ \Hdg^p(X)=H^{2p}(X,\Q)\cap H^{p,p}(X,\mathbb C).
+\]
+Rational Hodge in codimension $p$ means surjectivity of
+$\cl:\CH^p(X)_\Q\to\Hdg^p(X)$. Here Chow groups and all correspondences
+have rational coefficients.
+
+\begin{theorem}\label{thm:moduli}
+Let $S_1,\ldots,S_r$ be complex projective K3 surfaces and let
+$\alpha_i\in\Br(S_i)$. For each $i$, let $M_i$ be a smooth projective
+moduli space of Gieseker-stable $\alpha_i$-twisted sheaves, or a smooth
+projective moduli space of $\sigma_i$-stable objects in
+$D^b(S_i,\alpha_i)$ for a generic Bridgeland stability condition
+$\sigma_i$, as in B\"ulles' Theorem~0.1 \cite{Bulles}.
+Then the rational Hodge conjecture holds in every codimension on
+\[
+ X=\prod_{i=1}^r M_i.
+\]
+The K3 bases may be different or repeated. In particular, the conclusion
+holds for every finite mixed product of Hilbert schemes $S_i^{[n_i]}$,
+$n_i\geq0$.
+\end{theorem}
+
+The sheaf data and polarization defining each Gieseker moduli problem
+are fixed. Genericity for Bridgeland stability is relative to the fixed
+numerical data of that moduli problem. Smoothness and projectivity of the
+actual stable moduli space are hypotheses, rather than conclusions about
+arbitrary numerical data or stability conditions. The theorem does not
+add a primitivity or fine-moduli assumption to B\"ulles' statement.
+Its exact stable-object scope is that of the cited theorem.
+
+\begin{samepage}
+The principal input is OpenAI's theorem \cite[Theorem~1.1]{OpenAIMixed}
+that rational Hodge holds on every finite product of projective complex
+K3 surfaces, with arbitrary distinct or repeated factors. We use the
+public OpenAI Math Release snapshot at the following commit, accessed
+October~6, 2026:
+\begin{center}
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\end{center}
+Manuscript cover dates in the references are not assertions about
+their earliest public disclosure.
+\end{samepage}
+
+Arapura had already proved conditional Hodge transfers to Hilbert schemes
+and K3 sheaf moduli \cite[Theorems~5.4 and~5.7(3)]{ArapuraHodge}, and a
+broader transfer for motivated varieties \cite[Lemma~4.2 and
+Theorems~7.4, 7.8]{ArapuraMotivation}. B\"ulles supplies the precise
+unconditional Chow-motive splitting for twisted sheaves and the eligible
+Bridgeland moduli \cite[Theorem~0.1]{Bulles}. The earlier OpenAI
+quadratic-locus companion already records the moduli and self-power
+application on its restricted locus \cite[Corollary~9.5]{OpenAIQuadratic}.
+Its general exact Kuga--Satake criterion, together with the later universal
+Kuga--Satake theorem \cite{OpenAIKS}, also yields the unrestricted-base
+self-power application. We record the mixed-moduli assembly: the extra
+mixed-base quantifier is supplied by \cite{OpenAIMixed}, and the reduction
+itself is inherited. We make no claim of a first proof or substantial
+independent novelty.
+
+\section{The transfer with degrees made explicit}
+
+For a smooth projective $V$ of dimension $d_V$ and a smooth projective
+$W$, a correspondence $A\in\CH^a(V\times W)_\Q$ acts by
+\[
+ A_*z=(\operatorname{pr}_W)_*
+       \bigl(\operatorname{pr}_V^*z\cdot A\bigr).
+\]
+On cohomology this sends a rational $(p,p)$ class to a rational
+$(p+a-d_V,p+a-d_V)$ class. Cycle classes commute with this action.
+If $B\in\CH^b(W\times V)_\Q$, then $B\circ A$ has codimension
+$a+b-\dim W$ in $V\times V$.
+
+\begin{proposition}\label{prop:transfer}
+Suppose a smooth projective $X$ is a direct summand of a finite sum of
+Tate-twisted rational Chow motives of smooth projective varieties $K_j$.
+If rational Hodge holds in every codimension on each $K_j$, it holds in
+every codimension on $X$.
+\end{proposition}
+
+\begin{proof}
+The split maps and projectors give homogeneous rational algebraic
+correspondences
+\[
+ A_j\in\CH^{a_j}(X\times K_j)_\Q,\qquad
+ B_j\in\CH^{b_j}(K_j\times X)_\Q,
+\]
+with
+\begin{equation}\label{eq:splitting}
+ a_j+b_j=\dim X+\dim K_j,\qquad
+ \sum_j B_j\circ A_j=\Delta_X.
+\end{equation}
+Using the actual cycle codimensions avoids any convention-dependent
+sign for a Tate twist.
+Let $z\in\Hdg^p(X)$ and put $q_j=p+a_j-\dim X$. The class $A_{j*}z$
+lies in $\Hdg^{q_j}(K_j)$. If $q_j$ is in the cohomological range,
+choose $Z_j\in\CH^{q_j}(K_j)_\Q$ with
+$\cl(Z_j)=A_{j*}z$ by the assumed Hodge conjecture. Outside that range
+the target is zero, and take $Z_j=0$. Then
+\[
+ Z=\sum_j B_{j*}Z_j\in\CH^p(X)_\Q,
+ \qquad
+ \cl(Z)=\sum_j B_{j*}A_{j*}z=z.
+\]
+The codimension is $q_j+b_j-\dim K_j=p$ by
+\eqref{eq:splitting}, and the final equality uses the diagonal identity.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:moduli}]
+First assume that all factors are nonempty and positive dimensional.
+B\"ulles gives split maps
+\[
+ h(M_i)\longrightarrow
+   \bigoplus_{j\in J_i}h(S_i^{k_{ij}})(t_{ij})
+   \longrightarrow h(M_i)
+\]
+whose composite is the identity, with finite $J_i$,
+$1\leq k_{ij}\leq\dim M_i$, and integers $t_{ij}$. Tensor these maps
+in rational Chow motives and distribute the finite sums. The motive of
+$X$ is a summand of a finite sum of Tate twists of motives of
+\[
+ K_J=\prod_{i=1}^r S_i^{k_{ij_i}},
+ \qquad J=(j_1,\ldots,j_r)\in\prod_i J_i.
+\]
+At the level of correspondences these are exterior products of the
+individual split maps; their composite sum is the exterior product of
+the diagonals, hence $\Delta_X$. Their codimensions add, so they satisfy
+\eqref{eq:splitting}. The rational Hodge theorem for mixed K3 products
+\cite{OpenAIMixed} applies to every $K_J$. Proposition~\ref{prop:transfer}
+therefore proves the claim.
+
+An empty factor gives an empty product. A smooth projective
+zero-dimensional factor over $\mathbb C$ is a finite disjoint union of
+points; remove it on each component and apply the preceding argument.
+The empty product is a point. Codimensions outside $[0,\dim X]$ have
+zero target.
+For $n\geq1$, $S^{[n]}$ is the smooth projective moduli of rank-one ideal
+sheaves with Mukai vector $(1,0,1-n)$ and is in the untwisted sheaf case.
+For $n=0$ it is a point. This proves the stated Hilbert-scheme consequence.
+\end{proof}
+
+\begin{remark}[Non-fine and twisted moduli]
+The split maps used here are B\"ulles' algebraic Chow correspondences.
+We do not construct them by presuming that an honest universal family
+exists. The cited construction uses quasi-universal/twisted data and the
+normalized diagonal identity underlying Markman's result
+\cite[Section~3]{Markman}. Raw duplication of a universal family does
+not preserve its Ext diagonal formula: multiplicities must be normalized.
+The present argument needs only the actual rational motive splitting,
+which already covers the Brauer classes in Theorem~\ref{thm:moduli}.
+\end{remark}
+
+\section{Scope and verification}
+The transfer explicitly uses Hodge for mixed products $K_J$; separate
+self-power theorems alone do not supply this premise. Conversely,
+$S^{[1]}=S$ shows that the unrestricted mixed-moduli conclusion includes
+the mixed-K3 base theorem. Thus, given B\"ulles' established reduction,
+these two universal assertions are equivalent. This explains exactly
+where the principal mathematical input lies.
+
+No claim is made about arbitrary deformations of $K3^{[n]}$ type,
+singular moduli or semistable compactifications, moduli on arbitrary
+abelian surfaces, the integral or generalized Hodge conjecture, or
+finite-dimensionality of Chow motives.
+
+The verification materials distinguish the explicit correspondence
+argument from the unformalized geometric input in \cite{OpenAIMixed}.
+The upstream Kuga--Satake Lean module checks rational Clifford/tensor
+identities; it does not formalize algebraic cycles, the universal
+Kuga--Satake theorem, or the theorem of this note. Reproducible small
+linear-algebra and sign checks are supporting evidence for parts of the
+upstream audit, not certificates for its full geometry.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in research, source and priority checks,
+drafting, and verification. The cited OpenAI manuscripts are attributed
+to OpenAI according to their supplied citation information. This note has
+not undergone conventional human peer review or refereeing. Automated
+adversarial reviews are not human peer review.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{ArapuraHodge}
+D. Arapura, \emph{Hodge cycles on some moduli spaces},
+\href{https://arxiv.org/abs/math/0102070v5}{arXiv:math/0102070v5}, 2002.
+\bibitem{ArapuraMotivation}
+D. Arapura, \emph{Motivation for Hodge cycles}, Adv. Math. \textbf{207}
+(2006), 762--781, \href{https://doi.org/10.1016/j.aim.2006.01.005}{doi:10.1016/j.aim.2006.01.005}.
+\bibitem{Bulles}
+T.-H. B\"ulles, \emph{Motives of moduli spaces on K3 surfaces and of special
+cubic fourfolds}, Manuscripta Math. \textbf{161} (2020), 109--124,
+\href{https://arxiv.org/abs/1806.08284v1}{arXiv:1806.08284v1},
+\href{https://doi.org/10.1007/s00229-018-1086-0}{doi:10.1007/s00229-018-1086-0}.
+\bibitem{Markman}
+E. Markman, \emph{Generators of the cohomology ring of moduli spaces of
+sheaves on symplectic surfaces}, J. reine angew. Math. \textbf{544}
+(2002), 61--82, \href{https://arxiv.org/abs/math/0009109v4}{arXiv:math/0009109v4}.
+\bibitem{OpenAIQuadratic}
+OpenAI, \emph{Algebraic Kuga--Satake correspondences and Hodge conjectures
+on a K3 quadratic locus}, OpenAI Math Release preprint, cover date
+September 30, 2026, \href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Algebraic-Kuga-Satake-correspondences-and-Hodge-conjectures-on-a-K3-quadratic-locus-September-30-2026/paper.pdf}{pinned public manuscript}.
+\bibitem{OpenAIKS}
+OpenAI, \emph{Algebraicity of Kuga--Satake Correspondences for K3 Surfaces},
+OpenAI Math Release preprint, cover date October 3, 2026,
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Algebraicity-of-Kuga-Satake-Correspondences-for-K3-Surfaces-October-3-2026/manuscript.pdf}{pinned public manuscript}.
+\bibitem{OpenAIMixed}
+OpenAI, \emph{The rational Hodge conjecture for products of K3 surfaces},
+OpenAI Math Release preprint, cover date October 4, 2026,
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/The-rational-Hodge-conjecture-for-products-of-K3-surfaces-October-4-2026/hodge-conjecture-products-k3.pdf}{pinned public manuscript}.
+\end{thebibliography}
+\end{document}

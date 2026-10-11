@@ -1,0 +1,3 @@
+# PR40 cache-only acceptance revision v2
+
+Repairs S7 after ROOT found that three deliberately ignored caches cannot be read from a Git tree. All13 still have complete worktree byte pins; exact cache3 must be absent in actual HEAD/merge tree, and tracked10/9 have exact full Git blob pins. Preserves old15+self/fresh31+self/qualification6+self and all science bytes. Read the entire CONTRACT, CACHE_GIT_SCOPE, SOURCE_CHANGES and all five sources before use. Prepared helpers were not imported, compiled or executed. New independent review and actual execution PENDING; original0/5,new0,audit0, no theorem/paper/DOI/tracker.

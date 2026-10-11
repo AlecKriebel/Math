@@ -1,0 +1,9 @@
+# 10400120: verified SU(5) lens-space counterexample, priority unresolved
+
+The exact full ordinary SU(5) WZW level5 (shifted10) result in COUNTEREXAMPLE.md contradicts the nonzero-magnitude statement printed as Ohtsuki Conjecture7.5. Both fundamental groups are Z/5; the positive S3-normalized squares are3475+1550sqrt5 and4025+1800sqrt5. Imported RT/modular-category and Hansen-Takata formula inputs are identified in the [research note](https://doi.org/10.5281/zenodo.23174156).
+
+Historical priority remains unresolved because Kuriya's directly relevant preprint could not be obtained. It is credited and the inability to rule out its containing or circumscribing this result is explicit in the note, public priority supplement and Zenodo metadata. No firstness, exhaustive novelty, current global openness or new historical resolution is claimed. The human specifically authorized this qualified publication.
+
+The [portable package](../../../draft_pr_publication_program_20260930/audits/pr95_10400120/qualified_publication_package_v2/publicfiles/README.md) contains analytic proof, exact source, provenance, recorded runs and optimization-safe guards. At least two sequential fresh whole-package adversarial AI reviews completed; all required repairs were propagated. Current native optimized author/replay checks reproduce126 labels and7 final polynomial identities, and the independent lattice route passes2005 explicit finite checks. Counts are algorithmic counts, not quality scores; replay proof and old review texts are historical and the immutable originals remain archived.
+
+AI tools were used extensively; the preprint is unrefereed without conventional human peer review. Original author effort2/5 is preserved; zero new central proof-search turns. DOI: 10.5281/zenodo.23174156; tracker: 'Math Puzzles'!A28:D28. See ACCEPTANCE.json for current provenance.

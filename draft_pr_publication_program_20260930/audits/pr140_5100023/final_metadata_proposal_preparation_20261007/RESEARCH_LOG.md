@@ -1,0 +1,3 @@
+# PR140 final metadata proposal preparation
+
+2026-10-07T19:47:17.225805+00:00 — 98% preparation checkpoint. Native publication and all23 local installs are genuinely completed and ROOT-authenticated. The final program3 update remains a proposed transaction pending independent exact data review, publication, separate installation and actual readback. Fresh complete MAIN program3 bodies equal current physical C preimages. The corrected successor updates two current package-readback references; archived first drafts and all failed installation receipts remain unchanged. This folder performs only read-only capture and small owned audit receipt copies. No native, backend, provider, refs, index or configuration writer is run.

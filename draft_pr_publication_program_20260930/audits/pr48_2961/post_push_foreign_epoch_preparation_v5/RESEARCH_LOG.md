@@ -1,0 +1,5 @@
+# PR48 post-push SOURCE V5 log
+
+2026-10-03T17:19:46.581407+00:00 — ROOT assigned exact-parent M4 repair after actual private counterexample12372. Complete control source read. Separate V5 changes only versions and shared exact absolute/canonical/nonsymlink A48 outer-parent predicate invoked before retained/live operator bindings. Unclosed24 V4 bodies/full0644 preserved. Full M4 report/verdict pending reading before READY. Source repair50%; corrective review0%; actual recovery0%; mathematical discovery0%.
+
+2026-10-03T17:25:11.841718+00:00 — Complete M4 report/verdict/control source now read and qualified separately. Exact shared parent predicate plus two callsites is sole residual operative change; all versions/consumer paths checked as text. Private child17049 passed17 bounded identity/snapshot/live-mode controls at 2026-10-03T17:21:18.424572+00:00–2026-10-03T17:21:18.430181+00:00. Physical24V4 bodies/full0644 remain unchanged, helpers byte-identical. No candidate/production/operator import, compilation/execution or actual copy; no ENOSPC this turn. Source repair100%; corrective review0%; recovery0%; math discovery0%.

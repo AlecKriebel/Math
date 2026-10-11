@@ -1,0 +1,1232 @@
+--- closed_PR37/pr37_guards.py
++++ prepared_PR38/pr38_guards.py
+@@ -1,4 +1,4 @@
+-"""Static PR37 root-only guards. No import-time mutation or execution.
++"""Static PR38 root-only guards. No import-time mutation or execution.
+ 
+ The preparation agent must never import or execute this module. Future root
+ execution is gated by explicit final review, scope-contract and actual replay
+@@ -16,34 +16,32 @@
+ from pathlib import Path, PurePosixPath
+ 
+ HERE = Path(__file__).resolve().parent
+-A = HERE.parent
++A = HERE.parents[1]
+ R = A.parents[2]
+ B = R / 'draft_pr_publication_program_20260930'
+-C = A / 'reviewed_candidate'
+-K = R / 'unsolved_math_prioritization/attempts/3009'
++C = A / 'reviewed_candidate_v2'
++K = R / 'unsolved_math_prioritization/attempts/2765'
+ Q = R / 'unsolved_math_prioritization/QUEUE.md'
+ BASE = B / 'infrastructure/accepted_state_sync'
+-ID, CODE, PR = '3009', 'KP-5.2', 37
+-HEAD = '84bb43d21b36e4d97229806e2518fbc135bee786'
++ID, CODE, PR = '2765', 'KP-2.17', 38
++HEAD = '980719c79e13ffbc3f5cfbf149c325ea2fb51df0'
+ ORIGINAL_BASE = 'c6975ca76f9f667f1250ba403d0e6da2aafe14d0'
+-CURRENT_SHA = 'ca440e7d4f378db294256e3d9a7a7b3f4e5344df562db9a2c4bb5092952dd2de'
+-DEPENDENCIES_SHA = '978f8e80fbccc453ec027c428414b6e7420df0c392d3d1c669df91a66f72b263'
+-SNAPSHOT_SHA = 'f2dbbca27d6b67cebe6eaa5563c990e54c5124de2ca2c626b9f124ca850ec10e'
+-LEDGER_SHA = '7bf94bf41466a40deceab668ecbb12a54b16fe16ad400bc221ff6f18e7558498'
+-SOURCE_SHA = 'f5624aff4127262fb0b9cad436377198c4c2953fcd18503f89fce013c4f7f042'
+-PINNED_SOURCE_SHA = '5d02c538258c518929d899638d28082a276958613baa93596921a5e903504b09'
+-PARTIAL_SHA = '11b674cee884531e4fb071babcbc442cbc17d8da9bbb93d445cd0bb0d6d9d794'
++CURRENT_SHA = 'b48e3e17b884056143a7132fd519872ac5223a0ef15fa4bb3d5738e3f58bb52c'
++DEPENDENCIES_SHA = '1b9d41f102cf3345777f4b77c5c5ffbf2db1084d82b6ce8b4a7fb8b5b4af2e79'
++SNAPSHOT_SHA = '2c58f3aa5f73920fa62c7103648deee899db3a12f3f48c940576f99eff74dfe2'
++LEDGER_SHA = 'b04b008cb90eb04c0586f32eaf2ef59d608ffc8e10f2721acfb70e91584e5737'
++SOURCE_SHA = '0d6179bc1f850670535220113fb63b3f87e3cccc4223b94c6c2c3e211c2d421e'
++RESULTS_SHA = 'd3c44c82d2ffb2d20080288821381c8fe4e4e79b6d632bfe5c93b94c71716115'
+ MIRROR_SHA = 'ca7576ece5bc37a6e569a62764541de773243d38bffa811f4d1174f25635667f'
+ WRITER_SHA = 'b72afa148d034818cc90fd25b6b084fd94e42604d433a64e09a4ee01ae6e5271'
+-PREVIOUS = B / 'audits/pr36_20001424/state_mirror_bindings.json'
+-PREVIOUS_SHA = '09a5bffa391fec5c49365559e5fe318d42964cb4d3e67cceb6e963e279e0a869'
+-ADMIN = {'README.md', 'pr_body.md', 'readiness.json', 'status.json', 'CURRENT_AUDIT_SCOPE.md', 'RESEARCH_LOG.md'}
++PREVIOUS = B / 'audits/pr37_3009/state_mirror_bindings.json'
++PREVIOUS_SHA = '7d83f82b51d2bede4dd03670e888e1ace53975caf64d4d3dd34b86052c8ef620'
++ADMIN = {'README.md', 'pr_body.md', 'readiness.json', 'status.json', 'CURRENT_AUDIT_SCOPE.md', 'RESEARCH_LOG.md', 'attempt.json'}
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty', 'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
+ FOREIGN_TRACKED_EXCLUSIONS = {
+     'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/commands.tsv',
+     'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/full_transcript.log',
+ }
+-SCRATCH = {'tmp', '__pycache__', 'private_tmp', 'private_sources', 'foreign_sources', 'foreign_downloads', 'primary'}
+ 
+ 
+ def require(condition, message):
+@@ -77,7 +75,7 @@
+ 
+ 
+ def load(path):
+-    return json.loads(Path(path).read_bytes())
++    return parse(Path(path).read_bytes())
+ 
+ 
+ def encode(value):
+@@ -89,7 +87,7 @@
+     require(path.parent.is_dir() and not path.is_symlink(), 'Unsafe output: ' + str(path))
+     if exclusive:
+         require(not path.exists(), 'Inspect existing receipt before retry: ' + str(path))
+-    temporary = path.with_name(path.name + '.pr37-tmp')
++    temporary = path.with_name(path.name + '.pr38-tmp')
+     with temporary.open('xb') as stream:
+         stream.write(data)
+         stream.flush()
+@@ -128,7 +126,7 @@
+         'gh', 'pr', 'view', str(PR), '--repo', 'AlecKriebel/Math', '--json',
+         'number,url,state,isDraft,headRefOid,headRefName,baseRefName,mergeCommit,mergedAt,body',
+     ], cwd=R, timeout=30))
+-    require(value['number'] == PR and value['url'] == 'https://github.com/AlecKriebel/Math/pull/37', 'Wrong remote PR')
++    require(value['number'] == PR and value['url'] == 'https://github.com/AlecKriebel/Math/pull/38', 'Wrong remote PR')
+     require(value['headRefOid'] == HEAD and value['headRefName'] == 'dot/math-' + ID and value['baseRefName'] == 'main', 'Remote original-head/base mismatch')
+     return value
+ 
+@@ -138,39 +136,32 @@
+     return value
+ 
+ 
+-def relative(name, scratch=False):
++def relative(name):
+     require(isinstance(name, str) and name and '\\' not in name and '\0' not in name, 'Invalid member name')
+     path = PurePosixPath(name)
+     require(not path.is_absolute() and '..' not in path.parts and str(path) == name, 'Unsafe/noncanonical member: ' + name)
+-    if not scratch:
+-        require(not (SCRATCH & set(path.parts)) and path.suffix not in {'.pyc', '.tmp'}, 'Scratch/foreign member rejected: ' + name)
+     return path
+ 
+ 
+-def regular(base, name, foreign=False):
+-    path_name = relative(name, scratch=foreign)
+-    if foreign:
+-        require(len(path_name.parts) == 2 and path_name.parts[0] == 'primary' and path_name.suffix in {'.pdf', '.txt'}, 'Only exact root primary PDF/text may be foreign')
++def regular(base, name):
++    relative(name)
+     base = Path(base)
+     path = base / name
+     require(base.is_dir() and not base.is_symlink(), 'Unsafe package root')
+-    require(path.resolve().is_relative_to(base.resolve()), 'Member escaped package')
+-    require(path.is_file() and not path.is_symlink(), 'Nonregular member: ' + name)
++    require(path.resolve().is_relative_to(base.resolve()) and path.is_file() and not path.is_symlink(), 'Unsafe/nonregular member: ' + name)
+     for parent in path.parents:
+         if parent == base:
+             break
+-        require(not parent.is_symlink(), 'Symlink parent: ' + name)
++        require(not parent.is_symlink(), 'Symlink ancestor: ' + name)
+     return path
+ 
+ 
+-def rows(value, foreign=False):
+-    require(isinstance(value, list), 'Binding rows must be explicit ordered list')
++def rows(value):
++    require(type(value) is list, 'Binding rows must be explicit ordered list')
+     names = []
+     for row in value:
+-        require(isinstance(row, dict), 'Malformed binding row')
+-        path = relative(row['path'], scratch=foreign)
+-        if foreign:
+-            require(len(path.parts) == 2 and path.parts[0] == 'primary' and path.suffix in {'.pdf', '.txt'}, 'Foreign binding must be root primary PDF/text')
++        require(type(row) is dict, 'Malformed binding row')
++        relative(row['path'])
+         digest(row['sha256'])
+         require(type(row['bytes']) is int and row['bytes'] >= 0, 'Invalid byte count')
+         names.append(row['path'])
+@@ -178,318 +169,362 @@
+     return value
+ 
+ 
+-def check_rows(base, value, foreign=False):
+-    for row in rows(value, foreign):
+-        raw = regular(base, row['path'], foreign).read_bytes()
++def check_rows(base, value):
++    for row in rows(value):
++        raw = regular(base, row['path']).read_bytes()
+         require(len(raw) == row['bytes'] and sha(raw) == row['sha256'], 'Bound member changed: ' + row['path'])
+ 
+ 
+-def inventory(base, exclusions=(), foreign_members=()):
+-    """Complete recursive file/directory closure; canonical has no exclusions."""
++def inventory(base):
+     base = Path(base)
+     require(base.is_dir() and not base.is_symlink(), 'Unsafe closure root')
+-    allowed = set(exclusions)
+-    require(allowed <= {'tmp', '__pycache__'}, 'Only exact whole-family scratch components can be qualified')
+-    foreign = {row['path'] for row in rows(list(foreign_members), foreign=True)}
+     files, directories = set(), set()
+     for path in base.rglob('*'):
+         name = str(path.relative_to(base))
+-        path_name = PurePosixPath(name)
+-        parts = set(path_name.parts)
+-        # Even ignored scratch may not redirect traversal through a symlink.
+-        require(not path.is_symlink(), 'Symlink in recursive closure: ' + name)
+-        if 'primary' in path_name.parts:
+-            require(name == 'primary' and path.is_dir() or name in foreign and path.is_file(), 'Unqualified primary entry: ' + name)
+-            if name == 'primary':
+-                require(foreign, 'Unqualified foreign primary directory')
+-                directories.add(name)
+-            else:
+-                files.add(name)
+-            continue
+-        if parts & allowed:
+-            continue
+         relative(name)
+-        if path.is_dir():
+-            directories.add(name)
+-        else:
+-            require(path.is_file(), 'Nonregular closure entry: ' + name)
+-            files.add(name)
++        require(not path.is_symlink(), 'Symlink in exact recursive closure: ' + name)
++        require(path.is_dir() or path.is_file(), 'Nonregular closure entry: ' + name)
++        (directories if path.is_dir() else files).add(name)
+     return files, directories
+ 
+ 
+-def exact_closure(base, expected, exclusions=(), foreign_members=()):
+-    expected = set(expected) | {row['path'] for row in foreign_members}
+-    actual, directories = inventory(base, exclusions, foreign_members)
++def exact_closure(base, expected):
++    expected = set(expected)
++    actual, directories = inventory(base)
+     require(actual == expected, 'Complete recursive file membership differs: ' + str(sorted(actual ^ expected)))
+     parents = {str(parent) for name in expected for parent in PurePosixPath(name).parents if str(parent) != '.'}
+     require(directories == parents, 'Extra/missing recursive directories: ' + str(sorted(directories ^ parents)))
+ 
+ 
+ def manifest(base, path, expected=None, count=None, scope=None):
++    """Strict complete closure; only twelve exact current malformed inputs qualified."""
+     base, path = Path(base), Path(path)
+-    require(path.parent == base and path.name in {p.name for p in base.iterdir()}, 'Require literal root manifest')
++    require(path.parent == base, 'Require literal root manifest')
+     raw = regular(base, path.name).read_bytes()
+     if expected is not None:
+         require(sha(raw) == digest(expected), 'Pinned manifest changed')
+-    obj = json.loads(raw)
+-    value = obj['files']
+-    if isinstance(value, dict):
+-        value = [{'path': name, **pin} for name, pin in value.items()]
+-    value = [{**row, 'bytes': row.get('bytes', row.get('size'))} for row in value]
+-    rows(value)
+-    require(path.name not in {row['path'] for row in value}, 'Manifest must self-exclude')
++    obj = parse(raw)
++    value = normalize_rows(obj['files'])
++    require(path.name not in {z['path'] for z in value}, 'Manifest self exclusion required')
+     if count is not None:
+-        require(len(value) == count, 'Manifest count differs')
++        require(len(value) == count, 'Exact manifest count differs')
+     for key in ['files_count', 'member_count']:
+         if key in obj:
+-            require(type(obj[key]) is int and obj[key] == len(value), 'Declared manifest count/type differs')
+-    exclusions, malformed, foreign = [], {}, []
+-    if scope is not None:
+-        require(base.resolve() == (A / 'whole_current_source_first_family').resolve(), 'Whole qualification restricted to exact PR37 whole family')
+-        require(strict_equal(scope['authored_members'], [{'path': row['path'], 'bytes': row['bytes'], 'sha256': row['sha256']} for row in value]), 'Reviewed first-party authored member bindings differ')
+-        exclusions = scope['scratch_components_excluded']
+-        required_values(obj, {'schema': 'strict_recursive_self_excluding_first_party_v1', 'self_excluded': ['FIRST_PARTY_MANIFEST.json'], 'foreign_excluded_prefixes': ['primary/'], 'bytecode_excluded_component': '__pycache__'}, 'Actual closed whole manifest')
+-        require(path.name == 'FIRST_PARTY_MANIFEST.json', 'Require actual whole manifest filename')
+-        required_values(scope, {'scratch_components_excluded': ['__pycache__'], 'foreign_excluded_prefixes': ['primary/']}, 'Exact whole exclusions')
+-        require('foreign_scratch_excluded' not in obj, 'Do not invent alternate exclusions for actual whole schema')
+-        foreign = whole_foreign_members(base, scope, value)
+-        exceptions = rows(scope['malformed_json_exceptions'])
+-        malformed = {row['path']: row for row in exceptions}
+-        require(set(malformed) <= {row['path'] for row in value}, 'Malformed exceptions must be reviewed authored members')
+-        require(all(PurePosixPath(name).suffix == '.json' for name in malformed), 'Only exact malformed JSON fixtures may be qualified')
+-    else:
+-        require(obj.get('foreign_scratch_excluded', []) == [], 'Current/canonical permits zero scratch exclusions')
+-        require(obj.get('foreign_excluded_prefixes', []) == [] and obj.get('bytecode_excluded_component') is None, 'Current/canonical permits no foreign/bytecode exclusions')
++            require(type(obj[key]) is int and obj[key] == len(value), 'Declared count/type differs')
+     check_rows(base, value)
++    malformed = {z['path']: z for z in load(HERE / 'INPUT_BINDINGS.json')['current_malformed_json_exceptions']} if base in {C, K} else {}
+     for row in value:
+-        data = (base / row['path']).read_bytes()
+-        suffix = PurePosixPath(row['path']).suffix
+-        if suffix == '.json':
++        data = regular(base, row['path']).read_bytes()
++        if PurePosixPath(row['path']).suffix == '.json':
+             if row['path'] in malformed:
+                 pin = malformed[row['path']]
+-                require(all(row[key] == pin[key] for key in ['bytes', 'sha256']), 'Exact malformed fixture pin differs')
+-                require(isinstance(pin.get('qualification'), str) and pin['qualification'], 'Malformed fixture needs exact historical qualification')
++                require(all(strict_equal(row[k], pin[k]) for k in ['bytes', 'sha256']), 'Malformed fixture exact bytes changed')
+                 try:
+-                    json.loads(data)
++                    parse(data)
+                 except json.JSONDecodeError:
+                     pass
+                 else:
+                     raise ValueError('Pinned malformed fixture now parses')
+             else:
+-                json.loads(data)
+-        elif suffix == '.jsonl':
++                parse(data)
++        elif PurePosixPath(row['path']).suffix == '.jsonl':
+             require(not data or data.endswith(b'\n'), 'Incomplete JSONL member')
+             for line in data.splitlines():
+-                json.loads(line)
+-    exact_closure(base, {row['path'] for row in value} | {path.name}, exclusions, foreign)
++                parse(line)
++    exact_closure(base, {z['path'] for z in value} | {path.name})
+     return value
+ 
+ 
+-def whole_foreign_members(base, scope, authored):
+-    """Imported PDFs/text are individually bound, never first-party evidence."""
+-    provenance_names = {'SOURCE_AND_READ_COVERAGE.json', 'INITIAL_SOURCE_ACQUISITION_TOOL_BODY.txt', 'fetch_primary_supplement.py'}
+-    provenance = [row for row in authored if row['path'] in provenance_names or row['path'].startswith('receipts/')]
+-    require(provenance_names <= {row['path'] for row in provenance}, 'Whole acquisition/read provenance absent')
+-    require(strict_equal(scope['foreign_inventory_sources'], provenance), 'Complete authored acquisition/read receipt bindings differ')
+-    check_rows(base, provenance)
+-    coverage = load(base / 'SOURCE_AND_READ_COVERAGE.json')
+-    sources = coverage['sources']
+-    require(type(sources) is list and sources, 'Actual source/read PDF inventory required')
+-    pdfs = []
+-    for source in sources:
+-        required_values(source, {'foreign_import': True}, 'Imported PDF source qualification')
+-        pin = {key: source[key] for key in ['path', 'bytes', 'sha256']}
+-        rows([pin], foreign=True)
+-        require(strict_equal(source, {**pin, 'foreign_import': True}), 'Actual read coverage PDF entry shape differs')
+-        require(PurePosixPath(pin['path']).suffix == '.pdf', 'Coverage source must be exact PDF')
+-        pdfs.append(pin)
+-    require({row['path'] for row in pdfs} == {'primary/' + name + '.pdf' for name in ['boronski_v1', 'hamilton1954', 'k3', 'kolev_v3', 'pardon_v3']} and len(pdfs) == 5, 'Only actual five imported primary PDFs qualified')
+-    foreign = rows(scope['foreign_members'], foreign=True)
+-    require([row['path'] for row in foreign] == sorted({row['path'] for row in pdfs} | {str(PurePosixPath(row['path']).with_suffix('.txt')) for row in pdfs}), 'Full exact root primary PDF/text inventory required')
+-    foreign_by_path = {row['path']: row for row in foreign}
+-    for pdf in pdfs:
+-        require(strict_equal(foreign_by_path[pdf['path']], pdf), 'Foreign PDF differs from actual read coverage')
+-        receipt_name = 'receipts/' + PurePosixPath(pdf['path']).stem + '.fetch.json'
+-        require(receipt_name in {row['path'] for row in provenance}, 'Actual fetch receipt omitted from provenance')
+-        required_values(load(base / receipt_name), {'bytes': pdf['bytes'], 'sha256': pdf['sha256'], 'http_status': 200, 'extract_exit': 0}, 'Actual imported PDF fetch/extraction')
+-    check_rows(base, foreign, foreign=True)
+-    return foreign
+-
+-
+-def add_gate_args(parser):
+-    parser.add_argument('--execute', action='store_true', help='Future root-only explicit execution')
+-    for name in ['whole-manifest', 'root-final-receipt', 'whole-scope-contract']:
+-        parser.add_argument('--' + name, required=True, help='Repository-relative finalized artifact')
+-        parser.add_argument('--' + name + '-sha256', required=True)
++def parse(raw):
++    def unique(pairs):
++        out = {}
++        for key, value in pairs:
++            require(key not in out, 'Duplicate JSON key: ' + key)
++            out[key] = value
++        return out
++    return json.loads(raw, object_pairs_hook=unique)
++
++
++def normalize_rows(value):
++    if type(value) is dict:
++        value = [{'path': name, **pin} for name, pin in value.items()]
++    require(type(value) is list, 'Require complete binding list')
++    normalized = []
++    for row in value:
++        require(type(row) is dict, 'Require typed member binding')
++        if 'bytes' in row and 'size' in row:
++            require(strict_equal(row['bytes'], row['size']), 'Conflicting byte counts')
++        normalized.append({**row, 'bytes': row['bytes'] if 'bytes' in row else row['size']})
++    return rows(normalized)
++
++
++def audit_pin(pin):
++    require(type(pin) is dict and set(pin) >= {'path', 'bytes', 'sha256'}, 'Complete explicit audit pin required')
++    path = regular(A, pin['path'])
++    raw = path.read_bytes()
++    require(type(pin['bytes']) is int and len(raw) == pin['bytes'] and sha(raw) == digest(pin['sha256']), 'Audit pin changed: ' + pin['path'])
++    return raw
+ 
+ 
+ def bound_repository(pin):
+     path = regular(R, pin['path'])
+-    require(path.resolve().is_relative_to(A.resolve()), 'Final replay binding must belong to PR37 audit')
++    require(path.resolve().is_relative_to(A.resolve()), 'Final evidence must belong to exact PR38 audit')
+     raw = path.read_bytes()
+-    require(len(raw) == pin['bytes'] and sha(raw) == digest(pin['sha256']), 'Final replay binding changed')
++    require(type(pin['bytes']) is int and len(raw) == pin['bytes'] and sha(raw) == digest(pin['sha256']), 'Final evidence binding changed: ' + pin['path'])
+     return raw
+ 
+ 
++def repo_pin(path):
++    raw = Path(path).read_bytes()
++    return {'path': str(Path(path).relative_to(R)), 'bytes': len(raw), 'sha256': sha(raw)}
++
++
+ def source_and_ledger(base):
+-    source, pinned = (base / 'source_record.json').read_bytes(), (base / 'pinned_problem.json').read_bytes()
+-    require(sha(source) == SOURCE_SHA and sha(pinned) == PINNED_SOURCE_SHA, 'Both exact source serializations must survive')
+-    require(source != pinned and json.loads(source) == json.loads(pinned), 'Flat full JSON semantic equality / byte inequality required')
+-    require(json.loads(source).get('id') == int(ID), 'Wrong numeric flat source')
+-    require(load(base / 'pinned_importer_prior_fallback.json') == {}, 'Pinned empty fallback is not a retrieved separate prior report')
+-    ledger = (base / 'turns.json').read_bytes()
+-    require(sha(ledger) == LEDGER_SHA, 'Entire original ledger bytes changed')
+-    obj = json.loads(ledger)
+-    require(obj['problem_id'] == int(ID) and obj['problem_number'] == CODE and obj['substantive_turns_used'] == 1 and obj['turn_limit'] == 5 and obj['outcome'] == 'unsolved', 'Native authored budget changed')
+-    require([z['turn'] for z in obj['responses']] == [1] and obj['responses'][0]['artifact'] == 'PARTIAL.md', 'Authored response changed')
+-
+-
+-def acceptance_invariants(acceptance, pins, pre):
+-    """Explicit accepted scope/budget/runtime; matching rehashed copies cannot bless it."""
+-    required = {'schema': 'pr37-accepted-current-partial/v1', 'pr': PR, 'id': int(ID), 'problem_id': int(ID), 'problem_number': CODE,
+-                'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
+-                'original_head': HEAD, 'original_base': ORIGINAL_BASE, 'merge_parents': [pre['main_before'], HEAD], 'remote_state': 'MERGED', 'remote_isDraft': False,
+-                'canonical_scientific_artifact_sha256': PARTIAL_SHA, 'original_partial_sha256': next(row['sha256'] for row in load(A / 'snapshot_manifest.json')['files'] if row['path'] == 'PARTIAL.md'),
+-                'source_record_sha256': SOURCE_SHA, 'root_pinned_problem_sha256': PINNED_SOURCE_SHA, 'original_ledger_sha256': LEDGER_SHA,
+-                'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'substantive_attempts_used': 1, 'substantive_attempt_limit': 5, 'verification_attempts_added': 0,
+-                'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False, 'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
+-                'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True,
+-                'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json',
+-                'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
+-    required_values(acceptance, {**required, **pins}, 'Accepted PR37 invariant')
+-    for key in ['merge_commit', 'merge_tree']:
+-        require(type(acceptance.get(key)) is str and re.fullmatch(r'[0-9a-f]{40}', acceptance[key]), 'Accepted real merge binding absent/invalid: ' + key)
+-    require(type(acceptance.get('merged_at')) is str and acceptance['merged_at'], 'Accepted actual merge date absent/invalid')
+-    source_and_ledger(K)
+-    for name in ['readiness.json', 'status.json']:
+-        value = load(K / name)
+-        frozen = load(C / name)
+-        required_values(value, {'id': int(ID), 'code': CODE, 'pr': PR, 'status': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved',
+-                               'current_gate': 'PASS_NEW_complete_source_first_and_actual_root_reproduction', 'merge_commit': acceptance['merge_commit'], 'merge_tree': acceptance['merge_tree'],
+-                               'remote_merged_at': acceptance['merged_at'], 'current_workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
+-                               'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'full_problem_solved': False,
+-                               'positive_novelty_claim': False, 'paper_or_new_doi_or_tracker': False, 'source_record_sha256': SOURCE_SHA,
+-                               'root_pinned_problem_sha256': PINNED_SOURCE_SHA, 'original_turns_sha256': LEDGER_SHA, 'current_partial_sha256': PARTIAL_SHA,
+-                               'native_queue_lifecycle_claimed': False, 'native_historical_readiness_or_proof_event_claimed': False,
+-                               'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True,
+-                               'budget': frozen['budget'], **pins}, 'Accepted administration ' + name)
+-        required_values(value['budget'], {'original_substantive_attempts': 1, 'used_substantive_attempts': 1, 'maximum_substantive_attempts': 5,
+-                                         'cumulative_attempts': '1/5', 'new_substantive_attempts': 0, 'verification_attempts': 0,
+-                                         'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_only': True}, 'Original archival budget ' + name)
++    require(sha(regular(base, 'source_record.json').read_bytes()) == SOURCE_SHA, 'Exact complete original source serialization changed')
++    source = load(base / 'source_record.json')
++    required_values(source, {'id': int(ID)}, 'Complete flat numeric source')
++    actual = load(A / 'ROOT_CLOSED_FAMILIES_ACTUAL_REPRODUCTION.json')
++    require(strict_equal(actual['provenance']['complete_flat_problem'], source), 'Complete native/raw/SQL source differs from exact original')
++    require((base / 'prior_report.json').read_bytes() == b'null\n', 'Exact historical null prior changed')
++    require(strict_equal(load(base / 'native_importer_prior_fallback.json'), {}), 'Empty importer fallback cannot become retrieved report')
++    raw = regular(base, 'turns.json').read_bytes()
++    require(sha(raw) == LEDGER_SHA, 'Entire two-row original list ledger changed')
++    ledger = parse(raw)
++    require(type(ledger) is list and len(ledger) == 2 and [z['turn'] for z in ledger] == [1, 2], 'Exact original two turns required')
++    require(strict_equal(ledger, load(C / 'original_archive/turns.json')), 'Full original ledger contents differ')
++    require([z['artifact'] for z in ledger] == ['RESULTS.md, Sections 1-4', 'RESULTS.md, Section 5'], 'Original artifact references changed')
++
++
++def immutable_basis():
++    """Read full pinned evidence; never replay a scientific program."""
++    inputs = load(HERE / 'INPUT_BINDINGS.json')
++    pins = inputs['pins']
++    bound = []
++    for pin in pins.values():
++        audit_pin(pin)
++        bound.append(repo_pin(A / pin['path']))
++    for key, base, count in [('frozen_v1', A / 'reviewed_candidate', 1499), ('reviewed_v2', C, 1502)]:
++        obj = load(A / pins[key]['path'])
++        members = normalize_rows(obj['files'])
++        require(len(members) == count, 'Frozen member count differs')
++        check_rows(base, members)
++        exact_closure(base, {z['path'] for z in members} | {'MANIFEST.json'})
++        bound.extend(repo_pin(base / z['path']) for z in members)
++    old = {z['path']: regular(A / 'reviewed_candidate', z['path']).read_bytes() for z in normalize_rows(load(A / pins['frozen_v1']['path'])['files'])}
++    new = {z['path']: regular(C, z['path']).read_bytes() for z in normalize_rows(load(C / 'MANIFEST.json')['files'])}
++    require(sorted(n for n in old if old[n] != new[n]) == ['CURRENT_CONTEXT.md', 'README.md'], 'v2 existing content changed outside exact presentation metadata')
++    require(sorted(set(new) - set(old)) == ['V1_MANIFEST.json', 'V2_ALIAS_RECEIPT.json', 'review/REVIEW.md'], 'v2 additions differ')
++    append = regular(A / 'acceptance_preparation_family/alias_source_revision', 'ARCHIVAL_NOTICE_APPEND.txt').read_bytes()
++    require(all(new[n] == old[n] + append for n in ['README.md', 'CURRENT_CONTEXT.md']), 'Exact archival notice append differs')
++    require(new['review/REVIEW.md'] == old['original_archive/review/REVIEW.md'] and new['V1_MANIFEST.json'] == (A / pins['frozen_v1']['path']).read_bytes(), 'Exact historical alias/v1 closure differs')
++    dependency = load(C / 'CURRENT_PROOF_DEPENDENCIES.json')
++    require(dependency['dependency_anchor_repository_relative'] == str(A.relative_to(R)) and len(dependency['files']) == 1472, 'All exact1472 audit-anchored dependencies required')
++    check_rows(A, normalize_rows(dependency['files']))
++    bound.extend(repo_pin(A / z['path']) for z in normalize_rows(dependency['files']))
++    for name in ['primary_scope_family', 'current_measure_family', 'trace_geometry_family']:
++        path = A / pins[name]['path']
++        obj = load(path)
++        value = normalize_rows(obj['authored_files'] if name == 'current_measure_family' else obj['files'])
++        require(len(value) == pins[name]['authored_count'], 'Closed family authored scope differs')
++        check_rows(path.parent, value)
++        extras = inputs['source_family_qualified_extra_members'][name]
++        check_rows(path.parent, extras)
++        exact_closure(path.parent, {z['path'] for z in value + extras} | {path.name})
++        bound.extend(repo_pin(path.parent / z['path']) for z in value + extras)
++    for name, extras in [('root_actual_support', []), ('whole_v1', inputs['whole_v1_foreign_members']), ('alias_preparation', []), ('whole_v2_alias_followup', []), ('whole_alias_source_only', [])]:
++        path = A / pins[name]['path']
++        value = normalize_rows(load(path)['files'])
++        require(len(value) == pins[name]['authored_count'], 'Exact authored closure count differs: ' + name)
++        check_rows(path.parent, value + extras)
++        exact_closure(path.parent, {z['path'] for z in value + extras} | {path.name})
++        bound.extend(repo_pin(path.parent / z['path']) for z in value + extras)
++    capture = load(A / pins['alias_actual_capture']['path'])
++    required_values(capture, {'source_sha256': 'c30a30983e3d26f36b2ca055177a0445b26870deb0085082eb6d7f44db554210', 'actual_execution': True, 'completed': True, 'exit_code': 0, 'status': 'PASS'}, 'Actual root v2 alias capture')
++    require(type(capture['pid']) is int and capture['pid'] > 0, 'Actual alias child pid required')
++    capture_base = (A / pins['alias_actual_capture']['path']).parent
++    exact_closure(capture_base, {'CAPTURE.json', 'prelaunch_source.py', capture['stdout']['path'], capture['stderr']['path']})
++    require(sha(regular(capture_base, 'prelaunch_source.py').read_bytes()) == capture['source_sha256'], 'Actual alias prelaunch source differs')
++    for key in ['stdout', 'stderr']:
++        row = normalize_rows([capture[key]])[0]
++        check_rows(capture_base, [row])
++        bound.append(repo_pin(capture_base / row['path']))
++    bound.append(repo_pin(capture_base / 'prelaunch_source.py'))
++    replay = load(A / pins['actual_root_replay']['path'])
++    required_values(replay, {'status': 'PASS', 'setup_completed': True, 'head': HEAD, 'base': ORIGINAL_BASE, 'original_substantive_turns': 2, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0, 'exact_original_file_count': 16, 'changed_diff_path_count': 17, 'closed_family_count': 3}, 'Entire original actual closed replay')
++    require(len(replay['actual_outer_program_runs']) == 12 and len(replay['actual_nested_program_runs']) == 108 and len(replay['actual_administrative_command_runs']) == 2 and replay['retention_errors'] == [], 'Actual original replay complete scope differs')
++    source_and_ledger(C)
++    require(new['RESULTS.md'] == old['original_archive/RESULTS.md'] and sha(new['RESULTS.md']) == RESULTS_SHA, 'Original results mathematics changed')
++    by_path = {}
++    for pin in bound:
++        require(pin['path'] not in by_path or strict_equal(by_path[pin['path']], pin), 'Conflicting full evidence binding')
++        by_path[pin['path']] = pin
++    return [by_path[k] for k in sorted(by_path)]
++
++
++def final_scope(scope):
++    required_values(scope, {'schema': 'pr38-root-reviewed-final-evidence-plan/v1', 'plan_status': 'ROOT_REVIEWED_FOR_ACTUAL_RECONCILIATION', 'pr': PR, 'problem_id': int(ID), 'original_head': HEAD, 'original_base': ORIGINAL_BASE,
++        'reviewed_candidate_manifest_sha256': CURRENT_SHA, 'current_proof_dependencies_sha256': DEPENDENCIES_SHA,
++        'root_full_current_read_completed': True, 'independent_v2_source_first_pass': True, 'mandatory_corrections': [],
++        'science_reexecution_of_v2': False, 'original_actual_closed_family_replay_bound': True,
++        'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
++        'original_substantive_attempts': 2, 'new_substantive_attempts': 0, 'audit_turns': 0,
++        'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None,
++        'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True,
++        'paper_or_new_doi_or_tracker': False, 'standard_inputs_independently_recertified': False,
++        'standard_input_qualification_is_mathematical_defect': False}, 'Explicit final evidence scope')
++    require(strict_equal(scope['scientific_scope'], load(HERE / 'SCIENTIFIC_SCOPE.json')), 'Complete inherited scientific/source qualification differs')
++    basis = immutable_basis()
++    require(strict_equal(scope['immutable_basis_bindings'], basis), 'Complete actual immutable basis must be explicitly reviewed and pinned')
++    inputs = load(HERE / 'INPUT_BINDINGS.json')['pins']
++    whole_pin = repo_pin(A / inputs['whole_v2_alias_followup']['path'])
++    require(scope['whole_manifest'] == whole_pin['path'] and scope['whole_manifest_sha256'] == whole_pin['sha256'], 'Actual closed v2 independent whole manifest required')
++    assessment = load(A / 'whole_current_alias_followup_family/ASSESSMENT.json')
++    required_values(assessment, {'verdict': 'VALID_UNSOLVED_PARTIAL_NO_REMAINING_MANDATORY_CORRECTIONS', 'actual_v2_manifest_sha256': CURRENT_SHA,
++        'mandatory_corrections': [], 'original_v1_alias_correction_resolved': True, 'full_problem_solved': False, 'new_substantive_attempts': 0, 'audit_turns': 0}, 'Actual full independent v2 assessment')
++    inspection = load(A / inputs['root_actual_v2_inspection']['path'])
++    required_values(inspection, {'status': 'PASS', 'actual_v2_manifest_sha256': CURRENT_SHA, 'actual_v2_members': 1502,
++        'root_full_current_read_completed': True, 'full_problem_solved': False, 'partial_valid': True,
++        'original_attempts': 2, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0, 'mandatory_corrections_remaining': []}, 'Complete actual root v2 inspection')
++    require(type(scope['final_review_records']) is list and [z['role'] for z in scope['final_review_records']] == ['independent_actual_v2_alias_followup', 'root_complete_actual_v2_inspection'], 'Both actual final source-first/whole v2 records required')
++    require(strict_equal([z['binding'] for z in scope['final_review_records']], [repo_pin(A / 'whole_current_alias_followup_family/ASSESSMENT.json'), repo_pin(A / inputs['root_actual_v2_inspection']['path'])]), 'Both exact actual final review bindings required')
++    final_bindings = []
++    for item in scope['final_review_records']:
++        pin = item['binding']
++        actual = parse(bound_repository(pin))
++        require(strict_equal(actual, item['entire_parsed_json']), 'Entire final review record differs: ' + item['role'])
++        require(item['root_reviewed_pass'] is True and item['remaining_mandatory_corrections'] == [], 'Root must review complete actual record and clear all mandatory corrections')
++        final_bindings.append(pin)
++    require(type(scope['final_closures']) is list and scope['final_closures'], 'Explicit actual followup/inspection source/capture closures required')
++    closure_names = []
++    covered = {pin['path'] for pin in basis}
++    for closure in scope['final_closures']:
++        manifest_pin = closure['manifest']
++        path = regular(R, manifest_pin['path'])
++        require(path.resolve().is_relative_to(A.resolve()), 'Final closure root escaped selected audit')
++        obj = parse(bound_repository(manifest_pin))
++        require(strict_equal(obj, closure['entire_manifest']), 'Entire actual followup manifest differs')
++        members = rows(closure['members'])
++        advertised = normalize_rows(obj['files'])
++        require(strict_equal(members, advertised), 'Complete advertised actual followup member rows differ')
++        check_rows(path.parent, members)
++        exact_closure(path.parent, {z['path'] for z in members} | {path.name})
++        final_bindings.extend([manifest_pin] + [repo_pin(path.parent / z['path']) for z in members])
++        covered.update(z['path'] for z in final_bindings)
++        closure_names.append(manifest_pin['path'])
++    require(len(closure_names) == len(set(closure_names)), 'Duplicate actual final closure')
++    require(scope['whole_manifest'] in closure_names, 'Explicit final alias followup whole manifest must be in exact closures')
++    require(all(item['binding']['path'] in covered for item in scope['final_review_records']), 'Actual final review records must be retained in complete closure')
++    # No filename/suffix allowlist: exact declared ROOTstdout.bin and other raw
++    # capture streams are ordinary first-party rows of the complete closure.
++    by_path = {z['path']: z for z in basis}
++    for pin in final_bindings:
++        require(pin['path'] not in by_path or strict_equal(pin, by_path[pin['path']]), 'Conflicting final binding')
++        by_path[pin['path']] = pin
++    return [by_path[name] for name in sorted(by_path)]
++
++
++def add_gate_args(parser):
++    parser.add_argument('--execute', action='store_true', help='Future actual root-only explicit execution')
++    parser.add_argument('--preparation-manifest-sha256', required=True)
++    for name in ['whole-manifest', 'root-final-receipt', 'whole-scope-contract', 'root-final-manifest', 'reconciliation-capture']:
++        parser.add_argument('--' + name, required=True, help='Explicit repository-relative actual finalized artifact')
++        parser.add_argument('--' + name + '-sha256', required=True)
+ 
+ 
+ def gates(args):
+-    require(args.execute, 'Prepared only: future root --execute required')
++    require(args.execute, 'Prepared only: actual root --execute required')
+     require(git('branch', '--show-current') == 'main', 'Stay on main')
+-    frozen = manifest(C, C / 'MANIFEST.json', CURRENT_SHA, 96)
+-    require(sha((C / 'CURRENT_PROOF_DEPENDENCIES.json').read_bytes()) == DEPENDENCIES_SHA, 'Frozen443 dependency manifest changed')
+-    dependency = load(C / 'CURRENT_PROOF_DEPENDENCIES.json')
+-    require(dependency['dependency_anchor_repository_relative'] == str(A.relative_to(R)) and len(dependency['files']) == 443, 'Require exact audit anchor/all443 dependencies')
+-    check_rows(A, dependency['files'])
++    manifest(HERE, HERE / 'PREPARATION_MANIFEST.json', args.preparation_manifest_sha256)
+     paths = {}
+-    for name in ['whole_manifest', 'root_final_receipt', 'whole_scope_contract']:
++    for name in ['whole_manifest', 'root_final_receipt', 'whole_scope_contract', 'root_final_manifest', 'reconciliation_capture']:
+         path = regular(R, getattr(args, name))
+-        require(path.resolve().is_relative_to(A.resolve()) and not path.resolve().is_relative_to(C.resolve()), 'Final gate belongs to PR37 audit outside frozen candidate')
+-        require(sha(path.read_bytes()) == digest(getattr(args, name + '_sha256')), 'Explicit final gate pin changed: ' + name)
++        require(path.resolve().is_relative_to(A.resolve()) and not path.resolve().is_relative_to(C.resolve()), 'Actual finalized gate must belong to selected audit outside frozen v2')
++        require(sha(path.read_bytes()) == digest(getattr(args, name + '_sha256')), 'Explicit actual final gate changed: ' + name)
+         paths[name] = path
+     scope = load(paths['whole_scope_contract'])
+-    required_values(scope, {'schema': 'pr37-root-reviewed-final-whole-scope/v1', 'pr': PR, 'problem_id': int(ID)}, 'Final whole contract')
+-    required_values(scope, {'whole_manifest_sha256': args.whole_manifest_sha256, 'root_final_receipt_sha256': args.root_final_receipt_sha256}, 'Contract/final gate pins')
+-    whole = manifest(paths['whole_manifest'].parent, paths['whole_manifest'], args.whole_manifest_sha256, scope=scope)
++    require(scope['whole_manifest'] == args.whole_manifest and scope['whole_manifest_sha256'] == args.whole_manifest_sha256 and scope['preparation_manifest_sha256'] == args.preparation_manifest_sha256, 'Exact final whole/preparation pins differ')
++    bindings = final_scope(scope)
+     root = load(paths['root_final_receipt'])
+-    required = {'schema': 'pr37-actual-final-whole-reproduction/v1', 'status': 'PASS', 'pr': PR, 'problem_id': int(ID), 'original_head': HEAD,
+-                'reviewed_candidate_manifest_sha256': CURRENT_SHA, 'current_proof_dependencies_sha256': DEPENDENCIES_SHA,
+-                'whole_manifest_sha256': args.whole_manifest_sha256, 'entire_current_packet_checked': True, 'root_actual_reproduction': True,
+-                'mandatory_corrections': [], 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
+-                'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'verification_attempts_added': 0,
+-                'paper_or_new_doi_or_tracker': False, 'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None}
+-    required_values(root, required, 'Root final receipt; never fabricate pass fields')
+-    replay = rows(scope['root_replay_bindings'])
+-    require(replay and strict_equal(root['root_replay_bindings'], replay), 'Bind every actual root replay authored source/receipt/stream')
+-    for row in replay:
+-        bound_repository(row)
+-    wrapper = scope['root_wrapper']
+-    require(wrapper in replay and strict_equal(root['root_wrapper'], wrapper), 'Root actual wrapper source not explicitly pinned')
+-    bound_repository(wrapper)
+-    expected_snapshots = {'reviewed_candidate': [{'path': z['path'], 'bytes': z['bytes'], 'sha256': z['sha256']} for z in frozen] + [{'path': 'MANIFEST.json', 'bytes': len((C / 'MANIFEST.json').read_bytes()), 'sha256': CURRENT_SHA}],
+-                          'dependencies': dependency['files'], 'whole_authored_members': scope['authored_members']}
+-    require(strict_equal(root['bindings_before'], expected_snapshots) and strict_equal(root['bindings_after'], expected_snapshots), 'Require every current97/dependency443/final authored member exact before/after actual replay')
+-    executions = root['actual_outer_executions']
+-    require(isinstance(executions, list) and executions and [z['label'] for z in executions] == scope['required_outer_execution_labels'], 'All actual outer execution labels required')
+-    require(len({z['label'] for z in executions}) == len(executions), 'Duplicate outer execution')
+-    replay_by_path = {z['path']: z for z in replay}
+-    require(strict_equal(root['actual_outer_executions'], scope['actual_outer_execution_specs']), 'Root-reviewed entire actual outer execution specs differ')
+-    for execution in executions:
+-        require(execution['actual_execution'] is True and type(execution['returncode']) is int and execution['returncode'] == 0, 'Actual outer execution must return0')
+-        require(isinstance(execution['argv'], list) and execution['argv'] and execution['started_at_utc'] and execution['finished_at_utc'], 'Recorded actual command/time required')
+-        require(execution['wrapper'] == wrapper, 'Execution wrapper source differs')
+-        for key in ['stdout', 'stderr', 'receipt']:
+-            pin = execution[key]
+-            require(replay_by_path.get(pin['path']) == pin, 'Execution stream/receipt omitted from final replay closure')
+-            bound_repository(pin)
+-        receipt = json.loads(bound_repository(execution['receipt']))
+-        require(strict_equal(receipt, execution['parsed_receipt']), 'Compare complete parsed actual outer receipt')
+-    comparisons = root['structured_comparisons']
+-    require(isinstance(comparisons, list) and comparisons and [z['label'] for z in comparisons] == scope['required_comparison_labels'], 'Complete required parsed comparisons missing')
+-    require(len({z['label'] for z in comparisons}) == len(comparisons), 'Duplicate comparison label')
+-    require(strict_equal(comparisons, scope['structured_comparison_specs']), 'Root-reviewed full comparison specifications differ')
+-    coverage = scope['required_comparison_coverage']
+-    require(set(coverage) == {'original_complete_controls31', 'independent_complete_controls8462', 'all_three_closed_families', 'whole_positive_and_mutant_receipts'}, 'Require complete original/independent/closed-family/whole comparison coverage')
+-    require(all(isinstance(labels, list) and labels and set(labels) <= {z['label'] for z in comparisons} for labels in coverage.values()), 'Every complete comparison coverage group needs exact labels')
+-    require(strict_equal(root['comparison_coverage'], coverage), 'Actual complete comparison coverage differs')
+-    reviewed_bindings = dict(replay_by_path)
+-    for base, values in [(C, frozen), (A, dependency['files']), (paths['whole_manifest'].parent, whole)]:
+-        for pin in values:
+-            name = str((base / pin['path']).relative_to(R))
+-            reviewed_bindings[name] = {'path': name, 'bytes': pin['bytes'], 'sha256': pin['sha256']}
+-    for comparison in comparisons:
+-        actual_pin, expected_pin = comparison['actual'], comparison['expected']
+-        require(actual_pin['path'] != expected_pin['path'], 'Comparison cannot use the same file as actual and expected')
+-        require(replay_by_path.get(actual_pin['path']) == actual_pin, 'Actual comparison omitted from root replay closure')
+-        require(reviewed_bindings.get(expected_pin['path']) == expected_pin, 'Expected complete output must be first-party reviewed/dependency/root-replay member')
+-        actual, expected = bound_repository(actual_pin), bound_repository(expected_pin)
+-        kind = comparison['kind']
+-        if kind == 'full_parsed_json':
+-            require(strict_equal(json.loads(actual), json.loads(expected)), 'Complete JSON differs: ' + comparison['label'])
+-        elif kind == 'full_parsed_jsonl':
+-            require(strict_equal([json.loads(x) for x in actual.splitlines()], [json.loads(x) for x in expected.splitlines()]), 'Complete JSONL differs')
+-        elif kind == 'byte_exact':
+-            require(actual == expected, 'Complete byte comparison differs')
+-        else:
+-            raise ValueError('No projection/PASS-label-only comparison allowed')
+-    require(sha((A / 'snapshot_manifest.json').read_bytes()) == SNAPSHOT_SHA, 'Original13 snapshot changed')
++    required_values(root, {'schema': 'pr38-actual-final-evidence-reconciliation/v1', 'status': 'PASS', 'pr': PR, 'problem_id': int(ID),
++        'actual_root_reconciliation': True, 'science_reexecution_of_v2': False, 'original_actual_closed_family_replay_bound': True,
++        'whole_scope_contract_sha256': args.whole_scope_contract_sha256,
++        'whole_manifest_sha256': args.whole_manifest_sha256, 'preparation_manifest_sha256': args.preparation_manifest_sha256,
++        'bindings_before': bindings, 'bindings_after': bindings, 'entire_scope': scope}, 'Actual root final reconciliation receipt')
++    final_manifest_path = paths['root_final_manifest']
++    require(final_manifest_path.parent == paths['root_final_receipt'].parent == paths['whole_scope_contract'].parent and final_manifest_path.name == 'FINAL_MANIFEST.json', 'Actual final root receipt/scope closure must be literal and complete')
++    final_members = manifest(final_manifest_path.parent, final_manifest_path, args.root_final_manifest_sha256, 2)
++    require(strict_equal(final_members, sorted([{'path': paths['root_final_receipt'].name, 'bytes': len(paths['root_final_receipt'].read_bytes()), 'sha256': args.root_final_receipt_sha256}, {'path': paths['whole_scope_contract'].name, 'bytes': len(paths['whole_scope_contract'].read_bytes()), 'sha256': args.whole_scope_contract_sha256}], key=lambda row: row['path'])), 'Actual final two-member receipt/scope closure differs')
++    capture = load(paths['reconciliation_capture'])
++    required_values(capture, {'actual_execution': True, 'completed': True, 'exit_code': 0, 'status': 'PASS', 'source_sha256': sha((HERE / 'seal_final_evidence.py').read_bytes())}, 'Actual root final reconciliation child capture')
++    require(type(capture['pid']) is int and capture['pid'] > 0 and type(capture['argv']) is list and str(HERE / 'seal_final_evidence.py') in capture['argv'], 'Actual final child source/argv/pid required')
++    require(type(capture['started_utc']) is str and capture['started_utc'] and type(capture['finished_utc']) is str and capture['finished_utc'], 'Actual final start/end clocks required')
++    require(capture['cwd'] == str(A), 'Actual final reconciliation audit cwd required')
++    argv = capture['argv']
++    for flag, expected in [('--preparation-manifest-sha256', args.preparation_manifest_sha256), ('--plan', root['root_reviewed_plan']['path']), ('--plan-sha256', root['root_reviewed_plan']['sha256'])]:
++        require(argv.count(flag) == 1 and argv.index(flag) + 1 < len(argv) and argv[argv.index(flag) + 1] == expected, 'Actual final argv pin differs: ' + flag)
++    require(argv.count('--execute') == 1, 'Actual final explicit execution flag required')
++    bound_repository(root['root_reviewed_plan'])
++    require(strict_equal(root['reconciliation_source'], repo_pin(HERE / 'seal_final_evidence.py')), 'Exact final reconciliation source binding differs')
++    cap_base = paths['reconciliation_capture'].parent
++    require(sha(regular(cap_base, 'prelaunch_source.py').read_bytes()) == capture['source_sha256'], 'Actual final prelaunch source differs')
++    for key in ['stdout', 'stderr']:
++        row = normalize_rows([capture[key]])[0]
++        check_rows(cap_base, [row])
++    parsed_stdout = parse(regular(cap_base, capture['stdout']['path']).read_bytes())
++    required_values(parsed_stdout, {'status': 'PASS', 'root_final_receipt_sha256': args.root_final_receipt_sha256, 'whole_scope_contract_sha256': args.whole_scope_contract_sha256, 'final_manifest_sha256': args.root_final_manifest_sha256}, 'Full actual final child stdout')
++    exact_closure(cap_base, {paths['reconciliation_capture'].name, 'prelaunch_source.py', capture['stdout']['path'], capture['stderr']['path']})
++    frozen = manifest(C, C / 'MANIFEST.json', CURRENT_SHA, 1502)
+     snapshot = load(A / 'snapshot_manifest.json')
+-    require(snapshot['head'] == HEAD and snapshot['base'] == ORIGINAL_BASE and len(snapshot['files']) == 13 and len(snapshot['changed_paths']) == 14, 'Original13/14diff scope changed')
+-    actual_changed = git_bytes('diff', '--name-only', ORIGINAL_BASE, HEAD).decode().splitlines()
+-    original_diff = git_bytes('diff', ORIGINAL_BASE, HEAD)
+-    require(actual_changed == snapshot['changed_paths'] and len(original_diff) == snapshot['diff_bytes'] and sha(original_diff) == snapshot['diff_sha256'], 'Entire actual original14-path Git diff changed')
+-    require(original_diff == (A / 'pr_input/diff.patch').read_bytes(), 'Exact archived original diff differs from actual Git diff')
++    require(sha((A / 'snapshot_manifest.json').read_bytes()) == SNAPSHOT_SHA and snapshot['head'] == HEAD and snapshot['base'] == ORIGINAL_BASE and len(snapshot['files']) == 16 and len(snapshot['changed_paths']) == 17, 'Exact original16/17diff snapshot differs')
++    actual_diff = git_bytes('diff', ORIGINAL_BASE, HEAD)
++    require(git_bytes('diff', '--name-only', ORIGINAL_BASE, HEAD).decode().splitlines() == snapshot['changed_paths'] and len(actual_diff) == snapshot['diff_bytes'] and sha(actual_diff) == snapshot['diff_sha256'] and actual_diff == (A / 'pr_input/diff.patch').read_bytes(), 'Entire original17-path real Git diff differs')
+     for row in snapshot['files']:
+         raw = regular(C / 'original_archive', row['path']).read_bytes()
+         require(len(raw) == row['size'] and sha(raw) == row['sha256'] and raw == git_bytes('show', HEAD + ':unsolved_math_prioritization/attempts/' + ID + '/' + row['path']), 'Exact original Git/archive artifact differs')
+-    source_and_ledger(C)
+-    patch = load(C / 'CURRENT_PARTIAL_SOURCE_PATCH_RECEIPT.json')
+-    original = (C / 'original_archive/PARTIAL.md').read_bytes()
+-    updated = original
+-    require(patch['replacement_count'] == len(patch['replacements']) == 3, 'Exactly three source-only replacements')
+-    for replacement in reversed(patch['replacements']):
+-        old, new, offset = replacement['before'].encode(), replacement['after'].encode(), replacement['original_byte_offset']
+-        require(original[offset:offset + len(old)] == old and len(old) == replacement['before_bytes'] and len(new) == replacement['after_bytes'] and sha(old) == replacement['before_sha256'] and sha(new) == replacement['after_sha256'], 'Source-only replacement binding differs')
+-        updated = updated[:offset] + new + updated[offset + len(old):]
+-    require(updated == (C / 'PARTIAL.md').read_bytes() and sha(updated) == PARTIAL_SHA, 'PARTIAL science changed outside three reviewed replacements')
+     historical = load(C / 'CURRENT_NATIVE_HISTORICAL_STATE.json')
+     for revision in [ORIGINAL_BASE, HEAD]:
+         data = git_bytes('show', revision + ':unsolved_math_prioritization/state.json')
+         record = historical['states'][revision]
+-        require(len(data) == record['bytes'] and sha(data) == record['sha256'] and json.loads(data) == record['entire_object'] and ID not in json.loads(data), 'No original native target state may be invented')
++        require(len(data) == record['bytes'] and sha(data) == record['sha256'] and ID not in parse(data) and record['target_entry_present'] is False, 'Original native target state cannot be invented')
+         history = optional_git_file(revision, 'unsolved_math_prioritization/history.jsonl')
+-        require(not any(str(z.get('id', z.get('problem_id', ''))) == ID for z in map(json.loads, history.splitlines())), 'Original native target history unexpectedly present')
++        require(not any(str(z.get('id', z.get('problem_id', ''))) == ID for z in map(parse, history.splitlines())), 'Original native target history unexpectedly present')
+     return frozen, {'reviewed_candidate_manifest_sha256': CURRENT_SHA, 'current_proof_dependencies_sha256': DEPENDENCIES_SHA,
+-                    **{key: getattr(args, key) for key in ['whole_manifest', 'whole_manifest_sha256', 'root_final_receipt', 'root_final_receipt_sha256', 'whole_scope_contract', 'whole_scope_contract_sha256']},
+-                    'root_wrapper': wrapper, 'whole_scratch_components_excluded': scope['scratch_components_excluded'],
+-                    'whole_foreign_excluded_prefixes': scope['foreign_excluded_prefixes'], 'whole_foreign_members': scope['foreign_members'],
+-                    'whole_foreign_inventory_sources': scope['foreign_inventory_sources'],
+-                    'whole_malformed_json_exceptions': scope['malformed_json_exceptions']}
++        'preparation_manifest_sha256': args.preparation_manifest_sha256,
++        **{key: getattr(args, key) for key in ['whole_manifest', 'whole_manifest_sha256', 'root_final_receipt', 'root_final_receipt_sha256', 'whole_scope_contract', 'whole_scope_contract_sha256', 'root_final_manifest', 'root_final_manifest_sha256', 'reconciliation_capture', 'reconciliation_capture_sha256']},
++        'scientific_scope': scope['scientific_scope'], 'science_reexecution_of_v2': False, 'original_actual_closed_family_replay_bound': True}
++
++
++def acceptance_invariants(acceptance, pins, pre):
++    required = {'schema': 'pr38-accepted-current-partial/v1', 'pr': PR, 'id': int(ID), 'problem_id': int(ID), 'problem_number': CODE,
++        'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
++        'original_head': HEAD, 'original_base': ORIGINAL_BASE, 'merge_parents': [pre['main_before'], HEAD], 'remote_state': 'MERGED', 'remote_isDraft': False,
++        'canonical_scientific_artifact_sha256': RESULTS_SHA, 'original_results_sha256': RESULTS_SHA,
++        'source_record_sha256': SOURCE_SHA, 'original_ledger_sha256': LEDGER_SHA,
++        'original_substantive_attempts': 2, 'new_substantive_attempts': 0, 'substantive_attempts_used': 2, 'substantive_attempt_limit': 5, 'verification_attempts_added': 0,
++        'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False, 'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
++        'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True,
++        'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json',
++        'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
++    required_values(acceptance, {**required, **pins}, 'Accepted PR38 invariant')
++    for key in ['merge_commit', 'merge_tree']:
++        require(type(acceptance.get(key)) is str and re.fullmatch(r'[0-9a-f]{40}', acceptance[key]), 'Actual accepted merge binding absent')
++    require(type(acceptance.get('merged_at')) is str and acceptance['merged_at'], 'Actual merge date absent')
++    source_and_ledger(K)
++    for name in ['readiness.json', 'status.json', 'attempt.json']:
++        value = load(K / name)
++        required_values(value, {'id': ID, 'problem_number': CODE, 'pr': PR, 'status': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved',
++            'current_gate': 'PASS_current_source_first_v2_alias_and_bound_original_actual_replay', 'merge_commit': acceptance['merge_commit'], 'merge_tree': acceptance['merge_tree'],
++            'remote_merged_at': acceptance['merged_at'], 'current_workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
++            'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'full_problem_solved': False, 'positive_novelty_claim': False,
++            'full_resolution_claimed': False, 'novelty_claimed': False, 'paper_or_new_doi_or_tracker': False,
++            'source_record_sha256': SOURCE_SHA, 'original_turns_sha256': LEDGER_SHA, 'current_results_sha256': RESULTS_SHA,
++            'native_historical_events_inferred': False, 'later_acceptance_is_present_only': True,
++            'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True,
++            'original_substantive_attempts': 2, 'substantive_attempt_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0,
++            'original_authored_attempt_metadata': load(C / 'original_archive/attempt.json'), **pins}, 'Accepted administration ' + name)
++        required_values(value['budget'], {'original_substantive_attempts': 2, 'used_substantive_attempts': 2, 'maximum_substantive_attempts': 5,
++            'cumulative_attempts': '2/5', 'new_substantive_attempts': 0, 'verification_attempts': 0,
++            'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_only': True}, 'Exact archival budget ' + name)
+ 
+ 
+ def selected_row(data):
+@@ -619,7 +654,7 @@
+ def load_mirror():
+     path = BASE / 'revision2/accepted_state_sync_v2.py'
+     require(sha(path.read_bytes()) == MIRROR_SHA and sha((BASE / 'root_apply/guarded_import_v2.py').read_bytes()) == WRITER_SHA, 'Reviewed mirror/writer sources changed')
+-    spec = importlib.util.spec_from_file_location('pr37_bound_mirror', path)
++    spec = importlib.util.spec_from_file_location('pr38_bound_mirror', path)
+     mirror = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(mirror)
+     native = mirror.ledger_budget
+@@ -631,8 +666,12 @@
+             obj = json.loads(data)
+             mirror.require(obj.get('problem_id') == 2744 and obj.get('problem_number') == 'KP-1.85' and type(obj.get('substantive_turns_used')) is int and used == obj['substantive_turns_used'] == 1 and limit == obj.get('turn_limit') == 5 and obj.get('outcome') == 'unsolved' and isinstance(obj.get('responses'), list) and [z.get('turn') for z in obj['responses']] == [1] and obj['responses'][0].get('outcome') == 'unsolved' and obj['responses'][0].get('artifact') == 'OBSTRUCTION.md', 'Invalid preserved PR35 ledger')
+         elif kind == 'pr37_exact_json_substantive_responses':
+-            obj = json.loads(data)
+-            mirror.require(sha(data) == LEDGER_SHA and obj == load(C / 'turns.json') and used == 1 and limit == 5, 'PR37 original complete ledger must remain byte exact')
++            obj = parse(data)
++            old_path = B / 'audits/pr37_3009/reviewed_candidate/turns.json'
++            mirror.require(sha(data) == '7bf94bf41466a40deceab668ecbb12a54b16fe16ad400bc221ff6f18e7558498' and strict_equal(obj, load(old_path)) and used == 1 and limit == 5, 'Preserve exact PR37 original complete ledger')
++        elif kind == 'pr38_exact_original_two_turn_list':
++            obj = parse(data)
++            mirror.require(sha(data) == LEDGER_SHA and strict_equal(obj, load(C / 'turns.json')) and type(obj) is list and [z['turn'] for z in obj] == [1, 2] and type(used) is int and used == 2 and type(limit) is int and limit == 5, 'Exact PR38 original two-row list ledger required')
+         else:
+             native(data, kind, used, limit)
+     mirror.ledger_budget = ledger
+--- closed_PR37/integrate_reviewed_partial.py
++++ prepared_PR38/integrate_reviewed_partial.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Prepared PR37 root-only preflight, overlay, prepush and finalize.
++"""Prepared PR38 root-only preflight, overlay, prepush and finalize.
+ 
+ Never execute/import during preparation. Root separately marks the remote
+ ready, edits its body, merges ORIGINAL HEAD with --no-ff --no-commit, stages
+@@ -9,44 +9,48 @@
+ import argparse
+ import copy
+ from pathlib import Path
+-import pr37_guards as g
+-
+-BODY = '''# Accepted credited partial: complete KP-5.2 remains unsolved
+-
+-The exact flat source asks about one common full-orbit diameter bound and
+-compact-open recurrence on R^n, together with the boundary-fixed closed-ball
+-question and informal local/manifold and stronger smooth variants. The
+-verified consequence covers dimensions one and two, and boundary-fixed
+-intervals and disks. Diffeomorphisms there follow by forgetting smoothness.
+-Dimensions at least three, general local/manifold claims and stronger smooth
+-recurrence there remain unresolved. No full solution, counterexample or
+-positive novelty is claimed.
+-
+-The disk corollary was directly read in arXiv v3, revised 2 March 2009, of
+-the 1998-published Kolev–Pérouème paper. The printed 1998 disk passage remains
+-unverified. Brown1977 remains inaccessible and is not claimed as read.
+-Hamilton1954 pp522–524 was directly read; Cartwright–Littlewood and
+-Kolev–Pérouème are established theorem imports. Finite controls do not
+-certify the global topological content or the cited proof texts.
+-
+-A NEW entire-current-packet source-first adversary and actual final root
+-reproduction passed; their exact final artifacts, wrapper, streams and
+-complete parsed comparisons are bound in the acceptance. Earlier verdicts
+-do not transfer. The exact original13 Git artifacts and14-path diff, both
+-byte-distinct full-JSON-equal flat source serializations, original response
+-ledger and diagnostics remain preserved. The three PARTIAL replacements
+-concern source/date/runtime administration only; no proof search or repair
+-was added. Empty importer fallback{} is not a retrieved separate prior report.
+-
+-Original substantive1/5, new0, audit0. Historical ASTRA/model/reasoning/time
+-metadata is archival. Current model/reasoning are not independently exposed
+-and no current deadline is inferred. Native target state/history was absent
+-at original base/head; the later mirror records one present acceptance only.
++import sys
++# Future root entry points preserve every sealed source closure.
++sys.dont_write_bytecode = True
++import pr38_guards as g
++
++BODY = '''# Accepted credited partial: complete KP-2.17 remains unsolved
++
++For connected closed oriented genus>=2 surfaces, the credited partial gives
++necessary measured-lamination tests, compact convex fiber, and simple-reference
++rigidity. Finite periodic-orbit support and finite convex decomposition for an
++arbitrary self-intersecting closed reference remain unproved. No classification
++of extreme points, full solution or positive novelty is claimed.
++
++The scaled nonatomic Liouville example concerns complete finite-area cusp
++metrics and invariant positive Radon currents on S_0,3. It is separate from
++the closed-surface problem and does not settle all complete-only metric
++conventions. Finite support means finitely many closed-geodesic lift
++orbits/periodic components. Noncompact intersection can be infinite; the local
++finite-area normalization is i(L,L)=(pi/2)area=pi^2.
++
++The entire current source-first review and actual v2 alias inspection passed.
++The original root's 12 outer/108 nested closed-family executions, all raw
++streams and complete comparisons remain bound. v2 restores the byte-exact
++historical review/REVIEW.md alias and adds archival qualification only; it is
++not a new scientific replay. RESULTS mathematics, original16 archives, all
++1472 dependencies, full source and two original ledger rows remain unchanged.
++The old review is dated scoped evidence, not a whole-current verdict.
++
++Closed-surface intersection continuity and uniformization are cited standard
++theorem inputs not independently recertified by the whole-current reviewer.
++This qualification is not a mathematical defect or a new certification.
++Current source/date/version limitations and the exact remaining gap are retained.
++Historical null prior and empty importer fallback are not a retrieved separate
++prior report. Historical worker/runtime metadata is archival; current model,
++reasoning and deadline remain null. No original native event is reconstructed.
++
++Original substantive2/5,new0/audit0. One present acceptance mirror only.
+ No paper, new DOI, tracker row, release or external human review is claimed.
+ No outside individual was contacted.
+ 
+-Original PR: https://github.com/AlecKriebel/Math/pull/37
+-Research/evidence anchor: draft_pr_publication_program_20260930/audits/pr37_3009
++Original PR: https://github.com/AlecKriebel/Math/pull/38
++Research/evidence anchor: draft_pr_publication_program_20260930/audits/pr38_2765
+ '''
+ 
+ 
+@@ -63,8 +67,8 @@
+     g.require(g.sha(before) == pre['whole_queue_before_sha256'] and g.selected_row(before) == pre['selected_row_before'], 'Entire fresh queue preimage archive changed')
+     fields = pre['selected_row_before'].split('|')
+     after_fields = fields.copy()
+-    findings = now[:10] + ': Accepted credited known dimension1/2 and boundary-fixed interval/disk consequence; complete KP-5.2 remains unsolved, including n>=3/local/manifold/stronger smooth variants. Disk corollary read in 2009 arXiv v3 of 1998-published paper; printed1998 disk passage unverified. NEW entire current source-first gate and actual final root reproduction passed. Original1/5,new0/audit0; no paper/newDOI/tracker. https://github.com/AlecKriebel/Math/pull/37.'
+-    after_fields[8], after_fields[9], after_fields[11] = ' unsolved ', ' 1/5 ', ' ' + findings + ' '
++    findings = now[:10] + ': Accepted credited closed genus>=2 necessary ML/compact-fiber/simple-reference partial; arbitrary self-intersecting reference unresolved. Separate finite-area cusped Radon S_0,3 example does not settle complete-only metrics. NEW whole current source-first/v2 alias inspection and original actual12/108 replay bound; continuity/uniformization unrecertified standard inputs, not a defect. Original2/5,new0/audit0; no paper/newDOI/tracker. https://github.com/AlecKriebel/Math/pull/38.'
++    after_fields[8], after_fields[9], after_fields[11] = ' unsolved ', ' 2/5 ', ' ' + findings + ' '
+     row = '|'.join(after_fields)
+     g.require(len(fields) == len(after_fields) == 14 and all(fields[i] == after_fields[i] for i in range(14) if i not in {8, 9, 11}), 'Only named Status/Turns/Findings may change')
+     g.require(before.count(pre['selected_row_before'].encode()) == 1, 'Full selected row must be unique')
+@@ -99,23 +103,23 @@
+         state = g.load(g.R / 'unsolved_math_prioritization/state.json')
+         inventory = g.load(g.B / 'inventory.json')
+         items = g.inventory_items(inventory)
+-        g.require(len(state) == 27 and g.ID not in state and sum(z['turns_used'] for z in state.values()) == 32, 'Require post-PR36 native27targets/32turns')
+-        g.require(sum(z.get('stage') == 'complete' for z in inventory['items']) == 26 and inventory['completed_count'] == 26, 'Require26 accepted primary PRs before PR37')
+-        g.require(g.PR in items and items[g.PR]['headRefOid'] == g.HEAD and items[g.PR]['headRefName'] == 'dot/math-' + g.ID and items[g.PR].get('stage') != 'complete', 'Current inventory PR37 original-head binding required')
+-        g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen accepted PR36 mirror base changed')
++        g.require(len(state) == 28 and g.ID not in state and sum(z['turns_used'] for z in state.values()) == 33, 'Require post-PR37 native28targets/33turns')
++        g.require(sum(z.get('stage') == 'complete' for z in inventory['items']) == 27 and inventory['completed_count'] == 27, 'Require27 accepted primary PRs before PR38')
++        g.require(g.PR in items and items[g.PR]['headRefOid'] == g.HEAD and items[g.PR]['headRefName'] == 'dot/math-' + g.ID and items[g.PR].get('stage') != 'complete', 'Current inventory PR38 original-head binding required')
++        g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen accepted PR37 mirror base changed')
+         pre = {'utc': now, **pins, 'pr': observation, 'main_before': g.git('rev-parse', 'HEAD'), 'foreign_tracked_exclusions': foreign,
+                'whole_queue_before_sha256': g.sha(queue), 'root_explicit_fresh_queue_preimage_sha256': args.fresh_queue_preimage_sha256,
+                'dated_queue_before_sha256': patch['whole_queue_preimage_sha256'], 'separately_reviewed_whole_queue_rebase': g.sha(queue) != patch['whole_queue_preimage_sha256'],
+                'selected_row_before': row, 'state_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/state.json').read_bytes()),
+                'history_before_sha256': g.sha((g.R / 'unsolved_math_prioritization/history.jsonl').read_bytes()), 'inventory_before_sha256': g.sha((g.B / 'inventory.json').read_bytes()),
+-               'inventory_complete_ids': sorted(items), 'new_substantive_attempts': 0, 'attempts': '1/5', 'remote_pending': True}
++               'inventory_complete_ids': sorted(items), 'new_substantive_attempts': 0, 'attempts': '2/5', 'remote_pending': True}
+         g.dump(g.A / 'integration_preflight.json', pre, exclusive=True)
+         g.write(g.A / 'integration_queue_before.md', queue, exclusive=True)
+         g.write(g.A / 'integration_inventory_before.json', (g.B / 'inventory.json').read_bytes(), exclusive=True)
+         g.write(g.A / 'accepted_pr_body.md', BODY.encode(), exclusive=True)
+         before_guard(pre)
+         g.require(g.Q.read_bytes() == queue and g.git('rev-parse', 'HEAD') == pre['main_before'], 'Whole preimage changed during preflight')
+-        print('PREFLIGHT PASS PR37; root ready/body/original-head no-ff merge remain')
++        print('PREFLIGHT PASS PR38; root ready/body/original-head no-ff merge remain')
+         return
+     pre = g.load(g.A / 'integration_preflight.json')
+     g.require(all(pre[key] == value for key, value in pins.items()), 'Final gates changed since preflight')
+@@ -139,7 +143,7 @@
+         original_rows = g.load(g.A / 'snapshot_manifest.json')['files']
+         g.exact_closure(g.K, {z['path'] for z in original_rows})
+         for z in original_rows:
+-            g.require((g.K / z['path']).read_bytes() == (g.C / 'original_archive' / z['path']).read_bytes(), 'Merged exact original13 differs')
++            g.require((g.K / z['path']).read_bytes() == (g.C / 'original_archive' / z['path']).read_bytes(), 'Merged exact original16 differs')
+         outputs = {z['path']: (g.C / z['path']).read_bytes() for z in frozen}
+         before, after, row = accepted_queue(pre, now)
+         g.write(g.A / 'integration_merge_queue_before.md', automatic, exclusive=True)
+@@ -153,15 +157,23 @@
+             g.write(archive / name, outputs[name], exclusive=True)
+         g.write(archive / 'MANIFEST.json', (g.C / 'MANIFEST.json').read_bytes(), exclusive=True)
+         g.write(g.K / 'pr_body.md', BODY.encode())
+-        g.write(g.K / 'README.md', (BODY + '\nPARTIAL.md is the reviewed current credited consequence. Exact original13 archives and dated pending administration are preserved. The flat accepted source is source_record.json; pinned_problem.json retains its other historical/root serialization. Dependency paths resolve from repository audit anchor ' + str(g.A.relative_to(g.R)) + '. Actual merge, remote acceptance and present mirror are separately verified.\n').encode())
+-        for name in ['readiness.json', 'status.json']:
++        notice = (g.A / 'acceptance_preparation_family/alias_source_revision/ARCHIVAL_NOTICE_APPEND.txt').read_bytes()
++        g.write(g.K / 'README.md', BODY.encode() + b'\nRESULTS.md is the byte-unchanged original partial. Exact original16 archives and pending administration are retained. Dependency paths resolve from the repository audit anchor. Actual merge and present acceptance are verified separately.\n' + notice)
++        for name in ['readiness.json', 'status.json', 'attempt.json']:
+             value = g.load(g.K / name)
+-            value.update(status='unsolved_accepted_partial_integration_pending_remote_verification', accepted_at_utc=now, queue_status='unsolved', current_gate='PASS_NEW_complete_source_first_and_actual_root_reproduction', current_workflow_completion_estimate_percent=100, full_resolution_completion_estimate_percent=0, **pins)
++            value.update(id=g.ID, problem_number=g.CODE, pr=g.PR, status='unsolved_accepted_partial_integration_pending_remote_verification', accepted_at_utc=now, queue_status='unsolved',
++                current_gate='PASS_current_source_first_v2_alias_and_bound_original_actual_replay', current_workflow_completion_estimate_percent=100, full_resolution_completion_estimate_percent=0,
++                full_target_completion_estimate_percent=0, full_resolution_claimed=False, novelty_claimed=False, full_problem_solved=False, positive_novelty_claim=False,
++                paper_or_new_doi_or_tracker=False, source_record_sha256=g.SOURCE_SHA, original_turns_sha256=g.LEDGER_SHA, current_results_sha256=g.RESULTS_SHA,
++                separate_prior_report_present=False, importer_empty_fallback_is_not_retrieved_report=True,
++                original_authored_attempt_metadata=g.load(g.C / 'original_archive/attempt.json'),
++                budget={'original_substantive_attempts': 2, 'used_substantive_attempts': 2, 'maximum_substantive_attempts': 5, 'cumulative_attempts': '2/5',
++                        'new_substantive_attempts': 0, 'verification_attempts': 0, 'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_only': True}, **pins)
+             if name == 'readiness.json':
+-                value['independent_review'] = 'NEW entire-current-packet source-first and actual final root replay passed; exact explicit pins retained.'
++                value['independent_review'] = 'Entire current source-first review and actual v2 alias inspection passed; original actual12/108 replay remains bound. No v2 scientific rerun or standard-input recertification claimed.'
+             g.dump(g.K / name, value)
+-        g.write(g.K / 'CURRENT_AUDIT_SCOPE.md', ('# Accepted current partial scope\n\nComplete KP-5.2 remains unsolved. Credited known low-dimensional consequence only. Entire current source-first/final actual root gate bound by ' + pins['whole_manifest_sha256'] + ' / ' + pins['root_final_receipt_sha256'] + '. Source/ledger/diagnostics/science unchanged; source-only PARTIAL correction and all archival/pending statements preserved. Original1/5,new0,audit0; no current runtime/deadline inference, paper/newDOI/tracker/release or reconstructed historical native event.\n').encode())
+-        note = '\n## ' + now + ' — Accepted complete-gate partial integration\n\nAcceptance workflow100%; actual remote pending. Full-resolution estimate0%; complete target remains unsolved. Original1/5,new0,audit0; exact original/source/ledger/diagnostics and dated pending administration retained. No paper/newDOI/tracker/release.\n'
++        g.write(g.K / 'CURRENT_AUDIT_SCOPE.md', BODY.encode() + b'\nAll inherited current source qualifications and exact scientific scope are bound in SCIENTIFIC_SCOPE.json within the preparation and copied in acceptance metadata. Original16 archives and dated pending administrative bytes are preserved. Current runtime fields remain null.\n' + notice)
++        note = '\n## ' + now + ' — Accepted current partial integration\n\nAcceptance workflow100%; actual remote pending. Full-resolution estimate0%; complete target unsolved. Original2/5,new0,audit0; mathematics/source/code/ledger/receipts unchanged; archival v2 alias only. No paper/newDOI/tracker/release.\n'
+         g.write(g.K / 'RESEARCH_LOG.md', outputs['RESEARCH_LOG.md'] + note.encode())
+         before_guard(pre)
+         g.require(g.git('rev-parse', 'HEAD') == pre['main_before'] and g.git('rev-parse', 'MERGE_HEAD') == g.HEAD and g.Q.read_bytes() == automatic, 'Preimage changed during overlay')
+@@ -169,9 +181,9 @@
+         g.dump(g.K / 'ACCEPTED_QUEUE_PATCH.json', {'utc': now, 'header_names': g.HEADER, 'column_count': 12, 'named_changes': ['Status', 'Turns', 'Findings'], 'whole_before_sha256': g.sha(before), 'whole_after_sha256': g.sha(after), 'row_before': pre['selected_row_before'], 'row_after': row, 'all_other_bytes_preserved': True, 'selected_chat_DOI_preserved': True, 'root_explicit_fresh_queue_preimage_sha256': pre['root_explicit_fresh_queue_preimage_sha256'], 'dated_prospective_patch_unchanged': True}, exclusive=True)
+         g.canonical_unchanged(frozen)
+         value = [{'path': name, 'bytes': len((g.K / name).read_bytes()), 'sha256': g.sha((g.K / name).read_bytes())} for name in sorted(g.canonical_names(frozen))]
+-        g.dump(g.A / 'integration_check.json', {'utc': now, **pins, 'pr': g.PR, 'original_head': g.HEAD, 'canonical_overlay_files': value, 'queue_before_sha256': g.sha(before), 'queue_after_sha256': g.sha(after), 'root_reviewed_automatic_merge_queue_preimage_sha256': g.sha(automatic), 'canonical_scientific_artifact_sha256': g.PARTIAL_SHA, 'new_substantive_attempts': 0, 'attempts': '1/5', 'remote_pending': True}, exclusive=True)
++        g.dump(g.A / 'integration_check.json', {'utc': now, **pins, 'pr': g.PR, 'original_head': g.HEAD, 'canonical_overlay_files': value, 'queue_before_sha256': g.sha(before), 'queue_after_sha256': g.sha(after), 'root_reviewed_automatic_merge_queue_preimage_sha256': g.sha(automatic), 'canonical_scientific_artifact_sha256': g.RESULTS_SHA, 'new_substantive_attempts': 0, 'attempts': '2/5', 'remote_pending': True}, exclusive=True)
+         before_guard(pre)
+-        print('OVERLAY PASS PR37; root stages exact paths/commits then runs prepush')
++        print('OVERLAY PASS PR38; root stages exact paths/commits then runs prepush')
+         return
+     overlay = g.load(g.A / 'integration_check.json')
+     g.require(all(overlay[key] == value for key, value in pins.items()), 'Overlay/final pins differ')
+@@ -185,7 +197,7 @@
+         merge = g.git('rev-parse', 'HEAD')
+         tree = g.tree_binding(merge, pre, overlay, queue)
+         g.dump(g.A / 'integration_prepush.json', {'utc': now, **pins, 'pr': g.PR, 'merge_commit': merge, 'merge_parents': [pre['main_before'], g.HEAD], 'merge_tree': tree, 'canonical_overlay_files': overlay['canonical_overlay_files'], 'whole_queue_after_sha256': g.sha(queue), 'foreign_tracked_exclusions': pre['foreign_tracked_exclusions'], 'remote_before_push': observation, 'actual_push_performed_by_helper': False}, exclusive=True)
+-        print('PREPUSH PASS PR37; exact real merge tree captured, root pushes main')
++        print('PREPUSH PASS PR38; exact real merge tree captured, root pushes main')
+         return
+     g.require(observation['state'] == 'MERGED' and observation['isDraft'] is False and observation['mergedAt'] and observation['body'] == BODY, 'Require actual GitHub MERGED/nondraft/date/body')
+     merge = observation['mergeCommit']['oid']
+@@ -199,28 +211,31 @@
+     g.require(g.sha((g.B / 'inventory.json').read_bytes()) == pre['inventory_before_sha256'] and g.load(g.B / 'inventory.json') == inventory_before, 'Fresh complete inventory differs before finalization')
+     inventory = copy.deepcopy(inventory_before)
+     selected = g.inventory_items(inventory)[g.PR]
+-    selected.update(stage='complete', outcome='unsolved_accepted_partial', queue_status='unsolved', audited_head=g.HEAD, merge_commit=merge, merged_at=observation['mergedAt'], workflow_completion_estimate_percent=100, original_attempts='1/5', new_substantive_attempts=0, cumulative_attempts='1/5', paper_or_new_doi_or_tracker=False)
++    selected.update(stage='complete', outcome='unsolved_accepted_partial', queue_status='unsolved', audited_head=g.HEAD, merge_commit=merge, merged_at=observation['mergedAt'], workflow_completion_estimate_percent=100, original_attempts='2/5', new_substantive_attempts=0, cumulative_attempts='2/5', paper_or_new_doi_or_tracker=False)
+     g.unselected_inventory(inventory_before, inventory)
+     done = sum(z.get('stage') == 'complete' for z in inventory['items'])
+-    g.require(done == 27, 'Expected27 accepted primaries after PR37')
+-    inventory.update(updated_at_utc=now, last_checkpoint_utc=now, completed_count=done, program_completion_estimate_percent=done / 180 * 100, completion_estimate_percent=done / 180 * 100, current_pr=38)
++    g.require(done == 28, 'Expected28 accepted primaries after PR38')
++    inventory.update(updated_at_utc=now, last_checkpoint_utc=now, completed_count=done, program_completion_estimate_percent=done / 180 * 100, completion_estimate_percent=done / 180 * 100, current_pr=39)
+     g.dump(g.A / 'remote_merge_receipt.json', observation, exclusive=True)
+-    for name in ['readiness.json', 'status.json']:
++    for name in ['readiness.json', 'status.json', 'attempt.json']:
+         value = g.load(g.K / name)
+         value.update(status='unsolved_accepted_partial_merged', remote_acceptance='MERGED_exact_original_head_parents_and_real_tree_verified', remote_merged_at=observation['mergedAt'], merge_commit=merge, merge_tree=tree)
+         g.dump(g.K / name, value)
+-    g.write(g.K / 'RESEARCH_LOG.md', (g.K / 'RESEARCH_LOG.md').read_bytes() + ('\n## ' + now + ' — Actual remote acceptance verified\n\nAcceptance workflow100%; full-resolution estimate0%. Actual MERGED/nondraft/date/body and exact two-parent original-head merge/real tree checked against prepush capture. Present mirror pending. Original1/5,new0,audit0; no paper/newDOI/tracker/release.\n').encode())
+-    acceptance = {'schema': 'pr37-accepted-current-partial/v1', 'utc': now, **pins, 'pr': g.PR, 'id': int(g.ID), 'problem_id': int(g.ID), 'problem_number': g.CODE, 'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
+-                  'original_head': g.HEAD, 'original_base': g.ORIGINAL_BASE, 'merge_commit': merge, 'merge_parents': [pre['main_before'], g.HEAD], 'merge_tree': tree, 'merged_at': observation['mergedAt'], 'remote_state': 'MERGED', 'remote_isDraft': False,
+-                  'canonical_scientific_artifact_sha256': g.PARTIAL_SHA, 'original_partial_sha256': next(z['sha256'] for z in g.load(g.A / 'snapshot_manifest.json')['files'] if z['path'] == 'PARTIAL.md'), 'original_ledger_sha256': g.LEDGER_SHA,
+-                  'source_record_sha256': g.SOURCE_SHA, 'root_pinned_problem_sha256': g.PINNED_SOURCE_SHA,
+-                  'original_substantive_attempts': 1, 'new_substantive_attempts': 0, 'substantive_attempts_used': 1, 'substantive_attempt_limit': 5, 'verification_attempts_added': 0,
+-                  'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False, 'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
+-                  'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True, 'separate_prior_report_present': False,
+-                  'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json', 'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
++    g.write(g.K / 'RESEARCH_LOG.md', (g.K / 'RESEARCH_LOG.md').read_bytes() + ('\n## ' + now + ' — Actual remote acceptance verified\n\nAcceptance workflow100%; full-resolution estimate0%. Actual MERGED/nondraft/date/body and exact two-parent original-head merge/real tree checked against prepush capture. Present mirror pending. Original2/5,new0,audit0; no paper/newDOI/tracker/release.\n').encode())
++    acceptance = {'schema': 'pr38-accepted-current-partial/v1', 'utc': now, **pins, 'pr': g.PR, 'id': int(g.ID), 'problem_id': int(g.ID), 'problem_number': g.CODE,
++        'outcome': 'unsolved_accepted_partial_merged', 'queue_status': 'unsolved', 'full_problem_solved': False, 'positive_novelty_claim': False,
++        'original_head': g.HEAD, 'original_base': g.ORIGINAL_BASE, 'merge_commit': merge, 'merge_parents': [pre['main_before'], g.HEAD], 'merge_tree': tree,
++        'merged_at': observation['mergedAt'], 'remote_state': 'MERGED', 'remote_isDraft': False,
++        'canonical_scientific_artifact_sha256': g.RESULTS_SHA, 'original_results_sha256': g.RESULTS_SHA, 'original_ledger_sha256': g.LEDGER_SHA,
++        'source_record_sha256': g.SOURCE_SHA, 'original_substantive_attempts': 2, 'new_substantive_attempts': 0, 'substantive_attempts_used': 2,
++        'substantive_attempt_limit': 5, 'verification_attempts_added': 0, 'paper_or_new_doi_or_tracker': False, 'human_peer_review_asserted': False,
++        'workflow_completion_estimate_percent': 100, 'full_resolution_completion_estimate_percent': 0,
++        'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'historical_metadata_archival_only': True,
++        'separate_prior_report_present': False, 'importer_empty_fallback_is_not_retrieved_report': True, 'accepted_source_for_mirror': 'source_record.json',
++        'current_mirror': 'One present acceptance, no reconstructed original native transition or extra proof turn.'}
+     g.acceptance_invariants(acceptance, pins, pre)
+     g.dump(g.K / 'acceptance.json', acceptance, exclusive=True)
+-    g.write(g.K / 'ACCEPTANCE.md', ('# Accepted UNSOLVED partial: 3009 / KP-5.2\n\n' + BODY + '\nActual original-head merge ' + merge + ', parents ' + ','.join(acceptance['merge_parents']) + ', tree ' + tree + '. Final whole ' + pins['whole_manifest_sha256'] + '; final actual root ' + pins['root_final_receipt_sha256'] + '. Both source serializations, empty fallback qualification, entire original ledger/diagnostics and three source-only PARTIAL replacements remain exactly bound. Original base/head native target state/history absent; mirror is a later present acceptance.\n').encode(), exclusive=True)
++    g.write(g.K / 'ACCEPTANCE.md', ('# Accepted UNSOLVED partial: 2765 / KP-2.17\n\n' + BODY + '\nActual original-head merge ' + merge + ', parents ' + ','.join(acceptance['merge_parents']) + ', tree ' + tree + '. Final source-first/v2 alias whole ' + pins['whole_manifest_sha256'] + '; actual evidence reconciliation ' + pins['root_final_receipt_sha256'] + '. Original actual12/108 replay, full source/null-prior qualification and exact two-row ledger remain bound. This is one present acceptance, no historical native reconstruction.\n').encode(), exclusive=True)
+     g.exact_closure(g.K, g.canonical_names(frozen, True) - {'MANIFEST.json'})
+     member_rows = [{'path': name, 'bytes': len((g.K / name).read_bytes()), 'sha256': g.sha((g.K / name).read_bytes())} for name in sorted(g.canonical_names(frozen, True) - {'MANIFEST.json'})]
+     g.dump(g.K / 'MANIFEST.json', {'utc': now, 'schema': 'strict_self_excluding_accepted_packet_v1', 'self_excluded': ['MANIFEST.json'], 'files_count': len(member_rows), 'files': member_rows, 'foreign_scratch_excluded': [], 'scope': 'Accepted unsolved credited partial; original and pending bytes retained; no science edit.'}, exclusive=True)
+@@ -233,11 +248,11 @@
+     before_guard(pre)
+     g.dump(g.B / 'inventory.json', inventory)
+     g.unselected_inventory(inventory_before, g.load(g.B / 'inventory.json'))
+-    note = '\n## ' + now + ' — PR37 accepted and actually remotely merged\n\nAcceptance workflow100%; complete KP-5.2 unsolved, full-resolution estimate0%. Original1/5,new0,audit0; no paper/newDOI/tracker/release. Original head ' + g.HEAD + ', real merge ' + merge + '/tree ' + tree + '. Program27/180=' + str(round(done / 180 * 100, 4)) + '%; every unselected inventory item/hold preserved. Present mirror remains separate.\n'
++    note = '\n## ' + now + ' — PR38 accepted and actually remotely merged\n\nAcceptance workflow100%; complete KP-2.17 unsolved, full-resolution estimate0%. Original2/5,new0,audit0; no paper/newDOI/tracker/release. Original head ' + g.HEAD + ', real merge ' + merge + '/tree ' + tree + '. Program28/180=' + str(round(done / 180 * 100, 4)) + '%; every unselected inventory item/hold preserved. Present mirror remains separate.\n'
+     for path in [g.A / 'RESEARCH_LOG.md', g.B / 'RESEARCH_LOG.md']:
+         g.write(path, path.read_bytes() + note.encode())
+     g.foreign_tracked_unchanged(pre)
+-    print('FINALIZE PASS PR37; present acceptance mirror remains pending')
++    print('FINALIZE PASS PR38; present acceptance mirror remains pending')
+ 
+ 
+ if __name__ == '__main__':
+--- closed_PR37/state_mirror_reconciliation.py
++++ prepared_PR38/state_mirror_reconciliation.py
+@@ -1,13 +1,16 @@
+ #!/usr/bin/env python3
+-"""Future root-only PR37 present acceptance append; no historical reconstruction.
++"""Future root-only PR38 present acceptance append; no historical reconstruction.
+ 
+ Prepared only. A durable history-first intent and the existing cooperative lock
+ guard two shared writes. A failed or interrupted intent is retained for manual
+-inspection, never automatically retried. Native PR37 authored turns.json is byte unchanged; historic runtime metadata is archival.
++inspection, never automatically retried. Native PR38 authored turns.json is byte unchanged; historic runtime metadata is archival.
+ """
+ import argparse, copy, fcntl, json
+ from pathlib import Path
+-import pr37_guards as g
++import sys
++# Future root entry points preserve every sealed source closure.
++sys.dont_write_bytecode = True
++import pr38_guards as g
+ 
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+@@ -20,7 +23,7 @@
+     g.require(not merge_head.exists(), 'Complete exact original-head merge before mirroring')
+     g.require('acceptance.json' in {p.name for p in g.K.iterdir()} and 'ACCEPTANCE.json' not in {p.name for p in g.K.iterdir()}, 'Literal lowercase canonical receipt required')
+     g.require(not (g.A / 'state_mirror_intent.json').exists(), 'Inspect prior intent before any retry')
+-    g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen PR36 base proposal changed')
++    g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen PR37 base proposal changed')
+     pre = g.load(g.A / 'integration_preflight.json')
+     g.foreign_tracked_unchanged(pre)
+     acceptance = g.load(g.K / 'acceptance.json')
+@@ -48,50 +51,49 @@
+     history_path = g.R / 'unsolved_math_prioritization/history.jsonl'
+     old_state, old_history = state_path.read_bytes(), history_path.read_bytes()
+     prior = json.loads(old_state)
+-    g.require(g.sha(old_state) == pre['state_before_sha256'] and g.sha(old_history) == pre['history_before_sha256'], 'Original post-PR36 state/history changed before mirror')
+-    g.require(len(prior) == 27 and g.ID not in prior and sum(x['turns_used'] for x in prior.values()) == 32, 'Require27 previous targets/32 consumed turns')
++    g.require(g.sha(old_state) == pre['state_before_sha256'] and g.sha(old_history) == pre['history_before_sha256'], 'Original post-PR37 state/history changed before mirror')
++    g.require(len(prior) == 28 and g.ID not in prior and sum(x['turns_used'] for x in prior.values()) == 33, 'Require28 previous targets/33 consumed turns')
+     mirror = g.load_mirror()
+     proposal = copy.deepcopy(g.load(g.PREVIOUS))
+     old_entries = copy.deepcopy(proposal['entries'])
+     old_duplicates = copy.deepcopy(proposal.get('duplicate_mirrors'))
+-    proposal.update(created_at_utc=g.stamp(), scope='Incremental accepted primary PR37 and all prior bound acceptances; original ledgers and complete history prefix preserved, no reconstructed historical proof/readiness transitions.')
++    proposal.update(created_at_utc=g.stamp(), scope='Incremental accepted primary PR38 and all prior bound acceptances; original ledgers and complete history prefix preserved, no reconstructed historical proof/readiness transitions.')
+     for key in ['inventory', 'queue']:
+         proposal[key] = g.binding(g.R / proposal[key]['path'])
+-    g.require(len(proposal['entries']) == 26 and g.PR not in proposal['required_completed_prs'], 'Prior completed-primary scope differs')
++    g.require(len(proposal['entries']) == 27 and g.PR not in proposal['required_completed_prs'], 'Prior completed-primary scope differs')
+     proposal['required_completed_prs'] = sorted(proposal['required_completed_prs'] + [g.PR])
+-    proposal['entries'].append({'pr': g.PR, 'id': g.ID, 'status': 'unsolved', 'acceptance': g.binding(g.K / 'acceptance.json'), 'audit_acceptance': g.binding(g.A / 'acceptance.json'), 'remote': g.binding(g.A / 'remote_merge_receipt.json'), 'accepted_source': g.binding(g.K / 'source_record.json'), 'canonical_acceptance_text': g.binding(g.K / 'ACCEPTANCE.md'), 'canonical_manifest': g.binding(g.K / 'MANIFEST.json'), 'artifact': {**g.binding(g.K / 'PARTIAL.md'), 'acceptance_hash_field': 'canonical_scientific_artifact_sha256'}, 'budget': {'used': 1, 'limit': 5, 'kind': 'pr37_exact_json_substantive_responses', 'ledger': g.binding(g.K / 'turns.json')}, 'duplicates': []})
++    proposal['entries'].append({'pr': g.PR, 'id': g.ID, 'status': 'unsolved', 'acceptance': g.binding(g.K / 'acceptance.json'), 'audit_acceptance': g.binding(g.A / 'acceptance.json'), 'remote': g.binding(g.A / 'remote_merge_receipt.json'), 'accepted_source': g.binding(g.K / 'source_record.json'), 'canonical_acceptance_text': g.binding(g.K / 'ACCEPTANCE.md'), 'canonical_manifest': g.binding(g.K / 'MANIFEST.json'), 'artifact': {**g.binding(g.K / 'RESULTS.md'), 'acceptance_hash_field': 'canonical_scientific_artifact_sha256'}, 'budget': {'used': 2, 'limit': 5, 'kind': 'pr38_exact_original_two_turn_list', 'ledger': g.binding(g.K / 'turns.json')}, 'duplicates': []})
+     g.require(proposal['entries'][:-1] == old_entries and proposal.get('duplicate_mirrors') == old_duplicates, 'Prior proposal entries or duplicate accounting changed')
+     # Exact ledger bytes are already independently bound by g.gates. These controls
+     # challenge native ambiguity accounting without rewriting the original record.
+     original = g.load(g.K / 'turns.json')
+     negatives = []
+     mutations = []
+-    for name in ['missing original response', 'duplicate original response', 'invented second response', 'renumbered response']:
++    for name in ['missing original turn', 'duplicate original turn', 'invented third turn', 'renumbered original turn']:
+         mutant = copy.deepcopy(original)
+-        if name == 'missing original response':
+-            mutant['responses'] = []
+-        elif name == 'duplicate original response':
+-            mutant['responses'] *= 2
+-        elif name == 'invented second response':
+-            mutant['responses'].append(dict(mutant['responses'][0], turn=2))
+-            mutant['substantive_turns_used'] = 2
++        if name == 'missing original turn':
++            mutant.pop()
++        elif name == 'duplicate original turn':
++            mutant.append(copy.deepcopy(mutant[0]))
++        elif name == 'invented third turn':
++            mutant.append(dict(mutant[1], turn=3))
+         else:
+-            mutant['responses'][0]['turn'] = 2
++            mutant[0]['turn'] = 2
+         mutations.append((name, mutant))
+     for name, mutant in mutations:
+         try:
+-            mirror.ledger_budget(g.encode(mutant), 'pr37_exact_json_substantive_responses', 1, 5)
++            mirror.ledger_budget(g.encode(mutant), 'pr38_exact_original_two_turn_list', 2, 5)
+         except mirror.Rejected:
+             negatives.append(name)
+         else:
+             raise ValueError('Exact original ledger guard accepted mutant: ' + name)
+     plan = mirror.build_plan(g.R, proposal)
+     validation = mirror.validate_plan(g.R, plan)
+-    g.require(plan['primary_count'] == 27 and plan['duplicate_count'] == 1 and len(plan['state_after']) == 28, 'Expected27 accepted primaries plus1 duplicate')
++    g.require(plan['primary_count'] == 28 and plan['duplicate_count'] == 1 and len(plan['state_after']) == 29, 'Expected28 accepted primaries plus1 duplicate')
+     g.require(len(plan['history_append']) == 1 and plan['history_append'][0]['id'] == g.ID and plan['history_append'][0]['event'] == 'acceptance_mirror_import', 'Append exactly one PRESENT acceptance event')
+-    g.require(all(plan['state_after'][k] == v for k, v in prior.items()) and sum(x['turns_used'] for x in plan['state_after'].values()) == 33, 'Prior states or original-turn accounting changed')
++    g.require(all(plan['state_after'][k] == v for k, v in prior.items()) and sum(x['turns_used'] for x in plan['state_after'].values()) == 35, 'Prior states or original-turn accounting changed')
+     event = plan['history_append'][0]
+-    g.require(event['evidence']['historical_transitions_asserted'] is False and event['evidence']['import_is_present_day_mirror'] is True and event['turns_used'] == 1, 'No historical proof event/new research turn may be invented')
++    g.require(event['evidence']['historical_transitions_asserted'] is False and event['evidence']['import_is_present_day_mirror'] is True and event['turns_used'] == 2, 'No historical proof event/new research turn may be invented')
+     g.dump(g.A / 'state_mirror_bindings.json', proposal, exclusive=True)
+     g.dump(g.A / 'state_mirror_plan.json', plan, exclusive=True)
+     protected = {z['path']: z['sha256'] for z in plan['bindings']}
+@@ -102,7 +104,7 @@
+         mirror.validate_plan(g.R, plan)
+         g.foreign_tracked_unchanged(pre)
+         g.require(state_path.read_bytes() == old_state and history_path.read_bytes() == old_history, 'Shared preimage changed before locked write')
+-        intent = {'schema': 'pr37-present-acceptance-mirror/v1', 'status': 'PREPARED', 'prepared_at_utc': g.stamp(), **pins, 'plan_sha256': g.sha(mirror.encode(plan)), 'before': plan['preconditions'], 'before_state_bytes': old_state.decode(), 'before_history_bytes': old_history.decode(), 'state_after_sha256': plan['state_after_sha256'], 'history_after_sha256': plan['history_after_sha256'], 'write_order': ['history.jsonl', 'state.json'], 'new_event': g.ID, 'new_proof_turns': 0, 'lock_limitation': 'Cooperative advisory lock; noncooperating writers remain outside protocol.'}
++        intent = {'schema': 'pr38-present-acceptance-mirror/v1', 'status': 'PREPARED', 'prepared_at_utc': g.stamp(), **pins, 'plan_sha256': g.sha(mirror.encode(plan)), 'before': plan['preconditions'], 'before_state_bytes': old_state.decode(), 'before_history_bytes': old_history.decode(), 'state_after_sha256': plan['state_after_sha256'], 'history_after_sha256': plan['history_after_sha256'], 'write_order': ['history.jsonl', 'state.json'], 'new_event': g.ID, 'new_proof_turns': 0, 'lock_limitation': 'Cooperative advisory lock; noncooperating writers remain outside protocol.'}
+         g.dump(g.A / 'state_mirror_intent.json', intent, exclusive=True)
+         for path, digest in protected.items():
+             g.require(g.sha((g.R / path).read_bytes()) == digest, 'Protected binding changed before write: ' + path)
+@@ -116,8 +118,8 @@
+         g.foreign_tracked_unchanged(pre)
+         intent.update(status='COMPLETED', completed_at_utc=g.stamp())
+         g.dump(g.A / 'state_mirror_intent.json', intent)
+-        g.dump(g.A / 'state_mirror_receipt.json', {'at_utc': g.stamp(), 'preflight': validation, 'negative_ledger_controls': negatives, 'history_events_added': 1, 'prior_state_entries_semantically_unchanged': 27, 'current_targets': 28, 'consumed_substantive_turns': 33, 'complete_primary_count': 27, 'duplicate_count': 1, 'new_proof_turns_added_by_mirror': 0, 'entire_original_ledger_bytes_unchanged': True, 'protected_bindings_unchanged': len(protected), 'legacy_generator_run': False, 'state_sha256': g.sha(state_path.read_bytes()), 'history_sha256': g.sha(history_path.read_bytes()), 'scope': 'One present source-bound accepted partial; exact complete prior history prefix retained, no historical proof/readiness transition invented.'}, exclusive=True)
+-    print(json.dumps({'status': 'COMPLETED', 'pr': g.PR, 'targets': 28, 'consumed_turns': 33, 'primary_acceptances': 27, 'new_proof_turns': 0}))
++        g.dump(g.A / 'state_mirror_receipt.json', {'at_utc': g.stamp(), 'preflight': validation, 'negative_ledger_controls': negatives, 'history_events_added': 1, 'prior_state_entries_semantically_unchanged': 28, 'current_targets': 29, 'consumed_substantive_turns': 35, 'complete_primary_count': 28, 'duplicate_count': 1, 'new_proof_turns_added_by_mirror': 0, 'entire_original_ledger_bytes_unchanged': True, 'protected_bindings_unchanged': len(protected), 'legacy_generator_run': False, 'state_sha256': g.sha(state_path.read_bytes()), 'history_sha256': g.sha(history_path.read_bytes()), 'scope': 'One present source-bound accepted partial; exact complete prior history prefix retained, no historical proof/readiness transition invented.'}, exclusive=True)
++    print(json.dumps({'status': 'COMPLETED', 'pr': g.PR, 'targets': 29, 'consumed_turns': 35, 'primary_acceptances': 28, 'new_proof_turns': 0}))
+ 
+ if __name__ == '__main__':
+     g.run(main)
+--- closed_PR37/verify_post_acceptance.py
++++ prepared_PR38/verify_post_acceptance.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Prepared root-only read-only complete PR37 post-acceptance validation.
++"""Prepared root-only read-only complete PR38 post-acceptance validation.
+ 
+ No shared file is rewritten. Only a new audit receipt is created after all
+ checks pass. Preparation must never execute or import this helper.
+@@ -7,7 +7,10 @@
+ import argparse
+ import copy
+ import json
+-import pr37_guards as g
++import sys
++# Future root entry points preserve every sealed source closure.
++sys.dont_write_bytecode = True
++import pr38_guards as g
+ 
+ 
+ def main():
+@@ -25,16 +28,16 @@
+     g.require(g.strict_equal({key: value for key, value in audit.items() if key not in {'canonical_manifest_sha256', 'canonical_manifest_entries'}}, acceptance), 'Complete audit/canonical acceptance value/type differ')
+     members = g.manifest(g.K, g.K / 'MANIFEST.json', audit['canonical_manifest_sha256'], audit['canonical_manifest_entries'])
+     g.canonical_unchanged(frozen, True)
+-    g.require(g.sha((g.K / 'PARTIAL.md').read_bytes()) == acceptance['canonical_scientific_artifact_sha256'] == g.PARTIAL_SHA, 'Reviewed current partial receipt differs')
++    g.require(g.sha((g.K / 'RESULTS.md').read_bytes()) == acceptance['canonical_scientific_artifact_sha256'] == g.RESULTS_SHA, 'Reviewed current partial receipt differs')
+     g.require(g.sha((g.K / 'turns.json').read_bytes()) == acceptance['original_ledger_sha256'] == g.LEDGER_SHA and (g.K / 'turns.json').read_bytes() == (g.K / 'original_archive/turns.json').read_bytes(), 'Whole authored ledger changed')
+     g.require(acceptance['queue_status'] == 'unsolved' and acceptance['full_problem_solved'] is False and acceptance['positive_novelty_claim'] is False and acceptance['paper_or_new_doi_or_tracker'] is False, 'Partial improperly promoted')
+     g.require(acceptance['accepted_source_for_mirror'] == 'source_record.json' and acceptance['separate_prior_report_present'] is False and acceptance['importer_empty_fallback_is_not_retrieved_report'] is True, 'Flat source/fallback improperly replaced')
+-    for name in ['readiness.json', 'status.json']:
++    for name in ['readiness.json', 'status.json', 'attempt.json']:
+         value = g.load(g.K / name)
+-        g.require(value['status'] == 'unsolved_accepted_partial_merged' and value['queue_status'] == 'unsolved' and value['current_gate'] == 'PASS_NEW_complete_source_first_and_actual_root_reproduction', 'Canonical administration pending/misclassified')
++        g.require(value['status'] == 'unsolved_accepted_partial_merged' and value['queue_status'] == 'unsolved' and value['current_gate'] == 'PASS_current_source_first_v2_alias_and_bound_original_actual_replay', 'Canonical administration pending/misclassified')
+         g.require(value['merge_commit'] == acceptance['merge_commit'] and value['merge_tree'] == acceptance['merge_tree'] and value['current_workflow_completion_estimate_percent'] == 100 and value['full_resolution_completion_estimate_percent'] == 0, 'Administrative merge/estimate differs')
+         budget = value['budget']
+-        g.require(budget['original_substantive_attempts'] == budget['used_substantive_attempts'] == 1 and budget['maximum_substantive_attempts'] == 5 and budget['new_substantive_attempts'] == budget['verification_attempts'] == 0, 'Budget metadata differs')
++        g.require(budget['original_substantive_attempts'] == budget['used_substantive_attempts'] == 2 and budget['maximum_substantive_attempts'] == 5 and budget['new_substantive_attempts'] == budget['verification_attempts'] == 0, 'Budget metadata differs')
+         g.require(value['current_model'] is None and value['current_reasoning_effort'] is None and value['current_deadline_utc'] is None and budget['current_model'] is None and budget['current_reasoning_effort'] is None and budget['current_deadline_utc'] is None and budget['historical_only'] is True, 'Historical runtime/deadline metadata promoted')
+         g.require(value['full_problem_solved'] is False and value['positive_novelty_claim'] is False and value['paper_or_new_doi_or_tracker'] is False, 'Unsolved scope improperly promoted')
+     remote = g.remote()
+@@ -54,7 +57,7 @@
+     g.require(g.sha(old_queue) == patch['whole_before_sha256'] == pre['whole_queue_before_sha256'] == pre['root_explicit_fresh_queue_preimage_sha256'] and g.sha(queue) == patch['whole_after_sha256'], 'Whole fresh queue before/after hashes differ')
+     g.require(old_queue.count(patch['row_before'].encode()) == 1 and queue.count(patch['row_after'].encode()) == 1 and old_queue.replace(patch['row_before'].encode(), patch['row_after'].encode(), 1) == queue and queue.replace(patch['row_after'].encode(), patch['row_before'].encode(), 1) == old_queue, 'Whole queue is not unique exact named-row replacement')
+     before_fields, after_fields = patch['row_before'].split('|'), patch['row_after'].split('|')
+-    g.require(g.selected_row(queue) == patch['row_after'] and len(before_fields) == len(after_fields) == 14 and all(before_fields[i] == after_fields[i] for i in range(14) if i not in {8, 9, 11}) and after_fields[8].strip() == 'unsolved' and after_fields[9].strip() == '1/5', 'Exact12-column Status/Turns/Findings-only contract broken')
++    g.require(g.selected_row(queue) == patch['row_after'] and len(before_fields) == len(after_fields) == 14 and all(before_fields[i] == after_fields[i] for i in range(14) if i not in {8, 9, 11}) and after_fields[8].strip() == 'unsolved' and after_fields[9].strip() == '2/5', 'Exact12-column Status/Turns/Findings-only contract broken')
+     old_state_raw = g.git_bytes('show', merge + ':unsolved_math_prioritization/state.json')
+     old_history_raw = g.git_bytes('show', merge + ':unsolved_math_prioritization/history.jsonl')
+     g.require(g.sha(old_state_raw) == pre['state_before_sha256'] and g.sha(old_history_raw) == pre['history_before_sha256'], 'Merge changed shared state/history before present mirror')
+@@ -65,13 +68,13 @@
+     plan = g.load(g.A / 'state_mirror_plan.json')
+     tail = plan['history_append_bytes'].encode()
+     g.require(len(plan['history_append']) == 1 and plan['history_append'][0]['id'] == g.ID and plan['history_append'][0]['event'] == 'acceptance_mirror_import' and tail and history == old_history_raw + tail, 'Require complete history prefix plus one present acceptance')
+-    g.require(len(old_state) == 27 and len(state) == 28 and g.ID not in old_state and sum(z['turns_used'] for z in state.values()) == 33 and all(state[key] == value for key, value in old_state.items()) and state == plan['state_after'], 'Prior states/native28targets33turns accounting changed')
++    g.require(len(old_state) == 28 and len(state) == 29 and g.ID not in old_state and sum(z['turns_used'] for z in state.values()) == 35 and all(state[key] == value for key, value in old_state.items()) and state == plan['state_after'], 'Prior states/native29targets35turns accounting changed')
+     g.require(g.sha(history) == plan['history_after_sha256'] and g.sha(state_path.read_bytes()) == plan['state_after_sha256'], 'Actual mirror output differs')
+     entry = state[g.ID]
+-    g.require(entry['status'] == 'unsolved' and entry['turns_used'] == 1 and entry['turn_limit'] == 5 and entry['evidence']['accepted_source']['path'].endswith('/source_record.json') and entry['evidence']['historical_transitions_asserted'] is False and entry['evidence']['import_is_present_day_mirror'] is True, 'No invented historical native proof/readiness event or new turn')
++    g.require(entry['status'] == 'unsolved' and entry['turns_used'] == 2 and entry['turn_limit'] == 5 and entry['evidence']['accepted_source']['path'].endswith('/source_record.json') and entry['evidence']['historical_transitions_asserted'] is False and entry['evidence']['import_is_present_day_mirror'] is True, 'No invented historical native proof/readiness event or new turn')
+     intent = g.load(g.A / 'state_mirror_intent.json')
+     g.require(intent['status'] == 'COMPLETED' and intent['before_state_bytes'].encode() == old_state_raw and intent['before_history_bytes'].encode() == old_history_raw, 'Durable intent/original complete prefixes differ')
+-    g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen PR36 mirror base changed')
++    g.require(g.sha(g.PREVIOUS.read_bytes()) == g.PREVIOUS_SHA, 'Frozen PR37 mirror base changed')
+     saved = g.load(g.A / 'state_mirror_bindings.json')
+     base = g.load(g.PREVIOUS)
+     g.require(saved['entries'][:-1] == base['entries'] and saved.get('duplicate_mirrors') == base.get('duplicate_mirrors') and saved['required_completed_prs'] == sorted(base['required_completed_prs'] + [g.PR]), 'Prior primary/duplicate bindings changed')
+@@ -86,20 +89,20 @@
+     g.unselected_inventory(old_inventory, inventory)
+     g.require(sorted(g.inventory_items(inventory)) == pre['inventory_complete_ids'], 'Complete captured inventory ID set changed')
+     completed = sum(z.get('stage') == 'complete' for z in inventory['items'])
+-    g.require(completed == inventory['completed_count'] == 27 and inventory['program_completion_estimate_percent'] == completed / 180 * 100 and fresh['primary_count'] == 27 and fresh['duplicate_count'] == 1, 'Completed27/180 and explicit duplicate accounting differ')
++    g.require(completed == inventory['completed_count'] == 28 and inventory['program_completion_estimate_percent'] == completed / 180 * 100 and fresh['primary_count'] == 28 and fresh['duplicate_count'] == 1, 'Completed28/180 and explicit duplicate accounting differ')
+     current_item = g.inventory_items(inventory)[g.PR]
+-    g.require(current_item['stage'] == 'complete' and current_item['queue_status'] == 'unsolved' and current_item['audited_head'] == g.HEAD and current_item['merge_commit'] == merge and current_item['merged_at'] == remote['mergedAt'] and current_item['cumulative_attempts'] == '1/5' and current_item['new_substantive_attempts'] == 0 and current_item['paper_or_new_doi_or_tracker'] is False, 'Selected inventory acceptance differs')
++    g.require(current_item['stage'] == 'complete' and current_item['queue_status'] == 'unsolved' and current_item['audited_head'] == g.HEAD and current_item['merge_commit'] == merge and current_item['merged_at'] == remote['mergedAt'] and current_item['cumulative_attempts'] == '2/5' and current_item['new_substantive_attempts'] == 0 and current_item['paper_or_new_doi_or_tracker'] is False, 'Selected inventory acceptance differs')
+     g.foreign_tracked_unchanged(pre)
+     result = {'utc': g.stamp(), 'status': 'PASS', 'pr': g.PR, **pins, 'exact_remote_merge_parents_and_real_tree_verified': True, 'merge_commit': merge, 'merge_tree': tree,
+               'canonical_manifest_sha256': audit['canonical_manifest_sha256'], 'canonical_members': len(members), 'reviewed_members_exact_science_or_archived_admin': len(frozen),
+-              'entire_original13_source_serializations_fallback_ledger_diagnostics_preserved': True, 'three_PARTIAL_source_only_replacements_bound': True,
++              'entire_original16_source_null_prior_two_turn_ledger_diagnostics_preserved': True, 'v2_archival_alias_only_and_original_actual_replay_bound': True,
+               'named12_column_actual_queue_change_only': True, 'selected_chat_DOI_and_every_other_queue_byte_preserved': True,
+               'complete_inventory_id_set_and_every_unselected_item_preserved': True, 'current_read_only_mirror_validation': validation,
+-              'history_exact_single_present_acceptance_append': True, 'all_prior_states_preserved': 27, 'current_targets': 28, 'consumed_original_substantive_turns': 33, 'complete_primary_prs': 27, 'explicit_duplicate_count': 1,
+-              'attempts': '1/5', 'new_substantive_attempts': 0, 'verification_attempts_added': 0, 'full_problem_solved': False, 'positive_novelty_claim': False,
++              'history_exact_single_present_acceptance_append': True, 'all_prior_states_preserved': 28, 'current_targets': 29, 'consumed_original_substantive_turns': 35, 'complete_primary_prs': 28, 'explicit_duplicate_count': 1,
++              'attempts': '2/5', 'new_substantive_attempts': 0, 'verification_attempts_added': 0, 'full_problem_solved': False, 'positive_novelty_claim': False,
+               'program_completion_estimate_percent': completed / 180 * 100, 'paper_or_new_doi_or_tracker': False, 'shared_files_written': 0}
+     g.dump(g.A / 'ROOT_POST_ACCEPTANCE_VERIFICATION.json', result, exclusive=True)
+-    print(json.dumps({'status': 'PASS', 'pr': g.PR, 'canonical_members': len(members), 'targets': 28, 'turns': 33, 'completed_primary_prs': 27, 'new_proof_turns': 0}))
++    print(json.dumps({'status': 'PASS', 'pr': g.PR, 'canonical_members': len(members), 'targets': 29, 'turns': 35, 'completed_primary_prs': 28, 'new_proof_turns': 0}))
+ 
+ 
+ if __name__ == '__main__':

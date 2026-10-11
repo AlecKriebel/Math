@@ -1,0 +1,5 @@
+# Published resolution: embedding dimension gap two
+
+[Research note and verification package](https://doi.org/10.5281/zenodo.23088066), version1.0. CANDIDATE.md and PL_SUBDIVISION_LEMMA.md give the exact finite2D PL3/affine5 theorem and direct first-subdivision proof. ACCEPTANCE.md and acceptance.json bind the original, reviewed and accepted hashes, final independent gates, exact deposited files and trackerrow. All historical reviews remain dated evidence for their originalhashes.
+
+Original1/5 attempt counter unchanged. Three mathematical/source families, two deep bounded priority audits, full fresh preprint round1/runtime documentation repair/new full round2PASSzeroissues. Standard-library package tools require Python3.10+; original check_bounds.py and independent_review/independent_checks.py reproduce16+396checks. Main paper/source package lives in simplicial_embedding_gap_30000439/. Research logs/source/priority/AI/unrefereed qualifications are preserved. No enumerated enormous witness, categorical firstpriority, human peerreview orformalcertificate.

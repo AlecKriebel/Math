@@ -1,0 +1,5 @@
+# Prospective credited classification acceptance
+
+Original head a92af24e2e6015893787e0c55cd4618f7098917e has15 numeric artifacts and16 changed paths including QUEUE.md. Actual base01358d66fc67d1c462bddf31c0d4ee5b120e6737 differs from historical metadata basec6975ca76f9f667f1250ba403d0e6da2aafe14d0; both are archived accurately. Original1/5, verification0.
+
+Three complete original mathematical families and root reconstruction clear the full formula. Two distinct deep priority families plus root full equivalent-theorem reconstruction establish already_solved as a credited earlier-method application. An earlier exact printed flag formula remains unlocated. This edited complete current packet and exact186-member closure require a NEW complete adversary; historical verdicts do not transfer automatically. Preserve all original bytes, root failures and sealed prior findings. Guarded queue integration changes only namedStatus/Turns/Findings, preserving every other field/row. Old destructive rank/cache helpers are investigated only in private copies. No paper/newDOI/tracker.

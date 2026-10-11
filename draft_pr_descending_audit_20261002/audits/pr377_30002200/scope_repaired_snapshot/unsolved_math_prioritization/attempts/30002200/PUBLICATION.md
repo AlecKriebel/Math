@@ -1,0 +1,9 @@
+# Credited prior resolution: already solved,0/5
+
+Franz's published big polygon construction answers the original rational all-rank sharpness question. No new solution, minimal dimension, integral or positive-characteristic extension is claimed. Odd ranks use equilateral a=b=1; even ranks add the independently acting sphere factor.
+
+Read CURRENT_SCOPE_CORRECTION.md as the authoritative current qualification. The original guide, both checkers and prior review reversed the rank-five free-target/free-quotient roles in one justification. Actual targets0,3 give differences−9,−6 against K4[9];10,13 are free quotients. The corrected justification and splitting-independent depth proof retain the exact syzygy order. CURRENT_SCOPE_MANIFEST.json binds the correction and two corrected programs/receipts; every current wrapper verifies it. The11 author and5 prior-review files retain frozen bytes as historical records; their old PASS receipts are arithmetic replay evidence, not semantic validation of the superseded assertion. Corrected counts overlap historical checks and are not new distinct control counts.
+
+Run python verify_publication.py with SymPy1.14.0. It checks all current and historical hashes, reproduces both historical streams and both corrected streams, and explicitly does not fetch/reverify source PDFs. SOURCE_MANIFEST.json binds four primary URLs/hashes separately. Fresh source reading and a new whole-package adversary remain distinct from these executable checks. The corrected2023 author version is distinguished from the2015 IMRN publication; later published corroboration is Franz–Huang2020. Source cautions and original author/review history remain explicit.
+
+AI tools were used extensively. This is unrefereed and is not external human peer review. Accept only as credited literature findings after final audit; no paper, Zenodo, DOI, tracker row or release.

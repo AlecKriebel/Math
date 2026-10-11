@@ -1,0 +1,7 @@
+# Source retrieval provenance limits
+
+The initial official-page web call returned an HTTP 403. The successful initial `curl --location --show-error --dump-header sources/primary653.headers --output sources/primary653.html https://www.erdosproblems.com/653` tool command returned exit code 0, chunk ID `09aecc`, wall time 0.319108084 seconds, and reported 31,292 final response bytes. Its original process PID and precise process-start clock were not exposed by that tool invocation; none are fabricated here. The preserved HTML/header bytes and the preceding `2026-10-02 22:06:16 UTC` clock observation give only retrieval provenance at that precision. The own HTML parser printed the statement/background excerpt in chunk `9dc0fa`; no proof-claim body was examined.
+
+`fetch_primary.py` repeats the official-page retrieval under `run_capture.py`, preserving actual outer and nested process PIDs, UTC clocks, elapsed times, exact command, HTTP headers, full raw response, and all stdout/stderr. The repeat fetch is source evidence after the initial mechanism seal and is not silently substituted for the earlier response.
+
+Raw HTML, headers, and extracted primary text are individually excluded foreign source evidence, not own authored mathematics. Their exact hashes will be listed in the closed manifest. The duplicate retrieval is a provenance check, not an outside communication with another individual.

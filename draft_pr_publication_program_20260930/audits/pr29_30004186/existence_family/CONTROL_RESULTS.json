@@ -1,0 +1,221 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-01T23:38:05.859409+00:00",
+  "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+  "executable": "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+  "sympy_version": "1.14.0",
+  "checks": {
+    "parametric_degree_one_lift": 1,
+    "parametric_velocity_endpoint_values": 1,
+    "parametric_primitive_endpoint_values": 1,
+    "parametric_zero_physical_primitive_mean": 1,
+    "parametric_primitive_derivative": 1,
+    "parametric_physical_mean_conservation": 1,
+    "parametric_corrected_Riccati": 1,
+    "parametric_relabel_mean_naturality": 1,
+    "parametric_relabel_K_naturality": 1,
+    "parametric_relabel_H_naturality": 1,
+    "parametric_weak_flux_corner_boundary_cancellation": 1,
+    "negative_unweighted_label_mean_breaks_periodicity": 1,
+    "negative_unweighted_primitive_constant_changes_mean": 1,
+    "negative_no_mean_subtraction_breaks_periodicity": 1,
+    "negative_nonperiodic_velocity_breaks_mean_conservation": 1,
+    "negative_degree_one_without_injectivity": 1,
+    "negative_folded_jacobian": 1,
+    "background_logistic_characteristic": 1,
+    "background_characteristic_acceleration": 1,
+    "background_right_jacobian": 1,
+    "background_left_jacobian": 1,
+    "negative_forced_matching_endpoint_derivatives": 1,
+    "background_right_physical_slope": 1,
+    "background_left_physical_slope": 1,
+    "general_corner_jump_identity": 1,
+    "v1_fixed_peak_smooth_perturbation_jump_derivative": 1,
+    "negative_v1_smooth_perturbation_class_not_invariant": 1,
+    "negative_periodic_W1infinity_translation_continuity": 1,
+    "cutoff_proxy_amplitude_scaling": 1,
+    "cutoff_proxy_slope_scaling": 1,
+    "cutoff_proxy_second_derivative_scaling": 1,
+    "negative_C2_lifespan_control_would_not_be_uniform": 1,
+    "finite_float_proxy_small_C1_large_C2": 3,
+    "finite_float_background_invertibility_and_slope": 20
+  },
+  "assertions": 55,
+  "failures": [],
+  "control_scope": {
+    "parametric_exact": "Universal algebra within explicitly displayed polynomial/rational families, not general functions or a PDE existence proof.",
+    "negative_exact": "Exact counterexamples to deliberately wrong mean/primitive, nonperiodic endpoint values, folded map, forced matching derivatives, false translation continuity, and second-derivative lifetime dependence.",
+    "numeric": "23 finite floating-point observations only; no validated PDE simulation or universal inference.",
+    "general_theorem": "Written independent reconstruction supplies Banach bounds, Picard, weak formulation, continuation and smoothness arguments."
+  },
+  "evidence": {
+    "wrong_mean_endpoint_residual": "-a*d/30",
+    "wrong_primitive_physical_mean_residual": "-a*(a*d + 7*b)/1260",
+    "folded_map": "X=x+2x(1-x): X(1/2)=X(1)=1, Xprime(1)=-1",
+    "v1_smooth_perturbation_domain_control": "u0=phi+e*sin(x): J(0)=2*kappa, Jprime(0)=-4*kappa*e. A fixed translated phi plus a smooth periodic perturbation would force J(t)=2*kappa.",
+    "proxy_second_derivative_at_quarter_width": "135/32/delta",
+    "finite_numeric_scaling": [
+      {
+        "delta": 0.1,
+        "amplitude_at_quarter_width": -0.00015820312500000003,
+        "slope_at_quarter_width": -0.010546875,
+        "second_derivative_at_quarter_width": 42.1875
+      },
+      {
+        "delta": 0.01,
+        "amplitude_at_quarter_width": -1.5820312500000003e-07,
+        "slope_at_quarter_width": -0.0010546875,
+        "second_derivative_at_quarter_width": 421.875
+      },
+      {
+        "delta": 0.0001,
+        "amplitude_at_quarter_width": -1.5820312500000003e-13,
+        "slope_at_quarter_width": -1.0546875e-05,
+        "second_derivative_at_quarter_width": 42187.5
+      }
+    ],
+    "finite_numeric_background": [
+      {
+        "time": 0.0,
+        "samples": [
+          {
+            "label": 0.0,
+            "relative_position": 0.0,
+            "jacobian": 1.0,
+            "physical_slope": -1.0471975511965976
+          },
+          {
+            "label": 1.5707963267948966,
+            "relative_position": 1.5707963267948966,
+            "jacobian": 1.0,
+            "physical_slope": -0.5235987755982988
+          },
+          {
+            "label": 3.141592653589793,
+            "relative_position": 3.141592653589793,
+            "jacobian": 1.0,
+            "physical_slope": 0.0
+          },
+          {
+            "label": 4.71238898038469,
+            "relative_position": 4.71238898038469,
+            "jacobian": 1.0,
+            "physical_slope": 0.5235987755982988
+          },
+          {
+            "label": 6.283185307179586,
+            "relative_position": 6.283185307179586,
+            "jacobian": 1.0,
+            "physical_slope": 1.0471975511965976
+          }
+        ]
+      },
+      {
+        "time": 1.0,
+        "samples": [
+          {
+            "label": 0.0,
+            "relative_position": 0.0,
+            "jacobian": 0.350919807178411,
+            "physical_slope": -1.0471975511965976
+          },
+          {
+            "label": 1.5707963267948966,
+            "relative_position": 0.6579967004099336,
+            "jacobian": 0.5000342995212582,
+            "physical_slope": -0.8278653177266199
+          },
+          {
+            "label": 3.141592653589793,
+            "relative_position": 1.6321429034836066,
+            "jacobian": 0.7691459094506213,
+            "physical_slope": -0.5031499167020622
+          },
+          {
+            "label": 4.71238898038469,
+            "relative_position": 3.222336948008266,
+            "jacobian": 1.3324525629983146,
+            "physical_slope": 0.02691476480615762
+          },
+          {
+            "label": 6.283185307179586,
+            "relative_position": 6.283185307179586,
+            "jacobian": 2.849653908226361,
+            "physical_slope": 1.0471975511965976
+          }
+        ]
+      },
+      {
+        "time": 5.0,
+        "samples": [
+          {
+            "label": 0.0,
+            "relative_position": 0.0,
+            "jacobian": 0.005321565478800588,
+            "physical_slope": -1.0471975511965976
+          },
+          {
+            "label": 1.5707963267948966,
+            "relative_position": 0.011125725250724357,
+            "jacobian": 0.009427086615820385,
+            "physical_slope": -1.043488976113023
+          },
+          {
+            "label": 3.141592653589793,
+            "relative_position": 0.033259390005892626,
+            "jacobian": 0.021061505116078672,
+            "physical_slope": -1.0361110878613002
+          },
+          {
+            "label": 4.71238898038469,
+            "relative_position": 0.09873290522261872,
+            "jacobian": 0.08249016246133338,
+            "physical_slope": -1.0142865827890581
+          },
+          {
+            "label": 6.283185307179586,
+            "relative_position": 6.283185307179586,
+            "jacobian": 187.91462850239836,
+            "physical_slope": 1.0471975511965976
+          }
+        ]
+      },
+      {
+        "time": 10.0,
+        "samples": [
+          {
+            "label": 0.0,
+            "relative_position": 0.0,
+            "jacobian": 2.8319059145162127e-05,
+            "physical_slope": -1.0471975511965976
+          },
+          {
+            "label": 1.5707963267948966,
+            "relative_position": 5.931073890323647e-05,
+            "jacobian": 5.03440435673928e-05,
+            "physical_slope": -1.0471777809502967
+          },
+          {
+            "label": 3.141592653589793,
+            "relative_position": 0.0001779288575561916,
+            "jacobian": 0.00011326982110028342,
+            "physical_slope": -1.0471382415774124
+          },
+          {
+            "label": 4.71238898038469,
+            "relative_position": 0.0005337563425697941,
+            "jacobian": 0.00045302796709799614,
+            "physical_slope": -1.047019632415741
+          },
+          {
+            "label": 6.283185307179586,
+            "relative_position": 6.283185307179586,
+            "jacobian": 35311.907605194385,
+            "physical_slope": 1.0471975511965976
+          }
+        ]
+      }
+    ]
+  },
+  "script_sha256": "af0f63e361d04274d3fa202724bc7bf0bd7340abe80097fd9cef03ff9e25593a"
+}

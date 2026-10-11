@@ -1,0 +1,7 @@
+# Fresh primary text read
+
+On 2026-10-03 around11:00UTC I opened the official [EMS OWR9/2007 report](https://ems.press/content/serial-article-files/46093), and personally read Roth's contribution printed528–530, including Theorem1 and Problem1. The theorem identifies positive unrestricted distortion liminf on an arc with circle reflection. The problem's displayed limit contains no angular restriction. This confirms the source quantifiers. It is a browser text observation; I did not download/authenticate fresh PDF bytes, inspect fresh pixels, or read the complete2007journal proof.
+
+I also freshly opened [Gumenyuk–Kourou–Moucha–Roth, arXiv2410.13965v1](https://arxiv.org/html/2410.13965v1), §8.2 equation8.3. It explicitly gives the unrestricted single-point reflection equivalence and credits Kraus–Roth–Ruscheweyh. Section8.4 distinguishes the weaker angular hypothesis. This is a pinned version read rather than an assertion about the latest state of the literature. No exhaustive priority search or newer-literature-absence claim follows.
+
+These browser tool observations have no local shell PID or authenticated local PDF SHA. Existing source qualifications correctly distinguish original archival null-newline prior_report, absent upstream key and literal SQL{} importer fallback. The exact current original source record is retained with integerID30000703 and its dated weaker assessment is archival; current acceptance must use the qualified ordinary criterion.

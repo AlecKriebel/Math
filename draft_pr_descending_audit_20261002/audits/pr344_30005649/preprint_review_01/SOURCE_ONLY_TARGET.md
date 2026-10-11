@@ -1,0 +1,19 @@
+# Source-only target and success criteria
+
+Frozen UTC: 2026-10-04T06:18:21.308137+00:00
+
+This freeze was written before opening any of the six candidate files, the public ZIP, or other reviewers' reports. Original source read: Takao contribution, printed pp.2476-2480, PDF one-based pp.100-104; all five original page images were viewed. Hoshi revised March2021 PDF pp.5-9 original images and operative §§2-3 text were read independently.
+
+## Exact target
+Takao takes a prime p>3 and a perfect characteristic-p field k, W=W(k), and a p-torsion finite flat commutative W-group scheme mathcal G of rank p^(2n), with special fiber G. Definition1(3) distinguishes qss over W from qss over k; each requires a subgroup filtration with successive quotients Ei[p] of supersingular elliptic curves over that same base. Proposition2 on printed p2479 says: if n<=2 and the *special fiber G* is qss, then both mathcal G and G are automatically self-dual. The following question asks whether this assertion is true for n>=3. The font distinction was verified on the original images, not extraction alone.
+
+A negative answer can be furnished by a genuine p-torsion finite flat W(k)-group with qss special fiber and failure of self-duality of either object. Nonselfduality of G forces nonselfduality of mathcal G by specialization and base-change compatibility of Cartier duality. A bare finite k-group or abstract semilinear object without a valid W-lifting does not meet the original ambient setup. An existential algebraically closed k is sufficient to falsify the universal perfect-field assertion. A W-qss filtration is a stronger property and cannot be silently substituted for the special-fiber hypothesis.
+
+## Categorical boundary
+Hoshi Def2.1 permits finite-dimensional k-spaces with F sigma-semilinear, V sigma^-1-semilinear, FV=VF=0. Prop2.5 is contravariant, so stable module subobjects correspond to quotients; a qss group-subgroup filtration must reverse a module quotient filtration. Duality is (FD phi)(m)=sigma(phi(Vm)), (VD phi)(m)=sigma^-1(phi(Fm)); ordinary swapped transposes need justified Frobenius behavior of matrix entries. Honda realization requires the exactness imF=kerV and imV=kerF together with a subspace L complementary to imF and injective V|L. All finite Honda requirements in Hoshi Remark3.5.1 must be checked. Hoshi Prop3.11 supplies actual W-groups for p!=2 and compatibility of special fiber and duality.
+
+## Success and falsification criteria
+Require a uniform symbolic construction for stated p and n, proof of FV=VF=0 and all Honda requirements, a genuine group realizing the data, explicit stable filtration and supersingular elliptic-kernel identification, and an intrinsic invariant incompatible with self-duality. Examine n=3 and arbitrary n, p=5 as first admissible prime, coefficient signs, semilinear rather than merely linear isomorphisms, contravariant indexing, base extension, and direct-sum masking/cancellation of obstruction. Finite numerical checks are controls, not proof for all p or algebraically closed k. Minimal rank is supportable relative to Takao's stated n<=2 result; independent global originality requires evidence beyond absence in a finite search. Wider supplemental claims require their own assumptions, source versions, derivations, and honest gap statements.
+
+## Initial independent expectations
+Self-duality exchanges F and V. Any intrinsic difference between image/kernel intersection statistics of words in F versus exchanged words obstructs duality. A usable example should have equal ranks of F and V, since Honda exactness forces them to sum to dimension; elementary rank difference alone may obstruct deformability. Lower-dimensional qss selfduality suggests an obstruction built from chains/intersections first becomes visible in dimension6. No candidate-specific construction or verdict has been assumed.

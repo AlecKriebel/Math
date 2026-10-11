@@ -1,154 +1,133 @@
-# A quadratic complex-coefficient obstruction to unique nearest stable projection
+# Nonunique nearest stable complex quadratics near z²
 
-**First substantive-turn candidate. Source/proof review is required before classifying the original target.** No novelty claim is made. The theorem concerns the complex coefficient convention of the cited polynomial variational theory, and the whole-epigraph set notion; it does not settle a real-only variant or the finite-subgradient function conjecture.
+**Published complex projection result and compatible positive function proposition.** **State as of 2026-10-11T23:28:29.504416+00:00.** Published unrefereed proof note: [10.5281/zenodo.23306332](https://zenodo.org/records/23306332); concept DOI 10.5281/zenodo.23306331. Root accepted exact v03 after review02 found no material defect and verified public PDF/ZIP bytes against the frozen package. Tracker **PENDING** because GWS OAuth is not authenticated; native merge **PENDING**. No tracker range or merge is claimed. This new publication-state candidate awaits root integration audit; that pending audit does not reverse actual publication. These immutable preparation statuses are as of this UTC; later root provider receipts are the authority for subsequent tracker/native outcomes. Author turns remain **1/5**. Original reviews certify only their original body; no firstness or present-openness claim is made.
 
-## 1. Precise statements
+## 1. Exact accepted claims
 
-Identify the monic complex quadratics
+Identify monic complex quadratics p(z)=z²+az+b with C²=R⁴, in coordinate order (Re a,Im a,Re b,Im b). Let alpha(p) be the maximum real part of a root, and let S={p:alpha(p)≤0}. Distances use any **fixed positive-definite real coefficient inner product**.
 
-    p(z)=z²+a z+b
+**Theorem A.** S is not prox-regular at p0(z)=z². Every neighborhood of p0 contains an unstable polynomial with at least two distinct attained global nearest stable monic quadratics.
 
-with (a,b)∈C²=R⁴, with coefficient order (Re a,Im a,Re b,Im b). Let
+**Theorem B.** The same conclusions hold for full exact-degree complex quadratics lz²+az+b, l≠0, near (1,0,0), with every fixed positive-definite real coefficient inner product.
 
-    S={p: every root has real part at most zero}.
+**Theorem C.** The abscissa epigraph is not prox-regular, as a set, at (p0,0), in either framework. Its obstructing limit is a horizontal normal vector in a coefficient/height product metric. In a metric mixing coefficient and height coordinates, the limit is a horizontal support covector; its representing normal vector may tilt.
 
-Let alpha(p) be the largest real part of a root. The following are the claims.
+These core claims concern complex coefficients and the whole epigraph. They make no negative finite-subgradient function claim. The published positive quadratic function Proposition3 is compatible with them and is described in §8 without becoming a proof premise. The real-only general problem, general-degree function conjectures, all-degree failure, and an explicit nonunique input/minimizing pair remain excluded. Stability is the closed-half-plane convention ≤0. Firstness and present openness are not asserted.
 
-**Theorem A.** S is not prox-regular at p0(z)=z². For every neighborhood of p0 in coefficient space there is a polynomial having at least two distinct nearest stable monic quadratics. This holds for the standard Euclidean coefficient norm and for every fixed positive-definite real coefficient inner product.
+## 2. Necessary fixed-normal support and projection criterion
 
-**Theorem B.** The same local nonuniqueness conclusion holds when all exact-degree complex quadratics are allowed, including their leading coefficient near 1. The proof is in the full ambient coefficient space, rather than an inference from a monic slice.
+A limit of proximal normals at converging points is a limiting normal. Set prox-regularity at x0 requires a uniform local nearest-point condition for each limiting normal n0∈N_C(x0). In particular it implies, with some finite rho,
 
-**Theorem C.** The epigraph of alpha, as a set, is not prox-regular at (p0,0), both in the monic and full exact-degree complex frameworks. The obstructing normalized normals converge to a horizontal normal. This conclusion does not refute function prox-regularity at a fixed finite subgradient, since the unscaled gradients used below diverge.
+    <n0,y-x0>≤(rho/2)||y-x0||²
 
-“Stable” is the closed-left-half-plane convention explicitly stated in OWR 2/2005. All nearest points here are sought in coefficient space, not in a root-matching metric.
+for nearby y∈C. This follows by expanding the distances from x0+n0/rho to x0 and y. Therefore a limiting normal that is not proximal at the base disproves set prox-regularity. In finite dimension, local single-valued nearest projection onto a closed set is equivalent to set prox-regularity. [Poliquin–Rockafellar–Thibault (2000), Definition 1.1, Proposition 1.2, Theorem 1.3(a),(k), pp.5233–5234](https://sites.math.washington.edu/~rtr/papers/rtr170-LocalDiffDistance.pdf).
 
-## 2. A necessary uniform support inequality
+## 3. Stable path and actual ambient normals
 
-For a closed subset C of a finite-dimensional Euclidean space, prox-regularity at x0 implies that, near x0, bounded normal vectors satisfy a uniform quadratic support estimate. In particular, if
+For t>0, use
 
-    x_t,y_t∈C,   x_t,y_t→x0,
-    n_t∈N_C(x_t),   n_t→n0∈N_C(x0),
+    p_t(z)=z²+t²z+t²+it³=(z+it)(z+t²-it).
 
-then for some fixed rho and all sufficiently small t,
+Its roots are -it and -t²+it. The active root is simple and strictly dominates the other root locally at each fixed t. Implicit differentiation at lambda=-it gives
 
-    <n_t,y_t-x_t> ≤ (rho/2)||y_t-x_t||².             (1)
+    d lambda=-(lambda da+db)/(t²-2it),
+    grad alpha(p_t)=gamma n_t,
+    gamma=2/[t(t²+4)]>0,
+    n_t=(-t,-t²/2,-t/2,1).
 
-This is the elementary distance expansion in the definition of prox-regularity for the normal n0; see Poliquin–Rockafellar–Thibault (2000), Definition 1.1 and Proposition 1.2. If x_t is the nearest point to x_t+n_t/rho, comparison with y_t and expansion of squared distances gives (1).
+All four real coefficient directions are included. To independently check the sign and stability boundary, write a=x+iy,b=u+iv and shift the root variable by -iy/2. The new polynomial is
 
-We will use actual proximal normals at smooth boundary points. Their limits are limiting normals at x0. A violation of every fixed rho therefore disproves set prox-regularity. Theorem 1.3(a),(k) of the same primary paper then identifies the consequence for locally single-valued projections in finite dimension.
+    w²+xw+U+iV, U=u+y²/4, V=v-xy/2.
 
-## 3. Explicit stable points and their full ambient normals
+The quadratic formula gives exactly x≥0,U≥0,V²≤x²U for stability. For x>0,U>0 this is |V|≤x sqrt(U). At p_t the upper constraint is active; the lower one has slack 2t³. The gradient of v-xy/2-x sqrt(u+y²/4) is n_t, with outward sign. The closed chart also includes the edge restrictions x=0⇒V=0,U≥0 and U=0⇒V=0,x≥0.
 
-For t>0 define
+At each fixed t, a smooth local sublevel Taylor bound gives <n_t,y-p_t>≤K_t||y-p_t||² for nearby stable y. Taking a sufficiently small positive normal displacement makes p_t nearer than every distinct nearby stable point. Taking the displacement also below half a chosen local ball's radius excludes remote competitors by the triangle inequality. Hence n_t is genuinely proximal. No uniform K_t or root gap is assumed.
 
-    p_t(z)=z²+t² z+t²+i t³
-          =(z+i t)(z+t²-i t).                     (2)
+Since p_t→p0 and n_t→n0=(0,0,0,1), the vector n0 belongs to the limiting normal cone at p0.
 
-Its roots are -it and -t²+it. The first is simple and active, with real part zero; the other has strictly negative real part. Thus p_t lies on a smooth stable boundary. The active root remains simple and strictly dominates the other root locally, so alpha is smooth near p_t and the stable set is locally {alpha≤0}.
+## 4. Cubic support versus quartic distance
 
-Implicit differentiation at the active root lambda=-it gives
+Let w_t=p_t-p0=(t²,0,t²,t³). Then
 
-    d lambda = -(lambda d a+d b)/(t²-2it).
+    <n0,w_t>=t³,
+    ||w_t||²=2t⁴+t⁶,
+    <n0,w_t>/||w_t||²=1/[t(2+t²)]→+∞.
 
-Taking real parts in all four independent real coefficient directions yields
+For every tau>0, the squared-distance difference from p0+tau n0 is
 
-    grad alpha(p_t)
-      = 2/[t(t²+4)] · n_t,
-    n_t=(-t,-t²/2,-t/2,1).                         (3)
+    ||w_t-tau n0||²-||tau n0||²
+      =2t⁴+t⁶-2tau t³<0
 
-This is a full R⁴ gradient, including the imaginary linear-coefficient direction. It is not a normal computed only after imposing Im a=0. Its last component is nonzero. The positive multiple n_t of the smooth outward gradient is a proximal normal of S at p_t. For example, a local Taylor bound for alpha supplies the quadratic support inequality at this fixed point, with a constant allowed to depend on t.
+for sufficiently small t. The competitors approach the base arbitrarily closely. Thus n0 is limiting but not proximal at p0, so the local prox-regularity condition fails already at that fixed normal.
 
-The normal vectors are bounded and converge to
+An equivalent rational comparison uses n_t and the stable base: <n_t,p0-p_t>=t³/2 and ||p0-p_t||²=2t⁴+t⁶. The original sqrt(2) two-moving-point argument remains in the immutable original submission and its historical controls; the revised core does not need it.
 
-    n0=(0,0,0,1).
+## 5. All fixed positive-definite coefficient metrics
 
-Since the p_t approach p0, n0 belongs to the limiting normal cone N_S(p0).
+For any fixed SPD matrix G, the covector n_t represents the metric normal vector G⁻¹n_t. The preceding proximal-normal argument remains valid using the positive minimum eigenvalue of G. Its limit is G⁻¹n0 and
 
-As a separate check of the boundary, write a=x+iy and b=u+iv. Shifting the variable by -iy/2 produces the polynomial
+    <G⁻¹n0,w_t>_G=n0^T w_t=t³.
 
-    z²+xz+(u+y²/4)+i(v-xy/2).
+Write w_t=t²e+t³f, with e=(1,0,1,0),f=(0,0,0,1). Then
 
-In the chart x>0, u+y²/4>0 its stability is equivalent to
+    ||w_t||_G²=t⁴[e^TGe+2t e^TGf+t² f^TGf],
+    e^TGe>0.
 
-    |v-xy/2| ≤ x sqrt(u+y²/4).
+The quotient therefore diverges for every fixed SPD G, including coupled coefficient metrics. This proves a metric support obstruction; mere equivalence of arbitrary norms is not used.
 
-At p_t the upper inequality is active and the lower one is strict. The gradient of
+The monic abscissa is continuous, including at multiple roots, by
 
-    v-xy/2-x sqrt(u+y²/4)
+    alpha(a,b)=[-Re(a)+sqrt((|a²-4b|+Re(a²-4b))/2)]/2.
 
-is exactly n_t. This confirms the ambient normal and its outward sign without relying on an informal drawing of a coefficient slice.
+Thus S is nonempty and closed. Distance minima exist: a minimizing sequence is bounded using p0 as a finite-distance competitor, and a convergent subsequence attains its infimum. The projection criterion in the Hilbert metric G now supplies non-single-valued projections arbitrarily close to p0. Since minima exist, each such projection has at least two points. A stable input has only itself as its distance-zero projection, so the inputs are unstable. This proves Theorem A.
 
-## 4. Exact failure of the quadratic support bound
+## 6. Full exact-degree normals and global localization
 
-The comparison point is the equally explicit stable polynomial p_(sqrt(2)t). Its coefficient displacement from p_t is
+For lz²+az+b, direct differentiation at the same monic point gives
 
-    Delta_t=(t²,0,t²,(2sqrt(2)-1)t³).
+    d lambda=-(lambda² dl+lambda da+db)/(t²-2it),
+    grad alpha(p_t)=gamma N_t,
+    N_t=(t³/2,-t²,-t,-t²/2,-t/2,1).
 
-Direct computation gives
+The first two entries are leading-coefficient directions. These are genuine six-dimensional proximal normals locally, and N_t→N0=(0,0,0,0,0,1). The displacement has zero leading coordinates. Its support is again t³ and its squared metric distance has order t⁴ with a positive leading coefficient. For an arbitrary full coefficient SPD G, the normal vector is G⁻¹N_t. The proof uses the full ambient space, rather than inheriting a conclusion from a monic slice.
 
-    <n_t,Delta_t>=(2sqrt(2)-5/2)t³,                 (4)
-    ||Delta_t||²=2t⁴+(2sqrt(2)-1)²t⁶.              (5)
+The full stable set is relatively closed where l≠0, since alpha(l,a,b)=alpha(a/l,b/l) is continuous there. Choose a closed metric ball C0 of radius R around (1,0,0) so small that l≠0 throughout. Its stable intersection C is nonempty and compact. Eventually the path lies in the interior, with its normals unchanged, and the same obstruction makes C non-prox-regular at the base.
 
-The constant in (4) is positive: 2sqrt(2)>5/2. Thus
+If ||q-p0||_G<R/3, every stable s outside C0 obeys
 
-    <n_t,Delta_t>/||Delta_t||² → +infinity          (6)
+    ||s-q||_G≥||s-p0||_G-||q-p0||_G
+              >R-||q-p0||_G>2R/3.
 
-at rate 1/t. Equations (2)–(6) contradict (1) for every fixed rho. This proves the set statement in Theorem A.
+The competitor p0 is less than R/3 away; boundary points of C0 also cannot minimize. Thus nearest points in compact C and in the entire full exact-degree stable set agree. The closed-set projection criterion supplies arbitrarily nearby nonunique minima which are attained global nearest full-degree stable quadratics. This proves Theorem B for every fixed SPD coefficient metric.
 
-S is nonempty and closed, by continuous dependence of the roots of a monic fixed-degree polynomial on its coefficients. In finite-dimensional Euclidean space every point has a nearest point in a nonempty closed set. If all sufficiently nearby polynomials had unique nearest stable polynomials, Theorem 1.3(k) of Poliquin–Rockafellar–Thibault would imply prox-regularity at p0, contradicting (6). Therefore every neighborhood contains a polynomial with at least two nearest stable polynomials. Such a polynomial is necessarily outside S, since a point of S has itself as its unique distance-zero projection.
+## 7. Whole-epigraph set obstruction
 
-This is an existence proof of arbitrarily close nonunique projections. It does not claim that either p_t or p_(sqrt(2)t) is the unstable input or that those two particular boundary points are an explicitly identified nearest-point pair.
+At (p_t,0), the epigraph is locally alpha(p)-r≤0. Its scaled outward normal covectors are
 
-## 5. Other fixed coefficient inner products
+    v_t=(n_t,-1/gamma)=(n_t,-t(t²+4)/2)
 
-Let G be any positive-definite real symmetric matrix defining the coefficient inner product. The covector in (3) represents the G-normal vector G^-1 n_t. These vectors remain bounded and converge, and
+and, in full degree, (N_t,-1/gamma). They are proximal at each smooth boundary point and converge to (n0,0) or (N0,0). The comparison points (p_t,0) have zero height displacement, so the limiting covector's support is t³ and the squared Euclidean displacement is 2t⁴+t⁶. It is nonproximal at the base, proving Theorem C.
 
-    <G^-1 n_t,Delta_t>_G=<n_t,Delta_t>.
+For coefficient metric G and the ordinary height metric, the representing normal limit is (G⁻¹n0,0), which is horizontal. For a fixed SPD epigraph metric H mixing coordinates, the vector H⁻¹v_t still has the same covector support; the displacement retains a positive order-four squared-distance coefficient. Non-prox-regularity persists, although its representing limit vector may tilt. The monic epigraph is closed; full-degree local closedness is handled by clipping to a small closed ball within l≠0.
 
-There is a fixed constant M with ||Delta_t||_G²≤M||Delta_t||². Hence the support quotient for this metric still diverges by (4)–(5). The projection characterization applies in this finite-dimensional Hilbert metric as well.
+The unscaled coefficient gradients diverge because their imaginary-constant component is gamma. Function prox-regularity at a fixed finite subgradient localizes near that subgradient and corresponds to the epigraph normal (v,-1). This horizontal witness does not test that property. [Poliquin–Rockafellar (2010), Definition 1.1 and p.205](https://www.heldermann-verlag.de/jca/jca17/jca0849_b.pdf).
 
-This addresses fixed weighted Euclidean coefficient conventions. It does not claim that local unique projections are preserved merely because two arbitrary norms are equivalent, nor does it substitute a root-distance metric.
+## 8. Current historical framing, classical credits, and exclusions
 
-## 6. Exact degree without monic normalization
+Lewis's *The Mathematics of Eigenvalue Optimization* (2003), **Section8, printed pp166–168**, explicitly formulates the stable-set question in complex Euclidean monic coefficient space. The core theorem gives a negative degree-two answer to that historical set question. [Primary author-posted paper](https://people.orie.cornell.edu/aslewis/publications/03-mathematics.pdf). This historical question does not establish present openness.
 
-Write a full quadratic as l z²+a z+b with l near 1. The smooth normalization map is
+Printed OWR Question1 omits field, metric, and monicity; those omissions remain disclosed when it is cited. Its surrounding prose does not contain the imported “Equivalently.” The related Lewis epigraph definition is in *Eigenvalues and nonsmooth optimization*, **Section1.7,p15**; Section1.6 discusses partial smoothness. Current source notes correct that locator while preserving historical copied review bytes.
 
-    (l,a,b) ↦ (a/l,b/l).
+The real-quartic stability boundary is classical, as in [Bottema1956](https://onkirillov.narod.ru/1956-IM-Bottema-WhitneyUmbrella-ZieglerParadox.pdf), and its Whitney-umbrella presentation appears in [Kirillov–Overton2013](https://cs.nyu.edu/~overton/papers/pdffiles/swallowtail.pdf). The complex quadratic chart has this classical shape. Its nonlinear coordinate identification does not by itself transfer projection in a fixed metric; the direct ambient normal/support argument supplies the needed step. Prior Burke–Overton/Lewis root/abscissa calculus and PRT's local projection theorem are credited. Ordinary root differentiation and the cusp mechanism are not claimed novel.
 
-The active root and abscissa depend on these normalized coefficients. At the monic point p_t, the full six-real-dimensional gradient is a positive multiple of
+Cross2010's full dissertation is recovered, and independent priority reviewers read complete chapter5, printed pp80–133. Its standard finite-subgradient definitions and restricted parameter examples are distinguished from the ambient coefficient projection theorem. Earlier unrecovered-thesis statements are only dated 2026-10-01 access records. The full 2009 talk body remains unknown.
 
-    N_t=(t³/2,-t², -t,-t²/2, -t/2,1),             (7)
+Two later primary recoveries are now credited. [Moses–Liu1991](https://www.academia.edu/329556/Determining_the_Closest_Stable_Polynomial_to_An_Unstable_One) recognizes possible global nonuniqueness for real monic disk-stable coefficients with weighted Euclidean objectives; its complete public author-linked article OCR pp901–906 was read. The original typeset PDF and Figure1 were not recovered, so this is an OCR-body finding with a retained visual gap. Generic nonuniqueness is not claimed as a discovery here; no exact local complex theorem was located in the OCR read.
 
-where the first two entries are the real and imaginary leading-coefficient directions. This follows either by differentiating the normalization map or by the direct root formula
+[Orban de Xivry2013, Nearest Stable System](https://research.dial.uclouvain.be/bitstreams/930fe0d3-f488-439c-bce1-37a8dc368917/download), is a recovered 214-page primary Open Access thesis. Relevant theory and complete polynomial Chapter4 were independently read; complex monic coefficient formulation is explicit at p144, and weighted objectives are discussed at pp175–180. No exact core A–C theorem was located in the audited chapters. The thesis is credited as prior complex polynomial projection/algorithm work, without asserting an exhaustive negative read of all 214 pages. Its Example22 has a displayed numerical distance inconsistency; neither it nor its matrix candidates is a premise or a verified global/local tie here.
 
-    d lambda = -(lambda² d l+lambda d a+d b)/(t²-2it).
+Combettes–Trussell1992 and the separate Orban–Nesterov–Van Dooren2013 journal article remain genuinely unread full bodies. The recovered thesis is not assumed identical to the journal article. No absence inference or firstness/application-priority clearance follows.
 
-The remaining four coordinates are exactly (3). Thus N_t is a genuine full ambient proximal normal, bounded and converging to the imaginary-constant direction.
+A separate cold-reviewed auxiliary result establishes the **positive** finite-subgradient function property for the monic complex-quadratic abscissa at the origin in the real Euclidean coefficient metric. Constants depend on each fixed finite limiting subgradient; the root mathematical acceptance includes the strict-inequality repair r=M+1. This is compatible with the whole-epigraph set obstruction at a horizontal normal. The core proof above does not depend on it. The separate positive result is proved as Proposition3 in the exact published preprint and independently accepted by whole-preprint review02 and root readiness. Original reviews and the bounded priority decision do not certify its novelty or the final manuscript/package; the current whole-preprint reviews have their own exact versions.
 
-The two comparison polynomials have the same leading coefficient, so their leading-coordinate displacement is zero. Consequently (4)–(6) hold unchanged with N_t. This proves failure of local prox-regularity in the full exact-degree setting, rather than relying on the potentially invalid inference from a non-prox-regular slice.
-
-For projection existence and locality, choose a small closed coefficient ball C0 around z² on which every leading coefficient is nonzero. Let C be its intersection with the stable set. It is a nonempty compact set, and all p_t used above eventually lie in the interior of C0. Their local normals are unchanged, so C is not prox-regular at z².
-
-For a polynomial q sufficiently close to z², every stable polynomial outside C0 is farther from q than z² itself, by the triangle inequality. Therefore nearest points in C and in the full exact-degree stable set agree. Theorem 1.3(k) applied to C supplies nonunique projections arbitrarily close to z², which are also nonunique nearest full exact-degree stable polynomials. The same localization works for any fixed positive-definite coefficient metric. This proves Theorem B.
-
-## 7. The abscissa epigraph as a set
-
-Let E=epi(alpha) in the monic coefficient space times R. At (p_t,0), the epigraph is locally the smooth sublevel alpha(p)-r≤0. From (3), a positive multiple of its outward gradient is
-
-    v_t=(n_t,-t(t²+4)/2).                          (8)
-
-It is bounded and converges to the horizontal vector (n0,0). Both (p_t,0) and (p_(sqrt(2)t),0) belong to E. Their height displacement is zero, so (4)–(6) give exactly the same support violation for (8). Thus E is not prox-regular at (z²,0).
-
-Using N_t in place of n_t proves the full exact-degree version, with the same small closed localization if needed. Fixed positive-definite inner products are handled as in §5.
-
-These are direct epigraph-set counterarguments. No unproved general equivalence between stable sublevel sets and epigraphs is used.
-
-## 8. What the argument does and does not resolve
-
-Under the complex-coefficient convention explicitly used by the source's cited variational theory, Theorems A and B give a negative answer to the literal nearest-stable-polynomial question already in degree two. Theorem C separately addresses the whole-epigraph projection description in the report.
-
-However, the short report does not repeat its coefficient field or metric, while its opening control example uses real polynomials. The real-only variant is a distinct question: for monic real quadratics, stability is exactly a≥0 and b≥0, a convex set with unique projections. The complex construction is not a counterexample to that restriction.
-
-Further, standard function prox-regularity at a fixed finite subgradient restricts attention to nearby finite subgradients and function values. The gradients in (3) diverge as t decreases, while the bounded epigraph normals in (8) converge horizontally. Therefore the present construction alone does not settle that finite-subgradient function question. Poliquin–Rockafellar (2010), p. 205, explicitly characterize function prox-regularity relative to v by epigraph prox-regularity relative to the normal (v,-1); the horizontal limiting normals here are outside that finite-v normalization. The broader 2005 roots-paper conjecture cited by Rockafellar–Wets Definition 13.27 is not claimed false here.
-
-The imported clean statement's “equivalently” must not erase these distinctions. Independent source review must decide whether the original campaign target is exhausted by the literal complex projection statement or retains an additional real/function scope. If it retains the latter, this remains a first-turn partial result and the remaining substantive turns are still required. No novelty or historical-openness assertion is made.
+Root accepted the exact direct credited proof note after whole-preprint review02, and actual publication is verified. Unconditional novelty/application priority remains **HOLD**. Tracker and native merge remain **PENDING**; root audit of this new publication-state candidate is pending. No firstness or present-openness claim is made. Real monic quadratics have the convex stability orthant a≥0,b≥0, so this complex construction is not a real-only general counterexample. General-degree function conjectures, all-degree failure, and an explicit input or nearest pair remain excluded.

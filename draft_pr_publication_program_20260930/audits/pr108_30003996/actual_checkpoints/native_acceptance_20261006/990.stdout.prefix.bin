@@ -1,0 +1,23 @@
+# PR108 actual whole publication package — independent R1
+
+Verdict: **one minor required accuracy repair; no mathematical, primary-source attribution, PDF-layout, archive-integrity or metadata blocker found.** The sealed V1 should remain unchanged as review history. Repair the normalization contract in a globally consistent V2, refresh affected checks and byte manifests, then obtain a new fresh whole-package R2. R1 is complete; this report does not confer publication clearance or replace R2.
+
+The exact inputs are 36 logical payload files (227,903 bytes), 37 ZIP members including PACKAGE_MANIFEST.json, a 126,500-byte support ZIP, and a four-page 57,772-byte manuscript PDF. Manifest SHA-256: 0fa09c03acc5fbd0c596b506fb0dc0416435b021fa73c83dcac7b73e81fda1cb. ZIP: 9409c1e641c6fded1a53b6bb064267ac26c6544c20a93de54e948aca98c57458. PDF: f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4. TeX: a0e7e6158267fbf9ca4cafbd5ccb4cfa4ac79a1e0aea61282c9ee09d7e8d11d5. All remained unchanged through this review.
+
+## Required finding F01 — malformed-input promise is broader than the implementation
+
+Location: source_preparation/verify_exact.py lines 35–45, especially the promise at line 37 and early return at lines 44–45; source_preparation/README.md line 37.
+
+The function promises that malformed input raises, and the README says malformed literals are rejected. In both normal Python and Python -O, normalize([[], [0]]), normalize([[], [True]]) and normalize([[], [1, 2, 3, 4]]) instead return the fixed no-instance normalization without checking the later malformed clause. Reversing each clause order raises the intended literal or clause-size guard. The documented rejection behavior is therefore order dependent. NORMALIZATION_NORMAL.json, NORMALIZATION_OPTIMIZED.json and NORMALIZATION_EXECUTION_RECEIPTS.json preserve the exact six probes and actual process receipts.
+
+This is a minor diagnostic-contract/documentation accuracy issue. It does not invalidate either reduction direction on valid at-most-three-literal formulas. An empty valid clause already makes every valid formula unsatisfiable. No cost-table, bound or mathematical error follows from these probes.
+
+Required disposition: either validate all raw clauses before the empty-clause shortcut, or explicitly narrow the contract and README to disclose that suffix validation stops after an empty clause. The parent has selected full validation. Add the three suffix cases and their ordering controls to the published finite diagnostics under normal and optimized Python, then regenerate the affected receipts/manifests consistently. Do not overwrite V1 or present its prior check counts as V2 counts. No other required or optional findings were identified.
+
+## Independent target freeze and all-size proof
+
+INDEPENDENT_CLAIM_FREEZE.json was saved before reading imported priority-gate verdicts. The task context already disclosed gate orientations; independence here concerns literal reconstruction, proof checking and controls, not task-context blinding. The complete authentic Kaibel contribution and the complete current TeX were read before the freeze.
+
+Kaibel Problem 1 selects one common undirected spanning tree and sums each separately supplied root cost over its entire induced rooted orientation. Problem 2 selects a fixed directed root and scores destination paths; the manuscript makes no transfer or conclusion about it. The current finite explicit nonnegative integral table is a subclass of the source's real-valued objective under ordinary finite encoding. Transposing every root's arc costs accommodates the opposite rooted-orientation convention.
+
+The structural proof works for every size: each nonempty clause vertex must have an incident tree edge, hence q >= m. The tree has p+q+h=n+m+1 edges and h in {0,1}. Symmetric t-root costs give F_t=p+2q=K+(1-h)+(q-m), K=2m+n. Nonnegativity of all other root costs excludes every unstructured tree at threshold. Equality forces the hub edge and exactly one clause incidence per clause; removing those leaves gives a core tree containing tf, i

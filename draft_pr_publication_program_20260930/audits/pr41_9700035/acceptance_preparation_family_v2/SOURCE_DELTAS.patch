@@ -1,0 +1,273 @@
+--- closed_v1/pr41_guards.py
++++ proposed_v2/pr41_guards.py
+@@ -1,5 +1,6 @@
+ """Prepared source only. Root owns all actual execution and Git/remote writes."""
+ from __future__ import annotations
++import copy
+ import datetime as dt
+ import hashlib
+ import importlib.util
+@@ -7,6 +8,7 @@
+ import math
+ import os
+ import re
++import stat
+ import subprocess
+ from pathlib import Path, PurePosixPath
+ 
+@@ -128,7 +130,14 @@
+     require(f == names and d == expected, 'Exact recursive files/directories differ: '+str(base))
+ 
+ 
+-def manifest(base,name,pin=None,count=None):
++def frozen_files(base,values,self_name=None):
++    names={z['path'] for z in rows(values)}
++    if self_name is not None:names.add(relative(self_name).as_posix())
++    for n in names:
++        require(stat.S_IMODE(regular(base,n).stat().st_mode)==0o444,'Literal frozen0444 including special permission bits required: '+n)
++
++
++def manifest(base,name,pin=None,count=None,frozen=False):
+     raw=regular(base,name).read_bytes()
+     if pin is not None: require(sha(raw)==digest(pin),'Manifest SHA differs')
+     obj=parse(raw); rr=rows(obj['files'])
+@@ -144,6 +153,7 @@
+         if z['path'].endswith('.jsonl'):
+             raw=regular(base,z['path']).read_bytes(); require(not raw or raw.endswith(b'\n'),'Incomplete JSONL')
+             for line in raw.splitlines(): parse(line)
++    if frozen:frozen_files(base,rr,name)
+     return rr
+ 
+ 
+@@ -218,11 +228,21 @@
+     return clock
+ 
+ 
++def exact_reference(obj):
++    require(type(obj) is dict and set(obj)=={'path','bytes','sha256'},'Exact literal path/bytes/SHA reference row required; extensions prohibited')
++    rows([obj])
++    return obj
++
++
+ def root_binding_input(name,pin_value):
+     p=regular(R,name)
+     require(p.resolve().is_relative_to(A.resolve()) and not p.resolve().is_relative_to(C.resolve()) and not p.resolve().is_relative_to(HERE.resolve()),'Genuine external ROOT bindings outside closed packets required')
+     require(sha(p.read_bytes())==digest(pin_value),'Actual ROOT immutable-bindings SHA differs')
+     o=parse(p.read_bytes())
++    exact_reference(o['whole_manifest']);exact_reference(o['root_whole_inspection'])
++    expected=load(HERE/'DRAFT_ROOT_IMMUTABLE_BINDINGS.json')
++    expected.update(status='ROOT_APPROVED_CLOSED_WHOLE_EVIDENCE',created_utc=o['created_utc'],root_full_current_read_completed=True,root_full_whole_read_completed=True,independent_whole_current_pass=True,whole_manifest=o['whole_manifest'],root_whole_inspection=o['root_whole_inspection'])
++    require(equal(o,expected),'Complete typed external ROOT bindings schema/value equality required')
+     required(o,{'schema':'pr41-root-approved-immutable-acceptance-bindings/v1','status':'ROOT_APPROVED_CLOSED_WHOLE_EVIDENCE','root_full_current_read_completed':True,'root_full_whole_read_completed':True,'independent_whole_current_pass':True,'mandatory_corrections':[],'original_substantive_attempts':2,'new_substantive_attempts':0,'audit_turns':0},'Explicit ROOT whole reading, not a draft')
+     require(utc_clock(o['created_utc'],'ROOT binding creation')<=dt.datetime.now(dt.timezone.utc),'ROOT binding may not be future dated')
+     require(type(o['whole_manifest']) is dict and type(o['root_whole_inspection']) is dict,'Actual explicit whole/root references required')
+@@ -240,8 +260,8 @@
+         require(sha(raw)==c['manifest_sha256'],'Closed included manifest changed')
+         check(root,c['members']+c['foreign_members'])
+         exact(root,{z['path'] for z in rows(c['members']+c['foreign_members'])}|{c['manifest_name']})
+-    frozen=manifest(C,'MANIFEST.json',CURRENT_SHA,547)
+-    require(all((C/z['path']).stat().st_mode&0o777==0o444 for z in frozen) and (C/'MANIFEST.json').stat().st_mode&0o777==0o444,'Frozen current0444 required')
++        if c.get('requires_all_members_0444') is True:frozen_files(root,c['members']+c['foreign_members'],c['manifest_name'])
++    frozen=manifest(C,'MANIFEST.json',CURRENT_SHA,547,frozen=True)
+     deps=load(C/'CURRENT_PROOF_DEPENDENCIES.json')
+     required(deps,{'dependency_anchor_repository_relative':A.relative_to(R).as_posix()},'Exact portable dependency anchor')
+     require(sha((C/'CURRENT_PROOF_DEPENDENCIES.json').read_bytes())==DEPS_SHA and len(rows(deps['files']))==469,'Complete469 dependency rows required');check(A,deps['files'])
+@@ -256,8 +276,8 @@
+     authored,foreign=rows(whole['files']),rows(whole['foreign_files'])
+     require(len(authored)==143 and len(foreign)==17 and not {z['path'] for z in authored}.intersection(z['path'] for z in foreign),'Exact143/17 distinct whole members')
+     check(w,authored+foreign);exact(w,{z['path'] for z in authored+foreign}|{'FIRST_PARTY_MANIFEST.json'})
++    frozen_files(w,authored+foreign,'FIRST_PARTY_MANIFEST.json')
+     for z in authored+foreign:
+-        require((w/z['path']).stat().st_mode&0o777==0o444,'Whole files must remain0444')
+         if z['path'].endswith('.json'):parse((w/z['path']).read_bytes())
+     verdict=load(w/'RESULT.json')
+     required(verdict,{'verdict':WHOLE_VERDICT,'review_completed':True,'partial_valid':True,'full_problem_solved':False,'novelty_claimed':False,'mandatory_repairs':[],'original_substantive_attempts':2,'substantive_attempt_limit':5,'new_substantive_attempts':0,'audit_turns':0,'paper_DOI_tracker_promotion':False,'candidate_helpers_imported_or_executed':False},'Complete new whole scientific disposition')
+@@ -304,13 +324,14 @@
+ 
+ def gates(a):
+     require(a.execute,'Root explicit --execute required'); require(git('branch','--show-current')=='main','Stay on main')
+-    manifest(HERE,'PREPARATION_MANIFEST.json',a.preparation_manifest_sha256)
++    manifest(HERE,'PREPARATION_MANIFEST.json',a.preparation_manifest_sha256,frozen=True)
+     ps={n:explicit(a,n) for n in ['final_plan','final_receipt','final_manifest','reconciliation_capture','previous_mirror','previous_post','fresh_preimage','root_bindings']}
+     scope=load(ps['final_plan']); refs=plan_scope(scope,a.preparation_manifest_sha256,a.root_bindings,a.root_bindings_sha256)
+     receipt=load(ps['final_receipt'])
++    require(type(receipt) is dict and set(receipt)=={'schema','utc','status','actual_root_reconciliation','pr','problem_id','preparation_manifest_sha256','entire_scope','bindings_before','bindings_after','root_reviewed_plan','reconciliation_source','science_helpers_executed','new_substantive_attempts','audit_turns','shared_mutations'},'Complete actual final receipt keyset required')
+     required(receipt,{'schema':'pr41-actual-final-reconciliation/v1','status':'PASS','actual_root_reconciliation':True,'pr':41,'problem_id':9700035,'preparation_manifest_sha256':a.preparation_manifest_sha256,'entire_scope':scope,'bindings_before':refs,'bindings_after':refs,'root_reviewed_plan':pin(ps['final_plan']),'reconciliation_source':pin(HERE/'seal_final_evidence.py'),'science_helpers_executed':False,'new_substantive_attempts':0,'audit_turns':0,'shared_mutations':False},'Actual final reconciliation')
+     require(ps['final_manifest'].parent==ps['final_receipt'].parent and ps['final_manifest'].name=='FINAL_MANIFEST.json','Literal final closure required')
+-    fm=manifest(ps['final_manifest'].parent,'FINAL_MANIFEST.json',a.final_manifest_sha256,2)
++    fm=manifest(ps['final_manifest'].parent,'FINAL_MANIFEST.json',a.final_manifest_sha256,2,frozen=True)
+     require({z['path'] for z in fm}=={'ROOT_FINAL_RECONCILIATION.json','ROOT_REVIEWED_SCOPE.json'} and ps['final_receipt'].name=='ROOT_FINAL_RECONCILIATION.json','Exact final output names required')
+     require(equal(load(ps['final_manifest'].parent/'ROOT_REVIEWED_SCOPE.json'),scope),'Final complete scope copy differs')
+     cap=load(ps['reconciliation_capture']); required(cap,{'actual_execution':True,'completed':True,'exit_code':0,'status':'PASS','stdin_supplied':False,'source_sha256':sha((HERE/'seal_final_evidence.py').read_bytes()),'cwd':str(A)},'Genuine actual final capture')
+@@ -368,14 +389,54 @@
+     require(len(rr)==1,'Unique exact primary queue row required'); return rr[0]
+ 
+ 
+-def accepted_invariants(o,pins,pre):
+-    required(o,{'schema':'pr41-accepted-qualified-conditional-partial/v1','pr':41,'id':9700035,'problem_id':9700035,'problem_number':CODE,'queue_status':'unsolved','outcome':'unsolved_accepted_partial_merged','original_head':HEAD,'original_base':ORIGINAL_BASE,'merge_parents':[pre['main_before'],HEAD],'remote_state':'MERGED','remote_isDraft':False,'canonical_scientific_artifact_sha256':SCIENCE_SHA,'source_record_sha256':SOURCE_SHA,'original_ledger_sha256':LEDGER_SHA,'substantive_attempts_used':2,'substantive_attempt_limit':5,'native_historical_events_inferred':False,'historical_metadata_archival_only':True,'workflow_completion_estimate_percent':100,'full_resolution_completion_estimate_percent':0,'scientific_scope':load(HERE/'SCIENTIFIC_SCOPE.json'),**SCIENCE,**pins},'Strict final acceptance')
+-    for k in ['merge_commit','merge_tree']:require(type(o[k]) is str and re.fullmatch('[0-9a-f]{40}',o[k]),'Actual merge object required')
+-    utc_clock(o['merged_at'],'Actual merge date');source(K)
++def derive_inventory(before,remote,finalized_utc):
++    require(type(before) is dict and type(before.get('items')) is list and len(before['items'])==180,'Complete retained180-item program inventory required')
++    require(all(type(z) is dict and type(z.get('number')) is int for z in before['items']),'Typed original inventory identities required')
++    identities=[z['number'] for z in before['items']]
++    require(len(set(identities))==180 and identities.count(41)==1,'Exact unique selected original inventory identity required')
++    require(type(before.get('completed_count')) is int and before['completed_count']==30 and sum(z.get('stage')=='complete' for z in before['items'])==30,'Actual30 prior primaries required')
++    required(remote,{'state':'MERGED','isDraft':False,'number':41,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main'},'Actual merged remote inventory derivation')
++    require(type(remote['mergeCommit']) is dict and set(remote['mergeCommit'])=={'oid'} and type(remote['mergeCommit']['oid']) is str and re.fullmatch('[0-9a-f]{40}',remote['mergeCommit']['oid']),'Exact actual merge oid required')
++    clock=utc_clock(finalized_utc,'Retained actual finalization UTC');merged=utc_clock(remote['mergedAt'],'Actual merged UTC')
++    require(merged<=clock<=dt.datetime.now(dt.timezone.utc),'Actual merged/finalization clocks reversed or future')
++    inv=copy.deepcopy(before);chosen=next(z for z in inv['items'] if z['number']==41)
++    require(chosen.get('stage')!='complete','Original selected inventory is not already complete')
++    chosen.update(stage='complete',outcome='unsolved_accepted_partial',queue_status='unsolved',audited_head=HEAD,merge_commit=remote['mergeCommit']['oid'],merged_at=remote['mergedAt'],workflow_completion_estimate_percent=100,original_attempts='2/5',new_substantive_attempts=0,cumulative_attempts='2/5',paper_or_new_doi_or_tracker=False)
++    done=sum(z.get('stage')=='complete' for z in inv['items']);require(done==31,'Exactly31 derived primary completions')
++    inv.update(updated_at_utc=finalized_utc,last_checkpoint_utc=finalized_utc,completed_count=31,program_completion_estimate_percent=31/180*100,completion_estimate_percent=31/180*100,current_pr=42)
++    return inv
++
++
++def finalization(pins,pre):
++    record=load(A/'integration_finalization.json');remote=load(A/'remote_merge_receipt.json')
++    require(type(record) is dict and 'utc' in record,'Actual retained finalization record required')
++    expected={'schema':'pr41-actual-integration-finalization/v1','utc':record['utc'],**pins,'pr':41,'before_inventory_sha256':pre['inventory_before_sha256'],'remote_merge_receipt':pin(A/'remote_merge_receipt.json'),'merge_commit':remote['mergeCommit']['oid'],'merge_tree':git('show','-s','--format=%T',remote['mergeCommit']['oid']),'source_sha256':sha((HERE/'integrate_reviewed_partial.py').read_bytes())}
++    exact_reference(record['remote_merge_receipt']);require(equal(record,expected),'Complete typed actual finalization record required')
++    final_clock=utc_clock(record['utc'],'Actual retained finalization UTC')
++    phases=[load(A/n) for n in ['integration_preflight.json','integration_check.json','integration_prepush.json']]
++    clocks=[utc_clock(z['utc'],'Actual retained phase UTC') for z in phases]+[final_clock]
++    require(clocks==sorted(clocks) and final_clock<=dt.datetime.now(dt.timezone.utc),'Retained integration clocks reversed or future')
++    require(utc_clock(remote['mergedAt'],'Actual merged UTC')<=final_clock,'Actual merge is after retained finalization')
++    before=(A/'integration_inventory_before.json').read_bytes();require(sha(before)==pre['inventory_before_sha256'],'Entire retained before inventory differs')
++    derive_inventory(parse(before),remote,record['utc'])
++    return record,remote
++
++
++def expected_acceptance(pins,pre):
++    final,remote=finalization(pins,pre)
++    return {'schema':'pr41-accepted-qualified-conditional-partial/v1','utc':final['utc'],**SCIENCE,**pins,'pr':41,'id':9700035,'problem_id':9700035,'problem_number':CODE,'queue_status':'unsolved','outcome':'unsolved_accepted_partial_merged','original_head':HEAD,'original_base':ORIGINAL_BASE,'merge_commit':final['merge_commit'],'merge_tree':final['merge_tree'],'merge_parents':[pre['main_before'],HEAD],'merged_at':remote['mergedAt'],'remote_state':'MERGED','remote_isDraft':False,'canonical_scientific_artifact_sha256':SCIENCE_SHA,'source_record_sha256':SOURCE_SHA,'original_ledger_sha256':LEDGER_SHA,'substantive_attempts_used':2,'substantive_attempt_limit':5,'native_historical_events_inferred':False,'historical_metadata_archival_only':True,'workflow_completion_estimate_percent':100,'full_resolution_completion_estimate_percent':0,'scientific_scope':load(HERE/'SCIENTIFIC_SCOPE.json')}
++
++
++def accepted_invariants(o,pins,pre,audit=False):
++    expected=expected_acceptance(pins,pre)
++    if audit:
++        expected.update(canonical_manifest_sha256=sha(regular(K,'MANIFEST.json').read_bytes()),canonical_manifest_entries=len(rows(load(K/'MANIFEST.json')['files'])))
++    require(equal(o,expected),'Complete typed canonical/audit accepted receipt schema and derived values required; meaningful extensions prohibited')
++    source(K)
+     for n in ADMIN:
+-        expected=load(C/n)
+-        expected.update(**SCIENCE,**pins,id=9700035,current_context_path='CURRENT_CONTEXT_PRESENT.md',current_audit_scope_path='CURRENT_AUDIT_SCOPE_PRESENT.md',current_gate='accepted_qualified_partial',current_verdict=WHOLE_VERDICT,status='unsolved_accepted_partial_merged',new_whole_current_gate=WHOLE_VERDICT,historical_verdict_transferred=False,merge_commit=o['merge_commit'],merge_tree=o['merge_tree'],merged_at=o['merged_at'])
+-        require(equal(load(K/n),expected),'Complete typed present administrative object differs: '+n)
++        expected_admin=load(C/n)
++        expected_admin.update(**SCIENCE,**pins,id=9700035,current_context_path='CURRENT_CONTEXT_PRESENT.md',current_audit_scope_path='CURRENT_AUDIT_SCOPE_PRESENT.md',current_gate='accepted_qualified_partial',current_verdict=WHOLE_VERDICT,status='unsolved_accepted_partial_merged',new_whole_current_gate=WHOLE_VERDICT,historical_verdict_transferred=False,merge_commit=o['merge_commit'],merge_tree=o['merge_tree'],merged_at=o['merged_at'])
++        require(equal(load(K/n),expected_admin),'Complete typed present administrative object differs: '+n)
+ 
+ 
+ def canonical_names(frozen,accepted=False):
+--- closed_v1/seal_final_evidence.py
++++ proposed_v2/seal_final_evidence.py
+@@ -14,7 +14,7 @@
+     p.add_argument('--root-bindings',required=True); p.add_argument('--root-bindings-sha256',required=True); p.add_argument('--execute',action='store_true'); p.add_argument('--plan',required=True); p.add_argument('--plan-sha256',required=True); p.add_argument('--preparation-manifest-sha256',required=True); p.add_argument('--output',required=True)
+     a=p.parse_args(); g.require(a.execute,'Root explicit execution required')
+     g.require(g.git('branch','--show-current')=='main','Stay on main for actual root reconciliation')
+-    g.manifest(g.HERE,'PREPARATION_MANIFEST.json',a.preparation_manifest_sha256)
++    g.manifest(g.HERE,'PREPARATION_MANIFEST.json',a.preparation_manifest_sha256,frozen=True)
+     plan=g.regular(g.R,a.plan); g.require(plan.resolve().is_relative_to(g.A.resolve()) and not plan.resolve().is_relative_to(g.C.resolve()) and not plan.resolve().is_relative_to(g.HERE.resolve()),'Root plan outside closed packages required')
+     g.require(g.sha(plan.read_bytes())==g.digest(a.plan_sha256),'Genuine root plan pin differs')
+     scope=g.load(plan); refs=g.plan_scope(scope,a.preparation_manifest_sha256,a.root_bindings,a.root_bindings_sha256)
+@@ -28,6 +28,7 @@
+     g.dump(output/'FINAL_MANIFEST.json',{'schema':'pr41-final-root-two-member-closure/v1','utc':g.stamp(),'self_excluded':['FINAL_MANIFEST.json'],'files_count':2,'files':rr},exclusive=True)
+     g.manifest(output,'FINAL_MANIFEST.json',count=2)
+     for f in output.iterdir(): f.chmod(0o444)
++    g.manifest(output,'FINAL_MANIFEST.json',count=2,frozen=True)
+     g.require(sys.platform=='darwin','Reviewed macOS absent-only directory publication required');libc=ctypes.CDLL(None,use_errno=True);rename=libc.renamex_np;rename.argtypes=[ctypes.c_char_p,ctypes.c_char_p,ctypes.c_uint];rename.restype=ctypes.c_int
+     if rename(os.fsencode(stage),os.fsencode(target),4)!=0:
+         error=ctypes.get_errno();raise OSError(error,os.strerror(error),str(target))
+--- closed_v1/integrate_reviewed_partial.py
++++ proposed_v2/integrate_reviewed_partial.py
+@@ -22,16 +22,9 @@
+     return after,after_row
+ 
+ 
+-def inventory_guard(before,after):
+-    required_ids=[z['number'] for z in before['items']]
+-    g.require(required_ids==[z['number'] for z in after['items']] and len(set(required_ids))==len(required_ids),'Inventory order/unique identities differ')
+-    for old,new in zip(before['items'],after['items']):
+-        if old['number']!=41: g.require(g.equal(old,new),'Unselected inventory item changed')
+-        else:
+-            allowed={'stage','outcome','queue_status','audited_head','merge_commit','merged_at','workflow_completion_estimate_percent','original_attempts','new_substantive_attempts','cumulative_attempts','paper_or_new_doi_or_tracker'}
+-            g.require(g.equal({k:v for k,v in old.items() if k not in allowed},{k:v for k,v in new.items() if k not in allowed}),'Unrelated selected inventory fields changed')
+-    allowed={'items','updated_at_utc','last_checkpoint_utc','completed_count','program_completion_estimate_percent','completion_estimate_percent','current_pr'}
+-    g.require(g.equal({k:v for k,v in before.items() if k not in allowed},{k:v for k,v in after.items() if k not in allowed}),'Unrelated inventory root fields changed')
++def inventory_guard(before,after,remote,finalized_utc):
++    expected=g.derive_inventory(before,remote,finalized_utc)
++    g.require(g.equal(after,expected),'Complete typed derived inventory, workflow/program percentages and clocks required')
+ 
+ 
+ def main():
+@@ -95,13 +88,15 @@
+     merge=observation['mergeCommit']['oid']; push=g.load(g.A/'integration_prepush.json'); g.required(push,pins,'Unchanged prepush gates'); g.require(push['merge_commit']==merge and g.equal(push['canonical_overlay_files'],overlay['canonical_overlay_files']),'Actual remote/prepush tree binding differs')
+     tree=g.tree(merge,pre,overlay,after); g.require(tree==push['merge_tree'],'Actual real merge tree differs')
+     g.require(not (g.K/'acceptance.json').exists() and not (g.K/'ACCEPTANCE.md').exists() and not (g.A/'acceptance.json').exists(),'New lowercase accepted receipt must be absent')
+-    before_inv=g.load(g.A/'integration_inventory_before.json'); inv=copy.deepcopy(before_inv); chosen=next(z for z in inv['items'] if z['number']==41)
+-    chosen.update(stage='complete',outcome='unsolved_accepted_partial',queue_status='unsolved',audited_head=g.HEAD,merge_commit=merge,merged_at=observation['mergedAt'],workflow_completion_estimate_percent=100,original_attempts='2/5',new_substantive_attempts=0,cumulative_attempts='2/5',paper_or_new_doi_or_tracker=False)
+-    done=sum(z.get('stage')=='complete' for z in inv['items']); g.require(done==31,'Expected31 primary completions after41'); inv.update(updated_at_utc=now,last_checkpoint_utc=now,completed_count=31,program_completion_estimate_percent=31/180*100,completion_estimate_percent=31/180*100,current_pr=42); inventory_guard(before_inv,inv)
++    before_inv=g.load(g.A/'integration_inventory_before.json'); inv=g.derive_inventory(before_inv,observation,now)
++    inventory_guard(before_inv,inv,observation,now)
+     g.dump(g.A/'remote_merge_receipt.json',observation,exclusive=True)
++    final={'schema':'pr41-actual-integration-finalization/v1','utc':now,**pins,'pr':41,'before_inventory_sha256':pre['inventory_before_sha256'],'remote_merge_receipt':g.pin(g.A/'remote_merge_receipt.json'),'merge_commit':merge,'merge_tree':tree,'source_sha256':g.sha((g.HERE/'integrate_reviewed_partial.py').read_bytes())}
++    g.dump(g.A/'integration_finalization.json',final,exclusive=True)
++    g.finalization(pins,pre)
+     for n in g.ADMIN:
+         value=g.load(g.K/n); value.update(status='unsolved_accepted_partial_merged',merge_commit=merge,merge_tree=tree,merged_at=observation['mergedAt']); g.dump(g.K/n,value)
+-    accept={'schema':'pr41-accepted-qualified-conditional-partial/v1','utc':now,**g.SCIENCE,**pins,'pr':41,'id':9700035,'problem_id':9700035,'problem_number':g.CODE,'queue_status':'unsolved','outcome':'unsolved_accepted_partial_merged','original_head':g.HEAD,'original_base':g.ORIGINAL_BASE,'merge_commit':merge,'merge_tree':tree,'merge_parents':[pre['main_before'],g.HEAD],'merged_at':observation['mergedAt'],'remote_state':'MERGED','remote_isDraft':False,'canonical_scientific_artifact_sha256':g.SCIENCE_SHA,'source_record_sha256':g.SOURCE_SHA,'original_ledger_sha256':g.LEDGER_SHA,'substantive_attempts_used':2,'substantive_attempt_limit':5,'native_historical_events_inferred':False,'historical_metadata_archival_only':True,'workflow_completion_estimate_percent':100,'full_resolution_completion_estimate_percent':0,'scientific_scope':g.load(g.HERE/'SCIENTIFIC_SCOPE.json')}
++    accept=g.expected_acceptance(pins,pre)
+     g.accepted_invariants(accept,pins,pre); g.dump(g.K/'acceptance.json',accept,exclusive=True)
+     g.write(g.K/'ACCEPTANCE.md',('# Accepted UNSOLVED qualified partial: 9700035 / AMR-096-0035\n\n'+BODY+'\nActual original-head merge '+merge+', tree '+tree+'. Full exact final reconciliation '+a.final_receipt_sha256+'; original2/5 ledger and PRESENT source/prior remain unchanged.\n').encode(),exclusive=True)
+     names=g.canonical_names(frozen,True)-{'MANIFEST.json'}; g.exact(g.K,names)
+@@ -111,8 +106,9 @@
+     for f in g.K.rglob('*'):
+         if f.is_file(): f.chmod(0o444)
+     g.dump(g.A/'acceptance.json',{**accept,'canonical_manifest_sha256':g.sha((g.K/'MANIFEST.json').read_bytes()),'canonical_manifest_entries':len(rr)},exclusive=True)
+-    g.accepted_invariants(g.load(g.K/'acceptance.json'),pins,pre); g.accepted_invariants(g.load(g.A/'acceptance.json'),pins,pre)
+-    g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'}); g.dump(g.B/'inventory.json',inv); inventory_guard(before_inv,g.load(g.B/'inventory.json')); g.foreign_check(pre)
++    g.manifest(g.K,'MANIFEST.json',frozen=True)
++    g.accepted_invariants(g.load(g.K/'acceptance.json'),pins,pre); g.accepted_invariants(g.load(g.A/'acceptance.json'),pins,pre,audit=True)
++    g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'}); g.dump(g.B/'inventory.json',inv); inventory_guard(before_inv,g.load(g.B/'inventory.json'),observation,now); g.foreign_check(pre)
+     note='\n## '+now+' — PR41 actual accepted qualified conditional partial\n\nWorkflow100%; scientific discovery0%; original2/5,new0,audit0. Actual MERGED original-head/tree checked. Program31/180=17.2222%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
+     logdir=g.A/'integration_log_preimages'; g.require(not logdir.exists() and not logdir.is_symlink(),'New retained log-preimage directory required'); logdir.mkdir()
+     log_receipt=[]
+--- closed_v1/state_mirror_reconciliation.py
++++ proposed_v2/state_mirror_reconciliation.py
+@@ -12,17 +12,17 @@
+ def accepted(a,frozen,pins):
+     pre=g.load(g.A/'integration_preflight.json'); g.required(pre,pins,'Unchanged integration pins'); g.foreign_check(pre)
+     canonical=g.load(g.K/'acceptance.json'); audit=g.load(g.A/'acceptance.json')
+-    g.accepted_invariants(canonical,pins,pre); g.accepted_invariants(audit,pins,pre)
++    g.accepted_invariants(canonical,pins,pre); g.accepted_invariants(audit,pins,pre,audit=True)
+     g.require(g.equal(canonical,{k:v for k,v in audit.items() if k not in {'canonical_manifest_sha256','canonical_manifest_entries'}}),'Exact audit/canonical accepted objects differ')
+-    g.manifest(g.K,'MANIFEST.json',audit['canonical_manifest_sha256'],audit['canonical_manifest_entries']); g.canonical(frozen,True)
+-    g.require(all(f.stat().st_mode & 0o777==0o444 for f in g.K.rglob('*') if f.is_file()),'Accepted canonical files must remain0444')
++    g.manifest(g.K,'MANIFEST.json',audit['canonical_manifest_sha256'],audit['canonical_manifest_entries'],frozen=True); g.canonical(frozen,True)
+     observed=g.remote(); g.require(g.equal(observed,g.load(g.A/'remote_merge_receipt.json')),'Full fresh actual remote differs')
+     g.required(observed,{'state':'MERGED','isDraft':False,'body':BODY,'mergedAt':canonical['merged_at'],'mergeCommit':{'oid':canonical['merge_commit']}},'Actual remote accepted binding')
+     queue=(g.A/'integration_queue_before.md').read_bytes(); after,row=queue_after(queue); g.require(g.Q.read_bytes()==after,'Whole named-only queue differs')
+     patch=g.load(g.K/'ACCEPTED_QUEUE_PATCH.json'); g.required(patch,{'header_names':g.HEADER,'column_count':12,'named_changes':['Status','Turns','Findings'],'whole_before_sha256':g.sha(queue),'whole_after_sha256':g.sha(after),'row_before':g.selected(queue),'row_after':row,'all_other_bytes_preserved':True,'selected_chat_DOI_preserved':True},'Exact accepted queue receipt')
+     overlay=g.load(g.A/'integration_check.json'); g.required(overlay,pins,'Exact overlay gate pins'); tree=g.tree(canonical['merge_commit'],pre,overlay,after)
+     push=g.load(g.A/'integration_prepush.json'); g.required(push,pins,'Exact prepush gate pins'); g.require(tree==canonical['merge_tree']==push['merge_tree'] and push['merge_commit']==canonical['merge_commit'],'Actual original-head tree/parents/prepush differ')
+-    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv); g.required(inv,{'current_pr':42,'completed_count':31},'PostPR41 next-target metadata'); g.require(inv['completed_count']==31 and sum(z.get('stage')=='complete' for z in inv['items'])==31,'Exactly31 primary completions')
++    final,retained_remote=g.finalization(pins,pre)
++    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':42,'completed_count':31},'PostPR41 next-target metadata'); g.require(inv['completed_count']==31 and sum(z.get('stage')=='complete' for z in inv['items'])==31,'Exactly31 primary completions')
+     item=next(z for z in inv['items'] if z['number']==41); g.required(item,{'stage':'complete','outcome':'unsolved_accepted_partial','queue_status':'unsolved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'2/5','cumulative_attempts':'2/5','new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md','draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'})
+     return pre,canonical
+--- closed_v1/verify_post_acceptance.py
++++ proposed_v2/verify_post_acceptance.py
+@@ -25,7 +25,9 @@
+     replay=m.build_plan(g.R,proposal); m.validate_plan(g.R,replay)
+     g.require(replay['history_append']==[] and replay['state_after_bytes'].encode()==state and replay['history_after_sha256']==g.sha(history),'Fresh mirror validation must be byte-preserving no-op')
+     g.source(g.K); g.source(g.C); g.accepted_invariants(acceptance,pins,pre); g.foreign_check(pre)
+-    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':41,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':32,'consumed_substantive_turns':39,'primary_acceptances':31,'program_completed_count':31,'program_completion_estimate_percent':31/180*100,'exact_original16_and_PROOF_unchanged':True,'whole_current547_and469dependencies_bound':True,'entire_history_prefix_and31prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_problem_solved':False,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
++    final,remote=g.finalization(pins,pre);inventory=g.load(g.B/'inventory.json')
++    g.require(g.equal(inventory,g.derive_inventory(g.load(g.A/'integration_inventory_before.json'),remote,final['utc'])),'Complete final typed derived inventory differs')
++    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':41,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':32,'consumed_substantive_turns':39,'primary_acceptances':31,'program_completed_count':31,'program_completion_estimate_percent':inventory['program_completion_estimate_percent'],'exact_original16_and_PROOF_unchanged':True,'whole_current547_and469dependencies_bound':True,'entire_history_prefix_and31prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_problem_solved':False,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
+     print(g.encode({'status':'PASS','pr':41,'targets':32,'turns':39,'primary_acceptances':31,'new_proof_turns':0}).decode(),end='')
+ 
+ 

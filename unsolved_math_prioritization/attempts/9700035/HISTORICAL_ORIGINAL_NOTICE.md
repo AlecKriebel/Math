@@ -1,0 +1,4 @@
+Historical source/review text follows as an exact archival body; its prior PASS is not a current whole-packet verdict. The appended source qualifications govern current ancillary applicability.
+
+
+CURRENT_PROOF_DEPENDENCIES paths resolve against repository_root/draft_pr_publication_program_20260930/audits/pr41_9700035, including after canonical copying. Private scratch is never an anchor. All copied members and saved outputs are0444; old file writers need separately reviewed fresh code-only directories and new result files. Foreign primary PDF/text/render/HTML/cache bodies are individually hash-bound but not copied. The full retained root130+15 first-party closures are copied, including archival original helper inputs. A fresh whole-current source-first review is required before promotion; no old PASS transfers. The queue patch is local prospective named-column data only.

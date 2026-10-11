@@ -1,0 +1,43 @@
+"""Install only the independently reviewed 273 offers plus the exclusions metadata note."""
+from pathlib import Path
+import os, sys, json, hashlib, datetime, shutil
+A=Path(__file__).resolve().parent;C=A.parents[2]
+D=A/'native_publication_integration_plan_20261006/corrected_v5/candidate_dfe3e71993e3bd99'
+def require(ok,why):
+    if not ok:raise RuntimeError(why)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def encode(x):return (json.dumps(x,sort_keys=True,indent=2,ensure_ascii=False)+'\n').encode()
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def pin(p):b=p.read_bytes();return {'bytes':len(b),'sha256':sha(b)}
+auth=A/'ROOT_ACTUAL_NATIVE_CANDIDATE_ADVERSARY_AUTHENTICATION_20261006.json'
+x=json.loads(auth.read_bytes())
+require(x['root_full_REPORT_VERDICT_read'] is True and x['required_findings']==[] and x['actual_candidate_and_proposed_public_export_clearance'] is True,'Independent concrete review/root authentication required')
+require(x['execution_inputs_sha256']=='dfe3e71993e3bd99afb9c11e54f4fe4c9117c770849ffac54c7bc2b17e6bd76a','Wrong concrete inputs')
+for role in ['REPORT','VERDICT']:
+    p=x[role];q=C/p['path'];require(pin(q)=={k:p[k] for k in ['bytes','sha256']},'Review changed')
+planpath=A/'ROOT_PROPOSED_NATIVE_EXPORT_PLAN_20261006.json';plan=json.loads(planpath.read_bytes())
+require(pin(planpath)=={k:x['reviewed_export_plan'][k] for k in ['bytes','sha256']},'Independently reviewed export plan changed')
+require(plan['candidate_receipt_sha256']==sha((D/'CANDIDATE_RECEIPT.json').read_bytes()),'Candidate receipt changed')
+require(plan['main_parent']=='f36cb1e34696d460b9cfb5b03425998de48c4669' and len(plan['offers_to_export'])==273 and len(plan['private_offers_to_omit'])==2,'Export plan identity')
+require(shutil.disk_usage(C).free>=128*1024*1024,'Atomic export + headroom reserve')
+entries=[]
+for row in plan['offers_to_export']:
+    rel=row['path'];require(rel not in plan['private_offers_to_omit'] and (rel.startswith('unsolved_math_prioritization/attempts/30003996/') or rel in ['unsolved_math_prioritization/'+n for n in ['assessments.json','state.json','history.jsonl','assessment_history.jsonl','catalog.json','ranking.csv','summary.json','QUEUE.md']]),'Export allowlist')
+    src=D/'bundle'/rel;target=C/rel;require(not src.is_symlink() and src.is_file() and pin(src)==row['after'],'Offer changed')
+    require(not target.is_symlink() and (not target.exists() if row['before'] is None else target.is_file() and pin(target)==row['before']),'Destination baseline changed')
+    entries.append((src,target,rel,row['after']))
+note=plan['added_operational_exclusions_note'];src=C/note['source_path'];target=C/note['target_path'];expected={k:note[k] for k in ['bytes','sha256']}
+require(pin(src)==expected and not target.exists() and not target.is_symlink(),'Operational note changed')
+entries.append((src,target,note['target_path'],expected))
+require(len({x[2] for x in entries})==274,'Duplicate export destination')
+started=A/'ROOT_NATIVE_EXPORT_RESUME_STARTED_20261006.json';require(not started.exists(),'Resume already started')
+reconciliation=json.loads((A/'ROOT_NATIVE_EXPORT_DISK_RECONCILIATION_20261006.json').read_bytes());require(reconciliation['no_destination_installed'] is True and reconciliation['all_273_destination_before_pins_unchanged'] is True, 'Failed export was not reconciled')
+started.write_bytes(encode({'UTC':now(),'actual_operator_PID':os.getpid(),'plan_sha256':sha(planpath.read_bytes()),'independent_review_authentication_sha256':sha(auth.read_bytes()),'file_count':274,'export_complete':False}))
+done=[]
+for src,target,rel,expected in entries:
+    require(not any(p.is_symlink() for p in target.parents),'Symlink destination parent')
+    target.parent.mkdir(parents=True,exist_ok=True);temporary=target.with_name(target.name+'.pr108-reviewed-export.tmp')
+    require(not temporary.exists(),'Existing atomic slot')
+    with src.open('rb') as inp,temporary.open('xb') as out:
+        shutil.copyfileobj(inp,out,length=1024*1024);out.flush();os.fsync(out.fileno())
+    require(pin(temporary)==expected,'Atomic

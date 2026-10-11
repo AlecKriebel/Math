@@ -1,0 +1,163 @@
+{
+  "status": "PASS: completed fresh round2 and current package byte custody",
+  "utc": "2026-10-04T07:03:13.332088+00:00",
+  "actual_controller_pid": 36689,
+  "review_manifest_sha256": "c702c53f4be2c697aa174d74a64694861f76f19e0923f28f8572272e0c31034d",
+  "review_members_verified": 81,
+  "actual_review_processes": [
+    {
+      "label": "extract_pdf",
+      "pid": 22028,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/bin/pdftotext",
+        "-layout",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/publication_package_v1/note.pdf",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/whole_package_round2_20261004/note_pdf_extracted.txt"
+      ]
+    },
+    {
+      "label": "independent_custody",
+      "pid": 24831,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/whole_package_round2_20261004/custody_check.py"
+      ]
+    },
+    {
+      "label": "manifest_initial",
+      "pid": 22005,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-B",
+        "manifest.py",
+        "--verify"
+      ]
+    },
+    {
+      "label": "pdfinfo",
+      "pid": 22017,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/bin/pdfinfo",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/publication_package_v1/note.pdf"
+      ]
+    },
+    {
+      "label": "reject_optimized",
+      "pid": 22014,
+      "exit_code": 1,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "-E",
+        "-B",
+        "run_verification.py"
+      ]
+    },
+    {
+      "label": "render_pdf",
+      "pid": 22018,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/bin/pdftoppm",
+        "-r",
+        "110",
+        "-png",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/publication_package_v1/note.pdf",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr65_2305051/whole_package_round2_20261004/rendered/page"
+      ]
+    },
+    {
+      "label": "replay_current",
+      "pid": 22006,
+      "exit_code": 0,
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-E",
+        "-B",
+        "run_verification.py"
+      ]
+    }
+  ],
+  "actual_nested_replays": [
+    {
+      "label": "author",
+      "child_pid": 22009,
+      "exit_code": 0,
+      "bounded_receipt": {
+        "status": "PASS",
+        "exact_assertions": 2884
+      }
+    },
+    {
+      "label": "legacy_independent",
+      "child_pid": 22010,
+      "exit_code": 0,
+      "bounded_receipt": {
+        "status": "PASS",
+        "assertions_passed": 37154
+      }
+    },
+    {
+      "label": "factorization",
+      "child_pid": 22012,
+      "exit_code": 0,
+      "bounded_receipt": {
+        "status": "PASS",
+        "exact_assertions": 4534
+      }
+    },
+    {
+      "label": "analytic",
+      "child_pid": 22013,
+      "exit_code": 0,
+      "bounded_receipt": {
+        "status": "bounded_diagnostic_only_not_proof",
+        "stored_generations": [
+          0,
+          8
+        ],
+        "all_recorded_sampled_second_difference_flags": true
+      }
+    }
+  ],
+  "recomputed_trees_in_review_evidence": 3543,
+  "package_regular_files_verified": 34,
+  "source_manifest_members_verified": 30,
+  "archive_members_verified": 32,
+  "review_report_sha256": "48766545cb01e115f6b737d0f3fc9495deb3a5e4efc9e0080301682ab4982417",
+  "required_repairs": [],
+  "current_artifacts": {
+    "note.tex": {
+      "bytes": 29118,
+      "sha256": "7b5b13db61725d8e27293d35402d8719f97ab2db2c5380f0c65cb14d37964b56"
+    },
+    "note.pdf": {
+      "bytes": 100816,
+      "sha256": "6e1a2c5d74839be875d4aeb520fd2cfa73e8419c2158d52c679e6bbfabc8eb95"
+    },
+    "blaschke-bloch-verification-v1.zip": {
+      "bytes": 54238,
+      "sha256": "def5c778447abd7aca5c77c369c55d3ea29243b2a6b23b7e0ce6cbb6eb0e086e"
+    },
+    "MANIFEST.json": {
+      "bytes": 5364,
+      "sha256": "b3af8aa20d6e56ac95b19d0bf70451fcee55839a5adb28a7dc690afac35763ee"
+    },
+    "zenodo-deposit.json": {
+      "bytes": 3221,
+      "sha256": "afa97965b8808adbd1fb4af36f52ceafecd484ccc31516c7972a790be487a84a"
+    }
+  },
+  "priority_clearance": false,
+  "publication_authorized": false,
+  "git_or_native_status_mutations": false,
+  "new_replay_performed": false,
+  "scope": "ROOT byte/stream custody readback. The independent written mathematical review is separate; bounded replay is not universal proof, novelty or publication authorization."
+}

@@ -1,0 +1,5 @@
+# Exact scope and evidence roles
+
+Original15 numeric files and16 changed paths including QUEUE at head dbe32750f32cd31c9add3aa3311af86f193fc48e, actualbase60292bed09f59236aa192cb17aa138f7b4750e1a. Original PARTIAL hash2a716868a8d7e2462adf14045212a8e3d8d502312743b7c1d8aa80575b1b479f and all original science/code/receipt/ledger/old-review bytes unchanged. Three revised administration files archived ORIGINAL; original body preserved. New completion proof and current qualifications require the distinct complete gate.
+
+Supporting130 bound entries comprise120 closed family entries, three family manifests and seven root artifacts. The120 include30 unchanged frozen original copies and10 local-only downloaded/extracted third-party source inputs; remaining80 are audit outputs or imported immutable metadata. Third-party texts/PDFs remain ignored and are identified by stable source URL/hash receipts; no first-party authorship or repository redistribution is claimed. Root seal binds full reasoning, original/source reconstruction and family replay; it is not a fourth blinded family. Historical family/current-stage/verdict/failure boundaries remain explicit.
