@@ -1,0 +1,12 @@
+# Search limits
+
+This was a bounded public primary-literature check on 9 October 2026, conducted against the frozen C(4,12) candidate. It was not an exhaustive bibliography, priority adjudication, or new proof search.
+
+- 62 web-search query strings, in 17 batches: 6 initial queries plus 56 queries whose raw returned results were saved locally. Queries combined Grassmann orbitopes, calibration/comass, Harvey–Lawson Question6.5, affine SOS/theta bodies, finite semidefinite lifts/spectrahedral shadows, separable states, Slater determinants, opposite-spin embeddings, fermionic states, and strongly-positive forms.
+- Twelve primary-source PDFs were retrieved or locally reinspected. The ledger gives exact versions, inspected pages, public URLs, SHA-256 hashes, and byte counts. Nine PDFs were newly downloaded; three existing foundational PDFs were reused and rehashed. Supporting extracted text, a page render, and search result bodies were retained only as private research material.
+- Search results were used for discovery. Conclusions were drawn from retrieved primary mathematical/physical papers, primary lecture slides, and the original problem report. Search snippets, generated literature summaries, Wikipedia, and secondary aggregators were not accepted as theorem evidence.
+- The inspected corpus includes the 1982 question, 2010–2015 Grassmann/SOS work, 2017–2021 shadow obstructions and polar-orbitope results, foundational fermionic-state papers, and a directly relevant July2026 preprint. Current arXiv version records for the latter and key modern references were checked.
+- Several narrowly quoted cross-topic searches returned irrelevant results. Such returns are search limitations, not evidence of absence. No comprehensive MathSciNet/zbMATH citation graph, subscription full-text corpus, non-English literature sweep, unpublished manuscript collection, or author correspondence was undertaken.
+- No GitHub action, repository or queue mutation, external contact, source-body publication, or extension to a new proof route occurred.
+
+Stopping condition: the exact problem and Fawzi input were matched; the closest discovered prior wedge reduction and relevant no-shadow theorems were inspected for their actual interfaces; searches across the stipulated terminology produced no complete matching or contradictory theorem. The resulting negative search statement is limited to that corpus and date.

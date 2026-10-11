@@ -1,0 +1,15 @@
+# Acceptance: Grassmann degree-one SOS
+
+Problem 30002816 / OWR-13498-004. Decision: accept the full existential negative reduction at (k,n)=(4,12), after independent AI-assisted mathematical audit. Two of five proof routes were used; preparation for publication added no proof route.
+
+The accepted argument proves that the oriented real Grassmann orbitope C(4,12) has no arbitrary finite projected semidefinite lift. An explicit 225-dimensional real-linear projector embedding identifies its Kähler face with the established Slater-state body. Imposing zero trace on the two pure exterior-square blocks forces every convex summand into the mixed block. The resulting two-hyperplane section is exactly Sep(3,3). Fawzi's published no-lift theorem applies. The conjectured affine-linear SOS property, including constant terms, would imply a compact first-moment lift of size 496 and fixed trace 2, which is impossible.
+
+Strict separation supplies a failing rational-coefficient linear functional before normalization. The proof supplies neither an explicit coefficient list nor an exact comass value. It does not establish the smallest failing dimension or settle lower-dimensional cases. The Harvey–Lawson pointwise/local completion consequence follows by the displayed SOS identity and a constant closed four-form.
+
+The complete proof appears in current/PROOF.md and its mathematically complete independent audit in current/AUDIT_REPORT.md. The proof has contextual status-only edits; the audit has one provenance-only privacy redaction. Every mathematical statement, proof assessment and validation finding is retained. The explanatory change note identifies the kinds of edits without publishing omitted provenance.
+
+The new sealed replay checks the preserved immutable certificate through the preserved, read-only, independent standard-library checker. It verifies all 225 columns and the complete Gram matrix, trace and pure-block functionals, the full arbitrary-factor projector identity in 24 real variables and 495 exterior coordinates, and all nine mixed minors. Per optimization mode, one positive run and fifteen intended certificate mutations are checked with full raw output and recursively exact JSON types. Six are actual coordinate-matrix mutations; nine concern certificate schema or metadata. These are classified separately from publication integrity, schema and comparator negative controls.
+
+The original writing author generator and original audit harness are not run by this delivery. The original audit's three exact regenerations remain historical validation findings, clearly distinguished from the current replay. The finite checks neither establish the convex-geometric theorem alone nor reprove Fawzi's external theorem.
+
+Priority remains unestablished. Established Slater-state, Kähler and (p,p)-form constructions and the close 2026 product-to-Slater bridge are credited in current/PRIORITY_REPORT.md. The bounded primary-literature check found no exact matching or contradictory theorem, which is not a novelty certificate. This is not a claim of conventional human peer review or journal acceptance.
