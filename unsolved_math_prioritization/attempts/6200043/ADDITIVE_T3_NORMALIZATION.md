@@ -1,0 +1,3 @@
+# Harmless normalization for the quantitative statement in turn 3
+
+For the displayed distortion-collapse estimates use h_n=max{1,η_n(D/s)} in place of η_n(D/s). This covers degenerate triples such as b=z_n without any normalization convention on a supplied distortion homeomorphism. Equivalently enlarge each distortion function once so that η_n(t)≥1 for t≥1. The proof, packing bound, uniform-iterate attractor dichotomy, and measure-series results are otherwise unchanged. Historical TURN_3.md is retained verbatim. This is a correction of the precise constant convention, not an extra research turn.
