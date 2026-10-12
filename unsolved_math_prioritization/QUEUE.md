@@ -1758,7 +1758,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1747 | 3100047 / AMR-030-0047 | Is the 1/3-2/3 Conjecture for Pressing Sequences true | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1748 | 3100082 / AMR-030-0082 | Consider p(v, t), the probability that a walk beginning from the origin ends at the point v on the d-dimensional integer | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1749 | 3100089 / AMR-030-0089 | Let G be a bicolored graph, and let H be the graph whose vertices are the valid pressing sequences of G and whose edges | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1750 | 3109 / OPG-37182 | Odd cycles and low oddness | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1750 | 3109 / OPG-37182 | Odd cycles and low oddness | 0.0585 | 5.0 | 1 | unknown | claimed_solved | ≥1; total unknown |  | 2026-10-11: Accepted credited reconstruction of Anonymous OPG comments (2010): for every odd n>=3, cyclically joined Petersen-minus-edge fragments give a simple bridgeless cubic graph on 10n vertices, all 2-factors odd, and oddness n+1. The n=3 case has 30 vertices and oddness 4, refuting the stated bound. No novelty, minimum-order or extra 3-edge-connectivity claim. [Proof and audit, draft PR #1312](https://github.com/AlecKriebel/Math/pull/1312). |  |
 | 1751 | 3200 / OPG-388 | List colorings of edge-critical graphs | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1752 | 3209 / OPG-434 | Weak pentagon problem | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1753 | 3251 / OPG-56230 | 2-colouring a graph without a monochromatic maximum clique | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
