@@ -16,3 +16,9 @@ Original PR154head58bee8514677549ee5a7cd699028a5f3a616c5bc unchanged; actual CLO
 
 
 2026-10-12T05:42:29.335134+00:00 — PR154: original claimed_solved2/5 mathematically accepted (three distinct independent adversaries), priority decision accepted (three primary-source families): endpoint and bubble already Kreuzer-Veeser2019/2021. Logarithmic strengthening follows elementary retention of the old CDN/KV estimates. Actual PR closed unmerged2026-10-12T05:25:54Z, comment6118299650. No new paper/DOI/tracker/native author-branch merge. Dedicated audit preserves original16files and corrected diagnostics. This scoped MAIN findings preparation updates only target QUEUE30000229 and own audit/programme metadata; counts30/dated99=30.30%,17published conditional on actual acceptance. PR152 already actually complete, DOI10.5281/zenodo.23308905, merged4ac2eb7811bf2f288ac330e93b740751edb510d2; chronology qualified. Persistent goal active/incomplete; next numeric155 eligibility requires original-status-only check.
+
+
+2026-10-12T05:43:51.620865+00:00 — Actual scoped findings accepted at ae663cdaf5282bcd5879fb9fb6fd77de425397e9 tree047c9916d2a05ff504e50698a62b3025c81887e3, sole parent8b244cabcaf71d80dc7822a5439b8251d0919130. Full selected bytehash/blob scope and four fresh own target/programme readbacks passed. PR154 closed unmerged original HEAD unchanged. Case100%, programme30/dated99=30.30%,17published. No new paper/DOI/tracker or local Git index/ref mutation. Writer return follows immediately.
+
+
+2026-10-12T05:44:36.902977+00:00 — Explicit writer return to authorized descending peer after actual acceptance. No shared Git/index/ref/MAIN writes active. Next eligible156 originalclaimed_solved2/5 independently under mathematical review;155 originalalready_solved entirely untouched. Goal active, completion30.30%,17published.
