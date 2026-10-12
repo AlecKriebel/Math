@@ -1,11 +1,15 @@
-# 5100026: k407 outer focal-antipedal vertex centroid
+# 5100026 / k407: credited existing-result alternative reproof
 
-Full first-turn author candidate; independent review pending. Read PROOF.md for the exact theorem, all real constructions, complete complex singularity classification, four-period exception and original-focus convention. This is a vertex centroid, so signed-area zeros do not cause a quotient problem.
+Research classification: **already_solved**. The source-qualified theorem has accepted mathematical and priority evidence. This packet retains the submitted Jacobi-torus argument as a credited alternative reproof of the complete matching result by [Alper Ferudun](https://eulersolve.org/papers/amr-050-0026/), [DOI 10.5281/zenodo.23071366](https://doi.org/10.5281/zenodo.23071366), and credits Reznik–Garcia–Koiller's k407 observation.
 
-- SOURCE_GATE.md and SOURCES.md preserve the exact source and prior-attempt gate
-- TURN_1_CHECKPOINT.md preserves the initial mechanism; PROOF.md is the complete current argument
-- verify_exact.py / exact_checks.json give reproducible symbolic and integer controls
-- verify_numeric.py / numeric_checks.json give separately labeled high-precision diagnostics
-- FROZEN_MANIFEST.json pins the packet used by a separate reviewer
+For every real phase of a billiard family in a noncircular original ellipse with a strict nested nondegenerate confocal elliptical caustic and even least period N≥4, including every coprime star turning, form the outer vertices as consecutive original tangent intersections. At either original focus use the full perpendicular lines through those outer vertices and the arithmetic mean of their consecutive intersections. All real intersections are finite and unique. The mean is phase invariant, lies on the original focal axis, negates under focus exchange, and is the original center for N=4.
 
-Run `python verify_exact.py` and `python verify_numeric.py`; dependencies are SymPy and mpmath. Neither script reads source PDFs, private files or an absolute workspace path. Source reading copies are intentionally excluded. No historical novelty certification is asserted, and no claimed-result PR is authorized by the author freeze alone.
+Primary Table 5 literally says “even.” Even **least** period is an explicit adopted qualification, not a quotation. Repeating an odd primitive orbit to an even list does not qualify; the broader extension is false. Focus-swap negation supplies no universal direction opposite the chosen focus or focal-segment containment statement. The strict concentric circular model has center mean separately.
+
+OpenAI Codex (AI) was used extensively for research, drafting, computation and adversarial checking of this reproof packet. It is an unrefereed AI-assisted mathematical draft. Independent AI audits are not human peer review; human peer review has not been performed.
+
+Read [PROOF.md](PROOF.md), [CURRENT_AUDIT.md](CURRENT_AUDIT.md), [PUBLICATION_STATUS.md](PUBLICATION_STATUS.md), and [SOURCES.md](SOURCES.md). All 25 original submitted files, original proof, reviews, source lists and manifests are preserved verbatim in [historical_submission_20261001/](historical_submission_20261001/README.md), authenticated by [HISTORICAL_SUBMISSION_INDEX.json](HISTORICAL_SUBMISSION_INDEX.json). Mathematical Sections 2–5 and the four original checker programs/receipts remain unchanged.
+
+The 13 files under audit_20261012/evidence are **verbatim report and acceptance exports**. They are not a new complete audit replay bundle. [EVIDENCE_LOCATIONS.md](EVIDENCE_LOCATIONS.md) and [EVIDENCE_LOCATIONS.json](EVIDENCE_LOCATIONS.json) map their original locations and omitted dependencies to intended separate public audit paths on MAIN, without asserting those paths already published. Full third-party bodies, raw private captures and vendor runtimes are excluded. The original four checkers are self-contained mathematical context requiring SymPy/mpmath, while the later authentication harnesses can require private primary inputs and local runtime arrangements.
+
+This packet embeds no self-certified review verdict for its own repaired bytes and grants no execution authority. Consult the dated receipts in the [repository audit folder](https://github.com/AlecKriebel/Math/tree/main/draft_pr_descending_audit_20261002/audits/pr259_5100026/initial_review_20261012/) for package-specific independent review and actual native publication acceptance. Those are separate records from the accepted mathematical and priority evidence.
