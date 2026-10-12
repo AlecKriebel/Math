@@ -71,3 +71,5 @@ actions and will commission a fresh independent operations review.
   NEW fresh independent operations adversary 2 must review the repaired
   helpers and root-owned builder before any external action; no clean
   independent operations acceptance or actual publication is claimed here.
+
+2026-10-12T14:46:58.210607+00:00 — Root output-boundary repair checkpoint, PR464 estimate75%, batch25%. Two fresh package reviewers PASS0/0 same frozen input2. Operations2 REQUEST_CHANGES1 blocking/2required preserved; root builder repaired and195 normal/O controls pass, zero real calls. Actual package unchanged. NEW operations3 required; no publication or external write.

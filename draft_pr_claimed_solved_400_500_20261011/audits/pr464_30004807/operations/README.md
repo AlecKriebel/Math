@@ -185,3 +185,31 @@ each successful test. Never publish or package private fixture directories,
 credentials, ignored API state, foreign source corpora or environments.
 The positive public whitelist lists only these authored helper sources,
 documentation, log and valid control summaries.
+
+## Root archive-output repair after operations review 2
+
+The second fresh operations adversary found two further defects in the
+archive builder: unchecked generated-output symlinks and late rejection of
+an existing freeze. Its sealed REQUEST_CHANGES report remains unchanged
+under reviews/operations_adversary2. The parent preserved that builder under
+operations_history/before_adversary2 and repaired every generated output
+preflight, early positive/nonexisting freeze checks, and complete-file writes.
+Existing hard-linked/nonregular outputs also reject. Individual replacement
+is atomic; the output group is not a transaction or hostile-filesystem lock.
+
+Parent check_archive_output_repairs.py replays the unmodified160 prior
+reviewer expectations plus35 whole-build regressions. All195 pass normally
+and optimized with identical results and zero real service calls, including
+a successful new freeze and unchanged rejected-fixture bytes. This parent
+replay does not count as a new independent review. Actual candidate2, its
+eight frozen files and plan were not rebuilt or modified. Two distinct new
+full-package reviewers accepted those same bytes with zero required issues.
+A NEW complete operations adversary3 must still approve the final helper,
+builder and unchanged kit sources before the final publication gate exists.
+
+PUBLIC_OUTPUT_WHITELIST_BEFORE_OUTPUT_REPAIR.json is a historical snapshot
+of the current helper-repair whitelist as published at main checkpoint23,
+commit854f856cb77a35498607d248c74fdd2d3996d888. Its recorded original
+README/log hashes refer to that immutable checkpoint, not to these updated
+documents. All four helper and two operational checker sources are unchanged
+by this second builder repair.
