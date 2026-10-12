@@ -1,6 +1,6 @@
 # Root claim ledger: PR464 / 30004807
 
-Frozen eligible head: 97b2ed225574ca61bd03cb8db021a533e04938dc. Status exactly claimed_solved at capture. All conclusions below remain candidate deductions until independent math and priority review complete.
+Frozen eligible head: 97b2ed225574ca61bd03cb8db021a533e04938dc. Status exactly claimed_solved at capture. Independent mathematical families and the bounded priority audit have completed; whole-candidate synthesis and complete preprint-package review are separate pending gates.
 
 Exact target: the homogeneous weak Bianchi identity in Burtscher OWR40/2021 printed2232–2233 for the geometric class of regular negative-mass ZAS timelike singularities, using the cited BKTZ smooth boundary-reaching vector tests. Success means one admissible spacetime and one genuine test with absolutely convergent nonzero complete scalar contraction; it does not require a prescribed matter model or prove failure under an added energy condition. The broader conditions/evolution research program is outside this target.
 
@@ -13,6 +13,6 @@ Exact target: the homogeneous weak Bianchi identity in Burtscher OWR40/2021 prin
 | All-test contraction absolutely integrable | Cartesian D=N phi^6 G smooth to boundary; trace/symmetry cancel spatial connection | Summands individually divergent; scalar must be formed before integrating; vector/covector test not interchangeable at boundary |
 | Nonzero homogeneous defect−8pi | Euclidean div D=0, inner outward normal−n, radial boundary value1, normalized time integral1 | Wrong sign; support restricted to open interior or collapsed-point smooth fields |
 | Does not contradict existing sufficient theorem | Nonzero borderline G~(rho−a)^−5 misses strict positive kappa gain | Treating geometric ZAS as sufficient curvature premise; conflating source theorem/corollaries |
-| Original problem remains publishable claimed_solved | Extensive priority comparison including older affine-lapse family and later exact target literature | Earlier resolution/known counterexample or overlooked domain restriction; no absence-of-search-hit novelty inference |
+| Qualified counterexample application remains eligible for claimed_solved | Independent bounded priority audit: DKMV metric/tensor prior, exact dictionary (m,bar r,kappa,lambda)=(−2a,rho,A,B); BKTZ flux method credited; no earlier exact application established | No new metric/tensor/general theorem, first-priority or continued-openness certificate; older positive-mass classification is not this negative-mass ZAS application |
 
-Current strongest root result: source convention directly verified and analytic counterexample reconstruction passes. Current exact remaining gap: completed fresh independent families and priority/current-literature classification. No original proof-search attempt or original source mutation.
+Current strongest verified result: source convention, regular-ZAS admissibility, full all-field convergence and defect−8pi pass independent analytic and computational reviews. Classical metric/tensor attribution and bounded priority limits are explicit in ROOT_MATHEMATICAL_REVIEW.md. Current exact remaining gap: whole-candidate synthesis, a complete current publication package, and repeated fresh package adversaries. No original proof-search attempt or original source mutation.

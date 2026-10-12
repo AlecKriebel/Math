@@ -2,6 +2,14 @@
 
 This is current authored validation, not an edit of the thirteen frozen source files. Target and boundaries are recorded in ROOT_CLAIM_LEDGER.md and independent primary-source receipts. No earlier exact priority claim is inferred here.
 
+## Explicit classical attribution and bounded contribution
+
+The metric and affine lapse are the known Dadhich–Kar–Mukherjee–Visser family, not a new exact solution. Their original arXiv:gr-qc/0109069 (19 September 2001), equations (9)–(15), gives the dictionary (m, bar r, kappa, lambda)=(−2a, rho, A, B). Their equations (9)–(11) already give the same zero energy density and radial/angular tensor components. The paper was published 7 February 2002 as Physical Review D65,064004, DOI10.1103/PhysRevD.65.064004; Mukherjee is the primary-source spelling. Their subsequent wormhole parameter classification explicitly takes m>0. The negative-mass substitution is our algebraic application of their formula; we do not attribute this later regular-ZAS/Bianchi conclusion to that classification.
+
+The boundary-flux method is credited to Burtscher–Kiessling–Tahvildar-Zadeh (BKTZ), arXiv:1901.00813v3, Definition2.1 and the boundary computation after equation(2.5). We independently prove convergence for this borderline example and do not invoke their sufficient theorem outside its hypotheses. The contribution is the regular-ZAS admissibility and convergent nonzero defect application to the report conjecture under its stated static/boundary-test interpretation. Historical first priority remains unestablished after the bounded independent search. The OWR report has volume/workshop year2021 and official publication date26November2022; these dates must not be conflated.
+
+Primary sources: https://arxiv.org/pdf/gr-qc/0109069 ; https://doi.org/10.1103/PhysRevD.65.064004 ; https://arxiv.org/pdf/1901.00813v3 ; https://ems.press/journals/owr/articles/8415343 .
+
 ## Independent area-radius curvature route
 
 Set a>0, rho>a, phi=1−a/rho, r=rho phi^2, f=1+4a/r and v=sqrt(f)=(rho+a)/(rho−a). Then dr/d rho=phi^2 v>0. The spatial metric is h=dr^2/f+r^2 dOmega^2. The general lapse is N=A+Bv, A,B>=0, A+B>0; the main case A=B=1/2 gives N=phi^-1. In this coordinate form g=−N^2dt^2+dr^2/f+r^2dOmega^2.
@@ -58,4 +66,4 @@ The main case has exactly nonzero order(rho−a)^−5 mixed curvature and lacks 
 
 ## Verification and remaining gaps
 
-Analytic reconstruction and direct source pages pass so far. Independently reproducible symbolic evidence and adversarial family reports are still pending. Historical manifests contain eleven extant file references (six FROZEN_INPUTS author payloads, five AUDIT_MANIFEST payloads); a standalone author-manifest SHA has no supplied path or bytes in this snapshot and cannot be claimed verified. That provenance limit does not change the immutable13-file SOURCE_RECEIPT binding. No new original proof-search turn was used. Earlier construction of the affine-lapse metric and any earlier exact conjecture resolution must still be investigated separately; no new-metric or first-resolution claim is made.
+Analytic reconstruction, direct source pages, exact normal/optimized reproductions and three fresh independent mathematical families pass within the stated scope. Independent priority review requires the classical attribution now recorded above and rejects any first-priority certificate. Whole-candidate synthesis and future complete preprint-package reviews remain distinct gates. Historical manifests contain eleven extant file references (six FROZEN_INPUTS author payloads, five AUDIT_MANIFEST payloads); a standalone author-manifest SHA has no supplied path or bytes in this snapshot and cannot be claimed verified. That provenance limit does not change the immutable13-file SOURCE_RECEIPT binding. No new original proof-search turn was used. The older metric and tensor are explicitly attributed above. No earlier exact conjecture application was established in the bounded priority audit; this is not evidence of historical first priority. No new-metric or first-resolution claim is made.
