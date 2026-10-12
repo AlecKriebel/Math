@@ -186,7 +186,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 176 | 30001413 / OWR-4209-002 | Optimal Domain Conditions for Positivity of Hinged Plates | 0.1966 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 177 | 30006161 / OWR-14299082-003 | Generic Maximal Chains on Exceptional Surfaces | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the credited Tserunyan-Zomback negative answer to the first chaining question, a measurable reconstruction with an explicit stationary matrix, and the scoped return criterion. The second bounded-level separation question remains unresolved; original terminology and indexing discrepancies are explicit. 1035791 author and 164453 independent finite controls supplement the measurable proof. Draft PR: https://github.com/AlecKriebel/Math/pull/157. |  |
 | 179 | 30006231 / OWR-14299094-001 | Unique Ground-State Representability under Linear Constraints | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
