@@ -1,0 +1,803 @@
+{
+  "checked_at_utc": "2026-10-12T22:44:45.612992+00:00",
+  "source_head": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+  "source_pins": [
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/ATTEMPT_1.md",
+      "bytes": 10050,
+      "sha256": "c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/INITIAL_WIP_FREEZE.json",
+      "bytes": 566,
+      "sha256": "6ffab2644b59aa1767780860039b87150ce6213ac2283255ea8e54b09ceb015f",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/RESEARCH_LOG.md",
+      "bytes": 3079,
+      "sha256": "885ebc99c4123ea229e757047d532f92640d6d481838e450629405f1747a1b90",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/SOURCE_GATE.md",
+      "bytes": 7094,
+      "sha256": "69e562b8d0b428fbce36a49cdca51a2e921b67258bd4b3887b285d03f7903b72",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/VERIFICATION_ADDENDUM.md",
+      "bytes": 3611,
+      "sha256": "51983adea5a4dff15f951ddfdb517a1710d36b50bfbba93158fafb3dd5c5ca06",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/AUDIT.md",
+      "bytes": 13789,
+      "sha256": "154858d740a27eaadff20a72b25cefb56bfeb1c458d9aab18dca1c67f67cba3f",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/AUDIT_RESULT.json",
+      "bytes": 834,
+      "sha256": "79bbdd08b29cd631a0e5c0728e384834a2742b5862d8b50fd76fcefebb518651",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_algebra.py",
+      "bytes": 2106,
+      "sha256": "352941d102c62ccb02912deca8a59ec91e354d12d60ff2744f1e27d14b8b64a2",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_algebra_results.json",
+      "bytes": 928,
+      "sha256": "ebba35993d64973e0d4fc432052314e82eaa72088d1c70dbd65ac7387c15c4bf",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_audit.py",
+      "bytes": 7058,
+      "sha256": "36a92c802ab97eb5e17e1aa5e1e97091b84177a310a872654fde274785c14f7a",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/audit/independent_results.json",
+      "bytes": 6614,
+      "sha256": "438d623b96bc48e927753bb1c2a7e4d390d3eb5207d5d0ae785b44c5860817cf",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/checks.json",
+      "bytes": 2177,
+      "sha256": "23d6f2d3ee4126b1b712a636ed8bc3b19f4298806962ecdb8acb0a5ddf6f675e",
+      "matched": true
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/20001515/verify.py",
+      "bytes": 8463,
+      "sha256": "a0f54ea14a541033545b6cf5f11484622f5c52365353b62fa024d2d1c20b10dd",
+      "matched": true
+    }
+  ],
+  "candidate_seal_sha256": "8cb14cc0d1e88c4ad48158004e8b90c8b144b326c24e25f35fe4722b44cd90dd",
+  "total_gates": 62,
+  "programs": [
+    {
+      "program": "verify.py",
+      "original_sha256": "a0f54ea14a541033545b6cf5f11484622f5c52365353b62fa024d2d1c20b10dd",
+      "candidate_sha256": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42",
+      "asserts": 34,
+      "whole_nonvalidation_AST_unchanged": true,
+      "tests_and_messages_AST_identical": true,
+      "AssertionError_store_or_import_bindings": [],
+      "gates": [
+        {
+          "path": "Module.body[7].body[4].body[0]",
+          "original_line": 44,
+          "original_column": 8,
+          "candidate_line": 37,
+          "candidate_column": 8,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='face', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=4)])",
+          "message_ast": null,
+          "original_assert": "assert len(face) == 4",
+          "candidate_gate": "if not len(face) == 4:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[7].body[4].body[1].body[0]",
+          "original_line": 46,
+          "original_column": 12,
+          "candidate_line": 40,
+          "candidate_column": 12,
+          "test_ast": "Compare(left=Subscript(value=Call(func=Name(id='ends', ctx=Load()), args=[Name(id='incoming', ctx=Load())]), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Call(func=Name(id='ends', ctx=Load()), args=[Name(id='outgoing', ctx=Load())]), slice=Constant(value=0), ctx=Load())])",
+          "message_ast": "Constant(value='face not closed')",
+          "original_assert": "assert ends(incoming)[1] == ends(outgoing)[0], 'face not closed'",
+          "candidate_gate": "if not ends(incoming)[1] == ends(outgoing)[0]:\n    raise AssertionError('face not closed')"
+        },
+        {
+          "path": "Module.body[7].body[4].body[1].body[3]",
+          "original_line": 49,
+          "original_column": 12,
+          "candidate_line": 44,
+          "candidate_column": 12,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='pair', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=2)])",
+          "message_ast": "Constant(value='loop in a link')",
+          "original_assert": "assert len(pair) == 2, 'loop in a link'",
+          "candidate_gate": "if not len(pair) == 2:\n    raise AssertionError('loop in a link')"
+        },
+        {
+          "path": "Module.body[7].body[4].body[1].body[4]",
+          "original_line": 50,
+          "original_column": 12,
+          "candidate_line": 46,
+          "candidate_column": 12,
+          "test_ast": "Compare(left=Name(id='pair', ctx=Load()), ops=[NotIn()], comparators=[Subscript(value=Subscript(value=Name(id='answer', ctx=Load()), slice=Name(id='v', ctx=Load()), ctx=Load()), slice=Constant(value='edges'), ctx=Load())])",
+          "message_ast": "Constant(value='duplicate link edge')",
+          "original_assert": "assert pair not in answer[v]['edges'], 'duplicate link edge'",
+          "candidate_gate": "if not pair not in answer[v]['edges']:\n    raise AssertionError('duplicate link edge')"
+        },
+        {
+          "path": "Module.body[12]",
+          "original_line": 65,
+          "original_column": 0,
+          "candidate_line": 56,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Subscript(value=Name(id='K_LINK', ctx=Load()), slice=Constant(value='vertices'), ctx=Load())]), ops=[Eq()], comparators=[Constant(value=6)])",
+          "message_ast": null,
+          "original_assert": "assert len(K_LINK['vertices']) == 6",
+          "candidate_gate": "if not len(K_LINK['vertices']) == 6:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[13]",
+          "original_line": 66,
+          "original_column": 0,
+          "candidate_line": 58,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Subscript(value=Name(id='K_LINK', ctx=Load()), slice=Constant(value='edges'), ctx=Load())]), ops=[Eq()], comparators=[Constant(value=8)])",
+          "message_ast": null,
+          "original_assert": "assert len(K_LINK['edges']) == 8",
+          "candidate_gate": "if not len(K_LINK['edges']) == 8:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[14]",
+          "original_line": 67,
+          "original_column": 0,
+          "candidate_line": 60,
+          "candidate_column": 0,
+          "test_ast": "UnaryOp(op=Not(), operand=Call(func=Name(id='cliques', ctx=Load()), args=[Subscript(value=Name(id='K_LINK', ctx=Load()), slice=Constant(value='vertices'), ctx=Load()), Subscript(value=Name(id='K_LINK', ctx=Load()), slice=Constant(value='edges'), ctx=Load()), Constant(value=3)]))",
+          "message_ast": null,
+          "original_assert": "assert not cliques(K_LINK['vertices'], K_LINK['edges'], 3)",
+          "candidate_gate": "if not not cliques(K_LINK['vertices'], K_LINK['edges'], 3):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[23].body[0]",
+          "original_line": 88,
+          "original_column": 4,
+          "candidate_line": 75,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='mapped_word', ctx=Load()), args=[Name(id='LAMBDA', ctx=Load()), Name(id='face', ctx=Load())]), ops=[In()], comparators=[Name(id='K_BOUNDARIES', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert mapped_word(LAMBDA, face) in K_BOUNDARIES",
+          "candidate_gate": "if not mapped_word(LAMBDA, face) in K_BOUNDARIES:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[24].body[0]",
+          "original_line": 90,
+          "original_column": 4,
+          "candidate_line": 78,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='on_letter', ctx=Load()), args=[Name(id='LAMBDA', ctx=Load()), Call(func=Name(id='on_letter', ctx=Load()), args=[Name(id='LAMBDA', ctx=Load()), Name(id='e', ctx=Load())])]), ops=[Eq()], comparators=[Name(id='e', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert on_letter(LAMBDA, on_letter(LAMBDA, e)) == e",
+          "candidate_gate": "if not on_letter(LAMBDA, on_letter(LAMBDA, e)) == e:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[25].body[1]",
+          "original_line": 93,
+          "original_column": 4,
+          "candidate_line": 82,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Name(id='image', ctx=Load()), ops=[In()], comparators=[Name(id='K_BOUNDARIES', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert image in K_BOUNDARIES",
+          "candidate_gate": "if not image in K_BOUNDARIES:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[25].body[2]",
+          "original_line": 94,
+          "original_column": 4,
+          "candidate_line": 84,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='mapped_word', ctx=Load()), args=[Name(id='LAMBDA', ctx=Load()), Name(id='image', ctx=Load())]), ops=[In()], comparators=[Name(id='K_BOUNDARIES', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert mapped_word(LAMBDA, image) in K_BOUNDARIES",
+          "candidate_gate": "if not mapped_word(LAMBDA, image) in K_BOUNDARIES:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[28].body[2]",
+          "original_line": 105,
+          "original_column": 4,
+          "candidate_line": 91,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='image_vertices', ctx=Load())]), ops=[Eq()], comparators=[Call(func=Name(id='len', ctx=Load()), args=[Subscript(value=Name(id='link', ctx=Load()), slice=Constant(value='vertices'), ctx=Load())])])",
+          "message_ast": "Constant(value='link not injective')",
+          "original_assert": "assert len(image_vertices) == len(link['vertices']), 'link not injective'",
+          "candidate_gate": "if not len(image_vertices) == len(link['vertices']):\n    raise AssertionError('link not injective')"
+        },
+        {
+          "path": "Module.body[28].body[3]",
+          "original_line": 106,
+          "original_column": 4,
+          "candidate_line": 93,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Name(id='image_vertices', ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Name(id='EXPECTED_LINKS', ctx=Load()), slice=Name(id='v', ctx=Load()), ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert image_vertices == EXPECTED_LINKS[v]",
+          "candidate_gate": "if not image_vertices == EXPECTED_LINKS[v]:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[28].body[5]",
+          "original_line": 108,
+          "original_column": 4,
+          "candidate_line": 96,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Name(id='image_edges', ctx=Load()), ops=[Eq()], comparators=[Name(id='induced', ctx=Load())])",
+          "message_ast": "Constant(value='link image not full')",
+          "original_assert": "assert image_edges == induced, 'link image not full'",
+          "candidate_gate": "if not image_edges == induced:\n    raise AssertionError('link image not full')"
+        },
+        {
+          "path": "Module.body[31]",
+          "original_line": 116,
+          "original_column": 0,
+          "candidate_line": 101,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Name(id='collapsed', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Tuple(elts=[UnaryOp(op=USub(), operand=Constant(value=3))], ctx=Load()), Tuple(elts=[Constant(value=5), UnaryOp(op=USub(), operand=Constant(value=6))], ctx=Load())], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert collapsed == [(-3,), (5, -6)]",
+          "candidate_gate": "if not collapsed == [(-3,), (5, -6)]:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[32]",
+          "original_line": 117,
+          "original_column": 0,
+          "candidate_line": 103,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='mapped_word', ctx=Load()), args=[Name(id='Q_LABELS', ctx=Load()), Tuple(elts=[Constant(value=5), Constant(value=1)], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Constant(value=3), Constant(value=1)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert mapped_word(Q_LABELS, (5, 1)) == (3, 1)",
+          "candidate_gate": "if not mapped_word(Q_LABELS, (5, 1)) == (3, 1):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[33]",
+          "original_line": 118,
+          "original_column": 0,
+          "candidate_line": 105,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='mapped_word', ctx=Load()), args=[Name(id='LAMBDA', ctx=Load()), Tuple(elts=[Constant(value=3), Constant(value=1)], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[UnaryOp(op=USub(), operand=Constant(value=3)), Constant(value=2)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert mapped_word(LAMBDA, (3, 1)) == (-3, 2)",
+          "candidate_gate": "if not mapped_word(LAMBDA, (3, 1)) == (-3, 2):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[37].body[0].body[3].body[1]",
+          "original_line": 134,
+          "original_column": 12,
+          "candidate_line": 117,
+          "candidate_column": 12,
+          "test_ast": "Compare(left=Name(id='pair', ctx=Load()), ops=[NotIn()], comparators=[Name(id='Z_EDGES', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert pair not in Z_EDGES",
+          "candidate_gate": "if not pair not in Z_EDGES:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[37].body[0].body[4].body[1]",
+          "original_line": 138,
+          "original_column": 12,
+          "candidate_line": 122,
+          "candidate_column": 12,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='triangle', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=3)]), Compare(left=Name(id='triangle', ctx=Load()), ops=[NotIn()], comparators=[Name(id='Z_TRIANGLES', ctx=Load())])])",
+          "message_ast": null,
+          "original_assert": "assert len(triangle) == 3 and triangle not in Z_TRIANGLES",
+          "candidate_gate": "if not (len(triangle) == 3 and triangle not in Z_TRIANGLES):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[38]",
+          "original_line": 140,
+          "original_column": 0,
+          "candidate_line": 125,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Tuple(elts=[Call(func=Name(id='len', ctx=Load()), args=[Name(id='Z_VERTS', ctx=Load())]), Call(func=Name(id='len', ctx=Load()), args=[Name(id='Z_EDGES', ctx=Load())]), Call(func=Name(id='len', ctx=Load()), args=[Name(id='Z_TRIANGLES', ctx=Load())])], ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value=14), Constant(value=32), Constant(value=16)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert (len(Z_VERTS), len(Z_EDGES), len(Z_TRIANGLES)) == (14, 32, 16)",
+          "candidate_gate": "if not (len(Z_VERTS), len(Z_EDGES), len(Z_TRIANGLES)) == (14, 32, 16):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[39]",
+          "original_line": 141,
+          "original_column": 0,
+          "candidate_line": 127,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='cliques', ctx=Load()), args=[Name(id='Z_VERTS', ctx=Load()), Name(id='Z_EDGES', ctx=Load()), Constant(value=3)]), ops=[Eq()], comparators=[Name(id='Z_TRIANGLES', ctx=Load())])",
+          "message_ast": "Constant(value='missing triangle')",
+          "original_assert": "assert cliques(Z_VERTS, Z_EDGES, 3) == Z_TRIANGLES, 'missing triangle'",
+          "candidate_gate": "if not cliques(Z_VERTS, Z_EDGES, 3) == Z_TRIANGLES:\n    raise AssertionError('missing triangle')"
+        },
+        {
+          "path": "Module.body[40]",
+          "original_line": 142,
+          "original_column": 0,
+          "candidate_line": 129,
+          "candidate_column": 0,
+          "test_ast": "UnaryOp(op=Not(), operand=Call(func=Name(id='cliques', ctx=Load()), args=[Name(id='Z_VERTS', ctx=Load()), Name(id='Z_EDGES', ctx=Load()), Constant(value=4)]))",
+          "message_ast": "Constant(value='missing higher simplex')",
+          "original_assert": "assert not cliques(Z_VERTS, Z_EDGES, 4), 'missing higher simplex'",
+          "candidate_gate": "if not not cliques(Z_VERTS, Z_EDGES, 4):\n    raise AssertionError('missing higher simplex')"
+        },
+        {
+          "path": "Module.body[42]",
+          "original_line": 144,
+          "original_column": 0,
+          "candidate_line": 132,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Name(id='cell_counts', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value=1), Constant(value=7), Constant(value=8), Constant(value=2)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert cell_counts == [1, 7, 8, 2]",
+          "candidate_gate": "if not cell_counts == [1, 7, 8, 2]:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[43]",
+          "original_line": 145,
+          "original_column": 0,
+          "candidate_line": 134,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=BinOp(left=UnaryOp(op=USub(), operand=Constant(value=1)), op=Pow(), right=Name(id='i', ctx=Load())), op=Mult(), right=Name(id='n', ctx=Load())), generators=[comprehension(target=Tuple(elts=[Name(id='i', ctx=Store()), Name(id='n', ctx=Store())], ctx=Store()), iter=Call(func=Name(id='enumerate', ctx=Load()), args=[Name(id='cell_counts', ctx=Load())]), is_async=0)])]), ops=[Eq()], comparators=[Constant(value=0)])",
+          "message_ast": null,
+          "original_assert": "assert sum(((-1) ** i * n for i, n in enumerate(cell_counts))) == 0",
+          "candidate_gate": "if not sum(((-1) ** i * n for i, n in enumerate(cell_counts))) == 0:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[47].body[0]",
+          "original_line": 162,
+          "original_column": 4,
+          "candidate_line": 146,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='substitute', ctx=Load()), args=[Subscript(value=Name(id='PHI', ctx=Load()), slice=Name(id='e', ctx=Load()), ctx=Load()), Name(id='PHI_INV', ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Name(id='e', ctx=Load())], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert substitute(PHI[e], PHI_INV) == (e,)",
+          "candidate_gate": "if not substitute(PHI[e], PHI_INV) == (e,):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[47].body[1]",
+          "original_line": 163,
+          "original_column": 4,
+          "candidate_line": 148,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='substitute', ctx=Load()), args=[Subscript(value=Name(id='PHI_INV', ctx=Load()), slice=Name(id='e', ctx=Load()), ctx=Load()), Name(id='PHI', ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Name(id='e', ctx=Load())], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert substitute(PHI_INV[e], PHI) == (e,)",
+          "candidate_gate": "if not substitute(PHI_INV[e], PHI) == (e,):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[55].body[0]",
+          "original_line": 194,
+          "original_column": 4,
+          "candidate_line": 171,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Name(id='rel', ctx=Load())]), ops=[Eq()], comparators=[Name(id='identity', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word(rel) == identity",
+          "candidate_gate": "if not eval_word(rel) == identity:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[58].body[3]",
+          "original_line": 203,
+          "original_column": 4,
+          "candidate_line": 179,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Name(id='rel', ctx=Load())]), ops=[Eq()], comparators=[Name(id='identity', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word(rel) == identity",
+          "candidate_gate": "if not eval_word(rel) == identity:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[59]",
+          "original_line": 206,
+          "original_column": 0,
+          "candidate_line": 182,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Tuple(elts=[Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=2))], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Tuple(elts=[Constant(value=1)], ctx=Load()), Constant(value=0)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word((1, -2)) == ((1,), 0)",
+          "candidate_gate": "if not eval_word((1, -2)) == ((1,), 0):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[60]",
+          "original_line": 207,
+          "original_column": 0,
+          "candidate_line": 184,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Tuple(elts=[Constant(value=3)], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Tuple(elts=[Constant(value=2)], ctx=Load()), Constant(value=0)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word((3,)) == ((2,), 0)",
+          "candidate_gate": "if not eval_word((3,)) == ((2,), 0):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[61]",
+          "original_line": 208,
+          "original_column": 0,
+          "candidate_line": 186,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Tuple(elts=[UnaryOp(op=USub(), operand=Constant(value=1)), UnaryOp(op=USub(), operand=Constant(value=4))], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Tuple(elts=[Constant(value=3)], ctx=Load()), Constant(value=0)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word((-1, -4)) == ((3,), 0)",
+          "candidate_gate": "if not eval_word((-1, -4)) == ((3,), 0):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[62]",
+          "original_line": 209,
+          "original_column": 0,
+          "candidate_line": 188,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='eval_word', ctx=Load()), args=[Tuple(elts=[Constant(value=1)], ctx=Load())]), ops=[Eq()], comparators=[Tuple(elts=[Tuple(ctx=Load()), Constant(value=1)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert eval_word((1,)) == ((), 1)",
+          "candidate_gate": "if not eval_word((1,)) == ((), 1):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[64]",
+          "original_line": 214,
+          "original_column": 0,
+          "candidate_line": 191,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='mapped_word', ctx=Load()), args=[Name(id='wrong_lambda', ctx=Load()), Subscript(value=Name(id='K_FACES', ctx=Load()), slice=Constant(value=1), ctx=Load())]), ops=[NotIn()], comparators=[Name(id='K_BOUNDARIES', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert mapped_word(wrong_lambda, K_FACES[1]) not in K_BOUNDARIES",
+          "candidate_gate": "if not mapped_word(wrong_lambda, K_FACES[1]) not in K_BOUNDARIES:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[65].body[0]",
+          "original_line": 216,
+          "original_column": 4,
+          "candidate_line": 194,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='cliques', ctx=Load()), args=[Name(id='Z_VERTS', ctx=Load()), Name(id='Z_EDGES', ctx=Load()), Constant(value=3)]), ops=[NotEq()], comparators=[BinOp(left=Name(id='Z_TRIANGLES', ctx=Load()), op=Sub(), right=Set(elts=[Name(id='triangle', ctx=Load())]))])",
+          "message_ast": null,
+          "original_assert": "assert cliques(Z_VERTS, Z_EDGES, 3) != Z_TRIANGLES - {triangle}",
+          "candidate_gate": "if not cliques(Z_VERTS, Z_EDGES, 3) != Z_TRIANGLES - {triangle}:\n    raise AssertionError()"
+        }
+      ]
+    },
+    {
+      "program": "audit/independent_audit.py",
+      "original_sha256": "36a92c802ab97eb5e17e1aa5e1e97091b84177a310a872654fde274785c14f7a",
+      "candidate_sha256": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903",
+      "asserts": 24,
+      "whole_nonvalidation_AST_unchanged": true,
+      "tests_and_messages_AST_identical": true,
+      "AssertionError_store_or_import_bindings": [],
+      "gates": [
+        {
+          "path": "Module.body[10].body[0]",
+          "original_line": 28,
+          "original_column": 4,
+          "candidate_line": 37,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Name(id='a', ctx=Load()), ops=[NotEq()], comparators=[Name(id='b', ctx=Load())])",
+          "message_ast": "Tuple(elts=[Constant(value='loop link edge'), Name(id='a', ctx=Load())], ctx=Load())",
+          "original_assert": "assert a != b, ('loop link edge', a)",
+          "candidate_gate": "if not a != b:\n    raise AssertionError(('loop link edge', a))"
+        },
+        {
+          "path": "Module.body[17]",
+          "original_line": 37,
+          "original_column": 0,
+          "candidate_line": 50,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='n', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]), generators=[comprehension(target=Name(id='n', ctx=Store()), iter=Call(func=Attribute(value=Name(id='kcounter', ctx=Load()), attr='values', ctx=Load())), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((n == 1 for n in kcounter.values()))",
+          "candidate_gate": "if not all((n == 1 for n in kcounter.values())):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[18]",
+          "original_line": 38,
+          "original_column": 0,
+          "candidate_line": 52,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='cyclic_same', ctx=Load()), args=[Call(func=Name(id='list', ctx=Load()), args=[Call(func=Name(id='map', ctx=Load()), args=[Name(id='lamb', ctx=Load()), Name(id='s', ctx=Load())])]), Name(id='target', ctx=Load())]), generators=[comprehension(target=Name(id='target', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])]), generators=[comprehension(target=Name(id='s', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((any((cyclic_same(list(map(lamb, s)), target) for target in ksquares)) for s in ksquares))",
+          "candidate_gate": "if not all((any((cyclic_same(list(map(lamb, s)), target) for target in ksquares)) for s in ksquares)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[19]",
+          "original_line": 39,
+          "original_column": 0,
+          "candidate_line": 54,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='lamb', ctx=Load()), args=[Call(func=Name(id='lamb', ctx=Load()), args=[Name(id='a', ctx=Load())])]), ops=[Eq()], comparators=[Name(id='a', ctx=Load())]), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='kverts', ctx=Load()), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((lamb(lamb(a)) == a for a in kverts))",
+          "candidate_gate": "if not all((lamb(lamb(a)) == a for a in kverts)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[27].body[0]",
+          "original_line": 58,
+          "original_column": 4,
+          "candidate_line": 72,
+          "candidate_column": 4,
+          "test_ast": "Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='cyclic_same', ctx=Load()), args=[Call(func=Name(id='list', ctx=Load()), args=[Call(func=Name(id='map', ctx=Load()), args=[Name(id='j', ctx=Load()), Name(id='word', ctx=Load())])]), Name(id='s', ctx=Load())]), generators=[comprehension(target=Name(id='s', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert any((cyclic_same(list(map(j, word)), s) for s in ksquares))",
+          "candidate_gate": "if not any((cyclic_same(list(map(j, word)), s) for s in ksquares)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[27].body[1].body[0]",
+          "original_line": 60,
+          "original_column": 8,
+          "candidate_line": 75,
+          "candidate_column": 8,
+          "test_ast": "Compare(left=Subscript(value=Call(func=Name(id='endpoints', ctx=Load()), args=[Subscript(value=Name(id='word', ctx=Load()), slice=BinOp(left=Name(id='i', ctx=Load()), op=Sub(), right=Constant(value=1)), ctx=Load())]), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Call(func=Name(id='endpoints', ctx=Load()), args=[Subscript(value=Name(id='word', ctx=Load()), slice=Name(id='i', ctx=Load()), ctx=Load())]), slice=Constant(value=0), ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert endpoints(word[i - 1])[1] == endpoints(word[i])[0]",
+          "candidate_gate": "if not endpoints(word[i - 1])[1] == endpoints(word[i])[0]:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[29].body[1]",
+          "original_line": 66,
+          "original_column": 4,
+          "candidate_line": 82,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[Name(id='vd', ctx=Load())])]), ops=[Eq()], comparators=[Call(func=Name(id='len', ctx=Load()), args=[Name(id='dirs', ctx=Load())])])",
+          "message_ast": null,
+          "original_assert": "assert len(set(vd)) == len(dirs)",
+          "candidate_gate": "if not len(set(vd)) == len(dirs):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[29].body[3]",
+          "original_line": 68,
+          "original_column": 4,
+          "candidate_line": 85,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[Name(id='ee', ctx=Load())])]), ops=[Eq()], comparators=[Call(func=Name(id='len', ctx=Load()), args=[Name(id='ee', ctx=Load())])])",
+          "message_ast": null,
+          "original_assert": "assert len(set(ee)) == len(ee)",
+          "candidate_gate": "if not len(set(ee)) == len(ee):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[29].body[5]",
+          "original_line": 70,
+          "original_column": 4,
+          "candidate_line": 88,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Call(func=Name(id='set', ctx=Load()), args=[Name(id='ee', ctx=Load())]), ops=[Eq()], comparators=[Name(id='induced', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert set(ee) == induced",
+          "candidate_gate": "if not set(ee) == induced:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[33]",
+          "original_line": 81,
+          "original_column": 0,
+          "candidate_line": 101,
+          "candidate_column": 0,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='reachable', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=4)]), Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='tree', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=3)])])",
+          "message_ast": null,
+          "original_assert": "assert len(reachable) == 4 and len(tree) == 3",
+          "candidate_gate": "if not (len(reachable) == 4 and len(tree) == 3):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[35]",
+          "original_line": 83,
+          "original_column": 0,
+          "candidate_line": 104,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Name(id='collapsed', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Call(func=Name(id='w', ctx=Load()), args=[Constant(value='R')]), Call(func=Name(id='w', ctx=Load()), args=[Constant(value='dE')])], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert collapsed == [w('R'), w('dE')]",
+          "candidate_gate": "if not collapsed == [w('R'), w('dE')]:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[40]",
+          "original_line": 90,
+          "original_column": 0,
+          "candidate_line": 113,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='n', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]), generators=[comprehension(target=Name(id='n', ctx=Store()), iter=Call(func=Attribute(value=Name(id='link_edge_occurrences', ctx=Load()), attr='values', ctx=Load())), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((n == 1 for n in link_edge_occurrences.values()))",
+          "candidate_gate": "if not all((n == 1 for n in link_edge_occurrences.values())):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[46].body[3].body[1].body[3]",
+          "original_line": 108,
+          "original_column": 12,
+          "candidate_line": 131,
+          "candidate_column": 12,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='tr', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=3)])",
+          "message_ast": null,
+          "original_assert": "assert len(tr) == 3",
+          "candidate_gate": "if not len(tr) == 3:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[46].body[3].body[1].body[4]",
+          "original_line": 109,
+          "original_column": 12,
+          "candidate_line": 133,
+          "candidate_column": 12,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='frozenset', ctx=Load()), args=[Name(id='pair', ctx=Load())]), ops=[In()], comparators=[Name(id='zedges', ctx=Load())]), generators=[comprehension(target=Name(id='pair', ctx=Store()), iter=Call(func=Attribute(value=Name(id='I', ctx=Load()), attr='combinations', ctx=Load()), args=[Name(id='tr', ctx=Load()), Constant(value=2)]), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((frozenset(pair) in zedges for pair in I.combinations(tr, 2)))",
+          "candidate_gate": "if not all((frozenset(pair) in zedges for pair in I.combinations(tr, 2))):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[46].body[5].body[4]",
+          "original_line": 118,
+          "original_column": 8,
+          "candidate_line": 143,
+          "candidate_column": 8,
+          "test_ast": "Call(func=Name(id='cyclic_same', ctx=Load()), args=[Name(id='side', ctx=Load()), Name(id='expected', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert cyclic_same(side, expected)",
+          "candidate_gate": "if not cyclic_same(side, expected):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[46].body[6]",
+          "original_line": 120,
+          "original_column": 4,
+          "candidate_line": 146,
+          "candidate_column": 4,
+          "test_ast": "Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='cyclic_same', ctx=Load()), args=[Call(func=Name(id='list', ctx=Load()), args=[Call(func=Name(id='map', ctx=Load()), args=[Name(id='j', ctx=Load()), Name(id='word', ctx=Load())])]), Name(id='s', ctx=Load())]), generators=[comprehension(target=Name(id='s', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert any((cyclic_same(list(map(j, word)), s) for s in ksquares))",
+          "candidate_gate": "if not any((cyclic_same(list(map(j, word)), s) for s in ksquares)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[46].body[7]",
+          "original_line": 121,
+          "original_column": 4,
+          "candidate_line": 148,
+          "candidate_column": 4,
+          "test_ast": "Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='cyclic_same', ctx=Load()), args=[Call(func=Name(id='list', ctx=Load()), args=[Call(func=Name(id='map', ctx=Load()), args=[Name(id='lamb', ctx=Load()), Call(func=Name(id='map', ctx=Load()), args=[Name(id='j', ctx=Load()), Name(id='word', ctx=Load())])])]), Name(id='s', ctx=Load())]), generators=[comprehension(target=Name(id='s', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert any((cyclic_same(list(map(lamb, map(j, word))), s) for s in ksquares))",
+          "candidate_gate": "if not any((cyclic_same(list(map(lamb, map(j, word))), s) for s in ksquares)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[47]",
+          "original_line": 123,
+          "original_column": 0,
+          "candidate_line": 151,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='n', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)]), generators=[comprehension(target=Name(id='n', ctx=Store()), iter=Call(func=Attribute(value=Name(id='tri_counts', ctx=Load()), attr='values', ctx=Load())), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((n == 1 for n in tri_counts.values()))",
+          "candidate_gate": "if not all((n == 1 for n in tri_counts.values())):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[50]",
+          "original_line": 128,
+          "original_column": 0,
+          "candidate_line": 155,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Subscript(value=Name(id='cliques', ctx=Load()), slice=Constant(value=3), ctx=Load()), ops=[Eq()], comparators=[Name(id='ztri', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert cliques[3] == ztri",
+          "candidate_gate": "if not cliques[3] == ztri:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[51]",
+          "original_line": 129,
+          "original_column": 0,
+          "candidate_line": 157,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=UnaryOp(op=Not(), operand=Subscript(value=Name(id='cliques', ctx=Load()), slice=Name(id='n', ctx=Load()), ctx=Load())), generators=[comprehension(target=Name(id='n', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4), Constant(value=15)]), is_async=0)])])",
+          "message_ast": null,
+          "original_assert": "assert all((not cliques[n] for n in range(4, 15)))",
+          "candidate_gate": "if not all((not cliques[n] for n in range(4, 15))):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[52]",
+          "original_line": 130,
+          "original_column": 0,
+          "candidate_line": 159,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Tuple(elts=[Call(func=Name(id='len', ctx=Load()), args=[Name(id='zverts', ctx=Load())]), Call(func=Name(id='len', ctx=Load()), args=[Name(id='zedges', ctx=Load())]), Call(func=Name(id='len', ctx=Load()), args=[Name(id='ztri', ctx=Load())])], ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value=14), Constant(value=32), Constant(value=16)], ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert (len(zverts), len(zedges), len(ztri)) == (14, 32, 16)",
+          "candidate_gate": "if not (len(zverts), len(zedges), len(ztri)) == (14, 32, 16):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[54].body[0]",
+          "original_line": 134,
+          "original_column": 4,
+          "candidate_line": 163,
+          "candidate_column": 4,
+          "test_ast": "Compare(left=Subscript(value=Name(id='cliques', ctx=Load()), slice=Constant(value=3), ctx=Load()), ops=[NotEq()], comparators=[BinOp(left=Name(id='ztri', ctx=Load()), op=Sub(), right=Set(elts=[Name(id='t', ctx=Load())]))])",
+          "message_ast": null,
+          "original_assert": "assert cliques[3] != ztri - {t}",
+          "candidate_gate": "if not cliques[3] != ztri - {t}:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[56]",
+          "original_line": 137,
+          "original_column": 0,
+          "candidate_line": 167,
+          "candidate_column": 0,
+          "test_ast": "UnaryOp(op=Not(), operand=Call(func=Name(id='any', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='cyclic_same', ctx=Load()), args=[Call(func=Name(id='list', ctx=Load()), args=[Call(func=Name(id='map', ctx=Load()), args=[Name(id='wrong_lambda', ctx=Load()), Subscript(value=Name(id='ksquares', ctx=Load()), slice=Constant(value=1), ctx=Load())])]), Name(id='f', ctx=Load())]), generators=[comprehension(target=Name(id='f', ctx=Store()), iter=Name(id='ksquares', ctx=Load()), is_async=0)])]))",
+          "message_ast": null,
+          "original_assert": "assert not any((cyclic_same(list(map(wrong_lambda, ksquares[1])), f) for f in ksquares))",
+          "candidate_gate": "if not not any((cyclic_same(list(map(wrong_lambda, ksquares[1])), f) for f in ksquares)):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[58]",
+          "original_line": 142,
+          "original_column": 0,
+          "candidate_line": 170,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Attribute(value=Call(func=Attribute(value=Name(id='hashlib', ctx=Load()), attr='sha256', ctx=Load()), args=[Call(func=Attribute(value=BinOp(left=Name(id='BASE', ctx=Load()), op=Div(), right=Constant(value='ATTEMPT_1.md')), attr='read_bytes', ctx=Load()))]), attr='hexdigest', ctx=Load())), ops=[Eq()], comparators=[Constant(value='c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6')])",
+          "message_ast": null,
+          "original_assert": "assert hashlib.sha256((BASE / 'ATTEMPT_1.md').read_bytes()).hexdigest() == 'c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6'",
+          "candidate_gate": "if not hashlib.sha256((BASE / 'ATTEMPT_1.md').read_bytes()).hexdigest() == 'c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6':\n    raise AssertionError()"
+        }
+      ]
+    },
+    {
+      "program": "audit/independent_algebra.py",
+      "original_sha256": "352941d102c62ccb02912deca8a59ec91e354d12d60ff2744f1e27d14b8b64a2",
+      "candidate_sha256": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96",
+      "asserts": 4,
+      "whole_nonvalidation_AST_unchanged": true,
+      "tests_and_messages_AST_identical": true,
+      "AssertionError_store_or_import_bindings": [],
+      "gates": [
+        {
+          "path": "Module.body[7].body[0]",
+          "original_line": 16,
+          "original_column": 15,
+          "candidate_line": 23,
+          "candidate_column": 4,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='apply', ctx=Load()), args=[Subscript(value=Name(id='phi', ctx=Load()), slice=Name(id='c', ctx=Load()), ctx=Load()), Name(id='psi', ctx=Load())]), ops=[Eq()], comparators=[Name(id='c', ctx=Load())]), Compare(left=Call(func=Name(id='apply', ctx=Load()), args=[Subscript(value=Name(id='psi', ctx=Load()), slice=Name(id='c', ctx=Load()), ctx=Load()), Name(id='phi', ctx=Load())]), ops=[Eq()], comparators=[Name(id='c', ctx=Load())])])",
+          "message_ast": null,
+          "original_assert": "assert apply(phi[c], psi) == c and apply(psi[c], phi) == c",
+          "candidate_gate": "if not (apply(phi[c], psi) == c and apply(psi[c], phi) == c):\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[31]",
+          "original_line": 42,
+          "original_column": 0,
+          "candidate_line": 62,
+          "candidate_column": 0,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='r', ctx=Load()), ops=[Eq()], comparators=[Tuple(elts=[Constant(value=''), Constant(value=0)], ctx=Load())]), generators=[comprehension(target=Name(id='r', ctx=Store()), iter=Call(func=Attribute(value=Name(id='checks', ctx=Load()), attr='values', ctx=Load())), is_async=0)])])",
+          "message_ast": "Name(id='checks', ctx=Load())",
+          "original_assert": "assert all((r == ('', 0) for r in checks.values())), checks",
+          "candidate_gate": "if not all((r == ('', 0) for r in checks.values())):\n    raise AssertionError(checks)"
+        },
+        {
+          "path": "Module.body[32]",
+          "original_line": 44,
+          "original_column": 0,
+          "candidate_line": 64,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='prod', ctx=Load()), args=[Name(id='x', ctx=Load()), Call(func=Name(id='inverse', ctx=Load()), args=[Name(id='y', ctx=Load())])]), ops=[Eq()], comparators=[Name(id='a', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert prod(x, inverse(y)) == a",
+          "candidate_gate": "if not prod(x, inverse(y)) == a:\n    raise AssertionError()"
+        },
+        {
+          "path": "Module.body[33]",
+          "original_line": 45,
+          "original_column": 0,
+          "candidate_line": 66,
+          "candidate_column": 0,
+          "test_ast": "Compare(left=Call(func=Name(id='inverse', ctx=Load()), args=[Call(func=Name(id='prod', ctx=Load()), args=[Name(id='z', ctx=Load()), Name(id='x', ctx=Load())])]), ops=[Eq()], comparators=[Name(id='c', ctx=Load())])",
+          "message_ast": null,
+          "original_assert": "assert inverse(prod(z, x)) == c",
+          "candidate_gate": "if not inverse(prod(z, x)) == c:\n    raise AssertionError()"
+        }
+      ]
+    }
+  ]
+}
