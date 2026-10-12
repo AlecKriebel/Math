@@ -13,6 +13,12 @@ from urllib.parse import quote
 import common as c
 
 
+def preflight_operation_outputs():
+    c.preflight_outputs(('BRANCH_INTEGRATION_PREFLIGHT.json', 'BRANCH_INTEGRATION_OPERATION.json',
+                         'BRANCH_INTEGRATION_RECEIPT.json', 'PR_BODY_CURRENT.md',
+                         'ZENODO_PUBLIC_FILE_READBACK.json'))
+
+
 def current_note(metadata, pub):
     return f'''# Published research note: regular ZAS and weak Bianchi defect
 
@@ -75,6 +81,7 @@ accepted packet. No GitHub release or journal submission is created here.
 
 def prepare():
     context = c.validate_gate()
+    preflight_operation_outputs()
     pub = c.confirm_live_publication(context)
     c.confirm_live_tracker(context, pub)
     pr, original_queue, reader = c.live_eligibility()
@@ -184,6 +191,7 @@ def verify_commit(summary, reader=None):
 
 def reconcile():
     context = c.validate_gate()
+    preflight_operation_outputs()
     pub = c.confirm_live_publication(context)
     c.confirm_live_tracker(context, pub)
     summary = c.read_json(c.AUDIT, 'BRANCH_INTEGRATION_OPERATION.json')
@@ -199,6 +207,8 @@ def reconcile():
 
 
 def run(apply=False):
+    c.validate_gate()
+    preflight_operation_outputs()
     previous = c.AUDIT / 'BRANCH_INTEGRATION_OPERATION.json'
     if previous.exists():
         prior = c.read_json(c.AUDIT, previous.name)
@@ -254,7 +264,7 @@ def run(apply=False):
         'Validation includes independent mathematical families, bounded priority investigation, guarded '
         'normal/optimized reproductions and successive fresh complete-package adversarial reviews. '
         'Only this attempt folder and the selected QUEUE row differ from captured main.\n')
-    (c.AUDIT / 'PR_BODY_CURRENT.md').write_text(body)
+    c.write_output('PR_BODY_CURRENT.md', body.encode())
     return {'state': summary['state'], 'commit_sha': commit, 'file_count': len(files)}
 
 

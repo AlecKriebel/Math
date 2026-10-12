@@ -94,6 +94,10 @@ def run(mode='check', apply=False, confirm_id=None):
     c.require(mode not in {'stage', 'publish'} or apply, 'Explicit --apply required for Zenodo writes')
     context = c.validate_gate()
     if mode != 'check':
+        c.preflight_outputs(('ZENODO_STAGE_OPERATION.json', 'ZENODO_PUBLISH_OPERATION.json',
+                             'ZENODO_STAGE_RECEIPT.json', 'ZENODO_PUBLISH_RECEIPT.json',
+                             'ZENODO_PUBLIC_FILE_READBACK.json'))
+    if mode != 'check':
         c.live_eligibility()
     if mode == 'check':
         return kit_cli(context, 'check')

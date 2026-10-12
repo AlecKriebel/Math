@@ -213,3 +213,33 @@ commit854f856cb77a35498607d248c74fdd2d3996d888. Its recorded original
 README/log hashes refer to that immutable checkpoint, not to these updated
 documents. All four helper and two operational checker sources are unchanged
 by this second builder repair.
+
+## Root complete-output repair after operations review 3
+
+The third independent review reproduced two blocking output-boundary defects:
+hard-linked operation receipts and the direct PR-body write. Its original
+REQUEST_CHANGES report and four failed controls remain unchanged. All four
+reviewed helpers are preserved under operations_history/before_adversary3.
+
+Every runner now preflights all fixed receipt destinations before any relevant
+service dispatch. Integration also preflights PR_BODY_CURRENT.md before Git
+object/ref writes and installs it through the shared receipt writer. The writer
+rejects symlinks, dangling links, aliased roots/ancestors, missing parents,
+nonregular outputs and hard-linked regular leaves. It writes complete bytes to
+a same-directory temporary file, rechecks, and replaces the authorized leaf.
+This is individual atomic replacement, not a group transaction or protection
+against hostile concurrent ancestor changes. Safe ordinary overwrite remains
+supported; no-retry operation histories retain their semantics.
+
+The root regression driver check_operation_output_repairs.py adds186 whole-
+runner output/alias/safe-writer controls and replays all84 unmodified sealed
+round3 controls:270/270 PASS in normal and optimized Python with identical
+structured output and zero genuine calls. All158 preparer and195 archive
+controls also pass in both modes. These root replays do not constitute a new
+independent review. Candidate2 was not rebuilt or edited. NEW operations4
+acceptance is still required before constructing FINAL_ACCEPTANCE_GATE.json.
+
+PUBLIC_OUTPUT_WHITELIST_BEFORE_RECEIPT_REPAIR.json preserves the previous
+operations whitelist exactly as published at checkpoint24, commit
+3fee2556543e44fae9200ae2a3cd24c8f6582e77. Its original helper/document hashes
+refer to that immutable checkpoint, not the repaired current files.

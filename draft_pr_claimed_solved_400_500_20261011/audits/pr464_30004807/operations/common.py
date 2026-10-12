@@ -8,6 +8,9 @@ import base64
 import datetime
 import hashlib
 import json
+import os
+import stat
+import tempfile
 import re
 import subprocess
 import zipfile
@@ -102,12 +105,54 @@ def checked_bytes(root, name, spec):
     return data
 
 
+def output_destination(name):
+    """Preflight an owned output without following links or opening special files."""
+    parts = relative(name).parts
+    root = Path(AUDIT)
+    require(root.is_absolute() and not root.is_symlink() and root.resolve() == root
+            and root.is_dir(), 'Unsafe receipt destination: audit root')
+    destination = root.joinpath(*parts)
+    cursor = root
+    for part in parts:
+        cursor = cursor / part
+        require(not cursor.is_symlink(), 'Unsafe receipt destination: symlink')
+    require(destination.parent.is_dir() and destination.parent.resolve().is_relative_to(root),
+            'Unsafe receipt destination: parent')
+    if destination.exists():
+        info = destination.stat()
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1,
+                'Unsafe receipt destination: nonregular or hard-linked output')
+    return destination
+
+
+def preflight_outputs(names):
+    for name in names:
+        output_destination(name)
+
+
+def write_output(name, data):
+    """Install complete bytes by one same-directory replacement.
+
+    Each file replacement is atomic; this is not a group transaction or a
+    lock against hostile concurrent ancestor changes.
+    """
+    require(type(data) is bytes, 'Output must be complete bytes')
+    destination = output_destination(name)
+    fd, temporary = tempfile.mkstemp(prefix='.pr464-output-', dir=destination.parent)
+    try:
+        with os.fdopen(fd, 'wb') as stream:
+            stream.write(data)
+            stream.flush()
+            os.fchmod(stream.fileno(), 0o644)
+        require(output_destination(name) == destination, 'Unsafe receipt destination: changed output')
+        os.replace(temporary, destination)
+    finally:
+        if os.path.lexists(temporary):
+            os.unlink(temporary)
+
+
 def dump(name, obj):
-    relative(name)
-    destination = AUDIT / name
-    require(destination.parent.resolve().is_relative_to(AUDIT) and not destination.is_symlink(),
-            'Unsafe receipt destination')
-    destination.write_bytes(json_bytes(obj))
+    write_output(name, json_bytes(obj))
 
 
 def zero_count(value, name):

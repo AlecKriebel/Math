@@ -10,7 +10,7 @@ import re
 import subprocess
 from common import (AUDIT, SHEET, TAB, TAB_ID, check_sheet, doi_matches, dump,
                     confirm_live_publication, gws, live_eligibility, now, read_json, require, sheet_get,
-                    tracker_values, validate_gate, validate_publication, validate_tracker)
+                    tracker_values, validate_gate, validate_publication, validate_tracker, preflight_outputs)
 
 
 def exact_registration(doi, expected):
@@ -48,6 +48,8 @@ def prior_registration(context, pub, values, matching):
 
 def run(apply=False):
     context = validate_gate()
+    preflight_outputs(('TRACKER_APPEND_OPERATION.json', 'TRACKER_APPEND_RECEIPT.json',
+                       'ZENODO_PUBLIC_FILE_READBACK.json'))
     pub = confirm_live_publication(context)
     live_eligibility()
     check_sheet()
