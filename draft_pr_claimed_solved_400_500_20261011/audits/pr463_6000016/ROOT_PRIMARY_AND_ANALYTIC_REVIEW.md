@@ -74,6 +74,14 @@ for the given metric cannot be used without additional hypotheses. An older
 theorem supplying another positive metric is consistent with this control.
 The root passed this caution to the internal priority and candidate reviewers.
 
+Additional dated source check: the root visually inspected Baues–Goldman v1
+printed24–25, which displays this exact polynomial developing map and its
+smooth complete affine-torus family. The [official v1 record](https://arxiv.org/abs/math/0401257v1)
+dates it20January2004 at16:47:28UTC. Thus the older theorem chain and exact
+family were publicly available by that date, provided the application chain
+survives independent adversarial review. This is an inference from published
+components; no exact earlier printed answer or named first solver is inferred.
+
 [Delanoë primary paper](https://doi.org/10.18910/7541).
 Foreign PDFs, page images and extracts remain private. Exact source-byte
 hashes and pages inspected are recorded separately; public artifacts contain
