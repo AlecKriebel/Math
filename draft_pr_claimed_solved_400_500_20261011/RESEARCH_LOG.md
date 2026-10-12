@@ -316,3 +316,7 @@ All 26 head-pinned files match their receipt. Three independent families are aud
 ## 2026-10-12T21:56:43.253772+00:00 — PR436 mathematical checkpoint
 
 Root and two independent mechanisms support the saved counterexample. Original outputs reproduce; a separate repair keeps essential checks active under optimization and receives a fresh adversarial check. Current source-status discrepancy awaits priority comparison. Current PR40%; batch67%; zero new original attempts.
+
+- 2026-10-12T22:13:19.826496+00:00: PR436 accepted fresh repair and both independent priority reports; exact earlier negative resolution confirmed. One-field already_solved correction proposed; operations binding/fsync/reconciliation repairs under fresh mock review, no real mutation. 80% selected disposition,67% batch,0 new proof attempts.
+
+- 2026-10-12T22:16:10.061070+00:00: checkpoint67 failed during Git blob preparation before main-parent/commit/ref stages; no findings release claimed. Retry is content-addressed object preparation only. Eligibility-first operations guard added before any final research read. 80% selected disposition/67% batch.

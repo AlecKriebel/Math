@@ -1,5 +1,7 @@
 # Proposed focused verification repair
 
+The separate repair requested after the original audit implements the explicit-check alternative below. Its completed replay is in `REPAIR_REPORT.md`; this proposal remains a record of the original suggested options.
+
 Do not change any frozen original bytes as part of this review. In a subsequent verification-only revision, put this guard at the beginning of each executable, before computations and result writes:
 
 ```python

@@ -13,3 +13,15 @@ Source integrity: all 26 author files match the frozen receipt; the historical m
 ## 2026-10-12T21:56:43.253772+00:00 — mathematical verification checkpoint
 
 Main theorem passes root proof inspection and the independent algebraic/representation mechanisms. The representation family proves simple-type exhaustion from a nilpotent joint representation kernel, derives PIM vectors without source Cartan inputs, and checks actual representation products. Original normal replay reproduces all four recorded outputs; a separate explicit-check repair replaces 82 assertions and passes eight baseline runs plus ten genuine fault rejections across normal/optimized modes. A new independent adversary is reviewing that repair. The root has visually checked the exact current notebook page and all selected source files. Priority has not begun: the earlier linked solution remains unread. Current PR completion estimate40%; program67%. No original research attempt added.
+
+## 2026-10-12T21:57:49.180373+00:00 — main mathematics accepted for priority stage
+
+Root accepts the saved main counterexample after full26-file inspection, independent complete algebraic verification, and a final independent representation report. No mathematical repair remains. The original optimization defect is preserved; a separate explicit-check repair passes all18 actual baseline/fault executions and has a new reviewer in progress. This gate authorizes read-only priority assessment, not final publication. Current PR estimate50%; batch67%; zero new original proof attempts.
+
+## 2026-10-12T22:07:28.163763+00:00 — operations adversary repair
+
+Before any mutation, the new operations reviewer identified insufficient main-ancestry binding and a non-CAS branch update. Root replaced the proposed operation with one documented GraphQL expectedHeadOid atomic commit, added a direct Git-data main ancestry check and exact administrative tree/parent/payload readback. Original plan retained as v1. No remote change has occurred. Current PR estimate70%; batch67%.
+
+- 2026-10-12T22:13:19.826496+00:00: PR436 accepted fresh repair and both independent priority reports; exact earlier negative resolution confirmed. One-field already_solved correction proposed; operations binding/fsync/reconciliation repairs under fresh mock review, no real mutation. 80% selected disposition,67% batch,0 new proof attempts.
+
+- 2026-10-12T22:16:10.061070+00:00: checkpoint67 failed during Git blob preparation before main-parent/commit/ref stages; no findings release claimed. Retry is content-addressed object preparation only. Eligibility-first operations guard added before any final research read. 80% selected disposition/67% batch.
