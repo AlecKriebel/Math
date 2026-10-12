@@ -36,3 +36,11 @@ Independent math families complete PASS. Finite author/audit outputs reproduced;
 ## 2026-10-12T04:01:15.238760+00:00 — PR480 priority/disposition checkpoint
 
 Two independent priority families and fresh full-disposition adversary complete. Literal target follows from previously published geometric-conservativity and generic-model calculations. No earlier explicit recognition or exact-alpha printing was established. Root accepts qualified already_solved status repair, then immediate skip under user filter; no paper/DOI/tracker/merge/closure/comment. Original mathematics remains PASS. PR480 operational estimate95%; program estimate8%.
+
+## 2026-10-12T04:03:15.365207+00:00 — PR480 excluded after reviewed priority correction
+
+Selected row only corrected from claimed_solved to already_solved in commit a4b7a12d797d92529377f032a93968d045b9da3c, preserving exact qualifications. Readback matched. Immediately skipped: no paper, DOI, tracker entry, merge, close or comment. PR480 operational completion100%; whole-program estimate8%. Next selected claimed-solved PR:468.
+
+## 2026-10-12T04:06:46.241891+00:00 — PR468 source and independent math checkpoint
+
+Exact claimed_solved gate rechecked at head8527ccdba064bca52035fc6c8d96caa750ac9c00. Full target matches OWRp238 and NWConjecture1.3. Separate algebra and4D topology adversaries plus reproduction running with early independence. Root preliminary reconstruction finds no defect; priority not begun until math clears. PR468 disposition15%; program9%.
