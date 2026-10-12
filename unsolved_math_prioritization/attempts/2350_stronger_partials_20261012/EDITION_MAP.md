@@ -1,0 +1,21 @@
+# Narrowed editorial edition: mathematical preservation and metadata removals
+
+The accepted mathematics is unchanged. This revision reduces the proposed public metadata rather than retrying the former identity inventory. The earlier frozen proposal remains intact locally. Full proofs, substantive mathematical audits, counterexamples, hypotheses, source attribution, acceptance qualifications and mathematical old/new correction text are retained.
+
+## Exhaustive categories of changes
+
+1. Remove the former original-input identity registry. PUBLIC_DEPENDENCIES.json replaces it with hashes and sizes only for complete mathematical texts distributed in this edition and already-published dependencies. It contains no unpublished program, checker, diagnostic, manifest, seal or private-provenance identity list.
+2. Remove diagnostic output hashes and byte counts from VERIFICATION.json. Retain mathematical aggregate test counts, recorded mode agreement, constants, exact-versus-numerical distinctions and limitations. Remove private-inventory member counts and the integrity-record entry.
+3. Redact identity-only audit front matter: the original quartic candidate and freeze/provenance listing; the continuum review's unpublished-version identity; the Bose candidate/manifest/input-verification inventory; and the geometry review's unpublished-version hashes. The full mathematical audits and all countercontrols follow unchanged. Redactions are explicit in the affected documents.
+4. Replace unpublished diagnostic program filenames by descriptive roles, retaining every substantive method, test count, caveat and mathematical verification claim. Replace the quartic proof's earlier pre-publication hash reference with its already-published dependency reference.
+5. Retain all mathematical old/new correction blocks and original positional locators in QUARTIC_CORRECTION_MAP.json and BOSE_CORRECTION_MAP.json, while omitting unpublished candidate/correction-record hashes and sizes. The full Bose mathematical correction history remains; its two identity-registry headers become descriptive mathematical version labels.
+6. Replace the previous preservation inventory with a positional mathematical-preservation/redaction map. Original artifact and removed-fragment hashes, exact removed identifiers, and private locators are not distributed. Complete forward and reverse byte reconstruction is verified locally for every authored input. Exact original-to-revised fragments and integrity inventories remain local.
+7. Replace original-identity lists and stale references in ACCEPTANCE.md and README.md. Public-distribution notices now state the narrower scope and distinguish complete mathematical preservation from metadata redaction. All theorem statements, limitations, external theorem dependencies and unresolved status remain.
+8. Keep public scholarly-source attribution, URLs, version and inspection history, and permitted public-source hashes/sizes. Update only the source-record scope and the new dependency-registry reference. No source document or copied source text is added.
+9. Refresh the closed public manifest and the proposed append-only PR summary to the revised file set and public bytes. The mathematical Findings addition is unchanged. Neither a head nor an integration baseline is pinned; fresh independent edition review and separate exact-head integration review are required.
+
+## Exact mathematical preservation
+
+PRESERVATION.json gives positional coverage for every complete accepted authored input. Every byte belongs to an unchanged interval or a clearly classified editorial operation. Public redactions intentionally omit the removed identity strings and their digests. The exact local reversals recover the complete accepted originals, and the forward transforms reproduce the revised public files. The two historical mathematical corrections remain separately represented in full, so no mathematical correction is hidden as an editorial redaction.
+
+The manuscripts remain AI-assisted and unrefereed. The accepted quartic theorem is a necessary condition, not profile exclusion; the Bose four-fifths and elementary bounds concern only their stated canonical family. No unrestricted resolution, true subset sharpness, effective finite threshold, novelty or additional proof-attempt claim is introduced.
