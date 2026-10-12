@@ -312,3 +312,7 @@ PR445 completion estimate45%; batch58%. Completed concrete supported verificatio
 ## 2026-10-12T21:51:40.838559+00:00 — PR436 frozen source, audit underway
 
 All 26 head-pinned files match their receipt. Three independent families are auditing algebra, representations, and reproducibility. Preliminary optimized-mode and source-currency concerns remain open. No new proof-search attempts. Current PR estimate 10%; batch estimate 67% (8/12 dispositions).
+
+## 2026-10-12T21:56:43.253772+00:00 — PR436 mathematical checkpoint
+
+Root and two independent mechanisms support the saved counterexample. Original outputs reproduce; a separate repair keeps essential checks active under optimization and receives a fresh adversarial check. Current source-status discrepancy awaits priority comparison. Current PR40%; batch67%; zero new original attempts.
