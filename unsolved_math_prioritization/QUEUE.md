@@ -187,7 +187,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 176 | 30001413 / OWR-4209-002 | Optimal Domain Conditions for Positivity of Hinged Plates | 0.1966 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 177 | 30006161 / OWR-14299082-003 | Generic Maximal Chains on Exceptional Surfaces | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 179 | 30006231 / OWR-14299094-001 | Unique Ground-State Representability under Linear Constraints | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 179 | 30006231 / OWR-14299094-001 | Unique Ground-State Representability under Linear Constraints | 0.1963 | 5.0 | 3 | 2025 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the complete finite-dimensional PSD-pencil parameter criterion, ensemble-support criterion and explicit example separating pure from mixed uniqueness. Expanded target and infinite-dimensional extension remain unresolved; original parameter question and credited prior geometry are distinguished. 7589 author and 1259 independent controls; no historical-priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/168. |  |
 | 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 182 | 30002603 / OWR-12986-001 | Linear Segments in Optimal-Path Shape Functions | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
