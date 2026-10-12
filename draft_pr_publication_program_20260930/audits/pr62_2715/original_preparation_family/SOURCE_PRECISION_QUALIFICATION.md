@@ -1,0 +1,11 @@
+# Current source precision; originals retained
+
+The literal KP1.56 target is isotopy of the endpoint knots under ribbon concordance and isomorphic hat HFK. The argument is presented with the usual absolutely Maslov/Alexander bigraded F2 hat-HFK conventions; the literal question does not separately print a coefficient field. Other coefficient or ungraded variants are not silently certified.
+
+The dated triage in original/source_record.json LF6 says to make the map geometrically trivial. That wording is stronger than the needed target. Current interpretation requires endpoint isotopy, and never product isotopy of a chosen annulus. Original/OBSTRUCTION.md LF17 already states this precisely; LF38-40 correctly separates an algebraic inverse from a reversed ribbon movie and explains the composite-annulus warning. All original bytes are preserved.
+
+Current editorial correction: original/SOURCE_AUDIT.md LF16 lists Boninger's Pacific J. Math. 335 (2025) page range as 81-93. The [MSP author index](https://msp.org/index/ail.php?jpath=pjm&l=B) and [author bibliography](https://sites.google.com/view/joeboninger/research) both list **81-95**. This is a bibliographic correction, without changing the archived claim or asserting fresh publisher-PDF access. That PDF endpoint supplied no readable PDF text to this preparer; versioned author HTML was used for selected Section4 checks.
+
+The raw upstream report for KP-1.56 is absent. SQL stores TEXT `{}` through the missing-report default in the measured native queue.py LF56. Raw null and decoded empty object are distinct values, not contradictory classifications. Absence does not reset the authenticated historical unsolved1/5 ledger. Source readiness does not establish ROOT custody or mathematical acceptance.
+
+The first successful finite-replay captures inherited the environment and used -B only; their historical optimization/__debug__ state was not measured. They are preserved without claiming environment isolation. Separate later exact-body replays use -E -B with no -O and retain separate same-flags probes reporting optimize0, ignore_environment1 and debugtrue. These guarded runs reproduce the original bytes and narrow that environmental assumption without new mathematical credit.

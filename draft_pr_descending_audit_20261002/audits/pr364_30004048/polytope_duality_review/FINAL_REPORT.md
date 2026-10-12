@@ -1,0 +1,19 @@
+# Independent LP / weighted-duality audit
+
+The exact unordered candidate gap passes mathematical review:
+
+`|psi(13/27,14/27)-psi(14/27,13/27)| >= 1/108`.
+
+No mandatory mathematical correction was found. The boundary proof applies to all finite simple tripartite graphs with all four source degree constraints. Its integer minimum is attained by well-ordering; its rational construction proves extremal attainment on this boundary rather than assuming global infimum attainment. The missed-mass step is independently checkable as a packing LP whose max-row dual matches equal special-A weights. Both exact source and analytic assessments were sealed before cross-family exposure; complete histories are in the two seal files and RESEARCH_LOG.md.
+
+Every one of the41 target files was fully read, including four source programs, all historical snapshots, all nested certificates/manifests and the frozen earlier audit. Fresh independent copies of the three exact primary PDFs match their byte counts and SHA256. Relevant full proofs and source definitions were read; OCR inequality direction and the source seed figure were visually checked. The seed matrix is credited prior work. One-direction phi symmetry is not transferred to psi; no omitted12.2 proof or source global-attainment assertion is used in the decisive proof.
+
+All42 changed files, including QUEUE.md, bind byte-exactly between snapshot, immutable local Git blobs and fresh GitHub blob API responses. All are regular100644 Git files. All135 nested entries check. The actual history has three mathematical checkpoints, with11,18,30 target files, followed by the reviewed41-file submission. Their commit timestamps, parents and currently accessible API counterparts match. Git cannot certify the exact conversational turn count or earlier review's independence; no corresponding private transcripts were provided. Earlier branch/ref census totals and negative historical-priority assertions remain bounded self-reports, not facts established by this finite packet.
+
+The queue change is exactly one target row: queued0/5 becomes claimed_solved3/5 with the absolute gap, explicit unknown ordering/values and no novelty certification. The apparently malformed two header lines are byte-identical to the base; this inherited issue is neither a new PR change nor a failed snapshot binding. The entire queue base/head hashes and exact one-row diff are retained in the binding receipt.
+
+All four old programs return0 with empty stderr and complete byte-identical stdout:43,755 author assertions and2,552 frozen earlier-review assertions. The new independently written LP/support/packing controls pass357 exact assertions, including explicit false-inference controls for support positivity, coupled B reweighting, boundary rounding, normalization, zero middle paths and starred rotation. Generic nonattainment examples are clearly not asserted to be psi examples. Finite assertion counts remain separate from the analytic universal proof. No execution failure or corrective program sibling was needed. Complete old/fresh output streams, argv/cwd, timestamps and logical/stored program hashes are retained privately.
+
+Exact psi values, invariant minima, ordering, historical priority and novelty remain uncomputed. The two162-vertex graphs are upper certificates only. The strongest verified mathematical result is the unordered absolute universal-value gap; priority disposition belongs to ROOT's later audit. The source-route obstructions remain valid cautions but are avoided by the new boundary mechanism. No paper, external upload, release, Git mutation or contact with another individual was performed by this reviewer.
+
+Completion estimate before ROOT's public-closure review:95% of this audit family. The mathematical gap remaining in the claimed negative answer is none found; the provenance limits and the later priority gate remain explicit.

@@ -1,0 +1,13 @@
+# Independent checkpoint038 derivation
+
+Derived from the complete mutable draft before final native completion, frozen plan, or ROOT clearance existed. This early work grants no execution authority.
+
+A completion checkpoint is valid only when its starting main commit is the independently accepted original-head native merge, its exact literal payloads preserve every foreign map entry and native/problem/service file, and every executable prerequisite is fully pinned before compiling only the unchanged capture function. A fresh review and separate ROOT approval must cover the same frozen source and plan. The held-file inventory, foreign index entries and flags, foreign dirty bodies, modes, and binary diff must stay unchanged. Every selected payload and the frozen 0444 plan must match live, index and committed bodies/modes/blobs. The new commit must be a single-parent descendant and the literal remote must be checked before an expected-old push and after it. Final success must repeat selected live/index/commit checks after push.
+
+Historical checkpoint037 remains an observed outer exit 1 after a genuine successful local commit. Its separately accepted push-only recovery does not reclassify that failed operation. Receipt/control closure and any uncertain late failure must remain distinct. No automatic mutation retry is acceptable.
+
+The initial draft checks selected live/index/committed content before push, but after push it checks only foreign/held state and selected input bodies. The six maps have prepared inputs distinct from live targets; an owned-live modification after the pre-push check could evade the final receipt. ROOT was asked to repeat the existing complete selected-target verification after push. This derivation will be supplemented with concrete frozen inputs and actual native evidence before closure.
+
+## Concrete closure reconciliation
+
+2026-10-05T11:05:40.460187+00:00: The exact frozen22192198/3370ca73 inputs and actually accepted original-head merge6d59e1d satisfy the early independent obligations. The repaired postpush predicate passes21 synthetic positive/drift cases; prefix67 cases pass. Fresh complete input/held/foreign/native readback passed reviewer78886 with14 read-only Git commands, and full six-map literal/semantic audit passed81235. No central difficulty is transferred to a new unsupported claim: prior mathematical, priority, publication and native ROOT acceptances remain separately pinned prerequisites, with stated scope and original037 failure qualified. This closure does not itself execute or authorize the checkpoint. Review completion estimate100%; broader descending goal remains active.

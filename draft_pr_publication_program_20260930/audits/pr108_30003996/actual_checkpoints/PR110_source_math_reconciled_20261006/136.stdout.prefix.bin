@@ -1,0 +1,139 @@
+"""Purposeful exact unit-normal controls; no author code or floating arithmetic.
+
+Standard-library rational quadratic fields suffice for the hand-selected cases.
+Checks are explicit exceptions, so Python -O cannot disable them.
+"""
+from fractions import Fraction as F
+import json
+import os
+import sys
+
+
+class K:
+    """A rational element x+y*sqrt(d), d a fixed positive nonsquare integer."""
+    def __init__(self, d, x=0, y=0):
+        self.d, self.x, self.y = d, F(x), F(y)
+
+    def coerce(self, other):
+        if isinstance(other, K):
+            if self.d != other.d:
+                raise ValueError('Incompatible exact fields')
+            return other
+        return K(self.d, other)
+
+    def __add__(self, other):
+        other = self.coerce(other)
+        return K(self.d, self.x+other.x, self.y+other.y)
+    __radd__ = __add__
+
+    def __neg__(self):
+        return K(self.d, -self.x, -self.y)
+
+    def __sub__(self, other):
+        return self + -self.coerce(other)
+
+    def __rsub__(self, other):
+        return self.coerce(other) - self
+
+    def __mul__(self, other):
+        other = self.coerce(other)
+        return K(self.d, self.x*other.x+self.d*self.y*other.y,
+                 self.x*other.y+self.y*other.x)
+    __rmul__ = __mul__
+
+    def __truediv__(self, other):
+        other = self.coerce(other)
+        denominator = other.x*other.x-self.d*other.y*other.y
+        if not denominator:
+            raise ZeroDivisionError('Exact zero denominator')
+        return self * K(self.d, other.x/denominator, -other.y/denominator)
+
+    def __rtruediv__(self, other):
+        return self.coerce(other) / self
+
+    def __eq__(self, other):
+        other = self.coerce(other)
+        return self.x == other.x and self.y == other.y
+
+    def __pow__(self, exponent):
+        if exponent != 2:
+            raise ValueError('Only squaring used in this exact audit')
+        return self*self
+
+    def sign(self):
+        if not self.y:
+            return (self.x > 0)-(self.x < 0)
+        if not self.x:
+            return (self.y > 0)-(self.y < 0)
+        if self.x > 0 and self.y > 0:
+            return 1
+        if self.x < 0 and self.y < 0:
+            return -1
+        difference = self.x*self.x-self.d*self.y*self.y
+        if not difference:
+            return 0
+        if self.x > 0:
+            return 1 if difference > 0 else -1
+        return -1 if difference > 0 else 1
+
+    def encode(self):
+        return {'rational': str(self.x), 'sqrt_coefficient': str(self.y),
+                'radicand': self.d}
+
+
+CHECKS = 0
+NEGATIVE_CONTROLS = []
+
+
+def check(condition, label):
+    global CHECKS
+    CHECKS += 1
+    if not condition:
+        raise RuntimeError('Failed independent exact control: '+label)
+
+
+def negative(condition, label):
+    check(condition, label)
+    NEGATIVE_CONTROLS.append(label)
+
+
+def dot(x, y):
+    return x[0]*y[0]+x[1]*y[1]
+
+
+def cross(x, y):
+    return x[0]*y[1]-x[1]*y[0]
+
+
+def direct_antipedal(A, B, focal_x):
+    X = (A[0]-focal_x, A[1])
+    Y = (B[0]-focal_x, B[1])
+    determinant = cross(X, Y)
+    if determinant == 0:
+        return None
+    r2, s2 = dot(X, X), dot(Y, Y)
+    Z = ((r2*Y[1]-s2*X[1])/determinant,
+         (X[0]*s2-Y[0]*r2)/determinant)
+    check(dot(Z, X) == r2, 'direct perpendicular equation at A')
+    check(dot(Z, Y) == s2, 'direct perpendicular equation at B')
+    return Z, dot(Z, Z), determinant
+
+
+def make_case(name, a, b, c, u, v, rho, root_lambda):
+    return dict(name=name, a=F(a), b=F(b), c=F(c), u=F(u), v=F(v),
+                rho=rho, root_lambda=root_lambda)
+
+
+def verify_case(case):
+    a,b,c,u,v,rho,root = [case[k] for k in
+                         ('a','b','c','u','v','rho','root_lambda')]
+    H2 = a*a*u*u+b*b*v*v
+    lam = root*root
+    check(lam.y == 0, 'rational lambda')
+    lam = lam.x
+    kappa = b*b-lam
+    check(a >= b > 0 and c*c == a*a-b*b, 'ellipse/focal parameters')
+    check(u*u+v*v == 1, 'unit outward normal')
+    check(0 < lam < b*b, 'strict elliptical caustic range')
+    check(rho.sign() > 0 and root.sign() > 0, 'positive support and sqrt(lambda)')
+    check(rho*rho == H2-lam, 'confoca

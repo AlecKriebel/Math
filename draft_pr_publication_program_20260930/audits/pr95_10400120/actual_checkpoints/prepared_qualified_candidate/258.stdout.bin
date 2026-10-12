@@ -1,0 +1,292 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,lmodern,microtype}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\wt}{\widehat\tau}
+\title{An explicit SU(5) lens-space counterexample\ to the printed Guadagnini--Pilo conjecture}
+\author{Alec Kriebel\\Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 5, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the ordinary full SU(5) Reshetikhin--Turaev invariant at WZW level
+$k=5$, or shifted level $r=10$, the lens spaces $L(5,1)$ and $L(5,2)$
+have fundamental group $\Z/5$ but unequal nonzero magnitudes. With
+$\wt(S^3)=1$, their squared magnitudes are $3475+1550\sqrt5$ and
+$4025+1800\sqrt5$. A short exact root-lattice reduction proves the
+calculation, conditional on the established modular-category and surgery
+formulas; finite cyclotomic programs provide reproducible checks.
+This contradicts Conjecture 7.5 as printed in Ohtsuki's collection.
+Historical priority is unresolved: Takahito Kuriya's directly relevant
+preprint could not be obtained, and no firstness or new historical
+resolution is claimed. This is an unrefereed research note with extensive
+AI assistance and no conventional human peer review.
+\end{abstract}
+
+\section{Claim and conventions}
+Ohtsuki's edited collection \cite{O} prints Conjecture 7.5 on p.~474,
+attributed to Guadagnini and Pilo \cite{GP}: the absolute value of a
+nonzero quantum $G$ invariant of a closed oriented 3-manifold is
+determined by its fundamental group. The volume is nominally dated 2002
+and records publication on June 1, 2004. We refer to this printed claim,
+without asserting its present literature status. Its scope includes
+compact simple simply connected $G=\mathrm{SU}(5)$; it is not restricted
+to the SU(2) lens-space theorem in \cite{GP}.
+
+\begin{theorem}
+In the full ordinary SU(5) theory at WZW level $k=5$, shifted level
+$r=k+h^\vee=10$, let $\wt(M)=\tau(M)/\tau(S^3)$. Then
+\begin{align}
+ |\wt(L(5,1))|^2&=3475+1550\sqrt5,\label{eq:one}\\
+ |\wt(L(5,2))|^2&=4025+1800\sqrt5.\label{eq:two}
+\end{align}
+Both manifolds have fundamental group $\Z/5$. Both values are positive,
+and their difference is $550+250\sqrt5>0$. Thus the printed nonzero-magnitude
+claim fails.
+\end{theorem}
+
+We use the conventions of Hansen--Takata \cite{HT}, specifically the
+available preprint arXiv:math/0209403v2. Its final journal version has not
+been compared here. The invariant $\tau$ there has $\tau(S^3)=S_{00}>0$.
+Their $L(p,q)$ is unknot surgery with coefficient $-p/q$. A convention
+using $+p/q$ reverses orientation and conjugates the ordinary unitary
+invariant, leaving the magnitudes unchanged. The quantum-group root is
+$e^{\pi i/10}$; the renormalized coupling in Guadagnini--Pilo notation
+corresponds to shifted $r=10$, not WZW $k=5$.
+
+The full category has all dominant labels $(a_1,a_2,a_3,a_4)$ with
+$a_i\geq0$ and $\sum_i a_i\leq5$, hence $\binom94=126$ labels. No
+root-lattice restriction on those labels, projective quotient, bundle
+sector, spin choice, inserted link, or retained manifold framing is used.
+The root lattice below is a computational quotient in a formula for
+this full category. The existence and identification of the category,
+and the general RT surgery theorem, are standard imported mathematical
+inputs from \cite{HT}; we do not rebuild those foundations.
+
+\section{Exact lattice reduction}
+Realize the $A_4$ root system in $H=\{x\in\R^5:\sum_i x_i=0\}$ with
+root lattice $Y=H\cap\Z^5$, weight lattice $X=Y^*$, and
+$\rho=(2,1,0,-1,-2)$. Roots have squared length 2,
+$|\rho|^2=10$, rank is 4, and there are 10 positive roots.
+The simple-root Gram determinant is 5, so $\operatorname{vol}(Y)=\sqrt5$
+and $\operatorname{vol}(X)=1/\sqrt5$.
+
+Write $\mathcal S(q/p)=12s(q,p)$ for the Dedekind symbol. For $p>0$,
+$s(q,p)=\sum_{n=1}^{p-1}((n/p))((qn/p))$, with
+$((x))=x-\lfloor x\rfloor-1/2$ off integers and zero at integers.
+Hansen--Takata Theorem 5.1 specializes to
+\begin{align}
+\tau(L(p,q))={}&\frac{i^{10}e^{\pi i\mathcal S(q/p)}}{(10p)^2\sqrt5}
+\sum_{w\in S_5}\det(w)e^{-2\pi i\langle\rho,w\rho\rangle/(10p)}
+\sum_{\nu\in Y/pY}e^{\pi i(10q/p)|\nu|^2}
+ e^{(2\pi i/p)\langle\nu,q\rho-w\rho\rangle}.
+\label{eq:HT}
+\end{align}
+Here $\gcd(p,q)=1$ and $p\ne0$. This theorem has no coprimality
+requirement between $p$ and $r$; the coprime simplification in their
+Proposition 5.2 is inapplicable when $p=5,r=10$ and is not used.
+
+Set $p=5$. Representatives of $Y/5Y$ are
+\[
+\nu(a)=(a_1,a_2-a_1,a_3-a_2,a_4-a_3,-a_4),\quad 0\leq a_i<5.
+\]
+The simple roots are a free integral basis, so this gives all $5^4=625$
+classes. The quadratic phase in \eqref{eq:HT} is
+$e^{2\pi iq|\nu|^2}=1$. For an integral sum-zero vector $v$, character
+orthogonality gives
+\begin{equation}
+\sum_{\nu\in Y/5Y}e^{2\pi i\langle\nu,v\rangle/5}
+=\prod_{j=1}^4\sum_{a=0}^4 e^{2\pi ia(v_j-v_{j+1})/5}
+=\begin{cases}625,&v_1\equiv\cdots\equiv v_5\pmod5,\\0,&\text{otherwise.}\end{cases}
+\label{eq:char}
+\end{equation}
+The criterion is $v\in5X$, not $v\in5Y$. Since $\rho$ exhausts the
+five residues, precisely five permutations survive for each nonzero
+$q\pmod5$.
+
+Put $z=e^{2\pi i/50}$, $t=z^5=e^{\pi i/5}$, and
+\[
+B_q=\sum_{w:\ q\rho-w\rho\in5X}\det(w)z^{-\langle\rho,w\rho\rangle}.
+\]
+Table~\ref{tab:survivors} lists every survivor for $q=1,2$. Signs are
+permutation parities; dot products are elementary integer calculations.
+\begin{table}[ht]
+\centering
+\begin{tabular}{c r r r}
+\toprule
+$q$ & $w\rho$ & $\det(w)$ & $\langle\rho,w\rho\rangle$\\
+\midrule
+1 & $(2,1,0,-1,-2)$ & $+1$ & 10\\
+1 & $(1,0,-1,-2,2)$ & $+1$ & 0\\
+1 & $(0,-1,-2,2,1)$ & $+1$ & $-5$\\
+1 & $(-1,-2,2,1,0)$ & $+1$ & $-5$\\
+1 & $(-2,2,1,0,-1)$ & $+1$ & 0\\
+\midrule
+2 & $(2,0,-2,1,-1)$ & $-1$ & 5\\
+2 & $(1,-1,2,0,-2)$ & $-1$ & 5\\
+2 & $(0,-2,1,-1,2)$ & $-1$ & $-5$\\
+2 & $(-1,2,0,-2,1)$ & $-1$ & 0\\
+2 & $(-2,1,-1,2,0)$ & $-1$ & $-5$\\
+\bottomrule
+\end{tabular}
+\caption{The five Weyl survivors for each target lens space.}\label{tab:survivors}
+\end{table}
+Thus
+\begin{equation}
+B_1=t^{-2}+2+2t,\qquad B_2=-(1+2t^{-1}+2t).
+\label{eq:B}
+\end{equation}
+In the positive real embedding $t+t^{-1}=(1+\sqrt5)/2$. Consequently
+\begin{equation}
+|B_1|^2=11+2\sqrt5,\qquad |B_2|^2=9+4\sqrt5.
+\label{eq:norms}
+\end{equation}
+For the first identity, expand the norm as
+$9+4(t+t^{-1})+2(t^2+t^{-2})+2(t^3+t^{-3})$ and use
+$t^2+t^{-2}=(\sqrt5-1)/2$ and $t^3+t^{-3}=-(t^2+t^{-2})$.
+For the second, $B_2=-(2+\sqrt5)$.
+
+\section{Normalization and topology}
+At $p=1$ the quotient has one class and the Dedekind symbol is zero.
+Let
+\[
+A=\sum_{w\in S_5}\det(w)e^{-2\pi i\langle\rho,w\rho\rangle/10}.
+\]
+The Weyl denominator identity gives $A=-P$, where
+\[
+P=\prod_{j=1}^4(2\sin(\pi j/10))^{5-j}=5\sqrt5-10>0.
+\]
+Indeed $(2\sin18^\circ)(2\sin54^\circ)=1$,
+$(2\sin36^\circ)(2\sin72^\circ)=\sqrt5$, and
+$(2\sin36^\circ)^2=(5-\sqrt5)/2$. Therefore
+\begin{equation}
+ A=10-5\sqrt5,\quad |A|^2=225-100\sqrt5,\quad
+ s=S_{00}=\tau(S^3)=\frac{-A}{100\sqrt5}>0.
+\label{eq:A}
+\end{equation}
+Canceling the prefactors of \eqref{eq:HT} at $p=5$ and $p=1$ gives
+\begin{equation}
+ \wt(L(5,q))=25e^{\pi i\mathcal S(q/5)}B_q/A,
+ \qquad |\wt(L(5,q))|^2=\frac{625|B_q|^2}{225-100\sqrt5}.
+\label{eq:ratio}
+\end{equation}
+Since $(225-100\sqrt5)(225+100\sqrt5)=625$, equations
+\eqref{eq:norms} and \eqref{eq:ratio} prove \eqref{eq:one}--\eqref{eq:two}.
+The denominator is positive, for $225^2>100^2\cdot5$.
+
+For comparison with vacuum matrix words, the positive rank is
+$D=s^{-1}=100+40\sqrt5$, and $s^2=(9-4\sqrt5)/2000$.
+The ordinary normalized modular matrix is
+\[
+ S_{\lambda\mu}=-\frac1{100\sqrt5}
+ \sum_{w\in S_5}\det(w)e^{-2\pi i\langle w(\lambda+\rho),\mu+\rho\rangle/10},
+\quad
+\theta_\lambda=e^{\pi i(|\lambda+\rho|^2-|\rho|^2)/10}.
+\]
+The categorical Hopf matrix is $DS$, not $S$. The two positive surgery
+chains are $5=[5]$ and $5/2=[3,2]$, giving words
+$S\theta^5S$ and $S\theta^3S\theta^2S$. For either word $F$, the
+$S^3$-normalized magnitude is $|F_{00}|/s$, with exactly one division
+by $s$. Hansen--Takata Corollary 4.2 and Eqs.~(26)--(30), (35) supply
+this full-category normalization. Here central charge is
+$5\cdot24/10=12$, so the linear $T$ is $-\theta$ and the anomaly
+$\Delta/D=-1$. These and the signature corrections have modulus one.
+
+Replacing $q$ by $-q$ conjugates \eqref{eq:HT}: use the longest Weyl
+element, which sends $\rho$ to $-\rho$ and has sign $+1$, and
+$s(-q,5)=-s(q,5)$. Thus $q=4$ gives the same magnitude as $q=1$,
+and $q=3$ the same as $q=2$. Inverse-denominator conventions also
+exchange 2 and 3. Neither convention removes the discrepancy. A fixed
+nonzero theory-wide rescaling cannot make unequal magnitudes equal.
+
+Finally, the unknot exterior has fundamental group generated by its
+meridian $\mu$, and its preferred longitude is nullhomotopic.
+Filling at $-5/q$ kills $\mu^5$, so van Kampen gives
+$\pi_1(L(5,q))=\langle\mu\mid\mu^5=1\rangle\cong\Z/5$.
+These are connected closed oriented manifolds. No homotopy-equivalence,
+minimality, or all-rank classification assertion is needed.
+
+\section{Exact certificates and limits}
+The accompanying archive contains two full root-lattice checks using
+Python's standard library and an independent full-weight modular-word
+calculation using NumPy object arrays of arbitrary-precision integers.
+The latter enumerates all 126 labels, 120 Weyl permutations and 8,001
+symmetric matrix entries in $\Z[\zeta_{100}]$, reduced modulo
+$\Phi_{100}=x^{40}-x^{30}+x^{20}-x^{10}+1$.
+The lattice checks use $\Phi_{10}$ and $\Phi_{50}$ and enumerate all
+625 quotient representatives; the fresh $\Phi_{50}$ route also checks
+orientation, inverse-denominator, periodicity and $S^3$ boundaries.
+
+Validation uses explicit exceptions that remain active under Python
+\texttt{-O}. A manifest-bound runner records fresh child-process exit
+codes, streams, source hashes and runtime information in both modes;
+deliberately false arithmetic targets must fail in both modes. The
+historical output field \texttt{exact\_assertions=2005} in one checker
+counts its explicit finite checks; it is not a quality measure or 2,005
+independent mathematical results. Repetition in two modes does not
+double the distinct checks. Floating numbers in the fresh lattice
+output are labeled diagnostics and decide no exact identity or sign.
+The finite computations check this specialization; they do not prove
+the general modular-category theorem or establish historical priority.
+
+\section{Priority, assistance, and review}
+Takahito Kuriya's \emph{The LMO invariant and the Guadagnini--Pilo
+conjecture for lens spaces} is listed as a preprint by his Kyushu
+institutional record \cite{K}. An institutional report records an
+exact-title talk on February 21, 2003 \cite{KR}. Its full text and
+complete conclusions and hypotheses could not be obtained. We cannot
+establish that it does not already contain or circumscribe this result.
+Historical priority therefore remains unresolved. Titles, aggregator
+abstracts, later perturbative results, and bounded searches cannot
+replace that comparison. No first counterexample, exhaustive novelty
+clearance, or new historical resolution is claimed.
+
+The separate priority supplement documents the read boundaries. In
+particular, ordinary SU($N$) WZNW is explicitly spin-independent in the
+later Kubo--Yokoyama comparison \cite{KY}; their proposed background
+phases are a separate issue. Those $q=1$ tables do not establish an
+earlier instance of this target pair. We make no blanket dismissal of
+SU($N$) calculations as spin invariants.
+
+AI tools were used extensively in solving, drafting, literature
+comparison, exact reproduction, and adversarial verification. Three
+separate AI validation families checked the arithmetic, normalization,
+and root-lattice/topological argument. This note has not undergone
+conventional human peer review and is unrefereed. The author takes
+responsibility for the stated claims and qualifications. The original
+author effort was two of five substantive approaches; preparation and
+validation added no central proof-search turn.
+
+\begin{thebibliography}{9}
+\bibitem{O} T. Ohtsuki (ed.), \emph{Problems on invariants of knots and
+3-manifolds}, Geometry \& Topology Monographs \textbf{4} (nominal 2002;
+published June 1, 2004), 377--572; Conjecture 7.5, p.~474.
+\url{https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf}.
+\bibitem{GP} E. Guadagnini and L. Pilo, \emph{Three-manifold invariants
+and their relation with the fundamental group}, Commun. Math. Phys.
+\textbf{192} (1998), 47--65. DOI: \href{https://doi.org/10.1007/s002200050290}{10.1007/s002200050290}.
+Available preprint: \href{https://arxiv.org/abs/hep-th/9612090v1}{arXiv:hep-th/9612090v1}.
+\bibitem{HT} S. K. Hansen and T. Takata, \emph{Reshetikhin--Turaev
+invariants of Seifert 3-manifolds for classical simple Lie algebras,
+and their asymptotic expansions}, J. Knot Theory Ramifications
+\textbf{13}(5) (2004), 617--668. DOI:
+\href{https://doi.org/10.1142/S0218216504003342}{10.1142/S0218216504003342}.
+Formula source used here: \href{https://arxiv.org/abs/math/0209403v2}{arXiv:math/0209403v2},
+Eq.~(12), Sections 4--5, Theorem 5.1 (preprint p.~39).
+\bibitem{K} T. Kuriya, \emph{The LMO invariant and the Guadagnini--Pilo
+conjecture for lens spaces}, preprint, associated with a 2003 talk;
+full text unavailable to this work. Institutional listing:
+\url{https://www2.math.kyushu-u.ac.jp/coe/staff/staff_sub/kuriya.html}.
+\bibitem{KR} Kyushu University 21st Century COE program, institutional
+report, Kuriya activities, printed p.~121, recording the February 21,
+2003 talk. \url{https://www2.math.kyushu-u.ac.jp/coe/report/pdf3/report-6.pdf}.
+\bibitem{KY} N. Kubo and S. Yokoyama, \emph{Topological phase, spin
+Chern--Simons theory and level rank duality on lens space}, JHEP
+\textbf{04} (2022), 074. DOI:
+\href{https://doi.org/10.1007/JHEP04(2022)074}{10.1007/JHEP04(2022)074};
+\href{https://arxiv.org/abs/2108.09300v2}{arXiv:2108.09300v2}.
+\end{thebibliography}
+\end{document}

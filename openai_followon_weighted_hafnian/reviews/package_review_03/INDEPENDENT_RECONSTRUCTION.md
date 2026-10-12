@@ -1,0 +1,13 @@
+# Independent reconstruction before reading audit conclusions
+
+The original target is all explicit even-order symmetric nonnegative rational matrices, relative-error FPRAS in binary bit time, exact zeros, and TV sampling. A relative result remains dependent on an actual general simple graph FPRAS, which must be audited separately.
+
+The gadget works because creation-order acyclicity forces selected arc edges of a full split-vertex perfect matching into one source-sink path and rules out additional balanced cycle components. Removing both terminals forces only identities; removing one gives odd order. W=1 is one terminal edge and the empty residual, so signature (W,1,0,0) includes the boundary. Bit recurrence 2w+b is exact; l bits create 2l DAG vertices and 4l-2 undirected vertices, <=6l-5 edges.
+
+Global restrictions cover even internal order plus c endpoints, so c in {0,2}; every original endpoint is covered exactly once. Selected gadgets form exactly one support matching; all independent choices form its fiber of product W_e. Simple-graph ownership remains unique even for direct terminal edges, because original pairs are unique.
+
+D=product denominators has O(L) bits, W_e=p_e D/q_e has O(L) bits, and O(L) edges yield O(L^2) graph size. D^m has O(mL+1) bits. Zero support has no perfect matching exactly; positive rational hafnian >= D^-m. Exact feasibility plus replacement of a failed zero approximate count by 1 makes output zero iff true zero without affecting any successful relative estimate.
+
+Sampling uses exact feasible children and stored witnesses, preventing impossible outputs on failed count tapes. Successful relative counts normalized within alpha/(1-alpha) TV; fixed b-bit cumulative floor masses differ within j 2^-b. Adaptive histories remain valid fixed inputs for fresh independent count tapes; their failure mass is paid in the unconditional transition bound j gamma. Coupling until first mismatch and summing <=k stages and <=k^2 total children gives <=k alpha/(1-alpha)+k^2 gamma+k^2 2^-b <5eta/6. No final conditioning on success is used. Failed count outputs are finite nonnegative rationals by the actual upstream every-tape contract; runtime bounds their output length, so CDF arithmetic stays polynomial. Every fixed draw terminates. Pushforward TV contraction and fiber identity supply weighted law.
+
+No counterexample detected in these deductions. Pivotal independent checks still pending: actual upstream theorem/proof and Lean semantic scope; primary literature and honest duplication framing; implementation/reference data; clean exact README command and receipt custody; all PDF pages; exact intended file/hash identity and metadata.

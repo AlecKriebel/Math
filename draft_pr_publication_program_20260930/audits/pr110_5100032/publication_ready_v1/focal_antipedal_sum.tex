@@ -1,0 +1,255 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\title{A telescoping proof of the focal antipedal sum invariant}
+\author{Alec Kriebel\\Independent researcher\\
+  \small\href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
+\date{6 October 2026\quad---\quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+Reznik, Garcia and Koiller observed that the sums of the distances from
+the two foci of an ellipse to their respective antipedal vertices agree
+along every closed elliptic billiard orbit. We prove this equality for
+every regular closed orbit tangent to a strictly nested confocal ellipse,
+including odd primitive periods, star orbits and repeated traversals.
+The difference of the two ordinary positive antipedal distances on each
+edge is a fixed coefficient times the vertical displacement of that edge.
+Closure therefore gives the equality without a parity restriction.
+\end{abstract}
+
+\section{Statement, construction and attribution}
+Let
+\[
+ E:\ \frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ E_\lambda:\ \frac{x^2}{a^2-\lambda}
+                  +\frac{y^2}{b^2-\lambda}=1,
+ \qquad a>b>0,\quad 0<\lambda<b^2.
+\]
+Put $c=\sqrt{a^2-b^2}$ and $f_\sigma=(\sigma c,0)$ for
+$\sigma\in\{+1,-1\}$. A regular closed billiard/Poncelet orbit here is a
+cyclic list $P_1,\ldots,P_N$ on $E$, with distinct consecutive endpoints,
+whose edges are tangent to $E_\lambda$ and whose continuation at each
+vertex uses the other of its two caustic tangents. Thus immediate
+retracing is excluded. The list may self-intersect, have any admissible
+winding, or repeat a shorter orbit. Set $P_{N+1}=P_1$.
+
+For a focus $f_\sigma$, define $Q_{\sigma,i}$ as the intersection of
+the full lines through $P_i$ and $P_{i+1}$ perpendicular to
+$P_i-f_\sigma$ and $P_{i+1}-f_\sigma$, respectively. These are the
+vertices of the antipedal of the original orbit polygon about that focus.
+We use ordinary Euclidean distances
+$q_{\sigma,i}=\lVert Q_{\sigma,i}-f_\sigma\rVert$.
+
+\begin{theorem}\label{thm:main}
+Every regular closed orbit just defined has finite, strictly positive
+antipedal distances and satisfies
+\begin{equation}\label{eq:sum}
+ \sum_{i=1}^N q_{+,i}=\sum_{i=1}^N q_{-,i}.
+\end{equation}
+In particular the ratio of these two sums is $1$ for every member of
+every admitted Poncelet family.
+\end{theorem}
+
+This is the observation labelled $k_{603}$ by Reznik--Garcia--Koiller
+in \cite[\S\S3.5,3.7 and Table 7]{RGKpre} and
+\cite[\S3.7 and Table 7, p.~349]{RGKjournal}. Their table records its
+experimental discovery in May 2020 and marks its proof as unknown there.
+That dated marker is not a claim about the present literature. The
+observation and antipedal construction are theirs, and the underlying
+negative-pedal/polarity geometry is classical \cite[Arts.~121--122]{Salmon}.
+The focal sideline-height product used below is also known
+\cite[Lemma 4.2]{BT}. Central inversion already proves the equality for
+centrally paired orbits; ordinary telescoping is a familiar method.
+The contribution proposed here is the identification of the ordinary
+norm difference with a coordinate increment and the resulting full-period
+proof, in particular for odd primitive periods.
+
+Neither individual sum is asserted constant as an orbit varies. The
+claim concerns the original polygon, not the outer tangent polygon,
+pedal feet, side perimeters or signed radial lengths. Hyperbolic caustics,
+degenerate caustics and two-bounce limits are outside its hypotheses.
+
+\section{Positive antipedal distance and orientation}
+\begin{lemma}\label{lem:distance}
+For noncollinear $A,B,f$, the antipedal intersection $Q$ is unique and
+\begin{equation}\label{eq:distance}
+ \lVert Q-f\rVert=\frac{\lVert A-f\rVert\lVert B-f\rVert}{h},
+ \qquad h=\operatorname{dist}(f,\operatorname{line}(A,B))>0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Translate $f$ to zero and write $A=(r,0)$,
+$B=(s\cos\alpha,s\sin\alpha)$ with $r,s>0$ and
+$\sin\alpha\ne0$. The defining lines give
+$Q\cdot A=r^2$, $Q\cdot B=s^2$, hence
+\[
+ \lVert Q\rVert^2
+ =\frac{r^2+s^2-2rs\cos\alpha}{\sin^2\alpha}
+ =\frac{\lVert A-B\rVert^2}{\sin^2\alpha}.
+\]
+The triangle area identity gives
+$h=rs|\sin\alpha|/\lVert A-B\rVert$. Taking the positive square root
+proves \eqref{eq:distance}.
+\end{proof}
+
+The whole orbit can be oriented with the caustic on the left of each
+directed edge. Indeed, a tangent line to the strictly inner ellipse meets
+$E$ in two points, and its contact lies strictly between them. At a
+vertex the rays toward the two contact points bound a cone containing
+the caustic, so the caustic lies on opposite sides of those two directed
+rays. Reversing the incoming ray and continuing on the other tangent
+therefore preserves its side. The nonretracing rule propagates one
+consistent side throughout the orbit; reverse the list if it is the
+right side. This is a local argument and does not require a convex
+polygon or any ordering of its vertices around $E$.
+
+For such a directed edge $A B$, take its outward unit normal
+$n=(u,v)$ and tangent $t=(-v,u)$. Its equation is
+$n\cdot X=\rho$, with $u^2+v^2=1$ and $\rho>0$; the caustic and
+origin lie on the side $n\cdot X<\rho$. Put
+\begin{equation}\label{eq:K}
+ K=a^2u^2+b^2v^2,\qquad \rho^2=K-\lambda.
+\end{equation}
+The second equality is the support-function condition for tangency
+to $E_\lambda$. The chord endpoints are
+\begin{equation}\label{eq:chord}
+ A=M-\ell t,\quad B=M+\ell t,\qquad
+ M=\left(\frac{a^2\rho u}{K},\frac{b^2\rho v}{K}\right),
+ \quad \ell=\frac{ab\sqrt\lambda}{K}>0.
+\end{equation}
+To check this, substitute $M+z t$ in the outer ellipse equation:
+the linear term vanishes, the constant is $\rho^2/K$, and the
+quadratic coefficient is $K/(a^2b^2)$. Thus $z=\pm\ell$.
+
+The two focal heights are
+\begin{equation}\label{eq:heights}
+ h_\sigma=\rho-\sigma cu,
+ \qquad h_+h_-=\rho^2-c^2u^2=b^2-\lambda>0.
+\end{equation}
+Their sum is $2\rho>0$, so both heights are strictly positive.
+They are therefore the ordinary perpendicular distances of the foci
+to the line, not signed substitutes. Equivalently, both foci lie strictly
+inside $E_\lambda$, since $c^2<a^2-\lambda$.
+No edge is focal, and Lemma~\ref{lem:distance} applies to both foci.
+
+\section{The edge identity and closure}
+For a point $(x,y)$ on $E$, its distance to $f_\sigma$ is
+$a-\sigma cx/a$: squaring verifies the identity, and this expression
+is at least $a-c>0$. From \eqref{eq:chord},
+\[
+ x_A+x_B=\frac{2a^2\rho u}{K},\qquad
+ x_Ax_B=\frac{a^2(\rho^2-b^2v^2)}{K}.
+\]
+Multiplying the two positive endpoint distances gives
+\begin{equation}\label{eq:product}
+ R_\sigma:=\lVert A-f_\sigma\rVert\lVert B-f_\sigma\rVert
+ =\frac{a^2h_\sigma^2+b^2\lambda}{K}.
+\end{equation}
+For completeness, the product before simplification is
+$a^2-\sigma c(x_A+x_B)+(c^2/a^2)x_Ax_B$; inserting the preceding
+two expressions and $\rho^2=K-\lambda$ yields \eqref{eq:product}.
+Lemma~\ref{lem:distance} now gives positive distances
+\begin{equation}\label{eq:q}
+ q_\sigma=\frac{1}{K}
+     \left(a^2h_\sigma+\frac{b^2\lambda}{h_\sigma}\right).
+\end{equation}
+Since $h_+-h_-=-2cu$ and
+$h_+^{-1}-h_-^{-1}=2cu/(b^2-\lambda)$, subtraction gives
+\begin{equation}\label{eq:difference}
+ q_+-q_-=\frac{2cu}{K}
+      \left(-a^2+\frac{b^2\lambda}{b^2-\lambda}\right).
+\end{equation}
+But \eqref{eq:chord} also gives
+$y_B-y_A=2ab\sqrt\lambda\,u/K$. Hence
+\begin{equation}\label{eq:coboundary}
+ \boxed{q_+-q_-=\Gamma(y_B-y_A)},\qquad
+ \Gamma=\frac{c}{ab\sqrt\lambda}
+       \left(-a^2+\frac{b^2\lambda}{b^2-\lambda}\right).
+\end{equation}
+All denominators are positive. No division by $u$ or by the vertical
+displacement occurs, so horizontal chords are included. The coefficient
+vanishes at $\lambda=a^2b^2/(a^2+b^2)$ and changes sign there;
+neither fact affects positivity of $q_\sigma$.
+Formula \eqref{eq:coboundary} uses the chosen caustic-on-left orientation.
+Reversing endpoints leaves $q_+-q_-$ unchanged but negates $y_B-y_A$;
+in the reverse orientation its displacement coefficient is $-\Gamma$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use the consistent left orientation above. The same $\lambda$ and
+$\Gamma$ apply to every edge. Summing \eqref{eq:coboundary} gives
+\[
+ \sum_i(q_{+,i}-q_{-,i})
+ =\Gamma\sum_i(y_{i+1}-y_i)=0
+\]
+by closure. Equations \eqref{eq:heights} and \eqref{eq:distance} show
+that every summand is positive and finite, so the denominator of the
+ratio is nonzero. No parity condition is used. Repeated traversal simply
+repeats the summands. Reversing an edge leaves its two antipedal
+intersections unchanged, hence reversing the orbit preserves the equality.
+\end{proof}
+
+\section{Verification and status}
+The accompanying standard-library Python verifier independently solves
+the two antipedal line equations on rational chords. It checks the norm,
+positive focal heights, confocal tangency and the edge identity exactly;
+it also covers horizontal chords, zero and opposite signs of $\Gamma$,
+reversal and a closed repeated four-cycle. Deliberately incorrect
+coefficient, height, norm sign and manuscript-hash controls must fail.
+All guards remain active under Python optimization. Its recorded counts
+are in the support files. These finite computations supplement the
+written proof for all real parameters and every admitted period.
+
+A bounded primary-source and mechanism audit completed on 6 October 2026
+located no earlier full covering proof. In particular, focal inverse
+perimeters \cite{RGR} concern different summands, and the complete
+journal final \cite{GKR}, compared with its precursor, provides spatial
+averages for other observables rather than this finite antipedal norm
+difference. This is not an absolute-first or continued-open-status
+guarantee. The support audit summary retains the explicit final-book
+versus author-source boundary, unread historical and experimental
+materials, and finite search/version limits.
+
+\paragraph{Disclosure.}
+AI tools were used extensively in solving, deriving, drafting, literature
+checking, code generation, verification and adversarial checking.
+The independent checks described in the support package include AI
+agents and are not conventional human peer review. This manuscript is
+unrefereed and has not received conventional human peer review.
+The manuscript and original support files are licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; cited
+third-party works retain their own terms and are not redistributed.
+
+\begin{thebibliography}{9}
+\bibitem{RGKpre} D. Reznik, R. Garcia and J. Koiller,
+\emph{Eighty New Invariants of N-Periodics in the Elliptic Billiard},
+arXiv:2004.12497v11 (29 October 2020),
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11}.
+\bibitem{RGKjournal} D. Reznik, R. Garcia and J. Koiller,
+\emph{Fifty New Invariants of N-Periodics in the Elliptic Billiard},
+Arnold Mathematical Journal 7 (2021), 341--355,
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{Salmon} G. Salmon,
+\emph{A Treatise on the Higher Plane Curves}, 3rd ed.,
+Hodges, Foster, and Figgis, Dublin, 1879, Arts.~121--122, pp.~105--107.
+\bibitem{BT} M. Bialy and S. Tabachnikov,
+\emph{Dan Reznik's identities and more},
+European Journal of Mathematics 8 (2022), 1341--1354,
+\href{https://doi.org/10.1007/s40879-020-00428-7}{doi:10.1007/s40879-020-00428-7}.
+\bibitem{RGR} P. Roitman, R. Garcia and D. Reznik,
+\emph{New Invariants of Poncelet--Jacobi Bicentric Polygons},
+Arnold Mathematical Journal 7 (2021), 619--637,
+\href{https://doi.org/10.1007/s40598-021-00188-6}{doi:10.1007/s40598-021-00188-6}.
+\bibitem{GKR} R. Garcia, J. Koiller and D. Reznik,
+\emph{Estimating Elliptic Billiard Invariants with Spatial Integrals},
+Journal of Dynamical and Control Systems 29 (2023), 757--767
+(online 10 August 2022),
+\href{https://doi.org/10.1007/s10883-022-09608-y}{doi:10.1007/s10883-022-09608-y}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,16 @@
+--- v1/verification/run_all.py
++++ v2/verification/run_all.py
+@@ -30,7 +30,12 @@
+         q=Path(e["file"])
+         require(not q.is_absolute() and ".." not in q.parts,"unsafe payload path")
+         p=ROOT/q
+-        require(p.is_file() and not p.is_symlink(),"missing/linked payload: "+str(q))
++        component=ROOT
++        for part in q.parts:
++            component=component/part
++            require(not component.is_symlink(),
++                    "symlinked payload path component: "+str(q)+" ["+part+"]")
++        require(p.is_file(),"missing payload: "+str(q))
+         require(sha(p)==e["sha256"] and p.stat().st_size==e["bytes"],
+                 "payload hash mismatch: "+str(q))
+     for name in ("run_all.py",)+SCRIPTS:

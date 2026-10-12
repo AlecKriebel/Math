@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+"""Exact controls distinguish quantities in proposed prior-theorem transfers.
+
+These do not prove novelty or the all-N theorem. No author verifier is imported.
+Assertions are deliberately avoided so normal and optimized runs are effective.
+"""
+from fractions import Fraction as F
+from pathlib import Path
+import datetime, hashlib, json, os, sys
+
+count = 0
+def require(condition, label):
+    global count
+    if not condition:
+        raise ValueError(label)
+    count += 1
+
+def sub(x, y): return tuple(a-b for a,b in zip(x,y))
+def dot(x, y): return sum((a*b for a,b in zip(x,y)),F(0))
+def solve(a,b):
+    determinant = a[0]*b[1]-a[1]*b[0]
+    require(determinant != 0, 'finite antipedal vertex')
+    aa,bb=dot(a,a),dot(b,b)
+    return ((aa*b[1]-bb*a[1])/determinant,
+            (a[0]*bb-b[0]*aa)/determinant)
+
+vertices=[(F(5),F(0)),(F(0),F(3)),(F(-5),F(0)),(F(0),F(-3))]
+focus=(F(4),F(0)); rows=[]
+for i,A in enumerate(vertices):
+    B=vertices[(i+1)%4]
+    a,b=sub(A,focus),sub(B,focus); Q=solve(a,b)
+    require(dot(Q,a)==dot(a,a),'antipedal first line')
+    require(dot(Q,b)==dot(b,b),'antipedal second line')
+    require(A[0]*A[0]/25+A[1]*A[1]/9==1,'outer ellipse incidence')
+    # The normal is unnormalized: tangent discriminant is zero at lambda225/34.
+    n=(B[1]-A[1],A[0]-B[0]); rho=dot(n,A); lam=F(225,34)
+    require(rho*rho==(25-lam)*n[0]*n[0]+(9-lam)*n[1]*n[1],
+            'same nested confocal caustic')
+    length2=dot(sub(B,A),sub(B,A))
+    ia=tuple(t/dot(a,a) for t in a); ib=tuple(t/dot(b,b) for t in b)
+    inverse_side2=dot(sub(ib,ia),sub(ib,ia))
+    require(inverse_side2==length2/(dot(a,a)*dot(b,b)),
+            'classical inversion sidelength formula')
+    require(dot(Q,Q)==F(850,9),'constant diamond radial antipedal norm squared')
+    rows.append({'edge':i,'q_squared':str(dot(Q,Q)),
+                 'inverted_side_squared':str(inverse_side2),
+                 'q2_over_inverted_side2':str(dot(Q,Q)/inverse_side2)})
+require(rows[0]['inverted_side_squared']!=rows[1]['inverted_side_squared'],
+        'inverted sides vary while the antipedal radial norms agree')
+require(rows[0]['q2_over_inverted_side2']!=rows[1]['q2_over_inverted_side2'],
+        'no edge-independent scale identifies these quantities')
+
+# A separate fixed-caustic chord control for lambda5. Exact quadratic field values
+# are represented as rational pairs A+B*sqrt(5), with positive roots certified below.
+def add(x,y):return (x[0]+y[0],x[1]+y[1])
+def mul(x,y):return (x[0]*y[0]+5*x[1]*y[1],x[0]*y[1]+x[1]*y[0])
+def neg(x):return(-x[0],-x[1])
+def inv(x):
+    denominator=x[0]*x[0]-5*x[1]*x[1]
+    require(denominator!=0,'quadratic-field denominator')
+    return (x[0]/denominator,-x[1]/denominator)
+def scalar(t):return(F(t),F(0))
+def positive(x):
+    a,b=x
+    if b==0:return a>0
+    if a>=0 and b>0:return True
+    if a<=0 and b<0:return False
+    if b>0:return 5*b*b>a*a
+    return a*a>5*b*b
+
+hplus=(F(-4),F(2)); hminus=(F(4),F(2))
+require(positive(hplus) and positive(hminus),'both vertical focal heights positive')
+require(mul(hplus,hminus)==scalar(4),'height product b2-lambda')
+qplus=add(hplus,mul(scalar(F(9,5)),inv(hplus)))
+qminus=add(hminus,mul(scalar(F(9,5)),inv(hminus)))
+require(qplus==(F(-11,5),F(29,10)),'vertical qplus')
+require(qminus==(F(11,5),F(29,10)),'vertical qminus')
+require(positive(qplus) and positive(qminus),'ordinary positive radial norms')
+vertical_q_sum=add(qplus,qminus)
+require(vertical_q_sum==(F(0),F(29,5)),'vertical two-focus norm sum')
+horizontal_sum=F(145,9)
+horizontal_side2=F(500,9); vertical_side2=F(36,5)
+hratio2=horizontal_sum*horizontal_sum/horizontal_side2
+vratio2=mul(vertical_q_sum,vertical_q_sum)[0]/vertical_side2
+require(hratio2==F(841,180),'horizontal radial sum over chord squared')
+require(vratio2==F(841,36),'vertical radial sum over chord squared')
+require(hratio2!=vratio2,'no fixed scale identifies radial sum with billiard side')
+
+output={'schema':'pr110-classical-priority-quantity-transfer-controls/v1',
+        'actual_operator_PID':os.getpid(),
+        'UTC':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'optimization':sys.flags.optimize,'checks':count,
+        'diamond':{'a':5,'b':3,'c':4,'lambda':'225/34','edges':rows},
+        'lambda5_control':{'horizontal_q_sum':str(horizontal_sum),
+          'vertical_q_sum_A_plus_B_sqrt5':[str(t) for t in vertical_q_sum],
+          'horizontal_ratio_squared':str(hratio2),'vertical_ratio_squared':str(vratio2)},
+        'limits':['Distinguishes displayed geometric quantities and simplest transfers.',
+                  'Does not disprove every possible theorem consequence.',
+                  'Does not prove mathematical novelty or all-N k603.']}
+print(json.dumps(output,indent=2,sort_keys=True))

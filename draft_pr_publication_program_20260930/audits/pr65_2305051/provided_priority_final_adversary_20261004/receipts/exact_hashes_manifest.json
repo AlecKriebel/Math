@@ -1,0 +1,22 @@
+{
+  "pid": 7952,
+  "argv": [
+    "python3",
+    "-c",
+    "from pathlib import Path; import hashlib,json; root=Path(\"/Users/alec/.cache/codex-pr65-priority-20261004\"); paths=[root/\"provided_primary_sources_20261004\"/(x+\".pdf\") for x in [\"hayman2019\",\"piranian1966\",\"duren1966\"]]+[root/\"aan1999.pdf\",root/\"aan1999.txt\",root/\"hayman2018v2.pdf\",root/\"hayman2018v2.txt\"]; print(json.dumps([{ \"path\":str(p),\"bytes\":p.stat().st_size,\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths],indent=2)); base=Path(\"draft_pr_publication_program_20260930/audits/pr65_2305051/attributed_prior_result_preparation_20261004\"); m=json.loads((base/\"MANIFEST.json\").read_text()); print(\"ROOT PINS\",[{\"path\":x[\"path\"],\"matches\":hashlib.sha256((base/x[\"path\"]).read_bytes()).hexdigest()==x[\"sha256\"] and (base/x[\"path\"]).stat().st_size==x[\"bytes\"]} for x in m[\"files\"]])"
+  ],
+  "cwd": "/Users/alec/Documents/Math",
+  "start_utc": "2026-10-04T15:43:30.414586+00:00",
+  "end_utc": "2026-10-04T15:43:30.469654+00:00",
+  "exit_code": 0,
+  "stdout": {
+    "private_path": "/Users/alec/.cache/codex-pr65-priority-20261004/provided_priority_final_adversary_20261004/exact_hashes_manifest.stdout",
+    "bytes": 1650,
+    "sha256": "d0ae9d0e0bb9d3ed3f247a958232470f6275d5af1a86a1227d7c07fddf539fce"
+  },
+  "stderr": {
+    "private_path": "/Users/alec/.cache/codex-pr65-priority-20261004/provided_priority_final_adversary_20261004/exact_hashes_manifest.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "scope": "all partial oriented complete graphs through four vertices",
+  "counts": {
+    "partial_graphs": 761,
+    "global_completions": 4166,
+    "local_global_expectation_equalities": 761
+  },
+  "dependence_examples": [
+    {
+      "description": "positive dependence: same missing edge closes both paths",
+      "fixed_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "triples": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "marginal_probabilities": [
+        "1/2",
+        "1/2"
+      ],
+      "joint_probability": "1/2",
+      "product_of_marginals": "1/4"
+    },
+    {
+      "description": "negative dependence: opposite orientations close the two paths",
+      "fixed_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "triples": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          2,
+          3
+        ]
+      ],
+      "marginal_probabilities": [
+        "1/2",
+        "1/2"
+      ],
+      "joint_probability": "0",
+      "product_of_marginals": "1/4"
+    }
+  ],
+  "script_sha256": "23aefb1c004fad813f9dcb1af7d83e25784e9c0406915de0431fa3f51fd83af9",
+  "limitation": "Examples show dependence is real; finite exhaustive tests support the universal expectation derivation."
+}

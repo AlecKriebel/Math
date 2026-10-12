@@ -1,0 +1,105 @@
+{
+  "schema": "pr108-v3-fresh-independent-static-adversary/v1",
+  "UTC": "2026-10-06T07:29:26.336552+00:00",
+  "actual_operator_PID": 18280,
+  "review_scope": "Sealed exact five-core static/offline review only; independent criteria frozen before code and old verdicts.",
+  "input_output_manifest_sha256": "c8dd6e401fe64a57d048f5420c47e3afea3b9269649948f098dc645ccdcbe8e4",
+  "input_core_family_sha256": "69fcd90828ddf416353c939c24fe4928a0ef1d4d4766c120926cb9c308a753df",
+  "input_manifested_count": 91,
+  "input_actual_count": 93,
+  "input_program_pins": {
+    "bounded_process.py": {
+      "bytes": 6934,
+      "sha256": "82bc40b58843d8d0d6848e7170b4959b7c409015060414a44703309a1849aed5"
+    },
+    "launch_review_bundle.sh": {
+      "bytes": 732,
+      "sha256": "b35d9128cb441d30a6496466f2ba915fd7229c24e16c652467743f5d7e1bbeff"
+    },
+    "native_assess_worker.py": {
+      "bytes": 8936,
+      "sha256": "fbc26896542b3799d7d0482b5c5960d26fd4ea6129b7b7d3757a30b57bef848e"
+    },
+    "prepare_review_bundle.py": {
+      "bytes": 39171,
+      "sha256": "5132eadb223dd52e27236115599f31c76a5a1fd260909fe20ec0b366c84f7e9b"
+    },
+    "v3_guards.py": {
+      "bytes": 33603,
+      "sha256": "e1b354f5e5d3412f743a2f8804d39129df5cd0ffcfe5c0605661bec25698a82e"
+    }
+  },
+  "exact_code_static_gate_clean": false,
+  "required_findings": [
+    {
+      "id": "F09",
+      "severity": "required",
+      "title": "Derived worker resource policy is not checked against immutable reviewed choices",
+      "locations": [
+        "native_assess_worker.py:49",
+        "native_assess_worker.py:74",
+        "native_assess_worker.py:80",
+        "prepare_review_bundle.py:336",
+        "prepare_review_bundle.py:343",
+        "prepare_review_bundle.py:345"
+      ],
+      "trigger": "A concurrent or manual edit to WORKER_CONTROL.json after parent construction but before worker startup changes its worker_policy while execution manifest and final gate stay unchanged.",
+      "mechanism": "Worker validates policy bounds from control.worker_policy but never compares those values to execution.effective.worker_policy. Parent accepts worker success using outcome, return flag, PID and execution-input SHA without checking requested_resource_policy or enforced limit readbacks. A valid CPU90 control therefore passes the exact worker policy fragment and exact parent acceptance predicate with a reviewed CPU2 policy and unchanged manifest binding.",
+      "normal_and_optimized_reproduced": true,
+      "counterexample_actual_PIDs": [
+        16907,
+        16908
+      ],
+      "counterexample_scope": "Pure extracted exact-code guard fragments and synthetic successful worker-result dictionaries. No actual prepare, execute, assess, resource setup, config/gate creation or service operation.",
+      "repair": "Require the worker control policy to equal execution.effective.worker_policy before resource setup; independently check requested policy and actual CPU/FSIZE/NOFILE readbacks against immutable choices before parent accepts success. Revalidate or derive the remaining worker control choices from the reviewed manifest/authenticated native inputs; include a mismatching-control regression normally and under optimization.",
+      "not_claimed": "No evidence of any real concurrent edit, native run or compromised host. Arbitrary host-level binary replacement is outside this review."
+    }
+  ],
+  "optional_findings": [],
+  "static_audit_completion_percent": 100,
+  "corrected_helper_readiness_toward_future_configuration_estimate_percent": 85,
+  "F01_status": "closed in static receipt/guard scope; actual immutable receipts accepted",
+  "F02_status": "canonical manifest/program/source/gate bindings addressed; F09 derived-control correspondence remains",
+  "F03_status": "closed in pure scope;180 independent matrix cases pass",
+  "F04_status": "capacity/process advisory-memory mechanisms addressed in static scope; F09 policy readback correspondence remains; no capacity/workload clearance",
+  "F05_status": "closed in static/pure scope; actual15-file original map/body/tree/QUEUE2/5/empty prior verified",
+  "F06_status": "closed in pure scope;1600 exact native predicate cases and actual baseline model pass",
+  "F07_status": "closed; actual immutable Sheetv2 accepted unchanged with authorized blank B",
+  "F08_status": "closed within startup/role environment/private config metadata scope; independent sentinel/local imports fixtures pass",
+  "actual_immutable_sheet_receipt_accepted_without_rewrite": true,
+  "actual_publication_receipt_and_packet_accepted_without_rewrite": true,
+  "tests": {
+    "normal": {
+      "successful": true,
+      "test_count": 35,
+      "PID": 15129
+    },
+    "optimized": {
+      "successful": true,
+      "test_count": 35,
+      "PID": 15256
+    },
+    "independent_csv_cases_per_mode": 180,
+    "exact_native_predicate_cases_per_mode": 1600,
+    "separate_exact_control_counterexample_PIDs": [
+      16907,
+      16908
+    ]
+  },
+  "first_failed_fixture_runs_preserved": "superseded_fixture_oracle_setup (reviewer omitted native is_v2 variable; source under review unchanged)",
+  "native_baseline_parent": "04a66906a97293b9c89495fda7bec0727e62f51b",
+  "observed_main_parent": "fb1eadba14d56b9f49409e31533242ac1b400e6b",
+  "native_baseline_unchanged_at_read": true,
+  "actual_publication_tracker_completed_separately_authenticated_by_root": true,
+  "publication_package_R3_required": false,
+  "new_central_proof_search_turns": 0,
+  "actual_native_prepare_assess_export_executions": 0,
+  "actual_service_operations": 0,
+  "private_credential_contents_read_or_disclosed": false,
+  "all_review_writes_confined_to_new_own_folder": true,
+  "future_immutable_configuration_clearance": false,
+  "actual_native_execution_or_export_or_merge_clearance": false,
+  "capacity_clearance": false,
+  "publication_permission_inferred": false,
+  "remaining_gap": "Repair F09 and commission fresh exact-code review. Then separately review actual immutable configuration, current exact capacity with >=64MiB future-commit reserve and unchanged headroom/runtime reserves, fresh gates and runtime metadata; after commissioning independently validate actual candidate/DIFF/readbacks. Completed mathematics, paperR2 and publication/tracker remain complete."
+}

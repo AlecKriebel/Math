@@ -1,0 +1,32 @@
+# Independent priority audit for problem 30004048
+
+Work scope: source-first priority review; no external-person communication, Git or PR mutation, installs, paper, upload, or tracker changes.
+
+2026-10-03 20:00:11 UTC: Began audit. First read was the routing SOURCE_MANIFEST.json only. Candidate hypothesis supplied by parent: universal finite-tripartite biconstrained psi is asymmetric; rational boundary formula uses a minimum unweighted maximum row degree over positively rational weighted incidence templates. Initial discovery estimate 5%; workflow estimate 2%. No novelty conclusion yet.
+
+Bootstrap commands, literal command text, cwd /Users/alec/Documents/Math, default zsh shell, exit 0:
+- `rg --files -g SOURCE_MANIFEST.json /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr364_30004048`: sole stdout line was `/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr364_30004048/snapshot/unsolved_math_prioritization/attempts/30004048/SOURCE_MANIFEST.json` plus newline; stderr empty.
+- `cat /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr364_30004048/snapshot/unsolved_math_prioritization/attempts/30004048/SOURCE_MANIFEST.json`: routing manifest fully read; its independent source identities are rechecked below. stderr empty.
+- `cat /Users/alec/.codex/plugins/cache/openai-primary-runtime/pdf/26.904.11930/skills/pdf/SKILL.md`: PDF skill fully read; stderr empty. Skill requires visual inspection; read-only source work requires no authoring marker. User prohibition on installs takes precedence over optional dependency installation.
+
+All subsequent research scripts and API captures record exact argv/cwd or API arguments, UTC retrieval time, full streams, and byte/SHA-256 identities privately. Bootstrap reads are routing/skill setup, not source-verifier evidence.
+
+2026-10-03 20:08 UTC: Primary source definitions, published2.1–2.3/4/12 and figure/open remark checked. Weighted graph framework and Figure1 are old; source12.2 addresses only minimal-value ψ. Discovery estimate45%; workflow35%. Hompe2019 thesis not publicly located;2022 Waterloo master's thesis is distinct.
+
+2026-10-03 20:17 UTC: Published p28 explicitly states no proof of ψ asymmetry;6.5 supplies differing upper bounds only. OpenAlex's sole citing item for archived Hompe is the joint paper. Discovery estimate55%; workflow48%. Continue indirect theorem/proof checks; citation absence is not novelty certification.
+
+2026-10-03 20:24:26 UTC: Sealed independent source-first conclusion, SHA256560271d0ccfac4f9d0d3a77bc2de1f171b5d9caa639a4684d9fb1da18d68f5a2. Discovery estimate75%; workflow70%. No equivalent earlier result identified in bounded inspected primary corpus; inaccessible2019 thesis remains gap. First candidate-note read began only after this seal. Archived Hompev2 recovered; whole-text diff fromv1 changes date/version only. New2024 rainbow additive theorem and2024 distant-domination proofs inspected; neither matches all four tripartite degree conditions and universal objective.
+
+Whole-output capture repair: the large author/index read and broad locator were initially displayed/truncated by a tool-output limit. They were replayed read-only into exact private stdout/stderr byte files with literal argv,cwd,exit and SHA256 metadata. Failed fitz probe, a mis-suffixed reader argument, and an unavailable assumed rg executable path are retained as failures, not passes. No installs were attempted.
+
+2026-10-03 20:27 UTC: Completed full text reads of all 41 frozen candidate targets after the independent seal. Matrix transcription matches exactly. No source attribution/scope correction found. Prior candidate source search was much narrower; PRIOR_GATE is an internal attempt gate, not historical priority evidence. Discovery/priority estimate85%; workflow90%.
+
+2026-10-03 20:37:44 UTC: Completed public report, source identities, exact query coverage and post-seal comparison. Exact count64queries in16search calls plus2source-navigation calls. Source and near-miss read scopes explicitly distinguish complete proofs from relevant-section reads. The DOI of the corrected short rainbow-cycle paper was checked against its primary first page as10.37236/10418. Metadata-shape inspection initially failed on a differently named timestamp field and was corrected; this setup failure supplies no mathematical evidence. Current discovery/priority estimate85%; workflow95%. Historical novelty remains uncertified; inaccessible2019Princeton senior-thesis text is the principal specific coverage gap.
+
+The private COMMAND_STREAM_INDEX.json preserves legacy tool-reported decoded combined output verbatim and labels its limits: native stdout/stderr separation is unavailable for those historical tool captures. It does not invent empty stderr or relabel them as native bytes. Exact native stdout/stderr files separately bind both replayed initially truncated reads and extraction subprocesses. The planned final read-only checker will receive exact separate native whole-stream capture. No candidate mathematical verifier was executed as part of this priority audit.
+
+Closure scripts and coverage artifacts were sent to root for full reading before manifest creation/checker execution. This review performs no paper, upload, tracker, Git, ref, index, PR, install or outside-person communication action.
+
+2026-10-03 20:39:03 UTC: Root fully read the initial integrity checker, manifest builder, capture wrapper/config, both independent comparison notes, complete query coverage and source identities; source/priority framing passed. Root requested stricter namespace closure. Updated scripts reject all symlinks and unexpected public directories, compare exact relative-path exclusions and private directory topology, and guard one-shot closure. Final runs use Python -B. Root renewed read is pending. Discovery/priority85%; workflow98%.
+
+Final checkpoint plan: upon authorized root renewed read, build preseal manifests exactly once, run the read-only integrity checker with exact native stdout/stderr capture, and bind manifests plus all excluded capture files in FINAL_SEAL.json. The checker validates the preseal namespace while FINAL_SEAL.json is absent. The subsequent seal records a postseal artifact closure; it does not retroactively claim that the checker inspected its own later seal or stream files. Completion estimates will be recorded in that seal, with historical novelty still uncertified.

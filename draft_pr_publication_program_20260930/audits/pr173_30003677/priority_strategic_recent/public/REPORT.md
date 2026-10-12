@@ -1,0 +1,89 @@
+# Adversarial priority audit: strategic degree selection and recent disclosures
+
+Problem 30003677 / OWR-15962-003; PR173; supplied original head `eb68ee2ecda39a8ec2748796d716c7a7598b7bc6`.
+
+## Verdict and exact limit of the finding
+
+No verified prior theorem was identified in this bounded family audit that already proves the candidate's full combination: a fixed unbounded degree law with finite second moment and minimum degree at least two; degree-only threshold seeds selected before graph matching; vanishing initial vertex and stub fractions; diverging seed count and minimum seed degree; an arbitrary fixed speed disadvantage against a uniformly selected fixed-degree root; and near-total occupation by some deterministic sublogarithmic time.
+
+This is a **negative retrieval result, not a finding of exclusive priority or independent discovery**. The exact finite-variance degree-selected conclusion remains a plausible narrow extension of established local exploration machinery in the sources inspected. Priority is unestablished. The broader phenomenon that a sufficiently numerous sparse weak initial population defeats a faster fixed-size competitor is already rigorously proved by Antunovic–Dekel–Mossel–Peres (ADMP). Near-total final victory itself is also old in their regular/uniform-seed regime. Those aspects cannot be presented as discoveries of this candidate.
+
+The original source asks only whether the weak type can capture a positive fraction. A previously proved positive-fraction result satisfying the source's high-versus-low-degree model would already answer that question, even if it lacked near-total occupation, diverging-degree schedules, or a time refinement. The absence of such a theorem in the inspected sources does not demonstrate that none exists.
+
+## Claim reconstructed before prior-art reading
+
+The first substantive seal predates all external primary-body comparisons. The two scientific inputs at that point were the repaired candidate and original source record. The separate `first_derivation.md` records the actual ray/ball estimate and diagonal mechanism, rather than an independence declaration alone. Input hashes, executable provenance, UTC, and the exact six-file initial inventory were delivered externally to the parent after all six files were made mode0444.
+
+Here is the substantive reduction independently reconstructed. For fixed threshold k, the size-biased degree ray from a uniform test vertex hits a seed within R steps except with probability `(1-p_k)^R`, where `p_k=P(D*>=k)>0`. Minimum degree two permits continuation at every step. Reversing the route from that seed, the weak traversal takes at most R independent exponential edge times; its probability of exceeding T is at most `R/(lambda_1 T)`.
+
+The actual fast infection lies inside the unopposed fast FPP ball. A weak path must avoid that whole ball through T, not merely beat the fast endpoint arrival time. Finite second moment makes `nu=E[D*−1]` finite. The expected number of generation-r fast rings by T is bounded by `d_0 nu^(r−1)(lambda_2 T)^r/r!`, so fixed-time exploration is nonexplosive. With full incident-half-edge cutoffs, the ray and fast ball are disjoint with probability tending to one. Consequently
+
+`limsup_n P(U_n not weak by T) <= (1-p_k)^R + R/(lambda_1 T)`.
+
+For each fixed k the right side can be made arbitrarily small. Choose thresholds k_j increasing, finite R_j,T_j giving small error, then convergence cutoffs N_j with `log N_j>=jT_j` and `N_j P(D>=k_j)>=4j^2`. Freezing parameters before taking n large, then letting j(n) increase slowly, yields sublogarithmic times, diverging seed count, vanishing vertex/stub fractions, and near-total weak occupation by the uniform-test-vertex expectation identity and Markov's inequality. This timing is existential; it is not a quantitative spreading-rate estimate.
+
+This audit found no first-principles failure in that mechanism. It is a priority audit rather than a substitute for the separate full-proof verification. The argument does not prove victory from one hub, a fixed number of hubs, a prescribed polynomial budget, or a competitor chosen after graph/weight inspection. If degrees below two occupy a substantial part of the law, an infinite forward ray and near-total giant occupancy can fail. Infinite-variance explosive theorems cannot replace the finite-time nonexplosion step.
+
+## The strongest older theorem
+
+The complete ADMP primary body was obtained, and its model, admissibility definitions, and complete main theorem statements were read on PDF pages1–9; the ambiguous formula on page6 was also rendered and visually inspected. [ADMP, arXiv:1109.2575v2](https://arxiv.org/pdf/1109.2575) fixes a random d-regular graph, d>=3. Definitions2.1–2.3 allow uniform disjoint initial sets or a pre-grown initial cluster with a negligible uniform center. Theorem2.6 takes fixed B0 and R0 tending to infinity with R0/N tending to zero.
+
+Write beta for the faster blue rate and rho for the slower red rate. Choose `R0=N^a`, with `1-rho/beta<a<1`. Then `(N/R0)^(beta/rho)/N` tends to zero. The theorem gives convergence of `B_fin/(N/R0)^(beta/rho)` to a finite Gamma-scaled law. Hence `B_fin/N` tends to zero and red occupies almost all vertices. Both initial vertex and stub fractions vanish because degrees are fixed.
+
+The exact gap is the graph and starting-set law: fixed regular degree supplies neither a genuinely high-versus-low degree pair nor diverging seed degrees; admissibility does not authorize all threshold-selected vertices in a heterogeneous degree law. Section2.1 explicitly explains that arbitrary initial configurations can invalidate its conclusions. Its homogeneous stub-growth formulas cannot be asserted for the candidate merely by replacing dR0 with an initial high-degree stub total.
+
+This is the nearest rigorous prior match. It makes the general seed-number advantage and near-total final victory established background. It leaves the heterogeneous, degree-only threshold extension and its very slow deterministic schedule outside the stated theorem.
+
+## Original source and revised finite-variance paper
+
+The complete Deijfen contribution in [OWR57/2017](https://ems.press/content/serial-article-files/46721), printed3442–3443 (PDF16–17), was read. Its last paragraph allows initial numbers growing with n and vertices chosen by degree. The report front identifies the workshop as10–16December2017. The source record's conflicting 2018/2019 report labels are not used as mathematical or chronological evidence.
+
+The original [ADJ preprint](https://arxiv.org/pdf/1711.02902) and [author-hosted revised body](https://www2.math.uu.se/~svantejs/papers/sj325.pdf) were both obtained. The latter is dated8November2017, revised3January2019. Assumptions(A1)–(A2) require convergence of empirical degree law and second moments, every degree at least two, and positive mass above two. Theorem1.1 has two uniform starts: equal rates yield two positive random fractions, unequal rates give the slower type a vanishing fraction. The fixed-initial-population remark does not license a growing degree-threshold set. Section5 still separately asks about growing and degree-selected starts.
+
+Revised Section2's fixed-time coupling and subsequent slow diagonal time are real mechanism overlap. They are established tools deserving credit. The extra ordered ray, its positive degree-mark hitting probability, protection from the single fast ball, and a threshold/time/resource diagonal are the extension that must be checked and situated. Citing Section2 does not make the full growing-seed result a previously stated ADJ theorem.
+
+## Competing epidemics: a real model match with an unresolved rigor gap
+
+[Joel Miller, arXiv:1210.4511](https://arxiv.org/pdf/1210.4511), posted16October2012 and published2013, has type-specific transmission and recovery rates on a static configuration graph and permanent cross-immunity. Setting both recovery rates to zero matches irreversible Markov SI competition. Its degree-dependent susceptible initialization `S(k,t0)` can represent pure degree-threshold seeding; the appendix's prohibited example infects selected hubs' partners as well, which is a different dependence on edges. It would be incorrect to dismiss Miller solely for considering epidemics or degree bias.
+
+The actual obstruction is theorem strength. The derivation assumes deterministic aggregate spread; page2 explicitly does not apply the equations while either disease has only a small number of infections. The cited exact-limit proof is for a single disease. Appendix pages5–7 and the main analysis provide a population ODE and early-growth balance, with simulation comparison and approximate regime thresholds. They do not state/prove the required stochastic two-type LLN against one fixed-degree root for all finite-second-moment laws, nor the growing-threshold diagonal. A rigorous transfer would need that missing uniform local limit or protection argument. This route supplies partial prior mechanism evidence, not verified theorem-level pre-emption.
+
+[Karrer–Newman, arXiv:1105.3424](https://arxiv.org/pdf/1105.3424), posted17May2011, uses concurrent Reed–Frost SIR epidemics: per-step transmission probability, a deterministic infectious period of one step, and possible failed transmissions. Different step lengths control speeds. This is not exponential per-edge irreversible FPP. Its percolation/phase analysis therefore supplies neither the exact model reduction nor degree-only vanishing-density theorem required here.
+
+## Influential vertices and strategic seeding
+
+The complete author-hosted [Bharathi–Kempe–Salek2007 primary paper](https://david-kempe.com/publications/viral-competitive.pdf) was read. Its directed cascade has edge activation probabilities and exponential activation delays; delays are edge-specific without the candidate's unequal type-specific rate families. Thus it has a closer formal overlap than a purely discrete threshold model. But Theorems1–2 concern approximation to a best response and aggregate price of competition, while Theorem3 concerns a one-player tree algorithm. They do not bound a particular weak player's final fraction in the candidate's random ensemble. A best-response approximation theorem cannot prove a degree-only threshold strategy succeeds without an independent large-optimum and strategy-specific argument.
+
+The primary [Choosing Optimal Seed Nodes in Competitive Contagion](https://pmc.ncbi.nlm.nih.gov/articles/PMC7931913/) body was read through its model, algorithm, experiments, and conclusion. It compares few influential seeds with many less influential ones on finite network datasets. Section3/Algorithm1 allow conversion from one product to another and use discrete update probabilities/competitive measures. The results are empirical, use equal rates in the centrality comparisons, and do not provide the irreversible two-type FPP asymptotic claim. Degree heuristics and simulation success here are not rigorous finite-variance pre-emption.
+
+Two attempted transfers are blocked: substituting seed stub totals into fixed-regular ADMP formulas, and inferring degree-threshold victory from influence-maximization approximation/aggregate-welfare bounds. Each imports the central unsupported heterogeneous-competition or strategy-specific success claim. Reopen only with a rigorous new coupling, applicable limit theorem, or published statement.
+
+## Follow-on citations and recent near matches
+
+A current OpenAlex DOI record and citing-work query identified two follow-ons. Index coverage is incomplete and is not a proof that these are the only citations. Both complete primary PDFs were obtained and their full model/assumption/theorem statements inspected.
+
+[Deijfen–van der Hofstad–Sfragara, arXiv:2204.04125](https://arxiv.org/pdf/2204.04125), posted8April2022, Theorem1.1 assumes a fixed power-law degree distribution with exponent tau in(1,2), hence infinite mean. Corollary1.2 genuinely includes a growing uniform initial population against a fixed one. Theorem1.3 permits an n-dependent upper truncation, but retains the underlying infinite-mean power-law scaling; it does not turn this into a fixed law satisfying the candidate's finite second moment. It is an important older growing-seed positive/near-total result with incompatible degree assumptions.
+
+[Van der Hofstad, arXiv:2307.09911](https://arxiv.org/pdf/2307.09911), posted19July2023 and listed by the index in2026, Theorem1.1 has tau in(2,3), infinite variance, and at least one explosive age-dependent branching process. It permits general passage-time distributions. Remark1.2 discusses uniform edge-end starts; these are a specific degree bias, not arbitrary degree-selected threshold populations. Finite-variance exponential FPP is nonexplosive, so neither the theorem nor that remark covers the target law.
+
+[Ahlberg–Deijfen–Sfragara, arXiv:2607.07589](https://arxiv.org/pdf/2607.07589), posted8July2026, proves a cone-angle survival criterion in Z2 with equal-strength competitors and a common passage metric, conditional on the specified tangent direction of the asymptotic shape. It concerns a fixed origin against an infinite cone and unbounded survival, not sparse high-degree seeds on finite configuration graphs.
+
+[Ian Meng Si, arXiv:2608.24837](https://arxiv.org/pdf/2608.24837), posted25August2026, has strategic starts for two independent constant-total-jump-rate random walks. Its Section1 permits later traversal through sites already owned by the opponent. Its path equilibria, Brownian scaling and multi-hub mixed supports concern expected first-visitor ownership games. Those mechanisms differ from per-edge branching spread with irreversible blocking. The full stated model and main theorem statements, not the title, establish the exclusion.
+
+## Exact recent same-project disclosure and chronology
+
+The GitHub PR API currently identifies PR173 as open, with head exactly the supplied hash. It reports `created_at=2026-09-30T13:24:37Z` and `updated_at=2026-09-30T13:25:56Z`. The raw [candidate at that immutable head](https://raw.githubusercontent.com/AlecKriebel/Math/eb68ee2ecda39a8ec2748796d716c7a7598b7bc6/unsolved_math_prioritization/attempts/30003677/CANDIDATE.md) was obtained and read in full:16137bytes, SHA256`588cc7063ba7e44bddd7fefafac7369d467ad52e70effd304a69d3dca95ba783`.
+
+That body already states the same full target theorem, resource claims, protected-ray argument, and deterministic diagonal. The repaired candidate has more explicit nonexplosion/frontier/clock justification in Section4, but no new target theorem in this comparison. This is an exact current public same-project content match, not independent third-party pre-emption. The provider PR creation timestamp does not establish that the repository was public then. This audit obtained no historical public-access archive or independent-discovery evidence and draws no publication-date conclusion from Git author time.
+
+Zenodo API exact phrase queries for competing-first-passage wording and the candidate title returned zero; a structured percolation/high-degree query returned only an unrelated snow record. A broad unquoted query produced an uninformative very large result and was not used as a negative search. The first100 current GitHub release records contained no candidate-specific release in the filtered metadata. These are bounded retrieval observations, not evidence that no differently titled, unindexed, private, withdrawn, or independently dated disclosure exists.
+
+## Checkable artifacts, access limits, and publication boundary
+
+`SOURCE_ACCESS_LEDGER.json` records source URLs, acquisition UTC, exact retained body sizes/hashes, primary dates, reading scope, extracts/renders, runtime hashes, and unavailable routes. The initial Python TLS route to the revised ADJ PDF failed; system curl subsequently obtained it with TLS enabled. APS's Miller accepted-manuscript route and the institutional winner-but-one route returned403; complete arXiv bodies supplied the substantive comparison. The initial quoted Zenodo request failed400 and successful smaller structured requests are separately retained. The first routing-only web search response was not retained verbatim; its exact provider-body hash is unavailable. No theorem claim is based on that response, and this limitation is not silently reconstructed away.
+
+No scientific simulation, custom verifier, or executable theorem test was used in this family. The proof reconstruction and reduction calculations are mathematical prose/formulas available in the public report and first derivation. Operational extraction/manifest scripts are not scientific evidence; no normal/optimized/negative test receipt is claimed. This avoids presenting file hashing or simulations as verification of the stochastic limit.
+
+All downloaded primary bodies, API bodies/headers, extracts, page renders, and private input copies are excluded from publication. Only the exact own-artifact allowlist is safe to publish. Private paths in ledgers/manifests are archive locators and hashes, not public replay dependencies. The final seal inventories every retained file except its own mathematically impossible selfhash; its exact size/hash is supplied externally to the parent, completing the noncircular recursive inventory. Everything retained is mode0444. No outreach, prepared outreach, candidate edit, repository/index/ref mutation, PR action, upload, tracker edit, commit, or push occurred.
+
+Completion estimate:100% of this specified bounded approach-family audit. The unresolved discovery/priority gap remains: establish a genuinely applicable prior theorem or broader historical search, and obtain independent public chronology if claiming priority. No exclusive-priority promotion is warranted by this audit alone.

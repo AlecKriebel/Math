@@ -1,0 +1,6 @@
+# Research log —4900006
+
+- 2026-09-30 09:37 UTC: Exact-source/prior-attempt gates. Recovered primary local-exponent definitions and later global formulation; original thesis unavailable. Lorenz-specific and typical/chaotic variants must remain separate. Completion0%.
+- 09:39 UTC: Approach1/5: built a product of bistable radial oscillators with irrational frequency ratio; an aperiodic saddle torus has larger local dimension than axis periodic orbits. Added a strong stable coordinate to ensure strict volume contraction and a proper lower-dimensional global attractor. Candidate70%.
+- 09:44 UTC: Approach2/5: replaced polynomial radial speed with a bounded real-analytic rational speed, yielding a complete flow in both time directions. Proved the compact global attractor exactly and classified every local spectrum and periodic orbit. Both pointwise and fixed-global-index conventions give the same aperiodic maximizer; no limit/supremum interchange used. Candidate95%.
+- 09:47 UTC: Frozen literal-unrestricted counterexample with10,024exact controls. Author proof100%; historical/source scope hold and independent review remain. No Lorenz-specific, chaotic/transitive or generic-system claim. Inherited native runtime unchanged, exact model identifier unavailable; no novelty claim.

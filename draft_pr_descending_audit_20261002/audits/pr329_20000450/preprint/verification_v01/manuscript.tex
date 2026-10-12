@@ -1,0 +1,425 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.92in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,array,booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\ord}{\operatorname{ord}}
+\title{Full 5-torsion of the regular-pentagon quintic pencil}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 4, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We compute all twenty-five geometric fifth-torsion points of the genus-one
+normalization of the regular-pentagon quintic pencil asked about in
+McCallum's Question 17 in the AIM workshop problem list on rational and
+integral points. For a fixed equation normalization over $K=\Q(\sqrt5)$,
+we give a cubic model, both birational maps, a degree-ten polynomial and
+both ordinate branches for the twenty points outside the known infinity
+subgroup. The complete division field is
+$K(\sqrt{5+2\sqrt5},\zeta_5,\sqrt[5]{\lambda+\phi^5})$,
+where $\phi=(1+\sqrt5)/2$. Its degree is four or twenty, with the exact
+splitting criterion and Galois action specified. The formulas include
+every elliptic normalization, including the allowed cuspidal plane
+member. The method uses classical Tate normal form, division-polynomial
+theory and Fisher's full-level cover. A reproducible verification
+supplement accompanies this unrefereed, extensively AI-assisted note.
+\end{abstract}
+
+\section{The pencil and the answer}
+The original question concerns the normalization of a pencil formed by
+the five side lines of a regular pentagon and the square of its
+circumcircle equation \cite[Question 17, p.~51]{aim}. The source already
+observes the five-point infinity subgroup. We compute the other twenty
+points and the extension data as well. We fix coordinates, scaling and
+origin explicitly; changing the scaling changes the numerical pencil
+parameter. We make no first-priority claim. The universal modular and
+division-polynomial ingredients below are classical.
+
+Put
+\[
+r=\sqrt5,\quad K=\Q(r),\quad \phi=(1+r)/2,\quad
+c=\phi^5=(11+5r)/2,\quad d=5+2r,\quad \delta^2=d.
+\]
+Let $Q=X^2+Y^2-T^2$ and
+\begin{equation}\label{pentagon}
+P=2(X^5-10X^3Y^2+5XY^4)+5\phi(X^2+Y^2)^2T
+ -5\phi^3(X^2+Y^2)T^3+cT^5.
+\end{equation}
+The projective pencil is $\Gamma_\lambda:P+\lambda TQ^2=0$.
+The factor $T$ is the homogenization of the affine degree-four term.
+Let $E_\lambda$ denote its smooth projective normalization, with origin
+$O=[0:1:0]$.
+
+\begin{theorem}\label{main}
+In characteristic zero the finite members have a geometrically integral
+genus-one normalization exactly when
+\begin{equation}\label{allowed}
+\lambda\notin\{0,-5r,-c\}.
+\end{equation}
+For every such member, equations \eqref{tate-map} and
+\eqref{residual-table}--\eqref{ordinates}, together with the four points
+\eqref{marked} and the origin, compute all $25$ geometric fifth-torsion
+points. For $\lambda\in K$ satisfying \eqref{allowed}, choose a primitive
+fifth root $\zeta$ and $\theta$ with $\theta^5=\lambda+c$. Then
+\begin{equation}\label{field}
+K(E_\lambda[5])=K(\delta,\zeta,\theta).
+\end{equation}
+This has degree $4$ when $\lambda+c\in K^{\times5}$ and degree $20$
+otherwise. The respective Galois groups are $C_2\times C_2$ and
+$D_{10}\times C_2$, where $D_{10}$ has order ten. Moreover
+\begin{equation}\label{rational}
+E_\lambda(K)[5]=0,\qquad
+E_\lambda(K(\delta))[5]\cong\mathbb Z/5\mathbb Z,
+\end{equation}
+the latter subgroup being the five infinity points. Generically,
+\eqref{field} holds over $K(\lambda)$ and has degree twenty.
+\end{theorem}
+
+The question's remarks about twists, local conditions and nonregular or
+star polygons are separate variants. We do not assert a
+Tate--Shafarevich construction or solve those variants. This specified
+model has the rational origin $O$.
+
+\section{Normalization and the exact elliptic range}
+To check that \eqref{pentagon} is the side product, set $Z=X+iY$,
+$W=X-iY$ and choose $\zeta=e^{2\pi i/5}$. The factors
+$Z+\zeta^{2j+1}W-(1+\zeta)\zeta^jT$, for $0\le j<5$, vanish on
+successive unit-circle vertices. Their product is
+\[
+Z^5+W^5+5\phi Z^2W^2T-5\phi^3ZWT^3+cT^5=P.
+\]
+Thus this is the required regular pentagon, with a fixed nonzero scaling.
+
+In the chart $T=1$, write the equation as $AY^4+BY^2+C=0$, where
+\begin{align*}
+A&=10X+5\phi+\lambda,\\
+B&=-20X^3+2(5\phi+\lambda)X^2-5\phi^3-2\lambda,\\
+C&=2X^5+(5\phi+\lambda)X^4-(5\phi^3+2\lambda)X^2+c+\lambda.
+\end{align*}
+With $h=4X^2+2X-1$, $a=40+20r+8\lambda$, $b=a+5$, direct expansion gives
+\begin{equation}\label{conic}
+B^2-4AC=h^2(20X^2-aX+b),\quad
+V=\frac{2AY^2+B}{h},\quad t=V-2rX,\quad
+X=\frac{b-t^2}{a+4rt}.
+\end{equation}
+Put $\alpha=1-r/5$, $\gamma=2r/5$, $m=5-2r$, $z=t+d$, $s=z+\alpha\lambda$,
+and $w=20Y(z+\gamma\lambda)/z$. Define
+\begin{align*}
+F(z)={}&z^3-((3+r)\lambda+40+20r)z^2\\
+ &+((60+36r)\lambda+900+400r)z
+ +(48+16r)\lambda^2+(500+220r)\lambda.
+\end{align*}
+Substitution in \eqref{conic} gives
+\begin{equation}\label{double-cover}
+Y^2=\frac{mz^2F(z)}{400(z+\gamma\lambda)^2(z+\alpha\lambda)},
+\qquad w^2=\frac{mF(s-\alpha\lambda)}s.
+\end{equation}
+Set
+\begin{align}
+a_0&=5-2r,& a_1&=(-26+10r)\lambda-20r,\notag\\
+a_2&=(42-86r/5)\lambda^2+(-100+100r)\lambda+500+200r,\notag\\
+a_3&=(-112+48r)\lambda^2(\lambda+5r)/5.\label{coefficients}
+\end{align}
+The coordinates $\xi=a_3/s$, $\eta=\xi w$ yield the monic cubic
+\begin{equation}\label{cubic}
+W_\lambda:\quad \eta^2=\xi^3+a_2\xi^2+a_1a_3\xi+a_0a_3^2.
+\end{equation}
+The inverse map is
+\begin{equation}\label{inverse}
+s=a_3/\xi,\quad z=s-\alpha\lambda,\quad t=z-d,\quad
+X=\frac{b-t^2}{a+4rt},\quad
+Y=\frac{\eta z}{20\xi(z+\gamma\lambda)}.
+\end{equation}
+These are inverse function-field maps. For example, with
+$G=AY^4+BY^2+C$ and the forward value of $t$, the exact identity
+\[
+b-t^2-X(a+4rt)=-4AG/h^2
+\]
+proves the recovered $X$ is unchanged; $Y$ cancels literally. Conversely
+\eqref{cubic} recovers the conic branch in \eqref{double-cover} and hence
+the same $t,\xi,\eta$. These fractions specify dense open charts; at
+poles their unique extensions between smooth projective normalizations
+are understood.
+
+Here are the identities establishing the global, rather than selected
+component, normalization:
+\begin{align}
+a^2-80b&=64\lambda(\lambda+5r),\notag\\
+F(-\alpha\lambda)&=(-16/5+16r/25)\lambda^2(\lambda+5r),\notag\\
+\disc(F)&=(24064+10752r)\lambda(\lambda+5r)^3(\lambda+c),\notag\\
+\Delta_W&=2^{24}(161-72r)\lambda^5(\lambda+5r)^5(\lambda+c).
+\label{discriminants}
+\end{align}
+Over an algebraic closure, the conic square root in \eqref{conic} is
+nontrivial for $\lambda(\lambda+5r)\ne0$. Its field is rational in $t$.
+Under \eqref{allowed}, the remaining square root in
+\eqref{double-cover} has precisely four odd branch points: the three
+distinct roots of $F$ and $s=0$. Thus the original quartic in $Y$ is
+irreducible over the algebraic closure of $K$, and Riemann--Hurwitz gives
+genus one. This also proves that \eqref{cubic} normalizes the whole
+plane curve.
+
+At $\lambda=0$ the curve is five side lines. At $\lambda=-5r$,
+\eqref{pentagon} is the same line-product expression with $\phi$
+replaced by $(1-r)/2$, again five lines. At $\lambda=-c$ the conic is
+nonsingular and $F$ has exactly one double root and no triple root; the
+gcd in the $s$-coordinate is $s-1-3r/5$. Removing its square leaves two
+odd branch points, giving genus zero. The infinite pencil member is
+$TQ^2=0$. By contrast, at $\lambda=-(25+10r)/4$ the five plane vertex
+nodes become cusps but \eqref{discriminants} is nonzero, so this member
+is included in the elliptic range.
+
+At infinity on \eqref{cubic}, $\ord_O(\xi)=-2$, $\ord_O(\eta)=-3$,
+so $s$ vanishes to order two and $w$ has a simple pole. In
+\eqref{inverse}, $z=-\alpha\lambda$, $z+\gamma\lambda=(\gamma-\alpha)\lambda$
+and $a+4rt=4(3-r)\lambda$ are nonzero. Therefore $Y$ has a simple pole
+and $X=-(5\phi+\lambda)/10$ is finite: the image is $[0:1:0]$.
+Its plane $X$ partial is ten, so it is smooth. Thus the origins agree.
+
+\section{The actual Tate twist and all the torsion points}
+Define
+\begin{equation}\label{parameters}
+\beta=\frac{(11-5r)\lambda}{2(\lambda+5r)},\qquad
+k=\frac{4(\lambda+5r)}r,\qquad q=dk^2.
+\end{equation}
+The Tate equation \cite[Lemma 1.1 and (2), p.~172]{fisher} is
+\begin{equation}\label{tate}
+D_\beta:\quad y^2+(1-\beta)xy-\beta y=x^3-\beta x^2,
+\qquad \Delta_\beta=\beta^5(\beta^2-11\beta-1).
+\end{equation}
+The following is an origin-preserving equation isomorphism over
+$K(\delta)$, valid on every allowed fiber:
+\begin{equation}\label{tate-map}
+\xi=q(x-\beta),\qquad
+\eta=(k\delta)^3\left(y+\frac{(1-\beta)x-\beta}{2}\right).
+\end{equation}
+Indeed, put
+\begin{equation}\label{branch}
+T_\beta(x)=4x^3+(\beta^2-6\beta+1)x^2+2(\beta^2-\beta)x+\beta^2.
+\end{equation}
+The right-hand side of \eqref{cubic} at $\xi=q(x-\beta)$ is
+$q^3T_\beta(x)/4$, and $(k\delta)^6=q^3$.
+This verifies the quadratic twist, including its sign, rather than just
+a $j$-invariant equality. No extra exclusion at $j=0$ or $1728$ occurs.
+
+The known nonzero points on $D_\beta$ are
+\begin{equation}\label{marked}
+(0,0),\quad(0,\beta),\quad(\beta,0),\quad(\beta,\beta^2).
+\end{equation}
+For $P_0=(0,0)$ the tangent is horizontal; the chord law gives
+$2P_0=(\beta,\beta^2)$ and $3P_0=(\beta,0)=-2P_0$, proving exact order
+five. The other points are its nonzero multiples.
+
+Let $R_\beta(x)=\sum_{j=0}^{10}r_jx^j$ with the following coefficients:
+\begin{equation}\label{residual-table}
+\begin{array}{c|l}
+j&r_j\\\hline
+10&5\\
+9&5(\beta^2-5\beta+1)\\
+8&\beta^4-7\beta^3+44\beta^2-38\beta+1\\
+7&\beta(\beta^4+3\beta^3-26\beta^2+127\beta-9)\\
+6&\beta^2(\beta^4+3\beta^3+19\beta^2-248\beta+36)\\
+5&\beta^3(\beta^4+3\beta^3-71\beta^2+322\beta-84)\\
+4&\beta^4(\beta^4-12\beta^3+94\beta^2-293\beta+126)\\
+3&5\beta^5(\beta^3-10\beta^2+36\beta-25)\\
+2&5\beta^6(2\beta^2-13\beta+16)\\
+1&10\beta^7(\beta-3)\\
+0&5\beta^8.
+\end{array}
+\end{equation}
+For every root $x$ take both ordinates
+\begin{equation}\label{ordinates}
+y=\frac{-((1-\beta)x-\beta)\pm\sqrt{T_\beta(x)}}2.
+\end{equation}
+Then apply \eqref{tate-map} and, if desired, \eqref{inverse}.
+
+\begin{lemma}\label{complete}
+The ten roots of $R_\beta$ and the two choices in \eqref{ordinates}
+are distinct on every allowed fiber and give exactly the twenty
+fifth-torsion points outside \eqref{marked} and the origin.
+\end{lemma}
+\begin{proof}
+Put $b_2=\beta^2-6\beta+1$, $b_4=\beta^2-\beta$, $b_6=\beta^2$,
+$b_8=-\beta^3$. The classical division polynomials give
+\begin{align*}
+\psi_3&=3x^4+b_2x^3+3b_4x^2+3b_6x+b_8,\\
+H_6&=2x^6+b_2x^5+5b_4x^4+10b_6x^3+10b_8x^2
+ +(b_2b_8-b_4b_6)x+b_4b_8-b_6^2,\\
+\psi_5&=T_\beta^2H_6-\psi_3^3=x(x-\beta)R_\beta.
+\end{align*}
+These identities can also be derived directly from the chord law on
+$v^2=f(x)$: writing $x_2=x(2P)$, $x_3=x(3P)$ gives
+$\psi_3=4f(x-x_2)$, $H_6=16f^2v(2P)/v(P)$ and
+$\psi_5=4f\psi_3^2(x_2-x_3)$. The supplement performs that independent
+generic calculation and checks each coefficient in \eqref{residual-table}.
+The exact resultants and evaluations are
+\[
+\Res_x(\psi_5,T_\beta)=\Delta_\beta^6,\quad
+\Res_x(\psi_5,\psi_3)=\Delta_\beta^8,\quad
+R_\beta(0)=5\beta^8,\quad R_\beta(\beta)=5\beta^{12}.
+\]
+For a finite point with $\psi_5=0$ these nonzero resultants justify
+the chord denominators and imply $x(2P)=x(3P)$. Equality $2P=3P$
+would imply $P=O$, impossible, so $3P=-2P$ and $5P=O$.
+Conversely a nonzero fifth-torsion point has those denominators nonzero
+and satisfies this equation. In characteristic zero $[5]$ is separable
+of degree 25 \cite[sections 5.5--5.6]{sutherland}; hence its kernel has
+25 distinct points. Negation pairs the24 nonzero points into twelve
+distinct abscissae. Thus $\psi_5$ has twelve simple roots, and the
+resultant with $T_\beta$ makes both ordinate signs distinct. Removing
+the two marked abscissae leaves exactly the asserted twenty points.
+\end{proof}
+
+There is no additional inverse-chart exclusion for these twenty points.
+After \eqref{tate-map}, direct substitution gives
+\[
+z+\gamma\lambda=(\gamma-\alpha)\lambda\frac{x}{x-\beta},
+\qquad a+4rt=4r(z+\gamma\lambda).
+\]
+Thus the poles $\xi=0$ and $z+\gamma\lambda=0$ occur only at the two
+known abscissae, which are not roots of $R_\beta$. The five infinity
+points themselves have $X/Y=0,\pm\sqrt{5+2r},\pm\sqrt{5-2r}$.
+They are smooth, and rotation by 72 degrees preserves the pencil and
+cycles them. Its action on the normalization is an order-five
+translation, since the origin-fixing automorphism group in
+characteristic zero has no element of order five. They therefore form
+the order-five subgroup in \eqref{rational}, in agreement with the
+source's infinity observation.
+
+\section{The full division field and specialization}
+We specify the modular input; the infinity line or a semisimplification
+alone would not determine this field. Choose $\zeta$ with
+$1+\zeta+\zeta^{-1}=\phi$. Over a field containing $\zeta$, the Tate
+curve with marked $P_0$ has five choices of $Q_0$ satisfying
+$e_5(P_0,Q_0)=\zeta$, namely $Q_0+jP_0$. These form the finite etale
+degree-five full-level cover of the marked Tate parameter line away
+from its cusps. An elliptic automorphism fixing a point of order at
+least four is trivial \cite[Lemma 1.1]{fisher}; thus the cover is fine.
+Fisher's full-level description \cite[section 2 and Lemma 3.4,
+p.~194]{fisher} gives its parameter map
+\[
+\beta=\tau\frac{f(\tau)}{g(\tau)},\quad
+f=\tau^4+3\tau^3+4\tau^2+2\tau+1,\quad
+g=\tau^4-2\tau^3+4\tau^2-3\tau+1.
+\]
+With $\varepsilon(\tau)=(\phi\tau+1)/(\tau-\phi)$ and
+$\iota(v)=(cv+1)/(v-c)$, both transformations are involutions and
+the exact identities are
+\begin{equation}\label{kummer}
+\tau f(\tau)/g(\tau)=\iota(\varepsilon(\tau)^5),\qquad
+\iota(\beta)=-\frac1{\lambda+c}.
+\end{equation}
+Consequently the full-level cover is $u^5=-1/(\lambda+c)$, with
+$u=\varepsilon(\tau)$. This identifies every allowed specialization,
+not merely a generic extension: both covers are the normalization of
+the same function-field cover over the smooth cusp-complement base,
+and both are finite etale there. The fiber is exactly the choices of
+the complementary basis vector, including split fibers and the
+unmarked exceptional $j$ values. No generic irreducibility assertion
+is imposed on every specialization.
+
+Write $a=\lambda+c\ne0$. If $\theta^5=a$, then $u=-1/\theta$ satisfies
+$u^5=-1/a$. Thus the two radical fields coincide. For a fixed
+identification of the Kummer group, the classes satisfy
+$[-1/a]=[a]^{-1}$, rather than being equal as nontrivial fixed classes;
+the inversion of generator or coordinate must be stated.
+
+Let $L=K(\delta,\zeta)$. The fine-cover interpretation and
+\eqref{tate-map} give $L(E_\lambda[5])=L(\theta)$ in both directions:
+a cover point supplies a basis and a basis determines its cover point.
+The image of $P_0$ has
+\[
+\xi_{P_0}=-q\beta\in K,\qquad
+\eta_{P_0}=-k^3d\delta\beta/2.
+\]
+The latter has a nonzero $K$ coefficient, so the full torsion field
+contains $\delta$. Nondegeneracy of the Weil pairing supplies
+$\zeta$ \cite[Theorem 23.29]{pairing}. Hence it already contains $L$,
+proving \eqref{field}.
+
+For completeness, $M=K(\delta)$ is quadratic because the norm of $d$
+to $\Q$ is five, not a rational square. It is real, while
+$K(\zeta)/K$ is imaginary quadratic; hence $[L:K]=4$.
+If $v\in L$ and $v^5=a\in K^*$, then
+$N_{L/K}(v)^5=a^4$, so $(a/N_{L/K}(v))^5=a$. Thus $a$ becomes a
+fifth power in $L$ exactly when it is one in $K$. Kummer theory now
+gives degrees 4 or 20. In the nonsplit case $K(\zeta,\theta)/K$ has
+group $D_{10}$: a rotation multiplies $\theta$ by $\zeta$ and the
+involution fixing the real fifth root inverts $\zeta$. Its unique
+quadratic subfield is $K(\zeta)$, distinct from $M$, so adjoining
+$\delta$ gives $D_{10}\times C_2$. The same proof works generically;
+the valuation of $\lambda+c$ at $\lambda=-c$ is one, so it is not a
+fifth power in $K(\lambda)$.
+
+The independent involution changing $\delta$ and fixing the Tate
+torsion field acts by $-I$ under \eqref{tate-map}. Therefore there is
+no nonzero $K$-rational fifth torsion. Over the real field $M$ the
+known subgroup exists and $E(\mathbb R)[5]$ has exactly five elements,
+so it is the entire $M$-rational subgroup. Finally, choosing the
+infinity generator as the first basis vector and adjusting the second
+to be anti-invariant under complex conjugation gives the matrices
+\[
+\sigma_\delta\mapsto-I,\qquad
+\sigma_\zeta\mapsto\begin{pmatrix}1&0\\0&-1\end{pmatrix},\qquad
+\sigma_5\mapsto\begin{pmatrix}1&1\\0&1\end{pmatrix}.
+\]
+The nonzero transvection is normalized by choosing its generator. In
+the split degree-four case it is omitted. These matrices give the
+full extension, with the basis and generator choices made explicit.
+
+\section{Verification and research status}
+The accompanying package supplies exact symbolic geometry and
+generic chord-law checks, independent finite-field group-law
+enumerations, the arithmetic field controls, and deliberate mutants.
+Universal proofs establish the characteristic-zero all-fiber claims;
+finite tests are falsifiable implementation checks, not proofs by
+sampling. The arithmetic controls are also reproducible with the
+Python standard library. The package records dependencies, expected
+mathematical outputs and source references without redistributing
+third-party primary PDFs.
+
+This note assembles an explicit computation for the source's
+regular-pentagon pencil, extending the already observed infinity
+subgroup to the complete kernel and division field. Tate normal form,
+Fisher's modular description, the division-polynomial theory and the
+Weil pairing are credited above. The bounded priority audit in the
+supplement documents its actual searches and reading limits; no
+absence-of-hits argument certifies first discovery or present-day
+openness. The repository's earlier partial infinity and quotient
+calculation is acknowledged as an input to the original derivation.
+
+\paragraph{AI use and review.}
+AI tools were used extensively in derivation, computation, literature
+research, writing, reproduction and adversarial review. The author
+assumes responsibility for the submitted claims and artifacts. This
+is an unrefereed preprint. Automated adversarial reviews do not
+constitute independent external human peer review, and no such human
+review or formal proof-assistant certification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{aim} American Institute of Mathematics,
+\emph{Rational and integral points on higher dimensional varieties},
+workshop problem list, December 11--20, 2002; version stamped
+November 22, 2004, Question 17 and remarks, p.~51.
+\url{https://www.aimath.org/WWN/qptsurface2/qptsurface2.pdf}.
+\bibitem{fisher} T. A. Fisher, \emph{Some examples of 5 and 7 descent for
+elliptic curves over $\Q$}, J. Eur. Math. Soc. \textbf{3} (2001), 169--201.
+\href{https://doi.org/10.1007/s100970100030}{doi:10.1007/s100970100030}.
+\bibitem{sutherland} A. V. Sutherland, \emph{18.783 Elliptic Curves,
+Lecture 5: Isogeny kernels and division polynomials}, MIT, September 26, 2023,
+sections 5.5--5.6.
+\url{https://math.mit.edu/classes/18.783/2023/LectureNotes5.pdf}.
+\bibitem{pairing} A. V. Sutherland, \emph{18.783 Elliptic Curves,
+Lecture 23: Divisors and the Weil pairing}, MIT, December 5, 2023, section 23.5.
+\url{https://math.mit.edu/classes/18.783/2023/LectureNotes23.pdf}.
+\end{thebibliography}
+\end{document}
