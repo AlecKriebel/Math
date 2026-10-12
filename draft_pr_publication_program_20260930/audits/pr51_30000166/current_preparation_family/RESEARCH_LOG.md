@@ -1,0 +1,11 @@
+# PR51 current science preparation log
+
+2026-10-03T10:05:03+00:00 — 5%: began the new publication-free SOURCE preparation. This reuses the original preparer, not an independent mathematical family. Original 15-file archive and both new review proofs, source reports and complete results are disclosed inputs. Only this new family is writable. No native, Git, ROOT acceptance or publication authority is supplied.
+
+2026-10-03T10:10:35+00:00 — 40%: personally read the complete original science and both new proofs/source reports/verdicts/results. Earlier concatenated inventories/results were truncated; targeted reads completed them and no completeness claim relies on truncated output. Both families were initially unclosed; actual ROOT closure and separate readback have now been supplied and inspected. Their final 0444 file modes and 0555 directory modes supersede historical capture-epoch 0644 modes. Known all-positive-integer theorem, denominator 24 and permitted fractional shifts preserved; duplicate gets no invented queue row or budget.
+
+2026-10-03T10:14:57.018404+00:00 — 85%: actual text builder 70580 completed with 2,498 preparation evidence checks, producing 31 essential science files and 273 external body/mode/path references. No administrative body copies or production imports/execution. All mathematical sections 3–4 retained; 15 original archive bodies and nine operative original files remain literal.
+
+2026-10-03T10:17:39.201979+00:00 — 95%: separate actual whole readback 72414 completed with 7,444 evidence checks and empty stderr. It checks exact science/JSON/source/ledger boundaries, frozen external inputs, actual ROOT CAP4 references and completed builder capture. It does not count source events as responses, infer a third independent mathematical verdict, or supply future authority. Final report/verdict and ROOT-only READY freeze remain.
+
+2026-10-03T10:22:31.275765+00:00 — 100% SOURCE preparation estimate: actual readback child has exited and its full capture has now been checked separately. Final fixed index/READY creation and 0444 freeze begin; only final actual stdout confirms success. ROOT closure, native acceptance and publication remain pending, with all authority false.

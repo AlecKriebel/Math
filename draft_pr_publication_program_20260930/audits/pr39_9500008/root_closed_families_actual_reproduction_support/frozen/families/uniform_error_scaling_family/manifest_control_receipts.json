@@ -1,0 +1,91 @@
+{
+  "utc": "2026-10-02T10:05:05.683282+00:00",
+  "records": [
+    {
+      "name": "baseline",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/baseline",
+        "--build"
+      ],
+      "exit_code": 0,
+      "expected_exit": 0,
+      "observed_expected": true,
+      "stdout_sha256": "9d57ae121b7688cf25e173860c1e6e9f14da2f75db0b64b31a2b22ecc2ac341a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "missing",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/missing"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "observed_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c22ec75ff792e5ace2cc613b4da9a5ed90f4c7a3cc58f4f727e1d9d1ddc083"
+    },
+    {
+      "name": "extra",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/extra"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "observed_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "34c22ec75ff792e5ace2cc613b4da9a5ed90f4c7a3cc58f4f727e1d9d1ddc083"
+    },
+    {
+      "name": "same_size",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/same_size"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "observed_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "ffe4754849c6060661a6c5f93748db9dbe18abd346576f6bf836f7ab22d78777"
+    },
+    {
+      "name": "unsafe",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/unsafe"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "observed_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5a1d2967356e9fe56298b2b370719c0540fc2fc853070e2627f72356b66b8151"
+    },
+    {
+      "name": "exclude_cheat",
+      "command": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_integrity.py",
+        "--root",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr39_9500008/uniform_error_scaling_family/manifest_control_fixtures/exclude_cheat"
+      ],
+      "exit_code": 1,
+      "expected_exit": 1,
+      "observed_expected": true,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d27ff41f09ca111a800d38a605387a363022fa2286d2a27419364c675b79fdad"
+    }
+  ],
+  "scope": "Baseline passes; missing/extra/same-size corruption/unsafe path/arbitrary exclusion rejected by actual verifier"
+}

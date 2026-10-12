@@ -1,0 +1,3 @@
+# Historical and current review stages
+
+Original PARTIAL.md, review/reviewed_partial.md and September30 review/REVIEW.md remain byte-exact. Their pending/header/oldPASS chronology is historical. Three new early-independent distinct families and root reconstructed and reproduced the original partial mathematics, with no mandatory mathematical correction. Original body scope was false and is corrected; an explicit infinite product-law proof is now supplied. Old hashes/approvals do not certify these additions: the NEW complete exact-current-packet gate is pending. The target remains unresolved, original2/5,new0. Read CURRENT_SOURCE_QUALIFICATION.md and CURRENT_PROOF_DEPENDENCIES.json.

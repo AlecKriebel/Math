@@ -1,0 +1,82 @@
+# Research log: rational Hodge for K3 moduli and mixed products
+
+## 2026-10-06T21:27:06.196813-07:00 — effort initialized
+
+Mathematical resolution estimate: 0%. Publication-package estimate: 0%.
+These estimates describe progress, not evidence.
+
+The requested universal conclusion is a hypothesis. The established motive transfer, the unreviewed upstream universal K3-product input, and incremental novelty will be evaluated separately. Upstream clone is read-only at adc7f1241b42e322a6451854ab7e4b4c146bf78a. No external individual will be contacted; no GitHub release will be created. Main is the only authorized branch. Unrelated working-tree/index changes will be preserved.
+
+Persistent objective: rigorous core resolution, qualified novelty, complete independently audited preprint, production Zenodo publication, and verified tracker entry, only if all stated conditions pass.
+
+## 2026-10-06T21:29:58.748396-07:00 — first mathematical checkpoint
+
+Mathematical resolution estimate: 15%. Publication-package estimate: 5%.
+
+Strongest checked implication: the Bülles split-correspondence mechanism conditionally transfers rational Hodge from all mixed K3 products to all specified mixed moduli products. The unrestricted target includes S^[1]=S, so it also entails the mixed-K3 base assertion; the reduction does not solve this central issue. Agent proof notes and independent validation remain in progress. Non-fine families require normalized rational Chern characters; raw quasi-universal Ext cannot be substituted blindly. Earlier companion contains restricted-locus moduli/self-power statement, so novelty must be limited to any genuinely unrecorded newly assembled scope.
+
+Pinned remote main checked by read-only ls-remote: adc7f1241b42e322a6451854ab7e4b4c146bf78a (no later correction detected at check time). Relevant actual Lean KugaSatake file contains Clifford linear algebra only. No universal Hodge/algebraicity formalization located in catalogue; no Lean build is relied upon. Source fingerprints recorded; clone is unchanged.
+
+The shared checkout main and remote main differ. Checkpoints use an isolated index based on current remote main, adding only owned paths, with ordinary fast-forward pushes. Shared checkout, main ref, index and unrelated changes are preserved.
+
+## 2026-10-06T21:40:39.009452-07:00 — CLI preflight correction
+
+Mathematical resolution estimate: 55%. Publication-package estimate: 20%.
+
+The Google Workspace CLI treated `generate-skills --help` as regeneration, writing shared pre-existing untracked auto-generated reference files in root skills/ and docs/skills.md. The directories had birth times before this operation; none are tracked. I did not move/delete/reset those shared files. Relevant guides were copied into the dedicated project, and equality to installed known guides is recorded in checks/gws-instruction-preflight.json. This was an unintended operation outside the effort; subsequent instruction handling is project-local. No Google API write or external contact occurred. Explicit user authorization supersedes the generic generated skill's extra write-confirmation instruction for the specified eventual tracker update.
+
+Candidate standalone main.tex compiles successfully with the desktop compiler. The already installed Tectonic compiler exported a real four-page PDF in ignored checks/builds/candidate for visual review; it is not yet a publication candidate approved for deposit. Remaining input validation is the fresh analytic pass and reconciliation of full CM arithmetic audit with independent theta/Satake audit.
+
+## 2026-10-06T21:51:07.983038-07:00 — complete candidate and dependency checkpoint
+
+Mathematical resolution estimate: 75%. Publication-package estimate: 45%.
+
+The conditional transfer is independently checked. Distinct source-proof audits now cover the mixed Hodge-group argument, exact KS/semiregularity, controlled topology, relative rooted perturbation and category completion, theta/Satake, and fresh full-tuple arithmetic/CM extraction. No substantive defect has been identified in their stated scopes. These are explicit proof-reading and falsification records, not formal certificates or human peer review. Ordinary mirror/generation applicability is being checked in complete-package review. An unconditional publication is not yet approved.
+
+The four-page candidate PDF and source/verification ZIP were produced by a clean temporary-directory runner. PDF layout was inspected on every rendered page; all fonts are embedded and have Unicode mapping, bibliography/metadata are correct, and the desktop compiler succeeds. The first complete reviewer received the original request, exact files, metadata, source chain and check scripts; a fresh second reviewer will assess the repaired/reconciled package. Supporting analytic finite checks were rerun successfully.
+
+No production Zenodo draft or tracker row has been created. This checkpoint releases the candidate and its exact current validation limits, not a claim of completed publication.
+
+## 2026-10-06T21:59:58.127726-07:00 — V1 review repaired; V2 frozen for fresh review
+
+Mathematical resolution estimate: 90%. Publication-package estimate: 65%.
+
+The first complete reviewer inspected the original target, exact theorem, manuscript, PDF, metadata, dependency proofs, priority and clean reproduction; it found no concrete substantive mathematical defect and required completed audit/reproduction reconciliation. Its separate ordinary-HMS verifier matched the actual Seidel and Abouzaid hypotheses and the additional source graph/fullness/generation proof. The response preserves these findings and repairs R1/R2 globally, including the precise trivial finite scope of the range(k) placement loop.
+
+V2 contains all selected completed reports, analytic and CM script/results, portable archive/project mapping and a clean 32-source hash check. All finite checks passed and the exported PDF remains SHA256 483a6edff90202ef4d31560049a32ce946dcd1c6a999ab5b1f25b66a8f326612. Final V2 ZIP is SHA256 d68f68cbe03529d8951bd21e9bf266c869edb5fa214625d1c9196966013b5360. A NEW reviewer was launched without prior conversation context, with the original request and complete exact V2, and must independently assess proofs rather than accept previous verdicts. No reviewed deposit bytes or metadata will change while that review runs.
+
+Production tool local check passes. Correctly computed project-manifest state path has no prior deposit state. Production staging/publication and tracker actions remain withheld pending the fresh final gate.
+
+## 2026-10-06T22:12:00.465761-07:00 — V2 complete review repaired; V3 frozen
+
+Mathematical resolution estimate: 95%. Publication-package estimate: 75%.
+
+The second fresh complete reviewer rederived the actual mixed-K3 proof chain and independently assigned exact Bülles/Markman normalization and full CM theta/arithmetic/assembly audits. It found no substantive mathematical or package issue within its explicit source-audit limits. All 74 upstream hashes, 32 archive payload hashes, every finite result and all four PDF pages passed its checks; its clean build produced the exact deposit PDF. It independently verified that local triage already proposed the target/mechanism as a conditional research agenda, reinforcing the corollary/consolidation attribution rather than any first-recognition claim.
+
+Minor M1/M2 repairs accurately describe the queued editor request and completed source transcription. V3 rebuilt archive SHA256 8f44cd5f9c447e40a97a07a3bcc62998accdb7aad4fce94b4020c5fe87f77ce0; the PDF and metadata bytes remain unchanged. A NEW reviewer will assess the entire frozen V3 before the final gate. No production draft or tracker write exists. Read-only upstream remote-main recheck at 2026-10-07 05:09 UTC still matches the pin and the original clone remains clean.
+
+## 2026-10-06T22:26:00.922586-07:00 — third review and temporary storage pressure
+
+Mathematical resolution estimate: 95%. Publication-package estimate: 78%.
+
+Fresh V3 reproduction verifies all 32 source hashes, exact finite results and identical PDF; all four pages and all 74 upstream-source hashes passed independent inspection. Fresh CM, transfer/priority and analytic slices have reported no substantive mathematical gap within their explicit scopes. Complete-package reconciliation and closing exact hash check remain the final gate; staging has not begun. Additional finite CM label/switch scripts and results were retained outside the frozen deposit in checks/review3_checks; their copied-path run passes. These computations do not certify geometric Hodge algebraicity.
+
+Transient filesystem pressure interrupted saving one review report. Only nine regenerable root-owned candidate PNGs were deleted (2,418,294 bytes); source/PDF/metadata/reports, active review scratch and shared files were preserved. publication/storage-cleanup.json records the precise removal. A direct 64 KiB temporary write-and-remove probe succeeds; the child was advised to use direct text writes and preserve report text. No frozen V3 bytes changed and no service action was attempted.
+
+## 2026-10-06T22:29:28.643755-07:00 — final exact V3 accepted
+
+Mathematical resolution estimate: 100%. Publication-package estimate: 85%.
+
+Three distinct complete-package automated reviewers have completed independent source/hypothesis, scope/priority, reproducibility and artifact checking. Review->repair->fresh-review closed both V1 requirements and V2 minor wording issues. The NEW final V3 reviewer finds no substantive concern or required repair, with exact closing verification of all 19 package entries and 74 source entries. The mathematical conclusion is the original full core target as an assembled corollary, not an independently new base breakthrough; inherited inputs and all excluded scope/formal/human-review limits remain explicit. publication/ACCEPTANCE.json records exact approved bytes and supporting review hashes.
+
+Retained fresh CM/analytic check copies execute at their repository paths and reproduce all saved mathematical results. The analytic result includes a per-run timestamp; that metadata difference is recorded and the original reviewed result is preserved. These finite tests verify only the stated conventions, not the geometric theorem. Production remote staging/publication and verified tracker entry remain necessary before the persistent objective can be marked complete.
+
+## 2026-10-06T22:37:27.205950-07:00 — publication and tracker verified; final release checkpoint
+
+Mathematical resolution estimate: 100%. Publication-package estimate: 100%.
+
+Production Zenodo record 23204176 is submitted/published with DOI 10.5281/zenodo.23204176. Official check->stage->inspect->publish --confirm-id actual23204176->inspect --check-doi verified exact reviewed bytes/metadata/file set and saved receipts. DOI resolves HTTP200 to the public record. Unauthenticated public PDF/ZIP downloads both return200 and exactly match the reviewed hashes/sizes. No alternative upload, duplicate deposit or GitHub release was created.
+
+Google Workspace CLI metadata resolved numeric1254632077 to Math Puzzles. Full-tab formula-aware duplicate scans found no DOI/title/deposit match. One RAW row was appended at 'Math Puzzles'!A44:D44 in the actual four-column schema; a separate read-back matches the exact intended values. Nonsecret own-row receipt retained; other spreadsheet data is confined to ignored research caches, not published.
+
+The postreview checkpoint initially failed writing a full temporary Git index under disk pressure, before commit/push. The owned checkpoint helper now indexes only the project's remote subtree, independently preserves every unrelated root tree entry, and verifies shared HEAD/index; its ordinary main push succeeded at2e530af979e23338c3da9f6f7925ff0ff86f6aef. Final publication/tracker receipts and final status are now released through the same safe method. All19 frozen V3 files still match. The persistent objective will be marked complete after the final push verification.

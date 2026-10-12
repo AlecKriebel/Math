@@ -1,0 +1,3 @@
+# Lossless publication of an oversized audit log
+
+GitHub rejected the generated raw typed-node log because it exceeds100MiB. The original closed family and its raw file remain unchanged locally. This gzip file decompresses byte for byte to the declared path, restoring its original SHA256 and complete35+self closure. Run `python3 restore_raw_log.py` from this directory after cloning. The recovery script refuses to replace a differing file, verifies compressed and original bytes, and sets the restored file0444. This is a publication-only qualification, not a mathematical correction or a new runtime audit.

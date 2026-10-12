@@ -1,0 +1,9 @@
+# Root acceptance of repaired whole-packet gate
+
+2026-10-02T01:24:57.734830+00:00 — Workflow92%; scoped mathematical, source, action and documentary gate complete; canonical/remote integration still pending.
+
+Root fully read the NEW report, early reasoning/seal and all four actual programs, independently reconstructed the universal geometric argument, verified all64 closed artifacts unchanged, reproduced103060 new diagnostics byte-exactly and executed all seven deliberate failures. All nine original/current/family runs reproduce the mathematical and frozen fields; dynamic UTC/live-body/protected-history context differences are retained, not silently treated as byte equality. The original intentional geometric failure remains exit1. A root scratch-copy omission of two read-only builders was corrected only in isolation and is recorded, with no scientific or closed-family mutation.
+
+The three scoped sufficient criteria, including the corrected g≥2|G| theorem, stand. A coherent planar comb gives literal consecutive products; prefix equality uses left cancellation, independent seam-duals ensure nonzero homology and nonseparation, the band exterior is connected, the cut genus-two region is planar, and all four final boundaries are individually essential. Parallel boundary copies remain admissible. Regular action and intermediate-factor implications are correctly qualified. The current packet clearly withdraws the original defective equal-image proof while retaining original and old-review bytes and their early erroneous acceptance.
+
+No required current correction remains. Original2/5; verification adds0. Exact remaining universal intransitivity gap remains unsolved; no novelty, external human review, paper, DOI, release or publication-tracker claim. Acceptance applies only to sealed current30/77 packet with PARTIAL94de0f…; canonical and remote readback are separate later gates.

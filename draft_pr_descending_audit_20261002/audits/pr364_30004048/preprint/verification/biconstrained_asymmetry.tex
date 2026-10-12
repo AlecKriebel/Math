@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\reach}{N_A^2}
+\title{Non-symmetry of biconstrained two-step reachability}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 3, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The biconstrained reachability function $\psi(x,y)$ is the largest
+fraction of the first part that some vertex of the third part must
+reach in two steps, over all finite tripartite graphs satisfying
+minimum-degree conditions in both directions on each adjacent pair.
+We answer its symmetry question negatively:
+$|\psi(13/27,14/27)-\psi(14/27,13/27)|\geq 1/108$.
+The proof establishes the exact rational-boundary formula
+$\psi(1-\theta,\theta)=1-\theta/d(\theta)$, where $d(\theta)$ is a
+minimum integer degree of a positive rational regular incidence
+template. An existing seven-type example and its complement bound
+both relevant integers by four, making equality impossible.
+Neither exact value nor their ordering is needed or asserted.
+\end{abstract}
+
+\section{The question}
+For $x,y\in(0,1]$, consider finite simple graphs whose vertex set is
+partitioned into nonempty stable sets $A,B,C$, with no $A$--$C$ edges,
+and with
+\begin{align*}
+ |N_B(a)|&\geq x|B| &&(a\in A), &
+ |N_A(v)|&\geq x|A| &&(v\in B),\\
+ |N_C(v)|&\geq y|C| &&(v\in B), &
+ |N_B(c)|&\geq y|B| &&(c\in C).
+\end{align*}
+Such a graph is $(x,y)$-\emph{biconstrained}. Define
+\[
+ \psi(x,y)=\inf_G\;\max_{c\in C}\frac{|\reach(c)|}{|A|},
+ \qquad
+ \reach(c)=\{a\in A:N_B(a)\cap N_B(c)\ne\varnothing\},
+\]
+where the infimum runs over all such finite graphs and partitions.
+Reached vertices are counted once, irrespective of the number of paths.
+Complete adjacent pairs show that the admissible class is nonempty.
+No attainment of this infimum is assumed.
+
+Seymour asked whether $\psi(x,y)=\psi(y,x)$ for all parameters
+\cite[p.~47]{S}. The detailed treatment \cite{CHSSS} proves symmetry
+for the corresponding one-direction function $\phi$, but explicitly
+leaves the biconstrained question unresolved after Theorem~2.3.
+Reversing a particular graph exchanges the two directions but does
+not by itself equate the universal infima. We prove the following.
+
+\begin{theorem}\label{main}
+For the biconstrained function defined above,
+\[
+ \left|\psi\left(\frac{13}{27},\frac{14}{27}\right)
+       -\psi\left(\frac{14}{27},\frac{13}{27}\right)\right|
+ \geq\frac{1}{108}.
+\]
+In particular, $\psi$ is not symmetric.
+\end{theorem}
+
+\section{An integer invariant on the rational boundary}
+Fix a rational $\theta\in(0,1)$. Let $\mathcal R_\theta$ consist of
+finite binary matrices $M$ with nonempty row set $V$ and nonempty
+column set $I$, together with strictly positive rational probability
+vectors $b=(b_v)_{v\in V}$ and $q=(q_i)_{i\in I}$ satisfying
+\begin{equation}\label{regular}
+ Mq=\theta\mathbf1_V,\qquad M^{\mathsf T}b=\theta\mathbf1_I.
+\end{equation}
+Require the columns of $M$ to be pairwise distinct; rows may repeat.
+Set
+\[
+ \Delta(M)=\max_{v\in V}\sum_{i\in I}M_{vi},\qquad
+ d(\theta)=\min_{(M,b,q)\in\mathcal R_\theta}\Delta(M).
+\]
+The degree $\Delta$ counts distinct column types without weights.
+If $\theta=p/r$ in lowest terms, the $r$ cyclic intervals of length
+$p$ on $r$ positions, with both weights uniform $1/r$, give distinct
+columns and degree $p$. Thus $\mathcal R_\theta$ is nonempty and
+$1\leq d(\theta)\leq p$. By well-ordering of positive integers,
+this minimum is realized by a finite template. This is a separate
+fact from attainment of the graph infimum defining $\psi$.
+
+\begin{theorem}\label{boundary}
+For every rational $\theta\in(0,1)$,
+\begin{equation}\label{formula}
+ \psi(1-\theta,\theta)=1-\frac{\theta}{d(\theta)}.
+\end{equation}
+The value on this boundary is attained by a finite graph.
+\end{theorem}
+
+\begin{proof}
+First take any finite $(1-\theta,\theta)$-biconstrained graph. Put
+\[
+ m=|B|,\qquad F=\max_{c\in C}\frac{|\reach(c)|}{|A|}.
+\]
+If $F=1$, the required lower bound is immediate.
+Suppose $F<1$. Every $c\in C$ misses
+some $a\in A$. Their $B$-neighborhoods are disjoint and have sizes
+at least $\theta m$ and $(1-\theta)m$. Hence they partition $B$,
+with both size bounds attained. In particular,
+$|N_B(c)|=\theta m$ for every $c$.
+Every row has at least $\theta|C|$ neighbors in $C$.
+The $B$--$C$ edge count is exactly $\theta m|C|$,
+so every row has exactly $\theta|C|$ neighbors.
+
+Group the vertices of $C$ by their distinct $B$-neighborhoods
+$T_1,\ldots,T_n$. Let $M_{vi}=\mathbf1_{v\in T_i}$, let
+$b_v=1/m$, and let $q_i$ be the fraction of $C$ in class $i$.
+These positive rational weights satisfy \eqref{regular}.
+For each $i$, the vertices missed by a $c$ of class $i$ are exactly
+\[
+ A_i=\{a\in A:N_B(a)=B\setminus T_i\}.
+\]
+Indeed, disjointness from $T_i$ and the minimum degree force this
+equality of neighborhoods. The $A_i$ are distinct, disjoint and
+nonempty. Writing $p_i=|A_i|/|A|$ and $t=\min_i p_i$ gives
+$F=1-t$. For every $v\in B$, all $A_i$ with $v\in T_i$ are
+nonneighbors of $v$, so the $B$-to-$A$ constraint implies
+\[
+ \sum_{i:M_{vi}=1}p_i\leq\theta,
+ \qquad t\Delta(M)\leq\theta.
+\]
+Additional vertices of $A$ outside these classes are retained;
+they cannot weaken this inequality. As $\Delta(M)\geq d(\theta)$,
+$F\geq1-\theta/d(\theta)$ for every admissible graph.
+
+For the upper bound choose a template realizing $d=d(\theta)$,
+with $n$ columns and supports $T_i\subseteq V$. Every support
+has $b$-weight $\theta$. Strict positivity of $b$ and distinctness
+of the columns make the supports pairwise incomparable.
+Set $t=\theta/d$ and $\delta=1-nt$. The residual is nonnegative,
+since
+\[
+ n\theta=\sum_i b(T_i)=\sum_v b_v\sum_i M_{vi}\leq d.
+\]
+Build a weighted graph with row vertices $v$ of weight $b_v$ in $B$,
+vertices $c_i$ of weight $q_i$ in $C$ adjacent to $T_i$, and vertices
+$a_i$ of weight $t$ in $A$ adjacent to $V\setminus T_i$.
+If $\delta>0$, add a vertex $a_*$ of weight $\delta$ adjacent
+to all of $B$; if $\delta=0$, omit it. Each part has weight one
+and every retained type has positive weight.
+
+Each $a_i$ sees $B$-weight $1-\theta$, while $a_*$ sees one.
+Each row $v$ sees $A$-weight
+$1-t\sum_iM_{vi}\geq1-\theta$. Both directions between $B$
+and $C$ have neighbor weight exactly $\theta$ by \eqref{regular}.
+Thus all four constraints hold. The vertex $c_i$ misses $a_i$,
+but reaches every $a_j$ for $j\ne i$, since
+$T_i\setminus T_j\ne\varnothing$. It also reaches $a_*$ when
+present, because $\theta>0$. Its reached $A$-weight is therefore
+exactly $1-t$.
+
+Finally, replace each weighted type by a positive integer number
+of twins proportional to its rational weight, using a common
+denominator within each part. Join entire type pairs according to
+the weighted adjacency. All middle types survive, so both the
+degree fractions and the reachability fractions are preserved
+exactly. This is an ordinary finite simple graph attaining
+$F=1-t$, which proves \eqref{formula} and attainment.
+\end{proof}
+
+\section{The asymmetric pair}
+We use the regular bipartite template from Figure~1 of
+\cite[p.~6; also Section~12, p.~71]{CHSSS}. Its matrix and weights are
+\[
+ M=\begin{pmatrix}
+ 1&0&1&1&1&0&0\\
+ 0&1&1&1&1&0&0\\
+ 0&0&1&0&0&1&1\\
+ 0&0&0&1&0&1&1\\
+ 0&0&0&0&1&1&1\\
+ 1&1&0&0&0&1&0\\
+ 1&1&0&0&0&0&1
+ \end{pmatrix},\qquad
+ b=\frac{(5,5,3,3,3,4,4)^{\mathsf T}}{27},\quad
+ q=\frac{(4,4,3,3,3,5,5)^{\mathsf T}}{27}.
+\]
+Direct multiplication gives
+$Mq=(13/27)\mathbf1$ and $M^{\mathsf T}b=(13/27)\mathbf1$.
+The columns are distinct and the maximum row degree is four.
+The complement $J-M$, where $J$ is the all-ones matrix, has the
+same positive weights, regularity $14/27$, distinct columns,
+and maximum row degree four. Hence, with
+$d=d(13/27)$ and $e=d(14/27)$,
+\[
+ d,e\in\{1,2,3,4\},\qquad
+ \psi(14/27,13/27)=1-\frac{13}{27d},\quad
+ \psi(13/27,14/27)=1-\frac{14}{27e}.
+\]
+Equality would require $13e=14d$, impossible in this range.
+For the quantitative gap, if $d=e$ the difference is
+$1/(27d)\geq1/108$. If $e>d$, then
+$13e-14d=13(e-d)-d\geq10$ and $27de\leq324$.
+If $d>e$, then $14d-13e=14(d-e)+e\geq15$ with the same
+denominator bound. Both latter cases give a larger gap.
+This proves Theorem~\ref{main}.
+
+\paragraph{Explicit examples and their limits.}
+The construction above applied to $M$ with degree four gives
+part sizes $(108,27,27)$, $A$-type sizes $(13,13,13,13,13,13,13,17)$,
+and $B,C$-type sizes given by the numerators of $b,q$.
+Every $c$ reaches $95$ vertices of $A$.
+The complement gives $A$-type sizes $(14,14,14,14,14,14,14,10)$
+and reaches $94$ vertices of $A$.
+Thus $\psi(14/27,13/27)\leq95/108$ and
+$\psi(13/27,14/27)\leq47/54$.
+These are upper bounds, not exact evaluations; their inequality
+alone would not prove asymmetry. The universal boundary formula
+is indispensable. The true integers $d,e$, the exact values,
+and their ordering remain unevaluated here.
+
+\section{Prior work, verification, and disclosure}
+The finite weighted-graph framework and the seven-type matrix
+are prior work \cite{CHSSS}, not new constructions of this note.
+Theorem~12.2 there concerns symmetry when $\psi(x,y)$ attains
+its minimal value $x$; it does not establish general symmetry.
+The contribution here is the integer boundary formula, with
+universal lower and finite upper proofs, and its deduction of
+non-symmetry at an explicit rational pair.
+A dated literature audit accompanies the supplement. Its search
+has finite coverage and does not certify absence of all prior work.
+
+The supplement contains the complete original proof records,
+exact arithmetic checkers, two independent mathematical audits,
+source identities and a portable verifier. It checks the matrix,
+both ordinary graphs, all sixteen possible integer gaps and
+controls for invalid inferences. The theorem is an elementary
+argument over all finite graphs; finite tests and file
+hashes supplement rather than replace its proof. No external
+optimization theorem, numerical approximation, or presumed
+extremizer for $\psi$ is required.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively to develop and verify the proofs,
+write and run checking code, search the literature, draft this note,
+and conduct adversarial reviews. Independent AI review paths
+are documented in the accompanying research records.
+This manuscript is an unrefereed preprint and has not received
+external human peer review.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{S}
+P. Seymour, \emph{Concatenating bipartite graphs},
+Oberwolfach Reports 1/2019, pp.~46--47.
+\href{https://doi.org/10.4171/OWR/2019/1}{doi:10.4171/OWR/2019/1}.
+\bibitem{CHSSS}
+M. Chudnovsky, P. Hompe, A. Scott, P. Seymour, and S. Spirkl,
+\emph{Concatenating Bipartite Graphs},
+Electronic Journal of Combinatorics 29(2) (2022), \#P2.47.
+\href{https://doi.org/10.37236/8451}{doi:10.37236/8451}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,7 @@
+# PR58 transform-cancellation adversary log
+
+2026-10-03 15:01 UTC — Literal source wrapper/candidate read first. Independent mechanism subsequently formed: squarefree triangulation, homogeneous tangent residues, cone flipping and weighted Fourier injectivity. Initial audit-remit estimate20%. No author/history/fresh-family mathematical body read. First longer scope/log write failed with ENOSPC and left no files; the later scope records that qualification.
+
+2026-10-03 15:18 UTC — Checkpoint60%. Universal proof written independently and fresh official question/relevant full prior kernel proof read. The origin/measure/triangulation conventions match. No defect found; prior published status independently supported by publisher metadata. No private/full-public PDF copy or successful screenshot claimed. Author checker was inspected only after own proof/controls were written, and was not run in immutable original because it writes a result beside itself.
+
+2026-10-03 15:28 UTC — Checkpoint, mathematical remit100%, immutable handoff90%. All218 own controls passed, child32616/capture32608, with full streams/source hash. Preserved terminated slow attempt30067/exit-15/source/full empty streams; no partial pass inferred. Source pin35105 matches17 bodies and raw/SQL source, original0/5. No old reviewer/checker result or fresh family's mathematics read. Preparing exact lean INDEX/READY and unexecuted ROOT helpers. No original-preparation, ROOT, novelty or future-acceptance credit.

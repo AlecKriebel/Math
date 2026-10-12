@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-01T21:31:18.576055+00:00 | 25% independent audit completion | Primary-only reconstruction and adversarial criteria sealed in EARLY_SEAL_v1.md before reading existing root, family, or historical audit evidence. New mechanism: joint-law Pfaffian controls including odd border and negative controls. No discovery/paper/DOI or publication action.
+
+- 2026-10-01T21:42:06.567544+00:00 | 80% independent audit completion | Existing family/historical evidence read only after early seal. Added new square-only gamma-product coefficient argument and elementary arctangent generating function for exact Gaussian skew moments. 862 new controls pass; 49 deliberate density mutants rejected; N1..3 rational interval reserves verified. Fresh source status and historical 383/383/53 controls reproduced. No central gap identified; full derivation/report pending.
+
+- 2026-10-01T21:48:47.802880+00:00 | 100% independent audit completion | Full REPORT.md and VERDICT.json delivered. Universal real square reserve survives adversarial reconstruction; explicit AP q1 wording-domain repair proved. New square-only gamma-product and Gaussian arctangent skew mechanisms plus 862 controls (49 mutants) support falsification. No theorem-false evidence or central square gap identified. Parent complete gate and any current status correction remain outstanding process work; no novelty, proof-search credit, paper, DOI, external contact, or Git/PR/global mutation.

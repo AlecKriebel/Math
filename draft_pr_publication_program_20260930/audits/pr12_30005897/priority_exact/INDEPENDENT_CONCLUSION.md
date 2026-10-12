@@ -1,0 +1,7 @@
+# Independent mechanism/scope conclusion
+
+Recorded 2026-10-01 05:58 UTC before reading any sibling equivalent-method priority analysis.
+
+The inspected exact-question chain leaves the all-p/no-bounded-distortion theorem as a defensible novelty hypothesis. Positive prior content is substantial: DDE2021 covers bounded distortion and density extrema with a bounded Mk/mk ratio; CDV2024 covers shift realization and finite-dimensional fibers with bounded projections; BDMJuly2026 rejects the older aggregate characterization; PitukAug2026 gives the entire separable complex Hilbert p=2 slice. New Orlicz2024 and WeightedII2026 routes retain distortion when establishing shadowing; PintoJuly2026 works on continuous-function spaces with compactness/connectedness/regularity assumptions and does not supply the arbitrary measurable-fiber statement. No inspected primary theorem proves the complete target or its common-null-set pointwise minimum-density criterion and support-band construction. This is a bounded-source finding, not a first-priority claim or a proof that no other source exists.
+
+The decisive distinction is the uniformity gap: individual fiber shadowing/finite factors do not give a single operator-level estimate across arbitrary measurable fibers. DDE's aggregate reductions explicitly need distortion. The candidate's localization at p=1 and finite intersection of support bands are therefore the parts requiring comparison against a separate abstract-method audit. No sibling equivalent-method work has been read here.

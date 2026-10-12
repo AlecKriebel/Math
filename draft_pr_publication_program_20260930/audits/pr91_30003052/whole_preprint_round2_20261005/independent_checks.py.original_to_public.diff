@@ -1,0 +1,44 @@
+--- original_source_authentication_20261005/original_attempt/review/independent_checks.py
++++ verification_package_preparation_20261005/positive_all/independent_checks_optimized/source_1_independent_checks.py
+@@ -2,11 +2,22 @@
+ from pathlib import Path
+ from fractions import Fraction as F
+ from itertools import product
+-import hashlib,json,math
++import argparse,hashlib,json,math
+ import sympy as S
++
++parser = argparse.ArgumentParser(description=__doc__)
++parser.add_argument("--artifact", type=Path, default=Path(__file__).resolve().parent.parent / "pr91_note.tex")
++parser.add_argument("--output", type=Path)
++args = parser.parse_args()
++artifact = args.artifact.resolve()
++if not artifact.is_file():
++    parser.error("artifact file is missing: " + str(artifact))
++artifact_sha256 = hashlib.sha256(artifact.read_bytes()).hexdigest()
++
+ checks={}
+ def ck(label,x):
+- assert bool(x),label
++ if not bool(x):
++  raise AssertionError(label)
+  checks[label]=checks.get(label,0)+1
+ def zero(M):return all(S.simplify(v)==0 for v in M)
+ # An adapted l1 norm, not the submitted l-infinity example.
+@@ -79,7 +90,12 @@
+ # One-dimensional nilpotent and identity endpoints.
+ ck('zero_matrix_projection',S.zeros(1)**2==S.zeros(1))
+ ck('identity_matrix_projection',S.eye(1)**2==S.eye(1))
+-root=Path(__file__).resolve().parent
+-artifact=root/'author_replay/CLASSIFICATION.md'
+-result={'status':'PASS','exact_assertions':sum(checks.values()),'checks':checks,'artifact_sha256':hashlib.sha256(artifact.read_bytes()).hexdigest() if artifact.exists() else None,'scope':'Exact finite algebraic diagnostics only; norm-limit recurrence, uniform-continuity factorization, Stone-Weierstrass density and full spectral arguments are audited analytically.'}
+-(root/'independent_results.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))
++receipt={'status':'PASS','exact_assertions':sum(checks.values()),'checks':checks,
++'artifact_sha256':artifact_sha256,'checker_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
++'sympy_version':S.__version__,'scope':'Exact finite algebraic diagnostics only; analytic proof steps and the full operator spectrum require separate proof verification.'}
++
++raw = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
++if args.output is not None:
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_text(raw, encoding="utf-8")
++print(raw, end="")

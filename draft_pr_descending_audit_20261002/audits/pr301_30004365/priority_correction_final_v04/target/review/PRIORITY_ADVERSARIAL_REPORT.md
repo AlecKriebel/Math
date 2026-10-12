@@ -1,0 +1,65 @@
+# Fresh adversarial priority verdict — PR301 / 30004365
+
+Final adjudication: 2026-10-05T12:55 UTC. Assigned priority audit 100% complete; exact remaining unknowns are recorded below. This packet changes no Git, shared control, PR, release, DOI, tracker, or service state and contacts no outside individual.
+
+**PASS for the anticipation challenge at the broad mathematical-mechanism level. An unqualified 2026 new numerical-algorithm / first resolution framing is defeated.** This does **not** certify universal correctness of prior software, an unavailable thesis theorem, or firstness of this particular rational PL certificate/correction. The current corrected candidate itself expressly withholds historical novelty; its mathematical validity is not refuted by this priority finding.
+
+## Exact claim and public chronology
+
+The complete corrected candidate was read and pinned to SHA256 `d92a870709f5ce62440fa8a83313dd13790773f247e01cfb63c43c5ae8ea272a`. OWR2020 Problem 3.4 asks for all Theorem 3.3 numerical data from a finite-dimensional gentle bound quiver. It imposes neither a complexity bound nor a complete-software requirement. A different prior numerical method therefore counts against global firstness even if it does not output the candidate's rational geometric certificates. [Original primary contribution](https://ems.press/content/serial-article-files/46842).
+
+Fresh primary fetches independently authenticated these exact bodies:
+
+| Primary evidence | Date established | Exact custody and scope |
+|---|---|---|
+| QPA commit adding combinatorial maps and derived-equivalence methods | 2024-06-13T12:05:36Z | Commit `1d22164f49a0d0b7e4376f2820da78243510e835`; source blob `c33783da71d892793597d1b58f46f9da7103fbc6`, SHA256 `58de655c529da9edb73ed08dfe3144023f772448cda151896452f6c8c94c453c`. Public source date, not a universal correctness theorem. |
+| QPA syntax fix | 2024-06-18T14:14:45Z | Commit `87aee76da6cec5e29ceea4c9c8fa6bfd64d9c0b7`; blob `f881ef7ad6eecfce1ad2191ce47f0c6e952c70ea`, SHA256 `8c4f0e6e81679993c1cdb54717bea48bf8b34f5513dcd7845882b3a80a48f17c`. Only two `IsOddInt[...]` calls became function calls. |
+| QPA release v1.36 | Published 2025-05-28T19:03:21Z in primary release metadata | Fresh tagged source is byte-identical to the June 2024 fixed body. The current body differs only in comments/descriptive typo repairs; current blob `9dc9387574b4f10824c082446867f830529fca7f`, SHA256 `b27a1a471986faccb05ea303cddae6a8f82f1fb25076b749b9c9b4c98e02da46`. |
+| String Applet complete numerical routines | Available no later than archived capture 2025-03-21T11:18:07Z | Archive preserves original last-modified 2025-03-21T10:55:54Z. Compressed bytes SHA256 `766df6f1dbba03efc0462eddbc1d1f836940bd730c90f468d3a550f484454777`; exact gzip-decoded body SHA256 `99a8209e6f54b3f24ad68b463e0a5ae83fc4487af8481b76a38271dff83644ba`. No 2020 footer is used as a feature date. |
+
+The [QPA add commit](https://github.com/gap-packages/qpa/commit/1d22164f49a0d0b7e4376f2820da78243510e835), [QPA fix commit](https://github.com/gap-packages/qpa/commit/87aee76da6cec5e29ceea4c9c8fa6bfd64d9c0b7), [official manual chapter 12.3](https://gap-packages.github.io/qpa/doc/chap12_mj.html), and [archived primary applet bundle](https://web.archive.org/web/20250321111807id_/https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/main.bundle.js) support the earlier disclosure. The manual's advertised return contract is not used as proof of correctness.
+
+The [Institut Fourier award page](https://www-fourier.univ-grenoble-alpes.fr/fr/node/27723) corroborates QPA work in spring 2024. The applet bibliography names Winspeare's 2024 master's thesis *Algorithme de calcul d'un invariant dérivé pour les algèbres aimables*. **The full thesis has not been obtained, and no theorem or input hypothesis is inferred from its title or the award.** No outreach is prepared or initiated.
+
+## What is already algorithmic
+
+QPA discloses permitted paths, marked ribbon-map construction, all face/peripheral winding calculations, tree/cotree extraction of a nonseparating loop, cut-and-join operations, and iteration through the genus. This is materially distinct from the candidate's exhaustive PL enumeration. The explicit mathematical deduction in `INDEPENDENT_DERIVATION.md` proves the intended tree/cotree cut/join mechanism terminates and gives geometric pairs with connected planar complement. It uses finite graph paths and local embedded cuts; each step decreases genus by one. It applies to the compact core with puncture ends retained as boundary collars and needs no smoothness or finite-global-dimension assumption. There is no equivalent unsupported handle-existence oracle hidden inside it.
+
+The applet independently discloses a direct numerical mechanism: delete a dual spanning tree, choose a primal spanning tree, form 2g residual fundamental cycles, calculate windings and their intersection matrix, and evaluate gcd, parity, and the quadratic Arf invariant. For the source's numerical task, a geometric symplectic certificate is unnecessary once a full basis and quadratic/intersection data are available. The theoretical justification is written in the independent derivation; it is an audit deduction from code plus the credited classifier, not falsely attributed to the missing thesis.
+
+After preserving that source-based deduction, I consulted both priority families and independently checked the older primary Vegter–Yap text. Its **closed orientable triangulated-surface** hypothesis must be retained. Lemma 4.3, printed p.107, explicitly constructs separated simple pairs with one intersection per pair; Lemma 4.8, p.110, gives connected complement; Lemma 4.9, p.111, gives a sphere with g holes. [Institutional primary proceedings PDF](https://pure.rug.nl/ws/portalfiles/portal/3354078/1990ProcSCGVegter.pdf). Applying this to a capped compact core and moving cap disks into the planar complement is finite PL topology; no line field is extended across caps. This is another clear objection to a new general handle/computability mechanism. It is **not** evidence that the exact gentle-specific composition was already published in 1990 or 2019.
+
+## Adversarial defects and why they do not restore broad firstness
+
+| Issue | Checkable finding | Mathematical implication |
+|---|---|---|
+| QPA square-zero loop `k[a]/(a²)` | The sole nonzero permitted path starts and ends at one vertex. `rho` is still identity when both occurrences are allocated; both receive slot 1, so the source asks for `(1,1)`. If rejected, the routine is not total; if identity, it constructs one disk face and two marks instead of the annulus's two ends with mark counts 1 and 0. This occurs in add, fixed, tagged, and current bodies. | Literal universal input construction **FAIL**. No GAP runtime was executed. The source-derived permutation witness is sufficient and explicitly conditional on equal-point-cycle handling. |
+| Repeated vertex occurrences | At a vertex, d incidence ends and s allowed continuations give d-s<=2 permitted-thread occurrences; fill unused slots with trivial threads. Preallocate distinct slots by occurrence before forming the ribbon cycles. | Uniform finite allocation repair. It restores the intended old ribbon construction and does not supply a new central basis algorithm. |
+| QPA multiset comparison | `IsSubset(boundA,boundB)` loses repeated paired records. | Comparator defect. Sorting/equality of paired multisets is finite elementary repair. |
+| QPA higher-genus parity | The loop intended for B repeats A; mismatched oddness may fall through to mod-four/Arf logic. | Comparator correctness **FAIL** as printed. Finite branch correction is required; extraction of A's winding data is unaffected by the mistaken second loop. |
+| Applet isolated field | Both archived/current primary bodies return AG `[]` and boundary windings `[]` for one isolated vertex. The thread routine excludes d=0. | Genuine local exceptional-case omission. The standard disk block has paired record (2,2); return it directly. |
+| Punctures/non-smooth algebras | Both applet versions return square-zero-loop records (0,-1),(1,1). Both separate A(3,5) and A(4,4) by puncture windings, while outer record is (7,6) in each. | No smoothness restriction is imposed by this numerical mechanism. The all-end information and correction witness's distinguishing data already appear in the prior algorithm; this does not establish priority of identifying APS's printed-range mismatch. |
+| Exact raw cut/intersection implementations | I have not formally matched every QPA permutation update or applet shared-path/occurrence test to all possible embedded inputs. | Universal software certification **UNKNOWN** beyond the exhibited failures. No claim that the entire repaired distribution has passed a universal proof. |
+
+The genuine defects are valuable findings. They do not force a new central mathematical obstruction: occurrence allocation, exceptional disk output, multisets, and parity control are finite local repairs. The topological basis mechanism is already constructive and total at its mathematical level. To recover a broad first-resolution claim, one would need a precise surviving obstruction that the old mechanisms cannot address and that the new method newly solves. No such obstruction survives this audit.
+
+## Reproducible controls, independence, and exact limits
+
+`INITIAL_INDEPENDENT_SCOPE.md` was preserved at 12:38 UTC and `INDEPENDENT_DERIVATION.md` at 12:49 UTC, before any family-report consultation. The consultation started at 12:49:20 UTC and is recorded as cross-comparison. The parent supplied known comparator defects and a loop suspicion; independent source inspection had already found the loop allocation problem before the latter message arrived. No unqualified independence from parent task context is claimed.
+
+The successful offline applet replay executes unchanged invariant bodies, exposing their classes through two export/public-path wrappers and blocking every network request. It gives **19 archived and 30 current gentle rows**, including the square-zero loop, full-relation cycles, the puncture witness, genus-one gcd cases, genus-two Arf 1/0/0 fixtures, and an odd-parity fixture. These are bounded results, not a universal computation theorem. `APPLET_RESULTS_v03.json` retains all rows.
+
+The isolated primary Arf arithmetic also passed an independent Gauss-sum check for **all 28 nondegenerate four-dimensional alternating forms and all 16 quadratic refinements**, 448 checks per edition, 896 total. `ARF_CONTROLS.json` identifies exact primary/body hashes. Finite-array Babel iteration/destructuring adapters supply the extracted function's lexical helpers; its arithmetic is unchanged. This check establishes the genus-two algebraic-basis arithmetic over that entire finite family, not arbitrary-genus correctness or all input-to-basis routines.
+
+Failures remain visible: the first applet harness misused live-graph clone on raw numeric endpoints; the second used unsupported multi-character labels for the bridge fixture; the third constructs proper graphs and uses letter labels. The first occurrence-repair control reversed long cycles, was corrected, and added a three-occurrence chain. The first isolated Arf test omitted a Babel lexical helper, printed a ReferenceError, and was terminated after its browser prevented process completion; its exit and full streams are retained. Corrected helpers plus guaranteed browser cleanup passed. Exploratory reads and web discovery were light evidence before/alongside the canonical recorder, not retroactively fabricated native captures.
+
+Completed canonical captures preserve exact request and executed source, child PID, UTC start/end, exit, full compressed stdout/stderr, and hashes. Fresh HTTP bodies and header/date receipts are saved separately. Final custody verification checks all archived source/stream hashes and the local evidence-size limit.
+
+## Final outcome by proposition
+
+1. **PASS — anticipation challenge to a broad new numerical-algorithm / first open-problem resolution.** Public QPA 2024 and applet 2025 disclose the central mechanisms; old general surface algorithms further defeat novelty of geometric basis effectivity.
+2. **FAIL — unqualified prior software correctness/totality.** Concrete square-zero-loop and isolated-field defects and comparator flaws prohibit that assertion.
+3. **UNKNOWN — exact universal raw or repaired source implementation proof; unavailable Win24 thesis contents/hypotheses; earliest explicit complete composed theorem.** These unknowns are not firstness clearance.
+4. **UNKNOWN — priority of the particular exhaustive rational PL certificate and of the explicit APS puncture-range counterexample/correction.** The current candidate may be a valid credited clarification or special variant. A narrower valid proof does not revive global first-resolution novelty.
+
+This is mathematical/priority assessment only. It does not authorize a paper, merge, immutable snapshot, tracker action, or operational correction.

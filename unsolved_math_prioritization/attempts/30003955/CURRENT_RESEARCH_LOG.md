@@ -1,0 +1,1 @@
+2026-10-02T00:42:13.953846+00:00 —75%workflow: three independent original-stage families/root found and reproduced the band-orientation failure. Same-bound prefix repair/source-scope corrections written globally; original2/5/new0. Original/HOLD/oldPASS bytes preserved; NEWcompletegate pending. Full discovery remains partial, no full solution certified.

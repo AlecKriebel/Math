@@ -1,0 +1,15 @@
+# PR95 thesis and institutional repository follow-up
+
+The bounded trail did not recover Kuriya's missing preprint or its complete theorem statements. It adds no priority clearance. This report concerns source discovery only; PR95's already verified mathematics is unchanged.
+
+The Kyushu staff record already authenticated in the history audit gives the author's name as 栗屋 隆仁 and a March 2007 doctorate. Searches of the Kyushu catalog, Japanese degree and library indexes, and exact English/Japanese name-plus-thesis combinations did not locate a matching thesis in the inspected results. Search silence is not evidence that no thesis or preprint exists. An initial query used the incorrect inferred spelling 栗谷貴人; unrelated hits from that query and same-surname results were discarded.
+
+A newly inspected Osaka institutional researcher archive lists Kuriya and links research results, a research plan and a paper list. Each actual linked PDF URL failed in the web reader and then timed out in a native, recorded retrieval. No source bytes or theorem statements were obtained. The actual native process exited successfully because it caught and recorded retrieval exceptions; that exit code does not mean a PDF was downloaded. Exact URLs, times and errors are in OSAKA_NATIVE_RETRIEVAL.json and the actual operation capture.
+
+The Osaka-Sandai workshop's complete 17-line lecture-notes index names Kuriya's different talk, A proof of the LMO conjecture, and explicitly marks the notes unavailable. The 2005 Waseda meeting's primary abstracts, printed page 6, give his talk on spin decomposition of perturbative invariants and discuss Beliakova–Blanchet–Le and an LMO analogue. That abstract supplies neither the missing GP paper nor its finite-level conclusions. Only this relevant entry and its surrounding attribution were read for this audit; the other abstracts were not mathematically audited. A separate Kyoto-hosted LMO bibliography PDF was located, but garbled web extraction was not treated as a full reading or a new GP theorem. A later Friday-seminar archive and a 2004 workshop listing add metadata only.
+
+The exact search families and source read limits are recorded in SOURCE_READ_SCOPES.json. The prior history and higher-rank reports were read before this follow-up, so this ROOT trail does not claim initial independence from them. No outside contact was prepared or made. All raw source material remains private.
+
+The remaining direct gap is the complete text of Takahito Kuriya, The LMO invariant and the Guadagnini–Pilo conjecture for lens spaces, associated with the authenticated 21 February 2003 talk. Its finite-level hypotheses and conclusions must be compared with full ordinary SU(5), WZW level 5, shifted level 10, and the unequal nonzero magnitudes for L(5,1) and L(5,2). Later perturbative statements and unavailable lecture notes cannot supply that comparison.
+
+PR95 workflow estimate remains 45%, mathematics 100%, priority workflow 85% with novelty and publication clearance false. Program dispositions remain 12/99 (12.12%). This trail is closed; the already pending human source question is unchanged.

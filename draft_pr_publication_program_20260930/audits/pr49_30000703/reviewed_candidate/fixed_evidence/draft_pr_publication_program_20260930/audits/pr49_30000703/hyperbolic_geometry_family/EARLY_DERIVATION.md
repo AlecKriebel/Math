@@ -1,0 +1,29 @@
+# Source-first hyperbolic geometry mechanism
+
+Checkpoint 2026-10-03 06:15:19 UTC. Audit completion estimate 25%; discovery attempts 0. This agent was reused after its closed, unrelated PR47 gauge-theory audit. It received no PR49 mathematical conclusion from another new family. Before this checkpoint it read the exact source record, SOURCE_STATUS.md and author verify.py, and the primary OWR report and arXiv v1 through web text. It has not read the historical review or the new boundary-analysis family's mathematics. The mechanism below is fixed before those comparisons. The problem statement and candidate claims were necessarily seen; independence is of derivation and checking, not blindness to the submission.
+
+## Exact claim and imported theorem
+
+For a holomorphic map f:D→D define Φ_f=(1−|z|²)|f′(z)|/(1−|f(z)|²). The ordinary, unrestricted limit Φ_f(z)→1 as z→1 is hypothesized. No radial or angular qualification occurs in the original problem. The conclusion to check is holomorphic extension across an open circle arc containing 1, carrying that arc into the unit circle. This is local and does not assert a global automorphism, finite Blaschke product, or extension at the rest of the circle.
+
+The official [OWR report](https://ems.press/content/serial-article-files/46093), Oliver Roth's contribution, printed pp.528–530, states an arc reflection theorem before Problem 1: for an open circle arc Γ, positive unrestricted liminf of Φ_f at every ξ∈Γ is equivalent to holomorphic extension across Γ with f(Γ) on the unit circle. The theorem is attributed to Kraus, Roth and Ruscheweyh's 2007 article, DOI [10.1007/s11854-007-0009-x](https://doi.org/10.1007/s11854-007-0009-x). The later primary [Gumenyuk–Kourou–Moucha–Roth v1](https://arxiv.org/pdf/2410.13965v1), §8.2, printed p.31, equation (8.3), explicitly states the pointwise unrestricted equivalence and credits that article. This baseline imports the stated arc theorem; it does not pretend to independently reprove its substantial metric reflection machinery or to have inspected the complete 38-page journal article.
+
+## Hyperbolic metric and quantifiers
+
+Use density λ_D(z)=1/(1−|z|²), of curvature −4. Its pullback is λ_f(z)=|f′(z)|/(1−|f(z)|²). Thus Φ_f=λ_f/λ_D. Schwarz–Pick bounds Φ_f≤1. The hypothesis gives a δ>0 such that Φ_f>1/2 on D∩B(1,δ); therefore f′ is nonzero there, λ_f is a genuine metric of curvature −4 there, and λ_f≥λ_D/2. This uniform collar inequality is stronger than equality along one approach region.
+
+For Γ={ξ∈∂D:|ξ−1|<δ/2}, any z sufficiently close to a fixed ξ∈Γ satisfies |z−1|<δ. Hence liminf_{z→ξ}Φ_f(z)≥1/2, unrestrictedly, at every ξ∈Γ. The arc theorem then supplies the claimed extension and circle mapping. This explicit triangle-inequality argument converts the one-point ordinary limit into uniform geometric information along a neighboring arc; no unproved passage from radial to unrestricted convergence is involved. The metric interpretation is local hyperbolic noncollapse near the boundary, followed by the published conformally invariant reflection theorem. A derivative-ratio bound compares path lengths; it must not be silently promoted into a global lower bound for distance between f(z) and f(w), because images of geodesics need not be geodesics and can fold globally.
+
+## Independent local consequences and converse
+
+The extension has f(1)=η∈∂D. In a sufficiently small disk about 1, f has no zeros, so u=−log|f| is harmonic, positive on its disk-side portion and zero on the circle arc. The Hopf boundary point lemma gives a strictly positive inward derivative of u. Differentiating the circle identity shows conj(η)f′(1) is real; combining the inward derivative and positivity shows α=conj(η)f′(1)>0. Thus f′(1)≠0, a local inverse exists, and f(z)=η+αη(z−1)+O(|z−1|²). Reflection is f(z)=1/conj(f(1/conj z)) on the exterior side after shrinking the zero-free neighborhood. No pole appears in that neighborhood.
+
+For the converse, mere Taylor expansion followed by division by 1−|z|² is inadequate on extremely tangential paths: |z−1|²/(1−|z|²) need not tend to zero. Instead straighten the real-analytic circle locally. The real-analytic function 1−|f(z)|² vanishes on the same boundary, so Hadamard division by its defining function 1−|z|² gives a continuous real-analytic quotient Q near the arc. Its boundary value is |f′(ξ)|>0, by the positive orientation just proved. Therefore Φ_f=|f′|/Q tends to 1 along every interior approach, including tangential ones. This proves the reverse direction locally without an invalid remainder division.
+
+## Boundary cases and nonrigidity
+
+Constants into D have Φ=0 and do not satisfy the hypothesis; constants on ∂D are not maps into D. Interior zeros and critical points away from the neighborhood are allowed. The conclusion excludes a boundary critical point at 1, not all interior critical points. The example f(z)=z² has Φ=2|z|/(1+|z|²)→1 at 1 but is not injective globally.
+
+More generally f(z)=η exp(−a(1−z)/(1+z)), |η|=1 and a>0, maps D into D because Re((1−z)/(1+z))=(1−|z|²)/|1+z|²>0. Put u=Re((1−z)/(1+z)). Direct differentiation gives Φ=a u/sinh(a u). As z→1 unrestrictedly, u→0, so Φ→1. Yet f has an essential singularity at −1 and is not a finite Blaschke product. Its boundary derivative is αη with α=a/2, so the hypothesis does not fix α to 1; every positive α occurs. These examples are universal formula arguments; finite symbolic controls will check identities but will not substitute for the theorem application.
+
+The exact mathematical gap remaining in this baseline is authentication of the published theorem's scope and candidate/source provenance, followed by controls and full artifact reading. If the arc theorem is accurately stated, the exact original question is settled by a known result, without fresh substantive proof-search attempts. No exhaustive priority claim is made.

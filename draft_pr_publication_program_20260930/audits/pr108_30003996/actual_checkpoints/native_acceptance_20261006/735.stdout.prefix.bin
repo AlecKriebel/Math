@@ -1,0 +1,58 @@
+"""Offline synthetic guard fixtures. Never prepare/native-assess/export/service calls."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import copy,csv,hashlib,io,json,os,tempfile,unittest,zipfile
+import v3_guards as g
+import prepare_review_bundle as helper
+from bounded_process import BoundedRunner,validate_policy as process_policy
+from native_assess_worker import validate_policy as worker_policy
+D=Path(__file__).resolve().parent
+FIXTURE_ONLY=True
+POLICY={'max_process_count':8,'retain_bytes_per_stream':64,'max_stdout_bytes':4096,
+        'max_stderr_bytes':1024,'deadline_seconds':2,'terminate_grace_seconds':1}
+CAPACITY={'headroom_bytes':32*1024*1024,'max_artifact_count':512,'max_materialized_bytes':160*1024*1024,
+    'wrapper_bytes_cap':65536,'receipt_json_bytes_cap':128*1024,'per_native_growth_bytes':512*1024,'max_package_files':64,
+    'future_commit_overhead_bytes':8*1024*1024,'runtime_overhead_bytes':8*1024*1024}
+def fixture_environment_policy():
+    # Metadata-shaped placeholders are never used for actual Git/GH commands.
+    return {'schema':'pr108-reviewed-process-environment/v3','ambient_inheritance':False,
+        'python':{'argv_prefix':g.PYTHON_PREFIX,'environment':dict(g.COMMON_ENV)},
+        'initial_launcher':{'program':'launch_review_bundle.sh','shell':'/bin/sh','environment':dict(g.COMMON_ENV)},
+        'git':{'environment':dict(g.GIT_ENV),'repository_directory':str(D/'unused_git_repo'),'repository_location_pins':[],'repository_config_pins':[{'path':str(D/'unused_git_config/config'),'bytes':0,'sha256':'0'*64}]},
+        'gh':{'environment':{**g.GH_ENV_FIXED,'GH_CONFIG_DIR':str(D/'unused_gh_config')},
+            'config_pins':[{'path':str(D/'unused_gh_config/hosts.yml'),'bytes':0,'sha256':'0'*64}],'expected_login':'synthetic-fixture'},
+        'credentials_in_environment_or_receipts':False}
+ENV_POLICY=fixture_environment_policy()
+
+def fixture_row(identity,eligible=True,status='queued',holds=None,turns=0,present=True):
+    return {'id':identity,'rank':1,'holds':holds or [],'reasons':[],'local_status':status,'turns_used':turns,
+            'eligible':eligible,'review_hash':'a'*64,'present':present,'impact':4.0}
+
+class CSVFixtures(unittest.TestCase):
+    def csv_bytes(self,sep,newline='\n',last_newline=True,target_multiline=False):
+        stream=io.StringIO(newline='');w=csv.writer(stream,lineterminator=newline)
+        w.writerow(['id','title','holds','reasons']);w.writerow(['other-1','left'+sep+'tail','',''])
+        w.writerow([g.K,'old'+('\r\nmultiline' if target_multiline else ''),'',''])
+        w.writerow(['other-2','right','',''])
+        data=stream.getvalue().encode()
+        return data if last_newline else data[:-len(newline)]
+    def assert_spans(self,data):
+        _,old=g.csv_records(data);target={'id':g.K,'title':'new','holds':[],'reasons':[]}
+        newdata=g.csv_overlay(data,target);_,new=g.csv_records(newdata)
+        self.assertEqual(len(old),len(new));self.assertEqual([x['fields'][0] for x in old],[x['fields'][0] for x in new])
+        self.assertEqual([x['bytes'] for i,x in enumerate(old) if i!=2],[x['bytes'] for i,x in enumerate(new) if i!=2])
+        self.assertEqual(new[2]['fields'][1],'new')
+    def test_all_eight_nonphysical_separators(self):
+        for sep in ['\v','\f','\x1c','\x1d','\x1e','\x85','\u2028','\u2029']:
+            with self.subTest(separator=repr(sep)):self.assert_spans(self.csv_bytes(sep))
+    def test_cr_lf_crlf_and_quoted_multiline(self):
+        for ending in ['\r','\n','\r\n']:
+            for eof in [True,False]:
+                with self.subTest(ending=repr(ending),eof=eof):self.assert_spans(self.csv_bytes('\u2028',ending,eof,True))
+    def test_target_at_eof_without_newline(self):
+        data=b'id,title,holds,reasons\r\nother,untouched,,\r\n30003996,old,,'
+        out=g.csv_overlay(data,{'id':g.K,'title':'new','holds':[],'reasons':[]})
+        self.assertTrue(out.endswith(b'30003996,new,,'));self.assertFalse(out.endswith(b'\n'))
+        self.assertEqual(out.split(b'30003996')[0],data.split(b'30003996')[0])
+    def test_duplicate_and_ba

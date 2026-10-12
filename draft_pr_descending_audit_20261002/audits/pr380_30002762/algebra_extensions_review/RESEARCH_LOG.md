@@ -1,0 +1,3 @@
+# Research log: PR380 algebra and extensions
+
+- 2026-10-03T03:34:52.354934+00:00: Independent reconstruction and fresh exact controls completed and sealed before candidate verdict/proof comparison. Primary EMS contribution read; all 44 files bind the exact frozen Git object. Fresh actual group-law controls passed 71,921 exact assertions. Best-guess scope completion: 55%. Strongest verified result: independent universal reconstructions of the metabelian, ambient finite-index, and split-extension mechanisms, with negative boundary constructions. Exact remaining gap: compare all relevant candidate proofs/code and execute full portable replay; no conclusion about full problem resolution, novelty, or merge readiness.

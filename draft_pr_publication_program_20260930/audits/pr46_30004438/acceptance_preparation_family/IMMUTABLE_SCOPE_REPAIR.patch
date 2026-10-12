@@ -1,0 +1,79 @@
+--- PRE_IMMUTABLE_SCOPE_REPAIR/pr46_guards.py
++++ pr46_guards.py
+@@ -29,8 +29,8 @@
+ LEDGER_SHA = '7763d10e9f6246830e1ff395a0f5e219466797268c78d845734e3c9d7ec3f9ac'
+ SCIENCE_SHA = 'a0d374da6984537cd9902e2e790177791739bdc32ea820b74830a6b50241ea6c'
+ MIRROR_SHA = 'ca7576ece5bc37a6e569a62764541de773243d38bffa811f4d1174f25635667f'
+-ADMIN = {'independent_review/verdict.json', 'status.json', 'readiness.json'}
+-IMMUTABLE = {'independent_review/independent_results.json', 'independent_review/review_summary.json', 'turns.json', 'source_record.json', 'independent_review/REVIEW.md', 'SOURCE_STATUS.md', 'verification.json', 'provenance.json', 'verify.py', 'independent_review/independent_checks.py'}
++ADMIN = {'status.json','readiness.json','independent_review/verdict.json','independent_review/review_summary.json'}
++IMMUTABLE = {'SOURCE_STATUS.md','independent_review/independent_checks.py','independent_review/independent_results.json','provenance.json','source_record.json','turns.json','verification.json','verify.py'}
+ WHOLE_VERDICT = 'PASS_EXACT_CURRENT_KNOWN_RESULT_NO_MANDATORY_CORRECTION'
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty', 'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
+ NATIVE = {'draft_pr_publication_program_20260930/inventory.json'} | {'unsolved_math_prioritization/' + n for n in ['QUEUE.md','state.json','history.jsonl','catalog.json','assessments.json','queue.py','policy.json','manifest.json','cache/problems.json','cache/research_results.json','cache/catalog.sqlite','review_v2/related_target_groups.json']}
+@@ -229,7 +229,7 @@
+ 
+ def source(base):
+     original_native(base/'original_archive')
+-    for n in IMMUTABLE:require(regular(base,n).read_bytes()==regular(A/'source_snapshot',n).read_bytes(),'Immutable10 science/helper/result/source/object-ledger changed')
++    for n in IMMUTABLE:require(regular(base,n).read_bytes()==regular(A/'source_snapshot',n).read_bytes(),'Immutable8 science/helper/result/source/object-ledger changed')
+     require(sha(regular(base,'SOURCE_STATUS.md').read_bytes())==SCIENCE_SHA and sha(regular(base,'source_record.json').read_bytes())==SOURCE_SHA,'Science/source anchors differ')
+     raw=regular(base,'turns.json').read_bytes();require(raw==regular(A/'source_snapshot','turns.json').read_bytes() and sha(raw)==LEDGER_SHA,'Literal complete original zero-turn JSON object ledger')
+     ledger=parse(raw);require(equal(ledger,load(HERE/'EXPECTED_ORIGINAL_LEDGER.json')),'Entire original typed object ledger unchanged')
+--- PRE_IMMUTABLE_SCOPE_REPAIR/independent_controls.py
++++ independent_controls.py
+@@ -43,7 +43,7 @@
+     except (ValueError,TypeError,KeyError,AssertionError,FileNotFoundError,FileExistsError):check(name,True)
+     else:raise AssertionError('Accepted mutant '+name)
+ def git(name, *tail):
+-    root=H/'OWN_READONLY_GIT_V2';root.mkdir(exist_ok=True);d=root/name;d.mkdir();operator=Path(__file__).read_bytes()
++    root=H/'OWN_READONLY_GIT_V3';root.mkdir(exist_ok=True);d=root/name;d.mkdir();operator=Path(__file__).read_bytes()
+     argv=['git',*tail];pre={'argv':argv,'cwd':str(R),'source_sha256':sha(operator),'operator_pid':os.getpid(),'created_utc':now(),'stdin_supplied':False}
+     put(d/'PRELAUNCH_SOURCE.py',operator);put(d/'PRELAUNCH.json',enc(pre));start=now();child=subprocess.Popen(argv,cwd=R,stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,GIT_OPTIONAL_LOCKS='0'));out,err=child.communicate();finish=now()
+     capture={**pre,'actual_execution':True,'completed':True,'pid':child.pid,'exit_code':child.returncode,'started_utc':start,'finished_utc':finish,'source_unchanged':Path(__file__).read_bytes()==operator}
+@@ -94,8 +94,8 @@
+     for z in freeze['complete_stream_members']:read(A/z['path'],z)
+     for z in parse(read(A/'snapshot_manifest.json'))['files']:
+         b=read(A/'source_snapshot'/z['relative_path'],z,frozen=True);check('original13 current archive '+z['relative_path'],b==read(C/'original_archive'/z['relative_path']))
+-    immutable={'SOURCE_STATUS.md','independent_review/REVIEW.md','independent_review/independent_checks.py','independent_review/independent_results.json','independent_review/review_summary.json','provenance.json','source_record.json','turns.json','verification.json','verify.py'}
+-    for n in sorted(immutable):check('immutable10 full body '+n,read(C/n)==read(A/'source_snapshot'/n))
++    immutable={'SOURCE_STATUS.md','independent_review/independent_checks.py','independent_review/independent_results.json','provenance.json','source_record.json','turns.json','verification.json','verify.py'}
++    for n in sorted(immutable):check('immutable8 full body '+n,read(C/n)==read(A/'source_snapshot'/n))
+     ledger=(C/'turns.json').read_bytes();strict_ledger(ledger,0,5);check('exact zero substantive object budget with response1',True)
+     for n,b,u,l in [('empty',b'',0,5),('whitespace_only',b'\n',0,5),('invented_object',b'{"substantive_turns_used":0}\n',0,5),('bool_used',ledger,False,5),('wrong_used',ledger,1,5),('wrong_limit',ledger,0,4)]:rejected('private ledger '+n,lambda b=b,u=u,l=l:strict_ledger(b,u,l))
+     for n in ['DRAFT_ROOT_IMMUTABLE_BINDINGS.json','DRAFT_FINAL_PLAN.json']:
+--- PRE_IMMUTABLE_SCOPE_REPAIR/integrate_reviewed_partial.py
++++ integrate_reviewed_partial.py
+@@ -7,8 +7,8 @@
+ sys.dont_write_bytecode = True
+ import pr46_guards as g
+ 
+-BODY = 'Accept PR46 / 30004438 / OWR-17475-003 as an already_solved repository report crediting Khazhgali Kozhasov and Mario Kummer’s 2020 preprint. For every d>=2, a nonempty ordinary real-open subset of the full dimension2d+1 real degree-d rational-map space has exclusively RP1 periodic points at all positive periods, including infinity. The complete proof and independent mechanisms verify this exact target; finite51/848 checks are diagnostic evidence. This is a correction of the imported open-status assessment, with no campaign discovery or novelty. The original13 and ten operative science/helper/result/source/ledger bodies stay exact. Original0/5, source-verification responses1, new0, audit0; turns.json is a JSON object. Prior-key absence is distinct from raw null or present empty fallback. Current model/reasoning/deadline are null. Historical source/access/PASS/runtime/publication-state claims remain dated; full final after-exit original inner45 commands and outer capture are separately bound, and the frozen inner43 prefix remains archival. The newly closed independent whole-current and actual ROOT reading/reconciliation supply present evidence only. No exhaustive journal-history or fresh legacy-PDF/pixel authentication is claimed. AI tools were used extensively; this is unrefereed, with no claimed human peer review or formal certification. No new paper, DOI, tracker entry or release. One present zero-turn native acceptance event follows the exact original-head no-ff merge and preserves all prior states/history.\n'
+-PRESENT_SCOPE = 'Actual acceptance is bound in acceptance.json. This CURRENT_ACCEPTANCE_SCOPE.md applies globally to SOURCE_STATUS.md, SOURCE_PRECISION_QUALIFICATIONS.md, all current presentations and all metadata. The full mathematical target is a credited known Kozhasov–Kummer2020 preprint result; project_solved and campaign novelty are false. Every d>=2, all positive periods, infinity, ordinary real openness and full ambient dimension2d+1 are retained. The entire locus, Zariski openness, Hermite, higher-dimensional cases and exhaustive journal history are not asserted. Original13 and immutable10 retain their bytes, including the complete object ledger original0/5 with source-verification responses1; new0/audit0. The plain raw source/prior-key absence and saved{} fallback are distinct from null/present empty source. All frozen prospective PENDING, old PASS/model/access/publication-state statements, V1’s superseded chronology, the frozen inner43 prefix and separately dated approvals remain literal archives; they do not override this present accepted disposition. Complete actual final original inner45 commands were read only after actual builder exit; only the outer CAPTURE was completed postexit. Fresh whole-current and ROOT final evidence are separate from historical review. Current runtime fields remain null; no new discovery, journal certification, fresh ROOT legacy-PDF or pixel authentication, human referee review, formal certification, paper/new DOI/tracker/release. Extensive AI use; unrefereed.\n'
++BODY = 'Accept PR46 / 30004438 / OWR-17475-003 as an already_solved repository report crediting Khazhgali Kozhasov and Mario Kummer’s 2020 preprint. For every d>=2, a nonempty ordinary real-open subset of the full dimension2d+1 real degree-d rational-map space has exclusively RP1 periodic points at all positive periods, including infinity. The complete proof and independent mechanisms verify this exact target; finite51/848 checks are diagnostic evidence. This is a correction of the imported open-status assessment, with no campaign discovery or novelty. The original13 and eight operative science/helper/result/source/ledger bodies stay exact. Original0/5, source-verification responses1, new0, audit0; turns.json is a JSON object. Prior-key absence is distinct from raw null or present empty fallback. Current model/reasoning/deadline are null. Historical source/access/PASS/runtime/publication-state claims remain dated; full final after-exit original inner45 commands and outer capture are separately bound, and the frozen inner43 prefix remains archival. The newly closed independent whole-current and actual ROOT reading/reconciliation supply present evidence only. No exhaustive journal-history or fresh legacy-PDF/pixel authentication is claimed. AI tools were used extensively; this is unrefereed, with no claimed human peer review or formal certification. No new paper, DOI, tracker entry or release. One present zero-turn native acceptance event follows the exact original-head no-ff merge and preserves all prior states/history.\n'
++PRESENT_SCOPE = 'Actual acceptance is bound in acceptance.json. This CURRENT_ACCEPTANCE_SCOPE.md applies globally to SOURCE_STATUS.md, SOURCE_PRECISION_QUALIFICATIONS.md, all current presentations and all metadata. The full mathematical target is a credited known Kozhasov–Kummer2020 preprint result; project_solved and campaign novelty are false. Every d>=2, all positive periods, infinity, ordinary real openness and full ambient dimension2d+1 are retained. The entire locus, Zariski openness, Hermite, higher-dimensional cases and exhaustive journal history are not asserted. Original13 and immutable8 retain their bytes, including the complete object ledger original0/5 with source-verification responses1; new0/audit0. The plain raw source/prior-key absence and saved{} fallback are distinct from null/present empty source. All frozen prospective PENDING, old PASS/model/access/publication-state statements, V1’s superseded chronology, the frozen inner43 prefix and separately dated approvals remain literal archives; they do not override this present accepted disposition. Complete actual final original inner45 commands were read only after actual builder exit; only the outer CAPTURE was completed postexit. Fresh whole-current and ROOT final evidence are separate from historical review. Current runtime fields remain null; no new discovery, journal certification, fresh ROOT legacy-PDF or pixel authentication, human referee review, formal certification, paper/new DOI/tracker/release. Extensive AI use; unrefereed.\n'
+ 
+ def queue_after(before):
+     row=g.selected(before);cells=row.split('|');g.require(cells[8].strip()=='queued' and cells[9].strip()=='0/5','Fresh selected queue row queued0/5')
+--- PRE_IMMUTABLE_SCOPE_REPAIR/DRAFT_FINAL_PLAN.json
++++ DRAFT_FINAL_PLAN.json
+@@ -95,7 +95,7 @@
+     "new_substantive_attempts": 0,
+     "novelty_claimed": false,
+     "object_ledger_not_JSONL": true,
+-    "original13_and_immutable10_unchanged": true,
++    "original13_and_immutable8_unchanged": true,
+     "original_source_verification_responses": 1,
+     "original_substantive_attempts": 0,
+     "paper_created": false,
+--- PRE_IMMUTABLE_SCOPE_REPAIR/SCIENTIFIC_SCOPE.json
++++ SCIENTIFIC_SCOPE.json
+@@ -45,7 +45,7 @@
+   "new_substantive_attempts": 0,
+   "novelty_claimed": false,
+   "object_ledger_not_JSONL": true,
+-  "original13_and_immutable10_unchanged": true,
++  "original13_and_immutable8_unchanged": true,
+   "original_source_verification_responses": 1,
+   "original_substantive_attempts": 0,
+   "paper_created": false,

@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+"""Authenticate actual independent runs, record private exclusions, seal public payload."""
+import datetime, hashlib, json, os, pathlib, sys
+root=pathlib.Path(__file__).resolve().parent
+
+def require(value, why):
+    if not value:
+        raise RuntimeError(why)
+
+def pin(path, base=root):
+    body=path.read_bytes()
+    return {"path":str(path.relative_to(base)),"bytes":len(body),"sha256":hashlib.sha256(body).hexdigest()}
+
+def put(name, value):
+    path=root/name
+    require(not path.exists(), "refusing replacement of "+name)
+    path.write_text(json.dumps(value,indent=2)+"\n")
+
+require(not (root/"OUTPUT_MANIFEST.json").exists() and not (root/"SEAL_RECEIPT.json").exists(),"unsealed output required")
+started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+receipts=[]
+for label in ("extract_arxiv","extract_published","render_arxiv_figure3","render_arxiv_table7","render_published_table7","controls_normal","controls_optimized"):
+    folder=root/"process_receipts"/label
+    record=json.loads((folder/"RECEIPT.json").read_text())
+    require(record["exit_code"]==0 and record["reaped"] is True,"actual successful reaped child required")
+    require(record["child_pid"]>0 and record["started_utc"]<=record["finished_utc"],"PID/time custody")
+    for name,expected in record["full_output_pins"].items():
+        body=(folder/name).read_bytes()
+        require(len(body)==expected["bytes"] and hashlib.sha256(body).hexdigest()==expected["sha256"],"full actual output pin")
+    receipts.append({"label":label,"receipt":pin(folder/"RECEIPT.json"),"child_pid":record["child_pid"],"exit_code":record["exit_code"]})
+
+normal=json.loads((root/"process_receipts/controls_normal/stdout.txt").read_text())
+optimized=json.loads((root/"process_receipts/controls_optimized/stdout.txt").read_text())
+require(normal.pop("mode")=="normal" and optimized.pop("mode")=="optimized","two actual execution modes")
+require(normal==optimized,"complete controls equivalent between modes")
+require(normal["checks"]==4037 and len(normal["exact_chords"])==21 and len(normal["closed_cycle_controls"])==9,"expected completed control set")
+input_pins=[]
+for item in normal["input_pins"]:
+    path=pathlib.Path(item["path"])
+    body=path.read_bytes()
+    require(len(body)==item["bytes"] and hashlib.sha256(body).hexdigest()==item["sha256"],"current input custody")
+    input_pins.append(item)
+require(input_pins[-2]["sha256"]=="c56bb4ea29734ed04ee153206bb8619286df544714fd3f77fe97bdc945dfe1da","arxiv primary expected pin")
+require(input_pins[-1]["sha256"]=="c2a2e644521fd03a15833a23bd57c2498b5644036f6bc8fe682c40581f640d42","published primary expected pin")
+verdict=json.loads((root/"VERDICT.json").read_text())
+require(verdict["required_findings"]==[] and verdict["optional_findings"]==[],"clean geometric verdict")
+require(verdict["mathematical_scope_clearance"] is True and verdict["novelty_clearance"] is False,"proper clearance limits")
+put("INPUT_AND_ACTUAL_PROCESS_AUTHENTICATION.json",{"schema":"pr110-geometric-input-and-process-authentication/v1","actual_authenticator_pid":os.getpid(),"utc":started,"input_pins":input_pins,"successful_actual_processes":receipts,"normal_optimized_full_results_equal_except_mode":True,"publication_or_novelty_clearance":False})
+private_files=[]
+for path in sorted((root/"private_source_extracts").rglob("*")):
+    if path.is_file():
+        require(not path.is_symlink(),"no private symlink")
+        private_files.append(pin(path))
+require(len(private_files)==5,"two text extracts and three page renders")
+put("PRIVATE_SOURCE_ARTIFACT_PINS.json",{"schema":"pr110-private-copyright-source-artifact-pins/v1","private_files":private_files,"public_body_export_permitted":False,"reason":"Copyrighted primary-source text extracts and page renders; retained privately for this read-only source audit, excluded from all public review payloads."})
+with (root/"RESEARCH_LOG.md").open("a") as stream:
+    stream.write("\n- "+started+": actual independent final authenticator/sealer PID"+str(os.getpid())+" verified both full process outputs, equal normal/optimized results, source pins and private exclusions. Final bounded-review completion100%; novelty and publication clearancefalse.\n")
+files=[]
+for path in sorted(root.rglob("*")):
+    if not path.is_file():
+        continue
+    rel=path.relative_to(root)
+    if rel.parts[0]=="private_source_extracts" or str(rel) in ("OUTPUT_MANIFEST.json","SEAL_RECEIPT.json") or str(rel).startswith("process_receipts/seal_final/"):
+        continue
+    require(not path.is_symlink(),"no payload symlink")
+    files.append(pin(path))
+manifest={"schema":"pr110-independent-geometric-review-payload/v1","files":files,"payload_files":len(files),"payload_bytes":sum(x["bytes"] for x in files),"private_excluded_prefix":"private_source_extracts/","closing_envelope_exclusions":["OUTPUT_MANIFEST.json","SEAL_RECEIPT.json","process_receipts/seal_final/"],"required_findings":[],"optional_findings":[]}
+put("OUTPUT_MANIFEST.json",manifest)
+mpin=pin(root/"OUTPUT_MANIFEST.json")
+seal={"schema":"pr110-geometric-review-seal/v1","actual_sealer_pid":os.getpid(),"actual_argv":[sys.executable,*sys.orig_argv[1:]],"started_utc":started,"finished_utc":datetime.datetime.now(datetime.timezone.utc).isoformat(),"OUTPUT_MANIFEST":mpin,"REPORT":pin(root/"REPORT.md"),"VERDICT":pin(root/"VERDICT.json"),"payload_files":len(files),"payload_bytes":manifest["payload_bytes"],"private_files_excluded":5,"geometric_review_complete":True,"current_priority_or_publication_clearance":False,"final_actual_process_observed_exit_receipt":"process_receipts/seal_final/RECEIPT.json"}
+put("SEAL_RECEIPT.json",seal)
+print(json.dumps({"sealed":True,"actual_sealer_pid":os.getpid(),"payload_files":len(files),"payload_bytes":manifest["payload_bytes"],"manifest_sha256":mpin["sha256"],"required_findings":[],"optional_findings":[]}))

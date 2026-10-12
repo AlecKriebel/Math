@@ -1,0 +1,184 @@
+{
+  "utc": "2026-10-03T12:11:22.698244+00:00",
+  "status": "PASS",
+  "failures": [],
+  "snapshot": {
+    "manifest_sha256": "eae3ae3ed2a772121e9cd4d24739d9168c0a45327dc20a32bb7f2d3bac92e4cb",
+    "entries": 50,
+    "all_pass": true
+  },
+  "historical_manifests": {
+    "SOURCE_GATE_MANIFEST.json": {
+      "manifest_sha256": "418024f4aee3a1b873a6a536f378c4a9b4f7b38194a8172b8a9e510ff66b3704",
+      "entries": 4,
+      "all_pass": true
+    },
+    "TURN_1_MANIFEST.json": {
+      "manifest_sha256": "bd664901a5ab2012aa80d05569998d8b9874883707771cbb9b770e0aff12fcad",
+      "entries": 10,
+      "all_pass": true
+    },
+    "TURN_2_MANIFEST.json": {
+      "manifest_sha256": "e3c0905b98e2ecf999703745fffb93def8cd8b2d047bd73e1aeb8a5887e162f4",
+      "entries": 16,
+      "all_pass": true
+    },
+    "TURN_3_MANIFEST.json": {
+      "manifest_sha256": "6d0a1d6ff149575e801083d7804fb2dbc250e34ce752a31ffe7863a656a961e6",
+      "entries": 22,
+      "all_pass": true
+    },
+    "TURN_4_MANIFEST.json": {
+      "manifest_sha256": "1b7ff4f994917adc931b9661bf4831ac93ab50ed1b6b2c25d7c4a9862e712683",
+      "entries": 29,
+      "all_pass": true
+    },
+    "TURN_5_MANIFEST.json": {
+      "manifest_sha256": "54f1ce2c5c3fbc114b3919abe99bcd01370b0bd4eb1560815f4f6f4ef8a5b5a0",
+      "entries": 38,
+      "all_pass": true
+    },
+    "FINAL_AUTHOR_MANIFEST.json": {
+      "manifest_sha256": "474097376562f1af729fbafdacabe3a5df8ed2a16da92f337b5f2dedd0c62c52",
+      "entries": 39,
+      "all_pass": true
+    },
+    "PUBLICATION_MANIFEST.json": {
+      "manifest_sha256": "3f1a6a2661ee81b2e7c5f6179ce31402aeba3ec9bd42a4090853af04d1c581a7",
+      "entries": 48,
+      "all_pass": true
+    },
+    "review/REVIEW_MANIFEST.json": {
+      "manifest_sha256": "8a35610701cb4b0edb2225713244726123cebe4e8cfd5859b21e517078800be1",
+      "entries": 5,
+      "all_pass": true
+    }
+  },
+  "replays": [
+    {
+      "script": "verify_turn1.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "1a6759e1371edaa451618c6d39bfc20b441e97ba35a55334de7d50eda64c70ea",
+      "output": {
+        "cases": 84,
+        "cases_with_repeated_roots": 33,
+        "exact_assertions": 1764,
+        "degree_patterns": 7,
+        "analytic_claims_tested": false
+      }
+    },
+    {
+      "script": "verify_turn2.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "0917f3bfe77a114309f5e0dbd5ca0493423db58bef6bbc981d72f1b82025abbb",
+      "output": {
+        "exact_assertions": 7551,
+        "lattice_cases": 518,
+        "product_monodromy_cases": 49,
+        "symmetric_component_cases": 300,
+        "analytic_claims_tested": false
+      }
+    },
+    {
+      "script": "verify_turn3.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "633dc5f7ff011b7009e56ff8d062a06d672a4f1d9325d3b7f471985b057918be",
+      "output": {
+        "laurent_maps": 374,
+        "exact_assertions": 7421,
+        "sample_fibers_per_map": 4,
+        "analytic_claims_tested": false
+      }
+    },
+    {
+      "script": "verify_turn4.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "48fe3af672ffba15138db8c6b236550c9e95cb464e0d88a8bd7024f370b77a97",
+      "output": {
+        "exact_assertions": 11956,
+        "group_law_cases": 500,
+        "iterated_commutator_cases": 1152,
+        "analytic_counterexample_claimed": false
+      }
+    },
+    {
+      "script": "verify_turn5.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "ffecb0f74522bea4f6a97bd3e564a811848541d53b484cd8e760c7537a550272",
+      "output": {
+        "exact_assertions": 9374,
+        "translation_parameter_cases": 1053,
+        "jordan_power_cases": 440,
+        "gaussian_norm_cases": 676,
+        "polynomial_translation_cases": 1155,
+        "analytic_resolution_claimed": false
+      }
+    },
+    {
+      "script": "review/independent_check.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "3d42686acfdfaa64b738fc867e01e137b662415f4bde2edee07fad3dfa493e2a",
+      "output": {
+        "status": "PASS",
+        "independent_assertions": 1420,
+        "scope": "Independent resultant/companion equality, exact infinite-lamp finite differences, fractional exponents and Jordan powers; analytic and topological implications audited in full prose."
+      }
+    },
+    {
+      "script": "review/replay_author.py",
+      "exit": 0,
+      "stdout_byte_equal": true,
+      "stdout_sha256": "c8da994ccafb752c16254746632d2f7aba8663f57163fd20a1aca3417b67a4fb",
+      "output": {
+        "status": "PASS",
+        "author_manifest_sha256": "474097376562f1af729fbafdacabe3a5df8ed2a16da92f337b5f2dedd0c62c52",
+        "bound_files": 39,
+        "receipts": [
+          {
+            "cases": 84,
+            "cases_with_repeated_roots": 33,
+            "exact_assertions": 1764,
+            "degree_patterns": 7,
+            "analytic_claims_tested": false
+          },
+          {
+            "exact_assertions": 7551,
+            "lattice_cases": 518,
+            "product_monodromy_cases": 49,
+            "symmetric_component_cases": 300,
+            "analytic_claims_tested": false
+          },
+          {
+            "laurent_maps": 374,
+            "exact_assertions": 7421,
+            "sample_fibers_per_map": 4,
+            "analytic_claims_tested": false
+          },
+          {
+            "exact_assertions": 11956,
+            "group_law_cases": 500,
+            "iterated_commutator_cases": 1152,
+            "analytic_counterexample_claimed": false
+          },
+          {
+            "exact_assertions": 9374,
+            "translation_parameter_cases": 1053,
+            "jordan_power_cases": 440,
+            "gaussian_norm_cases": 676,
+            "polynomial_translation_cases": 1155,
+            "analytic_resolution_claimed": false
+          }
+        ]
+      }
+    }
+  ],
+  "author_assertions_total": 38066,
+  "prior_independent_assertions": 1420,
+  "finite_checks_not_universal_analytic_proofs": true
+}

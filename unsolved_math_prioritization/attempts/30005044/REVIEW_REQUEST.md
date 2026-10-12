@@ -1,18 +1,7 @@
-# Independent adversarial review request
+# New whole-correction adversarial review request
 
-Please bind the verdict to the frozen PROOF.md and manifest. The intended outcome is a complete affirmative answer to the source's existential question, not a universal criterion for all infinite-mean laws.
+Bind to C3 CANDIDATE_MANIFEST.json and every target payload. Verify globally that the whole exact qualitative existential target is assessed `already_solved`, category(b), old weighted-GW theorem plus fully written elementary CP coupling. Do not confuse a demonstrated corollary with an expressly printed old CP theorem or claim firstness. Check full ADGO, BKV proof/addendum and original-author 2024/2026 credit.
 
-Attack these points in particular:
+Attack PRIORITY_AUDIT.md against accepted final bridges: retained-law independence, survival conditioning, strict quantiles/rounding, fixed-horizon time support, adaptive clocks, simultaneous finite witnesses and quenched heredity. Check operative status/readiness cross-references, actual primary versus attributed report reading scopes, historical source identity and quantitative originality/significance boundaries.
 
-1. The exact source model: iid finite fitness in [1,infinity), infection rate lambda times endpoint fitnesses, recovery rate 1, initially only the root. Is constant fitness an admissible choice? Are the neighboring moment-gap and bounded-offspring questions correctly excluded?
-2. The explicit offspring distribution: normalized, almost surely finite, infinite mean, and a locally finite infinite Galton–Watson tree. No hidden infinite-degree vertex.
-3. Adaptive ray exploration: a selected vertex has a biased known offspring count, but its children's degrees and its outgoing arrow processes must remain fresh. Check the conditional stage-failure calculation and the first-failure union bound without assuming independent stage events.
-4. Exact constants: D_n=16^(n+2), interval length 2^(-n-2)/lambda, per-child lower bound 2^(-2n-6), stage mean at least 4^(n+1), failure sum at most 1/15, ray probability at least 7/30.
-5. Recovery control: the ray is chosen without reading any recovery marks. The root is guarded on [0,tau], vertex n>=1 on [s_(n-1),tau], giving total forbidden length 3tau. Does the conditional infinite-product argument genuinely give exp(-3tau)>0?
-6. Actual simultaneous infections at tau=1/(2lambda), by finite infection paths to every ray vertex. Check the finite-ball minimal graphical definition, no use of infection from infinity, and no confusion with a bare first-passage ray or infinitely many cumulative infections.
-7. The quenched enhancement: goodness at the countable times tau+m, inheritance from a child via an infection at time 1, fresh future marks, the inequality 1-q <= E[(1-q)^xi], its strictness for 0<q<1, and the countable-rational/monotonicity argument for every positive lambda.
-8. Fitness monotonicity and distinctions among annealed bound, almost-sure quenched possibility, positive probability, deterministic horizon, and universal infinite-mean sufficiency.
-9. Source credit: the 2026 fitness nonexplosion theorem requires finite mean; the 2026 degree-penalized paper already uses growing-degree infection rays for survival and explicitly defines explosive graphical processes. No novelty or stronger published theorem is claimed.
-10. Checker limits: 17,228 finite exact assertions are controls, not a substitute for the infinite-event probability proof. Reproduce the receipt and independently check the conditioning and recovery reasoning.
-
-Full primary PDFs and text are available in the dedicated workspace's sources directory. Their names, URLs, and SHA-256 values are in source_manifest.json. Source PDFs, rendered pages, and the imported full pinned record are reading inputs, not portable publication files.
+Verify all 16 historical bytes, PROOF.md §§1–6, exact probability/scope, checkers and historical receipts. Preserve submitted claimed_solved eligibility, rank 281 and budget 1/5; zero author attempts added. Separately owned original-row proposal changes only status/findings and is not live state. Root retains final user disposition. No paper, publication, merge, DOI, GWS, provider, primary Git or outreach authority is granted. Historical requests/receipts remain dated evidence.

@@ -1,17 +1,21 @@
 # Draft-PR audit and publication program
 
 Persistent goal authorized September 30, 2026. Start with PR 9, then process the
-remaining draft PRs in ascending number; PR 8 is excluded. `inventory.json`
-records the initial 180 selected drafts, exact heads, current stage, and outcome.
-Refresh the remote inventory before declaring the program complete.
+remaining eligible draft PRs in ascending number; PR 8 is excluded. The current
+persistent objective processes **only PR heads whose QUEUE.md status is exactly
+`claimed_solved`**. Skip all other statuses entirely. `inventory.json` is the
+historical initial 180-PR inventory, not the current eligibility denominator.
+`claimed_solved_scope_20261003/` records the later frozen eligibility census.
+Refresh the remote inventory before declaring the program complete. Finish each
+eligible PR's publication and tracker workflow before advancing to the next.
 
 For each PR, freeze its exact head and diff; define the original problem and
 claimed outcome; reproduce proof/computation/source evidence; use independent
 approach families and adversaries; reasonably repair issues before accepting or
-rejecting. A failed irreparable candidate is closed with an explanatory comment.
-An accepted `already_solved` or `unsolved` outcome is merged as partial progress
-without a paper. A `claimed_solved` outcome requires a further primary-source
-priority audit before a paper is promoted.
+rejecting. A failed irreparable claimed solution is closed with an explanatory
+comment. Do not process submitted `already_solved`, `unsolved`, or other
+non-`claimed_solved` PRs. A valid claimed solution requires a further
+primary-source priority audit before a paper is promoted.
 
 For a validated claimed solution, prepare a concise self-contained preprint,
 verification/source materials, exact aligned metadata, and an offline upload kit.
@@ -33,5 +37,22 @@ generator is not a safe way to update manually maintained outcomes; make precise
 row edits preserving existing statuses, findings, chat links, and DOI fields.
 
 Completion estimates describe remaining workflow, not mathematical certainty.
-The overall count is completed dispositions divided by the selected inventory;
-the persistent goal stays active until all required work is actually complete.
+The overall count is completed eligible workflows divided by the current
+claimed-solved inventory; historical partial dispositions are excluded. The
+persistent goal stays unfinished until all required work is actually complete.
+
+Current checkpoint: PR9, PR16 and PR18 have completed publication, tracker and
+merge. PR18 completed rigorous review, the full named 2024 source check, two
+fresh whole-package reviews, publication at DOI `10.5281/zenodo.23127955`, exact
+public file readbacks, merge and native acceptance. Its Google Workspace CLI
+tracker entry is independently verified at `Math Puzzles!A14:D14`. PR18 workflow
+estimate: 100%. PR50 is now under active review: the mathematical theorem passes the fresh adversary, and a new v3 package credits Nencka's related 1996 announcement and identified fuller texts, and adds source-bound left-exchange controls to repair a diagnostic common-mode weakness. Exact earlier ordinary-closure priority remains unresolved pending fuller 1998/1999 sources. A NEW whole-package reviewer completed v3 from scratch with no further mathematics or payload repairs; its actual 7,114-check reproduction matches exactly, and the strengthened controls reject an actual zero-shift mutant. This is mathematical/package clearance only: publication and novelty remain held pending fuller Nencka source assessment. No PR50 publication, DOI, tracker entry or merge has occurred. The next eligible PR after completing PR50 is PR55. See `CURRENT_PROGRESS.json`.
+
+## Historical checkpoints under the superseded broader scope
+
+The following dated entries describe prior work. Their old denominator,
+non-claimed PR processing and source-access holds do not govern the current goal.
+
+PR28 accepted as an unsolved smooth small-width partial after three distinct families, root reproduction and a clean new complete gate; exact originalhead remotely merged93e71b129. Original2/5 and all existing state/history preserved; no paper/DOI/tracker. Program17/180 dispositions completed (9.4444%); PR18/20 remain held. 2026-10-01T23:53:43.132998+00:00
+
+2026-10-02T00:10:13.788399+00:00 — PR27 accepted and remotely merged as knownunsolvedpartial after Powelln2 source-lemma correction, NEWdifferentwholegate and rootreproduction. Canonical31, original1/5 and19target/21turn mirror verified. Firstfailedgate/history retained; no paper/newDOI/tracker. Program18/180=10%; unresolved holds18/20 unchanged.

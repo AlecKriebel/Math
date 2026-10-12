@@ -1,0 +1,66 @@
+{
+  "disposition": "INDEPENDENTLY_SUPPORTED_SCOPED_APPROXIMATION_FULL_TARGET_UNRESOLVED",
+  "full_problem_solved": false,
+  "original_authored_attempts_used": 2,
+  "original_authored_attempts_total": 5,
+  "audit_additional_source_research_turns": 0,
+  "audit_completion_percent": 100,
+  "source_discovery_completion": "unchanged; no exact shift found or searched here",
+  "strongest_verified_result": "Explicit independent Brownian W from reflected negative pieces; exact error bound2omega_W(c;R+c); a.s.O(sqrt(log(2+R))) two-sided coupling; diffusive weak limit",
+  "exact_gap": "One finite random origin giving two independent exact Brownian half-path laws for every bounded non-iid mark sequence, or an admissible bounded counterexample excluding all origins",
+  "claims": [
+    {
+      "claim": "W Brownian law non-iid and zero-duration scope",
+      "status": "verified by finite-splice strong Markov proof",
+      "controls": "six-step exact rational non-iid/randomized-zero prefix law; anticipation controls"
+    },
+    {
+      "claim": "independence of W and positive half",
+      "status": "verified by disjoint generating sigma-fields",
+      "controls": "full joint finite laws, shared-input rejection"
+    },
+    {
+      "claim": "rotation and modulus inequality",
+      "status": "verified exact geometry including cut-through horizons",
+      "controls": "88 paths,2304 quarter-grid equalities, noncommon-bound rejection"
+    },
+    {
+      "claim": "a.s.logarithmic error and diffusive scaling",
+      "status": "verified reflection/union/Borel-Cantelli/scaling derivation",
+      "controls": "dyadic cover/constants plus replayed prior symbolic controls"
+    },
+    {
+      "claim": "fixed-origin diagnostic implies source counterexample",
+      "status": "rejected; original report also rejects it",
+      "controls": "source random-origin definition and existing iid theorem"
+    },
+    {
+      "claim": "reflection preserves original paired law",
+      "status": "false; old-review wording repair required",
+      "controls": "Brownian cap-hit atom counterexample plus exact discrete paired-law mismatch"
+    },
+    {
+      "claim": "exact random-shift representation",
+      "status": "unresolved, not pursued in this audit",
+      "controls": "none claim this result"
+    }
+  ],
+  "original_replay": {
+    "usrbin_all_three_exit_zero": true,
+    "all_generated_results_byte_identical": true
+  },
+  "falsification_control_groups": 18,
+  "mandatory_repairs": [
+    {
+      "artifact": "source_snapshot/review/REVIEW.md",
+      "location": "Brownian law of reordered pieces, first paragraph",
+      "type": "precision correction to historical review, no theorem repair",
+      "issue": "Brownian symmetry preserves each stopped Brownian-pair law is false as equality of joint distributions when T is asymmetric",
+      "required_replacement": "Because -B^k is Brownian for the same filtration and T_k remains a stopping time, the reflected pair is another admissible stopped Brownian pair. Its joint distribution may differ from the original pair; independence is retained, and the strong Markov concatenation argument applies.",
+      "counterexample": "T=min(first hit of -1,1); B_T has positive atom at -1 while -B_T has corresponding atom +1 and no atom -1. Exact capped-walk control also verifies paired-distribution inequality.",
+      "mathematical_effect": "PARTIAL.md uses valid reflected-pair admissibility/gluing, so its theorem and proof are unaffected",
+      "historical_source_edited": false
+    }
+  ],
+  "novelty_or_priority_claim": false
+}

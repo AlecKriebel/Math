@@ -1,0 +1,5 @@
+# Substantive author turn 1
+
+Starting from the exact arbitrary-entire target, this turn investigated finite polynomial push-forward and abelian torus quotients. It proved a two-way preservation theorem under polynomial coordinate precomposition, including a direct companion-matrix construction through every repeated-root fiber. It then checked the algebraic-base, connectedness, regular-cover and singular-locus hypotheses for three Laurent-polynomial exponential inputs, and used the finite-pullback equivalence to allow arbitrary polynomial phases. These are scoped positive theorems with classical dependencies credited, not a solution of the unrestricted target.
+
+The general infinite-fiber and non-algebraic-base obstacles remain explicit. There is no inference from compact approximation to the global bound on the original hypersurface. The source's already-known polynomial-input and two-exponential-input cases remain prior work. Standard-library exact checks pass 1,764 assertions across 84 companion examples, including 33 with repeated roots. This is the first genuine author turn; source retrieval and packaging are excluded.

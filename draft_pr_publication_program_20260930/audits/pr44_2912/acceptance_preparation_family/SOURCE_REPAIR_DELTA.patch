@@ -1,0 +1,1118 @@
+--- INITIAL_GENERATED_SOURCE/pr44_guards.py
++++ pr44_guards.py
+@@ -143,7 +143,7 @@
+     obj=parse(raw)
+     known={
+         'pr44-acceptance-source-closure/v1':{'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'},
+-        'PR44_STRICT_CURRENT_PACKET_v1':{'schema','self_excluded','files_count','files','current_gate','prior_standard_partial','full_problem_solved_by_project','novelty_claimed','original_substantive_attempts','new_substantive_attempts','audit_turns'},
++        'PR44_STRICT_CURRENT_PACKET_v1':{'schema','self_excluded','files_count','files','current_gate','status','full_problem_solved','novelty_claimed','original_substantive_attempts','new_substantive_attempts','audit_turns','full_permission_mode'},
+         'pr44-final-root-two-member-closure/v1':{'schema','utc','self_excluded','files_count','files'},
+         'pr44-accepted-strict-self-excluding-closure/v1':{'schema','utc','self_excluded','files_count','files','foreign_excluded_prefixes'},
+     }
+@@ -335,13 +335,41 @@
+             raw=git_bytes('show',dated_head+':'+z['path']);historical_checked.add(z['path'])
+         else:raw=regular(R,z['path']).read_bytes()
+         require(len(raw)==z['bytes'] and sha(raw)==digest(z['sha256']),'Entire individual input changed')
+-    require(len(names)==964 and NATIVE<=names and historical_checked==historical,'Exact identities/native13/historical4')
++    require(len(names)==964 and (NATIVE-historical)<=names and not historical.intersection(names),'Exact964 foreign identities and nine stable native inputs')
++    for n in sorted(historical):
++        z=dated_native[n]
++        entries=git_bytes('ls-tree','-z',dated_head,'--',n).decode().split('\0')
++        require(len(entries)==2 and entries[-1]=='','Exactly one independent frozen Git blob')
++        fields,literal=entries[0].split('\t');mode,kind,blob=fields.split()
++        require(mode=='100644' and kind=='blob' and literal==n,'Frozen native4 exact immutable Git modes')
++        raw=git_bytes('show',dated_head+':'+n)
++        require(len(raw)==z['bytes'] and sha(raw)==z['sha256'],'Entire independent frozen native4 body differs')
++        historical_checked.add(n)
++    require(historical_checked==historical,'All four independently rechecked frozen native bodies')
+     verdict=parse(bound(inputs['closed_whole_result']));require(equal(verdict,load(HERE/'EXPECTED_WHOLE_VERDICT.json')),'Entire actual typed whole verdict')
+     required(verdict,{'verdict':WHOLE_VERDICT,'candidate_manifest_sha256':CURRENT_SHA,'mandatory_mathematical_corrections':[],'mandatory_source_scope_corrections':[],'mandatory_current_contract_corrections':[],'full_problem_solved':False,'novelty_claimed':False,'original_substantive_attempts':2,'new_substantive_attempts':0,'audit_turns':0,'exact_remaining_gaps':load(HERE/'SCIENTIFIC_SCOPE.json')['exact_remaining_gaps']},'Scoped UNSOLVED mathematical gate')
+     bound(inputs['closed_whole_report'])
+     rootref=exact_reference(approved['root_whole_inspection']);require(equal(rootref,inputs['closed_root_whole_inspection']),'Genuine ROOT whole read pin')
+     root=parse(bound(rootref));require(equal(root,load(HERE/'EXPECTED_ROOT_WHOLE_REVIEW.json')) and equal(root['complete_VERDICT_object'],verdict),'Entire exact ROOT44 whole read')
+     required(root,{'schema':'pr44-root-complete-closed-whole-inspection/v1','status':'PASS_ROOT_COMPLETE_CLOSED_WHOLE_INSPECTION','candidate_manifest_sha256':CURRENT_SHA,'closed_whole_manifest_sha256':wm['sha256'],'first_party_members':96,'individually_bound_foreign_inputs':964,'personal_report_and_verdict_fully_read':True,'all_first_party_whole_bytes_and_modes_checked':True,'all_foreign_individual_whole_bytes_checked':True,'exact_self_only_recursive_closure_checked':True,'future_execution_approved':False,'mandatory_defects':[],'mandatory_corrections':[],'original_substantive_attempts':2,'new_substantive_attempts':0,'audit_turns':0,'full_problem_solved_by_project':False,'full_target_resolved_in_prior_published_literature':False,'dated_four_native_source_head':dated_head},'ROOT44 complete whole read flags and explicit source limits')
++    require(root.get('direct_four_independent_ROOT_Git_checks_completed') is True and type(root.get('actual_direct_four_operator_pid')) is int and root['actual_direct_four_operator_pid']>0,'Genuine direct ROOT native4 operation')
++    commands=root['complete_dated_git_captures'];require(type(commands) is list and len(commands)==8,'Exact eight genuine direct ROOT Git captures')
++    expected=[]
++    for n in sorted(historical):expected.extend([['git','ls-tree',dated_head,'--',n],['git','show',dated_head+':'+n]])
++    require(equal([z['argv'] for z in commands],expected),'Exact entire direct ROOT native4 argv sequence')
++    for i,z in enumerate(commands):
++        required(z,{'cwd':str(R),'operator_pid':root['actual_direct_four_operator_pid'],'stdin_supplied':False,'exit_code':0,'actual_execution':True,'completed':True},'Genuine complete direct Git query')
++        require(type(z['pid']) is int and z['pid']>0 and utc_clock(z['started_utc'],'Git start')<=utc_clock(z['finished_utc'],'Git finish')<=utc_clock(root['created_utc'],'Root read completion'),'Actual Git PID/time')
++        for channel in ['stdout','stderr']:exact_reference(z[channel]);check(R,[z[channel]])
++        require(regular(R,z['stderr']['path']).read_bytes()==b'','Complete direct Git stderr')
++        n=sorted(historical)[i//2];raw=regular(R,z['stdout']['path']).read_bytes()
++        if i%2:
++            require(len(raw)==dated_native[n]['bytes'] and sha(raw)==dated_native[n]['sha256'],'Entire direct show stdout equals frozen native body')
++        else:
++            require(raw.endswith(b'\n') and raw.count(b'\n')==1,'One literal direct ls-tree line')
++            fields,literal=raw.decode().rstrip('\n').split('\t');mode,kind,blob=fields.split()
++            require(mode=='100644' and kind=='blob' and literal==n,'Exact direct100644 path/mode')
++    require(utc_clock(root['created_utc'],'ROOT whole inspection')<=utc_clock(approved['created_utc'],'ROOT acceptance approval'),'Completed whole inspection must precede ROOT approval')
+     ledger=load(A/'ROOT_PRIMARY_READ_LEDGER.json');card=load(A/'ROOT_SCIENCE_CARD.json');require(ledger['reading_completed'] is True and card['reading_completed'] is True and len(ledger['root_flags'])==9 and equal(ledger['root_flags'],card['root_flags']) and all(v is True for v in ledger['root_flags'].values()),'Nine distinct actual ROOT source/math flags')
+     refs += [pin(C/'MANIFEST.json'),pin(C/'CURRENT_DEPENDENCIES.json'),wm,inputs['closed_whole_result'],inputs['closed_whole_report'],rootref,pin(rp)]
+     refs += [approved[n] for n in ['previous_mirror','previous_post','previous_root_post','acceptance_source_manifest','acceptance_source_verdict','root_source_inspection','root_capture_operator']]
+@@ -452,13 +480,13 @@
+     require(type(before) is dict and type(before.get('items')) is list and len(before['items'])==180,'Complete retained180 inventory')
+     require(all(type(z) is dict and type(z.get('number')) is int for z in before['items']),'Typed inventory identities')
+     identities=[z['number'] for z in before['items']];require(len(set(identities))==180 and identities.count(44)==1,'Unique original selected PR44')
+-    require(type(before.get('completed_count')) is int and before['completed_count']==33 and sum(z.get('stage')=='complete' for z in before['items'])==33,'Actual32 prior primaries')
++    require(type(before.get('completed_count')) is int and before['completed_count']==33 and sum(z.get('stage')=='complete' for z in before['items'])==33,'Actual33 prior primaries')
+     required(remote,{'state':'MERGED','isDraft':False,'number':44,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main'},'Actual merged standard-partial remote')
+     require(type(remote['mergeCommit']) is dict and set(remote['mergeCommit'])=={'oid'} and type(remote['mergeCommit']['oid']) is str and re.fullmatch('[0-9a-f]{40}',remote['mergeCommit']['oid']),'Exact actual merge oid')
+     clock=utc_clock(finalized_utc,'Actual finalization');merged=utc_clock(remote['mergedAt'],'Actual mergedUTC');require(merged<=clock<=dt.datetime.now(dt.timezone.utc),'No reversed/future merge finalization')
+     inv=copy.deepcopy(before);chosen=next(z for z in inv['items'] if z['number']==44);require(chosen.get('stage')!='complete','Selected not already complete')
+     chosen.update(stage='complete',outcome='unsolved_accepted_partial',queue_status='unsolved',audited_head=HEAD,merge_commit=remote['mergeCommit']['oid'],merged_at=remote['mergedAt'],workflow_completion_estimate_percent=100,original_attempts='2/5',new_substantive_attempts=0,cumulative_attempts='2/5',paper_or_new_doi_or_tracker=False)
+-    require(sum(z.get('stage')=='complete' for z in inv['items'])==34,'Exactly33 derived primary completions')
++    require(sum(z.get('stage')=='complete' for z in inv['items'])==34,'Exactly34 derived primary completions')
+     inv.update(updated_at_utc=finalized_utc,last_checkpoint_utc=finalized_utc,completed_count=34,program_completion_estimate_percent=34/180*100,completion_estimate_percent=34/180*100,current_pr=45)
+     return inv
+ 
+@@ -481,7 +509,7 @@
+ 
+ def expected_acceptance(pins,pre):
+     final,remote=finalization(pins,pre)
+-    return {'schema':'pr44-accepted-qualified-standard-partial-partial/v1','utc':final['utc'],**SCIENCE,**pins,'pr':44,'id':2912,'problem_id':2912,'problem_number':CODE,'queue_status':'unsolved','outcome':'unsolved_accepted_partial_merged','original_head':HEAD,'original_base':ORIGINAL_BASE,'merge_commit':final['merge_commit'],'merge_tree':final['merge_tree'],'merge_parents':[pre['main_before'],HEAD],'merged_at':remote['mergedAt'],'remote_state':'MERGED','remote_isDraft':False,'canonical_scientific_artifact_sha256':SCIENCE_SHA,'source_record_sha256':SOURCE_SHA,'original_ledger_sha256':LEDGER_SHA,'substantive_attempts_used':2,'substantive_attempt_limit':5,'native_historical_events_inferred':False,'historical_metadata_archival_only':True,'workflow_completion_estimate_percent':100,'full_resolution_by_project_completion_estimate_percent':0,'scientific_scope':load(HERE/'SCIENTIFIC_SCOPE.json')}
++    return {'schema':'pr44-accepted-qualified-standard-partial/v1','utc':final['utc'],**SCIENCE,**pins,'pr':44,'id':2912,'problem_id':2912,'problem_number':CODE,'queue_status':'unsolved','outcome':'unsolved_accepted_partial_merged','original_head':HEAD,'original_base':ORIGINAL_BASE,'merge_commit':final['merge_commit'],'merge_tree':final['merge_tree'],'merge_parents':[pre['main_before'],HEAD],'merged_at':remote['mergedAt'],'remote_state':'MERGED','remote_isDraft':False,'canonical_scientific_artifact_sha256':SCIENCE_SHA,'source_record_sha256':SOURCE_SHA,'original_ledger_sha256':LEDGER_SHA,'substantive_attempts_used':2,'substantive_attempt_limit':5,'native_historical_events_inferred':False,'historical_metadata_archival_only':True,'workflow_completion_estimate_percent':100,'full_resolution_by_project_completion_estimate_percent':0,'scientific_scope':load(HERE/'SCIENTIFIC_SCOPE.json')}
+ 
+ 
+ def accepted_invariants(o,pins,pre,audit=False):
+--- INITIAL_GENERATED_SOURCE/integrate_reviewed_partial.py
++++ integrate_reviewed_partial.py
+@@ -7,10 +7,8 @@
+ sys.dont_write_bytecode = True
+ import pr44_guards as g
+ 
+-BODY = 'Accept PR44 / 2912 / Kirby4.36 as an UNSOLVED repository report of standard conditional deductions. The finite-support meridional restriction kernel, sufficient relative-degree-one pair-map criterion and conditional integral R^C/R^A for the specified abstract group-pair are valid scoped partials. Neither a degree-one meridian-compatible pair map from the unmarked full(G,pi2module,k) nor two actual smooth/locally flat PL S2-in-S4 exteriors with equal full triples and different homotopy types is realized. Both gaps remain explicit. Original18 and twelve immutable science/helper/result/source/ledger bodies are unchanged; original2/5,new0,audit0. The NEW whole-current source-first audit and genuine ROOT full reading/final reconciliation are separately bound. Global source/category/integral/history qualifications remain operative, including finite checks not proving realization/classification and absent raw prior versus SQL fallback{}. Current model/reasoning/deadline are null. No novelty, project solution, full prior-literature resolution, exhaustive priority, human peer review, paper, new DOI, tracker or release is claimed. One present acceptance event follows the exact original-head no-ff merge, preserves every prior state and the full history prefix, and consumes only the original two turns.
+-'
+-PRESENT_SCOPE = 'The NEW whole-current source-first audit has passed for this scoped UNSOLVED standard partial; actual completed acceptance is bound in acceptance.json. SOURCE_PRECISION_QUALIFICATIONS.md and CURRENT_OBSTRUCTION_CONTEXT.md apply globally to OBSTRUCTION.md, every presentation and metadata file. The unmarked full triple supplies no boundary/meridian marking or degree-one pair map; no actual allowed-category equal-full-triple exterior pair is realized. The integral quotient is conditional on the specified abstract group-pair, and augmentation-lattice substitution is invalid. Original18 archive and twelve immutable bodies remain exact. Earlier PENDING/source-only/PASS/runtime/search/access/model statements in the frozen current packet and original archives remain dated attributions at or before its frozen publication; later actual acceptance records alone describe the present disposition. Raw prior absence and SQL fallback{} remain distinct. Original2/5,new0,audit0; current runtime fields null; no novelty, human referee, paper/new DOI/tracker/release.
+-'
++BODY = 'Accept PR44 / 2912 / Kirby4.36 as an UNSOLVED repository report of standard conditional deductions. The finite-support meridional restriction kernel, sufficient relative-degree-one pair-map criterion and conditional integral R^C/R^A for the specified abstract group-pair are valid scoped partials. Neither a degree-one meridian-compatible pair map from the unmarked full(G,pi2module,k) nor two actual smooth/locally flat PL S2-in-S4 exteriors with equal full triples and different homotopy types is realized. Both gaps remain explicit. Original18 and twelve immutable science/helper/result/source/ledger bodies are unchanged; original2/5,new0,audit0. The NEW whole-current source-first audit and genuine ROOT full reading/final reconciliation are separately bound. Global source/category/integral/history qualifications remain operative, including finite checks not proving realization/classification and absent raw prior versus SQL fallback{}. Current model/reasoning/deadline are null. No novelty, project solution, full prior-literature resolution, exhaustive priority, human peer review, paper, new DOI, tracker or release is claimed. One present acceptance event follows the exact original-head no-ff merge, preserves every prior state and the full history prefix, and consumes only the original two turns.\n'
++PRESENT_SCOPE = 'The NEW whole-current source-first audit has passed for this scoped UNSOLVED standard partial; actual completed acceptance is bound in acceptance.json. SOURCE_PRECISION_QUALIFICATIONS.md and CURRENT_OBSTRUCTION_CONTEXT.md apply globally to OBSTRUCTION.md, every presentation and metadata file. The unmarked full triple supplies no boundary/meridian marking or degree-one pair map; no actual allowed-category equal-full-triple exterior pair is realized. The integral quotient is conditional on the specified abstract group-pair, and augmentation-lattice substitution is invalid. Original18 archive and twelve immutable bodies remain exact. Earlier PENDING/source-only/PASS/runtime/search/access/model statements in the frozen current packet and original archives remain dated attributions at or before its frozen publication; later actual acceptance records alone describe the present disposition. Raw prior absence and SQL fallback{} remain distinct. Original2/5,new0,audit0; current runtime fields null; no novelty, human referee, paper/new DOI/tracker/release.\n'
+ 
+ def queue_after(before):
+     row=g.selected(before); cells=row.split('|'); g.require(cells[8].strip()=='queued' and cells[9].strip()=='0/5','Fresh original selected row must be queued0/5')
+@@ -42,8 +40,8 @@
+         g.native_modes(fresh['files'])
+         queue=g.Q.read_bytes(); g.selected(queue); queue_after(queue)
+         state=g.load(g.R/'unsolved_math_prioritization/state.json'); inv=g.load(g.B/'inventory.json')
+-        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==34 and g.ID not in state and sum(z['turns_used'] for z in state.values())==41,'Require postPR43 native33targets/41turns, selected identity absent')
+-        g.require(inv['completed_count']==33 and sum(z.get('stage')=='complete' for z in inv['items'])==33,'Require32 complete primaries before43')
++        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==34 and g.ID not in state and sum(z['turns_used'] for z in state.values())==41,'Require postPR43 native34targets/41turns, selected identity absent')
++        g.require(inv['completed_count']==33 and sum(z.get('stage')=='complete' for z in inv['items'])==33,'Require33 complete primaries before44')
+         item=[z for z in inv['items'] if z['number']==44]; g.require(len(item)==1 and item[0]['headRefOid']==g.HEAD and item[0]['headRefName']=='dot/math-2912' and item[0].get('stage')!='complete','Exact original PR44 inventory required')
+         pre={'schema':'pr44-original-head-integration-preflight/v1','utc':now,**pins,'main_before':head,'pr':observation,'foreign_logs':foreign,'whole_queue_before_sha256':g.sha(queue),'selected_row_before':g.selected(queue),'state_before_sha256':g.sha((g.R/'unsolved_math_prioritization/state.json').read_bytes()),'history_before_sha256':g.sha((g.R/'unsolved_math_prioritization/history.jsonl').read_bytes()),'inventory_before_sha256':g.sha((g.B/'inventory.json').read_bytes()),'original_substantive_attempts':2,'new_substantive_attempts':0,'audit_turns':0,'dated_frozen_preimage_not_rewritten':True}
+         g.dump(g.A/'integration_preflight.json',pre,exclusive=True); g.write(g.A/'integration_queue_before.md',queue,exclusive=True); g.write(g.A/'integration_inventory_before.json',(g.B/'inventory.json').read_bytes(),exclusive=True); g.write(g.A/'accepted_pr_body.md',BODY.encode(),exclusive=True)
+@@ -112,7 +110,7 @@
+     g.manifest(g.K,'MANIFEST.json',frozen=True)
+     g.accepted_invariants(g.load(g.K/'acceptance.json'),pins,pre); g.accepted_invariants(g.load(g.A/'acceptance.json'),pins,pre,audit=True)
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'}); g.dump(g.B/'inventory.json',inv); inventory_guard(before_inv,g.load(g.B/'inventory.json'),observation,now); g.foreign_check(pre)
+-    note='\n## '+now+' — PR44 actual accepted qualified scoped partial\n\nWorkflow100%; scientific discovery0%; original2/5,new0,audit0. Actual MERGED original-head/tree checked. Program33/180=18.3333%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
++    note='\n## '+now+' — PR44 actual accepted qualified scoped partial\n\nWorkflow100%; scientific discovery0%; original2/5,new0,audit0. Actual MERGED original-head/tree checked. Program34/180=18.8889%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
+     logdir=g.A/'integration_log_preimages'; g.require(not logdir.exists() and not logdir.is_symlink(),'New retained log-preimage directory required'); logdir.mkdir()
+     log_receipt=[]
+     for name,f in [('root_problem',g.A/'ROOT_RESEARCH_LOG.md'),('program',g.B/'RESEARCH_LOG.md')]:
+--- INITIAL_GENERATED_SOURCE/state_mirror_reconciliation.py
++++ state_mirror_reconciliation.py
+@@ -24,7 +24,7 @@
+     g.require(g.equal(patch,expected_patch),'Entire typed accepted queue receipt, no meaningful extension')
+     push=g.prepush_record(pins); g.require(tree==canonical['merge_tree']==push['merge_tree'] and push['merge_commit']==canonical['merge_commit'],'Actual original-head tree/parents/prepush differ')
+     final,retained_remote=g.finalization(pins,pre)
+-    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':45,'completed_count':34},'PostPR44 next-target metadata'); g.require(inv['completed_count']==34 and sum(z.get('stage')=='complete' for z in inv['items'])==34,'Exactly33 primary completions')
++    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':45,'completed_count':34},'PostPR44 next-target metadata'); g.require(inv['completed_count']==34 and sum(z.get('stage')=='complete' for z in inv['items'])==34,'Exactly34 primary completions')
+     item=next(z for z in inv['items'] if z['number']==44); g.required(item,{'stage':'complete','outcome':'unsolved_accepted_partial','queue_status':'unsolved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'2/5','cumulative_attempts':'2/5','new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md','draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'})
+     return pre,canonical
+@@ -35,7 +35,7 @@
+     g.require(not (g.A/'state_mirror_intent.json').exists(),'Inspect retained intent before retry')
+     state=g.R/'unsolved_math_prioritization/state.json'; history=g.R/'unsolved_math_prioritization/history.jsonl'; old_state,old_history=state.read_bytes(),history.read_bytes(); prior=g.parse(old_state)
+     g.require(g.sha(old_state)==pre['state_before_sha256'] and g.sha(old_history)==pre['history_before_sha256'],'Exact full preflight state/history differs')
+-    g.require(len(prior)==34 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==41,'Require33targets/41turns and selected identity absent')
++    g.require(len(prior)==34 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==41,'Require34targets/41turns and selected identity absent')
+     proposal=copy.deepcopy(g.load(g.R/a.previous_mirror)); old_entries=copy.deepcopy(proposal['entries']); old_duplicates=copy.deepcopy(proposal.get('duplicate_mirrors'))
+     proposal.update(created_at_utc=g.stamp(),scope='Incremental present accepted primary PR44 standard partial; original2/5, no new proof turn or historical reconstruction.')
+     for k in ['inventory','queue']: proposal[k]=g.binding(g.R/proposal[k]['path'])
+@@ -47,12 +47,12 @@
+     for label,raw,used,limit in [('empty',b'',2,5),('whitespace_only',b'\n',2,5),('invented_JSONL',b'{"turn":1}\n',2,5),('bool_used',g.regular(g.K,'turns.jsonl').read_bytes(),True,5),('wrong_used',g.regular(g.K,'turns.jsonl').read_bytes(),1,5),('wrong_limit',g.regular(g.K,'turns.jsonl').read_bytes(),2,4)]:
+         try:m.ledger_budget(raw,'pr44_exact_original_two_turn_JSONL',used,limit)
+         except m.Rejected:negatives.append(label)
+-        else:raise ValueError('Exact empty-ledger guard accepted mutant '+label)
++        else:raise ValueError('Exact two-turn-ledger guard accepted mutant '+label)
+     plan=m.build_plan(g.R,proposal); validation=m.validate_plan(g.R,plan)
+-    g.require(plan['primary_count']==34 and plan['duplicate_count']==1 and len(plan['state_after'])==35 and sum(z['turns_used'] for z in plan['state_after'].values())==43,'Exactly34targets/41turns/33primary/one preserved duplicate required')
++    g.require(plan['primary_count']==34 and plan['duplicate_count']==1 and len(plan['state_after'])==35 and sum(z['turns_used'] for z in plan['state_after'].values())==43,'Exactly35targets/43turns/34primary/one preserved duplicate required')
+     g.require(len(plan['history_append'])==1 and plan['history_append'][0]['id']==g.ID and plan['history_append'][0]['event']=='acceptance_mirror_import','Exactly one present primary acceptance event')
+     g.require(all(g.equal(plan['state_after'][k],v) for k,v in prior.items()),'Every prior state unchanged; no new duplicate')
+-    event=plan['history_append'][0]; g.required(event,{'turns_used':2,'turn_limit':5,'status':'unsolved'},'Native original2/5 empty ledger budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
++    event=plan['history_append'][0]; g.required(event,{'turns_used':2,'turn_limit':5,'status':'unsolved'},'Native original2/5 exact two-turn ledger budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
+     g.dump(g.A/'state_mirror_bindings.json',proposal,exclusive=True); g.dump(g.A/'state_mirror_plan.json',plan,exclusive=True)
+     protected={}
+     for z in plan['bindings']:
+--- INITIAL_GENERATED_SOURCE/verify_post_acceptance.py
++++ verify_post_acceptance.py
+@@ -19,7 +19,7 @@
+     g.require(state==plan['state_after_bytes'].encode() and g.equal(current,plan['state_after']) and set(current)==set(old)|{g.ID},'Exact native planned state membership/content differs')
+     g.require(all(g.equal(current[k],v) for k,v in old.items()) and len(current)==35 and sum(z['turns_used'] for z in current.values())==43,'Prior states/budget/duplicate source-only disposition differ')
+     for k,raw in [('state',state),('history',history)]: g.require(g.sha(raw)==intent[k+'_after_sha256']==receipt[k+'_sha256']==plan[k+'_after_sha256'],'Actual state/history receipt SHA differs')
+-    g.required(current[g.ID],{'id':g.ID,'pr':44,'status':'unsolved','turns_used':2,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original2/5 empty ledger budget')
++    g.required(current[g.ID],{'id':g.ID,'pr':44,'status':'unsolved','turns_used':2,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original2/5 exact two-turn ledger budget')
+     g.required(current[g.ID]['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'No invented historical/duplicate transition')
+     previous=g.load(g.R/a.previous_mirror); g.require(g.equal(proposal['entries'][:-1],previous['entries']) and g.equal(proposal.get('duplicate_mirrors'),previous.get('duplicate_mirrors')),'Prior proposal accounting differs')
+     m=g.mirror_module(proposal); g.require(g.sha(m.encode(plan))==intent['plan_sha256'],'Actual complete plan binding differs')
+@@ -28,7 +28,7 @@
+     g.source(g.K); g.source(g.C); g.accepted_invariants(acceptance,pins,pre); g.foreign_check(pre)
+     final,remote=g.finalization(pins,pre);inventory=g.load(g.B/'inventory.json')
+     g.require(g.equal(inventory,g.derive_inventory(g.load(g.A/'integration_inventory_before.json'),remote,final['utc'])),'Complete final typed derived inventory differs')
+-    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':44,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':35,'consumed_substantive_turns':43,'primary_acceptances':34,'program_completed_count':34,'program_completion_estimate_percent':inventory['program_completion_estimate_percent'],'exact_original18_and_SOURCE_STATUS_unchanged':True,'whole_current430_and369dependencies_bound':True,'entire_history_prefix_and34prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_target_resolved_in_prior_published_literature':True,'prior_publication_doi':'10.4064/sm210413-18-9','full_problem_solved_by_project':False,'full_problem_solved':False,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
++    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':44,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':35,'consumed_substantive_turns':43,'primary_acceptances':34,'program_completed_count':34,'program_completion_estimate_percent':inventory['program_completion_estimate_percent'],'exact_original18_and_OBSTRUCTION_unchanged':True,'whole_current430_and369dependencies_bound':True,'entire_history_prefix_and34prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_target_resolved_in_prior_published_literature':False,'prior_publication_doi':None,'full_problem_solved_by_project':False,'full_problem_solved':False,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
+     print(g.encode({'status':'PASS','pr':44,'targets':35,'turns':43,'primary_acceptances':34,'new_proof_turns':0}).decode(),end='')
+ 
+ 
+--- INITIAL_GENERATED_SOURCE/EXPECTED_ROOT_WHOLE_REVIEW.json
++++ EXPECTED_ROOT_WHOLE_REVIEW.json
+@@ -1,282 +1,539 @@
+ {
+-  "all_first_party_whole_bytes_and_modes_checked": true,
+-  "all_foreign_individual_whole_bytes_checked": true,
+-  "audit_turns": 0,
++  "schema": "pr44-root-complete-closed-whole-inspection/v1",
++  "status": "PASS_ROOT_COMPLETE_CLOSED_WHOLE_INSPECTION",
++  "created_utc": "2026-10-03T02:55:27.839747+00:00",
+   "candidate_manifest_sha256": "169f2825a8f730735627bdc33a43366c05e317fdf7ec4df4cd96a31e37329eb0",
+   "closed_whole_manifest_sha256": "ea6416b54945bf80d0a706cf878c8de707464ddcdaea66ae0e812868ff547c9f",
++  "first_party_members": 96,
++  "individually_bound_foreign_inputs": 964,
+   "complete_VERDICT_object": {
+-    "actual_complete_outer_builder_pid": 64348,
+-    "actual_complete_outer_parent_pid": 64347,
+-    "actual_final_inner_git_records": 46,
+-    "actual_outer_member_count": 6,
+-    "audit_completion_percent": 100,
+-    "audit_turns": 0,
++    "schema": "pr44-whole-current-source-first-verdict/v1",
++    "utc": "2026-10-03T02:37:36.908263+00:00",
++    "verdict": "PASS_SCOPED_ACTUAL_WHOLE_CURRENT_STANDARD_PARTIAL_ONLY",
++    "mandatory_mathematical_corrections": [],
++    "mandatory_source_scope_corrections": [],
++    "mandatory_current_contract_corrections": [],
++    "optional_clarifications": [
++      "Prospective queue finding may explicitly say specified abstract group-pair kernel; the global qualification already retains this condition."
++    ],
+     "candidate_manifest_sha256": "169f2825a8f730735627bdc33a43366c05e317fdf7ec4df4cd96a31e37329eb0",
+-    "candidate_or_production_code_imported_compiled_executed": false,
+     "candidate_owned_members": 430,
+     "candidate_self_manifest_full_mode": "0444",
+-    "discovery_completion_percent": 0,
++    "individual_candidate_dependencies": 369,
++    "frozen_native_epoch": "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
++    "live_main_at_audit": "c60255489a342fae02c0acf3d1026255b47be3d1",
+     "epoch_rebound": false,
++    "actual_complete_outer_parent_pid": 64347,
++    "actual_complete_outer_builder_pid": 64348,
++    "actual_outer_member_count": 6,
++    "actual_final_inner_git_records": 46,
++    "honest_frozen_inner_prefix_records": 44,
++    "root_actual_complete_inspection_pid": 65947,
++    "operative_own_capture_pid": 79792,
++    "operative_own_controls": 75769,
++    "hostile_cases_rejected": 51,
++    "individual_inputs": 964,
++    "full_SQL_rows": 15458,
++    "full_raw_bytes": 149266659,
++    "prior_key_present": false,
++    "retrieved_raw_null_prior": false,
++    "whole_original_root507_and29933_outputs_typed_verified": true,
++    "historical_PASS_or_runtime_transferred": false,
++    "candidate_or_production_code_imported_compiled_executed": false,
++    "original_helpers_executed_by_this_family": false,
++    "strongest_verified_partial": "Finite-support meridional restriction-kernel formula, sufficient relative-degree-one pair-map criterion, conditional nonzero integral R^C/R^A for specified abstract group-pair.",
+     "exact_remaining_gaps": [
+       "No required map/homology comparison from unmarked full2type, particularly no meridian-compatible degree-one pair map established.",
+       "No pair of actual smooth/locallyflatPL S2-in-S4 exteriors with equal full(G,pi2module,k) and verified differing homotopy types."
+     ],
++    "full_problem_solved": false,
++    "novelty_claimed": false,
++    "original_substantive_attempts": 2,
++    "original_attempt_limit": 5,
++    "new_substantive_attempts": 0,
++    "audit_turns": 0,
++    "paper_created": false,
++    "new_DOI_created": false,
++    "tracker_row_created": false,
++    "human_peer_review": false,
+     "external_communication": false,
++    "native_index_branch_remote_mutation": false,
++    "future_ROOT_reconciliation_acceptance_or_merge_approved": false,
++    "audit_completion_percent": 100,
++    "discovery_completion_percent": 0,
+     "failed_or_defective_own_evidence": [
+       "Actual77312 failed own overbroad foreign classification; exact full capture preserved.",
+       "Actual77659 positive checks but emitted SQL4 variable-reuse defect; exact stdout/result preserved and corrected actual79792 operative.",
+       "Actual87613 final-inspection closure failed writing old readonly result; exact full source/capture retained. New final filename preserves old result."
+     ],
+-    "frozen_native_epoch": "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
+-    "full_SQL_rows": 15458,
+-    "full_problem_solved": false,
+-    "full_raw_bytes": 149266659,
+-    "future_ROOT_reconciliation_acceptance_or_merge_approved": false,
+-    "historical_PASS_or_runtime_transferred": false,
+-    "honest_frozen_inner_prefix_records": 44,
+-    "hostile_cases_rejected": 51,
+-    "human_peer_review": false,
+-    "individual_candidate_dependencies": 369,
+-    "individual_inputs": 964,
+-    "live_main_at_audit": "c60255489a342fae02c0acf3d1026255b47be3d1",
+-    "mandatory_current_contract_corrections": [],
+-    "mandatory_mathematical_corrections": [],
+-    "mandatory_source_scope_corrections": [],
+-    "native_index_branch_remote_mutation": false,
+-    "new_DOI_created": false,
+-    "new_substantive_attempts": 0,
+-    "novelty_claimed": false,
+-    "operative_own_capture_pid": 79792,
+-    "operative_own_controls": 75769,
+-    "optional_clarifications": [
+-      "Prospective queue finding may explicitly say specified abstract group-pair kernel; the global qualification already retains this condition."
+-    ],
+-    "original_attempt_limit": 5,
+-    "original_helpers_executed_by_this_family": false,
+-    "original_substantive_attempts": 2,
+-    "own_report_time_precision_correction": "The first report rounded the operative finish to02:30:56 incorrectly. Its exact before-copy and initial80+self closure are retained. Current report uses the real captured finish02:30:57.738129; all scientific/administrative evidence is unchanged.",
+-    "paper_created": false,
+-    "prior_key_present": false,
+     "report_sha256": "eddf2f62d50112d6c090f806bf13353c8e28426050da593b8d7c501ad95fa6ca",
+-    "retrieved_raw_null_prior": false,
+-    "root_actual_complete_inspection_pid": 65947,
+-    "schema": "pr44-whole-current-source-first-verdict/v1",
+-    "strongest_verified_partial": "Finite-support meridional restriction-kernel formula, sufficient relative-degree-one pair-map criterion, conditional nonzero integral R^C/R^A for specified abstract group-pair.",
+-    "tracker_row_created": false,
+-    "utc": "2026-10-03T02:37:36.908263+00:00",
+-    "verdict": "PASS_SCOPED_ACTUAL_WHOLE_CURRENT_STANDARD_PARTIAL_ONLY",
+-    "whole_original_root507_and29933_outputs_typed_verified": true
++    "own_report_time_precision_correction": "The first report rounded the operative finish to02:30:56 incorrectly. Its exact before-copy and initial80+self closure are retained. Current report uses the real captured finish02:30:57.738129; all scientific/administrative evidence is unchanged."
+   },
++  "personal_report_and_verdict_fully_read": true,
++  "all_first_party_whole_bytes_and_modes_checked": true,
++  "all_foreign_individual_whole_bytes_checked": true,
++  "exact_self_only_recursive_closure_checked": true,
+   "complete_actual_captures_checked": [
+     {
+-      "actual_execution": true,
++      "schema": "pr44-own-actual-source-first-capture/v1",
++      "operator_pid": 77309,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/independent_whole_controls.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:28:40.305290+00:00",
++      "source_sha256": "9fe6e7cd6bd467b036e1bbc12bab2333ec1b445f2cdf0903ff61623ef800acd6",
++      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 77312,
+       "exit_code": 1,
+       "finished_utc": "2026-10-03T02:28:40.682640+00:00",
+-      "operator_pid": 77309,
+-      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 77312,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "stderr": {
++        "path": "stderr.bin",
++        "bytes": 592,
++        "sha256": "8a533068f28a8f4cf6e9495c7d56d3bfb7119db2edab9f620e8720b263688475"
++      },
++      "status": "FAILED_OWN_RUN_PRESERVED"
++    },
++    {
+       "schema": "pr44-own-actual-source-first-capture/v1",
+-      "source_sha256": "9fe6e7cd6bd467b036e1bbc12bab2333ec1b445f2cdf0903ff61623ef800acd6",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:28:40.305290+00:00",
+-      "status": "FAILED_OWN_RUN_PRESERVED",
+-      "stderr": {
+-        "bytes": 592,
+-        "path": "stderr.bin",
+-        "sha256": "8a533068f28a8f4cf6e9495c7d56d3bfb7119db2edab9f620e8720b263688475"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 0,
+-        "path": "stdout.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      }
+-    },
+-    {
+-      "actual_execution": true,
++      "operator_pid": 77658,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/independent_whole_controls.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:29:07.831671+00:00",
++      "source_sha256": "fa8debd01a1258baf1a853d319636a5e3bcd6210ccc870cf1dc6827209626449",
++      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 77659,
+       "exit_code": 0,
+       "finished_utc": "2026-10-03T02:29:12.323944+00:00",
+-      "operator_pid": 77658,
+-      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 77659,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 2322,
++        "sha256": "8a70759ed6dae7a8fee75c459af4da04ddee17a609c224e37e1ed554195efecc"
++      },
++      "stderr": {
++        "path": "stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "status": "PASS_OWN_CONTROLS"
++    },
++    {
+       "schema": "pr44-own-actual-source-first-capture/v1",
+-      "source_sha256": "fa8debd01a1258baf1a853d319636a5e3bcd6210ccc870cf1dc6827209626449",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:29:07.831671+00:00",
+-      "status": "PASS_OWN_CONTROLS",
+-      "stderr": {
+-        "bytes": 0,
+-        "path": "stderr.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 2322,
+-        "path": "stdout.bin",
+-        "sha256": "8a70759ed6dae7a8fee75c459af4da04ddee17a609c224e37e1ed554195efecc"
+-      }
+-    },
+-    {
+-      "actual_execution": true,
++      "operator_pid": 79778,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/independent_whole_controls.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:30:52.189677+00:00",
++      "source_sha256": "caaed224c284b8d8682d4317bbb1e581fafebf5d3cbbbb3c980c7fec5395c867",
++      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 79792,
+       "exit_code": 0,
+       "finished_utc": "2026-10-03T02:30:57.738129+00:00",
+-      "operator_pid": 79778,
+-      "operator_sha256": "097fac127817d98367d3e6779dd614c79b84ef5357e342f6027abffafe738e13",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 79792,
+-      "schema": "pr44-own-actual-source-first-capture/v1",
+-      "source_sha256": "caaed224c284b8d8682d4317bbb1e581fafebf5d3cbbbb3c980c7fec5395c867",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:30:52.189677+00:00",
+-      "status": "PASS_OWN_CONTROLS",
+-      "stderr": {
+-        "bytes": 0,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 3854,
++        "sha256": "b054a8e86242078ed10b096b4e8128ffa7c0f783daa6712e90ace8f14a50eed7"
++      },
++      "stderr": {
+         "path": "stderr.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 3854,
+-        "path": "stdout.bin",
+-        "sha256": "b054a8e86242078ed10b096b4e8128ffa7c0f783daa6712e90ace8f14a50eed7"
+-      }
+-    },
+-    {
+-      "actual_execution": true,
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "status": "PASS_OWN_CONTROLS"
++    },
++    {
++      "schema": "pr44-own-final-inspection-actual-capture/v1",
++      "operator_pid": 86001,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/final_inspect_worker.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:37:37.018018+00:00",
++      "source_sha256": "450a1f3a69eb37650c59d02fd29615fca6f6c9e9cc17d8ca7b24c52a95ff2eb2",
++      "operator_sha256": "58a8ba1fe63b015ec82c8d7e009ed820e98791ace90b77b7710b7ca64ff4bec4",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 86002,
+       "exit_code": 0,
+       "finished_utc": "2026-10-03T02:37:39.625147+00:00",
+-      "operator_pid": 86001,
+-      "operator_sha256": "58a8ba1fe63b015ec82c8d7e009ed820e98791ace90b77b7710b7ca64ff4bec4",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 86002,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 1164,
++        "sha256": "9c3abd9efeaa8ecae47b6374e53d1389fafc4566ee4ebf5784a85d38731d7aa5"
++      },
++      "stderr": {
++        "path": "stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "status": "PASS_OWN_FINAL_INSPECTION"
++    },
++    {
+       "schema": "pr44-own-final-inspection-actual-capture/v1",
+-      "source_sha256": "450a1f3a69eb37650c59d02fd29615fca6f6c9e9cc17d8ca7b24c52a95ff2eb2",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:37:37.018018+00:00",
+-      "status": "PASS_OWN_FINAL_INSPECTION",
+-      "stderr": {
+-        "bytes": 0,
+-        "path": "stderr.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 1164,
+-        "path": "stdout.bin",
+-        "sha256": "9c3abd9efeaa8ecae47b6374e53d1389fafc4566ee4ebf5784a85d38731d7aa5"
+-      }
+-    },
+-    {
+-      "actual_execution": true,
++      "operator_pid": 87612,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/final_inspect_worker.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:39:22.182474+00:00",
++      "source_sha256": "407246934939ccecaf60ba15bda99f04ffcf8039a2c675d83614cb90ef4c673e",
++      "operator_sha256": "479311faa71bf04c3882b742a62954e0732e6b29b777573a651af9ded11ab62d",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 87613,
+       "exit_code": 1,
+       "finished_utc": "2026-10-03T02:39:23.668972+00:00",
+-      "operator_pid": 87612,
+-      "operator_sha256": "479311faa71bf04c3882b742a62954e0732e6b29b777573a651af9ded11ab62d",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 87613,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "stderr": {
++        "path": "stderr.bin",
++        "bytes": 1151,
++        "sha256": "927ad257366e5bea44334b040dbb090bd8f73559dfc62a107fd17220b4fd5d81"
++      },
++      "status": "FAILED_OWN_FINAL_INSPECTION_PRESERVED"
++    },
++    {
+       "schema": "pr44-own-final-inspection-actual-capture/v1",
+-      "source_sha256": "407246934939ccecaf60ba15bda99f04ffcf8039a2c675d83614cb90ef4c673e",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:39:22.182474+00:00",
+-      "status": "FAILED_OWN_FINAL_INSPECTION_PRESERVED",
+-      "stderr": {
+-        "bytes": 1151,
+-        "path": "stderr.bin",
+-        "sha256": "927ad257366e5bea44334b040dbb090bd8f73559dfc62a107fd17220b4fd5d81"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 0,
+-        "path": "stdout.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      }
+-    },
+-    {
+-      "actual_execution": true,
++      "operator_pid": 88924,
+       "argv": [
+         "/usr/bin/python3",
+         "-B",
+         "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family/final_inspect_worker.py"
+       ],
+-      "completed": true,
+       "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr44_2912/whole_current_source_first_family",
++      "started_utc": "2026-10-03T02:41:00.914711+00:00",
++      "source_sha256": "07108c116b636c22c8c062bbe90a4af7a342aad9d7f78d89478a7655894ad664",
++      "operator_sha256": "397a21a490c4806bd338d7f550c130bae8bdb96a559ab171c5d75c3ef2b4fe55",
++      "stdin_supplied": false,
++      "actual_execution": true,
++      "completed": true,
++      "pid": 88925,
+       "exit_code": 0,
+       "finished_utc": "2026-10-03T02:41:02.462215+00:00",
+-      "operator_pid": 88924,
+-      "operator_sha256": "397a21a490c4806bd338d7f550c130bae8bdb96a559ab171c5d75c3ef2b4fe55",
++      "source_unchanged": true,
+       "operator_unchanged": true,
+-      "pid": 88925,
+-      "schema": "pr44-own-final-inspection-actual-capture/v1",
+-      "source_sha256": "07108c116b636c22c8c062bbe90a4af7a342aad9d7f78d89478a7655894ad664",
+-      "source_unchanged": true,
+-      "started_utc": "2026-10-03T02:41:00.914711+00:00",
+-      "status": "PASS_OWN_FINAL_INSPECTION",
+-      "stderr": {
+-        "bytes": 0,
++      "stdout": {
++        "path": "stdout.bin",
++        "bytes": 1621,
++        "sha256": "033855a7e5d8a0da4e2f9e54cd88ee8a3de371f73ce3b0769662f0cdfcb5ddb2"
++      },
++      "stderr": {
+         "path": "stderr.bin",
+-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+-      },
+-      "stdin_supplied": false,
+-      "stdout": {
+-        "bytes": 1621,
+-        "path": "stdout.bin",
+-        "sha256": "033855a7e5d8a0da4e2f9e54cd88ee8a3de371f73ce3b0769662f0cdfcb5ddb2"
+-      }
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      },
++      "status": "PASS_OWN_FINAL_INSPECTION"
+     }
+   ],
+-  "complete_dated_git_captures": [],
+-  "created_utc": "2026-10-03T02:48:06.687799+00:00",
++  "mandatory_defects": [],
++  "mandatory_corrections": [],
++  "original_substantive_attempts": 2,
++  "new_substantive_attempts": 0,
++  "audit_turns": 0,
++  "full_target_resolved_in_prior_published_literature": false,
++  "full_problem_solved_by_project": false,
++  "future_execution_approved": false,
+   "dated_four_native_source_head": "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
+-  "exact_self_only_recursive_closure_checked": true,
+-  "first_party_members": 96,
+-  "full_problem_solved_by_project": false,
+-  "full_target_resolved_in_prior_published_literature": false,
+-  "future_execution_approved": false,
+-  "individually_bound_foreign_inputs": 964,
+-  "legitimate_dated_native_changes": [],
+-  "mandatory_corrections": [],
+-  "mandatory_defects": [],
+-  "new_substantive_attempts": 0,
+-  "original_substantive_attempts": 2,
+-  "personal_report_and_verdict_fully_read": true,
+-  "schema": "pr44-root-complete-closed-whole-inspection/v1",
+-  "source_and_failure_qualification": "Every original own failure and positive metadata defect is preserved; actual79792 and final88925 are operative. Four native bodies are checked from immutable frozen2b9d023 Git, the other960 individually pinned inputs live. No rebind to present main; actual present preimages require a separate acceptance epoch. Full report/verdict personally read; finite controls do not prove the missing geometric realization.",
+-  "status": "PASS_ROOT_COMPLETE_CLOSED_WHOLE_INSPECTION"
++  "complete_dated_git_captures": [
++    {
++      "argv": [
++        "git",
++        "ls-tree",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
++        "--",
++        "draft_pr_publication_program_20260930/inventory.json"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.760534+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1085,
++      "finished_utc": "2026-10-03T02:55:27.769989+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/stdout.bin",
++        "bytes": 106,
++        "sha256": "697ff5744ed27a83be28f59f73c2ee6924341486aabb8dd39e9d2cef22867078"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "show",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b:draft_pr_publication_program_20260930/inventory.json"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.770608+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1086,
++      "finished_utc": "2026-10-03T02:55:27.780047+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/stdout.bin",
++        "bytes": 102070,
++        "sha256": "cb7a7b50e2eff6cf3e2517b18bf40f6582892bb18f311e0da69c2cfcd1b76cf2"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "ls-tree",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
++        "--",
++        "unsolved_math_prioritization/QUEUE.md"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.781105+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1087,
++      "finished_utc": "2026-10-03T02:55:27.790417+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/stdout.bin",
++        "bytes": 91,
++        "sha256": "7cab9ff8b83fcc379399daff1506958cd9d50024c67e416a21891fd2c896bb10"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "show",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b:unsolved_math_prioritization/QUEUE.md"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.790981+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1088,
++      "finished_utc": "2026-10-03T02:55:27.802414+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/stdout.bin",
++        "bytes": 381199,
++        "sha256": "7f155937ac4056637b4adf93e9d8e63c9115b700699b0339c198375801b6c194"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "ls-tree",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
++        "--",
++        "unsolved_math_prioritization/history.jsonl"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.803697+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1089,
++      "finished_utc": "2026-10-03T02:55:27.811407+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/stdout.bin",
++        "bytes": 96,
++        "sha256": "d44fefb2b2c444915cd9f5334943ec4f33df2329d7c7a535d36e760779b45cca"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "show",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b:unsolved_math_prioritization/history.jsonl"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.811922+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1090,
++      "finished_utc": "2026-10-03T02:55:27.820488+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/stdout.bin",
++        "bytes": 79734,
++        "sha256": "029c9622373190957f868d11d54bcbfd1e0a30b9d03e4cbe085a5683dd015637"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "ls-tree",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b",
++        "--",
++        "unsolved_math_prioritization/state.json"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.821199+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1091,
++      "finished_utc": "2026-10-03T02:55:27.829238+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/stdout.bin",
++        "bytes": 93,
++        "sha256": "9973de68aa37ba7ea616dec456f631fa5f872e33b2ae7764632e3246555c7c55"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    },
++    {
++      "argv": [
++        "git",
++        "show",
++        "2b9d0234b1396fa84c4b34055b5e8e14c873588b:unsolved_math_prioritization/state.json"
++      ],
++      "cwd": "/Users/alec/Documents/Math",
++      "started_utc": "2026-10-03T02:55:27.829761+00:00",
++      "operator_pid": 1084,
++      "stdin_supplied": false,
++      "pid": 1092,
++      "finished_utc": "2026-10-03T02:55:27.839051+00:00",
++      "exit_code": 0,
++      "actual_execution": true,
++      "completed": true,
++      "stdout": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/stdout.bin",
++        "bytes": 91400,
++        "sha256": "131dc60c0ee605cf2b496b30c8b26bbd3f4bb3f531b7901ed74c2ff3c0e12917"
++      },
++      "stderr": {
++        "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/stderr.bin",
++        "bytes": 0,
++        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++      }
++    }
++  ],
++  "legitimate_dated_native_changes": [
++    {
++      "path": "draft_pr_publication_program_20260930/inventory.json",
++      "historical_bytes": 102070,
++      "historical_sha256": "cb7a7b50e2eff6cf3e2517b18bf40f6582892bb18f311e0da69c2cfcd1b76cf2",
++      "present_bytes": 102519,
++      "present_sha256": "7b0943c70b844b309d28043ab4a003e6b19b23627a5d9796cfb00cfcdaa10fe8",
++      "qualification": "Immutable dated input only; actual present state requires separate fresh acceptance preimages."
++    },
++    {
++      "path": "unsolved_math_prioritization/QUEUE.md",
++      "historical_bytes": 381199,
++      "historical_sha256": "7f155937ac4056637b4adf93e9d8e63c9115b700699b0339c198375801b6c194",
++      "present_bytes": 381277,
++      "present_sha256": "e49757e24fe539df372c40e8f2318d144a59640ee6c26bdaf20cedc906b7d658",
++      "qualification": "Immutable dated input only; actual present state requires separate fresh acceptance preimages."
++    },
++    {
++      "path": "unsolved_math_prioritization/history.jsonl",
++      "historical_bytes": 79734,
++      "historical_sha256": "029c9622373190957f868d11d54bcbfd1e0a30b9d03e4cbe085a5683dd015637",
++      "present_bytes": 82306,
++      "present_sha256": "343cef452b7d0c6104e714208a5af8f73d5f02676a4e5d5102787d9606505137",
++      "qualification": "Immutable dated input only; actual present state requires separate fresh acceptance preimages."
++    },
++    {
++      "path": "unsolved_math_prioritization/state.json",
++      "historical_bytes": 91400,
++      "historical_sha256": "131dc60c0ee605cf2b496b30c8b26bbd3f4bb3f531b7901ed74c2ff3c0e12917",
++      "present_bytes": 94347,
++      "present_sha256": "1c619e760a420ca952bf0c3a44170972628a6a7995308b2ea431db390d876c35",
++      "qualification": "Immutable dated input only; actual present state requires separate fresh acceptance preimages."
++    }
++  ],
++  "source_and_failure_qualification": "Original ROOT94701 compared deliberately false prelaunch mutable fields with final capture; preserved corrected95178 validates96+self,all964 foreign and own genuine ten immutable Git records. That foreign inventory excludes four live-native paths, so95178 direct-loop arrays were empty. This distinct actual operation independently queries all four100644 bodies from frozen2b9d023 and binds eight genuine complete ROOT Git captures; V2 record retained verbatim. Every science/current/whole byte and original own failures remain unchanged. No epoch rebinding or future acceptance is certified.",
++  "direct_four_independent_ROOT_Git_checks_completed": true,
++  "actual_direct_four_operator_pid": 1084,
++  "superseded_ROOT_V2_record": {
++    "path": "draft_pr_publication_program_20260930/audits/pr44_2912/ROOT_WHOLE_CURRENT_REVIEW_V2_BEFORE_DIRECT_FOUR.json",
++    "bytes": 13172,
++    "sha256": "3f5190f884a1e02ee7d7e02df0a59caf0067abf4869a96f4f68121f0f6c7c1ef"
++  }
+ }
+--- INITIAL_GENERATED_SOURCE/INPUT_BINDINGS.json
++++ INPUT_BINDINGS.json
+@@ -1,8 +1,8 @@
+ {
+   "closed_root_whole_inspection": {
+-    "bytes": 13172,
++    "bytes": 23535,
+     "path": "draft_pr_publication_program_20260930/audits/pr44_2912/ROOT_WHOLE_CURRENT_REVIEW.json",
+-    "sha256": "3f5190f884a1e02ee7d7e02df0a59caf0067abf4869a96f4f68121f0f6c7c1ef"
++    "sha256": "54c0944b7e6892ed0e04cab2a58432feb2afbf3694a04073f036fbeda466d1dc"
+   },
+   "closed_whole_manifest": {
+     "bytes": 17879,
+@@ -66,6 +66,196 @@
+       "path": "draft_pr_publication_program_20260930/audits/pr43_30004386/root_pr43_complete_actual_post_inspection_capture/stdout.bin",
+       "sha256": "01c5d542c17977f8bac91acd5cc71fd8d7406b11e1a425541cc5489c3a222406"
+     },
++    "root_corrected_whole_CAPTURE.json": {
++      "bytes": 940,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_capture/CAPTURE.json",
++      "sha256": "52628fcffedac6443bee7580ce54fa63712888459d625f3dcd0b7afabfd4495b"
++    },
++    "root_corrected_whole_prelaunch_operator.py": {
++      "bytes": 2593,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_capture/prelaunch_operator.py",
++      "sha256": "c1ae969ccbbc48ed6fb486e96184da94329291a46b27d2b891ecb87185c909ec"
++    },
++    "root_corrected_whole_stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_capture/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_corrected_whole_stdout.bin": {
++      "bytes": 470,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_capture/stdout.bin",
++      "sha256": "d18f8c1902389026f16d3422aef371bb0ff86abd72b63a8e1b56a9409b60d87f"
++    },
++    "root_direct_Git_0/CAPTURE.json": {
++      "bytes": 914,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/CAPTURE.json",
++      "sha256": "3ae4ab59b19906e52f6fb8260776d3a4a0723e4c3b6db4b72294cf8bffa1196c"
++    },
++    "root_direct_Git_0/PRELAUNCH.json": {
++      "bytes": 306,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/PRELAUNCH.json",
++      "sha256": "f5f3fcbf875e4b978516e02cef43236d1f4979644f693bbaaa6186681b6b78c2"
++    },
++    "root_direct_Git_0/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_0/stdout.bin": {
++      "bytes": 106,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/0/stdout.bin",
++      "sha256": "697ff5744ed27a83be28f59f73c2ee6924341486aabb8dd39e9d2cef22867078"
++    },
++    "root_direct_Git_1/CAPTURE.json": {
++      "bytes": 897,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/CAPTURE.json",
++      "sha256": "88329c553dc946a8209a67b3236545c49555f01964356c984c6c39b0d93fb77f"
++    },
++    "root_direct_Git_1/PRELAUNCH.json": {
++      "bytes": 286,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/PRELAUNCH.json",
++      "sha256": "d49b4708faedd3c57eb24e4321ba16b7938a4970fcb39ccd1b34f3aba04f24af"
++    },
++    "root_direct_Git_1/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_1/stdout.bin": {
++      "bytes": 102070,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/1/stdout.bin",
++      "sha256": "cb7a7b50e2eff6cf3e2517b18bf40f6582892bb18f311e0da69c2cfcd1b76cf2"
++    },
++    "root_direct_Git_2/CAPTURE.json": {
++      "bytes": 898,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/CAPTURE.json",
++      "sha256": "368ad494cc1a1faa98ea696f3f429f1b49caa5577dee5c675036e06c59d404e6"
++    },
++    "root_direct_Git_2/PRELAUNCH.json": {
++      "bytes": 291,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/PRELAUNCH.json",
++      "sha256": "dd9d92824a06fef7f3d245ec959f04be6a67c1899b1e00e373d6e24a44c95efc"
++    },
++    "root_direct_Git_2/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_2/stdout.bin": {
++      "bytes": 91,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/2/stdout.bin",
++      "sha256": "7cab9ff8b83fcc379399daff1506958cd9d50024c67e416a21891fd2c896bb10"
++    },
++    "root_direct_Git_3/CAPTURE.json": {
++      "bytes": 882,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/CAPTURE.json",
++      "sha256": "f423e75ab5b6ad58c8a2a8fd7463a14fdab4f6365c46871f8e2e2430319776d8"
++    },
++    "root_direct_Git_3/PRELAUNCH.json": {
++      "bytes": 271,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/PRELAUNCH.json",
++      "sha256": "fd4e380cb53818b9fe69564a484794735286a211e44d1ed600fa9ac9783c1d26"
++    },
++    "root_direct_Git_3/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_3/stdout.bin": {
++      "bytes": 381199,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/3/stdout.bin",
++      "sha256": "7f155937ac4056637b4adf93e9d8e63c9115b700699b0339c198375801b6c194"
++    },
++    "root_direct_Git_4/CAPTURE.json": {
++      "bytes": 903,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/CAPTURE.json",
++      "sha256": "7939852f15b566b662d6ee49ddd68323a1634616fc4ab6ad7b007b8d3fc9b55a"
++    },
++    "root_direct_Git_4/PRELAUNCH.json": {
++      "bytes": 296,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/PRELAUNCH.json",
++      "sha256": "922ae2ee0629e47bfd32d2b357d5ffb978518d8f8e3ad005782c2e55923a76e2"
++    },
++    "root_direct_Git_4/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_4/stdout.bin": {
++      "bytes": 96,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/4/stdout.bin",
++      "sha256": "d44fefb2b2c444915cd9f5334943ec4f33df2329d7c7a535d36e760779b45cca"
++    },
++    "root_direct_Git_5/CAPTURE.json": {
++      "bytes": 886,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/CAPTURE.json",
++      "sha256": "d8d4a688d9d5b63b752d010e1af8bfe34d8ce19c8570e7afbab082b9339c9fb9"
++    },
++    "root_direct_Git_5/PRELAUNCH.json": {
++      "bytes": 276,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/PRELAUNCH.json",
++      "sha256": "f8008e29f49f5c4416ee77ca27583d5fbb72fb66239c9decbec112fbd8ec63f7"
++    },
++    "root_direct_Git_5/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_5/stdout.bin": {
++      "bytes": 79734,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/5/stdout.bin",
++      "sha256": "029c9622373190957f868d11d54bcbfd1e0a30b9d03e4cbe085a5683dd015637"
++    },
++    "root_direct_Git_6/CAPTURE.json": {
++      "bytes": 900,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/CAPTURE.json",
++      "sha256": "93a945eac71ccc6491692eecb2bbcd84dbc2a4f17f34bc43916552eebbf580ce"
++    },
++    "root_direct_Git_6/PRELAUNCH.json": {
++      "bytes": 293,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/PRELAUNCH.json",
++      "sha256": "fac6e6b172d0356eca1f2bd7de99ad3199280391ac0d36bd8a045178d6c43d99"
++    },
++    "root_direct_Git_6/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_6/stdout.bin": {
++      "bytes": 93,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/6/stdout.bin",
++      "sha256": "9973de68aa37ba7ea616dec456f631fa5f872e33b2ae7764632e3246555c7c55"
++    },
++    "root_direct_Git_7/CAPTURE.json": {
++      "bytes": 883,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/CAPTURE.json",
++      "sha256": "8317ef88681909e4a2cab4d173d3ea7308174074b632f714dd4a33a3918f3a12"
++    },
++    "root_direct_Git_7/PRELAUNCH.json": {
++      "bytes": 273,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/PRELAUNCH.json",
++      "sha256": "3fc81d16be2e05f106b7007bbba69d7f33e3aff4171078f9708df722de991837"
++    },
++    "root_direct_Git_7/stderr.bin": {
++      "bytes": 0,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/stderr.bin",
++      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
++    },
++    "root_direct_Git_7/stdout.bin": {
++      "bytes": 91400,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/root_complete_dated_four_actual_Git/7/stdout.bin",
++      "sha256": "131dc60c0ee605cf2b496b30c8b26bbd3f4bb3f531b7901ed74c2ff3c0e12917"
++    },
++    "root_direct_four_source": {
++      "bytes": 3919,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/complete_dated_four_ROOT_Git_inspection.py",
++      "sha256": "40a28b16d0946678562dcbdf7d7aafdc3b270d6f2caeb8ea2da14f17f0c22e88"
++    },
++    "root_whole_initial_inspection": {
++      "bytes": 13172,
++      "path": "draft_pr_publication_program_20260930/audits/pr44_2912/ROOT_WHOLE_CURRENT_REVIEW_V2_BEFORE_DIRECT_FOUR.json",
++      "sha256": "3f5190f884a1e02ee7d7e02df0a59caf0067abf4869a96f4f68121f0f6c7c1ef"
++    },
+     "snapshot_manifest_v2.json": {
+       "bytes": 6208,
+       "path": "draft_pr_publication_program_20260930/audits/pr44_2912/snapshot_manifest_v2.json",

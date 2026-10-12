@@ -1,0 +1,49 @@
+[
+  {
+    "argv": [
+      "python3",
+      "-E",
+      "-B",
+      "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004/prepare_operational_bytes_v2.py"
+    ],
+    "cwd": "/Users/alec/Documents/Math",
+    "actual_child_pid": 86827,
+    "started_utc": "2026-10-04T17:24:51.511634+00:00",
+    "finished_utc": "2026-10-04T17:24:51.546063+00:00",
+    "exit_code": 0,
+    "stdout": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004/final_preparation_command_streams/0.stdout",
+      "bytes": 2053,
+      "sha256": "85164a5704083b598cd5d69da9d4b43828800c475641f1ebc2413e7bb9bf4276"
+    },
+    "stderr": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004/final_preparation_command_streams/0.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  {
+    "argv": [
+      "python3",
+      "-E",
+      "-B",
+      "-c",
+      "import ast,hashlib,json,pathlib\nr=pathlib.Path('/Users/alec/Documents/Math');o=r/'draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004'\nfor name in ['ROOT_integrate_attributed_prior_result_20261004.py','ROOT_readback_attributed_acceptance_20261004.py','prepare_operational_bytes.py','prepare_operational_bytes_v2.py']:\n source=(o/name).read_text();ast.parse(source,filename=name);compile(source,name,'exec',dont_inherit=True)\nfor directory in ['attributed_prior_result_preparation_20261004','attributed_prior_result_preparation_v2_20261004']:\n f=o.parent/directory;m=json.loads((f/'MANIFEST.json').read_bytes())\n if len(m['files'])!=4:raise RuntimeError('Packet count')\n for x in m['files']:\n  name=x.get('path',x.get('name'));b=(f/name).read_bytes()\n  if len(b)!=x['bytes'] or hashlib.sha256(b).hexdigest()!=x['sha256']:raise RuntimeError('Frozen packet drift')\nfor filename in ['OPERATIONAL_BYTE_PLAN.json','OPERATIONAL_BYTE_PLAN_V2.json']:\n plan=json.loads((o/filename).read_bytes())\n for x in plan['files']:\n  source=(r/x['source_path']).read_bytes();text=source.decode()\n  for edit in x['literal_edits']:\n   if text.count(edit['old'])!=1:raise RuntimeError('Nonunique literal')\n   text=text.replace(edit['old'],edit['new'])\n  final=(r/x['planned_path']).read_bytes()\n  if final!=text.encode() or len(final)!=x['planned_bytes'] or hashlib.sha256(final).hexdigest()!=x['planned_sha256']:raise RuntimeError('Operational bytes drift')\nprint(json.dumps({'status':'PASS','python_sources_compiled_without_execution':4,'frozen_packets_verified':2,'operational_plans_exact_literal_transformations_verified':2,'integration_or_readback_operator_execution':False},indent=2))\n"
+    ],
+    "cwd": "/Users/alec/Documents/Math",
+    "actual_child_pid": 86828,
+    "started_utc": "2026-10-04T17:24:51.546589+00:00",
+    "finished_utc": "2026-10-04T17:24:51.595700+00:00",
+    "exit_code": 0,
+    "stdout": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004/final_preparation_command_streams/1.stdout",
+      "bytes": 225,
+      "sha256": "1a69e029c7fd4f07770e1cfd120823f6317f5968cd043ad000711121b37cf6bd"
+    },
+    "stderr": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/attributed_integration_preparation_20261004/final_preparation_command_streams/1.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+]

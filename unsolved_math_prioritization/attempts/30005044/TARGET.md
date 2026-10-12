@@ -21,8 +21,16 @@ The model permits the constant iid fitness $F=1$. If unbounded fitness support i
 
 ## Extraction and neighboring-question boundaries
 
-The upstream `original_statement` joins a preceding question about closing a moment-condition gap to the later explosion question. The full page separates them. This attempt addresses only the cleaned, verified explosion target.
+The primary page separates the moment-condition gap, the fitness lower-bound question, and the infinite-mean explosion question. This attempt addresses only the explosion question. The exact body of the upstream catalog extraction was not reproduced in this audit; no claim about that extraction is used.
 
 Rank 280 / ID 30005042 is a different contribution by Mailler and Marckert, pp. 592–593, about a coupled discrete-generation weak-moment question. Sharing the report PDF does not identify their models.
 
-The report's p. 618 summary reverses signs in two exponential-moment conditions. Those unrelated displayed prose conditions are not used here; the latest full author paper states them correctly. No claim depends on treating those source misprints as hypotheses.
+The report's p. 618 summary reverses signs in two exponential-moment conditions. The introductory conditions on arXiv v4 p. 2 have the correct directions; v4 Remark 2.5 and publisher Remark 2 on p. 5 contain a separate survival/extinction prose inconsistency. These unrelated conditions and remarks are not assumptions or premises of the explosion proof. The original fitness model and constant-fitness specialization are bound directly to arXiv v1 pp. 4–5.
+
+The potentially explosive process is explicitly defined here by finite root-originating infection paths, equivalently coupled increasing finite-ball restrictions. This chosen graphical extension is supported by BKV Definition 3.1/equation (19), p. 17. No unique continuation after explosion is attributed to the OWR report or the finite-mean author theorem.
+
+## Current priority assessment, 2026-10-12 UTC
+
+The whole exact existential target is assessed `already_solved`, category (b): an elementary consequence of ADGO's 2013 general weighted-GW explosion theorem through the fully written, independently checked recovery-free coupling in [PRIORITY_AUDIT.md](PRIORITY_AUDIT.md). This is a positive old-theory implication, not a claim that an older paper expressly printed this exact contact-process theorem. The BKV 2023/2026 growing-degree-ray proof plus timing/recovery addendum separately gives qualitative explosion; original-author arXiv:2406.12689v1 pp. 15–16 / v2 p. 16 anticipated the regime and route.
+
+The accepted numerical probability theorem and all its quantifiers remain preserved in PROOF.md. Originality and significance of the bound are unestablished. No mathematical residual of the historical existential question is marked `partial`; future new refinements are separate targets. No current-openness, first-solution, new-mechanism, paper, merge, publication or DOI clearance is granted. Submitted `claimed_solved`, rank 281 and budget 1/5 remain historical facts. Root retains final user/live disposition authority; this correction makes no live mutation.

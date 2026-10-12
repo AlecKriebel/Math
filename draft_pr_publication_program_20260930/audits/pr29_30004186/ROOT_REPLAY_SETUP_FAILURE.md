@@ -1,0 +1,3 @@
+# Preserved root replay setup failure
+
+2026-10-01T23:56:44.428573+00:00 — The first isolated replay ran the primary controls before its manifest-checking reproduce.py; those controls correctly regenerated an isolated timestamped receipt. The reproducer then rejected that changed isolated receipt against the closed family manifest. No closed family or original byte was changed, and no mathematical failure was observed. Correct independent replay runs the family read-only reproducer on its closed inputs; it creates only ignored temporary copies and invokes controls with --no-write. All three earlier isolated control mathematical fields match, excluding solely utc.

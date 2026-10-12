@@ -1,5 +1,7 @@
 # Research log: 30005044
 
+**Scope:** pre-C3 entries are dated as-of records; their then-pending-review/priority wording and historical full-read assertions are not operative current status. See CURRENT_ASSESSMENT.json and HISTORICAL_SCOPE.md.
+
 ## 2026-10-01, source recovery and first substantive turn
 
 - Recovered the exact primary article and corrected the provisional model description: the target is the contact process with fitness, rather than a generic age-dependent branching process. Verified the report's p. 619 visually and read the surrounding model on pp. 618–620.
@@ -13,3 +15,13 @@
 ## Candidate checkpoint
 
 The proof and source packet are complete for independent audit. Candidate status does not certify correctness; a separate reviewer must decide the full source scope and every probabilistic bridge. One of five author turns has been used. Source retrieval, checker replay, packaging, and the forthcoming independent review are not additional author turns.
+
+## 2026-10-12T00:26:00.481988+00:00 — Source consistency correction (completion estimate:35%)
+
+Original proof mathematics §§3–6 and all historical 16 bodies/checkers remain byte-exact. Corrected current provenance records F1–F4: fresh BKV pin separated from unavailable old bytes, removed unsupported catalog-merge attribution, narrowed moment-misprint wording, and made the chosen finite-path extension/original-v1 model binding explicit. Independent math reviews pass; fresh source correction adjudication and in-depth priority clearance pending. No publication/merge authority.
+
+## 2026-10-12T01:35:34.718400+00:00 — C3 credited priority correction
+
+Prepared whole qualitative target already_solved category(b) after Root accepted final priority reports and consolidated adversary. Added prominent ADGO 2013 theorem/coupling, BKV 2023/2026 proof/addendum and original-author 2024/2026 credit; superseded operative source/priority-pending status. PROOF §§1–6 and all historical 16/checker/receipt bytes preserved. Quantitative bound accepted; originality/significance unestablished. No paper/publication/merge/DOI clearance.
+
+Submitted claimed_solved, rank 281, author budget 1/5 preserved historically; zero substantive proof attempts added. No fresh proof search. Root owns final user/live disposition. Estimates: case **55%**, provisional priority decision; math **100%**; bounded priority audit **100%**; novel-contribution clearance **0%**.
