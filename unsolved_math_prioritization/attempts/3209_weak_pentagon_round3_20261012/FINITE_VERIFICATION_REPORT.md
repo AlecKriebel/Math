@@ -1,0 +1,70 @@
+> Editorial scope: This is the complete authored text of the accepted third-round source document, with operational identities and reproduction directions editorially removed or relabeled. Mathematical arguments and finite-scope counts are preserved. References to candidate status, packet contents, or narrower review scope record the original stage; the final combined decision is in [ACCEPTANCE_REPORT.md](ACCEPTANCE_REPORT.md). This public edition contains prose and public verification metadata only. It contains no programs, raw certificates, dataset contents, source documents, or runnable bundle. Original and distributed identities are different; [PUBLIC_MANIFEST.json](PUBLIC_MANIFEST.json) identifies only the files actually distributed.
+
+# Mixed-cut extension: a sharp one-versus-many candidate and bounded checks
+
+12 October 2026 UTC. Weak pentagon / row1752 / problem3209. Candidate research packet submitted for independent audit. No publication or external change was made. No novelty claim is made.
+
+## Main mathematical contribution
+
+The original elementary lemma gives a complete elementary proof candidate: in every finite simple triangle-free subcubic graph, a matching cut complement with one edge on one side and at most four on the other has a fixed Clebsch-class extension. It uses four distinct antipodal magnitudes, a boundary list-coloring graph with a strict degree surplus in every nontrivial component, independent orientations to keep isolated lists nonempty, and an eight-color greedy completion. It uses no signed choosability theorem. The complete independent mathematical acceptance review is reproduced in ONE_VERSUS_FOUR_AUDIT.md.
+
+For cubic graphs, degree summation forces any five-edge matching cut complement to have distribution4+1. Thus the candidate covers every five-demand cubic case, without global optimality. The mixed2+2 four-demand case remains unresolved by the universal results here.
+
+The companion construction supplies an eighteen-vertex subcubic1+5 obstruction and its twenty-eight-vertex cubic1+7 completion. This packet independently checks both graphs, derives the exact signed2K5 negative certificate and its five-versus-four antipodal-pair pigeonhole contradiction, verifies ordinary unrestricted Clebsch witnesses, and proves exact maximum-cut claims by a full subset recurrence distinct from the construction lane's Gray-code scan. No negative conclusion rests on a timeout or an unverified UNSAT flag.
+
+- Subcubic18:26 edges; obstructed prescribed cut20; true MAXCUT22; exactly7 normalized global maxima, all with explicit fixed-class extensions.
+- Cubic28:42 edges; obstructed prescribed cut34; true MAXCUT35; exactly72 normalized global maxima, all with explicit fixed-class extensions.
+- Both obstructed cuts are strict single-vertex-local maxima, checked directly at every vertex. Their complements are matchings. Switching {0,2,10} improves either cut by1.
+
+The theorem, if accepted with the obstruction, makes1+4 versus1+5 the exact one-versus-many threshold in subcubic graphs. In cubic graphs the degree identity allows larger-side demand counts1,4,7,... opposite one edge, so1+7 is the first possible failing count in this subclass. These are local-cut statements. Neither obstruction refutes the fixed-global-maximum strengthening or the original weak-pentagon target.
+
+## Exhaustive target coverage in the supplied catalogs
+
+The complete supplied House of Graphs connected triangle-free cubic catalogs at orders6,8,...,18 contain8,738 records. We enumerated every normalized cut with matching complement and exactly four or five omitted edges. Vertex0 is outside the normalized cut.
+
+| Order | Graphs |2+2 local non-global|2+2 global|4+1 local non-global|4+1 global|
+|---:|---:|---:|---:|---:|---:|
+|6|1|0|0|0|0|
+|8|2|4|0|0|0|
+|10|6|9|0|0|0|
+|12|22|104|0|0|0|
+|14|110|664|40|62|0|
+|16|792|5809|479|1544|0|
+|18|7805|57631|8907|31595|27|
+|Total|8738|64221|9426|33201|27|
+
+All106,875 target cuts have explicit positive witnesses. Of them9,453 are actual global maxima and97,422 are local non-global cuts. This is new local-cut target coverage, not a rerun of the prior unrestricted global-maxima catalog screen. It exhausts these supplied records only; completeness up to isomorphism and nonisomorphism remain external provider assertions. No claim covers every graph of arbitrary order.
+
+The standalone the original standalone catalog-certificate checker reads the pinned graph6 records, checks simplicity/cubicity/connectivity/triangle-freeness, calculates all cut sizes with an independent subset recurrence, checks every listed witness directly, rejects duplicates and extra records, and requires every target cut to be present. Exact order and graph-count arguments are mandatory. The construction solver is not imported by the verifier.
+
+## Authored targeted sampling
+
+An additional520,000 distinct labeled cubic graphs with designated matching cuts were generated by fixed-seed bipartite configuration pairing, with matching edges fixed inside each side. All have explicit extensions. The batches are:
+
+-10,000 at(|X|,|Y|;|M_X|,|M_Y|)=(8,6;4,1)
+-10,000 at(9,7;4,1)
+-100,000 each at(14,10;7,1),(15,11;7,1),(20,14;10,1),(12,10;4,1),(10,10;2,2)
+
+These are bounded samples, not an exhaustive graph class and not a uniform sample of isomorphism classes. Global optimality of these designated cuts was not computed; only their single-vertex-local optimality follows from their matching complements. Their failure to encounter the authored cubic1+7 obstruction illustrates why random positive evidence cannot prove the unrestricted statement. Full compressed certificate streams were retained outside this public edition and checked independently by the original generated-certificate checker. Exact seeds, dimensions, counts and software versions are recorded in the original provenance record.
+
+## Checks of the elementary construction
+
+The original elementary constructor implements the proof and verifies its output edge by edge on:
+
+- all33,228 supplied-catalog4+1 target cuts;
+-120,000 authored generated4+1 cases;
+-10,000 deterministic subcubic edge-deletion variants, retaining the unique minority-side demand while allowing zero through four opposite-side demands.
+
+The163,228 construction tests pass. Independent finite controls in the original boundary-template checker check all6 third-neighbor slot types,75,265 orientation-injection templates, and588,768 boundary degree-list templates in the explicitly declared universes. These controls support the implementation; the written argument establishes the universal theorem.
+
+The catalog boundary analysis also records213 observed degree/touch signatures for1+4 cases. All four deficient paired boundary entities can occur, including226 cases where all four have degree6. That observation rules out a tempting but false simplification of the earlier signed-list reduction. This analysis is only a finite diagnostic; it is not used as a premise of the proof.
+
+## Provenance, privacy and reproducibility
+
+Catalog source: House of Graphs, https://houseofgraphs.org/Cubic. Exact download URLs, hashes, byte lengths and record counts are in the original provenance record, inherited from the already checked earlier retrieval. Public background for the cubic-to-Clebsch formulation: DeVos–Šámal, High-girth cubic graphs are homomorphic to the Clebsch graph, https://arxiv.org/abs/math/0602580v2. The new proof, generation code, validation code, authored counterexamples and finite controls are authored work.
+
+No source text or catalog records should be published from this packet. The undistributed working collection includes third-party graph6 records, catalog-derived certificates and diagnostics. The authored generated certificates are also stored there for separation from the compact public-facing proof/report. Public verification metadata and authored mathematical work are separable; the original publication-candidate inventory identifies the intended authored/metadata subset. This packet itself performs no publication.
+
+The undistributed original replay procedure first validates the external manifest pin and closed file inventory, then compiles independent checkers, replays every certificate and target coverage claim, verifies both explicit negative certificates, runs the constructive and template checks, and reruns meaningful corruption controls. The original optional regeneration procedure rebuilt and byte-compared all generated streams and all target-catalog certificates using the pinned implementation; it is not supplied in this edition. Generator byte-for-byte reproducibility assumes the recorded C++ standard-library implementation; positive-certificate validation is independent of that implementation.
+
+All runtime checks are explicit and remain active under Python optimization; no removable assertion is used. The negative and template controls were additionally compared under normal Python,-O,-OO. The construction and all complete certificate checks have normal-mode replay receipts. Sixteen mutation/control tests check wrong maxima, bad witnesses, missing/duplicate cuts, coordinated input truncation, missing/extra records, wrong prescribed cuts, a removed obstruction constraint, and ordinary/unrestricted witness corruption.
