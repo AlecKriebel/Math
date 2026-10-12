@@ -51,3 +51,11 @@ Root read full fourth report/hypothesis ledger, verified34valid reviewer artifac
 ## 2026-10-12T06:23:02.385131+00:00 — final package and operation acceptance
 
 PR468 completion estimate: 88%; batch estimate: 16%. Read the entire new operations report. All 94 isolated cases passed with zero unresolved findings. Verified all five helper/kit bindings, six public reviewer outputs, four full-package report hashes, seven frozen package hashes, and original open-draft claimed_solved eligibility. Final acceptance now binds round4 bytes; external replacement, publication, tracker registration and merge still require actual receipts. No new mathematical or priority claim is inferred from mocked operations.
+
+## 2026-10-12T06:26:11.467788+00:00 — production publication and tracker confirmed
+
+PR468 completion estimate: 95%; batch estimate: 16%. The same draft 23310484 published once through the unchanged repository kit. DOI https://doi.org/10.5281/zenodo.23310484 resolves with HTTP200. Metadata has zero normalization differences, both uploaded files match the accepted round4 SHA256 values, and unauthenticated public API downloads independently match those exact bytes. GWS appended exactly one row at 'Math Puzzles'!A62:D62; whole-column DOI scan and final-range readback are unique and byte-exact at the final snapshot. No atomic concurrent-write guarantee is claimed. PR integration and merge remain.
+
+## 2026-10-12T06:30:21.716785+00:00 — published and merged, disposition complete
+
+PR468 completion: 100%; batch estimate: 17%. All 95 installed files were independently verified through the immutable Git tree and base64 blobs after the Contents API interruption; no branch mutation repeated. Ready PR merged only at exact accepted head 8e980998ab2fa2bdf9f0e1b0a496fc8449d8f968. Actual merged-state readback confirms merge 5c2f902cad1fa2b7f1617f7fe2a32f0ca6cb5c22, its ancestry of current main, all 94 target files with accepted content IDs, and the selected main QUEUE row claimed_solved, original 3/5, confirmed DOI. No GitHub release, journal submission, external contact or unrelated checkout/index action. Next descending eligible draft is PR466, subject to fresh exact-status gate.
