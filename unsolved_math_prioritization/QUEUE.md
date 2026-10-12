@@ -282,7 +282,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 271 | 5100016 / AMR-050-0016 | Elliptic-billiard invariant k_{304} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 272 | 5100017 / AMR-050-0017 | Elliptic-billiard invariant k_{307} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 273 | 5100020 / AMR-050-0020 | Elliptic-billiard invariant k_{403,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 274 | 5100021 / AMR-050-0021 | Elliptic-billiard invariant k_{403,b} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 274 | 5100021 / AMR-050-0021 | Elliptic-billiard invariant k_{403,b} | 0.1778 | 5.0 | 3 | 2021 | already_solved | 1/5 | [PR 261](https://github.com/AlecKriebel/Math/pull/261) | Valid credited alternative proof for primitive least N divisible by 4; least-period interpretation explicit (broader repeated-list reading false); prior same-target Ferudun proof DOI 10.5281/zenodo.23079799 verified with earlier official archive checksum/time association; no new paper |  |
 | 275 | 5100022 / AMR-050-0022 | Elliptic-billiard invariant k_{404} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 276 | 5100026 / AMR-050-0026 | Elliptic-billiard invariant k_{407} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 277 | 5100046 / AMR-050-0046 | Elliptic-billiard invariant k_{805} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
