@@ -35,4 +35,5 @@ Published unrefereed research note: https://doi.org/10.5281/zenodo.23308905
 Exact PDF/support metadata and resolving DOI accepted; tracker 'Math Puzzles'!A61:D61
 is verified by returned values and two fresh reads, with one DOI occurrence.
 All R4 findings were repaired globally; fresh complete R5 passed with no
-mathematical, lesser or optional findings. MAIN integration/merge remains pending.
+mathematical, lesser or optional findings. Original PR152 head is merged with the corrected native files and one target QUEUE row.
+Actual merge: 4ac2eb7811bf2f288ac330e93b740751edb510d2.
