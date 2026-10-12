@@ -32,3 +32,7 @@ Root plus independent categorical/syntactic families find no theorem defect; nor
 ## 2026-10-12T03:52:45.703409+00:00 — PR480 substantive verification checkpoint
 
 Independent math families complete PASS. Finite author/audit outputs reproduced; optimized-Python weakness repaired in derived separate checker and verified by actual mutations.2019 full published text located/read; its displayed examples are general/coherent, not the candidate. Historical-family priority assessment pending, especially earlier machinery/EM and exact target-vs-refinement distinction. Program estimate4%, PR480estimate50%.
+
+## 2026-10-12T04:01:15.238760+00:00 — PR480 priority/disposition checkpoint
+
+Two independent priority families and fresh full-disposition adversary complete. Literal target follows from previously published geometric-conservativity and generic-model calculations. No earlier explicit recognition or exact-alpha printing was established. Root accepts qualified already_solved status repair, then immediate skip under user filter; no paper/DOI/tracker/merge/closure/comment. Original mathematics remains PASS. PR480 operational estimate95%; program estimate8%.
