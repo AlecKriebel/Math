@@ -1752,7 +1752,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1741 | 2350 / EP-864 | Erdős Problem #864 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1742 | 2376 / EP-906 | Erdős Problem #906 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1743 | 2449 / EP-1038 | Erdős Problem #1038 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1744 | 2450 / EP-1039 | Erdős Problem #1039 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1744 | 2450 / EP-1039 | Erdős Problem #1039 | 0.0585 | 5.0 | 1 | unknown | claimed_solved | ≥1; total unknown |  | 2026-10-11: Accepted Price/Kitamura-credited reconstruction proves rho(f) >= (log 2)/n and worst-case inradius of order 1/n, answering the original uniform c/n question affirmatively; z^n-1 supplies the pi/(2n) upper bound and maximum possible inradius is 1. Exact extremal constant and convergence of n times the minimum inradius remain undetermined. No novelty or formal-certification claim. [Proof and audit, draft PR #1309](https://github.com/AlecKriebel/Math/pull/1309). |  |
 | 1745 | 2485 / EP-1095 | Erdős Problem #1095 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1746 | 3047 / OPG-37222 | Dividing up the unrestricted partitions | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1747 | 3100047 / AMR-030-0047 | Is the 1/3-2/3 Conjecture for Pressing Sequences true | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
