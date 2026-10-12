@@ -180,7 +180,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Credited sharp convexity radius sqrt(2sqrt(3)-3) follows from the published Singh-Goel1971 theorem, with full bound and extremal verified. Separate source and analytic audit passed; 467 author and 8443 independent controls. MacGregor1963 full-text access caveat retained; no new discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/155. |  |
 | 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
