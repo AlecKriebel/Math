@@ -50,7 +50,8 @@ def main():
             ('audit', SOURCE / 'audit/check_audit.py', ['--author-dir', str(SOURCE)], SOURCE / 'audit/audit_results.json', 'audit_control_count', 61)]:
         for optimized in (False, True):
             cmd = [str(PYTHON)] + (['-O'] if optimized else []) + [str(script)] + arguments
-            result = subprocess.run(cmd, cwd='/tmp', env=env, capture_output=True, timeout=120)
+            run_env = dict(env, PYTHONOPTIMIZE='1' if optimized else '0')
+            result = subprocess.run(cmd, cwd='/tmp', env=run_env, capture_output=True, timeout=120)
             require(result.returncode == 0 and not result.stderr, label + ' process failed')
             require(result.stdout == expected.read_bytes(), label + ' output differs from frozen result')
             parsed = json.loads(result.stdout)
@@ -60,7 +61,8 @@ def main():
             dest.write_bytes(result.stdout)
             runs.append({'label': label, 'optimized': optimized, 'exact_named_checks': count,
                          'stdout_sha256': digest(dest), 'byte_identical_to_frozen': True,
-                         'returncode': result.returncode, 'cwd': '/tmp'})
+                         'returncode': result.returncode, 'cwd': '/tmp',
+                         'nested_subprocess_optimization_propagated': True})
     frozen()
     result = {'timestamp_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'status': 'PASS', 'source_files_unchanged': len(receipt['files']),
