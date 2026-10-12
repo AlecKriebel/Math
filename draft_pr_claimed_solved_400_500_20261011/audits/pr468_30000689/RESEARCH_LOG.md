@@ -35,3 +35,11 @@ Round2 complete PASS: no required defects; six reproductions,32actual adverse re
 ## 2026-10-12T05:43:20.034049+00:00 — Third complete-package PASS and final acceptance
 
 Root read the full fresh third report and verified its output manifest and seven final freeze entries. No blocking, required or optional issue remains. All earlier optional edits incorporated and freshly verified; exact full TOP theorem and qualified attribution framing accepted. Three sequential independent package reviews complete; six extracted reproductions and36genuine fault rejections in final review. Frozen eight-page PDF and68member supplement accepted for the user-authorized production publication, tracker registration and exact-head merge. No external publication/write has yet occurred. PR468 estimate85%; program16%.
+
+## 2026-10-12T05:48:14.791209+00:00 — Live metadata encoding corrected; fresh fourth gate
+
+Production staging created and retained draft23310484 but strict metadata check rejected description serialization. Read-only same-draft inspection found only d >= 3 encoded as d &gt;= 3; HTML-decoded description exactly equal and every other field unchanged. No publication occurred. Canonical metadata/deposit now use that exact encoding; rebuilt archive records the correction. Paper/PDF/checkers/results/history unchanged. Prior round3 acceptance preserved as historical; current gate HOLD until a NEW complete-package adversary checks frozen round4. Same saved draft will receive only the replaced unpublished ZIP after acceptance; no new deposit or DOI row. PR468 estimate80%; program16%.
+
+## 2026-10-12T05:53:05.604101+00:00 — Exact live-draft preflight and operation review checkpoint
+
+Read-only helper confirms draft23310484 still unpublished, current canonical metadata exactly matches all supplied remote fields, original reviewed PDF matches, and only old ZIP needs replacement after fresh round4 acceptance. Default preflight performed no write; replacement guard retains original local ZIP and refuses any repeated uncertain DELETE. Separate independent publication-operations adversary now checks concrete replacement/DOI-registration/latest-main-preservation helpers; no remote mutations by reviewers. Paper and current candidate remain frozen. PR468 estimate80%; program16%.
