@@ -1,0 +1,59 @@
+# Public scholarly metadata: source recovery review
+
+Public scholarly document identities and retrieval/inspection history only. Third-party documents and extracted source text are not distributed. A successful response or checksum is not a proof audit.
+
+- verified_at_utc: 2026-10-12T20:06:19.632861+00:00
+- outcome: ACCEPTED_AS_VERIFIED_RECOVERY_WITH_EXPLICIT_HISTORICAL_INSPECTION_SCOPE
+- scope: Reconstruction consistency and local recovered GS PDF byte identity only; no new literature search, proof certification, mathematical result, queue action or remote write.
+- original_record_identity_checks / 1 / file: SOURCE_LEDGER.md
+- original_record_identity_checks / 1 / original_bytes: byte count of undistributed source record withheld
+- original_record_identity_checks / 1 / original_sha256: identity of undistributed source record withheld
+- original_record_identity_checks / 1 / reconstructed_original_identity_match: true
+- original_record_identity_checks / 2 / file: the original source record
+- original_record_identity_checks / 2 / original_bytes: byte count of undistributed source record withheld
+- original_record_identity_checks / 2 / original_sha256: identity of undistributed source record withheld
+- original_record_identity_checks / 2 / reconstructed_original_identity_match: true
+- original_record_identity_checks / 3 / file: the original source record
+- original_record_identity_checks / 3 / original_bytes: byte count of undistributed source record withheld
+- original_record_identity_checks / 3 / original_sha256: identity of undistributed source record withheld
+- original_record_identity_checks / 3 / reconstructed_original_identity_match: true
+- original_record_identity_checks / 4 / file: the original source record
+- original_record_identity_checks / 4 / original_bytes: byte count of undistributed source record withheld
+- original_record_identity_checks / 4 / original_sha256: identity of undistributed source record withheld
+- original_record_identity_checks / 4 / reconstructed_original_identity_match: true
+- original_record_identity_checks / 5 / file: the original source record
+- original_record_identity_checks / 5 / original_bytes: byte count of undistributed source record withheld
+- original_record_identity_checks / 5 / original_sha256: identity of undistributed source record withheld
+- original_record_identity_checks / 5 / reconstructed_original_identity_match: true
+- current_local_pdf_identity / source_id: 2009_georgakopoulos_spruessel
+- current_local_pdf_identity / bytes: 142691
+- current_local_pdf_identity / sha256: 37c70064ec08aba920ed480061d68328341e61a0ddb2738a7100fb0d75660279
+- current_local_pdf_identity / matches_historical_pdf: true
+- current_local_pdf_identity / verification_kind: local byte identity only
+- changes_from_exact_historical_records / 1: Replace reconstruction uncertainty notice with verified original-record identity and historical-inspection scope.
+- changes_from_exact_historical_records / 2: Omit the three failed non-PDF response SHA-256 and byte-count fields from public metadata; retain exact original records and reversible edit map privately.
+- changes_from_exact_historical_records / 3: Add current GS PDF local-byte verification without claiming new retrieval or source-proof inspection.
+- publication_scope_check / copied_source_documents_present: false
+- publication_scope_check / private_paths_present: false
+- publication_scope_check / failed_non_pdf_response_hashes_present: false
+- publication_scope_check / failed_non_pdf_response_byte_counts_present: false
+- publication_scope_check / copied_source_text_present: false
+- current_files / 1 / file: the original source record
+- current_files / 1 / bytes: byte count of undistributed source record withheld
+- current_files / 1 / sha256: identity of undistributed source record withheld
+- current_files / 2 / file: the original source record
+- current_files / 2 / bytes: byte count of undistributed source record withheld
+- current_files / 2 / sha256: identity of undistributed source record withheld
+- current_files / 3 / file: the original source record
+- current_files / 3 / bytes: byte count of undistributed source record withheld
+- current_files / 3 / sha256: identity of undistributed source record withheld
+- current_files / 4 / file: the original source record
+- current_files / 4 / bytes: byte count of undistributed source record withheld
+- current_files / 4 / sha256: identity of undistributed source record withheld
+- current_files / 5 / file: SOURCE_LEDGER.md
+- current_files / 5 / bytes: byte count of undistributed source record withheld
+- current_files / 5 / sha256: identity of undistributed source record withheld
+- current_files / 6 / file: the original source record
+- current_files / 6 / bytes: byte count of undistributed source record withheld
+- current_files / 6 / sha256: identity of undistributed source record withheld
+- separately_attributed_record: the original source record is an edition-worker record; its other-worker rereading and packet-audit assertions are not new inspections by this source reviewer.
