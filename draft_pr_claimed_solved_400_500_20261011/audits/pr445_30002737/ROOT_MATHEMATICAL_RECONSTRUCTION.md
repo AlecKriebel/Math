@@ -17,6 +17,11 @@ R^d or d-torus correlation spectra. Root retrieved all three original PDFs and
 visually read complete OWR10–11, precursor2–3 and Baake–Grimm2–3 pages; byte
 bindings are in ROOT_PRIMARY_SOURCE_RECEIPT.json. The planar reading is a
 source-backed interpretation, not an assertion of the author's unstated intent.
+The statistical-mechanics framing is not a certificate of a finite-range
+ground-state or positive-temperature realization. This counterexample claims
+neither. If an additional equilibrium-interaction hypothesis is imposed, it
+requires its own construction and verification; it is not inferred merely from
+minimality. The displayed Conjecture1 contains no such additional restriction.
 
 The Baake–Grimm Rudin–Shapiro input supplies a minimal uniquely ergodic binary
 system (X,S,mu), a coordinate f(x)=x_0 in {-1,1}, zero mean and correlations
