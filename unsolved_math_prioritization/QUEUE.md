@@ -201,7 +201,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the credited pure-harmonic branch energy minimum, full interaction Hessian and scoped orbital Lyapunov result. These relaxed kernels violate the physical single-sign-change condition; the intended multi-peak instability conjecture remains unresolved. 21141 author and 941 independent controls; full nonlinear interaction distinguished from corrected frozen-convolution analysis. Draft PR: https://github.com/AlecKriebel/Math/pull/176. |  |
 | 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |

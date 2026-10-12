@@ -1,0 +1,3 @@
+# 30001251: physical-kernel scope and a monochromatic stability diagnostic
+
+Original physical multi-peak instability target remains unsolved, 2/5 approaches. PARTIAL_RESULT.md gives the exact source distinction, credited generalized-Kuramoto minimizers, a full interaction Hessian and a precisely limited orbital energy stability statement. The harmonic kernel violates the source's single-sign-change restriction for N>=3. No full resolution or discovery claim. Run `python verify.py` in this directory; finite algebraic checks do not replace the analytic proofs. Independent review pending. Source PDFs are not included.
