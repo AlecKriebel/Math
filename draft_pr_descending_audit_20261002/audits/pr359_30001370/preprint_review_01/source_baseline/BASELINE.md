@@ -1,0 +1,40 @@
+# Fresh primary-first analytical baseline
+
+UTC checkpoint: 2026-10-03T22:48:39Z. Candidate, packet, and prior/current substantive verdicts have not been opened. Completion estimate for this review: 18%. Mathematics baseline is established; candidate mathematics, package reproduction, rendering, and priority limits remain untested.
+
+## Exact question and source identities
+
+On I=[-1/2,1/2], D consists of all nonnegative Lebesgue L1 functions of integral one (equivalence classes). The two increasing full branches are T_r(x)=f_r(x) on x<-r/4, and f_r(x)-1 on x>-r/4, with f_r(x)=((r+4)x+r+1)/(2rx+2). Endpoint/branch-point conventions affect null sets for densities. F(u)=P_{G(m(u))}u, m(u)=integral x u(x) dx, G(m)=A tanh(Bm/A), 0<A<=2/5 and 6<B<=16. The conjecture is W_0=boundary_D W_+=boundary_D W_- in the relative L1 topology, where W_0={u:F^n u ->1 in L1} and W_+/- are the two noncentral fixed-point basins. No extension to arbitrary singular measures, different feedback laws, B=6, A=0, or differentiability on all L1 is implicit.
+
+OWR 49/2009 is titled Mini-Workshop: Spectrum of Transfer Operators—Recent Developments and Applications. Its contribution Self-consistent Perron-Frobenius operators for globally coupled maps is by Gerhard Keller, joint work with Bardet and Zweimueller, pp.2713–2715. PDF SHA256 b4a8d328316d093cde2d23a9b13e8b869e33b46626735494de473045bbc26169. Its Theorem 2 supplies global three-way L1 convergence and openness of the noncentral basins for the stated parameter window. Page 2715 states the common-boundary conjecture and reports that the union of open basins is known dense.
+
+The full 36-page author-hosted Bardet–Keller–Zweimueller preprint (internal December 19, 2008, SHA256 c1b9ca5c4edbba4d06513634a649589185a63a53f0b0a9f14ebb8a9fc8289642) was read in full, including finite-size inverse estimates, the canonical mixture IFS, all of Section 5, noisy-system limitations, appendix and references. It is not the inaccessible final journal PDF. The separately supplied arXiv v1 has SHA256 6a182868c1d2d4a09c8cfaa513ba9314cce522c3b08fe71728264399df7d7861: its first-page banner says submitted December 21, 2008; internal render date says November 10, 2018. Distinct bytes must remain distinct.
+
+## Prior seed and exact gap
+
+BKZ use w_y(x)=(1-y^2/4)/(1-xy)^2 and D_0={integral_Y w_y dmu(y):mu in P(Y)}, Y=[-2/3,2/3]. The representing IFS has sigma_r(y)=2(y+r)/((r+1)y+r+4), tau_r(y)=2(y+r)/((r-1)y-r+4), and p_r(y)=1/2-(r+y)/(4+ry). Their monotonicity, support shrinkage, and thinness of the central basin in the order on representing measures prove Proposition 4: each W_0 intersect D_0 point is approached by both noncentral basins. Proposition 3 gives global convergence and open stable basins on D. Proposition 5 is a BV-to-L1 directional/differentiability statement at smooth densities, not an L1 stable-manifold theorem. BKZ nowhere supply the needed lifting of the seed from D_0 to every rough density. The author preprint has source typographical issues in some derivative/norm estimates; imports should rely on stated results with their correct assumptions, not silently inherit flawed formulas.
+
+The easy inclusion boundary_D W_+/- subset W_0 follows from the disjoint exhaustive basins and openness of both noncentral basins. The difficult inclusion is approximating every arbitrary W_0 point from both sides. A route which merely assumes continuity plus proximity to D_0 cannot do this, because forward continuity provides no backward control and F is not a uniform L1 contraction.
+
+## Independent analytical mechanism before seeing candidate
+
+1. Follow a central orbit u_j and represent it on a genuine probability space (Omega,mu), e.g. original position law mu=u_0 dx. Retain every particle's branch label epsilon_j. A target terminal random position Y should be pulled backward by branch inverses b_{r,epsilon}, with the scalar r at each step solving r=G(E b_{r,epsilon}(Y)). The branch inverse decreases in r; the right side is nonincreasing, so the scalar equation has at most one solution. Values at r=+/-A have the required signs; an endpoint solution cannot produce a pathology for finite tanh input. This is a route toward continuous backward lifting without assuming strict positivity of u_0.
+
+2. The derivative in L2 of the unlabeled forward fractional-linear map is multiplication by f'_r(X) followed by a rank-one correction with q(X)=1-4X^2 in [0,1]. The inverse is a multiplication D followed by Id-c q tensor expectation, where c=g/(4-r^2+g E q), g=G'(E X)>=0. A correct extension of the finite-N bound must work on a REAL probability Hilbert space with unweighted L2 norm, including q=0 almost surely, q constant, q with mass near endpoints, and vectors perpendicular to q. Treating the rank-one correction as self-adjoint is invalid unless q is constant. The central mathematical falsification target is a norm estimate uniform under the actual tanh derivative relation g=B(1-r^2/A^2), not freely maximising g and r independently.
+
+3. L2 closeness of backward random positions yields weak/Wasserstein closeness of their laws, not L1/total-variation closeness. A second argument must recover L1 convergence while retaining original branch labels and self-consistency. For a finite backward itinerary, each coordinate must be related to original x by a smooth increasing fractional-linear change of variables on each original cylinder. Piecewise branches must glue appropriately or be handled separately, and the density push-forward must use the ordinary Lebesgue Jacobian. An arbitrary density can be unbounded, vanish on intervals, and have discontinuities; prove strong continuity by approximation from continuous functions plus uniform operator mass contraction, or by total variation under near-identity C1 diffeomorphisms. Density-weighted Jacobians would be circular or false here.
+
+4. To combine the old seed with backward control, an approximate central orbit may need canonical shadowing and an adaptive finite time. Every order of limits needs care: a fixed time can give total-variation continuity, while a contraction may let terminal perturbation be chosen without losing control over a long backward itinerary. An n-dependent modulus is not enough unless parameters are selected in the correct order. The target basin outcome should follow from exactly realising a terminal density inside the known open basin, not from a numerical sign test.
+
+## Falsification controls committed in advance
+
+- Recover f'_r, partial_r f_r, b_r, partial_r b_r, q, and the nonlinear feedback derivative from independent symbolic algebra.
+- Test the L2 inverse estimate on two-, three-, and multi-point probability laws with nonuniform masses, q near zero and one, and rank-one nonsymmetry; compare full singular values against the claimed uniform bound.
+- Check A=2/5, B=16, B decreasing to 6, and A decreasing to 0 through positive values. No numerical evidence substitutes for parameter-uniform algebra.
+- Use central symmetric laws that vanish on intervals, have integrable endpoint spikes, have CDF flats, and have rough step oscillations. Probe terminal quantile transport and exact branchwise backward Jacobians.
+- Check endpoint labels, branch-point conventions, countably many flat CDF values, zero-density inverse domains, and cylinder boundaries as null sets in the ORIGINAL probability law, not automatically Lebesgue-null inverse images.
+- Inspect both relative topological inclusions and avoid ambient-L1 openness claims.
+- Inspect every support member, schema/history/current binding, input byte/mode declarations, actual command/API source bindings, and standalone source/PDF references. Reproduce all original declared outputs; only two explicitly authorised numerical summary floats may receive 1e-12 tolerance.
+- Independently distinguish proof verification, empirical reproduction, and source-attribution/priority limits. No human peer review or broad novelty certification will be inferred.
+
+No externally directed communication occurred. Public primary literature may be read; no other individual may be contacted.

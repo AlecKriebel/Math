@@ -1,0 +1,5 @@
+# Independent whole-preprint review log
+
+- 2026-10-05T19:43:04.916886+00:00: Created review folder. Independently derived proof obligations and main mechanisms before reading package or old review reports. Completion estimate: 10%.
+- 2026-10-05T19:49:41.475596+00:00: Full manuscript proof, all public code/prose/metadata, fresh reproduction and fail-closed controls reviewed. PDF pages 1–6 and three exact primary theorem pages rendered and viewed. Independent proof verdict formed before older review reports; older projection/full-spectrum/general-priority/reproduction reports and bounded author-follow-up verdict read afterwards for comparison only. One mandatory low-severity precision repair identified in priority supplement. Completion estimate: 90%.
+- 2026-10-05T19:52:14.700289+00:00: Round-1 review/report and evidence manifest closed. All seven selected payloads and metadata remain unchanged. Mathematics/reproduction/provenance verified; narrow priority framing warranted with one required supplement wording repair M1. Corrected bytes require fresh second-agent review. Completion estimate: 100%.

@@ -1,0 +1,174 @@
+{
+  "candidate": "candidate03",
+  "candidate_matches": {
+    "main.tex": true,
+    "paper.pdf": true,
+    "README.md": true,
+    "verification.zip": true,
+    "zenodo-deposit.json": true
+  },
+  "zip_checksums": {
+    "APPROACH_TABLE.md": true,
+    "CURRENT_THEOREM.md": true,
+    "DEPENDENCY_LEDGER.md": true,
+    "README.md": true,
+    "SOURCE_MANIFEST.json": true,
+    "agent_notes/binary_compiler.md": true,
+    "agent_notes/binary_compiler_check_results.json": true,
+    "agent_notes/determinization_algebra_check.py": true,
+    "agent_notes/determinization_algebra_check_results.json": true,
+    "agent_notes/formal_reproduction.md": true,
+    "agent_notes/priority.md": true,
+    "agent_notes/upstream_algebra_check.json": true,
+    "agent_notes/upstream_algebra_check.py": true,
+    "agent_notes/upstream_complementation.md": true,
+    "agent_notes/upstream_complementation_sha256.txt": true,
+    "agent_notes/upstream_determinization.md": true,
+    "agent_notes/upstream_determinization_sha256.txt": true,
+    "bibliography.bib": true,
+    "code/binary_compiler.py": true,
+    "code/build_verification_package.py": true,
+    "code/clean_reproduction.py": true,
+    "main.tex": true,
+    "receipts/clean_reproduction.json": true,
+    "receipts/root_compiler_check.json": true,
+    "reviews/reduction_adversary.md": true,
+    "reviews/reduction_adversary_check.py": true,
+    "reviews/reduction_adversary_independent_receipt.json": true
+  },
+  "clean_reproduction": {
+    "returncode": 0,
+    "seconds": 19.294,
+    "stdout": "{\n  \"status\": \"passed\",\n  \"scripts\": 4,\n  \"pdf_build\": \"passed\"\n}\n",
+    "stderr": ""
+  },
+  "clean_receipt": {
+    "pdf_build": {
+      "compiler": "Tectonic 0.16.9",
+      "pdf_bytes": 80290,
+      "status": "passed",
+      "stderr": "",
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"main.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `main.pdf` (78.408203125 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+      "tex_sha256": "effc61c3809b0290f4b9a063c7a7dbc389e512d38e81683d0bea0cee42f19aa5"
+    },
+    "python": "3.14.6",
+    "runs": [
+      {
+        "result": {
+          "deterministic_machines": 288,
+          "fooling_pairs": 100,
+          "pullback_cases": 227136,
+          "python": "3.14.6",
+          "sampled_machines": 128,
+          "scope": "Uniform encoding lemmas only; no upstream lower bound checked.",
+          "source_state_counts": {
+            "1": 3,
+            "2": 13,
+            "3": 41,
+            "4": 96,
+            "5": 187,
+            "6": 323,
+            "7": 513,
+            "8": 766
+          },
+          "source_words": 1534,
+          "status": "passed"
+        },
+        "script": "code/binary_compiler.py",
+        "seconds": 0.579,
+        "sha256": "013a096ca48a8a8123d6f28adf32b6e6d517ef7bd9d125450e6950ee772b49d0"
+      },
+      {
+        "result": {
+          "complement_identity_words": 4369,
+          "endmarked_source_words": 32764,
+          "fooling_crosses": 20515,
+          "ordinary_source_words": 16382,
+          "pullback_comparisons": 4472832,
+          "python": "3.14.6",
+          "raw_one_state_nondeterministic_machines": 8192,
+          "scope": "Encoding only; upstream lower bounds not established.",
+          "status": "passed"
+        },
+        "script": "reviews/reduction_adversary_check.py",
+        "seconds": 13.879,
+        "sha256": "bff7d0d7bb6338421e4632231792d003aa019e34e3020c869a638d5427861bdf"
+      },
+      {
+        "result": {
+          "checks": [
+            {
+              "corner_products_checked": 1,
+              "degree": 0,
+              "diagrams": 1,
+              "idempotents": 1,
+              "sandwiches_checked": 1
+            },
+            {
+              "corner_products_checked": 1,
+              "degree": 1,
+              "diagrams": 1,
+              "idempotents": 1,
+              "sandwiches_checked": 2
+            },
+            {
+              "corner_products_checked": 10,
+              "degree": 2,
+              "diagrams": 3,
+              "idempotents": 2,
+              "sandwiches_checked": 12
+            },
+            {
+              "corner_products_checked": 234,
+              "degree": 3,
+              "diagrams": 15,
+              "idempotents": 10,
+              "sandwiches_checked": 280
+            },
+            {
+              "corner_products_checked": 11304,
+              "degree": 4,
+              "diagrams": 105,
+              "idempotents": 40,
+              "sandwiches_checked": 7520
+            }
+          ],
+          "status": "PASS"
+        },
+        "script": "agent_notes/determinization_algebra_check.py",
+        "seconds": 0.156,
+        "sha256": "7d7d5bcf1ff402a5a8fb3608b6fb087e6a30d202519b7fc0f009552b108502e2"
+      },
+      {
+        "result": {
+          "scope": "exhaustive width one and seeded width two falsification",
+          "seed": 129,
+          "width_1": {
+            "corners": 56,
+            "diagrams": 16,
+            "idempotents": 16,
+            "missing_products": 896,
+            "nested_pairs": 56,
+            "transport_budgets": 9216,
+            "transport_contexts": 4096
+          },
+          "width_2": {
+            "corners": 10000,
+            "diagrams": 65536,
+            "idempotents": 12821,
+            "missing_products": 30000,
+            "nested_pairs": 10000,
+            "transport_budgets": 7412,
+            "transport_contexts": 1794
+          }
+        },
+        "script": "agent_notes/upstream_algebra_check.py",
+        "seconds": 2.782,
+        "sha256": "cfdb53dda2890064ba68e60c9ba79c31f5202f55bb67b04ed96f963547951ce8"
+      }
+    ],
+    "status": "passed"
+  },
+  "zip_sha256": "98387ea3646a73c09db831269111e796e1ceded5a290cf518b8e140b09726a3b",
+  "status": "passed"
+}

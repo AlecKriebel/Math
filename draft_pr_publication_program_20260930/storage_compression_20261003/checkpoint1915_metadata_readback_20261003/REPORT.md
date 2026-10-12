@@ -1,0 +1,9 @@
+# Separate checkpoint1915 compressed-index readback
+
+Actual preparer child46427 ran2026-10-03T20:13:22.236012+00:00–20:13:22.341270+00:00 and exited0. Both current compressed saved-index copies exactly match their completed receipt.after identities, excluding only read-induced atime. Complete logical SHA/size/full07777 mode/uid/gid/mtime, inode/ctime/birthtime/flags/allocated blocks, original provenance xattr and ACL were freshly read and compared. The native xattr inventory reported only provenance on both targets; no added compression-bookkeeping value was returned to hash in these two cases. The original receipt.before logical hashes remain equal. No compression was repeated and no saved target or live index was rewritten.
+
+RESULT.json contains actual two-case snapshots, whole native readonly command argv/PIDs/UTC/exit/full stderr and the retained ordinary stdout values. The reviewed mechanism would hash any returned added ResourceFork/decmpfs hex output in stream rather than duplicate it; none was returned here. The complete reader stdout15909 bytes and empty stderr are retained, alongside the exact prelaunch reader and reviewed helper. Non-main runpy loading invoked only the reviewed bounded snapshot functions; the guarded production main did not execute. This is separate administrative evidence, not a new mathematical independence claim or ROOT approval.
+
+Original genuine ROOT compressions43975 and44225 are authenticated by exact unchanged receipts and full CAP4 metadata/operator/streams. Their allocated-block savings were20,144,128 and18,583,552 bytes, total38,727,680. Those completed per-file savings do not certify equal physical free-space recovery. All original scientific/source/receipt bodies and current modes remain untouched.
+
+Readback100%; new compression0%; new discovery0%; formal program37/180 (20.56%). The next checkpoint is a separate SOURCE-only effort.

@@ -1,0 +1,43 @@
+# Independent review: focal antipedal invariant k603
+
+**Verdict: PASS_COMPLETE_PROOF.** The per-edge identity is correct for the source's strictly nested confocal ellipses, with ordinary nonnegative focal distances. It telescopes to the requested equality for every closed admissible orbit, including star orbits and repeated traversals. No mandatory mathematical correction is required.
+
+Recommended campaign status: **claimed_solved, 2/5**. This is a separate adversarial AI review using gpt-6-astra at xhigh reasoning, completed on 2026-09-30. Historical priority remains unconfirmed, and this is not human peer review.
+
+## Frozen artifact and reproduction
+
+- PROOF.md: 8478d2a792944c5fb9e8a53324e0c6bce8eba317de29c31a6fcbd6ca0205709d
+- Submitted verify.py: 0d05777d1c794b78dc2cae69bbaed52c2dcc6b33c79a8fe016e8079a03d957e4
+- Submitted verification.json: d5bfd8ef0fddd6d1c81c2c66f1e8ff9d6d949ff0656f776f5bf11914fbdcb67b
+- All **17,364 submitted exact assertions on 1,447 rational chords** passed; running in an isolated working directory reproduced the written receipt byte-for-byte
+- **1,993 independent exact diagnostics on 90 unit-normal chords** passed
+
+The author's checker writes its receipt in the current directory. Its correct replay is therefore from author_replay itself, as shown below. No author mathematical file was edited.
+
+## 1. Exact source and exclusions
+
+I checked [Reznik–Garcia–Koiller, arXiv:2004.12497v11](https://arxiv.org/abs/2004.12497v11), its introduction, Sections 3.5 and 3.7, and Table 7. I independently retrieved the complete [published 2021 article](https://amj.math.stonybrook.edu/pdf-Springer-final/021-0174.pdf), checked the same definitions, and visually inspected its introduction and Table 7 on printed p. 349.
+
+Both introductions define the elliptic billiard in this work using a pair of **confocal ellipses**. Table 7 labels k603 as the ratio of the two sums of focal **antipedal** distances, with value one for all $N$. Section 3.7 defines those distances by ordinary Euclidean norms. The quantities are not pedal feet, side lengths, areas, or signed distances. Consecutive endpoint-line intersections give the antipedal vertices; a cyclic shift in their indexing does not affect either sum.
+
+The candidate's domain $a>b>0$ and $0<\lambda<b^2$ is exactly a strictly nested, nondegenerate confocal elliptical caustic. It does not claim a hyperbolic-caustic or degenerate two-bounce extension. Those exclusions do not discard part of the confocal-ellipse pair stipulated by this source. A circle has coincident foci, so the separately mentioned circle limit has immediate equality wherever the construction is defined.
+
+A bounded primary-source search did not locate a later general-$N$ proof of this exact ratio. This does not certify novelty. The distinction between the source's still-unproved table entry and a new historical discovery remains explicit.
+
+## 2. Antipedal distances and the absolute-value issue
+
+With a focus translated to the origin, the line through $A$ perpendicular to $A-f$ is characterized by
+$Q\cdot(A-f)=|A-f|^2$, and likewise for $B$. Solving those two equations gives the displayed squared-distance formula. The triangle-area identity then gives
+\[
+q_f=\frac{|A-f|\,|B-f|}{\operatorname{dist}(f,AB)}.
+\]
+Both numerator factors and the denominator are positive in the situation used later. Thus this is an equality of ordinary positive distances; no signed square root has been substituted.
+
+For an elliptical caustic the two foci lie strictly inside it. Hence a tangent chord cannot pass through either focus. In the author's coordinates this is proved quantitatively by
+\[
+(U-eC)(U+eC)=(b^2-\lambda)D^2>0,
+\qquad (U-eC)+(U+eC)=2U>0.
+\]
+Both factors are therefore positive. The two heights really are $(U\mp eC)/D$, without absolute-value sign changes from one edge to another. This is the essential sign check.
+
+The endpoint focal distances are $a\mp c\cos t$, not their possibly negative signed variants; they are strictly positive because $a>c$. Nonzero focal height also makes the endpoint vectors linearly independ

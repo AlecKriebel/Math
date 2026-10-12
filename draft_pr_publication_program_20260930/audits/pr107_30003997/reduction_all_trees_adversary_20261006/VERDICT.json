@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "audit_id": "pr107_30003997_reduction_all_trees_adversary_20261006",
+  "completed_utc": "2026-10-06T04:14:16.952661+00:00",
+  "target_id": 30003997,
+  "problem_number": "OWR-16633-014",
+  "original_head": "cc2ae01897135b35bee135917819e782a220f2c1",
+  "candidate_input": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr107_30003997/original_source_authentication_20261006/original_attempt/PROOF.md",
+    "sha256": "2c219bf80ad4bbba75f8c70169b26b7e9b11b6f5e1742543f25d9cb0d0c5ebe8",
+    "bytes": 8009
+  },
+  "source_record_input": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr107_30003997/original_source_authentication_20261006/original_attempt/source_record.json",
+    "sha256": "35d3f148d36684ccfca8c01df613dcaa42e8821092acdd1c9c42326e17a7e6eb",
+    "bytes": 3977
+  },
+  "verdict": "mathematics_verified_with_minor_boundary_presentation_correction",
+  "central_reduction_valid": true,
+  "arbitrary_formula_size_proved": true,
+  "all_feasible_arborescences_characterized": true,
+  "rational_decision_NP_membership_verified_with_bit_complexity": true,
+  "dense_encoding_polynomial": true,
+  "strong_NP_hardness_verified": true,
+  "positive_cost_offset_verified_for_every_tree": true,
+  "strongest_verified_scope": {
+    "zero_threshold": "NP-complete with all destination-arc coefficients in {0,1}",
+    "graph_class": "simple four-layer DAG, consecutive-layer arcs, designated root reaches every vertex, every nonroot indegree at most 3",
+    "exact_tree_bijection": "assignments times one selected distinct variable per nonempty non-tautological clause",
+    "exact_optimum": "minimum number of unsatisfied clauses",
+    "optimization": "strongly NP-hard",
+    "positive_costs": "all coefficients in {1,2}; universal offset 4n+3m; positive threshold 4n+3m"
+  },
+  "required_corrections": [
+    {
+      "location": "PROOF.md:27",
+      "severity": "minor boundary presentation",
+      "issue": "Deleting tautologies and repeated signed literals does not by itself make an originally empty clause nonempty; fixed trivial handling is acknowledged but not exhibited.",
+      "action": "Before claiming remaining clauses are nonempty, send any empty-clause input to the fixed construction on (x1) AND (not x1); send no remaining clauses to the fixed construction on (x1). Use binary threshold 0; positive thresholds 10 and 7 respectively.",
+      "new_central_mechanism_needed": false,
+      "mathematical_obstruction_to_theorem": false
+    }
+  ],
+  "optional_exposition_improvements": [
+    "Relabel only occurring variable names, so enormous original numeric IDs do not inflate n.",
+    "Give dense table entry bound (3n+m)(4n+sum_j k_j) and exact rational product-denominator bit bound.",
+    "Name Karp original printed pp.94-95 item11 as primary at-most-three-literal SAT completeness source."
+  ],
+  "unresolved_concerns": [
+    {
+      "category": "outside theorem-verification scope",
+      "issue": "Historical priority, novelty, and completeness of a contemporary literature search are not assessed by this audit.",
+      "blocks_mathematical_verification": false
+    },
+    {
+      "category": "curation metadata",
+      "issue": "source_record.json old background/literature prose describes root-dependent spanning trees, while the displayed target and candidate correctly match fixed-root directed Problem2; parent should avoid reusing that stale prose.",
+      "blocks_mathematical_verification": false
+    }
+  ],
+  "exact_remaining_mathematical_gap": "None in the central reduction or complexity claims; minor total-input presentation correction specified above.",
+  "finite_evidence": {
+    "status": "PASS",
+    "regular_formula_cases": 194,
+    "total_preprocessing_boundary_cases": 10,
+    "all_feasible_trees_checked": 55086,
+    "results_artifact": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr107_30003997/reduction_all_trees_adversary_20261006/FINITE_CHECK_RESULTS.json",
+      "sha256": "ea4c7e2f09ef837c8b8a44d60a30fb1316da2ba0e393d5c29d3ff2279e246b80",
+      "bytes": 80602
+    },
+    "methods": [
+      "generic all (|V|-1)-arc subset enumeration",
+      "generic one-parent products + BFS"
+    ],
+    "negative_controls_preserved": [
+      {
+        "challenge": "Apply raw gadget to an empty clause",
+        "expected_identity_or_promise_failed": "z0 is unreachable; no feasible spanning tree",
+        "observed_feasible_tree_count": 0,
+        "resolution": "explicitly route any empty clause to fixed contradictory-unit no-instance"
+      },
+      {
+        "challenge": "Apply raw gadget to an undeleted tautological clause (x1 or not x1)",
+        "expected_identity_or_promise_failed": "Boolean optimum is 0 but tree optimum is 1",
+        "observed_tree_costs": [
+          1,
+          1
+        ],
+        "resolution": "delete tautological clauses as candidate requires"
+      }
+    ],
+    "finite_tests_are_not_arbitrary_size_proof": true
+  },
+  "independence": {
+    "source_first_pin": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr107_30003997/reduction_all_trees_adversary_20261006/SOURCE_FIRST_PIN.json",
+      "sha256": "70feb95d182bed1c433c1edb577f72748dfa23c3350cbb39fba1c7f21b6ecb9f",
+      "bytes": 208
+    },
+    "initial_comparison_pin": {
+      "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr107_30003997/reduction_all_trees_adversary_20261006/INITIAL_COMPARISON_PIN.json",
+      "sha256": "08ca764827d78d8617bebbca0fd10a75d5cddafffa706b0f22f25bfac36d3144",
+      "bytes": 1333
+    },
+    "original_review_read": false,
+    "author_replay_read": false,
+    "original_verifier_read": false,
+    "other_current_family_reports_read": false
+  },
+  "workflow": {
+    "dedicated_folder_only": true,
+    "external_outreach": false,
+    "git_or_publication_actions": false,
+    "new_central_proof_search_response": false,
+    "verification_completion_estimate_percent": 100,
+    "novelty_inference": false
+  },
+  "reproduction": {
+    "command": "python3 AUDIT_CHECK.py",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O"
+  }
+}

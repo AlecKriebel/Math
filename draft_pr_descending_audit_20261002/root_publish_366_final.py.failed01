@@ -1,0 +1,58 @@
+"""Publish only owned final PR366 evidence and the next frozen PR365 snapshot."""
+from pathlib import Path,PurePosixPath
+from datetime import datetime,timezone
+import hashlib,json,subprocess
+P=Path(__file__).resolve().parent;R=P.parent;A=P/'audits/pr366_2303016';paths=set();sha=lambda b:hashlib.sha256(b).hexdigest()
+def git(*a):return subprocess.check_output(['git',*a],cwd=R)
+def add(p):
+ assert p.is_file() and not p.is_symlink() and p.resolve().is_relative_to(P)
+ rel=p.relative_to(P)
+ if any('private' in x or x in {'tmp','__pycache__','raw_sources'} for x in rel.parts):return
+ assert p.suffix not in {'.pdf','.png','.html','.log'}
+ paths.add(p.relative_to(R).as_posix())
+def directory(d):
+ for p in d.rglob('*'):
+  if p.is_file():add(p)
+def manifest(d,name,pin=None):
+ raw=(d/name).read_bytes()
+ if pin:assert sha(raw)==pin
+ o=json.loads(raw);seen=set()
+ for e in o['files']:
+  q=PurePosixPath(e['path']);assert not q.is_absolute() and '..' not in q.parts and q.as_posix()==e['path'] and e['path'] not in seen;seen.add(e['path']);b=(d/q).read_bytes();assert len(b)==e['bytes'] and sha(b)==e['sha256'];add(d/q)
+ add(d/name)
+ if (d/'FINAL_SEAL.json').exists():add(d/'FINAL_SEAL.json')
+ return len(seen)
+assert git('branch','--show-current').strip()==b'main'
+assert subprocess.run(['git','rev-parse','-q','--verify','MERGE_HEAD'],cwd=R,capture_output=True).returncode!=0
+assert not git('diff','--name-only','--diff-filter=U').strip()
+actual=json.loads((A/'ACTUAL_MERGE_VERIFICATION.json').read_bytes());assert actual['actual_merge']=='a7931795d85cd86c414200c5828d175046f707d5' and actual['all_target_file_hashes_exact']==21 and actual['only_queue_pipe_cells']==[8,9]
+post=json.loads((A/'root_postmerge_verification_receipt.json').read_bytes());assert post['status']=='PASS_ENTIRE_POSTMERGE_EVIDENCE_AND_REEXECUTION'
+assert subprocess.run(['git','merge-base','--is-ancestor',actual['actual_merge'],'HEAD'],cwd=R).returncode==0
+criteria=json.loads((A/'acceptance_criteria.json').read_bytes());assert criteria['workflow_completion_percent']==100 and criteria['post_merge_verification_pending'] is False
+for p in A.iterdir():
+ if p.is_file():add(p)
+for d in [A/'snapshot',A/'repaired_snapshot',A/'queue_refresh_history']:
+ if d.exists():directory(d)
+for family,mf,n,pin in [('priority_method_review','REVIEW_MANIFEST.json',8,'c37d071fcafdb11d26332a185676a381b2af8746e9855669075c98ec1e0d646d'),('variational_capacity_review','IMMUTABLE_MANIFEST.json',26,'aa86e6f71ddeb7ea73ac13729035cbe0bb846a5aac7d12a9b6200e4ed97d2358'),('clean_final_adversary','IMMUTABLE_MANIFEST.json',194,'aa40b05b683b74d4d24e34bb9eb3c76bacc8fb6f9c37f4da183faad29e320636')]:assert manifest(A/family,mf,pin)==n
+manifest(A/'post_merge_review','PUBLIC_MANIFEST.json',post['manifest_sha256'])
+for d in A.iterdir():
+ if d.is_dir() and d.name.startswith('root_') and 'streams' in d.name:directory(d)
+N=P/'audits/pr365_2303002'
+if N.exists():
+ for p in N.iterdir():
+  if p.is_file():add(p)
+ if (N/'snapshot').exists():directory(N/'snapshot')
+for n in ['inventory.json','RESEARCH_LOG.md','root_refresh_partial_queue.py','root_integrate_reviewed_pr.py','root_freeze_pr.py','checkpoint_366_source_math_allowlist.json','checkpoint_366_source_math_stage.stdout','checkpoint_366_source_math_stage.stderr','checkpoint_366_source_math_commit.stdout','checkpoint_366_source_math_commit.stderr','checkpoint_366_source_math_push.stdout','checkpoint_366_source_math_push.stderr','ROOT_STORAGE_RECOVERY_20261003_1823.json','ROOT_PRIVATE_SOURCE_DEDUP_20261003_1828.json','ROOT_PRIVATE_SOURCE_DEDUP_20261003_1825.json','ROOT_PRIVATE_SOURCE_DEDUP_20261003_1825.jsonl',Path(__file__).name]:add(P/n)
+allow=P/'checkpoint_366_final_allowlist.json';paths.add(allow.relative_to(R).as_posix());allow.write_text(json.dumps({'utc':datetime.now(timezone.utc).isoformat(),'scope':'PR366 accepted credited direct-proof partial with actual/postmerge evidence; next365 freeze if present; program23/349=6.5903%','explicit_owned_paths':sorted(paths),'excluded':'Every unlisted path, private primary/capture/runtime material and foreign staged entry; no paper/DOI/tracker/release'},indent=2)+'\n')
+def foreign():
+ out={}
+ for row in git('ls-files','--stage','-z').split(b'\0'):
+  if row:
+   meta,p=row.split(b'\t',1)
+   if p.decode() not in paths:out.setdefault(p,[]).append(meta)
+ return out
+f=foreign();parent=git('rev-parse','HEAD').decode().strip()
+for label,args in [('stage',['git','add','--',*sorted(paths)]),('commit',['git','commit','--only','-m','Publish verified direct capacity proof partial acceptance and audit','--',*sorted(paths)]),('push',['git','push','origin','main'])]:
+ z=subprocess.run(args,cwd=R,capture_output=True);(P/('checkpoint_366_final_'+label+'.stdout')).write_bytes(z.stdout);(P/('checkpoint_366_final_'+label+'.stderr')).write_bytes(z.stderr);assert z.returncode==0,(label,z.stderr);assert foreign()==f,'foreign index changed'
+c=git('rev-parse','HEAD').decode().strip();changed=set(git('diff-tree','--no-commit-id','--name-only','-r',c).decode().splitlines());assert changed<=paths
+print(json.dumps({'status':'PUBLISHED_PR366_FINAL_AND_NEXT_FREEZE','commit':c,'parent':parent,'changed_owned_paths':len(changed),'foreign_index_preserved':True,'program_completed':23,'total_original':349},indent=2))

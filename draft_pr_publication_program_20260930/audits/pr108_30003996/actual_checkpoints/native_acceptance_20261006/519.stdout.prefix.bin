@@ -1,0 +1,11 @@
+# PR108 inert native input preparation V2
+
+This is the narrow successor to the sealed input builder and the parent's `draft_0dd29832e98382f5` data. All predecessor bytes are pinned and preserved. The builder selects the sealed `corrected_v5` helper at the existing explicit helper-directory argument. Its new `HERE` is this folder; `A=HERE.parent` and the native checkout anchor are unchanged. The only source changes are the helper-folder selector and its two corresponding error messages.
+
+The parent's real V4 private-configuration check stopped before network or native work. Its metadata-only diagnosis records that the socket regex crossed the newline after an empty `http_unix_socket` value into the next key. The unchanged configuration remains 824 bytes with SHA256 `8c09fd1cf968d4e2e5456aea12041795a2764269aa4eb867cb0391e51887d94f`. No credential or configuration body is inspected, retained or printed by this effort; metadata hashing remains the existing builder mechanism.
+
+The successor data use fixed main `f36cb1e34696d460b9cfb5b03425998de48c4669`. Effective choices, all 180 nongate input pins and their usage, privacy exclusions, desk assessment, campaign note, service receipts, frozen package, runtime and policies must match the parent's final V4 data exactly. The five helper paths move to V5, and any helper source hashes follow the sealed V5 family. Reserves stay at 16 MiB future commit, 32 MiB headroom and 8 MiB runtime. Fresh bounded capacity is recorded with the data.
+
+The two exact private export exclusions remain the metadata stdout and DOI-dedup stdout under the target attempt's `publication/authenticated_inputs/actual_operations/`. Their original pins stay in internal verification and their raw bodies remain private. The actual DOI is `10.5281/zenodo.23181280`; the exact row is `'Math Puzzles'!A31:D31`, with blank B.
+
+This packet supplies source and inert data for the existing combined source/configuration review boundary. It contains no thin configuration or new gates and runs no native preparation, assess, export, service, Git write or proof search. It does not repeat prior proof, priority, whole-package or PDF validation. Root performs the actual clean private GH/account/PR probe after data freeze.

@@ -1,0 +1,18 @@
+# Original claim and prospective tests
+
+The source is AIM's *Rational and integral points on higher dimensional varieties*, version22 November2004, reporting the December2002 workshop, Question17 on printed/physical page51. Root has inspected the entire operative page as text and as rendered pixels, including all four remarks. The downloaded59-page PDF is pinned in ROOT_SOURCE_CAPTURE.json; unrelated lectures are not claimed fully read.
+
+The main request is to compute the **full 5-torsion** of the smooth genus-one normalization of the regular-pentagon pencil P + lambda C^2 =0. Homogenization requires a Z factor on the circle-square term because its degree is four. The source's assertion that the five infinity points are torsion is already background. An infinity subgroup alone, an abstract geometric identification with (Z/5)^2, a quotient character alone, or a generic Tate normal form without an explicit proved connection to this pencil would not finish the request.
+
+The principal-homogeneous-space motivation and the remarks about changing the pentagon must be reported accurately. They are contextual questions, not silently converted into a demand to solve a general Tate-Shafarevich or nonregular-pentagon problem. The candidate must state its ground field, coordinate and lambda normalization, choice of origin, smoothness exclusions, and whether it computes geometric coordinates, a group scheme/Galois module, and/or the full division field. Over characteristic zero a full finite etale5-torsion group has25 geometric points. Singular members have a different normalization/group and cannot be included under an elliptic assertion without separate treatment.
+
+Prospective tests, before opening the PR mathematics:
+
+1. Independently reconstruct regular-pentagon side lines and the circumcircle. Test the degree, all five ordinary double points, smooth generic normalization, infinity points, birational maps and their inverses, and exceptional fibers.
+2. Independently derive a group model with an explicitly proved infinity generator of order5. Recompute division polynomials and every factor/coordinate formula by a different mechanism. Enumerate all25 points or prove the asserted torsion scheme is complete, including signs, multiplicities, separability and denominators.
+3. Test descent and the full Galois module: the known cyclic line leaves an extension class. Check every asserted radical/division field, splitting or nonsplitting claim, fifth-power class, determinant/Weil pairing, and exceptional parameters. Numerical or finite-field specializations support formulas but do not replace generic identities.
+4. Source matching and priority are separate gates. No solved/open/first-discovery claim follows from the imported status or low novelty confidence. In-depth literature audit follows mathematical validation and must credit classical mechanisms.
+
+This is verification of a submitted candidate, not extra proof-attempt turns. The original1/5 count remains unchanged. No shared Git or PR mutation, merge, paper, or publication is authorized by this baseline alone.
+
+Exposure statement: root has not opened PR329 mathematical files, its PR body, or inherited reviewers. While retrieving the imported source payload, root also saw its embedded machine-generated **prior research summary** (infinity line, Weil-pairing quotient and reflection-conic reduction). Therefore root does not claim complete blindness to prior mechanics. Fresh subagents receive only the original source and their distinct prospective remit, and freeze their source-only baseline before candidate exposure. Exact source-version and PDF identities are independently checkable.

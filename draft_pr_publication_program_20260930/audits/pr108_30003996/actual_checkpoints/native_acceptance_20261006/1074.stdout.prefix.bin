@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\title{NP-completeness of aggregate root-dependent spanning-tree cost}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{6 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+An undirected spanning tree induces an arborescence at every vertex root.
+Given an independent arc-cost vector for each root, we prove that deciding
+whether the sum of the costs of these entire rooted orientations is at most
+a given threshold is NP-complete, even when every cost belongs to
+$\{0,1,2\}$. A reduction from satisfiability uses two hubs, variable vertices,
+and clause vertices. A symmetric cost vector at one hub forces a tree at
+threshold to encode an assignment with one selected literal per clause;
+the corresponding clause-root costs test those literals. Uniformly shifting
+the costs yields the same conclusion for costs in $\{1,2,3\}$. This resolves
+Problem~1 in Volker Kaibel's November 2018 Oberwolfach workshop contribution,
+whose report was published in December 2019. Exact finite checks accompany
+the all-size proof.
+\end{abstract}
+
+\section{Problem and result}
+Let $G=(V,E)$ be a finite connected simple undirected graph with
+$N=|V|\geq 1$, and let
+$A=\{(u,v),(v,u):\{u,v\}\in E\}$. For every $r\in V$, the input supplies
+an independent cost vector $c_r:A\to\mathbb Z_{\geq0}$. All
+$2N|E|$ entries are explicitly encoded in binary. For a spanning tree $T$,
+let $T^r$ denote its entire edge set oriented away from $r$, and define
+\begin{equation}\label{eq:objective}
+ F(T)=\sum_{r\in V}\ \sum_{(u,v)\in T^r}c_r(u,v).
+\end{equation}
+The decision question is whether $F(T)\leq K$ for some spanning tree, where
+$K\in\mathbb Z$ is part of the input. The same common undirected tree
+is used at every root; the costs charge all its oriented edges.
+Reversing every input cost, $c'_r(u,v)=c_r(v,u)$, gives the equivalent
+inward-orientation convention.
+
+Kaibel's Problem~1 asks for the hardness of minimizing precisely this
+all-root objective with real arc-cost vectors~\cite{kaibel}. The
+nonnegative integral subclass below therefore answers that optimization
+question under ordinary finite input encoding. Kaibel motivates the question
+by integer optimization over Martin's extension of the spanning-tree
+polytope. That formulation is classical, as described in the inspected
+expositions of Conforti, Cornu\'ejols and Zambelli~\cite[Section~6.1]{ccz}
+and Friesen~\cite[Proposition~2]{friesen}: common edge variables satisfy
+$z_r(u,v)+z_r(v,u)=x_{\{u,v\}}$, with $z\geq0$, root indegree zero and all
+other indegrees one. For integral common edge variables these constraints select
+one tree, and its root orientations are determined uniquely. Integrality
+of the projection onto the edge variables does not establish integrality
+of the full joint lift under arbitrary objectives on all $z$ variables.
+The formulation and this interpretation are not contributions of this note.
+
+\begin{theorem}\label{thm:main}
+The decision problem for~\eqref{eq:objective} is NP-complete even when
+every cost belongs to $\{0,1,2\}$. Consequently it is strongly NP-complete,
+and finding a minimum-cost tree is NP-hard.
+\end{theorem}
+
+Membership in NP follows by checking that the proposed $N-1$ edges form
+a spanning tree, traversing it from each root, and summing the supplied
+binary costs. The number of operations and the lengths of intermediate
+integers are polynomial in the explicit input size.
+
+\section{Reduction}
+We reduce from satisfiability of a conjunctive normal form whose clauses
+have at most three literals, using the standard NP-completeness result
+for this restriction~\cite{karp}. Remove repeated literals within each
+clause and discard tautological clauses. An empty clause gives a fixed
+no-instance: two vertices joined by one edge, all four roo

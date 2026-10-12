@@ -1,0 +1,13 @@
+# Original-model scope frozen before manuscript reading
+
+Frozen UTC: 2026-10-04T23:21:20.203010+00:00. No ROOT/sibling verdict or manuscript content was read before this freeze.
+
+Original target: OWR 4/2005 printed pp. 203–205, specifically p.205: whether the four-qubit W state is in the LOCC dense-codeable class. The linked 2004 PRL and quant-ph/0407037v3 define independent local-unitary senders, noiseless one-way quantum transmissions, and receivers restricted to LOCC after routing. Expanded quant-ph/0507146v1 explicitly distinguishes asymptotic capacity from single-copy accessible information, prohibits classical communication between senders and receivers, and fixes the routing-induced cut.
+
+The concrete four-party routing in the reference example is A1→B1 and A2→B2. After both transmissions receiver labs contain A1B1 and A2B2. Two-qubit independent messages must be encoded by a Cartesian product of sender codebooks; joint pair codebooks alone would not settle the original model. A valid lower bound must give a complete LOCC receiver instrument and an asymptotically achievable classical/quantum coding argument, not identify a Holevo quantity with one-copy accessible information. Receiver-to-receiver classical messages may include message-dependent outcomes because they occur only after receipt and stay inside the receiver group.
+
+Success criterion: prove an independent-sender achievable sum rate >log2(2)+log2(2)=2 bits per W copy. Exact capacity, one-copy perfect distinguishability, firstness, and a general new theorem are separate claims requiring separate evidence. The historical LO convention adds the two marginal single-receiver capacities. A joint later pooling of their outcomes changes that convention and should not be silently substituted.
+
+Boundary checks to require: no quantum communication across the receiver cut; every nonzero and zero branch accounted for; average-error code capacity closure; zero component rates interpreted by closure or singleton codes; raw accessible-information convention bridged by Fano; chronology/priority compared by operational equivalence, not keywords. The sources by themselves do not establish the requested >2 lower bound.
+
+Actually read: OWR printed203–205; PRL all four printed pages text extraction (the first full output was read, with its extraction controls imperfect); arXiv0407037v3 text pages1–4; expanded0507146v1 pages1–11 and captured displayed material from12–14, with the scope decision grounded in pp2–5,7–11. Downloads/extraction of full PDFs do not imply full visual reading. No original-source page images have yet been viewed.

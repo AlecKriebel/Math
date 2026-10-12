@@ -1,0 +1,5 @@
+# Independent literal source and scope review of PR110
+
+2026-10-06T09:12:29.494276+00:00 — 15% complete toward this assigned source/scope audit. Read the four designated original files and policies; verified their bytes/SHA256 against the original blob manifest. Treat the nested-ellipse limitation and ordinary-distance construction as hypotheses. No submitted independent review or other current agent report read. Original effort 2/5; new central proof-search turns 0.
+
+2026-10-06T09:20:35.268852+00:00 — 100% complete toward the assigned literal source/scope audit. Both exact primary PDF hashes authenticated; complete relevant definitions, table notes, and all nine rendered pages inspected. No omitted parity, winding, self-crossing, or multiple-traversal component found. Source ray terminology resolved by Fig. 3 and an exact closed four-periodic negative control; 83 normal and 83 optimized explicit checks passed. Required/optional findings none. Full math, novelty, 2026 open status, and publication clearance remain separate gates. No new central search turns; originals unchanged; private source bodies excluded from public seal.

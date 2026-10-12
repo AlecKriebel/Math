@@ -1,0 +1,673 @@
+                 An explicit odd-order p-group with as many
+                         automorphisms as elements
+            A computer-assisted solution to Kourovka Notebook problem 16.63
+
+                                            Alec Kriebel
+                                      Independent researcher
+                                    ORCID: 0009-0001-9320-500X
+                                        me@aleckriebel.com
+
+                              Version 1.1.0 — 15 September 2026
+
+
+                                              Abstract
+        We construct a ﬁnite group G for which
+
+                              p = 1009,     |G| = | Aut(G)| = 100952359 .
+
+     The group is the Baker–Campbell–Hausdorﬀ group of an explicitly speciﬁed rank-31 Lie ring
+     modulo 10091689 . Its nilpotency class is at most 846 < 1009. An asymmetric lattice forces
+     every automorphism of the ﬁnite Lie ring into an integral logarithm–exponential neighborhood.
+     This gives a bijection between the full automorphism set and the kernel of a linear deriva-
+     tion matrix. Exact independently implemented Python and C++ computations establish the
+     Smith valuations of that matrix. The resulting computer-assisted proof answers the existence
+     question aﬃrmatively. The construction and all exact certiﬁcates are supplied with separately
+     implemented veriﬁcation software.
+
+Mathematics Subject Classiﬁcation (2020): 20D45, 20D15, 17B40.
+Keywords: ﬁnite p-groups; automorphism groups; Lie lattices; Lazard correspondence; Smith
+normal form.
+AI disclosure. The construction, proof development, and initial veriﬁcation software were gen-
+erated using ChatGPT-6 Astra Pro. Separate Codex sessions performed additional AI-assisted
+reviews and exact computational checks. These checks do not constitute external human peer
+review or proof-assistant formalization.
+Archive DOI for this edition: 10.5281/zenodo.22770864. Source and certiﬁcate availability is
+detailed in Section 9.
+
+
+
+
+                                                  1
+Alec Kriebel                                                                        Kourovka Notebook 16.63
+
+
+Contents
+1 Statement, sources, and scope                                                                                3
+
+2 The integral Lie algebra                                                                                    3
+  2.1 Two generators of the ambient lattice . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+
+3 The full ﬁnite-ﬁeld automorphism group                                                                       5
+
+4 A ﬂag with no nonidentity automorphism                                                                       7
+
+5 The asymmetric lattice and its ﬁnite quotients                                                               7
+
+6 Integral logarithms count the full automorphism set                                                          8
+
+7 The exact Smith computation                                                                                 10
+
+8 The ﬁnite group and the equality                                                                            11
+
+9 Reproducibility and veriﬁcation boundaries                                                                 11
+  9.1 Fast independent veriﬁcation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+  9.2 Regeneration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+  9.3 What the computations do and do not certify . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+A Selected inspected output                                                                                   13
+
+
+
+
+                                                       2
+Alec Kriebel                                                                             Kourovka Notebook 16.63
+
+
+1    Statement, sources, and scope
+Problem 16.63, attributed to D. MacHale in the September 2026 version of the Kourovka Notebook,
+asks for a nontrivial ﬁnite p-group of odd order with | Aut(G)| = |G| [1]. It appears on printed
+page 102 and cross-refers to Archive 12.77 on printed page 255. The latter is the separate, now-
+disproved divisibility conjecture. The notebook website identiﬁes its 1 September 2026 ﬁle as the
+current update. No published resolution of the exact equality question was located in the literature
+searches recorded in the accompanying ledger.
+    González-Sánchez and Jaikin-Zapirain construct, for every prime, families with | Aut(G)| =
+O(|G|40/41 ) [2]. This explains the negative answer to the archival divisibility problem; it does
+not itself give the equality required here. Shabani-Attar’s paper treats particular classes: its
+Proposition 2.5, Theorem 2.6 and Theorem 2.8 exclude odd-prime examples of maximal class,
+with cyclic Frattini subgroup, and of class two with cyclic centre, respectively [3]. None is a general
+nonexistence theorem.
+    The Lie-algebra template used below is the rank-31 example in Omirov–Ruan, Theorem 4.8,
+with six radical summands [4]. Their arXiv record has version 1, dated 6 May 2026. We specify
+an integral normalization and establish the required ﬁnite-characteristic facts directly; we do not
+assume that an unspeciﬁed characteristic-zero automorphism theorem reduces unchanged modulo
+p. The asymmetric lattice and ﬁnite full-automorphism count are developed in this report.
+    As elementary controls, a nontrivial abelian group of odd order has the inversion automorphism
+of order two, so cannot answer the question. For
+
+                               Hp = ha, b | ap = bp = 1, bab−1 = a1+p i,
+                                                 2
+
+
+
+
+the normal forms au bv give |Hp | = p3 . All automorphisms have images a 7→ au bv , b 7→ apw b,
+where u is a unit modulo p2 and v, w ∈ Fp . Thus | Aut(Hp )| = (p − 1)p3 , not p3 . The exhaustive
+generating-pair controls give (27, 54), (125, 500) and (343, 2058) for (|Hp |, | Aut(Hp )|) at p = 3, 5, 7.
+This also checks why counting only a Sylow subgroup would give a false positive.
+
+Theorem 1.1. There exists a ﬁnite group G of order 100952359 whose full automorphism group
+has order 100952359 . A portable description is given in Deﬁnitions 2.1 and 5.1 and equation (15).
+
+   The prime, order and number of generators are not claimed to be minimal. The theorem
+provides one example, not an assertion for every odd prime.
+
+
+2    The integral Lie algebra
+Fix p = 1009. This number is prime, as is also checked by trial division in the independent veriﬁer.
+All lattices in the proof are over Zp . For m ≥ 0, write Vm for the free module of homogeneous
+binary forms of degree m, with basis vi = X m−i Y i , 0 ≤ i ≤ m. The standard sl2 action is
+
+                     [h, vi ] = (m − 2i)vi ,    [e, vi ] = ivi−1 ,    [f, vi ] = (m − i)vi+1 ,               (1)
+
+with out-of-range terms zero, and [h, e] = 2e, [h, f ] = −2f , [e, f ] = h.
+   For binary forms F ∈ Vm , H ∈ Vn , deﬁne the raw transvectant
+                                                          ( )
+                                         ∑
+                                         r
+                                                           r    ∂rF        ∂rH
+                                                      k
+                          Pr (F, H) =          (−1)                                  .                       (2)
+                                        k=0
+                                                           k ∂X r−k ∂Y k ∂X k ∂Y r−k
+
+
+
+                                                            3
+Alec Kriebel                                                                                            Kourovka Notebook 16.63
+
+
+No factorial normalization is suppressed. On basis vectors the coeﬃcient of the vector indexed by
+i + j − r in Vm+n−2r is
+                                                    ( )
+                                   ∑
+                                   r
+                                                     r
+                                         (−1)   k
+                                                       (m − i)r−k (i)k (n − j)k (j)r−k ,                                        (3)
+                                   k=0
+                                                     k
+where (a)b = a(a − 1) · · · (a − b + 1), (a)0 = 1, and (a)b = 0 when b > a ≥ 0.
+
+Deﬁnition 2.1. Let B have ordered basis
+
+          h, e, f,   U0 , . . . , U6 ,   V 0 , . . . , V4 ,   W 0 , . . . , W6 ,   T0 , T1 , T2 ,   R 0 , . . . , R4 ,   Z0 .
+
+Its six radical summands U, V, W, T, R, Z are copies of V6 , V4 , V6 , V2 , V4 , V0 , respectively. In addition
+to (1), the only nonzero radical brackets, up to skew symmetry, are
+
+                                          Inputs         Output summand              Map
+                                          U, U                     W                   P3
+                                          U, V                     T                   P4
+                                          U, W                     T                   P5
+                                          U, R                     T                   P4
+                                          V, V                     T                   P3
+                                          V, R                     Z                   P4
+                                          R, R                     T                   P3
+
+The target of a transvectant is identiﬁed with the indicated copy of its binary-form module. All
+other brackets are zero.
+
+   This is a complete speciﬁcation with integer coeﬃcients. In particular, rank B = 3 + 7 + 5 + 7 +
+3 + 5 + 1 = 31.
+
+Lemma 2.2. The displayed bracket is a Lie bracket over Z. Over Zp , Qp and Fp it is perfect and
+has centre precisely the Z summand. If N = U ⊕ V ⊕ W ⊕ T ⊕ R ⊕ Z, then
+
+                       [N, N ] = W ⊕ T ⊕ Z,                     [N, [N, N ]] = T,             [N, T ] = 0.
+
+Proof. The action and transvectants are sl2 -equivariant. Hence the only potentially nonzero radical
+Jacobi expression is the alternating expression on three U inputs, taking values in T . Over the
+rationals,
+                                                  ∼ V12 ⊕ V8 ⊕ V6 ⊕ V4 ⊕ V0 ,
+                                           Λ 3 V6 =
+as follows by multiplying the seven weight characters and taking the third exterior power. It has no
+V2 summand. The equivariant Jacobi map to T = V2 is therefore zero. Its coeﬃcients (31)
+                                                                                        are integers,
+so this proves the integer identity. Independently, both implementations check all 3 = 4495 basis
+triples, with integer arithmetic.
+    The nontrivial simple summands have no sl2 -ﬁxed vector at p = 1009. Thus the centre is
+contained in Z, which is central. Every nontrivial summand is generated by its brackets with sl2 ,
+and [V, R] = Z, so B is perfect. The stated lower central terms of N follow directly from the table.
+Surjectivity here can be checked on highest weight vectors; coeﬃcients such as 720, 8640 and 576
+are units at 1009.
+
+
+
+                                                                   4
+Alec Kriebel                                                                              Kourovka Notebook 16.63
+
+
+2.1   Two generators of the ambient lattice
+Set
+                         x = h,       y = e + f + U1 + V0 + R2 ,               t = U0 .                       (4)
+
+Lemma 2.3. The Lie subalgebra over Zp generated by x, y is B.
+
+Proof. The four h-weights in y are 2, −2, 4, 0. Interpolation in ad h isolates e, f, U1 + V0 , R2 , with
+unit denominators at p. The Casimir operator h2 + 2h + 4f e on modules has eigenvalues 48 on U
+and 24 on V ; it separates U1 and V0 . Applying e, f generates all of U, V, R, using only the nonzero
+integers at most six as divisors. Their brackets then generate W, T, Z by Lemma 2.2. The modular
+Lie-closure computations independently obtain dimension 31. Equivalently, ﬁnitely many Lie words
+have a coeﬃcient determinant that is a unit in Zp , and hence form a lattice basis of B.
+
+
+3     The full ﬁnite-ﬁeld automorphism group
+In this section put k = Fp , and use the same letters for reductions to k. The assertions about
+module intertwiners follow directly from (1): the distinct weights lie between −6 and 6, and the
+raising/lowering coeﬃcients are units. The indicated modules are simple, nonisomorphic for diﬀer-
+ent highest weights, and have scalar endomorphisms.
+
+Lemma 3.1. For m = 0, 2, 4, 6, one has H 1 (sl2 (k), Vm ) = 0.
+
+Proof. For a cocycle write α = c(h), β = c(e), γ = c(f ). The cocycle equations are
+
+                        (h − 2)β = eα,        (h + 2)γ = f α,            α = eγ − f β.
+
+Subtract a coboundary to remove the nonzero-weight components of α. For m = 2r > 0, the
+remaining component is avr . The weight-two component of the ﬁrst equation forces ar = 0, so
+a = 0. Then β = bvr−1 and γ = cvr+1 . The last equation gives (r + 1)(c − b) = 0, so c = b.
+This is the coboundary of (b/r)vr . All divisions are by units at 1009. For m = 0, the equations
+immediately force α = β = γ = 0.
+   The independent checks give cocycle/coboundary dimension pairs
+
+                                    (0, 0),   (3, 3),       (5, 5),   (7, 7)
+
+for these four highest weights.
+
+    Every automorphism of sl2 (k) is induced by conjugation by a matrix in PGL2 (k). For com-
+pleteness, preservation of the Killing form sends a nonzero nilpotent matrix to a nonzero nilpotent
+matrix. Conjugate to ﬁx e. The relations then force
+
+                                                            a   a2
+                                  h 7→ h + ae,      f 7→ f − h − e,
+                                                            2   4
+which is another matrix conjugation. On Vm , for even m, the compatible PGL2 action is Symm (k 2 )⊗
+det−m/2 . The determinant weights in (2) make this an action on B. Denote it by ρ.
+   Let τ ﬁx h, e, f, U, W, T , swap V and R by corresponding basis vectors, and send Z0 to −Z0 .
+The table shows that τ is an automorphism.
+
+
+
+                                                        5
+Alec Kriebel                                                                     Kourovka Notebook 16.63
+
+
+Proposition 3.2. Every automorphism of B ⊗ k has the form
+
+                    exp(ad n) ρ(s) τ ϵ ,    n ∈ N,       s ∈ PGL2 (k),    ϵ ∈ {0, 1}.                (5)
+
+Here the exponential is a polynomial of degree at most three. In particular, this describes the full
+automorphism group, including its ﬁnite components.
+
+Proof. N is the solvable radical: any solvable ideal maps to a solvable ideal in the simple quotient
+sl2 (k) and so lies in N . After removing the quotient automorphism using ρ, the image of sl2 is
+a complement to N inducing the identity on the quotient. Its graph modulo N 0 = [N, N ] is a
+one-cocycle into N/N 0 = ∼ V6 ⊕ V4 ⊕ V4 . Lemma 3.1 allows conjugation by exp(ad n1 ) to remove this
+graph. The remaining graph lies in the abelian ideal N 0 =∼ V6 ⊕ V2 ⊕ V0 and is again a one-cocycle,
+removable by exp(ad n2 ). Since N has class three, the product of these inner exponentials is another
+exp(ad n); all denominators are units. This is an explicit complement argument, not an appeal to
+a positive-characteristic Levi theorem without hypotheses.
+     It remains to classify automorphisms ϕ ﬁxing sl2 pointwise. They are equivariant. The charac-
+teristic submodule N 0 implies
+
+                        U 7→ aU + bW,      W 7→ a2 W,      T 7→ cT,      Z 7→ dZ,
+
+and the pair (V, R) is mixed by an invertible two-by-two matrix M . The T component in [ϕU, ϕU ]
+is 2abP5 , so b = 0. The bracket [U, W ] gives c = a3 . The T components of the brackets on V ⊕ R,
+and the brackets with U , give, for w = (1, 1),
+
+                                   M T M = a3 I2 ,       wM = a2 w.                                  (6)
+
+Since M is invertible, also M M T = a3 I2 . As wwT = 2 6= 0, these imply 2a4 = 2a3 , hence a = 1.
+An orthogonal matrix ﬁxing w acts by +1 or −1 on its one-dimensional orthogonal complement.
+Thus M = I or the swap matrix. The Z bracket gives d = det M . Consequently ϕ = 1 or τ .
+
+Lemma 3.3. Over k and over Qp , all derivations of B are inner, and dim Der(B) = 30.
+
+Proof. Let D be a derivation and π : B → sl2 the quotient map. The restriction πD|N kills N 0 and
+is equivariant, since [D(s), n] ∈ N . There is no equivariant map from N/N 0 = V6 ⊕ V42 to sl2 = V2 ;
+hence D(N ) ⊆ N . Subtract an inner derivation to make the induced derivation on the quotient
+zero. The restriction to sl2 is then a cocycle into N ; Lemma 3.1, also valid over Qp , removes it by
+another inner derivation.
+    For the remaining equivariant derivation write D(U ) = aU + bW , D(W ) = 2aW . As before
+b = 0, and D(T ) = 3aT . Writing M for the action on V ⊕ R, the linearized bracket equations are
+
+                                 M + M T = 3aI2 ,          wM = 2aw.
+
+Multiplying by w, wT gives 8a = 6a, hence a = 0. Then M is skew and annihilated by w, so M = 0;
+also D(Z) = 0. Thus the remaining derivation vanishes. The centre has dimension one, so the
+space of inner derivations has dimension 31 − 1 = 30.
+    Independently, each implementation ﬁnds rank 931 for the 14415 by 961 derivation matrix of B
+modulo 1009, and rank 30 for its inner subspace. This directly veriﬁes the ﬁnite-ﬁeld conclusion.
+
+
+
+
+                                                     6
+Alec Kriebel                                                                                         Kourovka Notebook 16.63
+
+
+4    A ﬂag with no nonidentity automorphism
+Deﬁne the ﬂag
+                                        F2 = hx, yik ⊂ F3 = hx, y, tik .                                                 (7)
+
+Proposition 4.1. The stabilizer of (7) in the full Aut(B ⊗ k) is the identity. Its inﬁnitesimal
+stabilizer in Der(B ⊗ k) is zero.
+
+Proof. Use (5). The plane F2 projects isomorphically to P = hh, e + f i ⊂ sl2 , while F3 ∩ N = hU0 i.
+On N/N 0 , the inner exponential is the identity and τ ﬁxes U . Therefore s preserves the highest-
+weight line in U , so belongs to the upper Borel of PGL2 (k). It also preserves(P . )
+    The Killing-orthogonal complement of P is he − f i. For a representative a0 1b , preservation of
+this line forces b = 0 and a2 = 1. Thus s = 1 or r = diag(−1, 1) projectively.
+    Suppose s = r. A ﬂag-preserving automorphism must send h to h and y to −y, since the
+projection of F2 is an isomorphism. Modulo N 0 , ﬁxing h forces n̄ to have weight zero. On Ui , r
+acts as (−1)i+3 , and in particular ﬁxes U1 . The U component of the equation for y would require
+
+                                                (e + f )n̄U = −2U1 .
+
+But n̄U is a multiple of U3 , and (e + f )U3 = 3U2 + 3U4 . This is impossible.
+   Now suppose s = 1 and ϵ = 1. Fixing h, y similarly requires
+
+                                       (e + f )n̄ = R0 − V0 + V2 − R2
+
+on V ⊕ R. The left side, applied to a weight-zero vector, has only weights 2, −2; the right side
+has nonzero weight-four and weight-zero components. This too is impossible. The only remaining
+possibility is an inner exponential ﬁxing x, y. They generate B, so it is the identity.
+   For the inﬁnitesimal assertion use Lemma 3.3, writing D = ad u. Its quotient component s ∈ sl2
+preserves P and the highest line in U , hence s ∈ hh, ei. The conditions [s, h] ∈ P and [s, e + f ] ∈ P
+then force s = 0. Now D(F2 ) ⊆ F2 and its image in the quotient is zero. Since F2 ∩ N = 0,
+D(x) = D(y) = 0, and D = 0 by generation.
+
+
+5    The asymmetric lattice and its ﬁnite quotients
+Deﬁnition 5.1. Use the following ordered Zp -basis b0 , . . . , b30 of B:
+
+                            x, y, t, f, U1 , U2 , U3 , U4 , U5 , U6 ,
+                            V0 , V 1 , V 2 , V 3 , V 4 , W 0 , W 1 , W 2 , W 3 , W 4 , W 5 , W 6 ,
+                            T0 , T1 , T2 , R0 , R1 , R2 , R3 , R4 , Z0 .
+
+It is unimodular relative to the original basis. Put
+
+                                                                                     ⊕
+                                                                                     30
+        w0 = w1 = 0,     w2 = 1,       wj = 2 (3 ≤ j ≤ 30),                   A=           Zp pwj bj ,     L = p2 A.
+                                                                                     j=0
+
+    In particular p2 B ⊂ A ⊂ B. Although A need not itself be a Lie subring, L is one: [L, L] ⊂
+p4 B ⊂ p2 A = L. For i ≥ 1 write L̄i = L/pi L. The basis ℓj = p2+wj bj identiﬁes its additive group
+with (Z/pi Z)31 . Every additive endomorphism of this ﬁnite Lie ring is automatically Z/pi Z-linear,
+so the matrix description includes every Lie-ring automorphism.
+
+                                                              7
+Alec Kriebel                                                                 Kourovka Notebook 16.63
+
+
+   Let µ be the bracket of B and let ν = p2 µ on the module A. Under a 7→ p2 a, (A, ν) is isomorphic
+to L. Let
+                       E = EndZp (A),       E0 = EndZp (B),      J = E ∩ pE0 .
+Every endomorphism of A is henceforth extended uniquely to the common rational vector space
+
+                                        A ⊗Zp Qp = B ⊗Zp Qp .
+
+The brackets are extended by Qp -bilinearity as well. Thus expressions involving a lattice map on
+B make sense before preservation of B has been established. For a linear map D, write
+
+                  δµ (D)(u, v) = Dµ(u, v) − µ(Du, v) − µ(u, Dv),       δ ν = p2 δ µ .
+
+Lemma 5.2. Let i ≥ 7. Every automorphism of L̄i has a lift Q ∈ 1+J. Every solution of δν (D) ≡ 0
+(mod pi ) on A has a lift D ∈ J. Here a lift means an arbitrary integral matrix representative in
+GL(A) or E, respectively.
+
+Proof. For an automorphism lift Q ∈ GL(A), its bracket error satisﬁes
+
+                    EQ (A, A) ⊆ pi−2 A,       EQ (u, v) = Qµ(u, v) − µ(Qu, Qv).
+
+Since p2 B ⊂ A, bilinearity gives
+
+                                    EQ (B, B) ⊆ pi−6 A ⊆ pi−6 B.                                 (8)
+
+This is integral when i ≥ 6. The images Qx, Qy lie in A ⊂ B. Induction on Lie words using (8) now
+shows that Q maps B into B. By Lemma 2.3, ﬁnitely many such words span B. The determinant
+of Q is a unit, independently of basis, so Q(B) = B. For i ≥ 7, its reduction is an automorphism
+of B/pB.
+   A map preserving both A and B preserves
+
+                      (A + pB)/pB = F2 ,         ((p−1 A ∩ B) + pB)/pB = F3 .
+
+Proposition 4.1 therefore gives Q ≡ I (mod pE0 ). Together with Q − I ∈ E, this is Q ∈ 1 + J.
+    For a derivation solution, replace EQ by δµ (D). The same word induction, now using the Leibniz
+error, gives D(B) ⊂ B. Its reduction modulo p is a derivation preserving the ﬂag. The inﬁnitesimal
+part of Proposition 4.1 gives D ≡ 0 (mod p) on B, so D ∈ J.
+
+
+6    Integral logarithms count the full automorphism set
+The next step is essential: merely counting derivations or known inner automorphisms would not
+determine the full automorphism group.
+
+Lemma 6.1. Matrix exponential and logarithm give inverse bijections J ↔ 1 + J. For every i ≥ 3,
+they respect congruence modulo pi E in both directions.
+
+Proof. The inclusions of lattices imply
+
+                                          p2 E0 ⊆ E ⊆ p−2 E0 .                                   (9)
+
+
+
+                                                   8
+Alec Kriebel                                                                        Kourovka Notebook 16.63
+
+
+For X ∈ J, every X r preserves A, and also X r ∈ pr E0 ⊆ pr−2 E. In the exponential and logarithm
+series, denominators of terms of degree less than p are units. For terms of degree at least p = 1009,
+the bounds
+                              vp (r!) ≤ r/(p − 1),       vp (r) ≤ r/(p − 1)
+show that all terms still lie in E and tend to zero there. They lie in pE0 after removing the
+exponential’s constant term. Thus both series preserve the indicated sets. The usual formal inverse
+identities hold in the convergent matrix algebra over Qp . In particular 1 + J consists of invertible
+maps preserving A; its inverse also follows from the convergent geometric series.
+    For precision, suppose X, Y ∈ J and X − Y ∈ pi E. Each term in the telescoping expression
+for X r − Y r lies in pi E. By (9) it also lies in pi+r−3 E0 ⊆ pi+r−5 E. For r < p, division by the
+relevant denominator loses no precision. For r ≥ p, r − 5 exceeds both vp (r!) and vp (r). The same
+conclusions therefore hold after division and summation, for both series. Finally pi E ⊂ J when
+i ≥ 3, so the quotient bijections are well deﬁned.
+   Put
+                          T = HomZp (Λ2 A, A),           T0 = HomZp (Λ2 B, B).
+The bounds p2 B ⊂ A ⊂ B give
+                     p2 T0 ⊂ T ⊂ p−4 T0 ,   p6 End(T0 ) ⊂ End(T ) ⊂ p−6 End(T0 ).                      (10)
+Lemma 6.2. For D ∈ J and Q = exp D, Q preserves the bracket ν modulo pi T if and only if
+δν (D) ∈ pi T .
+Proof. Let Q act on bracket tensors by ρT (Q)η = Qη(Q−1 ·, Q−1 ·). The condition ρT (Q)ν −ν ∈ pi T
+is equivalent to the ordinary bracket-preservation condition: precompose both inputs with Q, which
+is invertible on A and preserves pi T . Its diﬀerential X = ρT ,∗ (D) is the operator
+                                    Xη = Dη − η(D·, ·) − η(·, D·).
+Here X ∈ End(T ) ∩ p End(T0 ) and X r ∈ pr−6 End(T ) for r ≥ 6. Over Qp , the output and two
+input actions commute, whence ρT (exp D) = exp X. Factor
+                                                                   ∑      Xr
+                           exp X − I = XU (X),           U (X) =                .
+                                                                   r≥0
+                                                                       (r + 1)!
+
+For r < p − 1, the denominator is a unit. For r ≥ p − 1, the valuation r − 6 − vp ((r + 1)!) is positive.
+Thus U (X) preserves T . Moreover X 7 ∈ p End(T ), so modulo p the series for U is a polynomial in
+a nilpotent operator, with constant term I. Consequently U (X) is invertible on T . It commutes
+with X. It follows that
+                          (exp X − I)ν ∈ pi T     ⇐⇒       Xν = δν (D) ∈ pi T .
+There is no loss of congruence precision in this equivalence.
+Proposition 6.3. For i ≥ 7, exponential and logarithm give a bijection of sets
+                                                 (                          )
+                             Aut(L̄i ) ←→ ker δν : E/pi E −→ T /pi T .                                 (11)
+Proof. Every automorphism and every derivation solution lies in the respective logarithm–
+exponential domain by Lemma 5.2. Lemma 6.1 gives a bijection on representatives modulo pi E,
+and Lemma 6.2 gives precisely the required equivalence of nonlinear and linear bracket conditions.
+These statements apply to all automorphisms, not just to a subgroup.
+   No assertion that the bijection is an isomorphism of additive groups is needed or made.
+
+                                                     9
+Alec Kriebel                                                                          Kourovka Notebook 16.63
+
+
+7    The exact Smith computation
+Let cbij,k be the structure constants of B in the adapted basis. In the ℓj = p2+wj bj basis of L, the
+constants are
+                                                  2+wi +wj −wk b
+                                        cL
+                                         ij,k = p             cij,k .                                    (12)
+All exponents are between zero and six. These constants, with i < j, are also provided as ordinary
+integers in data/group_lie_presentation.json.
+    The matrix K for δν has rows (i, j, k) with i < j, and columns (a, b) for the matrix entry Dab .
+Explicitly,
+
+                                                   ij,b − 1i=b caj,k − 1j=b cia,k .
+                            K(i,j,k),(a,b) = 1k=a cL            L            L
+                                                                                                         (13)
+Thus K is an integer matrix of shape 14415 × 961.
+
+Proposition 7.1 (Exact computational certiﬁcate). The rank of K over Qp is 931. Its nonzero
+p-primary Smith valuations are
+
+                                  Valuation        0     1      2      3    4
+                                 Multiplicity     87    55    758      6   25
+
+Their sum is 1689; the nullity is 30.
+
+Certiﬁcate and veriﬁcation. The Python implementation constructs the integer brackets from (3),
+changes basis, builds (13), and performs local Smith elimination modulo p12 . Each pivot has
+minimum p-valuation in the remaining block. Only unit inverses are taken; divisions by a pivot
+power of p are checked to be exact. The resulting plan consists of 931 original row indices, column
+indices and valuations.
+    A separately written C++ implementation independently reconstructs the brackets, the basis
+transformation and the entire matrix from the formulas. It does not read the Python coeﬃcient
+tables. It veriﬁes the proposed plan modulo p6 , checking divisibility of the active block at each new
+valuation level, pivot normalization, exact elimination, and a zero residual block. It ﬁnds the same
+ﬁve multiplicities. The Python implementation also replays the plan at precision six.
+    Every reported valuation is less than six, so it is determined exactly by this ﬁnite-ring calculation.
+Integer Jacobi places the inner derivations of B in its derivation kernel. Their veriﬁed rank 30
+modulo p supplies thirty that remain linearly independent over Qp . An invertible change of basis
+transports them by conjugation, and multiplying the bracket by p2 does not change its rational
+derivation kernel, since δp2 µ = p2 δµ . They therefore yield 30 independent vectors in the rational
+kernel for L, proving rank at most 961 − 30 = 931. The 931 nonzero pivots give rank at least 931.
+There can therefore be no additional nonzero invariants hidden at higher precision. All matrix
+operations are exact elementary operations over the indicated local ring. The sum is 55 + 2(758) +
+3(6) + 4(25) = 1689.
+
+Corollary 7.2. For every i ≥ 7,
+                                          | Aut(L̄i )| = p30i+1689 .                                     (14)
+
+Proof. In Smith coordinates, each of the 30 zero diagonal entries contributes pi kernel elements;
+each nonzero entry pv contributes pv because i > 4 ≥ v. Combine Proposition 7.1 with the full-set
+bijection (11).
+
+
+
+                                                       10
+Alec Kriebel                                                                 Kourovka Notebook 16.63
+
+
+8    The ﬁnite group and the equality
+Now set i = 1689 and deﬁne
+                                          G = BCH(L̄1689 ).                                     (15)
+This is an explicit construction, not a library identiﬁer: its elements are the 31-tuples modulo
+10091689 in the ℓ basis, with the Lie bracket (12). Its group product is the BCH Lie polynomial
+truncated after bracket length 846.
+Lemma 8.1. The Lie ring L̄1689 has order p52359 and nilpotency class at most 846.
+Proof. L is free of rank 31 over Zp , so its quotient has precisely p31·1689 = p52359 elements, with
+unique additive coordinates. Since L ⊂ p2 B and B is a Lie lattice, γm (L) ⊂ p2m B for every m. On
+the other hand p1689 L = p1691 A contains p1693 B. Consequently
+
+                                γ847 (L) ⊂ p1694 B ⊂ p1693 B ⊂ p1689 L,
+
+which proves the class bound.
+
+    For clarity, BCH here can be deﬁned without any software convention. Take the terms of degree
+at most 846 in log(exp X exp Y ) in the completed free associative algebra over Q and express each
+homogeneous term as a Lie polynomial. For example, the right-normed Dynkin operator divided
+by the degree provides such an expression. Evaluate these Lie polynomials using the displayed
+bracket. The denominators have only prime factors at most 846, so all coeﬃcients have unique
+interpretations modulo 10091689 . This is a ﬁnite, canonical rule for multiplication; it need not be
+expanded into a very large word list to specify the group.
+    The Lazard correspondence applies to ﬁnite p-Lie rings of class strictly less than p [5, 6]. It
+preserves the underlying set, group order, and the full automorphism group; see in particular the
+discussion on pages 433–434 of [6]. Thus the BCH product is associative, has identity zero and
+inverse −u, and every group automorphism corresponds to a Lie-ring automorphism. No exponent-p
+hypothesis is required. The actual class bound is 846 < 1009, so these are the applicable hypotheses,
+rather than a general assertion beyond the Lazard range.
+
+Proof of Theorem 1.1. Lemma 8.1 proves the exact order and validates the BCH construction.
+Corollary 7.2 and the full-automorphism preservation give
+
+                  | Aut(G)| = | Aut(L̄1689 )| = 100930·1689+1689 = 100952359 = |G|.
+
+The prime is odd and the group is nontrivial. This answers the stated existence question aﬃrma-
+tively.
+
+
+9    Reproducibility and veriﬁcation boundaries
+Source and certiﬁcates. Version 1.1.0 has archive DOI 10.5281/zenodo.22770864. The match-
+ing manuscript, explicit group speciﬁcation, exact certiﬁcates, veriﬁcation software, and audit
+records are available in the ﬁxed publication snapshot:
+                                      kourovka-16-63-v1.1.0.
+The project landing page provides the PDF and companion archive. The archive includes a
+SHA256SUMS integrity manifest. The ﬁxed version tag identiﬁes this edition independently of future
+changes to the development branch.
+
+                                                  11
+Alec Kriebel                                                               Kourovka Notebook 16.63
+
+
+9.1   Fast independent veriﬁcation
+From the root of the bundle, run
+python3 scripts/resume.py
+This compiles and runs the independent C++ veriﬁer and also tests that a corrupted pivot certiﬁcate
+is rejected. Alternatively, with a GCC or Clang compiler supporting 128-bit integers, run
+mkdir -p build
+c++ -std=c++17 -O2 -o build/independent_verify \
+    scripts/independent_verify.cpp
+./build/independent_verify data/smith_pivot_plan.txt
+The C++ veriﬁcation uses only the standard library and the supplied pivot plan. It reconstructs
+all mathematical input coeﬃcients itself. No GAP, SageMath, Magma, remote computation, or
+randomized group identiﬁcation is needed for this check.
+
+9.2   Regeneration
+The independent Python construction requires NumPy and SymPy. The exact commands are
+python3 scripts/lie31.py
+python3 scripts/exact_linear.py
+python3 scripts/smith_local.py --precision 12
+python3 scripts/smith_local.py --verify-plan --precision 6
+python3 scripts/export_presentation.py
+python3 scripts/sanity_groups.py
+The bundle includes executed logs, the coeﬃcient tables, both independent implementations, the
+Smith pivot plan, and the unscaled rank certiﬁcate. The original supplied run used Python 3.13.5,
+NumPy 2.3.5, SymPy 1.14.0, and g++ 14.2.0 (Debian 14.2.0-19). Independent full regeneration for
+this edition used Python 3.12.14, NumPy 2.3.5, SymPy 1.14.0, and Apple Clang 21.0.0 on macOS
+26.6.2 (arm64). The only veriﬁer repair was an indentation-only portability correction for Clang.
+The strict build used -std=c++17 -O2 -Wall -Wextra -Werror. The C++ local modulus was the
+exact integer 10096 = 1055229678769825441; products use 128-bit arithmetic. The measured times
+in each log describe its recorded environment only. Fresh records are in audit/reproduction/.
+A third implementation using arbitrary-precision Python integers independently reconstructs the
+brackets, checks the exported presentation and a 931-square rank minor, and veriﬁes the Smith
+data at precision ﬁve. A separate implementation checks the ﬁnite-ﬁeld generation, involution,
+cohomology, and ﬂag ranks. The C++ veriﬁer also passes an address- and undeﬁned-behavior-
+sanitized build. The independent audit reports record the scope of each check.
+
+9.3   What the computations do and do not certify
+The computations verify integer Jacobi, generation, cohomology dimensions, derivation and ﬂag
+ranks, and all local Smith invariants. The full ﬁnite-ﬁeld stabilizer, lifting, integral logarithm–
+exponential, and Lazard steps are proved above; the numerical output alone does not certify them.
+   Neither the group’s Cayley table nor its full automorphism set is enumerated. The canonical
+BCH rule through bracket length 846 and the explicit Lie table specify multiplication without
+expanding every monomial. Independent implementations and scoped AI reviews provide repro-
+ducible evidence; they are not external human peer review or proof-assistant formalization.
+
+                                                12
+Alec Kriebel                                                              Kourovka Notebook 16.63
+
+
+A     Selected inspected output
+The ﬁnal independent C++ run includes
+
+original_integer_jacobi_checks=4495
+adapted_integer_jacobi_checks=4495
+unscaled_derivation_rank_mod_p=931 derivation_dimension=30
+smith_valuation=0 multiplicity=87
+smith_valuation=1 multiplicity=55
+smith_valuation=2 multiplicity=758
+smith_valuation=3 multiplicity=6
+smith_valuation=4 multiplicity=25
+sum_smith_valuations=1689
+candidate_group_order_exponent=52359
+predicted_aut_order_exponent=52359
+ALL_CHECKS_PASSED
+
+Some long log lines are split here for readability. The names candidate_group_order_exponent
+and predicted_aut_order_exponent are retained from the computational checkpoint; the proof
+establishes the corresponding group statements. A separate negative test changes the ﬁrst proposed
+pivot valuation from zero to ﬁve. The veriﬁer exits nonzero with a pivot-valuation mismatch.
+
+
+References
+[1] E. I. Khukhro and V. D. Mazurov (eds.), The Kourovka Notebook: Unsolved Problems in Group
+    Theory, 21st edition, update of 1 September 2026. Problem 16.63, p. 102; Archive 12.77, p. 255.
+    September 2026 edition (PDF).
+
+[2] J. González-Sánchez and A. Jaikin-Zapirain, Finite p-groups with small automorphism group,
+    Forum of Mathematics, Sigma 3 (2015), e7. https://arxiv.org/abs/1406.5772.
+
+[3] M. Shabani-Attar, On equality of order of a ﬁnite p-group and order of its automorphism
+    group, Bull. Malaysian Math. Sci. Soc. 38 (2015), 461–466. https://doi.org/10.1007/
+    s40840-014-0030-z. Also available as the author-accepted manuscript (PDF).
+
+[4] B. Omirov and J. Ruan, On Lie Algebras with Only Inner Derivations, arXiv:2605.04602v1 (6
+    May 2026), Theorem 4.8. https://arxiv.org/html/2605.04602v1.
+
+[5] M. Lazard, Sur les groupes nilpotents et les anneaux de Lie, Ann. Sci. École Norm. Sup. (3) 71
+    (1954), 101–190. NUMDAM archive.
+
+[6] S. Cicalò, W. A. de Graaf and M. Vaughan-Lee, An eﬀective version of the Lazard correspon-
+    dence, J. Algebra 352 (2012), 430–450, especially pp. 430, 433–434. https://doi.org/10.1016/
+    j.jalgebra.2011.11.031. author-hosted manuscript (PDF).
+
+
+
+
+                                                13
+
