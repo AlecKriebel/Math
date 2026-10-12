@@ -193,7 +193,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 182 | 30002603 / OWR-12986-001 | Linear Segments in Optimal-Path Shape Functions | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 183 | 30002720 / OWR-13352-004 | Marginal Limits for Markov-Source Selection Processes | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 184 | 30002879 / OWR-13681-013 | Hochschild-Cohomology Lie Structure of a Stratified Algebra | 0.1945 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 185 | 30003069 / OWR-14221-005 | Plabic Newton–Okounkov Bodies and FFLV Polytopes | 0.1940 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 185 | 30003069 / OWR-14221-005 | Plabic Newton–Okounkov Bodies and FFLV Polytopes | 0.1940 | 5.0 | 3 | 2016 | already_solved | 1/5 |  | 2026-09-30: Published 2018 Corollary1 resolves the corrected all-complement rectangle-seed FFLV equivalence, including positive tensor powers. Separate source and valuation audit passed; 9642 author and 42438 independent controls. Original mixed-cardinality frozen-label defect and false imported unchanged-graph interpretation remain explicit; credited resolution, one diagnostic route, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/163. |  |
 | 186 | 4800017 / AMR-047-0017 | Multiple ergodic averages — Problem 17 | 0.1940 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
