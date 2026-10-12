@@ -1,0 +1,13 @@
+# Acceptance and scope
+
+The two independent mathematical reviews accept all five complete authored documents at their stated scopes. They require no mathematical correction. These are AI audits of partial mathematical results, not journal peer review or acceptance of a solution to the full conjecture.
+
+The structural review accepts the exact chromatic-order equality classification, the 3k indivisibility and side barriers, the 22/20 clique-cutset bounds at k=4, and the endpoint/antineighborhood maximum-clique locations. The boundary review accepts both directions of the mixed-constraint characterization, every admissible clique-boundary extension, the prescribed-set criterion and all high-incidence-core consequences. It independently checks the singleton-residual repair, repeated constraints, odd Euler parity and induced-minimality convention.
+
+The small exhaustive graph universe has no k>=3 indivisible graph and no equal-only or different-only forcing edge at k>=3. Consequently the separator and core necessary bounds are established by the complete proofs, not by nonvacuous obstruction examples in those enumerations. Counts and exact comparison scopes appear in [verification scope](VERIFICATION_SCOPE.md). Both original primary and addendum author terminal receipts were verified, with every named evidence member rehashed; the addendum author's receipt is integrity-only and does not replace the independent mathematical audit.
+
+All five source documents are preserved reversibly. Operational identities, file sizes, paths and original replay instructions have been replaced where needed; complete mathematical content, finite counts, substantive cautions and source credit remain. The original artifacts and private preservation/verification material are not part of this public distribution. Public hashes identify only actual distributed files or the exact previously inspected public scholarly PDFs. The public manifest excludes itself by an explicit convention and is fixed by an external preparation seal.
+
+Status stays unsolved, at least three substantive passes are confirmed, and the lifetime total is unknown. This edition incorporates only the third pass and its separately sealed same-pass addendum. No fourth-pass results are incorporated. No publication, integration, queue change or remote existence is asserted by this preparation.
+
+Remaining gap: exclude or reconcile incompatible boundary types in the required odd-hole-free hereditary setting. Odd holes cannot straddle clique sums, so the order barriers, endpoint witnesses, low-incidence flexibility and core necessary conditions alone do not resolve general clique-cutset exclusion or the unrestricted division conjecture.
