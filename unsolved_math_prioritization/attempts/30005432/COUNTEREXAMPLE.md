@@ -1,6 +1,6 @@
 # Property-(s) elements need not form an additive subgroup
 
-**Status:** mathematical resolution accepted after independent adversarial checks. Qualified research note published after two fresh full-package reviews; the final direct-input assessment was sealed before prior verdicts. Publication DOI: https://doi.org/10.5281/zenodo.23312287. Tracker accepted; MAIN integration is pending. Historical priority and mutual independence remain unresolved. AI-assisted and unrefereed.
+**Status:** mathematical resolution accepted after independent adversarial checks. Qualified research note published after two fresh full-package reviews; the final direct-input assessment was sealed before prior verdicts. Publication DOI: https://doi.org/10.5281/zenodo.23312287. Tracker accepted; original PR156 head merged as a9f45840bf3361e6277ac6b08c7d48bdd378c4a8. Historical priority and mutual independence remain unresolved. AI-assisted and unrefereed.
 
 ## 1. Answer to the exact question
 
