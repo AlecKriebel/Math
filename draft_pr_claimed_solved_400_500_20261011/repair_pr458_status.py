@@ -26,6 +26,7 @@ RAW = {
     'priority_coverage': ('reviewer_task_identity', 'problem_id', 'blocking_findings', 1, 2, 'central_mathematical_gaps'),
     'priority_adversary': ('reviewer_task', 'problem', 'blocking_findings', 1, 5, 'central_mathematical_gaps'),
 }
+FOUNDATION_SHA256 = '84281ba210adf18cf431cc4ec9ede8e32873f680852e48ef5e7ef601ca4b0303'
 
 
 def require(condition, message):
@@ -52,8 +53,28 @@ def input_path(relative):
     return path
 
 
+def unique_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value, 'Duplicate JSON key')
+        value[key] = item
+    return value
+
+
 def load(relative):
-    return json.loads(input_path(relative).read_text())
+    try:
+        value = json.loads(input_path(relative).read_text(), object_pairs_hook=unique_object)
+    except ValueError as exc:
+        raise RuntimeError('Malformed JSON evidence') from exc
+    require(type(value) is dict, 'Evidence JSON object required')
+    return value
+
+
+def record_schema(record, label):
+    require(type(record) is dict and {'path', 'bytes', 'sha256'} <= record.keys()
+            and type(record['path']) is str and record['path'] != ''
+            and type(record['bytes']) is int and record['bytes'] > 0
+            and type(record['sha256']) is str and re.fullmatch('[0-9a-f]{64}', record['sha256']), label)
 
 
 def output_path(name):
@@ -78,7 +99,12 @@ def api(endpoint, payload=None, method='POST'):
     result = subprocess.run(cmd, input=None if payload is None else json.dumps(payload),
                             capture_output=True, text=True)
     require(result.returncode == 0, result.stderr.strip())
-    return json.loads(result.stdout)
+    try:
+        value = json.loads(result.stdout, object_pairs_hook=unique_object)
+    except ValueError as exc:
+        raise RuntimeError('Malformed GitHub JSON response; reconcile read-only') from exc
+    require(type(value) is dict, 'GitHub response object required')
+    return value
 
 
 def eligible(branch):
@@ -99,6 +125,9 @@ def validate_gate():
             and gate.get('recommended_status') == 'already_solved'
             and gate.get('acceptance_scope') == 'one_row_priority_correction_then_immediate_skip'
             and gate.get('root_read_entire_final_reports') is True
+            and gate.get('operations_approval') is True
+            and gate.get('not_an_action_gate') is False
+            and gate.get('missing_actual_final_operations_review') is False
             and gate.get('publication_accepted') is False
             and gate.get('helper_sha256') == digest(Path(__file__))['sha256'],
             'Final exact classification/helper gate absent')
@@ -109,6 +138,7 @@ def validate_gate():
     evidence = {}
     require(type(gate.get('reviewed_files')) is list and len(gate['reviewed_files']) > 0, 'Empty evidence gate')
     for entry in gate['reviewed_files']:
+        record_schema(entry, 'Evidence entry type/byte/hash schema')
         path = input_path(entry['path'])
         require(entry['path'] not in evidence and type(entry.get('bytes')) is int and entry['bytes'] > 0
                 and type(entry.get('sha256')) is str and re.fullmatch('[0-9a-f]{64}', entry['sha256'])
@@ -120,14 +150,33 @@ def validate_gate():
                  'PRIORITY_REVIEW_SUMMARY.md', 'ROOT_PRIORITY_RECONSTRUCTION.md',
                  'HYBRID_LOCAL_CLARIFICATION.md', 'CONTEXT_INDEPENDENCE_CAVEAT.md',
                  'PRIORITY_ADVERSARY_FAMILY_READBACK.json', 'PRIORITY_COVERAGE_FAMILY_READBACK.json',
-                 'CLASSIFICATION_FAMILY_READBACK.json'}
+                 'CLASSIFICATION_FAMILY_READBACK.json', 'FROZEN_FOUNDATION_BINDINGS.json'}
     require(mandatory <= evidence.keys(), 'Mandatory complete source/decision evidence absent')
+    require(digest(input_path('FROZEN_FOUNDATION_BINDINGS.json'))['sha256'] == FOUNDATION_SHA256,
+            'Canonical frozen foundation manifest changed')
+    foundation = load('FROZEN_FOUNDATION_BINDINGS.json')
+    require(type(foundation.get('pr')) is int and foundation['pr'] == 458
+            and foundation.get('problem_id') == '20000693' and foundation.get('frozen_head') == ORIGINAL
+            and type(foundation.get('actual_foundation_reviews')) is int and foundation['actual_foundation_reviews'] == 8
+            and type(foundation.get('files')) is list and len(foundation['files']) == 158,
+            'Canonical frozen foundation identity/count')
+    fixed = set()
+    for record in foundation['files']:
+        record_schema(record, 'Canonical foundation record schema')
+        relative = record['path']
+        require(relative not in fixed and relative in evidence
+                and evidence[relative]['bytes'] == record['bytes']
+                and evidence[relative]['sha256'] == record['sha256']
+                and digest(input_path(relative)) == {'bytes': record['bytes'], 'sha256': record['sha256']},
+                'Canonical frozen foundation bytes differ')
+        fixed.add(relative)
     source = load('SOURCE_RECEIPT.json')
-    require(source.get('pr') == 458 and source.get('problem_id') == '20000693'
+    require(type(source.get('pr')) is int and source['pr'] == 458 and source.get('problem_id') == '20000693'
             and source.get('head_sha') == ORIGINAL and source.get('scope_gate') == 'exact claimed_solved'
             and type(source.get('files')) is list and len(source['files']) == 27, 'Frozen source identity')
     seen_sources = set()
     for record in source['files']:
+        record_schema(record, 'Source record byte/hash schema')
         require(record['path'].startswith('unsolved_math_prioritization/attempts/20000693/'), 'Other problem source')
         relative = 'source_snapshot/' + record['path']
         require(relative not in seen_sources and relative in evidence
@@ -141,6 +190,8 @@ def validate_gate():
     require(type(gate.get('reviews')) is list and len(gate['reviews']) == 9, 'Nine actual complete reviews required')
     families = set()
     for review in gate['reviews']:
+        require(type(review) is dict and {'family', 'reviewer', 'report_path', 'result_path'} <= review.keys()
+                and type(review['family']) is str and type(review['reviewer']) is str, 'Review entry schema')
         family = review['family']
         require(family in set(RAW) | {'classification_adversary', 'disposition_adversary'}
                 and family not in families, 'Unknown/duplicate family')
@@ -161,6 +212,7 @@ def validate_gate():
         require(type(manifest.get('files')) is list and len(manifest['files']) > 0, 'Empty positive manifest')
         payloads = set()
         for record in manifest['files']:
+            record_schema(record, 'Manifest record byte/hash schema')
             require(type(record.get('path')) is str and record['path'] != ''
                     and not Path(record['path']).is_absolute()
                     and Path(record['path']).as_posix() == record['path'], 'Manifest relative path')
@@ -169,6 +221,7 @@ def validate_gate():
                     and digest(input_path(relative)) == {'bytes': record['bytes'], 'sha256': record['sha256']},
                     'Complete public payload disconnected or drifted')
             payloads.add(relative)
+        require({report, result_path} <= payloads, 'Complete positive report/result packet required')
         result = load(result_path)
         if family in RAW:
             reviewer_key, problem_key, blocker_key, blockers, repairs, gap_key = RAW[family]
@@ -193,6 +246,9 @@ def validate_gate():
                 integer(result.get('blocking_findings'), 2, 'Unprimed blocker aliases differ')
             if family == 'priority_adversary':
                 require(result.get('status_recommendation') == 'already_solved'
+                        and type(result.get('blocking_issues')) is list
+                        and type(result.get('raw_required_repairs')) is list
+                        and type(result.get('unresolved_mathematical_gaps')) is list
                         and len(result.get('blocking_issues', [])) == 1
                         and len(result.get('raw_required_repairs', [])) == 5
                         and len(result.get('unresolved_mathematical_gaps', [])) == 3,
@@ -200,7 +256,9 @@ def validate_gate():
             elif family == 'priority_coverage':
                 require(result.get('status_recommendation') ==
                         'conditionally_accept_clarified_heuristic_after_required_repairs; do_not_approve_frozen_packet_as_written; novelty_not_demonstrated'
+                        and type(result.get('acceptance_scope')) is dict
                         and result.get('acceptance_scope', {}).get('publication_or_gate_authorization') is False
+                        and type(result.get('unresolved_mathematical_gaps')) is list
                         and len(result.get('unresolved_mathematical_gaps', [])) == 3,
                         'Distinct conditional-heuristic recommendation relabeled')
             continue
@@ -213,6 +271,7 @@ def validate_gate():
             integer(result.get('central_mathematical_gaps'), 0, 'Classification central heuristic gap')
             require(result.get('recommendation_action') ==
                     'scope_qualified_status_and_findings_only_correction_then_immediate_exclusion'
+                    and type(result.get('authority')) is dict and type(result.get('limits')) is dict
                     and result.get('authority', {}).get('operational_action_authorized_by_this_review') is False
                     and result.get('limits', {}).get('publication_readiness_certified') is False,
                     'Conceptual reviewer misrepresented as operations approval')
@@ -223,7 +282,9 @@ def validate_gate():
         else:
             integer(result.get('unresolved_disposition_issues'), 0, 'Operations disposition issues')
             require(result.get('acceptance_scope') == 'one_row_priority_correction_then_immediate_skip'
-                    and result.get('publication_accepted') is False, 'Operations acceptance scope')
+                    and result.get('publication_accepted') is False
+                    and result.get('operations_approved') is True
+                    and result.get('current_helper_accepted') is True, 'Operations acceptance scope')
             require(result.get('reviewed_helper_sha256') == gate['helper_sha256']
                     and result.get('reviewed_synthesis_sha256') == evidence['DISPOSITION_SYNTHESIS.md']['sha256'],
                     'Final operations reviewer binds different helper/synthesis')
