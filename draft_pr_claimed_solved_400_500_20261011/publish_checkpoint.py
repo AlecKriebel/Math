@@ -32,13 +32,22 @@ def main():
     paths = json.loads(args.file_list.read_text())
     if not paths or len(paths) != len(set(paths)):
         raise ValueError('file list must be nonempty and unique')
-    entries, hashes = [], {}
+    entries, hashes, prepared = [], {}, []
+    excluded = {'private_sources', 'mutation_fixtures', '.secrets', '.zenodo-state', '__pycache__'}
     for rel in paths:
-        p = (REPOSITORY_ROOT / rel).resolve()
-        if not p.is_relative_to(ROOT) or not p.is_file() or p.is_symlink():
+        unresolved = REPOSITORY_ROOT / rel
+        p = unresolved.resolve()
+        if not p.is_relative_to(ROOT) or not unresolved.is_file() or unresolved.is_symlink():
             raise ValueError(f'path outside this program or not a regular file: {rel}')
+        if (any(part in excluded for part in Path(rel).parts)
+                or any(part in excluded for part in p.relative_to(ROOT).parts)
+                or p.suffix == '.pyc'):
+            raise ValueError(f'excluded working-copy or credential path: {rel}')
         b = p.read_bytes()
         hashes[rel] = hashlib.sha256(b).hexdigest()
+        prepared.append((rel, b))
+    # Validate the entire selection before creating any remote blob.
+    for rel, b in prepared:
         sha = api('git/blobs', {'content': base64.b64encode(b).decode(), 'encoding': 'base64'})['sha']
         entries.append({'path': rel, 'mode': '100644', 'type': 'blob', 'sha': sha})
     # A non-forced main-ref update fails if another writer advanced main after
