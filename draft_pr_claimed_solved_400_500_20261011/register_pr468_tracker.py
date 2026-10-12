@@ -65,6 +65,12 @@ def main():
     existing = get("'Math Puzzles'!A:D").get('values', [])
     rows = matches(doi, existing)
     require(len(rows) <= 1, 'More than one tracker row already has this DOI; reconcile')
+    prior_path = ROOT / 'TRACKER_APPEND_OPERATION.json'
+    if prior_path.exists():
+        prior = json.loads(prior_path.read_text())
+        require(not (prior.get('state') == 'append_attempted_once' and prior.get('doi') == doi
+                     and not rows),
+                'A prior append is unconfirmed or its row was removed; reconcile read-only before another write')
     operation = {'prepared_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                  'spreadsheet_id': SHEET, 'tab': TAB, 'doi': doi, 'values': values,
                  'matching_existing_rows': rows, 'state': 'read_only_preflight'}
