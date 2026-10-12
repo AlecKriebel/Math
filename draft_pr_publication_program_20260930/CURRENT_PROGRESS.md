@@ -171,3 +171,6 @@ Universal FuchsConjecture2.7 all n>=3; corrected physical/intrinsic label chart 
 
 
 2026-10-12T11:38:27.065657+00:00 — PR166 completed: actual closure and science/findings accepted; MAIN 274b8121f0a1ea4ed4cd1809d90fe7f183d34909 independently read back with full semantic tree scope and exact selected bytes. Case100%, programme33/dated99=33.33%,18publications. Valid explicit refinement and fresh category theorem retained, priority unestablished for them; original unrestricted target prior known. No paper/DOI/tracker. Factual checkpoint actual acceptance and writer return precedePR167 intake. Goal unfinished.
+
+
+2026-10-12T13:19:06.150718+00:00 — PR170 nonfinal checkpoint: case50%; original closed-domain single-polynomial negative theorem cleared by three scientific math families and bounded priority audit by three fresh families. OriginalSep30 theorem bytes precede identifiedOct2 exact stronger Ferudun overlap, credited as contemporaneous separate disclosures; no exclusive priority/independence certificate. Fresh full-package review pending. OriginalunsolvedPR167-169 status-only skipped untouched. Completed33/dated99=33.33%,18published; no QUEUE/native/PR/paper/DOI/tracker action, no171 intake. Goal unfinished. This snapshot is effective only after actual scoped MAIN acceptance.
