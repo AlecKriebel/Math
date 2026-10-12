@@ -44,3 +44,7 @@ Selected row only corrected from claimed_solved to already_solved in commit a4b7
 ## 2026-10-12T04:06:46.241891+00:00 — PR468 source and independent math checkpoint
 
 Exact claimed_solved gate rechecked at head8527ccdba064bca52035fc6c8d96caa750ac9c00. Full target matches OWRp238 and NWConjecture1.3. Separate algebra and4D topology adversaries plus reproduction running with early independence. Root preliminary reconstruction finds no defect; priority not begun until math clears. PR468 disposition15%; program9%.
+
+## 2026-10-12T04:14:27.235664+00:00 — PR468 source, obstruction, checker-repair checkpoint
+
+Root checked full NWtransfer and exact Weberoriginal p2, DFLp797, Lickorish5.9, KXp1314. Explicit new-face deleted-cycle reconstruction saved. Separate checker hardening retains byte-identical results and rejects9faults in both modes. Independent early mathfamilies PASS; final writtenreports pending. Topology review briefly disconnected; resumed from saved checkpoint without restarting. No priority/publication/PRmutation begun. PR468estimate35%; program11%.
