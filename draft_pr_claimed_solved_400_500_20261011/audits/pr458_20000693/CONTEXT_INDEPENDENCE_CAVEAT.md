@@ -1,6 +1,6 @@
 # Reviewer context and primary-range correction
 
-PR458 / problem20000693, frozen head87a39f7b4e5ef81aacf98464f86586cc95684d7f. Recorded 2026-10-12T18:10:00Z. Current verification checkpoint35%; batch dispositions50%. No mathematical, priority or publication promotion is certified here.
+PR458 / problem20000693, frozen head87a39f7b4e5ef81aacf98464f86586cc95684d7f. Recorded 2026-10-12T18:11:58.201257+00:00. Current verification checkpoint35%; batch dispositions50%. No mathematical, priority or publication promotion is certified here.
 
 The source-admissibility, Euler, reproduction and first whole-candidate agents were spawned with full-history context inheritance. That history already contained candidate claims and earlier discussion. Their reports document an activity sequence in which they reconstructed or tested claims before actively opening current peer reports. That sequence supplies separately authored and separately executed evidence, but cannot establish that their initial context was unprimed. Interpret every independence statement in those reports with this limitation. Preserve their original sealed reports and their raw findings rather than rewriting their history.
 
