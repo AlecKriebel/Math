@@ -15,3 +15,5 @@
 
 
 2026-10-12T15:32:17.014323+00:00 — Actual PR173 findings commit 2ec87ef77f7b9af421ed9504687ac269d39cbd45 accepted through provider MAIN/tree/sole-parent, full semantic scope, every selected Git blob identity and native programme/workflow byte readbacks; original head remains closed unmerged. Case100%;35/dated99=35.35% completed,19published. This factual follow-up requires its own actual acceptance and writer release before174 intake; no future commit is predicted.
+
+2026-10-12T15:36:55.495965+00:00 — Both actual210-path findings and exact7-path factual commits accepted, finalMAIN8d612de35809fe338ffcd1ca0bbf4d3b919d3e3f/treee2cdf2767e6ab0fc5987fb19ff47983db69e7823/soleparent2ec87ef77f7b9af421ed9504687ac269d39cbd45. Bounded MAIN window explicitly returned early and coordinator acknowledged native state independently. No further authority. Case100%;35/dated99=35.35% completed,19published; goal unfinished. Status-only ordered intake from174 now begins. Final selfreceipts will be carried by a later authorized checkpoint.

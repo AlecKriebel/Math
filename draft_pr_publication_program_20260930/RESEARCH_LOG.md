@@ -226,3 +226,6 @@ Universal FuchsConjecture2.7 all n>=3; corrected physical/intrinsic label chart 
 
 
 2026-10-12T15:32:17.014323+00:00 — Actual PR173 findings commit 2ec87ef77f7b9af421ed9504687ac269d39cbd45 accepted through provider MAIN/tree/sole-parent, full semantic scope, every selected Git blob identity and native programme/workflow byte readbacks; original head remains closed unmerged. Case100%;35/dated99=35.35% completed,19published. This factual follow-up requires its own actual acceptance and writer release before174 intake; no future commit is predicted.
+
+
+2026-10-12T16:55:56.891860+00:00 — PR177 mathematical counterexample verified across three adversarial families and ROOT reproduction. Old link-polynomial mechanisms and related Conway-coefficient negative deduction verified; earlier explicit arbitrary-ideal resolution not located in inspected bodies. Strong Stoimenow2010 full-text priority gap remains; human access question pending; separate2025 source comparison pending. Case40%,35/dated99=35.35% completed,19published, no new completion or publication. Original174–176 statuses skipped untouched. This scoped progress snapshot has no PR disposition, QUEUE/attempt or author-branch changes; actual native MAIN acceptance is recorded separately.
