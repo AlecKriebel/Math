@@ -50,3 +50,7 @@ PR152 was actually merged at05:14:21UTC as4ac2eb7811bf2f288ac330e93b740751edb510
 
 
 2026-10-12T05:17:36.261579+00:00 — PR152 original-head merge 4ac2eb7811bf2f288ac330e93b740751edb510d2 accepted after actual GitHub MERGED and all selected body/scope readbacks. DOI10.5281/zenodo.23308905, one tracker row61. All scientific/external case steps100%; final metadata checkpoint prepared from fresh actual MAIN before later acceptance. Programme29/dated99=29.29%,17published upon that acceptance. No first/exclusive or mutual-awareness certification.
+
+## 2026-10-12T05:22:12.118997+00:00 — complete acceptance and explicit writer return
+
+PR152 final scoped findings checkpoint7712362d012bdb6d6022ae5f45c4903282fe5f3e/root0ea4ec7be6d8ef52fb7e9e332b0cbe0434fa0010/soleparent4ac2eb7811bf2f288ac330e93b740751edb510d2 actually accepted. Twenty selected metadata paths/fullscope and three fresh ownprogramme readbacks verified;51 own native files installed without localGitindex/refs or primarycheckout changes. Explicit writer return sent and acknowledged by descending peer; ROOT shared MAIN/Gitobject/ref/index writes paused until next returnedwindow. Actual final PRtitle/body freshreadback reports caseworkflowcomplete. Case100%;29/dated99=29.29% fullycomplete,17published. GoalAPIactive observed05:21:15UTC; programmeincomplete. The new final local receipts are factual postacceptance observations for a later scopedcheckpoint, not retroactive modifications of frozen science/review inputs.
