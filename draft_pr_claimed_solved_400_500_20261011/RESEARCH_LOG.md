@@ -48,3 +48,7 @@ Exact claimed_solved gate rechecked at head8527ccdba064bca52035fc6c8d96caa750ac9
 ## 2026-10-12T04:14:27.235664+00:00 — PR468 source, obstruction, checker-repair checkpoint
 
 Root checked full NWtransfer and exact Weberoriginal p2, DFLp797, Lickorish5.9, KXp1314. Explicit new-face deleted-cycle reconstruction saved. Separate checker hardening retains byte-identical results and rejects9faults in both modes. Independent early mathfamilies PASS; final writtenreports pending. Topology review briefly disconnected; resumed from saved checkpoint without restarting. No priority/publication/PRmutation begun. PR468estimate35%; program11%.
+
+## 2026-10-12T04:19:50.975867+00:00 — PR468 durable independent evidence checkpoint
+
+Algebra and finite-reproduction reports fully complete; preserving finished reviews, exact frozen source, independent controls and explicit-check hardening. Two small lemma/boundary clarifications plus four originaladdendum clarifications recorded for global incorporation into any accepted package. Originaltopology initialPASS remains preliminary; fresh full-record reviewer running after transport failures. Priority/publication/merge not started. PR46835%; wholeprogram11%.
