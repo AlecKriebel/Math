@@ -21,3 +21,5 @@
 
 
 2026-10-12T10:16:48.888527+00:00 — PR164 completion: actual science and closure accepted; MAIN findings commit fb62e504b064fb937c34b4b50f7bb578aa56dfb5 read back with exact selected bytes and full actual tree scope. Case100%, programme32/dated99=32.32%,18 published; exact prior LSZ full theorem, valid reconstruction retained, no paper/DOI/tracker. This bounded factual checkpoint records completion; actual final receipt and explicit writer return precede PR165 status-only intake. Goal incomplete.
+
+2026-10-12T10:18:23.347026+00:00 — Actual final factual checkpoint accepted at18fad699ff66b204217334833676748d4f0ac646, tree49872daffd9d83af8129a489febc8674a4171192, sole parentfb62e504b064fb937c34b4b50f7bb578aa56dfb5. Exact seven remote bodies read back; foreign base paths preserved. Case100%, completed32/dated99=32.32%,18published, no PR164 paper/DOI/tracker. Writer authority is being returned; goal incomplete.
