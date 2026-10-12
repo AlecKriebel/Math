@@ -1,0 +1,35 @@
+# 3047 / OPG-37222 Structural sign restrictions and the radial caveat
+
+## Three scoped results
+
+This appendix retains the complete accepted proofs and independent audit for three distinct conclusions about the independently signed unrestricted-partition product. The original unrestricted problem is not resolved by this work. No novelty, priority or unrestricted finite-prefix record is claimed.
+
+1. **Fully analytic structured finite-factor theorem.** If only finitely many original factors are active, and each active coefficient-sign series is rational (equivalently eventually periodic) or binary-digit multiplicative, with arbitrary mixing, then the positive-radial logarithmic limit is π²/6 and the coefficient logarithmic limsup divided by √n is exactly π√(2/3). In particular, the coefficients are unbounded and exceed every fixed polynomial bound along a subsequence. Every estimate and coefficient-growth step is proved in [RADIAL_OBSTRUCTION.md](RADIAL_OBSTRUCTION.md); no computational replay is needed for this theorem.
+2. **Computer-assisted all-binary theorem.** If every original factor is binary-digit multiplicative, infinitely many factors may be active, but coefficients cannot all stay in {−1,0,1} through degree 76. A complete choice works through degree 75. The exact grouped recurrence checked all 3,903 nonempty states, including the root, and ends with two degree-75 states and none at degree 76. [BINARY_CLASS_OBSTRUCTION.md](BINARY_CLASS_OBSTRUCTION.md) gives the full reduction, recurrence, completeness argument, frontier counts, explicit witness and terminal obstruction.
+3. **Published theorem plus an elementary consequence.** Güntürk's exponential-approximation theorem, specialized to μ=0, M=1 and f≡0 and normalized to constant coefficient 1, supplies a ±1 series exponentially small on the positive radius. Using this same series in finitely many factors and summing the resulting harmonic exponents can overcome the partition radial-growth constant. The [final source caveat](GENERAL_RADIAL_CAVEAT.md) and [independent scope supplement](RADIAL_SCOPE_SUPPLEMENT.md) retain the exact specialization and the harmonic-amplification proof. They do not establish bounded Taylor coefficients. The cited theorem was checked for this application; its original proof was not independently certified.
+
+The cited source is C. Sinan Güntürk, [Approximation by power series with ±1 coefficients](https://doi.org/10.1155/IMRN.2005.1601), IMRN 2005(26), 1601–1610, Theorem 1; the inspected manuscript is [arXiv:math/0503373](https://arxiv.org/abs/math/0503373). The exact source/version distinctions remain in the supplement and metadata.
+
+## How the final caveat governs the earlier radial discussion
+
+The binary proof and final source caveat are reproduced byte-for-byte. Every original byte of the radial proof is retained, with one clearly labeled editorial reading note added before its original Scope section. Section 6 of the earlier radial note identifies a necessary exponential-suppression condition for arbitrary finite active sets. Its inequalities remain valid. The later caveat and independent supplement explicitly supersede any impression from that discussion's heading or closing wording that achieving radial suppression alone is still the missing obstacle: finitely many arbitrary sign factors can achieve stronger suppression by the cited theorem and harmonic amplification. What remains uncontrolled is the product's coefficient-by-coefficient behavior or other analytic information sufficient to control it. No generic finite-active-factor impossibility follows.
+
+## Full audit and the computational evidence boundary
+
+Read the complete [independent audit](AUDIT.md), [late scope supplement](RADIAL_SCOPE_SUPPLEMENT.md), [original scope acceptance](ACCEPTANCE.json), [source review](SOURCE_REVIEW.json), [edition map](EDITORIAL_MAP.json) and [verification metadata](VERIFICATION_METADATA.json). Six originals are byte-for-byte copies; removing the sole mapped editorial notice from the radial note recovers the seventh original byte-for-byte. There are no mathematical edits or deletions. Mathematical acceptance is the recorded independent AI-assisted audit verdict, not journal acceptance or external human peer review.
+
+The all-binary calculation was independently enumerated and checked locally by complete frontier-set comparisons and a distinct logarithmic-derivative recurrence. It also passed labelled-sign multiplicity controls, reconstruction of both terminal witnesses from the original factors, ten deliberate negative controls and a separate equal-length proof-pin mutation check. Normal Python and optimization levels 1 and 2 agree on substantive results.
+
+This public appendix is not an executable replay package. Programs, both full raw grouped-state certificates and detailed outputs are excluded. The printed recurrence, all frontier counts, explicit proof witness and full substantive audit remain. A reader cannot replay the recorded exhaustive calculation from these files alone without independently implementing the recurrence. Aggregate counts and cryptographic hashes document the checked evidence; they neither replace the raw frontier comparisons nor independently prove completeness. This computational limitation does not apply to the fully written analytic proof.
+
+## Relationship to the separate two-factor packet
+
+The companion [two-factor theorem and audit](../3047/README.md) prove the distinct sharp degree-86 obstruction for at most two arbitrary active original factors, with feasibility through 85. That nine-file packet is unchanged. Statements there excluding a separately unfinished continuation describe that packet's own contents. The accepted structural continuation is supplied only in this sibling appendix. Neither packet establishes the full independently signed problem, a general three-factor obstruction, or a general finite-active-factor obstruction.
+
+The full unrestricted problem remains unresolved by this work. At least one substantive attempt is established; the total attempt count is unknown. No five-exchange exhaustion is asserted.
+
+## Distribution and integrity
+
+Only authored mathematical prose, complete substantive audit and acceptance records, and safe public source/verification metadata are distributed. Copied source texts, PDFs, images, datasets, private sources, personal information, private paths and coordination records are excluded. Source inspection metadata records the accepted review's history; preparation of this edition does not claim a new source inspection or independent certification of the cited proof.
+
+MANIFEST.json is the closed inventory of every other file in this directory. It excludes itself to avoid a circular hash; an externally retained preparation seal pins the manifest and complete inventory. Hashes authenticate byte identity against a trusted external value and do not certify the mathematical claims. This is AI-assisted, unrefereed research with independent AI-assisted verification. Preparing this proposed edition performs no repository mutation or publication.
