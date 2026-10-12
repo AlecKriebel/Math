@@ -2,8 +2,7 @@
 
 Scope: exact frozen claimed-solved head
 `8527ccdba064bca52035fc6c8d96caa750ac9c00`, problem30000689.
-Checkpoint12October2026UTC. Assessment remains provisional until the two
-complete independent family reports are reconciled.
+Checkpoint12October2026UTC. Both complete independent family reports have now been read and reconciled.
 
 The literal target has an arbitrary triangulation of a topological even sphere
 as source and prohibits an arbitrary topological embedding of its middle
@@ -70,6 +69,12 @@ Primary locators:
 - [Karu–Xiao published record](https://alco.centre-mersenne.org/articles/10.5802/alco.298/).
 - [AP version record](https://arxiv.org/abs/2404.12265).
 
-Completion estimate70% of the bounded root priority reconciliation;50% of
-PR468 disposition;13% of this descending program. No publication acceptance,
-deposit, tracker entry, PR mutation or merge is asserted at this checkpoint.
+Final reconciliation 2026-10-12T04:44:18.001022+00:00: both independent families agree on the exact
+source/category distinction, prior-method attribution, and bounded negative
+search finding. PASS for the proposed modest proof-note framing. No absolute
+priority certificate is issued, and Wagner2013 chapter full text remains an
+explicit coverage gap. Current manuscript and canonical metadata incorporate
+the required earlier attribution and avoid first/new-method claims.
+Completion estimate100% of bounded root priority reconciliation;60% of
+PR468 disposition;14% of this descending program. Deposit, tracker entry and
+merge remain gated on the successive whole-package adversarial loop.
