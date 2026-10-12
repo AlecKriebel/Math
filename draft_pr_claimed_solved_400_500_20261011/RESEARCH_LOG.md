@@ -320,3 +320,7 @@ Root and two independent mechanisms support the saved counterexample. Original o
 - 2026-10-12T22:13:19.826496+00:00: PR436 accepted fresh repair and both independent priority reports; exact earlier negative resolution confirmed. One-field already_solved correction proposed; operations binding/fsync/reconciliation repairs under fresh mock review, no real mutation. 80% selected disposition,67% batch,0 new proof attempts.
 
 - 2026-10-12T22:16:10.061070+00:00: checkpoint67 failed during Git blob preparation before main-parent/commit/ref stages; no findings release claimed. Retry is content-addressed object preparation only. Eligibility-first operations guard added before any final research read. 80% selected disposition/67% batch.
+
+- 2026-10-12T22:17:56.041611+00:00: checkpoint67 published100 positive-allowlisted own/frozen artifacts at 27d7d4f4820bdd1923a35153a143b1f51f38e502, remote-main readback confirmed; earlier TLS failure remains recorded. Operations candidate passed33 scenarios in both Python modes per interim report; no final acceptance or status change yet. 80% disposition/67% batch.
+
+- 2026-10-12T22:20:37.158894+00:00: Root accepted exact operations candidate after82 controls and full report/code inspection. Seven findings repaired; no required math/verification/priority/operations repair remains. Final gate preparation95% selected disposition/67% batch, awaiting publication/readback before one atomic status correction.0 new proof attempts.
