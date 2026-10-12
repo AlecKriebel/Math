@@ -1751,7 +1751,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1740 | 2309008 / AMR-022-9008 | Research Problems in Function Theory — Problem 9.8 | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1741 | 2350 / EP-864 | Erdős Problem #864 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1742 | 2376 / EP-906 | Erdős Problem #906 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 1743 | 2449 / EP-1038 | Erdős Problem #1038 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1743 | 2449 / EP-1038 | Erdős Problem #1038 | 0.0585 | 5.0 | 1 | unknown | unsolved | ≥1; total unknown |  | 2026-10-11: Accepted one-sided result infimum < 1.834430475762662, with positive-platform perturbation and finite-polynomial recovery, credited to Wang/Tao. Matching global lower bound, unique minimizer and nonattainment are not accepted; both global interval-certificate gates remain open. [Upper-bound proof and audit, draft PR #1310](https://github.com/AlecKriebel/Math/pull/1310). |  |
 | 1744 | 2450 / EP-1039 | Erdős Problem #1039 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1745 | 2485 / EP-1095 | Erdős Problem #1095 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1746 | 3047 / OPG-37222 | Dividing up the unrestricted partitions | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
