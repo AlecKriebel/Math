@@ -1749,7 +1749,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1738 | 2252 / EP-681 | Erdős Problem #681 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1739 | 2307078 / AMR-022-7078 | Research Problems in Function Theory — Problem 7.78 | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1740 | 2309008 / AMR-022-9008 | Research Problems in Function Theory — Problem 9.8 | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1741 | 2350 / EP-864 | Erdős Problem #864 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1741 | 2350 / EP-864 | Erdős Problem #864 | 0.0585 | 5.0 | 1 | unknown | unsolved | ≥1; total unknown |  | 2026-10-12: Independently audited partials: reflected-core weighted inequality and concentration; exact continuum relaxation/stability barrier; finite-group Sidon supersaturation and injective-lift carry constraints. Fourth-order Fourier transfer barrier with conditional uniform-profile phase threshold and signed-only countermodels. Original interval conjecture unresolved; no unrestricted improvement beyond sqrt(2), integer counterexample, novelty, or five-exchange completion claim. |  |
 | 1742 | 2376 / EP-906 | Erdős Problem #906 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1743 | 2449 / EP-1038 | Erdős Problem #1038 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1744 | 2450 / EP-1039 | Erdős Problem #1039 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
