@@ -76,8 +76,12 @@ def main():
             'Final complete-package acceptance is absent')
     require(len(gate['complete_package_reviews']) >= 2, 'Successive fresh reviews absent')
     for report in gate['complete_package_reviews']:
-        require(report['verdict'] == 'PASS' and report['blocking_issue_count'] == 0,
-                'A complete-package review has a blocking finding')
+        require(report['verdict'] == 'PASS'
+                and type(report.get('blocking_issue_count')) is int
+                and report['blocking_issue_count'] == 0
+                and type(report.get('required_correction_count')) is int
+                and report['required_correction_count'] == 0,
+                'A complete-package review has a remaining or invalid finding count')
         p = (AUDIT / report['path']).resolve()
         require(p.is_relative_to(AUDIT) and digest(p.read_bytes()) == report['sha256'],
                 'Accepted review report changed')

@@ -55,9 +55,9 @@ def main():
     require(header == [['Original Problem', 'Solution Chat URL', 'DOI', 'Notes']], 'Tracker header changed')
     values = [[
         '30000689 / OWR-1455-008 — Embedding Obstructions from Missing Simplicial Faces; '
-        'original conjecture: https://ems.press/content/serial-article-files/46090 (p.238, Conjecture4)',
+        'original conjecture: https://ems.press/content/serial-article-files/46090 (p. 238, Conjecture 4)',
         '', doi,
-        canonical['title'] + '; Alec Kriebel; version1.0, 12October2026; '
+        canonical['title'] + '; Alec Kriebel; version 1.0, 12 October 2026; '
         'https://github.com/AlecKriebel/Math/pull/468. Full topological-source/topological-embedding result; '
         'credited synthesis and dimension-four extension. Extensive AI use; unrefereed; '
         'no independent human peer review or first-priority claim. Paper and verification archive at DOI.'
@@ -111,10 +111,22 @@ def main():
             state = 'appended_once'
         observed = get(updated_range).get('values', [])
         require(observed == values, 'Appended range does not match intended row')
+    # A second runner can append after the earlier search. Detect a duplicate
+    # before declaring verification; this is a snapshot, not an atomic lock.
+    latest = get("'Math Puzzles'!A:D").get('values', [])
+    final_rows = matches(doi, latest)
+    require(len(final_rows) == 1 and latest[final_rows[0] - 1] == values[0],
+            'Final DOI registration is not unique and exact; reconcile without repeating append')
+    final_range = f"'Math Puzzles'!A{final_rows[0]}:D{final_rows[0]}"
+    observed = get(final_range).get('values', [])
+    require(observed == values, 'Final DOI row readback changed; reconcile without another append')
+    updated_range = final_range
     receipt = {'verified_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                'verified': True, 'state': state, 'spreadsheet_id': SHEET, 'sheet_id': 1254632077,
                'tab': TAB, 'updated_range': updated_range, 'values': observed,
-               'append_response': response, 'doi': doi, 'unrelated_rows_saved': False}
+               'append_response': response, 'doi': doi, 'unrelated_rows_saved': False,
+               'unique_doi_row_at_final_snapshot': True,
+               'concurrency_scope': 'One append by this runner; final duplicate snapshot checked. No atomic multi-runner guarantee.'}
     dump('TRACKER_APPEND_RECEIPT.json', receipt)
     print(json.dumps({'state': state, 'verified': True, 'updated_range': updated_range, 'doi': doi}, indent=2))
 

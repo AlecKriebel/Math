@@ -50,7 +50,10 @@ def main():
                 'Final round4 acceptance absent')
         require(len(gate['complete_package_reviews']) >= 2, 'Successive fresh reviews absent')
         for report in gate['complete_package_reviews']:
-            require(report['verdict'] == 'PASS' and report['blocking_issue_count'] == 0
+            require(report['verdict'] == 'PASS'
+                    and type(report.get('blocking_issue_count')) is int
+                    and report['blocking_issue_count'] == 0
+                    and type(report.get('required_correction_count')) is int
                     and report['required_correction_count'] == 0,
                     'Accepted review has a remaining issue')
             path = (AUDIT / report['path']).resolve()
