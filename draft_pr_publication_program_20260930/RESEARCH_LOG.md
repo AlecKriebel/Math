@@ -202,3 +202,6 @@ Universal FuchsConjecture2.7 all n>=3; corrected physical/intrinsic label chart 
 
 
 2026-10-12T10:14:52.625926+00:00 — PR164: mathematics100%, priority decision100%; exact prior LSZ arXiv2609.19560v1 (17 September2026), Theorems7.1/8.3/8.6, precedes original30 September proof/PR. Shorter coefficient route retained as verified reconstruction using prior Hermann machinery. Actual PR closed unmerged10:07:14UTC; comment6122094867. No paper/DOI/tracker. This one-row QUEUE and own audit/programme findings snapshot brings completed count32/dated99=32.32%,18 published upon actual MAIN acceptance. Original nonclaimed PR157–163 status-only skipped untouched. Actual final acceptance and writer return required before PR165 intake. Goal work continues and is incomplete.
+
+
+2026-10-12T10:16:48.888527+00:00 — PR164 completion: actual science and closure accepted; MAIN findings commit fb62e504b064fb937c34b4b50f7bb578aa56dfb5 read back with exact selected bytes and full actual tree scope. Case100%, programme32/dated99=32.32%,18 published; exact prior LSZ full theorem, valid reconstruction retained, no paper/DOI/tracker. This bounded factual checkpoint records completion; actual final receipt and explicit writer return precede PR165 status-only intake. Goal incomplete.
