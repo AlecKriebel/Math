@@ -1763,7 +1763,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1752 | 3209 / OPG-434 | Weak pentagon problem | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1753 | 3251 / OPG-56230 | 2-colouring a graph without a monochromatic maximum clique | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1754 | 3276 / OPG-1808 | Monochromatic reachability or rainbow triangles | 0.0585 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
-| 1755 | 3326 / OPG-596 | Linear Hypergraphs with Dimension 3 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1755 | 3326 / OPG-596 | Linear Hypergraphs with Dimension 3 | 0.0585 | 5.0 | 1 | unknown | unsolved | ≥2 confirmed; lifetime total unknown |  | Historical second-pass [convex-reduction proofs and audit](attempts/3326_convex_reduction_20261012/README.md): full-nerve witness compression, nondegenerate/rational triangle inflation, and maximum vertex degree ≤3 consequence DEPENDING on the credited convex full-nerve theorem; arbitrary high degree remains unresolved. Nested-singleton mismatch is not an intended counterexample; exposed-witness and fixed-neighbor obstructions are local only. Pair/triple criterion and exact nonplanar five-vertex segment example preserved. At least two confirmed passes; lifetime total unknown; no third/fourth-pass material, final-pass or novelty claim. |  |
 | 1756 | 3327 / OPG-172 | Consecutive non-orientable embedding obstructions | 0.0585 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1757 | 5500059 / AMR-054-0059 | Most Circular Partition of a Square | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1758 | 5500068 / AMR-054-0068 | Rolling a Die over a Labeled Board | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
