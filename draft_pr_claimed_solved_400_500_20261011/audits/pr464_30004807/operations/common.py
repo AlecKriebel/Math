@@ -179,6 +179,12 @@ def validate_gate(require_operations=True):
             'Invalid package input-manifest path')
     manifest_bytes = hash_bound_file(AUDIT, manifest_name, gate.get('review_input_manifest_sha256'))
     freeze = json.loads(manifest_bytes)
+    require(type(freeze) is dict and freeze.get('pr') == PR
+            and freeze.get('problem') == PROBLEM and freeze.get('original_head') == ORIGINAL,
+            'Reviewed freeze PR/problem/original-head identity differs from accepted target')
+    for name in ('source_receipt_sha256', 'mathematical_acceptance_gate_sha256', 'branch_install_plan_sha256'):
+        require(type(freeze.get(name)) is str and HEX64.fullmatch(freeze[name])
+                and freeze[name] == gate.get(name), 'Reviewed freeze cross-binding differs: ' + name)
     frozen_files = freeze.get('files')
     require(type(frozen_files) is dict and set(frozen_files) >=
             {'manuscript.tex', 'manuscript.pdf', 'metadata.json', 'deposit.json', 'README.md',

@@ -10,7 +10,7 @@ import re
 import subprocess
 from common import (AUDIT, SHEET, TAB, TAB_ID, check_sheet, doi_matches, dump,
                     confirm_live_publication, gws, live_eligibility, now, read_json, require, sheet_get,
-                    tracker_values, validate_gate, validate_publication)
+                    tracker_values, validate_gate, validate_publication, validate_tracker)
 
 
 def exact_registration(doi, expected):
@@ -24,6 +24,28 @@ def exact_registration(doi, expected):
     return target
 
 
+def prior_registration(context, pub, values, matching):
+    """A surviving write record prohibits another append even after row loss."""
+    prior_path = AUDIT / 'TRACKER_APPEND_OPERATION.json'
+    receipt_path = AUDIT / 'TRACKER_APPEND_RECEIPT.json'
+    prior = read_json(AUDIT, prior_path.name) if prior_path.exists() else None
+    receipt = read_json(AUDIT, receipt_path.name) if receipt_path.exists() else None
+    if prior:
+        require(prior.get('doi') == pub['doi_url'] and prior.get('values') == values,
+                'Prior registration operation belongs to different intended bytes')
+        require(prior.get('state') in {'read_only_preflight', 'append_attempted_once',
+                                      'outcome_unconfirmed', 'verified_registration'},
+                'Unknown prior registration state; read-only reconciliation required')
+    if receipt:
+        require(receipt.get('verified') is True and receipt.get('doi') == pub['doi_url']
+                and receipt.get('values') == values, 'Prior tracker receipt belongs to different or invalid intended bytes')
+        validate_tracker(context, pub)
+    attempted = prior is not None and prior['state'] != 'read_only_preflight'
+    require(not ((attempted or receipt is not None) and not matching),
+            'Prior append or verified registration is unconfirmed or its row was removed; read-only reconciliation required')
+    return prior, receipt
+
+
 def run(apply=False):
     context = validate_gate()
     pub = confirm_live_publication(context)
@@ -34,13 +56,7 @@ def run(apply=False):
     existing = sheet_get("'Math Puzzles'!A:D").get('values', [])
     matching = doi_matches(doi, existing)
     require(len(matching) <= 1, 'Duplicate DOI rows already exist; do not append')
-    prior_path = AUDIT / 'TRACKER_APPEND_OPERATION.json'
-    prior = read_json(AUDIT, prior_path.name) if prior_path.exists() else None
-    if prior:
-        require(prior.get('doi') == doi and prior.get('values') == values,
-                'Prior registration operation belongs to different intended bytes')
-        require(not (prior.get('state') in {'append_attempted_once', 'outcome_unconfirmed'} and not matching),
-                'Prior append is unconfirmed or row was removed; read-only reconciliation required')
+    prior, prior_receipt = prior_registration(context, pub, values, matching)
     if matching:
         exact_registration(doi, values)
     operation = {'prepared_at_utc': now(), 'spreadsheet_id': SHEET, 'sheet_id': TAB_ID,
@@ -48,7 +64,7 @@ def run(apply=False):
                  'state': 'read_only_preflight'}
     # Preserve an earlier uncertain write receipt until it is positively
     # reconciled; a new read-only run must not erase the no-retry guard.
-    if not prior or prior.get('state') == 'read_only_preflight':
+    if prior_receipt is None and (not prior or prior.get('state') == 'read_only_preflight'):
         dump('TRACKER_APPEND_OPERATION.json', operation)
     if not apply:
         return {'state': 'read_only_preflight', 'matching_existing_rows': matching}
@@ -64,6 +80,9 @@ def run(apply=False):
                 'DOI appeared during preflight; restart with read-only reconciliation')
         validate_gate()
         confirm_live_publication(context)
+        # Re-read durable guards immediately before writing; the earlier
+        # preflight may have overlapped another runner's registration.
+        prior_registration(context, pub, values, [])
         operation['state'] = 'append_attempted_once'
         dump('TRACKER_APPEND_OPERATION.json', operation)
         try:

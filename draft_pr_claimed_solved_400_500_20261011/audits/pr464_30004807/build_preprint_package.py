@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 """Build only positively selected, hash-checked PR464 archive payloads."""
 import argparse, datetime, hashlib, json, zipfile
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 ROOT=Path(__file__).resolve().parent
 PACKAGE=ROOT/'package'
-FORBIDDEN={'private_sources','private_cases','mutation_fixtures','.secrets','.zenodo-state','__pycache__'}
+FORBIDDEN={'private_sources','private_cases','mutation_fixtures','.secrets','.zenodo-state','__pycache__','venv','.venv'}
 def require(ok,msg):
     if not ok: raise RuntimeError(msg)
 def sha(b): return hashlib.sha256(b).hexdigest()
 def selected_path(name):
-    rel=Path(name)
-    require(not rel.is_absolute() and '..' not in rel.parts and not FORBIDDEN.intersection(rel.parts),'Unsafe selected archive path: '+name)
-    p=PACKAGE/rel
-    require(not any(q.is_symlink() for q in [p,*p.parents] if q!=PACKAGE.parent),'Symlink in selected archive path')
-    require(p.resolve().is_relative_to(PACKAGE.resolve()) and p.is_file() and p.suffix!='.pyc','Selected file unavailable: '+name)
+    require(type(name) is str and name and "\\" not in name and not any(ord(c)<32 for c in name),'Invalid selected path representation')
+    rel=PurePosixPath(name)
+    require(not rel.is_absolute() and rel.as_posix()==name and all(c not in {'','.', '..'} for c in rel.parts),'Noncanonical selected archive path: '+name)
+    require(not FORBIDDEN.intersection(rel.parts) and rel.suffix!='.pyc','Excluded selected archive path: '+name)
+    require(not PACKAGE.is_symlink() and PACKAGE.resolve()==PACKAGE,'Unsafe package root')
+    p=PACKAGE.joinpath(*rel.parts);cursor=PACKAGE
+    for part in rel.parts:
+        cursor=cursor/part
+        require(not cursor.is_symlink(),'Symlink in selected archive path')
+    require(p.resolve().is_relative_to(PACKAGE) and p.is_file(),'Selected file unavailable: '+name)
     return p
 
 def main():

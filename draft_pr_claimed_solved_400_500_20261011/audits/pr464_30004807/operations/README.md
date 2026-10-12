@@ -31,6 +31,12 @@ submits a journal manuscript.
   include README.md, manuscript.tex, manuscript.pdf, metadata.json,
   deposit.json, SHA256SUMS.json, and regular_zas_bianchi_verification_v1.zip.
   Include any external archive receipt in that mapping as well.
+  The manifest itself must also identify exact `pr: 464`,
+  `problem: "30004807"`, and `original_head`, and its
+  `source_receipt_sha256`, `mathematical_acceptance_gate_sha256`, and
+  `branch_install_plan_sha256` must equal the final gate's bindings to the
+  actual checked bytes. Separately updating the final gate cannot substitute
+  a different source/math/plan after the reviewed freeze.
 - `complete_package_reviews`, containing clean PASS reviews only; retain
   earlier reports requiring repairs as historical evidence elsewhere. Every
   listed review has integer `round`, nonempty distinct `identity` or `reviewer`,
@@ -98,6 +104,13 @@ the requested spreadsheet/gid/tab and A:D headers, leaves the chat URL cell
 blank, searches all DOI cells for URL/token forms, and issues one native GWS
 append. A lost response triggers readback only. Exact final range and unique
 DOI registration are verified; unrelated tracker rows are not saved.
+A surviving attempted or verified operation, or an independently saved
+verified receipt, requires read-only reconciliation if its row disappears.
+It cannot authorize another append. Unknown operation states and unrelated
+or differing receipt bytes are rejected. Default reads preserve all durable
+write guards; history is rechecked immediately before a proposed append.
+If every local write record is deleted, these local guards cannot establish
+the missing history or provide a global exactly-once guarantee.
 
 Integration preflight follows confirmed publication and tracking. It checks
 both against their actual live read-only representations, validates the
@@ -107,7 +120,12 @@ latest main. Only the selected QUEUE row changes; status remains
 claimed_solved, original research count remains 1/5, and DOI/findings are
 updated with the accepted scope and classical credits. Other current main
 rows and files are preserved. Conflicting current-main source/package bytes
-stop preparation instead of being overwritten.
+stop preparation instead of being overwritten. This comparison covers every
+prospective payload destination, including added publication receipts,
+generated PUBLICATION_MANIFEST.json, and the current landing note. Identical
+existing bytes are allowed. The only different existing payload expressly
+superseded is the captured immutable original PUBLICATION_NOTES.md;
+selected QUEUE-row updates remain separately checked byte by byte.
 
 `integrate_pr464_publication.py --apply` creates the commit with original PR
 head and captured main as its two parents. It verifies the exact changed-file
@@ -133,7 +151,7 @@ python3 draft_pr_claimed_solved_400_500_20261011/audits/pr464_30004807/operation
 python3 -O draft_pr_claimed_solved_400_500_20261011/audits/pr464_30004807/operations/check_operations.py
 ```
 
-Each mode passes 127 cases, with identical structured results and zero real
+Each mode passes 158 cases, with identical structured results and zero real
 external calls. The cases include invalid integer-zero review counts; stale
 gates/reports/metadata/source; private, escaping and symlink paths; duplicate
 or unreviewed installations; exact eligible PR identity; modified source and
@@ -143,6 +161,24 @@ native tracker duplicate/uncertain append scenarios; and staged/published
 Zenodo lost-response reconciliation without another write. These finite
 controls are operational evidence, not a mathematical proof, independent
 operations review, or atomic concurrency guarantee.
+
+The first fresh operations adversary found three blocking helper defects
+despite the original 127 checks passing, and one builder defect assigned to
+the parent. Its historical REQUEST_CHANGES report remains authoritative for
+those original source bytes. Thirty-one new regressions cover the three
+helper repairs. `replay_round1_attacks.py` additionally replays the reviewer's
+thirteen unmodified helper probes normally and with optimized Python; all
+expectations are now met, including the previously unsafe scenarios, with
+zero real calls. This repairer replay is expressly not a new independent
+review. The parent owns the builder repair and a NEW fresh operations
+adversary must inspect every final source before acceptance.
+
+The before-repair whitelist and valid control summaries are preserved as
+`*_BEFORE_REPAIR.json`; their paths refer to originals immutably published in
+checkpoint 22, commit `e1b54d91a8cd5141b69f5bcadd232cc769fbce7c`.
+Their recorded hashes are historical, not claims about the repaired current
+source bytes. The current positive whitelist binds the repaired helpers,
+updated evidence and explicit historical snapshots.
 
 Fixtures are generated only in ignored `private_cases/` and removed after
 each successful test. Never publish or package private fixture directories,

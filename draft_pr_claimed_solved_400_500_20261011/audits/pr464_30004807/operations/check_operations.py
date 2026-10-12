@@ -98,13 +98,18 @@ class Fixture:
         self.top = {name: {'sha256': c.sha((self.package / name).read_bytes()), 'bytes': (self.package / name).stat().st_size}
                     for name in ['README.md', 'manuscript.tex', 'manuscript.pdf', 'metadata.json', 'deposit.json',
                                  'SHA256SUMS.json', c.ZIP_NAME, 'ARCHIVE_RECEIPT.json']}
-        jwrite(self.audit / self.manifest_name, {'files': self.top})
         self.plan = {'entries': [
             {'local_program_path': (self.package / name).relative_to(self.repo).as_posix(),
              'repository_destination': c.PREPRINT + name,
              'sha256': c.sha((self.package / name).read_bytes()), 'bytes': (self.package / name).stat().st_size}
             for name in sorted(set(self.top) | set(self.payloads))]}
         jwrite(self.audit / 'BRANCH_INSTALL_PLAN.json', self.plan)
+        source_sha = c.sha((self.audit / 'SOURCE_RECEIPT.json').read_bytes())
+        math_sha = c.sha((self.audit / 'MATHEMATICAL_ACCEPTANCE_GATE.json').read_bytes())
+        plan_sha = c.sha((self.audit / 'BRANCH_INSTALL_PLAN.json').read_bytes())
+        jwrite(self.audit / self.manifest_name, {'pr': c.PR, 'problem': c.PROBLEM, 'original_head': c.ORIGINAL,
+               'files': self.top, 'source_receipt_sha256': source_sha,
+               'mathematical_acceptance_gate_sha256': math_sha, 'branch_install_plan_sha256': plan_sha})
         self.gate.update(source_receipt_sha256=c.sha((self.audit / 'SOURCE_RECEIPT.json').read_bytes()),
                          mathematical_acceptance_gate_sha256=c.sha((self.audit / 'MATHEMATICAL_ACCEPTANCE_GATE.json').read_bytes()),
                          review_input_manifest_sha256=c.sha((self.audit / self.manifest_name).read_bytes()),
@@ -120,6 +125,12 @@ class Fixture:
     def save_plan(self):
         jwrite(self.audit / 'BRANCH_INSTALL_PLAN.json', self.plan)
         self.gate['branch_install_plan_sha256'] = c.sha((self.audit / 'BRANCH_INSTALL_PLAN.json').read_bytes())
+        freeze = json.loads((self.audit / self.manifest_name).read_text())
+        freeze['branch_install_plan_sha256'] = self.gate['branch_install_plan_sha256']
+        jwrite(self.audit / self.manifest_name, freeze)
+        self.gate['review_input_manifest_sha256'] = c.sha((self.audit / self.manifest_name).read_bytes())
+        for review in self.gate['complete_package_reviews']:
+            review['input_manifest_sha256'] = self.gate['review_input_manifest_sha256']
         self.save_gate()
 
     def publication(self):
@@ -159,6 +170,85 @@ def gate_case(name, mutate, needle):
         fixture.save_gate()
         failure(c.validate_gate, needle)
     case(name, probe)
+
+
+def freeze_binding_case(kind):
+    def probe(fixture):
+        c.validate_gate()  # Every attack begins with a valid fully bound packet.
+        if kind in {'source_receipt', 'mathematical_acceptance_gate', 'branch_install_plan'}:
+            name = {'source_receipt': 'SOURCE_RECEIPT.json',
+                    'mathematical_acceptance_gate': 'MATHEMATICAL_ACCEPTANCE_GATE.json',
+                    'branch_install_plan': 'BRANCH_INSTALL_PLAN.json'}[kind]
+            value = json.loads((fixture.audit / name).read_text())
+            value['unreviewed_annotation'] = 'changed after frozen review'
+            jwrite(fixture.audit / name, value)
+            fixture.gate[kind + '_sha256'] = c.sha((fixture.audit / name).read_bytes())
+            needle = 'Reviewed freeze cross-binding differs'
+        else:
+            freeze = json.loads((fixture.audit / fixture.manifest_name).read_text())
+            if kind.startswith('missing_'):
+                freeze.pop(kind.removeprefix('missing_'))
+                needle = 'Reviewed freeze cross-binding differs'
+            else:
+                freeze[kind] = {'pr': 466, 'problem': '30000999', 'original_head': 'f' * 40}[kind]
+                needle = 'Reviewed freeze PR/problem/original-head identity'
+            jwrite(fixture.audit / fixture.manifest_name, freeze)
+            fixture.gate['review_input_manifest_sha256'] = c.sha((fixture.audit / fixture.manifest_name).read_bytes())
+            for review in fixture.gate['complete_package_reviews']:
+                review['input_manifest_sha256'] = fixture.gate['review_input_manifest_sha256']
+        fixture.save_gate()
+        failure(c.validate_gate, needle)
+    case('freeze_cross_binding_' + kind, probe)
+
+
+def tracker_history_case(kind, apply):
+    def probe(fixture):
+        context, pub = fixture.publication()
+        values = c.tracker_values(context['metadata'], pub['doi_url'])
+        rows = [['Original Problem', 'Solution Chat URL', 'DOI', 'Notes']]
+        operation = {'state': 'verified_registration', 'doi': pub['doi_url'], 'values': values,
+                     'spreadsheet_id': c.SHEET, 'sheet_id': c.TAB_ID, 'tab': c.TAB}
+        receipt = {'verified': True, 'doi': pub['doi_url'], 'values': copy.deepcopy(values),
+                   'spreadsheet_id': c.SHEET, 'sheet_id': c.TAB_ID, 'tab': c.TAB,
+                   'updated_range': "'Math Puzzles'!A2:D2", 'unique_doi_row_at_final_snapshot': True}
+        if kind == 'operation_readonly_receipt_removed':
+            operation['state'] = 'read_only_preflight'
+        if kind == 'unknown_operation':
+            operation['state'] = 'unknown_write_outcome'
+        if kind == 'different_receipt_doi':
+            receipt['doi'] = 'https://doi.org/10.5281/zenodo.999'
+        if kind == 'different_receipt_values':
+            receipt['values'][0][3] += ' conflicting bytes'
+        if kind.startswith('receipt_only_existing'):
+            rows.append(values[0].copy())
+        if kind not in {'receipt_only_removed', 'different_receipt_doi', 'different_receipt_values'} and not kind.startswith('receipt_only_existing'):
+            jwrite(fixture.audit / 'TRACKER_APPEND_OPERATION.json', operation)
+        if kind not in {'operation_only_removed', 'unknown_operation'}:
+            jwrite(fixture.audit / 'TRACKER_APPEND_RECEIPT.json', receipt)
+        prior_bytes = {p.name: p.read_bytes() for p in fixture.audit.glob('TRACKER_APPEND_*.json')}
+        writes = []
+        def read(range_name):
+            return {'values': copy.deepcopy(rows if range_name.endswith('A:D') else rows[1:2])}
+        def write_row(*args):
+            writes.append(args)
+            raise RuntimeError('An earlier write must not authorize another append')
+        with patch.multiple(tracker, AUDIT=fixture.audit, validate_gate=lambda: context,
+                            confirm_live_publication=lambda ctx: pub, live_eligibility=lambda: None,
+                            check_sheet=lambda: None, sheet_get=read, gws=write_row):
+            if kind.startswith('receipt_only_existing'):
+                result = tracker.run(apply)
+                c.require(result.get('state') == ('existing_identical_registration' if apply else 'read_only_preflight'),
+                          'Valid existing receipt-only recovery rejected')
+                if not apply:
+                    c.require(not (fixture.audit / 'TRACKER_APPEND_OPERATION.json').exists(), 'Read-only recovery replaced missing operation guard')
+            else:
+                needle = 'Prior tracker receipt belongs' if kind in {'different_receipt_doi', 'different_receipt_values'} else (
+                         'Unknown prior registration state' if kind == 'unknown_operation' else 'row was removed')
+                failure(lambda: tracker.run(apply), needle)
+                c.require({p.name: p.read_bytes() for p in fixture.audit.glob('TRACKER_APPEND_*.json')} == prior_bytes,
+                          'Rejected/default tracker run clobbered a write guard')
+            c.require(not writes, 'History reconciliation repeated append')
+    case('tracker_history_' + kind + ('_apply' if apply else '_readonly'), probe)
 
 
 def tracker_case(kind):
@@ -411,6 +501,14 @@ def integration_flow_case(kind):
             main_files[c.PREPRINT + 'manuscript.pdf'] = b'new unrelated revision'
         if kind == 'historical_conflict':
             main_files[c.PREFIX + 'release/PROOF.md'] = b'new unrelated revision'
+        if kind == 'receipt_conflict':
+            main_files[c.PREPRINT + 'publication_receipts/SOURCE_RECEIPT.json'] = b'conflicting current-main receipt'
+        if kind == 'manifest_conflict':
+            main_files[c.PREFIX + 'PUBLICATION_MANIFEST.json'] = b'conflicting current-main manifest'
+        if kind == 'landing_conflict':
+            main_files[c.PREFIX + 'PUBLICATION_NOTES.md'] = b'unknown current-main landing'
+        if kind == 'frozen_landing_allowed':
+            main_files[c.PREFIX + 'PUBLICATION_NOTES.md'] = source_files[c.PREFIX + 'PUBLICATION_NOTES.md']
         state = {'branch': c.ORIGINAL, 'main_reads': 0, 'blobs': {}, 'files': {main: main_files, c.ORIGINAL: source_files},
                  'commit': None, 'patches': [], 'mutations': []}
         changed_original = [{'filename': p, 'status': 'modified' if p == c.QUEUE else 'added'} for p in source_files]
@@ -476,16 +574,26 @@ def integration_flow_case(kind):
         with patch.object(c, 'GitReader', lambda: reader), patch.object(c, 'github', api), \
              patch.object(c, 'confirm_live_publication', lambda ctx: pub), \
              patch.object(c, 'confirm_live_tracker', lambda ctx, published: None):
+            if kind in {'identical_receipt_allowed', 'identical_manifest_allowed'}:
+                prepared = integration.prepare()
+                path = c.PREPRINT + 'publication_receipts/SOURCE_RECEIPT.json' if kind == 'identical_receipt_allowed' else c.PREFIX + 'PUBLICATION_MANIFEST.json'
+                main_files[path] = prepared[1][path]
             if kind == 'readonly':
                 result = integration.run(False)
                 c.require(result['state'] == 'read_only_preflight' and not state['mutations'], 'Default integration mutated')
             elif kind in {'main_excluded', 'different_main_doi', 'package_conflict', 'historical_conflict',
+                          'receipt_conflict', 'manifest_conflict', 'landing_conflict',
                           'wrong_compare', 'main_moves', 'head_moves'}:
                 needles = {'main_excluded': 'selected disposition changed', 'different_main_doi': 'different DOI',
-                           'package_conflict': 'accepted-package path conflicts', 'historical_conflict': 'historical source conflicts',
+                           'package_conflict': 'installation destination conflicts', 'historical_conflict': 'installation destination conflicts',
+                           'receipt_conflict': 'installation destination conflicts', 'manifest_conflict': 'installation destination conflicts',
+                           'landing_conflict': 'installation destination conflicts',
                            'wrong_compare': 'changed-file set differs', 'main_moves': 'Main advanced', 'head_moves': 'PR identity'}
                 failure(lambda: integration.run(True), needles[kind])
                 c.require(not state['patches'], 'Rejected integration updated branch')
+                if kind in {'main_excluded', 'different_main_doi', 'package_conflict', 'historical_conflict',
+                            'receipt_conflict', 'manifest_conflict', 'landing_conflict'}:
+                    c.require(not state['mutations'], 'Destination conflict reached any remote Git object write')
             else:
                 result = integration.run(True)
                 c.require(result['state'] == 'branch_updated_verified' and len(state['patches']) == 1, 'Integration not verified once')
@@ -600,6 +708,13 @@ def main():
         gate_case('remaining_' + label, lambda f, value=value: f.gate.__setitem__('remaining_package_issues', value), 'remaining_package_issues')
         gate_case('operations_' + label, lambda f, value=value: f.gate['operations_review'].__setitem__('required_correction_count', value),
                   'operations required_correction_count')
+    for kind in ('source_receipt', 'mathematical_acceptance_gate', 'branch_install_plan', 'pr', 'problem', 'original_head',
+                 'missing_source_receipt_sha256', 'missing_mathematical_acceptance_gate_sha256', 'missing_branch_install_plan_sha256'):
+        freeze_binding_case(kind)
+    for kind in ('operation_only_removed', 'both_verified_removed', 'receipt_only_removed', 'operation_readonly_receipt_removed',
+                 'different_receipt_doi', 'different_receipt_values', 'unknown_operation', 'receipt_only_existing'):
+        for apply in (False, True):
+            tracker_history_case(kind, apply)
     gate_case('review_duplicate_identity', lambda f: f.gate['complete_package_reviews'][1].__setitem__('identity', 'offline_mock_1'), 'fresh and distinct')
     gate_case('review_wrong_final_manifest', lambda f: f.gate['complete_package_reviews'][1].__setitem__('input_manifest_sha256', 'f' * 64), 'exact accepted package')
     gate_case('review_non_successive_rounds', lambda f: f.gate['complete_package_reviews'][1].__setitem__('round', 3), 'successive distinct rounds')
@@ -673,7 +788,8 @@ def main():
     for kind in ('prior_stage', 'prior_publish', 'missing_stage', 'wrong_draft_id', 'apply_absent'):
         zenodo_guard_case(kind)
     for kind in ('readonly', 'apply', 'lost_patch_response', 'main_excluded', 'different_main_doi', 'package_conflict',
-                 'historical_conflict', 'wrong_compare', 'main_moves', 'head_moves'):
+                 'historical_conflict', 'wrong_compare', 'main_moves', 'head_moves', 'receipt_conflict', 'manifest_conflict',
+                 'landing_conflict', 'frozen_landing_allowed', 'identical_receipt_allowed', 'identical_manifest_allowed'):
         integration_flow_case(kind)
     for kind in ('default_readonly', 'publish', 'lost_stage', 'lost_publish'):
         zenodo_flow_case(kind)

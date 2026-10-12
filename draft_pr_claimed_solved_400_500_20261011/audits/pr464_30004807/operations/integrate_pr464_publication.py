@@ -111,15 +111,15 @@ def prepare():
     c.require(cells[columns.index('Status')].strip() in {'queued', 'claimed_solved'},
               'Main selected disposition changed; do not overwrite')
     c.require(cells[columns.index('DOI')].strip() in {'', pub['doi_url']}, 'Main records a different DOI')
-    for path, data in sources.items():
+    # Check every proposed destination, including generated publication
+    # receipts and the manifest. The known frozen landing note is the only
+    # existing different payload intentionally superseded by this workflow.
+    for path, data in files.items():
         if reader.entry(path, main_sha) is not None:
             allowed = {data}
             if path == c.PREFIX + 'PUBLICATION_NOTES.md':
-                allowed.add(files[path])
-            c.require(reader.read(path, main_sha) in allowed, 'Current main historical source conflicts: ' + path)
-    for path, data in context['installs'].items():
-        if reader.entry(path, main_sha) is not None:
-            c.require(reader.read(path, main_sha) == data, 'Current main accepted-package path conflicts: ' + path)
+                allowed.add(sources[path])
+            c.require(reader.read(path, main_sha) in allowed, 'Current main installation destination conflicts: ' + path)
     cells[columns.index('Status')] = ' claimed_solved '
     cells[columns.index('Turns')] = source_cells[columns.index('Turns')]
     c.require(cells[columns.index('Turns')].strip() == '1/5', 'Original attempt count changed')
