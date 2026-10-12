@@ -59,7 +59,8 @@ def zero(value, message):
 
 def validate_gate():
     gate = json.loads((AUDIT / 'PRIORITY_DISPOSITION_GATE.json').read_text())
-    require(gate.get('verdict') == 'ACCEPTED_PRIORITY_CLASSIFICATION' and gate.get('pr') == 462
+    require(gate.get('verdict') == 'ACCEPTED_PRIORITY_CLASSIFICATION'
+            and type(gate.get('pr')) is int and gate.get('pr') == 462
             and gate.get('problem_id') == '30005528' and gate.get('original_head') == ORIGINAL
             and gate.get('recommended_status') == 'already_solved'
             and gate.get('acceptance_scope') == 'one_row_priority_correction_then_immediate_skip',
@@ -161,6 +162,19 @@ def validate_gate():
                     and result.get('current_publication_scope', {}).get('accepted') is False
                     and result['current_publication_scope'].get('issues') == ['V1', 'P1'],
                     'Candidate publication finding or conceptual-disposition scope drift')
+            current_publication = result['current_publication_scope']
+            for name, expected in [('blocking_issues', 2), ('required_verification_repairs', 1),
+                                   ('priority_classification_changes', 1)]:
+                require(type(current_publication.get(name)) is int and current_publication[name] == expected,
+                        'Contradictory or untyped candidate publication count: ' + name)
+            require(current_publication['blocking_issues'] == raw
+                    and current_publication['required_verification_repairs'] == result['required_repairs']
+                    and current_publication['required_verification_repairs'] +
+                        current_publication['priority_classification_changes'] == result['required_changes'],
+                    'Candidate raw and scoped counts differ')
+            for name in ['verification_repair_required_for_classification',
+                         'further_math_repair_paper_publication_merge_close_comment']:
+                require(proposed.get(name) is False, 'Proposed disposition contradicts immediate exclusion: ' + name)
             for name in ['unresolved_mathematical_gaps', 'unresolved_universal_mathematical_gaps', 'required_proof_repairs']:
                 zero(result.get(name), 'Unresolved candidate ' + name)
             for name in ['unresolved_issues', 'unresolved_mathematical_application_gaps']:
@@ -168,6 +182,7 @@ def validate_gate():
             synthesis_review = result.get('disposition_synthesis_scope_review', {})
             require(synthesis_review.get('entire_read') is True and synthesis_review.get('operations_approval') is False
                     and synthesis_review.get('sha256') == evidence['DISPOSITION_SYNTHESIS.md']['sha256']
+                    and type(synthesis_review.get('bytes')) is int
                     and synthesis_review.get('bytes') == evidence['DISPOSITION_SYNTHESIS.md']['bytes'],
                     'Candidate conceptual synthesis binding differs')
             require(type(gate.get('retained_candidate_publication_blockers')) is int
@@ -187,11 +202,14 @@ def validate_gate():
                     and gate['retained_v1_required_publication_repairs'] == 1,
                     'Frozen V1 robustness finding erased or misclassified')
             zero(result.get('unresolved_mathematical_gaps'), 'Reproduction mathematical gap')
-            require(len(result.get('issue_details', [])) == 1 and result['issue_details'][0]['id'] == 'V1'
-                    and result['exact_counts']['author_mutation_rejections_normal'] == 6
-                    and result['exact_counts']['author_mutation_rejections_optimized'] == 0
-                    and result['exact_counts']['optimized_author_invalid_variants_emitting_original_passed_json'] == 2,
-                    'Observed V1 negative-control boundary drift')
+            require(len(result.get('issue_details', [])) == 1 and result['issue_details'][0]['id'] == 'V1',
+                    'Observed V1 finding identity drift')
+            observed = result.get('exact_counts', {})
+            for name, expected in [('author_mutation_rejections_normal', 6),
+                                   ('author_mutation_rejections_optimized', 0),
+                                   ('optimized_author_invalid_variants_emitting_original_passed_json', 2)]:
+                require(type(observed.get(name)) is int and observed[name] == expected,
+                        'Observed V1 rejection count not the exact integer: ' + name)
         else:
             zero(raw, 'Mathematical family blocker')
             zero(result.get('required_repairs'), 'Required mathematical repair')
