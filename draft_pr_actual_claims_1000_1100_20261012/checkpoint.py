@@ -36,6 +36,17 @@ def main():
             env = {**os.environ, 'GIT_INDEX_FILE': str(pathlib.Path(tmp) / 'index')}
             run('git', 'read-tree', parent, env=env)
             run('git', 'add', '--', RELATIVE, env=env)
+            # Preserve private inspection files on disk while omitting them
+            # from the new public snapshot, including previously tracked
+            # copies. This operates only on our isolated temporary index.
+            ignored = run('git', 'ls-files', '--cached', '--ignored',
+                          '--exclude-standard', '--', RELATIVE, env=env).splitlines()
+            if any(not p.startswith(RELATIVE + '/') for p in ignored):
+                raise SystemExit('Ignored path escapes this program.')
+            if ignored:
+                subprocess.run(['git', 'update-index', '--force-remove', '--stdin'],
+                               cwd=REPO, env=env,
+                               input='\n'.join(ignored) + '\n', text=True, check=True)
             tree = run('git', 'write-tree', env=env)
             if tree == run('git', 'rev-parse', f'{parent}^{{tree}}'):
                 print(json.dumps({'no_changes': True, 'remote_main': parent}))

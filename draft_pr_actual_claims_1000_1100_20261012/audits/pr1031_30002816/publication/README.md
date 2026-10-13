@@ -2,7 +2,7 @@
 
 Alec Kriebel, independent researcher; ORCID
 [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X).
-Version 1.0, 12 October 2026. Draft preprint; NEW whole-package review pending.
+Version 1.0, 12 October 2026. Unrefereed preprint; final full review clean.
 
 The [paper](research_note.pdf) and [source](research_note.tex) apply Fawzi's
 established normalized complex Sep(3,3) obstruction to the real oriented
@@ -51,8 +51,10 @@ computation, priority certificate or proof-assistant verification.
 AI tools were used extensively in solving, verifying, source auditing and
 preparation. This preprint is unrefereed, with AI adversarial reviews.
 Conventional human peer review and journal acceptance are not claimed.
-Current immutable-publication readiness is false until a NEW fresh package
-review and any required repair loops finish.
+The NEW fourth independent whole-package review found zero actionable issues.
+[Final acceptance](evidence/FINAL_ACCEPTANCE.json) and
+[current review state](evidence/CURRENT_REVIEW_STATE.json) record readiness
+for immutable publication.
 
 The first NEW whole-package review verified the complete mathematics and
 found two P3 prose repairs: precise negative-control coverage and spacing.
@@ -61,4 +63,7 @@ remaining P3 spacing defect. That defect has been corrected. The third NEW revie
 spacing in two current runner diagnostics. Those strings are corrected;
 the runner algorithm, mathematical source, PDF, arithmetic validator,
 certificates, reference streams and metadata are unchanged. A NEW fourth
-independent whole-package review is required.
+independent reviewer rederived the entire theorem, checked primary bodies,
+all six PDF pages and the full package, and found zero actionable issues.
+[The clean review](evidence/package_review_04/FULL_REVIEW.md) and
+[verdict](evidence/package_review_04/VERDICT.json) are preserved unchanged.

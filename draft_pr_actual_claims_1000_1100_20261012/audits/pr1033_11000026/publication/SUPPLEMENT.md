@@ -61,5 +61,8 @@ The [evidence index](evidence/INDEX.md) maps current and historical records.
 Source byte identities establish which editions were inspected, not
 mathematical truth. No original computation was submitted or replayed.
 Raw third-party PDF/text/images and local own-PDF renders are excluded.
-The supporting package remains subject to a NEW whole-package adversarial
-review and repair loop before immutable publication.
+The raw Farb text extraction identified by whole-package review 01 is omitted
+from the repaired distribution; its private source and historical pins remain
+unchanged. The [repair stage mapping](evidence/PACKAGE_01_REPAIR_STAGE_MAPPING.json)
+explains those old references. A NEW independent whole-package adversarial
+review 02 and any resulting repair loops remain pending before immutable publication.

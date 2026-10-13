@@ -29,5 +29,9 @@ or proof-assistant certificate. Third-party paper bodies are omitted.
 
 AI tools were used extensively in deriving, verifying, source auditing and
 preparing the result. AI adversarial reviews are not conventional human
-peer review or journal acceptance. A NEW independent whole-package review
-and any resulting repair loops remain pending before immutable publication.
+peer review or journal acceptance. Whole-package review 01 found one raw-source
+packaging issue (PKG-01); its required omission and archive repair are applied.
+The unchanged [review 01 report](evidence/package_01/FULL_REVIEW.md) and
+[repair stage mapping](evidence/PACKAGE_01_REPAIR_STAGE_MAPPING.json) retain
+that history. A NEW independent whole-package review 02 and any resulting
+repair loops remain pending before immutable publication.

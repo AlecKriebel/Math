@@ -26,6 +26,21 @@ not portable file dependencies or claimed included third-party papers.
 - [Root audit before title correction](history/ROOT_MATH_AUDIT_before_title_correction.md)
   supplies the before-stage bytes pinned by the priority review. The
   current audit corrects only the Lenzhen–Rafi title; the mathematics is unchanged.
+- [Whole-package review 01](package_01/FULL_REVIEW.md),
+  [verdict](package_01/VERDICT.json), [actionable finding](package_01/ACTIONABLE_ISSUES.json),
+  [independent derivation](package_01/INDEPENDENT_DERIVATION.md),
+  [package verification](package_01/PACKAGE_VERIFICATION.json),
+  [historical pin reconciliation](package_01/HISTORICAL_PIN_RECONCILIATION.json),
+  [input pins](package_01/INPUT_PINS_FINAL.json), [output pins](package_01/OUTPUT_PINS.json),
+  [source manifest](package_01/SOURCE_MANIFEST.json),
+  [source retrievals](package_01/SOURCE_RETRIEVALS.json),
+  [source locators](package_01/SOURCE_VISUAL_LOCATORS.json),
+  [private-body identities](package_01/PRIVATE_SOURCE_PINS.json),
+  [review log](package_01/RESEARCH_LOG.md). These are unchanged authored
+  records of the earlier candidate, whose one P2 issue required the raw
+  Farb extraction to be omitted. The [repair stage mapping](PACKAGE_01_REPAIR_STAGE_MAPPING.json)
+  records that intentional omission and the old hashes; raw bodies, candidate
+  extractions and page renders stay outside the distribution.
 - [Unchanged authored-copy pins](AUDIT_COPY_MANIFEST.json),
   [current review state](CURRENT_REVIEW_STATE.json),
   [current layout receipt](PDF_LAYOUT_RECEIPT.json),
@@ -37,4 +52,4 @@ The root mathematical acceptance's output hashes describe its earlier review
 stage. The current copy manifest pins the authored copies actually included.
 The current paper is an expository corollary of the established LR theorem.
 No earlier PASS or acceptance constitutes current zero-issue package clearance;
-a NEW full package review remains pending.
+the PKG-01 repair is applied and a NEW independent full package review 02 remains pending.

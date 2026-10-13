@@ -122,6 +122,8 @@ Python 3.10+ standard library suffices, with no external solver, credentials,
 network or special UID. Observed platform is macOS/Python 3.14.6; other systems
 are not tested. Isolated Python flags are not a security sandbox. Arithmetic
 corroborates the elementary bridge, not worldwide priority or the existential
-failing calibration. NEW whole-package review remains required before immutable
-publication; the current state records that gate. AI reviews are not
+failing calibration. The NEW fourth full independent package review is clean
+with zero actionable issues. [Final acceptance](evidence/FINAL_ACCEPTANCE.json)
+and [current state](evidence/CURRENT_REVIEW_STATE.json) record readiness for
+immutable publication. AI reviews are not
 conventional human peer review, journal acceptance or formal certification.

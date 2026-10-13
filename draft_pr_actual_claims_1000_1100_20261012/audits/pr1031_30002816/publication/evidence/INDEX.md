@@ -41,8 +41,9 @@ are preserved unchanged as stage evidence and are not promised portable
 read-only runners. The current standalone runner has no third-party/runtime
 network dependency and does not alter package inputs. Original stage holds
 and counts remain intact. Mathematical acceptance and bounded priority are
-complete; a NEW independent whole-package review is still pending, so this
-draft has not passed the immutable-publication gate.
+complete. The NEW fourth independent whole-package review is clean with zero
+actionable issues; [final acceptance](FINAL_ACCEPTANCE.json) records the
+immutable-publication gate.
 
 [First fresh package review](package_review_01/REVIEW.md),
 [verdict](package_review_01/VERDICT.json),
@@ -68,5 +69,14 @@ bytes were unchanged by round 02.
 Only two exception-message literals changed in the current runner;
 AST equality after those literal replacements verifies unchanged logic.
 Original/historical files, mathematical source/PDF, arithmetic, certificates,
-reference streams and metadata remain unchanged. A NEW fourth full
-independent package review is pending.
+reference streams and metadata remain unchanged.
+
+[Fourth fresh whole-package review](package_review_04/FULL_REVIEW.md),
+[clean verdict](package_review_04/VERDICT.json) and
+[unchanged copy pins](PACKAGE_REVIEW_04_COPY.json) record the final stage.
+The full scoped theorem, source interfaces, verification, original files,
+metadata and all six paper pages passed with zero actionable issues.
+After this review only its unchanged authored evidence and administrative
+acceptance/navigation records were appended. The last reviewed mathematical
+source, PDF, validator, certificates, runner and metadata remain unchanged.
+Historical manifests keep their original stage meanings.

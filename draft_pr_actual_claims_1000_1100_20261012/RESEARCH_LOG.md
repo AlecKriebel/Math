@@ -131,3 +131,15 @@ Pinned all eight authored Git files of PR1033/problem11000026 at head6322305d37b
 ## 2026-10-13T22:55:30.976731+00:00: mathematical/priority/package checkpoint
 
 #1031 round03fullreport read, soleP3two diagnosticstringsfixed withASTequalityexceptliterals, root48portableexecutionsPASS;212-entry684576-bytecandidate SHA7189ec3fe29ef22d24bae3b6acadf5fa27bda196a5340098440aa240590d3f7d, NEWround04active. #1033 three-pageexpositorypapercompiledwarningfree/allpagesviewed;metadata/supportallcreditframing applied,58-entry201814-byteZIP SHA0ec9d589631f5c645fb3130eb453cd1324b4c628cdd1e254446ce08a218ce9a7, NEWpackage01active. #1034 priorityread/adoptedapplication-only.HMpriorM2/BarNatancredit/retrievalgaps retained. #1037 completeallnmathaccepted/fullreportsread,priorityactive. #1041 completecoNPmathaccepted/fullreportsread/all11Gitfiles/frozenfamiliesverified;priorityactive. Ninecandidatesmathverified,threepublishedmerged,all101intakecomplete. No additionalZenodo/GWS/merge action. Best-guess overallcompletion36%.
+
+## 2026-10-13T23:03:23.807180+00:00: terminal clean 1031 review and 1037 exact match
+
+1031 fourth NEW full review CLEAN zero P0–P3; root full report read, unchanged terminal evidence appended and final integrity/seal passed. Authorized production deposit staged and exact inspected; publication requested. 1037 current priority report fully adopted with exact contemporary match and qualified chronology, no precedence/independence assertion. 1033 first fresh package review found one P2 raw third-party text inclusion; delegated exact repair in its own folder, new review pending afterward. Nine full math audits complete; three prior results published/merged. Best-guess shard completion: 37%.
+
+## 2026-10-13T23:06:08.882626+00:00: fourth accepted publication complete
+
+1031 complete DOI 10.5281/zenodo.23353160, tracker row81, actual exact-head merge 9182035ca5205514a32f003007fbe5c8100e4855. Cursor1032 retains critical public-fulltext priority comparison pending; independent work continues1033 repair/new review,1034 attributed paper prep,1037 exact-match framing,1041 priority,1047 two fresh math/source families. All101 assertions screened,18 full candidates,83 exclusions unchanged; nine combined mathematics accepted. Best-guess overall completion:39%.
+
+## 2026-10-13T23:10:36.407962+00:00: preprint and intake checkpoint
+
+1033 repaired candidate pins/inventory/all54authoredcopies independently verified by root; NEWwholepackage02assigned. 1041 freshpriority fullreportadopted and all14input/13outputpins rehashed; attributedpaperprep assigned, genericreal-demand isolation credited to EFL2018. 1037 credited contemporary-match proofprep assigned. 1047 root sourcefullpage and complete familyproofs checked, two NEWbasis/sourcefamilies pending. Own checkpoint filter now keeps temporary raw/render/extracted review files private on disk and omits them from currentpublicsnapshot via isolatedindex; immutabledepositedarchives unaffected and historicalpinmeaning preserved. Best-guess shard completion:39%.

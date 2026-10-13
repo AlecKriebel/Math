@@ -19,6 +19,20 @@ def save(path, value):
     path.write_text(json.dumps(value, indent=2) + '\n')
 
 
+def is_authored_review_record(source, directory):
+    """Select authored records; raw bodies and local review work stay private."""
+    relative = source.relative_to(directory)
+    private_directories = {
+        'raw', 'rawprivate', 'raw_private', 'extracted', 'render', 'renders',
+        'candidate_render', 'cache', '.cache', '__pycache__', '.venv', 'tmp',
+    }
+    if private_directories & {part.casefold() for part in relative.parts[:-1]}:
+        return False
+    # Source identities/locators are JSON records; pdftotext bodies are not
+    # authored audits. Keep the already distributed authored .gitignore too.
+    return source.name == '.gitignore' or source.suffix.casefold() in {'.md', '.json'}
+
+
 def main():
     if (PUB / 'metadata.json').exists():
         raise RuntimeError('Package already prepared; preserve review state')
@@ -33,16 +47,14 @@ def main():
                   'ROOT_MATH_ACCEPTANCE.json', 'ROOT_PRIORITY_ADOPTION.json',
                   'history/ROOT_MATH_AUDIT_before_title_correction.md')
     pairs = [(HERE / n, evidence / n) for n in root_names]
-    for family in ('metric_01', 'teich_source_01', 'priority_01'):
+    for family in ('metric_01', 'teich_source_01', 'priority_01', 'package_01'):
         directory = HERE / 'reviews' / family
         for source in sorted(directory.rglob('*')):
             if not source.is_file():
                 continue
+            if not is_authored_review_record(source, directory):
+                continue
             relative = source.relative_to(directory)
-            if {'raw', '__pycache__', '.venv', 'render', 'tmp'} & set(relative.parts):
-                continue
-            if source.suffix in {'.pdf', '.png', '.zip', '.pyc'}:
-                continue
             pairs.append((source, evidence / family / relative))
     for source, target in pairs:
         target.parent.mkdir(parents=True, exist_ok=True)

@@ -31,18 +31,21 @@ problem-specific subfolders, remain on `main`, isolate commits from other
 workers' files, push meaningful checkpoints, and do not contact individuals or
 other shard workers.
 
-Progress checkpoint 2026-10-13T22:55:30.976731+00:00: PRs #1001, #1024 and #1025 have
+Progress checkpoint 2026-10-13T23:06:08.882626+00:00: PRs #1001, #1024, #1025 and #1031 have
 completed Zenodo publication, exact tracker readback and exact-head merge.
-The latest completed result is #1025: [DOI](https://doi.org/10.5281/zenodo.23352246),
-tracker row 80, merge `76442c93c473547ceadc26baec9b9bb044fc748c`.
+The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
+tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
 Nine of the eighteen full-claim candidates have passed combined scoped
-mathematical audits. #1031 awaits fresh package review 04 after editorial
-repairs. #1032 has a critical full-text priority comparison pending. #1033's
-three-page note and supporting package are explicitly expository and await
-fresh whole-package review 01. #1034 is eligible only as a credited application;
-its Milnor-algebra formula is prior mathematics. #1037 and #1041 have passed
-mathematics and are undergoing fresh priority audits. All 101 assertions are
-screened; the eighty-three partial/prior exclusions remain outside processing.
-Cursor: #1031. Best-guess overall completion: 36%. Candidate and mathematical
-acceptance status do not establish historical novelty or current openness.
+mathematical audits. #1032 has a critical full-text priority comparison pending.
+#1033's explicitly expository three-page package has been repaired after its
+first fresh reviewer found one raw third-party text inclusion; NEW review02 is pending. #1034's credited
+application paper is being prepared; its Milnor-algebra formula is prior mathematics.
+#1037 has an exact contemporary published match, with qualified chronology and
+proof-exposition framing required. #1041's bounded priority audit found no exact match; credited paper preparation
+is underway, with generic real-demand flow isolation identified as prior work.
+#1047 is with two fresh distinct mathematical and source-scope reviewers.
+All 101 assertions are screened; the eighty-three partial/prior exclusions
+remain outside processing. Cursor: #1032. Best-guess overall completion: 39%.
+Candidate and mathematical acceptance do not establish historical novelty or
+current worldwide openness.
