@@ -23,4 +23,4 @@ external human peer review or proof-assistant formalization.
 original_submission/ preserves the entire original frozen packet unchanged.
 FROZEN_MANIFEST.json and the original independent review are historical.
 FINAL_ACCEPTANCE.json and FINAL_PACKAGE_MANIFEST.json describe the repaired
-current packet and publication. Native merge is the remaining workflow step.
+current packet and publication. PR #256 was merged natively at 12e92adf4450e46e130cc48ee21bc10dfa6f397a. Case completion100%.
