@@ -6,3 +6,7 @@ All nineteen authored files preserved from immutable Git head 86d076dae3e3fa8b7c
 ## 2026-10-13T22:27:02.691924+00:00: full scoped root mathematical acceptance
 
 Complete spanning counterexample, all-k low-order zero kernel and two-strand exact-order7 nonzero kernel pass combined root/two-fresh-family review. All19 actualGitfiles/tree verified. Ten primary pages viewed, four fresh arithmetic executions pass; omitted historical scripts not replayed. Residual3–6/higher-order classification retained. Priority pending. PR-workflow best-guess completion:35%.
+
+## 2026-10-13T22:55:30.976731+00:00: full new priority report adopted
+
+Root readcompleteREPORT/VERDICT andverifiedall19 authoredoutputpins. M2formula ispriorHMfilteredcorollary. Threefree-exterior conclusions eligibleonlyascreditedapplications/exposition, exactpublicationpriorityundetermined. Bar-Natanwheelcreditrequired;completeBleilerMoriahsourcegapclosed, Morimoto/Li unopenedleadsretainedwithoutabstractexclusion. Mathacceptanceunchanged. Globalpaperframing pending; preprintnotready. Best-guess workflowcompletion50%.

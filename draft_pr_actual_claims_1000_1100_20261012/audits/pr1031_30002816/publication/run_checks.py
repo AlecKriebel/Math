@@ -55,7 +55,7 @@ def main():
             references['certificate_fault_runs'] == 45, 'Reference scope differs')
     reference_map = {(r['mode'], r['case']): r for r in references['runs']}
     require(len(reference_map) == len(references['runs']) == 48,
-            'References must be exactly48unique executed cases')
+            'References must contain exactly 48 unique executed cases')
     tree = ast.parse(source.read_text())
     values = {}
     functions = []
@@ -73,7 +73,7 @@ def main():
     original = json.loads(certificate.read_text())
     faults = namespace['mutations'](original)
     require(len(faults) == len(values['EXPECTED_MUTATIONS']) == 15,
-            'Exactly15actualcertificatefaultfamilies required')
+            'Exactly 15 actual certificate fault families required')
     input_bytes = {path: path.read_bytes() for path in (source, checker, certificate)}
     rows = []
     with tempfile.TemporaryDirectory(prefix='grassmann-coordinate-replay-') as temporary:

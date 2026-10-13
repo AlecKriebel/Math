@@ -53,7 +53,7 @@ silently substituted for the single global additive constant.
 
 ## Exact Teichmüller source interface
 
-Lenzhen–Rafi, *The shape of a Teichmüller geodesic*, JDG 88 (2011),
+Lenzhen–Rafi, *Length of a curve is quasi-convex along a Teichmüller geodesic*, JDG 88 (2011),
 Theorem 15 and its proof supply one finite K >= 1 depending only on the
 fixed topology, with
 

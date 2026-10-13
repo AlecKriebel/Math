@@ -57,5 +57,8 @@ review and any required repair loops finish.
 The first NEW whole-package review verified the complete mathematics and
 found two P3 prose repairs: precise negative-control coverage and spacing.
 The second NEW review again verified the complete mathematics and found one
-remaining P3 spacing defect. That defect has been corrected. A NEW third
+remaining P3 spacing defect. That defect has been corrected. The third NEW review verified the complete mathematics and found only
+spacing in two current runner diagnostics. Those strings are corrected;
+the runner algorithm, mathematical source, PDF, arithmetic validator,
+certificates, reference streams and metadata are unchanged. A NEW fourth
 independent whole-package review is required.

@@ -1,0 +1,89 @@
+24                                                                                                     B. Farb
+
+3-manifolds fibering over the circle3. Lee Mosher proved in [Mos] that Modg is automatic. From
+this it follows that there is an O(n2 )-time algorithm to solve the word problem for Modg ; indeed
+there is an O(n2 )-time algorithm which puts each word in a fixed generating set into a unique
+normal form. However, the following is still open.
+
+    Question 3.1 (Fast word problem). Is there a sub-quadratic time algorithm to solve the word
+problem in Modg ?
+
+    One might guess that n log n is possible here, as there is such an algorithm for certain relatively
+(strongly) hyperbolic groups (see [Fa3]), and mapping class groups are at least weakly hyperbolic,
+as proven by Masur-Minsky (Theorem 1.3 of [MM1]).
+    The conjugacy problem for Modg is harder. The original algorithm of Hemion [He] seems to
+give no reasonable (even exponential) time bound. One refinement of the problem would be to
+prove that Modg is biautomatic. However, even a biautomatic structure gives only an exponential
+time algorithm to solve the conjugacy problem. Another approach to solving the conjugacy
+problem is the following.
+
+    Problem 3.2 (Conjugator length bounds). Prove that there exist constants C, K, depend-
+ing only on S, so that if u, v ∈ Modg are conjugate, then there exists g ∈ Modg with ||g|| ≤
+K max{||u||, ||v||} + C so that u = gvg −1 .
+
+    Masur-Minsky ([MM2], Theorem 7.2) solved this problem in the case where u and v are
+pseudo-Anosov; their method of hierarchies seems quite applicable to solving Problem 3.2 in the
+general case. While interesting in its own right, even the solution to Problem 3.2 would not answer
+the following basic problem.
+
+    Problem 3.3 (Fast conjugacy problem). Find a polynomial time algorithm to solve the con-
+jugacy problem in Modg . Is there a quadratic time algorithm, as for the word problem?
+
+    As explained in the example on page 11, a solution to Problem 3.3 would be a major step in
+finding a polynomial time algorithm to solve the homeomorphism problem for 3-manifolds that
+fiber over the circle.
+Almost convexity. In [Ca] Cannon initiated the beautiful theory of almost convex groups. A
+group Γ with generating set S is almost convex if there exists C > 0 so that for each r > 0, and
+for any two points x, y ∈ Γ on the sphere of radius r in Γ with d(x, y) = 2, there exists a path γ
+of length at most C connecting x to y and lying completely inside the ball of radius r in Γ. There
+is an obvious generalization of this concept from groups to spaces. One strong consequence of the
+almost convexity of Γ is that for such groups one can recursively build the Cayley graph of Γ near
+any point x in the n-sphere of Γ by only doing a local computation involving elements of Γ lying
+(universally) close to x; see [Ca]. In particular one can build each n-ball, n ≥ 0, and so solve the
+word problem in an efficient way.
+     3The second ingredient, crucial but ignored by some authors, is the computability of the Thurston norm.
+2. Some problems on mapping class groups and moduli space                                          25
+
+     Question 3.4 (Almost convexity). Does there exist a finite generating set for Modg for which
+it is almost convex?
+
+    One would also like to know the answer to this question for various subgroups of Modg . Here
+is a related, but different, basic question about the geometry of Teichmüller space.
+
+   Question 3.5. Is Teich(Σg ), endowed with the Teichmüller metric, almost convex?
+
+     Note that Cannon proves in [Ca] that fundamental groups of closed, negatively curved man-
+ifolds are almost convex with respect to any generating set. He conjectures that this should
+generalize both to the finite volume case and to the nonpositively curved case.
+
+   3.2. The generalized word problem and distortion.
+  In this subsection we pose some problems relating to the ways in which subgroups embed in
+Modg .
+Generalized word problem. Let Γ be a finitely presented group with finite generating set S,
+and let H be a finitely generated subgroup of Γ. The generalized word problem, or GWP, for H
+in Γ, asks for an algorithm which takes as input an element of the free group on S, and as output
+tells whether or not this element represents an element of H. When H is the trivial subgroup
+then this is simply the word problem for Γ. The group Γ is said to have solvable generalized word
+problem if the GWP is solvable for every finitely generated subgroup H in Γ.
+     The generalized word problem, also called the membership, occurrence or Magnus problem, was
+formulated by K. Mihailova [Mi] in 1958, but special cases had already been studied by Nielsen
+[Ni] and Magnus [Ma]. Mihailova [Mi] found a finitely generated subgroup of a product Fm × Fm
+of free groups which has unsolvable generalized word problem.
+     Now when g ≥ 2, the group Modg contains a product of free groups Fm × Fm (for any m > 0).
+Further, one can find copies of Fm ×Fm such that the generalized word problem for these subgroups
+is solvable inside Modg . To give one concrete example, simply divide Σg into two subsurfaces S1
+and S2 which intersect in a (possibly empty) collection of curves. Then take, for each i = 1, 2,
+a pair fi , gi of independent pseudo-Anosov homeomorphisms. After perhaps taking powers of fi
+and gi if necessary, the group generated by {f1 , g1 , f2 , g2 } will be the group we require; one can
+pass to finite index subgroups if one wants m > 2. The point here is that such subgroups are not
+distorted (see below), as they are convex cocompact in the subgroups Mod(Si ) of Modg , and these
+in turn are not distorted in Modg . It follows that the generalized word problem for Mihailova’s
+subgroup G < Fm × Fm is not solvable in Modg .
+
+    Problem 3.6 (Generalized word problem). Determine the subgroups H in Modg for which
+the generalized word problem is solvable. Give efficient algorithms to solve the generalized word
+problem for these subgroups. Find the optimal time bounds for such algorithms.
+
+    Of course this problem is too broad to solve in complete generality; results even in special
+cases might be interesting. Some solutions to Problem 3.6 are given by Leininger-McReynolds
+

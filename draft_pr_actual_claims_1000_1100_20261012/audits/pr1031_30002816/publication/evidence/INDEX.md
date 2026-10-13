@@ -59,4 +59,14 @@ prose were repaired after that review.
 [remaining spacing repair](REPAIR_RECORD_02.json) record the next stage.
 That review verified the mathematics and found one P3 spacing defect.
 It has been corrected. Mathematical source, PDF, arithmetic and metadata
-bytes are unchanged by round 02; a NEW third package review is pending.
+bytes were unchanged by round 02.
+
+[Third fresh package review](package_review_03/REVIEW.md),
+[verdict](package_review_03/VERDICT.json),
+[unchanged copy pins](PACKAGE_REVIEW_03_COPY.json) and
+[diagnostic spacing repair](REPAIR_RECORD_03.json) record the next stage.
+Only two exception-message literals changed in the current runner;
+AST equality after those literal replacements verifies unchanged logic.
+Original/historical files, mathematical source/PDF, arithmetic, certificates,
+reference streams and metadata remain unchanged. A NEW fourth full
+independent package review is pending.

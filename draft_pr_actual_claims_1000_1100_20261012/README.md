@@ -31,4 +31,18 @@ problem-specific subfolders, remain on `main`, isolate commits from other
 workers' files, push meaningful checkpoints, and do not contact individuals or
 other shard workers.
 
-Progress checkpoint 2026-10-13T21:54:21.612326+00:00: PRs1001,1024and1025 have completed publication, exact tracker readback and exact-head merge. PR1025: [DOI](https://doi.org/10.5281/zenodo.23352246), tracker row80, merge `76442c93c473547ceadc26baec9b9bb044fc748c`. Cursor1031; overall estimate28%. All101assertions screened,18fullresolutioncandidates; candidate status is not mathematical truth or novelty.
+Progress checkpoint 2026-10-13T22:55:30.976731+00:00: PRs #1001, #1024 and #1025 have
+completed Zenodo publication, exact tracker readback and exact-head merge.
+The latest completed result is #1025: [DOI](https://doi.org/10.5281/zenodo.23352246),
+tracker row 80, merge `76442c93c473547ceadc26baec9b9bb044fc748c`.
+
+Nine of the eighteen full-claim candidates have passed combined scoped
+mathematical audits. #1031 awaits fresh package review 04 after editorial
+repairs. #1032 has a critical full-text priority comparison pending. #1033's
+three-page note and supporting package are explicitly expository and await
+fresh whole-package review 01. #1034 is eligible only as a credited application;
+its Milnor-algebra formula is prior mathematics. #1037 and #1041 have passed
+mathematics and are undergoing fresh priority audits. All 101 assertions are
+screened; the eighty-three partial/prior exclusions remain outside processing.
+Cursor: #1031. Best-guess overall completion: 36%. Candidate and mathematical
+acceptance status do not establish historical novelty or current openness.

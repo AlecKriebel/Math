@@ -10,3 +10,7 @@ Root read the entire original proof and source metadata and independently derive
 ## 2026-10-13T22:23:59.414459+00:00: combined root mathematical acceptance
 
 Root and two fresh independent approach families discharge the full metric/source theorem. All eight actual Git files and full tree match. No actionable mathematical gap remains; priority and publication package remain pending. Best-guess PR-workflow completion: 35%.
+
+## 2026-10-13T22:37:28.653129+00:00: exact priority framing adopted
+
+Full new priority report/verdict read; all13 authored pins verified. Entire theorem is an elementary implicit corollary of prior Lenzhen–Rafi geometry; explicit full predecessor notlocated but firstness/currentopenness unestablished. Eligibleonlyascreditedexposition. Corrected root LRtitle, preservingbeforebytes forhistoricalreviewinputpins. Mathunchanged; original8files untouched. Globalpaperframing pending. Best-guess workflow completion:50%.
