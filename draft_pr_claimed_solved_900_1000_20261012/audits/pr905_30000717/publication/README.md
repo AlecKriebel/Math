@@ -12,8 +12,11 @@ includes attained minima; it does not restrict the question to nonattaining
 polynomials. A separate nonattaining diagnostic concerns only the product reading. Its
 polynomial is a constant shift of the standard example in Schweighofer (2006),
 Section 1.6, equation (6), and the original report p.810. The standard sphere
-minimization argument is credited to the tangency-set discussion in Laurent
-(2009), Section 7.2.3, Lemma 7.21; the additional truncation multipliers in related
+minimization argument is credited to Laurent's updated manuscript of 6 February
+2010, Section 7.2.3, Lemma 7.21, manuscript pp.117–118:
+https://homepages.cwi.nl/~monique/files/moment-ima-update-new.pdf . The earlier
+2009 published chapter has a different Lemma 7.21; its DOI is bibliographic
+context, not the locator for this tangency result. The additional truncation multipliers in related
 certificates are retained in the comparisons.
 
 The self-contained proof permits arbitrary real coefficients, arbitrarily many
@@ -38,7 +41,9 @@ a current standalone LaTeX note, fresh independent checkers/reviews and priority
 evidence. Historical pending-publication statements in the original packet are
 preserved and superseded by the released note and deposit record. No primary-source
 PDFs, source renders/extracts, raw catalogue records, datasets, credentials or
-private account data are redistributed. Source links and retrieval hashes remain.
+private account data are redistributed. Source links and retrieval hashes remain. `SOURCE_VERSION_CORRECTION.md`
+qualifies the Laurent version labels in preserved historical reviews; those
+sealed reports are unchanged.
 
 ## Reproduce after extracting the archive
 

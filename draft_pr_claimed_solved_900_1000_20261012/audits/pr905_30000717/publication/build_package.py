@@ -16,6 +16,7 @@ def main():
  DEST.mkdir(parents=True); shutil.copytree(FROZEN,DEST/'original_packet')
  for name in ['note.tex','README.md','verify_package.py','requirements.txt']:shutil.copy2(HERE/name,DEST/name)
  shutil.copy2(AUDIT/'SOURCE_CORRECTION.md',DEST/'SOURCE_CORRECTION.md')
+ shutil.copy2(AUDIT/'SOURCE_VERSION_CORRECTION.md',DEST/'SOURCE_VERSION_CORRECTION.md')
  shutil.copy2(AUDIT/'ORIGINAL_SNAPSHOT.json',DEST/'ORIGINAL_SNAPSHOT.json')
  shutil.copy2(AUDIT/'ROOT_PRIORITY_ACCESS_FOLLOWUP.json',DEST/'ROOT_PRIORITY_ACCESS_FOLLOWUP.json')
  for family,names in REVIEW_FILES.items():
