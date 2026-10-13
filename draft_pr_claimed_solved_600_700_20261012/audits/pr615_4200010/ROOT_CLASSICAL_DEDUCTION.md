@@ -42,9 +42,11 @@ symplectic category. This avoids any infinite-ambient-measure ambiguity.
 In the globally descended frame V1=∂x−t∂y, V2=∂y, V3=∂t, V4=∂E, the derivative
 is Id+sP where P(V1)=V2 and P²=0. Forward and inverse norms are bounded by
 1+|s|. Thus all four Lyapunov exponents are zero at every point, in this smooth
-metric. For other smooth metrics, almost-everywhere metric independence also
-follows on each invariant compact energy component; the original compact
-candidate has the stronger global uniform-equivalence property.
+metric. For any other smooth metric, its comparison with this frame metric is
+uniform on each fixed invariant compact energy component, including the full
+tangent bundle along that component. Thus metric independence holds at every
+point of M, although the comparison constant can depend on E. The compact
+candidate additionally has a uniform constant over the whole phase space.
 
 Continuous-time suspension ergodicity follows from translation invariance in
 t and the seam relation plus ergodicity of F. For any positive-measure invariant
