@@ -1,0 +1,291 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Ba}{\mathcal B^a}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\ev}{ev}
+\title{Forward generation does not ensure GNS descent:\\an explicit continuous counterexample}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a general conditional-expectation dilation of a Markov semigroup,
+generation by the observed algebra and its forward translates does not
+ensure descent through the expectation's fixed GNS representation. We give
+a unital separable, injective, point-norm continuous example for the
+two-state exponential relaxation semigroup. Its GNS image is $M_2(\C)$,
+and at every positive time an explicit nonzero positive element leaves
+the representation kernel. This refutes the concrete generation-only
+proposal in Skeide's 2009 module-approach problem. The clock/cocycle
+method is established: the negative phenomenon is also a short corollary
+of an earlier clock dilation of Burgarth, Facchi and Hillier. The note
+makes the connection explicit and supplies a small matrix realization
+with exact witnesses; it makes no claim of literature-first priority.
+\end{abstract}
+
+\paragraph{Disclosure.}
+AI tools were used extensively in constructing, checking, auditing and
+writing this work. This is an unrefereed research note; its adversarial
+reviews were performed by AI tools and do not constitute human peer review.
+
+\section*{The question and the result}
+In the first module-approach problem of \cite[pp.~542--543]{owr}, Skeide
+proposes passing a general dilation $(A,\theta,i,p)$ through the GNS
+correspondence of $p$, and then extending its represented dynamics to all
+adjointable operators. Generation of $A$ by $i(B)$ and its time translates
+is offered as a sufficient ``not too big'' condition. We use the report's
+general definition \cite[pp.~497--498]{owr}: $ip$ is a conditional
+expectation onto $i(B)$ and $p\theta_t i=T_t$. The printed direction of
+$p$ in the problem is reversed; the definition and diagrams specify
+$p:A\to B$. The stronger equation $p\theta_t=T_t p$ on all of $A$ is
+not assumed.
+
+Let $\D\subset M_2(\C)$ be the diagonal algebra, identified with $\C^2$,
+and let $\Delta:M_2(\C)\to\D$ extract the diagonal.
+\begin{theorem}\label{thm:main}
+There exist a unital separable C*-algebra $A$, a point-norm continuous
+semigroup $(\theta_t)_{t\geq0}$ of injective unital *-endomorphisms,
+a unital embedding $i:\D\to A$, and a conditional expectation
+$ip:A\to i(\D)$ such that
+\[
+ A=C^*(\theta_r(i(\D)):r\geq0),\qquad
+ T_t=p\theta_t i,\qquad
+ P_t=\frac12\begin{pmatrix}1+e^{-t}&1-e^{-t}\\1-e^{-t}&1+e^{-t}\end{pmatrix}
+\]
+is the transition matrix of $T_t$ on $\C^2$.
+For the left representation $\pi$ in the GNS correspondence of $p$,
+\[
+ \pi(A)\cong M_2(\C),\qquad
+ \theta_s(\ker\pi)\not\subseteq\ker\pi\quad\text{for every }s>0.
+\]
+Each failure has an explicit nonzero positive witness $a_s\in\ker\pi$.
+Consequently no semigroup on that represented algebra, or on all
+$\Ba(E)$ of the fixed GNS correspondence, can intertwine $\pi$ and $\theta$.
+\end{theorem}
+
+\section*{Construction and proof}
+Let $X=[-\infty,+\infty]$ be the two-endpoint compactification of $\R$
+with its order topology. Define
+\[
+ g(x)=\begin{cases}0,&x\leq0,\\\tfrac12\arccos(e^{-x}),&x>0,\end{cases}
+ \qquad g(-\infty)=0,\quad g(+\infty)=\pi/4,
+\]
+and put
+\[
+ R(z)=\begin{pmatrix}\cos z&-\sin z\\\sin z&\cos z\end{pmatrix},
+ \qquad V(x)=R(g(x)),\qquad u_t(x)=V(x)^*V(x+t).
+\]
+Translation fixes the endpoints of $X$. It is jointly continuous in
+$(t,x)$: for time in a bounded neighborhood, sufficiently far tails
+remain in any prescribed endpoint neighborhood. Thus, on $C(X,M_2(\C))$,
+\[
+ \alpha_t(f)(x)=u_t(x)f(x+t)u_t(x)^*,\qquad t\in\R,
+\]
+defines a point-norm continuous automorphism group. Indeed
+$u_s(x)u_t(x+s)=u_{s+t}(x)$, and joint continuity on compact time
+intervals times $X$ gives uniform continuity for each fixed $f$.
+No differentiability of $g$ at zero is required.
+
+View $\D$ as the constant diagonal functions and set
+\[
+ A=C^*(\alpha_r(\D):r\geq0),\quad
+ \theta_t=\alpha_t|_A\ (t\geq0),\quad i(b)(x)=b,\quad
+ p(f)=\Delta(f(0)).
+\]
+The shift of a generator at $r$ is the generator at $r+t$, so $A$ is
+forward invariant and the asserted generation equality is exact.
+Restrictions of the ambient automorphisms are injective unital
+endomorphisms. Norm continuity allows rational times to generate $A$,
+proving separability. Evaluation and $\Delta$ are unital completely
+positive; $pi=\mathrm{id}_{\D}$ and
+$p(i(b_1)fi(b_2))=b_1p(f)b_2$. Hence $ip$ is a conditional expectation.
+
+At $x=0$, $u_t(0)=R(g(t))$ for $t\geq0$. Compressing a constant
+diagonal matrix gives weights
+$\cos^2 g(t)=(1+e^{-t})/2$ and $\sin^2 g(t)=(1-e^{-t})/2$.
+These are precisely $P_t$. Writing
+\[
+ J=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix},\qquad
+ K=\tfrac12\begin{pmatrix}1&-1\\-1&1\end{pmatrix},\qquad P_t=J+e^{-t}K,
+\]
+we have $J^2=J$, $K^2=K$, $JK=KJ=0$ and $J+K=I$.
+This proves the Markov semigroup law for every real $t\geq0$.
+The maps are UCP and uniformly continuous on $\C^2$.
+
+\paragraph{The actual GNS representation.}
+Let $q=\diag(1,0)$ and $s_0=\log2$. Evaluation of
+$\theta_{s_0}(q)$ at zero is
+\[
+ Q=\begin{pmatrix}3/4&\sqrt3/4\\\sqrt3/4&1/4\end{pmatrix}.
+\]
+The evaluation image contains $q$, $1-q$, $qQ(1-q)=(\sqrt3/4)e_{12}$
+and its adjoint. Therefore $\ev_0(A)=M_2(\C)$.
+The GNS correspondence is concretely
+\[
+ E=M_2(\C),\qquad z\cdot b=zb,\qquad
+ \langle z,w\rangle=\Delta(z^*w),\qquad \xi=I_2,\qquad
+ \pi(f)z=f(0)z.
+\]
+To verify this, the map $a\otimes b\mapsto a(0)b$ on the algebraic
+GNS construction preserves its inner product. The concrete inner
+product is definite because its diagonal entries are column squared
+norms, and the evaluation image proves surjectivity and cyclicity.
+Finite dimension gives completeness. In particular,
+\[
+ \ker\pi=\{f\in A:f(0)=0\}.
+\]
+This is the full representation kernel, not an identification with a
+single vector-state null space in general. The two columns identify
+$\Ba(E)=M_2(\C)\oplus M_2(\C)$; $\pi(A)$ is the diagonal copy.
+The module is full since $\langle\xi,\xi\rangle=1_{\D}$.
+
+\paragraph{A positive witness at every positive time.}
+Fix $s>0$, put $r=e^{-s}\in(0,1)$ and $Q_s=\theta_s(q)(0)$, and define
+\[
+ a_s=q\theta_s(q)q-\frac{1+r}{2}q.
+\]
+Then $a_s\in A$ and $a_s(0)=0$. At $x=s$ its coefficient of $q$ is
+\begin{align*}
+ d_s&=\cos^2(g(2s)-g(s))-\frac{1+r}{2}\\
+ &=\frac{r^3+(1-r^2)\sqrt{1+r^2}-r}{2}
+ =\frac{(1-r^2)(\sqrt{1+r^2}-r)}{2}>0.
+\end{align*}
+Here the angle-difference identity uses
+$\cos(2g(s))=r$, $\cos(2g(2s))=r^2$, and their positive sines.
+Consequently
+\[
+ \theta_s(a_s)(0)=d_s Q_s\ne0.
+\]
+Moreover $a_s$ is positive everywhere. For $x>0$,
+$g'(x)=1/(2\sqrt{e^{2x}-1})$ is positive and decreasing. Comparing
+its integrals on $[x,x+s]$ and $[0,s]$ gives
+$0\leq g(x+s)-g(x)\leq g(s)$. For $x\leq0$ the same bound follows
+from monotonicity and $g(x)=0$, and at the endpoints the increment is
+zero. Since $\cos^2$ decreases on $[0,\pi/4]$,
+\[
+ a_s(x)=\left(\cos^2(g(x+s)-g(x))-\cos^2g(s)\right)q\geq0.
+\]
+Strict positivity of $d_s$ proves $a_s\ne0$. At $s=\log2$,
+$d_s=3(\sqrt5-1)/16$, giving an exact radical witness.
+An intertwining map would send both $\pi(0)$ and $\pi(a_s)$ to the
+same value while their required images are $0$ and $d_s Q_s$.
+This proves the theorem.
+
+\section*{Antecedents and the finite-image obstruction}
+The point-localized clock and translated-unitary construction are
+established in Burgarth--Facchi--Hillier (BFH)
+\cite[Definition~4.1, Theorem~4.4, Step~2, equation~(11)]{bfh}.
+Finite time-dependent unitary dilations and their initial square-root
+singularities are treated by Dive--Mintert--Burgarth
+\cite[Appendix~B]{dmb}. Their first-derivative obstruction has a
+bounded-total-Hamiltonian formulation in \cite[Theorem~1]{ende}.
+The following elementary conditional-expectation version explains the
+connection; it is proved here rather than attributed to those papers
+as a fixed-GNS theorem.
+
+\begin{proposition}\label{prop:finite}
+For a point-norm continuous general unital dilation of a norm-continuous
+Markov semigroup on a finite-dimensional algebra $B$, if $\pi(A)$ is
+finite dimensional and $\ker\pi$ is invariant at every time, then the
+generator of the compressed semigroup is a *-derivation on $B$.
+\end{proposition}
+\begin{proof}
+Kernel invariance gives a continuous endomorphism semigroup $\beta_t$
+on $C=\pi(A)$. Finite dimension makes continuity operator-norm
+continuity. For small $h>0$, $S=\int_0^h\beta_u\,du$ is invertible
+because $S/h\to I$. The identity
+$\beta_tS=\int_t^{t+h}\beta_u\,du$ proves right differentiability
+at zero. Its generator $\delta$ is a *-derivation by differentiation
+of multiplicativity. The embedding $j=\pi i$ is faithful, and
+$\bar p(c)=\langle\xi,c\xi\rangle$ is a $B$-bimodule UCP map
+with $\bar p j=\mathrm{id}_B$. Thus, identifying $B$ with $j(B)$,
+\[
+ L(bc)=\bar p(\delta(bc))=\bar p(\delta(b))c+b\bar p(\delta(c))
+       =L(b)c+bL(c).
+\]
+Adjoints are preserved as well.
+\end{proof}
+
+In fact BFH's earlier explicit amplitude-damping clock already yields
+the negative generation-only conclusion as a short corollary. Its finite
+unitary path has angle
+$\operatorname{sgn}(x)\arccos(e^{-|x|/2})$, with finite endpoint limits.
+It therefore extends to $[-\infty,+\infty]$, where its translated
+cocycle is point-norm continuous. Restriction to the forward-generated
+observable algebra preserves the conditional expectation and the
+compression. Evaluation followed by finite bath compression gives a
+finite-dimensional GNS image. The decaying-level projection satisfies
+$T_t(q)=e^{-t}q$, whereas a derivation satisfies $qL(q)q=0$.
+Proposition~\ref{prop:finite} rules out invariance at all times.
+The generic strong continuity of BFH's Hilbert-space unitaries alone
+would not justify point-norm continuity on all $C_b(\R)$; the endpoint
+check for this explicit path is essential.
+
+Thus the general negative phenomenon is not a new clock-dilation
+mechanism. Theorem~\ref{thm:main} gives a small $M_2/\C^2$ realization
+and positive witnesses at every positive time. Bounded primary-source
+searches through 13 October 2026 found no publication explicitly stating
+the exact OWR fixed-GNS counterexample, but neither that search nor the
+explicit refinement certifies first priority. Full source locations,
+hashes and the prior-result deduction are in the verification package.
+
+\section*{Scope and reproducibility}
+This answers negatively the concrete forward-generation-only proposal
+in \cite{owr}. Failure of its first step refutes the proposed two-step
+conjunction. It also defeats any sufficient condition logically implied
+by forward generation alone. Useful stronger or incomparable minimality
+conditions, and extension after kernel invariance is separately imposed,
+remain outside the result. The related fixed-action question in
+\cite[Section~5]{ss} should be read with these same limits.
+
+The example is a general C*-dilation with a nonfaithful expectation.
+It is not strong: $p(a_s)=0$ but $p\theta_s(a_s)\ne0$. It is not a
+weak/corner dilation, and no normal von Neumann version or nonexistence
+of a different dilation of the same Markov semigroup is asserted.
+These categories are distinguished in \cite[Appendix~B(i)]{shalit}.
+
+The accompanying package contains this source and PDF, the frozen
+candidate, independent exact arithmetic checks, analytic audits,
+priority evidence and a hash-checked replay program. Finite computations
+supplement the all-real-time proof; they do not establish its continuous
+quantifiers. Hashes certify byte integrity, not mathematical truth.
+No third-party full texts are redistributed.
+
+\begin{thebibliography}{9}
+\bibitem{owr} M. Skeide, Some Problems, in \emph{Mini-Workshop:
+Product Systems and Independence in Quantum Dynamics}, Oberwolfach
+Reports \textbf{6} (2009), 493--548, especially 542--543.
+\href{https://doi.org/10.4171/OWR/2009/09}{doi:10.4171/OWR/2009/09}.
+\bibitem{bfh} D. Burgarth, P. Facchi and R. Hillier,
+Control of quantum noise: on the role of dilations,
+Ann. Henri Poincar\'e \textbf{24} (2023), 325--347.
+\href{https://doi.org/10.1007/s00023-022-01211-y}{doi:10.1007/s00023-022-01211-y};
+\href{https://arxiv.org/abs/2010.00279v2}{arXiv:2010.00279v2}.
+\bibitem{dmb} B. Dive, F. Mintert and D. Burgarth,
+Quantum simulations of dissipative dynamics: Time dependence instead of size,
+Phys. Rev. A \textbf{92} (2015), 032111.
+\href{https://doi.org/10.1103/PhysRevA.92.032111}{doi:10.1103/PhysRevA.92.032111}.
+\bibitem{ende} F. vom Ende, Quantum-Dynamical Semigroups and the
+Church of the Larger Hilbert Space, Open Syst. Inf. Dyn. \textbf{30}
+(2023), 2350003.
+\href{https://doi.org/10.1142/S1230161223500038}{doi:10.1142/S1230161223500038}.
+\bibitem{ss} M. Skeide and K. Sumesh, CP-H-extendable maps between
+Hilbert modules and CPH-semigroups, J. Math. Anal. Appl. \textbf{414}
+(2014), 886--913.
+\href{https://doi.org/10.1016/j.jmaa.2014.01.024}{doi:10.1016/j.jmaa.2014.01.024};
+\href{https://arxiv.org/abs/1210.7491v2}{arXiv:1210.7491v2}.
+\bibitem{shalit} O. M. Shalit and M. Skeide, CP-Semigroups and
+Dilations, Subproduct Systems and Superproduct Systems: The Multi-Parameter
+Case and Beyond, Dissertationes Math. \textbf{585} (2023).
+\href{https://doi.org/10.4064/dm823-5-2022}{doi:10.4064/dm823-5-2022};
+\href{https://arxiv.org/abs/2003.05166v3}{arXiv:2003.05166v3}.
+\end{thebibliography}
+\end{document}
