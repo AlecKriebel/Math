@@ -805,7 +805,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 794 | 5300014 / AMR-052-0014 | Non-equivalent compactifications of Blaschke-product space | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 795 | 5300056 / AMR-052-0056 | Bounded Jacobian cocycles and absolute continuity | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 796 | 5300062 / AMR-052-0062 | Smoothness of exponential-family parameter hairs | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
-| 797 | 30005418 / OWR-12697689-014 | Koszulness from the Kähler Package | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 797 | 30005418 / OWR-12697689-014 | Koszulness from the Kähler Package | 0.1003 | 5.5 | 3 | 2023 | unsolved | 5/5 |  |  |  |
 | 798 | 30005453 / OWR-12697708-006 | Unique Equilibria for Subcritical Reinforcement on Infinite Graphs | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 799 | 30005519 / OWR-13750332-001 | Real Subspaces in Zeros of Elementary Symmetric Polynomials | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 800 | 30005613 / OWR-14297736-021 | Dense Pure Point Spectrum on Quasi-Conical Domains | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
