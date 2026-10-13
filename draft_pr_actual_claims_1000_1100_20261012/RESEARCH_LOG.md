@@ -71,3 +71,11 @@ Independent priority reviewer froze REPORT.md and machine-readable evidence afte
 ## 2026-10-13T05:00:27.945019+00:00 — #1024 portable package checkpoint (program estimate 16%)
 
 The unrestricted negative theorem and all mandatory prior-credit corrections are adopted in the five-page research note and exact metadata. New portable kit passed39executions (9baselines,12actual-source faults,18runtime faults), complete output/exit contract exact in normal/-O/-OO. All11independent arithmetic predicates preserved by explicit-guard adaptation. Original27submittedfiles remain byte-identical. Public evidence index maps historical stages and omits third-party source bodies. Current PDF compiled without warnings; all5pages rendered/visually inspected. Fresh whole-package reviewer follows; no immutable upload, tracker append or #1024 PR action yet.
+
+## 2026-10-13T05:02:28.646450+00:00 — #1025 root priority adoption (program estimate16%)
+
+Root read full final priority report and primary central antecedent bodies. Adopted mixed proximity(CGST1986), hybrid partial minimization(THM2004) and n²ring lineage(Murota2002/2003) as mandatory global paper credit. No inspected exact full prior solution identified; worldwide priority remains unverified. New manuscript to frame explicit rational binary-input application using classical algorithms, preserving separate subtree conjecture and no strongly-poly/compact-formulation claim. #1024 fresh package round1 is running; publication cursor remains1024.
+
+## 2026-10-13T05:17:03.253465+00:00 — #1024 first package review clean; next fresh loop (program estimate16%)
+
+New independent reviewer rederived theorem and primary source scope, verified27Gitpins,108entrydeterministicarchive, all5PDFpages and39exactexecutions. Additional three outer-mode39replays, nine damaged-package controls, strictJSON challenges, cubic/quartic and finite-H1 boundary checks passed; ZERO actionable issues. Preserved unchanged authored review/receipts and added explicit current gate; NEWsecondreview follows. #1025sixpagepaper and portable24casekit are now complete candidate materials, independently reviewing; no publication ahead of1024. #1031all29authoredfiles pinned for next mathematical audit, not yet accepted.

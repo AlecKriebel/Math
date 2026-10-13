@@ -70,8 +70,14 @@ exhaustive absence proof.
 - [Original fixed contract](../expected/FINITE_CONTRACT.json),
   [independent baseline](../expected/verify_functor_identities.json),
   [intended independent fault reasons](../expected/INDEPENDENT_CONTROLS.json).
-- [Current review state](CURRENT_REVIEW_STATE.json): whole-package review
-  rounds are pending. No immutable publication acceptance is claimed yet.
+- [First new whole-package review](package_review_01/WHOLE_PACKAGE_REVIEW.md),
+  [verdict](package_review_01/VERDICT.json),
+  [unchanged copied records](PACKAGE_REVIEW_01_COPY.json). Render PNGs of our own
+  PDF and third-party raw bodies are omitted; QA receipts and source URL/hash
+  metadata are retained. These are stage-specific evidence, not portable-runner entry points.
+- [Current review state](CURRENT_REVIEW_STATE.json): first fresh review passed
+  with zero actionable issues; a NEW second review is pending. No immutable
+  publication acceptance is claimed yet.
 - [Paper](../research_note.pdf), [TeX](../research_note.tex),
   [scope and credit](../SUPPLEMENT.md), [metadata](../metadata.json),
   [inventory](../PACKAGE_MANIFEST.json).

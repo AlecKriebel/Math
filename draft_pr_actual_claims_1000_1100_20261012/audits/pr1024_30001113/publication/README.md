@@ -59,7 +59,8 @@ as the reproduction entry point. Stage-specific holds and counts are retained
 as history and are not current acceptance decisions.
 
 The note compiled successfully and all five pages were rendered and visually
-inspected. Fresh whole-package adversarial review gates remain pending in
+inspected. The first fresh whole-package adversarial review passed with zero
+actionable concerns. A NEW second review remains pending in
 [the current state](evidence/CURRENT_REVIEW_STATE.json). This candidate package
 is not yet approved for immutable publication. Third-party source bodies are
 not redistributed; public primary links and retrieved-byte hashes are provided.

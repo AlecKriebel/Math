@@ -92,6 +92,8 @@ rest on the proofs and established algorithms with checked interfaces.
 
 This does not claim a strongly polynomial complete algorithm, compact extended
 formulation, arbitrary unencoded real-oracle input model, facet classification,
-subtree-hull theorem or novelty. Independent priority is running. A concise
-paper, supporting package and fresh package review/fix loops remain required
-before publication and PR acceptance.
+subtree-hull theorem or novelty. Independent bounded priority is complete;
+classical-lineage corrections are adopted in the new six-page draft and exact
+metadata. The portable kit passed nine baseline and fifteen actual-source
+fault executions. Fresh package review/fix loops remain required before
+publication and PR acceptance.
