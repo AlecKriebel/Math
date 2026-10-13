@@ -47,6 +47,9 @@ pr = api("GET", "repos/AlecKriebel/Math/pulls/254")
 assert pr["state"] == "open" and pr["draft"]
 oldhead = pr["head"]["sha"]
 assert oldhead == "73efd1fb8ba2d3039ed6692b3ad1dfa1e3085755"
+livequeue = api("GET", "repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md?ref="+oldhead)
+liverows = [x for x in base64.b64decode(livequeue["content"]).decode().splitlines() if "5100020 / AMR-050-0020" in x]
+assert len(liverows)==1 and liverows[0].split("|")[8].strip()=="claimed_solved"
 base = api("GET", "repos/AlecKriebel/Math/git/ref/heads/main")["object"]["sha"]
 basetree = api("GET", "repos/AlecKriebel/Math/git/commits/" + base)["tree"]["sha"]
 queue = api("GET", "repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md?ref=" + base)
@@ -88,7 +91,11 @@ paths += [p for p in (HERE / "verification").rglob("*")
 for folder in HERE.glob("review_*"):
     fm = folder / "FINAL_AUDIT_MANIFEST.json"
     if fm.exists():
-        paths += [p for p in folder.glob("*") if p.is_file() and p.suffix in {".md", ".py", ".json"}]
+        review=json.loads(fm.read_text());paths.append(fm)
+        for pin in review['public_authored_files']:
+            item=folder/pin['path'];assert item.resolve().is_relative_to(folder.resolve())
+            assert item.stat().st_size==pin['bytes'] and hashlib.sha256(item.read_bytes()).hexdigest()==pin['sha256']
+            paths.append(item)
 paths += [PUB / "ZENODO_VERIFIED_PUBLICATION.json", PUB / "TRACKER_VERIFIED_APPEND.json"]
 for path in sorted(set(paths)):
     data = path.read_bytes()
