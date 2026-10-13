@@ -65,6 +65,14 @@ def main():
             if p.returncode:
                 raise RuntimeError(f"{script} failed:\n{p.stderr}")
             actual = json.loads(p.stdout)
+            if "generated_record" in job:
+                if script != "reviews/priority04_hib1996/checks.py":
+                    raise RuntimeError("Generated-record replay assigned to wrong job")
+                summary = json.loads(before[safe_path(job["stdout_record"]).as_posix()])
+                if actual != summary:
+                    raise RuntimeError(f"Replay summary mismatch: {script}")
+                generated = safe_path(job["generated_record"]).as_posix()
+                actual = json.loads((scratch / generated).read_text())
             wanted = json.loads(before[record])
             # This sole generated field is a source-check execution timestamp.
             # Mathematical values, counts, limits and all other fields must match.

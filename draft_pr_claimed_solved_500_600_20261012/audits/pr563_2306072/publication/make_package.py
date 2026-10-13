@@ -29,12 +29,13 @@ def main():
                  "JOBS.json", "SEALS.json"):
         add(name, PUB / name)
     add("metadata.json", PUB / "zenodo-deposit.json")
+    add("CURRENT_PRIORITY_ASSESSMENT.json", AUDIT / "CURRENT_PRIORITY_ASSESSMENT.json")
     original = AUDIT / "original"
     for p in sorted(original.rglob("*")):
         if p.is_file() and p.suffix in (".md", ".json", ".py"):
             add("original/" + p.relative_to(original).as_posix(), p)
     for family in ("analytic01", "quantitative01", "source01", "priority02",
-                   "priority03"):
+                   "priority03", "priority04_hib1996", "priority05_friedland1977"):
         folder = AUDIT / "reviews" / family
         for p in sorted(folder.iterdir()):
             if p.is_file() and (p.suffix in (".md", ".json", ".jsonl", ".py")
