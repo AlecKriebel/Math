@@ -52,13 +52,13 @@ def main():
         raise RuntimeError('PR state or expected head changed')
     old = snap['headRefOid']
     head_queue = subprocess.check_output(['git', 'show', old + ':' + QUEUE],
-                                         cwd=REPO, text=True)
+                                         cwd=REPO).decode('utf-8')
     if row_info(head_queue, pid)[1][8] != 'claimed_solved':
         raise RuntimeError('Exact-head status is no longer claimed_solved')
     git('fetch', '--no-tags', 'origin', 'main')
     base = git('rev-parse', 'origin/main')
     current = subprocess.check_output(['git', 'show', base + ':' + QUEUE],
-                                     cwd=REPO, text=True)
+                                     cwd=REPO).decode('utf-8')
     oldrow, cells = row_info(current, pid)
     if cells[8] not in ('queued', 'claimed_solved') or cells[12]:
         raise RuntimeError('Current main target has conflicting disposition/DOI')
@@ -66,7 +66,9 @@ def main():
     cells[9] = mapping['original_turns']
     cells[11] = mapping['findings']
     replacement = '| ' + ' | '.join(cells[1:-1]) + ' |'
-    if oldrow.endswith('\n'):
+    if oldrow.endswith('\r\n'):
+        replacement += '\r\n'
+    elif oldrow.endswith('\n'):
         replacement += '\n'
     updated = current.replace(oldrow, replacement, 1)
     if updated.replace(replacement, oldrow, 1) != current:

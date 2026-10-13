@@ -81,12 +81,13 @@ def main():
                 raise RuntimeError('Accepted core changed on main')
             if entry['repo_path'] in seen:
                 raise RuntimeError('Publication receipts may not modify accepted core')
-        current = subprocess.check_output(['git', 'show', base + ':' + QUEUE], cwd=REPO, text=True)
+        current = subprocess.check_output(['git', 'show', base + ':' + QUEUE], cwd=REPO).decode('utf-8')
         before, cells = row(current, pid)
         if cells[8] != 'claimed_solved' or cells[12] not in ('', doi):
             raise RuntimeError('Target status/DOI conflicts with accepted outcome')
         cells[11], cells[12] = mapping['findings'], doi
-        after = '| ' + ' | '.join(cells[1:-1]) + ' |' + ('\n' if before.endswith('\n') else '')
+        ending = '\r\n' if before.endswith('\r\n') else '\n' if before.endswith('\n') else ''
+        after = '| ' + ' | '.join(cells[1:-1]) + ' |' + ending
         updated = current.replace(before, after, 1)
         if updated.replace(after, before, 1) != current:
             raise RuntimeError('Queue changed outside target row')
