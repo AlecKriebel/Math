@@ -6,7 +6,7 @@ import base64, hashlib, json, subprocess
 HERE = Path(__file__).resolve().parent
 D = HERE.parent / "initial_review_20261013"
 ROOT = Path("/Users/alec/Documents/Math")
-OUT = HERE / "tmp/checkpoint-publication"
+OUT = HERE / ("tmp/checkpoint-publication-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S"))
 OUT.mkdir(parents=True, exist_ok=True)
 GH = "/opt/homebrew/Cellar/gh/2.85.0/bin/gh"
 count = 0
@@ -37,6 +37,8 @@ paths += [D / "priority_recent_adversary_01" / n for n in
 paths += [p for p in HERE.iterdir() if p.is_file() and p.suffix in
           {".md", ".py", ".json", ".tex", ".pdf", ".zip", ".txt"}]
 paths += [HERE / "LICENSE"]
+paths += [p for p in HERE.glob("review_*/*") if p.is_file()
+          and p.suffix in {".md", ".py", ".json"}]
 paths += [p for p in (HERE / "verification").rglob("*")
           if p.is_file() and "__pycache__" not in p.parts]
 pr = api("GET", "repos/AlecKriebel/Math/pulls/256")
@@ -62,8 +64,9 @@ for p in sorted(set(paths)):
                       "sha256": hashlib.sha256(data).hexdigest()})
 newtree = api("POST", "repos/AlecKriebel/Math/git/trees",
               {"base_tree": tree, "tree": entries})["sha"]
+percent = json.loads((HERE / "PACKAGE_STATE.json").read_text())["overall_completion_percent"]
 commit = api("POST", "repos/AlecKriebel/Math/git/commits",
-             {"message": "Checkpoint k307 priority audits and candidate preprint package",
+             {"message": "Checkpoint k307 candidate preprint and fresh adversarial review",
               "tree": newtree, "parents": [parent]})["sha"]
 published = api("PATCH", "repos/AlecKriebel/Math/git/refs/heads/main",
                 {"sha": commit, "force": False})
@@ -73,7 +76,7 @@ if current != commit:
     assert api("GET", "repos/AlecKriebel/Math/compare/" + commit + "..." + current)["status"] == "ahead"
 receipt = {"utc": datetime.now(timezone.utc).isoformat(), "commit": commit,
            "parent": parent, "readback_main": current, "owned_files": inventory,
-           "candidate_only": True, "overall_completion_percent": 65,
+           "candidate_only": True, "overall_completion_percent": percent,
            "Zenodo_publication": False, "PR_merge": False,
            "shared_checkout_and_index_mutations": 0}
 (HERE / "CANDIDATE_CHECKPOINT_RECEIPT.json").write_text(json.dumps(receipt, indent=2) + "\n")
