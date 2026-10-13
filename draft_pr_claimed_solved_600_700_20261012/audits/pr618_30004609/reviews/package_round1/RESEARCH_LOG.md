@@ -1,0 +1,6 @@
+# Whole-package adversarial review, round 1
+
+- 2026-10-13T04:02:00Z — Began a fresh read-only review of the final PDF, source, ZIP and deposit metadata. Dedicated review directory established. Previous PASS reports are objects to audit, not evidence of validity. Completion estimate: 5%.
+- 2026-10-13T04:04:00Z — Frozen reviewed-input hashes recorded; ZIP safely extracted after canonical-path, duplicate and symlink checks. All five PDF pages rendered and visually inspected. No clipping, missing glyphs or unreadable mathematics found. Completion estimate: 25%.
+- 2026-10-13T04:06:10Z — Independently retrieved OWR, DiPasquale, low-exponent v1/v3, DGT, quadratic-classification and Ferudun primary sources, plus current GitHub/Zenodo server metadata. Raw materials remain in ignored sources.private/. Completion estimate: 55%.
+- 2026-10-13T04:07:37Z — Strict complete package replay succeeded with the stipulated Python: all 65 hashed members, frozen candidate, fresh incidence/non-Fano and byte-identical algebra checks pass; original packet unchanged. Inspected nested author.zip (eight original authored files), found no third-party fulltext inventory or credential signatures. Original proof SHA matches frozen Git commit. Completion estimate: 70%.

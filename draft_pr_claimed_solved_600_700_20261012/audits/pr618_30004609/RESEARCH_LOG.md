@@ -17,3 +17,7 @@ Both independent families completed with no mandatory mathematical repairs. Root
 ## 2026-10-13T04:03:43.452149+00:00 — PR618 priority gate and research note
 
 Accepted the bounded priority audit with explicit attribution to the later exact Ferudun preprint and earlier tree/pruning/rank-three results. No universal first-priority or independent-development claim. Wrote the complete all-rank research note, current status override for frozen historical assertions, and an explicit allowlist package builder/portable exact replay. Mathematical gaps identified: none; final-package reviews and publication/integration remain. Best-guess completion: PR618 55%; shard 19%.
+
+## 2026-10-13T04:09:30.428449+00:00 — portable replay and merge preparation
+
+Root replay of the 66-member archive passed exact inventory, frozen original diagnostics, fresh incidence/non-Fano and fresh algebra byte comparisons. Inspected all five rendered PDF pages. First fresh whole-package adversary is auditing the frozen bytes. Prepared an existing-PR integration helper: temporary Git index on remote main, one target row only, immutable historical author.zip, unchanged proof/check code, current priority/publication overrides, no checkout/index/unrelated-file mutations. It is not run before clean review/publication. Best-guess completion: PR618 62%; shard 20%.
