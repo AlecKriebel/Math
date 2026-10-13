@@ -48,3 +48,9 @@ source-status packet with Shiga, Köhn and Leutwiler and a full final-title
 Bear–Smith author manuscript. Original frozen packets retain their historical
 inspection limits; the new dated audit is the current source/priority record.
 No first-resolution or current-worldwide-openness certification is claimed.
+
+The later punctured-disc priority addendum records a simple negative example
+deduced from older classical formulas, including the minimal-kernel
+classification on page63 of Kohn (1966). It distinguishes this deduction from
+a located historical resolution and from the smooth-annulus theorem. This
+addendum qualifies the broader historical context of the earlier audit.
