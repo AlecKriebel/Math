@@ -1,0 +1,404 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=26mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Nonmonotone Argument and Radial Angle of a Support Slit},
+ pdfauthor={Alec Kriebel},pdfsubject={Unrefereed AI-assisted research note}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\D}{\mathbb D}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\title{Nonmonotone Argument and Radial Angle of a Support Slit}
+\author{Alec Kriebel\\
+ \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give negative answers to the two slit-monotonicity questions of
+P.~L.~Duren recorded as Problem~6.72 in Hayman--Lingham.
+Every global maximizer of the real part of
+\(a_2+i10^{-24}(a_4-3a_3)\) in the normalized schlicht class
+omits an arc with nonmonotone continuous argument and nonmonotone radial
+angle, under both signed and ordinary unsigned conventions.
+The proof uses classical support-point geometry, a quantitative area-theorem
+estimate for the actual slit tip, and controlled inversion of the
+Schiffer differential. It establishes actual extremizers by compactness
+and does not assume that an arbitrary trajectory is an extremal slit.
+No formula for the maximizing function or uniqueness is required.
+This is an unrefereed AI-assisted research note.
+\end{abstract}
+
+\section{The question and precise statement}
+Let \(S\) consist of analytic injective maps on \(\D=\{|z|<1\}\)
+normalized by
+\[
+                 f(z)=z+\sum_{n\ge2}a_n(f)z^n.
+\]
+A support point maximizes \(\Rea L\) for a continuous complex-linear
+functional on \(H(\D)\) whose real part is nonconstant on \(S\).
+Duren's questions ask whether the omitted analytic arc of a support
+point must have monotone argument and monotone angle between its radius
+and tangent vectors \cite[Problem 6.72]{HL}. Monotone here allows either
+direction. Argument means a continuous real-valued lift; tangent vectors
+are directed outward toward infinity.
+
+\begin{theorem}\label{main}
+Set
+\[
+ \eps=10^{-24},\qquad \eta=10^{-12},\qquad
+ L(f)=a_2(f)+i\eps\bigl(a_4(f)-3a_3(f)\bigr).
+\]
+Global maximizers of \(\Rea L\) on \(S\) exist. Every such maximizer
+omits an arc \(\Gamma\) on which continuous argument, signed outward
+radial angle, and the ordinary nonnegative outward radial angle
+are all nonmonotone.
+\end{theorem}
+
+We use compactness of \(S\), the coefficient inequalities
+\(|a_n|\le n\) \cite{deBranges}, and the exterior area theorem.
+The classical support-slit theorem gives a single analytic omitted arc
+from a finite tip to infinity, with increasing modulus, satisfying
+\begin{equation}\label{schiffer}
+ Q(w)\,dw^2>0,\qquad
+ Q(w)=\frac{\Phi(w)}{w^2},\qquad
+ \Phi(w)=L\left(\frac{f^2}{f-w}\right).
+\end{equation}
+This is Duren's convention \cite[pp.352--355]{Duren}.
+Pfluger's original geometric proof is in
+\cite[\S\S4.1--4.5]{Pfluger}; his differential has the opposite sign.
+We use these established theorems with their stated hypotheses, and
+derive the needed local trajectory uniqueness below.
+
+\section{Uniform control of actual extremizers and their tips}
+Coefficient maps are continuous on \(H(\D)\) by Cauchy's formula.
+Compactness supplies a maximizer \(f\). The Koebe function
+\(k(z)=z/(1-z)^2\) and the identity give real functional values \(2\)
+and \(0\), so every maximizer is a genuine support point.
+Coefficient bounds imply
+\begin{equation}\label{a2}
+ \Rea a_2\ge2-13\eps,\qquad
+ |a_2-2|^2\le52\eps,\qquad
+ 0\le1-|a_2|^2/4\le13\eps.
+\end{equation}
+In particular \(|a_2-2|<8\eta\).
+
+The normalized odd root \(g(z)^2=f(z^2)\) is univalent.
+Indeed equality of two \(g\)-values implies equality of the squared
+inputs; oddness excludes the opposite pair except at zero.
+The exterior map
+\[
+ \frac1{g(1/\zeta)}
+ =\zeta-\frac{a_2}{2}\zeta^{-1}
+       +\left(\frac{3a_2^2}{8}-\frac{a_3}{2}\right)\zeta^{-3}+\cdots
+\]
+therefore satisfies the area theorem. It gives
+\[
+ |a_3-3a_2^2/4|\le2\sqrt{13/3}\,\eta<5\eta,\qquad
+ |a_3-3|<29\eta.
+\]
+With
+\[
+ A=2a_3+a_2^2-6a_2,\qquad B=3a_2-3,
+\]
+we obtain
+\begin{equation}\label{AB}
+             |A+2|<106\eta,\qquad |B-3|<24\eta.
+\end{equation}
+The first follows from
+\(A+2=2(a_3-3)+(a_2-2)(a_2-4)\) and \(|a_2-4|\le6\).
+All bounds hold uniformly for every maximizer.
+
+We next bound the \emph{actual} tip, without assuming continuity of
+tips under perturbation. Write
+\[
+ H(z)=\sqrt{z/f(z)}=1-\frac{a_2}{2}z+\sum_{n\ge2}c_nz^n,
+ \qquad H_0(z)=1-z.
+\]
+The same exterior map equals \(\zeta H(\zeta^{-2})\), so
+\[
+                  \sum_{n\ge2}(2n-1)|c_n|^2\le13\eps.
+\]
+For \(|z|\le r=2/3\), weighted Cauchy--Schwarz gives
+\begin{equation}\label{H}
+                 |H-H_0|<5\eta,\qquad |H'-H_0'|<10\eta.
+\end{equation}
+The two tail sums are bounded respectively by
+\[
+ \sum_{n\ge2}\frac{r^{2n}}{2n-1}
+ \le\frac{r^4}{3(1-r^2)}=\frac{16}{135}<\frac14,
+ \quad
+ \sum_{n\ge2}\frac{n^2r^{2n-2}}{2n-1}
+ \le(1-r^2)^{-2}-1=\frac{56}{25}<\frac94 .
+\]
+Together with \(\sqrt{13}<4\), these prove \eqref{H}.
+At \(z_*=-2/3\), \(H_0=5/3\) and
+\[
+ \frac32<|H|<\frac{11}{6},\qquad
+ |H+H_0|\le\frac{10}{3}+5\eta<\frac72.
+\]
+The identities \(f=z/H^2\) and \(f'=(H-2zH')/H^3\) give
+\begin{equation}\label{values}
+             |f(z_*)-k(z_*)|<2\eta,\qquad
+             |f'(z_*)-k'(z_*)|<8\eta .
+\end{equation}
+Explicitly, the reciprocal-square error is at most
+\((14/5)\eta\), before multiplication by \(|z_*|=2/3\).
+The derivative numerator differs from \(1/3\) by less than \(19\eta\),
+contributing less than \(6\eta\) after division by \(|H|^3\).
+The remaining contribution is less than \(2\eta\), since
+\[
+ |H^2+HH_0+H_0^2|<11,\qquad |H|^3H_0^3>125/8.
+\]
+
+For a conformal map \(f:\D\to\Omega\), Schwarz's lemma applied to the
+inverse on any inscribed disk about \(f(z)\) gives
+\[
+          \operatorname{dist}(f(z),\partial\Omega)
+          \le(1-|z|^2)|f'(z)|.
+\]
+The direction of this inequality is essential here.
+Using \(k(z_*)=-6/25,\ k'(z_*)=9/125\), \eqref{values} gives
+\begin{equation}\label{tip}
+ r_{\rm tip}=\min_{w\in\Gamma}|w|
+ \le |f(z_*)|+\frac59|f'(z_*)|
+ <\frac7{25}+7\eta<\frac3{10}.
+\end{equation}
+The omitted arc is closed, and its increasing modulus makes its
+minimum the finite tip.
+
+\section{The natural coordinate and the actual omitted subarc}
+Coefficient extraction through degree four in
+\(-f^2/w-f^3/w^2-f^4/w^3+\cdots\) gives exactly
+\begin{equation}\label{Q}
+ Q(w)=-\frac a{w^3}-\frac b{w^4}-\frac c{w^5},
+ \quad a=1+i\eps A,\quad b=i\eps B,\quad c=i\eps .
+\end{equation}
+For omitted \(w\), this is \eqref{schiffer}; elsewhere it is its
+meromorphic continuation. In particular \(a=L(f^2)\ne0\).
+Under the double cover \(w=-v^{-2}\),
+\[
+ Q(w)\,dw^2=4P(v)\,dv^2,\qquad P(v)=a-bv^2+cv^4.
+\]
+Let \(P_0(v)=-2-3v^2+v^4\). From \eqref{AB}, on \(|v|\le3\),
+\begin{equation}\label{P}
+ |P-1-i\eps P_0|\le322\eps\eta,\quad
+ |P_0|\le110,\quad |P-1|\le111\eps .
+\end{equation}
+Choose the analytic square root \(p=\sqrt P\) with positive real part
+and put \(G(v)=\int_0^v p(s)\,ds\).
+The identity \((p-1)(p+1)=P-1\) gives
+\[
+                 |p-1|\le111\eps,\qquad |G(v)-v|\le333\eps.
+\]
+For every \(|t|<2\), Rouché on \(|v|=3\) gives exactly one root
+of \(G(v)=t\). Since \(G'=p\ne0\), the roots patch to a holomorphic
+inverse \(V\), with
+\begin{equation}\label{V}
+ V(0)=0,\quad V'(0)=a^{-1/2},\quad
+ |V(t)-t|\le333\eps,\quad V'(t)=1/p(V(t)).
+\end{equation}
+Both \(G\) and \(V\) are odd.
+
+For \(0<t\le T=7/4\), define \(W(t)=-V(t)^{-2}\). It is regular,
+\begin{equation}\label{W}
+ Q(W)W'^2=4,\qquad W(t)\sim-a/t^2,\qquad
+ |W(t)|>25/81>3/10,
+\end{equation}
+because \(|V(t)|<9/5\).
+It has no self-intersection: equality of two \(W\)-values implies
+\(V(t_1)=\pm V(t_2)\), and the odd inverse relation forces
+\(t_1=\pm t_2\).
+
+We now identify \(W\) with the actual omitted slit.
+A distant tail of \(\Gamma\) lifts to \(v\to0\) in the double cover.
+The positive trajectory condition says \(\Im G\) is constant; its
+limiting value is zero. The two real \(G\)-rays project to the same
+geometric \(w\)-arc by oddness of \(V\). Thus \(W\) and \(\Gamma\)
+coincide near infinity.
+The set
+\[
+             E=\{t\in(0,T]:W(t)\in\Gamma\}
+\]
+is nonempty and relatively closed. At every member, \eqref{tip}
+and \eqref{W} exclude the actual tip, with radius gap \(7/810\).
+Moreover \(Q\) is finite and nonzero there. A local square-root
+primitive of \(Q\) makes positive trajectories horizontal lines,
+so local uniqueness makes \(E\) relatively open. Connectedness
+gives \(E=(0,T]\). No converse extremality criterion for arbitrary
+trajectories has been used.
+
+Put \(Z=tV'/V\). Independently of the fine expansion below,
+\begin{equation}\label{orientation}
+ Z(t)=\frac{G(V(t))/V(t)}{p(V(t))},\qquad
+ |Z(t)-1|\le\frac{222\eps}{1-111\eps}<223\eps
+                    \quad(0<t\le T).
+\end{equation}
+Here \(G(v)/v\) is the average of \(p\) on a radial segment.
+Thus \(\Rea Z>0\), and
+\(d\log|W|/dt=-2\Rea Z/t<0\): increasing \(t\) is inward,
+so \(-W'\) is the outward tangent.
+
+\section{Certified reversal of both angles}
+Define
+\[
+ d(t)=t+\tfrac12t^3-\tfrac1{10}t^5,\qquad
+ q(t)=d'(t)-d(t)/t=t^2-\tfrac25t^4 .
+\]
+We claim, uniformly for \(1\le t\le T\),
+\begin{equation}\label{errors}
+ |V-t-i\eps d(t)|\le487\eps\eta,\qquad
+ |V'-1-i\eps d'(t)|\le162\eps\eta .
+\end{equation}
+Here are explicit analytic remainder bounds.
+On the selected square-root branch,
+\[
+ \sqrt{1+x}-1-x/2=-\frac{x^2}{2(\sqrt{1+x}+1)^2}.
+\]
+Together with \eqref{P}, it gives
+\[
+ |p-1-(i\eps/2)P_0|\le162\eps\eta.
+\]
+Indeed the costs are \(161\eps\eta+(111^2/2)\eps^2\).
+Since \(P_0=-2d'\), integration gives
+\(G(v)=v-i\eps d(v)+R(v)\) with \(|R|\le486\eps\eta\).
+The bound \(|d'|\le55\) on \(|v|\le3\) and \eqref{V}
+make inversion cost at most \(18315\eps^2\), proving the first
+inequality in \eqref{errors}.
+
+Complex Taylor's integral remainder gives
+\[
+ |(1+x)^{-1/2}-1+x/2|\le2|x|^2\quad(|x|\le1/4).
+\]
+For example its second derivative has modulus at most
+\((3/4)(4/3)^{5/2}<4\).
+The coefficient uncertainty costs \(161\eps\eta\); the quadratic
+term costs \(24642\eps^2\). Since \(|P_0'|\le126\), replacing
+\(P_0(V)\) by \(P_0(t)\) costs \(20979\eps^2\).
+The total is at most \(162\eps\eta\), proving the second inequality.
+All absorptions are justified by
+\[
+ (111^2/2)\eta<1,\quad18315\eta<1,\quad45621\eta<1.
+\]
+
+Writing the two remainders in \eqref{errors} as \(R_V,R_{V'}\),
+subtraction before division gives the exact identity
+\[
+ V(Z-1-i\eps q)=tR_{V'}-R_V-i\eps q(V-t).
+\]
+On this interval \(|V|>1/2\) and \(|q|<7\). Hence
+\begin{equation}\label{Zerror}
+ |Z-1-i\eps q|
+ \le1541\eps\eta+4662\eps^2<2000\eps\eta .
+\end{equation}
+The exact values
+\[
+ q(1)=3/5,\qquad q(T)=-441/640,\qquad2000\eta=2\cdot10^{-9}
+\]
+therefore imply
+\[
+                  \Ima Z(1)>\eps/2,\qquad
+                  \Ima Z(T)<-\eps/2 .
+\]
+
+For a continuous argument \(\theta\) of \(W\),
+\[
+       \theta'(t)=\Ima(W'/W)=-2\Ima Z(t)/t.
+\]
+Its derivative is negative at \(1\) and positive at \(T\), both
+regular points of the actual slit. It cannot be monotone.
+The signed outward radial angle is
+\[
+              \beta(t)=\arg((-W')/W)=\arg Z(t).
+\]
+The branch is fixed by \eqref{orientation}; it tends to zero as
+\(t\downarrow0\), since \(V(t)=a^{-1/2}t+O(t^3)\).
+It is positive at \(1\) and negative at \(T\).
+A nondecreasing function with initial limit zero cannot take
+the negative value, and a nonincreasing one cannot take the positive
+value. Thus the signed angle is nonmonotone.
+Continuity gives a zero between these two points, whereas
+\(|\beta|\) is positive at both endpoints. The ordinary unsigned
+angle is therefore nonmonotone even on that compact subarc.
+An inward tangent gives its supplement, and the acute tangent-line
+interpretation gives \(|\beta|\); neither restores monotonicity.
+This proves Theorem~\ref{main}.
+
+\section{Attribution, scope and verification}
+The support-slit geometry and Schiffer method are classical.
+Duren \cite{Duren} and Brown \cite{Brown} established monotonicity
+for important special functionals; these results do not impose
+monotonicity for the mixed fourth-degree functional used here.
+Our argument controls every maximizer without a numerical extremal
+solver, a unique maximizing selection, or boundary-tip continuity.
+At \(\eps=0\) the sign reversal disappears.
+
+A change of tangent direction concerns \(\arg w'\), whereas the
+radius argument is \(\arg w\) and the radial angle is
+\(\arg w'-\arg w\). Zemyan's earlier tangent-waver construction
+\cite{Zemyan03} is consequently related prior work that must not be
+confused with either target conclusion solely from its abstract.
+His later abstract reports finitely many changes of direction
+\cite{Zemyan07}. Neither published abstract is a substitute for
+reading the complete construction or proof.
+
+The primary-source priority audit is bounded. Complete texts of
+several closely relevant leads remain unread at this draft stage,
+including the Zemyan papers and the Hibschweiler and Ma--Zhang
+papers identified in the accompanying audit. No historical-first
+priority or still-open-in-2026 assertion is made. This paragraph
+will be reconciled with the completed priority assessment before
+the package is frozen for its fresh publication reviews.
+
+The supporting archive will contain the manuscript source, immutable
+authored input, independent analytic and quantitative derivations,
+exact rational checks, source and priority receipts, and integrity
+manifests. Finite checks supplement the uniform analytic proofs;
+they are not formal certification of the classical theorems.
+AI tools were used extensively in development, writing, reproduction
+and adversarial verification. This preprint is unrefereed and has
+received no human peer review. Internal reviews are AI-assisted.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{HL}
+W.~K.~Hayman and E.~F.~Lingham, \emph{Research Problems in Function
+Theory (New Edition)}, arXiv:1809.07200v2 (2018), Problem~6.72, p.143.
+\href{https://arxiv.org/abs/1809.07200v2}{arXiv:1809.07200v2}.
+\bibitem{Duren}
+P.~L.~Duren, Arcs omitted by support points of univalent functions,
+\emph{Comment. Math. Helv.} \textbf{56} (1981), 352--365.
+\href{https://doi.org/10.1007/BF02566218}{doi:10.1007/BF02566218}.
+\bibitem{Pfluger}
+A.~Pfluger, Lineare Extremalprobleme bei schlichten Funktionen,
+\emph{Ann. Acad. Sci. Fenn. Ser. A I} \textbf{489} (1971), 1--32.
+\href{https://doi.org/10.5186/aasfm.1971.489}{doi:10.5186/aasfm.1971.489}.
+\bibitem{deBranges}
+L.~de~Branges, A proof of the Bieberbach conjecture,
+\emph{Acta Math.} \textbf{154} (1985), 137--152.
+\href{https://doi.org/10.1007/BF02392821}{doi:10.1007/BF02392821}.
+\bibitem{Brown}
+J.~E.~Brown, A method for investigating geometric properties of
+support points and applications,
+\emph{Trans. Amer. Math. Soc.} \textbf{287} (1985), 285--291.
+\href{https://doi.org/10.1090/S0002-9947-1985-0766220-8}{doi:10.1090/S0002-9947-1985-0766220-8}.
+\bibitem{Zemyan03}
+S.~M.~Zemyan, The existence of a waver point on the omitted arc of
+a support point of the class \(S\),
+\emph{Complex Variables Theory Appl.} \textbf{48} (2003), 791--796.
+\href{https://doi.org/10.1080/02781070310001599359}{doi:10.1080/02781070310001599359}.
+\bibitem{Zemyan07}
+S.~M.~Zemyan, On the behavior of the omitted arc of a support point
+of the class \(S\),
+\emph{Complex Variables Elliptic Equations} \textbf{52} (2007), 175--181.
+\href{https://doi.org/10.1080/17476930601065169}{doi:10.1080/17476930601065169}.
+\end{thebibliography}
+\smallskip\noindent\small
+Version 1.0 draft. Author: Alec Kriebel. License: CC BY 4.0.
+\end{document}
