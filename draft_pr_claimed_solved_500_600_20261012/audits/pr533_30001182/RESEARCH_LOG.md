@@ -1,0 +1,5 @@
+# PR533 / problem30001182 research log
+
+## Checkpoint 013 — 2026-10-13T04:48:20.261834+00:00
+
+Status-only live recheck524–533:9nonclaimed drafts skipped entirely,533soleeligible. Captured14authoredfiles at unchangedhead135911efff1ad14314f0506b0d5f158ba986426f; exactclaimed_solved, mainqueued. Independent operator/GNS, convex-extension/category, and source/priority families dispatched in separate folders. Root reproduced14944 exact original auxiliary controls and10manifest file checks with byte-identical results. Fresh primaryPDFs read: Liebscher pp540–541 and DKWProp8.7; hashes recorded. Main theorem appears an ambient-independence counterexample using downstairs all-witness moment collapse and upstairs pure folding; separate Laurent nonextension differs directionally and category-wise from Cstar extreme-state extension. These are hypotheses pending all reviewers. Root asked source reviewer to reconcile printed classical sentence and exact category/lifting scope. CurrentPR25%, shard33%; no acceptance, paper or publication action for533.
