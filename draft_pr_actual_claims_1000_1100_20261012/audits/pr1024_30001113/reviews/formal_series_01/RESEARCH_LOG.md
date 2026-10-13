@@ -1,0 +1,8 @@
+# Formal-series adversarial review log
+
+Scope: PR #1024, problem 30001113 / OWR-2492-004, submitted head `37b4b2fa44368f49e534e4982bd11f5667e0bf36`. This review checks family A independently: exact action and quotient, unrestricted formal invariant derivations, quotient module cohomology, and injectivity of tangent restriction. No other reviewer files have been read.
+
+- 2026-10-13 03:30:56 UTC / 2026-10-12 20:30:56 PDT — Started from `submitted/current/COUNTEREXAMPLE.md`. Target hypothesis is that the exact module `Theta^N` equals `y k[[y]] d/dy`, has vanishing first quotient cohomology, and hence gives injective restriction on the actual local deformation tangent space. Success requires an argument over complete formal power series, including the allowed nilpotent constant coordinate changes. Completion estimate: 10% of this assigned review.
+- 2026-10-13 03:32:22 UTC / 2026-10-12 20:32:22 PDT — Independently obtained primary arXiv source (Definitions 1.1–1.2, tangent setup, Proposition 2.4, Question 4.4 and Theorem 4.9), EMS OWR report, and the AIF 2009 paper. Derived a direct formal-series basis method to verify fixed rings without appealing to truncated jets or assumed extension degree. The source uses conjugation notation opposite to a common left-action convention; all elements of this particular group have order two, so the actions coincide. Completion estimate: 35%.
+
+No external individual or unrelated shard agent has been contacted. No GitHub mutation, shared queue mutation, or publication is authorized in this review; commits/pushes are left to the parent workflow.
