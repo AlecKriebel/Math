@@ -229,3 +229,6 @@ Universal FuchsConjecture2.7 all n>=3; corrected physical/intrinsic label chart 
 
 
 2026-10-12T16:55:56.891860+00:00 — PR177 mathematical counterexample verified across three adversarial families and ROOT reproduction. Old link-polynomial mechanisms and related Conway-coefficient negative deduction verified; earlier explicit arbitrary-ideal resolution not located in inspected bodies. Strong Stoimenow2010 full-text priority gap remains; human access question pending; separate2025 source comparison pending. Case40%,35/dated99=35.35% completed,19published, no new completion or publication. Original174–176 statuses skipped untouched. This scoped progress snapshot has no PR disposition, QUEUE/attempt or author-branch changes; actual native MAIN acceptance is recorded separately.
+
+
+2026-10-13T04:33:41.475702+00:00 — PR177 exact arbitrary-ideal negative result and packagev2 scientifically cleared after full2010source arrival and two fresh whole-package adversaries. Old polynomiality credited, no historical-firstness/new-method claim; separate labelled linking ideal undecided. Exact preprint https://doi.org/10.5281/zenodo.23331295 actually published and tracker 'Math Puzzles'!A70:D70 verified. Scoped original-head two-parent integration prepared; actual merge/completion not yet claimed. Case95%;35/dated99complete,19published unchanged pending acceptance.
