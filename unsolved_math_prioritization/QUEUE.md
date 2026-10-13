@@ -1765,7 +1765,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1754 | 3276 / OPG-1808 | Monochromatic reachability or rainbow triangles | 0.0585 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 1755 | 3326 / OPG-596 | Linear Hypergraphs with Dimension 3 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1756 | 3327 / OPG-172 | Consecutive non-orientable embedding obstructions | 0.0585 | 5.0 | 2 | unknown | queued | 0/5 |  |  |  |
-| 1757 | 5500059 / AMR-054-0059 | Most Circular Partition of a Square | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1757 | 5500059 / AMR-054-0059 | Most Circular Partition of a Square | 0.0585 | 5.0 | 3 | unknown | unsolved | ≥2 newly confirmed; lifetime total unknown |  | General optimum unresolved. Two newly documented audited passes; lifetime total unknown. Complete 100-cell rational partition gives G <= Gamma_fin < 1.296046, improving preserved 92-cell bound 1.298322; G=1.2886844618704579... . Every at-most-N finite convex partition has ratio > G+1/(192*25^(N+2)); gap vanishes with N. Unrestricted finite attainment and infinite equivalence remain unresolved. [First edition](attempts/5500059_circular_square_first_20261013/README.md); [second edition](attempts/5500059_circular_square_second_20261013/README.md). |  |
 | 1758 | 5500068 / AMR-054-0068 | Rolling a Die over a Labeled Board | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1759 | 8800049 / AMR-087-0049 | Detecting Jacobians via criteria and Deligne modules | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1760 | 2800905 / AMR-027-0905 | 10 Lectures and 42 Open Problems — Positive PCA tightness | 0.0584 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
