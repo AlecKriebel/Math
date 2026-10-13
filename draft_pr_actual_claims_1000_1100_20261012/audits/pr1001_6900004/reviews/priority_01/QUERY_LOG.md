@@ -93,10 +93,15 @@ Traced the original handbook reference to Chapter 15 in the 2018 handbook; only 
 
 No exact later solution was found. Literal, ambient, abstract, generic, and pure-condition comparisons remain explicitly separated in the verdict.
 
+53. `"Geometric Conditions of Rigidity in Nongeneric Settings" filetype:pdf -site:scribd.com`
+54. `"On stratifications for planar tensegrities with a small number of vertices" site:researchgate.net/publication`
+
+Final access follow-up recovered the DKS final journal body through its direct publisher PDF route. Repository HTML fetched through the shell yielded the handbook author draft URL, which was then retrieved and inspected. The KSS ResearchGate page explicitly provides no full text; no request was made. The attempted journal galley URL returned 404; the dLib raw-colon route still returned HTML.
+
 ## Body-inspection and citation tracing
 
 Title queries were supplemented by the reference lists in the DKS preprint, KSS preprint, 2018 problem paper, Panina preprint and published body, 2015/2021 Karpenkov paper, 2021 Karpenkov–Müller paper, 2022 multidimensional-framework paper, 2022 rational-tensegrity preprint, 2023 general-position-stresses preprint, 2025 minimally-rigid paper, and 2026 semi-discrete paper. Panina's actual published-body forward-citation listing led to General Position Stresses; its actual reference [20] confirms the Panina citation. Discovery-only database counts were not accepted as completeness guarantees.
 
 ## Bounded limits
 
-Search engine coverage is incomplete, terminology varies, and subscription/chapter access was incomplete. No MathSciNet/zbMATH all-citation completeness claim is made. No external interpretation was sought. The journal host failures, dLib redirects/HTML responses, and inaccessible chapter are retained as limitations. Empty searches do not certify originality.
+Search engine coverage is incomplete, terminology varies, and final KSS journal/final handbook chapter access was incomplete. The DKS direct final PDF and the handbook first draft were recovered; their initial web-route failures are resolved only to those precise levels. No MathSciNet/zbMATH all-citation completeness claim is made. No external interpretation was sought. Failed routes remain recorded, and empty searches do not certify originality.
