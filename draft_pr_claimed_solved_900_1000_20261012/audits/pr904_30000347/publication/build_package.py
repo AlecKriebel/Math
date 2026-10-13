@@ -17,7 +17,7 @@ REVIEW_FILES = {
                           'optimization_and_integrity_controls.py', 'optimization_and_integrity_results.json',
                           'replay_normal.json', 'replay_optimized.json', 'submitted_mutation_results.json'],
     'source_model_family': ['SOURCE_MODEL_REPORT.md', 'SOURCE_MODEL_MANIFEST.json'],
-    'priority_family': ['PRIORITY_AUDIT.md', 'SOURCE_MANIFEST.json'],
+    'priority_family': ['PRIORITY_AUDIT.md', 'SOURCE_MANIFEST.json', 'QUERY_LOG.md'],
 }
 
 def main():
