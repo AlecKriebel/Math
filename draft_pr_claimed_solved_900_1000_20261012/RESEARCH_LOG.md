@@ -11,3 +11,15 @@ Completion estimate: 0% of shard dispositions/publications; no mathematical resu
 101 draft PRs; 12 eligible claimed_solved PRs: 904, 905, 906, 908, 909, 919, 932, 938, 946, 948, 952, 967. Other 89 PRs skipped entirely after metadata/status gating. Gate uses the immutable PR-head QUEUE row, since unintegrated base-main entries remain queued. PR #927 read retry succeeded: unsolved, skipped. First active audit is #904, frozen head d67d11bcb7d1e730daf9be7555c75950d3484b5d.
 
 Completion estimate: 0% of eligible dispositions/publications; 100% initial inventory.
+
+## 2026-10-13T03:20:43.852611+00:00 — #904 proof/reproduction checkpoint
+
+Source-model and computation families pass; mathematical proof family and current priority final conclusions pending. Candidate research note has four pages, compiled and visually inspected. No result merged or published.
+
+Completion estimate: 4.6% of 12 eligible dispositions/publications (55% of first PR), 0 fully completed.
+
+## 2026-10-13T03:27:39.291594+00:00 — audit checkpoint 02
+
+#904 three mathematical gates PASS. Prior subdivision/attachment ingredients identified and credited globally in current publication sources. Current priority audit and fresh full-package reviews pending. No merge/deposit/tracker write yet.
+
+Completion estimate: 5% of eligible shard, 0 of12 fully complete.
