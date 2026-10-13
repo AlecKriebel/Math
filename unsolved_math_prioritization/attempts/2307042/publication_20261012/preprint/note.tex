@@ -1,0 +1,171 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\sech}{\operatorname{sech}}
+\title{A Martin kernel with isolated Harnack contact in an annulus}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{12 October 2026\\\small Version 1.0.0; unrefereed research note}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the annulus $1<|z|<e$, we exhibit a normalized minimal Martin kernel that is strictly below the envelope of normalized positive harmonic functions at every point of a punctured neighborhood of the base point. Four explicit positive harmonic competitors give a uniform first-order gap in every direction. The result disproves the extension to multiply connected domains of the equality-along-a-Green-line property in Hayman and Lingham's Problem 7.42, attributed to Arsove and Johnson. We give direct constructions of the Green and Martin kernels and a proof of minimality. The broader negative conclusion also has a simpler punctured-disc derivation from classical results; our theorem gives a smooth-annulus construction. OpenAI tools were used extensively in developing and independently checking the argument. This note has not undergone human peer review or formal proof-assistant verification.
+\end{abstract}
+
+\section{The question and the counterexample}
+For a plane Green domain $D$ and $a\in D$, define
+\[
+ H_a(z)=\sup\{h(z):h>0\text{ harmonic on }D,\ h(a)\leq1\}.
+\]
+A finite Harnack chain shows that $H_a(z)<\infty$ for every $z\in D$; also $H_a(a)=1$. In the disc centered at $a$, a normalized boundary Poisson kernel equals $H_a$ on the radius toward its pole. Problem 7.42 of Hayman and Lingham~\cite{HL} asks whether the corresponding property, equality along a Green line issuing from $a$ for each minimal Martin kernel, persists in multiply connected domains. We use this equality-along-the-line meaning, supplied by the disc example, rather than equality only at a single point. The latter holds automatically at $a$.
+
+\begin{theorem}\label{thm:main}
+Let $D=\{z\in\mathbb C:1<|z|<e\}$, $a=e^{1/2}$ and $\xi=-1$. The minimal Martin kernel $K_\xi$ at the inner-boundary point $\xi$, normalized by $K_\xi(a)=1$, satisfies
+\[
+ K_\xi(z)<H_a(z)\qquad(z\in U\setminus\{a\})
+\]
+for some neighborhood $U$ of $a$ in $D$.
+\end{theorem}
+
+Thus the kernel cannot equal the envelope along any nontrivial curve issuing from $a$, and in particular along a Green line. The theorem does not address isolated contact farther from $a$. A single such kernel in this smooth doubly connected Green domain negates the proposed universal extension.
+
+\section{The Green and Martin kernels}
+Write $z=e^{x+iy}$, where $0<x<1$ and $y$ is taken modulo $2\pi$. Harmonic functions on $D$ become periodic harmonic functions on this cylinder. The base point is $A=(1/2,0)$ and $\xi$ is $(0,\pi)$. For the infinite strip, the Poisson density on the side $x=0$, relative to its horizontal boundary coordinate, is
+\begin{equation}\label{eq:poisson}
+ p(x,t)=\frac{\sin(\pi x)}{2(\cosh(\pi t)-\cos(\pi x))}.
+\end{equation}
+Indeed the map $w=y+ix\mapsto e^{\pi w}$ sends the strip to the upper half-plane; transforming its Poisson density yields~\eqref{eq:poisson}. Periodize it and normalize:
+\begin{equation}\label{eq:kernel}
+ P(x,y)=\sum_{k\in\mathbb Z}p(x,y-\pi+2\pi k),
+ \qquad K(x,y)=\frac{P(x,y)}{P(A)}.
+\end{equation}
+Every term is positive. On compact subsets of the interior, each fixed finite order of derivatives has an exponentially summable bound in $|k|$. Consequently $P$ is smooth, positive, periodic and harmonic, and termwise differentiation is valid.
+
+We identify $K$ with the required Martin kernel directly. With $w=y+ix$ and $w'=\eta+is$, the strip Green function with logarithmic singularity $-\log|w-w'|$ is
+\begin{align}
+g_S(w,w')
+ &=\log\left|\frac{e^{\pi w}-e^{\pi\overline{w'}}}{e^{\pi w}-e^{\pi w'}}\right|\label{eq:green}\\
+ &=\frac12\log\frac{\cosh(\pi(y-\eta))-\cos(\pi(x+s))}{\cosh(\pi(y-\eta))-\cos(\pi(x-s))}.\nonumber
+\end{align}
+The numerator in the last ratio exceeds its denominator by $2\sin(\pi x)\sin(\pi s)$, so this function is positive in the strip and vanishes on both sides. Its periodization
+\[
+ g_C(w,w')=\sum_{k\in\mathbb Z}g_S(w,w'+2\pi k)
+\]
+converges locally with derivatives away from the pole by exponential decay in horizontal separation. It is periodic, has one logarithmic pole on the quotient cylinder and vanishes on its boundary. The maximum principle identifies it with the cylinder Green function.
+
+Differentiating~\eqref{eq:green} at $s=0$ gives
+\[
+ \left.\partial_s g_S(y+ix,\eta+is)\right|_{s=0}=2\pi p(x,y-\eta).
+\]
+The periodized series and its boundary derivatives converge uniformly when the first variable ranges over an interior compact set, $\eta$ is near $\pi$, and $s\geq0$ is small. For
+$P_\eta(x,y)=\sum_k p(x,y-\eta+2\pi k)$, Taylor expansion therefore gives
+\[
+ g_C(w,\eta+is)=2\pi s P_\eta(w)+O(s^2).
+\]
+Since $P_\pi(A)>0$, division by the same expression at $A$ shows
+\begin{equation}\label{eq:martin}
+ \frac{g_C(w,\eta+is)}{g_C(A,\eta+is)}\longrightarrow K(w)
+ \qquad\text{as }(\eta,s)\to(\pi,0),\quad s>0,
+\end{equation}
+locally uniformly in the interior. The expansion is uniform in $\eta$, so the approach need not be nontangential.
+
+To establish minimality, suppose $v$ is harmonic and $0\leq v\leq P$. Away from $(0,\pi)$, $P$ has continuous zero boundary values, and so does $v$. Near that point put $t=y-\pi$ and $r^2=x^2+t^2$. Expansion of~\eqref{eq:poisson}, with the other summands smooth and vanishing on $x=0$, gives
+\begin{equation}\label{eq:singularity}
+ P(x,\pi+t)=\frac{x}{\pi r^2}+O(x),
+\end{equation}
+uniformly as $r\to0$ in the half-disc. Odd reflection of $v$ across $x=0$ is harmonic in a punctured disc and has size $O(1/r)$. The single-valued real harmonic Laurent expansion then allows only a logarithmic term, degree-one singular terms and a regular harmonic part: taking circle Fourier coefficients excludes all negative powers of degree at least two. Oddness eliminates the logarithmic and tangential singular terms. Hence
+\[
+ v(x,\pi+t)=B\frac{x}{r^2}+v_0(x,t),
+\]
+where $v_0$ is harmonic across the origin and odd in $x$. Along $t=0$, domination and~\eqref{eq:singularity} give $0\leq B\leq1/\pi$. The difference $v-\pi BP$ has its singularity canceled and extends continuously with value zero at every point of the compact annular boundary. The maximum principle gives $v=\pi BP$. Thus $P$ is minimal. Together with~\eqref{eq:martin}, this proves that $K$ is the normalized minimal Martin kernel $K_\xi$.
+
+\section{An all-direction competitor gap}
+Set
+\[
+ q_k=\sech((2k-1)\pi^2),\qquad
+ S_1=\sum_kq_k,\qquad S_2=\sum_kq_k^2.
+\]
+At $A$, direct differentiation of~\eqref{eq:poisson} and pairing $k$ with $1-k$ give
+\[
+ P(A)=\tfrac12S_1,\qquad P_x(A)=-\tfrac\pi2S_2,
+ \qquad P_y(A)=0.
+\]
+It follows that
+\begin{equation}\label{eq:c}
+ \nabla K(A)=(-c,0),\qquad c=\pi S_2/S_1.
+\end{equation}
+The ratio $S_2/S_1$ is a positive weighted mean of numbers at most $\sech(\pi^2)$. Using $3<\pi<4$ and $\cosh(\pi^2)>1+\pi^4/2>83/2$, we obtain the exact bound
+\begin{equation}\label{eq:cbound}
+ 0<c\leq\pi\sech(\pi^2)<\frac8{83}<\frac1{10}.
+\end{equation}
+No numerical truncation is used here.
+
+Let $b=1/(2\cosh(1/2))$ and define four competitors
+\begin{align*}
+ h_{x,\pm}(x,y)&=1\pm(x-1/2),\\
+ h_{y,\pm}(x,y)&=1\pm b\sin y\cosh(x-1/2).
+\end{align*}
+They are periodic and harmonic, equal one at $A$, and are positive throughout the cylinder: the first pair lies between $1/2$ and $3/2$, and the second pair is at least $1/2$. Thus each is admissible for $H_a$. Their gradients at $A$ are $(\pm1,0)$ and $(0,\pm b)$. The series for $\cosh(1/2)$ gives
+\[
+ \cosh(1/2)\leq\sum_{n\geq0}(1/4)^n=4/3<2,
+ \qquad b>1/4.
+\]
+For $d=(u,v)\ne0$, write $\rho=|d|$ and $M=\max\{|u|,b|v|\}$. Equations~\eqref{eq:c}--\eqref{eq:cbound} give
+\begin{align*}
+ \max_j (\nabla h_j(A)-\nabla K(A))\cdot d
+ &=M+cu\geq(1-c)M,\\
+ M&\geq\tfrac12(|u|+b|v|)
+ \geq\tfrac b2(|u|+|v|)>\rho/8.
+\end{align*}
+Consequently
+\begin{equation}\label{eq:gap}
+ \max_j (\nabla h_j(A)-\nabla K(A))\cdot d
+ >\frac{75}{664}\rho>\rho/10.
+\end{equation}
+This is a uniform bound over all real directions; it is not a sampled inequality.
+
+The finite family $h_j-K$ is smooth near $A$ and vanishes at $A$. On a sufficiently small closed coordinate disc, Taylor's theorem supplies a common constant $C_0\geq1$ with remainders bounded by $C_0\rho^2$. By~\eqref{eq:gap}, for $0<\rho<\min\{r_0,1/(20C_0)\}$ we have
+\[
+ \max_j h_j(A+d)-K(A+d)>\rho/10-C_0\rho^2>0.
+\]
+Since $H_a\geq\max_jh_j$, this proves Theorem~\ref{thm:main}. No smoothness of the envelope is assumed. A curve carrying equality and having non-base points arbitrarily close to $a$ would contradict the theorem, which yields the stated negative answer for Green lines.
+
+\section{Attribution, scope and verification}
+The question is Problem 7.42 in the inspected 2018 version of~\cite{HL}, printed pages 173--174. Its update reports no progress known to the editors then; this does not certify current worldwide openness. The strip kernels, conformal coordinates, reflection and maximum principle are classical. This note gives an explicit counterexample in a smooth annulus with two nondegenerate boundary components.
+
+Related metric work includes Herron~\cite{Herron}, Bear and Smith~\cite{BS}, and Shiga~\cite{Shiga}. Shiga gives a Martin-kernel formulation of Harnack distance and equality results with the hyperbolic metric. Such symmetric metric statements do not determine contact of each prescribed kernel with the one-sided envelope used here. The accompanying dated priority audit records inspected sources and full-text gaps. No first historical resolution is claimed; failure to identify a predecessor is not proof of priority.
+
+For domains with a polar puncture, a negative example follows by an elementary deduction from classical positive-harmonic representations. K\"ohn~\cite{Kohn}, p.~63, identifies the minimal functions on the punctured disc as disc Poisson kernels and $-\log|z|$; see also~\cite[Proposition~2.6]{BS}. At $a=1/2$, the normalized kernel with pole $-1$ has gradient strictly inside the triangle spanned by the gradients of the normalized kernels with poles $\pm i$ and the normalized logarithmic function. A common Taylor remainder gives local isolation; the supplement provides the calculation and its scope. This deduction neither establishes prior recognition of the Green-line consequence nor gives the smooth-annulus theorem.
+
+The supplement contains authored proof source, independent AI reviews and reproducibility checks. The analytic argument proves the theorem; integrity and numerical checks do not replace it. OpenAI tools were used extensively in solving, drafting and adversarial verification. This preprint is unrefereed, without completed human peer review or proof-assistant certification.
+
+\clearpage
+\begin{thebibliography}{9}
+\small\raggedright
+\bibitem{HL} W. K. Hayman and E. F. Lingham,
+\emph{Research Problems in Function Theory (New Edition)},
+arXiv:1809.07200v2 (2018), Problem 7.42 and Update 7.42, pp. 173--174.
+\href{https://arxiv.org/abs/1809.07200v2}{arXiv:1809.07200v2}.
+\bibitem{Herron} D. A. Herron,
+The Harnack and other conformally invariant metrics,
+\emph{Kodai Math. J.} \textbf{10} (1987), 9--19.
+\href{https://doi.org/10.2996/kmj/1138037356}{doi:10.2996/kmj/1138037356}.
+\bibitem{BS} H. S. Bear and W. Smith,
+A tale of two conformally invariant metrics,
+\emph{J. Math. Anal. Appl.} \textbf{318} (2006), 498--506.
+\href{https://doi.org/10.1016/j.jmaa.2005.05.065}{doi:10.1016/j.jmaa.2005.05.065}.
+The Proposition~2.6 locator is to the \href{https://math.hawaii.edu/~wayne/mathpapers/harnack.pdf}{inspected author manuscript}, dated 23 May 2005.
+\bibitem{Shiga} H. Shiga,
+Conformal invariants defined by harmonic functions on Riemann surfaces,
+\emph{J. Math. Soc. Japan} \textbf{68} (2016), 441--458.
+\href{https://doi.org/10.2969/jmsj/06810441}{doi:10.2969/jmsj/06810441}.
+\bibitem{Kohn} J. K\"ohn,
+Die Harnacksche Metrik in der Theorie der harmonischen Funktionen,
+\emph{Math. Z.} \textbf{91} (1966), 50--64, especially p.~63.
+\href{https://doi.org/10.1007/BF01113851}{doi:10.1007/BF01113851}.
+\end{thebibliography}
+\end{document}
