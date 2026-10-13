@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = Path("/Users/alec/Documents/Math")
 D = HERE.parent / "initial_review_20261013"
 PUB = HERE.parent / "publication"
-OUT = PUB / "native-pr-integration"
+OUT = PUB / ("native-pr-integration-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ"))
 OUT.mkdir(parents=True, exist_ok=True)
 GH = "/opt/homebrew/Cellar/gh/2.85.0/bin/gh"
 sequence = 0
