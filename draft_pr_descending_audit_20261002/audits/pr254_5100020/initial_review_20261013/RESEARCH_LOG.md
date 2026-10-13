@@ -1,0 +1,13 @@
+# PR254 /5100020 research log
+
+2026-10-13T05:05:07.386650+00:00 — 5% complete. Authenticated live open draft head and exactly claimed_solved QUEUE row. Downloaded 23 native source files without mutation. No mathematical or priority acceptance yet. Primitive odd-period origin-pedal/antipedal signed-area product is the intake hypothesis.
+
+2026-10-13T05:09:43.825145+00:00 — PR254 mathematical-audit progress20%. Four original programs pass with byte-identical receipts (30638 exact /21116 diagnostic controls). Whole proof and historical review read; two source tables visually match; all three primary hashes verify. Root reconstruction finds no gap; two fresh distinct families remain independent/running. Priority and any publication work pending.
+
+2026-10-13T05:18:30.218074+00:00 — PR254 /5100020:40% complete. Mathematical/source PASS, no repair, after full root read of both fresh reports/derivations/scripts and all-original/fresh reproductions. Final Cartesian302 exact checker independently replayed after seven added canonical identities; earlier295 result retained. Exact N3 and excluded N4 certificates match. Two independent priority families launched; no preprint/publication clearance yet. Overall goal active/incomplete.
+
+2026-10-13T05:23:34.178744+00:00 — Continued goal turn. Previous turn classified as progress: verified priority repair/native main publication for PR255 and full mathematical acceptance/publication of PR254 audit checkpoint40%. Live PR254 remains open/draft at its authenticated original claimed_solved head. Both priority agent handles revalidated running; no re-launch. Strongest current result remains math PASS; recent/classical priority gates continue.
+
+2026-10-13T05:25:48.363391+00:00 — Priority-audit progress45%. A classical reviewer identified established2003 cyclic elliptic master identities and generalized Landen trace formulas. Root read their actual primary equations/assumptions and accepts required methodological credit; no earlier exact billiard application/covering proof found yet. Mathematical acceptance unchanged; paper gate remains pending independent final priority reports.
+
+2026-10-13T05:38:47.301886+00:00 — PR254 /5100020:55% complete. Root accepts both bounded priority audits after full report/ledger/source-component reads and independent source/hash/construction checks. No earlier exact/covering proof found; no status repair. Explicit2003 cyclic/Landen and prior204 pedal credits required. Prepare note; two fresh sequential manuscript audits and publication/tracker/native-merge gates remain. No worldwide-firstness claim.

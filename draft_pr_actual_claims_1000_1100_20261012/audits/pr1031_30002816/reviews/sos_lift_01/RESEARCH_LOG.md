@@ -1,0 +1,5 @@
+# Independent SOS/source audit log
+
+- 2026-10-13T05:19:24.203768+00:00: Started independent family B; claim treated as a hypothesis. Historical acceptance and other-family results were not read. Geometry bridge is a conditional input pending the distinct family audit. Completion estimate: 5%.
+- 2026-10-13T05:20:49.894430+00:00: Fresh downloads match the submitted SHA-256 pins for OWR, Harvey-Lawson, and the published Fawzi PDF. Visually inspected OWR p.709, HL p.68, Fawzi p.1321. Universal OWR quantifier and arbitrary projected Hermitian-LMI scope verified; no other-family findings read. Completion estimate: 35%.
+- 2026-10-13T05:26:40.945093+00:00: Independently derived the compact first-moment lift, strict-support separation with rational perturbation, positive normalization, and affine-SOS/pointwise-completion equivalence. Eight exact controlled checks pass, including a six-point degree-bound counterexample and a constituent Choi polynomial check. A preliminary handwritten expected coefficient in the control expansion was corrected after the exact test rejected it; this was not a submitted-proof discrepancy. Completion estimate: 75%.

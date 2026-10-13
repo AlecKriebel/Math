@@ -1,0 +1,9 @@
+# Acceptance boundary
+
+Accept the current authored mathematical audit as scoped partial progress, with its clarifications. The target remains unresolved after five approaches. Neither general proof nor target counterexample is claimed. The accepted packet is byte-identical to the reviewed 19-file derivative.
+
+Preserve every conditional hypothesis: local finite-Taylor separation is generic local full rank, not global finite fibres; polynomial boundary growth, normality and an effective Cartier divisor remain assumptions; the finite-extension bridge starts with whole-space meromorphic functions and proper generically finite evaluation. Source-interface and proof-scope guards document these boundaries without proving source theorems. The entire infinite exponential-trace tail is established in the written calculation, not by its finite tested prefix.
+
+Fresh positive runs use normal, -O and -OO with isolation, no site imports, no bytecode and actual UID/EUID 1000. Their complete raw outputs, recursive exact JSON types, expected test identities and counts are fixed. No empty, skipped or expected-failure result can count as a positive success. Intended semantic rejections are recorded separately from integrity, schema, output-comparison and injected-failure controls. Hostile imports, changed details, extra output, nested bool/int substitutions and wrong interpreter mode are tested.
+
+Historical audit/source receipts are preserved and labeled historical by README.md. This publication stage does not replay the historical harness, excluded source bodies, original report, historical patch application, new literature search or dataset; formal proof-assistant verification is also NOT_RUN. The final manifest binds all delivered acceptance and pre-seal receipts, while final external receipts remain outside the inventory.

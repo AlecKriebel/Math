@@ -1,0 +1,131 @@
+{
+  "review": "PR810 problem2307042 sealed preprint package round 1",
+  "timestamp_utc": "2026-10-13T03:44:03.137294+00:00",
+  "completion_percent": 100,
+  "verdict": "REQUIRES_REPAIRABLE_PACKAGE_FIXES; MATHEMATICS_ACCEPTED_WITH_STATED_SCOPE",
+  "repair_required": true,
+  "mathematical_issues": [],
+  "priority_issues": [],
+  "framing_issues": [],
+  "issues": [
+    {
+      "id": "PKG-01",
+      "severity": "medium",
+      "category": "reproducibility",
+      "files": [
+        "preprint/build_package.py:15",
+        "preprint/verification.zip",
+        "preprint/README.md:19"
+      ],
+      "finding": "The public verification archive contains preprint/build_package.py but does not contain preprint/supplement_selection.json. main() unconditionally reads this absent dependency before doing any work, so the packaged assembly program cannot be run from a clean public extraction. The selected list is a sealed preparation input but is omitted by PUBLIC and not separately delivered by the upload kit.",
+      "evidence": "BUILD_ASSEMBLY_FAILURE.txt gives FileNotFoundError for extracted/preprint/supplement_selection.json. In a disposable copy, restoring only this selection file and the separately supplied PDF makes build_package.py reproduce the currently sealed verification.zip byte-for-byte (ASSEMBLY_DEPENDENCY_PROBE.json).",
+      "specific_fix": "Include supplement_selection.json in PUBLIC and the authored archive manifest, keep its chosen entries confined to delivered authored inputs, document the public extraction layout and assembly command, and rebuild/reseal verification.zip, deposit and upload kit. Preserve the immutable historical source archives."
+    },
+    {
+      "id": "PKG-02",
+      "severity": "medium",
+      "category": "build_instructions",
+      "files": [
+        "preprint/README.md:12"
+      ],
+      "finding": "The documented Tectonic command assumes output/pdf already exists. That directory is absent from the public verification archive, and the separately uploaded PDF has another top-level name. A clean reader following the documented command gets an output-directory error.",
+      "evidence": "tex_build_probe/build_stderr.txt: output directory output/pdf does not exist. After mkdir -p output/pdf, an isolated cached rebuild succeeds, has five pages, and its extracted layout text equals the sealed PDF text.",
+      "specific_fix": "Add mkdir -p output/pdf before the compile command, state that commands run inside the extracted preprint folder, and document where the separately supplied PDF belongs if rebuilding the upload kit. Rebuild the changed README into the supplement and kit."
+    },
+    {
+      "id": "DOC-01",
+      "severity": "low",
+      "category": "document_consistency",
+      "files": [
+        "preprint/README.md:5",
+        "preprint/output/pdf/note.pdf"
+      ],
+      "finding": "README calls the research note four-page, but the sealed output is five pages; the two final bibliography entries occupy page 5.",
+      "evidence": "pdfinfo and visual inspection of all five pages, plus isolated rebuild yielding five pages.",
+      "specific_fix": "Remove the hard-coded page count or say five-page; alternatively revise pagination while preserving readable formulas, then inspect/reseal the resulting PDF and update all descriptions consistently."
+    }
+  ],
+  "reviewed_seal": "PACKAGE_SEAL_R1.json",
+  "exact_reviewed_sealed_hashes": [
+    {
+      "path": "preprint/note.tex",
+      "actual_bytes": 11690,
+      "actual_sha256": "e03d7fc0cdf5ac27fe5913b2717a85fe912e74a7715be0f364e5b45534d49f10",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/output/pdf/note.pdf",
+      "actual_bytes": 63585,
+      "actual_sha256": "f02f409cf205c53e14f20977240173a71049aee000985ffbf61896629d7452d4",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/README.md",
+      "actual_bytes": 2095,
+      "actual_sha256": "c85d6186506b8ee668e14044a0f35013306518fccf55b070240bea9976c34734",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/build_package.py",
+      "actual_bytes": 3689,
+      "actual_sha256": "1040068deca315f0f6e303f0d21bd29b346885d44e47b9665a7879f509e0b366",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/supplement_selection.json",
+      "actual_bytes": 3490,
+      "actual_sha256": "f4975c860becd1ad63b17c8ced13a27eba268ee7f73fd6cbfafd3b40c86a46d1",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/verification.zip",
+      "actual_bytes": 177810,
+      "actual_sha256": "0bdb8b2be33e6434f47d502bccdce4cb8e72e2f1c2d28ca4c7e34ae1614295f5",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/zenodo-metadata.json",
+      "actual_bytes": 2674,
+      "actual_sha256": "865c4dfe641369fb6e3a4c696912631ed826998b0c1c45d0a3cbe19a41160f56",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/zenodo-deposit.json",
+      "actual_bytes": 2972,
+      "actual_sha256": "6a8586fa1c08f7b9d07a5e463e0c7a6ad6f2c0ba9679e1c3666b3098f40fd745",
+      "matches_seal": true
+    },
+    {
+      "path": "preprint/zenodo-upload-kit.zip",
+      "actual_bytes": 227180,
+      "actual_sha256": "0886334164a2d9a108f29d60177816f98014927fc69323a693cc5e77292ce35a",
+      "matches_seal": true
+    }
+  ],
+  "sealed_inputs_unchanged_at_end": true,
+  "complete_supplement_hash_inventory": "AUTHORED_SUPPLEMENT_REVIEWED_HASHES.json",
+  "independence": {
+    "mode": "independent reconstruction with inherited conversation context; not blind",
+    "qualification": "Earlier audit summaries/conclusions may have been inherited. Inputs were freshly hashed before opening earlier reviewer documents locally; the initial derivation and source check were recorded before opening those files. Prior conclusions are not claimed wholly unavailable.",
+    "initial_materials": "sealed note.tex, authored PROOF/SOURCE_STATUS/CHECKS, explicit claim criteria and live primary question",
+    "later_materials": "all packaged earlier reviews, integrity/provenance metadata, dated priority audit and reproducibility code",
+    "contact": "No individual or other project agent contacted; no Git/ref/index/shared-input mutations or publication performed."
+  },
+  "strongest_verified_result": "The normalized minimal Martin kernel of 1<|z|<e at inner-boundary point -1, normalized at exp(1/2), is below the positive-harmonic normalized envelope at every nonbase point in some neighborhood. The explicit Green ratio limit, minimality, exact full-series gradient bound, globally admissible four competitors, uniform all-direction margin and common Taylor remainder establish the theorem analytically, negating the source equality-along-a-Green-line extension in the expressly stated sense.",
+  "remaining_gaps": [
+    "Repair the missing archive assembly input and clean build instructions; make page-count descriptions consistent; rebuild/reseal and obtain new fresh package reviews.",
+    "No contact statement outside the local neighborhood is proved or claimed.",
+    "Historical first priority/current worldwide openness are not certified; bounded source gaps remain and are disclosed.",
+    "Unrefereed model-assisted mathematics; no completed human peer review or formal proof-assistant verification."
+  ],
+  "verification": {
+    "sealed_hashes": "all nine match before review and again at completion",
+    "pdf": "five pages visually inspected, all content legible, no clipping/overlap; isolated source rebuild after output directory creation yields identical extracted layout text",
+    "archive": "59-member closed outer inventory and all hashes verified; 6/12/7 nested frozen member inventories checked and equal delivered extractions; all related manifests and 30 JSON files checked",
+    "executables": "all integrity helpers pass in normal and optimized Python; packaged numerical diagnostics pass in an isolated copy; fresh unrelated numerical Poisson/Fourier and boundary-mass checks pass",
+    "numerical_limits": "image and Fourier truncation formulas are conservative for their checked parameter ranges; Decimal/float arithmetic is not interval certified. The 1e-90 slack and finite meshes are diagnostic tolerances, not validated rounding or universal proof. The exact all-series analytic margin does not depend on them.",
+    "metadata": "standalone metadata, local deposit metadata and upload-kit metadata exactly agree; kit PDF and supporting archive match sealed originals; title/creator/ORCID/version/date/license/reference/disclosure/scope fields consistent",
+    "provenance": "historical pending/no-publication labels in immutable source packets are accurately identified as historical; prepublication stage claims are not false publication receipts",
+    "excluded_material": "public inventories contain authored source, bounded metadata, reviews and code; no copied primary PDF/scans/raw source extraction, credentials or private coordination content found. Own primary_sources and rendered source images are reviewer working copies and must remain excluded from public selection."
+  }
+}

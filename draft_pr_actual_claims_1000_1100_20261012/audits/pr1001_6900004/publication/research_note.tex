@@ -1,0 +1,180 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sg}{\mathcal S}
+\title{Full stress stratifications determine a labelled graph}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{12 October 2026\quad (research note)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a simple labelled graph, consider the full configuration space, including
+vertex collisions, partitioned into connected components of coordinate-sign
+equivalence classes of self-stress spaces. We prove that two graphs induce
+identical partitions precisely when their edge sets agree. More explicitly, an
+edge is recovered by asking whether its collision diagonal is a union of strata.
+This answers the literal equality formulation of Karpenkov's Problem~4.
+The proof combines the known singleton-support collision criterion with an
+explicit positive diagonal transport along a collinear path. The comparison
+convention is essential: nonisomorphic trees can have ambient-linearly equivalent
+stratifications.
+\end{abstract}
+
+\section{The full partition and its reconstruction}
+Fix integers $n,d\geq1$. A graph below is simple and has the common labelled
+vertex set $[n]$; unused vertices are isolated. Its configuration space is
+$X=(\R^d)^n$. For $P=(p_1,\ldots,p_n)$ and a graph $G$, put
+\[
+ W_G(P)=\left\{w\in\R^{E(G)}:
+ \sum_{j:\{i,j\}\in E(G)}w_{ij}(p_j-p_i)=0\text{ for every }i\right\}.
+\]
+There is one real coordinate per unordered edge, so $w_{ij}=w_{ji}$.
+Two configurations for the \emph{same} graph are equivalent when a homeomorphism
+between their stress spaces preserves the sign of every edge coordinate,
+including zero. Let $\Sg_d(G)$ be the partition of $X$ into connected components
+of these equivalence classes. We retain the entire Cartesian space: collisions,
+self-intersections and deficient affine spans are allowed. These are the
+full-space conventions of \cite{DKS,Karpenkov}.
+
+Equality of partitions means equality as collections of subsets of this
+\emph{fixed labelled space}. We do not directly compare stress spaces belonging
+to different graphs. Write
+$\Delta_{ij}=\{P\in X:p_i=p_j\}$ for a collision diagonal.
+
+\begin{theorem}\label{thm:main}
+For every simple labelled graph $G$ and every $i\ne j$,
+\[
+ \{i,j\}\in E(G)
+ \quad\Longleftrightarrow\quad
+ \Delta_{ij}\text{ is a union of strata of }\Sg_d(G).
+\]
+Consequently, for simple graphs $G,H$ on $[n]$,
+\[
+ \Sg_d(G)=\Sg_d(H)\quad\Longleftrightarrow\quad E(G)=E(H).
+\]
+\end{theorem}
+
+\begin{proof}
+If $e=\{i,j\}$ is an edge, the stress positive only on $e$ belongs to $W_G(P)$
+exactly when $p_i=p_j$: its only possibly nonzero forces are
+$p_j-p_i$ and $p_i-p_j$. Thus a coordinate-sign-preserving homeomorphism of
+fibres cannot identify a collapsed and a noncollapsed placement of $e$.
+The collision diagonal is therefore a union of whole equivalence classes,
+hence of strata. This elementary collision detector is already recorded in
+Panina's Lemma~3.1 (preprint Section~3, Lemma~4) \cite{Panina}; we claim no novelty for it.
+
+Conversely, suppose $\{i,j\}$ is not an edge of $G$. Choose $a\in\R^d\setminus
+\{0\}$ and, for $-1/2\leq t\leq1/2$, set
+\[
+ p_k(t)=x_k(t)a,\qquad x_i(t)=t,\quad x_j(t)=0,\quad
+ x_k(t)=k+1\ \ (k\notin\{i,j\}).
+\]
+The only pair that can collide on this path is $\{i,j\}$, so no $G$-edge
+collapses. Orient the edges arbitrarily and let $B_G$ be the vertex-edge
+incidence matrix, with $+1$ at the initial endpoint and $-1$ at the final one.
+For an oriented edge $(u,v)$ put
+$D_t=\operatorname{diag}(x_v(t)-x_u(t))$. Since $a\ne0$,
+\[
+ W_G(P(t))=\ker(B_GD_t),\qquad
+ T_t=D_t^{-1}D_0,
+ \qquad B_GD_tT_t=B_GD_0.
+\]
+Every entry of $D_t$ stays nonzero with constant sign. Hence $T_t$ is a
+positive diagonal linear homeomorphism from $W_G(P(0))$ onto $W_G(P(t))$;
+its inverse is $D_0^{-1}D_t$. The construction is independent of edge
+orientation and preserves zero coordinates as well as both nonzero signs.
+For an edgeless graph it is the unique map between zero stress spaces.
+
+The entire continuous path thus lies in one fibre-equivalence class. Its
+connected image lies in one connected component of that class, hence in
+one stratum. But $P(0)\in\Delta_{ij}$ and $P(1/4)\notin\Delta_{ij}$.
+The diagonal cannot be a union of whole strata. This proves the equivalence.
+Identical partitions now recover identical edge sets; the reverse implication
+is immediate. For $n=1$ there is only the empty simple graph.
+\end{proof}
+
+The collinear path is a witness \emph{inside} the full configuration space;
+the theorem is not a classification restricted to collinear placements.
+Stress-space dimension alone does not supply the argument: it is the labelled
+coordinate support that detects a collapsed edge.
+
+\begin{corollary}
+A specified permutation of vertex labels carries $\Sg_d(G)$ onto
+$\Sg_d(H)$ exactly when it carries $G$ onto $H$.
+\end{corollary}
+\begin{proof}
+Reindexing points and edge weights carries the equilibrium equations for $G$
+to those for the relabelled graph. Apply Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{The original question and the comparison convention}
+Karpenkov's Problem~4 \cite[p.~22]{Karpenkov} asks which subgraphs of $K_n$
+define the same stratifications. Its preceding definitions use connected
+strata in the full labelled Cartesian configuration space. Under literal
+equality of these defined partitions, Theorem~\ref{thm:main} gives the complete
+answer: each equality class contains exactly one labelled graph. The source
+does not separately define a cross-graph abstract or ambient equivalence.
+We do not infer an author's unwritten intention or claim to classify such
+different comparisons, generic-only spaces, or collision-free spaces.
+
+The distinction has a concrete mathematical effect. Let $G$ be the
+four-vertex path with edges $12,23,34$, and $H$ the star with edges $12,13,14$.
+For any forest, leaf elimination shows that stresses are supported exactly on
+its collapsed edges; those coordinates are arbitrary and independent.
+The invertible linear transformation
+\[
+ q_1=p_1,\quad q_2=p_2,\quad
+ q_3=p_1+p_3-p_2,\quad q_4=p_1+p_4-p_3
+\]
+turns the path's three edge differences into the star's three edge differences.
+It therefore maps their full stress-equivalence classes, and their connected
+components, bijectively under that edge correspondence. The graphs have
+different degree multisets, so they are nonisomorphic, although their
+stratifications are ambient-linearly equivalent. Their partitions are unequal
+in the fixed labelled space by the theorem.
+
+\paragraph{Prior credit and verification.}
+The stress-space convention comes from \cite{DKS,Karpenkov}; the
+singleton-support detector is credited above. Collinear order invariance of
+the stress matroid is also noted in \cite[Appendix~A.3; preprint v4, Section~4.1]{Panina}.
+We give the incidence transport explicitly for a self-contained proof and
+claim no novelty for these ingredients. The conclusion compared here is
+reconstruction from the full fixed-label partition. Panina's affine-quotient and
+noncollapsed-edge framework is not substituted for the full space used here.
+The supplement records source and priority checks, independent adversarial
+derivations, and reproducible exact-rational calculations. Finite tests
+corroborate the identities and boundary cases; they do not prove the universal
+or connectedness statements and provide no formal proof-assistant certificate.
+No first-priority claim is made for the cited ingredients.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in developing and checking the arguments,
+auditing sources, and preparing this manuscript and its supporting materials.
+This is an unrefereed research note. The independent adversarial reviews
+described in the supplement are AI reviews; conventional human peer review
+or journal acceptance is not claimed.
+
+\begin{thebibliography}{9}
+\bibitem{DKS} F.~Doray, O.~Karpenkov and J.~Schepers,
+\emph{Geometry of configuration spaces of tensegrities},
+Discrete Comput. Geom. \textbf{43} (2010), 436--466.
+\href{https://doi.org/10.1007/s00454-009-9229-4}{doi:10.1007/s00454-009-9229-4}.
+Author preprint: \href{https://arxiv.org/abs/0806.4976v2}{arXiv:0806.4976v2}.
+\bibitem{Karpenkov} O.~Karpenkov,
+\emph{Open Problems on Configuration Spaces of Tensegrities},
+Arnold Math. J. \textbf{4} (2018), 19--25.
+\href{https://doi.org/10.1007/s40598-018-0080-7}{doi:10.1007/s40598-018-0080-7}.
+\bibitem{Panina} G.~Panina,
+\emph{A universality theorem for stressable graphs in the plane},
+Ars Math. Contemp. \textbf{18} (2020), 137--148.
+\href{https://doi.org/10.26493/1855-3974.641.e06}{doi:10.26493/1855-3974.641.e06}.
+Published Lemma~3.1 and Appendix~A.3; author version: \href{https://arxiv.org/abs/1902.07212v4}{arXiv:1902.07212v4},
+Section~3, Lemma~4.
+\end{thebibliography}
+\end{document}

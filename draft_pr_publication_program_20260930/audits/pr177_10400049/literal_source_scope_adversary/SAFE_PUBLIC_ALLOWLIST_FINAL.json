@@ -1,0 +1,55 @@
+{
+  "supersedes": "SAFE_PUBLIC_ALLOWLIST.json",
+  "policy": "Only the explicitly listed own notes and clean receipts may be considered for a public audit package. This is eligibility, not authorization to publish/commit, and grants no mathematical/priority clearance. Provenance incident and final-assessment addendum must accompany first or final scientific notes.",
+  "allowlist": [
+    "CONSUMED_IDENTITIES.json",
+    "FIRST_ASSESSMENT.md",
+    "FIRST_INVENTORY.json",
+    "FIRST_SEAL_RECEIPT.json",
+    "FIRST_SEAL_INTEGRITY_INCIDENT.md",
+    "FINAL_ASSESSMENT.md",
+    "FINAL_ASSESSMENT_ADDENDUM.md",
+    "FINAL_FROZEN_INVENTORY.json",
+    "INCIDENT_VALIDATION_NORMAL.json",
+    "INCIDENT_VALIDATION_OPTIMIZED.json",
+    "INTEGRITY_CHECK_REPORT.md",
+    "POST_SEAL_FEEDBACK.md",
+    "RESEARCH_LOG_FIRST_SEAL_RECONSTRUCTED_AUTHENTICATED.md",
+    "RESEARCH_LOG_POST_SEAL_CHANGED.md",
+    "RESEARCH_LOG_ADDENDUM.md",
+    "SAFE_PUBLIC_ALLOWLIST_FINAL.json",
+    "SOURCE_INTEGRITY_NORMAL.json",
+    "SOURCE_INTEGRITY_OPTIMIZED.json",
+    "SOURCE_READING_COVERAGE.md",
+    "SOURCE_RECEIPTS.json"
+  ],
+  "mandatory_companions": [
+    "FIRST_SEAL_INTEGRITY_INCIDENT.md",
+    "FINAL_ASSESSMENT_ADDENDUM.md",
+    "SAFE_PUBLIC_ALLOWLIST_FINAL.json"
+  ],
+  "excluded_paths": [
+    "private/**",
+    "source_receipts.py",
+    "inventory.py",
+    "incident_validation.py",
+    "RESEARCH_LOG.md",
+    "RESEARCH_LOG_FIRST_SEAL_RECONSTRUCTED.md",
+    "SAFE_PUBLIC_ALLOWLIST.json"
+  ],
+  "exclusion_reasons": {
+    "private/**": "All third-party PDFs/HTML/text/renders/raw HTTP headers and any raw failures/stderr remain private.",
+    "*.py": "Internal acquisition/inventory/provenance tools are outside own-notes/clean-receipts allowlist.",
+    "RESEARCH_LOG.md": "Changed original path; preserved named copy and incident documentation are the explicit public candidates.",
+    "RESEARCH_LOG_FIRST_SEAL_RECONSTRUCTED.md": "Failed unauthenticated recovery attempt retained for transparent whole-file inventory only.",
+    "SAFE_PUBLIC_ALLOWLIST.json": "Superseded by this final allowlist."
+  },
+  "unlisted_future_files_excluded": true,
+  "third_party_bodies_in_allowlist": false,
+  "required_source_bodies_unavailable": [],
+  "original_submission_files_in_allowlist": false,
+  "physical_first_freezing_claimed": false,
+  "first_log_continuous_immutability_claimed": false,
+  "final_mode_protection_is_late": true,
+  "no_git_or_publication_action_taken": true
+}

@@ -1,0 +1,66 @@
+{
+  "original": "functor_review_01/verify_functor_identities.py",
+  "original_sha256": "833a2c254679eceb8c7cac05e5191837e52291590f476202fb34abd36db34128",
+  "adapted": "../checks/verify_functor_identities_explicit_guards.py",
+  "adapted_sha256": "0efb6d89e261c7ff89de02a07e664fd3e5579ef67d78f4f698d015801890bba0",
+  "all_11_test_asts_identical": true,
+  "changes": "Replace Assert with explicit RuntimeError guard; AST unparse and guard definition only.",
+  "guards": [
+    {
+      "original_line": 47,
+      "test_ast": "Compare(left=Call(func=Name(id='mm', ctx=Load()), args=[Name(id='me', ctx=Load()), Name(id='me', ctx=Load())]), ops=[Eq()], comparators=[List(elts=[List(elts=[Name(id='unitscalar', ctx=Load()), Name(id='zero', ctx=Load())], ctx=Load()), List(elts=[Name(id='zero', ctx=Load()), Name(id='unitscalar', ctx=Load())], ctx=Load())], ctx=Load())])",
+      "test_source": "mm(me, me) == [[unitscalar, zero], [zero, unitscalar]]"
+    },
+    {
+      "original_line": 49,
+      "test_ast": "Compare(left=Call(func=Name(id='mm', ctx=Load()), args=[Name(id='meprime', ctx=Load()), Name(id='c', ctx=Load())]), ops=[Eq()], comparators=[Name(id='rhs', ctx=Load())])",
+      "test_source": "mm(meprime, c) == rhs"
+    },
+    {
+      "original_line": 51,
+      "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='j', ctx=Load()), args=[Call(func=Name(id='j', ctx=Load()), args=[Name(id='a', ctx=Load())])]), ops=[Eq()], comparators=[Name(id='a', ctx=Load())]), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='elements', ctx=Load()), is_async=0)])])",
+      "test_source": "all((j(j(a)) == a for a in elements))"
+    },
+    {
+      "original_line": 52,
+      "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='j', ctx=Load()), args=[Call(func=Name(id='ba', ctx=Load()), args=[Name(id='a', ctx=Load()), Name(id='b', ctx=Load())])]), ops=[Eq()], comparators=[Call(func=Name(id='ba', ctx=Load()), args=[Call(func=Name(id='j', ctx=Load()), args=[Name(id='a', ctx=Load())]), Call(func=Name(id='j', ctx=Load()), args=[Name(id='b', ctx=Load())])])]), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='elements', ctx=Load()), is_async=0), comprehension(target=Name(id='b', ctx=Store()), iter=Name(id='elements', ctx=Load()), is_async=0)])])",
+      "test_source": "all((j(ba(a, b)) == ba(j(a), j(b)) for a in elements for b in elements))"
+    },
+    {
+      "original_line": 53,
+      "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='j', ctx=Load()), args=[Call(func=Name(id='bm', ctx=Load()), args=[Name(id='a', ctx=Load()), Name(id='b', ctx=Load())])]), ops=[Eq()], comparators=[Call(func=Name(id='bm', ctx=Load()), args=[Call(func=Name(id='j', ctx=Load()), args=[Name(id='a', ctx=Load())]), Call(func=Name(id='j', ctx=Load()), args=[Name(id='b', ctx=Load())])])]), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='elements', ctx=Load()), is_async=0), comprehension(target=Name(id='b', ctx=Store()), iter=Name(id='elements', ctx=Load()), is_async=0)])])",
+      "test_source": "all((j(bm(a, b)) == bm(j(a), j(b)) for a in elements for b in elements))"
+    },
+    {
+      "original_line": 55,
+      "test_ast": "Compare(left=Name(id='fixed', ctx=Load()), ops=[Eq()], comparators=[ListComp(elt=Name(id='a', ctx=Load()), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='elements', ctx=Load()), ifs=[Compare(left=Subscript(value=Name(id='a', ctx=Load()), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])], is_async=0)])])",
+      "test_source": "fixed == [a for a in elements if a[1] == 0]"
+    },
+    {
+      "original_line": 56,
+      "test_ast": "Compare(left=SetComp(elt=Tuple(elts=[Subscript(value=Name(id='a', ctx=Load()), slice=Constant(value=0), ctx=Load()), Subscript(value=Name(id='a', ctx=Load()), slice=Constant(value=1), ctx=Load())], ctx=Load()), generators=[comprehension(target=Name(id='a', ctx=Store()), iter=Name(id='fixed', ctx=Load()), is_async=0)]), ops=[Eq()], comparators=[SetComp(elt=Tuple(elts=[Name(id='v', ctx=Load()), Constant(value=0)], ctx=Load()), generators=[comprehension(target=Name(id='v', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)]), is_async=0)])])",
+      "test_source": "{(a[0], a[1]) for a in fixed} == {(v, 0) for v in range(4)}"
+    },
+    {
+      "original_line": 57,
+      "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='fixed', ctx=Load())]), ops=[Eq()], comparators=[Constant(value=16)])",
+      "test_source": "len(fixed) == 16"
+    },
+    {
+      "original_line": 58,
+      "test_ast": "Compare(left=Call(func=Name(id='fm', ctx=Load()), args=[Constant(value=2), BinOp(left=Constant(value=2), op=BitXor(), right=Constant(value=1))]), ops=[Eq()], comparators=[Constant(value=1)])",
+      "test_source": "fm(2, 2 ^ 1) == 1"
+    },
+    {
+      "original_line": 61,
+      "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=BinOp(left=Name(id='v', ctx=Load()), op=BitXor(), right=Name(id='v', ctx=Load())), ops=[Eq()], comparators=[Constant(value=0)]), generators=[comprehension(target=Name(id='v', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)]), is_async=0)])])",
+      "test_source": "all((v ^ v == 0 for v in range(4)))"
+    },
+    {
+      "original_line": 62,
+      "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=BinOp(left=Name(id='v', ctx=Load()), op=BitXor(), right=Name(id='v', ctx=Load())), ops=[NotEq()], comparators=[Constant(value=1)]), generators=[comprehension(target=Name(id='v', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)]), is_async=0)])])",
+      "test_source": "all((v ^ v != 1 for v in range(4)))"
+    }
+  ],
+  "scope": "Finite arithmetic corroboration, not an all-natural-map or formal-series proof."
+}

@@ -1,0 +1,2985 @@
+{
+  "status": "PASS",
+  "helper_sha256": "41a77d51024a1b954e3a8bb5e216d18e46bdfe12822bb4d8c5420c56da97106e",
+  "synthesis_sha256": "b5418de8d946e88c6c2685b4024623afca16da60dcfc1867d25deac9560c9540",
+  "test_count": 230,
+  "genuine_api_dispatches": 0,
+  "fixture_acceptance_is_not_real": true,
+  "results": [
+    {
+      "case": "positive_read_only",
+      "accepted": true,
+      "expected": true,
+      "error": null,
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "positive_apply",
+      "accepted": true,
+      "expected": true,
+      "error": null,
+      "api_calls": 18,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "positive_crlf",
+      "accepted": true,
+      "expected": true,
+      "error": null,
+      "api_calls": 18,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "positive_no_final_newline",
+      "accepted": true,
+      "expected": true,
+      "error": null,
+      "api_calls": 18,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "uncertain_success",
+      "accepted": true,
+      "expected": true,
+      "error": null,
+      "api_calls": 19,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "uncertain_failed",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Branch update uncertain; no retry"
+      },
+      "api_calls": 17,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_gate",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "FileNotFoundError",
+        "message": "[Errno 2] No such file or directory: '<private-fixture>/draft_pr_claimed_solved_400_500_20261011/audits/pr463_6000016/PRIORITY_DISPOSITION_GATE.json'"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "malformed_gate",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "JSONDecodeError",
+        "message": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "empty_evidence",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Empty evidence gate"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "unrelated_evidence",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "duplicate_evidence",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Invalid or duplicate evidence path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_family",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Six complete reviews required"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "duplicate_family",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Duplicate or unknown review family"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "duplicate_source_object",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "prior_operation",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Prior operation exists: do not repeat mutation"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_helper_sha256_0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Root acceptance or reviewed helper binding absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_published_disposition_sha256_0000000000000000000000000000000000000000000000000000000000000000",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Published synthesis digest not accepted"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_root_read_entire_final_reports_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Root acceptance or reviewed helper binding absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_acceptance_scope_publication",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final exact disposition gate absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_recommended_status_claimed_solved",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final exact disposition gate absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_original_head_0000000000000000000000000000000000000000",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final exact disposition gate absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_retained_original_publication_blockers_0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "gate_retained_original_publication_blockers_True",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_reviews",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Six complete reviews required"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_reviewed_files",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Empty evidence gate"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_root_read_entire_final_reports",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Root acceptance or reviewed helper binding absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_retained_original_publication_blockers",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_SOURCE_RECEIPT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_pr_metadata.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_selected_queue_row.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_DISPOSITION_SYNTHESIS.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_reviews/priority/APPLICABILITY_CHAIN.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_reviews/priority/SOURCE_RECEIPT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_required_reviews/priority/SEARCH_COVERAGE.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required source/synthesis/application evidence absent"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/source_topology/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/source_topology/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_reviewer_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Actual result reviewer identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_source_topology_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_source_topology_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_source_topology_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_source_topology_'0'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Review identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/global_obstruction/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/global_obstruction/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_reviewer_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Actual result reviewer identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_global_obstruction_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_global_obstruction_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_global_obstruction_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_global_obstruction_'0'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Review identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_global_obstruction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/reproduction/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/reproduction/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_reviewer_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Actual result reviewer identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_reproduction_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_reproduction_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_reproduction_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_reproduction_'0'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Review identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_reproduction",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/priority/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/priority/DECISION.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Review identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Priority recommendation or attribution drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/candidate_adversary/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/candidate_adversary/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_reviewer_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Actual result reviewer identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_candidate_adversary_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_candidate_adversary_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_candidate_adversary_0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_candidate_adversary_'0'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Review identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_candidate_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/disposition_adversary2/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_final_reviews/disposition_adversary2/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_reviewer_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Actual result reviewer identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_disposition_adversary_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_disposition_adversary_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_disposition_adversary_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "raw_count_disposition_adversary_'0'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_report_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "disconnected_result_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final report/result evidence disconnected"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "wrong_identity_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "A NEW final disposition reviewer is required after the failed initial round"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_scope_count_bool_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved accepted-disposition issue"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "declared_raw_erased_disposition_adversary",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Raw report blockers erased or invented"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/SOURCE_GATE.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/PROOF.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/PUBLICATION_STATUS.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/exact_results.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/RESEARCH_LOG.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/README.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/PUBLICATION_MANIFEST.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/check_exact.py",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/FROZEN_AUTHOR_MANIFEST.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/audit/check_audit.py",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/audit/author_rerun.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/audit/AUDIT_MANIFEST.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/audit/audit_results.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_frozen_source_snapshot/unsolved_math_prioritization/attempts/6000016/audit/AUDIT_REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen source missing from acceptance"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_path_'../SOURCE_RECEIPT.json'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Invalid or duplicate evidence path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_path_'/tmp/source'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Invalid or duplicate evidence path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_path_'private_cases/source'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Invalid or duplicate evidence path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_bytes_True",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_bytes_0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_bytes_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_sha256_'0000000000000000000000000000000000000000000000000000000000000000'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_sha256_'bad'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bound_bytes_drift_DISPOSITION_SYNTHESIS.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_symlink_DISPOSITION_SYNTHESIS.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Evidence alias/nonregular file"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bound_bytes_drift_reviews/source_topology/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_symlink_reviews/source_topology/REPORT.md",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Evidence alias/nonregular file"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bound_bytes_drift_reviews/disposition_adversary2/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Accepted evidence drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "evidence_symlink_reviews/disposition_adversary2/RESULT.json",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Evidence alias/nonregular file"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "aliased_audit_directory",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output directory alias"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "source_identity_pr",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen eligible source identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "source_identity_problem_id",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen eligible source identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "source_identity_head_sha",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen eligible source identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "source_identity_scope_gate",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen eligible source identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "metadata_identity_number",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original metadata identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "metadata_identity_headRefOid",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original metadata identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "metadata_identity_state",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original metadata identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "metadata_identity_isDraft",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original metadata identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "metadata_identity_baseRefName",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original metadata identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_pr_464",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_problem_id_'other'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_required_repairs_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_mathematical_gaps_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_required_repairs_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_source_topology_mathematical_gaps_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_pr_464",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_problem_id_'other'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_required_repairs_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_unresolved_mathematical_gaps_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_required_repairs_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_global_obstruction_unresolved_mathematical_gaps_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_pr_464",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_problem_id_'other'",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical family identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_required_repairs_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_remaining_mathematical_gaps_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_required_repairs_False",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Required mathematical repair"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "math_result_reproduction_remaining_mathematical_gaps_0.0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Mathematical gap"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_reviewed_helper_sha256",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final disposition does not bind current helper/synthesis"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_reviewed_synthesis_sha256",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final disposition does not bind current helper/synthesis"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_unresolved_disposition_issues",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved final disposition unresolved_disposition_issues"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_required_corrections",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved final disposition required_corrections"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_unresolved_mathematical_gaps",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved final disposition unresolved_mathematical_gaps"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_pr",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final disposition input identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_problem_id",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final disposition input identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "final_result_frozen_head",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Final disposition input identity mismatch"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "priority_status_recommendation",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Priority recommendation or attribution drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "priority_decision_type",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Priority recommendation or attribution drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "priority_primary_backed_application_gap",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Priority recommendation or attribution drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "priority_first_priority_certified",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Priority recommendation or attribution drift"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_unresolved_mathematical_gaps",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved candidate unresolved_mathematical_gaps"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_required_source_proof_repairs",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved candidate required_source_proof_repairs"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_required_repairs_for_proposed_disposition",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved candidate required_repairs_for_proposed_disposition"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_unresolved_blocking_issues_for_proposed_disposition",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Unresolved candidate unresolved_blocking_issues_for_proposed_disposition"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_required_changes",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_paper_or_publication_approved",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "candidate_status_recommendation",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original publication blocker not faithfully retained"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "malformed_result_source_topology",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "JSONDecodeError",
+        "message": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "malformed_result_priority",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "JSONDecodeError",
+        "message": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "malformed_result_disposition_adversary2",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "JSONDecodeError",
+        "message": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_0",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_1",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_2",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_3",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_4",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_5",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_6",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_7",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "bad_immutable_url_8",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Disposition URL is not the exact immutable synthesis path"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "remote_bytes_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Immutable published synthesis bytes differ"
+      },
+      "api_calls": 1,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "remote_type",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Immutable published synthesis unavailable"
+      },
+      "api_calls": 1,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "remote_path",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Immutable published synthesis unavailable"
+      },
+      "api_calls": 1,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "remote_encoding",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Immutable published synthesis unavailable"
+      },
+      "api_calls": 1,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "head_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "ref_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original branch ref changed"
+      },
+      "api_calls": 3,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "head_ref_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "head_repository_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "base_repository_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "base_branch_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "draft_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "closed_state",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 2,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "queue_type",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "QUEUE not regular Git blob"
+      },
+      "api_calls": 6,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "queue_mode",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "QUEUE not regular Git blob"
+      },
+      "api_calls": 6,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "queue_bytes_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Frozen original QUEUE mismatch"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "duplicate_row",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Selected row not unique"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "missing_row",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Selected row not unique"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "unrelated_compare_path",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Commit changed other paths"
+      },
+      "api_calls": 13,
+      "mutation_calls": 3,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "new_blob_readback_drift",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Status blob exact-byte readback differs"
+      },
+      "api_calls": 18,
+      "mutation_calls": 4,
+      "patches": 1,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "excluded_already_solved",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Excluded status: stop without processing"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "excluded_unsolved",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Excluded status: stop without processing"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "excluded_",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Excluded status: stop without processing"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "excluded_claimed_solved_extra",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Excluded status: stop without processing"
+      },
+      "api_calls": 7,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "late_ref_drift_2",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original branch ref changed"
+      },
+      "api_calls": 11,
+      "mutation_calls": 2,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "late_head_drift_2",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 10,
+      "mutation_calls": 2,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "late_ref_drift_3",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original branch ref changed"
+      },
+      "api_calls": 15,
+      "mutation_calls": 3,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "late_head_drift_3",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Original open draft head/repository/base changed"
+      },
+      "api_calls": 14,
+      "mutation_calls": 3,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_PREFLIGHT.json_symlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_PREFLIGHT.json_dangling",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_PREFLIGHT.json_hardlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_PREFLIGHT.json_directory",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_PREFLIGHT.json_fifo",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_OPERATION.json_symlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_OPERATION.json_dangling",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_OPERATION.json_hardlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_OPERATION.json_directory",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_OPERATION.json_fifo",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_RECEIPT.json_symlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_RECEIPT.json_dangling",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Output symlink"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_RECEIPT.json_hardlink",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_RECEIPT.json_directory",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    },
+    {
+      "case": "output_STATUS_REPAIR_RECEIPT.json_fifo",
+      "accepted": false,
+      "expected": false,
+      "error": {
+        "type": "RuntimeError",
+        "message": "Nonregular or hardlinked output"
+      },
+      "api_calls": 0,
+      "mutation_calls": 0,
+      "patches": 0,
+      "all_dispatches_mocked": true
+    }
+  ]
+}

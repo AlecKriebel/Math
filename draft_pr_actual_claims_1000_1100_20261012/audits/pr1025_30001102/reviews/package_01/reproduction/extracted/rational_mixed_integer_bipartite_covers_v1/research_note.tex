@@ -1,0 +1,332 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\conv}{\operatorname{conv}}
+\title{Polynomial-time optimization and exact separation\newline
+for rational mixed-integer bipartite covers}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID:
+\href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{12 October 2026\quad (research note)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give polynomial-time exact linear optimization, strong separation and
+membership for mixed-integer bipartite covers with arbitrary rational edge
+demands, unrestricted variable signs and any selected integer coordinates.
+All data and query points are rational in the total binary-input model;
+dimension and demand denominators vary. This resolves the finite rational
+interpretation of Conforti's 2008 hull-membership problem. A direct specialized
+proximity proof localizes integer labels to intervals of length $2n$ and
+proves attainment. Exact continuous completion yields a submodular value
+oracle on a polynomial-size threshold lattice. A bounded-core argument
+establishes closedness of the actual hull and a polynomial facet-encoding
+bound, allowing classical optimization--separation equivalence to apply.
+The result is an explicit application of classical mixed proximity,
+discrete-convex and submodular-minimization ideas. It does not prove the
+separate subtree-hull conjecture or assert a compact formulation or strongly
+polynomial total algorithm.
+\end{abstract}
+
+\section{Problem and contribution}
+Let $U,V$ be specified disjoint vertex classes of a finite bipartite graph,
+$n=|U|+|V|$, $E\subset U\times V$, $I\subset U\cup V$, and $b\in\Q^E$.
+Define
+\[
+ S=\{x\in\R^n:x_u+x_v\ge b_{uv}\ (uv\in E),\ x_i\in\Z\ (i\in I)\}.
+\]
+There is no nonnegativity assumption. Numerators, positive denominators,
+graph and integer-coordinate indices are encoded explicitly in binary.
+Conforti \cite[pp.~2904--2905, Problem~1]{OWR} asks the complexity of membership
+in $\conv(S)$ and discusses linear optimization. Since that report leaves
+encoding of real query points implicit, our theorem specifies rational query
+points in the standard finite bit model.
+
+\begin{theorem}\label{thm:main}
+For the data above and rational objective $c$, in polynomial total binary-input
+time one can return an exact rational minimizer of $c^Tx$ on $S$, or a feasible
+point and an integral improving recession direction if the infimum is
+$-\infty$. The actual hull $\conv(S)$ is a closed rational polyhedron with a
+polynomially computable facet-encoding bound. Strong separation and exact
+membership at every rational query, including boundary queries, are
+polynomial-time tasks. All $n$, $|I|$ and denominators may vary.
+\end{theorem}
+
+The zero-dimensional case is immediate; assume $n\ge1$ below. Empty edge or
+integer-coordinate sets are allowed. Feasibility follows by setting every
+coordinate to a common integer at least zero and all demands. If $I$ is empty,
+ordinary rational LP gives optimization directly; the hull argument below
+still applies.
+
+Mixed proximity is classical: Cook--Gerards--Schrijver--Tardos
+\cite[p.~258, Remarks~(1)]{CGST} give all-coordinate distance at most $n\Delta$
+for integral combined constraint matrices, assuming a mixed optimum exists.
+Our signed-threshold proof is a direct specialization, and supplies attainment
+without that premise. Hybrid partial minimization and discrete-convex
+optimization are prior mechanisms \cite[Proposition~2]{THM};
+\cite[\S4.1]{Murota} documents an earlier $n^2$-element ring-family lineage.
+We claim no new general proximity or abstract ring-minimization method.
+The contribution is the explicit rational application, exact LP completion
+oracle, denominator-independent label count and actual-hull bit accounting.
+
+Earlier network and bipartite-cover formulations \cite{Network,Covers}
+depend polynomially on a numerical common denominator and explicitly discuss
+the remaining binary-size gap. They do not justify enumerating denominator
+residues here. A bounded source audit located no earlier full solution to
+this exact claim in inspected bodies; exhaustive priority is unverified.
+
+\section{Difference variables and proximity}
+Put $y_u=x_u$ for $u\in U$, $y_v=-x_v$ for $v\in V$, and transform $c$ to $a$
+by the same sign change. This integral invertible map preserves the selected
+integer coordinates. Write
+\[
+ P=\{y:y_u-y_v\ge b_{uv}\},\qquad
+ T=P\cap\{y:y_i\in\Z\ (i\in I)\}.
+\]
+Rational LP decides boundedness. If $a^Ty$ is unbounded on $P$, rational
+recession theory supplies a polynomial-bit rational solution of
+\[
+ r_u-r_v\ge0\quad(uv\in E),\qquad a^Tr\le-1.
+\]
+Clearing coordinate denominators produces a polynomial-bit integral improving
+ray. From the integral feasible point, every nonnegative integer step stays
+in $T$. Thus boundedness on $P$ and $T$ agrees. Otherwise rational LP returns
+a polynomial-bit minimizer $y^*$ on $P$. No vertex of this unanchored,
+generally nonpointed polyhedron is assumed.
+
+\begin{lemma}\label{lem:proximity}
+If $a$ is bounded below on $P$, the minimum on $T$ is attained, and at least
+one minimizer $z$ satisfies $\|z-y^*\|_\infty<n$.
+\end{lemma}
+\begin{proof}
+Every $d\in\R^n$ has a signed nested-threshold decomposition
+$d=\sum_{h=1}^s\lambda_h r^h$, with $s\le n$, $\lambda_h>0$ and nonzero
+$r^h\in\{0,1\}^n$ or $\{0,-1\}^n$. For positive coordinates, list distinct
+values $0<t_1<\cdots<t_j$, use indicators of $\{i:d_i\ge t_h\}$ and successive
+differences $t_h-t_{h-1}$; do the same with negative magnitudes and negative
+indicators. Nesting makes every layer conformal on coordinates and differences:
+$r_i^h$ has the sign of $d_i$ or is zero, and $r_i^h-r_j^h$ has the sign of
+$d_i-d_j$ or is zero. Consequently each weighted coordinate and difference
+lies between zero and the corresponding value of $d$.
+
+Take $z\in T$ and $d=z-y^*$. For each layer $(\lambda,r)$, the point
+$y^*+\lambda r$ lies in $P$, rowwise between $y^*$ and $z$. Optimality gives
+$a^Tr\ge0$. If $\lambda\ge1$, the point $z-r$ also lies rowwise between those
+endpoints, stays mixed-integer, has no greater objective and has strictly
+smaller $\ell_1$ distance to $y^*$.
+
+To avoid assuming attainment, fix any $z^0\in T$. The closed nonempty sublevel
+set $A=\{z\in T:a^Tz\le a^Tz^0\}$ has a distance minimizer: intersect it with
+the closed $\ell_1$ ball of radius $\|z^0-y^*\|_1$. Compactness and the removal
+step rule out every layer of weight at least one at this minimizer. With at
+most $n$ layers, its sup-distance is less than $n$.
+Hence every point of $T$ has a no-more-expensive representative in the same
+compact box $y^*+[-n,n]^n$. Minimization on its closed mixed subset attains
+the global optimum, and a distance-minimizing optimum has the asserted strict
+bound.
+\end{proof}
+
+\section{Exact partial minimization on a short-label lattice}
+For $i\in I$ set
+\[
+ l_i=\lceil y_i^*-n\rceil,\quad h_i=\lfloor y_i^*+n\rfloor,\quad
+ D=\{p\in\Z^I:l_i\le p_i\le h_i,\
+ p_u-p_v\ge\lceil b_{uv}\rceil\text{ if }u,v\in I\}.
+\]
+Each width is at most $2n$. Exactly these assignments have completions in $P$:
+necessity is immediate; for sufficiency undo the sign change on fixed
+coordinates and set every remaining original coordinate to a sufficiently
+large common integer. Only edges between two integer coordinates are rounded.
+The free-sign bipartite model makes this completion possible. By
+Lemma~\ref{lem:proximity}, $D$ is nonempty.
+
+For $p\in D$, the slice value
+\[
+ f(p)=\min\{a^Ty:y\in P,\ y_i=p_i\ (i\in I)\}
+\]
+is finite, attained and computable exactly by polynomial-size rational LP.
+Both $P$ and $D$ are closed under coordinatewise meet and join. For example,
+two inequalities $y_u\ge y_v+b$, $z_u\ge z_v+b$ imply their min and max
+counterparts. Optimal completions $y,z$ of $p,q$ give
+\[
+ f(p)+f(q)=a^Ty+a^Tz
+ =a^T(y\wedge z)+a^T(y\vee z)
+ \ge f(p\wedge q)+f(p\vee q).
+\]
+Thus $f$ is submodular on the finite distributive lattice $D$. This closure
+is in difference variables; it would be false for original cover variables.
+
+\paragraph{Uniform rational encoding.}
+Let $B=\max(1,\max_e\lceil|b_e|\rceil)$,
+$A_0=\max(1,\max_i\lceil|a_i|\rceil)$,
+$H^*=\lceil\|y^*\|_\infty\rceil+n$, and let $k,q$ be the lcms of demand and
+objective denominators (empty lcm is one). Every $p$ has magnitude at most
+$H^*$. Anchor one coordinate at zero in each slice component with no fixed
+coordinate; boundedness makes its objective invariant under translation.
+The resulting slice is pointed. At an optimal vertex each tight-edge
+component connects to a fixed or zero anchor, since otherwise it could be
+translated locally, contradicting full active rank. A tight spanning forest
+therefore expresses every coordinate as an anchor plus at most $n-1$ signed
+demands. Its magnitude is at most $H^*+nB$ and its denominator divides $k$.
+Consequently
+\[
+ |f(p)|\le nA_0(H^*+nB),\qquad \operatorname{den}(f(p))\mid kq.
+\]
+The value encoding bound is uniform and polynomial in binary input size;
+$\log k$ and $\log q$ are at most sums of input denominator lengths.
+
+\section{Polynomial-size domain interface and minimization}
+Make a node $(i,t)$ for each $i\in I$, $l_i<t\le h_i$, meaning $p_i\ge t$.
+The ground set $W$ has size at most $2n|I|$. Encode
+$A(p)=\{(i,t):l_i<t\le p_i\}$. Union/intersection correspond to join/meet.
+The feasible family $\mathcal C=\{A(p):p\in D\}$ has explicit implications:
+\begin{enumerate}
+\item Prefix arcs $(i,t)\to(i,t-1)$ when $t>l_i+1$.
+\item For an integer--integer edge put $d=\lceil b_{uv}\rceil$. The base
+condition $p_u\ge l_v+d$ is automatic if $l_v+d\le l_u$, forces node
+$(u,l_v+d)$ if in range, and makes the family empty if above $h_u$.
+\item Each node $(v,t)$ implies $(u,t+d)$. Targets at most $l_u$ are automatic;
+targets above $h_u$ forbid $(v,t)$; other targets give arcs.
+\end{enumerate}
+These conditions are equivalent to $p\in D$, including the essential base
+condition when $p_v=l_v$. There are $O(n^2+n|E|)$ arcs/nodes and polynomial-bit
+labels, independently of numerical denominators.
+
+A member contains all forced nodes, avoids all forbidden nodes and is closed
+under arcs. Reachability computes the smallest member and the smallest member
+containing any given node, or detects its nonexistence. This is the ring-family
+interface of Schrijver \cite[\S6]{Schrijver}, supplied explicitly rather than
+assumed from a value oracle. Equivalently compute the intersection and union
+of members and the closure digraph on the remaining nodes, giving the lattice
+encoding of \cite[\S10.3]{GLS}.
+
+Apply established exact rational submodular minimization to
+$F(A(p))=f(p)$. The uniform encoding bound above and
+\cite[Theorem~10.2.7, problem~10.3.8 and its reduction]{GLS} give polynomial
+oracle-bit complexity on this lattice; \cite[\S6]{Schrijver} supplies the
+classical combinatorial ring reduction as well. Counting arithmetic operations
+alone would not suffice. All oracle calls here are polynomial-bit rational LPs.
+A minimizing assignment and one optimizing completion give a global mixed
+minimizer by Lemma~\ref{lem:proximity}. The full algorithm is polynomial in
+binary length; a strongly polynomial total LP-based algorithm is not claimed.
+
+\section{The actual closed hull and facet complexity}
+Let $H=nB+n$, $R=\{r:r_u-r_v\ge0\}$ and
+$K=\conv(T\cap[-H,H]^n)$. These are mathematical objects for a size argument,
+not an enumeration performed by the algorithm.
+
+For every objective bounded below on $P$, the objective annihilates component
+translation lineality. Anchor one coordinate per graph component at zero.
+An optimal vertex of this pointed relaxation has tight spanning trees
+connecting each component to its anchor. Its coordinates are sums of at most
+$n-1$ signed demands and have norm at most $nB$. Lemma~\ref{lem:proximity}
+puts a mixed optimum within norm $H$, uniformly over all bounded objectives.
+Thus every such objective attains its minimum on $T$ inside $K$.
+
+The bounded mixed set is a finite union of bounded rational slice polytopes,
+so $K$ is a rational polytope and $K+R$ is a closed rational polyhedron.
+Every $r\in R$ decomposes into nonnegative multiples of integral signed
+threshold layers in $R$. For such an integral layer $d$ and $z\in T$,
+$z+md\in T$ for all nonnegative integers $m$. Interpolation of consecutive
+steps puts $z+td$ in $\conv(T)$ for every real $t\ge0$. The same holds for
+finite convex combinations, then finite sums of layers. Hence $K+R\subset
+\conv(T)$.
+
+If some $z\in T$ lay outside $K+R$, strict separation would give $a$ with
+$a^Tz<\inf_{w\in K+R}a^Tw$. The right side is finite, so $a$ is nonnegative
+on $R$ and bounded below on $P$. The uniform small-optimum conclusion makes
+its minimum on $T$ equal its minimum on $K$, a contradiction. Therefore
+\[
+ \conv(T)=K+R,
+\]
+which proves closedness of the actual hull, without substituting its closure.
+
+Slice matrices consist of directed incidence rows, unit fixings and integer
+box bounds, and are totally unimodular. Each slice vertex lies in
+$(1/k)\Z^n$ and has norm at most $H$. Thus $K$ is generated by finitely many
+such vertices; $R$ is generated by integral threshold rays of norm at most
+one. The hull is full-dimensional, since original cover variables contain a
+translated positive orthant in the convex hull of large integral vectors.
+Homogenize point and ray generators as $(v,1),(r,0)$ and multiply point
+generators by $k$. Integer generator coordinates have magnitude at most
+$k(H+1)$. Every facet has $n$ independent homogeneous generators on it;
+cofactors give an integral facet inequality, including constant term, with
+coefficients bounded by $n![k(H+1)]^n$. Lineality causes no problem: spanning
+generators may include both signs of lineality directions.
+
+A computable generous bound on the total signed binary encoding of each
+facet inequality is
+\[
+ \varphi=10(n+1)^2\bigl[1+\lceil\log_2(n+1)\rceil+
+ \lceil\log_2(k+1)\rceil+\lceil\log_2(H+2)\rceil\bigr].
+\]
+It dominates the cofactor coefficient lengths and is polynomial in input
+encoding. No vertices, facets or denominator residues are enumerated.
+
+\section{Strong separation, scope and validation}
+The optimization procedure returns exact feasible optimizing points or
+improving integral recession directions. Points need not be vertices.
+Rescale an improving ray to the normalization in the strong-optimization
+interface of \cite[Definitions~6.2.1--6.2.2]{GLS}. Together with $\varphi$,
+this gives a well-described rational polyhedron. The exact strong
+optimization--separation equivalence \cite[Theorem~6.4.9, pp.~179--180]{GLS}
+therefore provides a polynomial-time strict separator or exact membership
+confirmation at any rational query. Undo the diagonal sign change to obtain
+Theorem~\ref{thm:main}. Unbounded polyhedra and boundary queries are included;
+no approximate membership or closure surrogate is used.
+
+The separate subtree-hull Conjecture~2 of \cite{OWR} remains unresolved here.
+No polynomial-size extended formulation, facet classification, arbitrary-real
+oracle result or full polynomial-optimizer implementation is claimed.
+The finite exact checkers enumerate only small cases; they do not implement
+LP, submodular minimization and GLS in polynomial time or prove complexity
+from observed runtime. Independent adversarial families checked proximity,
+attainment and oracle bits, and ring/hull/separation interfaces. The supplement
+records primary-source comparisons, exact diagnostics and limitations of the
+bounded priority audit. Classical ingredients and earlier formulations receive
+credit above; no first-ever or exhaustive novelty certificate is asserted.
+
+AI tools were used extensively in solving, verifying, source auditing and
+preparing this note and supporting materials. This is an unrefereed preprint.
+Independent adversarial reviews are AI reviews; conventional human peer review,
+journal acceptance and formal proof-assistant certification are not claimed.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} M.~Conforti, \emph{Combinatorial Mixed-Integer Programming},
+Oberwolfach Reports 51/2008, 2904--2905.
+\href{https://ems.press/content/serial-article-files/46195}{Primary report}.
+\bibitem{CGST} W.~Cook, A.~M.~H.~Gerards, A.~Schrijver and E.~Tardos,
+\emph{Sensitivity theorems in integer linear programming}, Mathematical
+Programming \textbf{34} (1986), 251--264.
+\href{https://www.math.uwaterloo.ca/~bico/papers/sensitivity.pdf}{Author copy}.
+\bibitem{THM} Y.~Takamatsu, S.~Hara and K.~Murota,
+\emph{Continuous/Discrete Hybrid Convex Optimization and Its Optimality
+Criterion}, Trans. Institute of Systems, Control and Information Engineers
+\textbf{17} (2004), 409--411 (Japanese;
+\href{https://kzmurota.fpark.tmu.ac.jp/paper/THM04hybridLenglish.pdf}{author English translation}).
+\bibitem{Murota} K.~Murota, \emph{On steepest descent algorithms for discrete
+convex functions}, SIAM J. Optimization \textbf{14} (2003), 699--707;
+\href{https://www.keisu.t.u-tokyo.ac.jp/data/2002/METR02-12.pdf}{author report METR2002-12}, \S4.1.
+\bibitem{Network} M.~Conforti, M.~Di~Summa, F.~Eisenbrand and L.~A.~Wolsey,
+\emph{Network Formulations of Mixed-Integer Programs}, Mathematics of
+Operations Research \textbf{34} (2009), 194--209;
+\href{https://www.math.uwaterloo.ca/~bico/bellairs/network.pdf}{March 2008 author manuscript}.
+\bibitem{Covers} M.~Conforti, L.~A.~Wolsey and G.~Zambelli,
+\emph{Projecting an extended formulation for mixed integer covers on bipartite
+graphs}, Mathematics of Operations Research (2010);
+\href{https://personal.lse.ac.uk/Zambelli/papers/mix-tree.pdf}{author manuscript revised November 2009}.
+\bibitem{Schrijver} A.~Schrijver, \emph{A combinatorial algorithm minimizing
+submodular functions in strongly polynomial time}, J. Combinatorial Theory B
+\textbf{80} (2000), 346--355.
+\href{https://homepages.cwi.nl/~lex/files/minsubm6.pdf}{Author manuscript}, \S6.
+\bibitem{GLS} M.~Gr\"otschel, L.~Lov\'asz and A.~Schrijver,
+\emph{Geometric Algorithms and Combinatorial Optimization}, Springer, 1988.
+\href{https://www.zib.de/userpage/groetschel/pubnew/paper/groetschellovaszschrijver1988.pdf}{Inspected 1988 edition}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\lk}{\operatorname{Lk}}
+\newcommand{\CAT}{\operatorname{CAT}}
+\newcommand{\edge}{\mathbin{\text{---}}}
+\title{A two-cube cubulation of the AIM free-by-cyclic example}
+\author{Alec Kriebel\\Independent researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 12, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a finite locally $\CAT(0)$ unit cube complex with one vertex,
+seven edges, eight squares, and two three-dimensional cubes, whose fundamental
+group is the mapping torus of $a\mapsto a$, $b\mapsto ab$, $c\mapsto bcb$.
+Its universal cover gives a proper cocompact cubical action of the exact
+group in AIM Question~5.2. All attaching maps, signed vertex links, and
+reversible presentation changes are given explicitly. We also explain a
+qualitative existence deduction from earlier WPD, Morse, and cubical
+completion theorems. The contribution presented here is the explicit small
+finite model; no historical firstness or minimality claim is made.
+\end{abstract}
+
+\section{The exact statement}
+
+Let $F=F(a,b,c)$ and let $\phi\in\operatorname{Aut}(F)$ be given by
+\[
+ \phi(a)=a,\qquad \phi(b)=ab,\qquad \phi(c)=bcb.
+\]
+Indeed its inverse sends $a$ to $a$, $b$ to $a^{-1}b$, and $c$ to
+$b^{-1}acb^{-1}a$; composition in either order freely reduces to the
+respective basis generators. We use the convention
+\begin{equation}\label{eq:G}
+ G=F\rtimes_\phi\mathbb Z
+ =\langle a,b,c,t\mid tat^{-1}=a,\ tbt^{-1}=ab,\ tct^{-1}=bcb\rangle.
+\end{equation}
+The final $b$ is positive. AIM Question~5.2, attributed to Rylee Lyman,
+asks whether this group acts properly and cocompactly on a $\CAT(0)$ cube
+complex~\cite{AIM}. The workshop report discusses the different formula
+$b\mapsto aba$, $c\mapsto bcb$ and an earlier three-dimensional
+candidate~\cite[p.~2]{workshop}. We keep that related example distinct.
+
+\begin{theorem}\label{thm:main}
+There is a finite locally $\CAT(0)$ unit cube complex $Z$ of dimension three
+with cell counts $(1,7,8,2)$ and $\pi_1Z\cong G$. Consequently $G$ acts
+freely, properly, and cocompactly by cubical isometries on the $\CAT(0)$
+cube complex $\widetilde Z$.
+\end{theorem}
+
+Here a cube complex allows isometric identifications of boundary faces;
+characteristic cubes in the quotient need not be embedded. This convention
+is essential for the stated cell counts. The flag-link criterion for this
+convention is Leary's Theorem~C.9~\cite[p.~33]{Leary}. His Theorem~C.4
+(p.~31) ensures that a $\CAT(0)$ universal cover is cubical under the
+stricter embedded-cube convention; Corollary~C.11 (p.~33) gives a strict
+cubical quotient after the second cubical subdivision, if desired. The
+counts in Theorem~\ref{thm:main} are before subdivision.
+
+The construction uses a finite cyclic local isometry into a two-square
+base. We verify the quotient links directly and identify the entire
+fundamental group. No minimum dimension, minimum cell count, or virtual
+specialness conclusion is asserted. Earlier tools also imply existence
+through the target-specific deduction in Section~\ref{sec:older}. A bounded
+source audit on October~12, 2026 found no prior documented exact answer or
+directly covering geometric-cubulation theorem in the sources examined.
+This is not a certificate of historical firstness or absolute novelty.
+
+\section{The two-square base and cyclic domain}
+
+In attaching words, capitals denote inverse oriented edges. Vertex names
+$A,B,C,D$ are independent of this convention. Let $K$ have one vertex,
+three oriented unit edges $x,y,b$, and two unit squares with boundary words
+\begin{equation}\label{eq:K}
+ xyXY,\qquad bxBY.
+\end{equation}
+Thus $H=\pi_1K=\langle x,y,b\mid [x,y]=1,\ bxb^{-1}=y\rangle$.
+For an edge $h$, write $h^+$ and $h^-$ for the outgoing and incoming
+germs. The link $L_K$ has six vertices and precisely the eight edges
+\begin{equation}\label{eq:base-link}
+ \{x^\epsilon,y^\delta\}\quad(\epsilon,\delta\in\{+,-\}),\qquad
+ \{b^-,x^+\},\ \{b^-,x^-\},\ \{b^+,y^+\},\ \{b^+,y^-\}.
+\end{equation}
+It is a simple bipartite graph, with parts
+$\{x^+,x^-,b^+\}$ and $\{y^+,y^-,b^-\}$. It has no triangles and is
+therefore flag, so $K$ is locally $\CAT(0)$.
+
+The assignments
+\begin{equation}\label{eq:lambda}
+ \lambda(x)=y,\qquad\lambda(y)=x,\qquad\lambda(b)=B
+\end{equation}
+extend to a cubical isometric involution of $K$. They take the two boundary
+words in~\eqref{eq:K} to $yxYX$ and $BybX$, respectively. The first is a
+dihedral reparametrization of the first square; the second is a cyclic
+rotation of the inverse of the second boundary. The corresponding square
+isometries agree with~\eqref{eq:lambda} on their faces. Their squares are
+the identity, so they define the claimed involution, including on cells.
+
+Define $Q$ by four distinct vertices $A,B,C,D$ and the following six unit
+edges. The final column specifies a cubical map $j:Q\to K$.
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+edge & initial vertex & terminal vertex & $j$-label\\
+\midrule
+$p$ & $B$ & $A$ & $x$\\
+$q$ & $A$ & $C$ & $y$\\
+$r$ & $D$ & $C$ & $x$\\
+$s$ & $B$ & $D$ & $y$\\
+$d$ & $A$ & $B$ & $b$\\
+$e$ & $C$ & $A$ & $b$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Attach two squares with words
+\begin{equation}\label{eq:Q}
+ pqr^{-1}s^{-1}\quad\text{based at }B,
+ \qquad dpe^{-1}q^{-1}\quad\text{based at }A.
+\end{equation}
+Their characteristic vertex cycles are $(B,A,C,D)$ and $(A,B,A,C)$.
+In particular, the two occurrences of $A$ in the second square must both
+be retained in corner calculations. The labels take these boundaries to
+$xyXY$ and $bxBY$, so $j$ is defined on squares by unit-square isometries.
+
+The complete signed links are given below. A path lists all link vertices
+and all edges; there are no additional edges or higher simplices. The last
+two columns record their images in $L_K$ under the two endpoint maps.
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{ccll}
+\toprule
+vertex & path in $\lk_Q$ & image under $j$ & image under $\lambda j$\\
+\midrule
+$A$ & $e^-\edge p^-\edge q^+\edge d^+$
+ & $b^-\edge x^-\edge y^+\edge b^+$
+ & $b^+\edge y^-\edge x^+\edge b^-$\\
+$B$ & $d^-\edge p^+\edge s^+$
+ & $b^-\edge x^+\edge y^+$
+ & $b^+\edge y^+\edge x^+$\\
+$C$ & $r^-\edge q^-\edge e^+$
+ & $x^-\edge y^-\edge b^+$
+ & $y^-\edge x^-\edge b^-$\\
+$D$ & $r^+\edge s^-$
+ & $x^+\edge y^-$
+ & $y^+\edge x^-$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For example, the two $A$-corners of the second square supply the distinct
+edges $\{d^+,q^+\}$ and $\{p^-,e^-\}$, while the first square supplies
+$\{p^-,q^+\}$. Every row maps injectively to $L_K$. Comparison
+with~\eqref{eq:base-link} shows that each image is a full induced
+subcomplex: every base-link edge between listed vertices is listed.
+Consequently $Q$ is locally $\CAT(0)$, and $j$ and $\lambda j$ are
+cubical local isometries, by the injective-full-link characterization.
+
+The edges $p,q,s$ form a spanning tree. On collapsing them, the first
+square kills $r$ and the second gives $d=e$. Hence
+\begin{equation}\label{eq:cyclic}
+ \pi_1(Q,A)=\langle dp\rangle\cong\mathbb Z,
+ \qquad j_*(dp)=bx,
+ \qquad (\lambda j)_*(dp)=By.
+\end{equation}
+The maps are injective on fundamental groups; alternatively $bx$ has
+infinite order because the homomorphism $H\to\mathbb Z$ sending $b$ to
+$1$ and $x,y$ to $0$ sends $bx$ to $1$.
+
+\section{The finite quotient and its flag link}
+
+Form the double mapping cylinder
+\begin{equation}\label{eq:Z}
+ Z=K\cup_{j,\lambda j}\bigl(Q\times[0,1]\bigr),
+\end{equation}
+where $(q,0)$ is attached by $j$ and $(q,1)$ by $\lambda j$. Give the
+interval length one and the product its cubical structure. Face
+identifications come from the genuine product and the two cubical maps.
+They need not be globally injective. Denote the vertical edges by
+$z_A,z_B,z_C,z_D$, directed from the $j$ end to the $\lambda j$ end. These
+are four distinct edges, although all their endpoints become the sole
+vertex of $K$. The second product cube has $z_A$ at two distinct boundary
+positions, just as the second square of $Q$ has two $A$-corners.
+
+There are three base edges and four vertical edges, two base squares and
+six edge-product squares, and two square-product three-cubes. Thus
+\begin{equation}\label{eq:counts}
+ (\#Z^{(0)},\#\text{edges},\#\text{squares},\#\text{three-cubes})=(1,7,8,2).
+\end{equation}
+The Euler characteristic is $1-7+8-2=0$.
+
+Let $L$ be the unique vertex link of $Z$. It consists of $L_K$ and eight
+cones with apices $z_v^+$ and $z_v^-$, $v\in\{A,B,C,D\}$. Their bases
+are the $j$ and $\lambda j$ link images in the table, respectively. This
+description follows corner by corner from the product: an edge-product
+square adds an apex--base edge, and a square-product cube adds the cone
+triangle over each corresponding square corner. No two apices are
+adjacent, since a product-cube corner has only one interval direction.
+The eight apices are distinct germs of the four vertical edges.
+
+The link maps in the table are injective, so no cone has repeated vertices,
+edges, or triangles. Distinct cones have distinct apices. At a repeated
+$A$-corner the two triangles from the second product cube have distinct
+base edges, as displayed above; they are not a repeated simplex. Therefore
+$L$ is an actual simplicial complex, not merely a graph with prescribed
+clique counts.
+
+If a clique of $L$ contains no apex, it lies in the flag complex $L_K$.
+Otherwise it contains exactly one apex. Its other vertices lie in the
+full cone base, and their base-link clique spans a simplex in that base.
+Adjoining the apex gives a simplex in the cone. Thus $L$ is flag. Its
+counts provide an additional check: it has $6+8=14$ vertices,
+$8+2(4+3+3+2)=32$ edges, and $2(3+2+2+1)=16$ triangles, with no
+four-clique. Leary's general cube-complex criterion~\cite[Theorem~C.9,
+p.~33]{Leary} now shows that $Z$ is locally $\CAT(0)$ and that its
+universal cover is $\CAT(0)$.
+
+\section{The fundamental group and geometric action}
+
+We record a direct presentation computation to verify the exact group,
+including the sign of the last $b$. Besides~\eqref{eq:K}, the six
+edge-product squares have relators
+\begin{equation}\label{eq:squares}
+\begin{aligned}
+ &xz_A Yz_B^{-1}, &&yz_C Xz_A^{-1}, &&xz_C Yz_D^{-1},\\
+ &yz_D Xz_B^{-1}, &&bz_Bbz_A^{-1}, &&bz_Abz_C^{-1}.
+\end{aligned}
+\end{equation}
+Attaching three-cells does not change the fundamental group. Write
+$z=z_A$. The $p,q,s$ relations eliminate the other vertical generators:
+\begin{equation}\label{eq:eliminate}
+ z_B=xzY,\qquad z_C=Yzx,\qquad z_D=YxzYx.
+\end{equation}
+The $r$ relation is then redundant using $xy=yx$. The $d$ relation is
+$z^{-1}(bx)z=By$; the $e$ relation is $z^{-1}(yb)z=xB$. These agree,
+because $bxB=y$ gives $yb=bx$ and $xB=By$. Each elimination is a
+reversible Tietze transformation, so
+\begin{equation}\label{eq:HNN}
+ \pi_1Z=\langle x,y,b,z\mid xy=yx,\ bxB=y,\ z^{-1}(bx)z=By\rangle.
+\end{equation}
+
+Make the invertible change of generators
+\begin{equation}\label{eq:basis}
+ t=x,\quad a=xy^{-1},\quad c=(zx)^{-1};
+ \qquad x=t,\quad y=a^{-1}t,\quad z=c^{-1}t^{-1},
+\end{equation}
+leaving $b$ fixed. The first two relations of~\eqref{eq:HNN} become
+$[a,t]=1$ and $btb^{-1}=a^{-1}t$. The latter is equivalent to
+$tbt^{-1}=ab$. For the third relation put $u=Bx$, $v=bx$. Since
+$By=xB=xuX$, its successive equivalent forms are
+\begin{align*}
+ z^{-1}vz=xux^{-1}
+ &\quad\Longleftrightarrow\quad (zx)u(zx)^{-1}=v\\
+ &\quad\Longleftrightarrow\quad c^{-1}(b^{-1}t)c=bt\\
+ &\quad\Longleftrightarrow\quad tc=bcbt\\
+ &\quad\Longleftrightarrow\quad tct^{-1}=bcb.
+\end{align*}
+Thus~\eqref{eq:HNN} becomes exactly~\eqref{eq:G}. Explicit inverse
+substitutions and reversible relations establish an isomorphism, rather
+than only a homomorphism obtained by checking relators in $G$.
+
+The cover $\widetilde Z$ is three-dimensional with finite links and unit
+Euclidean cube shapes. It is locally finite; its natural complete length
+metric is proper (equivalently, local compactness and completeness give
+properness for this geodesic metric). The deck group acts freely by
+cubical isometries. Covering neighborhoods show that this action is
+properly discontinuous, and, on the proper cover, that it is a proper
+action: only finitely many translates of a compact set meet that set.
+Its quotient is the finite complex $Z$, so the action is cocompact.
+The isomorphism above identifies this deck group with the full group $G$.
+This proves Theorem~\ref{thm:main}.
+
+\section{An existence deduction from earlier tools}\label{sec:older}
+
+We give a second route to qualitative existence to clarify the relation
+to prior methods. This route obtains an unspecified finite cyclic local
+isometry by existing completion theorems; it does not supply the cell
+counts~\eqref{eq:counts}.
+
+Write $A_0=\langle x,y\mid[x,y]=1\rangle\cong\mathbb Z^2$ and
+$H=\langle A_0,b\mid bxb^{-1}=y\rangle$. The HNN normal-form theorem
+embeds $A_0$. In its Bass--Serre tree, vertices are left cosets $hA_0$,
+and an oriented edge $e$ goes from $A_0$ to $bA_0$, with stabilizer
+$\langle y\rangle$. Set $g=bx$. The homomorphism
+$\epsilon_b:H\to\mathbb Z$, with $\epsilon_b(b)=1$ and
+$\epsilon_b(x)=\epsilon_b(y)=0$, gives a height on vertices. Since
+$gA_0=bA_0$, the edges $g^ne$ concatenate, increasing height at every
+step. They form a nonbacktracking bi-infinite axis of $g$.
+At $A_0$, the outgoing edge has stabilizer $\langle y\rangle$ and the
+incoming edge has stabilizer
+\[
+ g^{-1}\langle y\rangle g
+ =x^{-1}b^{-1}\langle y\rangle bx=\langle x\rangle.
+\]
+Their intersection is trivial in $A_0$. Hence the pointwise stabilizer
+of the axis segment from $g^{-1}A_0$ to $gA_0$ is trivial.
+Minasyan--Osin~\cite[Corollary~4.3]{MO}, in the corrected v6, gives WPD
+for this specific loxodromic $g$. No finite-extension claim is used.
+
+Dahmani--Guirardel--Osin~\cite[Theorem~6.8 and Corollary~2.9]{DGO}
+provide a virtually cyclic hyperbolically embedded subgroup $E(g)$
+containing $g$. As $\epsilon_b(g)=1$, $g$ has infinite order. Sisto's
+Theorem~1~\cite{Sisto} then makes $g$ Morse; in particular
+$C=\langle g\rangle$ is quasiconvex in the word metric on $H$.
+The metric required for completion matches exactly: $K$ has one vertex,
+so $\widetilde K^{(1)}$ is the Cayley graph for $\{x,y,b\}$, with its
+edge metric. The two-edge circle $\Gamma\to K$ reading $bx$ realizes
+the inclusion $C\hookrightarrow H$, and its lifted image contains $C$
+and lies within distance one of it. Geodesics between its vertices also
+stay uniformly close, by adding endpoint paths of length at most one
+and using the Morse property. Thus no conversion from CAT(0)-metric
+quasiconvexity is being assumed.
+
+Ben-Zvi--Kropholler--Lyman~\cite[Theorems~1.1 and 5.1]{BKL} now give a
+finite pointed locally $\CAT(0)$ cube complex $Q_0$ and a cubical local
+isometry $j_0:Q_0\to K$, through which $\Gamma\to K$ factors, whose
+fundamental-group image is exactly $C$. Their maximal-tree generating
+set is $\{x,y,b\}$ here. Local-isometry injectivity gives
+$\pi_1Q_0\cong C$, retaining the generator $bx$, rather than a power of
+it. The original $bx$ circle itself is not a local isometry: at its
+intermediate vertex the germs $b^-,x^+$ span a base-link edge. Completion
+is what repairs that defect.
+
+Postcomposition with the explicit involution~\eqref{eq:lambda} gives
+the second local isometry $\lambda j_0$ on the \emph{same} cubical
+domain, taking the generator to $By$. Hence
+$M=K\cup_{j_0,\lambda j_0}(Q_0\times[0,1])$ is finite. Its links
+have the same general structure as those of $Z$: each interval germ
+cones off an injective full link image, and distinct interval germs are
+not adjacent. The clique argument in Section~3 proves that these links
+are flag. This also gives a direct verification of the local-isometry
+gluing discussed in Hagen--Wise~\cite[Remark~3.7]{HW}. Because a local
+isometry into $K$ has domain dimension at most two, $\dim M\leq3$.
+Van Kampen gives~\eqref{eq:HNN}, and~\eqref{eq:basis} identifies
+$\pi_1M$ with $G$. Its finite locally $\CAT(0)$ quotient therefore
+gives another proper cocompact action of the exact group.
+
+The abstract tools in this deduction are prior work. Their availability
+does not date the discovery or publication of this exact application.
+The present note makes the element, metric, compatible maps, and group
+identification explicit. Hagen--Wise's current general fast-automorphism
+result~\cite[Corollary~7.2]{HW} supplies free cubical actions; properness
+and cocompactness require the additional argument above or the explicit
+model of Sections~2--4.
+
+\section*{Verification and disclosure}
+
+The accompanying verification package contains three Python standard-library
+programs for finite combinatorial and algebraic checks. They check the
+specified face maps, signed links and fullness, the involution, the
+fourteen-vertex link, cell counts, and generator substitutions, with
+validation active in ordinary and optimized Python execution. These
+finite checks supplement the written proof; they do not constitute a
+machine proof of the global CAT(0) or deck-action conclusions.
+
+Extensive AI assistance was used in discovery, drafting, and internal
+independent adversarial checks. This note is unrefereed; there has been
+no external human peer review and no proof-assistant certification. The
+author is responsible for the stated claims and their scope.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{AIM}
+AIM Problem Lists, \emph{Rigidity properties of free-by-cyclic groups},
+Section~5, Question~5.2 (Rylee Lyman),
+\url{http://www.aimpl.org/freebycyclic/5/}.
+
+\bibitem{workshop}
+American Institute of Mathematics, \emph{Rigidity properties of
+free-by-cyclic groups: workshop summary}, workshop October~2--6, 2023,
+\url{https://aimath.org/pastworkshops/freebycyclicrep.pdf}, p.~2.
+
+\bibitem{BKL}
+M.~Ben-Zvi, R.~Kropholler, and R.~A.~Lyman,
+\emph{Folding-like techniques for CAT(0) cube complexes},
+Math. Proc. Cambridge Philos. Soc. \textbf{173} (2022), 227--238,
+\href{https://doi.org/10.1017/S0305004121000645}{doi:10.1017/S0305004121000645};
+\href{https://arxiv.org/abs/2011.05374v1}{arXiv:2011.05374v1},
+Theorems~1.1 and 5.1.
+
+\bibitem{DGO}
+F.~Dahmani, V.~Guirardel, and D.~Osin,
+\emph{Hyperbolically embedded subgroups and rotating families in groups
+acting on hyperbolic spaces}, Mem. Amer. Math. Soc. \textbf{245} (2017),
+no.~1156; \href{https://arxiv.org/abs/1111.7048v5}{arXiv:1111.7048v5},
+Theorem~6.8 and Corollary~2.9.
+
+\bibitem{HW}
+M.~Hagen and D.~T.~Wise,
+\emph{Cubulating mapping tori of some polynomial growth free group
+automorphisms}, \href{https://arxiv.org/abs/1605.07879v3}{arXiv:1605.07879v3}
+(2025), Remark~3.7 and Corollary~7.2.
+
+\bibitem{Leary}
+I.~J.~Leary, \emph{A metric Kan--Thurston theorem},
+\href{https://arxiv.org/abs/1009.1540v3}{arXiv:1009.1540v3} (2012),
+Appendix~C: Theorem~C.4, p.~31; Theorem~C.9 and Corollary~C.11, p.~33.
+
+\bibitem{MO}
+A.~Minasyan and D.~Osin,
+\emph{Acylindrical hyperbolicity of groups acting on trees},
+\href{https://arxiv.org/abs/1310.6289v6}{arXiv:1310.6289v6} (2017,
+corrected version), Corollary~4.3.
+
+\bibitem{Sisto}
+A.~Sisto, \emph{Quasi-convexity of hyperbolically embedded subgroups},
+\href{https://arxiv.org/abs/1310.7753v1}{arXiv:1310.7753v1} (2013),
+Theorem~1.
+\end{thebibliography}
+\end{document}
