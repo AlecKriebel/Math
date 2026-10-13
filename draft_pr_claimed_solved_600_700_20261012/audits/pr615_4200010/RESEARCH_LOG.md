@@ -17,3 +17,7 @@ Priority reviewer located Anzai 1951 exact skew-shift spectral calculation and d
 ## 2026-10-13T03:32:56.486159+00:00 — priority rejection accepted (95% toward verified disposition)
 
 Root read complete extensive priority audit and new independent classical-implication proof, reran its algebra checker, and verified both finite-total-volume and compact constructions. The new reviewer explicitly reported no mathematical gap. Rejection is limited to requested original-still-unsolved/new-resolution framing; no earlier explicit paper answering the later named Knill question is asserted. Reasonable repair evaluated: exact attribution plus expository classical-corollary framing; this changes publication scope and cannot repair eligibility under the user process. No new target substituted. Closure comment prepared, old branch and valid candidate preserved, no queue status mutation, DOI/deposit/tracker work withheld. Live PR is still open draft at unchanged claimed_solved head.
+
+## 2026-10-13T03:34:53.547114+00:00 — closure confirmed (100% of this PR audit disposition)
+
+GitHub read-back confirms CLOSED, mergedAt=null, original head unchanged; public explanatory comment posted. CLOSURE_RECEIPT.json preserves the evidence commit and operation outcome. Publication preparation remains rejected and provisional.
