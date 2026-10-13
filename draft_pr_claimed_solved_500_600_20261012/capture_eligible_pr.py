@@ -28,13 +28,17 @@ def main():
  meta=json.loads(run(['gh','pr','view',str(a.pr),'--repo','AlecKriebel/Math','--json','number,state,isDraft,headRefOid,url,title']))
  row=queue_row(meta['headRefOid'],a.problem_id);mainrow=queue_row('main',a.problem_id)
  eligible=meta['state']=='OPEN' and meta['isDraft'] and row['status']=='claimed_solved'
- if mainrow['status'] in ('preprint_published','merged'):eligible=False
+ if mainrow['status'] in ('preprint_published','merged','already_solved','unsolved'):eligible=False
  receipt={'observed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'metadata':meta,'row':row,'main_row':mainrow,'eligible':eligible}
+ if not eligible:
+  dest=ROOT/'eligibility'/f'pr{a.pr}_live.json'
+  dest.write_text(json.dumps(receipt,indent=2)+'\n')
+  print(json.dumps(receipt,indent=2))
+  return
  d=ROOT/'audits'/f'pr{a.pr}_{a.problem_id}';d.mkdir(parents=True,exist_ok=True)
  name='ELIGIBILITY.json' if a.snapshot and not (d/'ELIGIBILITY.json').exists() else 'ELIGIBILITY_LIVE.json'
  (d/name).write_text(json.dumps(receipt,indent=2)+'\n')
  print(json.dumps(receipt,indent=2))
- if not eligible:return
  if not a.snapshot:return
  if (d/'ORIGINAL_SNAPSHOT.json').exists():raise RuntimeError('Frozen snapshot already exists; no overwrite')
  full=json.loads(run(['gh','pr','view',str(a.pr),'--repo','AlecKriebel/Math','--json','number,title,body,state,isDraft,headRefOid,url,files']))
