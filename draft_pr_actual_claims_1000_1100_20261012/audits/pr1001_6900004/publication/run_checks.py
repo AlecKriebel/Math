@@ -2,7 +2,9 @@
 """Replay the included exact finite checks and actual source mutations.
 
 Uses Python's standard library, isolated child interpreters, and a temporary
-directory for mutants. Default output is stdout only. --output saves the full
+directory for mutants. Requires Python 3.10+ on POSIX (e.g. macOS/Linux), as
+the unchanged kernel checker calls os.getuid(). Default output is stdout only.
+--output saves the full
 execution receipt there. This is formula testing, not a universal proof,
 security sandbox, source-intent decision, or novelty certificate.
 """

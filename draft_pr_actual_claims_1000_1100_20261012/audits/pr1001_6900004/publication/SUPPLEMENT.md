@@ -148,6 +148,10 @@ records that provenance and limitations.
 
 The package runner executes all three programs in normal, -O and -OO modes
 and requires all mathematical JSON fields to match the pinned references.
+Execution requires Python 3.10 or later on a POSIX system such as macOS or
+Linux: the unchanged kernel checker calls the POSIX API `os.getuid()`.
+The recorded fresh package executions used macOS with Python 3.14.6; exact
+current environment identity is in `evidence/EXECUTION_ENVIRONMENT.json`.
 It separately records execution UID and verifies optimization mode. Six actual
 source mutations are then executed in every mode: reverse or omit the length
 ratio, negate it, erase the zero sign distinction, replace the singleton

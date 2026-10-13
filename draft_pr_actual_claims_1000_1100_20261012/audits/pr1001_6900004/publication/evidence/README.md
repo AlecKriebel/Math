@@ -21,6 +21,7 @@ provides the portable counterparts. The current proof and scope are in
 | Fresh portable-runner receipt | [PACKAGE_REPRODUCTION.json](PACKAGE_REPRODUCTION.json) contains full raw outputs for 9 baselines and 18 actual source mutations, with separately identified execution metadata. Reproduce with [run_checks.py](../run_checks.py). |
 | Current whole-package review gate | [CURRENT_REVIEW_STATE.json](CURRENT_REVIEW_STATE.json) describes the current stage; fresh package-review records are added when completed. |
 | First fresh whole-package review | [report](package_review_01/REVIEW.md), [verdict](package_review_01/VERDICT.json), [independent derivation](package_review_01/INDEPENDENT_DERIVATION.md), [boundary checker](package_review_01/independent_boundary_check.py), [receipt](package_review_01/INDEPENDENT_BOUNDARY_RECEIPT.json). These pins bind the earlier package before the navigation fix; they are stage history, not the corrected archive inventory. |
+| Second fresh whole-package review | [report](package_review_02/REVIEW.md), [verdict](package_review_02/VERDICT.json), [input pins](package_review_02/INPUT_PINS.json). The theorem and all 27 executions passed; its P3 finding identified the POSIX execution prerequisite, subsequently documented. These are unchanged stage records. |
 
 Raw third-party PDFs, extracted full text and page images are **not bundled**.
 The absolute source paths and extraction-line links in historical reports

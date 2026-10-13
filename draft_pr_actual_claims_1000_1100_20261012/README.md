@@ -5,6 +5,13 @@ all 101 rows `queued`. The new eligibility decision comes from each PR's
 actual claims and artifacts, measured against the complete original problem,
 rather than treating the queue's status as authoritative.
 
+All 101 pinned PRs have now been screened. The source-reconciled registry
+contains 18 complete-result claims eligible for full audit and 83 partial or
+credited-prior exclusions. A complete counterexample or answer to a separately
+explicit original clause is admitted with the other bundled clauses still
+labelled unresolved; it is never presented as a solution of the entire bundle.
+See `CLAIM_REGISTRY.json` for exact boundaries and checkable evidence.
+
 Proceed in ascending PR order. Record the strongest asserted outcome and
 distinguish a claimed original full resolution from partial/unsolved work,
 credited prior resolutions, and ambiguities. A claimed full resolution is a

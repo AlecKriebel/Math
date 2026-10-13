@@ -40,7 +40,9 @@ are AI adversarial reviews; no conventional human peer review is claimed.
   included counterparts and identifies omitted source bodies.
 - `PACKAGE_MANIFEST.json`: file sizes and SHA-256 hashes, excluding itself.
 
-Use Python 3.10 or later, with no third-party packages:
+Use Python 3.10 or later on a POSIX system such as macOS or Linux, with no
+third-party packages. The unchanged kernel checker uses `os.getuid()`, so
+the executable verification requires that POSIX API:
 
 ```sh
 python3 run_checks.py --output verification-receipt.json
