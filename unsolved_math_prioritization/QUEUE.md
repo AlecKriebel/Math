@@ -214,7 +214,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 203 | 30001704 / OWR-4798-031 | Finiteness from Face-Number Bounds for Manifolds with Boundary | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the nonlinear-element top-Hessian rank identity, full socle-degree3 equivalence between local A and Q0, and exclusion of all lower-degree deformations of the stated quartic Perazzo form. General higher-socle local question remains unresolved. 6276 author and3359 independent controls; characteristic-zero and genuine symmetric-decomposition scope retained. Draft PR: https://github.com/AlecKriebel/Math/pull/185. |  |
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
