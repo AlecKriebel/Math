@@ -92,5 +92,12 @@ LP/SFM/GLS, certify universal complexity or supply a formal/human-review proof.
 bodies, own-PDF render images and duplicate extracted input packages are omitted;
 source URL/hash metadata and complete execution receipts remain. The review
 manifest hashes describe that original stage, not the repaired current note.
-A NEW second whole-package review remains pending. This draft is not yet
-approved for immutable publication.
+[NEW second whole-package review](package_review_02/REVIEW.md),
+[clean verdict](package_review_02/VERDICT.json) and
+[unchanged copy pins](PACKAGE_REVIEW_02_COPY.json) independently verify
+both repairs and the full candidate. Zero actionable issues remain.
+[Final acceptance](FINAL_ACCEPTANCE.json) advances the current gate.
+The last reviewed mathematical source, PDF, checker and metadata bytes
+are unchanged; only unchanged review evidence and administrative
+acceptance/navigation records were added after that review. Historical
+input manifests refer to their original stages.

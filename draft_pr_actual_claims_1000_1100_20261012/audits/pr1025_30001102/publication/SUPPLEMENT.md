@@ -149,7 +149,9 @@ Exact metadata, portable navigation and verification receipts accompany the
 package. The first fresh whole-package review passed mathematics and found two P3
 repairs: the GLS10.2.7 problem locator and B=1 for an empty edge set. Both were
 corrected in the current source/PDF; original review inputs and records are
-preserved. A NEW second review remains required. This draft is not yet approved for
-immutable publication. Extensive AI use, unrefereed status and all scope/credit
+preserved. A NEW independent second review verified the fixes and the complete
+package, with zero actionable issues. [Final acceptance](evidence/FINAL_ACCEPTANCE.json)
+and [review state](evidence/CURRENT_REVIEW_STATE.json) now record readiness
+for immutable publication. Extensive AI use, unrefereed status and all scope/credit
 limits must persist through paper, package, metadata and tracker. No formal
 proof-assistant or conventional human peer-review certificate is claimed.

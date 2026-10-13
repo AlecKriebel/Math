@@ -286,10 +286,32 @@ def check_actual_hull_boundaries():
             'empty_edge_B':1,'zero_dimension':'immediate singleton in R^0'}
 
 
+def check_completion_and_unbounded():
+    # Rounding a row with one continuous coordinate would change the exact value.
+    v,y=lp(2,((0,1),),(Q(4,3),),(Q(1),Q(-1)),{0:0})
+    bad,_=lp(2,((0,1),),(Q(2),),(Q(1),Q(-1)),{0:0})
+    need(v==Q(4,3) and y==(Q(0),Q(-4,3)) and bad==2,'continuous-row rounding diagnostic')
+    # Huge rational recession certificate; clearing coordinate denominators has additive bit length.
+    p=2**107-1;q=2**89-1;r=(Q(-1,p),Q(-1,q));cost=(Q(p),Q(0))
+    need(r[0]-r[1]>=0 and dot(cost,r)<=-1,'rational improving ray')
+    multiplier=lcm(*(x.denominator for x in r));integer=tuple(multiplier*x for x in r)
+    need(all(x.denominator==1 for x in integer),'cleared ray integral')
+    need(dot(cost,integer)<-1,'strict GLS ray normalization')
+    z=(Q(2),Q(-2))
+    for m in (0,1,2,10**20):
+        step=tuple(x+m*d for x,d in zip(z,integer))
+        need(step[0]-step[1]>=Q(4,3) and all(x.denominator==1 for x in step),'integer ray steps feasible')
+    need(multiplier.bit_length()<=p.bit_length()+q.bit_length(),'ray bit bound')
+    return {'continuous_integer_row_unrounded_optimum':'4/3','wrong_all_row_rounding_optimum':'2',
+            'rational_ray_denominator_bits':[p.bit_length(),q.bit_length()],
+            'clearing_multiplier_bits':multiplier.bit_length(),'integer_steps_checked':[0,1,2,10**20]}
+
+
 def main():
     report={'status':'PASS','optimization_mode':sys.flags.optimize,
             'thresholds':check_thresholds(),'rings':check_rings(),
             'lp_values':check_lp_values(),'hull_boundaries':check_actual_hull_boundaries(),
+            'completion_unbounded':check_completion_and_unbounded(),
             'limitation':'Finite exact adversarial diagnostics, not an implementation of polynomial LP/SFM/GLS or a universal proof.'}
     print(json.dumps(report,sort_keys=True))
 
