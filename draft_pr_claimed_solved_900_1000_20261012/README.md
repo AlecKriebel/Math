@@ -23,3 +23,5 @@ requested `Math Puzzles` tracker (gid 1254632077). PR #904 is accepted, merged a
 Own work is isolated here. No other shard or individual is contacted. Main
 checkpoints use a private index and nonforced remote main pushes; the shared
 checkout, shared index and local branch pointer are preserved.
+
+PR #905 is accepted, merged and published: [10.5281/zenodo.23333002](https://doi.org/10.5281/zenodo.23333002), tracker 'Math Puzzles'!A76:D76. The frozen revision 2 passed the fresh review after the source-version repair; its queue conflict reconciliation preserved all reviewed bytes.
