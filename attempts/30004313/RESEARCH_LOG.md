@@ -1,0 +1,39 @@
+# Research log
+
+## 2026-10-01 09:58–10:00 UTC: exact source and prior gate
+
+Recovered the full completely regular/generalized semi-brace definition and original Question2. Cleared numeric/source-code and broader campaign gates. Distinguished the group-based criterion, strong-semilattice construction and later inverse/weak-brace hypotheses. Source recovery itself consumed no proof turn.
+
+## 2026-10-01 10:00–10:08 UTC: substantive turn1
+
+Investigated the actual algebra rather than presuming ordinary-brace factorization or group-action identities. Derived separate right-zero and left-zero normalizations, clarifying a convention mismatch in a later example paragraph. Enumerated all labeled operations of orders at most3 as diagnostics. Proved an all-size characterization when multiplication is meet and addition has the form a+b=f(b): brace compatibility means an idempotent retraction onto a lower subset, and Yang–Baxter is equivalent to monotonicity and deflationarity. With a top element the maps are exactly x↦x∧e. Produced a three-element middle-coordinate-only obstruction and a two-element solution without product preservation.
+
+Strongest result: the complete stated subclass theorem and explicit counterexamples to tempting global shortcuts. Remaining gap: arbitrary addition and non-Clifford completely regular multiplication. The full source target remains in progress after1/5 turns. No novelty or final full-resolution claim is made; separate review will be required before a result PR.
+
+## 2026-10-01 10:10–10:18 UTC: substantive turn2
+
+Investigated non-Clifford multiplication without assuming that group-brace identities persist. Proved that left-zero multiplication is compatible exactly with additive bands and all associated maps solve Yang–Baxter. Proved the analogous complete arbitrary-addition result for right-zero multiplication, with x+y+z=x+z. Found and proved a four-element rectangular-band counterexample showing these branches do not extend to every compatible addition on their product. Derived an exact sandwich-factorization criterion for coinciding laws in arbitrary Rees-matrix presentations and normalized the compatible cases to rectangular groups, where the source map is a product of two duplication maps and group conjugation.
+
+Strongest result: these all-size structural partials, with all three braid coordinates checked. The full arbitrary-addition/completely-regular classification remains unresolved after2/5 turns. Further work must address the genuine coupling across the projection directions or more general multiplicative components. No novelty claim.
+
+## 2026-10-01 10:20–10:29 UTC: substantive turn3
+
+Extended the retracted-addition family to arbitrary completely regular multiplication: compatible maps are exactly retractions onto left ideals. A finite Rees probe disproved a proposed necessity of multiplicative endomorphism. Derived and proved the exact classification for retractions onto one fixed left-ideal column of any Rees-matrix semigroup: normalize one sandwich row, force preservation of row indices from the middle braid coordinate, and parametrize the remaining group corrections by arbitrary idempotent set maps. No inverse anti-homomorphism or cancellation outside the group was used. Proved the complementary iff criterion for endomorphic retractions of general completely regular semigroups, reducing it to the right-cryptogroup law on their image.
+
+Strongest result: a genuine structural parametrization in the stated arbitrary-Rees family, with nonhomomorphic examples. General additions, multi-column retractions and arbitrary completely regular component coupling remain unresolved after3/5 turns. No novelty claim.
+
+## 2026-10-01 10:30–10:38 UTC: substantive turn4
+
+Resolved the coupled multi-column retraction problem in every Rees-matrix presentation. Classified the left ideals, derived row preservation from the middle braid coordinate, and proved the remaining exact condition f(f(b)^-b)=f(b)^0. Converted it to an explicit parametrization by idempotent residual transformations of the group and output-column labels constant on their residual fibers. Proved a label-coupling counterexample showing that residual idempotence alone is insufficient. All group inverse formulas retain sandwich factors in their noncommutative order.
+
+Strongest result: complete all-size classification for every retracted addition a+b=f(b) on presented completely simple multiplication, with arbitrary left-ideal image. The original arbitrary-addition and general completely-regular-component questions remain unresolved after4/5 turns. Research pauses at this preserved checkpoint for a separately assigned independent review; the final author turn remains available. No novelty claim.
+
+## 2026-10-01 10:53–11:00 UTC: substantive turn 5
+
+After the separately assigned review interval, investigated coupling across arbitrary Clifford multiplicative components. Proved that a solution retraction onto a nonempty left ideal exists exactly when every idempotent has a greatest ideal-idempotent below it; the retraction is unique and given by that restriction. Necessity uses all three braid coordinates without cancellation, while sufficiency proves the required semilattice homomorphism and group restriction properties. This also characterizes the endomorphic retractions in this subclass. Constructed an ideal-coupling obstruction and propagated the rectangular-band failure to genuinely two-argument additions with any maximal group, on a multiplication that also supports a successful coinciding addition.
+
+The original arbitrary-addition and arbitrary completely-regular classification remains unsolved after 5/5 substantive turns. All-size partial theorems and exact finite diagnostics are retained; no further proof-search turn is counted. No novelty or current historical-openness assertion.
+
+## 2026-10-01 11:06 UTC onward: freeze and independent-review handoff
+
+Consolidation and reproduction are packaging, not a sixth substantive author turn. The five original proof files are preserved. The complete partial packet is submitted for adversarial proof/source review before any result PR. No queue status is changed at this checkpoint.
