@@ -67,3 +67,7 @@ Verified published DOI 10.5281/zenodo.23331540 and exact metadata/files through 
 ## 2026-10-13T04:45:57.362528+00:00 — #1025 bounded priority report received (program estimate 14%)
 
 Independent priority reviewer froze REPORT.md and machine-readable evidence after72queries/19PDFretrievals. It reports no earlier full exact claim in inspected bodies and recommends an explicitly assembled consequence with worldwide priority unverified. Required new-paper credit: Cook–Gerards–Schrijver–Tardos1986 mixed-integer proximity, Takamatsu–Hara–Murota2004 hybrid partial minimization, Murota2002/2003 ring/scaling lineage. Full root adoption and global new-paper corrections remain pending; no #1025 publication/PR disposition. Raw source bodies remain ignored. Ascending cursor is #1024; #1001 fully complete.
+
+## 2026-10-13T05:00:27.945019+00:00 — #1024 portable package checkpoint (program estimate 16%)
+
+The unrestricted negative theorem and all mandatory prior-credit corrections are adopted in the five-page research note and exact metadata. New portable kit passed39executions (9baselines,12actual-source faults,18runtime faults), complete output/exit contract exact in normal/-O/-OO. All11independent arithmetic predicates preserved by explicit-guard adaptation. Original27submittedfiles remain byte-identical. Public evidence index maps historical stages and omits third-party source bodies. Current PDF compiled without warnings; all5pages rendered/visually inspected. Fresh whole-package reviewer follows; no immutable upload, tracker append or #1024 PR action yet.

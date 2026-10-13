@@ -1,6 +1,6 @@
 # Source, mathematical verification and priority supplement
 
-Draft companion to *A characteristic-two counterexample to devissage for local
+Companion to *A characteristic-two counterexample to dévissage for local
 deformation functors*, Alec Kriebel, 12 October 2026. Reviews and retrievals
 took place 12 October PDT / 13 October UTC. Extensive AI use and unrefereed
 status apply to both the paper and supplement.
@@ -129,17 +129,27 @@ Those are supplied by the written derivations and independent source audits.
 
 Direct finite-program replay is distinct from the old UID1000 sealed-packet
 permission harness; no replay of that historical environment is claimed.
-Source bodies are retained locally for inspection but will not be redistributed
-in the public package. Retrieved-byte hashes and public primary URLs will
-accompany the authored verification material. Historical machine paths and
-stage manifests must be labelled and mapped by a portable evidence index.
+Source bodies are retained locally for inspection and are not redistributed.
+Retrieved-byte hashes and public primary URLs accompany the authored material
+in the [portable evidence index](evidence/INDEX.md). Historical absolute paths
+describe the environment of that stage; the index maps them to portable copies.
 
-A portable verification kit, exact metadata, final evidence inventory and
-fresh whole-manuscript/package adversarial review/fix loops remain to be
-completed. The package is not yet ready for immutable publication. Every
-actionable issue must be corrected globally in current
-artifacts and reviewed by a new independent adversarial subagent. The final
-metadata and tracker must retain **unrestricted** scope, the untouched
+The portable runner adds a third independently written F4 cubic-ring arithmetic
+check. Its eleven original assertion predicates were converted to explicit
+RuntimeError guards by an AST-preserving adaptation, with unchanged predicates
+and original source retained. All checks survive -O and -OO. The runner passed
+39 executions: nine baselines, twelve actual-source fault controls and eighteen
+runtime fault controls. Complete stdout/stderr, exact JSON types and exit codes
+match fixed references. Python 3.10+ and only the standard library are required;
+the recorded run used Python 3.14.6 on macOS. No other operating system was
+tested here. This is finite corroboration, not a formal proof certificate.
+
+Exact metadata and the source/verification inventory accompany the package.
+Fresh whole-manuscript/package adversarial review/fix loops remain pending in
+[the current state](evidence/CURRENT_REVIEW_STATE.json). The package is not yet
+approved for immutable publication. Every actionable issue must be corrected
+in current artifacts and reviewed by a new independent adversarial subagent.
+The final metadata and tracker retain **unrestricted** scope, the untouched
 prorepresentable-component variant, known-ingredient credit and extensive-AI /
-unrefereed disclosure. No formal proof-assistant or human peer-review
-certificate is claimed.
+unrefereed disclosure. No formal proof-assistant or human peer-review certificate
+is claimed.
