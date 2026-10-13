@@ -56,4 +56,6 @@ review and any required repair loops finish.
 
 The first NEW whole-package review verified the complete mathematics and
 found two P3 prose repairs: precise negative-control coverage and spacing.
-Both have been applied; a NEW second independent review is required.
+The second NEW review again verified the complete mathematics and found one
+remaining P3 spacing defect. That defect has been corrected. A NEW third
+independent whole-package review is required.

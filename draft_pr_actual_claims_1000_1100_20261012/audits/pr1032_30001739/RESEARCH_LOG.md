@@ -10,3 +10,7 @@ Rootread exactoriginalEMS p734 target+imprimitive definition andcontext,p729twoo
 ## 2026-10-13T22:01:04.852617+00:00 — Complete scoped mathematical acceptance; 50% of PR1032
 
 Root read the frozen Langlands report and derivation in full; all 61 output pins match. Independent analytic and Langlands obligations now mutually discharge their separate conditional gaps. Exact original problem, whole-induction meaning and k=1 scope verified. Temporary dedicated ignored SymPy1.14.0/mpmath1.3.0 runtime resolved the import gap, and all four unmodified original math programs reproduced twelve full original inner streams across normal/O/OO. No environmental seals or UID1000 harness claimed. ROOT_MATH_AUDIT/ACCEPTANCE record the complete scoped negative theorem and explicit published dependencies. Priority remains pending, especially Luo–Zha full-text/equivalence comparison. Next independent priority gate, no1032paper or public novelty claim yet.
+
+## 2026-10-13T22:24:43.592400+00:00: priority audit inspected and gap retained
+
+Read complete fresh report/verdict and verified 110 frozen files. No inspected predecessor matches the GL15 parameters, but exact overlap with full Luo–Zha body remains unknown. A PDF-filename inventory found no matching local title/DOI file; fulltext was not searched across unrelated efforts. User asked asynchronously for lawful local path/public URL. Mathematical acceptance stands; novelty-framed publication pending. PR workflow best-guess completion: 45%, priority clearance 0%.

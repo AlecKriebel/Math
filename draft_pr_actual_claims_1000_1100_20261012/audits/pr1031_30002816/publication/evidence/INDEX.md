@@ -51,4 +51,12 @@ draft has not passed the immutable-publication gate.
 Input manifests describe the original review candidate. Raw source bodies,
 own render images and duplicate extracted packages are omitted.
 The current paper and arithmetic bytes remain unchanged; metadata and
-prose have been repaired. A NEW second package review remains pending.
+prose were repaired after that review.
+
+[Second fresh package review](package_review_02/REVIEW.md),
+[verdict](package_review_02/VERDICT.json),
+[unchanged copy pins](PACKAGE_REVIEW_02_COPY.json) and
+[remaining spacing repair](REPAIR_RECORD_02.json) record the next stage.
+That review verified the mathematics and found one P3 spacing defect.
+It has been corrected. Mathematical source, PDF, arithmetic and metadata
+bytes are unchanged by round 02; a NEW third package review is pending.

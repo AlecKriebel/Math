@@ -72,7 +72,7 @@ Blekherman–Smith–Velasco treat arbitrary nonnegative homogeneous quadratics;
 Bettiol–Kummer–Mendes already exclude finite shadows for quadratic Grassmann
 cones in Sym2(exterior). The quadratic map p->pp^T loses orientation and is
 not the ambient-linear bridge for this oriented mass ball. Sanyal–Sottile–
-Sturmfels's G(3,6)result excludes an unprojected LMI, not every finite lift.
+Sturmfels's G(3,6) result excludes an unprojected LMI, not every finite lift.
 The current proof does not claim the first Grassmann-related obstruction.
 
 The independent priority ledger records 84 focused queries and 25 successful
