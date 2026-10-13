@@ -1,0 +1,346 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\PP}{\mathbf P}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\mult}{\operatorname{mult}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\title{Positive tangent-bundle Seshadri constants\protect\\characterize projective space}
+\author{Alec Kriebel\\[2pt]\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{12 October 2026\quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $X$ be a smooth integral projective variety over an algebraically closed
+field of arbitrary characteristic. We prove that positivity of the relative
+Seshadri constant of $T_X$ at one closed point implies $X\simeq\PP^{\dim X}$,
+resolving the conjecture of Fulger and Murayama. An absolute minimum of ample
+degree among rational curves through the specified point gives a proper
+pointed family without boundary. Its very-free members yield surjective
+evaluation. A contracted marking section and line-bundle descent force
+Picard number one and ampleness of $-K_X$, reducing the problem to the
+established Fano case. No general-point or characteristic-zero assumption is
+used. This is an unrefereed preprint developed and checked extensively with
+AI tools.
+\end{abstract}
+
+\section{The statement and its context}
+
+For a vector bundle $E$ on a projective variety $X$, let
+$\rho:\PP(E)=\operatorname{Proj}_X\operatorname{Sym} E\to X$ use the
+quotient convention, and write $\xi=c_1(\OO_{\PP(E)}(1))$. The relative
+Seshadri constant of Fulger--Murayama is
+\begin{equation}\label{eq:definition}
+ \epsilon(E;x)=\inf_{\Gamma}\frac{\xi\cdot\Gamma}
+ {\mult_x(\rho_*\Gamma)},
+\end{equation}
+where $\Gamma$ ranges over integral curves in $\PP(E)$ whose images contain
+$x$ and which are not contracted by $\rho$. If $\Gamma\to C$ has total
+generic degree $q$, then $\rho_*\Gamma=q[C]$; the degree includes its
+inseparable factor. Global nefness of $E$ is not required.
+
+\begin{theorem}\label{thm:main}
+Let $X$ be a smooth integral projective variety of dimension $n\geq1$ over
+an algebraically closed field $k$ of arbitrary characteristic. If
+$\epsilon(T_X;x)>0$ at a closed point $x\in X$, then $X\simeq_k\PP^n$.
+\end{theorem}
+
+This is \cite[Conjecture 4.9]{FM}, also stated in Fulger's contribution to
+the 2019 Oberwolfach workshop \cite[p.~3289]{OWR}. Fulger--Murayama prove
+the Fano case in every characteristic, the surface case, and the
+general-point case in characteristic zero. Chang proves the smooth
+projective toric case \cite[Theorem 0.2]{Chang}. The conclusion here retains
+the original arbitrary point and removes the additional Fano hypothesis.
+
+Proper pointed rational-curve families and their numerical-generation
+properties are standard tools; see, for example,
+\cite[Proposition 2.20(b)]{AO}. We give the numerical argument explicitly
+using a genuine contracted section. The proof combines these tools with a
+minimum taken over \emph{all} rational images through the given point and
+a characteristic-free construction of the actual marked family.
+The final characterization is imported from the established Fano clause
+\cite[Proposition 4.8(1)]{FM}, which uses Mori's theorem as presented in
+\cite[Theorem V.3.2]{Kollar}. The conjecture itself is never an input.
+
+\section{A complete family through the specified point}
+
+\begin{lemma}\label{lem:free}
+Every normalization $f:\PP^1\to C\hookrightarrow X$ of an integral
+rational curve $C$ through $x$ has $f^*T_X$ ample.
+\end{lemma}
+\begin{proof}
+Write $f^*T_X=\bigoplus_{i=1}^n\OO_{\PP^1}(a_i)$, and put
+$m=\mult_x C$. A quotient onto $\OO(a_i)$ defines a lift
+$s_i:\PP^1\to\PP(T_X)$ of $f$. Its image $\Gamma_i$ is birationally
+parametrized by $s_i$: its function field lies between the equal fields
+$k(C)$ and $k(\PP^1)$. Hence
+$\xi\cdot\Gamma_i=a_i$ and $\rho_*\Gamma_i=[C]$.
+Equation~\eqref{eq:definition} gives
+$a_i/m\geq\epsilon(T_X;x)>0$. Thus each integer $a_i\geq1$.
+This argument works in every characteristic, including singular rational
+images, without replacing Frobenius-normalized slopes on general curves
+by ordinary slopes.
+\end{proof}
+
+The proof of \cite[Corollary 4.6]{FM} produces an integral rational curve
+through the \emph{same} point $x$ from the hypothesis of
+Theorem~\ref{thm:main}. Fix a very ample line bundle $A$ on $X$, and set
+\begin{equation}\label{eq:minimum}
+d=\min\{A\cdot C:C\subset X\text{ is integral rational and }x\in C\}.
+\end{equation}
+This is an attained positive integer.
+
+\begin{lemma}\label{lem:boundary}
+Every geometric genus-zero stable map of $A$-degree $d$ with one marking
+evaluating to $x$ has smooth domain $\PP^1$ and is birational onto its image.
+\end{lemma}
+\begin{proof}
+First the minimum in \eqref{eq:minimum} survives any algebraically closed
+extension $K/k$. A rational image through $x_K$ of degree $c<d$ would give
+a degree-$c$ normalization map $\PP^1_K\to X_K$, reparametrized so that
+$0\mapsto x_K$. The degree-$c$ pointed Hom scheme is of finite type over
+$k$. Its nonemptiness would give a $k$-point, since $k$ is algebraically
+closed. The image of that map is a rational curve through $x$ of degree
+at most $c$, contradicting \eqref{eq:minimum}. Rationality of the image
+follows from L\"uroth's theorem, also in positive characteristic.
+
+Consider a geometric map $(g:D\to X,p)$ as in the statement. Its dual
+graph is a tree of projective lines. Starting at the marked component,
+follow components contracted to $x$ until reaching a nonconstant component
+$D_v$. Its image $C_v$ is a rational curve through $x$. If $e_w$ is the
+full generic degree of each nonconstant component onto its image, then
+\[
+d=\sum_{w\text{ nonconstant}} e_w(A\cdot C_w)
+ \geq e_v(A\cdot C_v)\geq A\cdot C_v\geq d.
+\]
+All summands are positive integers. There is therefore just one
+nonconstant component, and it maps birationally to a degree-$d$ image.
+Any connected contracted subtree with $t>0$ vertices attaches to it along
+one edge and has at most one marking. Its total number of special-point
+incidences is at most $2(t-1)+1+1=2t$, whereas stability requires at least
+$3t$. Such a subtree cannot exist. This includes a marking initially on
+a contracted component and excludes inseparable multiple covers by their
+full degree.
+\end{proof}
+
+\begin{lemma}\label{lem:family}
+There are an integral projective scheme $H$, a smooth projective-line
+bundle $\pi:U\to H$, a section $\sigma:H\to U$, and a surjective
+morphism $e:U\to X$ such that $e\sigma=x$. Every fiber map is birational
+onto a degree-$d$ rational curve through $x$.
+\end{lemma}
+\begin{proof}
+Abramovich--Oort \cite[Theorem 2.8 and \S2.5]{AbramovichOort} give a proper
+finite-presentation Artin stack of one-marked genus-zero maps to $X$ of
+$A$-degree $d$, with a projective coarse scheme $Q$. Let $\mathcal M_x$
+be the actual evaluation fiber over $x$. It is proper and nonempty.
+Lemma~\ref{lem:boundary} describes all its geometric objects.
+
+Their stabilizer group schemes are trivial. A geometric automorphism
+preserving a birational map is the identity on the open set where the map
+is an isomorphism onto its image. Infinitesimal automorphisms are vector
+fields on $\PP^1$ vanishing at the mark and killed by $dg$. The
+normalization map has generically injective differential, so such a
+vector field is zero. A finite group scheme with one geometric point and
+zero tangent space is the identity: its local maximal ideal satisfies
+$\mathfrak m/\mathfrak m^2=0$, and Nakayama applies.
+This also makes inertia trivial over nonreduced bases. On an atlas its
+finite algebra has an augmentation split by the identity section as
+$\OO\oplus J$. The finite module $J$ has zero geometric fibers and
+therefore vanishes by Nakayama.
+
+Trivial inertia makes $\mathcal M_x$ an algebraic space
+\cite[Tag 04SZ]{Stacks}. Its natural morphism to $Q$ is proper, because
+$\mathcal M_x$ is proper over $k$ and $Q$ is separated. It is quasi-finite:
+coarse geometric points identify isomorphism classes, so each geometric
+fiber contains at most one point. Tags 03XX and 02LS of \cite{Stacks}
+make $\mathcal M_x$ a scheme finite over $Q$, hence projective.
+No commutation of coarse moduli with a closed evaluation fiber in wild
+characteristic is assumed.
+
+The stack's universal curve restricts to an actual smooth proper
+$\PP^1$-family on $\mathcal M_x$, with marking section. The marking is
+a relative effective Cartier divisor. Its line bundle has fiber degree
+one; cohomology and base change give a rank-two pushforward and a
+fiberwise surjective evaluation map. This identifies the family with
+the quotient projective bundle of that pushforward, also over nonreduced
+bases. One can check the identification by noting that the induced
+morphism is proper and fiberwise an isomorphism, hence finite; Nakayama
+makes its algebra map surjective, and flatness over the base makes its
+defining ideal have zero fibers, so that ideal vanishes.
+
+Choose a degree-$d$ normalization $f:\PP^1\to X$ with $f(0)=x$.
+Let $R_d$ be the degree-$d$ Hom scheme with $0\mapsto x$.
+Its morphism to $\mathcal M_x$ is the torsor of pointed parametrizations
+under the smooth group $\Aut(\PP^1,0)$. Indeed the projective-line bundle
+with section just constructed is locally a pointed trivial bundle.
+By Lemma~\ref{lem:free},
+\[
+H^1(\PP^1,f^*T_X(-0))=0,\qquad
+H^1(\PP^1,f^*T_X(-0-\infty))=0.
+\]
+Fixed-source deformation theory makes $R_d$ smooth at $f$ and evaluation
+at $\infty$ smooth there. For the latter assertion the obstruction is
+the second displayed group: local lifts into smooth $X$ respecting the
+two prescribed values differ by a \v Cech cocycle in
+$f^*T_X(-0-\infty)$, whose vanishing obstruction allows the lifts to
+glue. This is infinitesimal smoothness, not generic smoothness in
+characteristic zero; see also \cite[Proposition 4.7]{Gounelas}.
+
+Smooth descent along the parametrization torsor makes $\mathcal M_x$
+smooth at $[f,0]$. Let $H$ be its unique reduced irreducible component
+there, and restrict the universal curve to $U\to H$. A neighborhood
+of $f$ in $R_d$ maps into $H$. Its smooth evaluation at $\infty$ factors
+through $e:U\to X$, so $e(U)$ contains a nonempty open subset of $X$.
+It is closed because $U$ is proper; irreducibility of $X$ gives $e(U)=X$.
+The total space $U$ is integral: smoothness over reduced $H$ gives
+reducedness, and flatness with geometrically integral fibers over integral
+$H$ gives irreducibility. It is projective because it is a projective-line
+bundle over projective $H$. All asserted fiber degrees and birationality
+follow from Lemma~\ref{lem:boundary}.
+\end{proof}
+
+\section{The contracted section and the Fano reduction}
+
+We spell out the standard numerical-generation argument for the family
+above. In particular it tests curves avoiding $x$, as well as curves of
+positive genus.
+
+\begin{lemma}\label{lem:numerical}
+For every Cartier divisor $D$ on $X$, put $b=D\cdot C$, where $C$ is the
+image of a fiber of $U\to H$. Then $b$ is independent of the fiber and
+\[
+ d[D]=b[A]\quad\text{in }N^1(X)_{\mathbf R}.
+\]
+Consequently $\rho(X)=1$.
+\end{lemma}
+\begin{proof}
+Degrees of a line bundle on fibers of a proper flat curve family are
+locally constant. They are constant here since $H$ is integral. The
+line bundle $L=\OO_X(dD)\otimes A^{-b}$ thus pulls back to a bundle
+$M=e^*L$ of degree zero on every geometric $\PP^1$-fiber. Each such
+restriction is trivial and has $h^0=1$, $h^1=0$. Proper flat cohomology
+and base change give a line bundle $B=\pi_*M$ with
+$\pi^*B\simeq M$; the adjunction map is an isomorphism on every
+geometric fiber and hence everywhere. The applicable perfect-base-change
+result is \cite[Tag 0B91]{Stacks}; direct fiberwise descent is also
+given by Tags 0EX7 and 0GKA. Pulling back by $\sigma$ gives
+\[
+ B\simeq\sigma^*e^*L\simeq L|_x\otimes_k\OO_H\simeq\OO_H.
+\]
+Thus $e^*L$ is trivial.
+
+Let $\Gamma\subset X$ be any integral curve and let $\eta$ be its
+generic point. Surjectivity of $e$ makes $U_\eta$ nonempty. A closed
+point of this finite-type $k(\Gamma)$-scheme has residue field $K$ finite
+over $k(\Gamma)$, of total degree $q>0$. Its reduced closure in $U$ is
+a proper integral curve $\Gamma'$ dominating $\Gamma$ with generic
+degree $q$. The degree projection formula gives
+\[
+ 0=\deg(e^*L|_{\Gamma'})=q\deg(L|_\Gamma).
+\]
+These are integer degrees, so the conclusion remains valid even if the
+characteristic divides $q$. Hence $L$ is numerically trivial on $X$,
+proving the asserted relation. The ample class $[A]$ is nonzero since
+$A\cdot C=d>0$, so the Picard number is exactly one.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use Lemma~\ref{lem:numerical} with $D=-K_X$. By
+Lemma~\ref{lem:free}, its degree on the original rational curve is
+$b=\deg f^*T_X=\sum_i a_i>0$. Thus
+$-K_X\equiv cA$ with $c=b/d>0$.
+For every integral subvariety $Z\subset X$ of dimension $r\geq1$,
+numerical equivalence gives
+\[
+ (-K_X)^r\cdot Z=c^r A^r\cdot Z>0.
+\]
+For completeness, subtracting the two powers expresses their difference
+as $(-K_X-cA)$ intersected with
+$\sum_{j=0}^{r-1}(-K_X)^{r-1-j}(cA)^j\cap[Z]$, a real one-cycle class;
+the difference therefore has degree zero. Since $X$ is smooth,
+$-K_X$ is Cartier. The Nakai--Moishezon criterion, valid in every
+characteristic (see \cite[Theorem 1.3]{FujinoMiyamoto}), makes $-K_X$
+ample. The established Fano clause \cite[Proposition 4.8(1)]{FM} now
+gives $X\simeq_k\PP^n$ at the original point and over the original field.
+\end{proof}
+
+When $n=1$, one can instead use
+$\epsilon(T_X;x)=\deg T_X=2-2g$, so positivity forces $g=0$.
+Conversely projective space has positive tangent Seshadri constant:
+it is $2$ for $\PP^1$ and $1$ for $\PP^n$, $n\geq2$
+\cite[Example 4.2]{FM}. Smoothness is essential; the singular toric
+examples in \cite[Example 0.4]{Chang} do not satisfy this theorem's
+hypotheses.
+
+\section*{Verification, priority, and AI-use disclosure}
+
+The supporting package contains the source, the original frozen candidate,
+reproducible integrity and finite controls, independent mathematical audit
+reports, and a dated priority-search ledger. The finite controls supplement
+the written proof; they do not formally verify the geometric theorem.
+A bounded primary-source priority audit on 12 October 2026 identified no
+earlier full resolution or explicitly matching immediate consequence. It
+does not certify first historical priority. The standard numerical-generation
+principle and the previously established special cases are credited above.
+The full Koll\'ar monograph and full CMSB text were not independently obtained
+in this audit; the exact published Fulger--Murayama propositions used here
+were directly inspected. An in-preparation reference on moving Seshadri
+constants had no inspected public contents.
+
+AI tools were used extensively in developing the proof, checking references
+and calculations, performing internal adversarial reviews, and preparing the
+manuscript and verification package. Responsibility for the claims and
+citations rests with the author. This preprint is unrefereed; internal
+AI-assisted review is not external human peer review, and no formal
+machine-checked proof is asserted.
+
+\begin{thebibliography}{9}
+\bibitem{FM} M. Fulger and T. Murayama,
+\emph{Seshadri constants for vector bundles}, J. Pure Appl. Algebra
+\textbf{225} (2021), no.~4, 106559.
+\href{https://doi.org/10.1016/j.jpaa.2020.106559}{doi:10.1016/j.jpaa.2020.106559}.
+Final-numbering public manuscript:
+\url{https://par.nsf.gov/servlets/purl/10198624}.
+\bibitem{OWR} M. Fulger (joint with T. Murayama),
+\emph{Seshadri constants for vector bundles}, in
+\emph{Mini-Workshop: Seshadri Constants}, Oberwolfach Reports
+\textbf{16} (2019), Report 53, 3287--3289.
+\href{https://doi.org/10.4171/OWR/2019/53}{doi:10.4171/OWR/2019/53}.
+\bibitem{Chang} C.-W. Chang,
+\emph{The Seshadri constants of tangent sheaves on toric varieties},
+J. Pure Appl. Algebra \textbf{229} (2025), no.~9, 108046.
+\href{https://doi.org/10.1016/j.jpaa.2025.108046}{doi:10.1016/j.jpaa.2025.108046};
+\href{https://arxiv.org/abs/2211.17172}{arXiv:2211.17172v2}.
+\bibitem{AO} M. Andreatta and G. Occhetta,
+\emph{Fano manifolds with long extremal rays}, Asian J. Math.
+\textbf{9} (2005), no.~4, 523--543.
+\href{https://doi.org/10.4310/AJM.2005.v9.n4.a5}{doi:10.4310/AJM.2005.v9.n4.a5}.
+\bibitem{AbramovichOort} D. Abramovich and F. Oort,
+\emph{Stable maps and Hurwitz schemes in mixed characteristic},
+\href{https://arxiv.org/abs/math/9808074}{arXiv:math/9808074} (1998),
+Theorem 2.8 and \S2.5.
+\bibitem{Kollar} J. Koll\'ar,
+\emph{Rational Curves on Algebraic Varieties}, Ergebnisse der Mathematik
+und ihrer Grenzgebiete, 3. Folge, vol.~32, Springer, 1996.
+\href{https://doi.org/10.1007/978-3-662-03276-3}{doi:10.1007/978-3-662-03276-3}.
+\bibitem{Gounelas} F. Gounelas,
+\emph{Free curves on varieties}, Documenta Math. \textbf{21} (2016),
+287--308, Proposition 4.7.
+\url{https://ems.press/content/serial-article-files/26314?nt=1}.
+\bibitem{FujinoMiyamoto} O. Fujino and A. Miyamoto,
+\emph{Nakai--Moishezon ampleness criterion for real line bundles},
+Theorem 1.3, author manuscript.
+\url{https://www.math.kyoto-u.ac.jp/~fujino/Nakai-Moishezon3.pdf}.
+\bibitem{Stacks} The Stacks Project Authors, \emph{The Stacks Project},
+Tags 04SZ, 03XX, 02LS, 0B91, 0EX7, and 0GKA.
+\url{https://stacks.math.columbia.edu/}.
+\end{thebibliography}
+\end{document}

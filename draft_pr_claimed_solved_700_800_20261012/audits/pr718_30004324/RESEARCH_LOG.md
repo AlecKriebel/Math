@@ -31,3 +31,13 @@ The independent reviewer returned PASS with no essential corrections or countere
 ## 2026-10-13T03:21:55.078945+00:00 — Mathematical clearance (estimated PR completion: 40%; overall shard: 5%)
 
 Fresh independent pointed-geometry review returned PASS without essential corrections. Parent read the full report and verified its smooth Aut(P1,0) parametrization torsor and projective-bundle justification. Both fresh mechanism families and root now find no mathematical gap under explicit established dependencies. This is internal AI-assisted validation, not external human peer review or formal verification. Original frozen packet remains unchanged. Priority stage now opened; a separate reviewer is checking the exact theorem and materially equivalent rational-curve mechanism against primary literature.
+
+## 2026-10-13T03:31:04.631880+00:00 — Priority precursor checkpoint (estimated PR completion: 48%; overall shard: 6%)
+
+The priority search identifies numerical generation from a proper pointed rational-curve family as a standard precursor (Andreatta–Occhetta, final Prop2.20(b), arXiv Prop2.18(b)). No novel-principle claim will be made for the contracted-section observation. Root checked the primary arXiv statement, and the independent reviewer traces its earlier sources. The remaining comparison is the entire arbitrary-point, arbitrary-characteristic synthesis. Final independent priority report pending.
+
+## 2026-10-13T03:43:53.791405+00:00 — Priority clearance and preprint preparation (estimated PR completion: 65%; overall shard: 7%)
+
+The independent priority audit completed 64 queries, 21 source records and citation screening. No earlier full resolution or matching explicit immediate consequence identified. Parent read its full report and verdict, accepted required standard-method attribution, and retained every access and indexing limitation. No first-priority certification claimed.
+
+Prepared five-page standalone research note and a 78-file source/verification archive plus a matching Zenodo upload kit and deposit manifest. The note retains every original hypothesis, includes the direct quotient-section argument, explicit parametrization torsor, numerical one-cycle justification, prior-case credits, and extensive AI/unrefereed disclosure. Desktop compiler and Tectonic both succeeded. All five rendered PDF pages visually inspected: no clipping, overlap, missing glyphs, or reference defects observed. Local Zenodo manifest check and exact support inventory check pass. A clean full support replay is underway. First fresh whole-preprint adversary assigned with no inherited conversation history. No upload, DOI, sheet write, or merge yet.
