@@ -1,6 +1,6 @@
-# k404: the focal antipedal-to-pedal area ratio
+# k404: credited independent proof of an earlier-covered ratio
 
-**5100022 / AMR-050-0022. Full source-target candidate, substantive author turn 1. Independent review pending.** The canonical parametrization and pedal-trace mechanism are credited below; no novelty or priority claim is made.
+**5100022 / AMR-050-0022. Status: already_solved after priority audit.** The proof below passed fresh independent mathematical review without a mathematical correction. Earlier public components already imply this theorem; see [priority audit](PRIORITY_AUDIT.md). This is an alternative self-contained proof, with no first-resolution claim. Original bytes and original pending-review headers are preserved under original_submission/.
 
 ## 1. Exact target and theorem
 
@@ -214,3 +214,7 @@ The proof covers both original foci, all primitive star winding classes of the r
 The known canonical parametrization, standard Jacobi identities, compact-torus residue argument and earlier campaign pedal-trace work are credited. The direct antipedal calculation and symmetry reduction are presented as a source-matched construction without a novelty claim.
 
 The supplied checker proves symbolic algebra identities for (6), (7), (17), checks exact period arithmetic for a range of primitive indices, and separately performs high-precision real and complex diagnostics using actual line intersections and perpendicular projections. Floating diagnostics do not prove the all-period theorem. The analytic pole completeness, pole order, symmetry and denominator arguments above are the proof and require independent review.
+
+## 9. Current priority disposition
+
+The theorem is mathematically accepted, but the open-problem classification is corrected to already_solved. Ferudun’s original DOI 10.5281/zenodo.23079799 Lemma 4 and the earlier immutable PR250 k204 theorem already cover the complete ratio after focal positivity. The general-even lemma’s scope, signed original polygons, primitive stars, zero numerator and chronology are checked explicitly in PRIORITY_AUDIT.md. This paragraph supersedes historical negative-search and pending-review statements; the mathematical body in Sections 1–8 is unchanged.

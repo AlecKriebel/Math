@@ -1,3 +1,7 @@
+# Current classification correction
+
+The following historical record is preserved for provenance. Current status is **already_solved**: the earlier public Ferudun original DOI 10.5281/zenodo.23079799 Lemma 4 and immutable PR250 k204 theorem together cover the full k404 target. Their different main target names do not remove coverage. See [PRIORITY_AUDIT.md](PRIORITY_AUDIT.md) for exact scope, positive denominator, chronological evidence and limits. Any historical negative search below is superseded by this positive finding. Author-method coordination remains disclosed.
+
 # Exact source and prior-attempt gate: k404
 
 Checked 2026-10-01. Target 5100022 / AMR-050-0022, rank 275.

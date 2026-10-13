@@ -1,7 +1,3 @@
-# 5100022: one-turn full candidate
+# 5100022: already_solved after priority correction
 
-The exact k404 original focal antipedal-to-pedal area ratio has a complete candidate proof, after one substantive author turn. Independent review is pending.
-
-All primitive 2-modulo-4 star classes with strict elliptical caustics are included. The focal pedal denominator is strictly positive, and all antipedal vertices are finite. The antipedal numerator may vanish. Source editions, signed areas, prior work and the credited pedal-trace mechanism are explicit.
-
-The remote checkpoint is an unreviewed candidate backup. No QUEUE promotion or result PR is included before independent PASS.
+The mathematics passes. Earlier authenticated public components already cover k404 on its full source domain. See PRIORITY_AUDIT.md and DISPOSITION.md. The original twenty-file packet is archived without changes under original_submission/. The current goal skips this corrected open draft; no new publication or merge.

@@ -1,3 +1,7 @@
+# Current classification correction
+
+The following historical record is preserved for provenance. Current status is **already_solved**: the earlier public Ferudun original DOI 10.5281/zenodo.23079799 Lemma 4 and immutable PR250 k204 theorem together cover the full k404 target. Their different main target names do not remove coverage. See [PRIORITY_AUDIT.md](PRIORITY_AUDIT.md) for exact scope, positive denominator, chronological evidence and limits. Any historical negative search below is superseded by this positive finding. Author-method coordination remains disclosed.
+
 # Related campaign work and independence disclosure
 
 The needed original focal pedal trace is a specialization of the earlier campaign mechanism in k203,a / 5100011 ([PR203](https://github.com/AlecKriebel/Math/pull/203)) and k203,b / 5100012 ([PR204](https://github.com/AlecKriebel/Math/pull/204)), later used for k204 / 5100013. This author independently audited the k204 packet before the present assignment. That audit and shared method are prior mathematical input, not independent review of the present k404 proof. The focal specialization and its denominator proof are reproduced in PROOF.md.
