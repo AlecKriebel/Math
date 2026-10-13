@@ -19,13 +19,16 @@ reviews, not document compilation, checksums or numerical sampling.
 
 After extracting verification.zip, work in its preprint/ directory. The
 standard-library diagnostic script at ../math_review_01/reproduce_checks.py
-recomputes its output file; this is diagnostic verification, not a proof.
+recomputes its output file; this is diagnostic verification, not a proof. Its
+explicit invariant guards remain active with normal and optimized Python. The
+correction receipt records the historical script and negative-control tests.
 Rebuild the PDF as above before running python3 build_package.py. PDF creation
 timestamps may differ; byte-for-byte reproduction of compiled PDFs is not
 claimed. The supporting archive is assembled by build_package.py from an explicit list
 of authored materials. Its MANIFEST.json gives file hashes and sizes and does
 not hash itself. No third-party PDFs, raw source extracts, private credentials
-or project coordination records belong in the public package.
+or private project coordination records belong in the public package. Bounded
+public QUEUE-delta and research-log records are included as provenance.
 
 ## Disclosure and scope
 

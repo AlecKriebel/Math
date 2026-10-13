@@ -11,6 +11,12 @@ from datetime import datetime, timezone
 import json
 import math
 
+def require(condition, check_name):
+    """A diagnostic invariant which remains active under Python optimization."""
+    if not condition:
+        raise RuntimeError("Diagnostic check failed: " + check_name)
+
+
 PRECISION = 100
 N_IMAGES = 10
 N_FOURIER = 2400
@@ -137,8 +143,8 @@ with localcontext() as ctx:
     results['constants'] = {"pi": str(pi), "P_a": str(p0), "c": str(c),
         "b": str(bp), "exact_directional_minimum": str(exact_min_slope),
         "proof_lower_bound": "1/10", "c_rational_bound": "8/83"}
-    assert 0<c<D(8)/83<D('0.1') and D('0.25')<bp<1
-    assert exact_min_slope>D('0.1')
+    require(0<c<D(8)/83<D('0.1') and D('0.25')<bp<1, "invariant_1")
+    require(exact_min_slope>D('0.1'), "invariant_2")
 
     points = [('0.1','-2.0'),('0.25','0.3'),('0.5','0'),('0.7','-0.4'),('0.9','2.0')]
     poisson_agreement = []
@@ -147,12 +153,12 @@ with localcontext() as ctx:
         ip, fp = poisson(x,y), p_fourier(x,y)
         err = abs(ip-fp)
         tail = image_tail(y)+p_fourier_tail(x)
-        assert err < tail + D('1e-90')
+        require(err < tail + D('1e-90'), "invariant_3")
         poisson_agreement.append({"x":xs,"y":ys,"image_value":str(ip),
             "absolute_discrepancy":str(err),"analytic_truncation_bound":str(tail)})
     results['poisson_image_vs_fourier'] = poisson_agreement
     grad_fourier = p_fourier(D('0.5'),D(0),True)/p0
-    assert abs(grad_fourier+c)<D('1e-80')
+    require(abs(grad_fourier+c)<D('1e-80'), "invariant_4")
     results['gradient_independent_fourier_discrepancy']=str(abs(grad_fourier+c))
 
     green_agreement=[]
@@ -164,8 +170,8 @@ with localcontext() as ctx:
         # For small z, (1/2)log(1+z)<=z/2. Green summand <=
         # 4 exp(-pi|d|), and this safely bounds the omitted positive terms.
         tail=2*image_tail(y,eta)+g_fourier_tail(x,s)
-        assert ig>0 and abs(ig-green(s,eta,x,y))<D('1e-80')
-        assert err<tail+D('1e-90')
+        require(ig>0 and abs(ig-green(s,eta,x,y))<D('1e-80'), "invariant_5")
+        require(err<tail+D('1e-90'), "invariant_6")
         green_agreement.append({"x":xs,"y":ys,"s":ss,"eta":es,
             "image_value":str(ig),"absolute_discrepancy":str(err),
             "analytic_truncation_bound":str(tail)})
@@ -189,7 +195,7 @@ with localcontext() as ctx:
             rows.append(row)
         final=max(D(z['absolute_error']) for z in rows[-1]['test_points'])
         first=max(D(z['absolute_error']) for z in rows[0]['test_points'])
-        assert final<first*D('0.0001')
+        require(final<first*D('0.0001'), "invariant_7")
         approaches.append({"mode":mode,"rows":rows})
     results['boundary_approach_stress']=approaches
 
@@ -198,7 +204,7 @@ with localcontext() as ctx:
         for x,t in [(scale,scale),(scale**4,scale),(scale,D(0))]:
             difference=poisson(x,pi+t)-x/(pi*(x*x+t*t))
             normalized=difference/x
-            assert abs(normalized)<1
+            require(abs(normalized)<1, "invariant_8")
             singularity.append({"x":str(x),"t":str(t),
                  "(P-leading_dipole)/x":str(normalized)})
     results['uniform_O_x_singularity_stress']=singularity
@@ -226,7 +232,7 @@ for radius in [.05,.025,.01,.001,1e-4,1e-5,1e-6,1e-7,1e-8]:
         gap=hmax-kval
         if gap<min_gap:
             min_gap,argmin=gap,angle
-    assert min_gap>0
+    require(min_gap>0, "invariant_9")
     mesh.append({"radius":radius,"directions":len(angles),
                  "minimum_sampled_gap":min_gap,"gap_over_radius":min_gap/radius,
                  "minimum_angle_radians":argmin})

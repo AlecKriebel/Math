@@ -1,0 +1,234 @@
+{
+  "review_id": "PR810_problem2307042_package_review_03",
+  "timestamp_utc": "2026-10-13T04:21:40.770161+00:00",
+  "completion_percent": 100,
+  "target": {
+    "pr": 810,
+    "problem_id": 2307042,
+    "claimed_status": "claimed_solved",
+    "sealed_source_head": "5820e9784dbcfeda0acabaa435cb38cf6a4576df",
+    "round": 3
+  },
+  "verdict": "PASS_WITH_MINOR_NONBLOCKING_ISSUES",
+  "mathematical_verdict": "ACCEPT_UNMODIFIED_STATED_ANNULAR_THEOREM",
+  "repair_required_for_mathematics": false,
+  "blocking_issues": [],
+  "actionable_issues": [
+    {
+      "id": "R3-DIAG-01",
+      "priority": "P3",
+      "severity": "minor robustness",
+      "blocking": false,
+      "category": "diagnostic reproducibility",
+      "path": "verification.zip!math_review_01/reproduce_checks.py",
+      "lines": [
+        140,
+        141,
+        150,
+        155,
+        167,
+        168,
+        192,
+        201,
+        229
+      ],
+      "finding": "Every acceptance condition uses assert; Python -O or PYTHONOPTIMIZE removes those conditions, yet the script unconditionally reports all checks passed. A disposable copy with one invariant replaced by assert False fails normally and reports success with -O. This does not affect the analytic proof or the successful documented normal run.",
+      "evidence": "DIAGNOSTIC_OPTIMIZATION_PROBE.json",
+      "specific_fix": "Replace diagnostic asserts with an explicit require(ok, message) that raises on false, or reject sys.flags.optimize before doing checks. Add a small disposable forced-failure normal/optimized probe to establish the failure path; retain numerical-only scope. Rebuild affected manifests and ZIPs after root edits."
+    },
+    {
+      "id": "R3-DOC-02",
+      "priority": "P3",
+      "severity": "minor wording consistency",
+      "blocking": false,
+      "category": "public content boundary",
+      "path": "preprint/README.md",
+      "lines": [
+        27,
+        28
+      ],
+      "finding": "The exclusion sentence names project coordination records without the qualifier private, while the public selection includes source/QUEUE_DELTA.json and source/RESEARCH_LOG.md describing queue/publication provenance. Those contents are public authored provenance rather than identified private messages or secrets, but the broad sentence does not describe the actual inventory accurately.",
+      "evidence": "supplement_selection.json; verification.zip!source/QUEUE_DELTA.json; verification.zip!source/README.md; verification.zip!source/RESEARCH_LOG.md",
+      "specific_fix": "Change the sentence to exclude private project coordination records, matching the frozen source wrapper, and optionally state that bounded public provenance/queue-delta metadata is included. Do not rewrite frozen historical archives just to alter their creation-stage labels. Rebuild verification.zip and upload kit after the README edit."
+    }
+  ],
+  "reviewed_inputs": [
+    {
+      "path": "preprint/note.tex",
+      "bytes": 11241,
+      "sha256": "5ce10e1d1fb329e2c948dff4e6abaea8d908399cbf3f9962453c85c99fe0c962",
+      "seal_sha256": "5ce10e1d1fb329e2c948dff4e6abaea8d908399cbf3f9962453c85c99fe0c962",
+      "match": true
+    },
+    {
+      "path": "preprint/output/pdf/note.pdf",
+      "bytes": 62840,
+      "sha256": "7bd4d1c56cfc7ff9e0f033ed0e1815606ada3d7aabdf642e637a4d1cfaf9dfd0",
+      "seal_sha256": "7bd4d1c56cfc7ff9e0f033ed0e1815606ada3d7aabdf642e637a4d1cfaf9dfd0",
+      "match": true
+    },
+    {
+      "path": "preprint/README.md",
+      "bytes": 2509,
+      "sha256": "f7f777536e9c9ccce711a5bbaffb50d919db249b9d4848ebb7b2f7ca7341f676",
+      "seal_sha256": "f7f777536e9c9ccce711a5bbaffb50d919db249b9d4848ebb7b2f7ca7341f676",
+      "match": true
+    },
+    {
+      "path": "preprint/build_package.py",
+      "bytes": 3722,
+      "sha256": "4c6dcd51aaed5ac8c05d2ae31086fd1198f1fcc21125bd2560621e8e2b11567b",
+      "seal_sha256": "4c6dcd51aaed5ac8c05d2ae31086fd1198f1fcc21125bd2560621e8e2b11567b",
+      "match": true
+    },
+    {
+      "path": "preprint/supplement_selection.json",
+      "bytes": 3435,
+      "sha256": "3d3567b955f2d27f32f37bce21acfc0cf0c303eea9d58e24708b489d2fe1b8d6",
+      "seal_sha256": "3d3567b955f2d27f32f37bce21acfc0cf0c303eea9d58e24708b489d2fe1b8d6",
+      "match": true
+    },
+    {
+      "path": "preprint/verification.zip",
+      "bytes": 177439,
+      "sha256": "00eb26285a248cf73e568311d8165800937104af869eb5ba1f1b4d7ac2b175e5",
+      "seal_sha256": "00eb26285a248cf73e568311d8165800937104af869eb5ba1f1b4d7ac2b175e5",
+      "match": true
+    },
+    {
+      "path": "preprint/zenodo-metadata.json",
+      "bytes": 2674,
+      "sha256": "865c4dfe641369fb6e3a4c696912631ed826998b0c1c45d0a3cbe19a41160f56",
+      "seal_sha256": "865c4dfe641369fb6e3a4c696912631ed826998b0c1c45d0a3cbe19a41160f56",
+      "match": true
+    },
+    {
+      "path": "preprint/zenodo-deposit.json",
+      "bytes": 2972,
+      "sha256": "6a8586fa1c08f7b9d07a5e463e0c7a6ad6f2c0ba9679e1c3666b3098f40fd745",
+      "seal_sha256": "6a8586fa1c08f7b9d07a5e463e0c7a6ad6f2c0ba9679e1c3666b3098f40fd745",
+      "match": true
+    },
+    {
+      "path": "preprint/zenodo-upload-kit.zip",
+      "bytes": 226123,
+      "sha256": "d36e4409e3f176fd4c0d3b921225eeb160654de260ea9103a83585ca946baa48",
+      "seal_sha256": "d36e4409e3f176fd4c0d3b921225eeb160654de260ea9103a83585ca946baa48",
+      "match": true
+    }
+  ],
+  "seal_sha256": "110e0e0d0bfb269d95c0c294e4c0a5c436c9c7d8ac83f44e0259f665707b074f",
+  "recursive_reviewed_member_hashes": {
+    "file": "RECURSIVE_ARCHIVE_INVENTORY.json",
+    "sha256": "497858d3fabcd9ec045b8d2060b4720380182fb6b8b638597c6d4af97da34d81",
+    "description": "all nine archive scopes including kit/nested duplicates; every member bytes/hash recorded"
+  },
+  "live_primary_source": {
+    "url": "https://arxiv.org/pdf/1809.07200v2",
+    "fetched_at_utc": "2026-10-13T04:04:29.717153+00:00",
+    "sha256": "8e28fd4403a07e4e19a9816b7efaafddf9f475d59cf8c34a8255cb03833ed4f0",
+    "bytes": 1706228
+  },
+  "independence": {
+    "derivation_saved_utc": "2026-10-13T04:05:47.429722+00:00",
+    "priority_saved_utc": "2026-10-13T04:09:46.291907+00:00",
+    "historical_review_consultation_started_after_both_records": true,
+    "prior_package_review_directories_opened": false,
+    "other_project_agents_contacted": false,
+    "communication": "Only parent status/report; no external individual contacted or outreach prepared."
+  },
+  "strongest_independently_verified_result": "For D={1<|z|<e}, a=e^(1/2), the actual normalized minimal Martin kernel at inner-boundary xi=-1 obeys K_xi(z)<H_a(z) for every non-base point in some neighborhood of a. Thus it cannot equal H_a throughout any nontrivial initial curve issuing from a, including a Green line, under the explicit original-disc-property interpretation.",
+  "exact_remaining_gaps": [
+    "Historical first resolution/novelty is unresolved; a different punctured-disc counterexample follows from older classical tools, without proving prior recognition or the submitted annular theorem.",
+    "A weaker property of some isolated remote contact on a line is outside the theorem.",
+    "No human peer review, proof-assistant certification, exhaustive primary-literature exclusion or numerical contact-free radius is supplied or claimed.",
+    "Independent inspection of full K\u00f6hn, Arsove\u2013Johnson memoir, full later Springer chapter and all modern follow-up literature was not completed in this bounded review. Dated audit claims about its own additional inspections are not adopted as independently reproduced facts.",
+    "Two minor diagnostic/documentation fixes are recommended; exact sealed inputs remain unchanged."
+  ],
+  "approach_families": [
+    {
+      "mechanism": "Live primary source quantifiers and disc example",
+      "status": "independently verified within stated interpretation",
+      "evidence": "INDEPENDENT_DERIVATION.md; PRIMARY_SOURCE_RECEIPT.json; primary_page-174.png; primary_page-175.png",
+      "exact_gap": "No technical definition of touching separately provided in primary; remote isolated-contact question is not answered, explicitly disclosed."
+    },
+    {
+      "mechanism": "Conformal strip Green/Poisson construction and periodic quotient topology",
+      "status": "verified",
+      "evidence": "INDEPENDENT_DERIVATION.md; independent_checks.py; INDEPENDENT_CHECKS.json",
+      "exact_gap": "None for selected annulus and locally uniform construction."
+    },
+    {
+      "mechanism": "Independent Fourier separation and normalization/gradient comparison",
+      "status": "verified analytically; numerical cross-check passed",
+      "evidence": "INDEPENDENT_DERIVATION.md; INDEPENDENT_CHECKS.json",
+      "exact_gap": "Floating diagnostic uses analytic truncation bounds but no directed rounding certificate; not used as proof."
+    },
+    {
+      "mechanism": "Arbitrary Martin approach including ultra-tangential paths",
+      "status": "verified",
+      "evidence": "Uniform boundary expansion in INDEPENDENT_DERIVATION.md; s=epsilon^20 diagnostic",
+      "exact_gap": "None for the stated Green-ratio limit."
+    },
+    {
+      "mechanism": "Reflection, growth/Fourier singularity classification, compact maximum principle",
+      "status": "verified",
+      "evidence": "INDEPENDENT_DERIVATION.md",
+      "exact_gap": "None for minimality; classical harmonic reflection and maximum principle are inputs."
+    },
+    {
+      "mechanism": "Infinite-series weighted mean, global positive competitors and all-direction convex gap",
+      "status": "verified",
+      "evidence": "INDEPENDENT_DERIVATION.md; INDEPENDENT_CHECKS.json",
+      "exact_gap": "None for local strict inequality; no explicit certified numerical radius claimed."
+    },
+    {
+      "mechanism": "Common finite-family Taylor remainder and curve consequence",
+      "status": "verified",
+      "evidence": "INDEPENDENT_DERIVATION.md",
+      "exact_gap": "No global remote-contact assertion, as correctly disclosed."
+    },
+    {
+      "mechanism": "Full primary Herron/Bear-Smith/Shiga/Leutwiler reading and older punctured-disc alternative",
+      "status": "bounded source claims supported; firstness unresolved",
+      "evidence": "INDEPENDENT_PRIORITY.md; PRIORITY_FETCHES_INDEPENDENT.json; PRIORITY_INFERENCE_PUNCTURED_DISC.md",
+      "exact_gap": "Historical firstness, full current worldwide status and inaccessible/unread primary follow-ups remain undetermined. The independently derived older-tool consequence is not a located historical solution."
+    },
+    {
+      "mechanism": "Recursive archive closure, metadata equality, pinned integrity replay and content screening",
+      "status": "pass",
+      "evidence": "PACKAGE_INTEGRITY_FINAL.json; SUPPLIED_INTEGRITY_REPLAY.json; SUPPLEMENT_CONTENT_SCREEN.json",
+      "exact_gap": "Historical 58/28/13 full fixture suites are recorded receipts, not fully regenerated by this review; six shipped positive verifications and two negatives were replayed."
+    },
+    {
+      "mechanism": "All-page visual/source/rebuild agreement",
+      "status": "pass",
+      "evidence": "CLEAN_REBUILD.json; note_page-1.png through note_page-4.png",
+      "exact_gap": "Rebuilt PDF bytes differ, as disclosed; all rendered pixels and text are identical. PDF tagging/accessibility not claimed."
+    }
+  ],
+  "package_checks": {
+    "all_sealed_hashes_matched": true,
+    "supplement_members": 59,
+    "kit_members": 4,
+    "final_archive_manifest_checks": 32,
+    "all_final_closure_checks_pass": true,
+    "clean_extraction_build": "success without TeX warnings",
+    "source_pdf_text_equal": true,
+    "all_four_rebuilt_render_pages_identical": true,
+    "verification_zip_rebuilt_identically": true,
+    "exact_metadata_deposit_kit_consistency": true,
+    "private_credentials_or_hidden_third_party_documents_found": false,
+    "author_orcid_date_version_license_consistent": true,
+    "publication_receipt_in_package": false
+  },
+  "priority_disposition": "No first historical resolution claim is justified. The primary-source descriptions checked independently support the modest related-work framing. The dated audit distinguishes one-sided exposure from symmetric metric equality correctly and records its full-text gaps; its negative search outcomes cannot certify novelty.",
+  "side_effects": {
+    "sealed_inputs_modified": false,
+    "git_refs_or_index_mutated": false,
+    "published": false,
+    "merged": false,
+    "tracker_appended": false,
+    "writes_confined_to": "package_review_03/"
+  }
+}

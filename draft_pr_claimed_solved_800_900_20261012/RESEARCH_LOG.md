@@ -42,3 +42,11 @@ R1 reviewer was assigned the complete hash-sealed prepublication package with in
 ## 2026-10-13T03:45:42.230535+00:00 — R1 repair checkpoint
 
 R1 found no mathematical, priority, attribution or framing defects within declared limits, and three package defects: missing selection input, clean-build instructions and page-count mismatch. All three plus root stale-preparation/pagination findings repaired globally in manuscript, README, assembly inputs and impending archives. R1 review retains its inherited-context qualification. Next fresh review receives only sealed package and neutral instructions. Overall completion estimate:5%; PR810 acceptance/publication:60%.
+
+## 2026-10-13T04:02:55.379333+00:00 — checkpoint R2
+
+R2 PASS with no required repairs. Begin second successive fresh-context complete review before promotion. No merge/publication yet. Overall completion estimate:6%; PR810:75%.
+
+## 2026-10-13T04:27:54.098626+00:00 — R3 repair and priority checkpoint
+
+R3 independently confirmed the annular theorem and source interpretation, but found optimized-Python assertions in the current diagnostic and an overbroad README exclusion of coordination records. Current guards now fail explicitly under all Python modes; the original independent-review files are preserved as a dated historical snapshot. README now distinguishes private coordination from bounded public provenance. Positive and negative-control validation is pending. A separate fresh-context audit is checking the punctured-disc older-theory mechanism and its historical/source implications before promotion. No PR mutation, merge, Zenodo publication or tracker append. Overall completion estimate:6%; PR810 acceptance/publication:70%.
