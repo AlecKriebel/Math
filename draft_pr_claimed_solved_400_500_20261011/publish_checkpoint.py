@@ -5,6 +5,7 @@ import base64
 import datetime
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -29,6 +30,9 @@ def main():
     parser.add_argument('--message', required=True)
     parser.add_argument('--receipt', type=Path, required=True)
     args = parser.parse_args()
+    candidate_path = args.receipt.with_suffix('.candidate.json')
+    if args.receipt.exists() or candidate_path.exists():
+        raise ValueError('checkpoint already attempted; preserve receipts and reconcile with GETs')
     paths = json.loads(args.file_list.read_text())
     if not paths or len(paths) != len(set(paths)):
         raise ValueError('file list must be nonempty and unique')
@@ -56,6 +60,11 @@ def main():
     parent = api(f'git/commits/{main_sha}')
     tree = api('git/trees', {'base_tree': parent['tree']['sha'], 'tree': entries})['sha']
     commit = api('git/commits', {'message': args.message, 'tree': tree, 'parents': [main_sha]})['sha']
+    args.receipt.parent.mkdir(parents=True, exist_ok=True)
+    with candidate_path.open('x') as candidate:
+        json.dump({'commit_sha': commit, 'parent_main_sha': main_sha,
+                   'files_sha256': hashes, 'next_action': 'one nonforce main PATCH'}, candidate, indent=2)
+        candidate.write('\n'); candidate.flush(); os.fsync(candidate.fileno())
     api('git/refs/heads/main', {'sha': commit, 'force': False})
     readback = api('git/ref/heads/main')['object']['sha']
     # Read-back main may already have moved forward under concurrent work.
