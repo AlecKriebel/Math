@@ -15,3 +15,19 @@ All dates are 2026-10-03 UTC. Completion estimates concern settling the literal 
 2. Explicit local slice: complete counterexample, verified by independent full audit.
 
 A counterexample to the universal local-maxima assertion settles the exact target; no narrower subproblem replaces it. The unrelated question of novelty remains deliberately unclaimed. The repository's related-target-group file contained no match for this ID or Ricci topic during this check.
+
+## 2026-10-13T01:20:58.212567+00:00 — Software guard hardening checkpoint
+
+Component completion estimate: 40%. The exact current predicates now use optimization-safe explicit failure branches. Frozen originals, historical audit, theorem, and proofs are unchanged. A full packet integrity and replay bundle is being prepared; no new author proof-search turn (2/5 remains). Missing historical standalone manifest and pre-layout checker are UNATTESTED. This does not certify historical optimized execution.
+
+## 2026-10-13T01:35:52.314451+00:00 — Software guard component verification complete
+
+Component completion estimate: 100% after producer38/38 controls and independent software-adversary post-fix zero-blocker tests. The adversary found an unlisted FIFO inventory gap; the standalone runner now rejects symlinks and every nonregular entry, and FIFO/socket controls fail in both modes. Current original39 static predicates execute54 mandatory checks under normal and optimized Python, with exact output agreement. Both proofs, historical full audit and all frozen author bytes remain unchanged. This is software/reproducibility hardening, not a new author proof-search turn: 2/5 remains. Two absent historical digest objects remain UNATTESTED; original optimized validation is not certified. Final file-custody replay follows report incorporation.
+
+## 2026-10-13T02:10:11.772764+00:00 — Version2 source/prose synchronization checkpoint
+
+Component completion estimate: 40%. Released v1 and its actual seal remain unchanged. V2 adds prominent source-version/priority/current-status addenda; SOURCE_AUDIT is the eighth changed original path. Exactly 0 proof-search turns; author turns 2/5. Three mathematical guard scripts/proofs/frozen 6/historical audit/original 19 unchanged. New runner allowed-path/schema adjustment awaits new independent adversary and fresh 38-control/final-custody replay. No parent priority/v2 software acceptance is claimed; novelty/firstness/community-open status withheld.
+
+## 2026-10-13T02:28:16.818626+00:00 — Version 2 independent component checks complete
+
+Component completion estimate: 95%. Producer 38/38 controls and a new independent software adversary found no v2 software blocker; final file-custody incorporation and actual normal/-O replay follow. The only executable v2 changes are the runner's whitelist version and allowed SOURCE_AUDIT prose path. All three guarded mathematical scripts, both proofs, six frozen originals, historical audit, original 19 inputs and released v1's 55 files remain unchanged. Current source addenda and accurate 18-entry publication hashes are synchronized; old base, queue-change and v1 software-review fields are explicitly historical. This is metadata/reproducibility work with zero author proof-search turns; status claimed_solved, 2/5. Original optimized assertions are not certified and absent historical objects remain UNATTESTED. Novelty, firstness, community-open status and parent v2 acceptance are not certified.

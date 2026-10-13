@@ -21,9 +21,11 @@ Rdd=sp.factor(qdd/s**2-4*qd*sd/s**3-2*q*sdd/s**3+6*q*sd**2/s**4)
 print('R=q/s^2 =',sp.factor(q/s**2)); print('R prime =',Rd)
 print('R second =',Rdd)
 print('Hessian coefficients =',sp.factor(Rdd*u**4/128))
-assert Rd == 0
+if not (Rd == 0):
+    raise AssertionError('mandatory checkpoint check_hessian.py:1')
 expected=64/u**4*((4-2*u*u)*((b11-b22)**2+4*b12**2)+(b13*b13+b14*b14+b23*b23+b24*b24)+4*u*(b13*b24-b14*b23))
-assert sp.factor(Rdd-expected)==0
+if not (sp.factor(Rdd-expected)==0):
+    raise AssertionError('mandatory checkpoint check_hessian.py:2')
 print('Expected identity verified exactly.')
 H=sp.hessian(Rdd,b)/2
 print('Hessian eigenvalues =',H.eigenvals())

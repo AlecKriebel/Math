@@ -43,7 +43,8 @@ S = (A+A.T)/2
 Ric = ricci_from_brackets(A)
 expected = sp.diag(-n2(S), sp.zeros(4))
 expected[1:,1:] = (A*A.T-A.T*A)/2-sp.trace(A)*S
-assert zero(Ric-expected)
+if not (zero(Ric-expected)):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:1')
 print('PASS generic Koszul Ricci formula for every real 4x4 A')
 
 # Independent block identity for the entire local slice.
@@ -60,9 +61,11 @@ Q11 = C*C.T-C.T*C-L.T*L
 Q21 = L*C.T-N.T*L
 Q22 = L*L.T+N*N.T-N.T*N
 q_block = n2(Q11)+2*n2(Q21)+n2(Q22)
-assert sp.expand(q_block-n2(M*M.T-M.T*M)) == 0
+if not (sp.expand(q_block-n2(M*M.T-M.T*M)) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:2')
 s_block = 2*h2+(r2+v*v)/2
-assert sp.expand(s_block-n2((M+M.T)/2)) == 0
+if not (sp.expand(s_block-n2((M+M.T)/2)) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:3')
 
 def reduce_constraint(p):
     return sp.rem(sp.Poly(sp.expand(p), k),
@@ -75,52 +78,67 @@ R = (-12*h2*r2-24*a*k*(w*z+x*y)
      +12*b*k*(x*x+z*z-y*y-w*w)
      +4*v*(a*(w*y-x*z)-b*(w*x+y*z))
      +4*v*(k-1)*d-4*d*d)
-assert reduce_constraint(P-Q-R) == 0
-assert sp.expand(Q-(16*(2-v*v)*h2+2*(x+v*w)**2
-                    +2*(y-v*z)**2+2*(1-4*v*v)*(z*z+w*w))) == 0
+if not (reduce_constraint(P-Q-R) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:4')
+if not (sp.expand(Q-(16*(2-v*v)*h2+2*(x+v*w)**2
+                    +2*(y-v*z)**2+2*(1-4*v*v)*(z*z+w*w))) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:5')
 # Taylor coefficients from the directly computed P, using the correct analytic k.
 t = sp.symbols('t')
 xi = [a,b,x,y,z,w]
 Pt = P.subs({r:t*r for r in xi}, simultaneous=True)
 Pt = sp.expand(Pt.subs(k,1+t*t*h2/2))
-assert Pt.coeff(t,0) == 0 and Pt.coeff(t,1) == 0
-assert sp.expand(Pt.coeff(t,2)-Q) == 0
+if not (Pt.coeff(t,0) == 0 and Pt.coeff(t,1) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:6')
+if not (sp.expand(Pt.coeff(t,2)-Q) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:7')
 print('PASS independent block commutator identity and full cubic-plus remainder')
 
 # A convenient quantitative coercivity lower bound, derived via determinant/trace.
 # Each mixed block is 2*[[1, +/-v], [ +/-v,1-3v^2]],
 # positive for |v|<1/2; its minimum eigenvalue is >= 1-4v^2.
 D = sp.Matrix([[1,v],[v,1-3*v*v]])
-assert sp.expand(D.det()-(1-4*v*v)) == 0
-assert sp.expand(D.trace()-(2-3*v*v)) == 0
+if not (sp.expand(D.det()-(1-4*v*v)) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:8')
+if not (sp.expand(D.trace()-(2-3*v*v)) == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:9')
 print('PASS transverse 2x2 block determinant and trace')
 
 u = sp.symbols('u', nonzero=True, real=True)
 Au = sp.diag(J, sp.Matrix([[0,u],[0,0]]))
 Ric_u = ricci_from_brackets(Au)
-assert Ric_u == sp.diag(-u*u/2,0,0,u*u/2,-u*u/2)
-assert sp.cancel(sp.trace(Ric_u)**2/n2(Ric_u)) == sp.Rational(1,3)
+if not (Ric_u == sp.diag(-u*u/2,0,0,u*u/2,-u*u/2)):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:10')
+if not (sp.cancel(sp.trace(Ric_u)**2/n2(Ric_u)) == sp.Rational(1,3)):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:11')
 E = sp.eye(4)+Au*Au
-assert E*E == E and Au*Au*E == sp.zeros(4) and E.rank() == 2
+if not (E*E == E and Au*Au*E == sp.zeros(4) and E.rank() == 2):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:12')
 # Rotation bracket forces scalar c=-u^2/2; nilpotent bracket then fails.
 Dsol = Ric_u+u*u*sp.eye(5)/2
-assert Dsol[2,2]-Dsol[0,0]-Dsol[1,1] == 0
-assert Dsol[3,3]-Dsol[0,0]-Dsol[4,4] == u*u
+if not (Dsol[2,2]-Dsol[0,0]-Dsol[1,1] == 0):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:13')
+if not (Dsol[3,3]-Dsol[0,0]-Dsol[4,4] == u*u):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:14')
 print('PASS candidate value, projection, and derivation obstruction')
 
 B = sp.Matrix([[0,-1,0,0],[1,0,0,0],[1,0,0,1],[0,-1,0,0]])
 T = sp.eye(4)
 T[2:4,0:2] = sp.Matrix([[0,2],[1,0]])
 Hscale = sp.diag(1,1,1/u,1)
-assert T*Hscale*Au*(T*Hscale).inv() == B
+if not (T*Hscale*Au*(T*Hscale).inv() == B):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:15')
 Ric_B = ricci_from_brackets(B)
-assert sp.cancel(sp.trace(Ric_B)**2/n2(Ric_B)) == sp.Rational(9,17)
+if not (sp.cancel(sp.trace(Ric_B)**2/n2(Ric_B)) == sp.Rational(9,17)):
+    raise AssertionError('mandatory checkpoint audit/independent_checks.py:16')
 print('PASS explicit same-group nonglobal witness from direct Koszul curvature')
 
 root = Path(__file__).resolve().parent.parent
 manifest = json.loads((root/'FROZEN_AUTHOR_HASHES.json').read_text())
 for entry in manifest['publication_allowed_files']:
     data = (root/'frozen_author'/entry['path']).read_bytes()
-    assert len(data) == entry['bytes']
-    assert hashlib.sha256(data).hexdigest() == entry['sha256']
+    if not (len(data) == entry['bytes']):
+        raise AssertionError('mandatory checkpoint audit/independent_checks.py:17')
+    if not (hashlib.sha256(data).hexdigest() == entry['sha256']):
+        raise AssertionError('mandatory checkpoint audit/independent_checks.py:18')
 print('PASS all six author files retain frozen sizes and hashes')
