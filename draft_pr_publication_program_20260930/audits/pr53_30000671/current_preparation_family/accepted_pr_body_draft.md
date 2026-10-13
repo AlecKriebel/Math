@@ -1,0 +1,7 @@
+The original 2007 source explicitly reports Gabber counterexamples to the unrestricted reconstruction question for complete local Noetherian rings. Van den Dries's 2008 published abstract corroborates the prior negative answer. The appropriate status is already_solved; credit belongs to the earlier work, with zero new substantive proof attempts.
+
+The source correction distinguishes compatible quotient isomorphisms from levelwise existence, finite length from finite cardinality, the positive algebraic-residue-field theorem, and the separate integral-domain restriction. Neither the historical construction nor the full 2008 article has been independently proof-audited, and no current domain-case resolution or new discovery is claimed.
+
+The final diff changes this problem's eleven attempt files and its QUEUE.md status/findings row. Subsequent operative wrappers should identify the absent raw prior-report key accurately rather than treating the archive's null absence marker as an existing report value. No preprint is prepared for this already_solved source correction.
+
+Two fresh distinct AI review families independently checked the source scope and elementary boundary arguments. Their whole closed evidence and genuine ROOT custody readbacks are bound in the operative preparation. These reviews do not reconstruct Gabber's historical construction, confer human peer review/formal verification, or claim a third independent review by the preparer. ROOT acceptance remains pending.

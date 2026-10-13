@@ -1,0 +1,9 @@
+# Fresh primary-source locators and limits
+
+Read 2026-10-03 through the web PDF reader, with tool responses in conversation history; web worker PID unavailable. No primary PDF/download/layout image copied into this family. No PDF byte hash or screenshot verification claimed.
+
+- [Calegari2002 v1](https://arxiv.org/pdf/math/0209081v1): printed p.16, PDF page15, extracted lines705–716, Q8.2 and both remarks. Literal inequality depends on the element; geometric intent of the toroidal remark remains unidentified.
+- [Calegari2000 published article](https://msp.org/gt/2000/4-1/gt-v4-n1-p17-p.pdf): §1.1 printed p.461, PDF page4, lines190–199; Q5.3.19 printed p.511, PDF page54, lines2118–2122. Closed orientable/co-oriented context; arbitrary parameterization and element-dependent error. No extra regularity on that parameterization is stated there.
+- [DKNP2013 journal reprint](https://arxiv.org/pdf/1103.1650v3): cover metadata Ann.Probab.41, 3B, 2066–2089, DOI10.1214/12-AOP784; Prop8.4 and its complete proof, Thm8.5 and its complete proof, reprint pp.22–23, lines1503–1548. Finite increasing irreducible groups obtain one conjugacy with globally Lipschitz elements and displacement bounded for each element. The proof adjoins two irrationally related translations and uses the preceding semiconjugacy theorem. The next paragraph credits an earlier2007 route; earliest priority was not audited or asserted. Stochastic dependencies were not recertified; the independent deterministic proof supplies the needed weaker result.
+
+Direct DOI web open returned Internal Error; a restricted publisher/arXiv search returned no hits. The official arXiv journal-reprint cover and full relevant text supplied the bibliographic/theorem evidence. No failed DOI retrieval is credited as successful publisher-page access.

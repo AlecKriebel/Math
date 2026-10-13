@@ -1,0 +1,63 @@
+{
+  "UTC": "2026-10-06T23:25:15.644645+00:00",
+  "actual_control_PID": 81649,
+  "actual_reviewer_PID": 81120,
+  "actual_sealer_PID": 83152,
+  "all169prior_bytepins_unchanged": true,
+  "all17original_bytes_Git_blobs_verified": true,
+  "all180new_fullbytes_modes_verified": true,
+  "all9primary_pins_verified": true,
+  "base_full_tree_member_count": 153804,
+  "completion_review_percent": 100,
+  "control_count": 34,
+  "exact_remaining_gap": "C4-v2 repair and new exact independent review; only then fresh trusted peer authority and actual bounded execution/readbacks/release.",
+  "full_scope_counts": {
+    "existing_updates": 3,
+    "future_protocol": 9,
+    "new_public": 180,
+    "protected_originals": 17,
+    "protected_primary": 9,
+    "total_selected": 192
+  },
+  "mandatory_corrections": [
+    {
+      "actual_control_PID": 81649,
+      "id": "C4-v2-delayed-journal-deadline",
+      "no_real_writer_used": true,
+      "operator_lines": [
+        162,
+        163,
+        165,
+        166,
+        171
+      ],
+      "priority": "blocking",
+      "problem": "The remaining grant interval and communicate timeout are computed before blocking launch/running journal writes. Delayed launch journaling permits Popen after expiry. Delayed running journaling permits the earlier timeout to begin after expiry. Later rejection cannot undo a writer that has already launched or finished.",
+      "required_repair": "Recheck the grant and completion margin after persisting the launching event, immediately before spawning. Establish an absolute monotonic child deadline and an independently active termination/reaping mechanism before any potentially blocking post-spawn journal operation; do not start a fresh stale relative timeout after logging. Recheck/recompute remaining time for any subsequent blocking operation, retain kill/reap outcomes and failure-state inspection, and test both delayed-journal cases without writers before a new independent exact review."
+    }
+  ],
+  "math_source_percent": 100,
+  "new_central_proof_search_turns": 0,
+  "no_actual_lock_acquisition": true,
+  "no_external_individual_contact": true,
+  "no_git_index_main_native_service_writer": true,
+  "no_git_object_ref_writer": true,
+  "no_mutating_operator_execution": true,
+  "operator_sha256": "fb284aec0d8c384cec88b401eec91f42120490d683c2ba7539ed19a327932b55",
+  "original_effort": "1/5",
+  "own_complete_index_verified": true,
+  "plan_sha256": "a783bae8dbf92978df74676187eda0e7636a1ea1b5a2e0127cf43a959d958942",
+  "priority_disposition_not_adopted": true,
+  "public_artifacts": [
+    "AUDIT.md",
+    "RESULT.json",
+    "FINAL_MANIFEST.json"
+  ],
+  "request_sha256": "2321f4db60993d16b6cd32e427bc252edd67abe3bb5e67102d6163ad6efcabff",
+  "research_case_estimate_percent": 25,
+  "schema": "pr134-checkpoint-v2-operational-adversarial-result/v1",
+  "scope": "PR134_math_intake_main_archive_only",
+  "three_program_preimages_postimages_and_complete_diffs_verified": true,
+  "unsafe_delayed_journal_controls": 2,
+  "verdict": "FAIL"
+}

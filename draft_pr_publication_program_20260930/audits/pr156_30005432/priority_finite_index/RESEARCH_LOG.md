@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-12T05:57:19.083408+00:00 — Independent first assessment sealed before literature/convergence; supplied gate and original counterexample read. Priority unestablished. Audit completion estimate: 5%.
+
+- 2026-10-12T06:01:54.174776+00:00 — Full July18-page source read, including Sections4–6. v1 only; substantive parameter-variation hazard identified inSection4. CPVv1/v2 and August journal metadata retrieved; journal fulltext access is subscription and returned HTML, so no access bypass. Postprint suffices for its relevant proofs. Later11October EulerSolve exactconstruction found, correctly distinguished from September priority. Completion estimate: 45%.
+- 2026-10-12T06:01:54.174776+00:00 — Certified independent finiteF/sign-character reconstruction and universal integer coefficient identities,25,632controls normal andoptimized; derived closurewitness6+10=12 andlambda8(6)=4. No dependency onJulyTheorem5.2. Completionestimate:60%.
+- 2026-10-12T06:06:42.598039+00:00 — Completed priorfinite-factor variation and exact-prior-statement distinction. JulyprintedB0 is globally(S), so variation is a new audited deduction, not evidence of an explicitlypublishednegativeanswer. Originality/credit concern remains; no noveltyclearance. Assignedfamilycompletionestimate:85%.
+- 2026-10-12T06:10:51.619072+00:00 — Finalassignedfamilyassessmentsealed:100%completion ofJulyderivation/exactstatementcomparison;historicalpriority remainsunestablished.25,632checks ineachmode andtwofalsemutantsrejectedinbothmodes. RelevantprimaryPDFpagesvisuallyverified, independentmetadata/versionhistory andsourcebytehashesrecorded. No sourcebodypublication oroutreach.
+- 2026-10-12T06:12:04.960168+00:00 — Final readability pass completed; first assessment remains unchanged. Seal regenerated and all 46 input/output records authenticated. Assigned family completion estimate: 100%; priority remains unestablished.

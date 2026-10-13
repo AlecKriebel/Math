@@ -1,0 +1,6 @@
+# V4 administration log
+
+- 2026-10-13T06:13:50.456969+00:00 — 65%: reproduced the authentic append intent hash from exact archived ADMIN receipts. The old compact encoding differs; pretty JSON plus one newline equals the actual `d83aaba2…` hash. No remote requests or scientific/asset byte reads.
+- 2026-10-13T06:13:50.456969+00:00 — 85%: isolated one guard change in `evidence()`. All 83 other top-level AST nodes remain exact, including action boundaries and global plan encoder. Narrow archived/virtual replay passes 32 controls in normal and optimized Python. A test-double construction error was fixed without changing the helper; the failed local fixture remains private.
+- 2026-10-13T06:13:50.456969+00:00 — 90%: a new independent narrow software adversary is inspecting the final helper and receipt encoding controls. Final custody and reviewer acceptance remain pending. No proof search, scientific changes, live native verification or mutation performed.
+- 2026-10-13T06:19:13.428812+00:00 — 100% of the narrow repair/review: a new independent reviewer completed 26/26 normal and 26/26 optimized controls with zero blockers. Its exact source/AST reconstruction and all169 private positive objects were inspected and verified. Original V3 remains unchanged. Final positive custody is being sealed; actual native phases remain reserved to root.

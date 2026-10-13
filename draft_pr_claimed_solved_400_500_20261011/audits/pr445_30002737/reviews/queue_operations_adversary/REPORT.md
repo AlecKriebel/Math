@@ -1,0 +1,47 @@
+# Independent PR445 queue operations adversary
+
+**Verdict: accepted for the fixed QUEUE-only operation, with three explicit trust/semantic limits and no blocking defect identified.** This review does not approve a live mutation, certify mathematics or priority, or substitute for the root's final positive gate and externally supplied digest.
+
+The independently sealed protocol preceded every read of the producer helper, tests, reports, results, and root disposition. Its `INITIAL_SEAL.json` digest is `3218282b8759a1c29795e22ae72d36b3115d316cffcadc15732542c02faf6809`, timestamp 2026-10-12T21:32:19.237454+00:00. Review completion at that checkpoint was 10%. The reviewed helper remains SHA-256 `f123ac36063b86d224ed3d33cde791deea97ac6ea62242e3612eca7fef293c48`.
+
+## Exact accepted scope
+
+Repository AlecKriebel/Math; PR445 OPEN/DRAFT; base main; branch `research/diffraction-dynamical-30002737`; frozen head `3242c84e06db7e99012c7fe581adde5c3f89fc89`; problem 30002737. Only `unsolved_math_prioritization/QUEUE.md` may change, and only the header-derived selected status cell `claimed_solved` → `already_solved`. Turns remain `1/5`, DOI remains empty, all other queue bytes and all twelve original files remain unchanged.
+
+The source receipt is bound literally to SHA-256 `31ccb9e3e153117812391ca028e2ea458d30eb6ac44699ec575f7a0e07292913`. The complete gate requires its separate caller-provided expected SHA-256, exact identity fields, literal true approval/certificate flags, typed integer PR, unique structurally valid review roles, case-contained nonsymlink regular files, and content hashes of every declared binding. Its minimum role check is an integrity contract; substantive review acceptance remains the trusted root's decision. The intended final gate additionally binds this review.
+
+The queue is fixed by the receipt's whole-file hash and exact selected row. The implementation derives columns from the actual header and edits only the selected status cell's byte offsets. It is not a general Markdown table normalizer. That narrower fact is sufficient here because a changed or malformed replacement queue fails the frozen hash check before any write.
+
+## Tree and transaction argument
+
+Every original source BODY is read at the frozen head and checked by size and SHA-256 before any object POST. Each body also has its Git blob identity and regular-file mode checked through nonrecursive tree paths. The old QUEUE blob is checked the same way.
+
+Let the QUEUE path have successive components `unsolved_math_prioritization` and `QUEUE.md`. For each old/new ancestor tree pair, the helper requires equal entry-name sets and identical entries for every sibling of the next QUEUE component. It requires unchanged tree type/mode for the ancestor and the exact intended blob/mode at the terminal component. Under immutable Git object semantics, each unchanged sibling tree SHA preserves all of its descendants. Thus the argument covers all non-QUEUE paths without recursively downloading the entire repository. The original twelve leaf checks anchor the original source identities before creation; ancestor/sibling equality then preserves those leaves in the new tree.
+
+A successful helper run attempts exactly one blob POST, one tree POST, one commit POST, and one `force:false` branch PATCH. It verifies the new tree, sole frozen parent, actual commit/tree identity, and one-file diff before a fresh fixed PR/ref check and the PATCH. A changed head halts. Any uncertain POST halts without another mutation. After PATCH, only essential administrative ref/QUEUE/commit/diff GETs occur, with no source BODY or gate/review-body reads. An uncertain PATCH is never resent; one readback either verifies the intended state or halts unresolved/not applied. An applied state despite an uncertain response retains the error and returns exit 3.
+
+The root disposition was read for its operational scope and exclusion boundary only; no mathematical or priority conclusion was evaluated in this review.
+
+## Independent executed evidence
+
+`independent_review.py` created an unchanged helper copy under this reviewer's ignored private fixture directory, with opaque original bytes matching the source receipt. It used a separately written `independent_gh.py`, not the producer stub or harness. The surrogate computes actual Git tree object hashes from raw tree entry encodings. No real `gh` API call was possible in these runs: the private PATH pointed to the independent surrogate. No producer file was overwritten or producer harness rerun.
+
+The recorded execution interval was 2026-10-12T21:36:12.546180+00:00 through 21:36:59.866401+00:00. There were **48 actual child executions: 24 normal Python and 24 with `-O`**, consisting of 46 full helper runs and two independent unit-check children. Every targeted check passed. Exit counts were six exit 0, forty exit 2, and two exit 3; these counts include intentional refusal/uncertainty controls. The six exit-zero children comprise two ordinary successful transactions, two accepted race-limit demonstrations, and two unit children. They are not six genuine root approvals. All 100 object/ref mutation attempts and twelve PATCH attempts were private surrogate operations; real remote mutations were zero.
+
+Distinct controls covered integer draft flags and tree-truncation flags; malformed nested repository and commit-parent shapes; source size/blob identity mismatch; duplicate tree names; wrong created blob SHA; altered root sibling, QUEUE-parent sibling, original source leaf, and QUEUE mode; lost tree and commit POST responses; wrong/multiple commit parents; bool-valued comparison count; PATCH lost but applied, lost and not applied, failed ref readback, and failed QUEUE readback. Positive transaction assertions independently checked exact resulting bytes, all twelve BODY checks before the first mutation, all other leaves unchanged, sole parent, mutation cardinality, literal nonforce flag, and post-PATCH administrative-only GETs.
+
+The separate unit children checked reordered columns, preserved CRLF and absence of a final newline, status-looking bytes in other cells/rows, duplicate selected rows and headers, duplicate JSON keys, nonfinite JSON, and nonobject JSON. Enforcement survived `-O` because it does not depend on assertions.
+
+The producer's positive file inventory and all ten listed hashes were independently checked. Its 90 raw child records contain six exit 0, 78 exit 2, and six exit 3, and all recorded check values are true. This is readback of producer evidence, not 90 additional independent executions. The producer's live prepare receipt reports 24 GETs, twelve verified source bodies, and zero mutations. The actual earlier failed prepare is still present as `LIVE_PREPARE_TRUNCATED.json`, digest `272f8996d3c00e3c7ddc6999f0b20499d895bb22be708ac638aff42377bf6af1`, outcome refused, five GETs, error `incomplete or invalid tree`, and zero mutations. A truncated recursive tree cannot establish integrity, and the revised nonrecursive route does not erase that failure.
+
+One additional in-process check of the actual root `CLASSIFICATION_GATE_PROPOSAL.json`, digest `231c0a487aee35cf63bc85685c78817435655f8c591492452c95cac2441b793b`, refused with `root gate is not approved` and zero API calls. This is one proposal check, not an extra child execution or root approval.
+
+## Remaining limits and gap
+
+1. **Caller and environment trust.** The externally supplied gate digest is trusted. Replacing both the gate and that expected digest replaces the root trust decision. Local files/interpreter/PATH and the selected `gh` executable are also trusted. Path/hash checks constrain declared files but do not claim a hostile-filesystem atomic snapshot or protection from a trusted caller changing inputs.
+2. **Nonforce is not CAS.** The fresh head check and `force:false` PATCH are separate operations. The independent surrogate demonstrated an ancestor-ref change between them that a nonforce fast-forward can accept. The helper honestly reports `nonforce_patch_is_compare_and_swap:false`; this review does not certify an atomic old-head condition. A rejected or uncertain PATCH is not automatically retried, and later concurrent movement may make readback unresolved.
+3. **Remote evidence custody and semantics.** The live helper receipt stores response lengths and SHA-256 hashes plus validation metadata, not the complete response bodies. I checked code, the sealed producer receipt, and independent offline behavior; I did not independently observe all live response bytes. Actual execution relies on GitHub/`gh` truthfulness, immutable Git object identity, and documented nonforce semantics. The surrogate's comparisons are controls, not independent proof of GitHub server behavior or internal client retry policy.
+
+The remaining operational gap is the root's final positive externally pinned gate, publication of all mathematical/operational review artifacts before classification, and the root-controlled fresh transaction. After confirmed `already_solved`, this case admits only essential administrative receipts/log/disposition work; no further mathematical review, source repair, paper work, PR communication, or review-output changes. No live classification was performed by this reviewer.
+
+Final review checkpoint: 2026-10-12T21:40:07.093779+00:00. Best-guess completion: **100% of this independent operational review; 0% of the live correction performed by this reviewer.**

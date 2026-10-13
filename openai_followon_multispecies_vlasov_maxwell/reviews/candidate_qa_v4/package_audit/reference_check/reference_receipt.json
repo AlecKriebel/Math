@@ -1,0 +1,1977 @@
+{
+  "scope": "Read-only package-v4 archive/reference portability; no mathematics, priority, source build, external URL availability, or publication approval.",
+  "started_utc": "2026-10-07T04:53:12.080712+00:00",
+  "finished_utc": "2026-10-07T04:53:12.107837+00:00",
+  "completion_estimate_percent": 100,
+  "verdict": "PASS_WITH_ADVISORIES",
+  "blockers": [],
+  "checks": {
+    "archive_map_matches_read_only_builder_allowlist": true,
+    "all_25_initial_source_correspondences_match_documented_transform": true,
+    "map_targets_are_unique": true,
+    "mapped_files_and_explicit_omitted_input_prefixes_do_not_overlap": true,
+    "only_generated_map_and_digest_manifest_lack_original_paths": true,
+    "zip_names_are_exact_portable_source_inventory": true,
+    "source27_zip27_packet32_expected_counts": true,
+    "zip_bytes_match_supplied_source_tree": true,
+    "frozen_v4_expected_pdf_zip_sha256_match": true,
+    "all_markdown_tex_file_tokens_classified": true,
+    "main_tex_has_no_local_file_dependency_commands": true,
+    "main_tex_internal_labels_resolve_without_duplicates": true,
+    "formal_207_module_paths_and_hashes_match_pinned_manifest": true,
+    "original_1986_attribution_explicitly_limits_inspection_to_publisher_record_abstract": true,
+    "v3_to_v4_only_bibliography_formatting_and_generated_digests": true,
+    "candidate_packet_matches_preserved_initial_hash_binding": true,
+    "candidate_packet_hashes_unchanged_during_audit": true
+  },
+  "check_count": 17,
+  "passed_checks": 17,
+  "findings": [
+    {
+      "id": "R-A1",
+      "severity": "advisory",
+      "locations": [
+        "FORMAL_SCOPE_AUDIT.md:1",
+        "FORMAL_SCOPE_AUDIT.md:69",
+        "FORMAL_SCOPE_AUDIT.md:73",
+        "FORMAL_SCOPE_AUDIT.md:79"
+      ],
+      "issue": "Historical formal report says local configurations/logs are retained and reproduce.sh is supplied. These files are absent from ZIP; the leading archive note explicitly excludes the reproduction script and Lean checkout, so this is qualified historical wording rather than a current supplied-file promise.",
+      "exact_omitted_references": [
+        "Audit.lean",
+        "checks/formal_scope/lean",
+        "checks/formal_scope/reproduce.sh",
+        "lake-manifest.upstream.json",
+        "lakefile.upstream.lean",
+        "model_direct_check.log",
+        "model_initial_check.log"
+      ],
+      "recommendation": "Optionally add these local artifacts to omitted_inputs and label the historical Reproduction paragraph as project-only. Fetching upstream does not recreate the altered minimal configuration or Audit.lean byte-for-byte."
+    },
+    {
+      "id": "R-A2",
+      "severity": "advisory",
+      "locations": [
+        "PRIORITY_AUDIT.md:17",
+        "PRIORITY_AUDIT.md:117",
+        "README.md:17",
+        "ARCHIVE_MAP.json:28"
+      ],
+      "issue": "Seven project-owned priority retrieval/hash receipts are cited but neither supplied nor individually listed as omitted. README locates review receipts in the public project repository, but gives no project repository URL. Supplied PRIORITY_SEARCH_LOG.json does resolve the historical SEARCH_LOG.json context.",
+      "exact_omitted_references": [
+        "sources/priority_final/cached_primary_hash_check.json",
+        "sources/priority_final/candidate_reviewed_hashes.json",
+        "sources/priority_final/preprints_tree_retrieval.json",
+        "sources/priority_final/primary_pdf_response_hashes.json",
+        "sources/priority_final/retrieval_log.json",
+        "sources/priority_final/retrieval_log_extra.json",
+        "sources/priority_final/upstream_reviewed_hashes.json"
+      ],
+      "recommendation": "Optionally record these seven omitted project receipts and provide a stable project repository URL; preserve the report's explicit v1 scope rather than presenting its v1 hashes as v4 identities."
+    },
+    {
+      "id": "R-A3",
+      "severity": "advisory",
+      "locations": [
+        "ARCHIVE_MAP.json:31",
+        "PRELIMINARY_PRIORITY_AUDIT.md:78",
+        "PRIORITY_AUDIT.md:51",
+        "PRIMARY_REFERENCE_PROVENANCE.md:5"
+      ],
+      "issue": "omitted_inputs says PDF source URLs/hashes are in priority/provenance records. The supplied provenance table contains hashes for Glassey 1996, Bouchut-Golse-Pallard, and Luk-Strain; no exact Glassey-Schaeffer 1988 PDF digest or preliminary GitHub API response digest is in the supplied records, although historical reports describe hash checks/source-manifest hashes.",
+      "recommendation": "Optionally narrow the hash-availability wording or include the permitted project-owned digest/retrieval records; the third-party PDFs themselves remain intentionally omitted."
+    }
+  ],
+  "archive_map": {
+    "mapped_source_files": 25,
+    "generated_without_original_path": [
+      "ARCHIVE_MAP.json",
+      "SHA256SUMS.json"
+    ],
+    "omitted_inputs_as_supplied": {
+      "sources/upstream_pinned/": "Fetch exact pinned public OpenAI repository; see PINNED_SOURCE.json.",
+      "checks/formal_scope/lean/": "Fetch pinned upstream Lean sources; failed build is documented, not certified.",
+      "sources/priority_primary/ PDFs": "Third-party reading copies excluded; source URLs/hashes are in the priority/provenance records."
+    },
+    "correspondences": [
+      {
+        "archive_file": "main.tex",
+        "original_project_path": "publication/main.tex",
+        "original_sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c",
+        "archive_sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "references.bib",
+        "original_project_path": "publication/references.bib",
+        "original_sha256": "5d930eef6b611411b2446bd77032087e526e00664f91fd43ce2bbe477b985510",
+        "archive_sha256": "5d930eef6b611411b2446bd77032087e526e00664f91fd43ce2bbe477b985510",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "README.md",
+        "original_project_path": "publication/README.md",
+        "original_sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823",
+        "archive_sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "REPRODUCE.md",
+        "original_project_path": "publication/REPRODUCE.md",
+        "original_sha256": "c59b625c2d288d0e571d4529448ee902340d44c1fd14dd6fb6a19427102859ae",
+        "archive_sha256": "c59b625c2d288d0e571d4529448ee902340d44c1fd14dd6fb6a19427102859ae",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "LICENSE.txt",
+        "original_project_path": "publication/LICENSE.txt",
+        "original_sha256": "302d3ee9790b644b1a4549b85282248443dba6d6f20c7c955ac9b96ed11ecd69",
+        "archive_sha256": "302d3ee9790b644b1a4549b85282248443dba6d6f20c7c955ac9b96ed11ecd69",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "DEPENDENCY_LEDGER.md",
+        "original_project_path": "DEPENDENCY_LEDGER.md",
+        "original_sha256": "eda8f3b55c0494a2d9080a49f44229531d157128dfc0b165a410430b4f96d686",
+        "archive_sha256": "eda8f3b55c0494a2d9080a49f44229531d157128dfc0b165a410430b4f96d686",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PRIORITY_AUDIT.md",
+        "original_project_path": "reviews/priority_final/REPORT.md",
+        "original_sha256": "b735058066c9ec81354af180dc37c77a8ce96300d1c40006a3b05a0d74b28c1c",
+        "archive_sha256": "b735058066c9ec81354af180dc37c77a8ce96300d1c40006a3b05a0d74b28c1c",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PRELIMINARY_PRIORITY_AUDIT.md",
+        "original_project_path": "agent_notes/priority_primary/REPORT.md",
+        "original_sha256": "a5636e2ca8f12bff7aafbdbdd2eff9e50d343c2b780fdb620231f6296110c6d7",
+        "archive_sha256": "a5636e2ca8f12bff7aafbdbdd2eff9e50d343c2b780fdb620231f6296110c6d7",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PRIORITY_SEARCH_LOG.json",
+        "original_project_path": "sources/priority_final/SEARCH_LOG.json",
+        "original_sha256": "edcf886cc47a77c36154a61e710e37b482ba9d9da80f73e276f19d3120def560",
+        "archive_sha256": "edcf886cc47a77c36154a61e710e37b482ba9d9da80f73e276f19d3120def560",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PRELIMINARY_PRIORITY_SEARCH_LOG.json",
+        "original_project_path": "agent_notes/priority_primary/SEARCH_LOG.json",
+        "original_sha256": "eb9ef20b12d84d61c77e11225fc10575979fda44e1c43e943f2716855f790d5b",
+        "archive_sha256": "eb9ef20b12d84d61c77e11225fc10575979fda44e1c43e943f2716855f790d5b",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PINNED_SOURCE.json",
+        "original_project_path": "sources/PINNED_SOURCE.json",
+        "original_sha256": "339826b3c245aa319dc83dd1863d967d0d982f7bda1c33ec53a2d1fa3564d9a6",
+        "archive_sha256": "339826b3c245aa319dc83dd1863d967d0d982f7bda1c33ec53a2d1fa3564d9a6",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "SUPPLEMENT_PAIR_IDENTITY.md",
+        "original_project_path": "derivations/multispecies_derivation/PAIR_IDENTITY.md",
+        "original_sha256": "2e2cc01799947bee5bd4ad3e67e4674101e6514e6bfef3b42bfe4da4b08153b4",
+        "archive_sha256": "2e2cc01799947bee5bd4ad3e67e4674101e6514e6bfef3b42bfe4da4b08153b4",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "SUPPLEMENT_TRANSFER_LEMMA.md",
+        "original_project_path": "derivations/multispecies_derivation/TRANSFER_LEMMA.md",
+        "original_sha256": "2a524884114100d7c86fd7af74e7a3eebed31141beeb47f5fe7d3a4ae5ff35ae",
+        "archive_sha256": "e2d96fe3af64f98db477c68300c36354e1fadced66317539b2956242da8f5008",
+        "byte_identical": false,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+        "original_project_path": "agent_notes/occupation_bootstrap/UNIFORM_LEMMA_CHAIN.md",
+        "original_sha256": "78d3472c25c57333aa5be5db380563b42c38251daceef8803b26edadb35fa0d4",
+        "archive_sha256": "ea9b4648819bb234c3eee55c1b32d9392b3038da717b55d850d54e6472352fa7",
+        "byte_identical": false,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+        "original_project_path": "agent_notes/occupation_bootstrap/AUDIT.md",
+        "original_sha256": "178d96ceaf8462bc4d9ac56e09dd32aeabfe445acb27ac62880ac3b2ac39d52e",
+        "archive_sha256": "178d96ceaf8462bc4d9ac56e09dd32aeabfe445acb27ac62880ac3b2ac39d52e",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "SUPPLEMENT_LOCAL_THEORY.md",
+        "original_project_path": "agent_notes/continuation_alternative/LOCAL_THEORY.md",
+        "original_sha256": "5f9914612bbccbccc2f2ee73c38a07ea646f29ab28e73d0264c86c31002693bc",
+        "archive_sha256": "5f9914612bbccbccc2f2ee73c38a07ea646f29ab28e73d0264c86c31002693bc",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "exact_kernel_certificate.py",
+        "original_project_path": "checks/kernel_audit/exact_kernel_certificate.py",
+        "original_sha256": "2a72fa2d10d0b437077a01bca259538b739851fe78c53abc3c098b199c4bf377",
+        "archive_sha256": "2a72fa2d10d0b437077a01bca259538b739851fe78c53abc3c098b199c4bf377",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "rational_selection_certificate.py",
+        "original_project_path": "checks/occupation_bootstrap/rational_selection_certificate.py",
+        "original_sha256": "6ab457bc0e6f4e0c08bf7a82692dc385b096fa8f172fe81c60639a34bd49ef34",
+        "archive_sha256": "6ab457bc0e6f4e0c08bf7a82692dc385b096fa8f172fe81c60639a34bd49ef34",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "verify_pair_identity.py",
+        "original_project_path": "derivations/multispecies_derivation/verify_pair_identity.py",
+        "original_sha256": "c6ca1d1a7c121ce7c7b458c9c1d2b8fe690aca741ba573cbc0354d678650b7bc",
+        "archive_sha256": "c6ca1d1a7c121ce7c7b458c9c1d2b8fe690aca741ba573cbc0354d678650b7bc",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "FORMAL_SCOPE_AUDIT.md",
+        "original_project_path": "agent_notes/formal_scope/REPORT.md",
+        "original_sha256": "b0d355b018831e17569e574893df1c4c3d8f2acbbd081ba11a0631bfee39d513",
+        "archive_sha256": "b6103629b79327c2b9ebcc2f3883e466e4f180546fef4ea401d144ed96bc25ea",
+        "byte_identical": false,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "FORMAL_BUILD_LIMITATIONS.json",
+        "original_project_path": "checks/formal_scope/build_receipt.json",
+        "original_sha256": "fb2f67a3e75b1c588b29c0702988968348b7fa64cdde605a8a08a2be42546d1e",
+        "archive_sha256": "fb2f67a3e75b1c588b29c0702988968348b7fa64cdde605a8a08a2be42546d1e",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "FORMAL_SOURCE_INVENTORY.json",
+        "original_project_path": "checks/formal_scope/source_inventory.json",
+        "original_sha256": "622944b25e699c205f8c5079504552e8f88eef104b78824a69e24b71ed234d93",
+        "archive_sha256": "622944b25e699c205f8c5079504552e8f88eef104b78824a69e24b71ed234d93",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "FORMAL_STATIC_SCAN.json",
+        "original_project_path": "checks/formal_scope/static_scan.json",
+        "original_sha256": "ac76b5ca73f662241ff7022aae06ec5d8caffd25d104df25337aca37b3e342ee",
+        "archive_sha256": "ac76b5ca73f662241ff7022aae06ec5d8caffd25d104df25337aca37b3e342ee",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "PRIMARY_REFERENCE_PROVENANCE.md",
+        "original_project_path": "sources/continuation_alternative/README.md",
+        "original_sha256": "0ae4efee02159f89b1f644a0ca79b1fcb55fbd2b01a160814a3fa66de57d7d83",
+        "archive_sha256": "0ae4efee02159f89b1f644a0ca79b1fcb55fbd2b01a160814a3fa66de57d7d83",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      },
+      {
+        "archive_file": "ORIGINAL_CONTINUATION_ATTRIBUTION.json",
+        "original_project_path": "receipts/original_continuation_attribution.json",
+        "original_sha256": "f22169b396017e2b066f4f6695125948b2c306cdf8a60cf5640167104c99478a",
+        "archive_sha256": "f22169b396017e2b066f4f6695125948b2c306cdf8a60cf5640167104c99478a",
+        "byte_identical": true,
+        "documented_normalization_matches": true
+      }
+    ]
+  },
+  "reference_occurrences": [
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 3,
+      "reference": "ARCHIVE_MAP.json",
+      "classification": "supplied_direct",
+      "target": "ARCHIVE_MAP.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 5,
+      "reference": "PINNED_SOURCE.json",
+      "classification": "supplied_direct",
+      "target": "PINNED_SOURCE.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 11,
+      "reference": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 17,
+      "reference": "SUPPLEMENT_LOCAL_THEORY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_LOCAL_THEORY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 18,
+      "reference": "SUPPLEMENT_LOCAL_THEORY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_LOCAL_THEORY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/DEPENDENCY_LEDGER.md",
+      "line": 18,
+      "reference": "continuation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/continuation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 1,
+      "reference": "ARCHIVE_MAP.json",
+      "classification": "supplied_direct",
+      "target": "ARCHIVE_MAP.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 11,
+      "reference": "/Users/alec/Desktop/math",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 11,
+      "reference": "checks/formal_scope/lean",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 13,
+      "reference": "Main.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Main.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 13,
+      "reference": "Model.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Model.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 13,
+      "reference": "lean/docs/362.md",
+      "classification": "omitted_upstream_historical",
+      "target": "lean/docs/362.md",
+      "reason": "Report explicitly describes upstream material actually read; not promised in archive."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 17,
+      "reference": "FORMAL_BUILD_LIMITATIONS.json",
+      "classification": "supplied_direct",
+      "target": "FORMAL_BUILD_LIMITATIONS.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 17,
+      "reference": "FORMAL_SOURCE_INVENTORY.json",
+      "classification": "supplied_direct",
+      "target": "FORMAL_SOURCE_INVENTORY.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 17,
+      "reference": "FORMAL_STATIC_SCAN.json",
+      "classification": "supplied_direct",
+      "target": "FORMAL_STATIC_SCAN.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 21,
+      "reference": "OAI.Analysis.VlasovMaxwell.Main.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Main.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 31,
+      "reference": "ComparatorChallenges/VlasovMaxwell.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/ComparatorChallenges/VlasovMaxwell.lean",
+      "reason": "PINNED_SOURCE provides the external Lean path/hash."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 31,
+      "reference": "Model.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Model.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 44,
+      "reference": "Model.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Model.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 46,
+      "reference": "Model.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Model.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 52,
+      "reference": "LocalPDE/SmoothLocalExistence.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/LocalPDE/SmoothLocalExistence.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 52,
+      "reference": "LocalPDE/StrongLocalExistence.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/LocalPDE/StrongLocalExistence.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 52,
+      "reference": "Regularity/SlabEvolutionRegularity.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Regularity/SlabEvolutionRegularity.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 53,
+      "reference": "Continuation/Bootstrap.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Continuation/Bootstrap.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 54,
+      "reference": "Bootstrap.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Continuation/Bootstrap.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 55,
+      "reference": "Population/BulkReceiverResidual.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Population/BulkReceiverResidual.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 56,
+      "reference": "LocalPDE/GeometryCutoffDeficitLogSum.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/LocalPDE/GeometryCutoffDeficitLogSum.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 56,
+      "reference": "Population/RepresentativeClosedBinSourceIndices.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Population/RepresentativeClosedBinSourceIndices.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 57,
+      "reference": "Continuation/GlobalContinuation.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Continuation/GlobalContinuation.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 57,
+      "reference": "Main.lean",
+      "classification": "omitted_upstream_pinned",
+      "target": "lean/OAI/Analysis/VlasovMaxwell/Main.lean",
+      "reason": "Formal shorthand resolves uniquely in pinned source manifest."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 69,
+      "reference": "lake-manifest.upstream.json",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 69,
+      "reference": "lakefile.upstream.lean",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 73,
+      "reference": "model_direct_check.log",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 73,
+      "reference": "model_initial_check.log",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 79,
+      "reference": "Audit.lean",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 79,
+      "reference": "checks/formal_scope/lean",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "line": 79,
+      "reference": "checks/formal_scope/reproduce.sh",
+      "classification": "omitted_formal_or_historical_local",
+      "target": null,
+      "reason": "Leading archive note excludes local reproduction script and Lean checkout; this historical pathname is not portable."
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 23,
+      "reference": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026",
+      "reason": "Upstream family directory at the stated exact pin."
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 13,
+      "reference": "continuation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/continuation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 3,
+      "reference": "reviews/package_v1",
+      "classification": "historical_candidate_scope",
+      "target": "reviews/package_v1",
+      "reason": "The included priority report states it audited v1, not v4."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "SUPPLEMENT_LOCAL_THEORY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_LOCAL_THEORY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "SUPPLEMENT_TRANSFER_LEMMA.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_TRANSFER_LEMMA.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "main.tex",
+      "classification": "supplied_direct",
+      "target": "main.tex",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "sources/priority_final/candidate_reviewed_hashes.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 17,
+      "reference": "zenodo-deposit.json",
+      "classification": "supplied_packet",
+      "target": "zenodo-deposit.json",
+      "reason": "File exists at review packet root-relative pathname."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 21,
+      "reference": "source-and-verification/main.tex",
+      "classification": "supplied_packet",
+      "target": "source-and-verification/main.tex",
+      "reason": "File exists at review packet root-relative pathname."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 22,
+      "reference": "zenodo-deposit.json",
+      "classification": "supplied_packet",
+      "target": "zenodo-deposit.json",
+      "reason": "File exists at review packet root-relative pathname."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 32,
+      "reference": "continuation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/continuation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "SEARCH_LOG.json",
+      "classification": "mapped_contextual",
+      "target": "PRIORITY_SEARCH_LOG.json",
+      "reason": "Paragraph identifies sources/priority_final; ARCHIVE_MAP provides its SEARCH_LOG counterpart."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "cached_primary_hash_check.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "candidate_reviewed_hashes.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "preprints_tree_retrieval.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "primary_pdf_response_hashes.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "retrieval_log_extra.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "sources/priority_final/retrieval_log.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 117,
+      "reference": "upstream_reviewed_hashes.json",
+      "classification": "omitted_project_priority_receipt",
+      "target": null,
+      "reason": "Historical project evidence; no supplied counterpart and no project repository URL in packet."
+    },
+    {
+      "document": "source-and-verification/README.md",
+      "line": 15,
+      "reference": "ARCHIVE_MAP.json",
+      "classification": "supplied_direct",
+      "target": "ARCHIVE_MAP.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/README.md",
+      "line": 15,
+      "reference": "paper.pdf",
+      "classification": "supplied_upload_kit",
+      "target": "upload-kit/paper.pdf",
+      "reason": "README describes enclosing upload kit; these files are outside the ZIP."
+    },
+    {
+      "document": "source-and-verification/README.md",
+      "line": 15,
+      "reference": "source-and-verification.zip",
+      "classification": "supplied_upload_kit",
+      "target": "upload-kit/source-and-verification.zip",
+      "reason": "README describes enclosing upload kit; these files are outside the ZIP."
+    },
+    {
+      "document": "source-and-verification/README.md",
+      "line": 17,
+      "reference": "REPRODUCE.md",
+      "classification": "supplied_direct",
+      "target": "REPRODUCE.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 5,
+      "reference": "exact_kernel_certificate.py",
+      "classification": "supplied_direct",
+      "target": "exact_kernel_certificate.py",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 6,
+      "reference": "rational_selection_certificate.py",
+      "classification": "supplied_direct",
+      "target": "rational_selection_certificate.py",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 7,
+      "reference": "verify_pair_identity.py",
+      "classification": "supplied_direct",
+      "target": "verify_pair_identity.py",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 11,
+      "reference": "main.tex",
+      "classification": "supplied_direct",
+      "target": "main.tex",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 11,
+      "reference": "references.bib",
+      "classification": "supplied_direct",
+      "target": "references.bib",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 13,
+      "reference": "main.tex",
+      "classification": "supplied_direct",
+      "target": "main.tex",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 17,
+      "reference": "PINNED_SOURCE.json",
+      "classification": "supplied_direct",
+      "target": "PINNED_SOURCE.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 23,
+      "reference": "ARCHIVE_MAP.json",
+      "classification": "supplied_direct",
+      "target": "ARCHIVE_MAP.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_LOCAL_THEORY.md",
+      "line": 3,
+      "reference": "continuation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/continuation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_LOCAL_THEORY.md",
+      "line": 184,
+      "reference": "build/sections/continuation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/continuation.tex",
+      "reason": "Pinned family manuscript section; not a supplied supplement."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 22,
+      "reference": "build/sections",
+      "classification": "omitted_upstream_historical",
+      "target": "build/sections",
+      "reason": "Report explicitly describes upstream material actually read; not promised in archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 26,
+      "reference": "setup.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/setup.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 27,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 28,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 29,
+      "reference": "direction.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direction.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 30,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 31,
+      "reference": "closure.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/closure.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 32,
+      "reference": "retarded.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/retarded.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 33,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 35,
+      "reference": "AGENTS.md",
+      "classification": "omitted_upstream_historical",
+      "target": "AGENTS.md",
+      "reason": "Report explicitly describes upstream material actually read; not promised in archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 35,
+      "reference": "lean/docs/362.md",
+      "classification": "omitted_upstream_historical",
+      "target": "lean/docs/362.md",
+      "reason": "Report explicitly describes upstream material actually read; not promised in archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 126,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 142,
+      "reference": "retarded.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/retarded.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 158,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 161,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 163,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 182,
+      "reference": "direction.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direction.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 258,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 262,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "line": 280,
+      "reference": "closure.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/closure.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_PAIR_IDENTITY.md",
+      "line": 271,
+      "reference": "verify_pair_identity.py",
+      "classification": "supplied_direct",
+      "target": "verify_pair_identity.py",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_PAIR_IDENTITY.md",
+      "line": 384,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 10,
+      "reference": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 16,
+      "reference": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 20,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 20,
+      "reference": "direction.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direction.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 20,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 21,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 69,
+      "reference": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 280,
+      "reference": "retarded.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/retarded.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 281,
+      "reference": "retarded.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/retarded.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 282,
+      "reference": "retarded.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/retarded.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 283,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 284,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 285,
+      "reference": "occupation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/occupation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 286,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 287,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 288,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 289,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 290,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 291,
+      "reference": "direction.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direction.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 292,
+      "reference": "direction.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direction.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 293,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 294,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 295,
+      "reference": "selection.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/selection.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "line": 296,
+      "reference": "closure.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/closure.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 3,
+      "reference": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 49,
+      "reference": "cancellation.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/cancellation.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 173,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 196,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 210,
+      "reference": "direct.tex",
+      "classification": "omitted_upstream_pinned",
+      "target": "preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/build/sections/direct.tex",
+      "reason": "Source section is identified/hash-pinned in PINNED_SOURCE and deliberately fetched separately."
+    },
+    {
+      "document": "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "line": 301,
+      "reference": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "classification": "supplied_direct",
+      "target": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "upload-kit/README.md",
+      "line": 15,
+      "reference": "ARCHIVE_MAP.json",
+      "classification": "supplied_direct",
+      "target": "ARCHIVE_MAP.json",
+      "reason": "File exists in source archive."
+    },
+    {
+      "document": "upload-kit/README.md",
+      "line": 15,
+      "reference": "paper.pdf",
+      "classification": "supplied_upload_kit",
+      "target": "upload-kit/paper.pdf",
+      "reason": "README describes enclosing upload kit; these files are outside the ZIP."
+    },
+    {
+      "document": "upload-kit/README.md",
+      "line": 15,
+      "reference": "source-and-verification.zip",
+      "classification": "supplied_upload_kit",
+      "target": "upload-kit/source-and-verification.zip",
+      "reason": "README describes enclosing upload kit; these files are outside the ZIP."
+    },
+    {
+      "document": "upload-kit/README.md",
+      "line": 17,
+      "reference": "REPRODUCE.md",
+      "classification": "supplied_direct",
+      "target": "REPRODUCE.md",
+      "reason": "File exists in source archive."
+    }
+  ],
+  "reference_classification_counts": {
+    "supplied_direct": 32,
+    "omitted_upstream_pinned": 66,
+    "omitted_formal_or_historical_local": 9,
+    "omitted_upstream_historical": 4,
+    "historical_candidate_scope": 1,
+    "omitted_project_priority_receipt": 8,
+    "supplied_packet": 3,
+    "mapped_contextual": 1,
+    "supplied_upload_kit": 4
+  },
+  "external_url_occurrences_recorded_without_fetch": [
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 27,
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/README.md"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 38,
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611971477.ch5"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 42,
+      "url": "https://arxiv.org/abs/1406.0165v1"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 42,
+      "url": "https://doi.org/10.1007/s00220-014-2108-8"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 48,
+      "url": "https://arxiv.org/abs/1406.0169v1"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 48,
+      "url": "https://doi.org/10.1007/s00205-015-0899-1"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 54,
+      "url": "https://link.springer.com/article/10.1007/BF01218078"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 56,
+      "url": "https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-119/issue-3/Global-existence-for-the-relativistic-Vlasov-Maxwell-system-with-nearly/cmp/1104162494.full"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 68,
+      "url": "https://arxiv.org/abs/2208.08360v2"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 68,
+      "url": "https://doi.org/10.2140/apde.2025.18.629"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 74,
+      "url": "https://arxiv.org/abs/2203.01199v2"
+    },
+    {
+      "document": "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "line": 74,
+      "url": "https://arxiv.org/abs/2607.14685v1"
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 7,
+      "url": "https://www.math.ens.psl.eu/~ffougeres/Ferns_files/Glassey.%20The%20Cauchy%20Problem%20in%20Kinetic%20Theory.pdf"
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 8,
+      "url": "https://arxiv.org/pdf/math/0301175"
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 9,
+      "url": "https://arxiv.org/pdf/1406.0165"
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 11,
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611971477.ch5"
+    },
+    {
+      "document": "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "line": 11,
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611971477.ch6"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 51,
+      "url": "https://doi.org/10.1007/BF01218078"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 68,
+      "url": "https://epubs.siam.org/doi/10.1137/1.9781611971477.ch5"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 74,
+      "url": "https://arxiv.org/abs/1406.0165v1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 74,
+      "url": "https://doi.org/10.1007/s00220-014-2108-8"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 76,
+      "url": "https://arxiv.org/abs/1406.0169v1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 76,
+      "url": "https://doi.org/10.1007/s00205-015-0899-1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 82,
+      "url": "https://arxiv.org/abs/2208.08360v2"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 82,
+      "url": "https://doi.org/10.2140/apde.2025.18.629"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 83,
+      "url": "https://arxiv.org/abs/2203.01199v2"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 83,
+      "url": "https://arxiv.org/abs/2607.14685v1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 84,
+      "url": "https://arxiv.org/abs/2609.29013v1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 85,
+      "url": "https://arxiv.org/abs/2306.11725v2"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 86,
+      "url": "https://arxiv.org/abs/2503.01677v2"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 87,
+      "url": "https://doi.org/10.1007/BF02097656"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 93,
+      "url": "https://arxiv.org/abs/math/0301175v1"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 97,
+      "url": "https://github.com/openai/math"
+    },
+    {
+      "document": "source-and-verification/PRIORITY_AUDIT.md",
+      "line": 97,
+      "url": "https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Global-classical-solutions-of-the-three-dimensional-relativistic-Vlasov-Maxwell-system-September-23-2026/README.md"
+    },
+    {
+      "document": "source-and-verification/README.md",
+      "line": 5,
+      "url": "https://orcid.org/0009-0001-9320-500X"
+    },
+    {
+      "document": "source-and-verification/REPRODUCE.md",
+      "line": 17,
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 20,
+      "url": "https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 705,
+      "url": "https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a}{\\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 708,
+      "url": "https://doi.org/10.1137/1.9781611971477}{doi:10.1137/1.9781611971477}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 712,
+      "url": "https://arxiv.org/abs/1406.0165v1}{arXiv:1406.0165v1};"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 713,
+      "url": "https://doi.org/10.1007/s00220-014-2108-8}{doi:10.1007/s00220-014-2108-8}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 717,
+      "url": "https://doi.org/10.1007/BF01218078}{doi:10.1007/BF01218078}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 721,
+      "url": "https://doi.org/10.1007/BF00250732}{doi:10.1007/BF00250732}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 725,
+      "url": "https://arxiv.org/abs/math/0301175}{arXiv:math/0301175}"
+    },
+    {
+      "document": "source-and-verification/main.tex",
+      "line": 728,
+      "url": "https://arxiv.org/abs/2609.29013v1}{arXiv:2609.29013v1}"
+    },
+    {
+      "document": "upload-kit/README.md",
+      "line": 5,
+      "url": "https://orcid.org/0009-0001-9320-500X"
+    }
+  ],
+  "formal_upstream_inventory": {
+    "module_count": 207,
+    "pin_mismatches": []
+  },
+  "standalone_tex": {
+    "local_dependency_commands": [],
+    "missing_labels": [],
+    "duplicate_labels": []
+  },
+  "zip": {
+    "sha256": "6b90c4116ba596ee56567be0d540c1866e5f4fdf18bd62f13c489c6ca996849e",
+    "file_count": 27,
+    "names": [
+      "source-and-verification/ARCHIVE_MAP.json",
+      "source-and-verification/DEPENDENCY_LEDGER.md",
+      "source-and-verification/FORMAL_BUILD_LIMITATIONS.json",
+      "source-and-verification/FORMAL_SCOPE_AUDIT.md",
+      "source-and-verification/FORMAL_SOURCE_INVENTORY.json",
+      "source-and-verification/FORMAL_STATIC_SCAN.json",
+      "source-and-verification/LICENSE.txt",
+      "source-and-verification/ORIGINAL_CONTINUATION_ATTRIBUTION.json",
+      "source-and-verification/PINNED_SOURCE.json",
+      "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md",
+      "source-and-verification/PRELIMINARY_PRIORITY_SEARCH_LOG.json",
+      "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md",
+      "source-and-verification/PRIORITY_AUDIT.md",
+      "source-and-verification/PRIORITY_SEARCH_LOG.json",
+      "source-and-verification/README.md",
+      "source-and-verification/REPRODUCE.md",
+      "source-and-verification/SHA256SUMS.json",
+      "source-and-verification/SUPPLEMENT_LOCAL_THEORY.md",
+      "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "source-and-verification/SUPPLEMENT_PAIR_IDENTITY.md",
+      "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md",
+      "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "source-and-verification/exact_kernel_certificate.py",
+      "source-and-verification/main.tex",
+      "source-and-verification/rational_selection_certificate.py",
+      "source-and-verification/references.bib",
+      "source-and-verification/verify_pair_identity.py"
+    ],
+    "byte_mismatches": [],
+    "unsafe_names": []
+  },
+  "builder_read_only_sha256": "57e7f9456fa1c9d4cf764efdd196ac83d7d5f71aa2e49d04c2f2bd4a4ba1af25",
+  "initial_builder_snapshot_sha256": "57e7f9456fa1c9d4cf764efdd196ac83d7d5f71aa2e49d04c2f2bd4a4ba1af25",
+  "initial_mapped_original_input_hashes": [
+    {
+      "archive_file": "main.tex",
+      "original_project_path": "publication/main.tex",
+      "original_sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c",
+      "archive_sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "references.bib",
+      "original_project_path": "publication/references.bib",
+      "original_sha256": "5d930eef6b611411b2446bd77032087e526e00664f91fd43ce2bbe477b985510",
+      "archive_sha256": "5d930eef6b611411b2446bd77032087e526e00664f91fd43ce2bbe477b985510",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "README.md",
+      "original_project_path": "publication/README.md",
+      "original_sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823",
+      "archive_sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "REPRODUCE.md",
+      "original_project_path": "publication/REPRODUCE.md",
+      "original_sha256": "c59b625c2d288d0e571d4529448ee902340d44c1fd14dd6fb6a19427102859ae",
+      "archive_sha256": "c59b625c2d288d0e571d4529448ee902340d44c1fd14dd6fb6a19427102859ae",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "LICENSE.txt",
+      "original_project_path": "publication/LICENSE.txt",
+      "original_sha256": "302d3ee9790b644b1a4549b85282248443dba6d6f20c7c955ac9b96ed11ecd69",
+      "archive_sha256": "302d3ee9790b644b1a4549b85282248443dba6d6f20c7c955ac9b96ed11ecd69",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "DEPENDENCY_LEDGER.md",
+      "original_project_path": "DEPENDENCY_LEDGER.md",
+      "original_sha256": "eda8f3b55c0494a2d9080a49f44229531d157128dfc0b165a410430b4f96d686",
+      "archive_sha256": "eda8f3b55c0494a2d9080a49f44229531d157128dfc0b165a410430b4f96d686",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PRIORITY_AUDIT.md",
+      "original_project_path": "reviews/priority_final/REPORT.md",
+      "original_sha256": "b735058066c9ec81354af180dc37c77a8ce96300d1c40006a3b05a0d74b28c1c",
+      "archive_sha256": "b735058066c9ec81354af180dc37c77a8ce96300d1c40006a3b05a0d74b28c1c",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PRELIMINARY_PRIORITY_AUDIT.md",
+      "original_project_path": "agent_notes/priority_primary/REPORT.md",
+      "original_sha256": "a5636e2ca8f12bff7aafbdbdd2eff9e50d343c2b780fdb620231f6296110c6d7",
+      "archive_sha256": "a5636e2ca8f12bff7aafbdbdd2eff9e50d343c2b780fdb620231f6296110c6d7",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PRIORITY_SEARCH_LOG.json",
+      "original_project_path": "sources/priority_final/SEARCH_LOG.json",
+      "original_sha256": "edcf886cc47a77c36154a61e710e37b482ba9d9da80f73e276f19d3120def560",
+      "archive_sha256": "edcf886cc47a77c36154a61e710e37b482ba9d9da80f73e276f19d3120def560",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PRELIMINARY_PRIORITY_SEARCH_LOG.json",
+      "original_project_path": "agent_notes/priority_primary/SEARCH_LOG.json",
+      "original_sha256": "eb9ef20b12d84d61c77e11225fc10575979fda44e1c43e943f2716855f790d5b",
+      "archive_sha256": "eb9ef20b12d84d61c77e11225fc10575979fda44e1c43e943f2716855f790d5b",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PINNED_SOURCE.json",
+      "original_project_path": "sources/PINNED_SOURCE.json",
+      "original_sha256": "339826b3c245aa319dc83dd1863d967d0d982f7bda1c33ec53a2d1fa3564d9a6",
+      "archive_sha256": "339826b3c245aa319dc83dd1863d967d0d982f7bda1c33ec53a2d1fa3564d9a6",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "SUPPLEMENT_PAIR_IDENTITY.md",
+      "original_project_path": "derivations/multispecies_derivation/PAIR_IDENTITY.md",
+      "original_sha256": "2e2cc01799947bee5bd4ad3e67e4674101e6514e6bfef3b42bfe4da4b08153b4",
+      "archive_sha256": "2e2cc01799947bee5bd4ad3e67e4674101e6514e6bfef3b42bfe4da4b08153b4",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "SUPPLEMENT_TRANSFER_LEMMA.md",
+      "original_project_path": "derivations/multispecies_derivation/TRANSFER_LEMMA.md",
+      "original_sha256": "2a524884114100d7c86fd7af74e7a3eebed31141beeb47f5fe7d3a4ae5ff35ae",
+      "archive_sha256": "e2d96fe3af64f98db477c68300c36354e1fadced66317539b2956242da8f5008",
+      "byte_identical": false,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md",
+      "original_project_path": "agent_notes/occupation_bootstrap/UNIFORM_LEMMA_CHAIN.md",
+      "original_sha256": "78d3472c25c57333aa5be5db380563b42c38251daceef8803b26edadb35fa0d4",
+      "archive_sha256": "ea9b4648819bb234c3eee55c1b32d9392b3038da717b55d850d54e6472352fa7",
+      "byte_identical": false,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "SUPPLEMENT_OCCUPATION_AUDIT.md",
+      "original_project_path": "agent_notes/occupation_bootstrap/AUDIT.md",
+      "original_sha256": "178d96ceaf8462bc4d9ac56e09dd32aeabfe445acb27ac62880ac3b2ac39d52e",
+      "archive_sha256": "178d96ceaf8462bc4d9ac56e09dd32aeabfe445acb27ac62880ac3b2ac39d52e",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "SUPPLEMENT_LOCAL_THEORY.md",
+      "original_project_path": "agent_notes/continuation_alternative/LOCAL_THEORY.md",
+      "original_sha256": "5f9914612bbccbccc2f2ee73c38a07ea646f29ab28e73d0264c86c31002693bc",
+      "archive_sha256": "5f9914612bbccbccc2f2ee73c38a07ea646f29ab28e73d0264c86c31002693bc",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "exact_kernel_certificate.py",
+      "original_project_path": "checks/kernel_audit/exact_kernel_certificate.py",
+      "original_sha256": "2a72fa2d10d0b437077a01bca259538b739851fe78c53abc3c098b199c4bf377",
+      "archive_sha256": "2a72fa2d10d0b437077a01bca259538b739851fe78c53abc3c098b199c4bf377",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "rational_selection_certificate.py",
+      "original_project_path": "checks/occupation_bootstrap/rational_selection_certificate.py",
+      "original_sha256": "6ab457bc0e6f4e0c08bf7a82692dc385b096fa8f172fe81c60639a34bd49ef34",
+      "archive_sha256": "6ab457bc0e6f4e0c08bf7a82692dc385b096fa8f172fe81c60639a34bd49ef34",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "verify_pair_identity.py",
+      "original_project_path": "derivations/multispecies_derivation/verify_pair_identity.py",
+      "original_sha256": "c6ca1d1a7c121ce7c7b458c9c1d2b8fe690aca741ba573cbc0354d678650b7bc",
+      "archive_sha256": "c6ca1d1a7c121ce7c7b458c9c1d2b8fe690aca741ba573cbc0354d678650b7bc",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "FORMAL_SCOPE_AUDIT.md",
+      "original_project_path": "agent_notes/formal_scope/REPORT.md",
+      "original_sha256": "b0d355b018831e17569e574893df1c4c3d8f2acbbd081ba11a0631bfee39d513",
+      "archive_sha256": "b6103629b79327c2b9ebcc2f3883e466e4f180546fef4ea401d144ed96bc25ea",
+      "byte_identical": false,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "FORMAL_BUILD_LIMITATIONS.json",
+      "original_project_path": "checks/formal_scope/build_receipt.json",
+      "original_sha256": "fb2f67a3e75b1c588b29c0702988968348b7fa64cdde605a8a08a2be42546d1e",
+      "archive_sha256": "fb2f67a3e75b1c588b29c0702988968348b7fa64cdde605a8a08a2be42546d1e",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "FORMAL_SOURCE_INVENTORY.json",
+      "original_project_path": "checks/formal_scope/source_inventory.json",
+      "original_sha256": "622944b25e699c205f8c5079504552e8f88eef104b78824a69e24b71ed234d93",
+      "archive_sha256": "622944b25e699c205f8c5079504552e8f88eef104b78824a69e24b71ed234d93",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "FORMAL_STATIC_SCAN.json",
+      "original_project_path": "checks/formal_scope/static_scan.json",
+      "original_sha256": "ac76b5ca73f662241ff7022aae06ec5d8caffd25d104df25337aca37b3e342ee",
+      "archive_sha256": "ac76b5ca73f662241ff7022aae06ec5d8caffd25d104df25337aca37b3e342ee",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "PRIMARY_REFERENCE_PROVENANCE.md",
+      "original_project_path": "sources/continuation_alternative/README.md",
+      "original_sha256": "0ae4efee02159f89b1f644a0ca79b1fcb55fbd2b01a160814a3fa66de57d7d83",
+      "archive_sha256": "0ae4efee02159f89b1f644a0ca79b1fcb55fbd2b01a160814a3fa66de57d7d83",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    },
+    {
+      "archive_file": "ORIGINAL_CONTINUATION_ATTRIBUTION.json",
+      "original_project_path": "receipts/original_continuation_attribution.json",
+      "original_sha256": "f22169b396017e2b066f4f6695125948b2c306cdf8a60cf5640167104c99478a",
+      "archive_sha256": "f22169b396017e2b066f4f6695125948b2c306cdf8a60cf5640167104c99478a",
+      "byte_identical": true,
+      "documented_normalization_matches": true
+    }
+  ],
+  "current_root_drift": {
+    "original_inputs": [],
+    "builder_changed": false
+  },
+  "original_continuation_attribution": {
+    "timestamp_utc": "2026-10-07T04:46:42.650077+00:00",
+    "primary_url": "https://link.springer.com/article/10.1007/BF00250732",
+    "authors": [
+      "Robert T. Glassey",
+      "Walter A. Strauss"
+    ],
+    "title": "Singularity formation in a collisionless plasma could occur only at high velocities",
+    "journal": "Archive for Rational Mechanics and Analysis",
+    "volume": 92,
+    "pages": "59\u201390",
+    "year": 1986,
+    "doi": "10.1007/BF00250732",
+    "scope_actually_inspected": "Primary publisher bibliographic record and abstract; original full theorem/proof not revalidated here. Precise relied-on bounded-momentum statement and proof computations are those inspected in Luk\u2013Strain and Bouchut\u2013Golse\u2013Pallard, as recorded in the dependency ledger. This record improves original-author attribution without adding a new analytic dependency."
+  },
+  "prior_version_comparison": {
+    "compared_to": "reviews/package_v3/source-and-verification",
+    "changed_source_files": [
+      "SHA256SUMS.json",
+      "main.tex"
+    ],
+    "main_tex_exactly_matches_three_bibliography_formatting_insertions": true,
+    "prior_main_tex_sha256": "2f98fe5e29570675d4d583b1151a247ead90c6ed0d44302aa5d47c74c4964872",
+    "current_main_tex_sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c"
+  },
+  "candidate_packet_hashes": {
+    "REVIEW_INVENTORY.json": {
+      "bytes": 5450,
+      "sha256": "7a13ee29a9c23ec8c5fdaae68c92e8c55f4577f8da545385d9d5d784608537a3"
+    },
+    "source-and-verification/ARCHIVE_MAP.json": {
+      "bytes": 2519,
+      "sha256": "19a89b46da112bc7ade64a202097d0247e32e8ea75149c505383288724c63927"
+    },
+    "source-and-verification/DEPENDENCY_LEDGER.md": {
+      "bytes": 5514,
+      "sha256": "eda8f3b55c0494a2d9080a49f44229531d157128dfc0b165a410430b4f96d686"
+    },
+    "source-and-verification/FORMAL_BUILD_LIMITATIONS.json": {
+      "bytes": 3548,
+      "sha256": "fb2f67a3e75b1c588b29c0702988968348b7fa64cdde605a8a08a2be42546d1e"
+    },
+    "source-and-verification/FORMAL_SCOPE_AUDIT.md": {
+      "bytes": 12060,
+      "sha256": "b6103629b79327c2b9ebcc2f3883e466e4f180546fef4ea401d144ed96bc25ea"
+    },
+    "source-and-verification/FORMAL_SOURCE_INVENTORY.json": {
+      "bytes": 42103,
+      "sha256": "622944b25e699c205f8c5079504552e8f88eef104b78824a69e24b71ed234d93"
+    },
+    "source-and-verification/FORMAL_STATIC_SCAN.json": {
+      "bytes": 13177,
+      "sha256": "ac76b5ca73f662241ff7022aae06ec5d8caffd25d104df25337aca37b3e342ee"
+    },
+    "source-and-verification/LICENSE.txt": {
+      "bytes": 486,
+      "sha256": "302d3ee9790b644b1a4549b85282248443dba6d6f20c7c955ac9b96ed11ecd69"
+    },
+    "source-and-verification/ORIGINAL_CONTINUATION_ATTRIBUTION.json": {
+      "bytes": 855,
+      "sha256": "f22169b396017e2b066f4f6695125948b2c306cdf8a60cf5640167104c99478a"
+    },
+    "source-and-verification/PINNED_SOURCE.json": {
+      "bytes": 34464,
+      "sha256": "339826b3c245aa319dc83dd1863d967d0d982f7bda1c33ec53a2d1fa3564d9a6"
+    },
+    "source-and-verification/PRELIMINARY_PRIORITY_AUDIT.md": {
+      "bytes": 13501,
+      "sha256": "a5636e2ca8f12bff7aafbdbdd2eff9e50d343c2b780fdb620231f6296110c6d7"
+    },
+    "source-and-verification/PRELIMINARY_PRIORITY_SEARCH_LOG.json": {
+      "bytes": 3013,
+      "sha256": "eb9ef20b12d84d61c77e11225fc10575979fda44e1c43e943f2716855f790d5b"
+    },
+    "source-and-verification/PRIMARY_REFERENCE_PROVENANCE.md": {
+      "bytes": 1680,
+      "sha256": "0ae4efee02159f89b1f644a0ca79b1fcb55fbd2b01a160814a3fa66de57d7d83"
+    },
+    "source-and-verification/PRIORITY_AUDIT.md": {
+      "bytes": 22177,
+      "sha256": "b735058066c9ec81354af180dc37c77a8ce96300d1c40006a3b05a0d74b28c1c"
+    },
+    "source-and-verification/PRIORITY_SEARCH_LOG.json": {
+      "bytes": 5397,
+      "sha256": "edcf886cc47a77c36154a61e710e37b482ba9d9da80f73e276f19d3120def560"
+    },
+    "source-and-verification/README.md": {
+      "bytes": 3114,
+      "sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823"
+    },
+    "source-and-verification/REPRODUCE.md": {
+      "bytes": 2636,
+      "sha256": "c59b625c2d288d0e571d4529448ee902340d44c1fd14dd6fb6a19427102859ae"
+    },
+    "source-and-verification/SHA256SUMS.json": {
+      "bytes": 2538,
+      "sha256": "1f67880465539e005fca3e82e8c161ff349dd5dbcfa90e81a9464f60ee61957b"
+    },
+    "source-and-verification/SUPPLEMENT_LOCAL_THEORY.md": {
+      "bytes": 19332,
+      "sha256": "5f9914612bbccbccc2f2ee73c38a07ea646f29ab28e73d0264c86c31002693bc"
+    },
+    "source-and-verification/SUPPLEMENT_OCCUPATION_AUDIT.md": {
+      "bytes": 15101,
+      "sha256": "178d96ceaf8462bc4d9ac56e09dd32aeabfe445acb27ac62880ac3b2ac39d52e"
+    },
+    "source-and-verification/SUPPLEMENT_PAIR_IDENTITY.md": {
+      "bytes": 19579,
+      "sha256": "2e2cc01799947bee5bd4ad3e67e4674101e6514e6bfef3b42bfe4da4b08153b4"
+    },
+    "source-and-verification/SUPPLEMENT_TRANSFER_LEMMA.md": {
+      "bytes": 17715,
+      "sha256": "e2d96fe3af64f98db477c68300c36354e1fadced66317539b2956242da8f5008"
+    },
+    "source-and-verification/SUPPLEMENT_UNIFORM_LEMMA_CHAIN.md": {
+      "bytes": 18668,
+      "sha256": "ea9b4648819bb234c3eee55c1b32d9392b3038da717b55d850d54e6472352fa7"
+    },
+    "source-and-verification/exact_kernel_certificate.py": {
+      "bytes": 5226,
+      "sha256": "2a72fa2d10d0b437077a01bca259538b739851fe78c53abc3c098b199c4bf377"
+    },
+    "source-and-verification/main.tex": {
+      "bytes": 37158,
+      "sha256": "9d72d239677c1066ba22ffbea8ff36f26251a2eae532921bd5e8e12b5f9fdb8c"
+    },
+    "source-and-verification/rational_selection_certificate.py": {
+      "bytes": 3316,
+      "sha256": "6ab457bc0e6f4e0c08bf7a82692dc385b096fa8f172fe81c60639a34bd49ef34"
+    },
+    "source-and-verification/references.bib": {
+      "bytes": 4866,
+      "sha256": "5d930eef6b611411b2446bd77032087e526e00664f91fd43ce2bbe477b985510"
+    },
+    "source-and-verification/verify_pair_identity.py": {
+      "bytes": 5067,
+      "sha256": "c6ca1d1a7c121ce7c7b458c9c1d2b8fe690aca741ba573cbc0354d678650b7bc"
+    },
+    "upload-kit/README.md": {
+      "bytes": 3114,
+      "sha256": "9b643cb83750977d3832bd904c328c8a4cf47cf4bd2bab989b7fbfa6ff3db823"
+    },
+    "upload-kit/paper.pdf": {
+      "bytes": 128361,
+      "sha256": "8cfaa828abfe5f91626527a79679c503bb37cb081fb258de68ef7f776a74e046"
+    },
+    "upload-kit/source-and-verification.zip": {
+      "bytes": 126979,
+      "sha256": "6b90c4116ba596ee56567be0d540c1866e5f4fdf18bd62f13c489c6ca996849e"
+    },
+    "zenodo-deposit.json": {
+      "bytes": 2291,
+      "sha256": "898412d64eef19477c6dbc5eb299d607508d5f36ccdf5d99b9ce5a4a30e057f0"
+    }
+  },
+  "unclassified_references": [],
+  "candidate_unchanged": true
+}

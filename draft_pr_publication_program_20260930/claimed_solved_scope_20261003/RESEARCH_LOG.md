@@ -1,0 +1,4 @@
+2026-10-03T21:11:59.105269+00:00 — Administrative eligibility mechanism started; completion estimate10%. Prior nonclaim work is preserved and discontinued.
+2026-10-03T21:03:51.671146+00:00 — Dated180 status projection:44 claimed,34 already_solved,102 unsolved. First failed collector/source retained. Its draft-eligibility action labels require the explicit later metadata qualification; inventory completion estimate45%.
+2026-10-03T21:08:01.764421+00:00 — Fresh440 OPEN drafts,97 exact claims; PR18 first. Two target-only selector gaps identified; estimate95%.
+2026-10-03T21:12:00.206473+00:00 — Short ID159=unsolved and administrative PR415 resolved by metadata/status only. Exact PR18 hold and existing50/57 unpublished decisions recorded; PR55 ordering preserved. Scope inventory100%; observed eligible publication progress2/99=2.020202%. New discovery/publication/acceptance0%. ROOT owns any later checkpoint/publication actions.

@@ -1,0 +1,13 @@
+# Exact-live scope limitations
+
+This additive review accepts only the head/base/tree/body and observation interval recorded in PINS and RECEIPT_gate02. It supersedes the original review's pending exact-live condition for these pins, without editing any original report, seal, log or manifest. Any local or remote main change, PR head/base/body drift, altered readiness state, content/mode/path mismatch, source identity mismatch or failed replay causes rejection; raw observations are retained in a unique private run directory.
+
+The original physical-class capacity–volume/ADM equality is credited prior work. The explicit counterexample concerns the unrestricted all-AF reading and has negative scalar curvature somewhere in its compact fill. It establishes a strict lower bound for the global mass, not its exact value. Historical novelty and human peer review are not certified. The sealed analytic proofs and credited primary theorems establish the mathematical scope; finite checker counts supplement them.
+
+The ten author files are anchored in the author parent. The four historical review files are absent from that author parent and are bound at the original and repaired publication heads and through the original review/publication manifests. No earlier Git anchor for those four files is inferred.
+
+All three original review-family public manifests and their included source/mathematical/final seals were published in the pinned base. Their paths, modes, blob contents, manifest lengths/hashes, local bytes and repaired-head bytes are checked. Their historical pending language remains historical. No raw PDF, text, image, API response or replay copy is included in this additive public manifest.
+
+Git ancestry proves that merging the pinned base with its descendant head yields exactly the pinned head tree. The gate uses no object-producing merge operation. The API's mergeable/clean values are observed metadata, not evidence of CI success, merging or release. PR 370 is observed ready, open and unmerged. The live body's sentence about actual post-merge checks is interpreted as the required acceptance procedure; this review does not assert those checks have happened. Actual merge and post-merge verification remain the root's subsequent work.
+
+The archived gate01 program and receipt preserve the initial successful observation. Gate02 adds explicit local-main and origin-repository checks and is the controlling final version. Each version's source hash matches its own receipt. Replays use a new --label and never overwrite prior observations; the root must independently replay the controlling program and bind the complete generated receipt and streams.

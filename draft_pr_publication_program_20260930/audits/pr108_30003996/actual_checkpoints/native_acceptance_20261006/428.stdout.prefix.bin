@@ -1,0 +1,33 @@
+from pathlib import Path
+import datetime, hashlib, json, os, stat
+O=Path(__file__).resolve().parent
+A=O.parent
+C=O.parents[3]
+D=A/'native_publication_integration_plan_20261006/corrected_v5'
+Q=D/'candidate_dfe3e71993e3bd99'
+def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def read(p):return json.loads(p.read_text())
+def require(v,s):
+ if not v:raise RuntimeError(s)
+def write(p,x):p.write_text(json.dumps(x,indent=2,sort_keys=True)+'\n')
+require(not (O/'SEAL_RECEIPT.json').exists(),'already sealed')
+normal=read(O/'normal_RECEIPT.json');optimized=read(O/'optimized_RECEIPT.json')
+ne=read(O/'execution_normal_v5/execution.json');oe=read(O/'execution_optimized/execution.json')
+require(ne['actual_child_PID']==normal['actual_operator_PID']==70473 and oe['actual_child_PID']==optimized['actual_operator_PID']==70935,'actual audit PID custody')
+require(ne['exit_code']==oe['exit_code']==0 and ne['child_reaped'] is oe['child_reaped'] is True,'actual audit exit/reap')
+require(normal['check_count']==optimized['check_count']==52385 and normal['checks_by_group']==optimized['checks_by_group'],'normal/optimized checks')
+require(normal['negative_controls']==optimized['negative_controls'] and len(normal['negative_controls'])==13,'normal/optimized mutation controls')
+require(normal['python_optimized'] is False and optimized['python_optimized'] is True,'actual optimization flags')
+require(ne['source']==oe['source'] and ne['source']['sha256']==digest(O/'audit_actual_candidate.py'),'identical final source')
+require(read(O/'normal_READ_PINS.json')==read(O/'optimized_READ_PINS.json'),'identical final concrete read pins')
+for execution,folder in [(ne,'execution_normal_v5'),(oe,'execution_optimized')]:
+ for name in ['stdout','stderr']:
+  p=O/folder/execution[name]['path'];require(p.stat().st_size==execution[name]['bytes'] and digest(p)==execution[name]['sha256'],'retained actual audit stream')
+ require(execution['stderr']['bytes']==0,'successful stderr empty')
+for folder,source in [('execution_normal','audit_predicate_v2_before_hold_tally_correction.py'),('execution_normal_v3','audit_predicate_v3_before_README_wrapper_correction.py'),('execution_normal_v4','audit_predicate_v4_before_absolute_path_correction.py')]:
+ x=read(O/folder/'execution.json');require(x['exit_code']==1 and x['source']['sha256']==digest(O/source),'failed reviewer predicate source custody')
+now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+with (O/'RESEARCH_LOG.md').open('a') as f:
+ f.write('\n'+now+': Sealed independent actual-candidate review checkpoint, actual sealer PID '+str(os.getpid())+'. Review completion 100%; required and optional findings empty. Parent exact export/readbacks and merge remain outstanding.\n')
+proposal=A/'ROOT_PROPOSED_NATIVE_EXPORT_PLAN_20261006.json'
+verdict={'schema':'pr108-independent-actual-native-candidate-adversary/v1','UTC':now,'actual_sealer_PID':os.getpid(),'review_completion_percent':100,'required_findings':[],'optional_findings':[],'actual_candidate_data_and_execution_custody_review_clean':True,'exact_proposed_public_export_273_offers_plus_one_note_review_clean':True,'parent_may_export_reviewed_exact_bodies_after_immediate_unchanged_head_input_capacity_checks':True,'actual_export_acceptance_or_merge_complete':False,'actual_export_readback_and_merge_parents_tree_GitHub_status_still_required':True,'candidate_receipt_sha256':digest(Q/'CANDIDATE_RECEIPT.json'),'actual_config_sha256':digest(Q/'CONFIG.json'),'execution_inputs_sha256':normal['execution_inputs_sha256'],'main_parent':normal['main_parent'],'proposed_export_plan_sha256':digest(proposal),'operational_exclusions_note_sha256':digest(A/'PROPOSED_PUBLIC_NATIVE_OPERATIONAL_EXCLUSIONS_20261006.json'),'normal_actual_PID':70473,'optimized_actual_PID':70935,'independent_checks_per_mode':52385,'independent_negative_controls_per_mode':13,'concrete_read_pins_per_mode':631,'all_private_offers_verified':275,'proposed_public_offers':273,'added_public_metadata_only_note':1,'private_Sheet_body_export_exclusions':2,'nongate_captured_input_count':180,'unrelated_complete_catalog_rows'

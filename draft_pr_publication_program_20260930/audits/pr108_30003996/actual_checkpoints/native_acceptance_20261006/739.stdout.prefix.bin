@@ -1,0 +1,71 @@
+"""Review-only PR108 corrected_v4 guards (compatible v3 schemas). No Git, SQL, native assess or service invocation."""
+from pathlib import Path, PurePosixPath
+import collections, configparser, csv, datetime, hashlib, io, json, os, re, stat, sys
+from urllib.parse import urlsplit
+
+K = '30003996'
+CODE = 'OWR-16633-013'
+N = 'unsolved_math_prioritization/attempts/30003996/'
+HEAD = '3526d46bf143b08e5055ffa7728c6278e9f958ea'
+SHEET = '1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
+GID = 1254632077
+TITLE = 'Math Puzzles'
+COLUMNS = ['Original Problem', 'Solution Chat URL', 'DOI', 'Notes']
+PROGRAMS = ['bounded_process.py', 'launch_review_bundle.sh', 'native_assess_worker.py', 'prepare_review_bundle.py', 'v3_guards.py']
+PYTHON_PREFIX=['-E','-S','-B']
+COMMON_ENV={'PATH':'/usr/bin:/bin','LC_ALL':'C','LANG':'C','TZ':'UTC'}
+# Darwin Python/CF may insert this same UID-derived nonsecret value after env -i.
+if sys.platform=='darwin':COMMON_ENV['__CF_USER_TEXT_ENCODING']='0x'+format(os.getuid(),'X')+':0x0:0x0'
+GIT_ENV={**COMMON_ENV,'GIT_CONFIG_NOSYSTEM':'1','GIT_CONFIG_SYSTEM':'/dev/null','GIT_CONFIG_GLOBAL':'/dev/null',
+    'GIT_TERMINAL_PROMPT':'0','GIT_OPTIONAL_LOCKS':'0','GIT_NO_REPLACE_OBJECTS':'1','GIT_CONFIG_COUNT':'3',
+    'GIT_CONFIG_KEY_0':'core.fsmonitor','GIT_CONFIG_VALUE_0':'false','GIT_CONFIG_KEY_1':'core.hooksPath','GIT_CONFIG_VALUE_1':'/dev/null',
+    'GIT_CONFIG_KEY_2':'credential.helper','GIT_CONFIG_VALUE_2':''}
+GH_ENV_FIXED={**COMMON_ENV,'GH_HOST':'github.com','GH_PROMPT_DISABLED':'1','GH_PAGER':'','GH_BROWSER':'/usr/bin/false',
+    'GH_EDITOR':'/usr/bin/false','GH_NO_UPDATE_NOTIFIER':'1','GH_NO_EXTENSION_UPDATE_NOTIFIER':'1'}
+ORIGINAL_NAMES = {'PROOF.md', 'README.md', 'RESEARCH_LOG.md', 'SHA256SUMS', 'source_manifest.json',
+    'source_record.json', 'verification.json', 'verify.py', 'independent_review/REVIEW.md',
+    'independent_review/review_summary.json', 'independent_review/independent_results.json',
+    'independent_review/independent_checks.py', 'independent_review/author_replay/PROOF.md',
+    'independent_review/author_replay/verify.py', 'independent_review/author_replay/verification.json'}
+GATE_ROLES = ['mathematics', 'priority', 'package', 'whole_package_R1', 'whole_package_R2',
+              'pre_execution_adversary', 'final']
+CHOICES = {'main_parent', 'queue_py_sha256', 'native_baseline_pins', 'source_cache_pin', 'raw_source_pins',
+    'original_authentication_pins', 'effective_diagnostics_pins', 'package', 'publication',
+    'google_sheet', 'assessment', 'campaign_note', 'process_policy', 'worker_policy', 'capacity_policy',
+    'scoped_rank_interpretation', 'execution_mode', 'runtime','environment_policy'}
+
+def require(ok, message):
+    if not ok:
+        raise ValueError(message)
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+def canonical(obj):
+    return (json.dumps(obj, sort_keys=True, ensure_ascii=False, indent=2, allow_nan=False) + '\n').encode()
+
+def loads(data):
+    def pairs(values):
+        result = {}
+        for key, value in values:
+            require(key not in result, 'Duplicate JSON key: ' + key)
+            result[key] = value
+        return result
+    return json.loads(data, object_pairs_hook=pairs, parse_constant=lambda x: (_ for _ in ()).throw(ValueError(x)))
+
+def relative(value):
+    require(isinstance(value, str) and value and len(value.encode())<=512 and '\\' not in value and not any(c in value for c in '\r\n\x00'), 'Invalid path')
+    path = PurePosixPath(value)
+    require(not path.is_absolute() and '..' not in path.parts and str(path) == value, 'Escaping/noncanonical path')
+    return value
+
+def pin_shape(spec):
+    require(isinstance(spec, dict) and set(spec) == {'path', 'bytes', 'sha256'}, 'Exact file pin required')
+    relative(spec['path'])
+    require(type(spec['bytes']) is int and spec['bytes'] >= 0 and
+            isinstance(spec['sha256'], str) and re.fullmatch('[0-9a-f]{64}', spec['sha256']), 'Invalid pin bytes/hash')
+
+def regular(path):
+    require(path.is_absolute(), 'Absolute internal path required')
+    for candidate in [*path.parents, path]:
+        requi

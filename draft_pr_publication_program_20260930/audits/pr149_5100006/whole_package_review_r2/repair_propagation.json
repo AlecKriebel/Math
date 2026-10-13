@@ -1,0 +1,33 @@
+{
+  "UTC": "2026-10-11T22:46:52.644376+00:00",
+  "independence": "Only archived package-member differences were inspected after the independent analytic/source verdict was formed. R1 REVIEW.md and RESULT.json were not read.",
+  "changes": [
+    {
+      "file": "verification/check_classification.py",
+      "changed": true,
+      "diff": "--- R1 archive/verification/check_classification.py\n+++ current/verification/check_classification.py\n@@ -91,7 +91,7 @@\n     result={\"status\":\"PASS\",\"exact_counts_by_primitive_pair\":exact_counts,\n             \"both_foci_checked\":True,\"full_sn_lattice_used_for_every_parity\":True,\n             \"numerical_cases\":numerical,\n-            \"evidence_status\":\"Finite Fraction cosets are exact. Theta products are supplementary floating-point diagnostics; the all-period proof is in EXTENSION_REVIEW.md.\"}\n+            \"evidence_status\":\"Finite Fraction cosets are exact. Theta products are supplementary floating-point diagnostics; the all-period proof is in the accompanying manuscript focal_product_period_criterion.tex (and separately deposited PDF).\"}\n     Path(__file__).with_name(\"classification_results.json\").write_text(json.dumps(result,indent=2)+\"\\n\")\n     print(json.dumps({\"status\":\"PASS\",\"exact_counts_by_primitive_pair\":exact_counts,\n                       \"numerical_cases\":len(numerical),\"both_foci_checked\":True},indent=2))\n"
+    },
+    {
+      "file": "verification/check_divisor.py",
+      "changed": true,
+      "diff": "--- R1 archive/verification/check_divisor.py\n+++ current/verification/check_divisor.py\n@@ -178,7 +178,7 @@\n             \"exact_primitive_star_cases\":primitive_stars,\n             \"even_m_disjoint_divisor_controls\":even_failures,\n             \"theta_diagnostics\":numeric,\"outside_scope_controls\":controls,\n-            \"interpretation\":\"Exact coset arithmetic checks finite cases. The proof in REVIEW.md establishes every admissible period. Theta diagnostics are floating-point supplementary evidence, not validated numerics or proof.\"}\n+            \"interpretation\":\"Exact coset arithmetic checks finite cases. The accompanying manuscript focal_product_period_criterion.tex (and separately deposited PDF) establishes every admissible period. Theta diagnostics are floating-point supplementary evidence, not validated numerics or proof.\"}\n     Path(__file__).with_name(\"independent_results.json\").write_text(\n         json.dumps(result,indent=2)+\"\\n\")\n     print(json.dumps({\"status\":result[\"status\"],\n"
+    },
+    {
+      "file": "verification/classification_results.json",
+      "changed": true,
+      "diff": "--- R1 archive/verification/classification_results.json\n+++ current/verification/classification_results.json\n@@ -999,5 +999,5 @@\n       }\n     }\n   ],\n-  \"evidence_status\": \"Finite Fraction cosets are exact. Theta products are supplementary floating-point diagnostics; the all-period proof is in EXTENSION_REVIEW.md.\"\n+  \"evidence_status\": \"Finite Fraction cosets are exact. Theta products are supplementary floating-point diagnostics; the all-period proof is in the accompanying manuscript focal_product_period_criterion.tex (and separately deposited PDF).\"\n }\n",
+      "computation_data_equal": true
+    },
+    {
+      "file": "verification/independent_results.json",
+      "changed": true,
+      "diff": "--- R1 archive/verification/independent_results.json\n+++ current/verification/independent_results.json\n@@ -355,5 +355,5 @@\n       \"range\": 0.06931860385672861\n     }\n   ],\n-  \"interpretation\": \"Exact coset arithmetic checks finite cases. The proof in REVIEW.md establishes every admissible period. Theta diagnostics are floating-point supplementary evidence, not validated numerics or proof.\"\n+  \"interpretation\": \"Exact coset arithmetic checks finite cases. The accompanying manuscript focal_product_period_criterion.tex (and separately deposited PDF) establishes every admissible period. Theta diagnostics are floating-point supplementary evidence, not validated numerics or proof.\"\n }\n",
+      "computation_data_equal": true
+    },
+    {
+      "file": "REPRODUCTION_NOTES.md",
+      "changed": true,
+      "diff": "--- R1 archive/REPRODUCTION_NOTES.md\n+++ current/REPRODUCTION_NOTES.md\n@@ -21,7 +21,7 @@\n The two separately authored theta diagnostic scripts were replayed from\n a fresh scratch copy of the package scripts. The only changes to the\n independent scripts for this package were explicit rejection of optimized\n-Python. Their main computations and tolerance tests are retained.\n+Python and redirection of proof references to the accompanying manuscript. Their main computations and tolerance tests are retained.\n \n check_divisor.py passed 1,053 odd-half-period positive cases, including\n 1,003 star-turn cases, and 1,036 disjoint even-half-period divisor\n"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "baseRefName": "main",
+  "body": "## Accepted result and exact scope\n\nPublish the accepted COMPLETE polynomial-bit solution for 30001102 / OWR-2489-008, Conforti's bipartite mixed-integer optimization/membership question under the explicit finite binary-input model. The single substantive proof route remains 1/5; this publication adds zero proof-search turns. No novelty, exhaustive-literature, formal-verification or journal-acceptance guarantee is made.\n\nThe input is an explicitly given finite bipartite graph, arbitrary binary-encoded rational demands, arbitrary selected integer coordinates, and a rational binary objective or query. Variables have unrestricted signs. Exact optimization returns a rational minimizing point and value, or a feasible point and an improving integral recession direction. Strong separation and exact membership apply to the actual closed rational convex hull, including its boundary.\n\nThe proof preserves all needed qualifications: signed-threshold proximity and attainment; a finite threshold-ring domain with base, prefix, forced and forbidden implications; minimum-member and containing-member ring oracles; polynomial-bit exact partial LP minimization and controlled arithmetic; an objective-independent bounded core; actual equality with the closed rational hull; and a computable polynomial bound on each facet's encoding. It claims neither a strongly polynomial overall algorithm nor a polynomial-size formulation, and does not resolve the separate subtree-hull conjecture.\n\nStandard rational LP, submodular minimization and GLS strong-oracle algorithms are imported results. The delivered programs perform finite exact diagnostics and are not an implementation of the polynomial optimizer or general separation algorithm. Finite tests and observed run time cannot prove universal validity or polynomial complexity.\n\n## Accepted clarification and complete audit\n\ncurrent/INDEPENDENT_AUDIT.md is the entire byte-preserved accepted audit, SHA-256 724bba6c20dd71614572a2feabbeff557336071f9deeae6550b4495a770374c9. It accepted the frozen authored candidate SHA-256 8b492c49dbe0b7bd337ea183a51d44a345613c69ff38c6c81d613d7c0b9e167a. Original local inputs remain unchanged; the full superseded proof is not republished.\n\nThe current proof applies the accepted one-sentence clarification: the ancillary general difference-system proximity statement requires a nonempty mixed feasible set and finite continuous optimum. These hypotheses already hold in the target application. current/PROXIMITY_SCOPE.patch preserves that accepted change; current/CURRENT_PROOF.patch records the cumulative revision, including acceptance wording, a relocated checker link, explicit limitations and the audit-verified GLS citation/interface. No new substantive argument or theorem dependency is introduced.\n\nThe inspected GLS reference is the actual 1988 edition, Definitions 6.2.1\u20136.2.2, printed pp. 162\u2013163, and Theorem 6.4.9 with its proof, printed pp. 179\u2013180, [author-hosted book](https://www.zib.de/userpage/groetschel/pubnew/paper/groetschellovaszschrijver1988.pdf). Strong optimization may return a nonvertex exact optimum and improving recession directions; the proved facet-complexity bound makes the strong-optimization-to-strong-separation reduction applicable to this unbounded rational polyhedron. This is a directly verified edition/interface of the already imported result.\n\nThe original finite checker remains byte-identical. current/CHECKER_ADAPTATION.patch records only the independent checker's delivery adaptation: current proof/checker pins instead of the omitted superseded snapshot, actual UID/EUID1000 and isolated flags, and exact intended exception reasons. Mathematical test inputs and diagnostic algorithms are retained. All three patches were applied locally with zero fuzz against the preserved authored bases and exact resulting bytes checked. Those superseded bases are omitted, so patch application using only delivered public files is NOT_RUN.\n\n## Public sources and attribution boundaries\n\nThe exact source problem is Michele Conforti, *Combinatorial Mixed-Integer Programming*, [Oberwolfach Report 51/2008, pp. 2904\u20132905](https://ems.press/content/serial-article-files/46195), Problem 1. The different Conjecture 2 is not claimed resolved.\n\nThe submodular dependency uses Alexander Schrijver, *A Combinatorial Algorithm Minimizing Submodular Functions in Strongly Polynomial Time*, JCTB 80 (2000), 346\u2013355, [inspected author manuscript](https://homepages.cwi.nl/~lex/files/minsubm6.pdf), particularly its Section 6 ring-family interface and Sections 3\u20136 arithmetic. Earlier partial-minimization hybrid convexity is credited in [Takamatsu\u2013Hara\u2013Murota's author translation](https://kzmurota.fpark.tmu.ac.jp/paper/THM04hybridLenglish.pdf); that principle is not claimed newly invented.\n\nHistorical bounded source checks distinguish the row-sparse difference-constraint class from mixed network-flow hardness, and numerical-denominator formulations from polynomial binary-input complexity. The exact public metadata and source-interface discussion are included. PDF sizes/hashes and retrieval/inspection history are preserved as historical evidence, not fresh publication-stage source review, byte-equivalence with a publisher edition, or a worldwide originality guarantee. No source bodies or source-text excerpts are published.\n\n## Fresh finite replay and delivery controls\n\nEach isolated normal/-O/-OO suite has two positive checker executions and eleven separate intended rejection cases: five actual function mutants, five mathematical counterexamples, and one explicit exception guard. Across the three modes this is six positives, fifteen function-mutant rejections, fifteen counterexample rejections and three guards. The positive original checker contains nine negative/guard diagnostics, while the positive independent checker contains the same eleven audit controls replayed separately. Repetitions and extra hostile/baseline/control runs are not counted as new mathematical coverage.\n\nThe original checker retains its 24 instances, 5,380 slice LPs, 65,014 submodular pairs, 1,723 removal checks, 1,000 threshold vectors and 1,692 ring checks per mode. Independent counts are 2,601 vectors, 106,080 signed difference checks, 17 instances, 531 slices, 14,530 submodular pairs, 395 removal checks, 189 ring instances, 1,029 subsets, 256 ring-extension pairs, four boundary and four ray checks, plus three actual read-only probes. All complete raw stdout/stderr and exit codes match fixed mode-specific references without normalization. Recursive exact types, identities, counts and intended rejection reasons are required.\n\nEach mode separately passes 52 integrity negatives, 60 schema/scope negatives, 30 exact-comparator negatives and 39 actual create/append-open/unlink permission denials under UID=EUID=1000. Empty, skipped, malformed, changed, wrong-type and wrong-reason outputs are rejected. Hostile imports/environment variables leave the entire baseline raw output unchanged, and whole-delivery before/after snapshots match. Permission modes deter accidental writes; they cannot protect against root or deliberate owner chmod.\n\nThe actual additive diff was applied in a fresh relocated directory, reproduced every delivered byte, and passed all three baseline modes with complete output equality to the sealed original baseline.\n\nHistorical receipt/full historical audit harness, original snapshot harness, superseded full proof, pre-seal capture harness, excluded-source/source-classification, new-source-search, dataset and formal-proof-assistant replay stages are explicitly NOT_RUN. Historical receipts are authenticated reference data; their full historical environment is not recreated. Pre-seal raw captures and their receipt are authenticated data, not trust roots. Fresh sealed current-checker replay is distinct from those exclusions.\n\n## Public reproduction and noncircular external trust\n\nAuthenticate BOOTSTRAP.py against its independently reviewed SHA-256 below, then copy the authenticated file outside the packet. Set every delivered file to 0444 and every directory to 0555, and run with actual UID=EUID=1000:\n\n- python -I -S -B /trusted/BOOTSTRAP.py --controls /path/to/packet\n- python -I -S -B -O /trusted/BOOTSTRAP.py --controls /path/to/packet\n- python -I -S -B -OO /trusted/BOOTSTRAP.py --controls /path/to/packet\n\nThe trusted external bootstrap authenticates manifest, verifier and control harness before executing them. The manifest binds every other delivered file, including the historical metadata/receipts, full audit, correction patches, fixed contracts, complete raw references and pre-seal capture receipt. Bootstrap and manifest avoid self-inventory: bootstrap binds manifest, and the separately reviewed external PR body pins bootstrap. Final external and relocated-diff receipts remain outside the inventory and are pinned below. Raw final-mode receipt files are transitively bound by the external receipt's sizes and SHA-256 hashes.\n\nTested executable trust dependencies are CPython 3.12.14 and its standard library; no third-party Python or solver packages are needed. Local pre-seal checks additionally used GNU patch 2.8 and Git 2.52.0. Neither tool is needed by the delivered final replay. Imported mathematical algorithm theorems remain explicit proof dependencies, rather than claims about installed solver implementations.\n\nOnly unsolved_math_prioritization/attempts/30001102 is added. No QUEUE, unrelated repository path, copied source body, dataset content, private source/coordination material or identifying metadata for excluded private files is included.\n\n## Exact candidate and independently reviewed pins\n\nBase commit: 6ca1e663ab556636a3c2a9b67a96274ef95e8bab\n\nBase tree: a675bbb4eb340ad8a83943d490404c5f9585c0e1\n\n35 target files; 226440 bytes.\n\nBOOTSTRAP.py: 2355 bytes; SHA-256 165cd26af69f9a8675c11e4f263a9031afa0269c3391527fb9448c2e633076dc\n\nPUBLICATION_MANIFEST.json: 5396 bytes; SHA-256 1ea4bdbe0eb46db4ed981b942daf311d524857ee2bedb54f0623dc180721b796\n\nverify_publication.py: 34967 bytes; SHA-256 aa57ec5337ac5cccdb48e92c215edfb9d86d1f63472a731b52ac5dd4f6a185ff\n\nMUTATION_TESTS.py: 17967 bytes; SHA-256 6046a9f358e1fd652b181de461da3af25d4140ae4c6b6f322375d109b6c5d6fe\n\ncurrent/CURRENT_PROOF.md: 20429 bytes; SHA-256 c90d5a287718b26026cbee07f77d8710807a2c7a85f2057a1b7d00f5bb72ce32\n\ncurrent/INDEPENDENT_AUDIT.md: 20056 bytes; SHA-256 724bba6c20dd71614572a2feabbeff557336071f9deeae6550b4495a770374c9\n\ncurrent/PROXIMITY_SCOPE.patch: 716 bytes; SHA-256 e766ebe65431e1a753b68d74336e5d9fa70c3b3d90f934ff5f6a3d4d0bf340d8\n\ncurrent/CURRENT_PROOF.patch: 7901 bytes; SHA-256 71975aa7393a1b58d2433a5586bb33e0f9da6df0e13045f2590d8735f50cc75d\n\ncurrent/CHECKER_ADAPTATION.patch: 1776 bytes; SHA-256 af7d12851ea2620b21de10ffb87fd9731f01539793e5e8d731d32404233e3042\n\nACTUAL_DIFF.patch: 239685 bytes; SHA-256 8f9a4a23cfd60d31e5e201762439673f79880bafc48a5b99156fa4945a4ab08d\n\nFINAL_EXTERNAL_RECEIPT.json: 13754 bytes; SHA-256 aad0127b776b1f24d85382ef9f83553f45ae620376511c8173cb5d407747cba3\n\nRELOCATED_DIFF_RECEIPT.json: 1966 bytes; SHA-256 3cff13bd80a548e9bc5229fbf8a43c80c5a8f3d52d2908263d2334848d3160a7\n\n",
+  "files": [
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/ACCEPTANCE.json",
+      "additions": 39,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/ACCEPTANCE.md",
+      "additions": 13,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/BOOTSTRAP.py",
+      "additions": 36,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/CHECK_RUNS.json",
+      "additions": 101,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/FINITE_CONTRACT.json",
+      "additions": 286,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/MUTATION_TESTS.py",
+      "additions": 138,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/PUBLICATION_MANIFEST.json",
+      "additions": 171,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/PUBLICATION_SCOPE.json",
+      "additions": 23,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/README.md",
+      "additions": 37,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/STATUS.json",
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/check_math_case.py",
+      "additions": 31,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/CHECKER_ADAPTATION.patch",
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/CURRENT_PROOF.md",
+      "additions": 199,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/CURRENT_PROOF.patch",
+      "additions": 57,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/INDEPENDENT_AUDIT.md",
+      "additions": 119,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/PROXIMITY_SCOPE.patch",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/SOURCE_INTERFACES.md",
+      "additions": 78,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/exact_checks.py",
+      "additions": 189,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/current/independent_checks.py",
+      "additions": 339,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/INDEPENDENT_ACCEPTANCE.json",
+      "additions": 124,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/PUBLIC_SOURCE_METADATA.json",
+      "additions": 106,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/independent_O.json",
+      "additions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/independent_OO.json",
+      "additions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/independent_normal.json",
+      "additions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/replay_O.json",
+      "additions": 14,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/replay_OO.json",
+      "additions": 14,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/historical/replay_normal.json",
+      "additions": 14,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode0.reference.stderr",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode0.reference.stdout",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode1.reference.stderr",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode1.reference.stdout",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode2.reference.stderr",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.mode2.reference.stdout",
+      "additions": 1,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/run_finite_checks.py",
+      "additions": 60,
+      "deletions": 0
+    },
+    {
+      "path": "unsolved_math_prioritization/attempts/30001102/verify_publication.py",
+      "additions": 100,
+      "deletions": 0
+    }
+  ],
+  "headRefName": "audit-30001102-bipartite-polynomial-bit",
+  "headRefOid": "7769e6872c3d2f4267706dc2400be3519186cf3d",
+  "isDraft": true,
+  "number": 1025,
+  "state": "OPEN",
+  "title": "Audit 30001102: complete bipartite polynomial-bit optimization solution",
+  "url": "https://github.com/AlecKriebel/Math/pull/1025"
+}

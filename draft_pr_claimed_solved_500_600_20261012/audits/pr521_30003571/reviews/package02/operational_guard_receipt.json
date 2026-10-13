@@ -1,0 +1,36 @@
+{
+  "utc": "2026-10-13T03:52:34.130380+00:00",
+  "literal_README_setup_executed": "python3 -m venv .venv; .venv/bin/python -m pip install -r requirements.txt; .venv/bin/python run_all.py (exit 0; cached pinned packages installed)",
+  "results": [
+    {
+      "case": "versions",
+      "returncode": 0,
+      "stdout": "3.14.6 1.14.0 1.3.0\n",
+      "stderr": ""
+    },
+    {
+      "case": "readme_venv_run",
+      "returncode": 0,
+      "stdout": "{\"check\": \"original/public/verify.py\", \"status\": \"PASS\", \"identities\": 40}\n{\"check\": \"original/audit/audit_verify.py\", \"status\": \"PASS\", \"identities\": 43}\n{\"check\": \"reviews/geometry01/verify_independent.py\", \"status\": \"PASS_GEOMETRY_AND_EXACT_ALGEBRA\", \"identities\": 57}\n{\"check\": \"reviews/flow01/check_exact.py\", \"status\": \"PASS\", \"identities\": 17}\n{\"status\": \"PASS\", \"manifest_files_verified\": 39, \"limits\": \"Integrity and algebra; cited analytic existence and written proof remain essential.\"}\n",
+      "stderr": ""
+    },
+    {
+      "case": "guard_extra",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/extra/positivity-loss-30003571/run_all.py\", line 59, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/extra/positivity-loss-30003571/run_all.py\", line 23, in main\n    raise RuntimeError(f'Archive inventory mismatch: extra={actual-expected}, missing={expected-actual}')\nRuntimeError: Archive inventory mismatch: extra={'extra.txt'}, missing=set()\n"
+    },
+    {
+      "case": "guard_missing",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/missing/positivity-loss-30003571/run_all.py\", line 59, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/missing/positivity-loss-30003571/run_all.py\", line 23, in main\n    raise RuntimeError(f'Archive inventory mismatch: extra={actual-expected}, missing={expected-actual}')\nRuntimeError: Archive inventory mismatch: extra=set(), missing={'paper/CORRECTIONS.md'}\n"
+    },
+    {
+      "case": "guard_mutated",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/mutated/positivity-loss-30003571/run_all.py\", line 59, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr521_30003571/reviews/package02/guard_fixtures/mutated/positivity-loss-30003571/run_all.py\", line 27, in main\n    raise RuntimeError(f'Integrity mismatch: {name}')\nRuntimeError: Integrity mismatch: paper/CORRECTIONS.md\n"
+    }
+  ]
+}

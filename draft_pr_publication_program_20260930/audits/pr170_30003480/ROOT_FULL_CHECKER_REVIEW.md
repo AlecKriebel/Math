@@ -1,0 +1,16 @@
+# ROOT full scientific checker review — PR170
+
+ROOT read the full independent polynomial checker, tensor-marginal checker, and literal-source checker, together with the full polynomial and tensor control receipts. This record supplements the complete mathematical derivations already read; computational checks do not replace the universal argument.
+
+The polynomial checker implements exact sparse rational polynomials, substitution by the coordinate involutions, exact linear-factor multiplicity via a change of coordinates, generic residual restriction tests, strict hull margins, rational sign crossings, and actual Gram contractions after unit-factor extension. Its 18 positive controls and 12 intentionally false semantic variants pass/reject respectively in each of ordinary and optimized execution. Explicit exceptions are used; no removable assertions occur.
+
+The tensor checker directly contracts rational real tensors, separates squared norm from Gram determinant scaling, exercises closed and degenerate eigenvalue cases, preserves full Gram matrices while adding noncoordinate unit factors, realizes 219 subset-GHZ hull vertices, and checks the all-positive four-factor counterexample and printed three-factor source discrepancy. Its two baselines and 20 negative rejections are represented in the full receipt. Its explicit exceptions remain active under optimization. ROOT found no mathematical defect in either checker.
+
+The literal-source checker is narrower exact arithmetic evidence. It uses removable assert guards. Its ordinary-mode arithmetic agrees with the two other families and ROOT, but it must not be treated as a robust optimized-mode validation program. ROOT requested an independent guarded copy and ordinary/optimized semantic mutation controls from that same family. Original sealed first assessments, derivation and source-read records are to be preserved unchanged. Final mathematical clearance is pending this narrow verification repair and authentication of the resulting complete inventory.
+
+The original author and earlier author-independent checkers had the same guard problem; ROOT already repaired and reproduced them separately, preserving historical receipts and rejecting all six false variants in both execution modes. No proof statement changed. The OWR reference year also needs correction from 2018 to 2017 in any final result package. The source's displayed secondary inequality is not an assumed lemma: the proof uses the independently rederived real eigenvalue characterization.
+
+Best-guess case completion: 25%. The substantive theorem has survived the full derivations and checks, but final mathematical clearance, priority, and the eventual publication/disposition remain outstanding. Programme completion remains 33 of the dated 99 cases, with 18 publications. No MAIN writer authority or remote action is asserted.
+
+
+2026-10-12T12:24:22.717541+00:00 — Final superseding mathematical checkpoint: literal guarded repair fully inspected and replayed, all ten ordinary/optimized negative runs rejected, identical baseline scientific data. All three final inventories and unchanged first seals authenticated; ROOT_MATH_GATE.json clears the full scoped mathematics. Earlier pending statements above are dated historical stages. Priority remains uncleared.
