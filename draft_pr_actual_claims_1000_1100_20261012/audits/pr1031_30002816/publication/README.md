@@ -2,14 +2,14 @@
 
 Alec Kriebel, independent researcher; ORCID
 [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X).
-Version1.0, 12October2026. Draft preprint; NEW whole-package review pending.
+Version 1.0, 12 October 2026. Draft preprint; NEW whole-package review pending.
 
 The [paper](research_note.pdf) and [source](research_note.tex) apply Fawzi's
 established normalized complex Sep(3,3) obstruction to the real oriented
 Grassmann mass ball C(4,12). Two affine hyperplanes select an ambient-linear
 copy of that separable-state body. No arbitrary finite projected SDP lift
 exists. The consequence disproves the original universal supporting affine-SOS
-assertion and gives a general negative answer to Harvey–Lawson Question6.5.
+assertion and gives a general negative answer to Harvey–Lawson Question 6.5.
 
 The unnormalized failing functional can have rational coefficients. No explicit
 coefficient list, exact comass, rational normalized calibration, minimal
@@ -26,21 +26,21 @@ worldwide originality or current openness. See the
 [supplement](SUPPLEMENT.md), [evidence index](evidence/INDEX.md),
 [metadata](metadata.json) and [inventory](PACKAGE_MANIFEST.json).
 
-With Python3.10+ and its standard library, run from this directory:
+With Python 3.10+ and its standard library, run from this directory:
 
 ```text
 python3 run_checks.py
 python3 run_checks.py --output verification_receipt.json
 ```
 
-The portable runner replays three full symbolic baselines and45 actual
+The portable runner replays three full symbolic baselines and 45 actual
 defective-certificate checks in normal/-O/-OO modes, requiring complete
 stdout/stderr, exit and recursive JSON-type equality. It preserves the
 submitted validator unchanged and executes only the reviewed pure mutation
 function extracted from the pinned historical runner; that module and its
-UID1000 permission harness are never imported or run. No credentials,
-network, special account or solver is needed. Pythonflags are not a security
-sandbox. The recorded platform is macOS/Python3.14.6; other systems untested.
+UID 1000 permission harness are never imported or run. No credentials,
+network, special account or solver is needed. Python flags are not a security
+sandbox. The recorded platform is macOS/Python 3.14.6; other systems untested.
 
 Independent mathematical code/reports are preserved separately as authored
 audit evidence. Those scripts can write stage receipts and some retain
@@ -53,3 +53,7 @@ preparation. This preprint is unrefereed, with AI adversarial reviews.
 Conventional human peer review and journal acceptance are not claimed.
 Current immutable-publication readiness is false until a NEW fresh package
 review and any required repair loops finish.
+
+The first NEW whole-package review verified the complete mathematics and
+found two P3 prose repairs: precise negative-control coverage and spacing.
+Both have been applied; a NEW second independent review is required.

@@ -5,7 +5,7 @@ retrieved hashes, versions and complete relevant locators. Raw third-party
 PDF/text/image bodies are omitted. Historical absolute paths and input
 manifests describe their original stage and are not claimed current inputs.
 
-- [All29original pins](SUBMITTED_PINS.json): use `relative` under `submitted/`;
+- [All 29 original pins](SUBMITTED_PINS.json): use `relative` under `submitted/`;
   audited head f6570e093267a7f910faf9cdd60dfbc1c12f5681.
 - [Original complete proof](submitted/current/PROOF.md),
   [coordinate certificate](submitted/current/EMBEDDING_CERTIFICATE.json),
@@ -22,10 +22,10 @@ manifests describe their original stage and are not claimed current inputs.
   [primary URL/version metadata](sos_lift_review_01/sources/SOURCE_PINS.json),
   [exact historical controls](sos_lift_review_01/EXACT_CONTROLS.json).
 - [New bounded priority report](priority_review_01/REPORT.md),
-  [all84queries](priority_review_01/QUERY_LEDGER.json),
+  [all 84 queries](priority_review_01/QUERY_LEDGER.json),
   [primary URL/version pins](priority_review_01/sources/SOURCE_PINS.json),
   [required framing fixes](priority_review_01/MACHINE_VERDICT.json).
-- [Root48run full receipt](root_reproduction/FINITE_REPRODUCTION.json),
+- [Root 48-run full receipt](root_reproduction/FINITE_REPRODUCTION.json),
   [portable current runner](../run_checks.py),
   [fixed complete reference streams](../expected/ROOT_FINITE_REPRODUCTION.json).
 - [Current review state](CURRENT_REVIEW_STATE.json),
@@ -43,3 +43,12 @@ network dependency and does not alter package inputs. Original stage holds
 and counts remain intact. Mathematical acceptance and bounded priority are
 complete; a NEW independent whole-package review is still pending, so this
 draft has not passed the immutable-publication gate.
+
+[First fresh package review](package_review_01/REVIEW.md),
+[verdict](package_review_01/VERDICT.json),
+[unchanged copy pins](PACKAGE_REVIEW_01_COPY.json) and
+[current prose repairs](REPAIR_RECORD_01.json) record this stage.
+Input manifests describe the original review candidate. Raw source bodies,
+own render images and duplicate extracted packages are omitted.
+The current paper and arithmetic bytes remain unchanged; metadata and
+prose have been repaired. A NEW second package review remains pending.

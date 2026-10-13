@@ -11,3 +11,7 @@ Root read full submitted proof, reconstructed geometry/moment/calibration bridge
 ## 2026-10-13T05:41:49.375138+00:00 — mathematical acceptance; candidate discovery/audit estimate65%
 
 Root combines two fullyindependentcleanfamilyderivations and sourcequantifiers. ExactgeometricsectionpluspublishedFawziobstruction discharges allconditionsforfullnegativeexistentialtarget. Rationalunnormalizedcoefficients existnonconstructively; noexplicitcalibration/minimaldimensionclaim. Independentpriorityfollows; noacceptedpublicationyet.
+
+## 2026-10-13T22:05:24.824836+00:00 — First package repairs and NEW second review; 80% of PR1031
+
+Full first review found no mathematical gap but two P3 prose repairs. Applied precise portable certificate-fault coverage and reader-facing spacing globally in current prose/metadata; all original/historical bytes preserved. Current mathematical TeX/PDF/checker bytes are unchanged. Deterministic repaired archive has 135 entries, SHA d0c41fad32886f48cf87cb6f981836ccce9610bbe778af4fcf3999d0055f4d70. Root verification passed; a NEW reviewer independently rederives and audits the whole package plus both fixes. No publication/PR merge acceptance yet.
