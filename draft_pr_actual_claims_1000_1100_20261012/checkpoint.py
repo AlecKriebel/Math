@@ -57,7 +57,8 @@ def main():
                    'shared_local_head_after': run('git', 'rev-parse', 'HEAD'),
                    'shared_index_modified': False, 'force_push': False}
         (PROGRAM / 'LATEST_PUSH_RECEIPT.json').write_text(json.dumps(receipt, indent=2) + '\n')
-        print(json.dumps(receipt, indent=2))
+        print(json.dumps({**{k: v for k, v in receipt.items() if k != 'paths'},
+                          'path_count': len(changed)}, indent=2))
         return
     raise SystemExit('Remote main changed during every checkpoint attempt; retry later.')
 
