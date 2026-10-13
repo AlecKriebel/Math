@@ -17,8 +17,11 @@ REPO = ROOT.parent
 
 
 def git(*args, env=None, input=None):
-    return subprocess.run(['git', *args], cwd=REPO, env=env, input=input,
-                          capture_output=True, text=True, check=True).stdout.strip()
+    result = subprocess.run(['git', *args], cwd=REPO, env=env, input=input,
+                            capture_output=True, text=True)
+    if result.returncode:
+        raise RuntimeError(result.stderr)
+    return result.stdout.strip()
 
 
 def publish(message, paths):
@@ -35,8 +38,15 @@ def publish(message, paths):
         env = os.environ.copy()
         env['GIT_INDEX_FILE'] = str(pathlib.Path(temp) / 'index')
         for attempt in range(3):
-            git('fetch', 'origin', 'main')
-            parent = git('rev-parse', 'origin/main')
+            # Resolve main without writing any shared fetch/reference state.
+            parent = subprocess.run(
+                ['gh', 'api', 'repos/AlecKriebel/Math/git/ref/heads/main',
+                 '--jq', '.object.sha'], cwd=REPO, capture_output=True,
+                text=True, check=True).stdout.strip()
+            present = subprocess.run(['git', 'cat-file', '-e', parent + '^{commit}'],
+                                     cwd=REPO, capture_output=True)
+            if present.returncode:
+                git('fetch', '--no-write-fetch-head', 'origin', parent)
             git('read-tree', parent, env=env)
             git('add', '--', *relative, env=env)
             changed = git('diff', '--cached', '--name-only', parent, env=env).splitlines()
