@@ -2,13 +2,14 @@
 
 This folder is the preprint package for PR810, problem2307042 / AMR-022-7042,
 Hayman–Lingham Problem7.42. The exact theorem and all assumptions are stated in
-the four-page research note. The current stage is preparation; publication and
-acceptance receipts are recorded separately when actually completed.
+the concise research note. Repository acceptance and publication receipts are
+maintained separately from this frozen prepublication verification package.
 
 ## Build and inspect
 
 Build with a current TeX installation (the preparation used Tectonic):
 
+    mkdir -p output/pdf
     tectonic --outdir output/pdf note.tex
 
 The source uses standard article, geometry, amsmath, amssymb, amsthm, fontenc,
@@ -16,7 +17,12 @@ lmodern and hyperref packages. A successful build proves only that the document
 compiles. Mathematical acceptance rests on the analytic proof and independent
 reviews, not document compilation, checksums or numerical sampling.
 
-The supporting archive is assembled by build_package.py from an explicit list
+After extracting verification.zip, work in its preprint/ directory. The
+standard-library diagnostic script at ../math_review_01/reproduce_checks.py
+recomputes its output file; this is diagnostic verification, not a proof.
+Rebuild the PDF as above before running python3 build_package.py. PDF creation
+timestamps may differ; byte-for-byte reproduction of compiled PDFs is not
+claimed. The supporting archive is assembled by build_package.py from an explicit list
 of authored materials. Its MANIFEST.json gives file hashes and sizes and does
 not hash itself. No third-party PDFs, raw source extracts, private credentials
 or project coordination records belong in the public package.

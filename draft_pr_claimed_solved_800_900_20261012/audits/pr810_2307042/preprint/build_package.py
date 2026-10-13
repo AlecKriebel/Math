@@ -14,6 +14,7 @@ HERE = Path(__file__).resolve().parent
 AUDIT = HERE.parent
 PUBLIC = [
     'note.tex', 'README.md', 'build_package.py', 'zenodo-metadata.json',
+    'supplement_selection.json',
 ]
 # Review materials are enumerated by the root after reading their exact files.
 SELECTION = HERE / 'supplement_selection.json'
