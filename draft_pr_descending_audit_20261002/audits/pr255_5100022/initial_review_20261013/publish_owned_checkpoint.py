@@ -37,7 +37,12 @@ paths = [P / 'RESEARCH_LOG.md', P / 'CURRENT_GOAL_SELECTION_20261013.json',
          D / 'publish_owned_checkpoint.py']
 paths += sorted((D / 'submitted/attempts/5100022').rglob('*'))
 paths += sorted((D / 'root_reproduction').glob('*.json'))
+paths += [p for p in [D / 'ROOT_PROOF_ANALYSIS.md', D / 'ROOT_MATHEMATICAL_ACCEPTANCE.md'] if p.exists()]
+for folder in ['meromorphic_adversary_01', 'geometric_adversary_01']:
+    paths += sorted((D / folder).glob('*'))
+paths += sorted((D / 'root_fresh_reproduction').rglob('*.json'))
 paths = [p for p in paths if p.is_file()]
+progress = json.loads((P / 'CURRENT_GOAL_SELECTION_20261013.json').read_text())
 entries = [{'path': p.relative_to(ROOT).as_posix(), 'mode': '100644',
             'type': 'blob', 'content': p.read_text()} for p in paths]
 for attempt in range(4):
@@ -45,7 +50,7 @@ for attempt in range(4):
     tree = api('GET', 'repos/AlecKriebel/Math/git/commits/' + parent)['tree']['sha']
     newtree = api('POST', 'repos/AlecKriebel/Math/git/trees', {'base_tree': tree, 'tree': entries})['sha']
     commit = api('POST', 'repos/AlecKriebel/Math/git/commits',
-                 {'message': 'Checkpoint k404 frozen intake and exact reproduction; fresh mathematical audits pending',
+                 {'message': 'Checkpoint k404 mathematical audit evidence; ' + progress['current_stage'],
                   'tree': newtree, 'parents': [parent]})['sha']
     try:
         assert api('PATCH', 'repos/AlecKriebel/Math/git/refs/heads/main',
@@ -60,9 +65,9 @@ current = api('GET', 'repos/AlecKriebel/Math/git/ref/heads/main')['object']['sha
 if current != commit:
     assert api('GET', 'repos/AlecKriebel/Math/compare/' + commit + '...' + current)['status'] == 'ahead'
 receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'commit': commit,
-           'parent': parent, 'readback_main': current, 'case_completion_percent': 15,
+           'parent': parent, 'readback_main': current, 'case_completion_percent': progress['case_completion_percent'],
            'owned_files': len(entries), 'shared_checkout_index_mutations': 0,
            'copyright_source_reading_copies_excluded': True, 'transport_receipts': str(OUT),
            'file_hashes': {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}}
-(D / 'CHECKPOINT_INTAKE_RECEIPT.json').write_text(json.dumps(receipt, indent=2) + '\n')
+(D / ('CHECKPOINT_' + str(progress['case_completion_percent']) + '_RECEIPT.json')).write_text(json.dumps(receipt, indent=2) + '\n')
 print(json.dumps({k:v for k,v in receipt.items() if k != 'file_hashes'}, indent=2))
