@@ -21,3 +21,7 @@ First package adversary PASS; optional rebuild documentation issue corrected acr
 ## Checkpoint E — 2026-10-12T20:59:35.783513-07:00
 
 Second fresh reviewer completed with no remaining actionable findings. Current preprint package accepted for publication, subject to exact external upload/readback; no certified historical-first claim. All publication files remain byte-identical to second-review input. Estimate80% of current lifecycle.
+
+## Final checkpoint F — 2026-10-12T21:15:55.933952-07:00
+
+Lifecycle completion estimate100%. Published DOI10.5281/zenodo.23331080; all public bytes, metadata and resolver verified. Tracker A67:D67 verified. PR521 merged at a144626863cfed6dc10722fdf1c82893ad54f767; canonical Queue outcome published and acceptance guide linked. Exact outcome receipt OUTCOME.json records current authority and disclosed priority limit.
