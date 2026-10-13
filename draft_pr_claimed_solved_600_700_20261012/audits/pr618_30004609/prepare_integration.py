@@ -20,6 +20,16 @@ def main():
     meta=json.loads(subprocess.check_output(['gh','pr','view','618','--json','state,isDraft,headRefOid,headRefName'],cwd=REPO))
     assert meta['state']=='OPEN'
     head=meta['headRefOid'];qpath='unsolved_math_prioritization/QUEUE.md'
+    # Never reconstruct over an unreviewed concurrent edit. A later retry may
+    # accept only this helper's exact, already-replayed and successfully pushed
+    # commit for the same DOI; every other head requires a fresh scoped audit.
+    approved_heads={ORIGINAL}
+    receipt_path=A/'INTEGRATION_RECEIPT.json'
+    if receipt_path.is_file():
+        previous=json.loads(receipt_path.read_text())
+        if previous.get('pushed') is True and previous.get('doi')==args.doi:
+            approved_heads.add(previous['integration_commit'])
+    assert head in approved_heads,'unreviewed PR head; stop without overwriting concurrent edits'
     oldqueue=git('show',head+':'+qpath).decode()
     oldrows=[l for l in oldqueue.splitlines() if '| 30004609 / OWR-4990374-015 |' in l]
     assert len(oldrows)==1 and oldrows[0].split('|')[8].strip()=='claimed_solved','live scope gate'

@@ -25,3 +25,7 @@ Root replay of the 66-member archive passed exact inventory, frozen original dia
 ## 2026-10-13T04:16:31.229717+00:00 — PR618 first fresh whole-package review PASS
 
 Read the full first-principles review: no mandatory mathematical, source, disclosure, metadata, rendering or reproducibility fix. Reviewer independently retrieved the original Yuzvinsky corollary as additional primary-source confirmation, compiled the paper, replayed the exact package and rejected four integrity faults. Applied both optional clarity improvements, rebuilt PDF/ZIP, and recorded their new hashes. A new sequential adversary must audit these updated bytes before publication. Best-guess completion: PR618 72%; shard 21%.
+
+## 2026-10-13T04:20:55.456064+00:00 — second reviewer concurrency safeguard
+
+Second reviewer found that the existing-PR integration helper could rebuild from the frozen candidate over an unrecognized live PR edit. Added an exact approved-head gate: original immutable candidate or this helper's exact previously replayed and successfully pushed commit for the same DOI. Unknown heads stop before reconstruction; the later race gate remains. The manuscript/ZIP are unchanged. Request a new fresh review after this reviewer finishes to validate the repaired operation alongside the package. Best-guess completion: PR618 70%; shard 21%.
