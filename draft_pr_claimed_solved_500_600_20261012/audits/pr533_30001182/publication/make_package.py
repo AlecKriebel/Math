@@ -30,12 +30,24 @@ def main():
     for family in ('operator01', 'extension01', 'source01'):
         folder = AUDIT / 'reviews' / family
         for p in sorted(folder.iterdir()):
-            if p.is_file() and p.suffix in ('.md', '.json', '.py'):
+            if p.is_file() and (p.suffix in ('.md', '.json', '.py')
+                                or p.name == '.gitignore'):
                 add('reviews/' + family + '/' + p.name, p)
     for p in sorted((AUDIT / 'root_reproduction').iterdir()):
         if p.is_file() and p.suffix in ('.md', '.json', '.py'):
             add('root_reproduction/' + p.name, p)
     add('SOURCE_DOWNLOADS.json', AUDIT / 'root_sources/SOURCES.json')
+    for family in ('operator01', 'extension01', 'source01'):
+        base = 'reviews/' + family + '/'
+        seal = json.loads(files[base + 'MANIFEST.json'])
+        for item in seal['files']:
+            name = base + item['path']
+            if name not in files:
+                raise RuntimeError(f'Nested sealed payload omitted: {name}')
+            data = files[name]
+            if (len(data) != item.get('bytes', item.get('size'))
+                    or hashlib.sha256(data).hexdigest() != item['sha256']):
+                raise RuntimeError(f'Nested sealed payload inconsistent: {name}')
     manifest = {
         'problem_id': 30001182, 'pr': 533,
         'head': '135911efff1ad14314f0506b0d5f158ba986426f',

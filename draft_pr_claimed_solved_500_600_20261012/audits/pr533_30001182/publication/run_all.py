@@ -27,6 +27,28 @@ def inventory():
     return result
 
 
+def nested_manifests(before):
+    seals = ['original/public/FROZEN_MANIFEST.json',
+             'original/audit/AUDIT_MANIFEST.json'] + [
+                 f'reviews/{family}/MANIFEST.json'
+                 for family in ('operator01', 'extension01', 'source01')]
+    checked = 0
+    for seal in seals:
+        base = PurePosixPath(seal).parent
+        records = json.loads((ROOT / seal).read_text())['files']
+        for item in records:
+            rel = PurePosixPath(item['path'])
+            if rel.is_absolute() or '..' in rel.parts:
+                raise RuntimeError(f'Invalid nested path: {seal}: {rel}')
+            name = (base / rel).as_posix()
+            expected = {'bytes': item.get('bytes', item.get('size')),
+                        'sha256': item['sha256']}
+            if before.get(name) != expected:
+                raise RuntimeError(f'Nested manifest mismatch: {seal}: {rel}')
+            checked += 1
+    return checked
+
+
 def main():
     if not __debug__ or os.environ.get('PYTHONOPTIMIZE'):
         raise RuntimeError('Run without Python optimization: controls use assertions')
@@ -43,6 +65,7 @@ def main():
     for name, item in manifest['files'].items():
         if before[name] != item:
             raise RuntimeError(f'Integrity mismatch: {name}')
+    nested_checked = nested_manifests(before)
     jobs = [
         ('original/public/verify.py', 'original/public/checks.json'),
         ('original/verify_package.py', 'root_reproduction/package.stdout.json'),
@@ -73,6 +96,7 @@ def main():
         raise RuntimeError('Frozen files changed during replay')
     print(json.dumps({'status': 'PASS',
                       'manifest_files_verified': len(manifest['files']),
+                      'nested_manifest_files_verified': nested_checked,
                       'offline': True, 'frozen_files_unchanged': True,
                       'limits': 'Finite controls supplement written universal proofs; '
                                 'historical priority and formal certification are not implied.'}))
