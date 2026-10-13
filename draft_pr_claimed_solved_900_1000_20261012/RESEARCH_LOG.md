@@ -86,3 +86,6 @@ Zenodo production draft23333002 has exact frozen metadata and both uploaded chec
 
 ### 2026-10-13T05:49:52.817053+00:00 — PR905 completed (100%; shard 16.67%)
 Merged 9c420d2aab7c48813fb8be814ce356772127b3ab, exact reviewed files and metadata published under 10.5281/zenodo.23333002. Tracker 'Math Puzzles'!A76:D76 and native ledger df4d0da71dae92efbc3b38bed0d878303d733df2 verified. Source-version correction retained; priority and unrefereed AI disclosures explicit. No other target status altered.
+
+### 2026-10-13T05:58:55.843586+00:00 — PR906 initial analytic checkpoint (25%; shard18.75%)
+Exact source and empty prior report read; no related group. Independent reconstructions support the two energy-specific mechanisms, with source locality verified against official definitions. Current PDF hashes match original; final publisher full text inaccessible and institutional record metadata-only. Four independent families continue; no priority conclusion or acceptance yet.
