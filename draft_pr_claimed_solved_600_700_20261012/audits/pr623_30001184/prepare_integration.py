@@ -155,7 +155,7 @@ def patch_queue(data, doi):
     cells[8] = b' claimed_solved '
     cells[9] = b' 1/5 '
     cells[11] = (" Accepted generation-only universal GNS-descent counterexample for general unital C*-E0 dilations; "
-                 "explicit corollary of Bhat-Fagnola-Hachicha's established abelian-path dilation mechanism; "
+                 "explicit corollary of Burgarth-Facchi-Hillier's established clock/evaluation/translated-unitary dilation mechanism; "
                  "extensively AI-assisted, unrefereed preprint " + doi + "; no exhaustive first-priority claim. "
                  "Conditional extension after kernel invariance, stronger minimality and normal W*-promotion remain open here. "
                  "[Proof, current sources and frozen audit](attempts/30001184/README.md). ").encode()
@@ -228,8 +228,9 @@ def archive_binding(data, original, paper_files, source):
         require(archive.testzip() is None, 'archive CRC mismatch')
         members = {name: archive.read(name) for name in names}
     manifest = parse_json(members['PACKAGE_MANIFEST.json'])
-    require(type(manifest) is dict and set(manifest) == {'schema', 'file_count', 'files'}
-            and manifest['schema'] == 1 and type(manifest['file_count']) is int, 'package manifest schema')
+    require(type(manifest) is dict and set(manifest) == {'schema', 'file_count', 'files', 'raw_third_party_fulltexts_included'}
+            and manifest['schema'] == 1 and type(manifest['file_count']) is int
+            and manifest['raw_third_party_fulltexts_included'] is False, 'package manifest schema')
     entries = manifest['files']
     require(type(entries) is list and len(entries) == manifest['file_count'] == len(members) - 1,
             'package manifest inventory count')
@@ -320,11 +321,11 @@ def extend_wrapper(wrapper, expected):
 
 def build_current_files(original, frozen, publication, source_audit, doi, now, queue_patch):
     source = source_audit.decode()
-    require('Bhat' in source and 'Fagnola' in source and 'Hachicha' in source
+    require('Burgarth' in source and 'Facchi' in source and 'Hillier' in source
             and 'corollary' in source.lower(), 'source notice must credit BFH and corollary framing')
     notice = (f'Current publication assessment ({now}): the generation-only universal GNS-descent assertion '
               'for general unital C*-E0 dilations has an accepted explicit negative counterexample. '
-              'The path-space mechanism is an explicit corollary of earlier Bhat-Fagnola-Hachicha work. '
+              "The counterexample is an explicit corollary of Burgarth-Facchi-Hillier's established clock/evaluation/translated-unitary mechanism. "
               f'The extensively AI-assisted, unrefereed paper and exact verification archive are published at https://doi.org/{doi}. '
               'No exhaustive first-priority, independent-development or independent human peer-review claim is made. '
               'The conditional problem after imposed kernel invariance, stronger minimality and normal W*-promotion remain outside this result. '
@@ -343,7 +344,7 @@ def build_current_files(original, frozen, publication, source_audit, doi, now, q
     meta = parse_json(original['PUBLICATION.json'])
     meta.update(publication_status='published_unrefereed_preprint', doi=doi, doi_url='https://doi.org/' + doi,
                 current_source_audit='CURRENT_SOURCE_AUDIT.md',
-                current_priority_assessment='Explicit generation-only counterexample corollary of Bhat-Fagnola-Hachicha; no exhaustive first-priority claim',
+                current_priority_assessment='Explicit generation-only counterexample corollary of Burgarth-Facchi-Hillier; no exhaustive first-priority claim',
                 historical_candidate_commit=ORIGINAL, current_publication_utc=now,
                 queue_edit=queue_patch, extensively_ai_assisted=True, independent_human_peer_review=False)
     files['PUBLICATION.json'] = json_bytes(meta)

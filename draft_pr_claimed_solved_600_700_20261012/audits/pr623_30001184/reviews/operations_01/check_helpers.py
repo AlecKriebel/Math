@@ -36,7 +36,7 @@ META = {'number': 623, 'state': 'OPEN', 'baseRefName': 'main', 'headRefName': p.
 ROW = ('| 651 | 30001184 / OWR-3392-012 | Extending Dilated E0-Semigroups Beyond GNS Representations | '
        '0.1067 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |')
 QUEUE = ('prefix byte identity\r\n' + ROW + '\r\n| other | row bytes | queued | 0/5 |\r\ntrailer').encode()
-SOURCE = b'Explicit corollary credit: Bhat, Fagnola and Hachicha. Extensively AI-assisted; unrefereed. No exhaustive first-priority claim.\n'
+SOURCE = b'Explicit corollary credit: Burgarth, Facchi and Hillier. Extensively AI-assisted; unrefereed. No exhaustive first-priority claim.\n'
 ORIGINAL, FROZEN = p.load_snapshot(AUDIT / 'native' / p.PREFIX)
 PUB = {'gns_generation_counterexample.pdf': b'%PDF-1.7\nfixture\n',
        'gns_generation_counterexample.tex': b'fixture tex',
@@ -48,7 +48,7 @@ def fixture_archive(extra=None):
     members = {'candidate/' + n: d for n, d in ORIGINAL.items()}
     members.update({n: PUB[n] for n in ('gns_generation_counterexample.pdf', 'gns_generation_counterexample.tex')})
     members['CURRENT_PRIORITY_AND_STATUS.md'] = SOURCE
-    members['PACKAGE_MANIFEST.json'] = p.json_bytes({'schema': 1, 'file_count': len(members),
+    members['PACKAGE_MANIFEST.json'] = p.json_bytes({'schema': 1, 'file_count': len(members), 'raw_third_party_fulltexts_included': False,
         'files': [{'path': n, 'bytes': len(d), 'sha256': p.sha(d)} for n, d in sorted(members.items())]})
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, 'w', compression=zipfile.ZIP_DEFLATED) as z:
@@ -118,6 +118,10 @@ class Helpers(unittest.TestCase):
         cells = after_lines[1].split(b'|')
         self.assertEqual(cells[8].strip(), b'claimed_solved')
         self.assertEqual(cells[9].strip(), b'1/5')
+        self.assertIn(b'Burgarth-Facchi-Hillier', cells[11])
+        self.assertIn(b'clock/evaluation/translated-unitary', cells[11])
+        self.assertNotIn(b'Bhat', cells[11])
+        self.assertNotIn(b'abelian-path', cells[11])
         for bad in (QUEUE + (ROW + '\n').encode(), QUEUE.replace(b' queued ', b' claimed_solved '),
                     QUEUE.replace(b' 0/5 ', b' 2/5 '), QUEUE.replace(b'| 651 |', b'| 999 |')):
             with self.assertRaises(ValueError):
@@ -128,6 +132,11 @@ class Helpers(unittest.TestCase):
         current = p.build_current_files(ORIGINAL, FROZEN, PUB, SOURCE, DOI, 'fixture-time', qrec)
         self.assertTrue(all(current[n] == ORIGINAL[n] for n in FROZEN))
         self.assertEqual(p.sha(current['packet/PROOF.md']), p.PROOF_SHA)
+        for name in ('README.md', 'PUBLICATION.md', 'CURRENT_SOURCE_AUDIT.md', 'PUBLICATION.json'):
+            self.assertIn(b'Burgarth-Facchi-Hillier', current[name])
+            self.assertNotIn(b'Bhat', current[name])
+        with self.assertRaises(ValueError):
+            p.build_current_files(ORIGINAL, FROZEN, PUB, b'Bhat-Fagnola-Hachicha corollary', DOI, 'fixture-time', qrec)
         with tempfile.TemporaryDirectory(dir=HERE, prefix='fixture-') as td:
             root = Path(td)
             for name, data in current.items():
@@ -287,7 +296,11 @@ class Helpers(unittest.TestCase):
         with self.assertRaises(ValueError): t.exact_existing(values + [row], row, DOI)
         with self.assertRaises(ValueError): t.exact_existing([t.HEADERS, row[:3] + ['other']], row, DOI)
         self.assertEqual(row[1], '')
-        self.assertIn('Bhat-Fagnola-Hachicha', row[3])
+        self.assertIn('Burgarth-Facchi-Hillier', row[3])
+        self.assertIn('clock/evaluation/translated-unitary', row[3])
+        self.assertEqual(row[0], 'https://doi.org/10.4171/OWR/2009/09')
+        self.assertIn('542–543', row[3])
+        self.assertNotIn('Bhat', row[3])
 
     def test_tracker_ambiguous_append_is_not_retried(self):
         row = t.wanted_row(DOI)

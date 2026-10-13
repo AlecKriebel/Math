@@ -32,9 +32,10 @@ def call(resource, method, params, body=None):
 
 def wanted_row(doi):
     valid_doi(doi)
-    return ['https://www.unsolvedmath.com/problems/30001184', '', 'https://doi.org/' + doi,
-            TITLE + '. Accepted negative counterexample to generation-only universal GNS descent for general unital C*-E0 dilations. '
-            'Explicit corollary of Bhat-Fagnola-Hachicha\'s established abelian-path mechanism; conditional extension after kernel invariance, '
+    return ['https://doi.org/10.4171/OWR/2009/09', '', 'https://doi.org/' + doi,
+            TITLE + '. Skeide\'s first module-approach problem, OWR 2009 pp. 542–543; catalogue ID 30001184 / OWR-3392-012. '
+            'Accepted negative counterexample to generation-only universal GNS descent for general unital C*-E0 dilations. '
+            'Explicit corollary of Burgarth-Facchi-Hillier\'s established clock/evaluation/translated-unitary mechanism; conditional extension after kernel invariance, '
             'stronger minimality and normal W*-promotion remain unresolved here. Extensively AI-assisted; unrefereed, no independent human peer review '
             'or exhaustive first-priority claim. PR #623: https://github.com/AlecKriebel/Math/pull/623']
 
