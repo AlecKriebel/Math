@@ -1,0 +1,4 @@
+# PR254 independent Cartesian and domain adversary
+
+- 2026-10-13T05:07:00Z — 10%: accepted a distinct real geometry review assignment for immutable PR254 head `73efd1fb8ba2d3039ed6692b3ad1dfa1e3085755`. Read the entire submitted proof without reading new sibling conclusions. The exact target is the product of signed areas of the original origin pedal and original origin antipedal for primitive odd elliptic billiards. No priority judgment is part of this assignment.
+- 2026-10-13T05:07:26Z — 25%: derived two exact symmetric triangular trajectories for one noncircular outer ellipse and one strict confocal caustic. Will check actual lines, tangency, reflection, areas, orientation, and repetition independently. Identified the parity-sensitive complex opposite-endpoint singularity as necessary rather than removable.

@@ -1,0 +1,25 @@
+# Root whole-proof audit: PR254 /k403,a
+
+UTC: 2026-10-13T05:09:43.825145+00:00. Fresh independent reports are pending; this is root analysis, not final mathematical acceptance or priority clearance.
+
+Exact claim: fixed noncircular ellipse and strict confocal elliptical caustic, primitive least odd N≥3, every coprime winding with 0<τ<N/2, original side feet from the origin and intersections of consecutive original-vertex perpendicular lines. Product of ordered signed shoelace areas, finite intersections, possible zero areas, reversal invariant. Circle is a separately proved extension beyond the source a>b convention. Outer/inner polygons, unsigned faces, hyperbolic/collapsed caustics and padded parities are excluded.
+
+Root read the complete 14705-byte proof, all four original programs, existing full independent review/source audit, original provisional checkpoint and research log. Author/independent manifests authenticate exact current bytes. All four original receipts reproduced byte-identically: 30638 total exact controls, 21116 separately labeled numerical diagnostics. Those are finite evidence, not the all-period proof. All three primary PDF hashes match; both k403,a table rows were visually checked. Source §§2,3.3,3.5 and Stachel Theorem4.3/equation4.9 match the claimed objects and coordinates. DLMF22.4/22.8 were reopened for periods, divisors and addition identities. The source explicitly uses a>b; the proof's circular case is an added directly verified statement.
+
+## Universal mechanism reconstructed
+
+Normalize caustic axes α>β, modulus k²=1−β²/α², p=iK′, v=2Kτ/N, δ=2v, outer a=α dn(v)/cn(v), b=β/cn(v). Addition formulas give the real chord determinant 2ab sn(v)cn(v)dn(u)/[1−k²sn²(v)sn²(u)]>0. Hence every original antipedal pair has finite unique intersection. Actual origin feet are n/(n·n), n=(-sn(u)/α,cn(u)/β), yielding (-αk′²sn(u)/dn²(u),βcn(u)/dn²(u)); real denominators are positive.
+
+For any ordered polygon with independent consecutive normals, explicit line intersections P+[(H(Q)−P·Q)/det(P,Q)]JP reproduce the grouped signed antipedal edge F(P,Q). Bilinear complex products are essential. Its numerator's quadratic difference factorization gives removability at coincident finite endpoints even if a complex norm vanishes.
+
+The chord determinant's complete divisor modulo2K,2p has simple poles p±v and simple zeros p,K+p. At p, dn has a pole but its denominator has a double pole; the finite endpoints are opposite, giving a possible simple F pole. At K+p the finite endpoints coincide, so F is removable. At simple vertex poles, each incident F has order≤2, and the two terms combine exactly as G(z)−G(−z), leaving order≤1. Distinct odd-orbit vertex pole indices ensure no incident term has two singular endpoints. In N3 the remaining opposite-endpoint edge can share the phase but remains simple.
+
+With ℓ=2K/N, coprimality gcd(N,2τ)=1 gives cyclic real period ℓ. Imaginary2p reflects all y coordinates and negates signed area. Opposite-midpoint pole classes p−v−jδ join vertex pole classes on this torus because v=τℓ. Retaining these poles is the parity-sensitive step. The trace S=Σdn(w+jδ) has only simple poles p,3p on the torus with periods ℓ,4p; exactly one term contributes at each representative, so residues do not cancel. Evenness plus anti-period forces zeros p+ℓ/2,3p+ℓ/2. Since total pole degree is2 and S is not zero (positive on the real axis), these are precisely two simple zeros. Thus S(w)S(w+ℓ/2) is holomorphic on a compact torus and constant. Residue uniqueness with anti-period kills the possible additive constant and yields A*_O=c_*S.
+
+The origin pedal vector is holomorphic and zero at common Jacobi poles; its only possible double poles are dn zeros r=K+p. It is even about r, so consecutive-edge area terms combine a double-pole vector with an odd regular neighbor difference, leaving at most a simple pole. The matching imaginary character yields T(u)=c_p S(u+K). Actual feet are at u=w+v; (v+K)/ℓ=τ+N/2 is a half-integer. Hence the asserted product is a scalar times the constant complementary trace product. No area division is made, so zero scalars are permitted.
+
+Circular primitive stars have outer radiusR, stepθ=2πτ/N<π, feet radiusRcos(θ/2), antipedal radiusR/cos(θ/2). Their product is N²R⁴sin²θ/4. The explicit finite N4 control with outer axes squared5,3 and common caustic squared25/8,9/8 gives different exact products225/4 and289/4; it prevents an all-parity extrapolation.
+
+## Status and remaining gates
+
+Root finds no mathematical gap on complete read and reproduction. Two fresh distinct mathematical families are independently challenging the entire argument, including divisor completeness, N3 collisions and extreme real domains. Mathematical acceptance awaits those artifacts and independent reproduction. Extensive priority is next, then preprint preparation only if the exact claimed_solved novelty gate remains clear. No current classification/publication mutation is authorized by this preliminary analysis alone.
