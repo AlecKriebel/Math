@@ -132,6 +132,8 @@ def main():
     parser.add_argument('pr', type=int)
     parser.add_argument('head')
     args = parser.parse_args()
+    if run('git', 'branch', '--show-current').strip() != 'main':
+        raise ValueError('The shared checkout must remain on main')
     audit = args.audit.resolve()
     gate_path = audit / 'FINAL_READINESS.json'
     gate = json.loads(gate_path.read_text())
@@ -165,6 +167,11 @@ def main():
                                      cwd=REPO, capture_output=True)
             if present.returncode:
                 run('git', 'fetch', '--no-write-fetch-head', 'origin', parent)
+            for sidecar in (native_acceptance, native_note):
+                existing = subprocess.run(['git', 'cat-file', '-e', parent + ':' + sidecar],
+                                          cwd=REPO, capture_output=True)
+                if existing.returncode == 0:
+                    raise ValueError('An acceptance sidecar already exists; reconcile before writing')
             names = ['QUEUE.md', 'state.json', 'history.jsonl', 'catalog.json', 'ranking.csv']
             before = {name: run('git', 'show', f'{parent}:{NATIVE}/{name}') for name in names}
             queue = before['QUEUE.md']
