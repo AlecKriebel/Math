@@ -98,7 +98,7 @@ Primary URLs:
 ## Standard numerical-generation precursor checked during the audit
 
 Andreatta--Occhetta, *Fano manifolds with long extremal rays*, Asian J.
-Math.9 (2005),523--543, DOI10.4310/AJM.2005.v9.n4.a5, is an additional
+Math.9 (2005),523--544, DOI10.4310/AJM.2005.v9.n4.a5, is an additional
 direct precursor. Its arXivmath/0504265v1 §2.3 Proposition2.18(b)
 (final-journal Proposition2.20(b)) gives numerical generation of the
 locus of a proper pointed rational-curve family by that family's class.
