@@ -1,4 +1,4 @@
-import base64,concurrent.futures,json,re,subprocess
+import base64,concurrent.futures,hashlib,json,re,subprocess
 from pathlib import Path
 from datetime import datetime,timezone
 P=Path(__file__).resolve().parent
@@ -22,7 +22,7 @@ def inspect(r):
         payload=json.loads(content)
         if 'content' in payload: content=base64.b64decode(payload['content']).decode()
     q=queue_rows(content)
-    entries=[{'id':i,'pr_head_status':q.get(i,{}).get('status'),'main_status_at_inventory':main.get(i,{}).get('status'),'pr_head_queue_row':q.get(i,{}).get('row')} for i in ids]
+    entries=[{'id':i,'pr_head_status':q.get(i,{}).get('status'),'main_status_at_inventory':main.get(i,{}).get('status'),'pr_head_queue_row_sha256':hashlib.sha256(q.get(i,{}).get('row','').encode()).hexdigest(), 'pr_head_turns':q.get(i,{}).get('row','').split('|')[9].strip() if q.get(i,{}).get('row') else None, 'chat_url':q.get(i,{}).get('row','').split('|')[10].strip() if q.get(i,{}).get('row') else None} for i in ids]
     eligible=len(entries)==1 and entries[0]['pr_head_status']=='claimed_solved'
     return {**r,'entries':entries,'eligible':eligible,'disposition':'pending_audit' if eligible else 'skipped_status_gate','inventory_utc':datetime.now(timezone.utc).isoformat()}
 results=[]
