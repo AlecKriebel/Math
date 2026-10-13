@@ -772,7 +772,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 761 | 20000826 / AIM-ARITHMETIC_GEOMETRY-0072 | Connected toric and square-zero classes in three variables | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 762 | 20001757 / AIM-GEOMETRY-0095 | Five-point Riesz phase-transition status and an explicit high-exponent competitor | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 763 | 20002559 / AIM-PROBABILITY-0001 | Local surjectivity and the boundary-at-infinity gap for RBM(4,3) | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 764 | 2200006 / AMR-021-0006 | Problems Around Polynomials — Problem 3 | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 764 | 2200006 / AMR-021-0006 | Problems Around Polynomials — Problem 3 | 0.1020 | 5.5 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 765 | 2235 / EP-655 | Erdős Problem #655 | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 766 | 2515 / KOU-21.6 | Kourovka Notebook Problem 21.6 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 767 | 2548 / KOU-21.39 | Kourovka Notebook Problem 21.39 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
