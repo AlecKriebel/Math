@@ -6,7 +6,7 @@ The research note proves a negative answer for the known five-dimensional family
 
 The metric is a geometric Ricci soliton, isometric to R² × H₃; a solvsoliton presentation on another transitive group does not satisfy the assertion about the original fixed group.
 
-Start with [PUBLICATION.md](https://github.com/AlecKriebel/Math/blob/research/ricci-pinching-6800014/unsolved_math_prioritization/attempts/6800014/PUBLICATION.md), the [six-page note](https://github.com/AlecKriebel/Math/blob/research/ricci-pinching-6800014/unsolved_math_prioritization/attempts/6800014/preprint/local_ricci_pinching_maxima.pdf), its [standalone TeX](https://github.com/AlecKriebel/Math/blob/research/ricci-pinching-6800014/unsolved_math_prioritization/attempts/6800014/preprint/local_ricci_pinching_maxima.tex), and the [verification instructions](https://github.com/AlecKriebel/Math/blob/research/ricci-pinching-6800014/unsolved_math_prioritization/attempts/6800014/verification_v2/README.md).
+Start with [PUBLICATION.md](https://github.com/AlecKriebel/Math/blob/ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568/unsolved_math_prioritization/attempts/6800014/PUBLICATION.md), the [six-page note](https://github.com/AlecKriebel/Math/blob/ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568/unsolved_math_prioritization/attempts/6800014/preprint/local_ricci_pinching_maxima.pdf), its [standalone TeX](https://github.com/AlecKriebel/Math/blob/ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568/unsolved_math_prioritization/attempts/6800014/preprint/local_ricci_pinching_maxima.tex), and the [verification instructions](https://github.com/AlecKriebel/Math/blob/ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568/unsolved_math_prioritization/attempts/6800014/verification_v2/README.md).
 
 ## Prior work and scope of acceptance
 
