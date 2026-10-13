@@ -25,3 +25,7 @@ Original exact packet and nested independent computations reproduce byte-identic
 ## 2026-10-13T04:03:43.452149+00:00 — PR618 priority gate and research note
 
 Accepted the bounded priority audit with explicit attribution to the later exact Ferudun preprint and earlier tree/pruning/rank-three results. No universal first-priority or independent-development claim. Wrote the complete all-rank research note, current status override for frozen historical assertions, and an explicit allowlist package builder/portable exact replay. Mathematical gaps identified: none; final-package reviews and publication/integration remain. Best-guess completion: PR618 55%; shard 19%.
+
+## 2026-10-13T04:16:31.229717+00:00 — PR618 first fresh whole-package review PASS
+
+Read the full first-principles review: no mandatory mathematical, source, disclosure, metadata, rendering or reproducibility fix. Reviewer independently retrieved the original Yuzvinsky corollary as additional primary-source confirmation, compiled the paper, replayed the exact package and rejected four integrity faults. Applied both optional clarity improvements, rebuilt PDF/ZIP, and recorded their new hashes. A new sequential adversary must audit these updated bytes before publication. Best-guess completion: PR618 72%; shard 21%.

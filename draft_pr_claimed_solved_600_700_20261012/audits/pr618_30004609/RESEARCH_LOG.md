@@ -21,3 +21,7 @@ Accepted the bounded priority audit with explicit attribution to the later exact
 ## 2026-10-13T04:09:30.428449+00:00 — portable replay and merge preparation
 
 Root replay of the 66-member archive passed exact inventory, frozen original diagnostics, fresh incidence/non-Fano and fresh algebra byte comparisons. Inspected all five rendered PDF pages. First fresh whole-package adversary is auditing the frozen bytes. Prepared an existing-PR integration helper: temporary Git index on remote main, one target row only, immutable historical author.zip, unchanged proof/check code, current priority/publication overrides, no checkout/index/unrelated-file mutations. It is not run before clean review/publication. Best-guess completion: PR618 62%; shard 20%.
+
+## 2026-10-13T04:16:31.229717+00:00 — PR618 first fresh whole-package review PASS
+
+Read the full first-principles review: no mandatory mathematical, source, disclosure, metadata, rendering or reproducibility fix. Reviewer independently retrieved the original Yuzvinsky corollary as additional primary-source confirmation, compiled the paper, replayed the exact package and rejected four integrity faults. Applied both optional clarity improvements, rebuilt PDF/ZIP, and recorded their new hashes. A new sequential adversary must audit these updated bytes before publication. Best-guess completion: PR618 72%; shard 21%.

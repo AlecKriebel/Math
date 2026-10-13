@@ -21,7 +21,7 @@ This creates the environment outside the extracted packet for the strict invento
 
 The standard-library integrity-only check is `python3 verify_package.py --integrity-only`. Do not write logs, environments or cache files inside the packet: it intentionally has an exact inventory. All computational replays occur in a temporary copy, and the original packet is checked again afterward. The algebra script writes its result in that temporary copy. The author check and older independent audit are replayed; the fresh incidence enumeration, non-Fano certificate and fresh algebra/lattice checks are then compared with their frozen exact results.
 
-`PACKAGE_MANIFEST.json` hashes every member except itself. The archive uses safe relative paths and includes no links. The PDF source is standalone LaTeX: `tectonic low_exponent_supersolvability.tex` exports it. Compiler output can contain timestamps; a fresh compilation need not have the identical PDF hash, but the deposited PDF is frozen and hashed.
+`PACKAGE_MANIFEST.json` hashes every member except itself. The archive uses safe relative paths and includes no links. The PDF source is standalone LaTeX. Create an external build directory with `mkdir -p ../low-exponent-pdf-build`, then run `tectonic --outdir ../low-exponent-pdf-build low_exponent_supersolvability.tex`. This leaves the frozen packet untouched. Compiler output can contain timestamps; a fresh compilation need not have the identical PDF hash, but the deposited PDF is frozen and hashed.
 
 ## Current priority and historical snapshots
 
