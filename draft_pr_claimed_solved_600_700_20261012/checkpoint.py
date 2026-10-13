@@ -32,8 +32,8 @@ def checkpoint(message):
   if subprocess.run(['git','merge-base','--is-ancestor',local,remote],cwd=REPO).returncode!=0:args+=['-p',local]
   commit=subprocess.check_output(['git',*args],cwd=REPO,input=message+'\n',text=True).strip()
   subprocess.run(['git','push','origin',commit+':refs/heads/main'],cwd=REPO,check=True)
- return {'status':'pushed','commit':commit,'remote_parent':remote,'local_main':local,'changed_paths':changed.splitlines(),'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'shared_worktree_and_index_untouched':True}
+ return {'status':'pushed','completion_estimate_percent':json.loads((ROOT/'PROGRAM_STATE.json').read_text()).get('completion_estimate_percent'),'commit':commit,'remote_parent':remote,'local_main':local,'changed_paths':changed.splitlines(),'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'shared_worktree_and_index_untouched':True}
 
 if __name__=='__main__':
- receipt=checkpoint(sys.argv[1]);print(json.dumps(receipt,indent=2))
+ receipt=checkpoint(sys.argv[1]);print(json.dumps({k:v for k,v in receipt.items() if k!='changed_paths'} | {'changed_path_count':len(receipt.get('changed_paths',[]))},indent=2))
  (ROOT/'LATEST_PUSH_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')

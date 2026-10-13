@@ -155,7 +155,8 @@ def fixture_checks():
     attachments=[]
     for kind,base in [('triple',tri),('quad',quad),('K4',core)]:
         original_beta=out[kind]['beta']
-        for at in [0,len(base)-1,1]:
+        for step in range(3):
+            at=0 if step==0 else (len(base)-1 if step==1 else 1)
             before=Representation(base).audit()
             expanded=attach(base,at)
             after=Representation(expanded).audit()
@@ -170,6 +171,16 @@ def fixture_checks():
                                     old_span_modular=True,old_chain_lifts=True))
             base=expanded
         out[kind+'_rank'+str(after['rank'])]=after
+    for kind,base in [('triple',tri),('K4',core)]:
+        before=Representation(base).audit()
+        after=Representation(attach(base,0,(-2,0,3))).audit()
+        W=(1<<len(base))-1
+        assert after['formal'] and after['supersolvable']
+        assert after['rank']==before['rank']+1 and after['relation_dim']==before['relation_dim']+2
+        assert after['beta']==before['beta'] and W in after['modular_masks']
+        assert all(f in after['modular_masks'] for f in before['modular_chain'])
+        attachments.append(dict(kind=kind,attachment_index=0,pencil_size=4,before_rank=before['rank'],
+                                after_rank=after['rank'],old_span_modular=True,old_chain_lifts=True))
     return dict(fixtures=out,attachment_checks=attachments)
 
 
