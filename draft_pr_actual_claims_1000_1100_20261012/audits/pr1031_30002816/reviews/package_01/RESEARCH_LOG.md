@@ -1,0 +1,5 @@
+# Independent package review 01 research log
+
+2026-10-13T21:48:46.506574+00:00 — 0% review completion. Fresh universal proof, critical primary interfaces, code/replay, archive/original Git, metadata/priority framing and six-page PDF inspection assigned. No earlier PASS is accepted as a proof premise. Candidate and original records are read-only.
+
+2026-10-13T21:52:55.978066+00:00 — 60% completion. Independent universal derivation checked through calibration converse. Fifteen fresh primary PDFs retrieved and hashed; critical full source pages checked. Fresh rational bit-mask exterior program validates all225columns/all25425Gram entries and twelve general frames; Bell projector gives exact -1 partial-transpose witness while satisfying Phi=1,Q=0. Extracted archive replay completes3baselines+45executedfaults with full streams. All29original Git files, manifest and safeCRC archive match. SixPDF pages rendered/viewed; no visible layout defects. Probable P3 correction to negative-case coverage prose isolated; candidate remains unchanged.

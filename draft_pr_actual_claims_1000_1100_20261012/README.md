@@ -30,3 +30,5 @@ Preserve the prior pass as history. Work only in this program folder and its
 problem-specific subfolders, remain on `main`, isolate commits from other
 workers' files, push meaningful checkpoints, and do not contact individuals or
 other shard workers.
+
+Progress checkpoint 2026-10-13T21:54:21.612326+00:00: PRs1001,1024and1025 have completed publication, exact tracker readback and exact-head merge. PR1025: [DOI](https://doi.org/10.5281/zenodo.23352246), tracker row80, merge `76442c93c473547ceadc26baec9b9bb044fc748c`. Cursor1031; overall estimate28%. All101assertions screened,18fullresolutioncandidates; candidate status is not mathematical truth or novelty.

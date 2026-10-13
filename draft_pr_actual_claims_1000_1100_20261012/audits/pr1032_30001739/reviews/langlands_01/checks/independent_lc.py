@@ -129,6 +129,15 @@ def controls():
     forward = direction(("u", "v"), ("w",), good)
     reverse = direction(("w",), ("u", "v"), good)
     require(forward["LC"] and reverse["LC"], "positive nonempty matching control")
+    X, Y, edges = graph(("A",), ("B", "D"))
+    require((0, 0) in edges[(0, 1)], "second-coordinate neighbor must precede X second coordinate")
+    orientation_second = {"x": ["A", "D"], "expected_neighbor": ["A", "B"]}
+    X, Y, edges = graph(("u", "v"), ("w",), good)
+    require((1, 0) in edges[(0, 0)], "X first coordinate must precede neighbor first coordinate")
+    orientation_first = {"x": ["u", "w"], "expected_neighbor": ["v", "w"]}
+    require((0, 0) in graph(("D",), ("E",))[1], "Y must shift first segment to the left")
+    require(direction(("E",), ("A", "B", "C", "D"))["LC"], "vacuous first direction")
+    require(not direction(("A", "B", "C", "D"), ("E",))["LC"], "reverse LC obligation")
     # A segment pair is reducible exactly when linked (under the ladder interface).
     segment_controls = 0
     for u, v in itertools.product(intervals, repeat=2):
@@ -144,6 +153,9 @@ def controls():
     return {"explicit_boundary_cases": records, "interval_grid_size": len(intervals),
             "ordered_pair_controls": segment_controls,
             "positive_matching": [forward, reverse],
+            "neighbor_orientation_controls": [orientation_first, orientation_second],
+            "shift_control": {"Y": ["D", "E"], "first_segment_shift": -1},
+            "both_directions_control": {"E_to_ABCD": True, "ABCD_to_E": False},
             "duplicate_occurrence_vertices": duplicate[0]}
 
 
