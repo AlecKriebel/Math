@@ -37,3 +37,7 @@ This release makes the following explicit editorial changes:
 The accompanying repository queue change affects only this problem's status
 and turn cells: queued 0/5 becomes claimed_solved 1/5. Every other queue byte,
 including existing links, is preserved from the selected base commit.
+
+## 2026-10-13T15:30:43.998940+00:00 — Priority correction (audit complete; author1/5 unchanged)
+
+The complete literal target is covered by prior alcoved-polytope combinatorial theorems under an integral cumulative-coordinate map. Current classification is already_solved by explicit prior-coverage inference, not documented historical named closure. The original all-n proof/equations and executable/results bytes remain unchanged; original claimed-solved snapshot is retained by heade3f8838a8eac68bbd186fc0234ac2e2a49194626 and audit SOURCE_RECEIPT. Current summary/status fields are superseded consistently; new PRIORITY_CORRECTION.md records primary references/lattice caveat. After QUEUE correction this draft is immediately excluded, with no preprint/merge. No new proof-search turn. Case95% pending native status readback.

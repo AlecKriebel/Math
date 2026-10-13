@@ -1,5 +1,7 @@
 # Signed adjacent-sum h-star certificate
 
+**Priority correction:** `already_solved` by checkable prior theorem coverage. The formula remains a correct classical corollary. See [PRIORITY_CORRECTION.md](PRIORITY_CORRECTION.md). This draft is excluded from the claimed-solved publication process.
+
 This packet gives a complete independently audited answer to the literal combinatorial
 interpretation requested by UnsolvedMath 30003813 / OWR-16164-005.
 
@@ -38,7 +40,7 @@ sha256sum -c MANIFEST.sha256
 The proof applies to every positive dimension and every sign word. The
 finite regression tests cover all 255 sign words in dimensions 1 through 8.
 
-Independent mathematical audit: PASS. Status: claimed_solved, 1/5 author attempts.
+Independent mathematical audit: PASS. Current status: already_solved, 1/5 author attempts; no new open-problem resolution is promoted.
 The complete review and its additional controls are in `review/`.
 
 Run the independent checks with `python3 review/independent_controls.py`; this

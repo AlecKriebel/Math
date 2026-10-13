@@ -1,4 +1,6 @@
-# Source and prior-attempt gate
+# Historical source and prior-attempt gate
+
+This records the 2026-10-03 search. Its mathematical source checks remain valid. The current status inference is superseded by [PRIORITY_CORRECTION.md](PRIORITY_CORRECTION.md), which verifies additional earlier full-covering theorems.
 
 Checked 2026-10-03, starting at 08:20 UTC.
 

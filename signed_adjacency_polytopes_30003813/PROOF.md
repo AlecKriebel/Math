@@ -2,7 +2,8 @@
 
 **Problem:** UnsolvedMath 30003813 / OWR-16164-005.  
 **Date:** 2026-10-03.  
-**Status:** Claimed solved (1/5); independent mathematical audit PASS.  
+**Status:** Priority corrected to `already_solved` (1/5); mathematical audit PASS.
+**Current priority:** Prior theorem coverage; see [priority correction](PRIORITY_CORRECTION.md).  
 **Attribution:** An explicit application of classical order-polytope and
 P-partition theory; no novelty claim.
 
