@@ -23,6 +23,9 @@ Reznick, Some concrete aspects of Hilbert's 17th problem (2000), Section 4(b),
 printed p.259, DOI 10.1090/conm/253/03936. The publisher reprint hosted by the
 author was authenticated and inspected. First historical priority and continued open status
 through 2026 are not established or asserted; see the bounded priority audit.
+Complete 2008 and 2009 Hà–Pham article texts were not obtained. The comparisons
+with truncated certificates rely on later primary theorem statements. The
+66-record citation graph is a metadata screen, with full-text follow-ups labeled.
 
 AI tools were used extensively in development, verification, adversarial review
 and writing. This is unrefereed mathematics, with independent AI-assisted audits;

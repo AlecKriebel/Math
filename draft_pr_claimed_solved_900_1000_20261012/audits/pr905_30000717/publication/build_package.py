@@ -8,7 +8,7 @@ REVIEW_FILES={
  'proof_family':['MANIFEST.json', *json.loads((AUDIT/'reviews/proof_family/MANIFEST.json').read_text())['artifacts']],
  'computation_family':['MANIFEST.json', *json.loads((AUDIT/'reviews/computation_family/MANIFEST.json').read_text())['files']],
  'source_model_family':['SOURCE_MODEL_REPORT.md','SOURCE_HASHES.json','SOURCE_MODEL_RESULT.json','RESEARCH_LOG.md','publisher_fetch_metadata.json','related_fetch_metadata.json','catalog_inspection_metadata.json','dataset_inspection_metadata.json'],
- 'priority_family':['PRIORITY_AUDIT.md','SOURCE_MANIFEST.json','QUERY_LOG.md'],
+ 'priority_family':['PRIORITY_AUDIT.md','SOURCE_MANIFEST.json','QUERY_LOG.md','CITATION_EVIDENCE.md','CITATION_GRAPH.json','RESEARCH_LOG.md'],
 }
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
@@ -17,6 +17,7 @@ def main():
  for name in ['note.tex','README.md','verify_package.py','requirements.txt']:shutil.copy2(HERE/name,DEST/name)
  shutil.copy2(AUDIT/'SOURCE_CORRECTION.md',DEST/'SOURCE_CORRECTION.md')
  shutil.copy2(AUDIT/'ORIGINAL_SNAPSHOT.json',DEST/'ORIGINAL_SNAPSHOT.json')
+ shutil.copy2(AUDIT/'ROOT_PRIORITY_ACCESS_FOLLOWUP.json',DEST/'ROOT_PRIORITY_ACCESS_FOLLOWUP.json')
  for family,names in REVIEW_FILES.items():
   for name in names:
    source=AUDIT/'reviews'/family/name; target=DEST/'reviews'/family/name
