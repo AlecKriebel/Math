@@ -31,3 +31,13 @@
 - Source facts, independent local proof, source hashes, original-proof limits, and bridge checks are recorded in REPORT.md and VERDICT.json.
 - Best-guess completion: 100% of assigned source-scope audit, not the overall discovery/priority goal.
 - Parent authorized a separate extensive primary-source priority phase after this seal. Its conclusions will be recorded separately without replacing this dated decision.
+
+## 2026-10-13 06:24:32 UTC - priority retrieval checkpoint
+
+- Began materially distinct searches: exact original problem; global polar/radial nonmonotonicity; coefficient-degree families; author/institutional bibliographies; publisher/DOI and backward/forward citation routes; later omitted-arc/waver literature.
+- Retrieved complete Brown1979 (12 pages), Brown1981 (9 pages), and Brown1985 (7 pages) through ordinary publisher browser pages and public PDF download controls. No CAPTCHA solved, login, purchase, or access bypass. All three papers read as text. Brown1981/1985 establish polar-argument monotonicity for a2/a3 coefficient functionals, not the candidate's a4 mixture. Brown1985 supplies a classical imaginary-part trajectory method requiring credit.
+- Ordinary browser access to Hibschweiler1995 official archive shows explicit403permission refusal. Citeseer current and legacy direct endpoints404; indexed search passages do not count as full-primary coverage. Full eight-page source remains specifically unclosed.
+- Ordinary ScienceDirect browser prompts CAPTCHA for Ma/Zhang; did not interact with it. Public Elsevier API metadata confirms article title, original 15September1991 date and open-archive status, but only metadata was returned. Full four-page paper remains unclosed pending a legitimate copy. An earlier commentary incorrectly suggested the DOI identified a different paper; primary Crossref/Elsevier confirm the correct paper. The actual mismatch is MaRDI's date and mixed unrelated citing records.
+- Nikonorov2012/arXiv1007.0122v2 retrieved; definition and main theorem inspected. Its support points are Euclidean chord support points of arbitrary planar curves, not maximizing conformal maps in S. It is excluded by an actual primary definition.
+- Parent has identified Zemyan2003 positive tangent-waver construction and Zemyan2007 finite-sign-change work. These are adverse leads; parent handles full retrieval. A tangent-argument reversal alone does not imply polar-argument or radial-angle reversal. They are not excluded on unread abstract evidence.
+- Best-guess completion: 50% of extensive priority audit. No verified earlier full target resolution yet, but specific unclosed sources prevent priority acceptance.
