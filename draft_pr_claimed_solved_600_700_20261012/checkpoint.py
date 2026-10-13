@@ -22,6 +22,8 @@ def checkpoint(message):
   env=os.environ.copy();env['GIT_INDEX_FILE']=str(pathlib.Path(td)/'index')
   run('read-tree',remote,env=env)
   run('add','-A','--',SCOPE,env=env)
+  ignored=run('ls-files','-ci','--exclude-standard','--',SCOPE,env=env)
+  if ignored:run('update-index','--force-remove','--',*ignored.splitlines(),env=env)
   tree=run('write-tree',env=env)
   changed=run('diff','--name-only',remote,tree)
   if not changed: return {'status':'no_change','remote_main':remote}
