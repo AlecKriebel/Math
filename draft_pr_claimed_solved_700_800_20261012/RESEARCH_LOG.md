@@ -1,0 +1,13 @@
+# Claimed-solved draft PR audit, #700–#800
+
+## 2026-10-13T03:07:24.260390+00:00 — Checkpoint 1 (estimated overall completion: 2%)
+
+Persistent goal established. Process in ascending order beginning at #700, following the explicit start/upward instruction; later “downward” wording is treated as moving to the next PR in this shard. Only the exact status `claimed_solved` in the PR-head `unsolved_math_prioritization/QUEUE.md` is eligible. Main currently records these unmerged outcomes as `queued`, so the immutable PR-head row is the eligibility evidence.
+
+Screened 101 open drafts: 80 `unsolved`, 9 `already_solved`, 12 `claimed_solved`. Skipped drafts received status screening only: no mathematical review, source audit, repair, comment, close, merge, or paper preparation. Eligible order: [718, 734, 742, 764, 765, 767, 778, 781, 786, 788, 789, 799]. First active PR is #718 / 30004324.
+
+The shared checkout remains on `main`; unrelated working files are preserved. All new audit work stays in this folder. No contact with other shard agents or external individuals. Newly assigned reviewers are independent subagents for this task only.
+
+Acceptance criteria for each eligible PR: reproduce and validate the exact full source target; adversarially examine all proof and computational claims; attempt only reasonable repairs; perform a primary-source priority audit after mathematical clearance; prepare a complete, appropriately scoped unrefereed preprint with extensive AI-use disclosure; obtain successive fresh independent adversarial reviews and fix all findings; publish with the repository Zenodo tool and matching metadata; append the DOI record via Google Workspace CLI to `Math Puzzles` (gid 1254632077); merge the exact accepted result. An irreparable candidate is closed with a substantiated comment. A claim that does not resolve the source target must not be promoted as a solution.
+
+Sheet access and the requested tab were verified read-only. Zenodo workflow and secret-handling rules read; no deposit created. PDF and Google Workspace Sheets skills loaded. The CLI help invocation unexpectedly generated skill documentation at repository top level; these files are not part of this audit and will not be committed.
