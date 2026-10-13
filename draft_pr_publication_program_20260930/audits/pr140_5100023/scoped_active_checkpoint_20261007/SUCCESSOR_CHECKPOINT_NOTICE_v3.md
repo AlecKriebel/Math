@@ -1,0 +1,13 @@
+# PR140 qualified proof and publication-package review checkpoint
+
+This successor supersedes the current-state phrases in the earlier mathematical checkpoint, including its export notice's “priority is in progress” and the chronology receipt's historical “comparison_pending” flag. Those original records remain unchanged as dated preparation history.
+
+The mathematical gate accepts the theorem for even least period, a strictly nested nondegenerate confocal elliptical caustic, and the original full-line antipedal's unweighted vertex mean. Independent algebraic and geometric families passed, and the source-attribution and optimized-mode verifier repairs were checked separately. Repeating an odd-period orbit to make an even-length list is excluded and has exact counterexamples.
+
+The bounded priority gate now supports preparing a qualified resolution note. The exact Ferudun theorem and method overlap, DOI10.5281/zenodo.23092466, are credited. A proof was publicly posted in PR140 on September30,2026; that specific overlapping record was created October1 with October2 publication date. The audit did not establish an earlier complete answer. Absolute priority, exclusive novelty and independent discovery remain unestablished. Classical ingredients are prior; the audit did not locate a previously published complete bridge containing the target antipedal pair identity. No PR50 exception is used.
+
+The five-page manuscript, portable exact verification supplement and intended metadata are prepared. A genuinely fresh first whole-package adversarial reviewer is running. Best-guess PR140 completion is80%; publication, tracker append, final native integration and merge remain pending. Totals stay23 completed cases and11 published notes; original draft effort2/5 and zero new central proof-search turns are retained. PR135–139 were skipped by status and left untouched. The goal remains ACTIVE.
+
+The prior checkpoint attempt failed with ENOSPC during private-index construction, before creating a commit or dispatching a push. It is not a successful publication receipt. A separately reviewed sparse-tree constructor replaces that construction step and preserves inherited exact-overlay, sole-parent, normal-push and readback safeguards. Preparation and review alone do not establish that this successor checkpoint has actually published; the actual operation and acceptance receipts record that separately.
+
+Original local seals remain unchanged. Public copies use normal Git100644 files; closed manifests specifying local0444 modes describe original custody, not remote filesystem permissions. Copyrighted primary bodies, rendered reading images, credentials, caches, real Git indices and temporary scratch repositories are excluded.

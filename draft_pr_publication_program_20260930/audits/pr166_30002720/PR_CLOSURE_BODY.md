@@ -1,0 +1,6 @@
+The explicit fixed nonboundary continuity-rank counterexample is mathematically verified: for the stated stationary positive binary Markov source and singleton-stopping Radix Selection cost, every deterministic centering fails tightness on the square-root scale. The supporting checks have been reproduced and repaired to remain effective under optimized execution.
+
+The original unrestricted fixed-marginal question already had a negative answer at boundary ranks in Leckey–Neininger–Sulzbach, arXiv:1605.02352v2, Proposition 2.9. This does not establish prior disclosure of the exact continuity-rank construction. Its historical novelty remains unestablished after three independent bounded priority audits. A separately assembled dense-G_delta continuity-rank consequence has also been independently verified and is retained with its audit chronology.
+
+Disposition: closed without merging as a claimed novel full resolution of the original problem; original-target status already_solved. The complete valid refinement and audits are preserved in draft_pr_publication_program_20260930/audits/pr166_30002720. No new first-resolution preprint, DOI or tracker row is created. The detailed closure comment explains the source and scope distinctions.
+

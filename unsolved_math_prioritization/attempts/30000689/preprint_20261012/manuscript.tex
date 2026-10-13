@@ -1,0 +1,581 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Missing faces and topological embeddings of sphere skeleta},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Unrefereed research note; AI-assisted mathematical and finite verification},
+  pdfkeywords={simplicial complexes, topological embeddings, van Kampen obstruction}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\lk}{\operatorname{lk}}
+\newcommand{\sd}{\operatorname{sd}}
+\newcommand{\interior}{\operatorname{int}}
+\newcommand{\del}{\mathrm{del}}
+\newcommand{\vk}{o^4_{\F_2}}
+\newcommand{\supp}{\operatorname{supp}}
+
+\title{Missing faces and topological embeddings of sphere skeleta}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{12 October 2026\\\small Version 1.0}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $S$ be a finite simplicial triangulation of the topological sphere
+$S^{2d}$, and let $T$ be a missing $d$-face. We prove that adjoining $T$ to
+the $d$-skeleton of $S$ prevents a topological embedding in $S^{2d}$.
+For $d\geq3$, a graded Koszul calculation combines with established
+ambient-completion, anisotropy and metastable embedding theorems. For
+$d=2$, we apply the Nevo--Wagner bistellar transfer theorem in the PL
+class supplied by the given triangulation: a contractible complementary
+manifold supplies the required disk map, and a flag subdivision supplies
+the base. This proves the statement of their Conjecture~1.3 without a
+standard PL structure assumption on the source. No claim of first priority
+or a new general method is made.
+\end{abstract}
+
+\section{Statement and relation to earlier work}
+
+A \emph{missing $d$-face} of a simplicial complex $S$ is a subset
+$T\subseteq V(S)$ with $|T|=d+1$, $T\notin S$, and every proper subset of
+$T$ in $S$. Write $S^{(d)}$ for the $d$-skeleton and $|S|$ for the
+realization. Embeddings below are arbitrary topological embeddings unless
+the PL category is specified.
+
+\begin{theorem}\label{thm:main}
+Let $d$ be a nonnegative integer, and let $S$ be a finite simplicial complex with
+$|S|\cong S^{2d}$. If $T$ is a missing $d$-face on the actual vertex set of
+$S$, then
+\[
+                 |S^{(d)}\cup\{T\}|\not\hookrightarrow S^{2d}.
+\]
+\end{theorem}
+
+In particular, no combinatorial or standard PL structure is assumed for
+the higher-dimensional source. The actual-vertex convention makes the
+$d=0$ assertion vacuous.
+
+The missing-middle-face statement appears in Nevo's 2006 preprint as
+Conjecture~3.8, renumbered Conjecture~3.7 in its 2007 publication
+\cite{N}. Nevo--Wagner proved the conclusion for a source that is a PL
+sphere \cite[Theorem~1.2]{NW}; their Conjecture~1.3 asks for the arbitrary
+topological-sphere source used here. Their PL-source theorem already
+forbids topological embeddings. Thus changing the category of the
+prospective embedding alone does not describe the distinction at issue.
+
+The algebraic part follows established ideas. Adiprasito's ambient
+Lefschetz quotient mechanism \cite[Observation~4.3 and Corollary~4.8]{A}
+already relates subcomplexes of Lefschetz spheres to graded dimension
+inequalities. Adiprasito--Pat\'akov\'a \cite[Theorem~2]{AP} record an
+ambient completion retaining the original abstract complex, and describe
+that completion as a result sometimes regarded as folklore. Karu--Xiao
+\cite[Theorems~1.2--1.3]{KX} provide the precise generic anisotropy input
+used below. With Weber's existence theorem \cite[Theorem~1]{W}, these
+inputs give a synthesis for $d\geq3$.
+
+The dimension-four argument retains the Nevo--Wagner transfer and local
+linking construction. We verify its hypotheses using a contractible
+complement and begin at $\sd S$, within the actual PL class of $S$.
+Neither the global PL standardness of a triangulated topological
+4-sphere nor a standard PL complementary 4-ball is required.
+
+\section{The graded jump and the PL obstruction}
+
+We first work with $d\geq1$. For a field $F$, write $F[X]$ for the
+Stanley--Reisner ring, with all variables of degree one. The local
+homology of a triangulated topological manifold gives, for a $k$-face
+$\sigma$ and $x\in\interior|\sigma|$,
+\[
+H_i(|S|,|S|\setminus\{x\};\Z)
+ \cong\widetilde H_{i-k-1}(\lk_S\sigma;\Z).
+\]
+Consequently $S$ is a local integral homology sphere. This conclusion
+does not identify its links as PL spheres in higher dimensions.
+Reisner's criterion and the homology-sphere duality give a
+Cohen--Macaulay face ring of dimension $r=2d+1$ whose Artinian reduction
+has symmetric Hilbert function $h_i(S)$; in particular
+$h_d(S)=h_{d+1}(S)$ (see also \cite[Sections~2.1 and 2.3]{KX}).
+
+\begin{lemma}\label{lem:jump}
+Set $K=S^{(d)}$, $L=K\cup\{T\}$, $A=F[S]$, $C=F[K]$, and $B=F[L]$.
+Let $\Theta=(\theta_1,\ldots,\theta_r)$ be a regular linear parameter
+sequence on $A$. Then
+\begin{align}
+\dim_F(B/(\Theta))_d&=h_d(S),\label{eq:degree-d}\\
+\dim_F(B/(\Theta))_{d+1}&=h_{d+1}(S)+1=h_d(S)+1.\label{eq:jump}
+\end{align}
+The hypothesis can be fulfilled over an infinite field or a suitable
+coefficient extension; it does not assert generic linear parameters over
+every finite field without extension.
+\end{lemma}
+
+\begin{proof}
+$A$ and $C$ have the same graded pieces and multiplication through total
+degree $d+1$: taking the skeleton first removes faces with $d+2$ vertices.
+$B$ and $C$ agree through degree $d$. The kernel $M$ of the surjection
+$B\to C$ therefore satisfies
+\[
+M_j=0\quad(j\leq d),\qquad M_{d+1}=F x_T,
+\quad x_T=\prod_{v\in T}x_v.
+\]
+The total-degree-$(d+1)$ part computing first Koszul homology is
+\[
+C_{d-1}\otimes\bigwedge^2 F^r
+ \longrightarrow C_d\otimes F^r\longrightarrow C_{d+1}.
+\]
+It is identical for $A$, so regularity on $A$ yields
+$H_1(\Theta;C)_{d+1}=0$. Also
+$H_0(\Theta;M)_{d+1}=M_{d+1}$, since $M_d=0$.
+The long exact Koszul sequence for $0\to M\to B\to C\to0$ now gives
+\[
+0\longrightarrow F x_T\longrightarrow(B/(\Theta))_{d+1}
+ \longrightarrow(C/(\Theta))_{d+1}\longrightarrow0.
+\]
+The reductions of $A,C$ agree in degrees $d,d+1$, and those of $B,C$
+agree in degree $d$. Their Hilbert functions give the claims.
+In particular, counting an extra monomial before quotienting is not
+being used to presume that it survives the quotient.
+\end{proof}
+
+\begin{proposition}\label{prop:PL}
+For every $d\geq1$ under Theorem~\ref{thm:main}'s hypotheses, $L$ has
+no PL embedding in the standard PL sphere $S^{2d}$.
+\end{proposition}
+
+\begin{proof}
+Suppose such an embedding exists. By \cite[Theorem~2]{AP}, there is a
+PL triangulation $P$ of the standard sphere containing the original
+abstract $L$ as a subcomplex, without subdividing $L$. The embedding map
+may change. Relabel so $V(S)=V(L)\subseteq V(P)=\{1,\ldots,N\}$ and set
+\[
+F=\Q(a_{ij}:1\leq i\leq r,\ 1\leq j\leq N),\qquad
+\theta_i=\sum_{j=1}^N a_{ij}x_j,\qquad \ell=\sum_{j=1}^N x_j,
+\]
+with algebraically independent coefficients. Restriction to $V(S)$
+leaves algebraically independent coefficients. On every facet of $S$,
+the $r\times r$ coefficient determinant is a nonzero polynomial;
+the restrictions are an l.s.o.p. on $F[S]$ and hence a regular sequence.
+Extra coefficient columns merely extend the field.
+
+The PL sphere $P$ is in particular an $\F_2$ homology sphere.
+Karu--Xiao's characteristic-zero statement
+\cite[Theorems~1.2--1.3]{KX}, with $n=2d+1$, $m=d$ and $n-2m=1$,
+gives anisotropy of
+\[
+u\longmapsto\ell u^2\in(F[P]/(\Theta))_{2d+1},
+\qquad u\in(F[P]/(\Theta))_d.
+\]
+Thus $\ell u=0$ implies $u=0$. Symmetry of the ambient Hilbert function
+turns this injection into an isomorphism from degree $d$ to $d+1$.
+
+The natural graded subcomplex quotient $F[P]\to F[L]$ sets outside
+variables to zero and imposes the additional nonface relations of $L$.
+It descends modulo $\Theta$. Surjectivity of multiplication by $\ell$
+descends as well: lift a target class upstairs, take an upstairs
+preimage, and project. Hence
+\[
+\ell:(F[L]/(\Theta))_d\twoheadrightarrow(F[L]/(\Theta))_{d+1},
+\]
+contrary to Lemma~\ref{lem:jump}. These are $r$ restricted ambient
+parameters on $F[L]$; for $d\geq1$ they are overlong and are not an
+l.s.o.p. on that ring, whose Krull dimension is $d+1$.
+\end{proof}
+
+\section{Topological embeddings in the metastable range}
+
+For $d\geq1$, an embedded $d$-dimensional finite polyhedron cannot fill
+$S^{2d}$, by invariance of topological dimension. Delete a point outside
+the image to obtain an embedding $f:|L|\hookrightarrow\R^{2d}$.
+Its normalized difference
+\[
+(x,y)\longmapsto\frac{f(x)-f(y)}{\|f(x)-f(y)\|}
+\]
+is a continuous equivariant map from the full ordered deleted product
+$\{(x,y)\in|L|^2:x\ne y\}$ to $S^{2d-1}$.
+Weber's original Theorem~1, printed p.~2 of \cite{W}, gives existence
+of a semilinear embedding of a finite $n$-polyhedron in $\R^m$ from
+this input when $2m\geq3(n+1)$. Semilinear means PL after subdivision,
+as defined in his Section~1. Here
+\[
+n=d,\quad m=2d,\quad 4d\geq3d+3\quad\Longleftrightarrow\quad d\geq3.
+\]
+The equality case $d=3$ is included. A compact PL embedding in Euclidean
+space lies in a PL chart of the standard sphere, contradicting
+Proposition~\ref{prop:PL}. This is only an existence use of Weber's
+theorem; it makes no approximation or isotopy assertion about $f$.
+
+\section{The dimension-four obstruction}
+
+All chains in this section have coefficients $\F_2$. For a finite
+2-complex $X$, let $X^2_{\del}/\Z_2$ be the simplicial deleted product
+with unordered cells $\{\sigma,\tau\}$ for vertex-disjoint simplices.
+The mod-2 van Kampen class $\vk(X)$ is represented in degree four by
+the cochain
+\[
+\varphi_f\{\sigma,\tau\}=f(\sigma)\cdot f(\tau)\pmod2
+\]
+for a general-position map into $\R^4$. Its class is independent of
+the representative. A topological embedding forces this class to
+vanish; see \cite[Section~2]{NW}. We will prove the stronger assertion
+$\vk(S^{(2)}\cup\{M\})\ne0$ for every missing triangle $M$ of $S$.
+
+\subsection{The source structure and a complement lemma}
+
+A finite triangulation of a topological 4-manifold is a combinatorial
+4-manifold \cite[p.~797]{DFL}. To recall the dimension-specific point,
+positive-dimensional face links have sphere homology in dimensions at
+most two. Inductively they are PL spheres; vertex links are therefore
+closed triangulated homology 3-spheres. At a vertex, choose nested
+coordinate and conical neighborhoods. Place a link loop radially in a
+small cone contained in a punctured coordinate 4-ball, itself contained
+in the punctured open star. The coordinate ball makes the loop
+nullhomotopic, and radial retraction puts the nullhomotopy in the link.
+The link is simply connected. Three-dimensional Poincar\'e and PL
+uniqueness then make it a PL 3-sphere. This supplies a PL structure on
+$S$ without identifying its global PL class with the standard sphere.
+
+\begin{lemma}\label{lem:complement}
+Let $Q$ be a combinatorial 4-manifold with $|Q|\cong S^4$, and let
+$B_0=\alpha*\partial\beta$ be the closed support of a legal bistellar
+move. Then $C=\overline{|Q|\setminus\interior|B_0|}$ is a contractible
+compact PL manifold with boundary and collar.
+\end{lemma}
+
+\begin{proof}
+The support is a standard PL 4-ball. Its boundary is locally flat:
+at a boundary vertex its link pair is a PL 2-sphere in a PL 3-sphere,
+where three-dimensional PL Schoenflies applies; higher-dimensional
+strata reduce to the lower-dimensional link pairs. Thus $C$ is a
+compact PL 4-manifold with boundary $S^3$ and a collar.
+The collared decomposition $|Q|=|B_0|\cup C$ gives connectedness and
+$\pi_1(C)=0$ by Mayer--Vietoris and van Kampen. The fundamental-class
+map
+\[
+H_4(|Q|;\Z)\longrightarrow H_4(|Q|,C;\Z)
+ \cong H_4(|B_0|,\partial|B_0|;\Z)
+\]
+has degree $\pm1$. The pair sequence therefore gives
+$\widetilde H_*(C;\Z)=0$, including degree three. For a simply connected
+CW complex, acyclicity and Hurewicz give vanishing of every homotopy
+group; Whitehead gives contractibility.
+\end{proof}
+
+Only contractibility is claimed. Local three-dimensional Schoenflies
+has not been turned into a global PL four-dimensional Schoenflies
+assertion.
+
+\subsection{Common missing triangles and the transfer hypotheses}
+
+Define $E(Q)$ to mean that every missing triangle $M$ of $Q$ satisfies
+$\vk(Q^{(2)}\cup\{M\})\ne0$. Let a move replace
+\[
+B_0=\alpha*\partial\beta\quad\hbox{by}\quad
+B_1=\partial\alpha*\beta,\qquad
+\dim\alpha=p,\quad\dim\beta=q,\quad p+q=4,
+\]
+and denote the result by $Q'$. First suppose $M$ is missing in both.
+Set
+\[
+\mathcal K=Q^{(2)}\cup\{M\},\quad
+\mathcal L=(Q')^{(2)}\cup\{M\},\quad
+R=B_0^{(2)},\quad R'=B_1^{(2)}.
+\]
+Theorem~5.3 of \cite{NW} applies to arbitrary finite 2-complexes with
+this skeletal move, provided its structural setup and the following
+conditions hold: $R$ is induced in $\mathcal K$; the open star of
+$\alpha$ in $\mathcal K$ lies in $R$; general-position maps $f,g$ agree
+on the common complex and have zero intersection cochain on disjoint
+triangle pairs involving $R,R'$ respectively; an outside vertex exists;
+and
+\begin{equation}\label{eq:homology}
+\widetilde H_i(\mathcal K-W;\F_2)=0\quad(i=0,1),
+\qquad W=R_0\setminus\rho,\quad\rho\in R\cap R'.
+\end{equation}
+Here deleting $W$ means taking the induced complex on the remaining
+vertices. We check every condition.
+
+\paragraph{Inducedness and the removed star.}
+Before the move $\beta$ is a missing face (or a new vertex in a vertex
+insertion). On the old support vertices, every subset not containing
+all of $\beta$ belongs to $B_0$, so the old support is induced.
+A common missing triangle contained on those vertices would, by
+minimality, have to equal $\beta$, which becomes a face. Thus adjoining
+$M$ preserves inducedness. A common $M$ cannot contain $\alpha$:
+equality contradicts that $\alpha$ was an old face, and proper
+containment would give a proper face of $M$ that disappears. The legal
+move's open-star condition therefore persists after augmentation.
+
+\paragraph{The maps.}
+All proper faces of $M$ survive, so $|\partial M|$ lies in the
+complement $C$ of Lemma~\ref{lem:complement}. Contractibility extends
+its prescribed inclusion to a disk \emph{map}. A collar pushes the
+disk interior into $\interior C$, and relative PL general position
+makes that interior avoid the old 1-skeleton, since $2+1<4$. Its
+boundary stays fixed in the 1-skeleton; disk self-intersections are
+permitted. Choose $x\in\interior|B_0|$ off the old 2-skeleton and use
+a topological homeomorphism $|Q|\setminus\{x\}\cong\R^4$. Map the old
+skeleton naturally and $M$ by this disk. No vertex-disjoint triangle
+pair involving $R$ intersects.
+
+A homeomorphism $|B_1|\to|B_0|$ fixed on their common boundary defines
+the new support map; use the old map on the common exterior and $M$.
+The maps agree on $\mathcal K\cap\mathcal L$, and the corresponding
+disjoint pairs involving $R'$ also have disjoint images. To get
+general position, regard these as one continuous map on the finite
+abstract union $\mathcal K\cup\mathcal L$ and approximate it
+simultaneously. Each forbidden pair has disjoint compact images,
+hence positive separation, and there are finitely many pairs. A
+sufficiently close general-position PL approximation preserves all
+separations and agreement upon restriction. The potentially non-PL
+puncturing homeomorphism need not be kept fixed by that approximation.
+
+\paragraph{Outside vertices, homology and cones.}
+An induced support ball cannot exhaust the vertices of a closed
+sphere, since inducedness would then identify the sphere with the
+ball. The outside vertex sets before and after the move agree,
+including vertex insertion and deletion.
+For $\rho\in R\cap R'\subseteq(\partial\alpha*\partial\beta)^{(2)}$
+and $W=R_0\setminus\rho$, the induced old complex is
+\[
+Q[W]=(\alpha\setminus\rho)*(\partial\beta\setminus\rho).
+\]
+The first factor is a nonempty simplex: a common-boundary face cannot
+contain all of $\alpha$. Thus $Q[W]$ is a cone. Alexander duality in
+the topological sphere makes $|Q|\setminus|Q[W]|$ acyclic.
+It deformation retracts onto $|Q-W|$: in barycentric coordinates,
+retain coordinates outside $W$ and normalize their positive sum;
+the straight homotopy stays in the complement. The 2-skeleton has
+the same $H_0,H_1$, and adding a triangle with its boundary present
+preserves $H_0$ and can only quotient $H_1$. This proves
+\eqref{eq:homology}.
+
+The same argument works in the old \emph{unaugmented} skeleton. It
+also supplies the precise cones of \cite[Lemma~5.2]{NW}: for an
+outside vertex $v$ and common vertex or edge $\rho$, choose chains
+$v\bullet\rho$ with
+\begin{equation}\label{eq:cone}
+\partial(v\bullet\rho)=\rho+
+ \sum_{a\in\rho}v\bullet(\rho\setminus\{a\}),\qquad
+\supp(v\bullet\rho)\cap(R_0\cap R'_0)\subseteq\rho.
+\end{equation}
+Here $v\bullet\varnothing=v$. For a vertex the boundary is $a+v$;
+use an actual simplex whenever
+the cone simplex exists. Otherwise the induction's boundary cycle
+bounds in the relevant deleted complex by $H_0$ or $H_1$ vanishing.
+For a face meeting the exterior, delete the same support vertices
+using its intersection with the support. This is exactly the
+support-avoidance construction, not an assumption that all geometric
+cones are present.
+
+The structural conditions and \cite[conditions (I.a)--(II.b)]{NW} are
+now verified. Their Theorem~5.3 gives
+$\vk(\mathcal K)\ne0\Rightarrow\vk(\mathcal L)\ne0$ for common $M$.
+
+\subsection{All newly missing triangles and the explicit witness}
+
+The remaining cases can be classified without a sphere-structure
+assumption. If a triangle was an old face and becomes missing, it
+contains $\alpha$, while every proper face survives. It must be
+$M=\alpha$, with $(p,q)=(2,2)$. Otherwise some proper edge of $M$ is
+new and contains $\beta$. If $q=1$ this gives $(p,q)=(3,1)$ and
+$M=v*\beta$, with $v$ outside the support; a triangle wholly on the
+support vertices would be a new face. If $q=0$, the new vertex of
+$\beta$ is adjacent only to support vertices; any proposed missing
+triangle having all three edges is a new support face. For completeness,
+$(p,q)=(0,4)$ removes a vertex and $(1,3)$ removes an edge, so a
+triangle involving the removed simplex cannot have all proper faces
+present; no new proper edge arises in either case. These exhaust
+all five move types.
+
+When $(p,q)=(2,2)$, the old missing triangle is $\beta$ and
+\[
+Q^{(2)}\cup\{\beta\}=(Q')^{(2)}\cup\{\alpha\}.
+\]
+The induction hypothesis applies. For $(p,q)=(3,1)$ we give the
+homological Flores witness explicitly, following the local mechanism
+of \cite[proof of Theorem~1.2]{NW}.
+
+Put $U=\alpha_0\cup\beta_0$ and $V=U\cup\{v\}$, so $|U|=6$ and
+$|V|=7$. Every triangle on $U$ is in the new support; every edge
+on $U$ except $\beta$ is in the old skeleton. The old 2-skeleton
+is a subcomplex of the new one. Use \eqref{eq:cone} in that old
+\emph{unaugmented} skeleton. Let $F_V$ be the formal full 2-skeleton
+on $V$. Define a chain map $B$ through dimension two by fixing
+vertices, support edges and support triangles, and setting
+\[
+B(va)=v\bullet a,\qquad
+B(ve)=v\bullet e\ (e\ne\beta),\qquad B(v\beta)=M.
+\]
+Here $a\in U$ and $e$ is an edge on $U$; $\beta$ itself is fixed
+as a new edge. Formula~\eqref{eq:cone} gives the chain identities
+except possibly on $v\beta$. Both edges from $v$ to the endpoints
+of $\beta$ are old edges, since they are proper faces of $M$ and
+the move introduces no edges incident to $v$. The prescribed vertex
+cones are those edges, so $\partial B(v\beta)=B(\partial(v\beta))$
+as well.
+
+The formal deleted-product chain
+\[
+\Omega=\sum_{\substack{\sigma,\tau\subset V,\ |\sigma|=|\tau|=3\\
+                         \sigma\cap\tau=\varnothing}}
+                    \{\sigma,\tau\},
+\]
+where each unordered pair is counted once, is a 4-cycle. Each boundary
+cell is an edge paired with a disjoint triangle; its five vertices
+leave two possible extensions of the edge to a triangle, so its
+coefficient is zero modulo two. Apply $B$ to both factors to get
+$\omega$. At most one factor of a disjoint pair contains $v$;
+the other is supported on $U$. Support avoidance in
+\eqref{eq:cone} keeps all replaced pairs vertex-disjoint, including
+boundary pairs. Hence the chain map on these deleted-product cells
+is defined and $\partial\omega=0$.
+
+No cone chain contains $M$, because all cones lie in the old
+unaugmented skeleton. Thus $M$ has its sole occurrence from the
+explicit assignment $B(v\beta)=M$. Its partner chain consists of
+the four triangles on $V\setminus M=\alpha_0$, namely
+$\partial\alpha$. There is no hidden use of an old missing triangle.
+
+Choose a puncture outside the new ball and the new 2-skeleton and
+identify the punctured topological sphere with $\R^4$. Its natural
+map embeds the unaugmented new skeleton. In the explicit ball
+$B_1=\partial\alpha*\beta$, realize the tetrahedron $\alpha$ and
+interval $\beta$ in complementary 3- and 1-dimensional subspaces,
+with one transverse interior intersection. This supplies a spanning
+3-disk for $\partial\alpha$ inside the ball. Pull it back to the
+actual move ball. The other two edges of $\partial M$ go to the
+outside vertex $v$ and miss the ball interior; their endpoints on
+$\beta$ are away from $\partial\alpha$. The spanning disk therefore
+meets $\partial M$ once modulo two. Consequently
+\[
+\lk_2(\partial M,\partial\alpha)=1.
+\]
+The linking/intersection boundary relation gives intersection number
+one for a general-position filling of $M$ against $\partial\alpha$.
+All other pairs in $\omega$ lie in the embedded unaugmented skeleton
+and contribute zero. A close simultaneous general-position choice
+preserves their finite compact separations and the linking number.
+It follows that
+\[
+\langle\vk((Q')^{(2)}\cup\{M\}),\omega\rangle
+ =\varphi_f(\omega)=1.
+\]
+This verifies the newly missing triangle case and proves
+$E(Q)\Rightarrow E(Q')$ for every bistellar move.
+
+\subsection{The base in the source's own PL class}
+
+The barycentric subdivision $\sd S$ is flag: its vertices are faces
+of $S$, and pairwise adjacency means pairwise comparability, hence a
+chain. It has no missing triangles, so $E(\sd S)$ holds vacuously.
+The subdivision and $S$ are closed combinatorial 4-manifolds that
+are PL homeomorphic for the PL structure supplied by this
+triangulation. Pachner's theorem, as stated and proved in
+\cite[Theorem~5.9]{L}, gives a finite bistellar sequence between them,
+allowing simplicial isomorphisms. Every intermediate complex remains
+homeomorphic to $S^4$ in the same PL class. Transfer at every step
+gives $E(S)$, completing $d=2$. No comparison with the standard
+PL 4-sphere occurs in this induction.
+
+\section{Low dimensions and verification scope}
+
+For $d=1$, a triangulated 2-sphere with $n$ vertices has $3n-6$ edges,
+by Euler's formula and the triangle-edge incidence count. Adding a
+missing edge gives $3n-5$, exceeding the simple planar graph bound.
+Thus the augmented graph does not embed in $S^2$. For $d=0$ there
+is no missing singleton on the actual vertex set. If a convention
+permits a ghost singleton, its addition gives three points, which
+cannot embed in the two-point sphere $S^0$. These cases, the
+metastable argument and the dimension-four obstruction prove
+Theorem~\ref{thm:main}.
+
+The research record includes exact finite computations of face-ring
+reductions and homological witnesses, together with adverse controls.
+They provide finite consistency and reproducibility evidence. The
+universal conclusion rests on the arguments and cited theorems above;
+those computations neither replace them nor constitute formal proof
+certification.
+
+\paragraph{Disclosure and manuscript status.}
+AI tools were used extensively in solving, drafting, separate
+adversarial auditing, and finite verification. This manuscript is
+unrefereed, and no independent human peer review has been obtained.
+AI review is not formal verification. The author is responsible for
+the stated claims and citations. The note makes no assertion that a
+current literature search certifies the problem's open status or that
+this is its first resolution.
+
+\clearpage
+\begin{thebibliography}{9}
+
+\bibitem{A}
+K. Adiprasito,
+\emph{Combinatorial Lefschetz theorems beyond positivity},
+arXiv:1812.10454v4, 2 July 2019.
+\url{https://arxiv.org/abs/1812.10454v4}.
+
+\bibitem{AP}
+K. Adiprasito and Z. Pat\'akov\'a,
+\emph{A higher dimensional version of F\'ary's theorem},
+Bull. London Math. Soc. \textbf{57} (2025), no.~5, 1409--1414.
+\href{https://doi.org/10.1112/blms.70036}{doi:10.1112/blms.70036}.
+Author version: \url{https://arxiv.org/abs/2404.12265}.
+
+\bibitem{DFL}
+M. W. Davis, J. Fowler and J.-F. Lafont,
+\emph{Aspherical manifolds that cannot be triangulated},
+Algebr. Geom. Topol. \textbf{14} (2014), no.~2, 795--803.
+\href{https://doi.org/10.2140/agt.2014.14.795}{doi:10.2140/agt.2014.14.795}.
+
+\bibitem{KX}
+K. Karu and E. Xiao,
+\emph{On the anisotropy theorem of Papadakis and Petrotou},
+Algebraic Combinatorics \textbf{6} (2023), no.~5, 1313--1330.
+\href{https://doi.org/10.5802/alco.298}{doi:10.5802/alco.298}.
+
+\bibitem{L}
+W. B. R. Lickorish,
+\emph{Simplicial moves on complexes and manifolds},
+Geom. Topol. Monogr. \textbf{2} (1999), 299--320.
+\url{https://arxiv.org/abs/math/9911256}.
+
+\bibitem{N}
+E. Nevo,
+\emph{Higher minors and Van Kampen's obstruction},
+Math. Scand. \textbf{101} (2007), 161--176.
+Original preprint, 23 February 2006:
+\url{https://arxiv.org/abs/math/0602531v1}.
+
+\bibitem{NW}
+E. Nevo and U. Wagner,
+\emph{On the embeddability of skeleta of spheres},
+Israel J. Math. \textbf{174} (2009), 381--402.
+\href{https://doi.org/10.1007/s11856-009-0119-5}{doi:10.1007/s11856-009-0119-5}.
+The section and theorem locators used here also refer to the author
+preprint dated 4 February 2008:
+\url{https://pi.math.cornell.edu/~eranevo/homepage/NevoWagner-EmbeddabilitySkeletaSpheres-Rev2.pdf}.
+
+\bibitem{W}
+C. Weber,
+\emph{Plongements de poly\`edres dans le domaine m\'etastable},
+Comment. Math. Helv. \textbf{42} (1967), 1--27.
+\href{https://doi.org/10.1007/BF02564408}{doi:10.1007/BF02564408}.
+
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,261 @@
+{
+  "completed_utc": "2026-10-13T04:19:10.344708+00:00",
+  "baseline_sha256": "3338d2793a9b894216e766ec5f681f979407d8de79b179a68b8a8293e6bd2df9",
+  "runs": [
+    {
+      "name": "omit_negative_layers",
+      "mode": "normal",
+      "replace": {
+        "old": "for sign in (1, -1):",
+        "new": "for sign in (1,):"
+      },
+      "mutant_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: threshold exact reconstruction",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "omit_negative_layers",
+      "mode": "O",
+      "replace": {
+        "old": "for sign in (1, -1):",
+        "new": "for sign in (1,):"
+      },
+      "mutant_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: threshold exact reconstruction",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "omit_negative_layers",
+      "mode": "OO",
+      "replace": {
+        "old": "for sign in (1, -1):",
+        "new": "for sign in (1,):"
+      },
+      "mutant_sha256": "66698f1fcb337a69d56ec14620f8423dba3e55f99298200c30356bb67cdd47ec",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: threshold exact reconstruction",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "strict_threshold",
+      "mode": "normal",
+      "replace": {
+        "old": "sign*x >= level",
+        "new": "sign*x > level"
+      },
+      "mutant_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: nonzero positive layer",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "strict_threshold",
+      "mode": "O",
+      "replace": {
+        "old": "sign*x >= level",
+        "new": "sign*x > level"
+      },
+      "mutant_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: nonzero positive layer",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "strict_threshold",
+      "mode": "OO",
+      "replace": {
+        "old": "sign*x >= level",
+        "new": "sign*x > level"
+      },
+      "mutant_sha256": "4f4d0d7e6007a44f5d40d79de1335b3ba983395141fa6da5bd0de48102651f11",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: nonzero positive layer",
+      "actual_last_error": "RuntimeError: threshold exact reconstruction",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 484,
+      "stderr_sha256": "034bd1e4800309e5f5ece6e96590f04c7386d0fae45eff49fda7a0047e9869f9"
+    },
+    {
+      "name": "reverse_lp_sign",
+      "mode": "normal",
+      "replace": {
+        "old": "need(dot(cost, direction) >= 0, 'LP layer objective sign')",
+        "new": "need(dot(cost, direction) <= 0, 'LP layer objective sign')"
+      },
+      "mutant_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: LP layer objective sign",
+      "actual_last_error": "RuntimeError: LP layer objective sign",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 367,
+      "stderr_sha256": "a05e8643fd118a0b0db5154522a09f6241f12b68b606ca098d06ac676ec68c91"
+    },
+    {
+      "name": "reverse_lp_sign",
+      "mode": "O",
+      "replace": {
+        "old": "need(dot(cost, direction) >= 0, 'LP layer objective sign')",
+        "new": "need(dot(cost, direction) <= 0, 'LP layer objective sign')"
+      },
+      "mutant_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: LP layer objective sign",
+      "actual_last_error": "RuntimeError: LP layer objective sign",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 367,
+      "stderr_sha256": "a05e8643fd118a0b0db5154522a09f6241f12b68b606ca098d06ac676ec68c91"
+    },
+    {
+      "name": "reverse_lp_sign",
+      "mode": "OO",
+      "replace": {
+        "old": "need(dot(cost, direction) >= 0, 'LP layer objective sign')",
+        "new": "need(dot(cost, direction) <= 0, 'LP layer objective sign')"
+      },
+      "mutant_sha256": "ca172f53e4632ea4a9b55df46e3bd9636318782a923e7291d3ce0adfd79c5fb0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: LP layer objective sign",
+      "actual_last_error": "RuntimeError: LP layer objective sign",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 367,
+      "stderr_sha256": "a05e8643fd118a0b0db5154522a09f6241f12b68b606ca098d06ac676ec68c91"
+    },
+    {
+      "name": "remove_small_layer",
+      "mode": "normal",
+      "replace": {
+        "old": "if q >= 1:",
+        "new": "if q > 0:"
+      },
+      "mutant_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: layer removal feasibility",
+      "actual_last_error": "RuntimeError: strict l1 decrease",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 482,
+      "stderr_sha256": "3f9e11c1efd9f9269d9dabd7267a241d29c89aeaae36bd809918659307eb1a24"
+    },
+    {
+      "name": "remove_small_layer",
+      "mode": "O",
+      "replace": {
+        "old": "if q >= 1:",
+        "new": "if q > 0:"
+      },
+      "mutant_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: layer removal feasibility",
+      "actual_last_error": "RuntimeError: strict l1 decrease",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 482,
+      "stderr_sha256": "3f9e11c1efd9f9269d9dabd7267a241d29c89aeaae36bd809918659307eb1a24"
+    },
+    {
+      "name": "remove_small_layer",
+      "mode": "OO",
+      "replace": {
+        "old": "if q >= 1:",
+        "new": "if q > 0:"
+      },
+      "mutant_sha256": "5d82cb37c6bec6c60e69dc60422ccd453abb217d07a5676be42efd69cf3247d0",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: layer removal feasibility",
+      "actual_last_error": "RuntimeError: strict l1 decrease",
+      "intended_rejection": false,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 482,
+      "stderr_sha256": "3f9e11c1efd9f9269d9dabd7267a241d29c89aeaae36bd809918659307eb1a24"
+    },
+    {
+      "name": "reverse_submodularity",
+      "mode": "normal",
+      "replace": {
+        "old": "need(pvalue+qvalue >= values[meet]+values[join], 'exact partial LP submodularity')",
+        "new": "need(pvalue+qvalue <= values[meet]+values[join], 'exact partial LP submodularity')"
+      },
+      "mutant_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: exact partial LP submodularity",
+      "actual_last_error": "RuntimeError: exact partial LP submodularity",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 422,
+      "stderr_sha256": "8a3d884ba98d106cf87f5f087036a1e6f37bc59a8ff5e9555f9edfe707dcc146"
+    },
+    {
+      "name": "reverse_submodularity",
+      "mode": "O",
+      "replace": {
+        "old": "need(pvalue+qvalue >= values[meet]+values[join], 'exact partial LP submodularity')",
+        "new": "need(pvalue+qvalue <= values[meet]+values[join], 'exact partial LP submodularity')"
+      },
+      "mutant_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: exact partial LP submodularity",
+      "actual_last_error": "RuntimeError: exact partial LP submodularity",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 422,
+      "stderr_sha256": "8a3d884ba98d106cf87f5f087036a1e6f37bc59a8ff5e9555f9edfe707dcc146"
+    },
+    {
+      "name": "reverse_submodularity",
+      "mode": "OO",
+      "replace": {
+        "old": "need(pvalue+qvalue >= values[meet]+values[join], 'exact partial LP submodularity')",
+        "new": "need(pvalue+qvalue <= values[meet]+values[join], 'exact partial LP submodularity')"
+      },
+      "mutant_sha256": "de50fc8cb7e3f62451d9076ea5d2ca72c42a930845c6a649ac1f2e3c56a215d2",
+      "exit_code": 1,
+      "expected_last_error": "RuntimeError: exact partial LP submodularity",
+      "actual_last_error": "RuntimeError: exact partial LP submodularity",
+      "intended_rejection": true,
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 422,
+      "stderr_sha256": "8a3d884ba98d106cf87f5f087036a1e6f37bc59a8ff5e9555f9edfe707dcc146"
+    }
+  ]
+}

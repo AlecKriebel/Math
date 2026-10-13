@@ -1,0 +1,34 @@
+# A telescoping proof of the focal antipedal sum invariant
+
+Alec Kriebel, independent researcher; ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). Version 1.0, 6 October 2026. CC BY 4.0.
+
+The self-contained note proves the ordinary positive focal antipedal distance-sum equality observed by Reznik, Garcia and Koiller as invariant k603. The outer ellipse has a > b > 0, and its strictly nested confocal elliptical caustic has 0 < lambda < b². The proof covers every regular closed admitted billiard/Poncelet orbit, including odd primitive periods, stars, reversal and repeated traversal. It does not assert that either individual sum is constant through its family, or extend to hyperbolic or degenerate caustics.
+
+For each edge, the two antipedal vertices are intersections of the lines through the original endpoints perpendicular to their respective focal rays. The norm difference equals Gamma times the vertical displacement after choosing a consistent caustic-on-left orientation. Reversing endpoints preserves the norm difference and reverses the displacement coefficient. Closure proves equality of the sums.
+
+## Files and reproducibility
+
+- `focal_antipedal_sum.tex`: standalone manuscript source, including bibliography and disclosure.
+- `verify.py`: standard-library exact rational-chord verifier, with active explicit guards in both normal and optimized Python.
+- `run_verification.py`: executes normal and optimized verification and eight mandatory deliberately invalid subprocess runs.
+- `verification_normal.json`, `verification_optimized.json`, `execution_envelope.json`: actual executed results and compact process receipts, with real child PIDs, UTC endpoints, exit codes and stream hashes.
+- `proof_binding.json`: binds verification to the exact manuscript bytes.
+- `source_audit_summary.md`, `input_pins.json`: bounded provenance, attribution and exact preserved research-input references.
+- `intended_zenodo_metadata.json`, `zenodo-deposit.json`: identical intended metadata; the latter plans the adjacent PDF and support ZIP file names.
+- `LICENSE`, `RESEARCH_LOG.md`: licensing and preparation checkpoints.
+- `seal_source_payload.py`, `source_payload_manifest.json`, `source_seal_receipt.json`: source integrity validation and the actual authored-source seal.
+
+Use Python 3.10 or newer; no packages or network are required. Run the
+following commands in an extracted or disposable scratch copy. In particular,
+the runner writes new execution receipts beside itself; use a copy to preserve
+the immutable sealed source package:
+
+```sh
+python3 verify.py
+python3 -O verify.py
+python3 run_verification.py
+```
+
+Each positive run checks 1,456 directed chord cases with 63,346 passing explicit guards. This includes 714 paired reversal cases, 80 horizontal chords, and coefficient signs negative/zero/positive in 1,040/60/356 cases. Three closed-cycle controls use a genuine four-cycle, its triple traversal and its reversed triple traversal. All four mandatory incorrect coefficient, focal height, norm sign and manuscript binding controls are rejected internally in each positive run. The runner also requires each of these four independently invoked faulty processes to exit with the expected rejection in both normal and optimized mode: eight required failures. These counts describe finite exact controls, not the scope of the written all-real/all-period theorem. No finite closed odd orbit is claimed checked by this program; the manuscript proof covers odd periods without a parity assumption.
+
+The program solves both antipedal defining equations independently. For a rational chord it uses the unnormalized support normal `(alpha,beta)=(delta_y,-delta_x)`, with its sign chosen for positive support `w`. Writing `T=alpha²+beta²` and `K=a²alpha²+b²beta²`, tangency gives `lambda=(K-w²)/T`. The exact solver norm is compared to `T (R_sigma/H_sigma)²`, with `H_sigma=w-sigma c alpha > 0`. An exact rational square root of `K-w²` removes the common square-root scale in the coboundary check. No approximation, division by the vertical displacement
