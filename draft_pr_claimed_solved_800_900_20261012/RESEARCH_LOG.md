@@ -24,3 +24,9 @@
 - All three frozen original archives reproduced under normal and optimized Python: six passes, explicitly integrity only.
 - Independent source/priority and mathematical adversaries still running. No merge/publication.
 - Overall estimated completion:3%; PR810 acceptance/publication:30%.
+
+## 2026-10-13T03:24:14.241206+00:00 — checkpoint 4
+
+- Fresh independent mathematical audit PASS; zero required repairs. Root independent replay matched all diagnostic output excluding timestamp.
+- Priority remains pending; no acceptance/merge/publication action yet.
+- Overall completion estimate:4%; PR810:40%.
