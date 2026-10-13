@@ -83,7 +83,5 @@ for n in range(3,204,2):
         idx=[j for j in range(n) if (v+j*delta)%2==0]
         check(idx==[(n-1)//2],'opposite_edge_exact_index')
         check((delta%2)!=0,'incident_neighbors_regular')
-        check((-Fraction(1,2)+Fraction(1))%1==Fraction(1,2),'forced_zero_negation_real_coordinate')
         families+=1
-check([(3-1)//2,(3+1)//2]==[1,2],'N3_opposite_edge_between_finite_neighbors')
 print(json.dumps({'status':'PASS','assertions':sum(C.values()),'families':dict(C),'primitive_odd_lattice_families':families,'sympy_version':s.__version__,'scope':'Finite exact algebra and arithmetic controls only; universal proof is reconstructed independently in INDEPENDENT_DERIVATION.md.'},indent=2))

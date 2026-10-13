@@ -39,6 +39,29 @@ F=(dot(P,P)*dot(Q,Q)-(dot(P,P)+dot(Q,Q))*dot(P,Q)/2)/det(P,Q)
 zero('incident_terms_combine_into_submitted_F',edge-F)
 zero('F_numerator_polarization',dot(P,P)*dot(Q,Q)-(dot(P,P)+dot(Q,Q))*dot(P,Q)/2-((dot(P,P)+dot(Q,Q))*dot(P-Q,P-Q)-(dot(P,P)-dot(Q,Q))**2)/4)
 
+# Fresh verification of the canonical chord and foot uses formal addition
+# coordinates and only the quadratic Jacobi relations, with no sampling.
+S,C,D,t,cv,dv,b0,k=s.symbols('S C D t cv dv b0 k')
+relations=[(C,1-S*S),(D,1-k*k*S*S),(cv,1-t*t),(dv,1-k*k*t*t),(b0,1-k*k)]
+def jacobi_zero(name,expr):
+    numerator=s.fraction(s.cancel(expr))[0]
+    for variable,square in relations:
+        numerator=s.rem(numerator,variable**2-square,variable)
+    zero(name,numerator)
+L=1-k*k*t*t*S*S;a=dv/cv;b=b0/cv
+minus=s.Matrix([-a*(S*cv*dv-t*C*D)/L,b*(C*cv+S*t*D*dv)/L])
+plus=s.Matrix([-a*(S*cv*dv+t*C*D)/L,b*(C*cv-S*t*D*dv)/L])
+normal=s.Matrix([-S,C/b0])
+jacobi_zero('canonical_chord_first_endpoint_on_actual_caustic_tangent',dot(normal,minus)-1)
+jacobi_zero('canonical_chord_second_endpoint_on_actual_caustic_tangent',dot(normal,plus)-1)
+jacobi_zero('canonical_chord_determinant',det(minus,plus)-2*a*b*t*cv*D/L)
+jacobi_zero('canonical_confocality',a*a-b*b-k*k)
+q=normal/dot(normal,normal)
+qclaimed=s.Matrix([-b0*b0*S/(D*D),b0*C/(D*D)])
+jacobi_zero('canonical_origin_foot_x',q[0]-qclaimed[0])
+jacobi_zero('canonical_origin_foot_y',q[1]-qclaimed[1])
+jacobi_zero('real_normal_angular_velocity',det(normal,s.Matrix([-C*D,-S*D/b0]))-D/b0)
+
 def trajectory(name, points, aa,bb,ca,cb):
     n=len(points)
     positive(name+'_strict_caustic_minor',cb)

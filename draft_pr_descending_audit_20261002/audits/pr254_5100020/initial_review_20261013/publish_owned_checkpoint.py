@@ -34,7 +34,7 @@ row = next(x for x in base64.b64decode(q['content']).decode().splitlines() if '5
 assert row.split('|')[8].strip() == 'claimed_solved'
 paths = [P / 'RESEARCH_LOG.md', P / 'CURRENT_GOAL_SELECTION_20261013.json',
          D / 'INTAKE.json', D / 'RESEARCH_LOG.md', D / 'ROOT_INTAKE_AND_REPRODUCTION.md',
-         D / 'publish_owned_checkpoint.py', D / 'root_reproduce.py', D / 'PRIMARY_SOURCE_HASH_CHECKS.json', P / 'audits/pr255_5100022/initial_review_20261013/PRIORITY_DISPOSITION_PUBLICATION_RECEIPT.json']
+         D / 'publish_owned_checkpoint.py', D / 'root_reproduce.py', D / 'root_replay_fresh.py', D / 'PRIMARY_SOURCE_HASH_CHECKS.json', P / 'audits/pr255_5100022/initial_review_20261013/PRIORITY_DISPOSITION_PUBLICATION_RECEIPT.json']
 paths += sorted((D / 'submitted/unsolved_math_prioritization/attempts/5100020').rglob('*'))
 paths += sorted((D / 'root_reproduction').glob('*.json'))
 paths += [p for p in [D / 'ROOT_PROOF_ANALYSIS.md', D / 'ROOT_MATHEMATICAL_ACCEPTANCE.md'] if p.exists()]
