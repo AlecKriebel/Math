@@ -180,3 +180,8 @@ or human review certificates.
 The published deposit and tracker entry must say **literal equality of full
 fixed-labelled connected sign partitions**, retain collision inclusion, credit
 known ingredients, and retain the unrefereed/extensive-AI disclosure.
+
+The [portable evidence index](evidence/README.md) maps stage-specific names and
+historical machine-local paths to the included records. Original reports and
+input pins remain unchanged; omitted raw source bodies are explicitly marked
+as provenance records with public primary URLs, not included archive files.

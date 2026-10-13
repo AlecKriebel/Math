@@ -36,6 +36,8 @@ are AI adversarial reviews; no conventional human peer review is claimed.
   six actual source mutations in all three modes. All guards use explicit
   exceptions and survive optimization.
 - `evidence/`: fresh receipts, input/source pins and independent review records.
+  Its [portable provenance index](evidence/README.md) maps historical paths to
+  included counterparts and identifies omitted source bodies.
 - `PACKAGE_MANIFEST.json`: file sizes and SHA-256 hashes, excluding itself.
 
 Use Python 3.10 or later, with no third-party packages:

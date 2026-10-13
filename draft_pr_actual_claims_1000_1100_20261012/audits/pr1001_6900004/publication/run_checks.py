@@ -31,6 +31,18 @@ def mathematical_payload(value):
     return {k: v for k, v in value.items() if k not in ('uid', 'optimization')}
 
 
+def exact_json_equal(actual, expected):
+    if type(actual) is not type(expected):
+        return False
+    if isinstance(actual, dict):
+        return (actual.keys() == expected.keys() and
+                all(exact_json_equal(actual[k], expected[k]) for k in actual))
+    if isinstance(actual, list):
+        return (len(actual) == len(expected) and
+                all(exact_json_equal(a, e) for a, e in zip(actual, expected)))
+    return actual == expected
+
+
 def execute(path, mode):
     command = [sys.executable, '-I', '-S', '-B']
     if mode:
@@ -70,10 +82,12 @@ def main():
             actual = json.loads(row['stdout'])
             require(actual.get('status', actual.get('verdict')) == 'PASS',
                     name + ' did not report PASS')
-            require(mathematical_payload(actual) == mathematical_payload(expected),
+            require(exact_json_equal(mathematical_payload(actual),
+                                     mathematical_payload(expected)),
                     name + ' mathematical output differs from the pinned reference')
             if 'optimization' in actual:
-                require(actual['optimization'] == mode, 'optimization identity differs')
+                require(type(actual['optimization']) is int and
+                        actual['optimization'] == mode, 'optimization identity differs')
             row['actual_execution_identity'] = {
                 k: actual[k] for k in ('uid', 'optimization') if k in actual}
             row['mathematical_reference_match'] = True
