@@ -1,0 +1,9 @@
+# PR523 / 30004064
+
+## Checkpoint A — 2026-10-12T21:18:38.350730-07:00
+
+Live exact-head status gate is claimed_solved, open draft. Source snapshot acquired at 2d771da7629db2dc9751c96f96af21149e6d45e5; original claims treated as hypotheses. Candidate claims literal exact-minimizer obstruction and says the cited paper already acknowledges a scalar obstruction. Original-problem scope and priority therefore require particularly close reconciliation before any preprint preparation or acceptance. Mathematical validity, tomographic realization, and actual original question will be audited independently. Estimate5% of current lifecycle. No accepted result or publication decision.
+
+## Checkpoint 008 — 2026-10-13T04:27:52.755504+00:00
+
+PR523 remains eligible at head2d771da7629db2dc9751c96f96af21149e6d45e5, exact claimed_solved row. Root reproduced all author and original audit checks, including frozen manifest and byte-identical replay. Independent convex, tomography, and primary-source reviewers remain independent. Source reviewer discovered prior Ferudun preprint DOI10.5281/zenodo.23110494; root independently retrieved PDF SHA b374bbc76792418e60fa96a329a5ae6b6f5e596b12b5572b69466d6467bab43b and DataCite chronology registered2026-10-02, preceding candidate datedOct4. Its Lemma2.1 exactly covers the box-feasible full-rank/projected zero-minimizer theorem. Root independently verified an attempted three-direction5x5 repair:6250 row-conditioned images, unique binary image,14 fixed box pixels, exact exposing certificate/restricted rank10, and no full sign backprojection. This repair construction is already prior Theorem4.2. Mathematical identities appear valid; original numerical-conjecture scope and priority gate are not accepted. CurrentPR lifecycle estimate35%; shard22%. No paper, remote deposition, tracker write or PR mutation for523.
