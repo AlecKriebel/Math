@@ -18,7 +18,7 @@ computation, independent adversarial reviews, a substantive priority audit,
 publication artifacts, and sequential fresh full-package adversarial reviews.
 Preprints disclose extensive AI assistance and their unrefereed status. Publication
 uses the repository Zenodo tool followed by a Google Workspace CLI row in the
-requested `Math Puzzles` tracker (gid 1254632077). No paper is accepted yet.
+requested `Math Puzzles` tracker (gid 1254632077). PR #904 is accepted, merged and published: [10.5281/zenodo.23331258](https://doi.org/10.5281/zenodo.23331258), tracker row 68. Its audited publication record is preserved in `audits/pr904_30000347/`.
 
 Own work is isolated here. No other shard or individual is contacted. Main
 checkpoints use a private index and nonforced remote main pushes; the shared

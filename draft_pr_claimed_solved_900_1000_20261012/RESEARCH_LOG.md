@@ -47,3 +47,9 @@ Completion estimate:85% of first PR;about7.1% of12 eligible shard dispositions/p
 Fresh reviewer 03 passes candidate revision 2 with no required repairs, after independent universal proof/source reconstruction, all four PDF pages, normal/optimized replay and 16 additional rejected mutation cases. Accepted artifact bytes match the current freeze. Live draft PR #904 retains the reviewed head and exact claimed_solved status. The repository Zenodo kit staged draft 23331258 and verified both files and exact metadata, with no normalization. Merge and explicit publication, then tracker and native publication ledger remain.
 
 Completion estimate: 96% of first PR, 8% of 12 eligible shard dispositions/publications; 0 fully complete.
+
+## 2026-10-13T04:24:01.892761+00:00 — #904 completed; #905 eligibility rechecked
+
+#904 accepted and merged, exact reviewed Zenodo metadata and files published under DOI 10.5281/zenodo.23331258; tracker row 68 confirmed. Native publication ledger pushed and independently read back at 3465d28b3a417128f445b66750a615404e49dce0. PR title/body updated to the factual published outcome. No other status or target processed. #905 live gate: True; exact proposed status claimed_solved.
+
+Completion estimate: 100% of #904; 8.33% of 12 initially eligible shard dispositions/publications.
