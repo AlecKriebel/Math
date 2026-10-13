@@ -24,7 +24,14 @@ python3 -m venv .venv
 
 Run Python without optimization (`-O` or `PYTHONOPTIMIZE`), because the archived original checks use assertions. The wrapper refuses optimized execution. Python 3.9 or later is sufficient. The exact symbolic dependency is SymPy 1.14.0 with mpmath 1.3.0. Verification runs without network access once dependencies are installed. Passing output is evidence for the recorded identities and integrity checks, subject to the analytic and source-scope limitations stated above.
 
-To rebuild the PDF, use a LaTeX installation with AMS packages, `geometry`, `lmodern`, and `hyperref`, or run `tectonic paper/positivity_loss.tex`. PDF binary hashes can vary with build timestamps and engine versions; the published PDF has its own verified hash.
+To rebuild the PDF, use a LaTeX installation with AMS packages, `geometry`, `lmodern`, and `hyperref`. Keep build output outside the verified extraction so subsequent integrity checks do not encounter extra files. For example, from the archive's top directory:
+
+```sh
+mkdir -p ../positivity-loss-rebuilt
+tectonic --outdir ../positivity-loss-rebuilt paper/positivity_loss.tex
+```
+
+PDF binary hashes can vary with build timestamps and engine versions; the published PDF has its own verified hash. The strict archive inventory deliberately rejects additions other than the documented environment/cache directories.
 
 ## License and provenance
 
