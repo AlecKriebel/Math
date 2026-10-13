@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
@@ -103,17 +104,38 @@ def main():
                'main_base': base, 'prepared_commit': commit,
                'changed_paths_vs_main': changed, 'queue_before': oldrow,
                'queue_after': replacement, 'pushed': False}
-    if a.push:
-        subprocess.run(['git', 'push', 'origin',
-                        commit + ':refs/heads/' + snap['headRefName']],
-                       cwd=REPO, check=True)
-        actual = json.loads(subprocess.check_output([
-            'gh', 'pr', 'view', str(number), '--repo', 'AlecKriebel/Math',
-            '--json', 'headRefOid'], text=True))['headRefOid']
-        if actual != commit:
-            raise RuntimeError('PR head readback mismatch')
-        receipt['pushed'] = True
     out = Path(mapping['receipt_path'])
+    out.write_text(json.dumps(receipt, indent=2) + '\n')
+    if a.push:
+        receipt['push_target'] = 'refs/heads/' + snap['headRefName']
+        try:
+            subprocess.run(['git', 'push', 'origin',
+                            commit + ':' + receipt['push_target']],
+                           cwd=REPO, check=True)
+        except subprocess.CalledProcessError:
+            receipt['push_outcome'] = 'failed_or_unknown; reconcile remote before retry'
+            out.write_text(json.dumps(receipt, indent=2) + '\n')
+            raise
+        receipt['pushed'] = True
+        receipt['head_readback_status'] = 'pending'
+        receipt['head_readback_observations'] = []
+        out.write_text(json.dumps(receipt, indent=2) + '\n')
+        # PR metadata can lag a successful Git ref update. Only reads repeat.
+        for attempt in range(4):
+            actual = json.loads(subprocess.check_output([
+                'gh', 'pr', 'view', str(number), '--repo', 'AlecKriebel/Math',
+                '--json', 'headRefOid'], text=True))['headRefOid']
+            receipt['head_readback_observations'].append(actual)
+            if actual == commit:
+                receipt['head_readback_status'] = 'confirmed'
+                break
+            out.write_text(json.dumps(receipt, indent=2) + '\n')
+            if attempt < 3:
+                time.sleep(3)
+        if actual != commit:
+            receipt['head_readback_status'] = 'mismatch; reconcile before further mutation'
+            out.write_text(json.dumps(receipt, indent=2) + '\n')
+            raise RuntimeError('PR head readback mismatch; successful push receipt retained')
     out.write_text(json.dumps(receipt, indent=2) + '\n')
     print(json.dumps(receipt))
 

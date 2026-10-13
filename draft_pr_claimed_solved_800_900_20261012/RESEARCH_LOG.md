@@ -66,3 +66,15 @@ R4 full-package fresh-context review passes with no actionable issues; all nine 
 ## 2026-10-13T05:04:10.048558+00:00 — final acceptance checkpoint
 
 R5 ACCEPT_AS_QUALIFIED_UNREFEREED_PREPRINT with no required corrections, independently reconstructed proofs and primary attribution, all nine input hashes unchanged. R4/R5 are two successive clear fresh-context complete-package rounds on identical bytes. Root accepts exact annular theorem and qualified preprint; original proof/history unchanged, priority/classical-consequence disclosures retained. Final scoped integration contains111 files with acceptance receipt and updated outer wrapper/inventory. Actual branch update/merge/publication/tracker still pending. Human scholarly review/additional primary access could narrow historical gaps; no outreach prepared. Completion estimates:math acceptance100%; PR81085%; program7%.
+
+## 2026-10-13T05:10:06.681558+00:00 — merge checkpoint
+
+PR810 merged at 2026-10-13T05:08:19Z with reviewed head bcd6c47f265d131d0a40a2041e79fc7ff284da2d and merge commit b663b31cd447d81646aa5583b8c4f2375347757e. Original post-push head readback was temporarily stale; later GraphQL, REST and Git remote agreed. No push mutation was retried. All111 mapped files on current main match, and nine original upload inputs remain sealed. Exact target row claimed_solved with empty DOI before first deposit. Zenodo staging now authorized within confirmed accepted package. Completion estimates:PR81090%;program7%.
+
+## 2026-10-13T05:18:30.462263+00:00 — publication and tracker confirmed
+
+Merged head bcd6c47f265d131d0a40a2041e79fc7ff284da2d / merge commit b663b31cd447d81646aa5583b8c4f2375347757e. Zenodo production record23332261 published and independently inspected; DOI https://doi.org/10.5281/zenodo.23332261 resolves HTTP200 to the record. Exact accepted PDF/support and metadata match. Workspace CLI appended 'Math Puzzles'!A74:D74 and exact readback confirms one matching DOI. Public receipt/root inventory and queue DOI are now prepared for scoped main update. No frozen core changes. Mathematical result accepted100%; acceptance/publication workflow98% until main receipt/DOI push/readback; program8%.
+
+## 2026-10-13T05:25:15.837052+00:00 — PR810 completed
+
+PR810 exact reviewed revision merged; production preprint DOI https://doi.org/10.5281/zenodo.23332261 published, metadata/files verified, DOI resolved, Math Puzzles A74:D74 exact unique readback. Main publication receipt commit edfcbf620d432d1c33f97d2ae6c84d08d1e29663 verified with112-member closed outer tree and108 protected accepted files unchanged. Target QUEUE row retains claimed_solved with actual DOI; every other queue byte preserved by scoped preview, and published PR body read back. PR810 workflow complete100%; program8% (one of twelve initially eligible efforts completed). Continue ascending to next exact-status draft gate; other-status exclusions remain untouched.
