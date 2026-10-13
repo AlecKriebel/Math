@@ -124,12 +124,25 @@ for x, y in seeds:
             if p != q:
                 require('orbitwise_irrational_slope_nonzero', times(p-q,alpha)[1] != 0)
 
+bad_frame = eye(4)
+bad_frame[1][0] = Q(2,3)
+gluing = eye(4)
+gluing[1][0] = 1
+bad_frame_at_target = eye(4)
+bad_frame_at_target[1][0] = Q(2,3)-1
+omitted_transverse = eye(4)
+actual_transverse = eye(4)
+actual_transverse[2][3] = 2
 controls = {
-    'continuous_time_not_time_one_ergodicity': correlation(Q(1,2)) == Q(1,2),
+    'clock_invariant_at_time_one_but_not_half_time': Q(1)%1 == 0 and Q(1,2)%1 != 0,
+    'continuous_time_cross_seam_fraction_matters': correlation(Q(1,2)) == Q(1,2),
     'clock_eigenfunction_is_a_factor_not_system': [Q(n)%1 for n in range(7)] == [0]*7,
     'frozen_zero_speed_is_not_the_band': correlation(Q(0)) == 1 and correlation(Q(1)) == 0,
     'positive_length_not_single_energy': Q(3,8)-Q(1,8) == Q(1,4) and Q(1,4)-Q(1,4) == 0,
     'negative_time_correlation_includes_last_return_cell': correlation(Q(-1,3)) == Q(2,3),
+    'wrong_frame_sign_does_not_descend': matmul(gluing,bad_frame) != bad_frame_at_target,
+    'rational_alpha_has_nonconstant_invariant_character': (7*Q(2,7)).denominator == 1,
+    'omitted_energy_derivative_breaks_global_formula': actual_transverse != omitted_transverse,
 }
 require('controls_all_pass', all(controls.values()))
 

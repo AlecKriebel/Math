@@ -31,3 +31,27 @@ does not settle historical priority or retrospectively sharpen the old wording.
 New checkable strengthening to derive: the suspension observable has exact
 continuous-time correlation max(1-|s|,0). This provides a spectral falsification
 test extending the candidate's integer-time orthogonality argument.
+
+## 2026-10-13 03:11:02 UTC — checkpoint (completion estimate: 80%)
+
+New independent code passed 7,036 exact checks with Q(sqrt(2)) arithmetic and
+no imports from author or prior audit programs. Reproduced all fractional-time
+correlation cells and the transverse derivative. The invariant-subset
+classification is valid after rational-time Fubini and strong continuity.
+Re-derived maximal-good-region existence by countable disjointification and
+L2 tail approximation. A compactly supported clock bump makes the orthogonal
+witness smooth, avoiding any reliance on the L2 seam discontinuity. The
+Bohr trajectory test gives pairwise uniform separation 2 for integer shifts.
+The global energy-dependent frame derivative proves zero exponents on all M.
+
+## 2026-10-13 03:14:38 UTC — final checkpoint (completion estimate: 100%)
+
+Completed REVIEW.md, independent_reproduction.py, and RESULTS.json. Verdict:
+the frozen theorem is mathematically sound for its explicit unrestricted
+smooth symplectic and full-Koopman almost-periodicity convention. No mandatory
+mathematical repair found. Strongest verified result includes global zero
+exponents, a band of ambient measure 1/4 excluding every positive invariant
+almost-periodic region, per-energy ergodicity and continuous spectral witness,
+and failure of Bohr almost periodicity for every trajectory in the band.
+Historical novelty and unstated stronger ambient categories are not certified.
+Only authored review artifacts were written, all within the assigned folder.

@@ -29,3 +29,32 @@ Still to do: symbolic all-parameter differential-form/derivative checks,
 candidate replay and input-integrity binding, complete written geometric and
 measure-theoretic falsification report, and exact resolution verdict with
 remaining editorial/scope limits.
+
+## 2026-10-12 20:15 PDT (2026-10-13 03:15 UTC): checkpoint 2
+
+Best-guess completion: **100%** of the assigned geometry/source audit.
+
+Independent universal polynomial tests verify 16 identities for form descent,
+nondegeneracy, frame equivariance, full energy-dependent derivative, inverse,
+symplecticity, Hamiltonian contraction and exact band length. Four controls
+reject deliberately wrong signs or omitted derivative terms. Replayed the
+candidate's 3,248 finite checks and the prior audit's 2,460 checks, controls,
+manifests and mutation tests. All pass, with all 24 frozen files unchanged.
+
+The completed `GEOMETRY_REVIEW.md` rebuilds the analytic arguments, including
+global smooth cutoff, component regularity, disintegration, all tangent
+exponents and exclusion of positive-measure almost-periodic restrictions.
+Verdict PASS; mandatory geometric repairs: none. Strongest extra verified
+conclusion: this particular Hamiltonian has zero exponents on the entire
+four-manifold. Historical priority remains outside this family's verdict.
+
+Source-resolution verdict is affirmative for the printed existence question
+in the explicit smooth symplectic category and spectral interpretation.
+The original item's terminology is informal, but the author's cited spectral
+context and later definition corroborate this interpretation. Keep the
+precise definition and ambient category visible in any preprint; no exact,
+Euclidean, natural-mechanical, generic or weak-mixing strengthening is
+authorized by this audit. Full source bytes, extracts and render are now
+isolated in `sources.private/`; authored metadata records hashes and URLs.
+
+No original input, git state, PR state, queue state, or publication was changed.
