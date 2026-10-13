@@ -15,3 +15,7 @@ Prepared current five-page preprint with revised attribution and diagnostics, pr
 ## 2026-10-13T05:04:10.048558+00:00 — final package acceptance
 
 Two successive clean new-agent rounds R4/R5 accept identical complete-package bytes with no actionable issues. Root accepts exact mathematical theorem and qualified unrefereed preprint for merge/publication. Priority limitations and classical puncture attribution remain explicit. Additional primary-source access and future human scholarly review could narrow historical gaps; no outreach prepared. Mathematical acceptance complete:100%; overall PR810 acceptance/publication:85%. Original proof effort1/5 unchanged.
+
+## 2026-10-13T05:18:30.462263+00:00 — publication and tracker confirmed
+
+Merged head bcd6c47f265d131d0a40a2041e79fc7ff284da2d / merge commit b663b31cd447d81646aa5583b8c4f2375347757e. Zenodo production record23332261 published and independently inspected; DOI https://doi.org/10.5281/zenodo.23332261 resolves HTTP200 to the record. Exact accepted PDF/support and metadata match. Workspace CLI appended 'Math Puzzles'!A74:D74 and exact readback confirms one matching DOI. Public receipt/root inventory and queue DOI are now prepared for scoped main update. No frozen core changes. Mathematical result accepted100%; acceptance/publication workflow98% until main receipt/DOI push/readback; program8%.
