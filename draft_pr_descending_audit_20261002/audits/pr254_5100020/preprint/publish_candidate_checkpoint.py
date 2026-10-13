@@ -20,7 +20,7 @@ paths += [x for x in HERE.iterdir() if x.is_file() and x.suffix in ['.md','.py',
 paths += [x for x in (HERE/'verification').rglob('*') if x.is_file() and '__pycache__' not in x.parts]
 # Review reports are separately published only when finalized, never inside the ZIP.
 for folder in HERE.glob('review_*'):
- if (folder/'FINAL_MANIFEST.json').exists():
+ if (folder/'FINAL_AUDIT_MANIFEST.json').exists():
   paths += [x for x in folder.glob('*') if x.is_file() and x.suffix in ['.md','.json','.py']]
 paths=list(dict.fromkeys(paths));entries=[];pins=[]
 for f in paths:
