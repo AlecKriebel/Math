@@ -1,0 +1,68 @@
+--- previously_delivered/verify_integer_endpoint.py
++++ current_source/verify_integer_endpoint.py
+@@ -61,6 +61,8 @@
+     return poly_add(first,poly_shift(P,axis,1,-2*power))
+ 
+ def main():
++    if not __debug__:
++        raise RuntimeError('Assertions must be enabled: do not use Python -O or PYTHONOPTIMIZE.')
+     one = const(1); x = {(1, 0): F(1)}; y = {(0, 1): F(1)}
+     controls = []
+     # J=[[2,1],[0,3]], so F(u,v)=(u/2-v/6,v/3).
+--- previously_delivered/VERIFICATION_PROVENANCE.json
++++ current_source/VERIFICATION_PROVENANCE.json
+@@ -12,12 +12,20 @@
+       "sha256": "4794ddc92c656607361d0ffdeeddd15b3717ec806041be92ad4444aa3fbe75bb"
+     }
+   ],
++  "execution_mode": "Portable checker explicitly refuses optimized Python; exact assertion controls must be enabled.",
+   "new_independent_review_credit": 0,
+   "new_math_attempts": 0,
+   "prepared_verifier": {
+     "name": "verify_integer_endpoint.py",
+-    "sha256": "1f5cf693f721b15d112ff1b2a183aeffbbf1a74b84f8f4c3b7bbc130939d3bba"
++    "sha256": "0a89bfe9750a3c6d8d195efe12091398517d3758d4a94725f12157b1365ddadc"
+   },
+   "schema": "pr57-portable-verifier-provenance/v1",
++  "source_repair": {
++    "new_independent_review_credit": 0,
++    "previous_delivered_sha256": "1f5cf693f721b15d112ff1b2a183aeffbbf1a74b84f8f4c3b7bbc130939d3bba",
++    "previous_delivered_source_is_operative": false,
++    "previous_delivered_source_path": "source_history/verify_integer_endpoint.py",
++    "scope": "Execution-mode refusal only; no diagnostic or manuscript mathematics changed"
++  },
+   "universal_theorem_not_certified_by_finite_controls": true
+ }
+--- previously_delivered/README.md
++++ current_source/README.md
+@@ -16,7 +16,7 @@
+ python3 -B verify_integer_endpoint.py
+ ```
+ 
+-The checker uses only the Python standard library. It writes deterministic JSON to stdout, creates no files, imports no manuscript or historical checker, and makes no network requests. A successful run reports `PASS_FINITE_EXACT_DIAGNOSTICS`. A recorded verification run stores its complete successful stdout as `expected_results.json`; compare the two JSON outputs or their exact bytes. `VERIFICATION_RECORD.json` binds the recorded run to the exact manuscript and checker.
++The checker uses only the Python standard library and explicitly refuses optimized Python (`-O` or a nonzero `PYTHONOPTIMIZE`), because its exact assertion checks must remain enabled. It writes deterministic JSON to stdout, creates no files, imports no manuscript or historical checker, and makes no network requests. A successful run reports `PASS_FINITE_EXACT_DIAGNOSTICS`. A recorded verification run stores its complete successful stdout as `expected_results.json`; compare the two JSON outputs or their exact bytes. `VERIFICATION_RECORD.json` binds the recorded run to the exact manuscript and checker.
+ 
+ Five rational Taylor controls check a nonorthogonal inverse-chart principal matrix, nonlinear inverse-map drift, the negative leading curvature term when the `r=1` correction is omitted, the convex-radius correction and the critical conformal-factor jet. The wrong reversed matrix order produces a different exact value. Further finite controls cover logarithm numerator homogeneity and coefficient bounds for derivative orders 1 through 7, Beltrami numerator homogeneity for `r=1` through 8, and six rational metric-reconstruction examples. These are exact algebraic diagnostics with explicit finite ranges, not a sampled numerical proof of the theorem.
+ 
+--- previously_delivered/HANDOFF.md
++++ current_source/HANDOFF.md
+@@ -8,6 +8,8 @@
+ 
+ The genuine first-preprint-review adjudication is referenced in place by `HANDOFF_BINDINGS.json`, including exact body and mode. It reports no mandatory mathematical finding for the earlier manuscript; it does not cover this final PDF/ZIP/metadata or count as the next final-package review. This assembly adds zero independent-review credit.
+ 
++A narrow SOURCE repair adds explicit optimized-Python refusal to the portable checker. The first delivered checker hash `1f5cf693f721b15d112ff1b2a183aeffbbf1a74b84f8f4c3b7bbc130939d3bba` and its complete original provenance/README/handoff bindings are preserved under `source_history/`; those files are historical, not operative source. The current verifier/provenance/README/bindings carry the revised hash. No diagnostics were executed to infer the guard works; only the new source syntax was parsed. Manuscript math, diagnostic mechanisms, original immutable inputs and zero additional review credit remain unchanged.
++
+ ROOT's remaining sequence:
+ 
+ 1. Read the complete final source, verifier, support, helpers and exact metadata. Compile the final `.tex` with the built-in editor. Export only this package's `integer_endpoint_discontinuity.pdf`, then inspect every page and PDF metadata. ROOT identified the existing earlier export route `/opt/homebrew/bin/tectonic --outdir <this-package> --keep-logs --untrusted <exact-final-tex>` after successful built-in compilation; this preparer has not executed an engine or installed one.
+
+--- genuine_first_export_source/integer_endpoint_discontinuity.tex
++++ current_source/integer_endpoint_discontinuity.tex
+@@ -212,6 +212,7 @@
+ The official workshop passage, complete 2016 erratum, and relevant topology and published uniformization sections of \cite{BB18} were examined. The complete cited endpoint section of \cite{MSS22} was also examined in the wider review. Not every cited dependency or historical book was read directly. Earlier unindexed geometric realizations, especially of the $r=1$ correction, remain a priority limitation. The accompanying exact algebraic diagnostics supplement the written universal proof; finite checks do not certify all derivative orders, global curvature, completeness or priority. No human peer review or journal acceptance is claimed.
+ 
+ \begin{thebibliography}{9}
++\small
+ \bibitem{BH16} I.~Belegradek and J.~Hu,
+ Erratum to: Connectedness properties of the space of complete nonnegatively curved planes,
+ \emph{Math. Ann.} \textbf{364} (2016), 711--712.

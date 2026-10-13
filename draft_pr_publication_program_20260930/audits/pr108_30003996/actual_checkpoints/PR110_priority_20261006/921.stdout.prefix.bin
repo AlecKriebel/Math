@@ -1,0 +1,43 @@
+from pathlib import Path
+import datetime,json,os,hashlib
+A=Path(__file__).resolve().parent
+C=A.parents[2];P=A.parents[1]
+now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+def write(p,obj):
+ p.write_text(json.dumps(obj,indent=2,sort_keys=True)+'\n')
+v=json.loads((P/'CURRENT_PROGRESS.json').read_text())
+v={k:x for k,x in v.items() if not k.startswith('current_')}
+v.update({
+ 'UTC':now,'updated_UTC':now,'current_PR':110,'current_problem_id':5100032,'current_code':'AMR-050-0032',
+ 'current_original_head':'3d159f0a00d0bd7ff8d558d6fbc75af5094f7a35','current_original_literal_status':'claimed_solved',
+ 'current_original_budget':'2/5','current_original_budget_provenance':'incoming QUEUE and original research log; original submitted effort preserved',
+ 'current_new_central_proof_search_turns':0,'current_source_authentication_percent':100,
+ 'current_sourcepair_record':'audits/pr110_5100032/original_head_authentication_20261006/SOURCEPAIR_AUTHENTICATION.json',
+ 'current_source_authentication_complete':True,'current_mathematical_audit_percent':100,
+ 'current_mathematical_clearance':True,'current_mathematical_gate':'audits/pr110_5100032/ROOT_MATHEMATICAL_GATE_20261006.json',
+ 'current_mathematical_family_authentication':'audits/pr110_5100032/ROOT_MATHEMATICAL_FAMILY_AUTHENTICATION_20261006.json',
+ 'current_fresh_math_agents':['pr110_algebraic_identity_adversary_20261006','pr110_geometric_edge_cases_adversary_20261006','pr110_literal_source_scope_adversary_20261006'],
+ 'current_fresh_priority_agents':['pr110_priority_exact_invariant_history_20261006','pr110_priority_classical_confocal_mechanism_20261006','pr110_priority_modern_invariant_mechanism_20261006'],
+ 'current_priority_audit_percent':0,'current_priority_clearance':False,'current_novelty_established':False,
+ 'current_publication_percent':0,'current_publication_ready':False,'current_native_integration_complete':False,
+ 'current_human_disposition_question_pending':False,'current_workflow_estimate_percent':22,
+ 'current_PR_workflow_percent':22,'current_source_original_prior_report_nonempty':True,
+ 'current_repaired_diagnostics':'audits/pr110_5100032/repaired_diagnostics_v1',
+ 'current_required_mathematical_findings':[],
+ 'completion_metadata_checkpoint_pending_at_snapshot':False,
+ 'last_completed_metadata_checkpoint_commit':'735a11defdf906d1552912815810ff72779874a7',
+ 'last_completed_audit_checkpoint_push_pending':False,
+ 'last_completed_final_completion_readback':'audits/pr108_30003996/FINAL_COMPLETION_OWNER_RELEASE_20261006.json',
+ 'advance_to_next_PR_authorized_now':False,
+ 'latest_ordered_intake_record':'ordered_intake_20261006/after_PR108/INTAKE_AFTER_PR108.json',
+ 'next_numeric_intake_cursor':111,'next_eligible_PR_after_current_completion':None,
+ 'next_intake_requires_actual_isolated_metadata_checkpoint':False,
+ 'skipped_since_last_completion':[{'PR':109,'literal_status':'unsolved','effort':'3/5','disposition':'status-only skip'}],
+ 'next_step':'Complete three independent priority families and root primary-source audit; establish bounded substantive novelty before any paper preparation. If earlier work covers the conclusion, close as already_solved without publication.',
+ 'remaining_current_step':'Priority audit; no paper, DOI, tracker write, native integration or merge for PR110.',
+ 'persistent_goal_status':'active','persistent_goal_complete':False})
+write(P/'CURRENT_PROGRESS.json',v)
+note=f"""
+## {now} — PR110 source and mathematical gate complete; workflow22%, mathematics100%, priority0%
+
+Exact original17 authored files and original nonempty prior report authenticated at head3d159f0a00d0bd7ff8d558d6fbc75af5094f7a35. Raw/immutable-read-only SQL dataset source pair agrees with the submission (revision37e53eabe540fb458758e198be61634bd02ee008, review8c27c02e2166d29815cdd362f6b62e398684393679565c5033e616e7e8ac467d). Literal k603 is ordinary, unprimed focal-antipedal distance-sum equality for every admissible period and winding with a strictly nested confocal elliptical caustic. Root visually checked source Figure3/Table7 and independently derived the edge identity.

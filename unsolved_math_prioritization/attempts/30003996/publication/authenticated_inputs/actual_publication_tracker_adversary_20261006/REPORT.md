@@ -1,0 +1,54 @@
+# Independent authentication of actual PR108 publication and tracker service outcome
+
+Completed scope: the already published Zenodo record and the exact Google Sheet target row. Required findings: none. Optional findings: none. This is a completed service authentication, not a third mathematics or publication-package review. The prior clean R2 and root publication gate are input boundaries.
+
+The authoritative persistent goal explicitly authorizes publication through the repository’s top-level Zenodo kit, followed by the Google Workspace CLI tracker row. Root AGENTS and the goal attachment were read and pinned in POLICY_BINDINGS.json. The GWS Sheets, Sheets Read, and prior relocated Shared Reference skills were read; no skill generation or configuration mutation occurred.
+
+## Independently observed service evidence
+
+The audit Python child PID 96662 ran from 2026-10-06T06:59:19.986381+00:00 to 2026-10-06T06:59:23.693744+00:00 and exited 0. Its recorder PID was 96661. Its stdout body is 310 bytes, SHA256 540d5f0daec3e48ddde6d688ca18d1b851c55ff32d9246f39bfd7b4fe7bed182; stderr was empty. All 974 recorded checks passed. The script was written independently and did not execute the prior root validator or import the upload kit.
+
+Three fresh credential-free HTTPS GETs returned HTTP 200 from the literal record/content endpoints of [Zenodo record 23181280](https://zenodo.org/records/23181280), DOI [10.5281/zenodo.23181280](https://doi.org/10.5281/zenodo.23181280). Explicit request headers contain no Authorization or Cookie. The actual request PID is 96662; successful requests fall within the zero-exit audit process interval.
+
+| Fresh response | Bytes | SHA256 | MD5 |
+| --- | ---: | --- | --- |
+| Record JSON | 6150 | bbaa5b243637f8c4d92f6e29a123c13d0a4bb0d79cbc338baf9748069c3443ad | 9093da41dc3c322b0e0e92f0dc8a9417 |
+| PDF | 57772 | f51acb267822dd082fdb28a14bc581b37fc3b3a75008647a3e04fa8a3d84fbf4 | a97ec8558dee8b45f3179eebff3976b2 |
+| Support ZIP | 151513 | 66f7d7e25370062e0f70b7fdce538dc90a5a264957557714f11d1ac42ebc14aa | 653d4726d8351b6688f26ebe1e2bb0c7 |
+
+The returned public record identifies the exact ID/DOI and submitted publication. Every one of the 11 intended metadata fields in publication_ready_package_v2/zenodo-deposit.json equals the returned value, including array order and literal description. Only the explicitly permitted representation mappings resource_type.type → upload_type, resource_type.subtype → publication_type, and license.id → license are applied. No metadata mutation, value normalization, punctuation normalization, or priority expansion was accepted. The public file inventory contains exactly the PDF and support ZIP; returned MD5 checksums, sizes, SHA256 values, and source bytes all agree.
+
+The fresh support ZIP has exactly 47 distinct safe, unencrypted, non-directory, non-symlink members: the exact PACKAGE_MANIFEST.json plus all 46 logical payloads. The manifest SHA256 is 61f08bd60185b6ef2382fb279fe77d59958974c07c4a44976cc7289eafca8c38. Every member’s expanded size, SHA256, and complete bytes match the manifest and reviewed source directory. Member evidence is in VERDICT.json. ZIP members were verified in memory to avoid expanded copies on the nearly full disk.
+
+The fresh GWS CLI process used /Users/alec/.nvm/versions/node/v22.16.0/bin/gws sheets spreadsheets values get --params with only the exact spreadsheet ID and range 'Math Puzzles'!A31:D31. Actual child PID 96667 ran 2026-10-06T06:59:22.679856+00:00–2026-10-06T06:59:23.669197+00:00 and exited 0. Its stdout response is 862 bytes, SHA256 6bec9f42412988398925c3e9017132dd69b317af6c3786aa7c40e6082cfcbbf9; its 31-byte stderr has SHA256 47a4d1bc8b0a3def9d71bf2e37309ca46a84f3d860f09418848df8d6720efdd4. All four literal string values equal TRACKER_ROW_INTENDED_20261006.json, with no whitespace or URL normalization. TARGET_ROW_STRING_CHECKS.json records the four exact values and per-string pins.
+
+Cell A is the authentic source https://doi.org/10.4171/owr/2018/50; B is the authorized empty string; C is https://doi.org/10.5281/zenodo.23181280. The exact note retains 30003996 / OWR-16633-013, original effort 2/5 with absent structured ledger, zero new central proof-search turns, extensive AI use, unrefereed status, and bounded priority. No share-chat URL was created or invented.
+
+## Historical custody and ordering
+
+The root readiness gate, actual publication receipt, actual Sheet service receipt, original GET bodies/receipts, and validator script were independently inspected and pinned. Started/execution records match in argv, cwd, UTC and recorder PID; stdout and stderr bodies match every stored size and SHA256. The five historical Zenodo operations and five historical GWS operations are distinct child processes with exit 0:
+
+| Operation | Child PID | UTC start | UTC end | Exit |
+| --- | ---: | --- | --- | ---: |
+| zenodo_publication_v2_stage | 87965 | 2026-10-06T06:47:54.481859+00:00 | 2026-10-06T06:48:00.087321+00:00 | 0 |
+| zenodo_publication_v2_pre_publish_inspect | 88274 | 2026-10-06T06:48:22.603907+00:00 | 2026-10-06T06:48:23.351843+00:00 | 0 |
+| zenodo_publication_v2_publish | 88396 | 2026-10-06T06:48:27.655242+00:00 | 2026-10-06T06:48:31.334058+00:00 | 0 |
+| zenodo_publication_v2_post_publish_inspect | 88676 | 2026-10-06T06:48:51.344690+00:00 | 2026-10-06T06:48:53.395133+00:00 | 0 |
+| zenodo_publication_v2_public_download_readback | 89418 | 2026-10-06T06:49:53.272761+00:00 | 2026-10-06T06:49:55.947998+00:00 | 0 |
+| tracker_postpub_metadata | 90090 | 2026-10-06T06:50:51.579954+00:00 | 2026-10-06T06:50:53.151253+00:00 | 0 |
+| tracker_postpub_headers | 90201 | 2026-10-06T06:50:53.205420+00:00 | 2026-10-06T06:50:53.818289+00:00 | 0 |
+| tracker_postpub_append | 90818 | 2026-10-06T06:51:47.506816+00:00 | 2026-10-06T06:51:48.281334+00:00 | 0 |
+| tracker_postpub_readback | 91049 | 2026-10-06T06:52:14.294995+00:00 | 2026-10-06T06:52:14.898959+00:00 | 0 |
+| tracker_postpub_independent_readback | 91054 | 2026-10-06T06:52:14.953221+00:00 | 2026-10-06T06:52:15.532428+00:00 | 0 |
+
+The actual publish process completed at 06:48:31.334058 UTC; its completed DOI resolution and postpublication inspection match the public record. The original public download readback ended at 06:49:55.947998 UTC, and the append began at 06:51:47.506816 UTC. Thus the tracker append occurred after confirmed publication and successful exact public-file readback. The five pinned Sheet operations establish the target gid/title, four column headers, the actual one-row/four-cell append acknowledgment, and two separately executed exact-row readbacks. The append request body contains exactly the intended four strings and the response names A31:D31, one row, four columns and four cells. The new independent target-only read corroborates their result.
+
+All 46 prior extracted payloads and their archive/HTTP custody also match the reviewed source. Actual metadata and dedup bodies were used only for target identity/pin authentication; unrelated sheet titles and rows are omitted from this audit’s outputs.
+
+## Exact scope and limitations
+
+No substantive defect in the actual publication or target tracker result was found. Stored historical process records provide internally authenticated custody; historical PIDs cannot be retroactively observed, and the live service checks establish current state independently. No fabricated fixture or future PID/service claim was used. No assertion of absolute-first priority or continued-open status is made.
+
+This audit makes no native helper, native configuration, execution, merge, or future service clearance. The root publication gate explicitly retained that boundary. No service writes, Git operations, editor operations, or human outreach were performed. All newly written audit artifacts remain in this dedicated folder; no expanded source copy or cache was created.
+
+Completion estimate for this delegated service-authentication goal: 100%. Evidence is sealed by REVIEW_MANIFEST.json, SHA256SUMS, and SEAL.json.

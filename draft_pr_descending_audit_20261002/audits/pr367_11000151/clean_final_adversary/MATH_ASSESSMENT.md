@@ -1,0 +1,27 @@
+# Mathematics-only adversarial assessment
+
+Sealed UTC: 2026-10-03T13:44:18.974064+00:00. Read after independent source seal: SOURCE_GATE.md and TURN_1.md through TURN_4.md only. No candidate program, raw result/receipt, final result/status, history, or old/root/sibling conclusion has been read. This is a proof-structure assessment; exact finite obligations remain unexecuted.
+
+## Independent source interpretation
+
+The final question is genuinely a fixed-standard-generator positive-word question in a group quotient. This alphabet restriction matches the packet. The preceding geometric reduction from arbitrary pairwise-0/1 genus-two curves is only proposed, so a quotient theorem cannot settle that broader geometric problem automatically. Independently read original next page (printed127), confirming the closed-surface equivalence is weaker. Independently read Auroux printed131-132: adjacent Hurwitz equivalence is expressly defined, and global conjugation is separately added for geometric classifications. Therefore a literal adjacent-only reading has an explicit source convention; resolving both conventions remains the safest precise result. A modulo-conjugation classification must not be called the strict answer without qualification.
+
+## Proof obligations and checks by hand
+
+1. Full twist decomposition: z=c h in B6 is standard and geometrically separates the sixth strand. Must independently verify algebraically. It yields c^2=h^2=z in G, and central target. Chain relations in original printed125 construct the one-boundary genus-two map with nonseparating standard generators, and image(c^2)=image(z)=boundary twist; cancellation yields image(c)=image(h). No injection of G is used. BMV published Theorem A and proof of Theorem6 explicitly cover g=2,n=1, and give maximum40; this is a credited external theorem, not an independent proof of symplectic topology.
+
+2. G_ab=Z/10 follows from Artin conjugacy and relator exponent difference10. All equality witnesses require purity because relator is pure. Abelianizing P6 normal closure yields ell_ij=beta_ij+T-2(t_i+t_j). Summation: fifteen T terms minus ten times sum t_i gives 5T; m/2=20+5T. For m0/10, first-five pair bounds give s<=-3; cross bounds give s>=-2/-1. Contradiction is exact for all integer coordinates. No bounded sample or nontriviality assumption.
+
+3. Linking classifications independently checked symbolically. At m20, T=-2, s=-1 or0 gives six twice-star patterns; at m30 T=-1, s=0,t6=-1, first-five coordinates all0 gives all-ones; at m40 T=0, s=0 or1 gives six twice-clique patterns. All are necessary only. Strict Hurwitz moves preserve the exact generated subgroup. The shifted forty-tuple has S5 fixing1 whereas unshifted fixes6. d conjugates the tuples and target is central. This falsifies the single strict40-class clause without falsifying the version allowing global conjugation.
+
+4. Positive forty-word with isolated strand cannot cross that strand; an interior isolated strand prevents crossings between labels on opposite sides, contradicting the required clique. Only endpoint isolated strands remain. Each is a B5 positive word; four-chain injection is precisely the original source Perron-Vannier regular-neighborhood theorem. Positive monoid equality is converted to Hurwitz equivalence by commutation and the explicit two-inverse-move braid relation. No quotient faithfulness assumption.
+
+5. Twenty-word star reduction is exact: only the center strand moves, other labels keep their order; edge counts4 are exactly each other label's four crossings. A return walk of length20 with each of five edge counts<=4 forces equality4. Distinct generator words uniquely identify starting center when their crossing pattern is a star. Need independently reproduce all810 walks, check every F4 relation/inverse and all exact images, and certify survivor set equals all distinct cyclic rotations of h^2. Safe representation rejection does not require faithfulness; survivor equality in G is proved separately by centrality. A central product makes cyclic rotation a strict Hurwitz move sequence.
+
+6. Thirty-word theorem is finite and specific to six strands. Parities of count vector determine pairwise order for reachable states. Need independently check merged permutations. Reversing a positive suffix is trajectory reversal rather than inverse braid; it proves coaccessibility iff f-c reachable. Canonical parent of a coaccessible state is coaccessible. Every full path lies in S, and exact action equality on EVERY edge of S proves path independence by induction. Need independently reproduce all states/edges, exact tuple comparisons, target comparison and complete stream binding. Artin action convention is faithful: inverse generators define an automorphism, reversing composition is an anti-automorphism; equality detection remains valid. Hash comparison is secondary to exact word comparisons.
+
+## Exact gap at this seal
+
+No logical obstruction found in the written reductions, subject to unverified finite computations and classical faithful-action/monoid premises. Twenty-letter exhaustive proof and six-strand path certificate require complete source-code review and independent rerun. Candidate final assembly, data integrity, Git/API scope, historical checkpoints and source receipts remain unopened. No novelty/current-open/human-review certificate is implied.
+
+Completion estimate: 35% of this independent audit.

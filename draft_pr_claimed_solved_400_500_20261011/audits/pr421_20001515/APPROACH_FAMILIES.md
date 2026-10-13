@@ -1,0 +1,19 @@
+# Independent audit families
+
+Checkpoint 2026-10-12, selected PR421 at d5bf8b5a25cabb177433338fae60af52ebfecf1c. Exact target is the proper cocompact cubulation of the a↦a, b↦ab, c↦bcb mapping torus, with tft⁻¹=φ(f). All source conclusions began as hypotheses. The original author budget remains 1/5, with no new proof-search turn in these audits. Assigned-family completion is distinct from completion of the publication/disposition process.
+
+| Family | Mechanism and falsification evidence | Status | Exact remaining gap |
+| --- | --- | --- | --- |
+| Root proof reconstruction | Actual square data, full Q links, cone flagness, reversible Tietze substitutions, complete/proper cover and compact quotient; primary general cube-complex theorem read | Written deduction passes | Independent reports and fresh repair accepted; priority not decided |
+| Independent geometric adversary | Signed corners retain all multiplicities and nonembedded boundary positions; 12 cube face occurrences; 32 distinct link edges and 16 distinct triangles; five defective complexes rejected | Assigned scope PASS, 100% | No geometric gap; excludes priority and preprint audit |
+| Independent algebra adversary | Raw 7-generator/8-relator reduction in both directions; both free-generator round trips; free-group automorphism inverse; four discriminating sign/group controls | Assigned scope PASS, 100% | No algebraic gap; depends on separate geometry for global action |
+| Independent reproduction adversary | All 13 exact git/source pins; isolated clean normal and optimized replays; eight mathematical/proof corruptions; exact output and exception comparisons | Normal evidence reproduces; optimized frozen scripts fail validation | 62-gate repair accepted by fresh adversary; earlier local checker history cannot be fully byte-compared |
+| Fresh validation-repair adversary | Independently compare sealed overlays to original statements, run both modes from clean fixtures, test meaningful failures and lazy exception messages | PASS and root accepted, 100% | No current validation gap in stated standalone scope; snapshots/candidate immutable |
+| Root source identity | Independently recovered archived AIM problem and embedded record; distinguishes workshop b↦aba using actual source wording and algebraic scope | Exact original target established | This does not certify current novelty or openness |
+| Current-source priority | pr421_priority_exact_source: current AIM/archives, workshop, author history and citation chains | Running, criteria sealed | Full current exact-problem history and final bounded priority conclusion |
+| Broad literature priority | pr421_priority_theorem_literature: broad latest primary theorems and exact applicability | Running, independent candidate sealed | Older-tool Morse/completion/gluing route and historical classification awaiting fresh falsification |
+| Preprint/package adversaries | Two new sequential whole-package reviews after all fixes, if priority permits original publication | Pending | No priority gate has yet established eligibility for a new preprint |
+
+No route here transfers the central difficulty to an unsupported equivalent statement: the finite quotient, flag link, exact group identification, and action properties each have explicit artifacts or standard theorems with checked hypotheses. No novelty conclusion is inferred from the absence of a geometric or algebraic defect. Existing reviewer verdicts were withheld from the initial independent family seals.
+
+| Fresh priority-route adversary | pr421_priority_route_adversary independently tests actual Bass–Serre axis, WPD/Morse hypotheses, finite completion, same-domain convex gluing and exact group | Running, criteria sealed | No final route or priority acceptance |

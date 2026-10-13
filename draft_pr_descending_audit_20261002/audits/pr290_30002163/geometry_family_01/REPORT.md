@@ -1,0 +1,11 @@
+# PR290 independent initial geometry checkpoint
+
+An independent uniform argument supports the exact claim: for consecutive Fibonacci q=F_n>=2,p=F_{n-1}, the unshifted rational-angle points indexed0,...,q-1 have minimum chord2/sqrt(q), attained by0,1. The target remains a hypothesis pending independent adversarial adjudication and exact source/candidate correspondence. No candidate proof, checker, review, sibling analysis or priority conclusion has been read.
+
+The distinct mechanism is fixed-offset latitude minimization. The squared chord reduces to2[A-c sqrt(A²-4h²)], A>=2h. Nonpositive cosine gives>=4d/q; positive cosine gives>=4(d/q)|sin(delta)|. Cassini and a nonzero integer quadratic norm prove tr>=q/4 for complementary offset t and residue r in the positive-cosine case. Sine concavity closes the all-n lower bound. The exact pole calculation supplies equality. The separate index set1,...,q is congruent by a half-turn about the X axis; a printed source's actual convention has not been inspected.
+
+Exact-rational intervals independently checked all6292 pairs for q2..89 and230 unit norms. Integer-only checks covered158896 offsets through q121393, including79440 positive-cosine cases. No floating-point assertion or author import occurs. These finite controls corroborate, rather than supply, the uniform proof. Every radical branch, cosine sign, missing south-pole endpoint, and q2 case is addressed in INITIAL_DERIVATION.md and INTERVAL_METHOD.md.
+
+One control attempt failed at a metadata numerator-digit-count conversion; the original source and full failure remain. A separately pinned v02 changes only that informational field to a bit count and completes successfully. No mathematical counterexample was found and no internal unsupported step is presently identified. Exact remaining acceptance gap: independent hostile review of this derivation, candidate correspondence and source/model confirmation. No priority or publication certification is granted.
+
+Initial-task completion100%; mathematical-discovery estimate90% pending those audits. All native source-before-launch/PID/argv/full streams/exits/reaping are retained. No human reading or peer review is attested. This initial domain must be frozen before any candidate exposure.

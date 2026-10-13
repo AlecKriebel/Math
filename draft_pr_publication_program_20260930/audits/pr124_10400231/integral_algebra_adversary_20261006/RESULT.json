@@ -1,0 +1,178 @@
+{
+  "schema": "pr124-independent-integral-algebra-adversary/v1",
+  "UTC": "2026-10-06T19:53:31.446669+00:00",
+  "problem_id": 10400231,
+  "PR": 124,
+  "verdict": "PASS_INTEGRAL_ALGEBRA",
+  "original_head": "d110ad761291aa6ac1d66d2a49e8b8212c18bed6",
+  "original_submitted_budget": "2/5",
+  "new_central_proof_search_turns": 0,
+  "audit_completion_estimate_percent": 100,
+  "original_inputs": {
+    "source_record.json": {
+      "bytes": 3374,
+      "sha256": "262eb58fa87bd3424524286c86328e8020efe7fc0c51c4c24eb1d4ce4dc1d791"
+    },
+    "prior_imported_report.json": {
+      "bytes": 1856,
+      "sha256": "45441a6ec20f4557eac8c31b53f1739680f5bb3655e04ba63412082fd28aa2e6"
+    },
+    "COUNTEREXAMPLE.md": {
+      "bytes": 10610,
+      "sha256": "483bc7e3dccd4d6d262d36341becdf05bfa22f7d52e721eae4f51ecdc0fb95e5"
+    },
+    "verify.py": {
+      "bytes": 2361,
+      "sha256": "8072ee3f27e404d7ab8e4f56bfecb574e4be23f7e8e60195f4d3b60117a68a44"
+    },
+    "verification.json": {
+      "bytes": 341,
+      "sha256": "4be4174d11c27b2185485a3d4abfb89902acf1fd724dccd45399a182f40bf1f9"
+    },
+    "README.md": {
+      "bytes": 607,
+      "sha256": "ed8ff24aa2bc1df555f91d2d50098ff4004c8694c676d767a3ac4bf206843265"
+    },
+    "RESEARCH_LOG.md": {
+      "bytes": 1325,
+      "sha256": "011821d862a88eb391955c804994f8b136a8a382d74c94576dbe5eb701fb31ec"
+    },
+    "source_manifest.json": {
+      "bytes": 1317,
+      "sha256": "910ed335ede3e1d9755320bff080880ef59e4c6c115f25e8769de47ed75d10ac"
+    }
+  },
+  "full_authenticated_source_record_read": true,
+  "full_nonempty_imported_prior_report_read": true,
+  "full_submitted_counterexample_read": true,
+  "independent_reasoning_recorded_before_original_and_review_read": true,
+  "independent_precomparison_note_sha256": "f8bdcd074be5dfccc3fb0d960d752381307c016040d11a7c2b1cb074d08cc0be",
+  "strongest_verified_result": "For any genuine square A over Z[t,t^-1], ord_1(det(A) mod p) >= dim_Fp coker(A(1) mod p), including zero reductions and empty matrices. The submitted all-prime candidate has order 2 but required elementary torsion p-rank 3.",
+  "necessary_topological_interface": "The full Alexander module equals coker(A(t)), coker(A(1)) equals the finite torsion group T, and the source polynomial is the integral determinant up to +/-t^k.",
+  "remaining_gap": "No identified algebraic gap. A complete topological verdict additionally requires independent validation of the connected primitive cut, cut-group rank, whole integral cyclic-cover cokernel, and exact specialization T. Those facts are not computationally certified by this audit.",
+  "topology_computationally_certified": false,
+  "topological_family_scope": "Separate audit; this report validates the algebraic interface only.",
+  "mandatory_mathematical_corrections_in_scope": [],
+  "diagnostic_limitations": [
+    "Original author checker uses assert; -O removes its predicates. A forced-false assertion mutant is rejected normally but passes under -O. This is not a proof defect."
+  ],
+  "attack_outcomes": [
+    {
+      "family": "square determinant and modular rank",
+      "status": "proved",
+      "gap": "none within algebra"
+    },
+    {
+      "family": "nonprincipal Fitting ideal and pseudonull finite module",
+      "status": "rectangular counterexample exhibited; square hypothesis essential",
+      "gap": "does not invalidate genuine square construction"
+    },
+    {
+      "family": "torsion-block columns and integral lift choices",
+      "status": "retained columns and legal lift equivalence proved; exact group fixtures checked",
+      "gap": "torsion coordinates must not be deleted"
+    },
+    {
+      "family": "Laurent units, inversion, content, t-1 cancellation",
+      "status": "normalization attacks fail for the cited integral convention",
+      "gap": "none within stated convention"
+    },
+    {
+      "family": "p=2, zero polynomial, empty matrix, free specialization",
+      "status": "handled in proof and exact checks",
+      "gap": "none"
+    }
+  ],
+  "exact_checks": {
+    "checker_sha256": "02ccd3f3292c4d42f80c311999470f82750dd45cce68fc35a1fdc0005103acb8",
+    "runner_sha256": "8f09891a19d90bd3c76f2aa5020cd5be10055b4c67937c64fd3b5dc159e6d7c4",
+    "RUNS_sha256": "1d9de06bb8df962d9771e5aaeaffbee305bc9116769845d506345f82fa429bad",
+    "normal": {
+      "PID": 17431,
+      "exit": 0,
+      "stdout_sha256": "e5a2c13470fa75f6dd934ce92f0b6ee43c8d0bf8ecbefe8160cb6ccbbdb815b8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "optimized": {
+      "PID": 17450,
+      "exit": 0,
+      "stdout_sha256": "e5a2c13470fa75f6dd934ce92f0b6ee43c8d0bf8ecbefe8160cb6ccbbdb815b8",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "normal_optimized_outputs_identical": true,
+    "explicit_checks_per_successful_mode": 3360,
+    "matrix_cases_per_successful_mode": 673,
+    "independent_mutant_rejections": 16,
+    "mutant_mechanisms": [
+      "finite order lowered to one",
+      "zero polynomial assigned order zero",
+      "empty determinant made zero",
+      "integer content discarded",
+      "torsion relation column omitted",
+      "unauthorized t-1 cancellation",
+      "torsion cardinality valuation used as modular rank",
+      "rectangular gcd treated as square determinant"
+    ],
+    "total_recorded_subprocesses": 22,
+    "candidate_primes_computationally_checked": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13
+    ],
+    "all_prime_conclusion_from_proof_not_finite_sampling": true,
+    "author_normal_receipt_sha256": "4be4174d11c27b2185485a3d4abfb89902acf1fd724dccd45399a182f40bf1f9",
+    "author_receipt_matches_authenticated_original": true,
+    "author_optimized_false_assertion_exit": 0,
+    "author_normal_false_assertion_exit": 1
+  },
+  "source_acquisition_sha256": "dce3e3ab0ef33b65dd915dc9872dbb74e663c697bec524cc292e8620c14c7779",
+  "source_PDFs": [
+    {
+      "url": "https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf",
+      "sha256": "33d9c18c9ab8403a4d88b978b366451383edd12dd24760a77b9e25b666d9a8fd",
+      "bytes": 4731008
+    },
+    {
+      "url": "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/massu.pdf",
+      "sha256": "38e28f1b1c5c7dc14c487aa010da6925ba53b615722ff40e36883440de0cfa6a",
+      "bytes": 652857
+    },
+    {
+      "url": "https://arxiv.org/pdf/1406.2042v1",
+      "sha256": "39e79189a153b22b10ef26bbf36821226a161b6085f334175fdd98a1287de734",
+      "bytes": 1187443
+    }
+  ],
+  "source_material_private_and_ignored": true,
+  "source_convention_verified": "Integral module order of the maximal free-abelian cover, gcd of maximal minors, units +/-t^k; no content normalization or t-1 removal.",
+  "Alcaraz_display_warning": "The v1 p15 diagonal display suppresses possible lower-left torsion coordinates. The submitted lifted-column construction retains them and does not depend on that simplification.",
+  "old_review_comparison": {
+    "read_after_independent_reasoning_and_fresh_checker": true,
+    "algebraic_conclusion_agrees": true,
+    "review_used_as_proof": false,
+    "hashes": {
+      "REVIEW.md": "dd2010d4d30c4b78768f6cd4d8b343c533a7ffbf3e337693fcbf11b32966c2d3",
+      "independent_checks.py": "806bfee9ba23769f406bc3a623833e298c0df33c3d753c974a1dabdd9b0fcdd8",
+      "independent_results.json": "a2551423d67e7c269e388dd664dd3f10776ce8c4ab158edd893586b23f905e72",
+      "review_summary.json": "f15c79d72b1943d070f5b4e79649e78eb21215c9f8b92d1127d54074b8ffce85",
+      "source_verification.json": "ced78734d462d3ae09c773cd4b593390df11cae69130d4128100739020fe463d"
+    }
+  },
+  "priority_established": false,
+  "novelty_established": false,
+  "human_peer_review": false,
+  "current_literature_status_audited": false,
+  "outside_communication": false,
+  "branch_index_service_remote_release_push_mutations": false,
+  "authenticated_original_unchanged": true,
+  "report_sha256": "6dde1a4c2a20cf0c2d6aefa00881fe114db418094f3ec35a7cad906e406a1904",
+  "sealed_public_files_immutable": true,
+  "seal_excludes": [
+    "SHA256SUMS.json",
+    "private/",
+    "__pycache__/"
+  ]
+}

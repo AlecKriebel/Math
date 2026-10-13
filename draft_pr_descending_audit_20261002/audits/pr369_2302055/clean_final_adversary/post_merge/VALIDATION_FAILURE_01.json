@@ -1,0 +1,24 @@
+{
+  "utc": "2026-10-03T13:35:06.219611+00:00",
+  "phase": "independent complete-receipt inspection after passing gate",
+  "gate_status": "PASS_POST_MERGE",
+  "gate_label": "agent_20261003_post_merge_01",
+  "failed_check": "complete private gzip inventory equalled explicit nested stream references",
+  "cause": "Ten complete intermediate API tree stdout/stderr streams were preserved privately but their discarded return metadata was not included as nested references in FULL_GATE.json. The inspector incorrectly assumed every preserved stream already had a nested reference.",
+  "repair": "Add an explicit complete gzip inventory with fresh decompressed hashes, full API JSON canonical hashes and field inventories to the standalone gate; keep this passing first run and executed v1 program immutable, then use a fresh labelled run.",
+  "mathematical_findings_affected": false,
+  "original_seals_manifests_modified": false,
+  "executed_v1_sha256": "14076ed32ea5033357f33838924929ff9471ab6accb3b0c68dca9b6178ab1b91",
+  "previously_unreferenced_preserved_streams": [
+    "private/agent_20261003_post_merge_01/api/attempts_tree.stderr.gz",
+    "private/agent_20261003_post_merge_01/api/attempts_tree.stdout.gz",
+    "private/agent_20261003_post_merge_01/api/prioritization_tree.stderr.gz",
+    "private/agent_20261003_post_merge_01/api/prioritization_tree.stdout.gz",
+    "private/agent_20261003_post_merge_01/api/review_tree.stderr.gz",
+    "private/agent_20261003_post_merge_01/api/review_tree.stdout.gz",
+    "private/agent_20261003_post_merge_01/api/root_tree.stderr.gz",
+    "private/agent_20261003_post_merge_01/api/root_tree.stdout.gz",
+    "private/agent_20261003_post_merge_01/api/target_tree.stderr.gz",
+    "private/agent_20261003_post_merge_01/api/target_tree.stdout.gz"
+  ]
+}

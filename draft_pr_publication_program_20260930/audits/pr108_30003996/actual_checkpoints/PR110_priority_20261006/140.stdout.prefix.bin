@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""Independent geometry; no submitted verifier/reviewer imports or execution.
+
+Exact rational endpoint / antipedal linear solves, plus a small numerical
+reconstruction by caustic tangent normals and outer-ellipse intersections.
+All requirements remain effective under Python -O.
+"""
+import fractions, hashlib, json, math, pathlib, sys
+F = fractions.Fraction
+checks = 0
+
+def require(value, why):
+    global checks
+    checks += 1
+    if not value:
+        raise RuntimeError(why)
+
+def near(x, y, why, tolerance=2e-9):
+    require(abs(x-y) <= tolerance * max(1.0, abs(x), abs(y)), why)
+
+def dot(p, q):
+    return p[0]*q[0]+p[1]*q[1]
+
+def cross(p, q):
+    return p[0]*q[1]-p[1]*q[0]
+
+def sub(p, q):
+    return p[0]-q[0], p[1]-q[1]
+
+def rational_vertex(a, b, t):
+    return a*(1-t*t)/(1+t*t), 2*b*t/(1+t*t)
+
+def direct_antipedal_squared(A, B, focus):
+    u, v = sub(A, focus), sub(B, focus)
+    du, dv, determinant = dot(u,u), dot(v,v), cross(u,v)
+    require(determinant != 0, "singular direct antipedal solve")
+    Q = ((du*v[1]-u[1]*dv)/determinant,
+         (u[0]*dv-du*v[0])/determinant)
+    require(dot(Q,u) == du and dot(Q,v) == dv, "antipedal defining equations")
+    return dot(Q,Q)
+
+exact = []
+for ai, bi, ci in ((5,3,4), (13,5,12), (17,8,15)):
+    a, b, c = F(ai), F(bi), F(ci)
+    require(c*c == a*a-b*b, "focal identity")
+    cases = [(F(0),F(1,10)), (F(0),F(1,2)), (F(0),F(1)),
+             (F(0),F(2)), (F(0),F(10)), (F(1,2),F(2)),
+             (F(-2),F(-1,2))]
+    for ta, tb in cases:
+        A, B = rational_vertex(a,b,ta), rational_vertex(a,b,tb)
+        dx, dy = sub(B,A)
+        m, k = (dy,-dx), cross(A,B)
+        M = dot(m,m)
+        H0 = a*a*m[0]*m[0] + b*b*m[1]*m[1]
+        lam = (H0-k*k)/M
+        require(k > 0 and M > 0, "left-oriented nonzero chord")
+        require(0 < lam < b*b, "strict nested elliptical caustic")
+        require(H0*H0 == 4*a*a*b*b*lam*M, "rational chord discriminant")
+        require((k-c*m[0])*(k+c*m[0]) == (b*b-lam)*M,
+                "positive focal-height product")
+        coefficients = {}
+        for sigma in (1,-1):
+            hnum = k-sigma*c*m[0]
+            require(hnum > 0, "focus lies on inner side of chord")
+            rA, rB = a-sigma*c*A[0]/a, a-sigma*c*B[0]/a
+            require(rA > 0 and rB > 0, "positive focal endpoint distances")
+            require(rA*rA == dot(sub(A,(sigma*c,F(0))),sub(A,(sigma*c,F(0)))),
+                    "first focal distance")
+            require(rB*rB == dot(sub(B,(sigma*c,F(0))),sub(B,(sigma*c,F(0)))),
+                    "second focal distance")
+            qsq = direct_antipedal_squared(A,B,(sigma*c,F(0)))
+            coeff = rA*rB/hnum
+            require(qsq == coeff*coeff*M, "ordinary norm equals positive focal product / height")
+            require(rA*rB == (a*a*hnum*hnum+b*b*lam*M)/H0,
+                    "normal-coordinate focal product")
+            coefficients[sigma] = coeff
+        predicted = 2*c*dy/H0*(-a*a+b*b*lam/(b*b-lam))
+        require(coefficients[1]-coefficients[-1] == predicted,
+                "ordinary-distance difference per-edge coefficient")
+        exact.append({"axes": [ai,bi,ci], "half_angles": [str(ta),str(tb)],
+                      "lambda": str(lam), "q_plus_over_sqrt_M": str(coefficients[1]),
+                      "q_minus_over_sqrt_M": str(coefficients[-1]),
+                      "signed_difference_coefficient": str(predicted)})
+
+# Explicit excluded-boundary and false-generalization controls.
+a,b,c = F(5),F(3),F(4)
+A, B = rational_vertex(a,b,F(0)), rational_vertex(a,b,F(1,2))
+qplus2 = direct_antipedal_squared(A,B,(c,F(0)))
+qminus2 = direct_antipedal_squared(A,B,(-c,F(0)))
+require(qplus2/qminus2 == F(169,1369), "backtracking ratio is exactly 13/37")
+require(qplus2 != qminus2, "tangent closed backtrack is a negative control")
+hyper_A, hyper_B = rational_vertex(a,b,F(-1,2)), rational_vertex(a,b,F(1,2))
+hdx,hdy = sub(hyper_B,hyper_A)
+hm,hk = (hdy,-hdx),cross(hyper_A,hyper_B)
+hyper_lambda = (a*a*hm[0]**2+b*b*hm[1]**2-hk*hk)/dot(hm,hm)
+require(hyper_lambda == 16 and hyper_lambda > b*b, "excluded hyperboli

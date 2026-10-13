@@ -1,0 +1,72 @@
+{
+  "schema": "pr108-actual-V4-frozen-configuration-independent-adversary/v1",
+  "UTC": "2026-10-06T08:16:20.300595+00:00",
+  "actual_operator_PID": 52749,
+  "criteria_sha256": "c1825432d0d6715eb9ac9630a862bfe96819fec00ba09bc7fc05d3613b557be6",
+  "exact_frozen_input": {
+    "path": "draft_pr_publication_program_20260930/audits/pr108_30003996/native_publication_integration_plan_20261006/corrected_v4/EXECUTION_INPUTS_FROZEN_20261006.json",
+    "bytes": 69303,
+    "sha256": "0dd29832e98382f5d73ddbc93b139e23d9f11d8cc2f60d53fe4050ce01b709bf",
+    "mode": "0444"
+  },
+  "main_parent": "f36cb1e34696d460b9cfb5b03425998de48c4669",
+  "main_tree": "55ed824661e282f59374e537c7302c96c1844ce6",
+  "core_family_sha256": "e57b078c27b6ea42080bc74d2bd91c3252a408f8a468de46ccb607c37a64c2e2",
+  "review_complete": true,
+  "configuration_gate_clean": false,
+  "commissionable": false,
+  "required_findings": [
+    {
+      "id": "F10",
+      "severity": "required",
+      "title": "GH socket-field guard rejects an empty inline value by matching the next line",
+      "locations": [
+        "corrected_v4/v3_guards.py:189",
+        "corrected_v4/prepare_review_bundle.py:157",
+        "root_native_runtime_read_probe.py:40"
+      ],
+      "trigger": "The unchanged frozen GH config.yml is824B SHA8c09fd1cf968d4e2e5456aea12041795a2764269aa4eb867cb0391e51887d94f. Its http_unix_socket inline value is empty but another ordinary key follows on the next line.",
+      "mechanism": "The exact socket expression (?m)^\\s*(?:http_unix_socket):\\s*\\S permits its post-colon \\s* to consume a newline; \\S then matches the next field key. An empty socket therefore triggers the forbidden-socket branch.",
+      "actual_root_evidence": {
+        "failed_probe_child_PID": 41795,
+        "exit_code": 1,
+        "UTC_start": "2026-10-06T08:02:00.884367+00:00",
+        "UTC_end": "2026-10-06T08:02:00.983997+00:00",
+        "failure_stderr_sha256": "4c03ccbef208e6c338d28c4ed944ece54a054f55e4b77d8e25201d6acf831620",
+        "metadata_diagnosis_PID": 42500,
+        "UTC": "2026-10-06T08:03:04.526718+00:00",
+        "match_start_line": 13,
+        "match_line_count": 2,
+        "actual_inline_value_empty": true,
+        "actual_external_alias_match": false,
+        "service_or_native_calls_before_failure": 0
+      },
+      "independent_reproduction": {
+        "normal_PID": 48586,
+        "optimized_PID": 48592,
+        "exact_branch_AST_sha256": "bbb8f883fe7e646814ce92a8a299779d2c50242fa000b33675410d0985b28ef9",
+        "synthetic_cases_per_mode": 7,
+        "legitimate_empty_field_false_positives_per_mode": 3,
+        "actual_private_body_inspection": false
+      },
+      "impact": "This exact V4 frozen manifest cannot commission the intended runtime: the guarded preflight aborts before candidate creation or GH/account/PR/remote reads. The same guard executes in helper prepare before output creation.",
+      "repair": "Use horizontal whitespace at line/colon boundaries, preserve rejection of an actually populated socket or external shell alias, validate the unchanged real private pins under guarded root policy, and rebuild/review the successor source family and actual manifest. Do not edit the real private configuration to evade the false positive.",
+      "limit": "This is a bounded parser compatibility finding for the existing exact configuration. No actual native run, service success, credential-content examination or general host-tampering claim is made."
+    }
+  ],
+  "optional_findings": [],
+  "other_frozen_choices_verified": true,
+  "configuration_review_completion_percent": 100,
+  "configuration_readiness_estimate_percent": 80,
+  "mathematics_paper_publication_tracker_completion_percent": 100,
+  "literal_status": "claimed_solved",
+  "target_PR": 108,
+  "problem_id": 30003996,
+  "problem_code": "OWR-16633-013",
+  "original_budget": "2/5",
+  "extra_PRs_processed": 0,
+  "new_central_proof_search_turns": 0,
+  "registry_count": 180,
+  "registry_bytes": 1846309,
+  "all_actual_registry_pins_verified": true,
+  "direct_helper_and_proposed_gate_consumer_map_independently_exact": tru

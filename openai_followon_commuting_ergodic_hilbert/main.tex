@@ -1,0 +1,329 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,\mathrm d}
+\DeclareMathOperator{\Var}{V}
+\title{Bilinear ergodic Hilbert variation for commuting transformations\\as a consequence of annular triangular variation}
+\author{Alec Kriebel\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\hypersetup{pdftitle={Bilinear ergodic Hilbert variation for commuting transformations as a consequence of annular triangular variation},pdfauthor={Alec Kriebel}}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an explicit restriction and transference consequence of OpenAI's
+October 5, 2026 full annular variation theorem for the triangular Hilbert
+transform. For arbitrary commuting invertible probability-preserving
+transformations $S,T$ and complex $f,g\in L^3$, the symmetric bilinear
+Hilbert sums have bounded pointwise $r$-variation in $L^{3/2}$ for every
+$r>2$, and converge almost everywhere and in $L^{3/2}$. The restriction
+uses boxes of fixed positive area and a uniformly summable kernel error.
+The analytic breakthrough is the cited continuous theorem; the present
+note supplies the discrete restriction and full measure-theoretic transfer.
+\end{abstract}
+
+\section{Statement and provenance}
+Let $(X,\Sigma,\mu)$ be a probability space. Assume that $S,T$ are
+invertible measurable measure-preserving transformations with measurable
+inverses, and $ST=TS$. For complex $f,g\in L^3(X)$ put
+\[
+ H_0(f,g)=0,\qquad
+ H_N(f,g)(x)=\sum_{0<|n|\le N}\frac{f(S^n x)g(T^n x)}n\quad(N\ge1).
+\]
+For a complex sequence $(a_N)_{N\ge0}$ define the homogeneous variation
+\begin{equation}\label{eq:variation}
+ \Var^r(a_N:N\ge0)
+ =\sup_{\substack{J\ge1\\0\le N_0<\cdots<N_J\,,\ N_j\in\Z}}
+ \left(\sum_{j=1}^J|a_{N_j}-a_{N_{j-1}}|^r\right)^{1/r}.
+\end{equation}
+If $a_0=0$, prepending $0$ to any list shows that restricting the
+supremum to $N_0=0$ gives the same value. In particular
+$\sup_N|a_N|\le\Var^r(a)$.
+
+\begin{theorem}\label{thm:ergodic}
+For every $r>2$ there is a constant $D_r<\infty$, independent of the
+probability space and transformations, such that
+\begin{equation}\label{eq:ergodic-var}
+ \|\Var^r(H_N(f,g):N\ge0)\|_{3/2}
+ \le D_r\|f\|_3\|g\|_3.
+\end{equation}
+The maximal function satisfies the same bound with $\Var^r$ replaced
+by $\sup_{N\ge0}|H_N|$. The sums converge almost everywhere and in
+$L^{3/2}$ to a complex bilinear operator $H(f,g)$, and moreover
+\begin{equation}\label{eq:tail}
+ \left\|\sup_{N\ge m}|H_N(f,g)-H(f,g)|\right\|_{3/2}\longrightarrow0.
+\end{equation}
+\end{theorem}
+
+The single-transformation Hilbert theorem of Demeter
+\cite[Theorem 1.2]{Demeter} treats opposite powers of one
+transformation. Becker and Durcik \cite[Corollary 1.4]{BD} prove sharp
+$r>2$ variation for bilinear averages along opposite powers of one
+transformation; their discussion of equation (1.8) distinguishes the
+arbitrary commuting case. Demeter and Thiele \cite[Section 6]{DT}
+relate the triangular transform to two commuting transformations.
+Calder\'on's transference method \cite{Calderon} is established machinery;
+we include its finite-window argument rather than appeal to it without
+quantifiers.
+The continuous-to-lattice and orbit-array reductions already occur in
+\cite[Section 6, footnote 36]{DT}; positive-area phase integration also
+appears in \cite[Section 5]{DKST}. The fixed-width singular-kernel
+bookkeeping below makes this particular consequence explicit.
+
+The new input is the following continuous estimate, stated as
+Theorem 1.1 in the October 5 annular manuscript \cite{OAI}. For
+$F,G\in L^3(\R^2)$ write
+\[
+ B_{a,b}(F,G)(u,v)=\int_{a<|t|<b}F(u+t,v)G(u,v+t)\,\frac{\dd t}{t}.
+\]
+Then, for every $r>2$,
+\begin{equation}\label{eq:continuous}
+ \left\|\sup_{\substack{J\ge1\\0<t_0<\cdots<t_J\,,\ t_j\in\mathbb Q}}
+       \left(\sum_{j=1}^J|B_{t_{j-1},t_j}(F,G)|^r\right)^{1/r}
+       \right\|_{L^{3/2}(\R^2)}
+ \le C_r\|F\|_3\|G\|_3.
+\end{equation}
+The supremum is inside the norm and partitions may depend on $(u,v)$.
+It includes all positive scales, with unrestricted finite partition
+length. We use precisely this estimate, rather than a maximal, dyadic,
+or fixed-partition norm-variation estimate. The upstream theorem is
+not reproved here; all conclusions below are consequences of it.
+The listed family 082 Lean scope concerns an older maximal theorem
+and does not formally verify \eqref{eq:continuous} or this note.
+
+Our contribution is the fixed-width restriction proof in Section 2
+and its explicit transfer in Section 3. We do not claim independent
+resolution of the continuous triangular Hilbert problem or invention
+of transference. Manuscript dates in the upstream collection are not
+assertions of first public disclosure. The source repository version used is
+\[
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a}.
+\]
+
+\section{Fixed-width restriction to the lattice}
+For finitely supported arrays $A,B:\Z^2\to\mathbb C$ put
+\[
+ h_N(A,B)(i,j)=\sum_{0<|k|\le N}\frac{A(i+k,j)B(i,j+k)}k,
+ \qquad h_0=0.
+\]
+All lattice norms use counting measure.
+
+\begin{proposition}\label{prop:discrete}
+Assuming \eqref{eq:continuous},
+\begin{equation}\label{eq:discrete}
+ \|\Var^r(h_N:N\ge0)\|_{\ell^{3/2}(\Z^2)}
+ \le D_r\|A\|_{\ell^3}\|B\|_{\ell^3},
+ \qquad D_r=8\,4^{2/3}C_r+\frac{\pi^2}{13}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Fix $h=1/8$ and $q=1/16$. Extend $A,B$ to $F,G$ on $\R^2$ by
+making them constant with their corresponding array values on
+\[
+ (i,j)+[-h,h]^2\quad((i,j)\in\Z^2)
+\]
+and zero elsewhere. Boundary values have no effect and can be assigned
+arbitrarily. The boxes are disjoint and
+\begin{equation}\label{eq:input-norm}
+ \|F\|_3=(4h^2)^{1/3}\|A\|_{\ell^3},\qquad
+ \|G\|_3=(4h^2)^{1/3}\|B\|_{\ell^3}.
+\end{equation}
+Evaluate at $(u,v)=(i+a,j+b)$ with $a,b\in(-q,q)$.
+If $F(u+t,v)G(u,v+t)$ is nonzero, the fixed coordinate $v$ selects
+the second cell index $j$ of $F$, and the fixed coordinate $u$ selects
+the first cell index $i$ of $G$. The moving coordinates require
+\[
+ t\in k+[-h-a,h-a]\quad\hbox{and}\quad
+ t\in l+[-h-b,h-b]
+\]
+for integers $k,l$. If these intervals overlap, then
+$|k-l|\le2h+|a-b|\le3/8<1$, so $k=l$.
+Consequently the integrand equals the single lattice product
+$A(i+k,j)B(i,j+k)$ on $k+I_{a,b}$, where
+\begin{equation}\label{eq:overlap}
+ I_{a,b}=[-h-\min(a,b),\ h-\max(a,b)],\qquad
+ \ell(a,b)=|I_{a,b}|=2h-|a-b|\ge1/8.
+\end{equation}
+Also $\ell\le1/4$ and every $s\in I_{a,b}$ satisfies $|s|\le3/16$.
+Different integer windows are disjoint.
+
+Set $\rho_N=N+1/2$ for $N\ge0$. For $k\ne0$, the entire window
+$k+I_{a,b}$ lies in $|t|\in[|k|-3/16,|k|+3/16]$.
+Thus $\rho_M<|t|<\rho_N$ includes that window exactly when
+$M<|k|\le N$. This verifies negative as well as positive windows.
+The window at $k=0$ lies in $|t|\le3/16$ and is excluded even at
+the smallest endpoint $\rho_0=1/2$. Hence for $0\le M<N$,
+\begin{equation}\label{eq:kernel-identity}
+ \begin{split}
+ B_{\rho_M,\rho_N}(F,G)(i+a,j+b)
+ &=\sum_{M<|k|\le N}A(i+k,j)B(i,j+k)K_k(a,b),\\
+ K_k(a,b)&=\int_{I_{a,b}}\frac{\dd s}{k+s}.
+ \end{split}
+\end{equation}
+There is no principal value in this identity. In particular $k+s$
+has the sign of $k$.
+
+Writing $K_k=\ell/k+\delta_k$, the exact identity
+$1/(k+s)-1/k=-s/[k(k+s)]$ gives the uniform bound
+\begin{equation}\label{eq:error}
+ \frac{|\delta_k(a,b)|}{\ell(a,b)}
+ \le\frac{3}{13}\frac1{k^2}\qquad(k\ne0),
+\end{equation}
+since $|k+s|\ge(13/16)|k|$.
+Let $E_N=\sum_{0<|k|\le N}\delta_k A(i+k,j)B(i,j+k)$ and $E_0=0$.
+For any increasing integer list, the radial shells of its increments
+are disjoint. The $\ell^r$ norm of the error increments is at most their
+$\ell^1$ norm, which is at most the sum of all absolute error terms.
+Therefore
+\[
+ \ell^{-1}\Var^r(E_N:N\ge0)
+ \le e(i,j):=\frac3{13}\sum_{k\ne0}
+                  \frac{|A(i+k,j)B(i,j+k)|}{k^2}.
+\]
+Minkowski, H\"older, and translation invariance imply
+\begin{equation}\label{eq:error-norm}
+ \|e\|_{\ell^{3/2}}
+ \le\frac3{13}\sum_{k\ne0}\frac1{k^2}
+                      \|A\|_{\ell^3}\|B\|_{\ell^3}
+ =\frac{\pi^2}{13}\|A\|_{\ell^3}\|B\|_{\ell^3}.
+\end{equation}
+This bounds the whole error variation, not merely each truncation.
+
+Let $W(F,G)$ denote the pointwise supremum in
+\eqref{eq:continuous}. The half-integer endpoints are rational.
+Taking the supremum over integer lists in \eqref{eq:kernel-identity},
+using the variation triangle inequality and $\ell^{-1}\le8$, gives
+\begin{equation}\label{eq:boxwise}
+ \Var^r(h_N)(i,j)\le8W(F,G)(i+a,j+b)+e(i,j)
+\end{equation}
+for almost every $(a,b)\in(-q,q)^2$, for every $(i,j)$.
+All lists are countable, so one common exceptional set suffices.
+Apply the $L^{3/2}$ triangle inequality on the disjoint output boxes,
+whose area is $4q^2=1/64$. The left side is constant on each box,
+so \eqref{eq:boxwise}, \eqref{eq:continuous} and
+\eqref{eq:input-norm} give
+\[
+ \|\Var^r(h_N)\|_{\ell^{3/2}}
+ \le8(4q^2)^{-2/3}C_r(4h^2)^{2/3}
+                        \|A\|_{\ell^3}\|B\|_{\ell^3}
+      +\|e\|_{\ell^{3/2}}.
+\]
+The coefficient equals $8\,4^{2/3}C_r$, proving the proposition.
+The restriction is carried by a fixed set of positive area;
+no evaluation on a null set of suspension phases is used.
+\end{proof}
+
+\section{Finite-window transference and convergence}
+\begin{proof}[Proof of Theorem \ref{thm:ergodic}]
+Choose measurable representatives of $f,g$ taking finite values outside
+their null sets. Remove all preimages of those null sets under finite
+words in $S,S^{-1},T,T^{-1}$.
+The resulting invariant full-measure set carries every value in the
+finite sums. A change of representatives affects only such a countable
+union of null sets. The same convention treats transformations commuting
+modulo null sets: remove all such word preimages of the failure set, after
+which all required identities hold on the invariant complement.
+
+Fix an integer $M\ge1$. Let $W_M(x)$ be the maximum in
+\eqref{eq:variation} over lists with endpoints in $\{0,\ldots,M\}$.
+There are finitely many such lists, so $W_M$ is measurable. For
+$L\ge1$ let $Q_L=\{-L,\ldots,L\}^2$. At each $x$ form finite arrays
+\[
+ \begin{split}
+ A_x(i,j)&=f(S^iT^j x)\mathbf1_{Q_{L+M}}(i,j),\\
+ B_x(i,j)&=g(S^iT^j x)\mathbf1_{Q_{L+M}}(i,j).
+ \end{split}
+\]
+For $(i,j)\in Q_L$ and $|n|\le M$, every required entry is in
+$Q_{L+M}$. Commutation gives exactly
+\[
+ h_N(A_x,B_x)(i,j)=H_N(f,g)(S^iT^j x)\quad(0\le N\le M).
+\]
+Proposition \ref{prop:discrete}, with $p=3/2$, implies
+\[
+ \sum_{(i,j)\in Q_L}W_M(S^iT^j x)^p
+ \le D_r^p
+ \left(\sum_{Q_{L+M}}|f(S^iT^j x)|^3\right)^{1/2}
+ \left(\sum_{Q_{L+M}}|g(S^iT^j x)|^3\right)^{1/2}.
+\]
+Integrating, measure invariance on the left and Cauchy--Schwarz on
+the right give
+\[
+ |Q_L|\|W_M\|_p^p
+ \le D_r^p|Q_{L+M}|\|f\|_3^{3/2}\|g\|_3^{3/2}.
+\]
+The finite right side establishes integrability without assuming it in
+advance. For fixed $M$, let $L\to\infty$;
+$|Q_{L+M}|/|Q_L|\to1$. Finally $W_M$ increases to the full countable
+supremum \eqref{eq:variation}. Monotone convergence proves
+\eqref{eq:ergodic-var}. Partitions may depend on the output throughout.
+
+Fix, for example, $r=3$. The variation is finite almost everywhere.
+Any scalar sequence with finite $r$-variation is Cauchy: otherwise
+some $\varepsilon>0$ admits arbitrarily late pairs of indices whose
+values differ by at least $\varepsilon$. Recursively choose $J$
+strictly ordered disjoint pairs. A partition containing their endpoints
+has variation at least $\varepsilon J^{1/r}$, a contradiction.
+Completeness of $\mathbb C$ gives a finite limit $H$. It is measurable
+as the limit along integers, setting it to zero on the exceptional set.
+
+Since $H_0=0$, $H_*:=\sup_N|H_N|\le\Var^3(H_N)$ belongs to $L^p$.
+Also $|H|\le H_*$. The measurable tail
+$\sup_{N\ge m}|H_N-H|$ tends to zero pointwise and is bounded by
+$2H_*$. Dominated convergence applied to its $p$th power proves
+\eqref{eq:tail}, hence norm convergence. The maximal bound follows
+from \eqref{eq:ergodic-var}; the limit bound follows from domination.
+Norm limits of the bilinear identities for $H_N$ show that $H$ is
+complex bilinear on $L^3\times L^3$.
+\end{proof}
+
+\section{Scope and verification disclosure}
+The truncations are symmetric and the kernel is odd. This proof gives
+no one-sided commuting Ces\`aro convergence, no noncommuting theorem,
+no $r=2$ estimate, and no extension of the input exponents beyond $L^3$.
+No numerical evidence substitutes for the analytic estimate.
+Supplemental exact kernel checks test only Section 2 bookkeeping.
+
+The continuous theorem is attributed to OpenAI using its supplied
+manuscript citation. The dependency ledger records the version and
+scope of independent automated proof audits. Such audits are evidence,
+not formal certification. No theorem in this note is claimed to have
+been formalized. AI tools were used extensively in research, drafting
+and verification. This preprint has not undergone conventional human
+peer review or refereeing at publication.
+
+\begin{thebibliography}{9}
+\bibitem{BD} L. Becker and P. Durcik,
+\emph{The shifted bilinear Hilbert transform}, arXiv:2603.20173v1 (2026),
+\url{https://arxiv.org/abs/2603.20173}.
+\bibitem{Calderon} A. P. Calder\'on,
+\emph{Ergodic theory and translation-invariant operators},
+Proc. Natl. Acad. Sci. U.S.A. \textbf{59} (1968), 349--353,
+\href{https://doi.org/10.1073/pnas.59.2.349}{doi:10.1073/pnas.59.2.349}.
+\bibitem{Demeter} C. Demeter,
+\emph{Pointwise convergence of the ergodic bilinear Hilbert transform},
+arXiv:math/0601277v1 (2006),
+\url{https://arxiv.org/abs/math/0601277}.
+\bibitem{DT} C. Demeter and C. Thiele,
+\emph{On the two dimensional bilinear Hilbert transform},
+Amer. J. Math. \textbf{132} (2010), 201--256,
+\url{https://arxiv.org/abs/0803.1268}.
+\bibitem{DKST} P. Durcik, V. Kova\v{c}, K. A. \v{S}kreb and C. Thiele,
+\emph{Norm-variation of ergodic averages with respect to two commuting
+transformations}, Ergodic Theory Dynam. Systems \textbf{39} (2019),
+658--688, \url{https://arxiv.org/abs/1603.00631}.
+\bibitem{OAI} OpenAI,
+\emph{Annular variation of the triangular Hilbert transform at the
+symmetric point}, OpenAI Math Release preprint (manuscript dated
+October 5, 2026), source version
+\texttt{adc7f1241b42e322a6451854ab7e4b4c146bf78a},
+\href{https://github.com/openai/math/blob/adc7f1241b42e322a6451854ab7e4b4c146bf78a/preprints/Annular-variation-of-the-triangular-Hilbert-transform-at-the-symmetric-point-October-5-2026/annular-variation.pdf}{manuscript and source repository}.
+\end{thebibliography}
+\end{document}

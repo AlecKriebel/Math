@@ -1,0 +1,68 @@
+--- prior110/accept_exact_live.py
++++ refresh02/accept_exact_live.py
+@@ -7,7 +7,7 @@
+ import argparse,base64,copy,gzip,hashlib,json,os,runpy,shutil,subprocess,sys,tempfile,traceback,zipfile
+ 
+ HERE=Path(__file__).resolve().parent
+-AUDIT=HERE.parent.parent
++AUDIT=HERE.parent
+ REPO=Path('/Users/alec/Documents/Math')
+ PREFIX='problems/11000151_artin_a5_quotient'
+ QUEUE='unsolved_math_prioritization/QUEUE.md'
+@@ -105,7 +105,8 @@
+  for row in baseline['immutable_prior_files']:prior.append(binding(AUDIT/row['path'],row,'prepared immutable '+row['path']))
+  manifest_records=[manifest(AUDIT/name) for name in baseline['immutable_prior_manifests']]
+  require(len(manifest_records[0]['all_bindings'])==127,'immutable original127 public files')
+- require(run('start_original_closed_audit',[PYTHON,'-B',HERE.parent/'verify_audit.py'])==b'PASS: complete self-excluded public audit, earlier/final seals and44 raw execution-output streams\n','entire start original closed-audit verifier stdout')
++ require(run('start_original_closed_audit',[PYTHON,'-B',AUDIT/'clean_final_adversary/verify_audit.py'])==b'PASS: complete self-excluded public audit, earlier/final seals and44 raw execution-output streams\n','entire start original closed-audit verifier stdout')
++ require(run('start_previous_final_live',[PYTHON,'-B',AUDIT/'clean_final_adversary/final_live/verify_live_audit.py'])==b'PASS: complete additive audit, final seal, every binding and all full retained execution outputs\n','entire start previous110 closed-audit verifier stdout')
+  clearance=Path(pins['clearance_file']);require(sha(clearance.read_bytes())==pins['clearance_sha256'],'literal completed publishing clearance')
+  clearance_object=load(clearance)
+  require(pins.get('clearance_complete_object')==clearance_object,'entire final clearance object explicitly supplied and accepted by root')
+@@ -270,7 +271,8 @@
+  require(endmerge==testmerge,'entire start/end test-merge commit unchanged')
+  for row in baseline['immutable_prior_files']:binding(AUDIT/row['path'],row,'end immutable '+row['path'])
+  for name in baseline['immutable_prior_manifests']:manifest(AUDIT/name)
+- require(run('end_original_closed_audit',[PYTHON,'-B',HERE.parent/'verify_audit.py'])==b'PASS: complete self-excluded public audit, earlier/final seals and44 raw execution-output streams\n','entire end original closed-audit verifier stdout')
++ require(run('end_original_closed_audit',[PYTHON,'-B',AUDIT/'clean_final_adversary/verify_audit.py'])==b'PASS: complete self-excluded public audit, earlier/final seals and44 raw execution-output streams\n','entire end original closed-audit verifier stdout')
++ require(run('end_previous_final_live',[PYTHON,'-B',AUDIT/'clean_final_adversary/final_live/verify_live_audit.py'])==b'PASS: complete additive audit, final seal, every binding and all full retained execution outputs\n','entire end previous110 closed-audit verifier stdout')
+  for row in repair['sealed_files']:binding(AUDIT/'preprint'/row['path'],row,'end exact submission '+row['path'])
+  with zipfile.ZipFile(archive) as zipped:
+   require([i.filename for i in zipped.infolist()]==[r['path'] for r in zip_rows],'end ordered ZIP scope unchanged')
+@@ -278,7 +280,7 @@
+  require(sha(clearance.read_bytes())==pins['clearance_sha256'],'end completed clearance unchanged')
+  manifest(review02,pins['review02_manifest_sha256'])
+  save('CHECKS.json',CHECKS);checkpoint(100,'Qualified exact-live acceptance checks pass at literal refreshed pins; no mutation or external-human peer-review claim.')
+- result={'status':'QUALIFIED_EXACT_LIVE_ACCEPTANCE_PASS','finished_utc':utc(),'head':pins['head'],'base':pins['base'],'body':bind(body),'testmerge_sha':testmerge['sha'],'testmerge_tree':head_tree,'checks':len(CHECKS),'complete_executions':len(CAPTURES),'candidate_git_service_mutations':False,'original127_manifest_untouched':True,'publication_clearance_literal_sha256':pins['clearance_sha256'],'scope':'Fixed standard generator theorem under both conventions; no new discovery, human peer-review or current-open certificate.'}
++ result={'audit_namespace':'final_live_refresh_02','previous127_and110_preserved':True,'status':'QUALIFIED_EXACT_LIVE_ACCEPTANCE_PASS','finished_utc':utc(),'head':pins['head'],'base':pins['base'],'body':bind(body),'testmerge_sha':testmerge['sha'],'testmerge_tree':head_tree,'checks':len(CHECKS),'complete_executions':len(CAPTURES),'candidate_git_service_mutations':False,'original127_manifest_untouched':True,'publication_clearance_literal_sha256':pins['clearance_sha256'],'scope':'Fixed standard generator theorem under both conventions; no new discovery, human peer-review or current-open certificate.'}
+  save('FINAL_LIVE_RECEIPT.json',result)
+  runpy.run_path(str(HERE/'seal_live_audit.py'),run_name='__main__')
+  print(json.dumps(result,indent=2))
+--- prior110/seal_live_audit.py
++++ refresh02/seal_live_audit.py
+@@ -12,7 +12,10 @@
+ checks=json.loads((D/'receipts/CHECKS.json').read_bytes())
+ assert len(checks)==r['checks'] and all(c['pass'] is True for c in checks)
+ (D/'FINAL_REPORT.md').write_text(
+- '# Additive exact-live acceptance audit of PR367\n\n'
++ '# Refreshed additive exact-live acceptance audit of PR367\n\n'
++ 'This sibling namespace follows the exact prior gate in clean_final_adversary/final_live. '
++ 'Main advanced after that gate and before merge, so this audit independently rechecks the refreshed exact state. '
++ 'The original127-file and prior110-file closed audits remain immutable and pass their original in-place verifiers.\n\n'
+  'Qualified PASS at head '+r['head']+' and current main/base '+r['base']+'. '
+  'The complete accepted body binding is '+r['body']['sha256']+'. '
+  'Actual GitHub test-merge '+r['testmerge_sha']+' has the exact expected parents and tree '+r['testmerge_tree']+'.\n\n'
+@@ -28,9 +31,10 @@
+  'It certifies neither historical novelty nor current openness, unrestricted geometric classification, nor external human peer review. '
+  'No publication/deposit is asserted. No candidate, Git, remote service or other person was modified or contacted. '
+  'The original127-file public audit and its seals remain unchanged.\n\n'
+- 'The first live checker attempt failed on manifest-relative path resolution and received no acceptance credit. '
+- 'All144 complete failed-attempt captures, its full traceback and the exact sealed checker sources are preserved in failed_attempt_01. '
+- 'The additive checker was corrected and resealed before this successful complete rerun.\n')
++ 'The earlier checker path-resolution failure received no acceptance credit. '
++ 'Its144 complete captures, traceback and sealed sources remain in clean_final_adversary/final_live/failed_attempt_01, '
++ 'bound by the untouched110-file prior manifest and reverified by its original checker. '
++ 'This refresh reuses the corrected manifest-parent resolution and extends no frozen namespace exclusions.\n')
+ sealed=[D/'FINAL_REPORT.md',D/'CODE_READY_SEAL.json']+sorted((D/'receipts').glob('*'))
+ write(D/'FINAL_SEAL.json',{'utc':datetime.now(timezone.utc).isoformat(),'status':r['status'],'workflow_completion_percent':100,
+  'original_discovery_completion_percent':0,'head':r['head'],'base':r['base'],'sealed_artifacts':[row(p) for p in sealed]})

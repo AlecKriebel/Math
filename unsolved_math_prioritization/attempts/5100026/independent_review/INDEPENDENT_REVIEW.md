@@ -1,0 +1,11 @@
+# Historical independent-review provenance and current scoped classification
+
+The complete original review is preserved byte-exactly at [../historical_submission_20261001/independent_review/INDEPENDENT_REVIEW.md](../historical_submission_20261001/independent_review/INDEPENDENT_REVIEW.md), SHA-256 `1bfcf3b16ad4d9a25545c7f956478f41f50590bb742db26bd6a2b1c4f31184a5`. It bound original PROOF.md SHA-256 `77afb7626fd4685b9ce7537aa2de3141df8bf087c5eff0698bb1f7834bc0ad7c` and the original fourteen-file author manifest. Its PASS_COMPLETE_SOURCE_TARGET verdict is dated historical provenance, superseded in current scientific descriptions by explicit source qualification; it reviews no changed prose bytes.
+
+Current research classification: **already_solved / credited existing-result alternative reproof**. Accepted original mathematics uses even least N≥4, strict confocal elliptical caustic, every real phase/coprime star, original focus/tangents/full lines and arithmetic vertex mean. Primary Table 5 literally says even; least period is adopted. Padded odd cycles give a false extension. The actual v11 PDF title is corrected in SOURCES.md, while original source/review bytes remain historical. The existing Ferudun proof and exact archive association are credited with bounded clocks and no absolute-firstness/causal claim.
+
+OpenAI Codex (AI) was used extensively for research, drafting, computation and adversarial checking of this reproof packet. It is an unrefereed AI-assisted mathematical draft. Independent AI audits are not human peer review; human peer review has not been performed.
+
+Original checkers and receipts remain unchanged. The later 13 files are authentic report/acceptance exports; EVIDENCE_LOCATIONS.md maps their omitted dependencies and intended separately published original audit locations. No complete new audit replay bundle is claimed.
+
+This packet embeds no self-certified review verdict for its own repaired bytes and grants no execution authority. Consult the dated receipts in the [repository audit folder](https://github.com/AlecKriebel/Math/tree/main/draft_pr_descending_audit_20261002/audits/pr259_5100026/initial_review_20261012/) for package-specific independent review and actual native publication acceptance. Those are separate records from the accepted mathematical and priority evidence.

@@ -1,0 +1,11 @@
+# Report binding chronology clarification — 2026-10-12
+
+Recorded 2026-10-12T23:47:23.824055+00:00. This note supplements the original first-round review without replacing or rewriting any sealed artifact.
+
+The original final review is internally consistent. All 26 `FINAL_SEAL.json` file pins and all 26 original positive-allowlist size/hash records match current bytes. `VERDICT.json` itself is SHA-256 `5f48d7c71148f89730eb5358574e6ebd5c8eaa4847a2727c7fde6668828f7db2` and binds `REPORT.md` at `153e80144253dc0edbe5f5eb76c83370ba9c509bf572035a65b0cb6354b3b88c`, matching the final seal and allowlist. The original final seal remains SHA-256 `0ef414daf2467b36700e65a4f7e04b9c1aa8ba4000b95c544bcb6d280a704d9b`.
+
+The initial report/verdict checkpoint was 23:42:13.819316 UTC. Before final sealing, at the report's recorded modification time 23:42:57.969676 UTC, a 410-byte paragraph with separating newlines was added to explain the comparison of historical preparation evidence against fresh runs. The verdict binding was refreshed during final sealing at 23:43:29.337555 UTC. Removing that paragraph and its following two newline bytes from today's report in memory yields 14,850 bytes with SHA-256 `9c229d1793410ae41453dc151697360aa2ff44f742bf86848071f7a5fa818b19`, the interim hash reported by root. This is a reconstruction; an independently retained earlier report body is unavailable and has not been verified.
+
+Root subsequently confirmed that its earlier tool read used the in-progress verdict before the final seal, independently rechecked the consistent final artifacts, and withdrew the need for a corrected verdict. There is no observed original sealed-artifact defect or substantive change to the first-round PASS verdict. Required candidate corrections remain zero and optional candidate corrections remain zero. All 53 candidate file pins and the candidate manifest SHA-256 `0a43f04fde4e6335e7ee852357429310e013dd62d2f9a3da6b81cacb50b0cd41` still match. The new second complete-package review remains required before publication readiness.
+
+`CUSTODY_READBACK.json` records the exact readback and limits. This clarification creates no new verdict and makes no mathematical, manuscript, candidate, Git, remote, or publication changes.

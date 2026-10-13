@@ -1,0 +1,15 @@
+# Independent reconstruction before earlier-review access
+
+The claim is for ordinary, oriented, unframed closures of nonempty classical and virtual links, with tagged braid words and only even positive strand counts as allowed calculus states. It does not assert plat equivalence, a minimal presentation, bounded geometric support, an algorithm, or historical novelty.
+
+Let X be the unrestricted Markov graph, with syntactic defining-relation edges, conjugation, right signed (and virtual, where applicable) stabilization, and Kamada's right and left virtual exchanges. Define P(m,w)=(m,w) when m is even and (m+1,w sigma_m) otherwise. The operation fixes allowed endpoints exactly and preserves closure by a single positive stabilization. Completeness is obtained if and only if every generating edge of X has its P-image in the stated even calculus. No completeness conclusion is needed for soundness.
+
+For relations, appending sigma_m at an odd level preserves the old word context. For conjugation, even m gives C, odd m gives BC with a,b supported through m-1. For a stabilization at even m, P sends its endpoints to (m,b) and (m+2,b g_m sigma_(m+1)), which is D. At odd m, its endpoints become (m+1,b sigma_m) and (m+1,b g_m), which is T. Both signs and the virtual letter are retained. Reversed edges handle destabilizations.
+
+For exchanges at total count m, even m produces R or L. Odd m produces BR or BL after adding sigma_m. The exchange blocks before a left shift have indices through m-2; after shifting they have indices through m-1, while the separate padding letter sigma_m remains unshifted. At m=3 the first odd exchange maps to N=4, so BR/BL's bound N>=4 is correct. At m=2 exchange blocks are empty, making both R and L identities. At m=1 no exchange occurs and the empty one-strand braid maps to (2,sigma_1). Support constraints are syntactic, so the proof makes no circular appeal to a braid word-problem solver.
+
+Soundness separately uses closure invariance of each unrestricted primitive: C itself; BC by conjugacy on N-1 followed by positive stabilization; T by comparing two allowed stabilizations of one N-1 prefix; D by two successive stabilizations; R/L directly; BR/BL by an exchange on N-1 followed by positive stabilization. All odd objects here are auxiliary proof objects. Tags distinguish the empty 2- and 4-strand words, and the empty link requires a separate isolated 0-strand state.
+
+The maximum count after padding is m+(m mod 2), a nondecreasing function of m. Thus the certificate bound 2 ceil(M/2) follows without assuming an algorithm to find a Markov chain.
+
+Potential falsifiers requiring independent checks: exact imported virtual exchange signs/shifts and virtual braid presentation; link orientation scope of imported statements; incorrectly enlarged support conditions; confusion between power-of-two generalized braid equivalence and ordinary closure in Nencka; omitted earlier follow-up results; archive content/reproduction mismatch; PDF/source or license/metadata mismatch. The padding mechanism itself has no apparent unsupported equivalence reduction.

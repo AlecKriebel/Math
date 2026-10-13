@@ -1,0 +1,284 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+ pdftitle={An even-strand Markov calculus for classical and virtual links},
+ pdfauthor={Alec Kriebel}
+}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\sig}{\sigma}
+\newcommand{\arr}{\longleftrightarrow}
+\newcommand{\WB}[2]{W_{#1}(#2)}
+\title{An even-strand Markov calculus for classical and virtual links}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an explicit affirmative answer to the ordinary-closure interpretation of
+Problem~42 in the 2014 survey of Fenn, Ilyutko, Kauffman and Manturov.
+Four reversible algebraic schemes classify oriented classical link closures
+using only even-strand braid states. Four additional exchange schemes give the
+corresponding statement for oriented virtual links. The proof is an elementary
+conversion of the established unrestricted Markov theorems: positively stabilize
+each odd-strand vertex and lift every generating edge. Arbitrary finite word
+blocks are allowed; minimality and uniform geometric locality are not asserted.
+No historical-priority or present-openness claim is made.
+\end{abstract}
+
+\section{Scope and conventions}
+Problem~42 of~\cite[p.~37]{FIKM}, also on p.~34 of its author preprint,
+asks for a Markov formulation involving only even-strand braids.
+We retain \emph{ordinary oriented, unframed closure} throughout. We supply both
+classical and virtual versions, since the item's braid terminology is unqualified.
+Plat closure, framing and transverse isotopy are different classifications.
+An even-strand plat theorem would not answer the ordinary-closure statement:
+the identity two-strand braid has a two-component ordinary closure and a
+one-component plat closure.
+
+A state is a tagged word $(N,w)$, where $N\ge2$ is even and all generator
+indices lie in $\{1,\ldots,N-1\}$. Tags cannot be suppressed: empty words on
+two and four strands close to different unlinks. Words multiply by concatenation;
+$w^{-1}$ reverses the letters and inverts each one. Classical words use
+$\sig_i^{\pm1}$; virtual words additionally use $v_i=v_i^{-1}$.
+Write $\WB{N}{k}$ for words whose indices are at most $k$, always regarded as
+words on the stated even $N$ strands. The empty word is allowed, also for $k=0$.
+These are syntactic support conditions, not tests of membership up to an
+unspecified braid equivalence. Let $s(w)$ increase every index by one, retaining
+the types and signs of letters. Put
+\[
+ G_i^{\mathrm{cl}}=\{\sig_i,\sig_i^{-1}\},\qquad
+ G_i^{\mathrm{vir}}=\{\sig_i,\sig_i^{-1},v_i\}.
+\]
+Use the appropriate $G_i$ below.
+
+At every fixed even level we allow inverse cancellation and the Artin relations
+\[
+ \sig_i\sig_j=\sig_j\sig_i\ (|i-j|>1),\qquad
+ \sig_i\sig_{i+1}\sig_i=\sig_{i+1}\sig_i\sig_{i+1}.
+\]
+For virtual words we additionally allow exactly
+\begin{align*}
+ v_i^2&=1,&v_i v_j&=v_j v_i\quad(|i-j|>1),&
+ v_i v_{i+1}v_i&=v_{i+1}v_i v_{i+1},\\
+ \sig_i v_j&=v_j\sig_i\quad(|i-j|>1),&&
+ \sig_i v_{i+1}v_i&=v_{i+1}v_i\sig_{i+1}.
+\end{align*}
+All these relations may be used in arbitrary word contexts, in either direction.
+No welded forbidden relation is imposed.
+
+\section{The even-endpoint schemes}
+All following arrows are reversible and have only even-strand endpoints.
+The four common schemes are
+\begin{align}
+ (N,b)&\arr(N,aba^{-1}), && a,b\in\WB{N}{N-1}, \tag{C}\label{C}\\
+ (N,b\sig_{N-1})&\arr(N,aba^{-1}\sig_{N-1}),
+ &&a,b\in\WB{N}{N-2}, \tag{BC}\label{BC}\\
+ (N,b\sig_{N-1})&\arr(N,bg),
+ &&b\in\WB{N}{N-2},\ g\in G_{N-1}, \tag{T}\label{T}\\
+ (N,b)&\arr(N+2,bg\sig_{N+1}),
+ &&b\in\WB{N}{N-1},\ g\in G_N. \tag{D}\label{D}
+\end{align}
+In (D), the old word is placed on the first $N$ strands of the new $N+2$-strand
+state. The identity choice in (T) may be omitted. These four schemes,
+with classical letters only, form the classical calculus.
+
+The virtual calculus includes four further schemes. For
+$a,b\in\WB{N}{N-2}$, allow
+\begin{align}
+ (N,a\sig_{N-1}^{-1}b\sig_{N-1})
+ &\arr(N,av_{N-1}bv_{N-1}), \tag{R}\label{R}\\
+ (N,s(a)\sig_1^{-1}s(b)\sig_1)
+ &\arr(N,s(a)v_1s(b)v_1). \tag{L}\label{L}
+\end{align}
+For even $N\ge4$ and $a,b\in\WB{N}{N-3}$, allow
+\begin{align}
+ (N,a\sig_{N-2}^{-1}b\sig_{N-2}\sig_{N-1})
+ &\arr(N,av_{N-2}bv_{N-2}\sig_{N-1}), \tag{BR}\label{BR}\\
+ (N,s(a)\sig_1^{-1}s(b)\sig_1\sig_{N-1})
+ &\arr(N,s(a)v_1s(b)v_1\sig_{N-1}). \tag{BL}\label{BL}
+\end{align}
+In (BL), the shifted blocks have indices at most $N-2$; the separate retained
+terminal crossing has index $N-1$ and is not shifted.
+There are four classical or eight virtual \emph{scheme families}, apart from the
+defining relations. Blocks may have arbitrary finite length. Neither a minimal
+list nor a bound on the number of strands in a geometric support disk is claimed.
+
+\begin{theorem}\label{main}
+Every nonempty oriented classical link is the ordinary closure of an even-strand
+classical braid. Two such tagged braids have isotopic oriented closures if and
+only if they are connected by defining relations at even levels and the schemes
+(C), (BC), (T), (D), with classical letters only.
+
+Every nonempty oriented virtual link has an even-strand virtual braid
+representative. Two such tagged virtual braids have equivalent oriented virtual
+closures if and only if they are connected by defining virtual braid relations
+at even levels and (C), (BC), (T), (D), (R), (L), (BR), (BL).
+\end{theorem}
+
+\section{Proof by positive padding}
+The classical inputs are Alexander's representation theorem and ordinary
+Markov equivalence by conjugation and signed right stabilization; see
+\cite[Theorems~2.1--2.2]{GKS}. The virtual inputs are Kamada's
+Proposition~3.1 and Theorem~3.2 in~\cite{Kamada}. In addition to relations and
+conjugation, they permit right stabilization by $\sig_m^{\pm1}$ or $v_m$,
+and both exchanges at total count $m$:
+\begin{equation}\label{unrestricted-exchange}
+ a\sig_{m-1}^{-1}b\sig_{m-1}\arr av_{m-1}bv_{m-1},\qquad
+ s(a)\sig_1^{-1}s(b)\sig_1\arr s(a)v_1s(b)v_1,
+\end{equation}
+where the unshifted blocks use indices at most $m-2$.
+The signs and shift are also stated in~\cite[\S5, p.~30]{KL}.
+These unrestricted theorems are imported, not reproved here.
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+First verify soundness without using completeness. (C) is conjugation.
+For (BC), the two prefixes on $N-1$ strands are conjugate, and both endpoints
+are their positive right stabilizations. (T) compares two permitted right
+stabilizations of the same prefix on $N-1$ strands. (D) is a permitted
+stabilization followed by a positive stabilization. (R) and (L) are
+\eqref{unrestricted-exchange}; in (BR) and (BL), apply that exchange on
+$N-1$ strands and then positively stabilize both sides. The support bounds make
+each auxiliary operation legitimate. Thus every listed replacement preserves
+ordinary oriented closure. Odd-strand objects used to verify this fact are
+auxiliary proof objects, not allowed states of the displayed calculus.
+
+For completeness, define, on unrestricted tagged words with $m\ge1$,
+\begin{equation}\label{padding}
+ P(m,w)=
+ \begin{cases}
+ (m,w),&m\text{ even},\\
+ (m+1,w\sig_m),&m\text{ odd}.
+ \end{cases}
+\end{equation}
+Its closure agrees with the original closure by positive stabilization, and it
+fixes every even tagged word exactly. Given an unrestricted Markov chain between
+even endpoints, apply $P$ to every vertex. We check its edges exhaustively.
+
+A defining relation at even count remains unchanged. At odd count the same
+relation is applied inside its entire old word context, with the positive tail
+retained. Right inclusion respects every defining relation; hence no group-word
+ambiguity is hidden by padding.
+
+Conjugation $b\arr aba^{-1}$ at even count $m$ becomes (C).
+At odd $m$ it becomes (BC) at $N=m+1$, since both old blocks have indices
+at most $m-1=N-2$.
+For stabilization $(m,b)\arr(m+1,bg)$, $g\in G_m$, the two images are
+\[
+ \begin{cases}
+ (m,b)\arr(m+2,bg\sig_{m+1}),&m\text{ even}:\ (D),\\
+ (m+1,b\sig_m)\arr(m+1,bg),&m\text{ odd}:\ (T).
+ \end{cases}
+\]
+This includes both classical signs and virtual stabilization. Reversed arrows
+also cover every destabilization.
+
+For a right exchange at even total count $m$, the images give (R) at $N=m$.
+At odd total count $m$, its exchange index is $m-1=N-2$, its unshifted blocks
+have indices at most $m-2=N-3$, and padding appends $\sig_m=\sig_{N-1}$:
+this is (BR). A left exchange similarly gives (L) at even $m$ and (BL) at odd
+$m$. In the latter, only the old blocks are shifted, so their indices are at
+most $N-2$ and the padding crossing remains separate. The first possible odd
+exchange count is $m=3$, explaining $N\ge4$ for (BR) and (BL).
+
+This covers every unrestricted edge. Delete identical successive images if
+desired. The resulting chain has only even states and the original endpoints.
+The classical chain needs no virtual letters or exchanges. Soundness proves the
+converse, and the corresponding Alexander theorem followed by $P$ proves the
+representation statements.
+\end{proof}
+
+\begin{corollary}
+An unrestricted certificate with maximum strand count $M$ converts to an even
+certificate with maximum strand count $2\lceil M/2\rceil$.
+\end{corollary}
+\begin{proof}
+Each vertex count $m$ becomes $m+(m\bmod2)$, and every lifted edge above has
+exactly its displayed endpoints. This function is nondecreasing in $m$.
+\end{proof}
+This is a bound for a \emph{supplied} certificate, not an algorithm or complexity
+bound for finding one. At one strand the empty word pads to $(2,\sig_1)$,
+the unknot. At $N=2$, (BC)'s blocks are empty and the virtual exchanges are
+identities. If the empty link is desired, adjoin an isolated zero-strand empty
+state; no positive-strand ordinary closure is empty.
+
+\section{Double moves and checkable support boundaries}
+Fiedler~\cite{Fiedler} reports that conjugation and double Markov moves alone
+do not replace ordinary Markov equivalence. Our calculus includes the additional
+(BC) and (T) schemes. Indeed, (D) followed by (T) at $N+2$ gives every classical
+double stabilization
+\[
+ (N,b)\arr (N+2,b\sig_N^\varepsilon\sig_{N+1}^\delta),
+ \qquad \varepsilon,\delta\in\{+1,-1\},
+\]
+because the prefix $b\sig_N^\varepsilon$ has indices at most $N$.
+This does not show that (BC) or (T) is generated by conjugation and double moves.
+Our comparison uses Fiedler's publisher abstract and identified publisher
+first-page preview; we do not independently certify his full counterexample
+proof. The elementary padding derivation establishes the stated formulation
+without a historical-priority claim or an assertion that the 2014 question
+remains open today.
+
+The block restrictions have mathematical content. If (T) at $N=2$ were allowed
+with $b=\sig_1^2$, it would relate $\sig_1^3$ to $\sig_1$ after cancellation.
+Their closures both have one component, but their Fox $3$-coloring counts are
+$9$ and $3$. With the positive generator drawn with its left strand over the right,
+the color map is $R(x,y)=(2x-y,x)$ over $\mathbb F_3$; $R^3=1$ and $R$ fixes precisely $x=y$.
+The invertible coloring rule gives bijections under the Reidemeister moves,
+so these counts rule out that enlarged scheme. The true (T) requires an empty
+prefix here.
+
+There is a virtual obstruction missed by component counts as well. Enlarging
+(R) at $N=2$ to allow $a=b=\sig_1$ would relate $\sig_1^2$ to
+$\sig_1v_1\sig_1v_1$. Their signed ordered intercomponent crossing matrices are
+respectively $\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$ and
+$\left(\begin{smallmatrix}0&2\\0&0\end{smallmatrix}\right)$, distinct even after
+simultaneous component relabeling. These matrices are invariant under oriented
+virtual Reidemeister moves: RI adds only self-crossings, classical RII cancels
+signs, RIII preserves each ordered component pair, and virtual detours introduce
+no classical crossings.
+The genuine (R) excludes these blocks.
+
+The accompanying standard-library Python diagnostics check explicit lifted
+endpoints, every relation family in bounded word contexts, support and tags,
+and exact countercontrols such as these. Finite diagnostics supplement the
+universal proof; they are not a link-equivalence oracle, a braid word-problem
+solver or formal verification of the imported theorems.
+
+\paragraph{AI and review disclosure.}
+AI tools were used extensively in constructing and drafting this formulation,
+and in adversarial review and computational verification. This note is
+unrefereed; no human peer review or formal proof certification is claimed.
+
+\begingroup
+\small
+\begin{thebibliography}{9}
+\bibitem{FIKM} R.~Fenn, D.~P.~Ilyutko, L.~H.~Kauffman and V.~O.~Manturov,
+\emph{Unsolved problems in virtual knot theory and combinatorial knot theory},
+Banach Center Publications \textbf{103} (2014), 9--61.
+\href{https://doi.org/10.4064/bc103-0-1}{doi:10.4064/bc103-0-1};
+\href{https://arxiv.org/abs/1409.2823v1}{arXiv:1409.2823v1}.
+\bibitem{GKS} E.~Gorsky, O.~Kivinen and J.~Simental,
+\emph{Algebra and geometry of link homology: Lecture notes from the IHES 2021 Summer School},
+Bull. London Math. Soc. \textbf{55} (2023), no.~2, 537--591.
+\href{https://doi.org/10.1112/blms.12761}{doi:10.1112/blms.12761};
+\href{https://arxiv.org/abs/2108.10356v1}{arXiv:2108.10356v1}.
+\bibitem{Kamada} S.~Kamada,
+\emph{Braid presentation of virtual knots and welded knots},
+\href{https://arxiv.org/abs/math/0008092v1}{arXiv:math/0008092v1} (2000),
+\S\S2--3, Proposition~3.1 and Theorem~3.2.
+\bibitem{KL} L.~H.~Kauffman and S.~Lambropoulou,
+\emph{Virtual braids and the $L$-move},
+J. Knot Theory Ramifications \textbf{15} (2006), 773--811;
+\href{https://arxiv.org/abs/math/0507035v3}{arXiv:math/0507035v3}, \S5, p.~30.
+\bibitem{Fiedler} T.~Fiedler,
+\emph{Markov moves cannot be replaced by double Markov moves},
+J. Knot Theory Ramifications \textbf{12} (2003), no.~4, 575--577.
+\href{https://doi.org/10.1142/S0218216503002561}{doi:10.1142/S0218216503002561}.
+\end{thebibliography}
+\endgroup
+\end{document}

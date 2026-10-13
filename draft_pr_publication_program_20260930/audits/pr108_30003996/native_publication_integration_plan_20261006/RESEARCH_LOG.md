@@ -1,0 +1,13 @@
+# PR108 native publication integration planning log
+
+Scope: nonexecuted plan/helper in this dedicated folder. No shared Git, native, remote, service or outreach mutation authority.
+
+- 2026-10-06T05:17:53+00:00 — Planning subtask 0%. Read supplied scope and applicable repository instructions. Existing mathematical gate reports 100%; priority clearance pending; author effort2/5, new proof-search turns0.
+- 2026-10-06T05:21:27.266625+00:00 — Planning subtask 30%. Actual bounded context collector authenticated 15 incoming files with no structured ledger, raw/SQL/submitted source equality, imported report{}, main94cb59e6, original OPEN/draft head, no native target, and48 existing unrelated stale catalog projections. Source cache read and hashed in place; no backend copy/download.
+- 2026-10-06T05:27:31.963174+00:00 — Planning subtask 70%. First helper draft and10 pure fixtures passed normally and under-O. Native CLI lacks claimed_solved choice; explicit dated baseline import plus source-pinned assess function selected. No real prepare/assess execution.
+- 2026-10-06T05:30:55.324486+00:00 — Planning subtask 80%. Unusable config/gate templates written with no commissioning, package or DOI. Exact source/diagnostic pins retained.
+- 2026-10-06T05:34:02.489503+00:00 — Planning subtask 90%. Eleven fixtures passed after multiline CSV coverage and actual published payload checks. Original and unrelated native rows/history/campaign scores remain proposed invariants, not runtime successes.
+- 2026-10-06T05:39:14.658090+00:00 — Planning subtask 95%. Final13 pure fixtures and syntax checks passed normally and under-O, including ZIP member validation without filesystem extraction. Fixtures establish only their named helper behaviors; the real native pipeline remains unexecuted.
+- 2026-10-06T05:39:15.377880+00:00 — Planning deliverable 100%; execution readiness remains conditional. Plan, explicit affected-path rules, inert templates, helper, logs, input/output manifests and actual read/test receipts sealed. Current mathematical clearance is the existing root report; no new novelty, publication or integration success claimed. Native integration/publication/merge executed0%; original effort2/5 preserved in the proposed dated import interpretation; audit proof-search turns0. Parent must commission a fresh independent pre-execution adversary and renew actual gates/parent/DIFF/readbacks.
+
+An early read-only global Git status was inadvertently unscoped and returned truncated sparse-checkout output. Failed/truncated preliminary reads are retained separately and excluded from evidence. Later authoritative Git/gh reads are bounded and have actual receipts. No other PR body was processed.

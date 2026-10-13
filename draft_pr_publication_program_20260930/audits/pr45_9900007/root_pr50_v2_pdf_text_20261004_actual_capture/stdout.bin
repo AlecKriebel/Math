@@ -1,0 +1,228 @@
+    An even-strand Markov calculus for classical and virtual links
+                                                  Alec Kriebel
+                                         ORCID: 0009-0001-9320-500X
+
+
+                                                    Abstract
+          We give an explicit aﬃrmative answer to the ordinary-closure interpretation of Problem 42
+      in the 2014 survey of Fenn, Ilyutko, Kauﬀman and Manturov. Four reversible algebraic schemes
+      classify oriented classical link closures using only even-strand braid states. Four additional
+      exchange schemes give the corresponding statement for oriented virtual links. The proof is
+      an elementary conversion of the established unrestricted Markov theorems: positively stabilize
+      each odd-strand vertex and lift every generating edge. Arbitrary ﬁnite word blocks are allowed;
+      minimality and uniform geometric locality are not asserted. No historical-priority or present-
+      openness claim is made.
+
+
+1    Scope and conventions
+Problem 42 of [1, p. 37], also on p. 34 of its author preprint, asks for a Markov formulation involving
+only even-strand braids. We retain ordinary oriented, unframed closure throughout. We supply
+both classical and virtual versions, since the item’s braid terminology is unqualiﬁed. Plat closure,
+framing and transverse isotopy are diﬀerent classiﬁcations. An even-strand plat theorem would
+not answer the ordinary-closure statement: the identity two-strand braid has a two-component
+ordinary closure and a one-component plat closure.
+    A state is a tagged word (N, w), where N ≥ 2 is even and all generator indices lie in {1, . . . , N −
+1}. Tags cannot be suppressed: empty words on two and four strands close to diﬀerent unlinks.
+Words multiply by concatenation; w−1 reverses the letters and inverts each one. Classical words
+use σi±1 ; virtual words additionally use vi = vi−1 . Write WN (k) for words whose indices are at most
+k, always regarded as words on the stated even N strands. The empty word is allowed, also for
+k = 0. These are syntactic support conditions, not tests of membership up to an unspeciﬁed braid
+equivalence. Let s(w) increase every index by one, retaining the types and signs of letters. Put
+                                              −1                           −1
+                                   i = {σi , σi },
+                                  Gcl                           i = {σi , σi , vi }.
+                                                               Gvir
+
+Use the appropriate Gi below.
+   At every ﬁxed even level we allow inverse cancellation and the Artin relations
+
+                            σi σj = σj σi (|i − j| > 1),          σi σi+1 σi = σi+1 σi σi+1 .
+
+For virtual words we additionally allow exactly
+
+       vi2 = 1,                           vi vj = vj vi    (|i − j| > 1),               vi vi+1 vi = vi+1 vi vi+1 ,
+     σi v j = v j σi   (|i − j| > 1),         σi vi+1 vi                          = vi+1 vi σi+1 .
+
+All these relations may be used in arbitrary word contexts, in either direction. No welded forbidden
+relation is imposed.
+
+                                                           1
+2    The even-endpoint schemes
+All following arrows are reversible and have only even-strand endpoints. The four common schemes
+are
+
+                  (N, b) ←→ (N, aba−1 ),                         a, b ∈ WN (N − 1),              (C)
+                                      −1
+            (N, bσN −1 ) ←→ (N, aba        σN −1 ),              a, b ∈ WN (N − 2),            (BC)
+            (N, bσN −1 ) ←→ (N, bg),                             b ∈ WN (N − 2), g ∈ GN −1 ,     (T)
+                  (N, b) ←→ (N + 2, bgσN +1 ),                   b ∈ WN (N − 1), g ∈ GN .        (D)
+
+In (D), the old word is placed on the ﬁrst N strands of the new N + 2-strand state. The identity
+choice in (T) may be omitted. These four schemes, with classical letters only, form the classical
+calculus.
+    The virtual calculus includes four further schemes. For a, b ∈ WN (N − 2), allow
+                                    −1
+                              (N, aσN −1 bσN −1 ) ←→ (N, avN −1 bvN −1 ),                        (R)
+                            (N, s(a)σ1−1 s(b)σ1 ) ←→ (N, s(a)v1 s(b)v1 ).                        (L)
+
+For even N ≥ 4 and a, b ∈ WN (N − 3), allow
+                              −1
+                        (N, aσN −2 bσN −2 σN −1 ) ←→ (N, avN −2 bvN −2 σN −1 ),                (BR)
+                       (N, s(a)σ1−1 s(b)σ1 σN −1 ) ←→ (N, s(a)v1 s(b)v1 σN −1 ).                (BL)
+
+In (BL), the shifted blocks have indices at most N − 2; the separate retained terminal crossing has
+index N − 1 and is not shifted. There are four classical or eight virtual scheme families, apart from
+the deﬁning relations. Blocks may have arbitrary ﬁnite length. Neither a minimal list nor a bound
+on the number of strands in a geometric support disk is claimed.
+
+Theorem 1. Every nonempty oriented classical link is the ordinary closure of an even-strand
+classical braid. Two such tagged braids have isotopic oriented closures if and only if they are
+connected by deﬁning relations at even levels and the schemes (C), (BC), (T), (D), with classical
+letters only.
+    Every nonempty oriented virtual link has an even-strand virtual braid representative. Two such
+tagged virtual braids have equivalent oriented virtual closures if and only if they are connected by
+deﬁning virtual braid relations at even levels and (C), (BC), (T), (D), (R), (L), (BR), (BL).
+
+
+3    Proof by positive padding
+The classical inputs are Alexander’s representation theorem and ordinary Markov equivalence by
+conjugation and signed right stabilization; see [2, Theorems 2.1–2.2]. The virtual inputs are Ka-
+mada’s Proposition 3.1 and Theorem 3.2 in [3]. In addition to relations and conjugation, they
+                               ±1 or v , and both exchanges at total count m:
+permit right stabilization by σm      m
+
+                 −1
+               aσm−1 bσm−1 ←→ avm−1 bvm−1 ,               s(a)σ1−1 s(b)σ1 ←→ s(a)v1 s(b)v1 ,     (1)
+
+where the unshifted blocks use indices at most m − 2. The signs and shift are also stated in [4, §5,
+p. 30]. These unrestricted theorems are imported, not reproved here.
+
+
+
+                                                      2
+Proof of Theorem 1. First verify soundness without using completeness. (C) is conjugation. For
+(BC), the two preﬁxes on N − 1 strands are conjugate, and both endpoints are their positive right
+stabilizations. (T) compares two permitted right stabilizations of the same preﬁx on N − 1 strands.
+(D) is a permitted stabilization followed by a positive stabilization. (R) and (L) are (1); in (BR)
+and (BL), apply that exchange on N − 1 strands and then positively stabilize both sides. The
+support bounds make each auxiliary operation legitimate. Thus every listed replacement preserves
+ordinary oriented closure. Odd-strand objects used to verify this fact are auxiliary proof objects,
+not allowed states of the displayed calculus.
+   For completeness, deﬁne, on unrestricted tagged words with m ≥ 1,
+                                          {
+                                            (m, w),          m even,
+                               P (m, w) =                                                        (2)
+                                            (m + 1, wσm ), m odd.
+
+Its closure agrees with the original closure by positive stabilization, and it ﬁxes every even tagged
+word exactly. Given an unrestricted Markov chain between even endpoints, apply P to every vertex.
+We check its edges exhaustively.
+    A deﬁning relation at even count remains unchanged. At odd count the same relation is applied
+inside its entire old word context, with the positive tail retained. Right inclusion respects every
+deﬁning relation; hence no group-word ambiguity is hidden by padding.
+    Conjugation b ←→ aba−1 at even count m becomes (C). At odd m it becomes (BC) at N = m+1,
+since both old blocks have indices at most m − 1 = N − 2. For stabilization (m, b) ←→ (m + 1, bg),
+g ∈ Gm , the two images are
+                          {
+                            (m, b) ←→ (m + 2, bgσm+1 ),      m even : (D),
+                            (m + 1, bσm ) ←→ (m + 1, bg), m odd : (T ).
+
+This includes both classical signs and virtual stabilization. Reversed arrows also cover every desta-
+bilization.
+    For a right exchange at even total count m, the images give (R) at N = m. At odd total count
+m, its exchange index is m − 1 = N − 2, its unshifted blocks have indices at most m − 2 = N − 3,
+and padding appends σm = σN −1 : this is (BR). A left exchange similarly gives (L) at even m and
+(BL) at odd m. In the latter, only the old blocks are shifted, so their indices are at most N − 2 and
+the padding crossing remains separate. The ﬁrst possible odd exchange count is m = 3, explaining
+N ≥ 4 for (BR) and (BL).
+    This covers every unrestricted edge. Delete identical successive images if desired. The resulting
+chain has only even states and the original endpoints. The classical chain needs no virtual letters
+or exchanges. Soundness proves the converse, and the corresponding Alexander theorem followed
+by P proves the representation statements.
+
+Corollary 2. An unrestricted certiﬁcate with maximum strand count M converts to an even cer-
+tiﬁcate with maximum strand count 2⌈M/2⌉.
+
+Proof. Each vertex count m becomes m + (m mod 2), and every lifted edge above has exactly its
+displayed endpoints. This function is nondecreasing in m.
+
+   This is a bound for a supplied certiﬁcate, not an algorithm or complexity bound for ﬁnding one.
+At one strand the empty word pads to (2, σ1 ), the unknot. At N = 2, (BC)’s blocks are empty
+and the virtual exchanges are identities. If the empty link is desired, adjoin an isolated zero-strand
+empty state; no positive-strand ordinary closure is empty.
+
+
+                                                  3
+4    Double moves and checkable support boundaries
+Fiedler [6] reports that conjugation and double Markov moves alone do not replace ordinary Markov
+equivalence. Our calculus includes the additional (BC) and (T) schemes. Indeed, (D) followed by
+(T) at N + 2 gives every classical double stabilization
+
+                         (N, b) ←→ (N + 2, bσN
+                                             ε δ
+                                               σN +1 ),        ε, δ ∈ {+1, −1},
+
+because the preﬁx bσN   ε has indices at most N . This does not show that (BC) or (T) is generated
+
+by conjugation and double moves. Our comparison uses Fiedler’s publisher abstract and identiﬁed
+publisher ﬁrst-page preview; we do not independently certify his full counterexample proof. The
+elementary padding derivation establishes the stated formulation without a historical-priority claim
+or an assertion that the 2014 question remains open today.
+    An earlier related announcement is Nencka’s two-page contribution [5]. After introducing a
+new representation by interwoved strings, it states a “Markov generalized equivalence” theorem
+using conjugacy at 2n strands and signed stabilization tails from 2n to 2n+1 . For n ≥ 1 these
+are even counts; each such tail is a composite of double stabilizations by grouping its 2n crossings
+into successive pairs. Thus a proved ordinary-closure interpretation of that announcement would
+be materially relevant to the classical question. The contribution does not deﬁne its generalized
+equivalence or supply a proof suﬃcient to verify that interpretation, and its convention for possible
+one-strand participation is not speciﬁed. We neither certify an earlier ordinary-closure resolution
+nor refute its announced result. The current proof uses the explicitly stated ordinary-closure inputs
+above and includes (BC) and (T); the announcement supplies no virtual exchange calculus. This
+distinction does not establish historical priority for our formulation.
+    The block restrictions have mathematical content. If (T) at N = 2 were allowed with b = σ12 ,
+it would relate σ13 to σ1 after cancellation. Their closures both have one component, but their Fox
+3-coloring counts are 9 and 3. With the positive generator drawn with its left strand over the right,
+the color map is R(x, y) = (2x − y, x) over F3 ; R3 = 1 and R ﬁxes precisely x = y. The invertible
+coloring rule gives bijections under the Reidemeister moves, so these counts rule out that enlarged
+scheme. The true (T) requires an empty preﬁx here.
+    There is a virtual obstruction missed by component counts as well. Enlarging (R) at N = 2 to
+allow a = b = σ1 would relate σ12 to σ1 v1 σ1 v1 . Their signed ordered intercomponent crossing matri-
+ces are respectively ( 01 10 ) and ( 00 20 ), distinct even after simultaneous component relabeling. These
+matrices are invariant under oriented virtual Reidemeister moves: RI adds only self-crossings, clas-
+sical RII cancels signs, RIII preserves each ordered component pair, and virtual detours introduce
+no classical crossings. The genuine (R) excludes these blocks.
+    The accompanying standard-library Python diagnostics check explicit lifted endpoints, every
+relation family in bounded word contexts, support and tags, and exact countercontrols such as
+these. Finite diagnostics supplement the universal proof; they are not a link-equivalence oracle, a
+braid word-problem solver or formal veriﬁcation of the imported theorems.
+
+AI and review disclosure. AI tools were used extensively in constructing and drafting this
+formulation, and in adversarial review and computational veriﬁcation. This note is unrefereed; no
+human peer review or formal proof certiﬁcation is claimed.
+
+
+
+
+                                                    4
+References
+[1] R. Fenn, D. P. Ilyutko, L. H. Kauﬀman and V. O. Manturov, Unsolved problems in virtual knot theory
+    and combinatorial knot theory, Banach Center Publications 103 (2014), 9–61. doi:10.4064/bc103-0-1;
+    arXiv:1409.2823v1.
+[2] E. Gorsky, O. Kivinen and J. Simental, Algebra and geometry of link homology: Lecture notes from the
+    IHES 2021 Summer School, Bull. London Math. Soc. 55 (2023), no. 2, 537–591. doi:10.1112/blms.12761;
+    arXiv:2108.10356v1.
+[3] S. Kamada, Braid presentation of virtual knots and welded knots, arXiv:math/0008092v1 (2000), §§2–3,
+    Proposition 3.1 and Theorem 3.2.
+[4] L. H. Kauﬀman and S. Lambropoulou, Virtual braids and the L-move, J. Knot Theory Ramiﬁcations 15
+    (2006), 773–811; arXiv:math/0507035v3, §5, p. 30.
+[5] H. Nencka, Generalization of the Markov theorem and Cantorian-like braid groups, in Topology and Appli-
+    cations: International Topological Conference dedicated to P. S. Alexandroﬀ’s 100th Birthday, Moscow,
+    May 27–31, 1996, PHASIS, Moscow (1996), 147–148. ISBN 5-7036-0017-0; scanned contribution.
+[6] T. Fiedler, Markov moves cannot be replaced by double Markov moves, J. Knot Theory Ramiﬁcations 12
+    (2003), no. 4, 575–577. doi:10.1142/S0218216503002561.
+
+
+
+
+                                                    5
+

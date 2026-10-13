@@ -1,0 +1,132 @@
+{
+  "CANDIDATE_RECEIPT": {
+    "Git_mutations": 0,
+    "native_export_executed": false,
+    "required": [
+      "UTC",
+      "operator_PID",
+      "packet_sha256",
+      "main_parent",
+      "original_head",
+      "native_assess_actual_PID",
+      "native_status",
+      "turns_used",
+      "new_central_proof_search_turns",
+      "nonempty_prior_preserved",
+      "unrelated_projection_drift_restored",
+      "affected_paths",
+      "capacity_before_final_receipt",
+      "parent_limits",
+      "DIFF_pin",
+      "native_export_executed",
+      "Git_mutations",
+      "service_writes",
+      "fresh_candidate_adversary_and_root_review_required"
+    ],
+    "schema": "pr110-actual-private-native-candidate/v1",
+    "service_writes": 0
+  },
+  "FAILURE": {
+    "candidate_must_not_be_exported": true,
+    "native_export_executed": false,
+    "required": [
+      "UTC",
+      "operator_PID",
+      "packet_sha256",
+      "error_type",
+      "error",
+      "candidate_must_not_be_exported",
+      "native_export_executed"
+    ],
+    "schema": "pr110-actual-private-native-failure/v1"
+  },
+  "PROCESS_RECORD": {
+    "required": [
+      "actual_process_record",
+      "synthetic_fixture_only",
+      "argv",
+      "cwd",
+      "environment_sha256",
+      "PID",
+      "UTC_start",
+      "UTC_end",
+      "exit_code",
+      "deadline_seconds",
+      "termination_reason",
+      "SIGKILL_attempted",
+      "reaped",
+      "environment_captured_before_spawn",
+      "bounded_stdout_capture",
+      "bounded_stderr_capture",
+      "streams_fully_drained",
+      "process_group_absence_confirmed",
+      "cleanup_errors",
+      "operator_intervention_required",
+      "elapsed_monotonic_seconds",
+      "streams"
+    ],
+    "stream_fields": [
+      "observed_bytes",
+      "observed_sha256",
+      "retained_path",
+      "bytes",
+      "sha256"
+    ],
+    "truth": "Retained prefixes are not labeled full stdout. EPERM means absence unconfirmed. No PID is invented if spawn fails."
+  },
+  "WORKER_CONTROL": {
+    "fixture": false,
+    "pre_assess_files": "12native names plusassessment.json",
+    "required": [
+      "schema",
+      "fixture",
+      "packet_sha256",
+      "backend",
+      "resources",
+      "caps",
+      "SQL_cache",
+      "SQL_pin",
+      "record_count",
+      "revision",
+      "pre_assess_pins"
+    ],
+    "schema": "pr110-native-worker-control/v1"
+  },
+  "WORKER_RESULT": {
+    "failure_additional": [
+      "error_type",
+      "error"
+    ],
+    "required": [
+      "schema",
+      "actual_worker_PID",
+      "UTC_start",
+      "UTC_end",
+      "packet_sha256",
+      "control_sha256",
+      "validated_control",
+      "native_assess_call_attempted",
+      "native_assess_completed",
+      "outcome",
+      "limits",
+      "startup",
+      "resource_usage"
+    ],
+    "schema": "pr110-actual-native-worker-result/v1",
+    "startup_required": [
+      "PID",
+      "argv",
+      "cwd",
+      "environment_sha256",
+      "Python_ignore_environment",
+      "Python_no_site",
+      "Python_no_bytecode",
+      "Python_safe_path"
+    ],
+    "success_additional": [
+      "output_pins"
+    ]
+  },
+  "description": "Key contracts only; no filled future output/evidence.",
+  "schema": "pr110-native-output-formats/v1"
+}

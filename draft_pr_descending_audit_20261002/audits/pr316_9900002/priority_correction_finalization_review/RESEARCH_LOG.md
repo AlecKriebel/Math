@@ -1,0 +1,5 @@
+# UTC bounded-finalization research log
+
+- 2026-10-04 15:38:41 UTC — 0% complete. Bounded recheck opened in a sibling folder. Original closed review will remain unchanged. Read the explicitly authorized finalization, completed-replay and root-freeze receipts.
+- 2026-10-04 15:39:47 UTC — 50% complete. Complete final/pre-review diff inspected. Actual outer metadata KeyError and first finalizer mode-assumption failure independently observed in preserved native records; completed scientific replay and finalization recovery have separate zero exits. These are bookkeeping distinctions, not new mathematical findings.
+- 2026-10-04 15:42:01 UTC — 100% complete. Bounded bookkeeping validation exited 0 with 249 assertions. Exact six-file edits/pins, native fields/counts, 15 historical files, author 1/5, and all 22 closed original review bytes/modes verified. No scientific rerun and no original-review/packet/Git/remote mutation. PASS, no remaining concerns within bounded finalization scope; report and manifest frozen separately.

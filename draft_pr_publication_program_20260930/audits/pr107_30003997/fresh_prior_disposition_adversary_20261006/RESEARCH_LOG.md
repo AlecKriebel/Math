@@ -1,0 +1,11 @@
+# Fresh prior-disposition adversarial audit
+
+2026-10-06T04:27:10.856082+00:00 - 5%: Initial source, repaired proof/checkers/results, mathematical gate and full prior PDF pinned. Independent reconstruction will precede reading root comparison or other prior-family final reports. Original candidate and turn ledger are read-only; no repository or service mutations.
+
+2026-10-06T04:28:16.028623+00:00 - 40%: Independent published-selector reconstruction frozen before root comparison. All restricted theorem promises have an elementary mapping; literal W and root-set notation defects recorded, not suppressed. Exact SAT optimum identity is valid separate accounting, but no separate substantive unresolved claim is established. Fresh finite controls remain.
+
+2026-10-06T04:32:03.398336+00:00 - 85%: Fresh 4,475,450 explicit mapping/path checks passed normally and under -O. Four current candidate receipts reproduced exactly; four candidate known-false guards and two fresh RuntimeError guards failed as required under both modes. Root v2 metadata and unposted closure reviewed. Post-freeze supplemental reports agree and do not supply the proof dependency. Finite checks expose literal diagonal-W failure; expected distinct-pair correction remains explicit. Final report, input stability and manifests remain.
+
+2026-10-06T04:35:27.208543+00:00 - 100%: Final bounded adversary supports already_solved-as-published-corollary/no novel resolution established, close without merging and no DOI. Latest fresh normal/-O runs each passed4,648,994 explicit checks, including eligible six-element yes/no cases and corrupted-price control. Exact current v2 receipts and guard failures passed. Final closure convention wording pinned; superseded original-path bytes archived exactly and input-stability checks passed. REPORT.md and VERDICT.json complete; no new central proof-search turn, repository/service mutation or outreach.
+
+2026-10-06T04:35:51.307442+00:00 - 100%: Root requested display-only clarification of signed-cost negative control: sole feasible tree of cost `-1`. Report corrected without changing the example, computation or verdict. Final manifest regenerated. Superseded closure-body archive matches old pinned original-path version hash88f57e20be0fba882fa6939c681624313a5cfc8944a2b103b27fb6400d81e203; actual old byte count is recorded in its pin.
