@@ -19,3 +19,6 @@ Other shard workers are not contacted and their changes are not included in
 this program's commits. No individuals are contacted. Preprints disclose
 extensive AI use and their unrefereed status. Progress percentages estimate
 completion of this program, not confidence that a theorem is true.
+
+The current pass is complete: all 101 drafts have queue status `queued` and
+were skipped. See `DISPOSITION.md` and `dispositions.csv` for the final result.

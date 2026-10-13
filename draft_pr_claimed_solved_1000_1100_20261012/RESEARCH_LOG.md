@@ -1,6 +1,6 @@
 # Research log
 
-## 2026-10-12, initial checkpoint — 0% complete
+## 2026-10-12T20:10:15-07:00 — initial checkpoint — 0% complete
 
 - Persistent goal activated for draft PRs #1000 through #1100, ascending.
 - Exact status gate: process only `claimed_solved`; skip every other status.
@@ -33,3 +33,14 @@
   subsequent regeneration outside this folder was left untouched.
 - Completion estimate refers to determining the permitted disposition of this
   range, not to solving any problem or assessing the validity of skipped claims.
+
+## 2026-10-13T03:20:08.179508+00:00 — final checkpoint — 100% of range disposition complete
+
+- Independent adversary reproduced all 101 main/local/head queue status rows and all PR/problem mappings; all are exactly `queued`. Fresh PR metadata still has all 101 open drafts with unchanged head pins.
+- Two synthetic parser vulnerabilities were found in successive versions, preserved in review evidence, fixed with column/prefix validation and a strict target-width guard, and independently rechecked. No actual target disposition changed; there are no remaining status-gate concerns.
+- Final root readback again found all 101 target statuses `queued` in local and latest remote main; the remote queue blob is unchanged since intake.
+- Final disposition: skip every PR #1000–#1100 in ascending order. Zero eligible PRs, mathematical reviews, priority audits, repairs, comments, closures, merges, preprints, Zenodo deposits, or tracker writes.
+- The requested pass is complete under the strict gate. No hypothesis about the mathematics or novelty of a skipped claim has been accepted or rejected. No outside individuals or other shard agents were contacted.
+- Only this program folder is included in checkpoints. Object-based commits extend fresh remote main without switching the shared branch, changing the shared index, resetting other workers' files, or force pushing.
+
+- 2026-10-13T03:21:14.786208+00:00: Final checkpoint publication encountered a transient Git HTTP timeout during the read-only remote-tip query, before any push. Switched that read to the authenticated GitHub API and retained the same non-force, isolated-index publication method.

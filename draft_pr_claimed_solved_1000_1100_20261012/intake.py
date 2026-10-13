@@ -17,17 +17,28 @@ def gh(*args):
 def queue_rows(text):
     rows = {}
     for number, line in enumerate(text.splitlines(), 1):
-        cells = [c.strip() for c in line.split('|')]
+        cells = [c.strip() for c in re.split(r'(?<!\\)\|', line)]
         if len(cells) < 10 or not re.fullmatch(r'\d+ / [^|]+', cells[2]):
             continue
         problem_id = cells[2].split(' / ')[0]
-        # Status precedes the turns column. This avoids pipes within titles.
-        status_match = re.search(r'\|\s*([a-z][a-z0-9_]*)\s*\|\s*(?:\d+/\d+|—|-)\s*\|', line)
-        if not status_match:
-            raise ValueError(f'Cannot parse queue status for {problem_id}, line {number}')
+        # Honor the table's Status and Turns columns. A status-looking passage
+        # inside another cell must never make a skipped PR eligible. Malformed
+        # unescaped pipes fail closed; they are not guessed into a schema.
+        numeric = r'\d+(?:\.\d+)?'
+        if (not re.fullmatch(r'\d+', cells[1])
+                or not re.fullmatch(numeric, cells[4])
+                or not re.fullmatch(numeric + r'|—', cells[5])
+                or not re.fullmatch(r'\d+', cells[6])
+                or not re.fullmatch(r'\d{4}|unknown', cells[7])):
+            raise ValueError(f'Noncanonical queue schema for {problem_id}, line {number}')
+        if not re.fullmatch(r'[a-z][a-z0-9_]*', cells[8]):
+            raise ValueError(f'Noncanonical Status column for {problem_id}, line {number}')
+        if not re.fullmatch(r'\d+/\d+|—|-', cells[9]):
+            raise ValueError(f'Noncanonical Turns column for {problem_id}, line {number}')
         if problem_id in rows:
             raise ValueError(f'Duplicate queue ID {problem_id}')
-        rows[problem_id] = {'status': status_match.group(1), 'line': number}
+        rows[problem_id] = {'status': cells[8], 'line': number,
+                           'canonical_width': len(cells) == 14}
     return rows
 
 def main():
@@ -56,6 +67,8 @@ def main():
             raise ValueError(f'Ambiguous problem identity for PR {p["number"]}: {candidates}')
         pid = candidates[0]
         row = rows[pid]
+        if not row['canonical_width']:
+            raise ValueError(f'Ambiguous table delimiters for target {pid}; refusing status inference')
         inventory.append({**p, 'problem_id': pid, 'queue_status': row['status'],
                           'queue_line': row['line'],
                           'disposition': 'eligible_pending_audit' if row['status'] == 'claimed_solved' else 'skip_status'})
