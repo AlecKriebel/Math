@@ -1769,7 +1769,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1758 | 5500068 / AMR-054-0068 | Rolling a Die over a Labeled Board | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1759 | 8800049 / AMR-087-0049 | Detecting Jacobians via criteria and Deligne modules | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1760 | 2800905 / AMR-027-0905 | 10 Lectures and 42 Open Problems — Positive PCA tightness | 0.0584 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 1761 | 30002861 / OWR-13678-002 | Cubic Spline Interpolation on General Triangulations | 0.0584 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 1761 | 30002861 / OWR-13678-002 | Cubic Spline Interpolation on General Triangulations | 0.0584 | 5.0 | 3 | 2015 | unsolved | >=1; total unknown |  | 2026-10-13: First newly documented substantive pass. Qiu's credited cubic counterexample independently verified; quartic compatibility criterion, convex-support restriction, and positive families independently accepted. General quartic assertion unresolved in this work; bundled row remains unsolved. [Proofs, audits, and source scope](attempts/30002861/README.md). |  |
 | 1762 | 3700039 / AMR-036-0039 | Median inequality for three subharmonic functions | 0.0584 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 1763 | 30003185 / OWR-14745-003 | Complexity of Bray’s Involution-Centralizer Algorithm | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 1764 | 30003208 / OWR-14748-016 | Von Neumann Generation of the Algebra T-Psi | 0.0582 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
