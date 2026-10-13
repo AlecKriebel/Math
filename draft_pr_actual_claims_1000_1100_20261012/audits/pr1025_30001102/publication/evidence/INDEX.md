@@ -85,5 +85,12 @@ remaining historical contract cases are preserved as evidence and not claimed
 to be replayed by this kit. Current finite checks do not implement polynomial
 LP/SFM/GLS, certify universal complexity or supply a formal/human-review proof.
 
-Fresh whole-package adversarial reviews remain pending. This draft is not yet
+[First fresh package review](package_review_01/REVIEW.md),
+[verdict](package_review_01/VERDICT.json),
+[unchanged copied records](PACKAGE_REVIEW_01_COPY.json) and
+[two P3 repairs](REPAIR_RECORD_01.json) are stage evidence. Raw third-party
+bodies, own-PDF render images and duplicate extracted input packages are omitted;
+source URL/hash metadata and complete execution receipts remain. The review
+manifest hashes describe that original stage, not the repaired current note.
+A NEW second whole-package review remains pending. This draft is not yet
 approved for immutable publication.

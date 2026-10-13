@@ -75,9 +75,14 @@ exhaustive absence proof.
   [unchanged copied records](PACKAGE_REVIEW_01_COPY.json). Render PNGs of our own
   PDF and third-party raw bodies are omitted; QA receipts and source URL/hash
   metadata are retained. These are stage-specific evidence, not portable-runner entry points.
-- [Current review state](CURRENT_REVIEW_STATE.json): first fresh review passed
-  with zero actionable issues; a NEW second review is pending. No immutable
-  publication acceptance is claimed yet.
+- [Second NEW whole-package review](package_review_02/WHOLE_PACKAGE_REVIEW.md),
+  [zero-actionable verdict](package_review_02/VERDICT.json),
+  [unchanged copied records](PACKAGE_REVIEW_02_COPY.json). Third-party raw bodies,
+  own-PDF PNGs and duplicate rebuilt input ZIP are omitted; hashes/QA/source
+  metadata remain stage provenance.
+- [Current review state](CURRENT_REVIEW_STATE.json) and
+  [final acceptance](FINAL_ACCEPTANCE.json): both new rounds passed with zero
+  actionable issues; this prepublication package is ready for immutable upload.
 - [Paper](../research_note.pdf), [TeX](../research_note.tex),
   [scope and credit](../SUPPLEMENT.md), [metadata](../metadata.json),
   [inventory](../PACKAGE_MANIFEST.json).

@@ -146,7 +146,10 @@ Small-case enumeration deliberately has nonpolynomial worst-case complexity;
 it corroborates identities and boundary cases, not universal asymptotics.
 
 Exact metadata, portable navigation and verification receipts accompany the
-package. Fresh whole-package adversarial review/fix loops remain pending. This draft is not yet approved for
+package. The first fresh whole-package review passed mathematics and found two P3
+repairs: the GLS10.2.7 problem locator and B=1 for an empty edge set. Both were
+corrected in the current source/PDF; original review inputs and records are
+preserved. A NEW second review remains required. This draft is not yet approved for
 immutable publication. Extensive AI use, unrefereed status and all scope/credit
 limits must persist through paper, package, metadata and tracker. No formal
 proof-assistant or conventional human peer-review certificate is claimed.

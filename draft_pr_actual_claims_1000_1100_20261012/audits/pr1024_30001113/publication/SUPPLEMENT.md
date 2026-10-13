@@ -145,12 +145,15 @@ the recorded run used Python 3.14.6 on macOS. No other operating system was
 tested here. This is finite corroboration, not a formal proof certificate.
 
 Exact metadata and the source/verification inventory accompany the package.
-The first fresh whole-package review independently passed with zero actionable
-concerns; its unchanged report and receipts are indexed below. A NEW second
-whole-manuscript/package adversarial review remains pending in
-[the current state](evidence/CURRENT_REVIEW_STATE.json). The package is not yet
-approved for immutable publication. Every actionable issue must be corrected
-in current artifacts and reviewed by a new independent adversarial subagent.
+Two NEW independent whole-package adversarial reviews each passed with zero
+actionable concerns. They independently reconstructed the theorem, inspected
+primary scope/credit, reproduced the portable cases, challenged faulty packages
+and checked archive/provenance and every PDF page. Their unchanged records
+and the [final acceptance](evidence/FINAL_ACCEPTANCE.json) are indexed in the
+[review state](evidence/CURRENT_REVIEW_STATE.json). The package is ready for
+preprint submission and immutable publication. No mathematical source, PDF,
+checker or metadata changed after the final clean review; only unchanged
+review evidence and administrative acceptance/navigation text were appended.
 The final metadata and tracker retain **unrestricted** scope, the untouched
 prorepresentable-component variant, known-ingredient credit and extensive-AI /
 unrefereed disclosure. No formal proof-assistant or human peer-review certificate

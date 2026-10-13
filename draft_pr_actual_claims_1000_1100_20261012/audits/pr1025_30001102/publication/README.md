@@ -24,7 +24,8 @@ arbitrary-real oracle model is claimed.
 [supplement](SUPPLEMENT.md), [exact metadata](metadata.json) and
 [evidence index](evidence/INDEX.md) form a draft preprint package. All six PDF
 pages compiled without warnings and were rendered/visually inspected. Fresh
-whole-package adversarial review/fix loops remain required. This draft is not
+whole-package reviewer found two P3 presentation/boundary repairs; both have
+been applied, and a NEW second review remains required. This draft is not
 approved for submission or immutable publication. The polynomial LP, submodular
 and GLS algorithms are dependencies of the proof; diagnostic small-case
 enumeration is not a full implementation or complexity proof.

@@ -168,6 +168,15 @@ convex set to Sep(3,3). The inverse is real-linear on its image; choosing a
 real basis of the image and extending it to a basis of exterior^4 V extends
 the inverse to a real-linear ambient map. No nonlinear inverse is necessary.
 
+The completed coordinate checker supplies a more explicit extension. In the
+225-element standard real Hermitian basis, the real exterior columns of A
+are orthogonal with squared norms 1 for the 15 diagonal columns and 2 for the
+210 off-diagonal columns. All 25,425 upper-triangular Gram entries were checked
+exactly. Thus G^(-1) A^T on the full real 495-dimensional exterior space is a
+left inverse of A. After recovering H, extraction of its B principal block
+and the coordinate identification B=U tensor Z give the desired ambient
+real-linear map to the 9 by 9 Hermitian space.
+
 If C is the image pi(S) of a finite spectrahedron S, imposing the section's
 affine equations on pi(s) imposes two affine equalities on S. This is again a
 finite spectrahedron: if needed each equality can be encoded by opposite
@@ -181,7 +190,12 @@ separable-state obstruction, which is outside this family's assignment.
 The geometric set equality and preservation argument above are proved by
 elementary finite-dimensional real/complex linear algebra and convexity.
 No circular dependence on the target nonrepresentability theorem was used.
-Coordinate verification and hostile numerical/algebraic controls are pending
-at the time this initial reconstruction was written. No geometric gap or
-counterexample has been identified. The external obstruction and moment/SOS
-theory remain separate audit obligations, and priority remains unestablished.
+The completed exact checker verifies the full matrix, the two functionals,
+the Gram inverse, all coefficients of the universal projector polynomial,
+and the nine universal mixed minors. Sixteen boundary and hostile controls
+pass. Three deliberately corrupted implementations are rejected. All 225
+independently constructed matrix columns agree coefficient-for-coefficient
+with the submitted certificate, whose determinant-based validator also
+passes after code review. No geometric gap or counterexample has been
+identified. The external obstruction and moment/SOS theory remain separate
+audit obligations, and priority remains unestablished.
