@@ -87,3 +87,11 @@ New independent reviewer rederived theorem and primary source scope, verified27G
 ## 2026-10-13T05:38:53.593981+00:00 — #1024 final clean acceptance (program estimate19%)
 
 Two NEWindependentwholepackage reviews each ZEROactionable. Second reviewer rederivedfulltheorem,39cases+39extractedreplay,33forcedguards+27malformedpackagecontrols,27Gitpins,whole-moduleASTreversal andall5PDFpages. Appendedunchangedfinalreview andadministrativeacceptanceonly; mathematicalTeX/PDF/checkers/metadataunchanged. Final154entryarchive/pins/links/CRCchecked; originaldraftheadstillunchangedOPEN. FullyreadyforpreprintandZenodo; productionuploadfollows.
+
+## 2026-10-13T05:40:20.481446+00:00 — #1025 repairs applied; #1031 mathematics clean (program estimate19%)
+
+First1025freshwholepackage reviewer independently passed mathematics and24direct+24extractedcases,29guardcontrols and28modelFourier-Motzkin checks across3modes. Exactly2P3repairs: GLS10.2.7citationlabel and explicitB=1 forEempty. Both globallyapplied incurrentTeX/PDF; currentmetadata/checkers and35submittedfilesunchanged. All6newPDFpages compiledwarning-free/rendered/viewed, originalreviewpreservedunchanged. NEWsecondreview follows. #1031 fresh geometry andSOS/liftfamilies both completedclean; rootreadfullreconstructions/sourcequantifiers andwillpromotecombinedmathematics topriorityaudit. #1024acceptedafter2cleanfreshrounds; productionZenodostagingactive.
+
+## 2026-10-13T05:51:44.229273+00:00 — #1024 workflow complete; cursor#1025 (program estimate22%)
+
+Published exacttwoverifiedfiles with repositoryZenodokit asrecord23333046/DOI10.5281/zenodo.23333046; HTTP200resolved. APIuseddocumenteddescriptionU2019-to-ASCIIapostropheserializationonly; allothermetadatafields/filehashesverified. WorkspaceCLIatomicRAWappend/readbackexact row75 onrequestedgid1254632077. PRdescription/titleupdatedscopedacceptance+DOI/credits/AI/history, readythenmergedexacthead37b4b2f; mergecommit41b95511c92f7c0584238ea964c3cc4728b77bf0. Originalstageandimmutablepublishedfilesunchanged. GoalACTIVE,2of18admittedresultsfullycomplete. Next1025after2P3fixes awaitsNEWsecondreview;1031fullmathpassed/independentpriorityactive. Other83excludedassertionsnotprocessed. State fields normalized to the existing *_prs/list schema after detecting newly introduced aliases; service receipts and accepted outcomes are unchanged.
