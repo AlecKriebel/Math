@@ -833,7 +833,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 823 | 30001176 / OWR-3392-002 | Factorizations from Minimal Exchangeable Random Sequences | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 824 | 30001223 / OWR-3400-007 | Simple Tops of Young Modules | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 825 | 30001336 / OWR-4084-010 | Rooted-Tree Expansions of Renormalized Two-Point Functions | 0.0985 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 825 | 30001336 / OWR-4084-010 | Rooted-Tree Expansions of Renormalized Two-Point Functions | 0.0985 | 6.0 | 3 | 2009 | unsolved | 5/5 |  |  |  |
 | 826 | 30001460 / OWR-4332-001 | Geometric Quotients of K-Sheets | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 827 | 30001478 / OWR-4335-003 | Prime Ideals and Coordinate-Ring Maps of $R(\alpha,\beta)$ | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 828 | 30001522 / OWR-4413-005 | Persistent Gaps between Free $p$-Rank and Toral Rank | 0.0983 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
