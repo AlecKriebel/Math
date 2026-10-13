@@ -33,10 +33,11 @@ def main():
     for p in sorted(original.rglob("*")):
         if p.is_file() and p.suffix in (".md", ".json", ".py"):
             add("original/" + p.relative_to(original).as_posix(), p)
-    for family in ("analytic01", "quantitative01", "source01"):
+    for family in ("analytic01", "quantitative01", "source01", "priority02",
+                   "priority03"):
         folder = AUDIT / "reviews" / family
         for p in sorted(folder.iterdir()):
-            if p.is_file() and (p.suffix in (".md", ".json", ".py")
+            if p.is_file() and (p.suffix in (".md", ".json", ".jsonl", ".py")
                                 or p.name == ".gitignore"):
                 if ".private" not in p.name:
                     add(f"reviews/{family}/{p.name}", p)
