@@ -33,3 +33,9 @@ Priority statements are limited to the accompanying dated audit.
 Author: Alec Kriebel, independent researcher.
 ORCID: https://orcid.org/0009-0001-9320-500X.
 Paper and authored supplementary materials: CC BY4.0.
+
+The October12 priority audit in the supporting archive expands the historical
+source-status packet with Shiga, Köhn and Leutwiler and a full final-title
+Bear–Smith author manuscript. Original frozen packets retain their historical
+inspection limits; the new dated audit is the current source/priority record.
+No first-resolution or current-worldwide-openness certification is claimed.

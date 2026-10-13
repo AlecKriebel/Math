@@ -30,3 +30,11 @@
 - Fresh independent mathematical audit PASS; zero required repairs. Root independent replay matched all diagnostic output excluding timestamp.
 - Priority remains pending; no acceptance/merge/publication action yet.
 - Overall completion estimate:4%; PR810:40%.
+
+## 2026-10-13T03:31:12.870065+00:00 — priority and bibliography checkpoint
+
+Independent bounded source/priority audit complete: exact-target PASS; no verified direct prior resolution or immediate earlier-theorem implication; historical first priority unresolved. Nine full primary works and dated editorial updates assessed; five full-text gaps disclosed. Related Shiga citation added to paper and metadata; current dated audit includes Köhn/Leutwiler and improves Bear–Smith scope, preserving old frozen records unchanged. Complete package now enters the fresh whole-package review loop. Overall program completion estimate:5%; PR810 acceptance/publication:55%.
+
+## 2026-10-13T03:37:25.915069+00:00 — whole-package review and integration preparation
+
+R1 reviewer was assigned the complete hash-sealed prepublication package with independent proof-first reconstruction and scope/priority/package checks. Root identified minor bibliography-pagination and missing supplement rebuild-input issues; prepared fixes outside sealed inputs for application after R1. The earlier criteria/preparation present-tense statements will be removed from the final support selection or clarified. A non-pushed integration preview against current remote main reproduced exactly the original forty packet files plus only target QUEUE row; shared checkout/index/main branch unchanged. Desktop LaTeX compiler independently confirmed current draft compiles. No PR branch update, ready transition, merge, Zenodo stage/publish or tracker append has occurred. Overall completion estimate:5%; PR810 acceptance/publication:55%.
