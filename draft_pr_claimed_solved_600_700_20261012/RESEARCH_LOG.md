@@ -37,3 +37,11 @@ Read complete round2 report and freeze: theorem, literature/chronology, actual u
 ## 2026-10-13T04:41:28.746727+00:00 — PR618 final publication gate PASS
 
 Read and accepted the full fresh third review: zero mandatory/optional findings, complete independent theorem reconstruction and source/priority checks, exact replay, five-page pixel-identical source rebuild and isolated tests of repaired operations. Rehashed all eight reviewed inputs unchanged, confirmed OPEN draft original head with exact claimed_solved row and no pre-existing target integration on remote main. Preprint ready; proceeding with user-authorized Zenodo kit, DOI tracker and accepted PR integration. Best-guess completion: PR618 87%; shard 23%.
+
+## 2026-10-13T04:43:28.864455+00:00 — PR618 immutable preprint publication confirmed
+
+Repository Zenodo kit created/resumed draft23331709, verified exact metadata with zero normalizations and the frozen PDF/ZIP hashes, published with explicit confirmation ID, then independently inspected the published deposition. DOI10.5281/zenodo.23331709 resolves HTTP200 to record23331709. No release/duplicate record created. Extensively AI-assisted, unrefereed status unchanged. Tracker and accepted-PR merge are next. Best-guess completion: PR618 93%; shard 24%.
+
+## 2026-10-13T04:43:48.012937+00:00 — PR618 tracker row verified
+
+GWS identified gid1254632077 as Math Puzzles, verified headers, found no prior DOI row, appended the original problem/blank source-chat/DOI/scoped disclosure notes to 'Math Puzzles'!A73:D73, and read back exact four-cell equality. Published DOI10.5281/zenodo.23331709 is registered once. Preparing the accepted PR integration against current remote main. Best-guess completion: PR618 96%; shard 24%.
