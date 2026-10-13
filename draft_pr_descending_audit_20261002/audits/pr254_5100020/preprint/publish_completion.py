@@ -15,7 +15,7 @@ def api(method,path,payload=None):
  return json.loads(r.stdout)
 m=json.loads((PUB/'PR_MERGED.json').read_text());assert m['PR']==254 and m['merged'] and m['case_completion_percent']==100
 pr=api('GET','pulls/254');assert pr['merged'] and pr['merge_commit_sha']==m['merge_commit']
-paths=[P/'RESEARCH_LOG.md',P/'CURRENT_GOAL_SELECTION_20261013.json',D/'RESEARCH_LOG.md',HERE/'PACKAGE_STATE.json',HERE/'publish_completion.py',PUB/'PR_MERGED.json']
+paths=[P/'RESEARCH_LOG.md',P/'CURRENT_GOAL_SELECTION_20261013.json',D/'RESEARCH_LOG.md',HERE/'PACKAGE_STATE.json',HERE/'FINAL_CLEARANCE.json',HERE/'publish_completion.py',PUB/'PR_MERGED.json']
 entries=[{'path':f.relative_to(ROOT).as_posix(),'mode':'100644','type':'blob','content':f.read_text()} for f in paths]
 for n in ['FINAL_ACCEPTANCE.json','DISPOSITION.md','final_queue_state.json','RESEARCH_LOG.md','FROZEN_MANIFEST.json','PUBLICATION_MANIFEST.json','FINAL_PACKAGE_MANIFEST.json']:
  f=HERE/'pr_update/5100020'/n;entries.append({'path':'unsolved_math_prioritization/attempts/5100020/'+n,'mode':'100644','type':'blob','content':f.read_text()})
