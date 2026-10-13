@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\setlength{\emergencystretch}{1em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\spanof}{\operatorname{span}}
+\title{A relation-incidence proof of Toh\u{a}neanu's\protect\\ low-exponent supersolvability conjecture}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove that every finite central free arrangement over a field of characteristic zero whose nonzero exponents are $1$ or $2$, with at most one $3$, is supersolvable. Factorization and linear-relation formality restrict the incidence graph of the multiple rank-two flats to a tree or a subdivision of $K_4$ with trees attached. A direct modular-coatom argument then gives a maximal modular chain in every rank. This proves the full conjecture stated in Toh\u{a}neanu's Oberwolfach contribution. We credit the earlier all-$2$, tree, rank-three and modular-pruning results and acknowledge Ferudun's later matching full-target preprint. The accompanying package preserves the dated candidate, source audit and exact computational diagnostics. AI tools were used extensively in developing, writing and checking this work. This preprint is unrefereed; its internal AI reviews are not human peer review.
+\end{abstract}
+
+\section{Statement, context and attribution}
+An arrangement is a finite set of distinct linear hyperplanes, rather than a multiarrangement. We use the coefficient degrees of a homogeneous basis of logarithmic derivations as its exponents. Supersolvability means that the intersection lattice, ordered by reverse inclusion, has a maximal chain of modular elements.
+
+\begin{theorem}\label{thm:main}
+Let $\mathcal A$ be a finite central free hyperplane arrangement over a field $K$ of characteristic zero. If its nonzero exponents belong to $\{1,2\}$ except for at most one exponent $3$, then $\mathcal A$ is supersolvable.
+\end{theorem}
+
+The source conjecture is on printed p.~284 of Toh\u{a}neanu's Oberwolfach contribution~\cite{owr}, with characteristic-zero scope set on p.~283. The all-$1/2$ result is already in his 2017 manuscript~\cite{low}, and tree/parallel-connection structure appears in Denham--Garrousian--Toh\u{a}neanu~\cite[Theorem 5.6]{dgt}. The rank-three quadratic-derivation classification is earlier work~\cite[Theorem 2.4]{quadratic}. The formality, rank-two counting and terminal-triple modular-pruning strategy also occurs in~\cite[Lemma 2.2, \S3, Lemma 4.2]{low}, whose complete manuscript was withdrawn in 2022: the notice identifies incomplete hand enumeration in \S\S4.2.1--4.2.2 and an unjustified inference in Proposition 4.8(a). We use neither affected assertion, and prove the pruning and multiplicity steps below directly.
+
+DiPasquale's total-formality theorem and TF2 classification~\cite[Corollary 4.10, Proposition 6.1]{dip} give a published predecessor for the cases with independent local relation spaces. Numbering here refers to arXiv:1806.05295v1. In the two tree cases below the local-sum map is an isomorphism; independence persists in localizations, so the higher relation kernels vanish and the free arrangement is TF2. In the cyclic case that map has a one-dimensional kernel, and the TF2 proposition does not apply. The step developed here is the all-rank forcing of a four-triple, six-element core from a minimal dependency and a global incidence-cycle bound. We do not claim novelty for the incidence graph, tree mechanism, modular pruning, or supersolvability of the rank-three core.
+
+A version of this relation-incidence proof was recorded in GitHub PR~\#618 on 4~October~2026~\cite{candidate}. During the publication audit we located Ferudun's 12~October~2026 preprint~\cite{ferudun}, proving the same full target by a related dependency-support count and terminal-triple induction. Our proof uses the cycle dimension three to isolate the core; his proof obtains a removable terminal triple by a leaf count outside a dependency support. The package preserves the PR creation record (4~October, 16:19:57 UTC), frozen proof hash, and Zenodo creation records for his versions (12~October, 00:39:41 UTC and 09:20:42 UTC). The repository is currently public; we have not reconstructed every historical visibility change. These are bounded disclosure records, not a certificate of exhaustive first priority or independent development.
+
+\section{Relations and numerical restrictions}
+We use two established inputs: Terao factorization~\cite{terao} gives $n=\sum d_i$ and $b_2=\sum_{i<j}d_i d_j$; Yuzvinsky's theorem~\cite{yuz} says that the linear relations among defining forms of a free arrangement are generated by rank-two relations. This is linear-relation formality, not topological formality. DiPasquale~\cite[Corollary 4.10]{dip} also supplies the formality implication. Standard lattice and product conventions may be found in~\cite{ot}.
+
+Essentialization identifies the intersection lattices and removes only zero exponents. The rank-zero lattice is trivial, and ranks one and two are supersolvable. Product factors are free, their exponent multisets unite, and their modular chains give a modular chain in the product. It therefore suffices to consider an essential irreducible arrangement of rank $r\geq 3$.
+
+Such a factor has exactly one exponent $1$. Indeed, use independent defining forms $x_1,\ldots,x_r$ as coordinates. Every linear logarithmic derivation is diagonal, $\theta(x_i)=\lambda_i x_i$, and each further defining form is an eigenvector of its dual map. A nonscalar diagonal derivation partitions all normals among distinct coordinate eigenspaces and yields a product. Thus only the Euler derivation remains in degree one. Essentiality excludes constant logarithmic derivations, so this dimension equals the number of exponent-one basis elements. The exponent lists are consequently $(1,2,\ldots,2)$ or $(1,2,\ldots,2,3)$.
+
+Choose a nonzero normal $a_e$ for every hyperplane, indexed by $E$, and put
+\[
+R=\ker\bigl(K^E\longrightarrow V^*,\ (c_e)\longmapsto\sum c_ea_e\bigr),
+\qquad \dim R=n-r.
+\]
+A \emph{rich line} $L$ is the complete set of normals in a two-dimensional normal span with $|L|\geq3$. Distinct rich lines meet in at most one element. Its supported relation space $R_L$ has dimension $|L|-2$, and formality gives $R=\sum_L R_L$.
+
+Let $G$ be the bipartite graph with element vertices $e\in E$, rich-line vertices $L$, and edges $eL$ for $e\in L$. It is connected. Otherwise formality splits $R$ by graph components. Any equality between vectors in their normal spans restricts to a relation in each component, so all component vectors are zero. Their spans are therefore in direct sum, contradicting irreducibility. This also excludes isolated element vertices.
+
+If the largest exponent is $d$, every rank-two flat has at most $d+1$ hyperplanes. To prove this, write its forms as $x,y,x+c_i y$ ($1\leq i\leq m-2$), with distinct nonzero $c_i$. For a homogeneous logarithmic derivation of degree at most $d$, write $\theta(x)=xP$, $\theta(y)=yQ$. Tangency implies $x+c_i y\mid P-Q$. If $m>d+1$, the product of these distinct factors has degree greater than $\deg(P-Q)$; hence $P=Q$. In every free-basis column the first two coefficients would then be $xP,yP$, making the first two rows proportional over the fraction field, an impossibility. Thus $m\leq d+1$.
+
+Each pair belongs to one rank-two flat, which contributes $m-1$ to $b_2$. Consequently
+\begin{equation}\label{eq:defect}
+\binom n2-b_2=\sum_L\binom{|L|-1}{2}.
+\end{equation}
+Write $u$ and $v$ for the numbers of three- and four-element rich lines. Factorization and~\eqref{eq:defect} give the following counts; $\beta(G)=|\operatorname{edges}|-|\operatorname{vertices}|+1$ is the cycle-space dimension of the connected graph.
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Exponents & $n$ & $b_2$ & rich-line count & $\beta(G)$\\
+\midrule
+$(1,2,\ldots,2)$ & $2r-1$ & $2(r-1)^2$ & $u=r-1,\ v=0$ & $0$\\
+$(1,2,\ldots,2,3)$ & $2r$ & $2r^2-2r-1$ & $u+3v=r+1$ & $3-3v$\\
+\bottomrule
+\end{tabular}
+\end{center}
+In the second row, formality further gives
+\[
+r=\dim R\leq u+2v=r+1-v,
+\]
+so $v\leq1$. If $v=1$, then $u=r-2$ and $G$ is a tree with one four-element line. If $v=0$, then $u=r+1$ and $\beta(G)=3$. The all-$2$ graph is also a tree.
+
+\section{The cyclic case has one forced core}
+Assume the one-$3$ case has no four-element line. Choose a nonzero relation $\rho_L$ on each triple. These $r+1$ vectors span the $r$-dimensional space $R$. Choose an inclusion-minimal dependent family $T$ of size $t$. Its dependence coefficients and every coordinate of every $\rho_L$ on its support are nonzero. Cancellation therefore makes each support element occur in at least two triples.
+
+Let $s$ be the number of support elements and $G_T$ the corresponding incidence subgraph. It is connected: different components would split the dependence into smaller dependences. Thus
+\[
+s\leq\frac{3t}{2},\qquad
+\beta(G_T)=3t-(s+t)+1=2t-s+1\leq\beta(G)=3.
+\]
+Combining the inequalities yields $t\leq4$. Each triple's three elements must be covered by other triples, and another rich line meets it in at most one element, so $t-1\geq3$. Therefore $t=4$, $s=6$. Every element occurs exactly twice and every pair of triples meets at a distinct element. Label them $L_1,\ldots,L_4$ and their intersections $e_{ij}$; then
+\[
+L_i=\{e_{ij}:j\ne i\},\qquad 1\leq i\leq4.
+\]
+The core graph is the incidence subdivision of $K_4$, with triple vertices corresponding to its vertices and element vertices to its edges.
+
+This core has cycle dimension three, exhausting that of $G$. Contracting the connected core leaves a connected multigraph of cycle dimension zero, hence a tree. Thus all components outside it are trees attached at one core vertex. Core triple vertices already have all their incident edges in the core, so attachments occur only at core element vertices.
+
+\section{A terminal-pencil modular extension}
+We work with the represented normal matroid. A flat is a subspace spanned by normals, together with all normals in it. A represented flat $W$ is modular exactly when $W\cap F$ is spanned by represented normals for every represented flat $F$: this says that the matroid meet has the full vector-space intersection dimension and is equivalent to the modular rank equality.
+
+\begin{lemma}\label{lem:prune}
+In a formal normal configuration, let $L=\{a,p_1,\ldots,p_{m-1}\}$ be a rich line and suppose every $p_i$ occurs in no other rich line. Delete all $p_i$, retaining $a$, to obtain $E'$. Then $E'$ is formal, its rank drops by one, and its span is a modular coatom. If $E'$ is supersolvable, so is $E$.
+\end{lemma}
+\begin{proof}
+All other local relation spaces are supported on $E'$. Let $S$ be their sum. Formality gives $R=R_L+S$. Since $R_L\cap K^{E'}=0$ (such a relation would be supported only on the nonzero normal $a$), this sum is direct. Restricting to relations supported in $E'$ gives $R'=S$, proving deletion formality, and
+\[
+\dim R'=\dim R-(m-2),\qquad
+\rk(E')=(n-m+1)-(n-r-m+2)=r-1.
+\]
+Put $W=\spanof(E')$ and $U=\spanof(L)$. The full normal span is $W+U$, so dimension counting gives $U\cap W=Ka$. Every removed normal is nonproportional to $a$; hence none lies in $W$, and $E'$ is exactly its represented flat.
+
+Take a flat $F$ generated by some normals. If at most one generator is outside $W$, then $F\cap W$ is spanned by the inside generators, because a single outside generator has nonzero image modulo $W$. If at least two are outside, their distinct directions span $U$, and $F\cap W$ is the span of the inside generators together with $a$. Thus $W$ is modular.
+
+For a flat $C$ modular within $W$ and any full flat $F$, the intersection $W\cap F$ is represented. Hence $C\cap F=C\cap(W\cap F)$ is represented as well, making $C$ globally modular. Lift a maximal modular chain from $W$ and append the full span.
+\end{proof}
+
+\section{Completion and boundaries}
+For the all-$2$ tree, root $G$ at any triple-line vertex. A line vertex farthest from the root has two outward element leaves. Lemma~\ref{lem:prune} deletes them; repeat until the root triple remains, a rank-two supersolvable pencil. In the one-$3$ tree, root at the unique four-element line and prune the triple lines in the same way. Again the remaining pencil has rank two. The retained configuration is formal at every step; no assertion that arbitrary deletions are free or formal is used.
+
+In the cyclic case, prune the attached trees toward the core. The remaining six-element configuration is formal. Its four triple relations have rank three by minimality of their dependency, so its normal rank is $6-3=3$. Its rich lines are exactly the four indicated triples: deleting normals cannot create any new collinear triple.
+
+Fix $L_i$. Every other triple line meets it in a represented point. An ordinary rank-two flat is a pair of disjoint edges of the indexing $K_4$, since adjacent edges lie together in a star triple. A pair of disjoint edges covers all four vertices, so precisely one of those edges belongs to $L_i$. Its normal span therefore also meets $\spanof(L_i)$ in a represented point. All rank-two flats have represented intersection with $\spanof(L_i)$; the other ranks are immediate. Thus $L_i$ is modular. Every atom is modular, so zero, an atom of $L_i$, $L_i$, and the full rank-three span form a maximal modular chain. Reverse the pruning using Lemma~\ref{lem:prune}. Finally take products and undo essentialization to prove Theorem~\ref{thm:main}.
+
+Characteristic zero, distinct hyperplanes and the single-cubic restriction are retained. The free nonsupersolvable non-Fano arrangement with exponents $(1,3,3)$ is a boundary to allowing two cubic exponents. We make no arbitrary-characteristic or multiarrangement extension.
+
+\paragraph{Verification and disclosure.}
+The universal conclusion rests on the proof above, not a finite search. The supporting package contains the frozen October-4 candidate, author diagnostics, fresh exact relation/incidence and algebra/lattice checks, source and priority reports, and hash manifests. These checks include the represented $K_4$ core, terminal pencils, withdrawal-related examples and the non-Fano boundary. They are reproducible diagnostics. AI tools were used extensively in solving, verifying and preparing this note; the adversarial reports are AI-generated internal reviews. No independent human peer review is claimed. The author is responsible for the stated claims. No external researcher was contacted.
+
+\begin{thebibliography}{10}
+\bibitem{owr} S.~O.~Toh\u{a}neanu, Free arrangements with low exponents, in \emph{Oberwolfach Reports} 5/2021, pp.~283--286. \href{https://doi.org/10.4171/owr/2021/5}{doi:10.4171/owr/2021/5}.
+\bibitem{low} S.~O.~Toh\u{a}neanu, \emph{Free arrangements with low exponents}, \href{https://arxiv.org/abs/1707.07091v1}{arXiv:1707.07091v1} (2017), \href{https://arxiv.org/abs/1707.07091v3}{v3} (2020); \href{https://arxiv.org/abs/1707.07091v4}{v4 withdrawal notice} (16 January 2022).
+\bibitem{dgt} G.~Denham, M.~Garrousian and S.~Toh\u{a}neanu, Modular decomposition of the Orlik--Terao algebra of a hyperplane arrangement, \emph{Ann. Comb.} 18 (2014), 289--312. \href{https://arxiv.org/abs/1211.4562}{arXiv:1211.4562}.
+\bibitem{quadratic} S.~Toh\u{a}neanu, Projective duality of arrangements with quadratic logarithmic vector fields, \emph{Discrete Math.} 339 (2016), 54--61. \href{https://arxiv.org/abs/1405.2122v2}{arXiv:1405.2122v2}.
+\bibitem{dip} M.~DiPasquale, A homological characterization for freeness of multi-arrangements, \emph{Math. Ann.} 385 (2023), 745--786. \href{https://doi.org/10.1007/s00208-021-02357-6}{doi:10.1007/s00208-021-02357-6}; \href{https://arxiv.org/abs/1806.05295v1}{arXiv:1806.05295v1} (2018).
+\bibitem{candidate} A.~Kriebel, A relation-incidence proof of low-exponent supersolvability, \href{https://github.com/AlecKriebel/Math/pull/618}{Math PR~\#618}, created 4 October 2026, frozen commit \texttt{cae273cb692bde0a0a73790c3840af8c7eb1eed7}.
+\bibitem{ferudun} A.~Ferudun, \emph{Free Hyperplane Arrangements with Exponents 1, 2 and at Most One 3 Are Supersolvable: A Proof of a Conjecture of Toh\u{a}neanu}, EulerSolve Research Papers OWR-4990374-015 (12 October 2026), v1.1, \href{https://doi.org/10.5281/zenodo.23313624}{doi:10.5281/zenodo.23313624}; v1.0, \href{https://doi.org/10.5281/zenodo.23307000}{doi:10.5281/zenodo.23307000}.
+\bibitem{terao} H.~Terao, Generalized exponents of a free arrangement of hyperplanes and Shepherd--Todd--Brieskorn formula, \emph{Invent. Math.} 63 (1981), 159--179. \href{https://doi.org/10.1007/BF01389197}{doi:10.1007/BF01389197}.
+\bibitem{yuz} S.~Yuzvinsky, The first two obstructions to the freeness of arrangements, \emph{Trans. Amer. Math. Soc.} 335 (1993), 231--244. \href{https://doi.org/10.1090/S0002-9947-1993-1089421-5}{doi:10.1090/S0002-9947-1993-1089421-5}.
+\bibitem{ot} P.~Orlik and H.~Terao, \emph{Arrangements of Hyperplanes}, Springer (1992). \href{https://doi.org/10.1007/978-3-662-02772-1}{doi:10.1007/978-3-662-02772-1}.
+\end{thebibliography}
+\end{document}

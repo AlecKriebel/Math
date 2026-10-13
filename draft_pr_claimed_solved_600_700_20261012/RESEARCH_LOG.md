@@ -21,3 +21,7 @@ PR #615 closed without merging at unchanged original claimed_solved head. Mathem
 ## 2026-10-13T03:43:28.254263+00:00 — PR #618 original replay checkpoint (16% shard completion estimate)
 
 Original exact packet and nested independent computations reproduce byte-identically in the pinned runtime. Fresh incidence and algebra families continue independently. Priority, manuscript, fresh final-package review loop, publication, tracker and merge remain pending.
+
+## 2026-10-13T04:03:43.452149+00:00 — PR618 priority gate and research note
+
+Accepted the bounded priority audit with explicit attribution to the later exact Ferudun preprint and earlier tree/pruning/rank-three results. No universal first-priority or independent-development claim. Wrote the complete all-rank research note, current status override for frozen historical assertions, and an explicit allowlist package builder/portable exact replay. Mathematical gaps identified: none; final-package reviews and publication/integration remain. Best-guess completion: PR618 55%; shard 19%.
