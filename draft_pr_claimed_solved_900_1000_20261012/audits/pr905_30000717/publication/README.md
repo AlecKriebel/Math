@@ -9,11 +9,19 @@ R + epsilon is not SOS modulo even the full ideal of polynomials vanishing on
 the real tangency variety. The same holds for the literal separate-product
 reading printed in Schweighofer's 2007 report. Removing an attainment assumption
 includes attained minima; it does not restrict the question to nonattaining
-polynomials. A separate nonattaining diagnostic concerns only the product reading.
+polynomials. A separate nonattaining diagnostic concerns only the product reading. Its
+polynomial is a constant shift of the standard example in Schweighofer (2006),
+Section 1.6, equation (6), and the original report p.810. The standard sphere
+minimization argument is credited to the tangency-set discussion in Laurent
+(2009), Section 7.2.3, Lemma 7.21; the additional truncation multipliers in related
+certificates are retained in the comparisons.
 
 The self-contained proof permits arbitrary real coefficients, arbitrarily many
 square summands and arbitrary degrees. Classical Robinson/Schur/zero-set
-ingredients are credited. First historical priority and continued open status
+ingredients are credited. The identical ten-zero cubic argument appears in
+Reznick, Some concrete aspects of Hilbert's 17th problem (2000), Section 4(b),
+printed p.259, DOI 10.1090/conm/253/03936. The publisher reprint hosted by the
+author was authenticated and inspected. First historical priority and continued open status
 through 2026 are not established or asserted; see the bounded priority audit.
 
 AI tools were used extensively in development, verification, adversarial review
@@ -71,6 +79,6 @@ https://creativecommons.org/licenses/by/4.0/ . External references retain their
 own terms and are not redistributed.
 
 Primary conjecture: Schweighofer, Gradient tentacles and sums of squares,
-Oberwolfach Report 14/2007, pp. 810–811, DOI10.4171/owr/2007/14.
-Classical form in the same report: Reznick, p.798, equation(2).
+Oberwolfach Report 14/2007, pp. 810–811, DOI 10.4171/owr/2007/14.
+Classical form in the same report: Reznick, p.798, equation (2).
 Original proposal: https://github.com/AlecKriebel/Math/pull/905 .
