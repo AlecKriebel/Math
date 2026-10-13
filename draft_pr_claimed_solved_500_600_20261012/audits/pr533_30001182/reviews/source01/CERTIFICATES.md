@@ -37,7 +37,7 @@ Finite permutations of positive indices fix e0 and conjugate X_i into X_sigma(i)
     X_i² X_j²=e00,
     X_i e00=e_i0,  e00 X_j=e0j,  X_i e00 X_j=e_ij.
 
-Thus the image algebra is K(H)+C1. Its vector state at e0 is pure: in any state decomposition, both components assign 1 to e00; Cauchy–Schwarz annihilates terms with 1-e00 on either side, so each component evaluates T as <Te0,e0>. Pullback through π is pure and therefore extreme exchangeable.
+Thus the C* image, meaning the norm closure of the algebraically generated image, is K(H)+C1. The algebraic image is the finite matrix-unit span together with scalars and is dense in this unitized compact-operator algebra. Its vector state at e0 is pure: in any state decomposition, both components assign 1 to e00; Cauchy–Schwarz annihilates terms with 1-e00 on either side, so each component evaluates T as <Te0,e0>. Pullback through π is pure and therefore extreme exchangeable.
 
 But for i≠j,
 
