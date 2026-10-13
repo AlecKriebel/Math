@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Read-only independent archive, manifest, reference and provenance audit."""
 from pathlib import Path, PurePosixPath
-import hashlib, json, zipfile, re, datetime
-BASE=Path(__file__).resolve().parents[2]/'publication'
-OUT=Path(__file__).resolve().parent
+import hashlib, json, zipfile, re, datetime, argparse
+_HERE=Path(__file__).resolve()
+_CANDIDATES=[_HERE.parents[2]/'publication', *_HERE.parents]
+BASE=next((p for p in _CANDIDATES if (p/'run_checks.py').is_file() and (p/'PACKAGE_MANIFEST.json').is_file()), None)
+if BASE is None: raise RuntimeError('Cannot locate the publication package')
 
 def digest(data): return hashlib.sha256(data).hexdigest()
 def demand(ok,msg):
@@ -70,4 +72,7 @@ def main():
     env=json.loads((BASE/'evidence/EXECUTION_ENVIRONMENT.json').read_text());demand(env['recorded_execution_system']=='Darwin','recorded macOS identity')
     return {'status':'PASS','timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'archive':archive_receipt,'manifest_files':len(entries),'historical_counterpart_hashes_checked':len(historical),'historical_counterparts':historical,'historical_outputs_omitted_as_disclosed':omitted,'portable_relative_links_checked':len(nav),'links':nav,'metadata_identical':True,'deposit_inputs_exist':True,'recorded_environment':env,'inventory':inventory,'limits':'Verifies included byte identities and declared provenance mappings; omitted third-party source bodies or historical permissions are not recreated.'}
 if __name__=='__main__':
-    result=main();(OUT/'PACKAGE_INTEGRITY_CHECK.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k not in ('inventory','historical_counterparts','links')},indent=2))
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path);args=parser.parse_args()
+    result=main()
+    if args.output: args.output.write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k not in ('inventory','historical_counterparts','links')},indent=2))
