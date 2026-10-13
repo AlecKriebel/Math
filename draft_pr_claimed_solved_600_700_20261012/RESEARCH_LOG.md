@@ -45,3 +45,7 @@ Repository Zenodo kit created/resumed draft23331709, verified exact metadata wit
 ## 2026-10-13T04:43:48.012937+00:00 — PR618 tracker row verified
 
 GWS identified gid1254632077 as Math Puzzles, verified headers, found no prior DOI row, appended the original problem/blank source-chat/DOI/scoped disclosure notes to 'Math Puzzles'!A73:D73, and read back exact four-cell equality. Published DOI10.5281/zenodo.23331709 is registered once. Preparing the accepted PR integration against current remote main. Best-guess completion: PR618 96%; shard 24%.
+
+## 2026-10-13T04:48:41.857304+00:00 — PR618 merged, complete disposition
+
+Accepted PR618 merged at 2026-10-13T04:46:18Z, commit ca17480646ef27e3f73ee2f87ab1511174df507e, exact audited integration head989a9ae75d31b3eb15b0100f618d702ce32ddc64. After fetching the new merge object, read its actual tree and verified every current-attempt manifest hash and exact target queue row. Published preprint DOI10.5281/zenodo.23331709 and verified tracker row Math Puzzles!A73:D73. Full scope, prior credits, AI/unrefereed disclosure and original historical bytes preserved; no human peer review or exhaustive first priority claimed. Best-guess completion: PR618 100%; shard 25% (two of eight eligible dispositions complete). Proceeding upward to PR623 after a fresh live eligibility gate. One checkpoint non-fast-forward race rejected cleanly; retry on newly fetched main preserves concurrent work.
