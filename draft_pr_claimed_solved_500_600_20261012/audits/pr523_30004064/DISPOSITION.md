@@ -11,3 +11,5 @@ We attempted a reasonable original-scope repair using a three-direction unique i
 The fresh disposition adversary found no required defect in this decision or root certificate. It did find a threshold-survival overstatement in prior Corollary3.3. We do not validate that corollary, numerical census, solver totals, or general central-path rates. They are unnecessary for the checked overlapping theorem and exact witnesses.
 
 Preserve original evidence and the audit. Record the literal target as already_solved after disposition, with prior attribution and exact/numerical/auxiliary boundaries. No new acceptance DOI or tracker entry. Reopening requires materially new theorem/evidence. See all four independent review folders and root_reproduction for proofs, code and receipts.
+
+Completed 2026-10-13T04:43:43.516945+00:00: PR closed without merge at 2026-10-13T04:42:42Z; [closure comment](https://github.com/AlecKriebel/Math/pull/523#issuecomment-6138397305). Main target classification recorded, with all unrelated rows preserved.
