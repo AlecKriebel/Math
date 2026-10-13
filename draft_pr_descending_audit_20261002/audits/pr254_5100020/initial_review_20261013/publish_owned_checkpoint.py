@@ -41,6 +41,14 @@ paths += [p for p in [D / 'ROOT_PROOF_ANALYSIS.md', D / 'ROOT_MATHEMATICAL_ACCEP
 for folder in ['meromorphic_adversary_01', 'geometric_adversary_01']:
     paths += sorted((D / folder).glob('*'))
 paths += sorted((D / 'root_fresh_reproduction').rglob('*.json'))
+paths += [D / 'ROOT_PRIORITY_ACCEPTANCE.md', D / 'ROOT_PRIORITY_ROUTE_NOTES.md', D / 'ROOT_PRIORITY_SOURCE_HASH_CHECKS.json']
+classical = json.loads((D / 'priority_classical_adversary_01/FINAL_AUDIT_INTEGRITY.json').read_text())
+paths += [Path(x['path']) for x in classical['public_authored_outputs']]
+paths += [D / 'priority_classical_adversary_01/FINAL_AUDIT_INTEGRITY.json']
+recent = json.loads((D / 'priority_recent_adversary_01/FINAL_AUDIT_MANIFEST.json').read_text())
+paths += [D / 'priority_recent_adversary_01' / x['relative_path'] for x in recent['public_files']]
+paths += [D / 'priority_recent_adversary_01/FINAL_AUDIT_MANIFEST.json']
+paths += list((D / 'root_priority_reproduction').rglob('*.json'))
 paths = [p for p in paths if p.is_file()]
 progress = json.loads((P / 'CURRENT_GOAL_SELECTION_20261013.json').read_text())
 entries = [{'path': p.relative_to(ROOT).as_posix(), 'mode': '100644',
