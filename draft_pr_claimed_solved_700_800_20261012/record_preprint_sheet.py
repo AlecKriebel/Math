@@ -37,9 +37,15 @@ def main():
     title = metadata['title']
     doi_url = 'https://doi.org/' + args.doi
     pr_url = f'https://github.com/AlecKriebel/Math/pull/{args.pr}'
+    scope_path = audit / 'TRACKER_SCOPE.json'
+    scope = 'Full claimed solution independently internally audited.'
+    if scope_path.is_file():
+        scope = json.loads(scope_path.read_text())['summary']
+        if not isinstance(scope, str) or not scope.strip():
+            raise ValueError('Tracker scope must be a nonempty authored statement')
     notes = (f"{title}; Alec Kriebel; version {metadata['version']}; "
              f"preprint date {metadata['publication_date']}; problem {args.problem}; "
-             f"{pr_url}. Full claimed solution independently internally audited. "
+             f"{pr_url}. {scope} "
              "Extensive AI use; unrefereed, no external human peer review or formal "
              "proof verification. Bounded priority audit found no earlier full "
              "resolution; first historical priority is not certified. "

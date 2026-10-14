@@ -8,6 +8,7 @@ import datetime
 import json
 import os
 import pathlib
+import re
 import subprocess
 import sys
 import tempfile
@@ -69,7 +70,11 @@ def publish(message, paths):
                     stream.write(json.dumps(receipt) + '\n')
                 print(json.dumps(receipt, indent=2))
                 return
-            if 'fetch first' not in result.stderr and 'non-fast-forward' not in result.stderr:
+            ref_race = re.search(
+                r"cannot lock ref 'refs/heads/main': is at [0-9a-f]{40} but expected [0-9a-f]{40}",
+                result.stderr)
+            if ('fetch first' not in result.stderr and 'non-fast-forward' not in result.stderr
+                    and not ref_race):
                 raise RuntimeError(result.stderr)
         raise RuntimeError('Remote main advanced during all three checkpoint attempts')
 
