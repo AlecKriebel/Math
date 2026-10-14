@@ -212,7 +212,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 203 | 30001704 / OWR-4798-031 | Finiteness from Face-Number Bounds for Manifolds with Boundary | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | unsolved | 3/5 |  | 2026-09-30: Separate review passed the credited bounded-radius p>2 expectation theorem application, exact fixed-law Rademacher radial classification and all-marginal-moment logarithmic oversampling obstruction. General distribution characterization remains unresolved; projection-tail regularity is distinguished from marginal moments. 11164 author and 5903 independent controls; expectation exceptional-event bridge and fixed-law limits audited. Draft PR: https://github.com/AlecKriebel/Math/pull/182. |  |
 | 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
