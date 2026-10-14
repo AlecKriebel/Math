@@ -94,12 +94,16 @@ def main():
         with tempfile.TemporaryDirectory(dir=work) as tmp:
             env = dict(os.environ, GIT_INDEX_FILE=str(Path(tmp) / 'index'))
             git('read-tree', base, env=env)
-            for entry in mapping['files']:
-                blob = git('hash-object', '-w', entry['local_path'])
-                git('update-index', '--add', '--cacheinfo', '100644', blob,
-                    entry['repo_path'], env=env)
+            entries = mapping['files']
+            blobs = git('hash-object', '-w', '--no-filters', '--',
+                        *(entry['local_path'] for entry in entries)).splitlines() if entries else []
+            if len(blobs) != len(entries):
+                raise RuntimeError('Batch blob inventory mismatch')
+            index_info = ''.join('100644 ' + blob + '\t' + entry['repo_path'] + '\0'
+                                 for blob, entry in zip(blobs, entries))
             blob = git('hash-object', '-w', '--stdin', input=updated)
-            git('update-index', '--add', '--cacheinfo', '100644', blob, QUEUE, env=env)
+            index_info += '100644 ' + blob + '\t' + QUEUE + '\0'
+            git('update-index', '-z', '--index-info', env=env, input=index_info)
             changed = git('diff', '--cached', '--name-only', base, env=env).splitlines()
             if any(p != QUEUE and p not in seen for p in changed):
                 raise RuntimeError('Unexpected diff path')
@@ -113,15 +117,21 @@ def main():
             Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
             print(json.dumps(receipt))
             return
+        receipt.update(push_outcome='pending', attempts=history)
+        Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
         pushed = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],
                                 cwd=REPO, capture_output=True, text=True)
         history.append({'base': base, 'commit': commit, 'push_exit': pushed.returncode})
         if pushed.returncode == 0:
-            receipt.update(pushed=True, attempts=history)
+            receipt.update(pushed=True, push_outcome='confirmed', attempts=history)
             Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
             print(json.dumps(receipt))
             return
-        if not any(s in pushed.stderr for s in ('non-fast-forward', 'fetch first', 'failed to update ref')):
+        concurrent_ref_rejection=("cannot lock ref 'refs/heads/main'" in pushed.stderr
+                                  and 'is at ' in pushed.stderr and 'but expected ' in pushed.stderr)
+        receipt.update(push_outcome='failed_or_unknown; reconcile before any non-rejection retry', attempts=history)
+        Path(mapping['receipt_path']).write_text(json.dumps(receipt, indent=2) + '\n')
+        if not concurrent_ref_rejection and not any(s in pushed.stderr for s in ('non-fast-forward', 'fetch first', 'failed to update ref')):
             raise RuntimeError(pushed.stderr)
     raise RuntimeError('Five main advances prevented publication-receipt push; commits retained')
 

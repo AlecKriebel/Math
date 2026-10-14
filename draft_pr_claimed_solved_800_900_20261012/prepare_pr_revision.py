@@ -81,6 +81,7 @@ def main():
         env = dict(os.environ, GIT_INDEX_FILE=str(Path(tmp) / 'index'))
         git('read-tree', base, env=env)
         seen = set()
+        mapped = []
         for f in mapping['files']:
             name = f['repo_path']
             if not name.startswith(prefix) or '..' in Path(name).parts or name in seen:
@@ -90,10 +91,16 @@ def main():
             raw = local.read_bytes()
             if local.is_symlink() or hashlib.sha256(raw).hexdigest() != f['sha256']:
                 raise RuntimeError('Reviewed file changed: ' + name)
-            blob = git('hash-object', '-w', str(local))
-            git('update-index', '--add', '--cacheinfo', '100644', blob, name, env=env)
+            mapped.append((str(local), name))
+        blobs = git('hash-object', '-w', '--no-filters', '--',
+                    *(local for local, _ in mapped)).splitlines() if mapped else []
+        if len(blobs) != len(mapped):
+            raise RuntimeError('Batch blob inventory mismatch')
+        index_info = ''.join('100644 ' + blob + '\t' + name + '\0'
+                             for blob, (_, name) in zip(blobs, mapped))
         blob = git('hash-object', '-w', '--stdin', input=updated)
-        git('update-index', '--add', '--cacheinfo', '100644', blob, QUEUE, env=env)
+        index_info += '100644 ' + blob + '\t' + QUEUE + '\0'
+        git('update-index', '-z', '--index-info', env=env, input=index_info)
         changed = git('diff', '--cached', '--name-only', base, env=env).splitlines()
         if any(n != QUEUE and not n.startswith(prefix) for n in changed):
             raise RuntimeError('Unexpected prepared diff scope')
