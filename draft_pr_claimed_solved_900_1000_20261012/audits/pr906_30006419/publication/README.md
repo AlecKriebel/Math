@@ -11,7 +11,10 @@ minimize operator-norm-squared energy on each sufficiently small neighborhood
 against all same-trace Sobolev competitors, but have essentially unbounded
 distortion. The map is not a global homotopy minimizer and is not KS-harmonic.
 The paper also proves the separate complete-target KS theorem with the nonsharp
-bound `4 + sqrt(17)`. The energy and minimization class are essential.
+bound `4 + sqrt(17)`. Its stress-zero step implies pointwise SL(2)-minimality
+by matrix convexity, so the sharper established Lytchak–Wenger bound also
+applies. The elementary constant is retained for a self-contained proof, not
+as an improvement. The energy and minimization class are essential.
 
 Source binding is to the authenticated 2025 arXiv v1 PDF and Oberwolfach report.
 The revised 2026 journal body was inaccessible. Neither unchanged final wording,
@@ -105,3 +108,9 @@ AI tools were used extensively in development, verification, adversarial review,
 and writing. Independent AI-assisted reviews are not independent human or
 journal peer review; neither has occurred. Authored materials use CC BY 4.0.
 Cited third-party documents retain their own rights and are not redistributed.
+
+PUBLICATION_REVIEW_CORRECTIONS.md records reviewer01 repairs: the supporting
+Sacks–Uhlenbeck link and the applicability of the older sharper KS bound.
+The initial sealed priority review is preserved in its history/initial_revision.
+This release correction qualifies any contrary historical interpretation in
+the unchanged original packet or earlier sealed analytic reviews.

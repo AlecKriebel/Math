@@ -65,7 +65,7 @@ def main():
     for name in ['ORIGINAL_SNAPSHOT.json','PR_DESCRIPTION_ANCHOR.json',
                  'TARGET_IDENTITY_PREFLIGHT.json','PRIORITY_ACCESS_ADDENDUM.md',
                  'BIBLIOGRAPHIC_IDENTITIES.json','ROOT_PRIORITY_SOURCE_RECORD.json',
-                 'ROOT_PRIORITY_QUERY_LOG.md']:
+                 'ROOT_PRIORITY_QUERY_LOG.md','PUBLICATION_REVIEW_CORRECTIONS.md']:
         add(A/name,name)
     data={'schema_version':1,'pr':906,'problem_id':'30006419',
           'original_pr_head':snapshot['head'],'original_public_manifest_sha256':PIN,
