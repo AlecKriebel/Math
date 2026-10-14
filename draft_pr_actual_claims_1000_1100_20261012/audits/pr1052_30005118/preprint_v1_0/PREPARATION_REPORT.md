@@ -1,4 +1,6 @@
-# PR1052 preparation snapshot
+# PR1052 preparation and bounded repair snapshot
+
+Current local stage on 2026-10-14: **PENDING_NEW_WHOLE_02**; publication_ready=false and all_issues_resolved=false. P3-01's exact dated notes correction is implemented pending NEW complete whole-package review 02. This is an administrative repair, not a new whole-package or mathematical acceptance. At least two fresh comprehensive reviews and the ascending publication hold after PR1032 remain. The account below records original preparation; its compiler/visual claims are inherited on the unchanged source/PDF. No compiler, rendering or PDF operation marker was rerun in this repair. The original report is preserved byte-for-byte in support/history/preparation_01/.
 
 Date: 2026-10-14. Goal completion estimate: 90% (candidate mathematics and credit accepted; new whole-package review remains).
 

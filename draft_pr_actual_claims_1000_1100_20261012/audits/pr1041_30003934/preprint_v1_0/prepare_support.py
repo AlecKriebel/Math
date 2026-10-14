@@ -62,6 +62,16 @@ for name in sorted([rec['path'] for rec in pins['files']]+['OUTPUT_PINS.json']):
     if '/' in name or name.lower()=='fullsource.txt':raise RuntimeError('unexpected terminal whole02 member')
     copy('reviews/package_02/'+name,'evidence/reviews/package_02/'+name,'frozen_package_02')
 copy('ROOT_WHOLE_PACKAGE_REVIEW_02.json','evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_02.json','root_whole_package_02_adoption')
+base=AUDIT/'reviews/package_03'
+pins=json.loads((base/'OUTPUT_PINS.json').read_text())
+if len(pins['files'])!=304:raise RuntimeError('whole03 sealed output count')
+for rec in pins['files']:
+    data=(base/rec['path']).read_bytes()
+    if len(data)!=rec['bytes'] or hashlib.sha256(data).hexdigest()!=rec['sha256']:raise RuntimeError('frozen whole03 mismatch: '+rec['path'])
+for name in sorted([rec['path'] for rec in pins['files']]+['OUTPUT_PINS.json','SEAL.json']):
+    if '/' in name or name.lower()=='fullsource.txt' or Path(name).suffix.lower() not in {'.txt','.md','.json','.py',''}:raise RuntimeError('unexpected terminal whole03 member')
+    copy('reviews/package_03/'+name,'evidence/reviews/package_03/'+name,'frozen_package_03')
+copy('ROOT_WHOLE_PACKAGE_REVIEW_03.json','evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json','root_whole_package_03_adoption')
 manifest=dict(previous)
 manifest['files']=records
 (ROOT/'EVIDENCE_COPY_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')

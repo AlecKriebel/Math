@@ -7,6 +7,8 @@ spec=importlib.util.spec_from_file_location('package_verify',root/'verify_packag
 p=argparse.ArgumentParser();p.add_argument('--output',required=True);a=p.parse_args();out=Path(a.output).resolve()
 allow=v.check()
 v.require(out not in [root/x for x in allow],'cannot overwrite a package input')
+v.require(out.suffix=='.zip','archive output must end in .zip')
+if out.is_relative_to(root):v.require(out==root/'support.zip' or out.is_relative_to(root/'tmp'),'inside package output must be support.zip or under tmp/')
 out.parent.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(out,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9,strict_timestamps=True) as z:
  for name in allow:

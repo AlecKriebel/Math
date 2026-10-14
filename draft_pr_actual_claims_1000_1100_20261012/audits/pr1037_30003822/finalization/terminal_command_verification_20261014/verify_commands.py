@@ -100,8 +100,8 @@ def replay1037(root):
         original=json.loads((source/('CHECK_RESULTS_'+mode+'.json')).read_text())
         run('transfer_'+mode,[PYTHON,'-B','fresh_checks.py','--mode',mode],target)
         actual=json.loads((target/('CHECK_RESULTS_'+mode+'.json')).read_text())
-        a=[r for r in actual if r['name'] not in {'execution environment','complete'}]
-        b=[r for r in original if r['name'] not in {'execution environment','complete'}]
+        a=[r for r in actual if r['name'] not in {'execution environment','completed'}]
+        b=[r for r in original if r['name'] not in {'execution environment','completed'}]
         require(a==b,'transfer substantive replay differs '+mode)
         out.append({'family':'transfer','mode':mode,'ordinary_python_only':True,'substantive_records':len(a),'exact_equal':True})
     source=root/'evidence/fresh_20261013/invariant_01';target=HERE/'replay/invariant';shutil.copytree(source,target)

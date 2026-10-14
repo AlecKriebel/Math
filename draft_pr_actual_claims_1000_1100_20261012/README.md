@@ -36,27 +36,29 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Fourteen of the eighteen full-claim candidates have passed combined scoped
-mathematical audits. #1032 has a critical full-text priority comparison pending;
-a read-only exact connected-Drive search also found no matching paper.
-#1033's explicitly expository three-page package is final clean and sealed after
-NEW review02; publication is held after the preceding #1032 disposition.
-#1034 and #1037 passed fresh whole review02 with zero actionable findings;
-terminal administration and unchanged-review custody are being finalized.
-#1041's clean-extraction verifier defect from review02 is repaired and independently
-reproduced by root; NEW whole review03 is running. #1047 passed its first whole
-review clean and has a second fresh full reviewer. #1052's credited four-page
-cyclic corollary and kit are root verified, with all pages inspected and actual
-clean-extraction commands reproduced; its first new whole review is running.
-At least two fresh whole-package reviews are required before package clearance.
-#1064's entropy proof is accepted as a credited corollary of prior marginal
-entropy results, with novelty and priority unknown; its paper is being prepared.
-#1071's all-Hurst lower bound passed both mathematical families with a version-
-specific source qualification; its extensive priority comparison is running.
-#1080's fixed-genus boundedness theorem passed two independent families and root
-reproduction, resolving the separate arbitrary-length clause while exact higher-
-genus maxima and classifications remain unresolved. Its priority audit is next.
+Fifteen of the eighteen full-claim candidates have passed combined scoped
+mathematical audits. #1032 remains the ascending disposition cursor: its
+critical full-text priority comparison is pending, and an exact connected-Drive
+search found no matching paper. #1033, #1034 and #1037 are final clean and sealed
+locally, ready for later publication after the #1032 disposition.
+#1041's fresh whole03 and #1047's second full review found zero actionable
+issues; root adopted those reports and is checking terminal administration.
+#1052's single dated-metadata correction is root verified, with a second full
+review running. #1064's first full paper review passed the mathematics, source
+framing, five pages and reproducibility, and found two narrow package guards
+that are being repaired before its second fresh review.
+#1071's priority comparison and newly accessible journal-formatted source are
+adopted for attributed proof/exposition, with novelty and priority unknown;
+its prepared seven-page paper awaits root checks and new whole reviews.
+#1080's prior-corollary route is independently checked and credited; its paper
+is being prepared for the complete restricted arbitrary-length clause, while
+higher-genus exact maxima and classifications remain unresolved in this work.
+#1085's complete dimension dichotomy and explicit Robin counterexample passed
+two independent mathematical families and root reproduction; priority is running.
+#1094's eight original files are acquired and two distinct mathematical families
+are reviewing its Nijenhuis classification. #1097 and #1098 remain next.
 All 101 assertions are screened; the eighty-three partial/prior exclusions remain
-outside processing. Cursor: #1032. Best-guess overall completion: 48%.
+outside processing. At least two fresh whole-package reviews are required before
+clearance. Cursor: #1032. Best-guess overall completion: 56%.
 Candidate and mathematical acceptance do not establish historical novelty or
 current worldwide openness.

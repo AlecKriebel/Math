@@ -1,0 +1,160 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\setlength{\parskip}{3pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\F}{\mathbb F}
+\title{A credited finiteness deduction for restricted\protect\\ boundary-twist factorizations}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{Version 1.0 preparation candidate, 14 October 2026 UTC}
+\hypersetup{pdftitle={A credited finiteness deduction for restricted boundary-twist factorizations},pdfauthor={Alec Kriebel},pdfsubject={Credited deduction; restricted arbitrary-length clause; exact higher-genus maxima unresolved in this work},pdfkeywords={mapping class group, boundary twist, positive factorization, Higman, credited deduction}}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fix an oriented compact surface of genus $g\geq1$ with one boundary circle, and fix that boundary pointwise in both maps and isotopies. Ordered positive factorizations of its single boundary twist, along non-null-homotopic simple closed curves with pairwise geometric intersection at most one, have finitely many simultaneous-conjugacy classes. Repetitions are permitted. Their lengths therefore have a finite attained maximum $M(g)$, with $4g(2g+1)\leq M(g)$; credited low-genus deductions give $M(1)=12$ and $M(2)=40$. This is a credited finiteness deduction and exposition: the finite-alphabet group lemma is a verified corollary of Cossu--Tringali's factorization theory, and the support and embedding mechanisms are prior curve-system and ribbon-surface methods, with the marked bordered adaptation supplied here. It answers negatively the separately stated restricted arbitrary-length clause attributed to Smith in Wajnryb's chapter. Exact $M(g)$ for $g\geq3$, explicit upper formulas, a stopping criterion, extremizers and finer classifications remain unresolved in this work. Historical novelty and exact priority are not certified.
+\end{abstract}
+
+\section{The precise deduction and its boundary}
+Let $S=S_{g,1}$ be compact, connected and oriented, $g\geq1$, with boundary $\delta$. Write $\Mod(S)$ for orientation-preserving homeomorphisms fixing $\delta$ pointwise, modulo isotopy relative to $\delta$. Curves are unoriented interior simple closed curves, considered up to isotopy in $S$. For a curve $c$, $t_c$ denotes its positive Dehn twist; $t_\delta$ means the twist along an interior boundary-parallel curve. An admissible word is an \emph{ordered} factorization
+\begin{equation}\label{eq:target}
+ t_{c_1}\cdots t_{c_n}=t_\delta,\qquad i(c_j,c_k)\leq1\quad\text{for all }j,k,
+\end{equation}
+where $i$ is geometric intersection and every $c_j$ is non-null-homotopic. Repeated isotopy classes are allowed and counted repeatedly in $n$. The \emph{support} is the set of distinct classes occurring. Peripheral curves are permitted in this broader convention.
+
+\begin{theorem}[Credited finiteness deduction]\label{thm:main}
+For each fixed $g\geq1$, the admissible ordered words have finitely many classes under simultaneous conjugation by $\Mod(S_{g,1})$. Their length maximum is attained and satisfies
+\[
+4g(2g+1)\leq M(g)<\infty.
+\]
+A peripheral factor occurs only as the singleton word. Every other word has only nonseparating factors. The credited low-genus values are $M(1)=12$ and $M(2)=40$.
+\end{theorem}
+
+The source asks separately for a maximum and whether length can be arbitrary: Wajnryb \cite[printed p.~126, PDF p.~133]{W} attributes this restricted question to Smith. The theorem completely answers the latter clause negatively under the stated essential-curve convention. The source describes actual $0/1$ intersections; those configurations satisfy our geometric condition. Its genus-two discussion expressly contemplates repetitions. The preceding unrestricted question (printed p.~125), positive Artin equivalence, and subsequent $A_5$/Hurwitz questions are separate. We do not adopt the motivating $A_5/D_6$ classification suggestions as theorems.
+
+This note computes no exact $M(g)$ for $g\geq3$, explicit numerical upper formula, effective stopping rule, extremizer, Hurwitz, positive Artin, T-move or $A_5/D_6$ classification. It makes no first-discovery or worldwide continuing-openness claim. Fixed genus, one boundary twist, positivity, essentiality and boundary fixing are substantive hypotheses: disk-bounding twists would permit identity insertions, and capping the boundary removes the positive-identity obstruction. For the disk ($g=0$), there are no admissible curves; only the empty word is possible if permitted.
+
+The inputs are credited precisely. Honda--Kazez--Mati\'c \cite{HKM} supply right-veering positivity; the positive-identity obstruction is already attributed to Smith in \cite[printed p.~124]{W}. Cossu--Tringali \cite[Corollary 4.13]{CT} imply the exact finite-alphabet lemma, as verified below. Juvan--Malni\v c--Mohar \cite[Theorem 3.3]{JMM} bound bordered curve-system cardinality; Malestein--Rivin--Theran \cite[Proposition 4.1 and Section 6]{MRT} use the mod-two/disjointness mechanism. Cahn--Fanoni--Petri \cite[Lemma 10 and Section 3.2]{CFP} give the ribbon/complement mechanism for a single curve on a punctured surface. Section~\ref{sec:support} explicitly adapts it to disconnected marked unions on a pointwise bordered surface. Smith \cite{S} and Baykur--Monden--Van Horn-Morris \cite{BMVHM} supply the final low-genus interfaces. No new generic method or theorem is claimed.
+
+\section{Positivity and finite alphabets}
+\begin{lemma}\label{lem:positive}
+On $S_{g,1}$, no nonempty product of positive twists about non-null-homotopic curves is the identity.
+\end{lemma}
+\begin{proof}
+For proper oriented arcs starting at the same boundary point and ending at the same prescribed boundary point, compare lifts from a fixed lift of the starting point. Write $a\leq b$ when $b$ is weakly right of $a$; this reverses the inequality notation, but not the geometry, in \cite[Definition 2.1]{HKM}. Boundary-fixing orientation-preserving maps preserve this order. Right-veering maps satisfy $a\leq f(a)$ for every proper arc. They form a monoid, since $a\leq h(a)\leq f(h(a))$.
+
+Every positive non-null-homotopic twist is right-veering by \cite[Lemma 2.5]{HKM}. Its stated positive monoid includes separating and peripheral curves: the proof begins with an annulus, extends by handles, and treats the remaining separating twists through positive nonseparating expressions. This premise does not substitute the narrower nonseparating convention of \cite{BMVHM}.
+
+The action on all endpoint-relative proper arc classes is faithful. Choose disjoint arcs with distinct endpoints cutting $S$ into a disk. A map fixing every arc class can be isotoped relative to the boundary to fix these arcs successively, and then pointwise; the remaining disk map is isotopic to the identity relative to its boundary. A non-null-homotopic twist is nontrivial: a proper crossing arc detects its annular winding. For a separating curve away from the boundary, choose an arc entering and returning from the separated region. Thus such a right-veering twist $t$ strictly moves some arc $a$. Its inverse sends $t(a)$ strictly left and is not right-veering. If $t_1\cdots t_n=1$ with $n\geq1$, then $t_1^{-1}=t_2\cdots t_n$ is right-veering, including the empty residual product, a contradiction. The disk case is vacuous, and the annulus case follows directly from its integer twist number.
+\end{proof}
+
+\begin{lemma}[Finite-alphabet prior corollary]\label{lem:fiber}
+Let $G$ be a group and $P\subset G$ be conjugation invariant, with no nonempty product from $P$ equal to $1$. Assign the letters of a finite alphabet $A$ values in $P$, allowing repeated values. For any $h\in G$, only finitely many ordered $A$-words evaluate to $h$.
+\end{lemma}
+\begin{proof}[Derivation from Cossu--Tringali]
+Let $Q$ be the submonoid generated by $P$, with $1$ adjoined. It is normal and $Q\cap Q^{-1}=\{1\}$, since expressions for a nontrivial $q$ and $q^{-1}$ would give a nonempty positive identity. Define
+\[
+x\leq y\quad\Longleftrightarrow\quad yx^{-1}\in Q.
+\]
+Reflexivity and transitivity follow from the monoid property and antisymmetry from reducedness. Right multiplication preserves the order because $(yv)(xv)^{-1}=yx^{-1}$; left multiplication preserves it because $(uy)(ux)^{-1}=u(yx^{-1})u^{-1}\in Q$. Translations also preserve strict inequality by injectivity. This is a two-sided invariant partial order, with no total-order assertion.
+
+Let $H$ be the submonoid generated by the finitely many chosen letter values, with the restricted order. Each member is at least $1$, and the only order-unit (element order-equivalent to $1$) is $1$. Hence $H$ is strongly positive in \cite[Definition 2.3]{CT}. It is finitely generated and therefore weakly locally finitely generated up to order-units: the germ at a target is generated by its divisors, and \cite[Definition 4.1, Lemma 4.2 and Proposition 4.3]{CT} give this implication. Concretely, a divisor expressed in the finite generators uses only generators that themselves divide the target, which supplies finite generation of the germ here.
+
+Corollary 4.13 of \cite{CT} now makes this premonoid FF-atomic. In the source's definitions, an order-atom is an order-nonunit that cannot be a product of two order-nonunits; here it is an ordinary indecomposable nonidentity element. Atomicity gives an atomic expression for each nonidentity element. FF counts atomic factorizations modulo the source's equivalence under arbitrary matching of equivalent letters. Such equivalence preserves length; Definition 3.2 and Remark 3.3(2) therefore give BF-atomicity, namely a finite nonempty set of atomic lengths for each nonunit. This use retains the source's atomic theory and does not assume the chosen letters are atoms.
+
+If $h\notin H$, its fiber is empty; if $h=1$, only the empty word occurs. Otherwise choose one fixed nonempty atomic expansion for each chosen letter value. Replacing every letter in a word for $h$ by its expansion gives an atomic word for $h$. If $B(h)$ is the largest atomic length, the original word has length at most $B(h)$, because expansions never erase letters. Only finitely many $A$-words have those lengths. The matching equivalence in CT can identify permutations; the BF length argument, not an identification with ordered equality, proves our conclusion. Neither normality nor a left-duo property of $H$ is required: the order uses the ambient normal cone $Q$. The target $h$ need not be central.
+\end{proof}
+
+For a self-contained short exposition of the same generic conclusion, retain the classical subsequence proof. If $u=s_1\cdots s_m$ is a subsequence of
+$v=b_0s_1b_1\cdots s_mb_m$, put $U_0=1$, $U_j=s_1\cdots s_j$. Cancellation in any group gives
+\begin{equation}\label{eq:insertion}
+vu^{-1}=\prod_{j=0}^m U_jb_jU_j^{-1}.
+\end{equation}
+These are retained prefixes of $u$. A proper insertion yields a nonempty product of conjugated positive letters, so equal-valued distinct words are incomparable by subsequence. The case $m=0$ is included.
+
+The finite-alphabet Higman lemma \cite{H,CT} says that every infinite sequence of words has an earlier word that is a subsequence of a later one. Here is the needed complete proof. If a bad sequence existed, choose its words successively with minimum length among choices permitting a bad continuation of the chosen prefix. None is empty. Write $w_i=v_i a_i$; pass to indices $i_0<i_1<\cdots$ with the same last letter $a$. The sequence
+\[
+w_0,\ldots,w_{i_0-1},v_{i_0},v_{i_1},\ldots
+\]
+cannot be bad, by minimality at $i_0$. Its good pair cannot lie in the unchanged prefix. A pair from that prefix to a shortened tail also gives a good pair in the original sequence. A pair between two shortened tails extends by the common last letter to a good pair of original words. These exhaust the possibilities, including empty shortened words, and give a contradiction. An infinite evaluation fiber, enumerated without duplication, would have a proper comparable pair, contradicting \eqref{eq:insertion}. The empty alphabet causes no exception. This is an alternative explanatory proof of the credited prior corollary, with no numerical or algorithmic upper bound extracted.
+
+\section{Bounded supports and finite support orbits}\label{sec:support}
+\begin{lemma}\label{lem:support}
+An admissible support has at most
+\[
+N_g=2^{2g}(3g-2)+1
+\]
+distinct classes, and there are finitely many support orbits under $\Mod(S_{g,1})$.
+\end{lemma}
+\begin{proof}
+Remove the at most one peripheral class. Partition the other classes by $H_1(S;\F_2)$, which has $2^{2g}$ elements. Equal homology classes have intersection pairing $[c]\cdot[d]=[c]\cdot[c]=0$, by alternation. Geometric intersection has this parity, so $i(c,d)\leq1$ forces $i(c,d)=0$. Each fiber, including the zero fiber containing separating curves, is a collection of disjoint nonisotopic essential nonperipheral classes. It extends to a pants decomposition and has at most $3g-2$ members. Summing and restoring the peripheral class proves the coarse bound. This is the mod-two support mechanism of \cite{MRT}; \cite[Theorem 3.3]{JMM} supplies the earlier general bordered-system cardinality result. $N_g$ counts distinct classes, not occurrences or length.
+
+For the orbit assertion, choose a hyperbolic metric with geodesic boundary, possible since $\chi(S)=1-2g<0$. Simple geodesic representatives of nonperipheral classes realize all pairwise geometric minima simultaneously. Different geodesics cannot share an interval or be tangent at a meeting. At a multiple crossing their distinct local branches have pairwise alternating endpoints on a sufficiently small disk. A small generic perturbation, preserving endpoint order, separates concurrence into ordinary double crossings with exactly one crossing for each participating pair. For example, slightly translate the distinct straight local branches generically: every former pair still crosses in the disk and no triple concurrence remains. Keep other branches outside the disk. Place a peripheral representative in a separate collar. The total crossings are at most $m(m-1)/2$, $m\leq N_g$.
+
+Encode the resulting union as a graph with four-valent crossing vertices and one auxiliary bivalent vertex on each isolated circle. If $v_4,v_2$ are their counts, the number of edges is $2v_4+v_2$. Label all constituent curve cycles, record each vertex's cyclic orientation order, and record its opposite crossing pairing. With bounded graph size and labels, there are finitely many such marked ribbon graphs. The record determines the oriented regular neighborhood $R$ and its marked curves. An abstract intersection graph alone would not do this.
+
+Record also the partition of boundary circles of $R$ among complementary components, each component's genus, and which contains the original boundary $\delta$. There are finitely many boundary circles, finitely many partitions, and each complementary genus is at most $g$. The number of complementary components is bounded by the number of those circles plus one. Empty support is separate and harmless.
+
+Two embeddings having the same record are related by an orientation-preserving homeomorphism. Start with the marked ribbon-neighborhood map. Classification of compact oriented surfaces gives homeomorphisms of matching complementary components with their boundaries assigned as prescribed. Adjust these maps in disjoint collars to match the actual circle maps on $\partial R$: orientation-compatible circle homeomorphisms are isotopic, and the isotopy extends over a collar. This covers annular complements as well. A twist integer can change a chosen gluing homeomorphism, but produces no further invariant of the support's ambient-homeomorphism orbit. The matching maps then glue. Finally adjust in a collar of $\delta$ disjoint from the curves to make its boundary restriction the identity.
+
+This explicitly adapts the prior ribbon/complement argument of \cite[Lemma 10]{CFP}, whose literal setting is a single curve on a punctured surface: our neighborhood can be disconnected, the simple cycles and isolated circles are marked, and the original boundary is distinguished and ultimately fixed pointwise. Disk complements, non-filling unions and annular pieces are allowed; no no-disk hypothesis from a different homotopy statement is imported. These finite records prove the required support-orbit finiteness.
+\end{proof}
+
+Apply Lemma~\ref{lem:fiber} to $P$ consisting of \emph{all} positive non-null-homotopic twists. Orientation-preserving conjugation preserves sign and essentiality, and Lemma~\ref{lem:positive} excludes a positive identity. Thus each fixed finite curve alphabet has finitely many words for any given target.
+
+Choose one representative $C_r$ of each support orbit from Lemma~\ref{lem:support}. Simultaneous conjugation carries an admissible word to an ordered word over the twists about $C_r$. Its product remains $t_\delta$, because $f t_\delta f^{-1}=t_\delta$ for a boundary-fixing $f$. This is where centrality enters; it was unnecessary for the generic fiber lemma. The finite union, over $r$, of these finite word fibers contains a representative of every admissible simultaneous-conjugacy class.
+
+The even chain of $2g$ curves has the classical relation
+\[
+(t_{a_1}\cdots t_{a_{2g}})^{4g+2}=t_\delta
+\]
+displayed in \cite[printed p.~125, relation (3)]{W}. Adjacent curves intersect once and other pairs are disjoint; repetition in the power adds zero intersection between repeated classes. Its length is $2g(4g+2)=4g(2g+1)$. The admissible length set is therefore nonempty and finite, establishing the finiteness and lower-bound part of Theorem~\ref{thm:main}.
+
+\section{Peripheral and separating factors; credited small genera}
+Suppose a peripheral factor occurs $m\geq1$ times. Centrality moves them to the front, giving $t_\delta^m W=t_\delta$. Cancellation leaves $t_\delta^{m-1}W=1$. Lemma~\ref{lem:positive} forces $m=1$ and $W$ empty. This proves the singleton assertion in every genus.
+
+Assume now $g\geq2$ and there are no peripheral factors. If a separating factor curve $c$ occurs, every closed curve crosses $c$ an even number of times, so the intersection condition forces $c$ disjoint from every factor class. Cap $\delta$ with a disk. All factor curves remain essential: if a curve bounded a disk afterward, that disk either avoids the cap and was already a disk in $S$, or contains the cap and gives an annulus to $\delta$ before capping. Both cases were excluded. In particular, a nonperipheral essential separating $c$ has positive genus on both sides after capping.
+
+The capped nonempty positive identity is the monodromy of a nontrivial genus-$g$ Lefschetz fibration over $S^2$. Explicitly attach the ordered positive Lefschetz handles to a fiber product over a disk, one per factor, with framing one less than the fiber framing, and close the base by a second disk using the identity total monodromy. The one-boundary lift supplies a section of square $-1$. All capped vanishing cycles are essential, so the fibration is relatively minimal; a section sphere of square $-1$ does not violate relative minimality. Its intersection number with a regular fiber is one. The fiber class is therefore homologically nonzero, and the positive Thurston--Gompf symplectic realization applies, as summarized in \cite[PDF p.~1]{S}.
+
+Smith's common-invariant-essential-curve obstruction \cite[Theorem 1.3, Proposition 4.2 and Corollary 4.3]{S} applies to this nontrivial, relatively minimal genus-at-least-two positive fibration. The essential capped $c$ is disjoint from every vanishing cycle and hence invariant under all monodromies, a contradiction. This is a credited theorem interface and is separate from the finiteness proof.
+
+Only the singleton invariant-curve part of Smith's lift argument is needed. The twists can be supported away from $c$, pushing the twist along $c$ itself to a parallel curve. Choose lifts fixing a lift of $c$; their circle actions fix its two ideal endpoints and have the same directed monotonicity on the intervening intervals. Positive motion cannot cancel. A product representing the identity mapping class is a deck action; a nontrivial hyperbolic deck action fixing those two endpoints moves in opposite directions on the two intervals, whereas the identity deck action cannot equal this nontrivial positive product. No fixed-point-count assertion is used. In particular, the countable-fixed-points wording in the retained Smith preprint is not adopted: a fixed positive-genus complementary subsurface may have a Cantor limit set. This caveat does not change the required singleton obstruction.
+
+Thus every nonsingleton admissible word uses nonseparating curves. In genus one this holds directly. The abelianization of $\Mod(S_{1,1})$ is $\mathbb Z$, assigning a nonseparating positive twist weight one and $t_\delta$ weight twelve; see \cite[Proposition 1 and its proof]{BMVHM}. All nonperipheral genus-one words have length twelve, attained by the two-curve chain, so $M(1)=12$.
+
+The length function in \cite{BMVHM} counts nonseparating factors. The separating exclusion is consequently necessary before applying their Theorem A in genus two with one boundary component. Its value is forty, and the four-curve chain attains forty under our pairwise restriction. Hence $M(2)=40$. These values are prior-result deductions, not $A_5/D_6$ or Hurwitz classifications. BMVHM's unrestricted infinite-length regime for $g\geq3$ imposes no pairwise intersection restriction and is compatible with the present finiteness. The external gauge-theoretic dependencies behind their bounds are not independently re-proved in this note.
+
+\section{Verification, provenance and status}
+The accompanying verification kit retains the six original authored files, complete mathematical and priority reports and frozen derivations, root adoption records, and selected source/custody metadata. Historical verdicts remain unchanged and describe their own earlier scopes. The original six-file edition contains no executable. The kit's portable checks are newly authored adapters of the subsequent reviewers' finite programs, with explicit guards active under ordinary and optimized Python. They reproduce finite algebraic insertion, parity, ribbon, multiple-crossing, normal-cone and nonerasing-expansion controls. They do not enumerate all surfaces or words, prove the universal theorem computationally, or replay omitted historical programs. Exact copying and individual pin omissions are documented.
+
+Checked primary bodies are identified by version and hash in the kit. No retained preprint is certified byte-identical to its journal edition. Original full-body access to Higman's article and Smith's journal edition was unavailable in the bounded audit; CT's checked premise is its final v3 preprint, not a claimed complete journal-body read. The finite-alphabet proof above is self-contained. Source receipt and page-read scopes separate retrieval from inspection and historical records from new checks. A bounded priority search cannot certify absence of earlier work or worldwide current openness; exact application priority and novelty remain unknown.
+
+Extensive AI assistance was used in derivation checking, source comparison, writing, code and package preparation. Alec Kriebel is the named author. This preparation candidate is unrefereed, with no external human peer review or formal proof-assistant certification. As of 14 October 2026 UTC, two fresh whole-candidate adversarial reviews are pending and publication readiness has not been affirmed. The exact higher-genus maxima and finer classifications remain unresolved in this work. The authored note and authored kit materials are offered under Creative Commons Attribution 4.0 International; third-party source bodies, extracts and images are not distributed.
+
+\begin{thebibliography}{9}
+\bibitem{W} B. Wajnryb, \emph{Relations in the mapping class group}, Chapter 8 in B. Farb (ed.), \emph{Problems on Mapping Class Groups and Related Topics}, 2006. Relevant printed pp.~124--126 / PDF pp.~131--133.
+\url{https://www.math.uchicago.edu/~farb/papers/mcgbook.pdf}.
+\bibitem{HKM} K. Honda, W. H. Kazez and G. Mati\'c, \emph{Right-veering diffeomorphisms of compact surfaces with boundary I}, arXiv:math/0510639v1 (2005). Definition 2.1 and Lemma 2.5.
+\url{https://arxiv.org/abs/math/0510639v1}.
+\bibitem{CT} L. Cossu and S. Tringali, \emph{Factorization under local finiteness conditions}, arXiv:2208.05869v3 (2023); Journal of Algebra \textbf{630} (2023), 128--161. Definitions 2.3, 3.2, 4.1; Lemma 4.2, Proposition 4.3, Corollary 4.13.
+\url{https://arxiv.org/abs/2208.05869v3}; \href{https://doi.org/10.1016/j.jalgebra.2023.04.014}{doi:10.1016/j.jalgebra.2023.04.014}.
+\bibitem{H} G. Higman, \emph{Ordering by divisibility in abstract algebras}, Proceedings of the London Mathematical Society (3) \textbf{2} (1952), 326--336.
+\href{https://doi.org/10.1112/plms/s3-2.1.326}{doi:10.1112/plms/s3-2.1.326}.
+\bibitem{JMM} M. Juvan, A. Malni\v c and B. Mohar, \emph{Systems of curves on surfaces}, Journal of Combinatorial Theory, Series B \textbf{68} (1996), 7--22. Theorem 3.3.
+\url{https://users.fmf.uni-lj.si/mohar/Reprints/1996/BM96_JCT68_Juvan_SystemsofCurves.pdf}.
+\bibitem{MRT} J. Malestein, I. Rivin and L. Theran, \emph{Topological designs}, arXiv:1008.3710v5 (2013). Proposition 4.1, Theorem 1.2 and Section 6.
+\url{https://arxiv.org/abs/1008.3710v5}.
+\bibitem{CFP} P. Cahn, F. Fanoni and B. Petri, \emph{Mapping class group orbits of curves with self-intersections}, arXiv:1603.00846v2 (2016). Lemma 10 and Section 3.2.
+\url{https://arxiv.org/abs/1603.00846v2}.
+\bibitem{S} I. Smith, \emph{Geometric monodromy and the hyperbolic disc}, arXiv:math/0011223v1 (2000); Quarterly Journal of Mathematics \textbf{52} (2001), 217--228. Theorem 1.3, Proposition 4.2 and Corollary 4.3.
+\url{https://arxiv.org/abs/math/0011223v1}.
+\bibitem{BMVHM} R. \.{I}. Baykur, N. Monden and J. Van Horn-Morris, \emph{Positive factorizations of mapping classes}, arXiv:1412.0352v2 (2015); Algebraic \& Geometric Topology \textbf{17} (2017), 1527--1555. Proposition 1, Theorems A and 6.
+\url{https://arxiv.org/abs/1412.0352v2}.
+\end{thebibliography}
+\end{document}

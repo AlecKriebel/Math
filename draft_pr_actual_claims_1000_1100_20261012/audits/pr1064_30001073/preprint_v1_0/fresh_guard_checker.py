@@ -3,7 +3,7 @@
 # AST-lowered assertions plus additional source-model and fault controls.
 import argparse
 parser=argparse.ArgumentParser()
-parser.add_argument('--fault',choices=['none','scalar-divergence','unit-endpoint','zero-mass-term','n1-purepower','confuse-KL','drop-sequential-KL'],default='none')
+parser.add_argument('--fault',choices=['none','scalar-divergence','unit-endpoint','zero-mass-term','n1-purepower','confuse-KL','drop-sequential-KL','Dong-Jain-half'],default='none')
 FAULT=parser.parse_args().fault
 def require(condition,message='guard failed'):
     if not condition:
@@ -68,6 +68,18 @@ def js(q):
         return str(q)
     return q
 
+def suffix_T(row):
+    n = len(row)
+    value = ZERO
+    orders = list(permutations(range(n)))
+    for order in orders:
+        for depth, j in enumerate(order):
+            if row[j] > 0:
+                mass = sum((row[k] for k in order[depth:]), F(0))
+                require(mass > 0, 'sampled suffix support')
+                value += dec(row[j]) * dec(mass).ln() / Decimal(len(orders))
+    return value
+
 def law_check(name, law):
     n = len(next(iter(law)))
     require(sum(law.values(), F(0)) == 1, 'finite-model guard failed')
@@ -112,7 +124,18 @@ def law_check(name, law):
     nonnegative(ElogZ - H - marginal_cross)
     nonnegative(correction - ElogZ)
     nonnegative(correction - H - marginal_cross)
-    record = {'name': name, 'n': n, 'positive_permutations': len(law), 'reveal_orders': len(orders), 'positive_histories': history_count, 'exact_marginals': [[str(v) for v in row] for row in b], 'minimum_local_KL': str(minlocal), 'local_to_chain_slack': str(ElogZ - H - marginal_cross), 'Jensen_integral_slack': str(correction - ElogZ), 'entropy_lemma_slack': str(correction - H - marginal_cross)}
+    # Fresh direct probability-row suffix evaluation and Dong-Jain g=4 algebra.
+    Trows = sum((suffix_T(row) for row in b), ZERO)
+    Tcols = sum((suffix_T([b[i][j] for i in range(n)]) for j in range(n)), ZERO)
+    nearzero(Trows - ElogZ)
+    C = sum((xlogx(1-v) for row in b for v in row), ZERO)
+    HB = -marginal_cross + C
+    coefficient = ONE if FAULT == 'Dong-Jain-half' else ONE / Decimal(2)
+    rhs_DJ = HB + coefficient * ((Trows - C) + (Tcols - C))
+    nearzero(rhs_DJ - (-marginal_cross + (Trows + Tcols)/Decimal(2)))
+    nonnegative(rhs_DJ - H)
+    nonnegative(-marginal_cross + correction - rhs_DJ)
+    record = {'name': name, 'Dong_Jain_g4_algebra_residual': str(rhs_DJ + marginal_cross - (Trows + Tcols)/Decimal(2)), 'n': n, 'positive_permutations': len(law), 'reveal_orders': len(orders), 'positive_histories': history_count, 'exact_marginals': [[str(v) for v in row] for row in b], 'minimum_local_KL': str(minlocal), 'local_to_chain_slack': str(ElogZ - H - marginal_cross), 'Jensen_integral_slack': str(correction - ElogZ), 'entropy_lemma_slack': str(correction - H - marginal_cross)}
     return (record, b, H, correction)
 
 def matrix_check(name, A):

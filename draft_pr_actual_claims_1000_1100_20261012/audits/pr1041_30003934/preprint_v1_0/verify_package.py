@@ -24,15 +24,16 @@ def main():
     parser=argparse.ArgumentParser(description='Verify distributable package content; strictly verify an external deposit wrapper when present.')
     parser.add_argument('--require-deposit',action='store_true',help='Require the external zenodo-deposit.json wrapper and both verified local upload attachments.')
     args=parser.parse_args()
+    from build_archive import content_paths,EXCLUDE_DIRS,authored_stream_paths,terminal_gate
+    status=terminal_gate()
     manifest=json.loads((ROOT/'CURRENT_INTEGRITY.json').read_text())
     current={r['path']:r for r in manifest['files']}
-    from build_archive import content_paths,EXCLUDE_DIRS
     require(set(current)==set(content_paths()),'Current manifest/content membership mismatch')
     for name,record in current.items():record_ok(ROOT/name,record)
     # No privately retained sources, extracts, renders, or raw response bodies in
     # the declared distributed content, including files outside raw directories.
     copies=json.loads((ROOT/'EVIDENCE_COPY_MANIFEST.json').read_text())
-    authored_streams={r['package_path'] for r in copies['files'] if r['group'] in {'frozen_package_01','frozen_package_02'} and Path(r['package_path']).suffix.lower()=='.txt'}
+    authored_streams=authored_stream_paths(copies)
     for name in current:
         path=Path(name)
         require(not any(p in EXCLUDE_DIRS for p in path.parts),'Private/intermediate component: '+name)
@@ -47,17 +48,21 @@ def main():
     for r in pins['files']:record_ok(ROOT/'evidence/original'/r['snapshot_path'],r)
     require(len(pins['files'])==11,'Original submitted pin count')
     checked_historic=0;excluded_historic=[]
-    for family in ['game_certificate_01','flow_source_01','priority_01','package_01','package_02']:
+    ledger=json.loads((ROOT/'HISTORIC_EXCLUSIONS.json').read_text())
+    omissions={(r['review_family'],r['path']):r for r in ledger['files']}
+    require(len(omissions)==len(ledger['files']),'Duplicate historical exclusion')
+    seen_omissions=set()
+    for family in ['game_certificate_01','flow_source_01','priority_01','package_01','package_02','package_03']:
         base=ROOT/'evidence/reviews'/family
         pins=json.loads((base/'OUTPUT_PINS.json').read_text())
         for r in pins.get('files',pins.get('entries',[])):
             name=r.get('path',r.get('file'));path=base/name
             if path.is_file():record_ok(path,r);checked_historic+=1
-            else:excluded_historic.append(family+'/'+name)
-    for name in excluded_historic:
-        parts=Path(name).parts
-        allowed=any(p in {'raw','rawprivate','__pycache__','render','cache','caches'} for p in parts) or name=='priority_01/sources/CITATION_DISCOVERY.json'
-        require(allowed,'Unexpected historic output pin absent: '+name)
+            else:
+                key=(family,name);entry=omissions.get(key)
+                require(family!='package_03' and entry is not None and all(entry[k]==r[k] for k in ['bytes','sha256']) and bool(entry['reason']) and bool(entry['pin_meaning']),'Unexpected historic output pin absent: '+family+'/'+name)
+                seen_omissions.add(key);excluded_historic.append(family+'/'+name)
+    require(seen_omissions==set(omissions),'Unused historical exclusion ledger entry')
     receipt=json.loads((ROOT/'BUILD_RECEIPT.json').read_text())
     require(receipt['current_integrity_sha256']==sha((ROOT/'CURRENT_INTEGRITY.json').read_bytes()),'Integrity receipt mismatch')
     require(receipt['content_files']==len(current),'Content count mismatch')
@@ -86,7 +91,6 @@ def main():
             require(names==sorted(names) and len({n.casefold() for n in names})==len(names),'Archive order/casefold uniqueness')
             members=len(names)
         archive_checked=True
-    status=json.loads((ROOT/'STATUS.json').read_text())
     require(isinstance(status['publication_ready'],bool) and isinstance(status['all_issues_resolved'],bool),'Invalid current status flags')
     if status['new_whole_package_review'].startswith('PENDING_'):
         require(status['publication_ready'] is False and status['all_issues_resolved'] is False,'Pending review improperly promoted')

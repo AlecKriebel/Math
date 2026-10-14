@@ -14,15 +14,26 @@ def safe(name):
  require(not p.is_absolute() and '..' not in p.parts and '.' not in p.parts and str(p)==name,'unsafe relative path '+name)
  return name
 
+def local_regular(name):
+ name=safe(name);p=ROOT/name
+ require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)
+ require(all(not (ROOT/Path(*Path(name).parts[:i])).is_symlink() for i in range(1,len(Path(name).parts)+1)),'symlink in member ancestry '+name)
+ require(stat.S_ISREG(p.lstat().st_mode),'nonregular member '+name)
+ return p
+
 def check():
+ # Bootstrap the allowlist only after guarding the allowlist file itself.
+ local_regular('SUPPORT_ALLOWLIST.json')
  allow=load('SUPPORT_ALLOWLIST.json')['members'];require(allow==sorted(set(allow)),'allowlist must be sorted and unique')
  for name in allow:safe(name)
  require('SUPPORT_MANIFEST.json' in allow,'manifest missing from allowlist')
+ # Guard every local member before reading any remaining allowlisted bytes.
+ # The manifest is excluded only from self-hashing, never from path safety.
+ for name in allow:local_regular(name)
  manifest=load('SUPPORT_MANIFEST.json');records=manifest['entries']
  require([r['path'] for r in records]==[x for x in allow if x!='SUPPORT_MANIFEST.json'],'manifest exact coverage failed')
  for record in records:
   name=safe(record['path']);p=ROOT/name
-  require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)
   data=p.read_bytes();require(len(data)==record['bytes'] and sha(data)==record['sha256'],'hash mismatch '+name)
   if name!='paper.pdf':data.decode('utf-8')
  require((ROOT/'paper.pdf').read_bytes().startswith(b'%PDF-'),'paper PDF signature missing')
@@ -44,6 +55,11 @@ def check():
  require(status['publication_ready'] is False and status['issues_updated'] is False,'pending preparation gate altered')
  require(status['whole_package_reviews_completed']==0 and status['whole_package_reviews_required']>=2,'new review gate altered')
  require(status['novelty']=='UNKNOWN' and status['historical_priority']=='UNKNOWN','novelty boundary altered')
+ current=load('CURRENT_STATUS.json')
+ require(current['stage']=='PENDING_NEW_WHOLE_02' and current['snapshot_date']=='2026-10-14','current stage altered')
+ require(current['publication_ready'] is False and current['issues_updated'] is False,'current pending gate altered')
+ require(current['whole_package_reviews_completed']==1 and current['whole_package_reviews_required']>=2,'current new review gate altered')
+ require(current['ascending_publication_hold_after_pr']==1032,'ascending publication hold altered')
  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
  return allow
 

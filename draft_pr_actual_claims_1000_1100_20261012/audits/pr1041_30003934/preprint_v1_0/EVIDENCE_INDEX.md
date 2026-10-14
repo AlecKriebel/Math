@@ -1,6 +1,6 @@
 # Evidence index
 
-This index distinguishes theorem evidence, finite checks, and dated review history with exact frozen input scopes. Read `STATUS.json` for the current preparation state. Historical acceptance text is preserved in frozen copies; it is not the status of the new manuscript.
+This index distinguishes theorem evidence, finite checks, and dated review history with exact frozen input scopes. Read `STATUS.json` for the current preparation state. Historical acceptance text is preserved in frozen copies with exact input scopes. `REVIEW_HISTORY.json` records the dated sequence through the root-accepted zero-issue third review.
 
 | Location | Role and strongest supported statement |
 | --- | --- |
@@ -25,6 +25,8 @@ This index distinguishes theorem evidence, finite checks, and dated review histo
 | `evidence/reviews/package_02/` | Exact second whole-review terminal outputs and seal; one P2 verifier finding on its frozen inputs, not a current clean verdict. |
 | `evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_02.json` | Unchanged root adoption of the second review and bounded repair requirement. |
 | `history/before_package02_verifier_repair/`, `HASH_STAGE_INDEX.json` | Old authored code, documentation, status and receipts preserved byte-for-byte with original stage meanings; current input pins are separate. |
+| `evidence/reviews/package_03/`, `evidence/root/ROOT_WHOLE_PACKAGE_REVIEW_03.json` | All 304 exact authored terminal third-review outputs, pins, seal and root adoption; zero P0–P3 on the unchanged manuscript/PDF and frozen candidate. |
+| `history/before_terminal03_finalization/`, `REVIEW_HISTORY.json`, `HISTORIC_EXCLUSIONS.json` | Exact pre-terminal administrative before bytes, dated review chronology and individual immutable-pin exclusion reasons. Archive/wrapper before bytes retained at explicit external freeze locators. |
 | `RESEARCH_LOG.md`, `PREPARATION_REPORT.md`, `PDF_QA.json` | UTC preparation/repair checkpoints, current repair report and current PDF layout check. Read `STATUS.json` for current kit state. |
 
 All eleven original files are retained. Complete fresh family input/output pins and independence checkpoints are included where authored. `EVIDENCE_COPY_MANIFEST.json` maps their relocated paths. Private original sources and cached third-party content are intentionally absent, including every `raw`/`rawprivate` directory and extracted source text.

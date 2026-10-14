@@ -3,7 +3,11 @@
 from pathlib import Path
 import argparse, subprocess, shutil, sys
 p=argparse.ArgumentParser();p.add_argument('--out-dir',required=True);a=p.parse_args()
-root=Path(__file__).resolve().parent;out=Path(a.out_dir).resolve();out.mkdir(parents=True,exist_ok=True)
+root=Path(__file__).resolve().parent;out=Path(a.out_dir).resolve()
+target=out/'paper.pdf';canonical=root/'paper.pdf'
+if target.resolve()==canonical.resolve() or (target.exists() and canonical.exists() and target.samefile(canonical)):
+ raise SystemExit('PDF output aliases canonical paper.pdf; choose a separate output directory')
+out.mkdir(parents=True,exist_ok=True)
 engine=shutil.which('tectonic')
 if engine is None:raise SystemExit('Tectonic required for command-line PDF export')
 r=subprocess.run([engine,'--outdir',str(out),str(root/'paper.tex')])
