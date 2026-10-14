@@ -32,9 +32,17 @@ t=json.loads((PUB/'TRACKER_VERIFIED_APPEND.json').read_text())
 assert z['submitted'] and z['metadata_and_files_verified'] and t['verified'] and t['doi_url']==z['doi_url']
 pr=api('GET','pulls/248')
 assert pr['state']=='open' and not pr['merged'] and pr['head']['sha']==head
-tree=api('GET','git/trees/'+prepared['tree']+'?recursive=1')
+case_prefix=PRE.parent.relative_to(ROOT).as_posix()+'/'
+tree_sha=prepared['tree']
+for part in PRE.parent.relative_to(ROOT).parts:
+    level=api('GET','git/trees/'+tree_sha)
+    assert not level['truncated']
+    entry=next(p for p in level['tree'] if p['path']==part)
+    assert entry['type']=='tree'
+    tree_sha=entry['sha']
+tree=api('GET','git/trees/'+tree_sha+'?recursive=1')
 assert not tree['truncated']
-native={p['path']:p for p in tree['tree']}
+native={case_prefix+p['path']:p for p in tree['tree']}
 identities=[]
 for p in prepared['included_owned_pins']:
     data=(ROOT/p['path']).read_bytes()
