@@ -1,0 +1,11 @@
+# Research and publication log
+
+Problem 30003081 / OWR-14222-009. Five substantive routes; no additional proof search during publication.
+
+- 2026-10-07 23:28 UTC: source/readiness gate completed. Source target is higher-dimensional logarithmic deletion; the catalogue's unexpected-hypersurface interpretation was separated. Bounded duplicate checks found no substantive prior exact-target attempt. Public corpus hashes and source metadata are preserved without contents.
+- 2026-10-07 23:29–23:32 UTC: five proof approaches recorded in the frozen [author ledger](original/LEDGER.json): product/SNC; credited seven-plane obstruction; local Jacobian/Tjurina torsion; characteristic-class defect; depth/reflexivity. Five of five approach slots completed. The broad target was not solved.
+- 2026-10-07, subsequent independent audit: all five scoped results accepted without a mathematical correction. Source statements and finite systems were independently checked. One optional SyntaxError diagnostic catch was supplied; the original rejection behavior was already fail-closed. Full evidence is in the immutable independent audit.
+- 2026-10-07 23:52 UTC: publication checks reconfirmed main 7431d02aed19d00fc8494a564b9048db203320e9 and no exact ID/code branch or PR. The historical catalogue title and source fields remain intact. Only Status, Turns and Findings for rank 992 are proposed to change.
+- 2026-10-07 23:56 UTC: source-free publication acceptance and verifier prepared. Original and audit slices remain immutable. Exact replay exposed an off-by-one hunk header in the supplied optional patch. That patch is preserved, with a separate header-only canonical repair deriving the same corrected verifier; strict inventory, all optimization modes, read-only relocation and externally pinned bootstrap mutation controls are required before publication.
+
+Best-guess completion toward the broad mathematical research goal: approximately 35%, a heuristic assessment rather than a probability or measured fraction. It reflects conditional criteria and an obstruction, with the central general theorem still missing. Completion of the five-route attempt budget: 100%. Verification/publication work does not reset or extend that budget. Publication completion is established only by separate remote byte/path/PR-state verification, not by this preparation log.
