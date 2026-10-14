@@ -1,3 +1,9 @@
 # Fresh package review 02 research log
 
 2026-10-13T23:08:30.271706+00:00 - 5%: Candidate pinned immediately. No prior/root mathematical verdict read. Scope is independent full theorem, source, package, and PDF audit. Raw downloaded/rendered source bodies confined to ignored sources/raw.
+
+2026-10-13T23:14:04.361406+00:00 - 85%: Full independent derivation and fresh core source interface verified, including all closed-ball/degenerate cases. Ten primary PDF bodies retrieved; 21 critical source page renders and all three current PDF pages actually viewed. Current manifest/archive/original/copy tests pass. All 781 distributed historical SHA-256 identities reconcile, including the reconstructed prior ZIP; 314 protected baseline files and all 242 prior private review files unchanged. Full authored payload and source-body exclusion audit clean. Remaining work: final report/verdict and final pin recheck.
+
+2026-10-13T23:16:40.921526+00:00 - 100%: Fresh whole-preprint/package review complete. CLEAN, P0=0/P1=0/P2=0/P3=0 including copyediting. Complete theorem independently verified against ten freshly retrieved primary bodies, current three-page PDF visually clean, all 73 ZIP entries and 72 manifest rows verified, 54 copies/eight Git originals/781 historical hashes reconciled, all preservation checks pass. PKG-01 resolved. Final key pins unchanged. No required repair or additional user-permission gate. No candidate, Git index, PR, queue, service, publication, individual or other-worker mutation/contact.
+
+2026-10-13T23:17:21.949982+00:00 - Final 100% checkpoint: both independent verification scripts rerun after source completion; no mismatches or unresolved pins. The entire final publication snapshot is byte-identical. CLEAN verdict remains P0=0/P1=0/P2=0/P3=0. Authored output pins refreshed, excluding all raw bodies and images.

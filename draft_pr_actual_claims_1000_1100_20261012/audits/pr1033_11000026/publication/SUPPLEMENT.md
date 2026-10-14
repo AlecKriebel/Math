@@ -64,5 +64,8 @@ Raw third-party PDF/text/images and local own-PDF renders are excluded.
 The raw Farb text extraction identified by whole-package review 01 is omitted
 from the repaired distribution; its private source and historical pins remain
 unchanged. The [repair stage mapping](evidence/PACKAGE_01_REPAIR_STAGE_MAPPING.json)
-explains those old references. A NEW independent whole-package adversarial
-review 02 and any resulting repair loops remain pending before immutable publication.
+explains those old references. A NEW independent whole-package review 02
+verified the complete theorem, source interfaces, all three paper pages,
+the repair and entire package with zero actionable issues.
+[Final acceptance](evidence/FINAL_ACCEPTANCE.json) records readiness for
+immutable publication; publication remains pending in ascending PR order.

@@ -21,7 +21,7 @@ GENERATED = {
     "publication/PACKAGE_INPUT_PINS.json",
 }
 ALLOWED_SUFFIXES = {".md", ".json", ".py", ".tex"}
-FORBIDDEN_PARTS = {"raw", "rawprivate", "private", "cache", "caches", "__pycache__", "tmp", "duplicateinputarchives"}
+FORBIDDEN_PARTS = {"raw", "rawprivate", "private", "cache", "caches", "__pycache__", "tmp", "duplicateinputarchives", "reconstruction", "extracted", "render", "renders", "original_bytes"}
 
 
 def require(condition, message):
@@ -46,7 +46,7 @@ def safe_read(name):
     require("private_raw" not in name.lower() and "raw_private" not in name.lower(),
             "private raw inventory is not public payload: " + name)
     require(name not in GENERATED, "generated file must not be recursively packaged: " + name)
-    require(pp.suffix.lower() in ALLOWED_SUFFIXES or name == "publication/research_note.pdf",
+    require(pp.suffix.lower() in ALLOWED_SUFFIXES or name in {"publication/research_note.pdf", "reviews/package_01/.gitignore"},
             "forbidden body/extract/image/cache/archive type: " + name)
     path = ROOT / name
     require(path.is_file() and not path.is_symlink(), "missing file or symlink: " + name)
@@ -83,28 +83,37 @@ def main():
     metadata = json.loads(files["publication/metadata.json"])
     wrapper = json.loads(files["publication/zenodo_metadata_wrapper.json"])
     require(wrapper == {"metadata": metadata}, "Zenodo wrapper differs from exact metadata")
+    deposit = json.loads(files["publication/zenodo-deposit.json"])
+    require(deposit == {"metadata": metadata, "files": [
+        {"path": "research_note.pdf", "name": "free-exterior-string-links-v1.0.pdf"},
+        {"path": "source_audit_kit.zip", "name": "free-exterior-string-links-v1.0-source-audit-kit.zip"},
+    ]}, "local repo-tool deposit configuration differs from exact metadata/file names")
     require(metadata["title"] == "Finite-type invariants on free-exterior string links: low-degree restrictions and an order-seven example", "wrong current title")
     require(metadata["version"] == "1.0" and metadata["publication_date"] == "2026-10-13", "wrong edition identity")
     require(metadata["creators"][0]["orcid"] == "0009-0001-9320-500X", "wrong author ORCID")
     require(metadata["license"] == "cc-by-4.0", "wrong license")
     state = json.loads(files["publication/evidence/CURRENT_REVIEW_STATE.json"])
-    require(state["publication_ready"] is False and state["required_review"] == "NEWwhole01",
-            "this preparation builder binds the pending NEWwhole01 candidate only")
+    require(state["publication_ready"] is False and state["required_review"] == "NEWwhole02",
+            "this preparation builder binds the repaired pending NEWwhole02 candidate only")
     require(state["state"] == "PENDING_NEW_WHOLE_PACKAGE_REVIEW", "wrong stage")
 
     manifest = {
         "schema": "authored-candidate-noncircular-manifest-v1",
         "original_head": original["head_oid"],
-        "stage": "prepared_application_note_pending_NEWwhole01",
+        "stage": "repaired_application_note_pending_NEWwhole02",
         "publication_ready": False,
         "files": rows,
-        "hash_scope": "All allowlisted authored payload files. This manifest is included in the archive but excludes itself from the file hashes. Input pins and the external integrity receipt are outside the archive.",
+        "hash_scope": "All allowlisted authored payload files. This manifest and the input-pin record are included in the archive but excluded from the file hashes to avoid circularity. The external integrity receipt pins manifest, input pins, and archive.",
         "source_body_policy": "No raw/private third-party bodies, verbatim extracts, OCR, images, caches, bytecode, or duplicate input archives.",
     }
     manifest_data = json_bytes(manifest)
     manifest_name = "publication/PACKAGE_MANIFEST.json"
     (PUB / "PACKAGE_MANIFEST.json").write_bytes(manifest_data)
-    archive_files = {**files, manifest_name: manifest_data}
+    archive_files = {
+        **files,
+        manifest_name: manifest_data,
+        "publication/PACKAGE_INPUT_PINS.json": (PUB / "PACKAGE_INPUT_PINS.json").read_bytes(),
+    }
     archive = PUB / "source_audit_kit.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_STORED) as zf:
         for name in sorted(archive_files):
@@ -121,7 +130,7 @@ def main():
     integrity = {
         "schema": "authored-candidate-external-integrity-v1",
         "publication_ready": False,
-        "required_review": "NEWwhole01",
+        "required_review": "NEWwhole02",
         "original_files_byte_verified": 19,
         "payload_files": len(rows),
         "archive_entries_including_internal_manifest": len(archive_files),
@@ -129,6 +138,7 @@ def main():
         "input_pins": record("publication/PACKAGE_INPUT_PINS.json", (PUB / "PACKAGE_INPUT_PINS.json").read_bytes()),
         "archive": record("publication/source_audit_kit.zip", archive.read_bytes()),
         "metadata_wrapper_exact": True,
+        "repo_tool_metadata_exact": True,
         "zip_crc_and_every_entry_readback": True,
         "determinism": "sorted names; fixed timestamp; fixed regular-file mode; ZIP_STORED; frozen input bytes; canonical generated JSON; no runtime timestamp",
         "proof_execution": "none; frozen new arithmetic records are supplementary stage evidence",

@@ -59,11 +59,12 @@ with zipfile.ZipFile(Z) as z:
  for p in B.rglob('*'):
   if p.is_file() and not p.is_relative_to(R):hash_index.setdefault(sha(p.read_bytes()),[]).append(p.relative_to(B).as_posix())
  historical=[]
+ reconstructed=json.loads((R/'REPAIR_AND_PAYLOAD_VERIFICATION.json').read_text())['historical_old_archive_independently_reconstructed']
  def scan(obj,locator,file):
   if isinstance(obj,dict):
    for key,val in obj.items():
     if isinstance(val,str) and re.fullmatch(r'[0-9a-f]{64}',val) and ('sha256' in key or key in ['hash','digest']):
-     witnesses=hash_index.get(val,[]);historical.append({'record':file,'json_locator':locator+'/'+key,'sha256':val,'bytes_claim':obj.get('bytes'),'path_claim':obj.get('path',obj.get('snapshot_path',obj.get('private_path'))),'witnesses':witnesses,'witness_found':bool(witnesses),'size_matches':obj.get('bytes') is None or any((B/p).stat().st_size==obj['bytes'] for p in witnesses)})
+     witnesses=hash_index.get(val,[]); reconstructed_match=reconstructed['matches_declared'] and val==reconstructed['sha256'];historical.append({'record':file,'json_locator':locator+'/'+key,'sha256':val,'bytes_claim':obj.get('bytes'),'path_claim':obj.get('path',obj.get('snapshot_path',obj.get('private_path'))),'witnesses':witnesses,'reconstructed_old_archive_witness':reconstructed_match,'witness_found':bool(witnesses) or reconstructed_match,'size_matches':obj.get('bytes') is None or (reconstructed_match and obj.get('bytes')==reconstructed['bytes']) or any((B/p).stat().st_size==obj['bytes'] for p in witnesses)})
     else:scan(val,locator+'/'+key,file)
   elif isinstance(obj,list):
    for j,q in enumerate(obj):scan(q,locator+'/'+str(j),file)

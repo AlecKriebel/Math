@@ -36,16 +36,24 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Nine of the eighteen full-claim candidates have passed combined scoped
-mathematical audits. #1032 has a critical full-text priority comparison pending.
-#1033's explicitly expository three-page package has been repaired after its
-first fresh reviewer found one raw third-party text inclusion; NEW review02 is pending. #1034's credited
-application paper is being prepared; its Milnor-algebra formula is prior mathematics.
-#1037 has an exact contemporary published match, with qualified chronology and
-proof-exposition framing required. #1041's bounded priority audit found no exact match; credited paper preparation
-is underway, with generic real-demand flow isolation identified as prior work.
-#1047 is with two fresh distinct mathematical and source-scope reviewers.
-All 101 assertions are screened; the eighty-three partial/prior exclusions
-remain outside processing. Cursor: #1032. Best-guess overall completion: 39%.
+Eleven of the eighteen full-claim candidates have passed combined scoped
+mathematical audits. #1032 has a critical full-text priority comparison pending;
+a read-only exact connected-Drive search also found no matching paper.
+#1033's explicitly expository three-page package is final clean and sealed after
+NEW review02; publication is held after the preceding #1032 disposition.
+#1034, #1037 and #1041 have repaired their first manuscript/package findings;
+the root checked all 13, 12 and 9 refreshed pages, exact preserved proof bytes,
+source copies, metadata and independently reconstructed archives. New full
+review02 is required for every changed package. #1037 has an exact contemporary
+published match, with qualified chronology and credited proof-exposition framing.
+#1034's Milnor formula and #1041's generic flow isolation retain prior credit.
+#1047's bounded priority audit is adopted for a neutral elementary exposition;
+its paper and kit are being prepared without originality claims. #1052's full
+cyclic-transfer/source-interface mathematics passed both fresh families and an
+unmodified root checker reproduction; its new priority audit is running.
+#1064 has two independent mathematical/source audits; #1071's nine originals
+are acquired for its next mathematical audit. All 101 assertions are screened;
+the eighty-three partial/prior exclusions remain outside processing.
+Cursor: #1032. Best-guess overall completion: 42%.
 Candidate and mathematical acceptance do not establish historical novelty or
 current worldwide openness.

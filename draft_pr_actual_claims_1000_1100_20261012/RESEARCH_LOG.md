@@ -143,3 +143,23 @@ Pinned all eight authored Git files of PR1033/problem11000026 at head6322305d37b
 ## 2026-10-13T23:10:36.407962+00:00: preprint and intake checkpoint
 
 1033 repaired candidate pins/inventory/all54authoredcopies independently verified by root; NEWwholepackage02assigned. 1041 freshpriority fullreportadopted and all14input/13outputpins rehashed; attributedpaperprep assigned, genericreal-demand isolation credited to EFL2018. 1037 credited contemporary-match proofprep assigned. 1047 root sourcefullpage and complete familyproofs checked, two NEWbasis/sourcefamilies pending. Own checkpoint filter now keeps temporary raw/render/extracted review files private on disk and omits them from currentpublicsnapshot via isolatedindex; immutabledepositedarchives unaffected and historicalpinmeaning preserved. Best-guess shard completion:39%.
+
+## 2026-10-13T23:15:38.697072+00:00: tenth combined mathematical audit accepted
+
+1047 root/twofreshfamilies complete, scopequalified uniformsamegroundordinaryrank; priority pending. 1052 full8file tree acquired unchangedhead andtwofreshtransfer/primaryencodingfamiliesassigned. Four earlieracceptedresults published/trackerverified/merged. Best-guess overall completion:40%.
+
+## 2026-10-13T23:21:33.718689+00:00: final clean 1033 and three new full reviews
+
+1033 NEWsecondwholepackage CLEAN fullyrootread and finaladministrative seal/integrity complete; ready expositorypreprint heldafter1032criticalfulltextprioritycomparison. Current13page1034/12page1037/9page1041papers andsupportkits prepared; fullreportsrootread and threeNEWwholeadversarialreviewers assigned. Root wholepaper/PDF inspections continueinparallel. Originalandhistoricalbytes preserved. 1047 freshpriority underway;1052 cyclicfamily complete rootfullreportsstillpending,primaryfamilyunderway. Fourpublishedandmerged,tencombinedmathverified. Overallcompletion40%.
+
+## 2026-10-14T03:26:33.552812+00:00 — #1047 bounded priority audit adopted (overall 40%)
+
+All 27 authored/frozen output pins verified. Preparing a credited elementary obstruction; no originality or worldwide-open certificate. #1032 remains priority-held; no later publication authorized ahead of its disposition.
+
+## 2026-10-14T03:33:34.597386+00:00 — checkpoint
+
+Overall42%. #1052 combined scoped mathematics accepted,11 mathverifiedtotal; primary reconstruction and fresh root replay passed. #1064 original9 acquired exacthead for two independent families. #1034/1037/1041 editorial repairs frozen, new review loops in progress; publication cursor remains1032.
+
+## 2026-10-14T03:39:30.029932+00:00 — repaired preprint inputs verified (overall42%)
+
+#1034 root156current/515immutable/19originals/149ZIP; #1037 root131current/104immutable/104copies/128ZIP; #1041 root139current/338immutable/95copies/125tar members, all independently reassembled exact bytes. All13/12/9 refreshed pages individually read. Each changed edition requires a NEW whole review, preserving all earlier reports. #1047 paper preparation underway; #1052 priority underway; #1064 fresh two math families underway; #1071 nine originals acquired. No later Zenodo/GWS/merge ahead of #1032. Checkpoint will use isolated temporary Git index and own-folder paths only.
