@@ -47,7 +47,10 @@ def replace_paths(repo, parent, updates):
                 if old and old[1] != b'tree':
                     raise ValueError('Scoped ancestor is not a directory')
                 oid = build(old[2].decode('ascii') if old else None, value)
-                entries[name] = (b'040000', b'tree', oid.encode('ascii'))
+                if oid is None:
+                    entries.pop(name, None)
+                else:
+                    entries[name] = (b'040000', b'tree', oid.encode('ascii'))
             elif value is None:
                 if name not in entries:
                     raise ValueError('Cannot remove a missing scoped path')
@@ -56,12 +59,15 @@ def replace_paths(repo, parent, updates):
                 mode, oid = value
                 kind = b'commit' if mode == '160000' else b'blob'
                 entries[name] = (mode.encode('ascii'), kind, oid.encode('ascii'))
+        if not entries:
+            return None
         records = b''.join(mode + b' ' + kind + b' ' + oid + b'\t' + name + b'\0'
                            for name, (mode, kind, oid) in entries.items())
         return git_bytes(repo, 'mktree', '-z', raw=records).decode('ascii').strip()
 
     parent_tree = git_bytes(repo, 'rev-parse', parent + '^{tree}').decode('ascii').strip()
-    return build(parent_tree, trie)
+    result = build(parent_tree, trie)
+    return result if result is not None else git_bytes(repo, 'mktree', raw=b'').decode('ascii').strip()
 
 
 def selected_working_updates(repo, parent, paths):
