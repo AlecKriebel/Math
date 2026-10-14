@@ -1,4 +1,4 @@
-"""Portable standard-library baseline and wrong-science checks; Python >=3.10."""
+"""Portable standard-library baseline and wrong-science checks; Python >=3.11."""
 from pathlib import Path
 import ast,hashlib,json,subprocess,sys,tempfile
 HERE=Path(__file__).resolve().parent
@@ -41,4 +41,3 @@ def main():
                 rows.append({"case":label,"optimized":optimized,"exit":r.returncode,"rejected":True,"stderr_sha256":hashlib.sha256(r.stderr).hexdigest()})
     return {"status":"PASS","baselines":8,"meaningful_wrong_science_rejections":10,"results":rows,"limit":"Finite checks corroborate exact data and controls; the universal theorem is proved in the manuscript."}
 if __name__=="__main__":print(json.dumps(main(),indent=2))
-
