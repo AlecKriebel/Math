@@ -227,7 +227,7 @@ def main():
             cells[8] = ' preprint_published '
             cells[11] = cells[11].rstrip() + (
                 f' {now} — ACCEPTED/PUBLISHED after fresh mathematical families, bounded priority '
-                f'audit and successive whole-preprint adversarial reviews; five-page note and '
+                f'audit and successive whole-preprint adversarial reviews; research note and '
                 f'source/verification package, DOI {doi}; PR#{args.pr} merged at '
                 f'{pr["merge_commit_sha"]}; extensive AI use, unrefereed, no external human '
                 'peer review or formal proof verification; first historical priority not certified. ')

@@ -79,3 +79,7 @@ Both fresh approach families and root pass the literal unrestricted-characterist
 ### 2026-10-14T03:46:44.699248+00:00 — PR742 primary priority work checkpoint (35%; shard 20%)
 
 Current eligibility and source identities remain stable. Root registry/direct-query receipts recorded; indexed silence is not absence. Independent priority auditor still active, with source/access limits stated.
+
+### 2026-10-14T04:00:30.969029+00:00 — PR742 public-note scope gate (50%; shard 21%)
+
+Negative answer to exact original unrestricted equality complete. No earlier equivalent result located in bounded primary audit; known ingredients credited and final-journal/firstpriority limits explicit. Fresh priority adversary and historical-preserving clarification agree. Preprint preparation and subsequent fresh whole-package reviews next.
