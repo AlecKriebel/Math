@@ -35,3 +35,7 @@ R1 independently reconstructed proof before prior verdicts, checked current prim
 ## 2026-10-14T04:15:35.765053+00:00 — publication-bookkeeping concurrency improvement (65%)
 
 Own preparation/post-publication helpers now batch validated raw blobs through one NUL-delimited isolated-index update. Actual815preview8f1b80939c574bcb70b7094edc43a86a55e1a28e has exactly the same192-file target tree as earlier per-file preview; everySHA and non-targetQUEUEbyte rechecked, no branchpush. Preparation completed12.08seconds, reducing exposure to concurrentmain advances. Post-publication helper now also recognizes explicit main ref-race rejection and persists a pending/unknown push receipt before mutation. Helpers syntax checked. No preprint/verification core or reviewedoutertree byte changed; R2 remains active. Original3/5, overall14%.
+
+## 2026-10-14T04:23:55.646502+00:00 — Two successive fresh final package reviews CLEAR
+
+R1 and R2 independently found no required fixes or unresolved in-scope concerns on identical ten-file core seals and the corrected 192-file repository assembly. Root rechecked report hashes, core bytes and all mapped bytes. Full-target mathematical acceptance is 100%; PR815 acceptance/publication workflow is 75%; programme is 15%. Original effort remains 3/5, with zero new central proof-search responses. Production publication and tracker are still pending.
