@@ -83,3 +83,7 @@ Current eligibility and source identities remain stable. Root registry/direct-qu
 ### 2026-10-14T04:00:30.969029+00:00 — PR742 public-note scope gate (50%; shard 21%)
 
 Negative answer to exact original unrestricted equality complete. No earlier equivalent result located in bounded primary audit; known ingredients credited and final-journal/firstpriority limits explicit. Fresh priority adversary and historical-preserving clarification agree. Preprint preparation and subsequent fresh whole-package reviews next.
+
+### 2026-10-14T04:12:06.696798+00:00 — PR742 preprint package checkpoint (65%; shard 22%)
+
+Three-page note prepared with accurate scope and credits, complete support/kit reproductions and visual checks. First fresh whole-package adverse review active, publication and acceptance pending subsequent independent review loop.
