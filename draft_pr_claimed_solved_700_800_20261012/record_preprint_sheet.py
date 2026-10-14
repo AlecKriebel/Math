@@ -39,16 +39,21 @@ def main():
     pr_url = f'https://github.com/AlecKriebel/Math/pull/{args.pr}'
     scope_path = audit / 'TRACKER_SCOPE.json'
     scope = 'Full claimed solution independently internally audited.'
+    priority = ('Bounded priority audit found no earlier full resolution; '
+                'first historical priority is not certified.')
     if scope_path.is_file():
-        scope = json.loads(scope_path.read_text())['summary']
+        scope_record = json.loads(scope_path.read_text())
+        scope = scope_record['summary']
+        priority = scope_record.get('priority_summary', priority)
         if not isinstance(scope, str) or not scope.strip():
             raise ValueError('Tracker scope must be a nonempty authored statement')
+        if not isinstance(priority, str) or not priority.strip():
+            raise ValueError('Tracker priority summary must be nonempty')
     notes = (f"{title}; Alec Kriebel; version {metadata['version']}; "
              f"preprint date {metadata['publication_date']}; problem {args.problem}; "
              f"{pr_url}. {scope} "
              "Extensive AI use; unrefereed, no external human peer review or formal "
-             "proof verification. Bounded priority audit found no earlier full "
-             "resolution; first historical priority is not certified. "
+             f"proof verification. {priority} "
              "Deposit includes PDF and source/verification archive.")
     values = [f'https://www.unsolvedmath.com/problems/{args.problem}', '', doi_url, notes]
     params = {'spreadsheetId': SHEET, 'range': f"'{TAB}'!A:D",

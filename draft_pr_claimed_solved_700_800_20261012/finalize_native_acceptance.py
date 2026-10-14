@@ -137,6 +137,10 @@ def main():
     audit = args.audit.resolve()
     gate_path = audit / 'FINAL_READINESS.json'
     gate = json.loads(gate_path.read_text())
+    priority_summary = gate.get('priority_summary',
+        'A bounded priority audit found no earlier full resolution; first historical priority is not certified.')
+    if not isinstance(priority_summary, str) or not priority_summary.strip():
+        raise ValueError('Priority summary must be a nonempty authored statement')
     publication_path = audit / 'publication/PUBLISH_RECEIPT.json'
     publication = json.loads(publication_path.read_text())
     tracker_path = audit / 'publication/SHEET_VERIFICATION.json'
@@ -205,7 +209,9 @@ def main():
                       'tracker': bind(tracker_path), 'publication_files': inventory['files'],
                       'historical_priority_certified': False, 'external_human_peer_review': False,
                       'formal_proof_verification': False, 'extensive_AI_use': True,
-                      'historical_candidate_preserved': True, 'turns_used': used, 'turn_limit': limit}
+                      'historical_candidate_preserved': True, 'turns_used': used, 'turn_limit': limit,
+                      'priority_summary': priority_summary,
+                      'known_equivalent_results': gate.get('known_equivalent_results', [])}
         acceptance_raw = encode(acceptance)
         event = {'at': now, 'id': args.problem, 'status': 'preprint_published',
                  'event': 'acceptance_mirror_import', 'pr': args.pr, 'doi': doi,
@@ -227,7 +233,8 @@ def main():
             f'audit and successive whole-preprint adversarial reviews; research note and '
             f'source/verification package, DOI {doi}; PR#{args.pr} merged at '
             f'{pr["merge_commit_sha"]}; extensive AI use, unrefereed, no external human '
-            'peer review or formal proof verification; first historical priority not certified. ')
+                'peer review or formal proof verification; first historical priority not certified. '
+                + priority_summary + ' ')
         cells[12] = f' {doi} '
         changed_queue = queue.replace(old_line, '|'.join(cells), 1)
         csv_lines = before['ranking.csv'].splitlines(keepends=True)
@@ -255,8 +262,7 @@ def main():
                 f'was merged as `{pr["merge_commit_sha"]}`.\n\n'
                 'AI tools were used extensively. This preprint is unrefereed; internal '
                 'AI-assisted review is not external human peer review or formal proof '
-                'verification. A bounded priority audit found no earlier full resolution; '
-                'first historical priority is not certified. The original candidate files '
+                'verification. ' + priority_summary + ' The original candidate files '
                 'and historical adverse findings are retained unchanged. See acceptance.json '
                 'for the present-day acceptance bindings.\n')
         updates = {f'{NATIVE}/QUEUE.md': changed_queue,
