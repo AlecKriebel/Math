@@ -1,49 +1,63 @@
-# PR623 native transport author report
+# PR623 native transport repair report
 
-Assigned offline adapter work is complete. **Author checks pass: 25 tests, zero failures. No live mutation was made.** Independent adversarial review and the live file lifecycle remain outside this author's validation.
+**All requested author repairs are implemented: 47 offline tests pass under normal Python and 47 under `-O`, with zero failures/errors. Fresh independent review is required before execution. No live upload, commit, publication or other Zenodo mutation was made by this author.**
 
-`native_transport.py` subclasses the repository `ZenodoClient` and passes it to `zenodo.run`. The repository kit still loads the original manifest, checks exact metadata, checks the complete file set and MD5/size, performs final publication readback, checks DOI resolution, and writes the normal publication receipt. The adapter adds downloaded SHA-256 verification of every completed native file. The receipt therefore retains the required environment/title/id/state/DOI/record URL/DOI-resolution/receipt-saved fields and each file's name, size, and SHA-256. Tests exercise that actual kit code; they do not manufacture receipt schemas.
+The prior author version contained real F1/F2/F3 defects; the parent later identified operational F4. Its original source, tests, report, receipt and log are preserved at `snapshots/original_author_20261014T044110Z/`, with a dated snapshot receipt. The independent review and its reproducers are unchanged. The earlier PASS label described an insufficient test model; this report supersedes it.
 
-## Exact permitted scope
+## Scope and preserved kit behavior
 
-- Production, own recovered initial draft **23356540**, and version DOI **10.5281/zenodo.23356540**.
-- The original manifest and reviewed PDF/ZIP bytes only. The CLI hashes the kit and all inputs before dispatch. No sandbox/generic record/manifest arguments exist.
-- Authenticated GETs use the kit token loader and client transport. Native record reads explicitly request `application/vnd.inveniordm.v1+json`; full native metadata is checked against the recovered snapshot hash before its reversible projection is exposed to the kit. The exact original metadata is already present, so `update()` re-reads and verifies; it makes no PUT.
-- File initialization POST, reviewed-file content PUT, file commit POST, and publish POST are the only mutating routes. They are pinned to known HTTPS host, ID, filenames, and paths. Direct `request()` mutations cannot bypass durable operation intent. Creation, deletion, editing, new versions, metadata PUTs, other records, and account search are unavailable.
-- The CLI requires existing kit state for this recovered ID and an explicit execution switch with the exact confirmation ID for stage/publish. Those switches are an execution guard for the parent; this author never enabled or ran them.
+Production own recovered initial draft **23356540**, the original manifest, and the exact reviewed PDF/ZIP are the only supported inputs. No create/delete/edit/version/metadata PUT, account search, sandbox or alternative manifest/record route exists. File initialize/content/commit and publication are the only mutating endpoints, pinned to this ID and the two names.
 
-## Evidence
+The repository kit source executes without edits from one SHA-256-checked byte snapshot in a fresh isolated module, with the correct absolute `__file__`, ROOT, credential and state paths. The actual `load_manifest`, `run`, exact metadata/file verifier, publication readback, DOI resolver and receipt construction remain unchanged; no kit function is replaced. The dispatcher permits only production check/stage/inspect/publish. Native `update()` re-reads and verifies already-exact metadata without PUT.
 
-The read-only preflight completed at **2026-10-14T04:18:32.814076Z** with exact native metadata, `submitted=false`, no completed files, and no pending files. That is a transport preflight, **not** a ready-to-publish or publication receipt. Earlier authenticated reads produced the filtered `native_shape.json` and `native_files.json` fixtures. They exclude account-owner/grant data and tokens.
+## F1: code and manifest snapshots
 
-The 25 offline tests cover ordinary initialization/content/commit, exact metadata projection and rich/drifting native metadata rejection, only-known-ID/host/path guards, disabled writes, missing-state/no-create behavior, duplicate/foreign file guards, unexpected status, MD5/size/SHA-256 drift, bounded binary read/no redirects, lost initialization/content/commit/publication responses, partial uploads, restart without repeated PUT, HTTP-200 transfer errors, durable journal failure before a mutation, publication readback, repeated publication as read-only, wrong version DOI, and publication receipt persistence failure.
+The reviewed `run_native_transport.py` bootstrap captures adapter source once, verifies its literal SHA-256 pin before any adapter statement executes, and compiles those same bytes in a fresh module. It never reuses `sys.modules['native_transport']`; direct adapter script entry refuses dispatch. The adapter does the same for the kit before any kit top-level execution, using standard-library hashing rather than unverified kit methods. It neither imports nor replaces `sys.modules['zenodo']`. A pathname swap or restoration after capture cannot replace executed bytes.
 
-## Ambiguous outcomes
+The manifest is captured once and hashed before parsing. The unchanged kit receives an immutable Path protocol whose `read_text()` returns those exact bytes. Relative paths resolve only to the captured reviewed payloads. The kit still parses the manifest, validates names/limits and computes both checksums; it never reopens the mutable manifest or payload sources. Production state uses the original absolute manifest string.
 
-Each mutation has an atomically saved `attempted` marker before the request. The same operation is never issued twice automatically, even after restart. A lost initialization can advance only if its registered key is read back. A lost commit can advance only if the completed native file is read back with exact size/MD5 and downloaded SHA-256. A lost publication is resolved by the kit's independent native record readback; a still-unpublished record does not trigger another POST. A later published read can recover the usual kit receipt.
+The bootstrap is the trusted entry point. `LAUNCH_INSTRUCTIONS.md` gives a parent invocation that itself captures/hash-checks/executes the bootstrap in one operation, avoiding a pathname-check/reopen race at the entry point. Its approved inline Python text is the root of trust. Shared bytecode writes are disabled; captured compile/exec does not use repository module caches.
 
-A validated acknowledged content PUT permits the reversible commit, followed by exact committed-file verification before publication. A lost PUT requires an independent SHA-256 read of pending staged content. **If Zenodo cannot expose pending content, or exposes partial/different bytes, the runner stops with its durable `attempted` marker and does not repeat PUT or commit.** No automatic delete/reupload/reconciliation escape hatch exists. Manual reconciliation would require separately reviewed evidence and work.
+Controls cover stale preloaded modules, rejection before unreviewed top-level side effects, single-read kit/adapter source swaps, exactly one manifest and one read per payload, later path/manifest drift without mutable reopens, direct script refusal, and unsupported workflow/environment rejection.
 
-## Remaining limits
+## F2: automatic DOI and OAI
 
-1. This author has not performed a native initialize, content PUT, commit, or publish against production. The documented file endpoint sequence and current empty-file/metadata read shape are verified; deployed write response shape, pending-download availability, and postpublication representation remain live boundaries.
-2. The runner deliberately fails closed on unexpected file/metadata/access/DOI representations, including vocabulary-annotation drift, foreign pending keys, additional file metadata, or record-versus-file collection discrepancies. A safe stop needs review of filtered read evidence; changing the manifest, simplifying metadata, replacing the deposit, or suppressing checks is not supported.
-3. The local lock protects only this runner on this filesystem. It cannot prevent browser/other-machine edits between a read and an action. Every transport mutation rechecks the record where relevant, and final publication still requires exact file/metadata readback, but there is no claimed server-atomic transaction.
-4. A DOI resolver failure remains separate from confirmed publication, using the kit's existing semantics. The dependent integration should require its already-reviewed successful DOI-resolution and durable-receipt fields.
+Confirmed publication requires version DOI **10.5281/zenodo.23356540** with DataCite provider and, when present, the exact DataCite client; and precisely **`{"identifier":"oai:zenodo.org:23356540","provider":"oai"}`**. Unknown schemes, wrong IDs/providers/clients, extra fields, malformed shapes and explicit null DOI clients are rejected. An empty initial-draft PID map remains valid. Assigned/reserved identifiers alone never establish publication.
 
-The parent's newly independent adversary must review this source and failure evidence before live execution. Full downloaded primary sources are in ignored `tmp/`; `SOURCE_RECEIPT.json` records their URLs/hashes. Source endpoints are documented in the official [InvenioRDM reference](https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/docs/reference/rest_api_drafts_records.md).
+The official [OAI provider](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/pids/providers/oai.py) derives its identifier from configured prefix and record ID. The official [publication PID component](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/components/pids.py) supplies required schemes. Review1's preserved primary evidence establishes DOI/OAI creation from empty PIDs for this public initial record. The parent's filtered deployed calibration binds the legitimate DOI/OAI shape on prior own record 23331709, SHA-256 `0cefe0f05e05507d594066a4d4103891e0ec480337e8cd62a9093c1f38cdfdff`.
 
-## Parent commands after independent acceptance
+The backend now generates both PIDs. Normal publication, lost-response recovery, read-only inspect and repeated publication exercise the actual kit receipt over this complete map. Thirteen hostile/missing PID cases remain rejected.
 
-Run the unchanged reviewed source in this folder (or an approved identical copy):
+## F3: immutable transmitted payloads
 
-```text
-python3 native_transport.py check
-python3 native_transport.py preflight
-python3 native_transport.py stage --execute-own-draft --confirm-id 23356540
-python3 native_transport.py inspect
-python3 native_transport.py publish --execute-own-draft --confirm-id 23356540
-python3 native_transport.py inspect --check-doi
-```
+Each PDF/ZIP source is read once into immutable bytes before client construction. Size, SHA-256 and pinned MD5 are checked on those exact bytes. A mixed or changed capture is rejected before upload. A read-only frozen file protocol supplies stat/open to the existing kit transport; all transmitted chunks come from checked immutable bytes, with no second mutable pathname stat/open. Raw Path payloads are rejected. The original kit verifier still runs after transfer, and the adapter independently downloads completed native content for SHA-256 verification.
 
-Do not remove the native journal after an interrupted/unknown write. `check`, `preflight`, and `inspect` make no API mutations; kit inspect may save a confirmed publication receipt locally.
+Positive controls replace a private source immediately before PUT, and replace plus modify its inode while the actual unchanged kit sends successive 1,024-byte chunks. Transmitted size, SHA-256 and MD5 remain exact while the pathname's bytes change. Negative controls reject changed/mixed captures, raw Paths and snapshot mutation before API writes. Committed checksums are computed from actual transmitted bytes. No original paper/archive source was modified.
+
+## F4: supported native download negotiation
+
+Completed/pending content GET uses `Accept: */*`, while content PUT remains `Content-Type: application/octet-stream`. There is no alternate-endpoint/redirect/authentication fallback or automatic request retry. HTTP 200, exact byte bounds and SHA-256 are still required.
+
+The parent's preserved filtered calibration on its already accepted own PR618 PDF returned HTTP 406/88-byte JSON for octet-stream acceptance, then HTTP 200 with the exact known 69,859-byte PDF for wildcard acceptance. The successful SHA-256 is `f09744993126d2d7e195115ae65046054626c6a5197566146340dc5bfea9ce82`; no redirects, authorization or mutations were involved in those parent public reads. `NATIVE_PUBLISHED_CONTENT_CALIBRATION.json` and `NATIVE_PUBLISHED_CONTENT_WILDCARD_CALIBRATION.json` remain unchanged and are hash-bound in this author's source/input receipts. This author did not contact that other record.
+
+A negotiation-aware fake endpoint returns 406 if the actual download header is wrong and yields bytes only for wildcard acceptance. The real reader must produce the reviewed SHA-256 with one request. The actual kit streaming control independently verifies upload Content-Type remains octet-stream. This repairs a deployed compatibility failure, without claiming that own draft 23356540 has uploaded content yet.
+
+## O1: sync barriers and precise limits
+
+Every mutation has atomically saved intent before dispatch: temporary-file flush/fsync, replacement, journal-directory fsync and parent-directory fsync. New directory chains also receive directory/parent barriers. Any sync/storage failure sets a process fail-stop flag; later reads cannot enable another mutation in that process. Real fsync instrumentation confirms all barriers precede every modeled dispatch. File, directory, parent and post-acknowledgment failure controls stop later writes. Fresh-client restart still prohibits repeating uncertain operations.
+
+These are software barriers under the OS/filesystem contract. **No destructive power-loss, kernel-crash, hardware-cache or storage-rollback test was conducted or claimed.** Ordinary process-interruption recovery is tested. The unchanged kit's separate final publication receipt retains atomic replacement without fsync, and `receipt_saved` retains its exact kit meaning. Receipt failure does not fabricate unpublication. The synced attempt journal independently prohibits blind repetition; a later read-only inspect can regenerate a confirmed receipt. This is not a claim that all local files have power-loss guarantees.
+
+## Ambiguity, live evidence and unchanged inputs
+
+No initialize/content/commit/publish operation is automatically sent twice, even after restart. Lost initialize requires its registered key readback. Lost content PUT requires independently verified pending SHA-256 or stops without PUT/commit retry. A valid content acknowledgment permits reversible commit, then exact committed size/MD5/downloaded-SHA checks before publication. Lost commit requires completed readback. Lost publish uses the kit's independent native published readback; an unchanged draft receives no repeated POST.
+
+The repaired-source read-only preflight at **2026-10-14T05:04:14.082315Z** confirms exact pinned native metadata, unpublished draft 23356540 and zero completed/pending files. `REPAIRED_READONLY_PREFLIGHT.json` is a preflight, not a publication/readiness receipt. Numeric `0` for `access.embargo.active` is rejected; only Boolean `False` is allowed.
+
+`REPAIR_INPUT_RECHECK.json` confirms **45/45** publication pins and **29/29** native pins unchanged, all 18 original-review artifact pins unchanged, and the original author snapshot intact. Native original-commit identity was independently established by review1; these checks preserve its exact bytes. No shared paper/ZIP/metadata/helper/global kit/index/branch/remote/tracker was edited. Full downloaded sources remain in ignored tmp.
+
+## Remaining gap
+
+A new independent adversary must review the repaired source/bootstrap/tests/receipts. Production file acknowledgments, pending-content availability after ambiguous PUT, this draft's actual final representation, external DOI registration/resolution and the final real kit receipt remain unexecuted. Unexpected shapes fail closed; no replacement deposit, metadata simplification, delete/reupload or weakened check is supported. The local lock does not prevent other-machine/browser edits, and no server-atomic read/publish transaction is claimed.
+
+Assigned author repair work: **100%**. Estimated operational readiness: **85%**, pending fresh review and live boundaries. Publication itself remains unfinished.

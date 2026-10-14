@@ -6,12 +6,18 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+import os
+import stat
+import sys
+import types
+
 from unittest.mock import patch, MagicMock
 
 import native_transport as nt
-import zenodo
+zenodo = nt.zenodo
 
-METADATA, FILES = nt.pinned_inputs()
+CAPTURED = nt.capture_inputs()
+METADATA, FILES = CAPTURED.metadata, CAPTURED.files
 FIXTURE = json.loads((nt.HERE / 'native_shape.json').read_text())
 
 
@@ -35,7 +41,8 @@ class Backend:
             item['links']['commit'] = root + '/commit'
         if completed:
             file = next(f for f in FILES if f['name'] == name)
-            item.update(size=file['size'], checksum='md5:' + file['md5'])
+            data = self.content[name]
+            item.update(size=len(data), checksum='md5:' + hashlib.md5(data).hexdigest())
         return item
 
     def record(self):
@@ -43,7 +50,8 @@ class Backend:
         if self.published:
             result.update(is_draft=False, is_published=True, status='published')
             result['links'].update(self=nt.REC, self_html=nt.BASE + f'/records/{nt.RECORD_ID}', files=nt.REC + '/files')
-            result['pids'] = {'doi': {'identifier': nt.DOI, 'provider': 'datacite', 'client': 'datacite'}}
+            result['pids'] = {'doi': {'identifier': nt.DOI, 'provider': 'datacite', 'client': 'datacite'},
+                              'oai': {'identifier': nt.OAI, 'provider': 'oai'}}
         result['files'].update(count=len(self.entries), entries={name: {} for name in self.entries},
                                total_bytes=sum(item.get('size') if type(item.get('size')) in (int,float) else 0 for item in self.entries.values()))
         if self.record_change:
@@ -92,25 +100,25 @@ class FakeClient(nt.NativeOwnDraftClient):
                 return b.collection()
             raise AssertionError(('Unexpected offline GET', url))
         if method == 'POST' and url == nt.DRAFT + '/files':
-            assert isinstance(payload, list) and len(payload) == 1 and set(payload[0]) == {'key'}
+            nt.require(isinstance(payload, list) and len(payload) == 1 and set(payload[0]) == {'key'}, 'Offline initialization payload shape')
             name = payload[0]['key']
-            assert name not in b.entries, 'Duplicate initialization reached wire'
+            nt.require(name not in b.entries, 'Duplicate initialization reached wire')
             b.entries[name] = b.entry(name)
             result = b.collection()
         elif method == 'PUT' and url.endswith('/content'):
             name = url.split('/')[-2]
-            assert name not in b.content, 'Repeated content PUT reached wire'
+            nt.require(name not in b.content, 'Repeated content PUT reached wire')
             b.content[name] = file.read_bytes()
             if fault == 'partial':
                 b.content[name] = b.content[name][:7]
             result = deepcopy(b.entries[name])
         elif method == 'POST' and url.endswith('/commit'):
             name = url.split('/')[-2]
-            assert len(b.content[name]) == nt.FILE_PINS[name][0]
+            nt.require(len(b.content[name]) == nt.FILE_PINS[name][0], 'Offline byte count differs')
             b.entries[name] = b.entry(name, True)
             result = deepcopy(b.entries[name])
         elif method == 'POST' and url == nt.DRAFT + '/actions/publish':
-            assert len(b.entries) == 2 and all(item['status'] == 'completed' for item in b.entries.values())
+            nt.require(len(b.entries) == 2 and all(item['status'] == 'completed' for item in b.entries.values()), 'Offline publication incomplete')
             b.published = True
             result = b.record()
         else:
@@ -151,8 +159,8 @@ class NativeTransportTests(unittest.TestCase):
         self.temp.cleanup()
 
     def run_kit(self, command, client=None):
-        return zenodo.run(argparse.Namespace(command=command, manifest=nt.MANIFEST, sandbox=False,
-                          confirm_id=nt.RECORD_ID, check_doi=True), client=client or self.client)
+        return nt.run_captured_kit(argparse.Namespace(command=command, manifest=nt.MANIFEST, sandbox=False,
+                          confirm_id=nt.RECORD_ID, check_doi=True), CAPTURED, client=client or self.client)
 
     def writes(self):
         return [(method, url) for method, url in self.client.backend.calls if method in {'POST', 'PUT', 'DELETE'}]
@@ -193,6 +201,7 @@ class NativeTransportTests(unittest.TestCase):
             lambda x: x.update(custom_fields={'extra':'x'}),
             lambda x: x['access'].update(files='restricted'),
             lambda x: x['access']['embargo'].update(active=True),
+            lambda x: x['access']['embargo'].update(active=0),
             lambda x: x['pids'].update(other={'identifier':'x'}),
             lambda x: x['links'].update(self='https://other.example/api/records/23356540/draft'),
             lambda x: x['links'].update(files=nt.DRAFT + '/files?bypass=1'),
@@ -368,7 +377,7 @@ class NativeTransportTests(unittest.TestCase):
         self.assertNotIn('publication', zenodo.read_json(self.place))
 
     def test_journal_persistence_failure_prevents_mutation(self):
-        with patch.object(zenodo, 'save_state', side_effect=OSError('storage unavailable')):
+        with patch.object(nt, 'durable_journal_save', side_effect=OSError('storage unavailable')):
             with self.assertRaises(zenodo.DepositError): self.run_kit('stage')
         self.assertEqual(self.writes(), [])
 
@@ -404,6 +413,7 @@ class NativeTransportTests(unittest.TestCase):
                             nt.NativeOwnDraftClient._wire_digest(self.client, url, len(data))
                 connection.close.assert_called_once()
                 self.assertEqual(connection.request.call_args.args[:2], ('GET', url.removeprefix(nt.BASE)))
+                self.assertEqual(connection.request.call_args.kwargs['headers']['Accept'], '*/*')
         connection = MagicMock()
         connection.getresponse.side_effect = OSError('lost response')
         with patch.object(nt.http.client, 'HTTPSConnection', return_value=connection):

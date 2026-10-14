@@ -3,6 +3,7 @@
 
 The repository kit owns manifests, final verification, summaries and receipts.
 This module is a fail-closed transport for recovered own draft 23356540.
+Launch through the reviewed run_native_transport.py byte-snapshot bootstrap.
 """
 from __future__ import annotations
 
@@ -17,18 +18,20 @@ import os
 from pathlib import Path
 import re
 import sys
+import tempfile
+import types
+import uuid
 from urllib.parse import quote, urlsplit
 
 ROOT = Path('/Users/alec/Documents/Math')
 KIT_PATH = ROOT / 'zenodo_deposit_tool' / 'zenodo.py'
 sys.dont_write_bytecode = True  # Importing the kit must not write shared bytecode caches.
-sys.path.insert(0, str(KIT_PATH.parent))
-import zenodo
 
 HERE = Path(__file__).resolve().parent
 MANIFEST = ROOT / 'draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/publication/zenodo-deposit.json'
 RECORD_ID = 23356540
 DOI = '10.5281/zenodo.23356540'
+OAI = 'oai:zenodo.org:23356540'
 BASE = 'https://zenodo.org'
 REC = BASE + f'/api/records/{RECORD_ID}'
 DRAFT = REC + '/draft'
@@ -40,6 +43,43 @@ FILE_PINS = {
     'gns_generation_counterexample.pdf': (79172, '05c6bcaee280209a52493a6d7b330a31041ed33d6ffae2bfdcd2d46f888b912d'),
     'gns_verification.zip': (226383, 'a00be1239cba9b64012c2010f03f06d30e6716cf56adf52b15c5d6f3b2e66a7c'),
 }
+
+FILE_MD5_PINS = {
+    'gns_generation_counterexample.pdf': '5f949ed79b96e6141cbe255f4637a318',
+    'gns_verification.zip': 'ae5447bcbaf5935ad37eeab3b12bf1f4',
+}
+
+
+class BootstrapError(RuntimeError):
+    """Failure before any repository kit code or credential loader executes."""
+
+
+def capture_checked_source(path, expected_sha):
+    # Exactly one source read. A pathname restoration/swap after this read cannot
+    # substitute the compiled bytes. Use trusted stdlib hashing, never kit code.
+    try:
+        source = path.read_bytes()
+    except OSError as exc:
+        raise BootstrapError('Cannot capture source snapshot; nothing was executed') from exc
+    if hashlib.sha256(source).hexdigest() != expected_sha:
+        raise BootstrapError('Reviewed source snapshot differs; nothing was executed')
+    return source
+
+
+def load_checked_kit(source_path=KIT_PATH):
+    source = capture_checked_source(source_path, KIT_SHA)
+    # Never consult or replace sys.modules['zenodo']; no preloaded kit is reused.
+    name = '_pr623_verified_zenodo_' + uuid.uuid4().hex
+    module = types.ModuleType(name)
+    module.__file__ = str(KIT_PATH)  # Keep the unchanged kit's absolute ROOT/state.
+    module.__package__ = ''
+    exec(compile(source, str(KIT_PATH), 'exec', dont_inherit=True), module.__dict__)
+    module.__verified_source_sha256__ = hashlib.sha256(source).hexdigest()
+    return module
+
+
+# The source check precedes every statement of repository kit top-level code.
+zenodo = load_checked_kit()
 
 
 def canonical_sha(value):
@@ -55,13 +95,200 @@ def utc():
     return datetime.now(timezone.utc).isoformat()
 
 
+class FrozenReader:
+    """Read-only cursor over immutable checked bytes; no OS file reopening."""
+    __slots__ = ('_data', '_position')
+
+    def __init__(self, data):
+        self._data, self._position = data, 0
+
+    def read(self, size=-1):
+        end = len(self._data) if size < 0 else min(len(self._data), self._position + size)
+        result = self._data[self._position:end]
+        self._position = end
+        return result
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+
+class FrozenPayload:
+    """Path protocol needed by the unchanged kit, backed solely by pinned bytes."""
+    __slots__ = ('_source', '_data')
+
+    def __init__(self, source, data, name):
+        require(type(data) is bytes and name in FILE_PINS, 'Unsupported payload snapshot')
+        expected_size, expected_sha = FILE_PINS[name]
+        require(len(data) == expected_size and hashlib.sha256(data).hexdigest() == expected_sha
+                and hashlib.md5(data).hexdigest() == FILE_MD5_PINS[name],
+                'Captured PDF/ZIP bytes differ; no upload is permitted')
+        object.__setattr__(self, '_source', source)
+        object.__setattr__(self, '_data', data)
+
+    def __setattr__(self, key, value):
+        raise AttributeError('Reviewed payload snapshots are immutable')
+
+    @property
+    def name(self):
+        return self._source.name
+
+    def __str__(self):
+        return str(self._source)
+
+    def resolve(self):
+        return self
+
+    def is_file(self):
+        return True
+
+    def stat(self):
+        return types.SimpleNamespace(st_size=len(self._data))
+
+    def open(self, mode='rb'):
+        require(mode == 'rb', 'Only immutable binary snapshot reads are permitted')
+        return FrozenReader(self._data)
+
+    def read_bytes(self):
+        return self._data
+
+
+class FrozenDirectory:
+    __slots__ = ('_sources',)
+
+    def __init__(self, sources):
+        self._sources = dict(sources)
+
+    def __truediv__(self, item):
+        require(isinstance(item, str) and item in self._sources, 'Manifest names an uncaptured payload')
+        return self._sources[item]
+
+
+class FrozenManifest:
+    """Kit read_json/resolve/state string semantics with one verified snapshot."""
+    __slots__ = ('_source', '_data', '_parent')
+
+    def __init__(self, source, data, payloads):
+        require(type(data) is bytes and hashlib.sha256(data).hexdigest() == MANIFEST_SHA,
+                'Captured manifest differs; refusing recovery')
+        object.__setattr__(self, '_source', source)
+        object.__setattr__(self, '_data', data)
+        object.__setattr__(self, '_parent', FrozenDirectory(payloads))
+
+    def __setattr__(self, key, value):
+        raise AttributeError('Reviewed manifest snapshot is immutable')
+
+    @property
+    def parent(self):
+        return self._parent
+
+    def __str__(self):
+        return str(self._source)
+
+    def resolve(self):
+        return self
+
+    def read_text(self, encoding='utf-8'):
+        require(encoding == 'utf-8', 'Unexpected manifest encoding')
+        return self._data.decode(encoding)
+
+    def read_bytes(self):
+        return self._data
+
+
+class CapturedInputs:
+    __slots__ = ('manifest', 'metadata', 'files')
+
+    def __init__(self, manifest, metadata, files):
+        self.manifest, self.metadata, self.files = manifest, metadata, files
+
+
+def capture_inputs(source_manifest=MANIFEST):
+    # Hash and parse exactly this one read; the kit later sees these same bytes.
+    try:
+        manifest_bytes = source_manifest.read_bytes()
+    except OSError as exc:
+        raise zenodo.DepositError('Cannot capture reviewed manifest snapshot') from exc
+    require(hashlib.sha256(manifest_bytes).hexdigest() == MANIFEST_SHA,
+            'Captured manifest differs; refusing native recovery')
+    parsed = json.loads(manifest_bytes.decode('utf-8'))
+    payloads = {}
+    try:
+        for item in parsed['files']:
+            path = (source_manifest.parent / item['path']).resolve()
+            name = item.get('name', path.name)
+            # Each source is opened exactly once. A mixed read caused by a
+            # concurrent write must still pass all three exact byte checks.
+            data = path.read_bytes()
+            require(item['path'] not in payloads, 'Duplicate payload source')
+            payloads[item['path']] = FrozenPayload(path, data, name)
+    except OSError as exc:
+        raise zenodo.DepositError('Cannot capture reviewed payload snapshot') from exc
+    frozen_manifest = FrozenManifest(source_manifest, manifest_bytes, payloads)
+    # Preserve every original manifest validation and checksum operation. All
+    # Path reads made by this unchanged function are immutable protocol reads.
+    metadata, files = zenodo.load_manifest(frozen_manifest)
+    require({f['name']: (f['size'], f['sha256']) for f in files} == FILE_PINS
+            and {f['name']: f['md5'] for f in files} == FILE_MD5_PINS,
+            'Captured input set differs; refusing native recovery')
+    return CapturedInputs(frozen_manifest, metadata, files)
+
+
 def pinned_inputs():
-    require(zenodo.digest(KIT_PATH, 'sha256') == KIT_SHA, 'Reviewed kit changed; re-review required')
-    require(zenodo.digest(MANIFEST, 'sha256') == MANIFEST_SHA, 'Reviewed manifest changed; refusing native recovery')
-    metadata, files = zenodo.load_manifest(MANIFEST)
-    require({f['name']: (f['size'], f['sha256']) for f in files} == FILE_PINS,
-            'Reviewed PDF/ZIP bytes or names changed; refusing native recovery')
-    return metadata, files
+    captured = capture_inputs()
+    return captured.metadata, captured.files
+
+
+def run_captured_kit(args, captured, client=None):
+    require(args.command in {'check', 'stage', 'inspect', 'publish'} and args.sandbox is False,
+            'Only the recovered production manifest workflow is supported')
+    require(isinstance(captured.manifest, FrozenManifest), 'Kit requires captured manifest bytes')
+    args.manifest = captured.manifest
+    return zenodo.run(args, client=client)
+
+
+def sync_directory(path):
+    descriptor = os.open(path, os.O_RDONLY | getattr(os, 'O_DIRECTORY', 0))
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
+def durable_journal_save(path, value):
+    """Atomic intent replacement with checked file/directory fsync barriers.
+
+    These software barriers order writes under the filesystem/OS contract.
+    They are not a measured promise about power-loss survival or disk rollback.
+    """
+    missing = []
+    directory = path.parent
+    cursor = directory
+    while not cursor.exists():
+        missing.append(cursor)
+        cursor = cursor.parent
+    for created in reversed(missing):
+        created.mkdir(mode=0o700, exist_ok=True)
+        sync_directory(created)
+        sync_directory(created.parent)
+    descriptor, temporary = tempfile.mkstemp(prefix='.native-intent-', dir=directory)
+    try:
+        with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
+            json.dump(value, stream, indent=2)
+            stream.write('\n')
+            stream.flush()
+            os.fchmod(stream.fileno(), 0o600)
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+        sync_directory(directory)
+        # Persist the directory's own name too, including a runtime directory
+        # previously created by the local lock or a read-only preflight.
+        sync_directory(directory.parent)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
 
 
 def legacy_projection(record):
@@ -112,7 +339,8 @@ def legacy_projection(record):
                           'relation': {'issupplementedby': 'isSupplementedBy', 'references': 'references'}[relation['id']]})
     access = record.get('access')
     require(isinstance(access, dict) and access.get('record') == 'public' and access.get('files') == 'public'
-            and access.get('embargo') == {'active': False, 'reason': None}, 'Unexpected access or embargo')
+            and access.get('embargo') == {'active': False, 'reason': None}
+            and type(access['embargo']['active']) is bool, 'Unexpected access or embargo')
     require(set(access) <= {'record', 'files', 'embargo', 'status'}, 'Unsupported access fields')
     result = {key: native[key] for key in ('title', 'description', 'publication_date', 'version')}
     result.update(upload_type='publication', publication_type='preprint', access_right='open',
@@ -126,6 +354,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         super().__init__('production', token)
         self.metadata = deepcopy(metadata)
         self.files = {entry['name']: entry for entry in files}
+        require(all(type(entry['path']) is FrozenPayload for entry in files), 'Only immutable captured payloads are allowed')
         require({name: (f['size'], f['sha256']) for name, f in self.files.items()} == FILE_PINS,
                 'Transport accepts only the exact reviewed two files')
         self.allow_writes = allow_writes
@@ -145,6 +374,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
                 'Unsupported recovery journal operation/phase')
         self.last_pending = {}
         self._active_write = None
+        self._storage_failed = False
 
     def pin_id(self, deposit_id):
         require(type(deposit_id) is int and deposit_id == RECORD_ID, 'Only recovered own draft 23356540 is allowed')
@@ -172,7 +402,11 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         require((method, url) in allowed, 'Native method/endpoint is not allowlisted')
         if method != 'GET':
             require(self.allow_writes, 'This runner is read-only unless explicitly enabled for own draft')
+            require(not self._storage_failed, 'Journal sync failed; mutation dispatch remains disabled')
             require(self._active_write == (method, url), 'Native mutation requires durable operation intent')
+            if method == 'PUT':
+                name = url.split('/')[-2]
+                require(file is self.files[name]['path'] and type(file) is FrozenPayload, 'PUT must send the checked immutable payload snapshot')
         return self._wire_request(method, url, payload=payload, file=file, accept=accept)
 
     def _wire_request(self, method, url, payload=None, file=None, accept='application/json'):
@@ -182,12 +416,14 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
     def save_journal(self):
         self.journal['updated_utc'] = utc()
         try:
-            zenodo.save_state(self.journal_path, self.journal)
+            require(not self._storage_failed, 'Prior journal sync failed; no further mutation permitted')
+            durable_journal_save(self.journal_path, self.journal)
         except OSError as exc:
-            raise zenodo.DepositError('Cannot durably save native recovery journal; no further mutation permitted') from exc
+            self._storage_failed = True
+            raise zenodo.DepositError('Cannot sync native recovery journal; no further mutation permitted in this process') from exc
 
     def operation(self, key, method, url, payload=None, file=None):
-        require(self.allow_writes, 'Native mutations are disabled')
+        require(self.allow_writes and not self._storage_failed, 'Native mutations are disabled or a journal sync failed')
         previous = self.journal['operations'].get(key)
         require(previous is None, f'Native {key} was already attempted; no automatic mutating retry')
         self.journal['operations'][key] = {'phase': 'attempted', 'started_utc': utc()}
@@ -290,7 +526,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         conn = http.client.HTTPSConnection('zenodo.org', timeout=120)
         try:
             conn.request('GET', urlsplit(url).path, headers={'Authorization': 'Bearer ' + self.token,
-                         'Accept': 'application/octet-stream', 'User-Agent': zenodo.USER_AGENT})
+                         'Accept': '*/*', 'User-Agent': zenodo.USER_AGENT})
             response = conn.getresponse()
             require(response.status == 200, 'Native content read did not return HTTP 200; no retry or commit')
             digest = hashlib.sha256()
@@ -334,15 +570,17 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         require(set(metadata) == set(self.metadata), 'Projected metadata field set differs')
         zenodo.verify({'metadata': metadata, 'files': []}, self.metadata, [])
         pids = record.get('pids')
-        require(isinstance(pids, dict) and set(pids) <= {'doi'}, 'Unsupported native persistent identifiers')
+        require(isinstance(pids, dict) and set(pids) <= {'doi', 'oai'}, 'Unsupported native persistent identifiers')
         doi = None
-        if pids:
+        if 'doi' in pids:
             pid = pids['doi']
-            require(isinstance(pid, dict) and set(pid) <= {'identifier', 'provider', 'client'}
+            require(isinstance(pid, dict) and set(pid) in ({'identifier', 'provider'}, {'identifier', 'provider', 'client'})
                     and pid.get('identifier') == DOI and pid.get('provider') == 'datacite'
-                    and pid.get('client') in (None, 'datacite'), 'Unexpected native DOI/provider')
+                    and ('client' not in pid or pid['client'] == 'datacite'), 'Unexpected native DOI/provider/client')
             doi = pid['identifier']
-        require(draft or doi == DOI, 'Published record has no expected version DOI')
+        if 'oai' in pids:
+            require(pids['oai'] == {'identifier': OAI, 'provider': 'oai'}, 'Unexpected native OAI identifier/provider/fields')
+        require(draft or (set(pids) == {'doi', 'oai'} and doi == DOI), 'Published record lacks exact version DOI/OAI identifiers')
         entries = self.file_list(draft)
         embedded = record.get('files')
         require(isinstance(embedded, dict) and embedded.get('enabled') is True
@@ -377,8 +615,11 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         self.safe_url(bucket, DRAFT + '/files')
         name = entry.get('name')
         require(name in self.files and entry == self.files[name], 'Unexpected local upload entry')
-        require(entry['path'].stat().st_size == entry['size']
-                and zenodo.digest(entry['path'], 'sha256') == entry['sha256'], 'Local file changed before native upload')
+        require(type(entry['path']) is FrozenPayload and entry['path'] is self.files[name]['path'],
+                'Upload requires the checked immutable payload snapshot')
+        data = entry['path'].read_bytes()
+        require(len(data) == entry['size'] and hashlib.sha256(data).hexdigest() == entry['sha256']
+                and hashlib.md5(data).hexdigest() == entry['md5'] == FILE_MD5_PINS[name], 'Payload snapshot differs before upload')
         # Re-read full metadata/state/file guard immediately before mutating.
         require(self.get(RECORD_ID)['submitted'] is False, 'Cannot upload to a published record')
         entries = self.file_list(True)
@@ -460,15 +701,16 @@ def main():
     parser.add_argument('--check-doi', action='store_true')
     args = parser.parse_args()
     try:
-        metadata, files = pinned_inputs()
-        args.manifest, args.sandbox = MANIFEST, False
+        captured = capture_inputs()
+        metadata, files = captured.metadata, captured.files
+        args.manifest, args.sandbox = captured.manifest, False
         if args.command == 'check':
-            print(json.dumps(zenodo.run(args), indent=2))
+            print(json.dumps(run_captured_kit(args, captured), indent=2))
             return 0
         if args.command in {'stage', 'publish'}:
             require(args.execute_own_draft and args.confirm_id == RECORD_ID,
                     'Mutation requires --execute-own-draft --confirm-id 23356540')
-        place, state = zenodo.local_state(MANIFEST, 'production')
+        place, state = zenodo.local_state(captured.manifest, 'production')
         require(state is not None and state.get('id') == RECORD_ID, 'Existing kit state must pin recovered draft 23356540; no creation permitted')
         with runner_lock(HERE / 'runtime/native-23356540.lock'):
             client = NativeOwnDraftClient(zenodo.token_for('production'), metadata, files,
@@ -480,7 +722,7 @@ def main():
                           'pending_files': sorted(client.last_pending), 'verified_utc': utc(),
                           'note': 'Read-only transport check; this is not a ready-to-publish or publication receipt'}
             else:
-                result = zenodo.run(args, client=client)
+                result = run_captured_kit(args, captured, client=client)
             print(json.dumps(result, indent=2))
         return 0
     except zenodo.DepositError as exc:
@@ -489,4 +731,4 @@ def main():
 
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit('Use the reviewed run_native_transport.py byte-snapshot bootstrap')
