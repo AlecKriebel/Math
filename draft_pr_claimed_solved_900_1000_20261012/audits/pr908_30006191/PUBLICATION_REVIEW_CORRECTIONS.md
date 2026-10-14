@@ -1,5 +1,9 @@
 # Publication qualifications and correction history
 
+Prepared before the first whole-package review. This is a provenance snapshot
+of the review candidate, not its final acceptance receipt. Accepted final
+review receipts belong to the linked repository publication record.
+
 The original26-file bounded_region_v2 packet from immutable PR908 head
 a35667b1bb0bafed69916709997a4684223ecc93 is preserved byte for byte, including
 its historical statements, assertions, saved results, dates and1/5 candidate
