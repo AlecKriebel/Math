@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -143,7 +144,10 @@ def main():
             pushed = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'], cwd=REPO,
                                     capture_output=True, text=True)
             if pushed.returncode:
-                if 'fetch first' in pushed.stderr or 'non-fast-forward' in pushed.stderr:
+                ref_race = re.search(
+                    r"cannot lock ref 'refs/heads/main': is at [0-9a-f]{40} but expected [0-9a-f]{40}",
+                    pushed.stderr)
+                if 'fetch first' in pushed.stderr or 'non-fast-forward' in pushed.stderr or ref_race:
                     continue
                 raise RuntimeError(pushed.stderr)
             for path, expected in updates.items():

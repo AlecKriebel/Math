@@ -87,3 +87,7 @@ Negative answer to exact original unrestricted equality complete. No earlier equ
 ### 2026-10-14T04:12:06.696798+00:00 — PR742 preprint package checkpoint (65%; shard 22%)
 
 Three-page note prepared with accurate scope and credits, complete support/kit reproductions and visual checks. First fresh whole-package adverse review active, publication and acceptance pending subsequent independent review loop.
+
+### 2026-10-14T04:33:32.790964+00:00 — PR742 first full-preprint adversary clear (75%; shard 23%)
+
+Zero issues after complete independent proof/source/package/PDF review. Frozen publication inputs unchanged; second new adversary active. Own obsolete scratch cleanup recovered disk space without touching other work.
