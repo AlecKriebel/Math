@@ -48,6 +48,8 @@ def main():
     run(['git','fetch','--no-write-fetch-head','origin',parent])
     catalogue = json.loads(rawblob(parent,'unsolved_math_prioritization/catalog.json'))
     target = next(r for r in catalogue if str(r['id'])=='30006419')
+    require(target.get('present') is True and target.get('holds')==[],
+            'Current main target absent or has unresolved review holds')
     require(target['review_hash']==source['review_hash'] and
             target['statement_hash']==source['statement_hash'],'Source identity changed')
     queue = rawblob(parent,QUEUE).decode()

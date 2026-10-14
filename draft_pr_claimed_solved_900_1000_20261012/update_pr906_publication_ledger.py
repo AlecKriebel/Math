@@ -74,6 +74,8 @@ def main():
         run(['git', 'fetch', '--no-write-fetch-head', 'origin', parent])
         catalogue = json.loads(blob(parent, 'unsolved_math_prioritization/catalog.json'))
         target = next((x for x in catalogue if str(x['id']) == KEY))
+        if target.get('present') is not True or target.get('holds') != []:
+            raise RuntimeError('Current main target absent or has unresolved review holds')
         if not target['statement_hash'] == source['statement_hash']:
             raise RuntimeError("Publication ledger guard: target['statement_hash'] == source['statement_hash']")
         if not target['review_hash'] == source['review_hash']:
