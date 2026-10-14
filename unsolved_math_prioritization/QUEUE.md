@@ -774,7 +774,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 763 | 20002559 / AIM-PROBABILITY-0001 | Local surjectivity and the boundary-at-infinity gap for RBM(4,3) | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 764 | 2200006 / AMR-021-0006 | Problems Around Polynomials — Problem 3 | 0.1020 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 765 | 2235 / EP-655 | Erdős Problem #655 | 0.1020 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 766 | 2515 / KOU-21.6 | Kourovka Notebook Problem 21.6 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 766 | 2515 / KOU-21.6 | Kourovka Notebook Problem 21.6 | 0.1020 | 5.5 | 2 | 2026 | already_solved | 3/5 |  | 2026-10-14T03:24:09.905574+00:00 — PR#734 closed without merge: the internally verified candidate is a rediscovery of JonLuca De Caro, 2026-07-24, DOI 10.5281/zenodo.21538908. Same full infinite conclusion and permutation-equivalent counterexample; no proof failure or plagiarism claim. |  |
 | 767 | 2548 / KOU-21.39 | Kourovka Notebook Problem 21.39 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 768 | 2551 / KOU-21.42 | Kourovka Notebook Problem 21.42 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 769 | 2560 / KOU-21.51 | Kourovka Notebook Problem 21.51 | 0.1020 | 5.5 | 2 | 2026 | queued | 0/5 |  |  |  |
