@@ -15,3 +15,7 @@ Exact all-space target, generic lifting, slab color transfer, CJMST nonfree hypo
 ## 2026-10-14T03:21:00.857426+00:00 — mathematical acceptance; priority underway (30%)
 
 Root and independent category/slab families find no mathematical repair required. Full original all-space claim checked against fresh primary statements. Frozen 61-file package and 51 archive-member identities reproduce in normal/optimized Python; 68 integrity rejections match. Fresh live head/status gate unchanged. Priority audit is now active. Original 3/5 proof effort preserved; no new central search.
+
+## 2026-10-14T03:32:42.982441+00:00 — priority predecessors and quantitative boundary checkpoint (35%)
+
+Generic lifting predecessors in AGW/Doucha/DMT require explicit current attribution; Iyer–Shinko baseline is published. Root almost-finiteness lane found no increasing-exhaustion implication; ET2026 expressly disclaims Borel hyperfiniteness. GMRS2026 single-variable implication is conjectural and proved bounds require joint scale/diameter control; independent family is checking the primary W bounds before final priority clearance. Fresh slab diagnostics reproduce all recorded counts normally and optimized. Complete imported target/prior report checked against frozen fingerprints; no related-target ledger match. Paper authoring deferred until priority completed. Overall estimate11%, original proof turns3/5 unchanged.

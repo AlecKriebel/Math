@@ -32,6 +32,8 @@ def main():
   if pr.returncode==0:
    receipt={'timestamp_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'result':'pushed','commit':commit,'base':base,'attempts':history,'scope':'remote main; shared local branch/index/working files unchanged'}
    (ROOT/'LATEST_CHECKPOINT_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt));return
-  if 'non-fast-forward' not in pr.stderr and 'fetch first' not in pr.stderr and 'failed to update ref' not in pr.stderr:raise SystemExit(pr.stderr)
+  concurrent_ref_rejection=("cannot lock ref 'refs/heads/main'" in pr.stderr
+                            and 'is at ' in pr.stderr and 'but expected ' in pr.stderr)
+  if not concurrent_ref_rejection and 'non-fast-forward' not in pr.stderr and 'fetch first' not in pr.stderr and 'failed to update ref' not in pr.stderr:raise SystemExit(pr.stderr)
  raise SystemExit('Five concurrent main advances prevented publication; commits retained in objects')
 if __name__=='__main__':main()

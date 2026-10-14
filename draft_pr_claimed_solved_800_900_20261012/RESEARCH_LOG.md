@@ -82,3 +82,7 @@ PR810 exact reviewed revision merged; production preprint DOI https://doi.org/10
 ## 2026-10-14T03:21:00.857426+00:00 — PR815 mathematical checkpoint; overall 8%, PR815 30%
 
 PR815 remains exactly claimed_solved at unchanged head. Entire-space proof accepted relative to verified CJMST inputs by root and two distinct independent families; full frozen diagnostic/integrity reproduction passed. Priority audit underway before paper preparation. No excluded PR processed or other researcher contacted.
+
+## 2026-10-14T03:32:42.982441+00:00 — PR815 priority checkpoint; overall11%, PR81535%
+
+Found and recorded generic-factor predecessors and published baseline citation. Broader almost-finiteness results do not supply the required Borel exhaustion. Final quantitative GMRS applicability check remains before priority clearance and paper preparation. All current work stays in the selected claimed_solved effort.
