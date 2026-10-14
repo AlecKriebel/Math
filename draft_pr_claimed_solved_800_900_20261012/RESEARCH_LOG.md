@@ -86,3 +86,7 @@ PR815 remains exactly claimed_solved at unchanged head. Entire-space proof accep
 ## 2026-10-14T03:32:42.982441+00:00 — PR815 priority checkpoint; overall11%, PR81535%
 
 Found and recorded generic-factor predecessors and published baseline citation. Broader almost-finiteness results do not supply the required Borel exhaustion. Final quantitative GMRS applicability check remains before priority clearance and paper preparation. All current work stays in the selected claimed_solved effort.
+
+## 2026-10-14T03:47:54.105804+00:00 — PR815 preprint checkpoint; overall12%, PR81550%
+
+Priority completed after extra quantitative dimension-growth applicability checks. Five-page full-target note and verification package assembled with required credits and disclosures. Full assembled-package validation precedes fresh adversarial reviews; merge and Zenodo/tracker publication remain.
