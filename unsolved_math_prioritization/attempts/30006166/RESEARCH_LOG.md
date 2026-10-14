@@ -11,3 +11,7 @@ Best-guess completion toward the stated complete-candidate-and-two-audit checkpo
 ## 2026-10-14T03:57:29.266946+00:00 — preprint preparation (50%)
 
 Fresh independent mathematics and bounded priority audits completed; no proof repair required. Current five-page note adds all required lifting predecessor credits and published baseline citation. Verification package preserves original61 files and3 ZIPs; final package review is a separate gate before merge/publication. Original3/5 effort unchanged.
+
+## 2026-10-14T04:34:59.187354+00:00 — Production publication and tracker confirmed (100%)
+
+PR815 merged, production Zenodo record23356964 published: https://doi.org/10.5281/zenodo.23356964. Both sealed file hashes and exact metadata verified without normalization; DOI HTTP200. Google Workspace CLI appended and uniquely verified Math Puzzles A84:D84 in spreadsheet1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20, gid1254632077. Original effort3/5 and all accepted mathematical/source/archive bytes preserved. Two successive fresh final package reviews CLEAR, no required fixes. Mathematical acceptance100%; PR815 publication/tracker100%; programme17%. Repository DOI annotation is the remaining bookkeeping step.

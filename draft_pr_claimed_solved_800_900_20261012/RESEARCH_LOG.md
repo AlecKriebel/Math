@@ -106,3 +106,11 @@ R1 and R2 independently found no required fixes or unresolved in-scope concerns 
 ## 2026-10-14T04:28:03.043819+00:00 — Disk-space adaptation; reviewed package unchanged
 
 Two full isolated-index preparation attempts failed before any branch write because the filesystem was full. Removed only untracked reproducible scratch/runtime copies from completed own PR810 reviews, retaining all original sources, primary copies, outputs and review records. Replaced the three publication/checkpoint helpers' full-index construction with explicit Git tree patching of selected paths. New read-only preview eba2384c210aa36ee748e141a79079bd1e6f9cf5 has exactly the same reviewed target tree10b95122c72fb715d21fb5567d95959c39e95ec0, all192 mapped bytes and every non-target queue byte preserved. Fresh adversarial operations review pending before writes. Mathematical acceptance100%; PR815 workflow75%; programme15%. No central proof-search response or paper/core edit.
+
+## 2026-10-14T04:32:28.356072+00:00 — Accepted result merged (85%)
+
+PR815 marked ready and merged normally with matched reviewed head74dc564f01c8807b59e7941a7412a54b4d6557e5, merge commit73079f63665b1bbe1d85834c8fe107ead569a8fd. Readback confirms MERGED; merged commit is an ancestor of refreshed origin/main and all192 accepted file hashes match the final mapping. Two final mathematical/package reviews and the independent tree-operations review remain CLEAR. Production Zenodo stage in progress; no DOI or tracker completion asserted yet. Mathematical acceptance100%; PR815 workflow85%; programme16%.
+
+## 2026-10-14T04:34:59.187354+00:00 — Production publication and tracker confirmed (100%)
+
+PR815 merged, production Zenodo record23356964 published: https://doi.org/10.5281/zenodo.23356964. Both sealed file hashes and exact metadata verified without normalization; DOI HTTP200. Google Workspace CLI appended and uniquely verified Math Puzzles A84:D84 in spreadsheet1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20, gid1254632077. Original effort3/5 and all accepted mathematical/source/archive bytes preserved. Two successive fresh final package reviews CLEAR, no required fixes. Mathematical acceptance100%; PR815 publication/tracker100%; programme17%. Repository DOI annotation is the remaining bookkeeping step.
