@@ -102,3 +102,7 @@ Fresh R1 full mathematical/package/repository review CLEAR with no required fixe
 ## 2026-10-14T04:23:55.646502+00:00 — Two successive fresh final package reviews CLEAR
 
 R1 and R2 independently found no required fixes or unresolved in-scope concerns on identical ten-file core seals and the corrected 192-file repository assembly. Root rechecked report hashes, core bytes and all mapped bytes. Full-target mathematical acceptance is 100%; PR815 acceptance/publication workflow is 75%; programme is 15%. Original effort remains 3/5, with zero new central proof-search responses. Production publication and tracker are still pending.
+
+## 2026-10-14T04:28:03.043819+00:00 — Disk-space adaptation; reviewed package unchanged
+
+Two full isolated-index preparation attempts failed before any branch write because the filesystem was full. Removed only untracked reproducible scratch/runtime copies from completed own PR810 reviews, retaining all original sources, primary copies, outputs and review records. Replaced the three publication/checkpoint helpers' full-index construction with explicit Git tree patching of selected paths. New read-only preview eba2384c210aa36ee748e141a79079bd1e6f9cf5 has exactly the same reviewed target tree10b95122c72fb715d21fb5567d95959c39e95ec0, all192 mapped bytes and every non-target queue byte preserved. Fresh adversarial operations review pending before writes. Mathematical acceptance100%; PR815 workflow75%; programme15%. No central proof-search response or paper/core edit.

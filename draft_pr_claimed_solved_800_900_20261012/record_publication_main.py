@@ -8,14 +8,17 @@ import argparse
 import datetime
 import hashlib
 import json
-import os
 from pathlib import Path
 import subprocess
-import tempfile
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 QUEUE = 'unsolved_math_prioritization/QUEUE.md'
+from importlib.util import spec_from_file_location, module_from_spec
+_tree_spec = spec_from_file_location('scoped_git_tree', ROOT / 'scoped_git_tree.py')
+_tree_module = module_from_spec(_tree_spec)
+_tree_spec.loader.exec_module(_tree_module)
+patch_tree = _tree_module.patch_tree
 
 
 def git(*args, env=None, input=None):
@@ -91,24 +94,19 @@ def main():
         updated = current.replace(before, after, 1)
         if updated.replace(after, before, 1) != current:
             raise RuntimeError('Queue changed outside target row')
-        with tempfile.TemporaryDirectory(dir=work) as tmp:
-            env = dict(os.environ, GIT_INDEX_FILE=str(Path(tmp) / 'index'))
-            git('read-tree', base, env=env)
-            entries = mapping['files']
-            blobs = git('hash-object', '-w', '--no-filters', '--',
-                        *(entry['local_path'] for entry in entries)).splitlines() if entries else []
-            if len(blobs) != len(entries):
-                raise RuntimeError('Batch blob inventory mismatch')
-            index_info = ''.join('100644 ' + blob + '\t' + entry['repo_path'] + '\0'
-                                 for blob, entry in zip(blobs, entries))
-            blob = git('hash-object', '-w', '--stdin', input=updated)
-            index_info += '100644 ' + blob + '\t' + QUEUE + '\0'
-            git('update-index', '-z', '--index-info', env=env, input=index_info)
-            changed = git('diff', '--cached', '--name-only', base, env=env).splitlines()
-            if any(p != QUEUE and p not in seen for p in changed):
-                raise RuntimeError('Unexpected diff path')
-            commit = git('commit-tree', git('write-tree', env=env), '-p', base,
-                         input=mapping['commit_message'] + '\n') if changed else base
+        entries = mapping['files']
+        blobs = git('hash-object', '-w', '--no-filters', '--',
+                    *(entry['local_path'] for entry in entries)).splitlines() if entries else []
+        if len(blobs) != len(entries):
+            raise RuntimeError('Batch blob inventory mismatch')
+        updates = {entry['repo_path']: blob for blob, entry in zip(blobs, entries)}
+        updates[QUEUE] = git('hash-object', '-w', '--stdin', input=updated)
+        tree = patch_tree(REPO, base, updates)
+        changed = git('diff-tree', '-r', '--no-commit-id', '--name-only', base, tree).splitlines()
+        if any(p != QUEUE and p not in seen for p in changed):
+            raise RuntimeError('Unexpected diff path')
+        commit = git('commit-tree', tree, '-p', base,
+                     input=mapping['commit_message'] + '\n') if changed else base
         receipt = {'timestamp_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
                    'pr': pr, 'problem_id': pid, 'main_base': base, 'commit': commit,
                    'doi_url': doi, 'changed_paths': changed, 'pushed': False,

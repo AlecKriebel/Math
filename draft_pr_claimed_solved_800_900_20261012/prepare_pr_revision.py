@@ -8,15 +8,18 @@ requires --push and a recorded clear final review. No new branch is created.
 import argparse
 import hashlib
 import json
-import os
 from pathlib import Path
 import subprocess
-import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 QUEUE = 'unsolved_math_prioritization/QUEUE.md'
+from importlib.util import spec_from_file_location, module_from_spec
+_tree_spec = spec_from_file_location('scoped_git_tree', ROOT / 'scoped_git_tree.py')
+_tree_module = module_from_spec(_tree_spec)
+_tree_spec.loader.exec_module(_tree_module)
+patch_tree = _tree_module.patch_tree
 
 
 def git(*args, env=None, input=None):
@@ -75,38 +78,30 @@ def main():
     if updated.replace(replacement, oldrow, 1) != current:
         raise RuntimeError('Queue bytes outside target row changed')
     prefix = 'unsolved_math_prioritization/attempts/' + str(pid) + '/'
-    local_work = ROOT / 'local_tools'
-    local_work.mkdir(exist_ok=True)
-    with tempfile.TemporaryDirectory(dir=local_work) as tmp:
-        env = dict(os.environ, GIT_INDEX_FILE=str(Path(tmp) / 'index'))
-        git('read-tree', base, env=env)
-        seen = set()
-        mapped = []
-        for f in mapping['files']:
-            name = f['repo_path']
-            if not name.startswith(prefix) or '..' in Path(name).parts or name in seen:
-                raise RuntimeError('Unsafe/duplicate/out-of-scope mapped path')
-            seen.add(name)
-            local = Path(f['local_path'])
-            raw = local.read_bytes()
-            if local.is_symlink() or hashlib.sha256(raw).hexdigest() != f['sha256']:
-                raise RuntimeError('Reviewed file changed: ' + name)
-            mapped.append((str(local), name))
-        blobs = git('hash-object', '-w', '--no-filters', '--',
-                    *(local for local, _ in mapped)).splitlines() if mapped else []
-        if len(blobs) != len(mapped):
-            raise RuntimeError('Batch blob inventory mismatch')
-        index_info = ''.join('100644 ' + blob + '\t' + name + '\0'
-                             for blob, (_, name) in zip(blobs, mapped))
-        blob = git('hash-object', '-w', '--stdin', input=updated)
-        index_info += '100644 ' + blob + '\t' + QUEUE + '\0'
-        git('update-index', '-z', '--index-info', env=env, input=index_info)
-        changed = git('diff', '--cached', '--name-only', base, env=env).splitlines()
-        if any(n != QUEUE and not n.startswith(prefix) for n in changed):
-            raise RuntimeError('Unexpected prepared diff scope')
-        tree = git('write-tree', env=env)
-        commit = git('commit-tree', tree, '-p', old, '-p', base,
-                     input=mapping['commit_message'] + '\n')
+    seen = set()
+    mapped = []
+    for f in mapping['files']:
+        name = f['repo_path']
+        if not name.startswith(prefix) or '..' in Path(name).parts or name in seen:
+            raise RuntimeError('Unsafe/duplicate/out-of-scope mapped path')
+        seen.add(name)
+        local = Path(f['local_path'])
+        raw = local.read_bytes()
+        if local.is_symlink() or hashlib.sha256(raw).hexdigest() != f['sha256']:
+            raise RuntimeError('Reviewed file changed: ' + name)
+        mapped.append((str(local), name))
+    blobs = git('hash-object', '-w', '--no-filters', '--',
+                *(local for local, _ in mapped)).splitlines() if mapped else []
+    if len(blobs) != len(mapped):
+        raise RuntimeError('Batch blob inventory mismatch')
+    updates = {name: blob for blob, (_, name) in zip(blobs, mapped)}
+    updates[QUEUE] = git('hash-object', '-w', '--stdin', input=updated)
+    tree = patch_tree(REPO, base, updates)
+    changed = git('diff-tree', '-r', '--no-commit-id', '--name-only', base, tree).splitlines()
+    if any(n != QUEUE and not n.startswith(prefix) for n in changed):
+        raise RuntimeError('Unexpected prepared diff scope')
+    commit = git('commit-tree', tree, '-p', old, '-p', base,
+                 input=mapping['commit_message'] + '\n')
     receipt = {'pr': number, 'problem_id': pid, 'old_head': old,
                'main_base': base, 'prepared_commit': commit,
                'changed_paths_vs_main': changed, 'queue_before': oldrow,
