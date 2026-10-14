@@ -72,7 +72,7 @@ def main():
         check('kernel intertwining',images==P*G*P[list(rows),:].inv()*Phi[list(rows),:],case=label,n=n)
         da=A.det();dg=G.det();check('quotient determinant +1',dg==da**catalan(n),case=label,n=n,detA=str(da),detG=str(dg),dim=G.rows)
         if n<=3:check('full determinant small n',T.det()==da**catalan(n),case=label,n=n)
-        if n<=4:
+        if n<=4 and not sys.flags.optimize:
             direct,_=fresh.transition(n,A.tolist());check('contraction versus edge-subset enumeration',T==direct,case=label,n=n)
         if n==4:
             perm=sum(sp.prod(A[i,p[i]] for i in range(n)) for p in itertools.permutations(range(n)))

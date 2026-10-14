@@ -2,7 +2,7 @@
 """Exact integrity/provenance check; not a mathematical theorem verifier."""
 import sys
 sys.dont_write_bytecode=True
-import gzip,hashlib,json,re,struct,tarfile,zlib
+import argparse,gzip,hashlib,json,os,re,struct,tarfile,zlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 
@@ -13,7 +13,17 @@ def record_ok(path,record):
     data=path.read_bytes()
     require(len(data)==record['bytes'] and sha(data)==record['sha256'],'Hash/size mismatch: '+str(path))
 
+def unique_object(pairs):
+    result={}
+    for key,value in pairs:
+        require(key not in result,'Duplicate JSON key: '+key)
+        result[key]=value
+    return result
+
 def main():
+    parser=argparse.ArgumentParser(description='Verify distributable package content; strictly verify an external deposit wrapper when present.')
+    parser.add_argument('--require-deposit',action='store_true',help='Require the external zenodo-deposit.json wrapper and both verified local upload attachments.')
+    args=parser.parse_args()
     manifest=json.loads((ROOT/'CURRENT_INTEGRITY.json').read_text())
     current={r['path']:r for r in manifest['files']}
     from build_archive import content_paths,EXCLUDE_DIRS
@@ -22,7 +32,7 @@ def main():
     # No privately retained sources, extracts, renders, or raw response bodies in
     # the declared distributed content, including files outside raw directories.
     copies=json.loads((ROOT/'EVIDENCE_COPY_MANIFEST.json').read_text())
-    authored_streams={r['package_path'] for r in copies['files'] if r['group']=='frozen_package_01' and r['package_path'].endswith(('_stdout.txt','_stderr.txt'))}
+    authored_streams={r['package_path'] for r in copies['files'] if r['group'] in {'frozen_package_01','frozen_package_02'} and Path(r['package_path']).suffix.lower()=='.txt'}
     for name in current:
         path=Path(name)
         require(not any(p in EXCLUDE_DIRS for p in path.parts),'Private/intermediate component: '+name)
@@ -37,7 +47,7 @@ def main():
     for r in pins['files']:record_ok(ROOT/'evidence/original'/r['snapshot_path'],r)
     require(len(pins['files'])==11,'Original submitted pin count')
     checked_historic=0;excluded_historic=[]
-    for family in ['game_certificate_01','flow_source_01','priority_01','package_01']:
+    for family in ['game_certificate_01','flow_source_01','priority_01','package_01','package_02']:
         base=ROOT/'evidence/reviews'/family
         pins=json.loads((base/'OUTPUT_PINS.json').read_text())
         for r in pins.get('files',pins.get('entries',[])):
@@ -81,14 +91,27 @@ def main():
     if status['new_whole_package_review'].startswith('PENDING_'):
         require(status['publication_ready'] is False and status['all_issues_resolved'] is False,'Pending review improperly promoted')
     require(receipt['status']=='PREPARED_CANDIDATE_'+status['new_whole_package_review'] and receipt['publication_ready']==status['publication_ready'] and receipt['all_issues_resolved']==status['all_issues_resolved'],'Build/state mismatch')
-    wrapper=json.loads((ROOT/'zenodo-deposit.json').read_text())
-    metadata=json.loads((ROOT/'publication/zenodo.json').read_text())
-    require(wrapper['metadata']==metadata,'External wrapper metadata mismatch')
-    require(wrapper['files']==[{'path':'output/pdf/paper.pdf','name':'paper.pdf'},{'path':'supportkit-v1.0.tar.gz','name':'supportkit-v1.0.tar.gz'}],'External wrapper file binding mismatch')
     require('zenodo-deposit.json' not in current,'Archive wrapper self-reference')
-    for entry in wrapper['files']:
-        require((ROOT/entry['path']).is_file(),'Missing local upload attachment')
-    result=dict(status='PASS_INTEGRITY_PROVENANCE_AND_EXCLUSIONS',content_files=len(current),copied_authored_records=len(copies['files']),original_files_verified=11,historic_output_pin_members_verified=checked_historic,intentionally_excluded_historic_pin_members=excluded_historic,archive_checked=archive_checked,archive_members=members,gzip_crc_isize_verified=True,safe_sorted_casefold_unique_paths=True,external_wrapper_metadata_and_files_verified=True,mathematical_proof_formally_verified=False,new_whole_package_review=status['new_whole_package_review'],publication_ready=status['publication_ready'],all_issues_resolved=status['all_issues_resolved'])
+    wrapper_path=ROOT/'zenodo-deposit.json'
+    wrapper_present=os.path.lexists(wrapper_path)
+    require(wrapper_present or not args.require_deposit,'Required external deposit wrapper is absent: zenodo-deposit.json')
+    wrapper_verified=False
+    if wrapper_present:
+        require(wrapper_path.is_file() and not wrapper_path.is_symlink(),'External wrapper must be a regular local file')
+        wrapper=json.loads(wrapper_path.read_text(),object_pairs_hook=unique_object)
+        require(type(wrapper) is dict and set(wrapper)=={'metadata','files'},'Malformed external wrapper object')
+        metadata=json.loads((ROOT/'publication/zenodo.json').read_text())
+        # Canonical JSON equality keeps types distinct (False is not 0, etc.).
+        require(type(wrapper['metadata']) is dict and json.dumps(wrapper['metadata'],sort_keys=True,separators=(',',':'))==json.dumps(metadata,sort_keys=True,separators=(',',':')),'External wrapper metadata mismatch')
+        expected_files=[{'path':'output/pdf/paper.pdf','name':'paper.pdf'},{'path':'supportkit-v1.0.tar.gz','name':'supportkit-v1.0.tar.gz'}]
+        require(type(wrapper['files']) is list and wrapper['files']==expected_files,'External wrapper file binding mismatch')
+        for entry in wrapper['files']:
+            attachment=ROOT/entry['path']
+            require(attachment.is_file() and not attachment.is_symlink(),'Missing or nonregular local upload attachment')
+        record_ok(ROOT/'output/pdf/paper.pdf',current['output/pdf/paper.pdf'])
+        require(archive_checked,'External wrapper requires a verified local support archive')
+        wrapper_verified=True
+    result=dict(status='PASS_INTEGRITY_PROVENANCE_AND_EXCLUSIONS',content_files=len(current),copied_authored_records=len(copies['files']),original_files_verified=11,historic_output_pin_members_verified=checked_historic,intentionally_excluded_historic_pin_members=excluded_historic,archive_checked=archive_checked,archive_members=members,gzip_crc_isize_verified=archive_checked,safe_sorted_casefold_unique_paths=archive_checked,verification_mode='required_local_deposit' if args.require_deposit else 'distributable_kit',packaged_content_verified=True,external_wrapper_present=wrapper_present,external_wrapper_metadata_and_files_verified=wrapper_verified,mathematical_proof_formally_verified=False,new_whole_package_review=status['new_whole_package_review'],publication_ready=status['publication_ready'],all_issues_resolved=status['all_issues_resolved'])
     (ROOT/'VERIFICATION_RECEIPT.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result))
 if __name__=='__main__':main()

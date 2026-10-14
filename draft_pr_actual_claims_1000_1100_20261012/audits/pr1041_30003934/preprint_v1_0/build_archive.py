@@ -16,7 +16,7 @@ def digest(data):return hashlib.sha256(data).hexdigest()
 def content_paths():
     result=[]
     copies=json.loads((ROOT/'EVIDENCE_COPY_MANIFEST.json').read_text())
-    authored_streams={r['package_path'] for r in copies['files'] if r['group']=='frozen_package_01' and r['package_path'].endswith(('_stdout.txt','_stderr.txt'))}
+    authored_streams={r['package_path'] for r in copies['files'] if r['group'] in {'frozen_package_01','frozen_package_02'} and Path(r['package_path']).suffix.lower()=='.txt'}
     for path in ROOT.rglob('*'):
         if not path.is_file():continue
         rel=path.relative_to(ROOT)
@@ -37,7 +37,7 @@ def main():
     integrity=dict(hash_algorithm='SHA-256',self_reference_policy='Current distributed content only. This manifest and deterministic build/verification/archive-hash receipts have separate roles.',archive_exclusions=dict(directories=sorted(EXCLUDE_DIRS),suffixes=sorted(EXCLUDE_SUFFIX),other_pdfs=True,external_sidecar='ARCHIVE_SHA256.json'),files=entries)
     blob=(json.dumps(integrity,indent=2)+'\n').encode();(ROOT/'CURRENT_INTEGRITY.json').write_bytes(blob)
     status=json.loads((ROOT/'STATUS.json').read_text())
-    receipt=dict(status='PREPARED_CANDIDATE_'+status['new_whole_package_review'],publication_ready=status['publication_ready'],all_issues_resolved=status.get('all_issues_resolved',False),archive_name=ARCHIVE,archive_prefix=PREFIX,content_files=len(entries),current_integrity_sha256=digest(blob),timestamp_policy='2026-10-13 00:00:00 UTC for every tar member; gzip mtime=0',epoch=EPOCH,ordering='sorted relative POSIX paths',owner_group='0/0, empty names',mode='0644',private_source_bodies_included=False,receipt_policy='BUILD_RECEIPT.json is included outside current-integrity self-reference domain; archive binary hash is in external ARCHIVE_SHA256.json. External zenodo-deposit.json names the archive and is excluded to avoid self-reference; its exact metadata and file bindings are verified separately.')
+    receipt=dict(status='PREPARED_CANDIDATE_'+status['new_whole_package_review'],publication_ready=status['publication_ready'],all_issues_resolved=status.get('all_issues_resolved',False),archive_name=ARCHIVE,archive_prefix=PREFIX,content_files=len(entries),current_integrity_sha256=digest(blob),timestamp_policy='2026-10-13 00:00:00 UTC for every tar member; gzip mtime=0',epoch=EPOCH,ordering='sorted relative POSIX paths',owner_group='0/0, empty names',mode='0644',private_source_bodies_included=False,receipt_policy='BUILD_RECEIPT.json is included outside current-integrity self-reference domain; archive binary hash is in external ARCHIVE_SHA256.json. External zenodo-deposit.json names the archive and is excluded to avoid self-reference; the default verifier checks packaged content and validates this wrapper strictly when present; --require-deposit additionally requires it and both verified local attachments.')
     (ROOT/'BUILD_RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')
     archived=paths+['CURRENT_INTEGRITY.json','BUILD_RECEIPT.json']
     out=io.BytesIO()

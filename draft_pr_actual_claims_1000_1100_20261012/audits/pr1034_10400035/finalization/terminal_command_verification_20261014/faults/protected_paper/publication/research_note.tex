@@ -1,0 +1,867 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Recalled corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\V}{\mathcal V}
+\newcommand{\M}{\mathcal M}
+\newcommand{\N}{\mathcal N}
+\newcommand{\F}{\mathcal F}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\lk}{\operatorname{lk}}
+\newcommand{\Diff}{\operatorname{Diff}}
+\newcommand{\Int}{\operatorname{int}}
+\newcommand{\sig}{\operatorname{symb}}
+\setlength{\emergencystretch}{2em}
+\title{Finite-type invariants on free-exterior string links:\\
+low-degree restrictions and an order-seven example}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026 \quad Version 1.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give applications of published finite-type classification and classical
+genus-two symmetry to the locus of string links with free exterior group.
+The category is ordinary unframed smooth ordered string links with fixed
+boundary, upward orientation, and rational invariants. Freeness means that
+the actual three-dimensional exterior group is abstractly $F_k$.
+Recalling a filtered Habegger--Masbaum corollary, the intersection of the
+entire Milnor algebra with the two-strand order-at-most-two space is
+$\operatorname{span}_{\Q}\{1,\ell,\ell^2\}$.
+Meilhan's classification and known free tangles give a component Conway
+coefficient outside the Milnor-plus-vanishing span at $(k,n)=(2,2)$, and
+give zero vanishing kernel for every $k\geq2$ and $0\leq n\leq2$.
+An exact marked genus-two reversal argument, combined with the prior
+Duzhin--Karev ordinary orientation detector, gives a nonzero kernel
+invariant of exact order seven on two strands.
+The seven-wheel is credited to Bar-Natan following Duzhin--Karev's journal
+proof. Historical priority of these combined free-exterior applications
+is undetermined; no firstness is claimed.
+\end{abstract}
+\noindent\textbf{Status and disclosure.}
+This is an unrefereed application note prepared with extensive AI
+assistance in solving, checking, sourcing, and writing. Its internal
+mathematical and priority audits were performed by AI systems. They are
+not conventional human peer review or formal proof certification.
+The accompanying kit records the review history through 13 October 2026
+and the current preparation state.
+The author is responsible for the manuscript.
+\smallskip
+
+\noindent\textbf{License.} \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}
+for this authored manuscript and authored supporting records; cited
+third-party source bodies and artwork are excluded.
+
+\section{Category, question, and scope}
+Let $C$ be the corner-rounded oriented cylinder $D^2\times[0,1]$, with
+distinct marked points $p_1,\ldots,p_k$ in the interior of $D^2$.
+An element of $\SL_k$ is an ordered smooth proper embedding of $k$ intervals,
+with strand $i$ directed from $(p_i,0)$ to $(p_i,1)$, standard in product
+endpoint collars. Equivalence is smooth ambient isotopy fixing the boundary;
+isotopies can be taken fixed on a smaller boundary collar. Upward specifies
+orientation, and imposes no height-monotonicity condition. No strand framing
+is part of an object.
+
+Let $\V_n(k)$ denote the $\Q$-valued ordinary Vassiliev invariants of order
+at most $n$, including constants. Their extension to transverse double
+points uses the positive-minus-negative crossing rule, at self-crossings
+and mixed crossings alike. Write
+\begin{align}
+\F_k&=\{L\in\SL_k:\pi_1(E(L))\cong F_k\},\label{eq:free}\\
+\N_n(k)&=\{v\in\V_n(k):v(L)=0\text{ for every }L\in\F_k\},\label{eq:kernel}\\
+\M_n(k)&=\V_n(k)\cap\Q[\mu_I:I\text{ any multi-index}].\label{eq:milnor}
+\end{align}
+Here $E(L)$ is the compact actual three-dimensional exterior; the open
+complement has the same fundamental group. $F_k$ is the abstract free
+group of rank $k$. There is no assertion that the bottom meridians form
+a free basis of that group. Neither nilpotent quotients nor a primitive
+meridian condition replace \eqref{eq:free}. In \eqref{eq:milnor} every
+based string-link Milnor invariant is allowed, with repeated indices and
+arbitrary length, using preferred zero-self-linking longitudes. A polynomial
+is finite, but its displayed generators need not have short length.
+
+Stanford's Question 2.13 in Ohtsuki's problem collection
+\cite[\S2.6, p.~408]{Ohtsuki} asks separately about the vanishing kernel
+and whether the Milnor and vanishing spaces span. The results treated here
+are the following restricted applications.
+\begin{theorem}\label{thm:main}
+In the category just specified:
+\begin{enumerate}
+\item With $\ell=\mu_{12}=\lk$, the prior filtered Milnor corollary is
+\[
+\M_2(2)=\operatorname{span}_{\Q}\{1,\ell,\ell^2\}.
+\]
+If $a_1$ is the Conway $z^2$ coefficient of the first individually closed
+strand, then $a_1\notin\M_2(2)+\N_2(2)$. Thus the universal affirmative
+spanning assertion fails at $(k,n)=(2,2)$.
+\item $\N_n(k)=0$ for all $k\geq2$ and $0\leq n\leq2$.
+\item $\N_7(2)$ contains a nonzero rational invariant of exact ordinary
+order seven. Consequently $\N_n(2)\ne0$ for every $n\geq7$.
+\end{enumerate}
+\end{theorem}
+The first formula is recalled from the filtered concordance theorem of
+Habegger--Masbaum \cite[Corollary 6.4 and Theorem 15.1]{HM}, after the
+ordinary specialization explained below. The low-degree applications use
+Meilhan's complete classification \cite{Meilhan}, Nogueira's free-tangle
+construction \cite{Nogueira14}, and the Kauffman--Lambropoulou rational
+example \cite{KL,KLDNA}. The order-seven application uses classical
+genus-two hyperelliptic machinery \cite{BleilerMoriah,RS,BM}, Hatcher's
+relative-ball theorem \cite{HatcherSmale}, and the Duzhin--Karev detector
+\cite{DKv5}. This is an assembly and exposition of those inputs, with the
+marking and collar obligations made explicit.
+
+This work does not determine $\N_n(2)$ for $3\leq n\leq6$, the least
+positive kernel order, higher-strand higher-order kernels, or higher-order
+spanning and general classification. Failure of spanning at order two
+does not by itself imply failure at larger order bounds. No claim about
+the current worldwide open status of those residual questions is made.
+
+\section{Published order-two coordinates and the Milnor corollary}
+For a knot $K$, let $c(K)$ be its normalized Conway $z^2$ coefficient.
+For a string link put
+\[
+a_i(L)=c(\widehat{L_i}),\qquad
+w_{ij}(L)=c(p(L_i\cup L_j))-a_i(L)-a_j(L),
+\]
+where an individual closure is formed after forgetting all other strands,
+and $p$ joins the two bottom ends and the two top ends with fixed short
+plat caps. These are Meilhan's component and plat invariants
+\cite[\S2.1 and Proposition 2.1]{Meilhan}. In particular
+$c(U)=0$ and $c(T)=1$ for either trefoil chirality.
+
+Meilhan's Theorem 2.4, in this ordinary ordered category, gives every
+$v\in\V_2(k)$ an expansion
+\begin{equation}\label{eq:classification}
+v=Q((\ell_{ij})_{i<j})+\sum_{i<j<h}d_{ijh}\mu_{ijh}
+   +\sum_i b_i a_i+\sum_{i<j}e_{ij}w_{ij},\qquad \deg Q\leq2.
+\end{equation}
+Here $\mu_{ijh}$ is a based distinct-index length-three invariant in that
+source's convention. $Q$ includes all constants and linear terms, all
+squares, all linking products with a shared label, and all products with
+four distinct labels. We use the actual spanning theorem for functions,
+not merely an associated-graded statement. For $k=2$ it reads
+\begin{equation}\label{eq:six}
+v=A+B\ell+C\ell^2+D a_1+E a_2+F w_{12}.
+\end{equation}
+
+\begin{corollary}[Habegger--Masbaum, ordinary degree-two specialization]
+\label{cor:milnor}
+The entire-algebra intersection $\M_2(2)$ equals
+$\operatorname{span}_{\Q}\{1,\ell,\ell^2\}$.
+\end{corollary}
+\begin{proof}
+Every based Milnor invariant, including repeated indices, is invariant
+under smooth fixed-endpoint concordance
+\cite[\S2.1.4 and \S5.1]{MY09}, where the attribution is to Casson
+\cite{Casson}. Therefore every finite polynomial in arbitrary-length
+Milnor invariants is concordance invariant. This property concerns the
+resulting function and remains valid if high-degree terms in a presentation
+cancel.
+
+Pull an ordinary concordance invariant back to framed string links by
+forgetting the framing. Habegger--Masbaum's tree quotient, Corollary 6.4,
+and filtered Theorem 15.1 \cite[\S4 and \S15]{HM} control its order-at-most-two
+symbols. In degree two the only connected tree has three legs. With only
+two colors, two legs share a color; exchanging these changes the vertex
+orientation, so antisymmetry kills that diagram over $\Q$. Framing
+independence kills the two self-struts. Through degree two the surviving
+ordinary tree diagrams are therefore the empty diagram, the mixed strut,
+and its square. They are integrated by $1,\ell,\ell^2$; the filtered theorem
+gives the upper bound of three dimensions. Pure two-braids attain every
+integer value of $\ell$, proving independence. These three functions belong
+to the Milnor algebra and have orders at most $0,1,2$, respectively. The
+upper and lower inclusions follow.
+\end{proof}
+
+\subsection{An elementary alternative: the full concordance equations}
+This alternative proof supplies explicit ordinary tests, without claiming
+a new Milnor theorem. Let $S=T\#(-T)$ be a long square knot, where $-T$ is
+the reversed mirror. The standard smooth concordance inverse gives a
+null-concordance fixed at the long endpoints
+\cite[pp.~1--2]{CochranHarvey}. Conway multiplicativity and the mirror and
+reversal identities give
+\begin{equation}\label{eq:square}
+\nabla_{K\#J}(z)=\nabla_K(z)\nabla_J(z),\quad
+\nabla_{\bar K}(z)=\nabla_K(-z),\quad
+\nabla_{K^r}(z)=\nabla_K(z),\quad c(S)=2.
+\end{equation}
+The first identity is recalled in \cite[\S1]{Conant}; the other two follow
+from the normalized skein characterization.
+
+Insert $S$ in a small ball on the first or second strand of the identity
+link. The resulting $J_1,J_2$ are null-concordant and have linking zero;
+their $(a_1,a_2,w)$ rows are $(2,0,0)$ and $(0,2,0)$, since each plat
+contains that one local knot.
+
+For a third test choose a product-collared null-concordance rectangle for
+$S$ in $C\times[0,1]$. Its oriented rank-two normal bundle over the disk
+is trivial. Prescribe the usual spatial separating normal direction on
+the top edge and both endpoint edges. These edges form one contractible
+boundary arc; the nonzero field extends over the rectangle and can be
+chosen product-like in the boundary collars. The bottom direction is
+determined by this extension and is not independently prescribed. Small
+push-offs by $\pm\epsilon$ form disjoint fixed-endpoint concordance
+rectangles with identity top. Their bottom link $C(S)$ has linking zero
+by concordance, and each individual closure is $S$. The bottom field sweeps
+out an embedded narrow ribbon rectangle whose short sides are the fixed
+plat caps. Its boundary is the plat and bounds that embedded disk in $C$,
+so the plat is unknot. Thus
+\begin{equation}\label{eq:slice-rows}
+\begin{array}{c|rrr}
+ &a_1&a_2&w\\\hline
+ J_1&2&0&0\\J_2&0&2&0\\C(S)&2&2&-4
+\end{array}
+\qquad \det=-16.
+\end{equation}
+For a concordance-invariant function in \eqref{eq:six}, subtracting its
+identity value yields
+\[
+2D=0,\qquad 2E=0,\qquad 2D+2E-4F=0.
+\]
+Over $\Q$ these kill every non-linking coefficient, giving the same
+corollary. No free-exterior assertion is made for the three auxiliary
+links. This argument also explains why rational coefficients are essential;
+it gives no arbitrary-coefficient-group theorem.
+
+\section{Known free two-tangles and their ordinary markings}
+\begin{lemma}\label{lem:witnesses}
+There are $R,L,L^s\in\F_2$ with
+\begin{equation}\label{eq:witnesses}
+(a_1,a_2,w)(R)=(0,0,1),\qquad
+(a_1,a_2)(L)=(1,5),\qquad(a_1,a_2)(L^s)=(5,1).
+\end{equation}
+No linking number or value of $w(L),w(L^s)$ is needed.
+\end{lemma}
+\begin{proof}
+Nogueira's institutional preprint \cite[Appendix \S4, pp.~14--15,
+Figures 9--10]{Nogueira14} gives a free two-arc ball tangle with individual
+capped knots trefoil and $T(3,-4)$. Its explicit trefoil tunnel and tunnel-end
+slide establish the actual handlebody exterior. This is the appendix
+construction, not a consequence of the paper's main essential-surface
+theorem. The related tunnel-slide method appears already in
+\cite[\S8]{Nogueira13}. We use the full institutional drawings: the later
+arXiv edition \cite{Nogueira17} has missing relevant artwork, and is not the
+controlling visual source.
+
+Round the finite tame PL corners in disjoint small neighborhoods and
+straighten endpoint collars. This preserves complement topology and
+individual knot types. Choose one endpoint of each arc as bottom, and use
+an orientation-preserving sphere isotopy moving the four labeled endpoints
+to their prescribed destinations. Extend through a ball collar and make
+the strand germs standard. Orient each strand bottom to top. This produces
+$L$ in the specified smooth ordered category, preserving its actual
+handlebody exterior. The exterior boundary is the sphere with four disks
+removed and two annuli attached, a closed genus-two surface; its group is
+therefore $F_2$.
+
+To compare individual caps, first discard the other strand. Any two simple
+arcs joining the surviving two endpoints on the unpunctured sphere are
+isotopic relative to those endpoints, by bigon removal. Extend across the
+outside closing collar. Thus the individual knot types survive the chosen
+marking. This is not a statement about arbitrary cap systems on a
+four-punctured sphere. Willerton's normalized torus formula,
+credited there to Alvarez--Labastida, is
+\cite[\S1 and \S3, p.~5]{Willerton}
+\[
+c(T(p,q))=\frac{(p^2-1)(q^2-1)}{24}.
+\]
+It gives $c(T(3,-4))=5$ and $c(T)=1$. Mirror and reversal do not change this
+even coefficient. For a separate copy exchange the two basepoints by an
+orientation-preserving disk diffeomorphism and assign the carried strands
+their exchanged labels. The resulting new ordered example is $L^s$.
+It is not an identification of the two examples in the ordered category.
+
+For $R$ use the prior rational tangle $[1]+1/[2]$ of fraction $3/2$ in
+\cite[pp.~20--21, Figure 15]{KL} and
+\cite[p.~30, Figure 20]{KLDNA}. It has vertical connectivity
+NW--SW and NE--SE: $[1]$ pairs diagonally and $1/[2]$ pairs vertically;
+tracing the horizontal sum gives the two stated arcs and no circle.
+This agrees with \cite[Theorem 6]{KL}. Label the left and right vertical
+arcs $1,2$. Carry SW, SE to bottom points and NW, NE to top points, preserving
+both numerator cap arcs. Such a sphere marking exists by matching disjoint
+disk neighborhoods of the cap arcs and their complementary annulus;
+extend it over the ball and straighten collars.
+
+Rationality is a ball-pair homeomorphism to the trivial two-tangle
+\cite[\S2]{KL}, supplied here by the inverse finite endpoint twists.
+Its exterior is pair-of-pants times an interval, a genus-two handlebody.
+This rationality homeomorphism need not preserve the numerator caps.
+Each individual arc is boundary-parallel, so its closure is unknot after
+discarding the other strand. The distinct cap-preserving marking makes the
+standard plat the cited trefoil numerator. Its coefficient is one.
+This proves \eqref{eq:witnesses} with the actual exterior groups.
+\end{proof}
+This lemma is source-backed existential geometry. It does not give a
+marked crossing list with independently recognized Wirtinger group or
+numerical linking vector. The stated source inputs and conversion argument
+are sufficient for the evaluations below.
+
+\section{The spanning counterexample at two strands and order two}
+\begin{proof}[Proof of Theorem \ref{thm:main}(1), spanning assertion]
+Let $P_j$ be the pure two-braid with $j$ full twists, signed so
+$\ell(P_j)=j$. A height-dependent disk isotopy trivializes its exterior as
+a twice-punctured disk times an interval. Hence $P_j\in\F_2$. Its individual
+strands are unknotted, so $a_1(P_j)=0$.
+
+If $a_1=m+u$ with $m\in\M_2(2)$ and $u\in\N_2(2)$, the recalled corollary
+gives $m=A+B\ell+C\ell^2$. Evaluation at $P_0,P_1,P_{-1}$ yields
+\[
+A=0,\qquad A+B+C=0,\qquad A-B+C=0.
+\]
+Therefore $m=0$. Evaluation at the free witness $L$ from
+Lemma \ref{lem:witnesses} would then give $1=a_1(L)=u(L)=0$.
+Equivalently, the evaluation matrix on columns $(1,\ell,\ell^2,a_1)$ is
+\[
+\begin{pmatrix}1&0&0&0\\1&1&1&0\\1&-1&1&0\\1&t&t^2&1\end{pmatrix},
+\qquad\det=2\quad(t=\ell(L)).
+\]
+This proves the obstruction independently of the unknown marking-dependent
+linking value. No matching of the full Milnor data to a braid is asserted.
+\end{proof}
+
+\section{Pure braid tests for the complete low-degree expansion}
+Every pure $k$-braid has actual exterior diffeomorphic to a $k$-punctured
+disk times an interval, so belongs to $\F_k$. Its individual strands are
+unknotted. Its deletion to a pair is a pure two-braid whose two-plat is
+unknot: consecutive twists slide across the endpoint cap, equivalently
+this plat has one bridge. Thus
+\begin{equation}\label{eq:braid-vanish}
+a_i(P)=w_{ij}(P)=0\quad\hbox{for every pure braid }P.
+\end{equation}
+
+\subsection{An isolated triple and explicit leading terms}
+On three strands take $A=\sigma_1^2$, $B=\sigma_2^2$ and
+$\beta=ABA^{-1}B^{-1}$. Every two-strand deletion is identity, since it kills
+one of $A,B$ and the other cancels its inverse. All linking numbers vanish.
+Use the Artin convention
+\[
+\Phi_{\sigma_i}(x_i)=x_ix_{i+1}x_i^{-1},\qquad
+\Phi_{\sigma_i}(x_{i+1})=x_i,\qquad
+\Phi_{AB}=\Phi_A\circ\Phi_B.
+\]
+For a pure braid put $\Phi(x_j)=c_jx_jc_j^{-1}$ and normalize the $x_j$
+exponent of $c_j$ to zero by right multiplication by an $x_j$ power.
+These conjugators give the preferred longitudes, up to inversion of the
+conjugation convention, by the parallel/Wirtinger interpretation
+\cite[\S4.1 and \S5.2]{BNhomotopy}. Use the standard Magnus expansion
+$x_i\mapsto1+X_i$, rather than the exponential variant in that source.
+For $\beta$, direct substitution and free reduction give
+\begin{align*}
+c_1&=x_1x_2x_1^{-1}x_3x_1x_2^{-1}x_1^{-1}x_3^{-1},\\
+c_2&=x_3^{-1}x_1^{-1}x_3x_1,\\
+c_3&=x_3^{-1}x_1^{-1}x_3x_1x_2^{-1}x_1^{-1}
+      x_3^{-1}x_1x_3x_1x_2x_1^{-1}.
+\end{align*}
+Using $E(x_i^{-1})=1-X_i+X_i^2+O(3)$, their expansions are
+\begin{align}
+E(c_1)&=1+X_2X_3-X_3X_2+O(3),\notag\\
+E(c_2)&=1-X_1X_3+X_3X_1+O(3),\label{eq:magnus}\\
+E(c_3)&=1+X_1X_2-X_2X_1+O(3).\notag
+\end{align}
+The selected triple coefficient is $\epsilon=\pm1$. All linear terms vanish,
+so the possible lower-linking convention corrections vanish too.
+
+For any chosen triple of labels, take a subdisk containing exactly those
+points, perform this braid there, and keep the others vertical. Local
+meridians are conjugates of the ambient meridians with the same linear
+Magnus terms. A substitution by such conjugates preserves the degree-two
+leading term in \eqref{eq:magnus}. For completeness an arbitrary change of
+whisker introduces a conjugator of the form
+\[
+\Phi(q)c_jq^{-1}=(\Phi(q)q^{-1})(qc_jq^{-1}).
+\]
+Here $c_j\in\Gamma_2$ and $\Phi$ is identity modulo $\Gamma_3$, including on
+inactive generators. Hence $\Phi(q)q^{-1}\in\Gamma_3$; the displayed
+quadratic coefficient is unchanged. Deletion to any other triple leaves
+at most two active strands and gives identity. Thus this pure braid isolates
+one $\mu_{ijh}$ with value $\pm1$ and all other distinct-index triple values
+zero, including when the chosen labels are nonadjacent.
+
+\subsection{The full integer linking lattice}
+A thin disk neighborhood of an arc joining any chosen pair of basepoints
+and avoiding the others supports a full twist with linking one on that
+pair and zero on all other pairs. Integer powers and products realize
+every vector in $\Z^{\binom{k}{2}}$. This multiplication is used only within
+pure braids.
+
+If $v\in\N_2(k)$ is expanded as \eqref{eq:classification}, identity gives
+$Q(0)=0$. The isolated triples and \eqref{eq:braid-vanish} give
+$\epsilon d_{ijh}=0$. After all $d_{ijh}$ vanish, the full linking lattice
+gives $Q(z)=0$ for every integral vector $z$. A rational polynomial
+vanishing on that lattice is zero: fix all but one integral coordinate
+and use the one-variable root theorem, then induct on the number of
+variables. This proves the entire polynomial conclusion, rather than
+extrapolating from a finite sample. We are left with
+\begin{equation}\label{eq:remaining}
+v=\sum_i b_i a_i+\sum_{i<j}e_{ij}w_{ij}.
+\end{equation}
+
+\section{Separated insertion and the all-strand zero kernel}
+\begin{lemma}\label{lem:insertion}
+Fix a pair $i,j$. A two-strand witness $S$ can be inserted in a subcylinder
+separated from the other $k-2$ vertical strands by a disk. For this insertion
+$J_{ij}(S)$,
+\begin{equation}\label{eq:group-split}
+\pi_1(E(J_{ij}(S)))\cong\pi_1(E(S))*F_{k-2}.
+\end{equation}
+Its active component and active plat values retain those of $S$; all
+inactive component values and every other plat correction vanish.
+\end{lemma}
+\begin{proof}
+Construct a proper base-disk arc $\delta$ cutting off exactly $p_i,p_j$:
+use a thin regular neighborhood of a tree joining them to a boundary
+interval, avoiding the finitely many other points. Both complementary
+regions are disks. Insert $S$ in the selected region times $[0,1]$ with
+its boundary collars, and keep the other strands vertical. The proper disk
+$\Delta=\delta\times[0,1]$ misses the strands and their regular neighborhoods.
+Cutting the compact exterior along $\Delta$ gives $E(S)$ and the trivial
+$(k-2)$-string exterior. In collar-open neighborhoods their overlap retracts
+to the disk $\Delta$. Van Kampen gives \eqref{eq:group-split}. For $k=2$ the
+second factor is trivial.
+
+Individual active closures are unchanged; inactive strands are unknotted.
+For the active pair, delete the inactive strands before comparing caps.
+In the unpunctured endpoint disks the transported caps isotope to the fixed
+standard caps, so $w_{ij}$ retains its value. For a mixed active/outside pair,
+choose each top and bottom cap to cross $\delta$ once, after other strands
+have been discarded. Complete $\Delta$ through the outside closing ball
+to a sphere meeting this plat exactly twice, once on each cap. Its two sides
+give the two individual knot summands, perhaps reversing one orientation.
+Thus the plat is their connected sum, and \eqref{eq:square} gives
+\[
+c(p(L_i\cup L_h))=a_i+a_h,\qquad w_{ih}=0.
+\]
+Outside/outside pairs are trivial. This proves every coordinate asserted.
+\end{proof}
+Only this disk-separated insertion preserves freeness here. No closure
+property under arbitrary stacking or gluing is used, and deleting strands
+is not asserted to preserve free exterior.
+
+\begin{proof}[Proof of Theorem \ref{thm:main}(2)]
+Take $v\in\N_2(k)$ and reduce it to \eqref{eq:remaining} by the braid tests.
+For each pair $i<j$, the insertion $J_{ij}(R)$ is free by
+\eqref{eq:group-split}, has all $a$ values zero, and has only $w_{ij}=1$
+nonzero among the $w$ values. Thus $e_{ij}=0$. The free insertions
+$J_{ij}(L)$ and $J_{ij}(L^s)$ then give
+\[
+b_i+5b_j=0,\qquad5b_i+b_j=0,\qquad
+\det\begin{pmatrix}1&5\\5&1\end{pmatrix}=-24.
+\]
+Hence $b_i=b_j=0$ over $\Q$. Pairs $(1,j)$ cover all labels when $k\geq2$,
+so $v=0$. Inclusion $\V_n(k)\subseteq\V_2(k)$ gives the conclusion for
+$0\leq n\leq2$.
+\end{proof}
+For $k=2$, a finite full-rank certificate makes all unknown marking-dependent
+values explicit. The rows on columns $(1,\ell,\ell^2,a_1,a_2,w)$ are
+\begin{equation}\label{eq:six-matrix}
+\begin{array}{c|rrrrrr}
+P_0&1&0&0&0&0&0\\
+P_1&1&1&1&0&0&0\\
+P_{-1}&1&-1&1&0&0&0\\
+R&1&r&r^2&0&0&1\\
+L&1&s&s^2&1&5&u\\
+L^s&1&t&t^2&5&1&v
+\end{array}
+\qquad\det=-48.
+\end{equation}
+The first three columns have upper block determinant $2$, and the bottom
+three columns have block determinant $-24$, independently of $u,v$;
+eliminating the lower linking entries gives their product. The identity
+holds for all $r,s,t,u,v$, without assigning them numeric values.
+The restriction $k\geq2$ matters: the cyclic-knot-group theorem makes the
+one-strand free locus the unknot, on which a nonzero Conway coefficient
+vanishes. That classical distinction is outside the all-pair argument.
+
+\section{Exact marked reversal on every free two-string exterior}
+Fix $p_1,p_2$ on the real diameter of the disk. A single fixed
+orientation-preserving disk identification handles any other initial
+basepoints. Define
+\begin{equation}\label{eq:rho}
+r(z,t)=(\bar z,1-t),\qquad(\rho\gamma)_i(s)=r(\gamma_i(1-s)).
+\end{equation}
+$r$ has three-dimensional determinant $+1$, and $\rho$ preserves labels,
+upward orientations, and product endpoint collars. It is an involution.
+
+\begin{lemma}\label{lem:reversal}
+Every $L\in\F_2$ is ambient isotopic to $\rho L$ relative to the boundary,
+with each label and orientation preserved. The isotopy can fix a sufficiently
+small boundary collar.
+\end{lemma}
+\begin{proof}
+We give the complete boundary-pattern and collar argument.
+
+\emph{Recovering a handlebody.}
+Delete the relative interiors of two standard tubes $N_i$ about the arcs.
+The compact exterior $H$ has closed connected genus-two boundary, formed
+from the outer four-holed sphere $P$ and the lateral annuli $A_i$.
+It is irreducible: a sphere in $\Int H$ bounds its bounded-side ball in $C$
+by smooth Schoenflies \cite[Theorem 1.1]{Hatcher3M}; every connected tube
+meets $\partial C$ and misses the sphere, so lies outside that ball.
+The ball is therefore contained in $H$.
+
+A positive-genus closed surface group is not free, whereas every subgroup
+of a free group is free. Thus a positive-genus boundary component cannot
+inject into a free component group. The Loop Theorem
+\cite[Theorem 3.1]{Hatcher3M} gives an essential compressing disk.
+Cutting on it retains irreducibility: a sphere in a cut piece bounds a
+ball in the uncut manifold, and the connected cutting disk, with boundary
+on the exterior boundary and disjoint from that sphere, cannot enter this
+ball. Reconstruction by a one-handle gives a free-product decomposition;
+the cut component groups are free factors and remain free. Repeat.
+The sum of $3g-2$ over positive-genus boundary components strictly decreases
+under every essential compression (including torus and separating cases).
+The final pieces have only spherical boundary and are irreducible, hence
+are balls: a boundary sphere pushed into its collar bounds a ball on the
+side away from that collar, and adjoining the collar gives the original
+piece. Reverse the disk cuts to reconstruct a handlebody. Its boundary
+genus is two. This uses actual group freeness, not a completion or special
+meridian generating set.
+
+\emph{Prescribing the entire closed-boundary map.}
+Choose orientation-preserving tube charts
+$q_i:D^2_\epsilon\times[0,1]\to N_i$, with
+$q_i(0,s)=\gamma_i(s)$ and $q_i(z,s)=(p_i+z,s)$ near both ends.
+The oriented normal bundle over an interval is trivial and the prescribed
+end frames extend; integer twists are allowed construction choices.
+Set
+\begin{equation}\label{eq:tau}
+\tau|_P=r|_P,\qquad
+\tau(q_i(z,s))=q_i(\bar z,1-s)\quad(|z|=\epsilon).
+\end{equation}
+The formulas agree in full product neighborhoods of the seam circles.
+Compatible equivariant corner rounding makes $\tau$ a smooth
+orientation-preserving involution. It has six isolated fixed points:
+two on $P$ and two on each $A_i$. The branched Euler formula is
+$-2=2\chi(\partial H/\tau)-6$, giving a sphere quotient.
+
+More precisely let $H_0$ be the trivial two-string exterior with the
+same outer endpoint disks. The map $\phi:\partial H_0\to\partial H$ that
+is literally identity on $P$ and uses $q_i$ on the annuli satisfies
+\[
+\tau=\phi(r|_{\partial H_0})\phi^{-1}.
+\]
+This is only a boundary identification; its extension has not been assumed.
+
+\emph{Extension and exact boundary correction.}
+The genus-two hyperelliptic class is central on the closed boundary and
+extends over the standard handlebody
+\cite[\S2, pp.~491--492]{RS}\cite[p.~272]{BM}.
+Choose any orientation-preserving handlebody diffeomorphism $f:H\to H_0$.
+Centrality gives
+\[
+[f\tau f^{-1}]=[r|_{\partial H_0}].
+\]
+Consequently $F_0=f^{-1}rf$ has boundary value $\sigma$ isotopic to $\tau$.
+Take a smooth isotopy $\delta_t$ with $\delta_0=\id$ and
+$\delta_1=\tau\sigma^{-1}$. In an inward collar $c(x,u)$, define
+\[
+K_0(c(x,u))=c(\delta_{\lambda(u)}(x),u),
+\]
+where $\lambda=1$ near the boundary and zero near the inner collar edge;
+extend by identity. The unchanged $u$ coordinate shows this is a
+diffeomorphism. Then $F=K_0F_0$ has $F|_{\partial H}=\tau$ pointwise.
+Intermediate $\delta_t$ may move $P$ and the annuli, since no tubes are
+glued at that stage. The endpoint is the prescribed map on the whole
+closed boundary.
+
+\emph{Correcting germs before smooth gluing.}
+On a whole tube prescribe
+$J_i=q_i\circ((z,s)\mapsto(\bar z,1-s))\circ q_i^{-1}$.
+Together with $r$ near $P$ these define a compatible local involution $j$
+near the boundary pattern, since the charts are standard at the seams.
+Take an invariant local metric by averaging with $j^*$; its inward normal
+collar obeys
+\[
+j(c(x,u))=c(\tau x,u).
+\]
+The extension $F$, already exact on the boundary, gives another collar
+\[
+d(x,u)=F(c(\tau^{-1}x,u)),\qquad d(x,0)=x.
+\]
+Uniqueness of smooth collars relative to their boundary, and isotopy
+extension, yield a diffeomorphism $K_1$, supported near the boundary and
+fixing it pointwise, such that $K_1(d(x,u))=c(x,u)$ for small $u$.
+The inward transverse derivatives are positive, so the collars belong
+to the same component. Therefore
+\begin{equation}\label{eq:germ}
+(K_1F)(c(x,u))=K_1(d(\tau x,u))=c(\tau x,u)=j(c(x,u)).
+\end{equation}
+Equality of boundary values alone would not have guaranteed smooth gluing;
+\eqref{eq:germ} gives equality in a full neighborhood. Neither $K_1$
+commuting with $\tau$ nor the global extension squaring to identity is needed.
+
+Glue $K_1F$ to the $J_i$. The result is an orientation-preserving smooth
+ball diffeomorphism $h$ satisfying, literally,
+\[
+h|_{\partial C}=r|_{\partial C},\qquad
+h(\gamma_i(s))=\gamma_i(1-s),
+\]
+and equal to $r$ in a small boundary collar. Thus $g=rh$ is identity on
+that collar and $g(\gamma_i(s))=(\rho\gamma)_i(s)$ for each label.
+There is no residual boundary mapping class or pure-braid factor.
+
+Hatcher's theorem gives contractibility of
+$\Diff(D^3\,\mathrm{rel}\,\partial D^3)$
+\cite[Appendix, p.~604, statement (1)]{HatcherSmale}, hence an isotopy
+of $g$ to identity relative to the boundary. Parametric collar uniqueness
+straightens this path to fix a uniformly smaller collar, with endpoint
+corrections identity; compactness of the path parameter provides a common
+positive width. This isotopy proves the lemma and extends by identity in
+the long-link formulation. It is a smooth relative-ball theorem, not a
+radial smooth Alexander-trick assertion.
+\end{proof}
+The classical genus-two machinery has older inversion and branched-cover
+context in Bleiler--Moriah \cite[\S1.3]{BleilerMoriah}. The lemma is its
+marked boundary/collar specialization with the explicit $r$ of
+\eqref{eq:rho}. Centrality is specific to genus two; the argument supplies
+no higher-strand reversal theorem. No separately prescribed framing is
+retained.
+
+\section{The prior signed seven-wheel and ordinary integration}
+For the algebraic input we use the exact arXiv v5 body of Duzhin--Karev,
+dated 25 July 2005 \cite{DKv5}. Its Lemma 4 gives leg parity under
+simultaneous reversal; Proposition 2 gives the nonzero seven-wheel, and
+Section 6, Lemma 8, gives its survival under ordinary deframing. The v1
+framed argument alone would not suffice. Their later English journal proof
+\cite[\S5, Remark 1]{DKjournal} explicitly credits Bar-Natan's earlier
+discovery of the wheel in \texttt{table.m}; we carry that attribution.
+The proof text inspected for this credit is author-uploaded and contains
+production placeholders, so it is not certified as final publisher PDF
+bytes. The journal bibliographic record and DOI are given in the references.
+
+Let $H_7$ be the connected seven-wheel with cyclic leg colors $1121222$
+and the vertex orientation of \cite[Proposition 2]{DKv5}. It has seven
+trivalent and seven univalent vertices, so degree $(7+7)/2=7$. The colored
+Jacobi reversal changes it by $(-1)^7=-1$. Under symmetrization $\chi$,
+write $d=\chi(H_7)$ for the ordinary rational diagram class. The cited
+deframing result says $d\ne0$ after imposing the ordinary 1T relations
+that delete the two self-struts. Its qualification is important: a connected
+nonsingle-strut class is primitive, and the two framing generators are
+central degree-one primitives. The symmetrized wheel belongs to the
+complementary ordinary subalgebra identified by Lemma 8. Connectedness
+alone is not a general license to pass arbitrary framed classes through 1T.
+
+The operation in \eqref{eq:rho} agrees with this reversal. For the standard
+long lines $(i,0,t)$, reversing strand parameters is restored to upward
+labeled lines by $(x,y,z)\mapsto(x,-y,-z)$; translation and rescaling give
+exactly $r$. Ambient orientation is preserved, and reversing both tangents
+at a crossing preserves its crossing sign. Thus $\rho$ preserves ordinary
+finite-type order, with symbol involution $\tau_A$ satisfying
+$\tau_A(d)=-d$. It is neither a label-exchanging half-turn nor a mirror.
+
+\subsection{An optional exact finite trace certificate}
+The following arithmetic supplements the published nonzero proof, and
+does not replace its AS/IHX, deframing, or integration interfaces.
+For matrices $X,Y\in\operatorname{Mat}_N(\Q)$ write $T_w$ for the trace of
+the color word $w$, with color 1 assigned $X$, color 2 assigned $Y$,
+and $T_\emptyset=N$. Since $\ad X=L_X-R_X$ and
+$\Tr_{\operatorname{End}(\operatorname{Mat}_N)}(L_A R_B)=\Tr(A)\Tr(B)$,
+the wheel trace has a signed expansion over all $2^7=128$ subsets of the
+seven positions. Left factors retain order; right factors reverse order.
+Cyclic grouping yields
+\begin{equation}\label{eq:wheel}
+P=N(T_{1121222}-T_{1122212})
+   +3T_2(T_{112212}-T_{112122}).
+\end{equation}
+For the integer matrices
+\[
+X=\begin{pmatrix}0&1&1&1\\1&0&0&0\\0&-1&0&0\\-1&-1&-1&1\end{pmatrix},
+\qquad
+Y=\begin{pmatrix}0&0&-1&1\\-1&-1&1&1\\-1&0&0&0\\0&0&-1&-1\end{pmatrix},
+\]
+exact multiplication gives
+\[
+T_2=-2,\quad T_{1121222}=38,\quad T_{1122212}=20,
+\quad T_{112212}=-12,\quad T_{112122}=-23.
+\]
+Thus $P=4(38-20)+3(-2)(-12+23)=6$. Reversing the word gives $-6$;
+the antisymmetric difference is $12$. The Lie weight respects AS and IHX
+by invariance of the trace pairing and the Jacobi identity, so this is
+a rational nonzero diagram certificate, up to the fixed global vertex sign.
+The new review checker separately derives all 128 terms and multiplies
+independently constructed $16\times16$ adjoint matrices. Its frozen results
+are supplementary stage evidence. The value $6$ is a diagram weight value,
+not a value on a nonsingular string link.
+
+\begin{proof}[Proof of Theorem \ref{thm:main}(3)]
+The ordinary degree-seven rational diagram space is finite dimensional.
+Choose a rational functional $W$ with $W(d)=1$, and put
+\[
+W^-=(W-W\circ\tau_A)/2.
+\]
+Since $\tau_A(d)=-d$, we have $W^-(d)=1$ and
+$W^-\circ\tau_A=-W^-$. The rational ordinary integration theorem, in the
+form used in \cite[\S2 and \S6]{DKv5}, supplies $f\in\V_7(2)$ with top
+symbol $W^-$. Set
+\begin{equation}\label{eq:v}
+v=(f-f\circ\rho)/2.
+\end{equation}
+Sign-preserving naturality of singular resolution gives
+\[
+\sig_7(v)=\frac{W^- -W^-\circ\tau_A}{2}=W^-.
+\]
+This symbol is nonzero on $d$, so $v$ has exact order seven and is a
+nonzero function. Indeed, if all nonsingular values were zero, every
+singular alternating sum and the symbol would be zero.
+For every $L\in\F_2$, Lemma \ref{lem:reversal} gives
+$f(L)=f(\rho L)$, so $v(L)=0$. Hence $v\in\N_7(2)$, and the same member
+belongs to $\N_n(2)$ for every $n\geq7$.
+\end{proof}
+The construction is existential: the choice of dual functional and
+integration is not canonical. No named nonsingular link, numeric value on
+such a link, or executable evaluation formula for $v$ is supplied.
+The universal zero restriction follows from the geometric lemma; a finite
+set of zero evaluations could not establish it. A minimum orientation
+detecting degree, discussed in \cite[Remark 1.4]{MY14}, would not establish
+a minimum kernel order, since a reversal-even invariant could lie in the
+kernel. No minimum kernel claim is made here.
+
+\section{Priority, evidence, and limitations}
+The filtered Milnor corollary, complete order-two basis and plat invariant,
+Nogueira free witnesses, rational $3/2$ example, genus-two machinery, and
+Duzhin--Karev ordinary detector are published inputs, credited at their
+points of use. The accompanying fresh priority report records a bounded
+comparison of complete controlling bodies and relevant sections. It does
+not establish originality of the combined free-exterior applications.
+
+Two close older priority leads remain unread after recorded access failures:
+Morimoto's 1995 Lemma 5 \cite{Morimoto} and Yannan Li's 2009 free-tangle paper
+\cite{Li}. Their exact contents are unknown in this investigation. They
+are priority unknowns, not mathematical dependencies of these proofs.
+The complete Bleiler--Moriah article was recovered and read; it provides
+older inversion context, with a different knot-exterior hypothesis.
+No absence claim from an unread abstract or search excerpt supports this
+note's conclusions. Further external scholarly input could improve the
+priority investigation; only the human author may communicate externally.
+
+The source/audit kit separates nineteen unchanged theoretical originals,
+fresh mathematical derivations, new finite checks, bounded priority
+comparison, and current preparation state. Historical acceptance records
+retain their historical stages and are not package-readiness certificates.
+The original edition delivered no executable checker; omitted historical
+scripts and private fixtures were neither replayed nor simulated. New
+review programs check finite word/Magnus, determinant, Alexander, and trace
+arithmetic; these do not prove universal topology, published classification,
+1T survival, or rational integration. Those are explicit mathematical
+arguments and established external interfaces in this manuscript.
+Copied third-party PDFs, PostScript, extracted text, OCR, and images are
+excluded from the distributable authored kit. Bibliographic identities
+and hashes are retained for source verification.
+
+\begin{thebibliography}{99}\small
+\bibitem{Ohtsuki} T. Ohtsuki (ed.), \emph{Problems on invariants of knots
+and 3-manifolds}, Geometry \& Topology Monographs \textbf{4} (2002),
+377--572; T. Stanford, Question 2.13, p.~408.
+\url{https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf}.
+\bibitem{HM} N. Habegger and G. Masbaum, \emph{The Kontsevich integral and
+Milnor's invariants}, Topology \textbf{39} (2000), 1253--1289. Controlling
+author preprint: 7 April 1999, \S4, Corollary 6.4, Theorem 15.1 and its
+proof pp.~29--30. \url{https://webusers.imj-prg.fr/~gregor.masbaum/K39.ps.gz}.
+\bibitem{Meilhan} J.-B. Meilhan, \emph{On Vassiliev invariants of order two
+for string links}, J. Knot Theory Ramifications \textbf{14} (2005),
+665--687. Exact preprint: math/0402036v2, 10 November 2004.
+\url{https://arxiv.org/pdf/math/0402036v2}.
+\bibitem{MY09} J.-B. Meilhan and A. Yasuhara, \emph{Characterization of finite
+type string link invariants of degree $<5$}, Math. Proc. Cambridge Philos.
+Soc. \textbf{148} (2010), 439--472. Exact preprint: 0904.1527v1,
+9 April 2009. \url{https://arxiv.org/pdf/0904.1527v1}.
+\bibitem{Casson} A. J. Casson, \emph{Link cobordism and Milnor's invariant},
+Bull. London Math. Soc. \textbf{7} (1975), 39--40.
+\url{https://doi.org/10.1112/blms/7.1.39}. Concordance attribution used
+through \cite{HM,MY09}; original body not newly recovered.
+\bibitem{CochranHarvey} T. D. Cochran and S. Harvey, \emph{The geometry of
+the knot concordance space}, controlling author copy of arXiv:1404.5076v2,
+11 July 2014, introduction pp.~1--2.
+\url{https://math.rice.edu/~shelly/publications/arxiv_geometry_knot_conc.pdf}.
+\bibitem{Conant} J. Conant, \emph{Chirality and the Conway polynomial},
+Topology Proceedings \textbf{30} (2006), 153--162.
+Controlling preprint: math/0503648v2, 22 February 2012, \S1.
+\url{https://arxiv.org/pdf/math/0503648v2}.
+\bibitem{Nogueira14} J. M. Nogueira, \emph{Knot complements with meridional
+essential surfaces of arbitrarily high genus}, Coimbra preprint 14--09,
+received 27 February 2014, Appendix \S4, pp.~14--15, Figures 9--10.
+\url{https://www.mat.uc.pt/preprints/ps/p1409.pdf}.
+\bibitem{Nogueira17} J. M. Nogueira, \emph{Prime knot complements with
+meridional essential surfaces of arbitrarily high genus}, Topology Appl.
+\textbf{194} (2015), 427--439, DOI 10.1016/j.topol.2015.05.088.
+Later preprint: 1706.03719v1, with missing relevant appendix artwork.
+\url{https://arxiv.org/pdf/1706.03719v1}.
+\bibitem{Nogueira13} J. M. Nogueira, \emph{Tunnel number degeneration under
+the connected sum of prime knots}, arXiv:1303.7275v2, 17 June 2013,
+Definitions 1--3 and \S8.
+\url{https://arxiv.org/pdf/1303.7275v2}.
+\bibitem{KL} L. H. Kauffman and S. Lambropoulou, \emph{On the Classification
+of Rational Knots}, exact preprint math/0212011v2, 27 November 2003,
+pp.~6--9, 20--21, 39--41.
+\url{https://arxiv.org/pdf/math/0212011v2}.
+\bibitem{KLDNA} L. H. Kauffman and S. Lambropoulou, \emph{From Tangle
+Fractions to DNA}, undated author exposition, p.~30, Figure 20.
+\url{https://homepages.math.uic.edu/~kauffman/Dresden.pdf}.
+\bibitem{Willerton} S. Willerton, \emph{On the first two Vassiliev
+invariants}, arXiv:math/0104061v1, 5 April 2001, \S1 and \S3.
+Torus formula credited there to Alvarez--Labastida.
+\url{https://arxiv.org/pdf/math/0104061v1}.
+\bibitem{BNhomotopy} D. Bar-Natan, \emph{Vassiliev homotopy string link
+invariants}, J. Knot Theory Ramifications \textbf{4} (1995), 13--32;
+author PDF edition 17 February 2015, \S4.1 and \S5.2.
+\url{https://www.math.toronto.edu/drorbn/papers/homotopy/homotopy.pdf}.
+\bibitem{DKv5} S. V. Duzhin and M. V. Karev, \emph{Detecting the orientation
+of long links by finite type invariants}, exact arXiv:math/0507015v5,
+25 July 2005, \S2, Lemma 4, Proposition 2, \S6 and Lemma 8.
+\url{https://arxiv.org/pdf/math/0507015v5}.
+\bibitem{DKjournal} S. V. Duzhin and M. V. Karev, \emph{Detecting the
+orientation of string links by finite type invariants}, Funct. Anal. Appl.
+\textbf{41}(3) (2007), 208--216.
+\url{https://doi.org/10.1007/s10688-007-0018-7}.
+Journal record: \url{https://www.mathnet.ru/eng/faa2865}.
+The Bar-Natan discovery credit is in \S5, Remark 1 of the inspected
+author-uploaded English journal proof:
+\url{https://www.researchgate.net/publication/225483857}.
+Its production placeholders prevent certification as final publisher bytes.
+\bibitem{BleilerMoriah} S. A. Bleiler and Y. Moriah, \emph{Heegaard
+splittings and branched coverings of $B^3$}, Math. Ann. \textbf{281}
+(1988), 531--543. \url{https://doi.org/10.1007/BF01456837}.
+Original article scans indexed at \url{https://eudml.org/doc/164437}.
+\bibitem{RS} J. H. Rubinstein and M. Scharlemann, \emph{Genus two Heegaard
+splittings of orientable three-manifolds}, Geometry \& Topology Monographs
+\textbf{2} (1999), 489--553, \S2.
+\url{https://msp.org/gtm/1999/02/gtm-1999-02-024p.pdf}.
+\bibitem{BM} A. Bruno and M. Mecchia, \emph{On quotient orbifolds of
+hyperbolic 3-manifolds of genus two}, Rend. Istit. Mat. Univ. Trieste
+\textbf{46} (2014), 271--299, p.~272.
+\url{https://rendiconti.dmi.units.it/volumi/46/014.pdf}.
+\bibitem{Hatcher3M} A. Hatcher, \emph{Notes on Basic 3-Manifold Topology},
+Theorems 1.1 and 3.1, pp.~1 and 56.
+\url{https://pi.math.cornell.edu/~hatcher/3M/3Mfds.pdf}.
+\bibitem{HatcherSmale} A. E. Hatcher, \emph{A proof of the Smale Conjecture,
+$\Diff(S^3)\simeq O(4)$}, Ann. of Math. \textbf{117} (1983), 553--607,
+Appendix p.~604, statement (1).
+\url{https://pi.math.cornell.edu/~hatcher/Papers/SmaleConjecture.pdf}.
+\bibitem{MY14} J.-B. Meilhan and A. Yasuhara, \emph{Abelian quotients of
+the string link monoid}, Algebr. Geom. Topol. \textbf{14} (2014),
+1461--1488, Remark 1.4 and \S3.2.
+\url{https://msp.org/agt/2014/14-3/agt-v14-n3-p09-s.pdf}.
+\bibitem{Morimoto} K. Morimoto, \emph{There are knots whose tunnel numbers
+go down under connected sum}, Proc. Amer. Math. Soc. \textbf{123} (1995),
+3527--3532. \url{https://doi.org/10.1090/S0002-9939-1995-1317043-4}.
+Priority lead: Lemma 5 and full body unread; not a mathematical dependency.
+\bibitem{Li} Y. Li, \emph{2-string free tangles and incompressible surfaces},
+J. Knot Theory Ramifications \textbf{18} (2009), 1081--1087.
+\url{https://doi.org/10.1142/S021821650900735X}.
+Priority lead: full body unread; not a mathematical dependency.
+\end{thebibliography}
+\end{document}
+
+% administrative fault control

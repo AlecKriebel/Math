@@ -36,24 +36,27 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Eleven of the eighteen full-claim candidates have passed combined scoped
+Fourteen of the eighteen full-claim candidates have passed combined scoped
 mathematical audits. #1032 has a critical full-text priority comparison pending;
 a read-only exact connected-Drive search also found no matching paper.
 #1033's explicitly expository three-page package is final clean and sealed after
 NEW review02; publication is held after the preceding #1032 disposition.
-#1034, #1037 and #1041 have repaired their first manuscript/package findings;
-the root checked all 13, 12 and 9 refreshed pages, exact preserved proof bytes,
-source copies, metadata and independently reconstructed archives. New full
-review02 is required for every changed package. #1037 has an exact contemporary
-published match, with qualified chronology and credited proof-exposition framing.
-#1034's Milnor formula and #1041's generic flow isolation retain prior credit.
-#1047's bounded priority audit is adopted for a neutral elementary exposition;
-its paper and kit are being prepared without originality claims. #1052's full
-cyclic-transfer/source-interface mathematics passed both fresh families and an
-unmodified root checker reproduction; its new priority audit is running.
-#1064 has two independent mathematical/source audits; #1071's nine originals
-are acquired for its next mathematical audit. All 101 assertions are screened;
-the eighty-three partial/prior exclusions remain outside processing.
-Cursor: #1032. Best-guess overall completion: 42%.
+#1034 and #1037 passed fresh whole review02 with zero actionable findings;
+terminal administration and unchanged-review custody are being finalized.
+#1041's clean-extraction verifier defect from review02 is repaired and independently
+reproduced by root; NEW whole review03 is running. #1047 passed its first whole
+review clean and has a second fresh full reviewer. #1052's credited four-page
+cyclic corollary and kit are root verified, with all pages inspected and actual
+clean-extraction commands reproduced; its first new whole review is running.
+At least two fresh whole-package reviews are required before package clearance.
+#1064's entropy proof is accepted as a credited corollary of prior marginal
+entropy results, with novelty and priority unknown; its paper is being prepared.
+#1071's all-Hurst lower bound passed both mathematical families with a version-
+specific source qualification; its extensive priority comparison is running.
+#1080's fixed-genus boundedness theorem passed two independent families and root
+reproduction, resolving the separate arbitrary-length clause while exact higher-
+genus maxima and classifications remain unresolved. Its priority audit is next.
+All 101 assertions are screened; the eighty-three partial/prior exclusions remain
+outside processing. Cursor: #1032. Best-guess overall completion: 48%.
 Candidate and mathematical acceptance do not establish historical novelty or
 current worldwide openness.

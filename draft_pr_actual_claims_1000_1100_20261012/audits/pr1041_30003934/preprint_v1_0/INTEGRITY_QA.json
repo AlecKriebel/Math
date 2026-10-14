@@ -1,53 +1,45 @@
 {
-  "utc": "2026-10-14T03:24:05.080352+00:00",
-  "scope": "Current repaired content, real payloads, wrapper binding and local controls; exact final content/archive hashes recorded in external repairs/package01/VERIFICATION.json to avoid self-reference",
+  "utc": "2026-10-14T04:07:26.163069+00:00",
+  "scope": "Bounded package02 interface verification; current complete content/archive pins are external repairs/package02/FINAL_CURRENT_INPUT_PINS.json. Earlier integrity QA and receipts retain exact historical meanings.",
   "baseline_integrity_pass": true,
-  "negative_controls": [
-    {
-      "control": "altered_content",
-      "rejected": true,
-      "returncode": 1
-    },
-    {
-      "control": "unmanifested_content",
-      "rejected": true,
-      "returncode": 1
-    },
-    {
-      "control": "altered_archive",
-      "rejected": true,
-      "returncode": 1
-    },
-    {
-      "control": "altered_wrapper",
-      "rejected": true,
-      "returncode": 1
-    },
-    {
-      "control": "premature_readiness",
-      "rejected": true,
-      "returncode": 1
-    },
-    {
-      "control": "fullsource_outside_raw",
-      "source_extract_excluded_even_outside_raw": true,
-      "archive_unchanged": true,
-      "verifier_returncode": 0
-    }
+  "default_clean_extraction_verifier_passes": true,
+  "clean_before_build_archive_checked": false,
+  "clean_after_build_archive_checked": true,
+  "clean_absent_wrapper_present": false,
+  "clean_absent_wrapper_metadata_and_files_verified": false,
+  "required_absent_wrapper_rejected": true,
+  "present_wrapper_strict_both_modes": true,
+  "negative_controls": 108,
+  "interpreters": [
+    "normal",
+    "-O"
   ],
-  "independent_actual_payload_rebuild_byte_identical": true,
-  "consecutive_identical_content_builder_rebuild": true,
-  "literal_and_casefold_safe_path_check": true,
-  "tar_modes_owner_epoch_check": true,
-  "gzip_crc_isize_check": true,
-  "original_53_copy_map_records_unchanged": true,
-  "all_eleven_originals_and_root_family_first_review_bytes_unchanged": true,
-  "copied_authored_records": 95,
-  "historical_preparation_receipts_preserved_exactly": true,
-  "external_zenodo_wrapper_metadata_exact_equality": true,
-  "local_repository_zenodo_check_passed": true,
+  "fault_families": [
+    "malformed/duplicate/type/metadata/publication-type/upload-type/filepath/filename/nonexternal/duplicate-attachment wrappers",
+    "wrapper symlink/broken-symlink/directory",
+    "missing local archive",
+    "altered content/unmanifested content/archive/historical record",
+    "pending readiness after manifest rebuild",
+    "tar payload/missing/duplicate member/mode after valid outer rehash",
+    "historic output pin after copy-map/current-manifest rebuild"
+  ],
+  "all_faults_rejected_with_expected_explicit_exception": true,
+  "independent_actual_tar_gzip_payload_rebuild_byte_identical": true,
+  "closed_archive_members": 210,
+  "current_content_files": 208,
+  "old_archive_member_set_retained": 125,
+  "added_content_members": 85,
+  "copied_authored_records": 161,
+  "previous_95_copies_and_records_unchanged": true,
+  "whole02_64_outputs_seal_and_root_adoption_byte_identical": true,
+  "all_eleven_originals_unchanged": true,
+  "old_stage_records_preserved_exactly": 16,
+  "bare_metadata_and_external_descriptor_unchanged": true,
+  "metadata_and_local_attachments_checked_locally": true,
+  "no_network_or_service_check_performed": true,
+  "prepare_support_copy_map_idempotent": true,
   "mathematical_proof_check": false,
-  "new_whole_package_review": "PENDING_NEW_WHOLE_02",
+  "new_whole_package_review": "PENDING_NEW_WHOLE_03",
   "publication_ready": false,
   "all_issues_resolved": false
 }

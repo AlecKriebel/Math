@@ -163,3 +163,21 @@ Overall42%. #1052 combined scoped mathematics accepted,11 mathverifiedtotal; pri
 ## 2026-10-14T03:39:30.029932+00:00 — repaired preprint inputs verified (overall42%)
 
 #1034 root156current/515immutable/19originals/149ZIP; #1037 root131current/104immutable/104copies/128ZIP; #1041 root139current/338immutable/95copies/125tar members, all independently reassembled exact bytes. All13/12/9 refreshed pages individually read. Each changed edition requires a NEW whole review, preserving all earlier reports. #1047 paper preparation underway; #1052 priority underway; #1064 fresh two math families underway; #1071 nine originals acquired. No later Zenodo/GWS/merge ahead of #1032. Checkpoint will use isolated temporary Git index and own-folder paths only.
+
+## 2026-10-14T03:47:48.566535+00:00 — #1064 combined math acceptance (overall44%, candidate60%)
+
+Both complete reports/frozen derivations and actual9Git bodies verified. Root unmodified entropy checker exit0 full mathematicalJSONequal, UTC-only difference; originalsource2pages andARp12 individually read. Complete Frobenius upper theorem accepted, n1caveat/classicalmethod/lowercredit retained. Priority nowpending. #1041 review02 found a clean-extraction verifier defect; awaiting its full terminal report before boundedrepair andfreshNEW3.
+
+## 2026-10-14T03:53:55.022046+00:00 — #1052 bounded priority audit adopted (overall44%, candidate70%)
+
+Full report/verdict read; all26 frozen authored output pins rehashed.64queries/sourcebody/earliertranslation-and-lifting antecedents compared. Eligible as credited cyclic corollary of AFWSintegerhardness, withbothencodings andconditionalP=NP scoped; exactcyclichistoricalpriority unknown. No firstness/independence certificate. Preprint preparationnext, no publicationahead1032.
+
+## 2026-10-14T03:59:46.417937+00:00 — NEWwhole02 root adoptions (overall44%)
+
+#1034 and#1037 fullreports/terminalverdicts read; zeroP0–P3, outputpins rehashed31/67. Terminaladministrativesealpending, no laterpublicationahead1032. #1041 fullreportread and64 outputpinsverified; soleP2 is documented clean verifier requiring intentionallyexcluded externalwrapper. Mathematical/source/ninepagechecks clean, repairrequiredfollowedNEWwhole03. OldfirstCLEANverdictandallstagesremainimmutable.
+
+## 2026-10-14T04:08:34.817565+00:00 — #1071 complete scoped math acceptance (overall46%,candidate60%)
+
+Rootfullbothreports/derivations/canonicalbridge/sourcecoarseconvergence read;9actualGit andfamilyoutputsverified;exactcopiedrootcheckerexit0wholemathematicalJSONequalUTC-onlydifference. BothfamiliesfoundNTUv1eq27false strongerlittle-o, independentlyrecoveredneededall-H convergence. CurrentROOT_SOURCEqualificationadopted, futurepaperallfields mustavoidexactcoefficientendorsement. Fullalln/allT/lowerboundeveryestimatoraccepted, prioritypending.
+
+2026-10-14T04:23:49.109680+00:00 — Root rehashed758repair1041 outputs/224current/2488protected baseline files, independently rebuilt210-membertar and actually passed clean default-build-default and optimized verification; fresh whole03 assigned. Root fully read1052four-page TeX/all4visualpages, rehashed348inputs91outputs59exactcopies, independently rebuilt83-memberZIP and ran all five clean stdlibcommands; fresh whole01 assigned. Root adopted1064priority31outputs after full source implication read, credited corollary framing only and new preparation assigned. Root adopted1080both full families12+28 outputs/all6actualGit, original questionpage and primaryinterfaceprooftext, fresh unchangedreviewchecker reproductions;14mathaccepted,48% program. #1047secondwhole and#1071priority started. #1034/#1037terminaladminonly inprogress. Ascendingserviceshold#1032unchanged.
