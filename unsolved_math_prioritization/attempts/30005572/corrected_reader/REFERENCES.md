@@ -1,0 +1,187 @@
+# Public sources and inspection boundaries
+
+This bibliography records the source inspections reported in the accepted arguments and their internal reviews. Preparing this reader did not newly retrieve or independently re-audit those scholarly sources. Quoted theorem scopes remain those in the arguments; no literature-exhaustiveness or novelty conclusion follows. Source documents, extracts, and renderings are excluded.
+
+The 47-page author-hosted LSSW manuscript and the 46-page arXiv v1 have different bytes. The former has no verified revision label and is not described as arXiv v2. The incomplete Kato retrieval is not evidence; the retained file once labeled Tate is byte-identical to Bass and is not an independent Tate source. The separate Tate 1976 article cited in the final arithmetic argument is identified on its own bibliographic merits.
+
+## S01 Romyar Sharifi, Eisenstein cocycles for imaginary quadratic fields, Oberwolfach Reports 20 (2023), pp.1565–1568
+
+https://ems.press/content/serial-article-files/47022
+
+Original question at printed p.1567/PDF p.25; DOI 10.4171/OWR/2023/28.
+
+Retained source evidence: 615226 bytes; SHA-256 `f9c4bbb20624e4c43755a6f221f4dc83c9525dae1c47e4cb09c63d8357032105`.
+
+## S02 Lecouturier, Sharifi, Shih, Wang, Eisenstein cocycles for imaginary quadratic fields, author-hosted manuscript
+
+https://www.math.ucla.edu/~sharifi/publ/imagquad.pdf
+
+47-page retained manuscript, retrieved 2026-10-14; no explicit revision label. Do not call it arXiv v2 or assign a mathematical revision date from HTTP metadata.
+
+Retained source evidence: 2062623 bytes; SHA-256 `3c50732ecd6f44ad448a9d6d77e7543421ea9c12b4ba497a1ebfc1665df6dcb5`.
+
+## S03 Lecouturier, Sharifi, Shih, Wang, Eisenstein cocycles for imaginary quadratic fields, arXiv:2504.19125v1
+
+https://arxiv.org/pdf/2504.19125v1
+
+46 pages, distinct bytes from S02; existing source results retain their coefficient/level/character restrictions.
+
+Retained source evidence: 444864 bytes; SHA-256 `2076ea4be982aceba9c0ee912a0802a82153c53937d28278d5e3153d8dde3022`.
+
+## S04 Sharifi and Venkatesh, Eisenstein cocycles in motivic cohomology
+
+https://math.ucla.edu/~sharifi/eisensymbol.pdf
+
+Relevant motivic, Gersten and theta sections inspected in prior reviews; general g=2 source coefficient ring inverts five.
+
+Retained source evidence: 584866 bytes; SHA-256 `5cfb9ba35b1c0b2b85bc6c3682fbed901ad7c6132676dd86ba3e605a4ad3e7ca`.
+
+## S05 Hyman Bass, K2 des corps globaux, Séminaire Bourbaki, exposé 394 (1971), pp.233–255
+
+https://www.numdam.org/item/SB_1970-1971__13__233_0.pdf
+
+Sections 4–7 and rendered pp.238,243 inspected; tame symbols, transfer and finite tame kernel. Local Tate_K2.pdf has identical Bass bytes and is not a distinct Tate source.
+
+Retained source evidence: 1092604 bytes; SHA-256 `6fc1a82957bb90c42aa124ae020b600d1c41088e35e7ec199297a3e945f1fb7f`.
+
+## S06 Howard Garland, A finiteness theorem for K2 of a number field, Annals of Mathematics 94 (1971), pp.534–548
+
+https://annals.math.princeton.edu/1971/94-3/p08
+
+Publisher metadata checked in prior review; finiteness statement inspected via Bass, not a full reproof of Garland.
+
+## S07 Bass, Milnor, Serre, Solution of the congruence subgroup problem for SL_n (n>=3) and Sp_2n (n>=2), IHÉS 33 (1967)
+
+https://www.numdam.org/item/PMIHES_1967__33__59_0.pdf
+
+Corollary 4.3(a), pp.95–96, cited for stable SK1 vanishing.
+
+## S08 Daniel Quillen, Higher algebraic K-theory: I, Lecture Notes in Mathematics 341 (1973)
+
+https://doi.org/10.1007/BFb0067053
+
+Standard localization and dévissage input; original full proof not reread by prior reviewers.
+
+## S09 Frédéric Déglise, Notes on Milnor–Witt K-theory
+
+https://deglise.perso.math.cnrs.fr/docs/2023/KMW.pdf
+
+Section 2.5.1, Milnor residue characterization; Matsumoto degree-two identification also inspected in Bass §5.
+
+## S10 J. S. Milne, Abelian Varieties
+
+https://www.jmilne.org/math/xnotes/AVs.pdf
+
+Sections 5–6, Corollary 6.6, symmetric integral line-bundle identity. Also cited author scan https://www.jmilne.org/math/articles/1986b.pdf .
+
+## S11 Vladimir Voevodsky, Triangulated categories of motives over a field
+
+https://www.math.ias.edu/Voevodsky/files/files-original/Dropbox/Published_papers/Motives/Collection/s5.pdf
+
+Proposition 2.1.4 and integral Chow-correspondence convention; public author-hosted URL, not a private Dropbox link.
+
+## S12 A. B. Goncharov, Euler complexes and geometry of modular varieties, arXiv:math/0510310v5
+
+https://arxiv.org/pdf/math/0510310v5
+
+Corollary 2.6, Definition 2.8, Theorem 2.10, and polygonal-face sections; level-localized/rational scope retained.
+
+Retained source evidence: 323180 bytes; SHA-256 `88a8f9d09329628ead5cac5c359c980b4892956f308b6f2852d82256d3e4c7ad`.
+
+## S13 J. E. Cremona, Hyperbolic tessellations, modular symbols, and elliptic curves over complex quadratic fields, Compositio Mathematica 51 (1984), pp.275–324
+
+https://numdam.org/item/CM_1984__51_3_275_0/
+
+Record located, direct PDF retrieval failed with HTTP 502 in earlier review. Full proof not used; invoked Euclidean-face information checked in Goncharov. Bibliographic title and pp.275–324 checked against the official record for this inventory. The record links an Addendum and errata, Compositio Mathematica 63 (1987), pp.271–272: https://numdam.org/item/CM_1987__63_2_271_0/ . Only its metadata was inspected; neither Cremona paper supplies an uninspected mathematical input.
+
+## S14 Charles Weibel, The K-book: An Introduction to Algebraic K-theory
+
+https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.pdf
+
+V.(9.3.1), V.9.6 for equicharacteristic Gersten; chapter III.1.3.6, III.6.1.1, III.6.5 independently inspected at https://sites.math.rutgers.edu/~weibel/Kbook/Kbook.III.pdf .
+
+## S15 J. S. Milne, Algebraic Number Theory
+
+https://www.jmilne.org/math/CourseNotes/ANTc.pdf
+
+Theorem 8.31 and Example 8.34, Chebotarev input for auxiliary prime existence.
+
+## S16 J. S. Milne, Class Field Theory
+
+https://www.jmilne.org/math/CourseNotes/CFT.pdf
+
+Standard ray-field conventions; module conclusions proved directly in authored integrality argument.
+
+## S17 Emmanuel Lecouturier and Jun Wang, Level compatibility in Sharifi’s conjecture, arXiv:2208.06921v1
+
+https://arxiv.org/pdf/2208.06921
+
+Cyclotomic comparison only; not an imported Bianchi theorem. Retained PDF header identifies v1, 14 Aug 2022.
+
+Retained source evidence: 167735 bytes; SHA-256 `955bcffe3ac11201ec6a016b3b1b650ca03e4bc6f3eb6f5a4584278853f28738`.
+
+## S18 Masataka Chida, On the equivariant Tamagawa number conjecture for CM elliptic curves, RIMS Kôkyûroku Bessatsu B4 (2007), pp.197–221
+
+https://www.kurims.kyoto-u.ac.jp/~kenkyubu/bessatsu/open/B4/pdf/B04_014.pdf
+
+Section 8; complete retained PDF and relevant pages inspected in residue review. Robert normalization retains mu12.
+
+Retained source evidence: 2182805 bytes; SHA-256 `5d29e2cfc19ccee3540a7b75c666c157c2feffdbe52e9dd506a0c620013b4bcd`.
+
+## S19 Masataka Chida, On the equivariant Tamagawa number conjecture for Hecke characters over imaginary quadratic fields
+
+https://www.math.kyoto-u.ac.jp/~tetsushi/mw200705/chida_preprint.pdf
+
+Section 5, pp.6–7; Robert lattice product and Kato comparison, with twelfth-root scope.
+
+Retained source evidence: 234545 bytes; SHA-256 `f34b0fb47d4b8276a316760ae30b5612a07f5168dcc8f571f1b41f7b491f548d`.
+
+## S20 François Brunault, On the K4 group of modular curves, arXiv:2009.07614v3
+
+https://arxiv.org/pdf/2009.07614v3
+
+Relative lane reference, §§2–3; source coefficient ring Z[1/(6N)]; P18 accepted with corrected scalar universal-unit argument; no general CM divided-power claim.
+
+Retained source evidence: 760089 bytes; SHA-256 `74bf62287ef3350362f9076a540389c48f0b28574d53d88e0441e2e65b409e5a`.
+
+## S21 Fukaya, Kato, Sharifi, Modular symbols in Iwasawa theory, arXiv:1402.3850v2
+
+https://arxiv.org/pdf/1402.3850v2
+
+Historical provenance/comparison only, §§4.2.14–4.2.15. Referenced erratum full text was not recovered and is not a mathematical input.
+
+Retained source evidence: 392771 bytes; SHA-256 `ec0ff776c7f982082c9858d00a179121005527bdf1ff0501ad6752d73c86ec9c`.
+
+## D01 SageMath reference manual, Hilbert class polynomial database
+
+https://doc.sagemath.org/html/en/reference/databases/sage/databases/db_class_polynomials.html
+
+Supporting software/database documentation, not a scholarly proof. The local checker verifies reduction arithmetic but does not independently derive H_-23.
+
+## S22 Dustin Clausen, Akhil Mathew, Matthew Morrow, K-theory and topological cyclic homology of henselian pairs
+
+https://www.imo.universite-paris-saclay.fr/~matthew.morrow/Clausen,%20Mathew,%20Morrow,%20K-theory%20and%20TC%20of%20Henselian%20pairs.pdf
+
+Theorem 1.4 independently inspected in the author-hosted manuscript during the final residue review. The Rochester mirror initially cited in the proof timed out. Used to state the hypotheses of rigidity and explain why it does not supply the missing residue-continuity theorem.
+
+## S23 J. S. Milne, Arithmetic Duality Theorems, second edition
+
+https://www.jmilne.org/math/Books/ADTnot.pdf
+
+I Theorem 4.10(c), printed p.57, and I Theorem 5.1, printed p.67, inspected as public primary text during final arithmetic review. Used for full-group higher-cohomology vanishing and the global Euler characteristic with the stated S hypotheses.
+
+## S24 John Tate, Relations between K2 and Galois cohomology, Inventiones Mathematicae 36 (1976), pp.257–274
+
+https://doi.org/10.1007/BF01390012
+
+Publisher bibliographic record checked. The original full PDF was inaccessible. The exact odd-prime S-integer comparison attributed to Theorem 5.4 was verified through Banaszak–Popescu, S25. The earlier file mislabeled Tate contains Bass and is not evidence for this article.
+
+## S25 Grzegorz Banaszak and Cristian D. Popescu, On the Stickelberger splitting map in the K-theory of number fields, arXiv:1008.1000v1
+
+https://arxiv.org/pdf/1008.1000
+
+Theorem 1.3, Section 6, pp.17–18, and equation (37), p.22, directly inspected as primary research text in final arithmetic review. They state the odd-prime K2 comparison, S-integer extension, and H2 identification used here; no conjectural higher-K comparison is imported.
+
+## Additional final review inspections
+
+S02 was additionally inspected at sections 3.4, 4.2.1–4.2.4, 4.3 and 5.2 for the moved primitive, reduced-point avoidance, auxiliary removal and cusp restrictions. S04 equation (2.4) and sections 6.3–6.4 were checked for the reciprocal tame sign and the GL2(Z) invariance group. S16 V Section 1, especially Theorem 1.7, was inspected for the inverse-limit local-unit/ray-class sequence. The final reviews report these inspections; the reader assembly did not repeat the source retrieval.

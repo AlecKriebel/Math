@@ -1,0 +1,498 @@
+{
+  "checks": [
+    {
+      "id": "C01",
+      "script": "checks/C01/CHECK_TRANSFER_IDENTITY.py",
+      "script_sha256": "3cd2278974f88b1c9e76642a6caebbd149420278fb20f45528f035115e39327a",
+      "script_bytes": 2396,
+      "source_script_name": "CHECK_TRANSFER_IDENTITY.py",
+      "expected": "checks/C01/expected.json",
+      "expected_sha256": "79d9f05ea8e05e4ef48660675c5437ba9b288dec6ff84ca5dad9fea534b464d0",
+      "expected_bytes": 2979,
+      "source_result_name": "TRANSFER_CHECK_RESULTS.json",
+      "supports": [
+        "P09",
+        "P11"
+      ],
+      "review": "A4",
+      "verification_scope": "19 finite group/subgroup cases; 1,550 pair checks. General transfer identity is proved in the audit; tests are sanity checks.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C02",
+      "script": "checks/C02/CHECK_EXAMPLES.py",
+      "script_sha256": "87a9f44a2948114b6c4434373e1ce720fe83d4cf02f924a13eb6604795142584",
+      "script_bytes": 1843,
+      "source_script_name": "CHECK_EXAMPLES.py",
+      "expected": "checks/C02/expected.json",
+      "expected_sha256": "82937273820e9241b8dbd9f6385d5503727df57c3173f4d951edc8a8f6b062db",
+      "expected_bytes": 1030,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P12"
+      ],
+      "review": "A6",
+      "verification_scope": "Four exact residue examples, reduced forms at discriminant -23, and a retained p-group action example. No actual cocycle values.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C03",
+      "script": "checks/C03/check_matrix_identities.py",
+      "script_sha256": "46f2f50cb5924cfd1886efc5d54273a7e28e2fb750d707bed8196452fee850ae",
+      "script_bytes": 4665,
+      "source_script_name": "check_matrix_identities.py",
+      "expected": "checks/C03/expected.json",
+      "expected_sha256": "5d902768adbfb772e3c2f213e567711beb20aef4b8e2b0e93d08c8acf5da9183",
+      "expected_bytes": 387,
+      "source_result_name": "MATRIX_CHECK_RESULTS.json",
+      "supports": [
+        "P13"
+      ],
+      "review": "A7",
+      "verification_scope": "825 samples; 3,450 bad-coset/first-degeneracy, 550 higher-depth, 275 missing-branch and 1,425 good-coset equations. Local matrix checks do not prove global fractional-ideal membership or K2 values.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C04",
+      "script": "checks/C04/CHECK_NORMALIZATION_IDENTITIES.py",
+      "script_sha256": "985c8eaf4889a389f7d91c63e7c3b17ea25d32d6c484c26b1e27c0e7a6a4e9ac",
+      "script_bytes": 2174,
+      "source_script_name": "CHECK_NORMALIZATION_IDENTITIES.py",
+      "expected": "checks/C04/expected.json",
+      "expected_sha256": "7fd3e51a86a3540ab529e47f6edb6e659f3f238e3ffa9eb2f12284dd953bea6a",
+      "expected_bytes": 1123,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P14"
+      ],
+      "review": "A8",
+      "verification_scope": "Exact projector, 287 first-stage and 1,722 residual-defect finite cases. Ordinary Python only; assertions disappear in optimized mode.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C05",
+      "script": "checks/C05/check_unit_ray_square.py",
+      "script_sha256": "77d423944a238b7d87fed7209562b00af8d30f17e61042017a23a32912181c98",
+      "script_bytes": 3603,
+      "source_script_name": "check_unit_ray_square.py",
+      "expected": "checks/C05/expected.json",
+      "expected_sha256": "d05dd2288676fa09661f7f204dec7871cc80a82d75274b8e59ceb20b7e896f49",
+      "expected_bytes": 2264,
+      "source_result_name": "UNIT_RAY_SQUARE_CHECK.json",
+      "supports": [
+        "P15"
+      ],
+      "review": "A9",
+      "verification_scope": "541 CRT quotient models, 460 with nontrivial unit correction. Independently replayed normal, -O and -OO; explicit runtime checks survive optimization.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C06",
+      "script": "checks/C06/check_exact_theta_residue.py",
+      "script_sha256": "d6cfdf97200ce6711e6a8059af80d09fb52d6eff3ee4a8a26bd6e149116d6728",
+      "script_bytes": 3779,
+      "source_script_name": "check_exact_theta_residue.py",
+      "expected": "checks/C06/expected.json",
+      "expected_sha256": "0cb8b0060e4d5e82e8135e516b6aa44001e2b40353190e40362b7097baa63299",
+      "expected_bytes": 1546,
+      "source_result_name": "EXACT_CHECK_RESULTS.json",
+      "supports": [
+        "P16",
+        "P17"
+      ],
+      "review": "A10",
+      "verification_scope": "Division-polynomial degree/weight, F8 arithmetic, 8 coordinate pairs and 32 eligible SL2(Z/4) matrices. Ordinary Python only. Does not independently compute the Hilbert class polynomial or actual cocycle.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": [
+        "sympy"
+      ]
+    },
+    {
+      "id": "C07",
+      "script": "checks/C07/check_theta_relations.py",
+      "script_sha256": "943ebd648fd8c868c3df89a18439f5dfa6c07bf5f00023e0d8cfbd757e01c1c1",
+      "script_bytes": 2741,
+      "source_script_name": "check_theta_relations.py",
+      "expected": "checks/C07/expected.json",
+      "expected_sha256": "1bc2db9e9d57a752687b2d8f9bd4256ec4bb517395187bfddb63ea5d8c14f7d9",
+      "expected_bytes": 922,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P18"
+      ],
+      "review": "A11",
+      "verification_scope": "Author checker independently replayed in ordinary Python and matches AUTHOR_CHECK_REPLAY.json; assertions retained. Checks finite theta algebra, not unrestricted roots or geometric calibration.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C08",
+      "script": "checks/C08/check_independent_algebra.py",
+      "script_sha256": "69aaac6f573d2459498fa0fe4e8d9f7a58bccc124129ed1486a3b1ba1f392d3b",
+      "script_bytes": 2820,
+      "source_script_name": "check_independent_algebra.py",
+      "expected": "checks/C08/expected.json",
+      "expected_sha256": "f44c790afb3dd1ce29c8b2de4a6748d1b4718a7d1dac080175cac7c76da8cf5f",
+      "expected_bytes": 10427,
+      "source_result_name": "INDEPENDENT_ALGEBRA_CHECKS.json",
+      "supports": [
+        "P18"
+      ],
+      "review": "A11",
+      "verification_scope": "63 quadratic-residue-ring ideal cases, cyclic-seven wedge coefficients and a torsion model demonstrating the rejected cancellation implication. Ordinary and -O recorded with explicit runtime checks.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C09",
+      "script": "checks/C09/check_kernel_incidence.py",
+      "script_sha256": "bec06c4d20ddcfcd478ad7d10dbc732a351e95ac1e46712b0c509fbd2322a7e8",
+      "script_bytes": 4392,
+      "source_script_name": "check_kernel_incidence.py",
+      "expected": "checks/C09/expected.json",
+      "expected_sha256": "2ab03ce57a6c9c3217e0d51294f7b8417edef524d2096c2b8f4b52f0baf3f831",
+      "expected_bytes": 1092,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P19"
+      ],
+      "review": "A12",
+      "verification_scope": "Kernel incidence at q=5,25,7; SL2(F5) transfer over 120 group elements and non-Cartesian zero-cycle defect. Ordinary Python replay; uses assertions, no optimized-mode theorem check asserted.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C10",
+      "script": "checks/C10/check_arithmetic_descent.py",
+      "script_sha256": "00902d4a96733b9944ef84764aecb04cd182c4f523548b83467e7efd0e4eac1d",
+      "script_bytes": 2508,
+      "source_script_name": "check_arithmetic_descent.py",
+      "expected": "checks/C10/expected.json",
+      "expected_sha256": "1ffc777dadfa9bd64490579d692763c3c471caeaa57dbf3e07e1ff054f359916",
+      "expected_bytes": 1166,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P20",
+        "P21"
+      ],
+      "review": "A13",
+      "verification_scope": "Exact scalar gcd, local norm squares, p-good definition-modulus residues, norm46/smoothing2115, discriminant400 and inert121 ambient support. Ordinary Python replay; uses assertions.",
+      "uses_python_assertions": true,
+      "modes": [
+        "normal"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C11",
+      "script": "checks/C11/check_independent_pass4.py",
+      "script_sha256": "aae70b93d0b182d2070e9dc343bd8a20ebaa0effbb49d08ccc79c011974b980c",
+      "script_bytes": 3918,
+      "source_script_name": "check_independent_pass4.py",
+      "expected": "checks/C11/expected.json",
+      "expected_sha256": "edd7899100d0341c980ced7837bf2893c594558a4f197464f8f64122f067fb5c",
+      "expected_bytes": 1842,
+      "source_result_name": "INDEPENDENT_CHECK_RESULTS.json",
+      "supports": [
+        "P19",
+        "P20",
+        "P21"
+      ],
+      "review": [
+        "A12",
+        "A13"
+      ],
+      "verification_scope": "Independent incidence at q=2,3,5,7,25; all six SL2(F2) arguments, five nonzero corrections; finite-field constants and inert121 ambient support. Final frozen script has explicit runtime failure checks; normal, -O and -OO replays agree. Structural theorem proofs remain in the written audits.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C12",
+      "script": "checks/C12/CHECK_EXACT_IDENTITIES.py",
+      "script_sha256": "6b94f1489eba0cd93d8fa7dd7426b3ceab8b2c87b5724d889f3658458d56e88d",
+      "script_bytes": 2831,
+      "source_script_name": "CHECK_EXACT_IDENTITIES.py",
+      "expected": "checks/C12/expected.json",
+      "expected_sha256": "b40b9742116d20db72caa4ff45d7792fce3da56af13e167ec202c02b16de0616",
+      "expected_bytes": 1154,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P23",
+        "P24"
+      ],
+      "review": "A15",
+      "verification_scope": "Gersten coefficient expansion, 8 cyclic-four pairs, unit/congruence invariance, 652 finite closed walks, factors576/48/624 and residue exponents. Ordinary, -O and -OO independent replays agree; explicit runtime checks remain active.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C13",
+      "script": "checks/C13/check_inverse_component_algebra.py",
+      "script_sha256": "2b656ad835d35c80eb7eea0533009a377f3a2faa02d2aa7d89c8b4b6cdd88fb2",
+      "script_bytes": 4397,
+      "source_script_name": "check_inverse_component_algebra.py",
+      "expected": "checks/C13/expected.json",
+      "expected_sha256": "54b2f4d69b107b4bbb355bc1e0ee5ea5fb3d8e4fbcf1a1672c8d603a4f36c787",
+      "expected_bytes": 583,
+      "source_result_name": "INVERSE_COMPONENT_CHECK_RESULTS.json",
+      "supports": [
+        "P25",
+        "P26",
+        "P27"
+      ],
+      "review": "A16",
+      "verification_scope": "Exact inverse-coset, semilinear, higher-depth, principal scalar and component-permutation algebra. No CM K2 values or global ideal principalization.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C14",
+      "script": "checks/C14/check_transport_conventions.py",
+      "script_sha256": "7ef90533547b2215b23e942a38bdf771501c80a72ae507ae64b6fe0b94a7afd7",
+      "script_bytes": 3686,
+      "source_script_name": "check_transport_conventions.py",
+      "expected": "checks/C14/expected.json",
+      "expected_sha256": "461a3d7914a6714bde72b7be4777d01d6f5cb5c8cc76dbe9eb7f529910c1847a",
+      "expected_bytes": 409,
+      "source_result_name": "INDEPENDENT_CHECK_RESULTS.json",
+      "supports": [
+        "P25",
+        "P26",
+        "P27"
+      ],
+      "review": "A16",
+      "verification_scope": "Independent transfer, scalar, omitted-branch and class-shift convention checks. No arithmetic K2 values.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C15",
+      "script": "checks/C15/CHECK_SYMBOL_ADVANCE.py",
+      "script_sha256": "6edd54e89cc9805e1d33e31b30e44c626d750ea1c376163cc0f184ec8c85396d",
+      "script_bytes": 5362,
+      "source_script_name": "CHECK_SYMBOL_ADVANCE.py",
+      "expected": "checks/C15/expected.json",
+      "expected_sha256": "7412f7f9c6b9521239c2e8021e24cb95baf58e8f8e60b1610b7cf45541549491",
+      "expected_bytes": 6322,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P28"
+      ],
+      "review": "A17",
+      "verification_scope": "Cyclic orders 2 through 15, exact exterior identities, order-seven formal functional, finite content orbits and local/CRT projection determinants. No global homology or number-field K2.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": [
+        "sympy"
+      ]
+    },
+    {
+      "id": "C16",
+      "script": "checks/C16/check_residue_obstructions.py",
+      "script_sha256": "d594c2bb4d1071b12d760faaaff20c407caa3bbe817f2b8d5456a32f337fb8a8",
+      "script_bytes": 4767,
+      "source_script_name": "check_residue_obstructions.py",
+      "expected": "checks/C16/expected.json",
+      "expected_sha256": "efbdc365cbc0acca1b00ade85109e3da681c1dab967d486933974bad6e7e117e",
+      "expected_bytes": 54361,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P29",
+        "P30"
+      ],
+      "review": "A18",
+      "verification_scope": "204 induced-module cases, including 190 with nontrivial five-Sylow, and finite congruence examples. No actual arithmetic residue or continuity calculation.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C17",
+      "script": "checks/C17/check_content_marginals.py",
+      "script_sha256": "bc12daf9fb585423ad1ddf52df3b442ee8b2a4dc5400c3cd030578c355108791",
+      "script_bytes": 1822,
+      "source_script_name": "check_content_marginals.py",
+      "expected": "checks/C17/expected.json",
+      "expected_sha256": "6a1e75646b3644a89f9925b7b2a80bc4cd15603b44ac015ba2cd0de4e680684c",
+      "expected_bytes": 10384,
+      "source_result_name": "CONTENT_MARGINAL_CHECK.json",
+      "supports": [
+        "P28"
+      ],
+      "review": "A17",
+      "verification_scope": "Independent integer quotient ring counts and general local projection determinant checks.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C18",
+      "script": "checks/C18/check_cyclic_exterior.py",
+      "script_sha256": "cb325529f05be421efdf0e32eba70d4b30b07c93cc1f04e7189a8fbbc90fb677",
+      "script_bytes": 2737,
+      "source_script_name": "check_cyclic_exterior.py",
+      "expected": "checks/C18/expected.json",
+      "expected_sha256": "e7a7775c34686e00ee51622da8646a8d414654dac147824fcd77c59c0c790a64",
+      "expected_bytes": 2385,
+      "source_result_name": "CYCLIC_EXTERIOR_CHECK.json",
+      "supports": [
+        "P28"
+      ],
+      "review": "A17",
+      "verification_scope": "Independent exact sparse-exterior identities for cyclic orders 2 through 17, including degenerate sign classes and double-delta witness.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C19",
+      "script": "checks/C19/check_exceptional_smoothing.py",
+      "script_sha256": "51bc95a2b49999ee17ee24ca1dad8ffe611ca1e740d0122eb4285e82705c48c2",
+      "script_bytes": 3351,
+      "source_script_name": "check_exceptional_smoothing.py",
+      "expected": "checks/C19/expected.json",
+      "expected_sha256": "8330f6d6e395007cd3aed0df42a995a9adb42767a21515e7ab50ac067e4dd205",
+      "expected_bytes": 1463,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P31",
+        "P32"
+      ],
+      "review": "A19",
+      "verification_scope": "Nine local depth minima, three final ray examples and 125 compatible formal families. Formal test failures are not actual arithmetic obstructions.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C20",
+      "script": "checks/C20/CHECK_CUSP_REFLECTIONS.py",
+      "script_sha256": "59e7af2626395be0c771644ee86c091cacbf8fade300de6327783c1cafb5ec37",
+      "script_bytes": 6259,
+      "source_script_name": "CHECK_CUSP_REFLECTIONS.py",
+      "expected": "checks/C20/expected.json",
+      "expected_sha256": "31a3bcd950c43a3e5cb600659fe53a7f45c05fdaabbdcfe0b74f117178cfe172",
+      "expected_bytes": 6003,
+      "source_result_name": "CHECK_RESULTS.json",
+      "supports": [
+        "P33",
+        "P34"
+      ],
+      "review": "A20",
+      "verification_scope": "1,922 conjugations, 3,599 primitive rows, 8,628 diamond solutions, 111,150 valuation boxes, 48 thresholds, 48 exceptional-unit cases and seven Gaussian ray checks. No K2 cusp values.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    },
+    {
+      "id": "C21",
+      "script": "checks/C21/check_cusp_criterion.py",
+      "script_sha256": "eb30a07330408039f7bc4702616e71720a9e4ff9e9128df004fb05ab97bf6ada",
+      "script_bytes": 1925,
+      "source_script_name": "check_cusp_criterion.py",
+      "expected": "checks/C21/expected.json",
+      "expected_sha256": "0aa50a55d26b4686cc6aa9061bdbff7c228d1a5fdcc3900f46ccafe28d01b32d",
+      "expected_bytes": 325,
+      "source_result_name": "CUSP_INDEPENDENT_CHECK_RESULTS.json",
+      "supports": [
+        "P33",
+        "P34"
+      ],
+      "review": "A20",
+      "verification_scope": "Independent 28,679 primitive local rows and 538,083 valuation vectors in 6,174 boxes. No K2 value or global compactification computation.",
+      "uses_python_assertions": false,
+      "modes": [
+        "normal",
+        "-O",
+        "-OO"
+      ],
+      "dependencies": []
+    }
+  ],
+  "replay_policy": "Scripts are copied into a fresh temporary directory before running; frozen proof and expected-output files are never overwritten. Exact JSON values, and where applicable generated byte content, are compared.",
+  "scope": "Finite algebra and examples only; written proofs and their imported mathematical hypotheses remain necessary."
+}
