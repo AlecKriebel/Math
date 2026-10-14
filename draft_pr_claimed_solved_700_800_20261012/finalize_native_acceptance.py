@@ -141,6 +141,12 @@ def main():
         'A bounded priority audit found no earlier full resolution; first historical priority is not certified.')
     if not isinstance(priority_summary, str) or not priority_summary.strip():
         raise ValueError('Priority summary must be a nonempty authored statement')
+    accepted_scope = gate.get('accepted_scope',
+        'The accepted theorem is the full source target, with the hypotheses stated in the paper.')
+    acceptance_result = gate.get('acceptance_result', 'accepted_full_resolution_unrefereed_preprint')
+    if any(not isinstance(value, str) or not value.strip()
+           for value in (accepted_scope, acceptance_result)):
+        raise ValueError('Acceptance scope and result must be nonempty authored statements')
     publication_path = audit / 'publication/PUBLISH_RECEIPT.json'
     publication = json.loads(publication_path.read_text())
     tracker_path = audit / 'publication/SHEET_VERIFICATION.json'
@@ -202,7 +208,7 @@ def main():
         now = datetime.datetime.now(datetime.timezone.utc).isoformat()
         acceptance = {'accepted_utc': now, 'problem': args.problem, 'pr': args.pr,
                       'reviewed_head': args.head, 'merge_commit': pr['merge_commit_sha'],
-                      'result': 'accepted_full_resolution_unrefereed_preprint',
+                      'result': acceptance_result,
                       'doi': doi, 'record_url': publication['record_url'],
                       'statement_hash': current['statement_hash'], 'review_hash': current['review_hash'],
                       'final_readiness': bind(gate_path), 'publication': bind(publication_path),
@@ -210,7 +216,7 @@ def main():
                       'historical_priority_certified': False, 'external_human_peer_review': False,
                       'formal_proof_verification': False, 'extensive_AI_use': True,
                       'historical_candidate_preserved': True, 'turns_used': used, 'turn_limit': limit,
-                      'priority_summary': priority_summary,
+                      'accepted_scope': accepted_scope, 'priority_summary': priority_summary,
                       'known_equivalent_results': gate.get('known_equivalent_results', [])}
         acceptance_raw = encode(acceptance)
         event = {'at': now, 'id': args.problem, 'status': 'preprint_published',
@@ -254,8 +260,7 @@ def main():
         audit_relative = audit.relative_to(REPO).as_posix()
         note = (f'# Accepted preprint for problem {args.problem}\n\n'
                 f'[{publication["title"]}](https://doi.org/{doi}) by Alec Kriebel, '
-                'ORCID 0009-0001-9320-500X, version 1.0. The accepted theorem is the '
-                'full source target, with the hypotheses stated in the paper.\n\n'
+                f'ORCID 0009-0001-9320-500X, version 1.0. {accepted_scope}\n\n'
                 f'[Current audit and publication records](https://github.com/AlecKriebel/Math/tree/main/{audit_relative}) '
                 f'bind the exact manuscript, PDF, support archive, fresh reviews, '
                 f'publication receipt and tracker readback. PR#{args.pr} head `{args.head}` '
