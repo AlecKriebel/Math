@@ -1,6 +1,6 @@
 """Publish a scoped present-day acceptance mirror after verified publication and merge.
 
-An isolated index and fresh remote parent preserve the shared dirty checkout.
+A scoped Git tree and fresh remote parent preserve the shared dirty checkout.
 Only the named problem's entries and two new acceptance sidecars are changed.
 Historical proof-attempt lifecycle events are never reconstructed.
 """
@@ -15,6 +15,7 @@ import re
 from pathlib import Path
 import subprocess
 import tempfile
+from scoped_tree import replace_paths
 
 REPO = Path(__file__).resolve().parent.parent
 NATIVE = 'unsolved_math_prioritization'
@@ -271,15 +272,15 @@ def main():
                        f'{NATIVE}/catalog.json': replace_array_record(before['catalog.json'], args.problem, current),
                        f'{NATIVE}/ranking.csv': ''.join(csv_lines),
                        native_acceptance: acceptance_raw, native_note: note}
-            # Neither the native attempt's frozen files nor any unrelated row is staged.
-            run('git', 'read-tree', parent, env=env)
+            # Frozen attempt files and unrelated entries retain their Git objects.
+            object_updates = {}
             for path, raw in updates.items():
                 blob = run('git', 'hash-object', '-w', '--stdin', raw=raw).strip()
-                run('git', 'update-index', '--add', '--cacheinfo', '100644', blob, path, env=env)
-            changed = run('git', 'diff', '--cached', '--name-only', parent, env=env).splitlines()
+                object_updates[path] = ('100644', blob)
+            tree = replace_paths(REPO, parent, object_updates)
+            changed = run('git', 'diff', '--name-only', parent, tree).splitlines()
             if set(changed) != set(updates):
                 raise ValueError('Unexpected native acceptance changes')
-            tree = run('git', 'write-tree', env=env).strip()
             commit = run('git', 'commit-tree', tree, '-p', parent,
                          raw=f'Accept PR{args.pr} published preprint and synchronize its own queue mirrors\n').strip()
             push = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],

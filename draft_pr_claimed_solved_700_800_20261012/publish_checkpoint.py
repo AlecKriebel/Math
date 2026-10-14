@@ -1,7 +1,7 @@
 """Push only this shard's selected files onto remote main, preserving shared checkout.
 
 The local checkout has independent unpublished commits and unrelated dirty files.
-An isolated temporary index avoids staging, resetting, or rebasing others' work.
+Scoped tree construction avoids allocating or changing the shared Git index.
 No branches are created or switched. Each push is a normal fast-forward on main.
 """
 import datetime
@@ -12,6 +12,7 @@ import re
 import subprocess
 import sys
 import tempfile
+from scoped_tree import replace_paths, selected_working_updates
 
 ROOT = pathlib.Path(__file__).resolve().parent
 REPO = ROOT.parent
@@ -48,15 +49,14 @@ def publish(message, paths):
                                      cwd=REPO, capture_output=True)
             if present.returncode:
                 git('fetch', '--no-write-fetch-head', 'origin', parent)
-            git('read-tree', parent, env=env)
-            git('add', '--', *relative, env=env)
-            changed = git('diff', '--cached', '--name-only', parent, env=env).splitlines()
+            updates = selected_working_updates(REPO, parent, relative)
+            tree = replace_paths(REPO, parent, updates)
+            changed = git('diff', '--name-only', parent, tree).splitlines()
             if not changed:
                 print(json.dumps({'status': 'no_changes', 'remote_main': parent}))
                 return
             for name in changed:
                 (REPO / name).resolve().relative_to(ROOT)
-            tree = git('write-tree', env=env)
             commit = git('commit-tree', tree, '-p', parent, input=message + '\n')
             result = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'],
                                     cwd=REPO, capture_output=True, text=True)
