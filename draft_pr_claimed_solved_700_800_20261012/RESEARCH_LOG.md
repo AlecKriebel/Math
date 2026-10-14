@@ -71,3 +71,7 @@ Closed exact claimed-solved PR734 head7a00d71fdf01ffb785863c859d75e88f943d38cf w
 ### 2026-10-14T03:36:58.129378+00:00 — PR742 reproduction and source scope checkpoint (25%; shard 19%)
 
 Root independently verifies the unrestricted equality is false in every positive characteristic ACFH model. Frozen26 files intact, source-free wrapper reproduced normally; finite controls do not prove the infinite theorem. Fresh family reviews finishing; priority still required before any publication or disposition.
+
+### 2026-10-14T03:38:31.465471+00:00 — PR742 independent math gate (35%; shard 20%)
+
+Both fresh approach families and root pass the literal unrestricted-characteristic counterexample. Priority audit begins with direct primary registry searches as well as indexed search; no acceptance/publication yet.
