@@ -1793,7 +1793,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1782 | 30000215 / OWR-822-007 | Theoretical Certification of Crossing-Number Optimality | 0.0545 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 1783 | 30000386 / OWR-1183-006 | The Two-Dimensional Time-Bomb Conjecture | 0.0544 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 1784 | 30001101 / OWR-2489-006 | Alcuin Numbers and Recognition of Small Boat Graphs | 0.0542 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 1785 | 10000037 / AMR-099-0037 | Uniqueness of percolation on graphs roughly isometric to lattices | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1785 | 10000037 / AMR-099-0037 | Uniqueness of percolation on graphs roughly isometric to lattices | 0.0540 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-10-14: independently audited degree-four deterministic graph quasi-isometric to Z²; iid bond p=0.95 gives P(at least two infinite clusters)>1/3 with p_c<=0.9. Negative resolution of the context-supported full-supercritical uniqueness formulation; the source question leaves its parameter range implicit. One mathematical pass; public reader and independent packaging acceptance retained in attempts/10000037/. Source is a question, not a published theorem; novelty and priority uncertified. |  |
 | 1786 | 10400007 / AMR-103-0007 | Problem 1.7 — (J. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1787 | 10400168 / AMR-103-0168 | Problem 9.4 — (Y. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1788 | 11000165 / AMR-109-0165 | Problem 2.8 — Recall that we noted, earlier, that every genus g Heegaard splitting of every homology 3-sphere is obtained by allowi… | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
