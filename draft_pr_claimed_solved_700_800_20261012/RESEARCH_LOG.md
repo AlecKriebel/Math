@@ -75,3 +75,7 @@ Root independently verifies the unrestricted equality is false in every positive
 ### 2026-10-14T03:38:31.465471+00:00 — PR742 independent math gate (35%; shard 20%)
 
 Both fresh approach families and root pass the literal unrestricted-characteristic counterexample. Priority audit begins with direct primary registry searches as well as indexed search; no acceptance/publication yet.
+
+### 2026-10-14T03:46:44.699248+00:00 — PR742 primary priority work checkpoint (35%; shard 20%)
+
+Current eligibility and source identities remain stable. Root registry/direct-query receipts recorded; indexed silence is not absence. Independent priority auditor still active, with source/access limits stated.
