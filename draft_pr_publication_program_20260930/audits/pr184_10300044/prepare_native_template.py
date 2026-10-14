@@ -1,14 +1,14 @@
 """Prepare scoped current scientific records locally, preserving original history."""
 from pathlib import Path
 import datetime,hashlib,json,shutil,sys
-A=Path(__file__).resolve().parent;O=A/'original_submission/files/unsolved_math_prioritization/attempts/10300044';D=A/'integration_preparation';PK=A/'publication_package_v1'
+A=Path(__file__).resolve().parent;O=A/'original_submission/files/unsolved_math_prioritization/attempts/10300044';D=A/'integration_preparation';PK=A/(sys.argv[2] if len(sys.argv)>2 else 'publication_package_v1')
 def read(p):return json.loads(p.read_text())
 def save(p,j):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(j,indent=2)+'\n')
 def require(x,k):
  if not x:raise RuntimeError(k)
 def pin(p):return {'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
 final=sys.argv[1]=='final';require(sys.argv[1] in ['pending','final'],'Unknown mode')
-name='native_template_final_01' if final else 'native_template_pending_01';T=D/name;T.mkdir(parents=True,exist_ok=False);stamp=datetime.datetime.now(datetime.UTC).isoformat()
+name=sys.argv[3] if len(sys.argv)>3 else ('native_template_final_01' if final else 'native_template_pending_01');T=D/name;T.mkdir(parents=True,exist_ok=False);stamp=datetime.datetime.now(datetime.UTC).isoformat()
 original=sorted(p for p in O.rglob('*') if p.is_file());require(len(original)==17,'Original scope')
 for p in original:
  n=p.relative_to(O)
@@ -50,4 +50,5 @@ require(pin(T/'CANDIDATE.md')['sha256']=='28d66c68f4497b1b2a3476d3f858902e8def73
 files={str(p.relative_to(T)):pin(p) for p in sorted(T.rglob('*')) if p.is_file()}
 for n in files:(T/n).chmod(0o444)
 save(D/'CURRENT_TEMPLATE.json',{'UTC':stamp,'current_template':name,'files':files,'original_native_files':17,'historical_native_files':17,'current_paper_and_controls_byteidentical_to_reviewed_package':True,'current_proof_byteidentical_to_original':True,'native_location_new_scientific_replay_claimed':False,'publication':pub,'MAIN_updated':False})
+archive=D/(name.upper()+'_MANIFEST.json');require(not archive.exists(),'Do not overwrite immutable template manifest');archive.write_bytes((D/'CURRENT_TEMPLATE.json').read_bytes());archive.chmod(0o444)
 print(json.dumps({'status':'LOCAL_CURRENT_NATIVE_TEMPLATE_PREPARED','files':len(files),'template':name}))

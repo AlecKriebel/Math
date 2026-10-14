@@ -1,8 +1,9 @@
 """Build the explicit own-authored supplemental payload; never walk private trees."""
 from pathlib import Path
-import hashlib,json,zipfile,datetime,shutil
+import hashlib,json,zipfile,datetime
 A=Path(__file__).resolve().parent
 P=A/'publication_package_v1'
+if (P/'REVIEW_PACKET_MANIFEST.json').exists():raise RuntimeError('Preserve reviewed v1 history; use the explicit v2 correction builder')
 S=P/'supplement'
 S.mkdir(exist_ok=True)
 def digest(b):return hashlib.sha256(b).hexdigest()
@@ -10,7 +11,7 @@ def emit(path,obj):path.write_text(json.dumps(obj,indent=2,ensure_ascii=True)+'\
 selected=set()
 def add(folder,names):
  for n in names:selected.add(str(Path(folder)/n))
-add('literal_source_adversary',json.loads((A/'literal_source_adversary/PUBLIC_SAFE_ALLOWLIST.json').read_text())['case_relative_files'] if False else [str(Path(x).relative_to('literal_source_adversary')) for x in json.loads((A/'literal_source_adversary/PUBLIC_SAFE_ALLOWLIST.json').read_text())['case_relative_files']])
+selected.update(json.loads((A/'literal_source_adversary/PUBLIC_SAFE_ALLOWLIST.json').read_text())['case_relative_files'])
 add('global_taut_geometry_adversary',json.loads((A/'global_taut_geometry_adversary/FINAL_SEAL.json').read_text())['public_own_allowlist'])
 add('gv_algebra_reproduction_adversary',json.loads((A/'gv_algebra_reproduction_adversary/SAFE_OWN_ALLOWLIST.json').read_text())['files'])
 add('priority_target_history',[x['path'] for x in json.loads((A/'priority_target_history/PUBLIC_AUTHORED_ALLOWLIST.json').read_text())['exact_public_authored_files']])
@@ -63,7 +64,7 @@ The proof uses the classical nonzero compact-support suspension input with its a
 
 ## Priority and source access
 
-The nonzero block is credited to classical Mather--Thurston/Tsuboi theory, interval-bundle replacement to the classical operation documented by Gabai, and hyperbolization to Thurston. Three separately initialized priority families and root primary-body checks found no authenticated earlier explicit full consequence in the inspected corpus. This is a bounded search, not a firstness or guaranteed novelty certificate. Final 2003 target-chapter wording was not compared. Relevant Tsuboi 1984 and 1985, Mather--Moussu--Tsuboi 1981, Gabai 1999, and Walczak 2013 full bodies remain unread in the relevant checks. Detailed source versions, read depths, failed access routes, scope differences and family coverage percentages are retained in audit_history/priority_* and ROOT_PRIORITY_DISPOSITION_01.md. Public abstracts, keyword scans and metadata checks are not represented as full-body reads.
+The nonzero block is credited to classical Mather--Thurston/Tsuboi theory, interval-bundle replacement to the classical operation documented by Gabai, and hyperbolization to Thurston. Three separately initialized priority families and root primary-body checks found no authenticated earlier explicit full consequence in the inspected corpus. This is a bounded search, not a firstness or guaranteed novelty certificate. Final 2003 target-chapter wording was not compared. Relevant Tsuboi 1984 and 1985, Mizutani--Morita--Tsuboi 1981, Gabai 1999, and Walczak 2013 full bodies remain unread in the relevant checks. Detailed source versions, read depths, failed access routes, scope differences and family coverage percentages are retained in audit_history/priority_* and ROOT_PRIORITY_DISPOSITION_01.md. Public abstracts, keyword scans and metadata checks are not represented as full-body reads.
 
 ## Reading the archive
 
