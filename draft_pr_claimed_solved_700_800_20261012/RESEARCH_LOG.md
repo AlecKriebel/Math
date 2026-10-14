@@ -67,3 +67,7 @@ Root read the entire independent adversary report, validated every authored mani
 ## 2026-10-14T03:26:19.418199+00:00 — PR734 complete, closed for verified full priority collision (estimated process completion: 100%; novel-contribution goal: 0%; overall shard: 17%)
 
 Closed exact claimed-solved PR734 head7a00d71fdf01ffb785863c859d75e88f943d38cf without merge and verified its explanatory comment. Fresh independent adversary confirmed the entire earlier De Caro proof, action equivalence and actual July24 file/DOI dates. Native own QUEUE/state/history/catalog/ranking/assessment entries now record already_solved, with prior_result_doi and no claimed new publication. All unrelated entries and shared checkout were preserved on commitf13bb3ba024667587007c0fa561e6af7e019d27e. No duplicate preprint or tracker row. Private primary source bodies removed; exact candidate and authored reports remain. This selected candidate was originally claimed_solved; after recording this outcome it is skipped from further processing. Next ascending draft is PR742, whose status will be screened before any mathematics.
+
+### 2026-10-14T03:36:58.129378+00:00 — PR742 reproduction and source scope checkpoint (25%; shard 19%)
+
+Root independently verifies the unrestricted equality is false in every positive characteristic ACFH model. Frozen26 files intact, source-free wrapper reproduced normally; finite controls do not prove the infinite theorem. Fresh family reviews finishing; priority still required before any publication or disposition.
