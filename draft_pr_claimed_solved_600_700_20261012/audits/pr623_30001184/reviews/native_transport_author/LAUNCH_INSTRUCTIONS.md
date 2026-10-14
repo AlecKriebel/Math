@@ -11,7 +11,7 @@ from pathlib import Path
 import types
 path = Path('/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/native_transport_author/run_native_transport.py')
 source = path.read_bytes()
-if hashlib.sha256(source).hexdigest() != '81b41e0dda32122b3c3f3d744829fab365381714107ec63703c337a856cdf72e':
+if hashlib.sha256(source).hexdigest() != '16ac53b7127971de17c0948783fbc23ccc6854c7720e7e63cbd585305df7bf3b':
     raise SystemExit('Reviewed bootstrap differs; nothing was executed')
 module = types.ModuleType('__main__')
 module.__file__ = str(path)

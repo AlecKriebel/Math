@@ -1,6 +1,6 @@
 # PR623 native transport repair report
 
-**All requested author repairs are implemented: 47 offline tests pass under normal Python and 47 under `-O`, with zero failures/errors. Fresh independent review is required before execution. No live upload, commit, publication or other Zenodo mutation was made by this author.**
+**All requested author repairs are implemented: 56 offline tests pass under normal Python and 56 under `-O`, with zero failures/errors. Fresh independent review is required before execution. No live upload, commit, publication or other Zenodo mutation was made by this author.**
 
 The prior author version contained real F1/F2/F3 defects; the parent later identified operational F4. Its original source, tests, report, receipt and log are preserved at `snapshots/original_author_20261014T044110Z/`, with a dated snapshot receipt. The independent review and its reproducers are unchanged. The earlier PASS label described an insufficient test model; this report supersedes it.
 
@@ -42,6 +42,14 @@ The parent's preserved filtered calibration on its already accepted own PR618 PD
 
 A negotiation-aware fake endpoint returns 406 if the actual download header is wrong and yields bytes only for wildcard acceptance. The real reader must produce the reviewed SHA-256 with one request. The actual kit streaming control independently verifies upload Content-Type remains octet-stream. This repairs a deployed compatibility failure, without claiming that own draft 23356540 has uploaded content yet.
 
+## F5: strict content-derived annotations and inert links
+
+The pre-F5 source/report/receipt reviewed by review2 is preserved in snapshots/pre_f5_author_20261014T052600Z; review1/review2 and their reproducers remain unchanged. Completed PDF metadata permits only exact integer width 612 and height 792, derived from its pinned inherited MediaBox with no crop/rotation through bounded object-stream inspection. ZIP metadata permits only integer zip_toc_position 218946, verified against the immutable archive central-directory signature and independently controlled by its raw EOCD field. FILE_ANNOTATION_DERIVATION.json binds the values to original bytes. Null/empty metadata remains valid during absent/asynchronous extraction. Unknown fields, wrong types/values/MIME reject.
+
+The official [file-service implementation](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/config.py) makes derived links depend on extension, including pending files. PDF supports only the complete iiif_canvas/iiif_base/iiif_info/iiif_api group for the exact own ID and name: draft:23356540 while staged, record:23356540 after publication, and primary full/full/0/default.png image parameters. ZIP permits only its exact own-state container route. Base self/content/commit stay checked; published commit links reject. Unknown/partial/cross-type/wrong-host/ID/name/state/query/fragment shapes reject. No derived link is followed; preview/container request routes remain unavailable.
+
+The shared guard covers file collections and mutation acknowledgments. Nine new actual unchanged-kit HTTPSConnection wire tests cover complete deployed draft/published shapes, real kit receipts, lost-publish recovery and metadata/link-only positives. Hostile metadata/link matrices reject before publication; corrupt content/MD5 still rejects; malformed commit acknowledgment stops after the reversible commit. Both normal and optimized totals are 56, retaining all prior 47. The parent calibration is preserved and hash-bound, its foreign ZIP offset is not reused, and correct draft-state templates follow primary code. No other-record query, live upload/extraction or unchanged-science replay was made by this author.
+
 ## O1: sync barriers and precise limits
 
 Every mutation has atomically saved intent before dispatch: temporary-file flush/fsync, replacement, journal-directory fsync and parent-directory fsync. New directory chains also receive directory/parent barriers. Any sync/storage failure sets a process fail-stop flag; later reads cannot enable another mutation in that process. Real fsync instrumentation confirms all barriers precede every modeled dispatch. File, directory, parent and post-acknowledgment failure controls stop later writes. Fresh-client restart still prohibits repeating uncertain operations.
@@ -52,7 +60,7 @@ These are software barriers under the OS/filesystem contract. **No destructive p
 
 No initialize/content/commit/publish operation is automatically sent twice, even after restart. Lost initialize requires its registered key readback. Lost content PUT requires independently verified pending SHA-256 or stops without PUT/commit retry. A valid content acknowledgment permits reversible commit, then exact committed size/MD5/downloaded-SHA checks before publication. Lost commit requires completed readback. Lost publish uses the kit's independent native published readback; an unchanged draft receives no repeated POST.
 
-The repaired-source read-only preflight at **2026-10-14T05:04:14.082315Z** confirms exact pinned native metadata, unpublished draft 23356540 and zero completed/pending files. `REPAIRED_READONLY_PREFLIGHT.json` is a preflight, not a publication/readiness receipt. Numeric `0` for `access.embargo.active` is rejected; only Boolean `False` is allowed.
+The repaired-source read-only preflight at **2026-10-14T05:36:12.119562Z** confirms exact pinned native metadata, unpublished draft 23356540 and zero completed/pending files. `REPAIRED_READONLY_PREFLIGHT.json` is a preflight, not a publication/readiness receipt. Numeric `0` for `access.embargo.active` is rejected; only Boolean `False` is allowed.
 
 `REPAIR_INPUT_RECHECK.json` confirms **45/45** publication pins and **29/29** native pins unchanged, all 18 original-review artifact pins unchanged, and the original author snapshot intact. Native original-commit identity was independently established by review1; these checks preserve its exact bytes. No shared paper/ZIP/metadata/helper/global kit/index/branch/remote/tracker was edited. Full downloaded sources remain in ignored tmp.
 
@@ -60,4 +68,4 @@ The repaired-source read-only preflight at **2026-10-14T05:04:14.082315Z** confi
 
 A new independent adversary must review the repaired source/bootstrap/tests/receipts. Production file acknowledgments, pending-content availability after ambiguous PUT, this draft's actual final representation, external DOI registration/resolution and the final real kit receipt remain unexecuted. Unexpected shapes fail closed; no replacement deposit, metadata simplification, delete/reupload or weakened check is supported. The local lock does not prevent other-machine/browser edits, and no server-atomic read/publish transaction is claimed.
 
-Assigned author repair work: **100%**. Estimated operational readiness: **85%**, pending fresh review and live boundaries. Publication itself remains unfinished.
+Assigned author repair work: **100%**. Estimated operational readiness: **80%**, pending fresh review and live boundaries. Publication itself remains unfinished.

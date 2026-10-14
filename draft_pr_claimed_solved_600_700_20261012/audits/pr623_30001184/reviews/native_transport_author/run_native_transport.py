@@ -8,7 +8,7 @@ import uuid
 
 sys.dont_write_bytecode = True
 ADAPTER = Path(__file__).resolve().with_name('native_transport.py')
-ADAPTER_SHA256 = '10525be2c736213116173c2bcc75b32e32c0e6addd5a2c123f23efa812f01af8'
+ADAPTER_SHA256 = '954d909ee6a8388c36d93bfa74387b24e9383a90c113d6f8eece89a0fa54f32b'
 
 
 def load_reviewed_adapter(source_path=ADAPTER):

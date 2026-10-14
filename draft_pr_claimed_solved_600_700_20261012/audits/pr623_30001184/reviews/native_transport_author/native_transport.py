@@ -12,6 +12,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from datetime import datetime, timezone
 import hashlib
+import io
 import http.client
 import json
 import os
@@ -21,6 +22,8 @@ import sys
 import tempfile
 import types
 import uuid
+import zipfile
+import zlib
 from urllib.parse import quote, urlsplit
 
 ROOT = Path('/Users/alec/Documents/Math')
@@ -291,6 +294,40 @@ def durable_journal_save(path, value):
             os.unlink(temporary)
 
 
+def derived_file_metadata(payload):
+    """Validate generated annotations against these exact immutable payloads.
+
+    This is intentionally a pinned-PDF inspector, not a general PDF parser.
+    All inspected data already passed size/SHA-256/MD5. Bounded object-stream
+    inflation confirms the one inherited letter MediaBox and no crop/rotation.
+    """
+    require(type(payload) is FrozenPayload, 'Annotations require a captured payload')
+    data = payload.read_bytes()
+    if payload.name == 'gns_generation_counterexample.pdf':
+        require(data.startswith(b'%PDF-'), 'Pinned PDF signature differs')
+        structural = []
+        for match in re.finditer(rb'<<(.*?)>>\s*stream\r?\n(.*?)\r?\nendstream', data, re.S):
+            if b'/Type/ObjStm' not in match[1] or b'/FlateDecode' not in match[1]:
+                continue
+            inflater = zlib.decompressobj()
+            decoded = inflater.decompress(match[2], 1024 * 1024 + 1)
+            require(len(decoded) <= 1024 * 1024 and inflater.eof and not inflater.unconsumed_tail
+                    and not inflater.unused_data, 'Unsupported pinned PDF structural stream')
+            structural.append(decoded)
+        require(structural, 'Pinned PDF object structure cannot be verified')
+        boxes = [tuple(int(number) for number in match[1].split())
+                 for block in structural for match in re.finditer(rb'/MediaBox\s*\[([0-9\s]+)\]', block)]
+        require(boxes == [(0, 0, 612, 792)] and all(b'/CropBox' not in block and b'/Rotate' not in block for block in structural),
+                'Pinned PDF geometry differs from inherited 612 by 792 MediaBox')
+        return {'width': 612, 'height': 792}
+    require(payload.name == 'gns_verification.zip' and data.startswith(b'PK\x03\x04'), 'Pinned ZIP signature differs')
+    with zipfile.ZipFile(io.BytesIO(data)) as archive:
+        offset = archive.start_dir
+    require(type(offset) is int and offset == 218946 and data[offset:offset + 4] == b'PK\x01\x02',
+            'Pinned ZIP central-directory offset differs')
+    return {'zip_toc_position': offset}
+
+
 def legacy_projection(record):
     """An explicitly reversible view of the exact pinned native metadata.
 
@@ -357,6 +394,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         require(all(type(entry['path']) is FrozenPayload for entry in files), 'Only immutable captured payloads are allowed')
         require({name: (f['size'], f['sha256']) for name, f in self.files.items()} == FILE_PINS,
                 'Transport accepts only the exact reviewed two files')
+        self.derived_metadata = {name: derived_file_metadata(entry['path']) for name, entry in self.files.items()}
         self.allow_writes = allow_writes
         self.journal_path = journal_path or HERE / 'runtime/native-23356540-journal.json'
         if self.journal_path.exists():
@@ -445,9 +483,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
             require(response.get('key') == name and response.get('status') ==
                     ('completed' if key.startswith('commit:') else 'pending'),
                     'Native file mutation acknowledgment has wrong key/status')
-            endpoint = DRAFT + '/files/' + quote(name, safe='')
-            for kind, suffix in (('self', ''), ('content', '/content'), ('commit', '/commit')):
-                self.safe_url(response.get('links', {}).get(kind), endpoint + suffix)
+            self.validate_file_annotations(response, name, draft=True)
             if key.startswith('commit:'):
                 self.require_file_match(response, self.files[name])
         elif key.startswith('initialize:'):
@@ -478,6 +514,42 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
         self.pin_id(deposit_id)
         return self.request('GET', DRAFT if draft else REC, accept=NATIVE_ACCEPT)
 
+    def validate_file_annotations(self, item, name, draft):
+        """Only byte-derived values and exact own-ID/key/state link templates.
+
+        Preview/container links are validated as inert annotations and never
+        requested. The ordinary content endpoint remains the only byte reader.
+        """
+        expected_mime = 'application/pdf' if name.endswith('.pdf') else 'application/zip'
+        require(item.get('mimetype') in (None, expected_mime), 'Native file MIME type differs from pinned content')
+        metadata = item.get('metadata')
+        require(metadata is None or type(metadata) is dict, 'Invalid native file metadata type')
+        if metadata:
+            wanted = self.derived_metadata[name]
+            require(set(metadata) == set(wanted) and all(type(metadata[key]) is int and metadata[key] == value
+                    for key, value in wanted.items()), 'Unknown or incorrect native derived file metadata')
+            require(item.get('status') == 'completed', 'Pending file has premature extracted metadata')
+        endpoint = (DRAFT if draft else REC) + '/files/' + quote(name, safe='')
+        expected = {'self': endpoint, 'content': endpoint + '/content'}
+        if draft:
+            expected['commit'] = endpoint + '/commit'
+        if name.endswith('.pdf'):
+            prefix = 'draft' if draft else 'record'
+            uuid = prefix + ':' + str(RECORD_ID)
+            image = BASE + '/api/iiif/' + uuid + ':' + quote(name, safe='')
+            derived = {'iiif_canvas': BASE + '/api/iiif/' + uuid + '/canvas/' + quote(name, safe=''),
+                       'iiif_base': image, 'iiif_info': image + '/info.json',
+                       'iiif_api': image + '/full/full/0/default.png'}
+        else:
+            derived = {'container': endpoint + '/container'}
+        links = item.get('links')
+        require(type(links) is dict and set(expected) <= set(links) and set(links) <= set(expected) | set(derived),
+                'Unexpected native file link fields/state')
+        present = set(links) & set(derived)
+        require(not present or present == set(derived), 'Incomplete native derived link group')
+        for key in links:
+            self.safe_url(links[key], (expected | derived)[key])
+
     def file_list(self, draft=True):
         endpoint = (DRAFT if draft else REC) + '/files'
         response = self.request('GET', endpoint)
@@ -489,14 +561,7 @@ class NativeOwnDraftClient(zenodo.ZenodoClient):
             name = item.get('key')
             require(name in self.files and name not in entries, 'Unexpected or duplicate native filename')
             require(item.get('status') in {'pending', 'completed'}, 'Unexpected native file status')
-            require(item.get('metadata') in (None, {}), 'Unsupported native file metadata')
-            expected = endpoint + '/' + quote(name, safe='')
-            links = item.get('links', {})
-            self.safe_url(links.get('self'), expected)
-            self.safe_url(links.get('content'), expected + '/content')
-            if draft:
-                self.safe_url(links.get('commit'), expected + '/commit')
-            require(set(links) <= {'self', 'content', 'commit'}, 'Unexpected native file links')
+            self.validate_file_annotations(item, name, draft)
             if item['status'] == 'completed':
                 self.require_file_match(item, self.files[name])
             else:
