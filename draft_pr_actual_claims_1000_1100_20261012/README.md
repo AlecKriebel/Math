@@ -36,29 +36,31 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Fifteen of the eighteen full-claim candidates have passed combined scoped
+Sixteen of the eighteen full-claim candidates have passed combined scoped
 mathematical audits. #1032 remains the ascending disposition cursor: its
 critical full-text priority comparison is pending, and an exact connected-Drive
-search found no matching paper. #1033, #1034 and #1037 are final clean and sealed
-locally, ready for later publication after the #1032 disposition.
-#1041's fresh whole03 and #1047's second full review found zero actionable
-issues; root adopted those reports and is checking terminal administration.
-#1052's single dated-metadata correction is root verified, with a second full
-review running. #1064's first full paper review passed the mathematics, source
-framing, five pages and reproducibility, and found two narrow package guards
-that are being repaired before its second fresh review.
-#1071's priority comparison and newly accessible journal-formatted source are
-adopted for attributed proof/exposition, with novelty and priority unknown;
-its prepared seven-page paper awaits root checks and new whole reviews.
-#1080's prior-corollary route is independently checked and credited; its paper
-is being prepared for the complete restricted arbitrary-length clause, while
-higher-genus exact maxima and classifications remain unresolved in this work.
-#1085's complete dimension dichotomy and explicit Robin counterexample passed
-two independent mathematical families and root reproduction; priority is running.
-#1094's eight original files are acquired and two distinct mathematical families
-are reviewing its Nijenhuis classification. #1097 and #1098 remain next.
+search found no matching paper. #1033, #1034, #1037, #1041 and #1047 are now
+root sealed and ready locally, held for later publication after #1032.
+#1052's second full review found zero actionable issues and is root adopted;
+its final administrative package awaits root verification.
+#1064's second full review accepted mathematics, sources, five-page PDF and
+ordinary reproduction; a newly reproduced archive-output hardlink defect is
+being repaired before a new complete whole03 review.
+#1071's attributed seven-page proof and source-version boundaries are root
+checked; whole01 is active, with writer-alias and citation-format repairs needed.
+#1080's credited seven-page deduction is root read and all pages viewed; its
+current custom metadata needs a repository-tool upload manifest, and an archive
+output alias needs repair. New full reviews still govern clearance. Higher-genus
+exact maxima and classifications remain unresolved in this work.
+#1085's priority audit proves an earlier HHRV theorem implies the graph result
+and credits Exner–Minakov's exact planar mechanism. A globally credited edition
+is being prepared; exact remaining geometric priority remains UNKNOWN.
+#1094's full smooth classification passed two independent families and root
+reproduction and now undergoes extensive priority audit. #1097's eight original
+files are acquired and two distinct mathematical families are active. #1098
+remains the final candidate to acquire and audit.
 All 101 assertions are screened; the eighty-three partial/prior exclusions remain
 outside processing. At least two fresh whole-package reviews are required before
-clearance. Cursor: #1032. Best-guess overall completion: 56%.
+clearance. Cursor: #1032. Best-guess overall completion: 58%.
 Candidate and mathematical acceptance do not establish historical novelty or
 current worldwide openness.

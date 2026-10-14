@@ -55,7 +55,12 @@ def verify_payload():
         data = (ROOT/safe(e['path'])).read_bytes()
         require(len(data) == e['bytes'] and sha(data) == e['sha256'], 'payload hash mismatch: '+e['path'])
     require('zenodo-deposit.json' not in allow and not any('raw/' in x or 'private_raw/' in x for x in allow), 'excluded source/deposit entered archive')
-    verify_metadata()
+    verify_metadata()  # Exact immutable dated repair metadata remains checked.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location('pr1052_terminal_stage', ROOT/'terminal_stage.py')
+    terminal = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(terminal)
+    terminal.verify_terminal(ROOT)
     mapping = json.loads((ROOT/'support/COPY_MAP.json').read_text())['copies']
     require(len(mapping) == len({x['package_path'] for x in mapping}), 'duplicate copy map')
     for e in mapping:

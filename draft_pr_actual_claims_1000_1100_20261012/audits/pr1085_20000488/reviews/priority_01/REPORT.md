@@ -14,11 +14,11 @@ The scope is fixed:
 
 | Label | Exact accepted claim | Boundary cases and exclusions |
 |---|---|---|
-| E | For a smooth connected nontrivial compact perturbation of H = {y > 0}, essential spectrum is exactly [-beta^2,infinity). | Attractive form integral |grad u|^2 minus beta boundary trace squared; outward derivative beta u; beta > 0. |
+| E | For a smooth connected nontrivial compact perturbation of H = {y > 0}, essential spectrum is exactly [-beta^2,infinity). | Attractive form integral of the squared gradient norm minus beta boundary trace squared; outward derivative beta u; beta > 0. |
 | A2 | Every such perturbation in ambient n = 2 binds below threshold at every beta. | Allows overhangs and compact extra boundary components. No connected-boundary hypothesis. |
 | A3 | The same all-coupling binding statement in ambient n = 3. | Same full nongraph scope; tangential dimension m = 2. |
 | B | Every compact W^{1,infinity} graph in ambient n >= 4 has no spectrum below -beta^2 for sufficiently weak beta depending on f. | All form functions. No statement for all beta of one fixed nonzero graph; no general nongraph classification. |
-| C | f = h/100, h(x) = exp(-1/(1-|x|^2)) inside the unit ball and zero outside, in R4 at beta = 1 has spectrum [-1,infinity). | Nonzero smooth graph, connected domain and boundary, bounded difference from H. |
+| C | f = h/100, h(x) = exp(-1/(1-r^2)), r = norm(x), inside the unit ball and zero outside, in R4 at beta = 1 has spectrum [-1,infinity). | Nonzero smooth graph, connected domain and boundary, bounded difference from H. |
 | C* | At any prescribed beta_* > 0 a sufficiently small nonzero epsilon h supplies another example. | The graph may depend on beta_*; this is not one graph with all-coupling absence. |
 
 No embedded-eigenvalue exclusion is claimed. Equality of the spectrum as a set with the essential interval does not imply that the interval contains no embedded point spectrum.
@@ -107,11 +107,11 @@ The Bucur–Freitas–Kennedy chapter's directional exponential bounded-domain e
 
 `DERIVATIONS.md` is part of the evidence, not an optional appendix. D1 supplies every step from the earlier HHRV theorem to the accepted graph conclusion. It uses a bounded multiplier exp(beta f), so there is no hidden unbounded exp(beta y) form-domain assumption. The graph's metric perturbation is not merely ignored: a uniform pointwise lower bound dominates the flat shifted form. The boundary potential is then compact, bounded, and relatively form compact for the massive-relativistic form. Its count scales with beta^m. An integer count strictly below one excludes all below-threshold states, and the accepted essential interval identifies the remaining spectrum as a set.
 
-D2 gives the exact sample certificate. The coarse bound v_1 < 2501/6000000 produces N < 1/240. Its purpose is priority applicability, not optimization of constants. D3 identifies exactly which normal-defect/capacity steps must be supplied for the nongraph theorem rather than transferred from a flat potential theorem. Its positive total defect includes compact obstacles and overhangs, and its null sequence is on the actual altered domain.
+D2 gives the exact sample certificate. The coarse bound v_1 < 2501/6000000 produces N < 1/240. Its purpose is priority applicability, not optimization of constants. D3 identifies exactly which normal-defect/capacity steps must be supplied for the nongraph theorem rather than transferred from a flat potential theorem. Its positive total defect includes compact obstacles and overhangs, and its null sequence is on the actual altered domain. D4 supplies the precise form-domain order preventing a delta-interaction absence result from implying absence on a selected Robin side, even after matching alpha = 2 beta and the flat threshold.
 
 `check_implication.py` checks 144 rational Fourier-square cases, 12 exact scaling cases, and the rational bump margins. It uses explicit failures, so its normal isolated and optimized isolated runs produce byte-identical results. `CHECK_RESULT.json` and `CHECK_RESULT_OPTIMIZED.json` preserve that result. These finite guards supplement the written all-function derivation; they do not prove HHRV, local compactness, or the universal spectral statements by sampling.
 
-The audit distinguishes four senses that must not be compressed into one priority label:
+The audit distinguishes several questions that must not be compressed into one priority label:
 
 | Question | Finding |
 |---|---|

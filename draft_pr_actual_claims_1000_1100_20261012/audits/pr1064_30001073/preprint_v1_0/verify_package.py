@@ -60,6 +60,11 @@ def check():
  require(current['publication_ready'] is False and current['issues_updated'] is False,'current pending gate altered')
  require(current['whole_package_reviews_completed']==1 and current['whole_package_reviews_required']>=2,'current new review gate altered')
  require(current['ascending_publication_hold_after_pr']==1032,'ascending publication hold altered')
+ latest=load('CURRENT_STATUS_WHOLE03.json')
+ require(latest['stage']=='PENDING_NEW_WHOLE_03' and latest['snapshot_date']=='2026-10-14','latest stage altered')
+ require(latest['publication_ready'] is False and latest['issues_updated'] is False,'latest pending gate altered')
+ require(latest['whole_package_reviews_completed']==2 and latest['whole_package_reviews_required']>=2,'latest new review gate altered')
+ require(latest['ascending_publication_hold_after_pr']==1032,'latest ascending hold altered')
  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
  return allow
 

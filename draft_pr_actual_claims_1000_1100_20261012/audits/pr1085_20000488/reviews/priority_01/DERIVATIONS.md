@@ -104,3 +104,11 @@ The target shifted Robin form differs from this auxiliary form by
 That coefficient is nonnegative and compactly supported. Its phi-weighted total is strictly positive for every nontrivial perturbation, by the normal-rigidity argument in the accepted proof. The same constructed null sequence has a strictly positive limiting trace mass on this compact defect. Subtracting it gives a negative form value and hence binding below the accepted essential threshold.
 
 This is a complete application of a standard ground-state/null-sequence mechanism **after** verifying the geometry, defect positivity, and null sequence. It is not a literal earlier theorem asserting the full nongraph n = 3 result. In particular, PV Remark 5.22 concerns perturbations of the interior potential with fixed boundary operator; it must not be silently relabeled a theorem about arbitrary boundary or domain deformations. Exact earlier priority for the full n = 3 assertion, and for the added-boundary-component planar scope, remains UNKNOWN.
+
+## D4. Why delta-interaction results do not settle a selected Robin side
+
+Suppose a smooth surface separates two domains. The direct sum of attractive Robin forms with strength beta on both sides has the larger domain H1(Omega_+) direct-sum H1(Omega_-). Restrict it to traces that agree across the surface, namely H1(R^n), and its two boundary terms sum to minus 2 beta times the surface trace squared. This restriction is exactly the delta-interaction form of strength alpha = 2 beta. Thus, in the quadratic-form/min-max sense,
+
+    H_Robin,+ direct-sum H_Robin,- <= H_delta,2beta.
+
+Absence of below-threshold delta spectrum cannot imply absence for the smaller direct-sum operator. Delta binding implies binding on at least one Robin side, but does not identify the prescribed side. On a flat plane the reflection-even decomposition gives an exact selected-side relation; reflection across a general graph is not a Euclidean isometry, so that decomposition is unavailable. Extra compact boundary components can introduce still more complementary domains. These explicit domain/order gaps prevent importing the 2017 delta expectations or singular-interaction comparison theorems as the full Robin theorem. D1 uses only a genuinely flat auxiliary boundary operator after a proven geometric comparison.
