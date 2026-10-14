@@ -1,0 +1,51 @@
+# PR623 whole-package adversarial review, round 2
+
+**Verdict: NEEDS_REPAIR.** The mathematics, exact source resolution, repaired priority framing, five-page paper, local metadata intent and portable replay are supported. Two mandatory operational/integrity findings prevent a clean whole-package verdict. Neither finding invalidates the theorem. Publication, integration and tracker execution remain unauthorized in this review.
+
+**Scope:** problem 30001184 / OWR-3392-012; original PR623 head 947442c091ae617804c6a0d07b98ff2c50368798; proof SHA f2a1b3b4233c2850d8dd79ba17b464d74343aa66e7d22d12104d17fc5470e8a3. Exact inspected identities are in INPUT_SHA256.json, CANONICAL_INPUT_SHA256.json, NATIVE_AND_ARCHIVE_SHA256.json and FINAL_INPUT_RECHECK.json. All fourteen canonical inputs, the original proof and all 29 native files remained unchanged. This conclusion is specific to those identities.
+
+## Mandatory findings
+
+### F1 — P2: carry the validated notice and receipt bytes through preparation
+
+`prepare_integration.py` reads the source notice in `publication_inputs` at line 280 and binds it to the published ZIP at line 283. `main` then reads that notice again at line 420 and uses the later bytes to build the attempt at line 428. A local full-main fixture changes the notice between those reads. Preparation succeeds, its actual generated outer integrity replay reports PASS, and CURRENT_SOURCE_AUDIT.md contains the changed notice while the saved publication validation reports the earlier notice SHA. The helper can therefore assemble attribution/status prose that was not bound to the reviewed publication archive.
+
+The same read-binding problem exists for both compact publication receipts. `publication_inputs` parses the initial receipt bytes at line 261, but computes returned receipt SHA values by rereading the paths at lines 284–285. A local control substitutes a wrong-title receipt on the second read. The call succeeds and records the hash of the invalid receipt; a fresh call on those same invalid bytes rejects them. This was reproduced for each receipt under normal Python and `-O`.
+
+Recommended repair: read each notice and receipt exactly once into immutable bytes. Parse, validate and hash those same receipt bytes. Carry the same validated notice bytes into `build_current_files`; alternatively, compare a second read to the validated SHA and use that exact second read after it passes. Avoid a further reread for construction or attestation.
+
+Checkable evidence: operations/additional_adversarial.py; operations/ADDITIONAL_ADVERSARIAL_RESULTS.json; operations/ADDITIONAL_ADVERSARIAL_O1_RESULTS.json; operations/receipt_binding.py; operations/RECEIPT_BINDING_O0_RESULTS.json; operations/RECEIPT_BINDING_O1_RESULTS.json. These fixtures use only copied local inputs and mocked Git/GitHub calls. They dispatched no real push, branch/index change, GWS write or publication action.
+
+### F2 — P3: reject Boolean and decimal inventory schema values explicitly
+
+`publication/verify_package.py` line 36 and `prepare_integration.py` line 232 use `schema == 1` without checking its type. Python equates Boolean true and floating 1.0 with integer 1. An otherwise identical valid inventory with JSON `schema: true` or `schema: 1.0` is accepted. The portable verifier accepts both normally and with `-O`; the archive binding helper independently accepts both. Unsupported 2 and false reject. This contradicts the schema-1 malformed-inventory rejection contract even though the builder itself emits integer 1.
+
+Recommended repair in both guards: require `type(schema) is int` as well as `schema == 1`. Add controls for true, false, 1.0 and unsupported integer values, under normal and optimized Python. Rebuild the archive to bind the repaired portable verifier. Integrity hashes are byte checks, not signatures; this finding does not pretend to establish authenticity of a self-authored manifest.
+
+Checkable evidence: check_inventory_controls.py and INVENTORY_CONTROL_RESULTS.json (42 normal/optimized negative controls, with exactly these four schema-type acceptances); operations/additional_adversarial.py and its normal/optimized result files. All other portable controls for modified/missing/extra files, empty directories, symlinks, duplicate paths/JSON keys, unsafe paths, counts, sizes and hash syntax reject as intended.
+
+## Optional source precision
+
+O1: Make the Shalit–Skeide locator version-specific. The supplied arXiv:2003.05166v3 visibly labels the roadmap Appendix **R(i)**, printed/PDF pp. 211–212. Current paper text cites Appendix B(i), and its bibliography includes both journal and arXiv versions. The journal appendix number is unverified because the publisher PDF is inaccessible; no claim is made that journal B(i) is false. Prefer an explicit “arXiv v3, Appendix R(i), pp. 211–212” locator or the directly checkable Definition 2.3 and equation (2.3). Preserve the frozen historical files; any correction belongs in the current source notice/paper. The frozen proof's assertion of B(i) in the inspected arXiv v3 is a historical locator error, not a mathematical error.
+
+O2: For maximum direct source precision, cite DMB's Method and Appendices A–B for finite paths plus the singularity, and add BFH Section 2, equations (1)–(3), for the explicit amplitude-damping corollary. Existing citations support the substance; these are optional locators, not missing proof hypotheses.
+
+## Strongest independently verified conclusions
+
+- The source's general conditional-expectation definition requires p theta_t i = T_t, not the stronger all-algebra equation. Forward generation is the concrete sufficient proposal being refuted. Failure of the first GNS step defeats its two-step conjunction, leaving useful stronger criteria, the conditional extension question and the second future-algebra problem unresolved.
+- The stated continuous compactified clock construction is a separable unital general C*-dilation with injective point-norm continuous endomorphisms and exactly the claimed forward-generated algebra. The GNS module identification proves the full representation kernel, image M2, fullness, and B^a(E)=M2 direct-sum M2.
+- The global positivity argument controls the increment of g at every real x and both endpoints. The exact factorization d_s=(1-r^2)(sqrt(1+r^2)-r)/2 proves strict positive noninvariance at each s>0; the s=0 and large-time limits agree. Strong, weak/corner, faithful and normal-dilation boundaries are accurate.
+- The finite-image derivation proposition is valid. An independent derivation of BFH's actual amplitude model confirms the prior unstated negative corollary after endpoint compactification and forward-generated restriction. The paper correctly credits known clock machinery, DMB and vom Ende, and does not claim a novel method, literature-first priority, independent historical development, plagiarism, human review, or a general stronger-minimality theorem.
+- Full portable replay passes normally, with `-O`, and with inherited `PYTHONOPTIMIZE=2`. Child scripts are launched with `-I` and without `-O`, so their assertions remain active. Results include original 76 author/237 independent exact checks, 12 integrity controls, 22 fresh operator checks, seven priority symbolic checks and 14 classical compression checks. Eleven additional independent statements and 120 positivity sanity samples pass; the written proof carries the universal quantifiers.
+- The ZIP has 88 unique safe regular members, 87 manifested. Every size/hash matches. All 29 original candidate files, including packet13/audit11, match the plain native snapshot. The exact builder code with relocated output reproduces the ZIP byte-for-byte. No third-party full text, raw corpus, credentials, mutation helpers or working receipts are archived.
+- The PDF's five pages were all visually inspected. Independent Tectonic compilation succeeds, with identical extracted text and five identical rendered page images. Different PDF creation timestamps explain byte inequality of the recompiled PDF; byte-identical PDF recompilation is not claimed. Typography is clean and the underfull bibliography warnings have no visible defect.
+- Metadata intent exactly matches title, Alec Kriebel/ORCID, preprint, version 1.0, 13 October 2026, open access, CC BY 4.0, two intended uploads, scope and AI/unrefereed disclosure. These are local checks; no live upload receipt or production metadata outcome is asserted.
+- Fourteen supplied local/mock operational fixtures and seven additional control groups pass normally and under `-O`, covering initial unknown-head rejection before candidate reads, original/exact own same-DOI retry, claimed status/turns, main/head drift, non-force branch push, alternate index, one QUEUE row, frozen byte preservation, record/file/archive binding, exact tracker gid/title/headers/ranges, DOI duplicate and readback guards, and durable unconfirmed append handling. The repeated-read failures above are additional cases those fixtures missed.
+
+## Independence, artifacts and final boundary
+
+The lead reviewer reached an initial mathematical/source conclusion before consulting prior-round identities. No package_round1 finding or verdict was read at any time. Source and operations adversaries preserved the same independence. Existing earlier family evidence was inspected only as checkable inputs; PASS labels were not proof premises. All work was confined to this assigned review folder. No outside human or other shard was contacted, and no input edit, Git/index mutation, push, GWS write, merge, upload, release or publication occurred.
+
+Standalone deductions are in INDEPENDENT_DEDUCTIONS.md, source locators/hashes and independent BFH derivations in sources/, replay/inventory/math/rebuild/metadata receipts at this folder's top level, and operational reproductions in operations/. Full third-party texts remain in ignored private source locations and are not review distribution artifacts.
+
+Review completion estimate: **100%**. Mathematical/source confidence supports the narrowly stated theorem. Whole-package readiness remains **NEEDS_REPAIR** until F1 and F2 are repaired globally, identities are rebound/rebuilt, and a new independent sequential whole-package reviewer checks the changed inputs. This round does not grant publication authorization.

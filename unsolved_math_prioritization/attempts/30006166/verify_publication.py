@@ -1,129 +1,59 @@
 #!/usr/bin/env python3
-"""Verify frozen publication bytes, then replay finite diagnostics only."""
-import argparse
-import hashlib
-import json
-from pathlib import Path, PurePosixPath
-import stat
-import subprocess
-import sys
-import zipfile
-
-
-def need(ok, label):
-    if not ok:
-        raise RuntimeError(label)
-
-
+"""Bind the current repository package; finite replays do not prove the theorem."""
+import argparse,hashlib,json,stat,subprocess,sys,zipfile
+from pathlib import Path,PurePosixPath
+def need(ok,label):
+ if not ok:raise RuntimeError(label)
 def unique(pairs):
-    result = {}
-    for k, v in pairs:
-        need(k not in result, 'duplicate JSON key')
-        result[k] = v
-    return result
-
-
-def load(p):
-    return json.loads(p.read_bytes(), object_pairs_hook=unique)
-
-
-def bind(root, trusted):
-    need(stat.S_ISDIR(root.lstat().st_mode), 'regular root directory')
-    manifest = root / 'PUBLICATION_MANIFEST.json'
-    need(stat.S_ISREG(manifest.lstat().st_mode), 'regular manifest')
-    need(hashlib.sha256(manifest.read_bytes()).hexdigest() == trusted, 'trusted manifest hash')
-    data = load(manifest)
-    need(data['format'] == 'wreath-hyperfinite-30006166-publication-v1', 'format')
-    files = data['files']
-    names = [x['path'] for x in files]
-    need(len(names) == len(set(names)), 'duplicate entries')
-    need(all(type(n) is str and n == str(PurePosixPath(n)) and not n.startswith('/')
-             and '..' not in PurePosixPath(n).parts and '\\' not in n
-             and n not in ('', '.', 'PUBLICATION_MANIFEST.json') for n in names), 'safe paths')
-    directories = {str(p) for n in names for p in PurePosixPath(n).parents if str(p) != '.'}
-    actual_files, actual_dirs = set(), set()
-    for p in root.rglob('*'):
-        mode = p.lstat().st_mode
-        name = p.relative_to(root).as_posix()
-        if stat.S_ISREG(mode): actual_files.add(name)
-        elif stat.S_ISDIR(mode): actual_dirs.add(name)
-        else: raise RuntimeError('nonregular entry ' + name)
-    need(actual_files == set(names) | {'PUBLICATION_MANIFEST.json'}, 'strict file inventory')
-    need(actual_dirs == directories, 'strict directory inventory')
-    for item in files:
-        raw = (root / item['path']).read_bytes()
-        need(type(item['bytes']) is int and len(raw) == item['bytes']
-             and hashlib.sha256(raw).hexdigest() == item['sha256'], 'bytes ' + item['path'])
-    metadata = load(root / 'PUBLICATION_METADATA.json')
-    members = 0
-    for a in metadata['archives']:
-        raw = (root / a['path']).read_bytes()
-        need(len(raw) == a['bytes'] and hashlib.sha256(raw).hexdigest() == a['sha256'], 'archive pin')
-        need(hashlib.sha256((root / a['manifest_path']).read_bytes()).hexdigest() == a['manifest_sha256'], 'inner manifest pin')
-        with zipfile.ZipFile(root / a['path']) as z:
-            entries = z.infolist()
-            need(len(entries) == a['regular_members'] and len({i.filename for i in entries}) == len(entries), 'ZIP inventory')
-            for i in entries:
-                n = PurePosixPath(i.filename)
-                need(not i.is_dir() and not n.is_absolute() and '..' not in n.parts
-                     and str(n) == i.filename and stat.S_ISREG(i.external_attr >> 16), 'regular safe ZIP member')
-                need(z.read(i) == (root / a['extract_root'] / i.filename).read_bytes(), 'ZIP member bytes')
-            members += len(entries)
-    for p in (root / 'author').iterdir():
-        need(p.read_bytes() == (root / 'audit_bundle/author' / p.name).read_bytes(), 'duplicate author identity')
-    return {'status': 'PASS_PUBLICATION_INVENTORY', 'files': len(files) + 1,
-            'archive_members_verified': members, 'archive_member_equivalence': True}
-
-
-def full(root):
-    flags = ['-I', '-B'] + (['-O'] if sys.flags.optimize else [])
-    def run(path, *args):
-        result = subprocess.run([sys.executable, *flags, str(root / path), *map(str, args)],
-                                cwd='/', capture_output=True, text=True, timeout=600)
-        need(result.returncode == 0, path + ': ' + result.stderr)
-        return json.loads(result.stdout)
-    results = {}
-    results['author'] = run('author/verify.py')
-    need(results['author']['infinite_theorem_verified_by_program'] is False, 'author scope')
-    results['audit'] = run('audit_bundle/audit/verify.py')
-    need(results['audit']['independent_counted_diagnostics'] == 20525
-         and results['audit']['infinite_theorem_verified_by_program'] is False, 'audit scope/count')
-    results['review_2'] = run('independent_review_2/verify.py',
-        '--author-proof', root / 'author/PROOF.md',
-        '--author-manifest', root / 'author/MANIFEST.json',
-        '--author-zip', root / 'archives/WREATH_HYPERFINITE_30006166_AUTHOR_SAFE_FREEZE.zip')
-    need(results['review_2']['external_author_files_checked'] == ['manifest', 'proof', 'safe_archive'], 'external author binding')
-    need(results['review_2']['certifies_infinite_theorem'] is False, 'review 2 scope')
-    for role, directory, key, count in [
-        ('author', 'author', 'mutation_rejections', 22),
-        ('audit', 'audit_bundle/audit', 'mutation_rejections', 26),
-        ('review_2', 'independent_review_2', 'tamper_rejections', 20)]:
-        actual = run(directory + '/integrity_tests.py')
-        need(actual == load(root / directory / 'INTEGRITY_RESULTS.json'), role + ' frozen integrity output')
-        need(actual[key] == count, role + ' integrity count')
-        results[role + '_integrity_rejections'] = count
-    first = load(root / 'audit_bundle/audit/ACCEPTANCE.json')
-    second = load(root / 'independent_review_2/ACCEPTANCE.json')
-    need(first['verdict'] == 'accept_complete_affirmative_candidate', 'first acceptance')
-    need(second['decision'] == 'accept_complete_affirmative_candidate_relative_to_verified_published_inputs'
-         and second['required_mathematical_patch'] is False, 'second acceptance')
-    results['all_frozen_integrity_outputs_match'] = True
-    results['finite_diagnostics_certify_infinite_theorem'] = False
-    return results
-
-
+ d={}
+ for k,v in pairs:
+  need(k not in d,'duplicate JSON key');d[k]=v
+ return d
+def load(p):return json.loads(p.read_bytes(),object_pairs_hook=unique)
+def bind(root,pin):
+ manifest=root/'PUBLICATION_MANIFEST.json'
+ need(stat.S_ISREG(manifest.lstat().st_mode),'regular manifest')
+ need(hashlib.sha256(manifest.read_bytes()).hexdigest()==pin,'external outer manifest pin')
+ d=load(manifest);need(d['format']=='wreath-hyperfinite-30006166-preprint-v2','outer format')
+ rows=d['files'];names=[r['path'] for r in rows]
+ need(len(names)==len(set(names)),'unique entries')
+ need(all(type(n) is str and n==str(PurePosixPath(n)) and n not in ('','.','PUBLICATION_MANIFEST.json') and not n.startswith('/') and '..' not in PurePosixPath(n).parts and chr(92) not in n for n in names),'safe paths')
+ dirs={str(p) for n in names for p in PurePosixPath(n).parents if str(p)!='.'}
+ actual_files=set();actual_dirs=set()
+ for p in root.rglob('*'):
+  mode=p.lstat().st_mode;n=p.relative_to(root).as_posix()
+  if stat.S_ISREG(mode):actual_files.add(n)
+  elif stat.S_ISDIR(mode):actual_dirs.add(n)
+  else:raise RuntimeError('nonregular member: '+n)
+ need(actual_files==set(names)|{'PUBLICATION_MANIFEST.json'} and actual_dirs==dirs,'closed repository inventory')
+ for r in rows:
+  b=(root/r['path']).read_bytes()
+  need(type(r['bytes']) is int and len(b)==r['bytes'] and hashlib.sha256(b).hexdigest()==r['sha256'],'member binding: '+r['path'])
+ return len(actual_files)
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('trusted_manifest_sha256')
-    parser.add_argument('--full', action='store_true')
-    args = parser.parse_args()
-    root = Path(__file__).absolute().parent
-    result = bind(root, args.trusted_manifest_sha256)
-    if args.full:
-        result['full'] = full(root)
-        bind(root, args.trusted_manifest_sha256)
-    print(json.dumps(result, indent=2, sort_keys=True))
-
-
-if __name__ == '__main__':
-    main()
+ a=argparse.ArgumentParser();a.add_argument('trusted_manifest_sha256');a.add_argument('--full',action='store_true');args=a.parse_args()
+ root=Path(__file__).absolute().parent;count=bind(root,args.trusted_manifest_sha256)
+ pub=root/'publication_20261013';pre=pub/'preprint';package=pub/'verification_package'
+ metadata=load(root/'PUBLICATION_METADATA.json');kit=load(pre/'zenodo-deposit.json')
+ need(kit['metadata']==load(package/'metadata.json')==metadata['zenodo_metadata'],'current metadata identity')
+ need((pre/'note.tex').read_bytes()==(package/'note.tex').read_bytes(),'current note source')
+ need((pre/'output/pdf/note.pdf').read_bytes()==(package/'note.pdf').read_bytes(),'current PDF')
+ with zipfile.ZipFile(pre/'verification.zip') as z:
+  entries=z.infolist();names=[i.filename for i in entries]
+  need(len(names)==len(set(names))==metadata['verification_members'],'archive inventory')
+  for i in entries:
+   n=PurePosixPath(i.filename)
+   need(not i.is_dir() and not n.is_absolute() and '..' not in n.parts and str(n)==i.filename and stat.S_ISREG(i.external_attr>>16),'regular safe ZIP member')
+   need(z.read(i)==(package/i.filename).read_bytes(),'ZIP/extracted identity')
+ frozen=package/'source'
+ changed_wrappers={'PUBLICATION_MANIFEST.json','PUBLICATION_METADATA.json','README.md','RESEARCH_LOG.md','verify_publication.py'}
+ for p in frozen.rglob('*'):
+  if p.is_file() and p.relative_to(frozen).as_posix() not in changed_wrappers:
+   need(p.read_bytes()==(root/p.relative_to(frozen)).read_bytes(),'preserved original payload')
+ flags=['-I','-B']+(['-O'] if sys.flags.optimize else [])
+ cmd=[sys.executable,*flags,str(package/'verify_package.py'),metadata['package_index_sha256']]+(['--full'] if args.full else [])
+ r=subprocess.run(cmd,cwd='/',capture_output=True,text=True,timeout=900)
+ need(r.returncode==0,'inner package verification: '+r.stderr)
+ result={'status':'PASS','regular_files':count,'archive_members_verified':len(entries),'inner':json.loads(r.stdout),'infinite_theorem_verified_by_program':False}
+ bind(root,args.trusted_manifest_sha256);print(json.dumps(result,indent=2,sort_keys=True))
+if __name__=='__main__':main()

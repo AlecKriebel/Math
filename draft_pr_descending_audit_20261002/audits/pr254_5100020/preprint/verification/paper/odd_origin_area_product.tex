@@ -1,0 +1,367 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+pdftitle={An odd-period pedal-antipedal area invariant in elliptic billiards},
+pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\newcommand{\area}{\mathcal A}
+\newcommand{\ii}{\mathrm i}
+\title{An odd-period pedal-antipedal area invariant\\in elliptic billiards}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove invariant $k_{403,a}$ observed by Reznik, Garcia and Koiller:
+for every primitive odd-period elliptic billiard family with a strict
+confocal elliptical caustic, the signed areas of the original orbit's
+origin pedal and origin antipedal have constant product. All admitted
+coprime star windings are included, and every real antipedal intersection
+is finite. A complete pole analysis distinguishes coincident from
+opposite complex endpoints. Odd-period arithmetic then places the
+antipedal area and the credited pedal trace in complementary
+one-dimensional elliptic-function spaces. A direct argument covers
+circles; an exact four-periodic example rules out dropping the odd
+restriction.
+\end{abstract}
+
+\section{The source invariant and conventions}
+For an ordered closed polygon $V=(V_0,\ldots,V_{N-1})$, put
+\[
+ \area(V)=\frac12\sum_{j=0}^{N-1}\det(V_j,V_{j+1}),
+ \qquad V_N=V_0.
+\]
+This is signed shoelace area, including for stars and self-crossing
+derived polygons. Translate the billiard ellipse's center $O$ to zero.
+For its original orbit $P$, let $q_j$ be the perpendicular foot from
+$O$ to the line $P_jP_{j+1}$. Its origin-antipedal vertices are
+\[
+ R_j=L_j\cap L_{j+1},\qquad
+ L_j=\{X:P_j\cdot X=P_j\cdot P_j\}.
+\]
+Thus $L_j$ passes through the original vertex and is perpendicular to
+its radius. Write $A_O=\area(q)$ and $A_O^*=\area(R)$.
+
+Reznik, Garcia and Koiller recorded the conjectural product
+$A_OA_O^*$ for odd $N$ in their 2020 table; the same unproved row
+$k_{403,a}$ appears in the published Table~5
+\cite{source,old}. Both constructions concern the original orbit.
+We give a complete proof of that observation in the strict
+elliptical-caustic setting.
+
+\begin{theorem}\label{thm:main}
+Fix a noncircular ellipse with semiaxes $a>b>0$ and a strictly nested,
+nondegenerate confocal elliptical caustic. In any billiard family of
+least odd period $N\geq3$, the product $A_OA_O^*$ is phase independent.
+Every admitted coprime star winding is included. All consecutive
+antipedal intersections are finite.
+\end{theorem}
+No division by a derived signed area is involved. Reversal negates
+both areas and preserves their product. Repeating an admissible cycle
+$r$ times multiplies the product by $r^2$; the hypothesis concerns the
+least period, rather than parity manufactured by a repeated list.
+Hyperbolic or collapsed caustics are outside the theorem.
+
+The parametrization and complex-analytic billiard methods are classical \cite{stachel,dlmf,ast}. Cyclic Jacobi
+trace reductions and their Landen representations are established
+tools \cite{cyclic,landen}; we do not claim these methods or the
+observed invariant as new. The origin-pedal mechanism was already
+proved in the earlier campaign's $k_{203,b}$ argument \cite{pedal}.
+We restate it here so that the proof is self-contained. The additional
+step is the construction-specific antipedal divisor analysis,
+including its opposite-endpoint poles. Bounded primary-source
+priority audits found no earlier covering proof of this exact
+odd-origin product, without certifying historical firstness.
+
+\section{Canonical coordinates and a trace lemma}
+Let the caustic semiaxes be $\alpha>\beta>0$, put
+$k'=\beta/\alpha$, $k^2=1-k'^2$, and let $K,K'$ be the complete
+elliptic integrals. All Jacobi functions below have modulus $k$.
+Set $p=\ii K'$. Choose forward orientation and coprime winding $\tau$
+so that $0<\tau<N/2$. Stachel's canonical theorem
+\cite[Theorem~4.3 and (4.9)]{stachel} gives
+\begin{equation}\label{eq:param}
+ v=\frac{2K\tau}{N},\quad \delta=2v,\quad
+ a=\frac{\alpha\dn v}{\cn v},\quad b=\frac{\beta}{\cn v},
+ \quad P(w)=(-a\sn w,b\cn w),\quad P_j=P(w+j\delta).
+\end{equation}
+Here $0<v<K$ and $N\delta=4K\tau$. Write
+$s=\sn v$, $c=\cn v$, $d=\dn v$, all positive. Addition formulas give
+\begin{equation}\label{eq:B}
+ B(u):=\det(P(u-v),P(u+v))
+ =\frac{2absc\,\dn u}{D(u)},\qquad
+ D(u)=1-k^2s^2\sn^2u.
+\end{equation}
+For real $u$, $\dn u>0$ and $D(u)\geq1-k^2s^2>0$.
+Therefore consecutive real radial vectors are independent and every
+$R_j$ exists and is finite, also for stars.
+
+The classical shifts used below are \cite[22.4 and 22.8]{dlmf}
+\begin{align}
+ &\sn(z+2K)=-\sn z,\quad \cn(z+2K)=-\cn z,\quad
+ \dn(z+2K)=\dn z, \label{eq:realshift}\\
+ &\sn(z+2p)=\sn z,\quad \cn(z+2p)=-\cn z,\quad
+ \dn(z+2p)=-\dn z, \label{eq:imagshift}\\
+ &\sn(p+z)=\frac1{k\sn z},\quad
+ \cn(p+z)=\frac{-\ii\dn z}{k\sn z},\quad
+ \dn(p+z)=\frac{-\ii\cn z}{\sn z}. \label{eq:pchart}
+\end{align}
+Complex dot products are bilinear, with no conjugation.
+
+Put $\ell=2K/N$ and
+\[
+ S(w)=\sum_{j=0}^{N-1}\dn(w+j\delta),\qquad
+ X=\mathbb C/(\ell\mathbb Z+4p\mathbb Z).
+\]
+\begin{lemma}\label{lem:trace}
+$S$ is even, $\ell$-periodic and $2p$-antiperiodic. On $X$ it has
+exactly two simple poles, at $p,3p$, and exactly two simple zeros, at
+$p+\ell/2,3p+\ell/2$. Consequently $S(w)S(w+\ell/2)$ is constant.
+Every meromorphic function on $X$ with only possible simple poles at
+$p,3p$ and antiperiod $2p$ is a scalar multiple of $S$.
+\end{lemma}
+\begin{proof}
+Since $N$ is odd and $\gcd(N,\tau)=1$, multiplication by
+$\delta/\ell=2\tau$ permutes the real subgroup of order $N$ modulo
+$2K$. Reindexing gives period $\ell$ and evenness; \eqref{eq:imagshift}
+gives the antiperiod. The simple poles of $\dn$ are
+$2rK+(2t+1)p$. At $w=p$ only one summand is singular modulo $2K$,
+with residue $-\ii$ by \eqref{eq:pchart}; it cannot cancel.
+The antiperiod gives the opposite residue at $3p$. These exhaust
+the quotient pole classes.
+
+Negation followed by translation by $\ell+2p$ fixes
+$p+\ell/2$, while changing the function's sign. This forces a zero;
+the same argument gives the other displayed zero. They are distinct
+nonpoles. The trace is not identically zero since it is positive on
+the real axis. Equality of total zero and pole orders on a compact
+torus now makes these its complete simple zero divisor.
+The product with the half-real-period translate has no poles and is
+holomorphic on $X$, hence constant.
+
+For the final assertion, match the residue at $p$ to that of $S$.
+The antiperiod matches the second residue automatically. The
+difference is holomorphic on $X$, hence constant, and its antiperiod
+forces that constant to be zero.
+\end{proof}
+
+\section{The actual antipedal area and every possible pole}
+For complex vectors define $H(P)=P\cdot P$ and
+\begin{equation}\label{eq:F}
+ F(P,Q)=
+ \frac{H(P)H(Q)-(H(P)+H(Q))(P\cdot Q)/2}{\det(P,Q)}.
+\end{equation}
+The actual antipedal signed area has the rational expression
+\begin{equation}\label{eq:U}
+ U(w):=A_O^*(w)=\sum_jF(P_j,P_{j+1}).
+\end{equation}
+To verify it directly, let $J(x,y)=(-y,x)$. The intersections
+preceding and following $P_i$ are
+\[
+ \begin{aligned}
+ R_i&=P_i+\frac{H(P_{i+1})-P_i\cdot P_{i+1}}
+                      {\det(P_i,P_{i+1})}JP_i,\\
+ R_{i-1}&=P_i-\frac{H(P_{i-1})-P_{i-1}\cdot P_i}
+                      {\det(P_{i-1},P_i)}JP_i.
+\end{aligned}
+\]
+They satisfy their named line equations. Expanding
+$\det(R_{i-1},R_i)/2$ and collecting the two contributions belonging
+to each original edge gives \eqref{eq:F}--\eqref{eq:U}.
+There is no convexity assumption or division by a complex norm.
+
+We classify the complete divisor support of \eqref{eq:B} modulo
+$2K,2p$; the imaginary congruence classifies support, and is an
+antiperiod rather than a period of $B$.
+The elliptic function $\sn^2u$ has one double pole in this cell.
+The two distinct roots of $D$ are $p\pm v$, with
+$D'(p\pm v)=\pm2cd/s\ne0$. At these points $\dn$ is finite and
+nonzero, so $B$ has simple poles, and exactly one chord endpoint
+is a pole vertex. At $p$, $\dn$ has a simple pole and $D$ a double
+pole, so $B$ has a simple zero. The finite endpoints are opposite:
+$P(p-v)=-P(p+v)$. At $r=K+p$, $\dn$ has a simple zero and
+$D(r)=c^2\ne0$, so $B$ has a simple zero with coincident finite
+endpoints, using $P(2r-z)=P(z)$. There are no other zeros or poles.
+
+There are therefore exactly three cases for \eqref{eq:U}.
+At coincident finite endpoints, its numerator has the identity
+\begin{equation}\label{eq:polarization}
+\begin{aligned}
+ &H(P)H(Q)-\tfrac12(H(P)+H(Q))(P\cdot Q)\\
+ &\qquad=\tfrac14\bigl((H(P)+H(Q))H(P-Q)-(H(P)-H(Q))^2\bigr).
+\end{aligned}
+\end{equation}
+It is $O(z^2)$ when $P-Q=O(z)$, while $B$ has a simple zero.
+The apparent singularity is removable, even if a finite complex
+norm is zero. At opposite finite endpoints the numerator is merely
+regular and the simple determinant zero gives at most a simple
+pole. This pole must be retained.
+
+At a pole vertex $P(p+z)$ the two neighbors are regular, since
+$0<\delta<2K$. Each incident $F$ has numerator order at most three
+and denominator a simple pole, hence pole order at most two.
+Define $G(z)=F(P(p+z),P(p+\delta+z))$.
+The identities $P(p-z)=-P(p+z)$,
+$P(p-\delta+z)=-P(p+\delta-z)$,
+$F(Q,P)=-F(P,Q)$ and $F(-P,-Q)=F(P,Q)$ give the sum of its
+incident terms exactly as
+\begin{equation}\label{eq:cancellation}
+ G(z)-G(-z).
+\end{equation}
+The even negative Laurent coefficient cancels, leaving at most a
+simple pole. Odd coprimality ensures only one pole vertex per
+such phase modulo $2K$, so no edge has two pole endpoints.
+For $N=3$, the edge between its two finite neighbors is the separate
+opposite-endpoint term already bounded above, and adds at most a
+simple pole.
+
+Vertex-pole classes in $w$ are $p-j\delta$ and $3p-j\delta$.
+Opposite-midpoint pole classes are $p-v-j\delta$ and
+$3p-v-j\delta$. Since $v=\tau\ell$, all reduce to $p,3p$ on $X$.
+This is the indispensable odd-period arithmetic. The symmetries of
+$F$ and \eqref{eq:realshift}--\eqref{eq:imagshift} make $U$
+$2K$-periodic, cyclically $\delta$-periodic and $2p$-antiperiodic,
+hence $\ell$-periodic. We have proved that it has no other poles,
+and those allowed have order at most one.
+Lemma~\ref{lem:trace} consequently gives
+\begin{equation}\label{eq:antitrace}
+ U(w)=c_*S(w)
+\end{equation}
+for a real constant $c_*$, which may be zero.
+
+\section{The credited origin-pedal factor and conclusion}
+For clarity we reproduce the needed earlier pedal argument
+\cite{pedal}. The actual chord in \eqref{eq:B} is the caustic tangent
+\[
+ n(u)\cdot X=1,\qquad n(u)=(-\sn u/\alpha,\cn u/\beta).
+\]
+Both endpoints satisfy it by addition formulas. Its origin foot is
+\begin{equation}\label{eq:foot}
+ Q(u)=\frac{n(u)}{n(u)\cdot n(u)}
+   =\left(-\frac{\alpha k'^2\sn u}{\dn^2u},
+                  \frac{\beta\cn u}{\dn^2u}\right).
+\end{equation}
+This is finite for real $u$. Define
+\[
+ T(u)=\frac12\sum_j\det(Q(u+j\delta),Q(u+(j+1)\delta)).
+\]
+The actual original-side pedal area is $A_O(w)=T(w+v)$.
+
+At common Jacobi poles $Q$ extends holomorphically and vanishes.
+Its only possible coordinate poles are the simple zeros of $\dn$,
+at $r=K+p$ and translates, with order at most two.
+The shifts and parity give $Q(2r-z)=Q(z)$, so it is even about $r$.
+The two incident area terms combine as
+\[
+ \frac12\det\bigl(Q(r+z),
+                   Q(r+\delta+z)-Q(r-\delta+z)\bigr).
+\]
+The neighbors are regular; by the even reflection their difference
+is $O(z)$. The resulting pole is at most simple.
+Moreover $Q(u+2K)=-Q(u)$ and
+$Q(u+2p)=\operatorname{diag}(1,-1)Q(u)$.
+Thus $T$ is $\ell$-periodic and $2p$-antiperiodic, with only possible
+simple poles at $r,r+2p$ on $X$. Applying the shifted uniqueness
+assertion of Lemma~\ref{lem:trace} yields
+\begin{equation}\label{eq:pedaltrace}
+ T(u)=c_pS(u+K)
+\end{equation}
+with real $c_p$.
+
+Combining \eqref{eq:antitrace} and \eqref{eq:pedaltrace} gives
+\[
+ A_O(w)A_O^*(w)=c_pc_*S(w+v+K)S(w).
+\]
+Since $(v+K)/\ell=\tau+N/2$ is a half-integer,
+this is the constant half-shift product in Lemma~\ref{lem:trace}.
+This proves Theorem~\ref{thm:main}, without dividing by either area.
+
+For a circular billiard of radius $R$, a primitive forward star has
+step $\theta=2\pi\tau/N\in(0,\pi)$. The two derived regular stars
+have radii $R\cos(\theta/2)$ and $R/\cos(\theta/2)$.
+Their finite-intersection signed area product is
+\[
+ \frac{N^2R^4}{4}\sin^2\theta.
+\]
+This treats the circular extension directly, without using a
+degenerate elliptic torus.
+
+\section{Exact controls and verification}
+The odd restriction is substantive. For $a^2=5,b^2=3$, the strict
+four-periodic caustic has squared semiaxes $25/8,9/8$.
+The axis diamond and the rectangle with vertices
+$(\pm\sqrt{25/8},\pm\sqrt{9/8})$ are primitive reflected trajectories
+in that same family. Tangency and reflection follow from
+$\alpha^2/a^2+\beta^2/b^2=1$ and
+$\alpha/a^2=\beta/b^2$ for the rectangle. Direct projections and
+antipedal intersections give products $225/4$ and $289/4$.
+Thus an unrestricted even-period extension would be false.
+
+The verification archive contains the manuscript source, explicit
+line-construction and symbolic checks, exact reflected three- and
+four-periodic certificates, primitive-star arithmetic controls,
+independent real and near-complex-pole diagnostics, source hashes,
+bounded priority reports and reproducibility instructions.
+The analytic argument establishes the all-period theorem; finite
+checks corroborate its algebra and domain. High-precision outputs
+are diagnostics, not interval certificates.
+
+AI tools were used extensively in solving, verification, literature
+research, coding, writing and internal adversarial review.
+This is an unrefereed preprint, without external human peer review
+or proof-assistant formalization. The original observation and
+prior mathematical inputs remain explicitly credited.
+
+\begin{thebibliography}{9}
+\small\raggedright
+\bibitem{source}
+D.~Reznik, R.~Garcia and J.~Koiller,
+Fifty new invariants of $N$-periodics in the elliptic billiard,
+\emph{Arnold Math. J.} \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+\bibitem{old}
+D.~Reznik, R.~Garcia and J.~Koiller,
+Eighty new invariants in the elliptic billiard,
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11} (2020),
+Table~5, p.~7.
+\bibitem{stachel}
+H.~Stachel, On the motion of billiards in ellipses,
+\emph{Eur. J. Math.} \textbf{8} (2022), 1602--1622.
+\href{https://doi.org/10.1007/s40879-021-00524-2}{doi:10.1007/s40879-021-00524-2}.
+\bibitem{dlmf}
+NIST Digital Library of Mathematical Functions,
+\href{https://dlmf.nist.gov/22.4}{Section~22.4},
+\href{https://dlmf.nist.gov/22.8}{Section~22.8} and
+\href{https://dlmf.nist.gov/22.9}{Section~22.9}
+(periods, shifts, addition and cyclic identities); accessed 13 October 2026.
+\bibitem{ast}
+A.~Akopyan, R.~Schwartz and S.~Tabachnikov,
+Billiards in ellipses revisited,
+\emph{Eur. J. Math.} \textbf{8} (2022), 1313--1327.
+\href{https://doi.org/10.1007/s40879-020-00426-9}{doi:10.1007/s40879-020-00426-9}.
+\bibitem{cyclic}
+A.~Khare, A.~Lakshminarayan and U.~Sukhatme,
+Cyclic identities involving Jacobi elliptic functions. II,
+\href{https://arxiv.org/abs/math-ph/0207019v2}{arXiv:math-ph/0207019v2} (2003),
+Section~2.1.1.
+\bibitem{landen}
+A.~Khare and U.~Sukhatme,
+Generalized Landen transformation formulas for Jacobi elliptic functions,
+\href{https://arxiv.org/abs/math-ph/0312074v1}{arXiv:math-ph/0312074v1} (2003),
+equations~(13)--(15).
+\bibitem{pedal}
+A.~Kriebel, The origin-pedal area product in an elliptic billiard,
+campaign proof for $k_{203,b}$, 1 October 2026;
+\href{https://github.com/AlecKriebel/Math/blob/551a524e2db65fec90684485ef676d0b4179378d/unsolved_math_prioritization/attempts/5100012/PROOF.md}{immutable reviewed PR204 proof}.
+\end{thebibliography}
+\end{document}

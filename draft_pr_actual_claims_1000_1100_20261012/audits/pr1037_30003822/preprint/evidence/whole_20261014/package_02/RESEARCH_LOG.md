@@ -1,0 +1,9 @@
+# Package review 02 research log
+
+2026-10-14T03:30:20.998830+00:00 — 4%: Pinned every current candidate file and frozen historical stages before reading previous verdicts. Read root AGENTS.md and PDF skill; read-only PDF inspection workflow applies. No candidate or historical mutations authorized in this shard.
+
+2026-10-14T03:31:56.623299+00:00 — 20%: Independent complete all-n derivation sealed before prior verdict reads. All original ten Git blobs pinned and matched frozen submitted bytes. Candidate math has no presently identified gap; source and package validation still pending.
+
+2026-10-14T03:42:59.216701+00:00 — 80%: Independent mathematics and source interfaces matched; all12 actual PDF pages individually rendered/viewed clean. Fresh archive rebuild byte-identical; clean Tectonic build succeeds with equivalent text/pages and different creation time. Normal fresh families reproduced; new incidence/contraction cases and explicit controls pass normal and optimized independent paths. Existing transfer comparator under -O loses assert-side-effect tree unions; unsupported optimization mode is a scope limitation, not a claimed supported command. Full104 authored byte inventory and exact original10 tree validated; historical verdicts first read only after derivation freeze. Final reports/custody pending.
+
+2026-10-14T03:53:01.817708+00:00 — 100%: Complete NEW whole review02 finished with zero actionable P0/P1/P2/P3 issues. All131 durable files,147 actual candidate inputs,4557 historical files and10 original Git identities remain unchanged. All104 source copies/128 ZIP members validated; metadata forms exact; clean ZIP rebuild identical; standalone Tex build and all12 render pixels equivalent. REPORT/VERDICT now final; output seal follows with no later writes. Percentage measures assigned review completion, not historical priority/novelty census.

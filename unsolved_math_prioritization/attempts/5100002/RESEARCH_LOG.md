@@ -1,0 +1,20 @@
+# Research log
+
+## 2026-09-30 11:36 UTC: exact source and prior-work gates
+
+Assigned rank167 / 5100002, invariant k108. The exact problem page was unavailable; the pinned record and complete imported triage were read. The v11 source Table2 and published Table2 p345 agree that k108 is (A-prime/A) divided by the product of half-angle sines, for primitive N congruent to2 modulo4. The adjacent k107 has different parity and multiplication, and is assigned to a separate worker. Shared source definitions are coordinated with that worker; no duplicate proof effort is assumed. Prior numeric/title PR, remote branch, selected-path history and local state gates found no existing campaign attempt. The earlier k603 and k405 target different invariants and are credited where their elementary chord setup is reused. Two-hour ceiling13:36UTC; at most five substantive approaches. Initial completion estimate5%.
+
+## 2026-09-30 11:42 UTC: exact six-period discrepancy
+
+The direct chord/angle approach led to comparing two symmetric six-period orbits, using geometry already checked in the separate k405 review. The companion k107 investigation had independently found a four-period discrepancy in its different source entry. For axes2,1 and lambda4/9, the two six-period k108 values are11664/3125 and3645/1024. Exact reflection, caustic contacts and outer tangent intersections were verified before reporting the candidate. Completion estimate95%, pending the written certificate and separate review.
+
+## 2026-09-30 11:49 UTC: frozen counterexample package
+
+The final written artifact supplies the complete geometry and exact unequal values. Both source tables were visually checked. All291 exact assertions pass, including strict interior contact parameters, distinct vertices, convexity and the source angle normalization. One direct-coordinate approach is recorded; the proof is frozen for independent review. No repaired all-period theorem is inferred. Mathematical package completion100%, subject to separate review; priority remains unconfirmed.
+
+## 2026-09-30 12:00 UTC: independent review and publication checkpoint
+
+The separate adversarial review passed the unchanged frozen proof, including both printed tables and all geometric conventions. All 291 submitted assertions replayed identically; 272 independent rational assertions passed. Eight review files are copied unchanged. Completion estimate: 100% for the printed assertion counterexample. One substantive approach; historical priority remains unconfirmed. Parent authorized one open draft PR; no queue file was edited here.
+
+
+2026-10-11T18:09:07.151870+00:00: Proposed scoped data after role validation; original author1/5 imported at this timestamp, zero new central proof-search turns. 19 remote postimages,33 complete local paths,14 unchanged original paths. Native integration remains pending actual scoped writer and public/local readback; this proposal does not estimate workflow completion. The literal printed k108=(A_prime/A)/product sin(original internal theta_i/2), N=2mod4, is refuted at primitive N=6. Two strictly convex physical common-caustic orbits in x²/4+y²=1 with lambda=4/9 give H=11664/3125, V=3645/1024, gap=553311/3200000. S_H=125/324 and S_V=32/81 are unequal. The two compared members have RS=5/9 and AA_prime=320/9; no all-phase/all-period repair is proved. Prior work credited: Garcia–Reznik arXiv2011.06640v1 (2020), Appendix B.5.1, already gives the exact horizontal construction/common caustic; the final2022 paper retains it, DOI10.33039/ami.2022.02.001. Stachel family and symmetry machinery is credited. Attributed explicit correction/application only. No new geometry, firstness, independent discovery or official erratum claimed. Bounded primary-source search identified no earlier explicit named correction, but incomplete historical access prevents exhaustive absence certification. Extensive AI assistance; unrefereed, no conventional human peer review; diagnostics support the written proof without proof-assistant certification. Original author1/5; present import adds0 central turns.

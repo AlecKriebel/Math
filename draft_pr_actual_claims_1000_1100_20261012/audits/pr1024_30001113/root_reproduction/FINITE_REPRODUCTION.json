@@ -1,0 +1,469 @@
+{
+  "timestamp_utc": "2026-10-13T03:31:31.596627+00:00",
+  "runs": 30,
+  "all_expected_outcomes": true,
+  "proof_limitation": "Finite identities only; formal-series and universal functor conclusions require written proof and independent adversarial review.",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 0,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "quotient_action"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "derivation_weight"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "projective_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "current/verify_exact.py",
+        "--mutant",
+        "fixed_ring"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 0, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "check_corrected_case.py",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "check_corrected_case.py",
+        "missing_parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "check_corrected_case.py",
+        "wrong_involution_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 1,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "quotient_action"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "derivation_weight"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "projective_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "current/verify_exact.py",
+        "--mutant",
+        "fixed_ring"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 1, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "check_corrected_case.py",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "check_corrected_case.py",
+        "missing_parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-O",
+        "check_corrected_case.py",
+        "wrong_involution_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"optimization_level\": 2,\n  \"mutant\": \"none\",\n  \"checks\": [\n    \"all 16 group-composition identities\",\n    \"quotient invariance, induced action, derivative\",\n    \"exact rational invariant and coboundary identities for z^0 through z^8\",\n    \"conjugacy and involution in F4[e]/e^3\",\n    \"all 64 elements: j-fixed iff linear coefficient is zero\"\n  ],\n  \"limitation\": \"Finite identities support but do not prove the formal power-series or functor arguments.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "quotient_action"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"quotient_action\", \"failure\": \"induced Q-action\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "derivation_weight"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"derivation_weight\", \"failure\": \"coboundary of y\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"parameter_shift\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "conjugator_translation"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"conjugator_translation\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "projective_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"projective_scalar\", \"failure\": \"projective conjugacy\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "current/verify_exact.py",
+        "--mutant",
+        "fixed_ring"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"ok\": false, \"optimization_level\": 2, \"mutant\": \"fixed_ring\", \"failure\": \"j fixed-ring linear coefficient\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "check_corrected_case.py",
+        "none"
+      ],
+      "exit": 0,
+      "expected": 0,
+      "stdout": "{\n  \"ring\": \"F_2[e]/(e^3)\",\n  \"encoding\": \"bit i is the coefficient of e^i\",\n  \"conjugacy_identity\": \"M_(e+e^2) C = (1+e) C M_e\",\n  \"conjugacy_verified\": true,\n  \"involution_verified\": true,\n  \"both_conjugacy_sides\": [\n    [\n      3,\n      4\n    ],\n    [\n      3,\n      3\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "check_corrected_case.py",
+        "missing_parameter_shift"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Projective conjugacy identity failed\", \"mutant\": \"missing_parameter_shift\", \"ok\": false}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-I",
+        "-S",
+        "-B",
+        "-OO",
+        "check_corrected_case.py",
+        "wrong_involution_scalar"
+      ],
+      "exit": 1,
+      "expected": 1,
+      "stdout": "{\"failure\": \"Involution identity failed\", \"mutant\": \"wrong_involution_scalar\", \"ok\": false}\n",
+      "stderr": ""
+    }
+  ]
+}

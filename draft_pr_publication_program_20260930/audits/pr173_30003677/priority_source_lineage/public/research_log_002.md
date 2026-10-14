@@ -1,0 +1,3 @@
+# Research log -- checkpoint 2
+
+2026-10-12T14:46:55.044941+00:00: Completed ADMP v2 full text PDF pp.1-49, including Theorem2.6, Lemma4.13, Corollary4.14, and the Theorem3.1 proof with its fixed-d urn and martingale estimates. The printed theorem is a final-size result with admissible starts; it contains no general variable-degree transfer. Direct cited/citing discovery obtained OpenAlex metadata, a recent scale-free extension, primary preferential-attachment paper, and a thesis; publisher ADMP access failed403 and all failures retained privately. Best-guess family completion: 65%. The local-corollary novelty concern persists; exact published prior statement still unestablished.

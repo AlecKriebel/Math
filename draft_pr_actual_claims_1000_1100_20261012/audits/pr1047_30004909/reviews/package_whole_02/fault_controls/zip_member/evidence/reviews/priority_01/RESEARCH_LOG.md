@@ -1,0 +1,9 @@
+# Priority audit research log
+
+2026-10-13T23:17:20.994626+00:00 — Checkpoint 10%: verified and froze all nine original files against the submitted head; froze four root artifacts. Read original REPORT and root acceptance/initial derivation to define the mathematical claim. Did not read old SOURCE_AUDIT or provenance. No publication or external communication authorized in this reviewer.
+
+2026-10-13T23:19:39.011568+00:00 — Checkpoint 40%: froze independent primary comparison before old audit/provenance. Fresh EMS, full GHIM conference body, Balcan–Harvey relevant body, DDSSS exact cardinality decomposition, scaled/weighted transfer algebra inspected. Live gaps include generic envelope priority, Schrijver44.6(B) and full-version follow-up.
+
+2026-10-13T23:26:47.435420+00:00 — Checkpoint95%: completed deeper primary-body comparison and report/conditional verdict. Known exact uniform-rank-sum decomposition and classical concave-cardinality construction require credit. Singleton transfer checks scaled/weighted single ranks quantitatively. Actual Helgason expansion, unequal-singleton GS obstruction, distributional reverse approximation, query-input lower bounds and inner-system statements compared. Exact generic envelope priority remains unknown; neutral exposition eligible after credit updates. Final pins/reverification pending.
+
+2026-10-13T23:28:36.059400+00:00 — Final checkpoint100% of scoped bounded audit: verified all9 exact gitobjects/current submitted copies,13 frozen inputs,16 retrieved primary identities, pre-old-audit comparison hash; all33 raw files ignored and no bytecode. Final report/verdict/source/query/inspection/failure records complete. This percentage does not certify worldwide firstness or completeness of historical discovery; those exact remaining gaps are retained. No original-file, git-index, PR-service or publication mutation.

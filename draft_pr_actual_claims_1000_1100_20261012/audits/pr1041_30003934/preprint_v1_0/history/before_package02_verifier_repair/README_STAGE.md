@@ -1,0 +1,3 @@
+# Frozen stage before the package02 verifier repair
+
+All sibling records are exact old bytes. Their historical input locators are interpreted relative to the original pre-repair package, not this history folder. The current manifest is at ../../CURRENT_INTEGRITY.json. STAGE_PINS.json identifies the preserved stage; current package records must not replace its source pins. The complete local baseline, including the old archive, is preserved externally in repairs/package02/baseline_candidate. The unchanged first clean review and the second P2 review retain their own input/output pins in evidence/reviews/package_01 and package_02.

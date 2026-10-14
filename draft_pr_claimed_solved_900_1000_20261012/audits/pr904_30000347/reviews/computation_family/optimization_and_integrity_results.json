@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "raw_checker_wrong_solver",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/checker/check_reduction.py"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/checker/check_reduction.py\", line 164, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/checker/check_reduction.py\", line 124, in main\n    assert hit_number(paths)==brute_vertex_cover(len(parts),hes)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "case": "raw_checker_wrong_solver",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/checker/check_reduction.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"result\": \"PASS\",\n  \"checks\": {\n    \"tripartite_graphs_with_all_deletions_checked\": 145,\n    \"deletion_sets_directly_checked_by_BFS\": 165952,\n    \"feasible_deletion_sets_mapped_to_covers\": 89975,\n    \"tripartite_222_graphs_exact_optimum_checks\": 3375,\n    \"nonempty_base_graphs_through_5_vertices\": 1094,\n    \"base_graph_budget_equivalences\": 6484,\n    \"finite_distance_cover_checks\": 66\n  },\n  \"method\": \"Integer bitmask enumeration, independently computed BFS distances, exact memoized hitting-set recurrence, and brute-force vertex cover\",\n  \"python\": \"3.14.6\",\n  \"runtime_seconds\": 0.762,\n  \"script_sha256\": \"73fe0b661eadc79ec142a10b479e9598a1925d5af1a3c2b5afc35209a2a49f1b\",\n  \"limitations\": \"Finite checks support the construction but do not substitute for the written reduction proof. No random tests or floating-point optimizers were used.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "math_result_and_public_manifest_rewrite",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/verify_publication.py",
+        "--integrity-only"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "FAIL: Byte count mismatch: checks/check_results.json\n"
+    },
+    {
+      "case": "math_result_and_public_manifest_rewrite",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/verify_publication.py",
+        "--integrity-only"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "FAIL: Byte count mismatch: checks/check_results.json\n"
+    },
+    {
+      "case": "identical_byte_symlink_payload",
+      "optimized": false,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/verify_publication.py",
+        "--integrity-only"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "FAIL: Missing or nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/frozen_packet/PROOF.md\n"
+    },
+    {
+      "case": "identical_byte_symlink_payload",
+      "optimized": true,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/verify_publication.py",
+        "--integrity-only"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "FAIL: Missing or nonregular file: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr904_30000347/reviews/computation_family/pr904-controls-cgmrccjt/packet/frozen_packet/PROOF.md\n"
+    },
+    {
+      "case": "child_isolation_under_PYTHONOPTIMIZE_2",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-c",
+        "import sys; print(sys.flags.optimize); assert False, \"assertion sentinel\""
+      ],
+      "returncode": 1,
+      "stdout": "0\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys; print(sys.flags.optimize); assert False, \"assertion sentinel\"\n                                                  ^^^^^\nAssertionError: assertion sentinel\n"
+    }
+  ],
+  "interpretation": "Raw assertion-based scripts can report PASS under -O despite a deliberately wrong solver. Supported verify_publication.py compensates by explicit guards, byte/anchor checks, and replaying suites with -I and no -O. Integrity is against accidental/local mutations and the trusted verifier, not authenticity against coordinated replacement of verifier and all anchors."
+}

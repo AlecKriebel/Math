@@ -1,0 +1,294 @@
+               Focal pedal area ratios of closed elliptic billiards
+                                                  Alec Kriebel
+                                        ORCID: 0009-0001-9320-500X
+
+                                     October 4, 2026 (version 1.0)
+
+
+                                                    Abstract
+          Reznik, Garcia and Koiller observed equality between the two focal pedal area ratios of a
+      closed elliptic billiard and its outer tangent polygon. We prove this equality for every primitive
+      convex or star orbit with a nondegenerate elliptical caustic. More precisely, the outer and
+      original signed pedal areas are proportional by a positive constant independent of phase and
+      common to both foci. The proof identiﬁes a common pair of simple poles for the two cyclic
+      area traces and matches their residues on a compact torus. It reconstructs previously used
+      local cancellation arguments within established elliptic-function methods. We also give an exact
+      triangular certiﬁcate showing that the common focal ratio need not be constant over the billiard
+      family. Known even and triangular cases and classical methods are credited explicitly. This is an
+      extensively AI-assisted, unrefereed research note, with a reproducible veriﬁcation supplement.
+
+
+1    The recorded question and its precise resolution
+Let E be a noncircular ellipse with semiaxes a > b > 0 and foci F± = (±c, 0), where c2 = a2 − b2 .
+Fix a strictly nested, nondegenerate confocal elliptical caustic. Let P0 , . . . , PN −1 be a primitive
+closed billiard orbit, N ≥ 3, listed in traversal order. The outer polygon has vertices at successive
+boundary-tangent intersections and sidelines equal to those tangents. For a focus F , the pedal
+polygon consists of its perpendicular feet on the ordered supporting lines. Every area in this note
+is the signed sum
+                                                   N −1
+                                                  1∑
+                       A(X0 , . . . , XN −1 ) =      det(Xj , Xj+1 ),       X N = X0 .                     (1)
+                                                  2
+                                                    j=0
+
+Write A± for the original chord-pedal areas and B± for the outer tangent-pedal areas.
+   The displayed observation in [1] is
+                                           A+    B+
+                                               =     .                                                     (2)
+                                           A−    B−
+It appears as k605 in arXiv:2004.12497v1, Table 5, p. 6; as k606 in v11, Table 7, p. 9; and as
+k607 in the journal Table 7, p. 349. The observation dates to April 2020. The journal already
+explains the primitive-even case by central symmetry. Its invariant-table framing, and the explicit
+phase-constancy assertion in the imported problem record (AMR-050-0034), require a distinction:
+(2) is true, but the common ratio in it need not be constant.
+Theorem 1. For the ﬁxed ellipse and caustic there is a real constant C0 > 0, independent of the
+phase of the closed billiard, such that
+
+                              B+ (w) = C0 A+ (w),             B− (w) = C0 A− (w).                          (3)
+
+                                                          1
+For positive traversal all four signed areas are strictly positive. Thus (2) holds with nonzero denom-
+inators. The statements hold for every admitted primitive coprime star turning number, as well as
+convex orbits. Reversal and positive integral repetitions preserve the identities and nonvanishing;
+reversal negates all four signed areas. The common focal ratio need not be phase constant: Section 5
+gives an exact counterexample.
+    This scope excludes hyperbolic or collapsed caustics, two-period diameters, unsigned sums of
+lobe areas and projections clamped to side segments. The circular case is elementary and separate:
+a regular star of turning number 0 < τ < N/2 has coincident foci, ratios equal to one, and
+C0 = sec2 (πτ /N ).
+    The proof below uses Stachel’s canonical coordinates [2] and classical Jacobi identities [3].
+Matching periods and principal parts followed by Liouville’s theorem is established methodology
+[4, 5]. The specialized local cancellations were already used in this repository’s original-pedal and
+outer-pedal arguments [10]; they are rederived here, without importing those arguments’ parity-
+restricted ﬁnal conclusions. No new general method or independent discovery of the original obser-
+vation is claimed.
+
+
+2    Coordinates and the actual perpendicular feet
+                                                                                     √
+Uniform scaling normalizes the caustic semiaxes to 1, k ′ , where 0 < k < 1 and k ′ = 1 − k 2 ; the
+foci become (±k, 0). All Jacobi functions below have modulus k. Put K = K(k) and K ′ = K(k ′ ).
+For the positive primitive turning number 0 < τ < N/2, with gcd(τ, N ) = 1, set
+                   2Kτ                    dn v           k′
+              v=        , δ = 2v, a =           , b=        , P (u) = (−a sn u, b cn u).     (4)
+                    N                      cn v        cn v
+Here 0 < v < K, a > 1, b > k ′ and a2 − b2 = k 2 . Stachel’s Theorem 4.3 and equation (4.9) [2]
+parametrize the billiard vertices by P (w + jδ). Jacobi addition gives the chord through P (u −
+v), P (u + v) and the tangent at P (u), respectively, as
+                      (− sn u, cn u/k ′ ) · X = 1,       (− sn u/a, cn u/b) · X = 1.              (5)
+The ﬁrst line is tangent to the caustic. The midpoint parameter u is essential: the chord numbered
+j has parameter w + v + jδ.
+   The projection of F+ = (k, 0) onto these lines is
+                                         (                       )
+                                            k − sn u    k ′ cn u
+                                 q(u) =               ,            ,                            (6)
+                                           1 − k sn u 1 − k sn u
+                                         (                           )
+                                           a(k − a sn u) ab cn u
+                                Q(u) =                  ,              .                        (7)
+                                             a − k sn u a − k sn u
+These formulas follow by substituting each normal n into F+ + (1 − n · F+ )n/(n · n), using cn2 u +
+sn2 u = 1 and a2 − b2 = k 2 . For real u the denominators are at least 1 − k > 0 and a − k > 0.
+Consecutive outer tangents intersect ﬁnitely: antipodal parameters have diﬀerence 2K, whereas
+0 < δ < 2K.
+    In the complex continuation the dot product is bilinear. Deﬁne
+                               N −1
+                             1∑        (                                  )
+                      A(w) =        det q(w + v + jδ), q(w + v + (j + 1)δ) ,                      (8)
+                             2
+                                  j=0
+                               N −1
+                             1∑        (                          )
+                      B(w) =        det Q(w + jδ), Q(w + (j + 1)δ) .
+                             2
+                                  j=0
+
+
+
+                                                     2
+These are precisely A+ (w), B+ (w); changing the outer side starting index only cyclically permutes
+the summands. Central inversion is u 7→ u + 2K. Projection commutes with it, and inversion
+preserves signed area, so
+
+                         A− (w) = A(w + 2K),               B− (w) = B(w + 2K).                   (9)
+
+
+3    A common pair of simple poles
+Cyclic reindexing makes δ a period of both traces; 4K is also a period. Since gcd(τ, N ) = 1, integer
+combinations give
+                                            L = 4K/N                                             (10)
+as a common real period. The imaginary Jacobi shift ﬁxes sn and negates cn, hence reﬂects each
+foot map in the horizontal axis:
+
+                       A(w + 2iK ′ ) = −A(w),              B(w + 2iK ′ ) = −B(w).               (11)
+
+Thus A and B are meromorphic on the compact torus C/(LZ + 4iK ′ Z).
+Lemma 1. Modulo this lattice the only possible poles of either trace are
+
+                                  K − v + iK ′ ,           K − v + 3iK ′ ,                      (12)
+
+and each has order at most one.
+Proof. At a common Jacobi pole, each map (6)–(7) is a quotient of functions with at most a
+simple pole and a nonzero leading denominator coeﬃcient. Both components therefore extend
+holomorphically there.
+   Put r = K + iK ′ . On the sn torus with periods 4K, 2iK ′ , sn u = 1/k has the unique double
+root r. The quarter-shift formulas are
+                                          dn z                               ik ′
+                           sn(r + z) =          ,          cn(r + z) = −          .             (13)
+                                         k cn z                            k cn z
+Consequently q(r + z) is even in z, and
+                                                    2
+                                   q(r + z) =         (1, i)z −2 + O(1).                        (14)
+                                                    k
+At a singular original-foot vertex, its neighbors q(r + z ± δ) are holomorphic: their parameters are
+not another root modulo 4K since 0 < δ < 2K. This includes a possible common Jacobi pole at a
+neighbor, already shown removable. Its two incident determinants combine into
+                                  (                                     )
+                             2 det q(r + z), q(r + z + δ) − q(r + z − δ) .
+                             1
+                                                                                                (15)
+
+The second vector is odd and holomorphic by the evenness in (13), so it is O(z). Equation (14)
+then bounds (15) by a simple pole. Primitivity makes all jδ distinct modulo 4K; thus exactly one
+original-foot vertex can be singular at that phase. All other area terms are holomorphic.
+    For the outer map, the nonremovable candidates solve sn u = a/k. By (13) the roots are
+r − v, r + v; the degree-two property of sn leaves no others on its torus. They are distinct simple
+roots for 0 < v < K. At both, cn u = −ib/k, and the numerator vector in (7) is −ab2 (1, i)/k. The
+two denominator derivatives are opposite nonzero values of magnitude b2 sn v. Thus the residues
+at r − v, r + v are opposite collinear vectors (indeed −R, R with R = a(1, i)/(k sn v)).
+
+                                                       3
+    The roots diﬀer by δ, so two adjacent outer-foot vertices are singular simultaneously. Their
+common edge has double-pole coeﬃcient det(−R, R) = 0. Every remaining incident edge has at
+most one singular endpoint and therefore at most a simple pole. There are exactly two such singular
+vertices: primitivity prevents additional coincidences, and N = 2 is excluded. The cyclic closing
+edge obeys the same computation, including when N = 3.
+    The original phase candidates are r − v − jδ; the outer candidates are r − v − jδ and r + v − jδ.
+Since δ is an integer multiple of L and 2v = δ, all reduce to r − v modulo L. Their translate by
+2iK ′ gives the second point in (12). No other poles remain.
+
+
+4    Positivity and residue matching
+The positivity needed here is signed positivity, including for stars. Consider either ellipse with
+semiaxes R, S equal to 1, k ′ or a, b. Its outward normal in the chosen parametrization is n(u) =
+(− sn u/R, cn u/S). On the real axis,
+                                                          dn u
+                                     det(n(u), n′ (u)) =        > 0.                                  (16)
+                                                          RS
+A continuous lift of its direction angle therefore increases strictly, and its increase over 2K is exactly
+π. Since 0 < δ < 2K, consecutive normals have direction increments strictly between 0 and π.
+    The focus is strictly inside each ellipse. For its tangent with normal n, the foot vector relative
+to the focus is (1 − n · F+ )n/(n · n), a positive multiple of n. Every consecutive determinant of
+these vectors is positive. The same holds for the closing edge using the lifted increment; N δ = 4Kτ
+closes the directions after τ full turns. Translating the origin to the focus leaves (1) unchanged.
+It follows that A(w) > 0 and B(w) > 0 at every real phase. Equation (9) gives positivity for the
+other focus too.
+    A nonzero trace with the pole bound of Lemma 1 must have genuine simple poles at both listed
+points. If one were absent, (11) would remove the other. A holomorphic function on the compact
+torus is constant, and (11) would force that constant to be zero, contrary to positivity.
+    At the ﬁrst pole choose C0 = Res(B)/ Res(A); the denominator residue has just been proved
+nonzero. The diﬀerence B − C0 A has no pole there. Its antiperiodicity removes the pole at the
+second point as well. Lemma 1 makes it holomorphic everywhere, hence constant, hence zero by
+(11). On the real axis C0 = B(w)/A(w) > 0; it is real and independent of phase. Applying
+this identity at w + 2K proves the identical multiplier at F− , then permits division to obtain (2).
+Reversal negates each area and a repeated traversal multiplies each by its positive repetition count.
+This proves the positive assertions of Theorem 1.
+
+
+5    An exact nonconstant focal ratio
+                                             √
+Consider x2 /21 + y 2 /16 = 1 with foci (± 5, 0) and caustic squared semiaxes 189/25, 64/25. A
+primitive positively oriented triangular billiard is
+                          √             √                  √
+                         ( 21, 0), (−3 21/5, 16/5), (−3 21/5, −16/5).                       (17)
+                    √               √                                                    √ 2
+Its lines are x = −3 21/5 and 2x/ 21 ± y = 2. The caustic support test gives (189/25)(2/ 21) +
+64/25 = 4 on each oblique side; the vertical side is also tangent. The contact points lie on the
+segments and direct normalized-vector reﬂection veriﬁes the billiard law. These exact checks are
+included in the supplement. Perpendicular projection and (1) give
+                                    √       √                √      √
+                                84(7 21 ± 5)              7(7 21 ± 5)
+                          A± =                   ,   B± =               .                   (18)
+                                      625                       10
+
+                                                    4
+                                                                          √      √      √     √
+The common multiplier is 125/24, whereas the common focal ratio is (7 21+ 5)/(7 21− 5) > 1.
+Central inversion gives a diﬀerent phase of the same ﬁxed triangular family, preserves orientation,
+and exchanges the foci. Its ratio is therefore the reciprocal, strictly less than one. This proves the
+negative assertion of Theorem 1 without a numerical test. It corrects the constancy interpretation
+of the source and imported record; it does not refute the displayed equality.
+
+
+6    Prior cases, veriﬁcation and limitations
+The negative result is also a short consequence of classical inputs. For a signed triangle T with
+circumcenter O and radius R, the Querret–Sturm pedal formula is
+                                             [T ] ( 2          )
+                                 DT (F ) =      2
+                                                   R − |F − O|2 [6].                             (19)
+                                             4R
+Fierobe’s Lemma 4.1 [7] distinguishes the two axial triangular circumcenters. Applying (19) at the
+foci and then inverting the triangle gives unequal reciprocal ratios. Thus no new negative theorem
+or ﬁrst correction is claimed.
+    The triangular positive case is likewise an explicit consequence of older geometric statements
+[8, 9]. The supplement gives the complete conditional deduction, including the simultaneous
+center-coordinate
+      √             relation that a locus shape alone would not imply. For X = a2 , Y = b2 ,
+D = X 2 − XY + Y 2 and t = (D − Y )/(X − D) > 1, its multiplier is C0 = (t + 1)3 /(2t). This is
+credited as an old-results corollary, not a separately novel triangular result. The main proof does
+not rely on those triangular center theorems or on their illustrative printed examples.
+    Recent restricted pedal results [11] use related trace methods and diﬀerent quantities or least-
+period classes. The veriﬁcation supplement records their exact comparison and six unavailable
+journal editions. A bounded primary-source audit found no previous full-domain proof of (2) or of
+the stronger proportionality statement (3); ﬁnite literature coverage cannot certify global ﬁrstness.
+In particular, no new even-period multiplier priority or independent discovery of C0 is asserted.
+    The supplement contains original portable exact controls, ﬁnite high-precision real and complex
+diagnostics, and an independent reﬂection construction. Computation supplements the proof rather
+than establishes it by sampling; the numerical results are not interval-certiﬁed bounds. AI tools were
+used extensively for proof development, literature comparison, computation, writing and adversarial
+veriﬁcation. Internal independent AI reviews are not human peer review. This note has not been
+refereed, independently human peer reviewed, or certiﬁed by a formal proof assistant.
+
+
+References
+ [1] D. S. Reznik, R. Garcia and J. Koiller, Fifty New Invariants of N-Periodics in the Elliptic
+     Billiard, Arnold Math. J. 7 (2021), 341–355, doi:10.1007/s40598-021-00174-y. Earlier versions:
+     arXiv:2004.12497v1 and v11.
+ [2] H. Stachel, On the motion of billiards in ellipses, European J. Math. 8 (2022), 1602–1622,
+     doi:10.1007/s40879-021-00524-2, Theorem 4.3 and equation (4.9), p. 1614.
+ [3] NIST Digital Library of Mathematical Functions, §22.4 and §22.8, Jacobi periods and addition
+     identities.
+ [4] A. Khare, A. Lakshminarayan and U. Sukhatme, Local Identities Involving Jacobi El-
+     liptic Functions, doi:10.1007/BF02704435 (2004), §4.1, equations (39)–(42); arXiv:math-
+     ph/0306028.
+
+                                                  5
+ [5] P. Roitman, R. Garcia and D. Reznik, New Invariants of Poncelet–Jacobi Bicentric Polygons,
+     Arnold Math. J. 7 (2021), 619–637, doi:10.1007/s40598-021-00188-6.
+
+ [6] Querret, Démonstration du théorème de géométrie élémentaire énoncé à la page 28 du présent
+     volume, Annales de Mathématiques pures et appliquées 14 (1823–1824), 280–285, Numdam
+     primary article.
+
+ [7] C. Fierobe, On the circumcenters of triangular orbits in elliptic billiard, arXiv:1807.11903v5
+     (22 July 2019), Lemma 4.1.
+
+ [8] R. A. Garcia and D. S. Reznik, Discovering Poncelet Invariants in the Plane, IMPA (2021),
+     ISBN 978-65-89124-43-6, Theorems 2.1 and 2.3.
+
+ [9] M. Helman, D. Laurain, R. Garcia and D. Reznik, Invariant Center Power and Elliptic Loci
+     of Poncelet Triangles, arXiv:2102.09438v4 (16 April 2021), §§3.4–3.5.
+
+[10] A. Kriebel, Math research repository, original-foot local cancellation, commit 7b7fcd6, §§5,7;
+     outer-foot cancellation, commit 2180d64, §§2–4 (2026).
+
+[11] A. Ferudun, Focal Pedal-Antipedal Area Products in Elliptic Billiards, v1.0,
+     doi:10.5281/zenodo.23079799; Steiner-Centroid Pedal Area Ratios in Elliptic Billiards,
+     v1.0, doi:10.5281/zenodo.23089778; Outer-Pedal Area Products in Elliptic Billiards, v1.1,
+     doi:10.5281/zenodo.23088516 (1 October 2026).
+
+
+
+
+                                                6
+

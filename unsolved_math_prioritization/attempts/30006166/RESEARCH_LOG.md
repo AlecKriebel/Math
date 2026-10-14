@@ -7,3 +7,7 @@
 2026-10-06 UTC: Prepared a draft publication with all three frozen archives and every member unchanged. Historical pending-review and prepublication labels are retained with their temporal meaning. Replay and publication are verification steps, not additional substantive proof approaches. The queue checkpoint is claimed_solved, 3/5, with a concise qualified finding; every other queue cell and byte is preserved.
 
 Best-guess completion toward the stated complete-candidate-and-two-audit checkpoint: 100%. This is a workflow estimate, not a probability of correctness or an external mathematical certification.
+
+## 2026-10-14T03:57:29.266946+00:00 — preprint preparation (50%)
+
+Fresh independent mathematics and bounded priority audits completed; no proof repair required. Current five-page note adds all required lifting predecessor credits and published baseline citation. Verification package preserves original61 files and3 ZIPs; final package review is a separate gate before merge/publication. Original3/5 effort unchanged.

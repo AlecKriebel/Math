@@ -1,0 +1,5 @@
+# Final independent closure
+
+The initial derivation's universal source-SSP obligation was discharged by the fresh controlling journal's complete Lemma3.1/3.2 proofs and Figures1–3, direct parity-cost arithmetic, strict state separation, and the finite all-choice attempts recorded separately. Full real-demand isolation, exact-penalty, simplex-retention, rank-one complete correspondence, negative/default and nonnegative/crossing exhaustion, encoding and rational-certificate mechanisms close without a mathematical gap identified. Earlier acceptance labels were comparison evidence only.
+
+The whole package has one reproducible P2 interface failure: a clean extraction lacks the excluded external deposit wrapper yet its documented verifier reads that wrapper unconditionally. An exact successful archive rebuild does not cure it. This finding is independent of proof correctness and custody. Preserve old clean verdict scope; perform a separate repair and new full candidate review before any root promotion. This review has made no candidate or service mutation.

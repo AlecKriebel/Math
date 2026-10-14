@@ -1,0 +1,27 @@
+# Published complex projection result and positive finite-subgradient proposition
+
+**State as of 2026-10-11T23:28:29.504416+00:00.** Published unrefereed proof note: [10.5281/zenodo.23306332](https://zenodo.org/records/23306332); concept DOI 10.5281/zenodo.23306331. Root accepted exact v03 after review02 found no material defect and verified public PDF/ZIP bytes against the frozen package. Tracker **PENDING** because GWS OAuth is not authenticated; native merge **PENDING**. No tracker range or merge is claimed. This new publication-state candidate awaits root integration audit; that pending audit does not reverse actual publication. These immutable preparation statuses are as of this UTC; later root provider receipts are the authority for subsequent tracker/native outcomes.
+
+Author turns remain **1/5**, with no turn added by this publication-state preparation.
+
+The stable path p_t(z)=(z+it)(z+t²-it) approaches z². Its genuine full monic outward normal covectors n_t=(-t,-t²/2,-t/2,1) converge to n0=(0,0,0,1). The limit is a limiting normal but is not proximal: support against p_t-z² is t³, while squared displacement is 2t⁴+t⁶.
+
+The core accepted result establishes:
+
+- Arbitrarily nearby unstable complex quadratics with at least two attained global nearest closed-half-plane stable quadratics, monic and full exact-degree
+- The conclusion for every fixed positive-definite real coefficient inner product
+- Non-prox-regularity of the entire abscissa epigraph as a set
+
+Root whole-read and verified the v1 candidate and reproduced its 2005 exact rational controls. Whole-preprint review01 found no mathematical defect in v02 but required delivery repair D1; review02 independently accepted corrected v03 without material defects. Root accepted that exact v03 for publication and verified the actual published bytes. This new state integration awaits its separate root audit. Original 533/801 controls and copied original reviews remain original-version evidence. The current rational checker and its 2005-assertion receipt remain unchanged. Infinite and universal conclusions are analytic, not test extrapolations; no explicit input or minimizing pair is claimed.
+
+Lewis (2003), Section8, pp166–168, explicitly formulates the complex Euclidean monic stable-set question. The theorem gives a negative degree-two answer to that historical set question. Printed OWR Question1 still omits field/metric/monicity; those omissions are disclosed rather than silently supplied. Neither historical question establishes present openness.
+
+The geometry is credited to the classical real-quartic stability boundary of Bottema (1956) and its Whitney-umbrella presentation by Kirillov–Overton (2013). The note also credits prior Burke–Overton/Lewis root/abscissa calculus and the Poliquin–Rockafellar–Thibault projection characterization. Ordinary root differentiation and the stability cusp are not asserted as novel mechanisms.
+
+Cross's 2010 dissertation has now been recovered, and independent priority reviewers read complete chapter5, printed pp80–133. Its finite-subgradient definitions, restricted-parameter examples, and real-quadratic conclusion are distinguished from the ambient complex coefficient projection theorem. Earlier unrecovered-thesis statements describe only the explicitly dated 2026-10-01 gate. The full 2009 talk body remains unknown.
+
+A separately reviewed **positive auxiliary result** states that the monic complex-quadratic abscissa is function prox-regular at the coefficient origin relative to each finite limiting subgradient, in the real Euclidean coefficient metric, with constants depending on that fixed subgradient. Root accepted its mathematics after a cold adversarial audit and strict-inequality repair. This is compatible with failure of whole-epigraph set prox-regularity at a horizontal normal. The core projection proof does not depend on it. It is proved and accepted as Proposition3 in the exact published preprint. The original reviews and priority decision do not certify auxiliary novelty or the final package; the copied whole-preprint reviews identify the exact versions they checked.
+
+The later primary recovery is credited: Moses–Liu1991's complete public author-linked article OCR pp901–906 recognizes possible global nonuniqueness for real disk-stable coefficient projection, while its typeset PDF/Figure1 remain unrecovered. Orban2013's full 214-page Open Access thesis is recovered; two independent readers audited relevant theory and complete polynomial Chapter4, with explicit complex formulation p144 and weighted objectives pp175–180. No exact local core theorem was located in those read extents. Generic global nonuniqueness and prior complex polynomial algorithms are credited, rather than advertised as new here.
+
+Orban's Example22 has a displayed numerical distance inconsistency and is not a proof premise or a verified matrix global/local tie. The separate Orban2013 journal article and Combettes–Trussell1992 full bodies remain unread. The exact direct credited proof note has passed whole-preprint review02 and is published, while unconditional novelty and application priority remain **HOLD**. Tracker and native merge are **PENDING**; the new publication-state candidate still requires root integration audit. No absence, firstness, or present-openness inference is made. Real-only general stability, general-degree function conjectures, and all-degree failure remain excluded.

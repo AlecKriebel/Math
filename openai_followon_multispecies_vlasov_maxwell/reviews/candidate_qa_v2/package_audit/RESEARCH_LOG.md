@@ -1,0 +1,7 @@
+# Package v2 audit research log
+
+- 2026-10-07T04:45:13.433623+00:00 — Began independent read-only v2 package/metadata audit. Dedicated output directory established; v1 audit retained unchanged. Completion estimate: 20% of assigned packaging/metadata audit.
+- 2026-10-07T04:45:13.739610+00:00 — Verified 33 mandatory checks, expected requested PDF/ZIP hashes, all declared sizes/hashes, 26 exact archive files, 24 mapped source counterparts including documented Markdown transformations, sole-author metadata and disclaimers. Completion estimate: 85%; independent exhaustive historical/document reference review pending.
+- 2026-10-07T04:45:30.112691+00:00 — Independent reference audit initially found no blocker; historical excluded formal-script instruction and missing priority-receipt navigation being classified with exact context. Completion estimate: 90%. No mathematical/priority/publication certification is implied.
+- 2026-10-07T04:46:26.336533+00:00 — Independent reference audit completed 12/12 checks; all 128 references classified and current supplied references resolved, with three nonblocking historical/navigation observations. Completion estimate: 95%.
+- 2026-10-07T04:47:40.297767+00:00 — Frozen v2 passed all 31 internal checks; recorded separately the later four current-project comparison failures/binding drift caused by root advancing to v3. Saved initial-match summary and exact drift snapshot. Completion estimate: 100% of the assigned audit. No source/package/v1 mutation, Git or network/publication action.
