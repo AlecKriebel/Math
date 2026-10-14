@@ -59,6 +59,9 @@ for name in ['fresh_review_03','editorial_delta_review_01']:
   f=review_dir/pin.get('path',pin.get('relative_path'));assert f.stat().st_size==pin['bytes'] and hashlib.sha256(f.read_bytes()).hexdigest()==pin['sha256'];paths.append(f)
 for name in ['PR_PREPARED.json','NATIVE_SCIENTIFIC_READBACK.json','PR_MERGED.json','ZENODO_VERIFIED_PUBLICATION.json','TRACKER_VERIFIED_APPEND.json']:
  paths.append(D.parent/'publication'/name)
+paths += [f for f in preprint_dir.iterdir() if f.is_file() and f.suffix in ['.md','.json','.py','.tex','.txt']]
+paths += [f for f in (D/'priority_classical_adversary_01/historical_recovery').rglob('*') if f.is_file() and '__pycache__' not in f.parts]
+paths.append(D.parent/'publication/NATIVE_READBACK_SCOPE_REPAIR.json')
 entries=[];pins=[]
 for f in sorted(set(paths)):
  assert f.resolve().is_relative_to(P.resolve()) and not f.is_symlink();data=f.read_bytes();entries.append({'path':f.relative_to(ROOT).as_posix(),'mode':'100644','type':'blob','content':data.decode()});pins.append({'path':f.relative_to(ROOT).as_posix(),'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()})
