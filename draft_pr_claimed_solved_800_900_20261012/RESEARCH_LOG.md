@@ -78,3 +78,7 @@ Merged head bcd6c47f265d131d0a40a2041e79fc7ff284da2d / merge commit b663b31cd447
 ## 2026-10-13T05:25:15.837052+00:00 — PR810 completed
 
 PR810 exact reviewed revision merged; production preprint DOI https://doi.org/10.5281/zenodo.23332261 published, metadata/files verified, DOI resolved, Math Puzzles A74:D74 exact unique readback. Main publication receipt commit edfcbf620d432d1c33f97d2ae6c84d08d1e29663 verified with112-member closed outer tree and108 protected accepted files unchanged. Target QUEUE row retains claimed_solved with actual DOI; every other queue byte preserved by scoped preview, and published PR body read back. PR810 workflow complete100%; program8% (one of twelve initially eligible efforts completed). Continue ascending to next exact-status draft gate; other-status exclusions remain untouched.
+
+## 2026-10-14T03:21:00.857426+00:00 — PR815 mathematical checkpoint; overall 8%, PR815 30%
+
+PR815 remains exactly claimed_solved at unchanged head. Entire-space proof accepted relative to verified CJMST inputs by root and two distinct independent families; full frozen diagnostic/integrity reproduction passed. Priority audit underway before paper preparation. No excluded PR processed or other researcher contacted.
