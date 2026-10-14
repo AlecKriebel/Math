@@ -1,0 +1,5 @@
+# Adopted operational research formulation
+
+For research we adopt the five-part interpretation in the independent source adjudication, explicitly as authored operational criteria rather than verbatim axioms of Roberts. The input is an ordinary smooth/tame oriented knot pair in oriented S³. Construct geometrically determined spaces and genuine local systems, specify homology/support/monodromy and an extraction operation, provide natural transport under three-dimensional orientation-preserving equivalences, and prove the full source-normalized Jones polynomial for every knot. Auxiliary diagrams may compute an intrinsically defined object. No circular use of a previously computed Jones polynomial, or scalar move invariance alone relabeled as intrinsicness, counts as a resolution. No arbitrary-manifold extension or categorification is required. Any stronger construction class is a scoped approach only; a no-go theorem for it does not resolve the broad problem negatively.
+
+The source's qualitative intrinsicness remains a limitation on the scope of any claimed resolution. We must expose it rather than silently weaken it to a known presentation-based construction.
