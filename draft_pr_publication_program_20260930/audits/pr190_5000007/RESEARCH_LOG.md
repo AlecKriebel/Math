@@ -1,0 +1,5 @@
+# PR190 / 5000007 research log
+
+2026-10-14T05:14:09.454682+00:00 — Workflow5%: original190head0c3346c8ebcb3b967a1d8bf9a283f027b44b738c, exactclaimed_solved QUEUEstatus, originaleffort unknown/5 (interrupted) retained without inventing a number. All22 originalnativeblobs authenticated with GitSHA1/SHA256 and protected0444. Mathematicalclaims and originalreviewopinions unreviewed; no sourceexecution/priorityclearance. Prior184factual38completed/22published accepted. Original185–189unsolved skippeduntouched. Broadergoalactive.
+
+2026-10-14T05:24:50.228948+00:00 — Workflow15%: primary printed definitions/figures personally examined; source shortcut overlaps direct face diagonals. Parity-selected theorem geometry promising, but no author-authenticated erratum and no unqualified literal resolution claim. Three independent families active with source-only seals. Both original checkers use load-bearing assert; -O negative-control repair required. Original22 files preserved, prior reviews not used by Root.38completed/22published unchanged.
