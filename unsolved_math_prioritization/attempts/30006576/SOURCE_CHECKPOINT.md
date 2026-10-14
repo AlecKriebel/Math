@@ -1,0 +1,7 @@
+# Mesh-superconvergence source checkpoint
+
+The exact target is the two open mesh-structure questions in Praetorius's contribution, joint with Hardering and Zavalani, OWR5/2026 printed312–313. The effect concerns weighted integral geometry consistency, especially the Gaussian-curvature contribution to a surface Stokes energy error, not improved pointwise curvature accuracy.
+
+The authors' full31July2026 preprint arXiv2607.29466 was recovered. It proves estimates using explicit symmetric macro-element pair structure. Its introduction and AppendixB expressly keep projected refinement and the tested newest-vertex-bisection arrangements outside the proved scope. Thus this newer paper supplies substantial precise known analysis but does not establish the necessary mesh characterization requested by the original problem. Its parametrization lifting must be distinguished from closest-point lifting, and its distance is signed.
+
+One route has begun: test whether a local broken-Hessian interpolation moment condition characterizes cancellation of the leading Gaussian-curvature density error on a scaled graph patch. A rotational odd-sided fan may cancel these tensor moments without any centrally mirrored triangle pair. This is presently an unverified local mechanism, not a global mesh classification or a surface Stokes error theorem. The route and any global transfer gap will be stated explicitly if it succeeds. Full original target remains unresolved.
