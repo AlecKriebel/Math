@@ -1,0 +1,50 @@
+{
+  "schema": "explicit-checker-derivation-1",
+  "purpose": "Keep all five WXY diagnostic rejection conditions active under normal, -O, and -OO Python modes. No mathematical formula, loop, tolerance, or accepted proof was changed.",
+  "original_path": "wxy/verify_normalizations.py",
+  "original_bytes": 3832,
+  "original_sha256": "6f3b5ee03105df6fea16f7fb3ea4225b92a605af07ddaf372ec7cc05f6725cee",
+  "derived_path": "checks/wxy_normalizations_checked.py",
+  "derived_bytes": 4066,
+  "derived_sha256": "cc13258260b4fb476394a6ecae0e073f8e139b4d8d4bd72109e913b94f7e8f9b",
+  "edits": [
+    {
+      "original_byte_start": 1071,
+      "original_byte_end_exclusive": 1122,
+      "original_fragment_sha256": "f6012d5d557eaaddb956d49295720e84cdc99d69b9ff6ee5191c82cf59f60760",
+      "replacement_utf8": "            if residual != 0:\n                raise AssertionError((n, m, residual))\n",
+      "replacement_sha256": "22d5f9d564a515377d95fb783eb1dd5cd4505f16952febf5b059239213022311"
+    },
+    {
+      "original_byte_start": 1425,
+      "original_byte_end_exclusive": 1502,
+      "original_fragment_sha256": "95325ab88784e92fe9c2b0d2e094f3df124b2e09d8c2c44f78848df7eb788cbd",
+      "replacement_utf8": "    if sp.simplify(sp.diff(s3, t) - sp.Rational(3, 2) * (1 - t**2)) != 0:\n        raise AssertionError(\"n=3 latitude primitive\")\n",
+      "replacement_sha256": "bcc88ffd7ba90035d3110c4f757afe10069a32e46739a5cc1b9938bc568ae3c3"
+    },
+    {
+      "original_byte_start": 1502,
+      "original_byte_end_exclusive": 1599,
+      "original_fragment_sha256": "cc7a72cb368d1dc7a607469cdf8cc7772f66a06d5eb3e26658583d6bd36115e5",
+      "replacement_utf8": "    if sp.simplify(sp.diff(s4, t) - 16 / (3 * sp.pi) * (1 - t**2) ** sp.Rational(3, 2)) != 0:\n        raise AssertionError(\"n=4 latitude primitive\")\n",
+      "replacement_sha256": "c9d3e2cbe6a08c9d9e0fa2ebeb1c90e3fe7f44fea959027f7b5c3448ac5da7c7"
+    },
+    {
+      "original_byte_start": 2505,
+      "original_byte_end_exclusive": 2551,
+      "original_fragment_sha256": "a70444f6583fe0a4ec81c8e70a603cf3c2a137c59f3c27f9e976329268b189ba",
+      "replacement_utf8": "        if not residual < 1e-9:\n            raise AssertionError((n, residual))\n",
+      "replacement_sha256": "c4650ecf0e408b14dad48b1fdd240f6692f366fe13068ee896a5f98840c6b857"
+    },
+    {
+      "original_byte_start": 2658,
+      "original_byte_end_exclusive": 2693,
+      "original_fragment_sha256": "341a02403a85aba43cfd8cac74dda3cdb24dd353bce72ace52ef62a900b967f0",
+      "replacement_utf8": "        if not shift_error < 1e-12:\n            raise AssertionError(\"sampled phase half-shift\")\n",
+      "replacement_sha256": "80010843a50442e1d8aa1fe44e1f15b67f2fcb5241c5b238793cc59139fb7b65"
+    }
+  ],
+  "original_assert_nodes": 5,
+  "derived_assert_nodes": 0,
+  "unchanged_outside_listed_ranges": true
+}
