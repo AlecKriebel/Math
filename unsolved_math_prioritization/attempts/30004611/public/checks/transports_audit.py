@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+# Reader edition: explicit runtime checks; results go only to stdout.
+"""Independent rational finite-poset controls. No imported author programs."""
+from itertools import combinations
+from pathlib import Path
+import json
+import sympy as s
+
+def span_key(rows, n):
+    if not rows:
+        return ()
+    rr = s.Matrix(rows).rref()[0]
+    return tuple((tuple((v for v in rr.row(i))) for i in range(rr.rows) if any(rr.row(i))))
+
+def flats(normals):
+    n = len(normals[0])
+    out = set()
+    for r in range(len(normals) + 1):
+        for ss in combinations(normals, r):
+            out.add(span_key(ss, n))
+    return sorted(out, key=lambda a: (-len(a), str(a)))
+
+def subset(x, y, n):
+    return len(span_key(list(x) + list(y), n)) == len(x)
+
+def basis(x, n):
+    if not x:
+        return s.eye(n)
+    bs = s.Matrix(x).nullspace()
+    return s.Matrix.hstack(*bs) if bs else s.zeros(n, 0)
+
+def cohom0(P, n):
+    Bs = [basis(x, n) for x in P]
+    arrows = {(i, j) for i in range(len(P)) for j in range(len(P)) if i != j and subset(P[i], P[j], n)}
+    chains = [[(i,) for i in range(len(P))]]
+    while True:
+        nxt = [ch + (j,) for ch in chains[-1] for j in range(len(P)) if (ch[-1], j) in arrows]
+        if not nxt:
+            break
+        chains.append(nxt)
+    offsets = []
+    dims = []
+    for cc in chains:
+        off = {}
+        total = 0
+        for ch in cc:
+            off[ch] = total
+            total += Bs[ch[-1]].cols
+        offsets.append(off)
+        dims.append(total)
+    inc = {}
+    for i, j in arrows:
+        inc[i, j] = Bs[j].gauss_jordan_solve(Bs[i])[0]
+        if not Bs[j] * inc[i, j] == Bs[i]:
+            raise RuntimeError('Check failed at accepted-source line 39')
+    ds = []
+    for k in range(len(chains) - 1):
+        d = s.zeros(dims[k + 1], dims[k])
+        for ch in chains[k + 1]:
+            ro = offsets[k + 1][ch]
+            nr = Bs[ch[-1]].cols
+            for a in range(k + 2):
+                face = ch[:a] + ch[a + 1:]
+                co = offsets[k][face]
+                mat = s.eye(nr) if a < k + 1 else inc[ch[-2], ch[-1]]
+                for rr in range(mat.rows):
+                    for cc in range(mat.cols):
+                        d[ro + rr, co + cc] += (-1) ** a * mat[rr, cc]
+        ds.append(d)
+    for a, b in zip(ds, ds[1:]):
+        if not b * a == s.zeros(b.rows, a.cols):
+            raise RuntimeError('Check failed at accepted-source line 51')
+    ranks = [int(d.rank()) for d in ds]
+    h = [dims[k] - (ranks[k - 1] if k else 0) - (ranks[k] if k < len(ranks) else 0) for k in range(len(dims))]
+    return {'flat_count': len(P), 'strict_chain_counts': [len(c) for c in chains], 'cochain_dimensions': dims, 'differential_ranks': ranks, 'cohomology_dimensions': h}
+B = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 1)]
+FB = flats(B)
+PB = [f for f in FB if len(f) < 3]
+alpha3 = s.Matrix([[1, 2, 3]])
+line_values = []
+for f in FB:
+    if len(f) == 2:
+        v = basis(f, 3)
+        val = (alpha3 * v)[0]
+        if not val != 0:
+            raise RuntimeError('Check failed at accepted-source line 64')
+        line_values.append({'normal_rows': [[str(x) for x in row] for row in f], 'basis_vector': [str(x) for x in v], 'alpha_value': str(val)})
+D5 = [(1, 0, 0, 0, 0), (0, 1, 0, 0, 0), (0, 0, 1, 0, 0), (1, 1, 1, 0, 0), (0, 0, 0, 1, 0), (0, 0, 0, 0, 1)]
+a5 = (1, 2, 3, 1, 1)
+FD5 = flats(D5)
+contained = [f for f in FD5 if len(f) < 5 and subset(f, (a5,), 5)]
+if not not contained:
+    raise RuntimeError('Check failed at accepted-source line 69')
+FA5 = [f for f in flats(D5 + [a5]) if len(f) < 5]
+Q5 = [f for f in FA5 if subset(f, (a5,), 5)]
+local_checks = []
+for X in Q5:
+    local = [v for v in D5 if subset(X, (v,), 5)]
+    c = span_key(local, 5)
+    if not len(X) == len(c) + 1:
+        raise RuntimeError('Check failed at accepted-source line 76')
+    if not span_key(list(c) + [a5], 5) == X:
+        raise RuntimeError('Check failed at accepted-source line 77')
+    local_checks.append({'dim_X': 5 - len(X), 'deletion_localization_rank': len(c), 'arrangement_localization_rank': len(X)})
+X = span_key([(1, 0, 0, 0, 0), (0, 1, 0, 0, 0), (0, 0, 1, 0, 0), (0, 0, 0, 1, 1)], 5)
+active = [v for v in D5 if subset(X, (v,), 5)]
+if not active == D5[:4]:
+    raise RuntimeError('Check failed at accepted-source line 81')
+D4 = [(1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (1, 1, 1, 0), (0, 0, 0, 1)]
+a4 = (1, 2, 3, 0)
+F4 = [f for f in flats(D4 + [a4]) if len(f) < 4]
+W = span_key([(1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0)], 4)
+U = [f for f in F4 if subset(W, f, 4) and (not subset(f, (a4,), 4))]
+expected = {tuple((tuple(list(row) + [s.Integer(0)]) for row in f)) for f in PB}
+if not set(U) == expected:
+    raise RuntimeError('Check failed at accepted-source line 87')
+rB = cohom0(PB, 3)
+rU = cohom0(U, 4)
+if not rB['cohomology_dimensions'] == [0, 1, 0]:
+    raise RuntimeError('Check failed at accepted-source line 89')
+if not rU['cohomology_dimensions'] == [1, 1, 0]:
+    raise RuntimeError('Check failed at accepted-source line 90')
+report = {'field': 'Q', 'generic_witness': {'deletion_flat_count': len(FD5), 'nonzero_deletion_flats_contained_in_H': 0, 'total_nonzero_arrangement_flats': len(FA5), 'Q_flat_count': len(Q5), 'all_local_coloop_checks': local_checks, 'six_factor_line_checks': line_values, 'nonfree_stalk_deletion_normals': active}, 'factor_degree_zero_cohomology': rB, 'open_fiber_degree_zero_cohomology': rU, 'all_passed': True}
+print(json.dumps(report, indent=2))
