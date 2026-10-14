@@ -1,0 +1,7 @@
+Closing without merging because the full counterexample was already published by JonLuca De Caro in [A counterexample on cyclic blocks in finitary permutation groups](https://doi.org/10.5281/zenodo.21538908), dated 24 July 2026. This is a priority finding; the candidate's mathematics passed independent internal review.
+
+The earlier paper proves the same intended infinite negative answer to Kourovka 21.6: a countable transitive finitary 2-group, its own Sylow subgroup, with no transitive subgroup having the required individual-cycle block property. Its order-32 local action is permutation-equivalent to the candidate's, and the binary-tail relabelling identifies the complete restricted wreath limits and the unrestricted subgroup obstruction. Zenodo's creation and last-update timestamps are both in July 2026.
+
+We checked possible differences in scope, group action, embeddings, cycle lifts and publication date. Changing the presentation or crossing witness does not repair the full-result priority collision, and a new target would change this PR's scope. The source Notebook's lack of an editorial annotation does not remove the earlier public proof. No plagiarism, earliest historical priority, or external human/editorial acceptance is asserted.
+
+[The audit and reproducible equivalence evidence](https://github.com/AlecKriebel/Math/tree/main/draft_pr_claimed_solved_700_800_20261012/audits/pr734_2515) preserve the exact candidate and all findings. No duplicate preprint or DOI is being created.
