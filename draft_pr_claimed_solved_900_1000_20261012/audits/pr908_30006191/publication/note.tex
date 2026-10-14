@@ -1,0 +1,303 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\F}{\mathcal F}
+\newcommand{\N}{\mathcal N}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\id}{\mathbf 1}
+\title{Maximal norm discontinuity for a bounded-region\newline continuum fermion interaction}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Research note, version 1.0 --- 14 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For continuum fermions in three dimensions, we give one fixed smooth compactly
+supported pair potential and one fixed bounded interaction region for which
+the Heisenberg orbit of a fixed annihilation operator is discontinuous in
+operator norm. Explicit finite-particle Slater states and times tending to zero
+witness norm differences tending to the maximal value~$2$. The construction
+works both with diagonal density pairs and with normal ordering, without
+ultraviolet smearing. A fixed-cutoff commutator estimate, a Slater second-moment
+identity, and a two-sector comparison supply a self-contained proof. Continuity
+on every fixed vector and in every fixed normal state remains valid.
+\end{abstract}
+
+\paragraph{Question and scope.}
+Oberwolfach Report 7/2025, printed pp.~365 and~371 \cite{OWR}, distinguishes
+pointwise operator-norm continuity from strong-operator continuity and asks
+for a potential and states violating the former for an unregularized
+interaction restricted to a bounded region. We answer that existential
+question in dimension three, with kinetic energy on all of $\mathbb R^3$.
+The Hartree discussion preceding the fermionic question concerns a separate
+bosonic model. We impose no fixed-density or fixed-energy restriction on the
+varying witnesses.
+
+Siebert's earlier 2026 preprint \cite{Discontinuity} proves full-space norm
+discontinuity by a high-density cluster and localized phase argument. That
+proof adapts directly to the bounded symmetric cutoff kernel, yielding the
+qualitative conclusion here. Its Proposition~2.6 also gives the maximal limit~$2$
+for the full-space constant-number reference. Our explicit free-Slater
+comparison transfers that limit to the fixed spatial cutoff. The audit also
+records an additional energy-bootstrap derivation using the earlier localized
+phase mechanism; neither cutoff deduction is a theorem literally stated in
+the cited preprint. Siebert's 2025 construction \cite{Thermodynamic} uses an
+extended algebra, with norm continuity after time averaging. This note claims neither
+first priority nor that the 2025 question remained open when this proof was
+prepared. The accompanying verification archive records the bounded
+primary-source priority audit and the precise relation to earlier mechanisms.
+
+\paragraph{Model and statement.}
+Let $\mathfrak h=L^2(\mathbb R^3)$, $h=-\Delta$, and
+$\F=\bigoplus_{n\geq0}\bigwedge^n\mathfrak h$. Inner products are linear in
+the second variable; exterior products use normalized Slater determinants.
+Write $a(f)$ and $a^*(f)$ for the standard CAR operators, with
+$\{a(f),a^*(g)\}=\langle f,g\rangle\id$ and $\|a(f)\|=\|f\|$.
+The ordering flag $\kappa\in\{0,1\}$ below is distinct from an ultraviolet
+regularization parameter; neither model is smeared.
+
+\begin{theorem}\label{thm}
+Set $\Lambda=B(0,4)$ and $L=d\Gamma(\id_\Lambda)$. There exist a fixed
+real radial $V\in C_c^\infty(\mathbb R^3)$, $0\leq V\leq1$, equal to one
+on $\Lambda-\Lambda$, and a fixed normalized
+$f\in C_c^\infty(B(0,1/2))$, with the following property. For
+\begin{equation}\label{H}
+ H^{(\kappa)}_n=T_n+L_n(L_n-\kappa),\qquad
+ T_n=\sum_{j=1}^n(-\Delta_{x_j}),\quad
+ L_n=\sum_{j=1}^n\id_\Lambda(x_j),
+\end{equation}
+and their self-adjoint maximal direct sum $H^{(\kappa)}$, there are explicit
+unit Slaters $\Psi_N\in\bigwedge^N\mathfrak h$ and
+$\Xi_N=a^*(f)\Psi_N\in\bigwedge^{N+1}\mathfrak h$ such that
+\begin{equation}\label{times}
+ t_N^{(\kappa)}=\frac{\pi}{2N+1-\kappa},\qquad
+ D_N^{(\kappa)}=e^{it_N^{(\kappa)}H^{(\kappa)}}a(f)
+               e^{-it_N^{(\kappa)}H^{(\kappa)}}-a(f)
+\end{equation}
+satisfy
+\begin{equation}\label{limits}
+ \|D_N^{(\kappa)}\Xi_N+2\Psi_N\|\longrightarrow0,\qquad
+ \|D_N^{(\kappa)}\Xi_N\|\longrightarrow2,\qquad
+ \|D_N^{(\kappa)}\|\longrightarrow2 .
+\end{equation}
+The same operator-norm limit holds for the creation difference. The normal
+vector states $\omega_N(B)=\langle\Xi_N,B\Xi_N\rangle$ satisfy
+$\omega_N((D_N^{(\kappa)})^*D_N^{(\kappa)})\to4$.
+\end{theorem}
+
+\paragraph{Fixed potential and sector domains.}
+Put $b(s)=e^{-1/s}$ for $s>0$ and $b(s)=0$ for $s\leq0$, and choose
+\begin{equation}\label{V}
+ V(x)=\frac{b(81-|x|^2)}{b(81-|x|^2)+b(|x|^2-64)} .
+\end{equation}
+The denominator is positive everywhere. This smooth function equals one on
+$\overline{B(0,8)}$ and vanishes outside $B(0,9)$. Thus the rigorous
+sector realization of the density-density interaction in $\Lambda\times\Lambda$
+is
+\[
+ \sum_{i,j=1}^n\id_\Lambda(x_i)\id_\Lambda(x_j)V(x_i-x_j)=L_n^2.
+\]
+Omitting the diagonal terms gives $L_n(L_n-1)$, since $V(0)=1$.
+We use the coefficient $1$ in this ordered-pair sum, without a factor $1/2$.
+These multiplication operators define the field-expression conventions
+without multiplying distributions. Each is real, symmetric in the particle
+coordinates, and bounded by $n^2$. Hence \eqref{H} is self-adjoint on
+$D(T_n)=H^2(\mathbb R^{3n})\cap\bigwedge^n\mathfrak h$. The vacuum sector
+is zero. The full domain is
+\[
+ D(H^{(\kappa)})=\left\{(\eta_n)\in\F:
+ \eta_n\in D(T_n),\ \sum_n\|H_n^{(\kappa)}\eta_n\|^2<\infty\right\}.
+\]
+No uniform Fock-space bound on the interaction is presumed. Nor is invariance
+of the CAR algebra under the interacting evolution needed for this norm
+comparison in $B(\F)$.
+
+\paragraph{Packed Slaters.}
+Choose $f(x)=c_f b(1-9|x|^2)$, with $c_f>0$ normalizing its norm.
+Its support is $\overline{B(0,1/3)}$. Let
+$Q=2e_1+(-1/4,1/4)^3\subset B(0,3)$, disjoint from $\supp f$, and
+normalize
+$\varphi(x)=c_\varphi\prod_{k=1}^3 b(1-16(x_k-1/2)^2)$.
+This belongs to $C_c^\infty((0,1)^3)$. For $m_N=\lceil N^{1/3}\rceil$,
+subdivide $Q$ into $m_N^3$ cubes of side $\ell_N=(2m_N)^{-1}$.
+Choose the first $N$ lower corners $c_{j,N}$ in lexicographic order, and set
+\[
+ \psi_{j,N}(x)=\ell_N^{-3/2}\varphi((x-c_{j,N})/\ell_N),\quad
+ \Psi_N=\psi_{1,N}\wedge\cdots\wedge\psi_{N,N},\quad
+ \Xi_N=a^*(f)\Psi_N .
+\]
+Disjoint supports give orthonormal orbitals and $a(f)\Psi_N=0$, so both
+Slaters have norm one. Since $m_N\leq2N^{1/3}$,
+\[
+ \sum_{j=1}^N\|\nabla\psi_{j,N}\|^2
+ =N\ell_N^{-2}\|\nabla\varphi\|^2
+ \leq16\|\nabla\varphi\|^2N^{5/3}.
+\]
+For either Slater with its actual particle number $n=N$ or $N+1$, and its
+initial orbitals $g_1,\ldots,g_n$, therefore
+\begin{equation}\label{energy}
+ \sum_{j=1}^n\|g_j\|_{H^1}^2\leq C_0 n^{5/3},\qquad
+ C_0=1+16\|\nabla\varphi\|^2+\|\nabla f\|^2 .
+\end{equation}
+All initial supports lie in $B(0,3)$.
+
+\paragraph{Uniform free leakage.}
+Use the single fixed cutoff
+\[
+ \chi(x)=\frac{b(49/4-|x|^2)}{b(49/4-|x|^2)+b(|x|^2-9)} .
+\]
+It lies in $C_c^\infty(\Lambda)$ and equals one on $B(0,3)$.
+With $q=\id_{\Lambda^c}$,
+\begin{align}
+ [h,\chi]u&=-(\Delta\chi)u-2\nabla\chi\cdot\nabla u,\nonumber\\
+ \|[h,\chi]u\|&\leq C_\chi\|u\|_{H^1},\qquad
+ C_\chi=(\|\Delta\chi\|_\infty^2+4\|\nabla\chi\|_\infty^2)^{1/2}.
+ \label{comm}
+\end{align}
+For any initial orbital $g$, differentiate
+$e^{-i(s-r)h}\chi e^{-irh}g$ on its $H^2$ domain to obtain
+\begin{equation}\label{duhcomm}
+ (e^{-ish}\chi-\chi e^{-ish})g
+ =-i\int_0^s e^{-i(s-r)h}[h,\chi]e^{-irh}g\,dr .
+\end{equation}
+The free group preserves $H^2$ and is isometric on $H^1$; multiplication by
+$\chi$ preserves $H^2$. Thus the identity is justified for every packed
+smooth orbital, while its bound uses only the $H^1$ norm. From $\chi g=g$
+and $q\chi=0$, for every real $s$,
+\begin{equation}\label{leak}
+ \|qe^{-ish}g\|\leq C_\chi|s|\|g\|_{H^1} .
+\end{equation}
+The indicator $q$ is never differentiated.
+
+\paragraph{Second moment of the leaked number.}
+Set $M_n=n-L_n=d\Gamma(q)$ on the $n$-particle sector.
+For either initial Slater $\Phi_n$, free evolution
+$\Phi_n(s)=e^{-isT_n}\Phi_n$ remains a normalized Slater.
+Let $P$ be its rank-$n$ occupied projection and $\lambda=\Tr(Pq)$.
+Expanding the determinant's two-particle marginal gives
+\begin{equation}\label{moments}
+ \langle M_n\rangle=\lambda,\qquad
+ \langle M_n^2\rangle=\lambda^2+\lambda-\Tr(PqPq).
+\end{equation}
+Indeed the diagonal terms are $\sum_j\langle g_j,qg_j\rangle$,
+as $q^2=q$; the terms with $j\ne k$ are
+$\langle g_j,qg_j\rangle\langle g_k,qg_k\rangle-
+|\langle g_j,qg_k\rangle|^2$. Their sum proves \eqref{moments}.
+All traces are finite, and $\Tr(PqPq)\geq0$. With
+$\beta=C_\chi\sqrt{C_0}$, \eqref{energy} and \eqref{leak} yield
+\begin{align}
+ \lambda_n(s)&\leq\beta^2s^2n^{5/3},\nonumber\\
+ \|M_n\Phi_n(s)\|&\leq\sqrt{\lambda_n(s)+\lambda_n(s)^2}
+ \leq\beta|s|n^{5/6}+\beta^2s^2n^{5/3}.\label{Mbound}
+\end{align}
+This variance estimate concerns Slaters; it is not asserted for general
+correlated or interacting states.
+
+\paragraph{Two-sector comparison.}
+Introduce only as a reference
+$K_n^{(\kappa)}=T_n+n(n-\kappa)$.
+Since $M_n$ has spectrum $\{0,\ldots,n\}$,
+\begin{equation}\label{difference}
+ H_n^{(\kappa)}-K_n^{(\kappa)}
+ =-M_n(2n-\kappa-M_n),\qquad
+ \|(H_n^{(\kappa)}-K_n^{(\kappa)})\eta\|\leq2n\|M_n\eta\|.
+\end{equation}
+The difference is bounded on each sector, so strong Duhamel holds there.
+Reference evolution differs from free evolution by a scalar phase. Applying
+\eqref{Mbound}, for either $\Phi_n$ and every real $t$, gives
+\begin{align}
+ E_n(t)&:=\|(e^{-itH_n^{(\kappa)}}-e^{-itK_n^{(\kappa)}})\Phi_n\|
+ \leq2n\int_0^{|t|}\|M_n\Phi_n(\operatorname{sgn}(t)s)\|\,ds\nonumber\\
+ &\leq\beta n^{11/6}|t|^2+\tfrac23\beta^2n^{8/3}|t|^3.
+ \label{E}
+\end{align}
+Thus for \emph{both} $n=N$ and $n=N+1$, since
+$n\leq2N$ and $t_N^{(\kappa)}\leq\pi/(2N)$,
+\begin{equation}\label{decay}
+ E_n(t_N^{(\kappa)})=O(N^{-1/6}+N^{-1/3})\longrightarrow0 .
+\end{equation}
+The constants are independent of $N$ and $\kappa$. We have used the Slater
+estimate only on free reference states, with no assumption that interacting
+evolution preserves Slaters or that a changing many-particle free state stays
+close to its initial vector.
+
+\paragraph{Phase and norm witness.}
+Let $A=a^*(f)$ and, suppressing the fixed ordering flag, write
+$F_N^H(t)=\langle\Xi_N,e^{itH}Ae^{-itH}\Psi_N\rangle$.
+Replacing the separately evolved bra and ket by their reference evolutions,
+unitarity and $\|A\|=1$ imply
+\begin{equation}\label{Fbound}
+ |F_N^H(t)-F_N^K(t)|\leq E_{N+1}(t)+E_N(t).
+\end{equation}
+For $K=d\Gamma(h)+\N(\N-\kappa)$, free covariance and the CAR give exactly
+\begin{align}
+ F_N^K(t)&=e^{it(2N+1-\kappa)}
+ \langle a^*(f)\Psi_N,a^*(e^{ith}f)\Psi_N\rangle\nonumber\\
+ &=e^{it(2N+1-\kappa)}\langle f,e^{ith}f\rangle .\label{phase}
+\end{align}
+The last equality uses $a(f)\Psi_N=0$; it does not require $e^{ith}f$ to
+remain orthogonal to the occupied orbitals. At $t=t_N$ the scalar phase is
+$-1$, and $\langle f,e^{it_Nh}f\rangle\to1$. Consequently
+$F_N^H(t_N)\to-1$, whereas $F_N^H(0)=1$. Taking adjoints,
+\[
+ \langle\Psi_N,D_N\Xi_N\rangle
+ =\overline{F_N^H(t_N)-1}\longrightarrow-2 .
+\]
+The universal upper bound $\|D_N\|\leq2$ now proves both norm limits.
+More quantitatively, since $f\in D(h)$,
+\[
+ 2\geq\|D_N\Xi_N\|\geq
+ 2-E_N(t_N)-E_{N+1}(t_N)-t_N\|hf\|.
+\]
+Finally
+$\|D_N\Xi_N+2\Psi_N\|^2
+ \leq8+4\Re\langle\Psi_N,D_N\Xi_N\rangle\to0$.
+This proves the first limit in \eqref{limits} and the vector-state conclusion,
+and completes the proof of Theorem~\ref{thm}.
+
+\paragraph{Topology and boundaries.}
+For every fixed vector $\eta$, any self-adjoint $H$ and bounded $B$ obey
+\[
+ \|(e^{itH}Be^{-itH}-B)\eta\|
+ \leq\|B\|\|(e^{-itH}-1)\eta\|+\|(e^{itH}-1)B\eta\|\to0.
+\]
+For $B=a(f)$, this also implies
+$\Tr(\rho D_t^*D_t)\to0$ for every fixed positive trace-class state
+$\rho$ of trace one, by its spectral decomposition and the uniform bound~$4$.
+The witnesses in the theorem vary with $N$. The construction asserts an
+existential counterexample for the chosen ball and potential. It asserts
+neither all potentials or regions, fixed-density thermodynamic behavior,
+nor CAR non-invariance. Packing in dimension $d$ gives decay exponents
+$-1/2+1/d$ and $-1+2/d$; this estimate does not settle dimensions one or two.
+
+\paragraph{Verification and disclosure.}
+The accompanying source archive contains the unchanged original mathematical
+packet, independent analytic and source audits, finite algebra/numerical
+controls, and publication verification safeguards. Finite controls supplement
+the written universal proof; numerical diagnostics are not interval-certified
+proofs. Source hashes are consistency fingerprints, not signatures. AI tools
+were used extensively in developing, checking, and preparing this work,
+including adversarial reviews by separate AI agents. This preprint is
+unrefereed, and no independent human peer review is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{OWR} Oberwolfach Report 7/2025,
+\emph{Mini-Workshop: New Directions in Correlated Quantum Systems},
+\href{https://doi.org/10.4171/owr/2025/7}{doi:10.4171/owr/2025/7},
+printed pp.~364--365 and~371.
+\bibitem{Thermodynamic} O.~Siebert,
+\emph{On the thermodynamic limit of interacting fermions in the continuum},
+Letters in Mathematical Physics \textbf{115}, 33 (2025),
+\href{https://doi.org/10.1007/s11005-025-01919-y}{doi:10.1007/s11005-025-01919-y};
+\href{https://arxiv.org/abs/2409.10495v2}{arXiv:2409.10495v2}, 24 February 2025.
+\bibitem{Discontinuity} O.~Siebert,
+\emph{Discontinuity of Continuum Fermion Dynamics},
+\href{https://arxiv.org/abs/2609.34402v1}{arXiv:2609.34402v1},
+submitted 28 September 2026.
+\end{thebibliography}
+\end{document}
