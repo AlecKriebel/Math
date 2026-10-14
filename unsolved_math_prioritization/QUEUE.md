@@ -1797,7 +1797,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1786 | 10400007 / AMR-103-0007 | Problem 1.7 — (J. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1787 | 10400168 / AMR-103-0168 | Problem 9.4 — (Y. | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1788 | 11000165 / AMR-109-0165 | Problem 2.8 — Recall that we noted, earlier, that every genus g Heegaard splitting of every homology 3-sphere is obtained by allowi… | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1789 | 169 / GREEN-081 | Covering by Random Translates | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
+| 1789 | 169 / GREEN-081 | Covering by Random Translates | 0.0540 | 5.0 | 1 | unknown | exhausted | 5/5 |  | UNSOLVED after five shared substantive passes. Reviewed partial results include unrestricted residual amplification and concentration (swap bound m; tail denominator 2*k*m^2), exact adaptive exchange and canonical weighted-count reductions, and obstructions to specified shortcuts. Positive and negative bridges remain conditional on missing unrestricted optimizer estimates; no resolution or novelty claim. [Reader](attempts/169/public/README.md); [independent public review](attempts/169/independent_public_review/ACCEPTANCE_REPORT.md). |  |
 | 1790 | 1970 / EP-168 | Erdős Problem #168 | 0.0540 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1791 | 2000006 / AMR-019-0006 | Some Open Problems in Elasticity — A positive Jacobian bound | 0.0540 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1792 | 20000188 / AIM-ALGEBRAIC_GEOMETRY-0188 | Joint-monodromy degree classification and branch-overlap smoothness budget | 0.0540 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
