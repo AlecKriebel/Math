@@ -236,7 +236,7 @@ class Helpers(unittest.TestCase):
                     patch.object(p, 'local_state', return_value={'head': 'selected-main', 'index_sha256': 'fixture'}), \
                     patch.object(p, 'pr_metadata', side_effect=metas), patch.object(p, 'git', side_effect=fake_git), \
                     patch.object(p, 'load_snapshot', return_value=(ORIGINAL, FROZEN)), \
-                    patch.object(p, 'publication_inputs', return_value=(PUB, {})), \
+                    patch.object(p, 'publication_inputs', return_value=(PUB, SOURCE, {})), \
                     patch.object(p, 'build_current_files', side_effect=build), \
                     patch.object(sys, 'argv', ['prepare_integration.py', '--doi', DOI, '--push', '--source-audit', str(src)]):
                 if mode == 'success':
