@@ -23,3 +23,7 @@ python3 -B zenodo_deposit_tool/zenodo.py check draft_pr_actual_claims_1000_1100_
 ```
 
 No deposition, publication, DOI, spreadsheet write or PR disposition has occurred for this candidate. Native metadata's dated preparation note does not certify final clearance. The external binding binds the kit manifest, native metadata, historical research object, upload manifest, and exact PDF/ZIP without placing the wrapper or binding inside the ZIP.
+
+## Dated metadata administrative substage
+
+Native metadata workflow notes now explicitly describe the bounded-repair checkpoint on 14 October 2026, in the past tense. They do not assert a permanent pending review or nonpublication state. The title, description, authors, ORCID, publication date, version, license, mathematical paper and source credits are unchanged. Later readiness/publication state is recorded separately. The dated-metadata substage on 15 October 2026 is still pending a NEW complete whole02; current readiness/publication remain false and services remain held at PR1032. Completed repair01 outputs and its 42-output inventory/seal remain immutable captured stages. The existing stage-copy ledger appends exact new before/captured-output copies, and the history-resolution ledger preserves every old row and appends exact successor-stage references with individual omissions. `METADATA_DATE02_ADMIN_STAGE.json` records the dated successor checkpoint. No new compilation, rendering or page view occurred in this administrative substage.

@@ -1,0 +1,90 @@
+{
+  "commands": [
+    {
+      "mode": "normal",
+      "case": "corrupt archive binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/verify_package.py",
+        "--bindings",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/archivenormal.json",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/PR1071_preprint_v1_0_support.zip"
+      ],
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 66, in <module>\n    print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))\n                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 54, in verify\n    require(sha(ap)==b['archive']['sha256'] and ap.stat().st_size==b['archive']['bytes'],'Upload ZIP binding mismatch.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 8, in require\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Upload ZIP binding mismatch.\n"
+    },
+    {
+      "mode": "normal",
+      "case": "corrupt manifest binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/verify_package.py",
+        "--bindings",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/manifestnormal.json",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/PR1071_preprint_v1_0_support.zip"
+      ],
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 66, in <module>\n    print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))\n                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 61, in verify\n    require(b['manifest_sha256']==sha(root/'PACKAGE_MANIFEST.json'),'Manifest external binding mismatch.');checked=True\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 8, in require\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Manifest external binding mismatch.\n"
+    },
+    {
+      "mode": "normal",
+      "case": "actual default checker absent out option",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/check.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"python\": \"3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]\",\n  \"wrapper_optimized\": false,\n  \"original_checker_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n  \"modes\": [\n    {\n      \"mode\": \"normal\",\n      \"returncode\": 0,\n      \"stderr_bytes\": 0,\n      \"copy_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n      \"result_sha256\": \"e6b0e283bd9ee06abd88f5879ceb7b966ff64d1e09790c657802c7e26ff36c4a\",\n      \"full_mathematics_equal_utc_only_difference\": true,\n      \"negative_controls\": [\n        {\n          \"control\": \"Fourier conjugation removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Journal tail-cutoff qualification removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Area pairing changed to zero\",\n          \"rejected\": true\n        }\n      ]\n    },\n    {\n      \"mode\": \"optimized\",\n      \"returncode\": 0,\n      \"stderr_bytes\": 0,\n      \"copy_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n      \"result_sha256\": \"baacd5e0744598aea500308cb7d4a3eecbb800973ad33971d5d1a0d751858668\",\n      \"full_mathematics_equal_utc_only_difference\": true,\n      \"negative_controls\": [\n        {\n          \"control\": \"Fourier conjugation removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Journal tail-cutoff qualification removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Area pairing changed to zero\",\n          \"rejected\": true\n        }\n      ]\n    }\n  ],\n  \"guard_implementation\": \"Explicit RuntimeError guards remain active under python -O. Original checker assertions are active only in normal mode; optimized execution is accepted only after full result comparison by explicit guards.\",\n  \"meaning\": \"Exact rational finite identities and sampled floating computations only. Not a universal proof, formal certification or interval quadrature validation.\"\n}\n"
+    },
+    {
+      "mode": "optimized",
+      "case": "corrupt archive binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "scripts/verify_package.py",
+        "--bindings",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/archiveoptimized.json",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/PR1071_preprint_v1_0_support.zip"
+      ],
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 66, in <module>\n    print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))\n                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 54, in verify\n    require(sha(ap)==b['archive']['sha256'] and ap.stat().st_size==b['archive']['bytes'],'Upload ZIP binding mismatch.')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 8, in require\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Upload ZIP binding mismatch.\n"
+    },
+    {
+      "mode": "optimized",
+      "case": "corrupt manifest binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "scripts/verify_package.py",
+        "--bindings",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/manifestoptimized.json",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/PR1071_preprint_v1_0_support.zip"
+      ],
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 66, in <module>\n    print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))\n                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 61, in verify\n    require(b['manifest_sha256']==sha(root/'PACKAGE_MANIFEST.json'),'Manifest external binding mismatch.');checked=True\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/reviews/package_02/scratch-extra-g6cqf3wm/clean/scripts/verify_package.py\", line 8, in require\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Manifest external binding mismatch.\n"
+    },
+    {
+      "mode": "optimized",
+      "case": "actual default checker absent out option",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-O",
+        "scripts/check.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"python\": \"3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]\",\n  \"wrapper_optimized\": true,\n  \"original_checker_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n  \"modes\": [\n    {\n      \"mode\": \"normal\",\n      \"returncode\": 0,\n      \"stderr_bytes\": 0,\n      \"copy_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n      \"result_sha256\": \"829080a736f7e632b7c28342481b5458558b1049bdc2bb88fdd8f865e43da416\",\n      \"full_mathematics_equal_utc_only_difference\": true,\n      \"negative_controls\": [\n        {\n          \"control\": \"Fourier conjugation removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Journal tail-cutoff qualification removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Area pairing changed to zero\",\n          \"rejected\": true\n        }\n      ]\n    },\n    {\n      \"mode\": \"optimized\",\n      \"returncode\": 0,\n      \"stderr_bytes\": 0,\n      \"copy_sha256\": \"444a7a29a35b29346f55ceb7ff33ee474f3ace8db11b76076485bb937c0910f1\",\n      \"result_sha256\": \"907c7adee3fde2dcf07fa072d7614693d4cd3fbd44803a24aa834628187131d4\",\n      \"full_mathematics_equal_utc_only_difference\": true,\n      \"negative_controls\": [\n        {\n          \"control\": \"Fourier conjugation removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Journal tail-cutoff qualification removed\",\n          \"rejected\": true\n        },\n        {\n          \"control\": \"Area pairing changed to zero\",\n          \"rejected\": true\n        }\n      ]\n    }\n  ],\n  \"guard_implementation\": \"Explicit RuntimeError guards remain active under python -O. Original checker assertions are active only in normal mode; optimized execution is accepted only after full result comparison by explicit guards.\",\n  \"meaning\": \"Exact rational finite identities and sampled floating computations only. Not a universal proof, formal certification or interval quadrature validation.\"\n}\n"
+    }
+  ],
+  "all_expected": true
+}

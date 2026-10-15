@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""One clean extraction; actual stdlib commands, effective guards, no compilation."""
+from pathlib import Path
+import datetime,hashlib,io,json,os,shutil,subprocess,sys,zipfile,zlib
+
+HERE=Path(__file__).resolve().parent; AUDIT=HERE.parent.parent; PACKAGE=AUDIT/'preprint_v1_0'; TMP=HERE/'tmp_resume'
+def require(c,m):
+ if not c:raise ValueError(m)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def write(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+def main():
+ require(not TMP.exists(),'own disposable scratch already exists');TMP.mkdir();clean=TMP/'clean';clean.mkdir()
+ log=HERE/'RESUME_EXECUTIONS.jsonl';require(not log.exists(),'preserve existing execution ledger')
+ rows=[];aliases=[];faults=[]
+ def run(label,args,success=True,cwd=clean):
+  r=subprocess.run(args,cwd=cwd,capture_output=True,text=True)
+  row={'label':label,'argv':args,'cwd':str(cwd),'expected_success':success,'returncode':r.returncode,'stdout':r.stdout,'stderr':r.stderr};rows.append(row)
+  with log.open('a') as f:f.write(json.dumps(row)+'\n');f.flush()
+  require((r.returncode==0)==success,'unexpected command exit '+label)
+  if len(rows)%50==0:print('commands',len(rows),flush=True)
+  return row
+ def cli(script,*args,optimized=False):return [sys.executable,'-I','-B',*(['-O'] if optimized else []),str(script),*args]
+ archive=(PACKAGE/'support.zip').read_bytes();allow=json.loads((PACKAGE/'SUPPORT_ALLOWLIST.json').read_text())['members']
+ with zipfile.ZipFile(PACKAGE/'support.zip') as z:
+  require(z.testzip() is None,'ZIP CRC failed');require([i.filename for i in z.infolist()]==allow,'ZIP member/order mismatch')
+  for i in z.infolist():
+   require(i.date_time==(2026,10,14,0,0,0) and i.create_system==3 and i.external_attr==0o100644<<16 and i.compress_type==zipfile.ZIP_DEFLATED and not i.flag_bits&1,'ZIP header wrong')
+   b=z.read(i);require(b==(PACKAGE/i.filename).read_bytes(),'ZIP current bytes mismatch')
+   if i.filename!='paper.pdf':b.decode('utf8')
+  z.extractall(clean)
+ independent=io.BytesIO()
+ with zipfile.ZipFile(independent,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9,strict_timestamps=True) as z:
+  for n in allow:
+   i=zipfile.ZipInfo(n,date_time=(2026,10,14,0,0,0));i.create_system=3;i.external_attr=0o100644<<16;i.internal_attr=0;i.compress_type=zipfile.ZIP_DEFLATED
+   z.writestr(i,(clean/n).read_bytes(),compress_type=zipfile.ZIP_DEFLATED,compresslevel=9)
+ require(independent.getvalue()==archive,'CLOSED independent ZIP mismatch')
+ checks=[]
+ for optimized in [False,True]:
+  mode='optimized' if optimized else 'normal'
+  run(mode+' README verify',cli(clean/'verify_package.py',optimized=optimized))
+  run(mode+' README supplied finite checks',cli(clean/'run_checks.py','--out-dir','tmp/recheck_'+mode,optimized=optimized))
+  checks.append(json.loads((clean/('tmp/recheck_'+mode+'/CHECKS.json')).read_text()))
+  run(mode+' README builder',cli(clean/'build_archive.py','--output','tmp/rebuilt_'+mode+'.zip',optimized=optimized))
+  require((clean/('tmp/rebuilt_'+mode+'.zip')).read_bytes()==archive,'supplied rebuilt archive differs')
+  run(mode+' README verify archive',cli(clean/'verify_package.py','--archive','tmp/rebuilt_'+mode+'.zip',optimized=optimized))
+ # The unchanged original reviewer is always run normally by run_checks;
+ # outer -O is not advertised as validation of its assertion semantics.
+ project=lambda d:{k:v for k,v in d.items() if k not in ['checked_utc','receipts']}
+ require(project(checks[0])==project(checks[1]),'finite diagnostics differ between outer modes')
+ write(HERE/'RESUME_CHECKER_REPLAY.json',{'scope':'Actual supplied runner in both outer modes; original reviewer executes only normally with active asserts. The separate explicit-raise derivative agrees normal/-O and rejects seven faults in both. Runtime-only top receipt times/paths are not mathematical claims.','normal':checks[0],'optimized':checks[1],'semantic_projection_equal':True})
+ # Supply all exact external/excluded current records; keep generated archive
+ # separate until ordinary regeneration is explicitly exercised.
+ for name in json.loads((clean/'EXCLUSION_LEDGER.json').read_text())['local_package_files']:
+  if name=='support.zip':continue
+  target=clean/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(PACKAGE/name,target)
+ protected=[p for p in sorted(clean.rglob('*')) if p.is_file() and p!=clean/'support.zip' and p.relative_to(clean).parts[0]!='tmp']
+ originals={p.relative_to(clean).as_posix():p.read_bytes() for p in protected}
+ require(len(protected)==203,'protected current input count unexpected')
+ def unchanged():
+  for n,b in originals.items():require((clean/n).read_bytes()==b,'protected sentinel changed '+n)
+ def refresh_manifest():
+  d=json.loads(originals['SUPPORT_MANIFEST.json'])
+  for r in d['entries']:
+   b=(clean/r['path']).read_bytes();r['bytes']=len(b);r['sha256']=sha(b)
+  write(clean/'SUPPORT_MANIFEST.json',d)
+ fixture=clean/'tmp/alias';fixture.mkdir()
+ probe=clean/'tmp/writer_probe.py';marker=clean/'tmp/writer_opened.txt'
+ probe.write_text('import pathlib,runpy,sys,zipfile\nmarker=pathlib.Path(sys.argv[1]);script=sys.argv[2];sys.argv=sys.argv[2:]\noriginal=zipfile.ZipFile\ndef wrapper(*args,**kw):\n mode=kw.get("mode",args[1] if len(args)>1 else "r")\n if mode in ("w","a","x"):marker.write_text("opened")\n return original(*args,**kw)\nzipfile.ZipFile=wrapper\nrunpy.run_path(script,run_name="__main__")\n')
+ for optimized in [False,True]:
+  mode='optimized' if optimized else 'normal'
+  for p in protected:
+   out=fixture/'alias.zip';os.link(p,out)
+   row=run(mode+' protected hardlink '+p.relative_to(clean).as_posix(),cli(clean/'build_archive.py','--output',str(out),optimized=optimized),False)
+   require('cannot overwrite protected package input ' in row['stderr'],'alias failed outside intended prewrite guard')
+   require(out.read_bytes()==originals[p.relative_to(clean).as_posix()],'hardlink sentinel changed');out.unlink();unchanged()
+   aliases.append({'mode':mode,'kind':'hardlink','protected_path':p.relative_to(clean).as_posix(),'all_sentinels_preserved':True})
+  for n in ['TERMINAL_STATUS.json','TERMINAL_OUTPUT_PINS.json','publication/zenodo-deposit.json','publication/DEPOSIT_BINDING.json','verify_package.py','paper.tex','paper.pdf']:
+   row=run(mode+' lexical '+n,cli(clean/'build_archive.py','--output',str(clean/n),optimized=optimized),False)
+   require('cannot overwrite protected package input ' in row['stderr'],'lexical guard ineffective');unchanged()
+   out=fixture/'alias.zip';out.symlink_to(clean/n)
+   row=run(mode+' file symlink '+n,cli(clean/'build_archive.py','--output',str(out),optimized=optimized),False)
+   require('cannot overwrite protected package input ' in row['stderr'],'symlink guard ineffective');out.unlink();unchanged()
+  parent=fixture/'parent';parent.symlink_to(clean/'publication',target_is_directory=True)
+  row=run(mode+' directory symlink native manifest',cli(clean/'build_archive.py','--output',str(parent/'zenodo-deposit.json'),optimized=optimized),False)
+  require('cannot overwrite protected package input ' in row['stderr'],'directory symlink guard ineffective');parent.unlink();unchanged()
+  for n in ['TERMINAL_OUTPUT_PINS.json','publication/zenodo-deposit.json','publication/DEPOSIT_BINDING.json']:
+   out=fixture/'probe.zip';os.link(clean/n,out)
+   run(mode+' writer not opened '+n,cli(probe,str(marker),str(clean/'build_archive.py'),'--output',str(out),optimized=optimized),False)
+   require(not marker.exists(),'writer opened for rejected alias');out.unlink();unchanged()
+  run(mode+' ordinary designated archive regeneration',cli(clean/'build_archive.py','--output','support.zip',optimized=optimized))
+  require((clean/'support.zip').read_bytes()==archive,'ordinary designated archive differs');unchanged()
+  run(mode+' required present binding',cli(clean/'verify_package.py','--require-deposit-binding',optimized=optimized))
+  run(mode+' required missing binding',cli(clean/'verify_package.py','--deposit-binding','tmp/absent.json','--require-deposit-binding',optimized=optimized),False)
+  write(clean/'tmp/malformed.json',{'schema_version':1})
+  run(mode+' malformed present binding',cli(clean/'verify_package.py','--deposit-binding','tmp/malformed.json',optimized=optimized),False)
+  variants=[('TERMINAL_STATUS.json','whole_package_reviews_completed',2),('TERMINAL_STATUS.json','publication_ready',True),('TERMINAL_STATUS.json','root_terminal_adoption_required',False),('TERMINAL_STATUS.json','published',True),('TERMINAL_STATUS.json','actionable_P0_P1_P2_P3',1),('TERMINAL_STATUS.json','ascending_publication_hold_after_pr',1033),('CURRENT_STATUS_WHOLE03.json','whole_package_reviews_completed',3),('CURRENT_STATUS.json','whole_package_reviews_completed',2),('STATUS.json','whole_package_reviews_completed',1)]
+  for n,k,v in variants:
+   d=json.loads(originals[n]);d[k]=v;write(clean/n,d);refresh_manifest()
+   run(mode+' coherent stage fault '+n+' '+k,cli(clean/'verify_package.py',optimized=optimized),False)
+   (clean/n).write_bytes(originals[n]);(clean/'SUPPORT_MANIFEST.json').write_bytes(originals['SUPPORT_MANIFEST.json']);unchanged();faults.append({'mode':mode,'file':n,'field':k,'rejected':True})
+  for n in ['SUPPORT_MANIFEST.json','SUPPORT_ALLOWLIST.json']:
+   original=clean/n;safe=clean/'tmp/saved_input.json';original.rename(safe);original.symlink_to(safe)
+   row=run(mode+' same-byte bootstrap symlink '+n,cli(clean/'verify_package.py',optimized=optimized),False)
+   require('missing/symlink member ' in row['stderr'],'bootstrap link not preflighted');original.unlink();safe.rename(original);unchanged()
+ tool=AUDIT.parents[2]/'zenodo_deposit_tool/zenodo.py'
+ # AUDIT -> audits -> program -> repository.
+ require(tool.is_file(),'repository local tool absent')
+ toolrow=run('repository uploader entirely LOCAL check',cli(tool,'check',str(PACKAGE/'publication/zenodo-deposit.json')),True,cwd=PACKAGE)
+ result=json.loads(toolrow['stdout']);require(result['files']==[{'name':'paper.pdf','size':(PACKAGE/'paper.pdf').stat().st_size,'sha256':sha((PACKAGE/'paper.pdf').read_bytes())},{'name':'support.zip','size':len(archive),'sha256':sha(archive)}],'native local check asset identities differ')
+ write(HERE/'RESUME_REPOSITORY_LOCAL_CHECK.json',{'scope':'Actual repository check only; no client, token, draft, deposit, service or DOI operation. Metadata object exactly unchanged.','tool_sha256':sha(tool.read_bytes()),'native_manifest_sha256':sha((PACKAGE/'publication/zenodo-deposit.json').read_bytes()),'result':result})
+ unchanged()
+ write(HERE/'RESUME_GUARD_CONTROL_RECEIPTS.json',{'pass':True,'protected_inputs':len(protected),'hardlink_rejections':len(aliases),'aliases':aliases,'coherent_stage_faults':faults,'bootstrap_same_byte_symlinks_rejected_both_modes':True,'writer_not_opened_probes':6,'binding_required_missing_and_malformed_controls_both_modes':True,'all_sentinels_unchanged':True,'static_filesystem_scope_only':True})
+ write(HERE/'RESUME_REPRODUCTION_RECEIPTS.json',{'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'pass':True,'actual_commands':len(rows),'successes':sum(r['returncode']==0 for r in rows),'expected_nonzero_rejections':sum(r['returncode']!=0 for r in rows),'four_actual_standard_library_README_commands_normal_and_optimized':True,'unchanged_PDF_not_recompiled_or_rerendered':True,'independent_CLOSED_zip_byte_equal':True,'archive_sha256':sha(archive),'archive_bytes':len(archive),'archive_members':len(allow),'UTF8_and_headers_CRC_all_valid':True,'environment':{'python':sys.version,'zlib':zlib.ZLIB_VERSION},'cross_environment_compressor_identity_qualified':True,'all_protected_bytes_unchanged':True,'scratch_scope':'Only the resuming agent's new terminal_admin_20261014/tmp_resume removed after receipts.'})
+ shutil.rmtree(TMP)
+ print(json.dumps({'pass':True,'commands':len(rows),'hardlink_rejections':len(aliases),'members':len(allow)},indent=2))
+if __name__=='__main__':main()
