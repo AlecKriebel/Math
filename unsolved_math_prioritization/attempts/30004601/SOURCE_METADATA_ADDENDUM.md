@@ -16,7 +16,7 @@ The date correction has no effect on the source-scope distinction: the three-var
 
 # Qualified historical-priority statement
 
-2026-10-15T12:54:44.989650+00:00 — Mathematical verification and publication are distinct from historical firstness. The exact proof resolves the correctly transcribed general-dimensional conjecture by counterexample, while novelty and independent discovery remain unestablished.
+2026-10-15T13:01:25.994147+00:00 — Mathematical verification and publication are distinct from historical firstness. The exact proof resolves the correctly transcribed general-dimensional conjecture by counterexample, while novelty and independent discovery remain unestablished.
 
 Credit: Bigatti–Palezzato–Torielli's Conjecture 5.7, the Palezzato–Torielli/OWR lineage, and Marchesi–Palezzato–Torielli's valid three-variable theorem; Falk–Proudfoot's classical parallel-connection construction; the classical logarithmic, Hilbert–Burch, strong-stability and generic-sectional methods; Migliore–Nagel (2025) Corollary 8.12's applicable resolution of the distinct five-generated unmixed Jacobian part.
 

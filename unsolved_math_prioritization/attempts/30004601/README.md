@@ -1,6 +1,6 @@
 # 30004601: verified seven-hyperplane counterexample
 
-Preprint published and tracker verified; original-HEAD-safe merge pending.
+Original-HEAD-safe merge actually accepted; factual completion checkpoint pending.
 
 Preprint: [10.5281/zenodo.23395703](https://doi.org/10.5281/zenodo.23395703). Author: Alec Kriebel, independent researcher, ORCID 0009-0001-9320-500X. The note is unrefereed, developed with extensive AI assistance, and has not undergone conventional human peer review.
 

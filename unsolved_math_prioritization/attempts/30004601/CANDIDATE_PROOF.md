@@ -1,6 +1,6 @@
 # A seven-hyperplane candidate counterexample to the generic-initial degree bound
 
-**Current status (15 October 2026):** mathematical counterexample verified by new independent audits; published as a qualified unrefereed research note. Preprint published and tracker verified; original-HEAD-safe merge pending. Historical priority is unresolved. The original pending-review candidate is preserved byte-for-byte in the publication audit archive; this copy updates status and attribution without changing its mathematical argument.
+**Current status (15 October 2026):** mathematical counterexample verified by new independent audits; published as a qualified unrefereed research note. Original-HEAD-safe merge actually accepted; factual completion checkpoint pending. Historical priority is unresolved. The original pending-review candidate is preserved byte-for-byte in the publication audit archive; this copy updates status and attribution without changing its mathematical argument.
 
 ## 1. Exact target and example
 
