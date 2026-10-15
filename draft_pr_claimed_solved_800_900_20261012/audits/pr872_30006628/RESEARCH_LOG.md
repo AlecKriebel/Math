@@ -18,3 +18,8 @@ Root read full reports and decisions for five independent families and verified 
 ## 2026-10-15T07:51:35.145147+00:00 — scoped publication tooling checked (25%)
 
 Original evidence lives under legacy random_property_t_30006628/. Both publication helpers now permit exactly integer(PR872,PID30006628) there and retain other targets default scope. A fresh independent adversary found Python numeric tuple equality accepted float aliases in permissive fixtures; root added strict integer keys before any external call. Corrected helpers pass107 offline executions/mode (92 rejection,15 accepted;1182 explicit checks), with all18 public allowlisted files verified and no remaining delta regression. Tree helper unchanged. This is tooling verification, not preprint acceptance; priority and package reviews remain pending.
+
+
+## 2026-10-15T08:05:32.465949+00:00 — bounded priority complete (35%)
+
+Both full priority reports and public manifests integrated. No fullscopeprior or verifiedcompleteimplication found in inspectedscopes. Required ESIprogram/Ashcroftalllength/Drutu–Mackaysuffix credits and model/chronology/firstness limits saved in PRIORITY_DISPOSITION. Replacement alone is not a novelty barrier. New note and safe engine now under preparation; no merge/publication promoted. Shared disk filled during tests; only completed own ignored PR826 malformed fixtures were removed, freeing~339MB with no tracked/public descendants. Remaining optimized engine provenance replay subsequently passed.

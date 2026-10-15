@@ -252,3 +252,8 @@ Merged accepted head 71e3a9bf6c161ae423e87b5998f286dd38629cc0 via 1985004b293abf
 ## 2026-10-15T07:47:29.682470+00:00 — PR872 mathematical acceptance (25%; shard52%)
 
 Five independent audit families integrated with57 hash-verified public files including manifests. Original n>=3 fixed-alphabet all-length property(T) proof accepted mathematically, subject to read established inputs. Priority still pending; ESI2024 proposed same broad spectral program and Ashcroft2023 already handles all lengths in ordinary Gromov model, both mandatory credits. Historical wrapper limits require a new complete safe publication entry point. All nonclaimed_solved PRs839–871 skipped via metadata only. No central proof search added to1/5.
+
+
+## 2026-10-15T08:06:01.670422+00:00 — PR872 priority gates complete (35%; shard53%)
+
+Bounded classical and recent independent audits found no exact prior fullscope theorem or verifiedcompleteimplication. Required strong credits: ESI AnnualReportfor2024 (2025volume) same-model program, Ashcroft2023 all-length construction, Drutu–Mackay2019 common-suffix transfer, standard spectral/Markov/concentration inputs. No firstness or worldwidecurrent-openness certificate. New note and robust portable verifier are in preparation; two fresh adversarial package reviews still mandatory. Original effort1/5 remains unchanged. Shared disk pressure handled by deleting only our completed ignored disposable PR826malformed fixtures; accepted packages/publicrecords unchanged.
