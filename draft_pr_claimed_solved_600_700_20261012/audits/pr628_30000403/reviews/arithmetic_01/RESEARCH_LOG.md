@@ -1,0 +1,3 @@
+# Independent arithmetic adversarial review: PR #628
+
+2026-10-15T03:21:51.826813+00:00 — 10% of assigned arithmetic audit. Bound scope to immutable claimed_solved PR628 head 677673860f9e67dffc610f52384f0bd60e65e363. Read proof, original audit, clarifications and exact-controls code; lower-bound target is an unordered six-branch inner C2 coarse point over Q requiring degree two. Main attack routes: extra projective stabilizers, failure of Q-rationality under exact source branch-order convention, and cancellation of conic obstruction on coarse points. Initial web PDF retrieval failed; direct primary-source recovery next. No conclusion presumed.
