@@ -480,7 +480,9 @@ def archive_binding(data, original, paper_files, snapshot_bytes):
         for entry in entries:
             name = safe_name(entry.filename)
             require(not entry.is_dir() and stat.S_IFMT(entry.external_attr >> 16) == stat.S_IFREG
-                    and not entry.flag_bits & 1 and entry.file_size <= 8_000_000, 'nonregular/encrypted/oversized archive member')
+                    and stat.S_IMODE(entry.external_attr >> 16) == 0o644
+                    and not entry.flag_bits & 1 and entry.file_size <= 8_000_000,
+                    'nonregular/non-0644/encrypted/oversized archive member')
             members[name] = archive.read(entry)
         require(archive.testzip() is None, 'archive CRC mismatch')
     require('PACKAGE_MANIFEST.json' in members, 'archive manifest missing')
@@ -536,7 +538,8 @@ def publication_inputs(publication, doi, receipt_path, inspection_path):
     description = meta.get('description', '')
     require(type(description) is str and all(text in description for text in (
         'rational', 'integral', 'Burde', 'Razmyslov', '2018', '2017', '2021', '2025', '2026',
-        'unrefereed', 'AI tools', 'firstness', 'current-openness')),
+        'unrefereed', 'AI tools', 'firstness'))
+        and any(text in description for text in ('current-openness', 'continuously open status')),
         'metadata must retain exact component/integral scope, classical credit, source limits and disclosure')
     expected_files = {name: {'name': name, 'size': len(files[name]), 'sha256': sha(files[name])} for name in UPLOAD_NAMES}
     receipt_bytes = [regular_bytes(path) for path in (receipt_path, inspection_path)]
@@ -738,13 +741,13 @@ def splice(tree, path, details):
 def capture_replay(inputs, temporary, publication):
     native = Path(temporary) / 'proposed-target' / PREFIX
     for name, data in inputs['original'].items():
-        path = native / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
+        path = native / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data); path.chmod(0o644)
     sibling = Path(temporary) / 'proposed-target' / PUB_PREFIX
     for name, data in publication.items():
-        path = sibling / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
+        path = sibling / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data); path.chmod(0o644)
     package = Path(temporary) / 'archive'
     for name, data in inputs['members'].items():
-        path = package / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
+        path = package / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data); path.chmod(0o644)
     environment = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', TMPDIR=str(temporary), PYTHONOPTIMIZE='0')
     environment.pop('PYTHONPATH', None); environment.pop('PYTHONHOME', None)
     def run(script, args):
@@ -762,8 +765,28 @@ def capture_replay(inputs, temporary, publication):
             and native_report.get('independent_replay_byte_equal') is True,
             'original verifier did not retain exact 23-file native validation and 5/12 negative controls')
     package_report = run(package / 'verify_package.py', ['--replay', '--selftest'])
-    require(package_report.get('status') == 'PASS' and package_report.get('native_files') == 23,
-            'accepted supplement replay and offline selftest failed')
+    require(package_report.get('status') == 'PASS' and package_report.get('native_files') == 23
+            and package_report.get('problem_id') == PROBLEM and package_report.get('original_head') == ORIGINAL,
+            'accepted supplement target/integrity failed')
+    package_replay = package_report.get('replay', {})
+    require(package_replay.get('status') == 'PASS' and package_replay.get('native') == native_report
+            and package_replay.get('native_wrapper_assertions_enabled') is True
+            and package_replay.get('temporary_copies_only') is True, 'accepted supplement replay did not execute')
+    controls = package_report.get('selftest', {})
+    count = controls.get('case_count')
+    require(controls.get('status') == 'PASS' and type(count) is int and count >= 30
+            and controls.get('negative_controls_rejected_per_mode') == count
+            and controls.get('total_rejections') == 2 * count
+            and controls.get('modes') == ['normal', 'optimized']
+            and controls.get('temporary_copies_only') is True
+            and controls.get('unverified_packet_code_executed') is False,
+            'accepted supplement must reject at least thirty offline hostile cases in each mode')
+    rejected = controls.get('rejected', {})
+    require(type(rejected) is dict and set(rejected) == {'normal', 'optimized'}
+            and all(type(rejected[mode]) is list and len(rejected[mode]) == count
+                    and all(type(case) is str for case in rejected[mode]) and len(set(rejected[mode])) == count
+                    for mode in rejected) and rejected['normal'] == rejected['optimized'],
+            'accepted supplement offline hostile-case inventory differs between modes')
     require(all(regular_bytes(native / name) == data for name, data in inputs['original'].items())
             and inventory(native) == set(inputs['original']), 'native changed during proposed-tree replay')
     require(all(regular_bytes(sibling / name) == data for name, data in publication.items())

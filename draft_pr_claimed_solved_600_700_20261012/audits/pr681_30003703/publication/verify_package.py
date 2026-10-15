@@ -25,7 +25,7 @@ NATIVE = 'native/unsolved_math_prioritization/attempts/30003703'
 MANIFEST = 'PACKAGE_MANIFEST.json'
 # Populated from stable, accepted research receipts; changing these invalidates
 # the recorded package and requires fresh external comparison and review.
-PINS = {}  # STABLE_RECEIPT_PINS
+PINS = {'CLASSICAL_PRIORITY_FAMILY_ACCEPTANCE.json': 'b50995341fb78af2c88b64ad1d63c5484505b2d4fb158a19677eb9de6280ec9d', 'LITERATURE_PRIORITY_FAMILY_ACCEPTANCE.json': '88d972067bf4aabaee15b8261c84c6a563e202db8f1d166c6a742dca1ab381e2', 'M1_ATTRIBUTION_REPAIR.json': '6ba42429e4b87363f6f579cdbca4dcedb8d44edc816ce32d7172f36decb91f4d', 'MATH_SOURCE_GATE_ACCEPTANCE.json': 'b47bbf8d52c18828a22020577ed09aceea7687bcffc03e563252d87896e2fad0', 'MATRIX_IDEAL_FAMILY_ACCEPTANCE.json': 'c1702a0112a7a3b7959e02d617bcb4e308b572b2510a5f6eaabae5b8b1985f21', 'PRIORITY_GATE_ACCEPTANCE.json': '7553b52c48353980c404bcdb0c9a8da5b480e76e41a03c3b137597ed5f7adc8c', 'ROOT_ARXIV_VERSION_METADATA.json': '35b89be9173678252dc0a3a152321069734312eba44e7a0d9a890c9a4423e3fc', 'ROOT_CLASSICAL_PRIORITY_REPLAY.normal.json': '49d8d07f5db22c2ab91833d1957b4daed74ccb84bb8ea642ceec53e750a0fe57', 'ROOT_CLASSICAL_PRIORITY_REPLAY.optimized.json': '49d8d07f5db22c2ab91833d1957b4daed74ccb84bb8ea642ceec53e750a0fe57', 'ROOT_CLASSICAL_SOURCE_CHECK.json': 'cd338f94d7a4a961947825123df18cd13e15857bb05390e94180d125ac9dc868', 'ROOT_CLASSICAL_SOURCE_CHECK.md': 'ea841f407fc201b0efa8d01d068b72a66bad98f0c547cc9671135a54f5985b50', 'ROOT_FAMILY_REPLAY_SOURCE_PINS.json': '131dee18cd28fb7899c8f378176405ecf618331150f64c3ddec49f70cc57c551', 'ROOT_FREEGROUP_REPLAY.normal.json': '606d89e3f9e7cb840703d3ea92a4b82a0a1393a9414fe0a805096baee62d3182', 'ROOT_FREEGROUP_REPLAY.optimized.json': '606d89e3f9e7cb840703d3ea92a4b82a0a1393a9414fe0a805096baee62d3182', 'ROOT_LITERATURE_SCOPE_REPLAY.normal.json': '860b91a9333279d30de1f96198c323f696a442f493285dcd5bfcf49dc77fd11c', 'ROOT_LITERATURE_SCOPE_REPLAY.optimized.json': '860b91a9333279d30de1f96198c323f696a442f493285dcd5bfcf49dc77fd11c', 'ROOT_MATH_ASSESSMENT.md': 'ba7ea4648addf832d64740873562b8e90eae20530b8364acce5327d67e77f355', 'ROOT_MATRIX_REPLAY.normal.json': '772e57067f756768d17d99e3e09d70ae0b88f0fd11ffd625d527126ac102c531', 'ROOT_MATRIX_REPLAY.optimized.json': '772e57067f756768d17d99e3e09d70ae0b88f0fd11ffd625d527126ac102c531', 'ROOT_NATIVE_REPLAY.json': '739d33c341855601fd556e1f0d8ae6780224ccc88e79bb796bdc97cd5889f3ce', 'ROOT_PAPER_QA.json': 'c853afd37bb1d54c26bf7a8f6c57e6cbbe21fccb2bedbd09c53f6b5a150db2be', 'ROOT_PRIMARY_RETRIEVAL.json': '52883f23bc8681a4d0a2e817b370fd1ff4e446fd5e313dd34d1984dc612ea267', 'ROOT_PRIORITY_SOURCE_ACCESS_RECHECK.json': '246827023fb8f8f75c4e90ecb58767021a6c2043d2b25b75bcc3d7ae5627b078', 'SCOPE_AND_SNAPSHOT.json': '38d15790e96924232a1980c83e3b3881f2af4d83bc39988dd1763f453cc72ff7', 'reviews/classical_priority_01/FINAL_FREEZE.json': '4cf7a3415c2da81295c02252f2b6b4baf1a15844b4a0d47c8fc29d98ee1db1b5', 'reviews/freegroup_01/FINAL_FREEZE.json': '60a3f66aef33953509d3df2f300b684d07703ba2f174ce3739b064e706cae94c', 'reviews/matrix_ideal_01/FINAL_FREEZE.json': '2597d26386f1f9e4bb7d48cf98849c5beb5e87d1e767b7de5d17a6af8d1f5885', 'reviews/priority_literature_01/FINAL_FREEZE.json': 'b2bbd730fa8b9edaaf0674bdcb2d94091a1f24da6e70901b7e4618036487ac8d'}  # STABLE_RECEIPT_PINS
 PUBLICATION_FILES = (
     'satoh_filtration_counterexamples.pdf', 'satoh_filtration_counterexamples.tex',
     'zenodo-deposit.json', 'README.md', 'CURRENT_PRIORITY_AND_STATUS.md',
@@ -43,6 +43,8 @@ ROOT_FILES = (
     'ROOT_LITERATURE_SCOPE_REPLAY.normal.json', 'ROOT_LITERATURE_SCOPE_REPLAY.optimized.json',
     'ROOT_PRIMARY_RETRIEVAL.json', 'ROOT_CLASSICAL_SOURCE_CHECK.json',
     'ROOT_PRIORITY_SOURCE_ACCESS_RECHECK.json', 'ROOT_PAPER_QA.json',
+    'M1_ATTRIBUTION_REPAIR.json', 'ROOT_CLASSICAL_SOURCE_CHECK.md',
+    'ROOT_ARXIV_VERSION_METADATA.json',
 )
 REVIEW_FILES = {
     'matrix_ideal_01': (
@@ -197,7 +199,7 @@ def inspect_payload(payload):
     """Validate captured bytes completely before executing any packet code."""
     for name in payload:
         safe_name(name)
-    need(set(PINS) == (set(ROOT_FILES) - {'ROOT_PAPER_QA.json'}) |
+    need(set(PINS) == (set(ROOT_FILES)) |
          {'reviews/' + family + '/FINAL_FREEZE.json' for family in REVIEW_FILES},
          'immutable pin inventory')
     for name, sha in PINS.items():
@@ -244,17 +246,34 @@ def inspect_payload(payload):
              'mathematical family acceptance: ' + family)
     priority = json_data(payload['PRIORITY_GATE_ACCEPTANCE.json'])
     need(priority['original_head'] == HEAD and priority['bounded_priority_only'] is True and
-         priority['historical_firstness_certified'] is False, 'bounded priority gate')
+         priority['status'] == 'ACCEPTED_BOUNDED_PRIORITY_AUDIT' and
+         priority['historical_firstness_certified'] is False and
+         priority['current_literature_openness_certified'] is False and
+         priority['human_peer_review'] is False, 'bounded priority gate')
+    need(priority['mathematics_gate_sha256'] == digest(payload['MATH_SOURCE_GATE_ACCEPTANCE.json']) and
+         priority['M1_attribution_repair_sha256'] == digest(payload['M1_ATTRIBUTION_REPAIR.json']) and
+         priority['classical_family_acceptance_sha256'] == digest(payload['CLASSICAL_PRIORITY_FAMILY_ACCEPTANCE.json']) and
+         priority['literature_family_acceptance_sha256'] == digest(payload['LITERATURE_PRIORITY_FAMILY_ACCEPTANCE.json']),
+         'priority gate acceptance bindings')
+    repair = json_data(payload['M1_ATTRIBUTION_REPAIR.json'])
+    need(repair['native23_modified'] is False and
+         repair['classical_verdict_sha256'] == digest(payload['reviews/classical_priority_01/VERDICT.json']),
+         'classical attribution repair scope')
+    for name, record in repair['publication_files'].items():
+        check_record(payload[name], record, 'attribution repair author bytes: ' + name)
+    readme = payload['README.md'].decode('utf-8')
+    need(all(term in readme for term in ('Burde', 'equation (4)', 'Theorem 4.14', 'Razmyslov',
+                                        'weighted substitution')), 'README classical attribution')
     paper_qa = json_data(payload['ROOT_PAPER_QA.json'])
-    need(paper_qa['all_pages_rendered_and_visually_inspected'] is True and
-         type(paper_qa['pages']) is int and paper_qa['pages'] > 0, 'paper visual QA')
-    for name, record in paper_qa['pins'].items():
+    need(paper_qa['all_complete_pages_visually_inspected'] is True and
+         type(paper_qa['pages']) is int and paper_qa['pages'] == 4 and paper_qa['status'] == 'PASS', 'paper visual QA')
+    for name, record in paper_qa['files'].items():
         member = 'README.md' if name == 'PACKAGE_README.md' else name
         need(member in payload, 'paper QA unknown member')
         check_record(payload[member], record, 'paper QA bytes: ' + member)
     need({'satoh_filtration_counterexamples.pdf', 'satoh_filtration_counterexamples.tex',
           'CLAIM_SCOPE.json', 'CURRENT_PRIORITY_AND_STATUS.md', 'zenodo-deposit.json'} <=
-         set(paper_qa['pins']), 'paper QA required author bindings')
+         set(paper_qa['files']), 'paper QA required author bindings')
     meta = json_data(payload['zenodo-deposit.json'])
     need(meta['metadata']['title'] == TITLE and
          meta['metadata']['upload_type'] == 'publication' and
@@ -427,7 +446,7 @@ def selftest(root):
                 obj['metadata']['title'] = 'Unbounded result'; (target / changed).write_bytes(json_bytes(obj))
             elif case == 'paper_qa_stale_binding_rehashed':
                 changed = 'ROOT_PAPER_QA.json'; obj = json_data((target / changed).read_bytes())
-                obj['pins']['satoh_filtration_counterexamples.pdf']['sha256'] = '0' * 64
+                obj['files']['satoh_filtration_counterexamples.pdf']['sha256'] = '0' * 64
                 (target / changed).write_bytes(json_bytes(obj))
             elif case in ('duplicate_payload_json_key_rehashed', 'nonfinite_constant_rehashed', 'overflow_number_rehashed'):
                 changed = 'CLAIM_SCOPE.json'
