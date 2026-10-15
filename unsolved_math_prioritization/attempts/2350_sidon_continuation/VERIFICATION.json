@@ -1,0 +1,232 @@
+{
+  "schema": "sidon-continuation-aggregate-verification-1",
+  "date_utc": "2026-10-12",
+  "meaning": "Historical mathematical diagnostics plus edition integrity checks. No mathematical program was rerun by edition preparation. Independent audits, not finite extrapolation, assess the full written proofs.",
+  "indicator_phase": {
+    "author": {
+      "status": "PASS",
+      "finite_field_seeds": 7,
+      "indicator_examples": 14,
+      "rounding_vectors": 1145,
+      "mode_comparison": {
+        "modes": [
+          "normal",
+          "-O",
+          "-OO"
+        ],
+        "mathematical_output_equal": true,
+        "byte_identical": true,
+        "only_fields_ignored": []
+      }
+    },
+    "independent_field_audit": {
+      "status": "PASS",
+      "finite_field_seeds": 10,
+      "integer_and_half_integer_examples": 20,
+      "seed_primes": [
+        3,
+        5,
+        7,
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31
+      ],
+      "dense_interval_lengths_inclusive": [
+        1,
+        80
+      ],
+      "arithmetic": "Exact integer convolution and rational reductions, with explicit checked convolution overflow bounds.",
+      "mode_comparison": {
+        "modes": [
+          "normal",
+          "-O",
+          "-OO"
+        ],
+        "mathematical_output_equal": true,
+        "byte_identical": true,
+        "only_fields_ignored": []
+      }
+    },
+    "independent_rounding_audit": {
+      "status": "PASS",
+      "coefficient_vectors": 3905,
+      "lengths_inclusive": [
+        1,
+        5
+      ],
+      "coefficient_values": [
+        "0",
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
+      "positive_defect_with_sidon_rounded_subset": 1307,
+      "counts_at_shifts": [
+        0,
+        1
+      ],
+      "arithmetic": "Direct four-index enumeration with integer numerators.",
+      "mode_comparison": {
+        "modes": [
+          "normal",
+          "-O",
+          "-OO"
+        ],
+        "mathematical_output_equal": true,
+        "byte_identical": true,
+        "only_fields_ignored": []
+      }
+    },
+    "scope": "Finite identities and countercontrols; written proofs establish asymptotic phases and rounding theorem. No kappa=1/14 disproof or proof."
+  },
+  "bose_chowla_carries": {
+    "author": {
+      "status": "PASS_NORMAL_ONLY",
+      "field_orders": [
+        3,
+        5,
+        7,
+        11,
+        13
+      ],
+      "scope": "All nonzero mu, all translations in both cosets, algebraic and incidence checks. All character tuples only at order 3; nine selected tuples at each larger order. Conservative small-field bounds can be vacuous.",
+      "mode_limit": "Final guarded program uses assertions and refuses optimized execution. An earlier exploratory -O smoke run has no mathematical-verification status. No -O/-OO author pass is claimed."
+    },
+    "independent": {
+      "status": "PASS",
+      "field_orders": [
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        17
+      ],
+      "mu_tested": 736,
+      "triples_examined": 2021760,
+      "fft_reduced_character_tuples": 46604128,
+      "slice_nonprincipal_character_pairs": 78337174,
+      "lifts_tested": 14832,
+      "exhaustive_subsets": 12800,
+      "arithmetic": "Finite field algebra, lift carries and deletion coverage are exact; global Fourier and local character sums are floating-point numerical diagnostics.",
+      "mode_limit": "Only the recorded independent run is claimed. No independent -O/-OO execution is inferred.",
+      "global_character_scope": "All reduced nonprincipal global tuples for field orders at most 9; covers four-character tuples up to the exact unit scalar.",
+      "local_character_scope": "All nonprincipal local pairs on nonexcluded slices for field orders at most 13.",
+      "lift_scope": "Every translation and unit dilation in both lift conventions for orders at most 11; 12 selected affine choices at orders 13 and 17, each in both conventions.",
+      "subset_scope": "All subset/lift combinations for orders 3 and 5."
+    },
+    "scope": "Finite fields can have zero-carry-free full lifts. No effective positivity threshold, optimal error/deletion bound, or asymptotic extrapolation is claimed. Analytic proof uses established function-field Dirichlet RH."
+  },
+  "asymmetric_capacity": {
+    "author": {
+      "status": "PASS",
+      "finite_counts": {
+        "subsets": 131070,
+        "admissible": 15057,
+        "exceptional": 8781,
+        "difference_sites": 198708,
+        "windows": 243711
+      },
+      "rational_colored_profile_tests": 18550,
+      "rational_uniform_profile_tests": 14350,
+      "mode_comparison": {
+        "modes": [
+          "normal",
+          "-O",
+          "-OO"
+        ],
+        "mathematical_output_equal": true,
+        "byte_identical": false,
+        "only_fields_ignored": [
+          "optimization",
+          "elapsed_seconds"
+        ]
+      },
+      "auditor_reexecution": false
+    },
+    "independent": {
+      "audit_status": "PASS",
+      "continuum": {
+        "centered_truncation_cases": 4225,
+        "colored_convolution_cases": 16705,
+        "grid_denominator": 64,
+        "uniform_profile_cases": 65
+      },
+      "finite": {
+        "admissible": 22447,
+        "difference_cells": 339242,
+        "empty": 17,
+        "max_N": 17,
+        "midpoint_cases": 7328,
+        "nonempty_both_colors": 11292,
+        "self_reflected_differences": 20721,
+        "total_subsets": 262142,
+        "window_cases": 384102
+      },
+      "scope": "Finite diagnostics supplement a separate full proof audit; no integer realization or universal target theorem is certified.",
+      "mode_comparison": {
+        "modes": [
+          "normal",
+          "-O",
+          "-OO"
+        ],
+        "mathematical_output_equal": true,
+        "byte_identical": false,
+        "only_fields_ignored": [
+          "optimization_level"
+        ]
+      },
+      "arithmetic": "Exact direct window counts and rational comparisons in Q(sqrt(2)); rational continuum grids supplement the full analytic proof."
+    },
+    "scope": "Conditional finite transfer assumes a symmetric-core theorem. Exact relaxation maxima do not claim integer realizations. Uniform/proportional subclass needs extra hypotheses."
+  },
+  "edition_checks": {
+    "all_seven_accepted_text_identities_verified": true,
+    "six_original_manifests_or_seals_all_entries_verified": true,
+    "manifest_entries": [
+      {
+        "id": "indicator-author-manifest",
+        "entry_count": 9
+      },
+      {
+        "id": "indicator-audit-manifest",
+        "entry_count": 12
+      },
+      {
+        "id": "bose-original-manifest",
+        "entry_count": 10
+      },
+      {
+        "id": "bose-audit-manifest",
+        "entry_count": 23
+      },
+      {
+        "id": "asymmetric-author-freeze",
+        "entry_count": 8
+      },
+      {
+        "id": "asymmetric-audit-seal",
+        "entry_count": 20
+      }
+    ],
+    "provenance_link_entries_verified": [
+      7,
+      14,
+      5
+    ],
+    "three_proofs_byte_identical_before_notice": true,
+    "full_audits_preserved_modulo_recorded_locator_edits": true,
+    "every_original_and_public_byte_accounted_for": true,
+    "reverse_transform_verified": true,
+    "public_scope": "Only authored prose and aggregate public verification/source metadata. No executable or source artifact distribution.",
+    "fresh_scholarly_retrieval_performed": false,
+    "mathematical_diagnostic_reexecution_performed": false,
+    "integration_limit": "Separate fresh exact-head review is required. No repository publication, push, PR update, queue update or CI result is asserted by this edition."
+  }
+}
