@@ -9,16 +9,46 @@ until an exact claimed_solved immutable-head row passes the gate.
 """
 from datetime import datetime,timezone
 from pathlib import Path
-import hashlib,importlib.util,io,json,stat,subprocess,tarfile
+import hashlib,io,json,os,re,stat,subprocess,tarfile,types
 P=Path(__file__).resolve().parent;ROOT=P.parent;A=P/'audits/pr938_30003634';D=A/'publication'
 KEY='30003634';HEAD='2b3ea2de7a9a9ea4fa8cba9a34cbdb01063bda3b'
 QUEUE='unsolved_math_prioritization/QUEUE.md';STATE='unsolved_math_prioritization/state.json';HISTORY='unsolved_math_prioritization/history.jsonl'
+HELPERS=['accept_pr938.py','merge_pr938.py','run_pr938_zenodo.py','append_pr938_tracker.py','update_pr938_publication_ledger.py','finalize_pr938_and_gate_next.py']
 def need(ok,label):
  if not ok:raise RuntimeError(label)
 def load(path):return json.loads(path.read_text())
 def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n')
 def run(args):return subprocess.run(args,cwd=ROOT,check=True,capture_output=True,text=True).stdout
 def blob(ref,name):return subprocess.run(['git','show',ref+':'+name],cwd=ROOT,check=True,capture_output=True).stdout
+
+def capture_reviewed_helpers(accepted):
+ """Authenticate the accepted inventory before any dependency execution.
+
+ The calling entry point, interpreter, standard library and acceptance receipt
+ are trusted. Capturing bytes avoids reopening a checked dependency path for
+ execution; this bounded provenance check is not an operating-system sandbox.
+ """
+ need(accepted.get('accepted') is True and type(accepted.get('pr')) is int and accepted['pr']==938 and accepted.get('problem_id')==KEY and accepted.get('original_pr_head')==HEAD,'Exact accepted target required before helper execution')
+ raw=(D/'PREPUBLICATION_FREEZE.json').read_bytes();need(hashlib.sha256(raw).hexdigest()==accepted.get('freeze_sha256'),'Accepted freeze changed before helper execution');freeze=json.loads(raw)
+ need(type(freeze.get('pr')) is int and freeze['pr']==938 and freeze.get('problem_id')==KEY and freeze.get('original_pr_head')==HEAD,'Frozen target changed before helper execution')
+ records=freeze.get('future_helpers');need(type(records) is dict and set(records)==set(HELPERS) and records==accepted.get('future_helpers'),'Exact accepted six-helper inventory required')
+ captured={}
+ for name in HELPERS:
+  record=records[name];need(type(record) is dict and set(record)=={'bytes','sha256'} and type(record['bytes']) is int and record['bytes']>0 and type(record['sha256']) is str and re.fullmatch('[0-9a-f]{64}',record['sha256']) is not None,'Reviewed helper fingerprint schema changed')
+  try:
+   fd=os.open(P/name,os.O_RDONLY|os.O_NONBLOCK|os.O_NOFOLLOW)
+   with os.fdopen(fd,'rb') as stream:
+    info=os.fstat(stream.fileno());need(stat.S_ISREG(info.st_mode) and info.st_size==record['bytes'],'Reviewed helper regular-file status/size changed: '+name);source=stream.read(record['bytes']+1)
+  except OSError as error:raise RuntimeError('Reviewed helper must be a readable regular file: '+name) from error
+  need(len(source)==record['bytes'] and hashlib.sha256(source).hexdigest()==record['sha256'],'Reviewed helper fingerprint changed: '+name);captured[name]=source
+ return freeze,captured
+
+def load_reviewed_receipt_checker(accepted):
+ freeze,captured=capture_reviewed_helpers(accepted)
+ name='append_pr938_tracker.py';path=str(P/name);module=types.ModuleType('pr938_completed_receipt_checks');module.__file__=path;module.__package__=None
+ # Execute captured/authenticated bytes, never a loader reopening a checked path.
+ exec(compile(captured[name],path,'exec',dont_inherit=True,optimize=0),module.__dict__)
+ return module,freeze
 
 def queue_without(raw):
  rows=raw.splitlines(keepends=True);hits=[i for i,line in enumerate(rows) if b'| 30003634 /' in line];need(len(hits)==1,'Ambiguous target queue row');row=rows.pop(hits[0]);return b''.join(rows),row
@@ -38,8 +68,7 @@ def raw_json_values(raw):
 
 def verify_completed():
  publication=load(D/'ZENODO_PUBLISH.json');merge=load(A/'PR_MERGE_RECEIPT.json');tracker=load(A/'TRACKER_RECEIPT.json');native=load(A/'NATIVE_PUBLICATION_RECEIPT.json');accepted=load(A/'ACCEPTANCE.json')
- spec=importlib.util.spec_from_file_location('pr938_completed_receipt_checks',P/'append_pr938_tracker.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
- freeze=load(D/'PREPUBLICATION_FREEZE.json');need(hashlib.sha256((P/'append_pr938_tracker.py').read_bytes()).hexdigest()==freeze['future_helpers']['append_pr938_tracker.py']['sha256'],'Reviewed receipt checker changed')
+ m,freeze=load_reviewed_receipt_checker(accepted)
  m.verify_receipt_links(A,publication,merge,accepted,tracker,native)
  need(accepted['all_prior_required_and_optional_findings_resolved'] is True and accepted['proof_gap'] is None and len(accepted['full_package_reviews'])>=3,'Complete fresh review chain absent')
  live=json.loads(run(['gh','pr','view','938','--repo','AlecKriebel/Math','--json','number,state,headRefOid,baseRefName,mergeCommit,mergedAt,url']))
