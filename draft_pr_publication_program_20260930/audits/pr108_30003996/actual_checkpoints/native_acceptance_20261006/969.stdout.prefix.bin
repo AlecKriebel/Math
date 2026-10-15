@@ -1,0 +1,96 @@
+{
+  "schema": "pr108-publication-source-correction/v1",
+  "UTC": "2026-10-06T06:15:46.518664+00:00",
+  "actual_operator_PID": 64848,
+  "PR": 108,
+  "problem_id": 30003996,
+  "source_revision": "publication_package_v2",
+  "finding": {
+    "id": "F01",
+    "severity": "minor",
+    "category": "diagnostic contract/documentation accuracy",
+    "locations": [
+      "source_preparation/verify_exact.py:35",
+      "source_preparation/verify_exact.py:44",
+      "source_preparation/README.md:37"
+    ],
+    "mechanism": "Empty-clause early return skips validation of later malformed literals or excess clause size; rejection depends on clause order.",
+    "reproduced_normal_and_optimized": true,
+    "valid_3CNF_theorem_affected": false,
+    "repair": "Validate all raw input before fixed-no return (chosen by parent), or narrow documented contract; refresh checks/receipts/manifest consistently.",
+    "evidence": [
+      "NORMALIZATION_NORMAL.json",
+      "NORMALIZATION_OPTIMIZED.json",
+      "NORMALIZATION_EXECUTION_RECEIPTS.json"
+    ]
+  },
+  "chosen_repair": "Materialize outer and clause iterables once; validate all raw clauses before any empty-clause fixed-no shortcut. Valid-input normalization and theorem unchanged.",
+  "added_controls": "All three R1 malformed suffixes, their order reversals and standalone forms through normalize and construct at intended literal/size guards; single-use iterable boundaries; six new actual failing subprocess probes over normal/-O.",
+  "source_repair_completed": true,
+  "repair_completion_estimate_percent": 100,
+  "new_central_proof_search_turns": 0,
+  "original_effort": "2/5 from QUEUE/prose; original structured ledger absent",
+  "whole_package_R2_completed": false,
+  "publication_ready": false,
+  "R1_bindings": [
+    {
+      "relative_to_audit": "whole_publication_package_round1_20261006/REPORT.md",
+      "bytes": 15684,
+      "sha256": "4db58a2591ef17944baf6ac184f32cfe377bf296847d6c76022a458e3cdc2c49"
+    },
+    {
+      "relative_to_audit": "whole_publication_package_round1_20261006/VERDICT.json",
+      "bytes": 3359,
+      "sha256": "450d2c237c9047bafabb5e2ba0f38f978534f0f9d2492592d5a94f1c03923c18"
+    },
+    {
+      "relative_to_audit": "whole_publication_package_round1_20261006/REVIEW_MANIFEST.json",
+      "bytes": 6945,
+      "sha256": "b9c9461627c8d8fd4c3911e193639959dbe466389041e968461f6b0316960872"
+    }
+  ],
+  "V1_source_manifest_sha256": "79e389c5609da2da253aa320208e7b7abe91233e72acae0200dd48770f1344b7",
+  "V1_source_seal_sha256": "cb97141aaf61c01a6090155f10c5402a2653cf03ec5301c159f7ee5e830e731c",
+  "V1_verifier_sha256": "960b534bca7c2e98f6af998e307ba35fb3814b8b33694fb601c14ccfebb2e7fe",
+  "V1_run_receipt_sha256": "185f12526e0be36063250ca51f074af575c7556068cc52544768669c753d4891",
+  "V1_source_verified_unchanged": true,
+  "V1_manifest_rows": [
+    {
+      "relative_path": "AUDIT_SUMMARY.md",
+      "bytes": 4130,
+      "sha256": "0b0a9b4dd49eb603075f51f11f662ae372acdc074743f820188d1c80fd82d1c6"
+    },
+    {
+      "relative_path": "LICENSE.md",
+      "bytes": 541,
+      "sha256": "d9180988c471129b2e303b7714b662c84c3d02f35212af67f8f5cd0aab6844ed"
+    },
+    {
+      "relative_path": "PREPARATION_DELIVERY.json",
+      "bytes": 1166,
+      "sha256": "9965067330fa2d8c6f48aea59323ed5fc1dde1a915b007691631102b10cae0ae"
+    },
+    {
+      "relative_path": "PREPARATION_START.json",
+      "bytes": 479,
+      "sha256": "83d8fd32e7989a51d3c75a5eb73fb4213106d7b0cf80255526a5be34af6bbb46"
+    },
+    {
+      "relative_path": "PRIORITY_PROVENANCE.md",
+      "bytes": 5603,
+      "sha256": "ae756182c899a33a230a00856ce68ed8f329ce81f541144dfd4aa46dbbccc398"
+    },
+    {
+      "relative_path": "PROOF_BINDING.json",
+      "bytes": 573,
+      "sha256": "498e4c7754be604f1d819d2397add91fd06dd7bda4aa3b91b90f8c46e3a00d70"
+    },
+    {
+      "relative_path": "README.md",
+      "bytes": 4492,
+      "sha256": "bb33a0ccd104e6b2b69ffc57c72c827cf3906d7fb6cfcd7e13f7a4a7227f5d09"
+    },
+    {
+      "relative_path": "RESEARCH_LOG.md",
+      "bytes": 2545,
+      "sha256": "996a83bf434ecfd7587d21ccde75ddabed80977ee67c627ae23ccf9

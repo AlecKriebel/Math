@@ -1,0 +1,9 @@
+# Priority research log
+
+- 2026-10-12T07:10:04.988116+00:00: Independent hypotheses frozen before searches or other audits. Completion estimate: 5%.
+- 2026-10-12T07:12:39.304187+00:00: First 12-query search batch and primary downloads. Old affine-lapse metric family is positive prior evidence; exact conjecture resolution remains unlocated. Completion estimate: 30%.
+- 2026-10-12T07:16:04.299460+00:00: Verified source-page scans and older-family equation match; surveyed all eight INSPIRE citation records (six distinct arXiv works, one separate MG16 chapter pending). No exact prior resolution located. Completion estimate: 65%.
+- 2026-10-12T07:18:47.018731+00:00: Corrected the ledger's initially estimated batch ranges, which extended beyond the actual clock, to truthful documentation timestamps. Corrected the MG16 chapter count from a transcription of 12 to its verified eight pages. These are provenance corrections only. Completion estimate: 80%.
+- 2026-10-12T07:22:00.553730+00:00: Independent report drafted before any other verdict: exact prior metric/tensor established, precise prior conjecture refutation unlocated; recommendation is qualified continuation with mandatory DKMV attribution and restricted contribution. Completion estimate: 95%.
+- 2026-10-12T07:24:53.594282+00:00: Bibliographic readback confirmed published Mukherjee spelling/date and Fields abstract date. Recorded original report hash and subsequent brief root message; independent recommendation unchanged. Completion estimate: 98%.
+- 2026-10-12T07:26:05.397619+00:00: Final independent review complete after public-text control scan and bibliographic/source parity checks. Qualified continuation; one required new attribution repair; exact printed prior refutation unlocated; historical first priority unestablished. Completion estimate: 100%.

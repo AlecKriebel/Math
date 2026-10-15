@@ -1,0 +1,397 @@
+--- CLOSED_PR38_S2/collect_root_replays.py
++++ CLOSED_PR39/collect_root_replays.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Root-owned ACTUAL PR38 reproduction. Preparation alone proves no run succeeded.
++"""Root-owned ACTUAL PR39 reproduction. Preparation alone proves no run succeeded.
+ 
+ Read this entire source and the companion sources before root execution.
+ All writer helpers execute in a private exact hierarchy. Retained support holds
+@@ -30,8 +30,8 @@
+     'review_v2/related_target_groups.json']} | {'draft_pr_publication_program_20260930/inventory.json'}
+ SOURCE_NAMES = ['collect_root_replays.py', 'capture_runner.py', 'inspect_source_native.py',
+                 'reconstructed_controls.py', 'INPUT_PINS.json', 'README.md', 'RESEARCH_LOG.md',
+-                'REVISION_CONTRACT.md', 'REVISION.patch']
+-SOURCE_MANIFEST_NAME = 'REVISION_MANIFEST.json'
++                'REPLAY_CONTRACT.md', 'ADAPTATION_BASIS.json']
++SOURCE_MANIFEST_NAME = 'PREPARATION_MANIFEST.json'
+ 
+ 
+ def sha(data):
+@@ -64,25 +64,24 @@
+     summary = {}
+     for family, info in pins['families'].items():
+         directory = audit/family
+-        for record in info['members']+[info['manifest']]:
+-            require(record, directory)
++        records = info['members']+info['foreign_members']
++        for record in records+[info['manifest']]: require(record, directory)
+         assert len(info['members']) == info['member_count']
+-        expected = sorted(record['path'] for record in info['members'])
++        expected = sorted(record['path'] for record in records)
+         assert len(expected) == len(set(expected))
+         actual = []
+         for path in directory.rglob('*'):
+             relative = path.relative_to(directory)
+-            if relative.as_posix() == info['manifest_name'] or relative.parts[0] == info['cache_prefix']:
+-                continue
+             assert not path.is_symlink(), 'Strict closure rejects symlink: '+str(path)
+-            if path.is_file():
+-                actual.append(relative.as_posix())
++            if relative.as_posix() == info['manifest_name'] or (info['cache_prefix'] and relative.parts[0] == info['cache_prefix']): continue
++            if path.is_file(): actual.append(relative.as_posix())
+         assert sorted(actual) == expected, 'Strict root recursive coverage: '+family
+         summary[family] = {'manifest_path': str((directory/info['manifest_name']).relative_to(AUDIT)),
+-                           'manifest_sha256': info['manifest']['sha256'], 'member_count': len(expected),
+-                           'exclusions': [info['manifest_name'], info['cache_prefix']+'/'],
+-                           'strict_recursive_coverage': True}
+-    assert sum(x['member_count'] for x in summary.values()) == 169
++            'manifest_sha256': info['manifest']['sha256'], 'member_count': info['member_count'],
++            'foreign_member_count': len(info['foreign_members']), 'cache_prefix': info['cache_prefix'],
++            'exact_root_manifest_self_exclusion': info['manifest_name'], 'strict_recursive_coverage': True}
++    assert sum(x['member_count'] for x in summary.values()) == 732
++    assert sum(x['foreign_member_count'] for x in summary.values()) == 40
+     return summary
+ 
+ 
+@@ -113,7 +112,7 @@
+     output, support = args.output.resolve(), args.support_directory.resolve()
+     # Destination safety is the only setup outside the protected attempt.
+     assert output.parent == AUDIT and support.parent == AUDIT and not output.exists() and not support.exists()
+-    assert support != HERE and support.name not in ['primary_scope_family', 'current_measure_family', 'trace_geometry_family', 'root_replay_preparation_family']
++    assert support != HERE and support.name not in ['primary_scope_family', 'rotation_concatenation_family', 'uniform_error_scaling_family', 'root_replay_preparation_family']
+     private = private_audit = pins = current = closure_before = preparation_manifest_sha = None
+     support_created = output_owned = False
+     current_path = root_script = read_ledger = None
+@@ -276,12 +275,13 @@
+         if retention_errors: raise RuntimeError('Launch evidence retention failed; attempted run and available bytes preserved')
+         return process
+ 
+-    def run(label, script, *arguments, runtime=PYTHON, instrument=True):
++    def run(label, script, *arguments, runtime=PYTHON, instrument=True, expected_exit=0):
++        assert private is not None and script.is_relative_to(private), 'Writer execution must stay in the owned private hierarchy'
+         command = [runtime, str(script), *map(str, arguments)]
+         if instrument:
+             command = [runtime, str(HERE/'capture_runner.py'), str(script), str(support/(label+'_nested')), *map(str, arguments)]
+         process = launch(label, command, private, script)
+-        assert process.returncode == 0, 'Actual outer run failed; full streams retained: '+label
++        assert process.returncode == expected_exit, 'Actual outer run failed; full streams retained: '+label
+         return process
+ 
+     def retained(source, name):
+@@ -289,13 +289,13 @@
+         copy(source, destination)
+         return destination
+ 
+-    def qualify_streams(actual, saved, actual_streams, saved_streams, collection_key):
++    def qualify_streams(actual, saved, actual_streams, saved_streams, collection_key, name_key='label'):
+         a, b = load(actual), load(saved)
+         qualified = {}
+         for index, actual_row in enumerate(a[collection_key]):
+             saved_row = b[collection_key][index]
+-            assert actual_row['label'] == saved_row['label']
+-            name = actual_row['label']
++            assert actual_row[name_key] == saved_row[name_key]
++            name = actual_row[name_key]
+             for channel in ['stdout', 'stderr']:
+                 actual_data, saved_data = (actual_streams/(name+'.'+channel)).read_bytes(), (saved_streams/(name+'.'+channel)).read_bytes()
+                 assert normalize(actual_data.decode()) == normalize(saved_data.decode()), name+' '+channel
+@@ -325,6 +325,9 @@
+                                                [args.current_input_manifest, args.root_script_path, args.root_primary_read_ledger]]
+         for path in [current_path, root_script, read_ledger]:
+             assert path.parent == AUDIT and path.is_file() and not path.is_symlink()
++        assert len({current_path, root_script, read_ledger}) == 3
++        assert root_script.suffix == '.py' and current_path.suffix == read_ledger.suffix == '.json'
++        assert read_ledger.name == 'ROOT_PRIMARY_READ_LEDGER.json'
+         copy(root_script, support/'executed_sources/root_entrypoint.py')
+         for path in [read_ledger, current_path]:
+             copy(path, support/'root_prerequisites'/path.name)
+@@ -340,7 +343,8 @@
+             require(record, REPO)
+         assert current['runtimes']['system_python'] == PYTHON
+         default_runtime = current['runtimes']['historical_default_failure_python']
+-        assert default_runtime == load(AUDIT/'primary_scope_family/ORIGINAL_VERIFY_EXECUTION.json')[0]['runtime_path']
++        assert default_runtime == load(AUDIT/'primary_scope_family/default_python_failure.json')['stdout'].splitlines()[0]
++        assert default_runtime == '/opt/homebrew/opt/python@3.14/bin/python3.14'
+         assert Path(default_runtime).is_file()
+         assert not (REPO/(NATIVE+'cache/catalog.sqlite-wal')).exists()
+         assert not (REPO/(NATIVE+'cache/catalog.sqlite-shm')).exists()
+@@ -368,7 +372,7 @@
+         for path in [read_ledger, current_path]:
+             copy(path, support/'root_prerequisites'/path.name)
+         (AUDIT/'tmp').mkdir(exist_ok=True)
+-        private = Path(tempfile.mkdtemp(prefix='root_pr38_actual_', dir=AUDIT/'tmp'))
++        private = Path(tempfile.mkdtemp(prefix='root_pr39_actual_', dir=AUDIT/'tmp'))
+         private_audit = private/pins['audit_relative_path']
+         out['setup_completed'] = True
+         for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]:
+@@ -382,6 +386,9 @@
+             for record in info['members']+[info['manifest']]:
+                 copy(AUDIT/family/record['path'], private_audit/family/record['path'])
+                 copy(AUDIT/family/record['path'], support/'frozen/families'/family/record['path'])
++            for record in info['foreign_members']:
++                copy(AUDIT/family/record['path'], private_audit/family/record['path'])
++                (private_audit/family/record['path']).chmod(0o444)
+         for record in inputs:
+             copy(REPO/record['path'], private/record['path'])
+             require(record, private)
+@@ -410,130 +417,112 @@
+         out['original_runtime_python'] = PYTHON
+         out['original_runtime_python_version'] = out['provenance']['runtime_python_version']
+         original_replays = []
+-        for program, expected, assertions in [('verify.py', 'verification.json', 30),
+-                                              ('review/independent_checks.py', 'review/independent_results.json', 72)]:
+-            script = private_audit/'source_snapshot'/program
++        original_specs = [('author', 'verify.py', 'verification.json', 'verification.json', 520),
++                          ('old_submitted', 'review/submitted_verify.py', 'review/submitted_results.json', 'verification.json', 520),
++                          ('old_independent', 'review/independent_checks.py', 'review/independent_results.json', 'independent_results.json', 899)]
++        for label, program, expected, generated_name, byte_count in original_specs:
++            directory = private_audit/'ROOT_ORIGINAL_RUNS'/label; directory.mkdir(parents=True, exist_ok=False)
++            script = directory/Path(program).name
++            copy(private_audit/'source_snapshot'/program, script); script.chmod(0o444)
+             before = script.read_bytes()
+-            process = run('root_original_'+str(assertions), script, instrument=False)
++            process = run('root_original_'+label, script)
+             frozen = (AUDIT/'source_snapshot'/expected).read_bytes()
+-            assert not process.stderr and process.stdout == frozen and json.loads(process.stdout) == json.loads(frozen)
+-            packet = json.loads(process.stdout)
+-            assert packet['status'] == 'PASS' and packet['sympy_version'] == '1.14.0' and packet['assertions'] == assertions
+-            assert sum(packet['checks'].values()) == assertions and script.read_bytes() == before
+-            generated = support/'actual'/('root_original_'+str(assertions)+'_stdout_materialized.json')
+-            generated.parent.mkdir(parents=True, exist_ok=True)
+-            generated.write_bytes(process.stdout)
+-            original_replays.append({'program': program, 'program_sha256': sha(before), 'exit_code': 0,
+-                                     'whole_stdout_BYTE_equal': True, 'whole_stdout_JSON_equal': True,
+-                                     'stdout_bytes': len(frozen), 'stdout_sha256': sha(frozen), 'assertions': assertions,
+-                                     'actual_stdout': runs[-1]['stdout'], 'actual_stderr': runs[-1]['stderr'],
+-                                     'generated_receipt': row(generated, AUDIT), 'generated_receipt_sha256': sha(generated.read_bytes()),
+-                                     'generated_complete_receipt_BYTE_equal': generated.read_bytes() == frozen,
+-                                     'generated_complete_receipt_JSON_equal': load(generated) == json.loads(frozen),
+-                                     'generated_receipt_behavior': 'Collector materializes complete actual stdout as a checkable JSON artifact. The unchanged original program itself writes no result file.'})
++            generated = directory/generated_name
++            assert len(frozen) == byte_count and not process.stderr
++            assert process.stdout == frozen and json.loads(process.stdout) == json.loads(frozen)
++            assert generated.is_file() and generated.read_bytes() == frozen and load(generated) == json.loads(frozen)
++            packet = load(generated)
++            if label == 'old_independent':
++                assert packet['named_checks_passed'] == 12 and packet['failed'] == 0 and packet['path_configurations'] == 144
++                assert packet['rotation_grid_equalities'] == 2256 and packet['randomized_zero_duration_prefix_laws'] == 16 and packet['sympy_version'] == '1.14.0'
++            else:
++                assert packet['passed'] is True and packet['finite_configurations'] == 12288 and packet['uniform_four_step_prefix_checks'] == 48
++            assert script.read_bytes() == before
++            actual_generated = retained(generated, 'original_replays/'+label+'/'+generated_name)
++            original_replays.append({'label': label, 'program': program, 'program_sha256': sha(before), 'exit_code': 0,
++                'whole_stdout_BYTE_equal': True, 'whole_stdout_JSON_equal': True, 'stdout_bytes': len(frozen), 'stdout_sha256': sha(frozen),
++                'actual_stdout': runs[-1]['stdout'], 'actual_stderr': runs[-1]['stderr'], 'expected_receipt': row(AUDIT/'source_snapshot'/expected, AUDIT),
++                'generated_receipt': row(actual_generated, AUDIT), 'generated_receipt_sha256': sha(actual_generated.read_bytes()),
++                'generated_complete_receipt_BYTE_equal': True, 'generated_complete_receipt_JSON_equal': True,
++                'generated_receipt_behavior': 'The unchanged original program itself writes this complete JSON file in a fresh private directory; actual file bytes and stdout are retained separately.',
++                'complete_actual_result': packet})
+         out['original_replays'] = original_replays
+         out['original_runtime_sympy_version'] = '1.14.0'
+-        for family in pins['families']:
+-            validator = 'verify_family_manifest.py' if family == 'primary_scope_family' else 'verify_manifest.py'
+-            run(family+'_pristine_manifest', private_audit/family/validator)
++        # Reproduce the real missing-SymPy failure with the original independent
++        # script, retaining the failure rather than installing or substituting.
++        runtime_probe = private/'root_tools/runtime_probe.py'
++        runtime_probe.write_text('import json,sys\nprint(json.dumps({"executable":sys.executable,"version":sys.version,"version_info":list(sys.version_info)},indent=2))\n')
++        runtime_probe.chmod(0o444)
++        runtime_process = run('root_default_python314_runtime', runtime_probe, runtime=default_runtime)
++        runtime_result = json.loads(runtime_process.stdout)
++        assert runtime_result['executable'] == default_runtime and runtime_result['version_info'][:2] == [3,14] and not runtime_process.stderr
++        out['default_python314_runtime'] = runtime_result
++        default_dir = private_audit/'ROOT_ORIGINAL_RUNS/default_missing_sympy'; default_dir.mkdir()
++        default_script = default_dir/'independent_checks.py'; copy(private_audit/'source_snapshot/review/independent_checks.py', default_script); default_script.chmod(0o444)
++        failed = run('root_default_python314_missing_sympy', default_script, runtime=default_runtime, instrument=False, expected_exit=1)
++        assert not failed.stdout and b"ModuleNotFoundError: No module named 'sympy'" in failed.stderr
++        assert not (default_dir/'independent_results.json').exists()
++        out['default_python314_actual_failure'] = {'runtime': default_runtime, 'source_sha256': sha(default_script.read_bytes()),
++            'exit_code': 1, 'actual_stdout': runs[-1]['stdout'], 'actual_stderr': runs[-1]['stderr'], 'generated_result_absent': True,
++            'qualification': 'Fresh actual original independent-script failure under the historical default interpreter; not a claim to replay the earlier -c probe byte-for-byte.'}
++        out['default_python314_missing_sympy_failure_retained'] = True
++        manifest_specs = {'primary_scope_family': ('check_family_manifest.py', ['verify']),
++                          'rotation_concatenation_family': ('manifest.py', ['check']),
++                          'uniform_error_scaling_family': ('manifest_integrity.py', ['--no-digest'])}
++        for family, (validator, arguments) in manifest_specs.items():
++            process = run(family+'_pristine_manifest', private_audit/family/validator, *arguments)
++            value = json.loads(process.stdout); assert value.get('passed', value.get('verified')) is True
++            count = value.get('first_party_members', value.get('recursive_file_count', value.get('files')))
++            assert count == pins['families'][family]['member_count'] and not process.stderr
++            if family == 'uniform_error_scaling_family':
++                assert process.stdout == (AUDIT/family/'streams/final_manifest.stdout').read_bytes()
+         controls = private_audit/'ROOT_RECONSTRUCTED_CONTROLS'
+-        run('root_reconstructed_trace_and_manifest_controls', private/'root_tools/reconstructed_controls.py',
++        run('root_reconstructed_packet_and_manifest_controls', private/'root_tools/reconstructed_controls.py',
+             '--repo', private, '--pins', HERE/'INPUT_PINS.json', '--output-directory', controls)
+-        for path in controls.rglob('*'):
+-            if path.is_file() and not path.is_symlink() and 'manifest_cases' not in path.relative_to(controls).parts:
+-                retained(path, 'reconstructed_controls/'+path.relative_to(controls).as_posix())
+-        # Preserve actual mutated manifest/victim/extra bytes; unchanged clone
+-        # files are bound by the frozen family input, not retained as scratch.
+-        manifest_rows = load(controls/'manifest_reconstruction_receipts.json')
+-        for item in manifest_rows:
+-            clone = controls/'manifest_cases'/item['family']/item['case']
+-            wanted = [pins['families'][item['family']]['manifest_name'], item['victim_path'],
+-                      'ROOT_UNLISTED_NEGATIVE.txt', 'nested/'+pins['families'][item['family']]['manifest_name'],
+-                      'nested/ignoredtmp/ROOT_UNLISTED_NEGATIVE.txt']
+-            for name in wanted:
+-                path = clone/name
+-                if path.is_file() and not path.is_symlink():
+-                    retained(path, 'reconstructed_controls/mutated_inputs/'+item['family']+'/'+item['case']+'/'+name)
+-        out['administrative_guard_findings'] = [item for item in manifest_rows if item['family'] == 'primary_scope_family'
+-                                                and item['case'] in ['nested_manifest_extra', 'nested_ignoredtmp_extra']]
+-        assert len(out['administrative_guard_findings']) == 2 and all(item['actual_pass'] and not item['strict_root_guard_pass'] for item in out['administrative_guard_findings'])
+-        out['primary_nested_manifest_exploit_rejected_by_strict_root'] = True
+-        trace_actual = support/'actual/reconstructed_controls/trace_replay_receipts.json'
+-        trace_saved = AUDIT/'trace_geometry_family/replay_and_corruption_receipts.json'
+-        qualified = qualify_streams(trace_actual, trace_saved, support/'actual/reconstructed_controls/streams',
+-                                    AUDIT/'trace_geometry_family/streams', 'runs')
+-        compare('trace_complete_eight_run_receipt', trace_actual, trace_saved, qualified)
++        packet_controls = load(controls/'PACKET_CONTROL_RESULTS.json'); manifest_controls = load(controls/'MANIFEST_CONTROL_RESULTS.json')
++        assert len(packet_controls) == 6 and len(manifest_controls) == 28
++        assert all(x['observed_expected'] for x in packet_controls+manifest_controls)
++        assert all(x['strict_root_guard_pass'] == (x['case'] == 'baseline') for x in manifest_controls)
++        out['real_packet_controls'] = packet_controls
++        out['real_manifest_controls'] = manifest_controls
++        out['nested_manifest_and_foreign_component_extras_rejected_by_original_and_strict_root_guards'] = True
+         primary = private_audit/'primary_scope_family'
+-        for label, code, result, runtime in [('primary_author_and_runtime_controls', 'run_original_verify.py', 'ORIGINAL_VERIFY_EXECUTION.json', default_runtime),
+-                                             ('primary_independent_controls', 'run_original_review_helper.py', 'ORIGINAL_REVIEW_HELPER_EXECUTION.json', PYTHON),
+-                                             ('primary_source_accounting_controls', 'check_source_and_budget.py', 'SOURCE_ACCOUNTING_CONTROL_RESULTS.json', PYTHON)]:
+-            run(label, primary/code, runtime=runtime)
+-            actual = retained(primary/result, 'primary_scope_family/'+result)
+-            compare(label+'_whole_JSON', actual, AUDIT/'primary_scope_family'/result)
+-            if result == 'ORIGINAL_VERIFY_EXECUTION.json':
+-                default_failure = load(actual)[0]
+-                assert default_failure['case'] == 'default_runtime_initial' and default_failure['exit_code'] == 1
+-                assert default_failure['stdout'] == '' and "ModuleNotFoundError: No module named 'sympy'" in default_failure['stderr']
+-                assert default_failure['exact_original_bytes'] and default_failure['runtime_version'].startswith('3.14.')
+-                out['default_python314_missing_sympy_failure_retained'] = True
+-                out['default_python314_actual_failure'] = {'actual_receipt': row(actual, AUDIT), 'case_index': 0,
+-                                                         'runtime_path': default_failure['runtime_path'],
+-                                                         'source_sha256': default_failure['source_sha256'], 'exit_code': 1}
+-        metadata_code = primary/'read_historical_metadata.py'
+-        before = metadata_code.read_bytes(); old = b"root=Path('/Users/alec/Documents/Math')"
+-        replacement = ('root=Path('+repr(str(private))+')').encode()
+-        assert before.count(old) == 1
+-        metadata_code.write_bytes(before.replace(old, replacement))
+-        retained(metadata_code, 'source_revisions/read_historical_metadata.py')
+-        write(support/'actual/source_revisions/metadata_path_revision.json', {'original_sha256': sha(before), 'revised_sha256': sha(metadata_code.read_bytes()),
+-              'exact_old': old.decode(), 'exact_new': replacement.decode(), 'purpose': 'Only absolute repository-root transport; all read/selection/hash predicates unchanged.'})
+-        run('primary_frozen_current_native_metadata', metadata_code)
+-        metadata_actual = retained(primary/'POST_SEAL_HISTORY_METADATA.json', 'primary_scope_family/POST_SEAL_HISTORY_METADATA.json')
+-        metadata_saved = AUDIT/'primary_scope_family/POST_SEAL_HISTORY_METADATA.json'
+-        actual = load(metadata_actual)
+-        by_path = {record['path']: record for record in inputs}
+-        for name in ['state.json', 'assessments.json', 'catalog.json']:
+-            assert actual[name]['bytes'] == by_path[NATIVE+name]['size'] and actual[name]['sha256'] == by_path[NATIVE+name]['sha256']
+-        assert actual['state.json']['target'] is None and actual['history_target']['events'] == []
+-        assert actual['catalog.json']['target'] == [out['provenance']['current_native_target']['catalog']]
+-        assert actual['history_target']['sha256'] == by_path[NATIVE+'history.jsonl']['sha256']
+-        assert actual['related_target_groups']['sha256'] == by_path[NATIVE+'review_v2/related_target_groups.json']['sha256']
+-        assert actual['related_target_groups']['target_mentions'] == []
+-        inventory = load(private/'draft_pr_publication_program_20260930/inventory.json')
+-        selected = []
+-        def select(value):
+-            if isinstance(value, dict):
+-                if any(str(value.get(key)) == '38' for key in ['number', 'pr_number', 'pr']):
+-                    selected.append(value); return
+-                for item in value.values(): select(item)
+-            elif isinstance(value, list):
+-                for item in value: select(item)
+-        select(inventory)
+-        assert actual['inventory_entry'] == selected and len(selected) == 1 and selected[0]['headRefOid'] == pins['head']
+-        delta = differences(normalize(actual), normalize(load(metadata_saved)))
+-        allowed_prefixes = ['$/state.json/', '$/assessments.json/', '$/catalog.json/', '$/history_target/', '$/related_target_groups/', '$/inventory_entry/']
+-        qualified = {}
+-        for item in delta:
+-            assert any(item['path'].startswith(prefix) for prefix in allowed_prefixes)
+-            qualified[item['path']] = {'difference': item, 'reason': 'Explicit root-approved dated current preimage; full actual structures/hashes checked against exact frozen native/inventory copies. No field is erased.',
+-                                       'current_input_manifest': out['current_input_manifest'], 'root_reason': current['reason']}
+-        compare('primary_full_dated_current_metadata', metadata_actual, metadata_saved, qualified)
+-        measure = private_audit/'current_measure_family'
+-        run('current_measure_original_code_and_prose_controls', measure/'replay_and_controls.py')
+-        for name in ['replay_inputs.json', 'replay_results.json']:
+-            actual = retained(measure/name, 'current_measure_family/'+name)
+-            qualified = qualify_streams(actual, AUDIT/'current_measure_family'/name, measure/'streams',
+-                                        AUDIT/'current_measure_family/streams', 'negative_controls') if name == 'replay_results.json' else {}
+-            compare('current_measure_whole_'+name, actual, AUDIT/'current_measure_family'/name, qualified)
+-        for family in ['primary_scope_family', 'current_measure_family']:
+-            for path in (private_audit/family).rglob('*'):
+-                relative = path.relative_to(private_audit/family)
+-                if path.is_file() and not path.is_symlink() and not {'tmp', 'ignoredtmp', '__pycache__'}.intersection(relative.parts):
+-                    retained(path, family+'/complete_post_replay/'+relative.as_posix())
+-        for subtree in ['ignoredtmp/verify_runs', 'ignoredtmp/review_runs']:
+-            for path in (primary/subtree).rglob('*'):
+-                if path.is_file() and not path.is_symlink():
+-                    retained(path, 'primary_scope_family/actual_case_inputs/'+path.relative_to(primary).as_posix())
++        process = run('primary_source_qualifications', primary/'check_source_qualifications.py')
++        result = retained(primary/'SOURCE_QUALIFICATION_RESULTS.json', 'primary_scope_family/SOURCE_QUALIFICATION_RESULTS.json')
++        expected = AUDIT/'primary_scope_family/SOURCE_QUALIFICATION_RESULTS.json'
++        assert result.read_bytes() == expected.read_bytes() and load(result) == load(expected) and process.stdout == expected.read_bytes() and not process.stderr
++        compare('primary_source_qualifications_whole_JSON', result, expected)
++        out['source_qualification_proof_limit'] = 'Actual exact finite sign/initial-boundary/radical checks reproduce the sealed qualification receipt. Root primary proof reading and the scientific certificate remain separate prerequisites.'
++        rotation = private_audit/'rotation_concatenation_family'
++        process = run('rotation_exact_falsification_controls', rotation/'falsification_controls.py')
++        result = retained(rotation/'falsification_results.json', 'rotation_concatenation_family/falsification_results.json')
++        expected = AUDIT/'rotation_concatenation_family/falsification_results.json'
++        assert result.read_bytes() == expected.read_bytes() and load(result) == load(expected) and process.stdout == expected.read_bytes() and not process.stderr
++        compare('rotation_exact_falsification_controls_whole_JSON', result, expected)
++        uniform = private_audit/'uniform_error_scaling_family'
++        process = run('uniform_exact_controls', uniform/'audit_controls.py', '--candidate', uniform/'frozen_original/PARTIAL.md', '--out', uniform/'exact_control_results.json')
++        result = retained(uniform/'exact_control_results.json', 'uniform_error_scaling_family/exact_control_results.json')
++        expected = AUDIT/'uniform_error_scaling_family/exact_control_results.json'
++        assert result.read_bytes() == expected.read_bytes() and load(result) == load(expected) and process.stdout == expected.read_bytes() and not process.stderr
++        compare('uniform_exact_controls_whole_JSON', result, expected)
++        # Historical outputs are already retained in frozen/families. Only the
++        # private copied mutation destinations are cleared for fresh real writes.
++        historical_mutations = uniform/'executed_mutations'
++        out['private_historical_output_reset'] = {'path': str(historical_mutations), 'purpose': 'Permit unchanged writer to create fresh actual mutation files; all historical closed inputs are retained before this private-only removal.'}
++        shutil.rmtree(historical_mutations)
++        process = run('uniform_actual_eight_prose_and_two_code_controls', uniform/'run_adversarial_controls.py')
++        result = retained(uniform/'adversarial_execution_receipts.json', 'uniform_error_scaling_family/adversarial_execution_receipts.json')
++        expected = AUDIT/'uniform_error_scaling_family/adversarial_execution_receipts.json'
++        packet = load(result); assert len(packet['records']) == 11 and all(x['observed_expected'] for x in packet['records'])
++        assert packet['records'][0]['exit_code'] == 0 and all(x['exit_code'] == 1 for x in packet['records'][1:])
++        qualified = qualify_streams(result, expected, uniform/'streams', AUDIT/'uniform_error_scaling_family/streams', 'records', name_key='name')
++        compare('uniform_full_actual_adversarial_receipt', result, expected, qualified)
++        assert json.loads(process.stdout) == packet and not process.stderr
++        out['real_uniform_prose_and_code_control_count'] = 10
++        out['scientific_certificate'] = row(AUDIT/'ROOT_PARTIAL_SCOPE_CERTIFICATE.md', AUDIT)
++        out['primary_proof_qualifications'] = row(AUDIT/'ROOT_PRIMARY_PROOF_QUALIFICATIONS.md', AUDIT)
++        out['scientific_status'] = 'UNSOLVED; valid scoped coupling/scaling partial. No finite random Brownian origin established; no novelty claim.'
++        out['full_problem_solved'] = False
+         out['status'] = 'PASS'
+     except BaseException as error:
+         out['status'] = 'FAIL'
+@@ -555,6 +544,7 @@
+                 for family in pins['families']:
+                     directories.append((private_audit/family, 'final_partial_or_complete/'+family, family))
+                 directories.append((private_audit/'ROOT_RECONSTRUCTED_CONTROLS', 'final_partial_or_complete/reconstructed_controls', 'controls'))
++                directories.append((private_audit/'ROOT_ORIGINAL_RUNS', 'final_partial_or_complete/original_runs', 'originals'))
+                 source = private_audit/'ROOT_SOURCE_NATIVE_REPRODUCTION.json'
+                 if source.is_file(): best_effort('available_source_native_receipt', lambda: retained(source, 'final_partial_or_complete/ROOT_SOURCE_NATIVE_REPRODUCTION.json'))
+             if private is not None:
+@@ -565,9 +555,9 @@
+                 if not ok: continue
+                 for source in paths:
+                     relative = source.relative_to(directory)
+-                    allowed_case = kind == 'primary_scope_family' and relative.as_posix().startswith(('ignoredtmp/verify_runs/', 'ignoredtmp/review_runs/'))
+-                    excluded = {'tmp', 'ignoredtmp', '__pycache__', 'manifest_cases'}.intersection(relative.parts)
+-                    if source.is_file() and not source.is_symlink() and (allowed_case or not excluded):
++                    foreign = kind in pins['families'] and (relative.as_posix() in {x['path'] for x in pins['families'][kind]['foreign_members']} or (pins['families'][kind]['cache_prefix'] and relative.parts[0] == pins['families'][kind]['cache_prefix']))
++                    excluded = {'__pycache__', 'manifest_cases', 'packet_cases'}.intersection(relative.parts)
++                    if source.is_file() and not source.is_symlink() and not foreign and not excluded:
+                         best_effort('available_file_'+destination+'/'+relative.as_posix(),
+                                     lambda source=source, name=destination+'/'+relative.as_posix(): retained(source, name))
+             if out['setup_completed']:
+@@ -584,7 +574,7 @@
+                     for record in [pins['snapshot_manifest'], pins['diff'], *pins.get('auxiliary', [])]: require(record, AUDIT)
+                     for record in pins['snapshot_files']:
+                         require({'path': record['path'], 'size': record['size'], 'sha256': record['sha256']}, AUDIT/'source_snapshot')
+-                    out['authored_members_verified_before_and_after'] = 169
++                    out['authored_members_verified_before_and_after'] = 732
+                     out['strict_root_closure_before_and_after'] = {'before': closure_before, 'after': closure_after, 'equal': True}
+                     out['strict_root_exact_recursive_closure_verified'] = True
+                     out['native_full_file_preimages_before_and_after'] = inputs

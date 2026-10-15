@@ -1,0 +1,13 @@
+# Current diagram-group scope correction
+
+This note is the authoritative current interpretation of the exact remaining gap in historical FINAL_RESULT.md. It supersedes the unsupported diagram-group portion of “An arbitrary finitely presented subgroup of F need not be ... a diagram group”. The packet supplies no finitely presented subgroup of F proved not to be a diagram group, so that wording is not promoted as a theorem or counterexample. Historical author and reviewer files stay unchanged as evidence of what was previously written.
+
+**Correct remaining gap:** finite presentation alone has not been shown **in this packet** to put an arbitrary subgroup of Thompson's F in a proved positive class. In particular, the packet establishes neither universal diagram-group status for finitely presented F subgroups nor an example refuting that status. It gives no universal bridge to its restricted wreath, solvable, simple-derived subdirect, closed/diagram or normal-subgroup classes, and no finitely presented embedded subgroup with torsion in abelianization.
+
+The credited diagram-group homology theorem and the closed-subgroup positive class retain their hypotheses. They do not establish a reduction for every finitely presented subgroup merely because F itself is a diagram group. This note asserts no general theorem about closure of diagram groups under arbitrary subgroups and no worldwide literature-completeness claim. The actual source Question111 still asks whether every finitely presented subgroup of F has torsion-free abelianization; the verified abstract nilpotent proxy countermodels are proved nonembeddable and are not counterexamples to that question.
+
+All five substantive author turns remain valid scoped partial findings, and the original question remains unresolved by this package, **unsolved,5/5**. No sixth search turn or mathematical novelty claim is introduced. Keep exact finite presentation versus FP2, ordinary finite generation of normal closures versus finite normal generation, coefficient/source-version assumptions and the actual PL embedding requirement.
+
+All original author/historical-review bytes and their pinned manifests remain unchanged. Current REVIEWED_STATUS.md, PUBLICATION_MANIFEST.json and verify_publication.py now incorporate this authoritative qualification. Historical “no correction required” verdicts are historical scoped evidence, not a clean current-head certification. Fresh corrected-head adversarial review and root verification remain required before acceptance.
+
+AI tools were used extensively for research, drafting, verification and review. This is unrefereed and is not external human peer review. No paper, Zenodo deposit, DOI, tracker row or release is created for this unresolved result.

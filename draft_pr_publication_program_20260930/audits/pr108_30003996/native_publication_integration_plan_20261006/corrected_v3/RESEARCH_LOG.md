@@ -1,0 +1,17 @@
+# PR108 corrected native helper V3 research log
+
+2026-10-06 06:50:17 UTC — Started immutable successor in corrected_v3; original V1/V2 remain unchanged. Read complete corrected-V2 adversary REPORT/VERDICT/counterexample code and normal/optimized results, verified requested adversary output manifest. Draft repair completion 10%; new central proof-search turns0, native execution0. Exact target literal claimed_solved PR108 /30003996 /OWR-16633-013.
+
+2026-10-06 07:04:54 UTC — Recovered current draft checkpoint. Blank authorized B contract implemented; first 24 normal offline fixtures pass. Startup role policies and clean launcher draft implemented. Draft repair completion75%; native/service execution0.
+
+2026-10-06 07:04:54–07:08:38 UTC (bounded observation interval) — Added startup injection and configuration-location fixtures. Initial 27-test normal run failed in startup-only guard: actual macOS Python adds nonsecret __CF_USER_TEXT_ENCODING after env -i. Recorded compatibility finding and repaired startup/environment policy with exact UID-derived value, not arbitrary inherited variables. This failed tool-only run is not presented as successful or as a native execution; tool chunk2e011a retained in session. Draft repair completion85%.
+
+2026-10-06 07:08:38 UTC — Repaired normal27/27 run passed, including absent injection sentinel and actual clean shell launcher. Wrote inert templates only; no runtime configuration or prepare/assess/export was created. Read/pinned actual local parent publication and Sheet root receipts as context; no service call or independent actual-service validation by this agent. Draft repair completion95%; final normal/-O custody, manifests and seal pending. Parent’s planned64MiB future commit reserve is documented, with unchanged configurable guards and no capacity inference.
+
+2026-10-06 07:12:56 UTC — First custody collector stopped before spawning suites: source README/code were incorrectly addressed at C, where only native output paths are materialized. Corrected the explicit read list to existing R/unsolved_math_prioritization/{AGENTS.md,README.md,queue.py}. No native operation or successful collector receipt was claimed. Tool failure chunkeeaf43 retained in session. Draft completion95%, final custody retry pending.
+
+2026-10-06T07:13:33.787798+00:00 — Actual own-folder custody completed: normal27/27 and optimized27/27 pass, actual PIDs 6728/6834. Predecessor counts {'V2': 109, 'adversary': 106, 'V1': 81} verified before/after. Current free bytes 241000448 are a snapshot only; capacity clearance false. Pure templates rejected. Draft completion98%, pending immutable seal; native executions0, proof turns0.
+
+2026-10-06T07:15:31.431099+00:00 — Parent reports actual existing file-backed GH auth/login read compatibility (PID7110 exit0 AlecKriebel; no ambient GH token). Recorded supplied context only; no credential values were read/output by this agent. Exact future private config metadata and runtime/account checks remain required. Draft completion98%; seal next.
+
+2026-10-06T07:17:16.674406+00:00 — Sealed corrected_v3 draft100% for exact-code adversarial review, not native commissioning. Normal/optimized27/27 custody verified; every read input body and predecessor pin verified. V1/V2 unchanged. Final native prepare/assess/export/install count0, service calls0, Git commands0, central proof turns0. Real config/capacity/gates and later candidate/DIFF/readbacks remain future work.

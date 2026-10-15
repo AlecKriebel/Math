@@ -1,0 +1,5 @@
+# Independent certificate conclusion seal
+
+The isolated repaired ZIP full verifier passed with all complete child outputs retained losslessly. Separate newly authored terminal-inverse propagation uses explicit count/permutation byte-vector states, actual backwards predecessors, closed full-twist terminal conjugation, inverse-action propagation instead of candidate forward canonical paths, and no candidate imports. All810 four-action records and all90921 literal six-action records match. Every261810 coaccessible edge was checked in both directions with full free-word equality. Backward and forward graphs each have234368 states/711342 edges; their explicit intersection is90921 states. Rank1..5 records also all match exactly. Both relator-mutation and equal-count unequal-action controls behave as required.
+
+No mathematical certificate failure found. The original proof deductions and computational claims are independently established within stated classical inputs. This conclusion is sealed before reading the initial preprint review or candidate sibling review conclusions. Metadata/priority/history repair audit remains. Assigned review completion estimate75%.

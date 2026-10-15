@@ -1,0 +1,20 @@
+# Independent mathematical assessment before consulting previous reviews
+
+Recorded before consulting prior favorable reports, during the observed review interval 2026-10-13 03:42:53–03:51:16 UTC. Exact individual wall-clock time was not sampled; this supersedes the initial manually estimated time label. Completion estimate for full review at this checkpoint: 40%.
+
+The full standalone source and five PDF pages were read first. No prior favorable mathematical review has been read as of this checkpoint. The independently checked proof chain presently appears valid, conditional only on explicitly cited standard theorem imports. I found no circularity or transfer of the central conjecture to an unsupported equivalent claim.
+
+- The theorem matches the stipulated smooth integral projective arbitrary-characteristic, arbitrary-closed-point statement with n >= 1 and the relative quotient-convention FM constant.
+- Splitting quotients of the birational normalization have lift images of degree one over C, so positivity gives every summand degree >= 1. This avoids any Frobenius slope shortcut.
+- The attained absolute A-degree minimum is unchanged under algebraically closed extensions by finite-type pointed Hom plus Nullstellensatz. Lüroth includes inseparable intermediate subfields.
+- In a nodal genus-zero stable map, the tree path from the mark reaches a nonconstant component through x. Its image has degree >= d, so the positive integral degree sum excludes other components and full-degree multiple covers. Contracted subtrees violate the special-point incidence count, including when the original mark lies in them.
+- AO Theorem 2.8 and section 2.5 actually provide the required finite-presentation proper Artin stack with finite stabilizers and projective coarse scheme in mixed characteristic. Birational maps have identity geometric stabilizers; generically injective differential kills tangent stabilizers. Finite augmented inertia algebra fiberwise identity descends to actual identity even over nonreduced bases.
+- The actual evaluation fiber is an algebraic space; its natural map to the coarse Q is proper and quasi-finite. 03XX gives a scheme and 02LS gives finite, hence projective. No wild coarse-base-change claim is used.
+- Flat stable universal domains with smooth geometric fibers are smooth; the marking line bundle has degree one and yields the projective bundle. The pointed parametrization functor is an Aut(P1,0) torsor, and the group is smooth in every characteristic. The fixed-source H1 groups vanish. Near f the unique smooth-point component H contains the open neighborhood; smooth evaluation is open. Proper U then covers integral X.
+- For L=dD-bA, fiber degree zero, h0=1/h1=0, perfect base change and adjunction give e*L = pi*B. The contracted marking section trivializes B. Every integral test curve lifts after a finite field extension at its generic point; closure gives a proper integral curve. Integer total-degree projection formula holds inseparably, including p dividing q.
+- The resulting -K numerical positive multiple of A has positive top intersection on every positive-dimensional integral Z. The difference-of-powers calculation is dimensionally correct, and Nakai–Moishezon applies in every characteristic. The directly inspected FM final Proposition 4.8(1) has exactly the established Fano case used; char 0 belongs only to its alternative (2).
+- n=1 and singular-image cases survive; singular X is intentionally outside the claim.
+
+One concrete bibliography issue is already verified: paper.tex line 338 misidentifies Keisuke Miyamoto as A. Miyamoto. Primary source title page is OSAMU FUJINO AND KEISUKE MIYAMOTO. Repair all manuscript copies and regenerate the PDF, archives, manifests, and hashes. This is a bibliographic repair, not a theorem defect.
+
+This is an adversarial reasoned review, not formal verification, external human peer review, or first-priority certification. Final verdict awaits complete artifact, metadata, priority, and reproduction audits.

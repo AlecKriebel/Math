@@ -1,0 +1,26 @@
+{
+  "label": "validate_final_report_and_custody",
+  "argv": [
+    "/usr/bin/python3",
+    "-c",
+    "import pathlib,hashlib,json; p=pathlib.Path(\"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/mechanism_priority_20261004\"); seal=hashlib.sha256((p/\"FIRST_CONCLUSION.md\").read_bytes()).hexdigest(); assert seal==\"50c36c1b2b6b77aa158a1df544ab1d0eca417eb17423e8f36f1074dd1d80d5f3\"; records=[]; ownlabel=\"validate_final_report_and_custody\"; allowed={\"audit_runner.py\",\"FIRST_CONCLUSION.md\",\"RESEARCH_LOG.md\",\"REPORT.md\"}; unrecognized=[str(x.relative_to(p)) for x in p.rglob(\"*\") if x.is_file() and x.parts[len(p.parts)]!=\"commands\" and x.name not in allowed]; assert not unrecognized,unrecognized; totalout=totalerr=0; complete=0; incomplete=[]; failed=[]; mismatched=[]; required={\"argv\",\"pid\",\"cwd\",\"started_utc\",\"ended_utc\",\"exit_status\",\"stdout_sha256\",\"stderr_sha256\"}; for_record=list((p/\"commands\").glob(\"*/record.json\")); exec(\"for f in for_record:\\n r=json.loads(f.read_text())\\n if r.get(\\\"label\\\")==ownlabel: continue\\n if not required.issubset(r): incomplete.append(str(f)); continue\\n complete+=1\\n if r[\\\"exit_status\\\"]!=0: failed.append(r[\\\"label\\\"])\\n for name in [\\\"stdout\\\",\\\"stderr\\\"]:\\n  b=(f.parent/(name+\\\".bin\\\")).read_bytes()\\n  if hashlib.sha256(b).hexdigest()!=r[name+\\\"_sha256\\\"] or len(b)!=r[name+\\\"_bytes\\\"]: mismatched.append(str(f))\\n records.append({\\\"label\\\":r[\\\"label\\\"],\\\"pid\\\":r[\\\"pid\\\"],\\\"exit\\\":r[\\\"exit_status\\\"],\\\"utc\\\":r[\\\"ended_utc\\\"]})\\n\"); assert not incomplete and not failed and not mismatched,(incomplete,failed,mismatched); print(json.dumps({\"sealed_sha256\":seal,\"report_bytes\":(p/\"REPORT.md\").stat().st_size,\"complete_prior_command_records\":complete,\"failed_children\":failed,\"stream_mismatches\":mismatched,\"unexpected_files\":unrecognized,\"commands\":records},indent=2))"
+  ],
+  "pid": 74775,
+  "cwd": "/Users/alec/Documents/Math",
+  "started_utc": "2026-10-04T17:07:48.783302+00:00",
+  "runner_pid": 74774,
+  "runner_argv": [
+    "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/mechanism_priority_20261004/audit_runner.py",
+    "validate_final_report_and_custody",
+    "--",
+    "/usr/bin/python3",
+    "-c",
+    "import pathlib,hashlib,json; p=pathlib.Path(\"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/mechanism_priority_20261004\"); seal=hashlib.sha256((p/\"FIRST_CONCLUSION.md\").read_bytes()).hexdigest(); assert seal==\"50c36c1b2b6b77aa158a1df544ab1d0eca417eb17423e8f36f1074dd1d80d5f3\"; records=[]; ownlabel=\"validate_final_report_and_custody\"; allowed={\"audit_runner.py\",\"FIRST_CONCLUSION.md\",\"RESEARCH_LOG.md\",\"REPORT.md\"}; unrecognized=[str(x.relative_to(p)) for x in p.rglob(\"*\") if x.is_file() and x.parts[len(p.parts)]!=\"commands\" and x.name not in allowed]; assert not unrecognized,unrecognized; totalout=totalerr=0; complete=0; incomplete=[]; failed=[]; mismatched=[]; required={\"argv\",\"pid\",\"cwd\",\"started_utc\",\"ended_utc\",\"exit_status\",\"stdout_sha256\",\"stderr_sha256\"}; for_record=list((p/\"commands\").glob(\"*/record.json\")); exec(\"for f in for_record:\\n r=json.loads(f.read_text())\\n if r.get(\\\"label\\\")==ownlabel: continue\\n if not required.issubset(r): incomplete.append(str(f)); continue\\n complete+=1\\n if r[\\\"exit_status\\\"]!=0: failed.append(r[\\\"label\\\"])\\n for name in [\\\"stdout\\\",\\\"stderr\\\"]:\\n  b=(f.parent/(name+\\\".bin\\\")).read_bytes()\\n  if hashlib.sha256(b).hexdigest()!=r[name+\\\"_sha256\\\"] or len(b)!=r[name+\\\"_bytes\\\"]: mismatched.append(str(f))\\n records.append({\\\"label\\\":r[\\\"label\\\"],\\\"pid\\\":r[\\\"pid\\\"],\\\"exit\\\":r[\\\"exit_status\\\"],\\\"utc\\\":r[\\\"ended_utc\\\"]})\\n\"); assert not incomplete and not failed and not mismatched,(incomplete,failed,mismatched); print(json.dumps({\"sealed_sha256\":seal,\"report_bytes\":(p/\"REPORT.md\").stat().st_size,\"complete_prior_command_records\":complete,\"failed_children\":failed,\"stream_mismatches\":mismatched,\"unexpected_files\":unrecognized,\"commands\":records},indent=2))"
+  ],
+  "ended_utc": "2026-10-04T17:07:48.826866+00:00",
+  "exit_status": 0,
+  "stdout_bytes": 2069,
+  "stderr_bytes": 0,
+  "stdout_sha256": "e78aa2d1af5db2573442ec0a24532e8b3ac79bbd8524f7f8f76288f0485aec9e",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

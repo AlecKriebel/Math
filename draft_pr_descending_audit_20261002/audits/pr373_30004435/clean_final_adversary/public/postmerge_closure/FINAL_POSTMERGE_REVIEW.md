@@ -1,0 +1,13 @@
+# Postmerge closure for the independently reviewed PR373 partial packet
+
+**PASS: actual merge `c9aac76208a57069d2c66f6a05583195a34eba86` matches the exact premerge-reviewed packet.** The accepted research disposition remains **unsolved5/5** for the unrestricted probability-only method request.
+
+The immutable premerge live gate ran from 2026-10-03T09:35:35.270500+00:00 to 2026-10-03T09:36:14.850510+00:00 with1225 checks passing. Its whole nested verdict matched the root's independently reproduced verdict except only the declared `at_utc` and `finished_at_utc` observations; all eight complete program stdout/stderr comparisons were recorded and their stdout lengths/hashes independently checked. The exact live body has no scope concern: subclass premises, classical credit, proof/control distinction and unresolved unrestricted gap are explicit.
+
+The root's actual merge receipt records completion at 2026-10-03T09:39:20Z. Independently read local and remote immutable commit objects confirm merge parents `ef789480d00794adeb841310218b2979bac57caa` and `07f83847edc7b91201c3a71fa8ca694b5172bd6d`, and complete tree `1278c533cb2e68aec138db0ef328162025edf7eb`, equal to the accepted head's complete tree. Every53 changed path matches the reviewed repaired snapshot; all52 original mathematical/review/publication file bytes are preserved. The complete queue changes only the target's line409 cells8/9, queued/0/5 to unsolved/5/5. Every other queue byte and every other path/mode/type/blob is unchanged relative to the current-main parent.
+
+Root actual receipt SHA256: `525e838491175a1d9f4abd3075d5139afb071d2dea66039b4d9331dcb0086028`. Root complete-stream comparison receipt SHA256: `c47f1be437b7871e332993ef58b38f2776b56cd97a6f01797a5a7c3f071932da`. Full independently computed actual merge bindings are retained in POSTMERGE_VERIFICATION.json.
+
+The original source/math seals, historical negative gate, initial public manifest, v2 additive manifest and premerge final certificate remain unchanged. No open-PR gate was rerun after merge. This separate additive closure publishes only own report/code/metadata. Raw API/Git bodies, source PDFs/extracts/renders and authorpacket copies remain private.
+
+Review-goal completion100%; unrestricted-discovery completion0%. Strongest verified result: the stated scoped probability-only partials and their reproducible actual merged package. Exact remaining mathematical gap: the entropy-free proof for all stationary finite-alphabet processes remains absent. No novelty, external human peer review, formal proof-assistant certification, preprint, Zenodo, DOI, tracker row or release is claimed.

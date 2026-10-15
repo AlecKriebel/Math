@@ -1,0 +1,170 @@
+{
+  "status": "PASS",
+  "created_at_utc": "2026-10-01T18:40:38.133589+00:00",
+  "runtime": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "arithmetic": "exact Python integers and fractions",
+  "script_sha256": "6e625bb11ce1407978505033c10f79636355fe2d8ddb825c2009022e66032f07",
+  "assertions": 282166,
+  "counts": {
+    "N1_exact_ratio_edge": 12,
+    "between_node_and_repeated_roots_E_bound": 90,
+    "closed_zero_block_splus_formula": 9840,
+    "cofactor_nonzero_output_guard": 16324,
+    "cut_edge_compound_disconnection": 285,
+    "fresh_compound_connectivity": 45,
+    "fresh_eigenpolynomial_lower_moment_orthogonality": 364,
+    "fresh_eigenpolynomial_zero_sensitive_oscillation": 324,
+    "fresh_monic_evaluation_eigenidentity": 5524,
+    "hilbert_arbitrary_magnitudes_strict_variation": 1991,
+    "hilbert_strict_tp_minors": 1267,
+    "maximal_grid_zeros_sharp_E_bound": 1981,
+    "minimum_completion_zero_blocks": 9832,
+    "monomial_diagonal_integer_spectrum": 324,
+    "naive_rescaling_distinct_output_E_directions": 128,
+    "naive_rescaling_identical_original_E_direction": 64,
+    "naive_rescaling_images_approach_different_core_points": 128,
+    "naive_rescaling_original_approaches_core": 64,
+    "naive_rescaling_rational_section": 64,
+    "near_degenerate_cutoff_endpoint": 128,
+    "near_degenerate_cutoff_exact_inverse": 2304,
+    "near_degenerate_cutoff_fixed_neighborhood": 2304,
+    "near_degenerate_cutoff_monotonicity": 128,
+    "negative_control_TN_is_not_strict_TP": 1,
+    "negative_control_cut_edge_not_strict_trap": 1,
+    "negative_control_cutoff_beta_below_epsilon": 1,
+    "negative_control_naive_core_rescaling_direction_dependence": 1,
+    "negative_control_overlapping_spectral_support_not_section": 1,
+    "negative_control_positive_long_jump_generator_not_TP": 1,
+    "negative_control_reversed_spectral_order_wrong_monotonicity": 1,
+    "negative_control_zero_input_guard_required": 1,
+    "no_crossing_compound_wedge_sign": 67580,
+    "ordered_block_compressed_minor": 17129,
+    "positive_cofactor_annihilation_identity": 16324,
+    "sharp_sparse_F_sign_bound": 8100,
+    "sign_block_compression_identity": 1991,
+    "sparse_F_vandermonde_moment": 36879,
+    "sparse_F_zero_block_splus": 8100,
+    "sparse_spectral_log_derivative": 24072,
+    "sparse_spectral_uniform_ratio_bounds": 24072,
+    "triangular_polynomial_eigenidentity": 324,
+    "uniform_core_neighborhood_implication": 24072
+  },
+  "negative_controls": [
+    {
+      "label": "TN_is_not_strict_TP",
+      "expected_failure_detected": true,
+      "witness": {
+        "A": "identity_3",
+        "x": [
+          1,
+          0,
+          0
+        ],
+        "sminus_x": 0,
+        "splus_Ax": 2
+      }
+    },
+    {
+      "label": "zero_input_guard_required",
+      "expected_failure_detected": true,
+      "witness": {
+        "A": "any_3_by_3_TP",
+        "x": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "label": "positive_long_jump_generator_not_TP",
+      "expected_failure_detected": true,
+      "witness": {
+        "generator": "ones_3-I_3",
+        "time": "log(2)",
+        "minor_rows": [
+          0,
+          1
+        ],
+        "minor_cols": [
+          1,
+          2
+        ],
+        "minor": "-7/12",
+        "x": [
+          "10",
+          "-9",
+          "-1/10"
+        ],
+        "Ax": [
+          "121/20",
+          "-69/20",
+          "1"
+        ]
+      }
+    },
+    {
+      "label": "cut_edge_not_strict_trap",
+      "expected_failure_detected": true,
+      "witness": {
+        "generator": "0_direct_sum_adjacent_2_block",
+        "x": [
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "label": "overlapping_spectral_support_not_section",
+      "expected_failure_detected": true,
+      "witness": {
+        "E_index": 1,
+        "F_index": 1,
+        "ratio_squared_at_a=1/2": "1",
+        "ratio_squared_at_a=2": "1"
+      }
+    },
+    {
+      "label": "reversed_spectral_order_wrong_monotonicity",
+      "expected_failure_detected": true,
+      "witness": {
+        "E_index": 1,
+        "F_index": 0,
+        "ratio_squared_at_a=1/2": "4",
+        "ratio_squared_at_a=2": "1/4"
+      }
+    },
+    {
+      "label": "cutoff_beta_below_epsilon",
+      "expected_failure_detected": true,
+      "witness": {
+        "epsilon": "1/8",
+        "beta": "1/16",
+        "slope": "-14"
+      }
+    },
+    {
+      "label": "naive_core_rescaling_direction_dependence",
+      "expected_failure_detected": true,
+      "witness": {
+        "E_indices": [
+          0,
+          1
+        ],
+        "F_index": 2,
+        "original_limit_E_ratio": "1",
+        "output_limit_E_ratios": [
+          "1",
+          "2"
+        ],
+        "beta_on_F_components": [
+          "1",
+          "2"
+        ],
+        "scope": "toy continuous hitting graph; necessity control, not a counterexample to C_i"
+      }
+    }
+  ],
+  "scope": "Finite new diagnostics and deliberately falsified mutations; universal analytic verification is in FIRST_PASS_SEALED.md."
+}

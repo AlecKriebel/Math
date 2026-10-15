@@ -1,0 +1,81 @@
+# Independent whole-package adversarial preflight04
+
+**Zero NEW actionable technical findings. Mathematical and portable-package components PASS within the stated classical premises. Overall acceptance as an apparently new original-target resolution and publication clearance remain HOLD.** The hold is the still-unclosed complete-text comparisons of Duren's 2013-online/2014-print commentary, Goh's 1992 journal article, and Intisar Qumsiyeh Hibschweiler's 1995 support-geometry paper. Missing access neither proves an earlier solution nor establishes novelty. No formal proof or human peer review is certified.
+
+Review completed 2026-10-14 UTC. This new sequential review is 100% complete. Best-guess progress toward the relevant discovery/publication goal is 70%, provisional and allowed to decrease if a material source supplies a prior resolution. This is a workflow estimate, not a correctness or originality probability.
+
+## Exact freeze and independence
+
+| Object | SHA-256 |
+|---|---|
+| Five-page PDF, 86,600 bytes | `134c3e24a4a2d1db58a2f9744477491e05b0bc14297b3e23621138c00a22ecbc` |
+| ZIP, 431,653 bytes | `af42a0b08550da3f42165316d874f85c4c230d3c6ba44f341519064e5fdeb5a5` |
+| Archive producer | `5e6a400191a77597e5a1858f26270c7e7960d9738fd651d76c4408012134519a` |
+| Current complete manuscript | `c46d521e893a46466cf26b50c54294d1923e93dad4076e4b5dfa16c52d42830a` |
+| Historical compared manuscript baseline | `eaf22e2617d2dbbe240b4adc7661801cff2cfa3751ba834379002789c4e7eb83` |
+
+I read AGENTS.md, the original Hayman–Lingham question and dated update, the frozen original PROOF, and the complete current manuscript before any older review conclusion. `INDEPENDENCE_CHECKPOINT.json` and `INDEPENDENT_PROOF_NOTES.md` preserve that checkpoint. The parent supplied the frozen hashes, unresolved-source context and previous metadata repair context before launch; independence here concerns the new proof derivation and adversarial package checks, not ignorance of that brief. I then read the prior reports to reconcile their evidence with the new freeze. The old03 report did not substitute for this review.
+
+The original target and Duren's critical classical setup were read directly; the original target page and Duren p.352 were visually inspected. I read Duren pp.352–355 and selected later primary passages corroborating the highest-risk scope distinctions. The seven complete primary article comparisons are the separately sealed source06..09 and source10 evidence; this review does not reissue seven fresh complete-text exclusion certificates or fill any missing text. `SOURCE_INPUTS.json` distinguishes direct coverage from reviewed audit evidence.
+
+Every write and scratch mutation remained in this assigned review folder. The observed branch remained main. I did not mutate canonical files, the Git index, branches, remotes, publication state, PRs or trackers; no individual or other reviewer was contacted. Parent messages were the only coordination. The parent owns repository checkpoints. Following the parent's shared-volume space notice, I removed only my regenerable scratch fixtures/environments after saving receipts; no shared primary source or authored evidence was removed.
+
+## Mathematical review against the original target
+
+The claim tested is precise: for exactly `L=a2+i*10^-24*(a4-3*a3)`, every global maximizer of Re L on full normalized schlicht S has the three claimed failures on its actual omitted slit. The two original questions concern polar argument and radial/tangent angle. Tangent direction alone is a different observable. The stronger all-maximizer quantifier is justified by estimates uniform in any attained maximizer, with no optimizing slice, numerical solver, uniqueness or continuously selected extremizer.
+
+Cauchy coefficient continuity and compactness supply genuine maximizers. Normalized injective limits cannot degenerate to a constant because the derivative at zero is one. Koebe and identity give real functional values 2 and 0, ensuring the required nonconstancy. Duren's general support-point setup uses the same normalized class, single analytic omitted arc of increasing modulus, and positive equation `Phi(w)dw^2/w^2>0` with `Phi=L(f^2/(f-w))`. These are general support facts, not evaluation-only results or a converse for arbitrary trajectories. The area theorem, coefficient inequalities and standard complex-analytic theorems remain explicit classical inputs; this review does not reprove every historical theorem.
+
+Comparison with Koebe gives `Re a2>=2-13eps`, `|a2-2|^2<=52eps` and area deficit at most `13eps`. The normalized analytic odd root is univalent: squaring equal values identifies squared inputs, and oddness eliminates the remaining opposite pair except zero. Its normalized exterior reciprocal gives the exact area weights `2n-1`, the a3 estimate and the full infinite H/H' tail control. Tail sums are bounded by `16/135<1/4` and `56/25<9/4`, without finite-coefficient truncation or boundary convergence assumptions.
+
+The tip estimate has the essential correct direction. The inverse on an inscribed disk, normalized with a disk automorphism, gives `distance<=conformal radius` by Schwarz's lemma. At `z=-2/3`, the reciprocal-square value error is `(28/15)eta<2eta`; the derivative numerator differs by less than `19eta`, its divided error is below `6eta`, and the reciprocal-cube contribution is below `2eta`. Thus the actual tip radius is below `7/25+7eta<3/10`. Closedness of the actual omitted complement supplies a boundary point; increasing modulus locates its minimum at the finite tip. No continuity of slit tips under perturbation is assumed.
+
+Exact degree-four extraction gives
+
+    Q(w)=-a/w^3-b/w^4-c/w^5,
+    a=1+i*eps*(2a3+a2^2-6a2), b=i*eps*(3a2-3), c=i*eps.
+
+The rational formula elsewhere is meromorphic continuation of coefficient extraction at zero, not an invalid application of an ambient H(D) functional to a quotient with an interior pole. The negative double cover `w=-v^-2` gives `4P(v)dv^2`, `P=a-bv^2+cv^4`. On `|v|<=3`, `|P-1|<=111eps`, so the selected square root and primitive exist on a neighborhood of the closed disk. Rouché supplies exactly one preimage for every `|t|<2`, with boundary margin at least one against an error `333eps`. Nonzero derivative and uniqueness patch the odd holomorphic inverse V.
+
+The trajectory-to-slit bridge withstands the central adversarial test. A lifted actual omitted tail approaches v=0 and has constant Im G; its limit forces zero. The two real G-rays project to one geometric arc by oddness. Consequently `W=-V^-2` agrees with the actual tail. Its membership set on `(0,7/4]` is closed; regular nonzero Q gives local horizontal-coordinate uniqueness and makes the set open. The actual finite tip cannot interrupt identification because `|W|>25/81>3/10`, with exact separating gap `7/810`. Connectedness completes identification. An arbitrary positive trajectory has not been declared extremal, and nonvanishing of Q alone has not replaced actual tip exclusion.
+
+The independent orientation bound `|Z-1|<=222eps/(1-111eps)<223eps`, `Z=tV'/V`, is valid all the way toward infinity. Hence Re Z is positive, increasing t moves inward, and `-W'` is the outward tangent. The fine expansion is not used outside its interval to establish orientation or the limiting angle branch.
+
+The analytic remainder estimates hold on complex disks. Square-root coefficient uncertainty costs `161eps*eta`; its exact quadratic remainder fits below the next `eps*eta`. Integration yields 486, inversion adds at most `18315eps^2`, and the derivative inverse-root/substitution terms add `45621eps^2`. All absorptions are valid at the exact parameter. Multiplication before division gives
+
+    V*(Z-1-i*eps*q)=t*R_Vprime-R_V-i*eps*q*(V-t),
+    q=t^2-(2/5)*t^4.
+
+The error `1541eps*eta+4662eps^2<2000eps*eta` preserves opposite endpoint signs at `q(1)=3/5` and `q(7/4)=-441/640`, each beyond an eps/2 margin. Complex coefficient errors and derivative/product terms are included; no scan or floating-point fit establishes the universal signs.
+
+For continuous polar argument, `theta_t=-2 Im Z/t` has opposite derivative signs at regular points of the actual slit, so neither monotonic direction is possible. Signed outward `beta=arg Z` uses a fixed small branch, tends to zero at infinity and takes both positive and negative values. The zero limit excludes both monotonic directions; opposite signs alone would have been insufficient. Unsigned `|beta|` is positive at both witnesses and zero between them, excluding monotonicity on the compact subarc. Inward tangent supplement and acute tangent-line conventions preserve failure. Changing a continuous argument lift or reversing traversal also preserves the verdict. At eps=0 the strict reversal disappears; a shortened witness endpoint `7/5` has positive q and does not supply this two-sign witness. No claim is extended to these degeneracies.
+
+I found no new missing mathematical step, hidden extremality assumption, wrong angle, denominator instability or circular transfer of the central difficulty. The proof is checkable under its named classical premises; internal AI verification is not formal proof or human peer review.
+
+## Source scope, attribution and historical inputs
+
+The current text correctly credits the classical support geometry, Schiffer/coefficient/control machinery and the relevant positive-monotonicity families. Zemyan2003 p.792 directly distinguishes tangent wavering from the positive polar/radial monotonicities of its actual Brown evaluation extremizers. Source06's full comparison supplies global target-angle inequalities and directed interval arithmetic for that concrete example, rather than merely noting a functional mismatch. Zemyan2005/2007 hypothetical reversal counts, finite/eventual stability and explicit half-line examples do not supply target existence. The candidate uses no disputed source count bounds.
+
+Duren–Leung–Schiffer's finite-coefficient theorem has strict tip-angle inequality; equality-conditioned classifications in that family and Zhang–Ma require saturation at the finite tip. Interior angle reversals do not supply that premise. Brickman's rational-type equivalences concern the functional/Phi; they do not assert rationality of its maximizer. Goh1994's rational-support premise persists in its pole-order remarks, and its other theorem requires two independently maximized derivative evaluations. One maximizing sum is insufficient. Selected original pages corroborate these distinctions. The bounded local source diagnostics are labeled auxiliary/local, with no false global support realization or theorem refutation.
+
+The archived follow-ups reconcile previous Hibschweiler1996 and Friedland–Schiffer1977 access gaps without rewriting historical receipts. Their explicit mechanisms are not earlier target failures, while substantial method overlap is credited. Haario and subsidiary bibliography trails remain disclosed with their limited evidence. The 2018 book update is not used as an openness oracle for 2026. No earlier target resolution was verified in the inspected corpus; that is a bounded finding, not a novelty guarantee.
+
+All 17 original files match the actual local Git blobs at the pinned original head `f3b23f6b2137a3a8eb25b7a20acbf7c98735b997`, their sizes and snapshot hashes. Historical source06..10 input records bind to the preserved baseline `eaf22e...`; the current mathematical proof prefix before the attribution section is byte-exact to that baseline. Later attribution/bibliography updates explain the full current TeX digest. Optional external-PDF/canonical-path custody helpers retain historical inputs and are explicitly outside the portable runner. I did not run them as portable jobs or reinterpret their old paths as current source certification.
+
+Three material comparisons remain: the complete later Duren commentary including its retrospective claims; all ten pages of the Goh1992 journal article, distinct from his thesis; and all eight pages of Hibschweiler1995, beyond its known eventual-monotonicity excerpts. An actual earlier polar reversal would defeat novelty of the original-target resolution even with another functional. These gaps therefore retain overall HOLD under the human's acceptance criterion. No `already_solved` disposition follows from unread sources, and softer disclaimers do not close the gaps.
+
+## Frozen package, metadata repair and reproducibility
+
+The ZIP has 221 unique members, exactly 220 outer payloads and its manifest. All outer hashes/sizes and all 140 entries under 14 registered seals pass, including hidden `.gitignore` entries and source06's `authored_outputs` schema. Payloads are authored text/code; raw third-party PDFs, extracted full texts, account/OCR wrappers and review04 itself are excluded. Integrity seals establish consistency, not historical authenticity or mathematical novelty.
+
+The documented fresh Python virtual-environment installation from a package index installed exactly mpmath1.4.1. Two separately extracted complete replays each passed all 15 jobs, 14 seals and 140 inner entries; independent byte comparisons confirmed frozen payload immutability. The runner needs no retrieval after installation. It compares complete mathematical records, normalizing only the one registered source-bridge execution timestamp. Source07's import-written record and source04's full generated record are compared, not just their summaries.
+
+The independent `preflight_checks.py` suite records 354 passing checks and 38 execution receipts. Each inner seal was attacked after repairing only the outer entry hash, and all 14 rejected the inconsistent inner file. Inventory omissions/extras, missing hidden files, symlinks and unsafe paths reject. Wrong interval contents, a missing interval block, and changed complete source06..10 mathematical records reject while family/sample/check counts are retained as applicable. Optimization flags/environment, missing mpmath, wrong reported dependency version and misassigned/unknown normalization fields reject. Optional source custody mains were never run. `CHECKS.json` and `REPLAY_RECEIPTS.json` preserve exact outcomes and the finite rational bound/limiting controls.
+
+The nonmutating producer reconstruction generated the exact current ZIP digest. The independent PDF rebuild with Tectonic and recorded epoch generated the exact current PDF bytes. All five Poppler-rendered pages were individually inspected, including equations, attribution, references, ORCID, AI/unrefereed/no-human disclosures and CC BY4.0 footer. No clipping, overlap, broken glyphs or unreadable equation was identified. `PDF_REVIEW.json` records this review; a clean rendering does not certify the mathematics.
+
+The prior exact archive `1115899b96895d6e3a06eee1d42fd621450518b5e282f3d6898fdf76cac80be3` and current archive have identical inventories. Comparing every member byte shows changes **only** to `metadata.json` and `MANIFEST.json`. All other archived proof/evidence payloads remain identical; the PDF is unchanged and independently reproducible. The actual current deposit configuration equals archived metadata byte for byte. Its description explicitly names all three material sources, identifies this as a preparation draft, and withholds apparent-new-resolution acceptance and publication clearance pending them. It also discloses extensive AI assistance, unrefereed status and no human peer review, with correct ORCID and CC BY4.0 licensing. The prior03 F1 repair is therefore verified globally for this freeze, not merely proposed locally.
+
+## Final disposition
+
+Zero NEW actionable technical findings require a canonical repair for the exact frozen PDF/ZIP/producer listed above. The mathematical and portable-package component verdicts are PASS with the stated limits. Overall original-target discovery/submission acceptance and publication clearance are **HOLD** solely for the three unresolved material source comparisons. This review authorizes no publication, DOI, PR or tracker action and does not fulfill the still-open external evidence gap. The authored report, inputs, controls and receipts are sealed separately from the reviewed archive to avoid circular digests.

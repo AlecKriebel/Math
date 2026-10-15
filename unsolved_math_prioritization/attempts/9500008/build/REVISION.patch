@@ -1,0 +1,41 @@
+--- closed505/current_preparation_family/prepare_current_packet.py
++++ current_execution_revision/prepare_current_packet.py
+@@ -181,9 +181,19 @@
+         require(name not in dependencies or dependencies[name]['sha256'] == record['sha256'], 'Input changed during build: '+name)
+         dependencies[name] = record; return data
+ 
++    revision = json.loads(bind('current_execution_revision/REVISION_MANIFEST.json', 'reviewed_execution_source_revision_manifest'))
++    require(revision['excluded'] == ['REVISION_MANIFEST.json'] and len(revision['files']) == 4 and len({x['path'] for x in revision['files']}) == 4, 'Exact revision source closure required')
++    require(regular_inventory(script.parent) == {x['path'] for x in revision['files']}|{'REVISION_MANIFEST.json'}, 'Exact adjacent revision membership required')
++    for row in revision['files']:
++        raw = bind('current_execution_revision/'+relative(row['path']), 'root_reviewed_exact_administrative_revision', row['sha256'])
++        require(type(row['size']) is int and len(raw) == row['size'], 'Exact revised source size')
++    exception = json.loads(bind('current_execution_revision/RETAINED_CAPABILITY_EXCEPTIONS.json', 'exact_historical_run1_capability_rows'))
++    require(exception['root_support_manifest_sha256'] == args.root_retention_manifest_sha256 and len(exception['files']) == 8, 'Only exact reviewed support exceptions')
++    exception_rows = {x['path']:x for x in exception['files']}
++    require(len(exception_rows) == 8 and all(x.endswith('.run1') for x in exception_rows), 'Distinct exact historical exception rows')
+     preparation = json.loads(bind('current_preparation_family/PREPARATION_MANIFEST.json', 'exact_static_builder_manifest'))
+     require(preparation['excluded'] == ['PREPARATION_MANIFEST.json'] and {x['path'] for x in preparation['files']} == SOURCE_NAMES, 'Exact prepared source closure required')
+-    require(regular_inventory(script.parent) == SOURCE_NAMES|{'PREPARATION_MANIFEST.json'}, 'Exact root preparation inventory required')
++    require(regular_inventory(audit/'current_preparation_family') == SOURCE_NAMES|{'PREPARATION_MANIFEST.json'}, 'Exact root preparation inventory required')
+     for row in preparation['files']:
+         raw = bind('current_preparation_family/'+relative(row['path']), 'reviewed_static_builder_source', row['sha256'])
+         require(len(raw) == row['size'], 'Prepared source size differs')
+@@ -297,7 +307,7 @@
+     retained_rows = {}
+     for row in retention['files']:
+         name = relative(row['path']); require(name not in retained_rows and name != 'ROOT_SUPPORT_MANIFEST.json', 'Unique exact nonself support members required')
+-        pp = PurePosixPath(name); require(pp.suffix in {'.py','.json','.jsonl','.stdin','.stdout','.stderr','.patch','.md','.txt'} or pp.name == '.gitignore', 'Unreviewed retained capability')
++        pp = PurePosixPath(name); require(pp.suffix in {'.py','.json','.jsonl','.stdin','.stdout','.stderr','.patch','.md','.txt'} or pp.name == '.gitignore' or (name in exception_rows and json.dumps(row,sort_keys=True) == json.dumps(exception_rows[name],sort_keys=True)), 'Unreviewed retained capability')
+         raw = bind(support+'/'+name,'retained_actual_first_party_evidence',row['sha256']); require(len(raw) == row['size'],'Retained whole evidence size differs')
+         retained_rows[support+'/'+name] = row; retained['root_verification/evidence/'+support+'/'+name] = raw
+     require(regular_inventory(audit/support) == {x['path'] for x in retention['files']}|{'ROOT_SUPPORT_MANIFEST.json'}, 'Exact recursive actual retained membership required')
+@@ -488,7 +498,7 @@
+     args=arguments();require(args.execute,'Static preparation only; root must explicitly execute after actual evidence')
+     for name,value in vars(args).items():
+         if name.endswith('sha256'):require(re.fullmatch(r'[0-9a-f]{64}',value) is not None,'Explicit SHA256 required: '+name)
+-    script=Path(__file__).resolve();require(script.parent.name=='current_preparation_family' and script.parent.parent.name=='pr39_9500008','Exact dedicated PR39 audit anchor required')
++    script=Path(__file__).resolve();require(script.parent.name=='current_execution_revision' and script.parent.parent.name=='pr39_9500008','Exact dedicated PR39 audit anchor required')
+     audit,repo=script.parent.parent,script.parent.parent.parents[2]
+     (audit/'tmp').mkdir(exist_ok=True);attempt=audit/'tmp'/('root_pr39_current_build_'+dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ'));attempt.mkdir(exist_ok=False)
+     try:

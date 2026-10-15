@@ -1,0 +1,67 @@
+{
+  "timestamp_utc": "2026-10-15T05:02:58.416267+00:00",
+  "review": "SECOND_FRESH_INDEPENDENT_ADVERSARIAL_FINAL_PACKAGE_REVIEW",
+  "pr": 826,
+  "problem_id": 30003060,
+  "reviewed_seal": "PACKAGE_SEAL_R1.json",
+  "decision": "REPAIR_REQUIRED",
+  "mandatory_findings": [
+    {
+      "id": "R2-01",
+      "priority": "P2",
+      "title": "Builder must reject nonregular index before reading",
+      "file": "preprint/build_verification.py",
+      "line": 100,
+      "reviewed_file_sha256": "f11fd3d8d1268801ecc389cce91776a9f1b868b4e473165f247a0bdce24af545",
+      "failure": "A FIFO package_index.json without a writer blocks read_bytes indefinitely before pin/type rejection or the verifier subprocess. Confirmed normal and optimized modes; no output or substituted code executed.",
+      "repair": "Use lstat to require a regular nonsymlink index before reading; retain digest and checker binding; add normal and optimized FIFO-index immediate-rejection controls; regenerate all derived copies/index/ZIP/outer tree/prepared Git under a new seal and retain R1 evidence.",
+      "receipts": [
+        "FIFO_INDEX_CONFIRMATION.json",
+        "INDEPENDENT_CONTROLS.json",
+        "independent_controls.py"
+      ]
+    }
+  ],
+  "no_other_mandatory_findings": true,
+  "mathematical_result": "ACCEPTED: coefficient-A fundamental-eA higher H1 of k<x,y> is nonzero in total weight p over every field of characteristic p; the full distinct-orbit-cardinality formula is valid. Literal unrestricted iff forward implication is false.",
+  "priority_classification": "Elementary assembled classical consequence of Loday\u2013Quillen tensor-algebra formulas, Goodwillie Euler cap and BLS all-characteristic eA definition. No substantial new mechanism or firstness certificate.",
+  "excluded_gaps": [
+    "Characteristic-zero or general vanishing-to-Koszulness converse",
+    "Unique historical intended field domain",
+    "Worldwide novelty, firstness or current openness",
+    "Completed external human or formal proof-assistant certification",
+    "Unobtained full journal-final bodies",
+    "Merge/release/production publication"
+  ],
+  "scope_limits_are_mathematical_proof_gaps": false,
+  "full_execution_runs": 4,
+  "all_full_runs_pass": true,
+  "checks_each_mode": 2110,
+  "matrix_cases_each_mode": 234,
+  "prime_witnesses_each_mode": 14,
+  "negative_controls_each_mode": 10,
+  "classical_cases_each_mode": 21,
+  "classical_orbits_each_mode": 604,
+  "independent_integrity_controls": 103,
+  "independent_integrity_controls_passed": 102,
+  "actual_assembly_cwd_builder_exact_normal_and_optimized": true,
+  "all_ten_core_and_217_assembly_hashes_unchanged": true,
+  "all65_original_and217_prepared_Git_blobs_read_and_matched": true,
+  "metadata_exact_across_canonical_portable_outer_kit": true,
+  "all3_included_accepted_PDF_pages_visually_inspected": true,
+  "review01_verdict_read_or_relied_on": false,
+  "independent_derivation_precedes_prior_audit_verdicts": true,
+  "reviewed_pins": {
+    "pdf_sha256": "5d6e06baa81d5e50397354e48495f74800ccd8b8d4092cf4564caf43ca2c6e3b",
+    "index_sha256": "e5122815c93723664c499a2c8c90d1bf01423f4ab522998416fb2effaa950181",
+    "zip_sha256": "f016cb8ee17d03ea6ac38821cd5b1e3c64f90eb4ffcdeedf58e2897ddbfdae0e",
+    "outer_manifest_sha256": "c43861f2fe0e0282f49833dcd26b3d28cbee0e202653dbeb2b154a6cc86b027b",
+    "prepared_commit": "16093447d41585cec65315332fdb7daea21057c9"
+  },
+  "original_effort": "1/5",
+  "final_external_acceptance_receipt_pending_at_review_stage_is_expected": true,
+  "distribution_authorized": false,
+  "reviewed_inputs_edited": false,
+  "external_communications_or_writes": false,
+  "completion_estimate_percent": 100
+}

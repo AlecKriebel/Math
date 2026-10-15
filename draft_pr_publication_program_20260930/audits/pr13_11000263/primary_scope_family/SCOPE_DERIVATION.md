@@ -1,0 +1,15 @@
+# Independently reconstructed scope derivation
+
+This note is our own mathematical reconstruction from the source formulas and archive's explicit matrices; it does not run or reuse the archive verifier or the frozen attempt's code.
+
+Let m denote the actual strand count. Over K=Q(q,u), define B_i by the block [[1-u,u],[1,0]] on i,i+1; its displayed inverse [[0,1],[u^-1,1-u^-1]] has products I with B_i. Adjacent braid products equal [[1-u,u(1-u),u^2],[1-u,u,0],[1,0,0]], and disjoint blocks commute. Thus these are invertible braid-generator images.
+
+Write v_r=u^(1-r)e_r-u^(-r)e_(r+1), lambda=-e1^T+e2^T. The two nontrivial neighboring blocks give B_r B_(r+1)v_r=u v_(r+1) and B_r^-1 B_(r+1)^-1 v_r=v_(r+1). All earlier blocks fix the resulting support, so for r<=m-2 the whole ascending product B1...B_(r+1) yields u v_(r+1), while the inverse of the whole descending word (B_(r+1)...B1)^-1 yields v_(r+1). For r>=2 the same holds starting at 2. The exceptional relation is separately checked by `(qB2^-1+(1-q)I-B2)v1=(qB1^-1 B2^-1-B1 B2)v1=(q-u)v2`. Induction consequently yields `rho(X_k)=c_k v_(k-1)lambda`, c_k=product_(j=1)^(k-1)(q^j-u). Each legal later R_k bracket sends v_(k-1) to the same `(q^(k-1)-u)v_k`. This proves legal-row annihilation and X3 nonvanishing, with m=n for A_n, m=n+1 for C_n. It also shows precisely why a quotient added terminal row needs an independent legal-row check.
+
+For the twists, B1v1=-u v1. On W_k=span(v1,...,v_(k-1)), c=B1...B_(k-1) sends v_r to u v_(r+1) for r<k-1 and v_(k-1) to -u sum_(r=1)^(k-1)v_r. In the latter identity, applying successively B_(k-1),...,B1 makes the initial support telescope. Thus T=u^-1 c has companion relation I+T+...+T^(k-1)=0, so T^k=I and c^k=u^k I on W_k. In particular the 3-strand full twist acts by u^3 on the left image of X3. This does not make it scalar on all K^m. The one-crossing X2 twist gives alpha=-u; the X3 full twist gives beta=u^3=-alpha^3.
+
+At u=q^3 over Q(q), c4 has a zero factor and c3=(q-q^3)(q^2-q^3) is nonzero; E2 remains nonzero since q is an indeterminate. X4 and later images vanish, X3 survives. Degenerate u=q and u=q^2 do not detect X3. Numerical/specialized evidence alone would not imply this generic statement; the factorizations above do.
+
+For any compatible finite-dimensional BMW quotient B and maps rho:Y->M_m(F), pi:Y->B killing X3 under pi, D=im(rho,pi) is a quotient of Y and sits inside a finite-dimensional product. Projection D->B is onto, and the image of X3 is a nonzero projection kernel element. Hence dim B<dim D<=dim B+m^2. There is no inference dim Y<infinity. The kernel of `(rho,pi)` need not be zero. Showing it zero is the missing stronger claim, so trying to prove the universal dimension solely by this embedding transfers the central difficulty to an unsupported faithfulness assertion. That route is blocked without new evidence.
+
+These deductions do not assign an author-intended meaning to the malformed literal Z_n, determine historical priority, or identify a later diagrammatic presentation. They support exactly the explicit repair / generic coefficient / representation-level boundary.

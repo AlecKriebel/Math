@@ -1,0 +1,766 @@
+{
+  "processes": [
+    {
+      "name": "CURRENT_BUILD",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py"
+      ],
+      "cwd": "preprint_v1_0",
+      "exit_code": 0,
+      "elapsed_seconds": 0.08627474999957485,
+      "stdout_sha256": "08590ec0c69850bff53bf8c85a77c06de5367851b7498892eeb4990a9df1efa2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "README_VERIFY",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.07215237499622162,
+      "stdout_sha256": "7c21ef738831a033ea567eaacc091a61607cef14a4ded45d6cb75e8ddd600a47",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "README_CHECKS",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "run_checks.py",
+        "--output",
+        "_runs/fresh.json"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 2.279292457998963,
+      "stdout_sha256": "dcee1b18853ada541f1e930bfb56849c29f7af24c27fa8a6bc229380d2e56a2a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "README_INTEGRITY",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "test_integrity.py",
+        "--output",
+        "_runs/integrity.json"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.06565945799957262,
+      "stdout_sha256": "a0bebf5a82915e695fdaf1f08b0bf53d9ddc86c915555d10deb34919bf889942",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "README_BUILD",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.0943571659954614,
+      "stdout_sha256": "e8f3f2a6ab8301d12344c9a052dd80bad8ef3b971a983ed729410e52cd60bce1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "README_ARCHIVE_VERIFY",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.08365662500000326,
+      "stdout_sha256": "7c21ef738831a033ea567eaacc091a61607cef14a4ded45d6cb75e8ddd600a47",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "WRAPPED_VERIFY_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "pr1052_support_v1_0.zip"
+      ],
+      "cwd": "preprint_v1_0",
+      "exit_code": 0,
+      "elapsed_seconds": 0.07892625000386033,
+      "stdout_sha256": "b22c8285cf16ab41153559e96c5220eb86b8bc5b661cb4e7692473d544648468",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "EXTRACTED_VERIFY_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.07924654200178338,
+      "stdout_sha256": "7c21ef738831a033ea567eaacc091a61607cef14a4ded45d6cb75e8ddd600a47",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "EXTRACTED_BUILD_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.08267854100267868,
+      "stdout_sha256": "e8f3f2a6ab8301d12344c9a052dd80bad8ef3b971a983ed729410e52cd60bce1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "WRAPPED_VERIFY_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py",
+        "--archive",
+        "pr1052_support_v1_0.zip"
+      ],
+      "cwd": "preprint_v1_0",
+      "exit_code": 0,
+      "elapsed_seconds": 0.0792514159984421,
+      "stdout_sha256": "b22c8285cf16ab41153559e96c5220eb86b8bc5b661cb4e7692473d544648468",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "EXTRACTED_VERIFY_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py",
+        "--archive",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.07854466699791374,
+      "stdout_sha256": "7c21ef738831a033ea567eaacc091a61607cef14a4ded45d6cb75e8ddd600a47",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "EXTRACTED_BUILD_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/rebuilt.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 0,
+      "elapsed_seconds": 0.08512541699747089,
+      "stdout_sha256": "e8f3f2a6ab8301d12344c9a052dd80bad8ef3b971a983ed729410e52cd60bce1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "FAULT_VERIFY_ready_false_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06512804199883249,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a354f8adfd0880457a9d95fb26b36e9c47ae6e616f5fc55fc3d4e2f5098baa79",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_ready_false_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06928762500319863,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5717125b134832a6dc924b2d655be477e3f14e25f48c462979b1cc4f326d3244",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_ready_false_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0704781250024098,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a354f8adfd0880457a9d95fb26b36e9c47ae6e616f5fc55fc3d4e2f5098baa79",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_ready_false_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06928983400575817,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5717125b134832a6dc924b2d655be477e3f14e25f48c462979b1cc4f326d3244",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_nonzero_whole02_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.13039199999911943,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d255639dd1b297b6ae4e969f874a6b350d765986e1593812603cac6cc443e250",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_nonzero_whole02_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07447616699937498,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "10cc7ad5727b2916e063835e11576515b1278ba88ba6b71bc4b90505049a65b4",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_nonzero_whole02_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0688043749978533,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d255639dd1b297b6ae4e969f874a6b350d765986e1593812603cac6cc443e250",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_nonzero_whole02_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06861212500371039,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "10cc7ad5727b2916e063835e11576515b1278ba88ba6b71bc4b90505049a65b4",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_report_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06306620900431881,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "48e9669d7b882cfae066eb4df2eb232b253ae0c1ef10d25bc75eaa73c9b79b73",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_wrong_report_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06135083299886901,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5f855882526466a34d76397b930de109e1d49714b98cd9863b94fcc75764f231",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_report_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06236745899514062,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "48e9669d7b882cfae066eb4df2eb232b253ae0c1ef10d25bc75eaa73c9b79b73",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_wrong_report_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06172020899975905,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "5f855882526466a34d76397b930de109e1d49714b98cd9863b94fcc75764f231",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_seal_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06274383400159422,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c96d92c21b29bb48a726c47627152b64e597587ab490f2b27a61b812a21f5904",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_wrong_seal_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06183062500349479,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3794ab6c07abe2602459dbb70b9427243ee1312b750a9193ae81502b3438f418",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_seal_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06157979199633701,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c96d92c21b29bb48a726c47627152b64e597587ab490f2b27a61b812a21f5904",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_wrong_seal_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06536279199644923,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3794ab6c07abe2602459dbb70b9427243ee1312b750a9193ae81502b3438f418",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_paper_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0694448750000447,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3a97b2e6ea6a021fee8f665a7a7432c61631fe9ba086f7f117f468035131a0fc",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_paper_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06217725000169594,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "56915ce4ec7e89a394f045fe8e910423f54fac25b3dbf0fd7f9396b2573c4b2f",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_paper_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.14299995799956378,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "3a97b2e6ea6a021fee8f665a7a7432c61631fe9ba086f7f117f468035131a0fc",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_paper_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07169554200663697,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "56915ce4ec7e89a394f045fe8e910423f54fac25b3dbf0fd7f9396b2573c4b2f",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_metadata_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07110483400174417,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6f306e3fcffb6e13f335143acd4284881dce0f7bf03ca703265ef4729cbbd8f6",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_metadata_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07150133299728623,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2774f95b860a1aa830525ba4d2ade4b43549c02bedbb675a89382d9bb0138b3f",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_metadata_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06760170799680054,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6f306e3fcffb6e13f335143acd4284881dce0f7bf03ca703265ef4729cbbd8f6",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_metadata_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06222258300113026,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2774f95b860a1aa830525ba4d2ade4b43549c02bedbb675a89382d9bb0138b3f",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_original_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0673255000001518,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "17961a4a225b570d128866d38c823b6fa4a2164a86508719f095b430ff3330fb",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_original_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06335725000099046,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a2b1df7b489262b4dd38687aa0cf84fe4b2dbacc98faf2ef979ae9fe2e604c16",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_changed_original_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.06661608400463592,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "17961a4a225b570d128866d38c823b6fa4a2164a86508719f095b430ff3330fb",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_changed_original_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0629396669974085,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a2b1df7b489262b4dd38687aa0cf84fe4b2dbacc98faf2ef979ae9fe2e604c16",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_input_pin_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.08150204200501321,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4495f0b1db83008651a071fa59809ab72b7c78f95ca51c45f1632f193bdcca37",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_input_pin_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07365904199832585,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "97d00eae0a4e6453498695dfd485181b0f6c8603aa5966343747809673e8d36b",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_input_pin_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.16176379199896473,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4495f0b1db83008651a071fa59809ab72b7c78f95ca51c45f1632f193bdcca37",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_BUILD_input_pin_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "build_support.py",
+        "--output",
+        "_runs/fault.zip"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.07879374999902211,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "97d00eae0a4e6453498695dfd485181b0f6c8603aa5966343747809673e8d36b",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_delivery_binding_0",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.0830921250017127,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b70672eada795734124cf1a3ada51d88445dd19d085f21bb4732b5b2f2c3a699",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_VERIFY_wrong_delivery_binding_1",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "verify_support.py"
+      ],
+      "cwd": "finalization/terminal_admin_20261014/scratch",
+      "exit_code": 1,
+      "elapsed_seconds": 0.074151458000415,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "b70672eada795734124cf1a3ada51d88445dd19d085f21bb4732b5b2f2c3a699",
+      "expected": "rejection"
+    }
+  ]
+}

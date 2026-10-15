@@ -1,0 +1,13 @@
+# Priority-history research log
+
+- 2026-10-12 20:47:53 UTC: Started independent audit in own folder. Completion 0%. Root AGENTS read; restricted task authorization prevents Git/index/branch/PR/DOI/QUEUE changes and external communication. Only own folder may be written.
+- 2026-10-12 20:48 UTC: Read all twelve frozen artifacts, including both verifier scripts and result JSON. Historical PASS and source gate treated as claims. Completion 15%.
+- 2026-10-12 20:49 UTC: Fresh primary downloads with HTTP receipts and hashes; inspected original OWR printed2996/2997 renders, precursor pp2-3 and factor theorem pp21-22. Positively established 2013 precursor history and distinction between original physical diffraction and a total factor family. Completion 25%.
+- 2026-10-12 20:50 UTC: Authored independent INITIAL_PRIORITY.md before any current root/peer report. Seven query searches preserved privately. Found old ingredients and later candidate sources, no confirmed earlier central refutation. Exact remaining gap recorded. Completion 30%.
+
+- 2026-10-12 20:51–20:58 UTC: Independently followed primary candidates, read and visually checked Deng–Moody, BG and factor pages; inspected non-Pisot outlook, Nagai criteria,2026 papers and1992 abstract. Completion85%; bounded non-finding then favored retaining claimed_solved. Parent matching comparisons received after initial seal.
+- 2026-10-12 21:00 UTC: Full spin example-section reading located Example5.4, a faithful C4 complex weighting with singular χ1 sector and AC square χ2 sector. This materially changed judgment toward an earlier original-target resolution. Completion85% (new equivalence checks required).
+- 2026-10-12 21:03:11 UTC: Sealed SPIN_PRIOR_RESOLUTION.md (SHA b4e046b6...). Read pp32–33 visually; verified actual scalar square factor and real-line lift; official publisher confirms8Aug2022 and Table1 error assertion. Completion90%. No independent rigorous quadrature certificate produced in this family.
+- 2026-10-12 21:04 UTC: Finite source checks verify primitive power4, faithful scalar encoding, unitary χ2 rows and margins conditional on stated historical error bound. Completion94%. Superseded non-finding draft preserved; final judgment is1 priority blocker,1 contextual repair,0 submitted central mathematical gaps.
+
+- 2026-10-12T21:07:51.316871+00:00: Completed bounded priority audit,54queries and18primary ledger entries. Completion100% of assigned audit scope; novelty confidence remains unestablished. Final recommendation already_solved for original unrestricted target, qualified by historical source numerical error assertion; unweighted strengthening distinct. Sealing all own reports/code/logs/receipts and complete positive allowlist.

@@ -1,0 +1,3 @@
+# Timestamp metadata correction
+
+The sealed baseline's author-entered timestamp 2026-10-03T07:46:00Z was an approximate clock transcription and is inaccurate. Its filesystem write timestamp is 2026-10-03T07:44:59.008718Z; the baseline seal was written at 2026-10-03T07:44:59.047633Z. The sealed bytes and hash remain unchanged. The research log uses the corrected seal time. The independent probe result was written at 2026-10-03T07:46:21.578324Z; its checkpoint was written at 2026-10-03T07:47:33.708561Z. An initially entered future checkpoint label 07:50:00Z was corrected to 07:47:33Z. These were timestamp metadata repairs only; the baseline, mathematical control code, and outcomes were not altered.

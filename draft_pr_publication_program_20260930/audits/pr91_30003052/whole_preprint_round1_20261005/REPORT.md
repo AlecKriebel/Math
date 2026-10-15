@@ -1,0 +1,83 @@
+# Independent whole-preprint adversarial review — round 1
+
+Review date: 2026-10-05. Package read-only; every new file is confined to `whole_preprint_round1_20261005`. No Git/index/branch, PR, Zenodo, Sheet, editor/UI, original, or package mutation occurred. No outside individual was contacted, and no outreach was prepared. This report grants no publication authorization.
+
+## Verdict
+
+- **Mathematics: verified under the stated hypotheses.** No theorem/proof defect or counterexample was found. The two-row classification holds on the full complex Banach space C(U), for every complex norm and every complex-linear A of induced norm at most one.
+- **Priority framing: justified as a present explicit answer to a question expressly open in the 2015 thesis, using a short classical specialization.** The package openly credits JdLG and the prior special cases. It does not establish firstness, historical novelty, worldwide absence, or continued openness. I found no earlier explicit resolution in my directly read primary-source scope; broader non-discovery statements belong to the documented bounded audit, not to a claim that I read every cited source in full.
+- **Reproducibility/provenance/package bytes: verified for the frozen round-1 package.** Fresh native execution succeeds, deliberate false controls fail under -O, payload and archive hashes match, and original/repair/public source identities are distinct and authenticated.
+- **Readiness: one mandatory low-severity attribution wording repair remains.** No scientific, code, license, selected-file, digest, or PDF defect otherwise requires repair within this scope. The corrected package must receive the fresh second-agent review requested by the user; this review cannot pre-clear changed bytes.
+
+## Mandatory finding and exact repair
+
+**M1 — attribution precision, low severity.** `publication_package_v1/publicfiles/PR91_PRIORITY_AUDIT.md`, line 11, says: “The note answers a question expressly left open in these sources.” The 2015 thesis expressly states that the converse remains open; the 2016 contribution states the inclusion and does not expressly call that question open. The plural phrase can ascribe an express declaration to both sources.
+
+Replace exactly that sentence with:
+
+> The note answers a question expressly left open in the 2015 thesis and stated only as an inclusion in the 2016 contribution.
+
+The manuscript, README and deposit description already make this distinction correctly. After this supplement edit, rebuild its ZIP member and the ZIP, refresh SHA256SUMS and the private package manifest, preserve the round-1 evidence, and have agent 2 review the corrected package. This finding does not require a mathematical manuscript/PDF or metadata change.
+
+## Independent read order and scope
+
+`INDEPENDENT_OBLIGATIONS.md` was written at 2026-10-05T19:43:04.916886+00:00 before reading any manuscript, prior mathematical review, or prior priority/reproduction report. It independently derives the peripheral norm-limit projection, stable factorization, monomial/Cesaro exclusion, radial interior eigenfunctions, zero construction, and nilpotent direct sum.
+
+Then I read the complete final TeX, all public prose/metadata/code/provenance/results/digests, the pinned administrative manifest, and the complete six-page PDF text. I freshly rendered and visually inspected PDF pages 1–6. I extracted/read the original 2015 PDF pp.44–52 (entire Section 3.1, printed pp.35–43), original OWR2016 PDF pp.24–26 (complete contribution), EFHN PDF pp.326–331 (printed pp.308–313), and thesis PDF pp.67–68 (printed pp.58–59). The exact 2015 p.43/PDF 52, 2016 p.321/PDF 25 and EFHN p.313/PDF 331 were independently rendered and visually inspected. Fresh reproduction and the first proof judgment preceded old-report reading.
+
+Read afterwards, for comparison and provenance rather than proof authority: the old peripheral projection report, full-spectrum report, general-operator priority report, exact-reproduction report, author follow-up bounded verdict, adaptation/repair manifests, and ROOT bounded source notes. Direct additional primary-text comparison covered Küster 2019 v3 Theorems 4.6,4.9,5.6 with the displayed surrounding proof/context; Küster 2021 Example 1.2.6(b), Proposition 3.4.18/proof and Corollaries 3.4.19–20; and Kitover–Orhon 2021 Theorem 3.1 and associated full-spectrum context. These concern fixed/Kronecker factors, weak stability on restricted ideals, or full spectrum, and do not print the exact mixed-ball point-spectrum converse in those read passages. This is bounded reading, not complete review of the later dissertations, composition literature, or every source in the public audit supplement.
+
+## Checkable mathematical audit
+
+Let k>=1, X=(C^k,||.||), U the closed unit ball, K_A f=f o A on all complex C(U), S the peripheral matrix eigenvalues, J the nonzero strictly stable eigenvalues, Gamma=<S> with integer exponents and empty group {1}, and Z_A={0} iff A is singular. The verified table is:
+
+| Condition | Point spectrum | Full Banach spectrum |
+|---|---|---|
+| J nonempty | open disk union Gamma | closed disk |
+| J empty | Gamma union Z_A | closure(Gamma) union Z_A |
+
+The following deductions independently check the complete analytic mechanism; finite controls are not used to infer these claims.
+
+1. **Peripheral semisimplicity.** A length-two peripheral Jordan chain has A^n w=lambda^n w+n lambda^(n-1)v. Reverse triangle inequality gives norm at least n||v||-||w||, incompatible with ||A^n||<=1. Every larger block contains this obstruction. Stable Jordan powers decay in every finite-dimensional norm.
+2. **Unbounded simultaneous recurrence.** A strictly increasing convergent torus subsequence m_j gives n_j=m_(2j)-m_j>=j and lambda_i^n_j->1. No assumption that n_j itself is strictly increasing is needed. For empty S take n_j=j. Consequently A^n_j->P in the actual operator norm and ||P||<=1. This rules out the hidden Euclidean/orthogonal-projection shortcut. P(U)=U intersection E.
+3. **Peripheral inverse isometry.** B^n_j->I and B^(n_j-1)->B^(-1); both B and its inverse are contractions for the restricted original norm. Hence B preserves that norm and maps its relative closed ball onto itself. The singleton E=0 case contributes the constant eigenvalue 1.
+4. **Uniform factorization.** For a unimodular eigenfunction, |f(x)-f(Px)|=|f(A^n x)-f(A^n Px)|. Both arguments remain in U and their difference N^n(I-P)x decays uniformly. Uniform continuity on compact U proves f=fP. A nonzero f cannot become zero on V=P(U); pullback from V is nonzero and intertwines the two operators.
+5. **Exact Gamma even when dense.** Coordinate/conjugate monomials give every signed peripheral exponent, remain nonzero on the relative ball, and span a self-adjoint, unital, separating algebra dense in C(V). For zeta outside Gamma, contractive Cesaro averages kill each fixed polynomial. First choose a polynomial approximant, then take its averaging length to infinity; this order assumes no uniform frequency gap and remains valid for irrational dense Gamma. A zeta-eigenfunction is fixed by the averages and must vanish. Thus closure(Gamma) is not silently promoted to point spectrum.
+6. **Peripheral full spectrum.** The invertible isometry and its inverse exclude values off the circle by Neumann series. Closedness contains closure(Gamma). Infinite circle subgroups are dense; finite order q gives B^q=I and K_B^q=I, so the polynomial factorization excludes all other spectral values. This is an analytic full-operator argument.
+7. **Interior radial construction.** For alpha in J, a complex-linear left eigenfunctional exists even with Jordan blocks. With a=|alpha|, R=max_U|ell|>0 and s=(log|mu|+i theta)/log a, Re(s)>0. The modulus of the function is (|ell|/R)^Re(s), so the zero extension is continuous along the entire ker(ell). The logarithm is real on positive radii, without an angular branch. Scaling by alpha changes the radius by a and yields a^s=mu for every 0<|mu|<1. At mu=0 the separate continuous witness max(0,|ell|/R-a) is nonzero at a maximizer and vanishes on A(U), including invertible A. The operator norm bound and the previously proved boundary exclusion give the exact point row; closedness then gives the full disk.
+8. **Nilpotent complement.** J empty implies all stable eigenvalues are zero. Qf=fP is a bounded commuting projection, isometric pullback identifies ran Q with C(V), and ker Q consists exactly of functions zero on V. A^d(U) lies in V, so K_A^d vanishes on ker Q. That summand is nonzero exactly when F is nonzero, using a linear functional vanishing on E; a nilpotent operator on a nonzero space has a zero eigenvector and spectrum {0}, by the last nonzero iterate and a finite geometric resolvent. Here F nonzero iff A singular. Closed invariant summands make both point and full spectra the unions. No optional zero is added when the summand is absent.
+9. **Boundary/limiting cases.** A=0 and every nilpotent A give {0,1}; A=I gives {1}; irrational peripheral rotation gives countable dense Gamma in point spectrum and the circle in full spectrum; finite rotations give finite roots; peripheral-plus-nilpotent mixtures give closure(Gamma) union {0}; adding any nonzero stable eigenvalue fills the full disk; an invertible strict contraction still has zero Koopman eigenvalue. Nonnormal arbitrary-norm examples obey the same projection argument. The k=0 extension is consistent but is outside the explicit k>=1 manuscript scope and is not needed for the claim.
+
+No central step transfers the problem to an unsupported equivalent statement. The written proof checks the assumptions of the standard Jordan formula, complex Stone–Weierstrass, Neumann-series resolvents and finite direct-sum spectral facts.
+
+## Historical and classical mechanism checks
+
+The actual 2015 Theorem 3.1.14(i), printed 43/PDF 52, states the mixed inclusion, immediately followed by an explicit open-converse paragraph. The actual 2016 Theorem 5(ii), printed 321/PDF 25, states that inclusion. Prior all-peripheral Theorem 3.1.5, nilpotent Proposition 3.1.7, disk Theorem 3.1.13 and stable-only Theorem 3.1.14(ii) are present at the cited printed pages. The full disk follows immediately from that prior disk inclusion plus spectral closedness and norm one; the package correctly declines novel-disk credit.
+
+EFHN Theorem 16.33(a), printed 313/PDF 331 in the dated April 22,2016 author manuscript, places all unimodular eigenvectors in the reversible range of the minimal idempotent. The printed 2015 edition was not independently byte-compared. The manuscript's applicability argument is sound: the matrix-power closure H is compact abelian; composition is strongly continuous by uniform continuity, its compact image is also weakly closed, G={DP:D in G_B} is the minimal group ideal with identity P, and the corresponding reversible idempotent is Qf=fP. Injectivity follows if needed from coordinate functions distinguishing linear maps on the spanning ball. The identification is an elementary finite-dimensional specialization, not a new JdLG theorem.
+
+The package's limited historical claim therefore does not mask a known general mechanism: it displays it, cites it, and reconstructs applicability. General full-spectrum results and abstract factor statements cannot by themselves be cited as an earlier explicit printing of this exact mixed point-spectrum answer. Conversely, a bounded search's failure to locate a printing does not prove novelty. The properly narrowed presentation is warranted; worldwide priority remains unverified and explicitly unclaimed.
+
+## Reproduction and fail-closed evidence
+
+Fresh wrapper process: PID 57394, recorder PID 57386, 2026-10-05T19:44:10.739303+00:00 to 19:44:18.053401+00:00, exit 0, 7.314130833 seconds. Exact argv, cwd, timestamps, full stdout/stderr and stream hashes are in `wrapper_execution/execution.json`, `stdout.bin` and `stderr.bin`. The call was `/usr/bin/python3 -E -B` with the unmodified public run_all.py and a new private `fresh_reproduction` output directory. Native Python 3.9.6 imports SymPy 1.14.0 without PYTHONPATH injection.
+
+All six children pass: verify 473, independent 907, boundary 1340, repeated in ordinary and -O modes. Per mode the unique total is 2720: 473+907+774= 2154 exact or discrete controls and 566 floating diagnostics. Repetition does not establish 5440 distinct controls. Every child records actual PID/argv/UTC/full binary streams, source/input snapshots and receipt hashes. Fresh family counts and stable receipt hashes agree with included results; timing differs normally. Floating maximum recorded error is 1.2775558388966601e-11 within the explicit 2e-10*(1+abs(rhs)) rule.
+
+On separate private copies, adding one deliberate false ck condition to each of the three checkers yields exit 1 under -E -B -O, the false label in stderr, and no pass receipt. See `FAIL_CLOSED_RESULTS.json` and the three `*_negative_optimized` execution directories. A -O wrapper invocation targeting the already nonempty private reproduction directory also exits1. Public code and results are never modified. The runner and checkers contain no removable assertions; the explicit guards preserve count increments only after success.
+
+The original submitted/independent scripts' first ck node is Assert, the minimal repair's is If, and the repaired/public ck ASTs are identical. The submitted and independent mathematical bodies are byte-identical between positive minimal repair and public CLI adaptation. The boundary mathematical controls match after excluding the removed output-root declaration/trailing whitespace. `PROVENANCE_BYTE_AUTHENTICATION.json` authenticates each declared original and positive repair hash against actual preserved source files; public hashes match current bytes. These are separate identities, not the original hash mislabeled as the adapted code. The two elementary radial orbit families are correctly characterized as finite phase/algebra controls; the boundary suite performs direct sampled evaluations. No finite result is presented as proof of continuity, recurrence, density, the full operator spectrum or priority.
+
+## Selected bytes, archive, metadata and visual review
+
+The metadata selects exactly 7 payloads. Its SHA256 is 44d339f6c13b221383bff4c99631795f5d8ef11765e3b62dc39f201e1f7bb77c. The reviewed TeX SHA256 is fc7215e8d4f1a97735981948629e23abafa926ca51838ce924c78c13eca9aab8, PDF is 8d9e723adc6fa4273ddc75ed174b7133d1933bedd0f8af3f3c6b789dadcf4d8c, ZIP is ba85c0c65304cf5c7cf139cba61b2792c17fba09894db34933bd19dac567ba15. All selected byte counts/digests equal the pinned manifest. All 11 ZIP members equal their intended public source bytes; no third-party PDF or private audit file is inside. All 13 supplied SHA256 entries match; the digest file properly excludes itself. All selected and member hashes are in `EVIDENCE_MANIFEST.json`.
+
+Title, author, ORCID, date 2026-10-05, version 1.0, preprint status, CC BY 4.0 identifier, AI assistance/unrefereed disclosure and source relationships agree across manuscript, README, license and metadata. The source is standalone with embedded bibliography and no external third-party PDF dependency. The stable public filenames and ZIP paths support the documented extraction/reproduction layout. Licensing the authored code under CC BY 4.0 is unusual but valid; no mandatory license defect was found. This review does not validate a future deposit operation or a remote API submission.
+
+PDFinfo confirms 6 unencrypted letter-sized pages with the matching title/author. Fresh render inspection of every page finds readable formulas, intact two-row table, valid glyphs, no clipping or overlap, and visible page numbers. PDF prose matches the inspected TeX. **Optional style only:** reference [1] begins at the bottom of page 5 and continues onto page 6, leaving most of page 6 blank. Keeping that item together or moving the bibliography to page 6 would improve polish but is not a scientific/readiness repair requirement.
+
+## Strongest result and remaining gap
+
+The complete theorem and the frozen round-1 finite verification are independently verified within this bounded review. The exact remaining required repair is M1 and the resulting archive/digest/manifest refresh, followed by the user's requested fresh second-agent review of corrected bytes. Historical firstness and exhaustive literature absence remain unproved and unclaimed. No publication, merge, release, deposit or external communication is authorized by this report.
+
+Completion estimate: 100% of assigned round-1 review. This is extensive AI adversarial review, not conventional human peer review.

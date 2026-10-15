@@ -1,0 +1,37 @@
+# Support geometry and exact verification scope
+
+This supplement makes the manuscript's prior-framework comparison checkable. The additional derivation below was obtained during the audit; it is not presented as a theorem explicitly stated in earlier literature. The main manuscript's stronger attractive-approximation proof stands independently of it.
+
+## A facial-lattice support lemma
+
+Let G=(V,E), E nonempty, and let A have one row for each original-edge configuration and one column for each binary state, with entries A[(e,a),x]=1[x_e=a]. Suppose a nonempty Boolean sublattice S is facial for A. Then S equals the intersection of its original-edge projection cylinders; equivalently it is A-feasible.
+
+Faciality gives a finite real vector c for which H(x)=c dot A_x is zero on S and at least 1 elsewhere. This is precisely Geiger–Meek–Sturmfels (2006), Appendix equation (A.6) and Lemma A.2. H is a finite pairwise function on the ORIGINAL edges, nonnegative everywhere. Submodularity of H is not assumed.
+
+Write b=meet S and t=join S. Delete coordinates where b_i=t_i. For every active coordinate i let m_i be the meet of the support states having x_i=1. Define i⇒j if (m_i)_j=1; this is equivalent to x_i≤x_j throughout S. Pins and these implications characterize S: an assignment satisfying them is the join of b with the m_i corresponding to its active 1 coordinates, hence belongs to S. Mutually implying active coordinates form equality classes. Their quotient is a poset, and S identifies with its upsets (or, upon reversing the order, its downsets). This is the standard Boolean-lattice reduction; it also follows from the all-pair support reconstruction of Lauritzen–Uhler–Zwiernik (2021), Lemma 4.9.
+
+Each active equality class C induces a connected subgraph of G. To see this, use the downset convention. The ideals downarrow C minus {C} and downarrow C produce two support states differing exactly in all coordinates of C. If C splits into nonempty D,F with no G edge between them, the fixed-exterior pairwise energy satisfies H(D=1,F=0)+H(D=0,F=1)=H(D=0,F=0)+H(D=1,F=1)=0. Nonnegativity makes both split states zero-energy states. They therefore lie in S, contradicting equality within C.
+
+Each quotient cover C<D has an original edge joining its two classes. The set I=downarrow D minus {C,D} is a downset: a predecessor C of a retained element would give an intermediate class strictly between C,D. Thus I, I union {C}, I union {C,D} are three support states with a common exterior and class patterns 00,10,11. Pattern 01 is forbidden. If there is no original cross edge, the pairwise form gives H(01)=H(00)+H(11)-H(10)=0, a contradiction.
+
+Now any state meeting every original-edge projection of S respects equality along the edges in each connected class. An original edge for each quotient cover enforces its implication, hence all order relations. Each pinned nonisolated coordinate is fixed by its incident edge projection. H does not depend on isolated coordinates, so its zero set cannot pin or relate one. The state consequently belongs to S. The reverse containment is automatic. This proves A-feasibility on the ORIGINAL-edge design, including zeros and isolates.
+
+## Consequence for the exact source closure claim
+
+A limit p of finite real original-edge products can first be treated as a limit of nonnegative products by replacing all factors with absolute values. Its mass vector satisfies the toric binomials by continuity. GMS Lemma A.2 makes its support facial, and MTP2 makes it a sublattice. The lemma above makes that support A-feasible, so GMS Theorem 3.1 yields finite original-edge factors for p. Normalization, MTP2 and global conditional independence pass to the limit through their finite polynomial conditions. The literal empty-edge and empty-vertex conventions are those in the manuscript's Section 4.
+
+Kahle–Sullivant (arXiv:2411.03139v1, 2024), Proposition 4.1, Lemma 5.4 and Theorem 5.5 provide the corresponding natural-support cover and feasibility framework. Natural support excludes pins and repeated coordinate classes. The arguments above supply the additional connectivity and original-edge lifting steps. Thus the complete all-support closure assertion is a short attributed extension of that framework, not its literal statement. This comparison establishes neither an earlier explicit full theorem nor historical first priority for this note.
+
+## What the executable checks establish
+
+`verify_boundary.py` checks all 76 simple graphs on labeled vertex sets of sizes 0 through 4, using five deterministic integer field/coupling samples on each graph: 380 networks and 5,495 cut assignments. Its independent augmenting-path implementation checks every assignment's original cut cost, residual cost, exact flow value and quadratic energy. Every residual cost equals E−min E; residuals preserve original-edge locality; the maximized unnormalized weight is 1 and its normalizer lies between 1 and 2^|V|. All computed attractive weights also satisfy every MTP2 inequality.
+
+Five further exact density examples cover aggregate couplings across tied coordinates, negative coefficients on comparable classes, pins, an isolate, the one-point support and the empty vertex set. Original factors may be nonattractive; the reconstructed aggregate couplings are nonnegative. The verifier checks local-projection support reconstruction, agreement of the lifted energy on every support cell, all MTP2 inequalities in four finite penalized laws, and decreasing exact total-variation-related L1 errors. These finite samples are not exhaustive over parameters and do not prove convergence or the theorem for arbitrary graphs; those follow from the written argument.
+
+A zero-pinned control has global MTP2 but a supplied edge potential of determinant −1. Replacing its zeros by 1/10 breaks MTP2. These falsify cancellation and naive smoothing at zeros; they do not refute the existence of a different attractive representation.
+
+`verify_priority_examples.py` was independently authored during the priority audit, without reading candidate verification code. It checks Gandolfi–Lenarda's exact C4 table, its graph-preserving rotation to the packet's table, the later Kahle–Sullivant table, and the packet's attributed C6 lift. Each C4 has all 256 MTP2 inequalities and all four ordered nontrivial global separations checked. C6 has 4,096 MTP2 pairs, 252 ordered separations and 6,384 unique conditioning minors. Separations allow leftover coordinates, which are marginalized. Edge multisets of each obstruction balance, while its two exact products differ. Standard GMS nonfactorization examples fail MTP2 under all 16 coordinate flips; coordinate permutations preserve MTP2.
+
+Kahle–Sullivant Example 6.5's final numerical sentence assigns the empty entry twice if read literally. The normalized table used in the verifier is bottom mass 1/2, other seven supported masses 1/14; its all-laws-on-that-support preceding statement and the directly verified quartic make the comparison independent of asserting that the overlapping sentence is well formed. Gandolfi–Lenarda's table needs no such correction.
+
+No copyrighted primary-source PDF, extracted full text or private search stream is redistributed in this package. Bibliographic links are in the manuscript. The package includes only original proofs, code and generated verification results. No result is claimed human peer reviewed or formally machine checked.

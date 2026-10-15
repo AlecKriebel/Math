@@ -1,0 +1,7 @@
+# Source tool-edit provenance
+
+2026-10-03T00:00:31.384156+00:00 — Actual document/pin authoring PID45774 and private contract predicates PID45784 completed earlier with full prelaunch source/operator and streams. These operations never ran/imported/compiled the proposed builder or future ROOT operator.
+
+After their actual capture, tool edits added the explicit inner-attempt path to the future execution reference and made the future ROOT operator retain a final failure receipt even if source re-reading fails. Contract/draft text now explicitly states the exact separate certificate heading/marker and the copied-private-probe permission scope. The ownership note also corrects the number of empty primary extraction/render streams from twenty to eighteen; this did not change a family classification or pin. One attempted tool patch was rejected for absent context; a subsequent read confirmed none of its new source tokens existed before the accepted patch. No builder execution or candidate creation occurred.
+
+The two RECONSTRUCTED_AFTER source files are created by this closure after those tool edits by exact inverse substitution. They match the earlier actual authoring receipt byte counts and SHA pins. They are explicitly after-edit reconstructions, not old prelaunch saves or executed builder sources. The source-preparation manifest pins the final source now; a future genuine ROOT prelaunch capture remains separate and PENDING. No old/current version or historical runtime is silently substituted.

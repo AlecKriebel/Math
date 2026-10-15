@@ -1,0 +1,69 @@
+"""Prepare bounded factual metadata after provider-accepted original-head merge."""
+from pathlib import Path
+import datetime,hashlib,importlib.util,json,shutil,sys
+A=Path(__file__).resolve().parent
+s=importlib.util.spec_from_file_location("scope170",A/"prepare_scoped_merge.py");m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
+def pin(p):
+ b=p.read_bytes();return {"local_path":str(p),"bytes":len(b),"sha256":hashlib.sha256(b).hexdigest(),"git_blob":hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()}
+def main(expected):
+ grant=json.loads((A/"private/MERGE_WRITER_RETURN.json").read_text());plan=json.loads((A/"SCOPED_MERGE_SCOPE_PLAN.json").read_text())
+ m.require(grant["explicit_acknowledgement_received"] and grant["post_merge_fact_only_checkpoint_authorized"],"Factual postscope not authorized")
+ m.require(hashlib.sha256((A/"SCOPED_MERGE_SCOPE_PLAN.json").read_bytes()).hexdigest()==grant["scope_plan_sha256"],"Granted scope changed")
+ m.require(datetime.datetime.now(datetime.UTC)<datetime.datetime.fromisoformat(grant["expires_UTC"]),"Window expired")
+ merge=json.loads((A/"MERGE_AND_NATIVE_ACCEPTANCE.json").read_text());pub=json.loads((A/"ZENODO_PUBLICATION_READBACK.json").read_text());tracker=json.loads((A/"TRACKER_ACCEPTANCE.json").read_text())
+ m.require(merge["merge_commit"]==expected and merge["GitHub_PR_state"]=="MERGED","Actual merge acceptance required")
+ m.require(m.api("git/ref/heads/main")["object"]["sha"]==expected,"MAIN changed; no stale metadata")
+ pr=m.api("pulls/170");m.require(pr["merged"] and pr["head"]["sha"]==m.ORIGINAL and pr["merge_commit_sha"]==expected and pr["body"]==(A/"PR_BODY_MERGED.md").read_text(),"Actual final PR metadata/provider merge differs")
+ parent=m.api("git/commits/"+expected);now=datetime.datetime.now(datetime.UTC).isoformat()
+ before=A/"integration_preparation/native_accepted";native=A/"integration_preparation/native_merged";out=A/"final_checkpoint"
+ m.require(not native.exists() and not out.exists(),"Unknown prior factual preparation requires reconciliation");shutil.copytree(before,native);out.mkdir()
+ r=json.loads((native/"readiness.json").read_text());r.update({"UTC":now,"status":"PUBLISHED_TRACKED_ORIGINAL_HEAD_MERGED","merged":True,"merge_commit":expected,"case_percent":100,"factual_metadata_acceptance_pending":True});m.save(native/"readiness.json",r)
+ text=(native/"README.md").read_text();m.require("Original-head MAIN integration remains pending; case90%." in text,"Prepared README differs")
+ (native/"README.md").write_text(text.replace("Original-head MAIN integration remains pending; case90%.","Original PR170 head is merged as "+expected+" with the current native package and one target QUEUE row; case100%."))
+ text=(native/"COUNTEREXAMPLE.md").read_text();m.require("Original-head MAIN integration remains pending." in text,"Prepared note differs")
+ (native/"COUNTEREXAMPLE.md").write_text(text.replace("Original-head MAIN integration remains pending.","Original PR170 head is merged as "+expected+"."))
+ m.require((before/"COUNTEREXAMPLE.md").read_text().split("## 8.",1)[0]==(native/"COUNTEREXAMPLE.md").read_text().split("## 8.",1)[0],"Proof sections changed")
+ for name in ["source_record.json","audit_status.json","upstream_report.json"]:
+  j=json.loads((native/name).read_text());target=j["current_audit"] if name=="source_record.json" else j
+  target.update({"UTC":now,"original_head_merge_pending":False,"original_head_merged":True,"merge_commit":expected})
+  if name=="audit_status.json":j["status"]="PUBLISHED_TRACKED_ORIGINAL_HEAD_MERGED"
+  if name=="source_record.json":j["literature_assessment"]=j["literature_assessment"].replace("original-head integration pending.","original-head integration accepted at "+expected+".")
+  m.save(native/name,j)
+ with (native/"RESEARCH_LOG.md").open("a") as f:f.write("\n"+now+" — Original-head merge "+expected+" accepted through actual provider and full selected-scope/native readbacks. Science/publication/tracker/merge100%; factual metadata checkpoint pending its own actual acceptance. Priority/independence qualifications unchanged.\n")
+ names={str(p.relative_to(native)) for p in native.rglob("*") if p.is_file()}
+ (native/"SHA256SUMS").write_text("".join(pin(native/n)["sha256"]+"  "+n+"\n" for n in sorted(names-{"SHA256SUMS"})))
+ allowed={"README.md","COUNTEREXAMPLE.md","readiness.json","RESEARCH_LOG.md","source_record.json","audit_status.json","upstream_report.json","SHA256SUMS"}
+ for p in before.rglob("*"):
+  if p.is_file() and str(p.relative_to(before)) not in allowed:m.require(p.read_bytes()==(native/p.relative_to(before)).read_bytes(),"Scientific/package/history input changed")
+ pointer=json.loads((A/"integration_preparation/CURRENT_TEMPLATE.json").read_text());pointer.update({"UTC":now,"current_template":"native_merged","premerge_operational_template":"native_accepted","MAIN_integration_pending":False,"merge_commit":expected,"post_merge_fact_only_changes":sorted(allowed)});m.save(A/"integration_preparation/CURRENT_TEMPLATE.json",pointer)
+ status=json.loads((A/"CURRENT_CASE_STATUS.json").read_text());status.update({"UTC":now,"status":"ALL_SCIENTIFIC_EXTERNAL_STEPS_COMPLETE_FACTUAL_METADATA_ACCEPTANCE_PENDING","completion_estimate_percent":100,"MAIN_disposition_complete":True,"original_head_merged":True,"merge_commit":expected,"fully_completed_count_upon_factual_acceptance":34,"published_count":19,"factual_metadata_acceptance_pending":True});m.save(A/"CURRENT_CASE_STATUS.json",status)
+ note="\n\n"+now+" — PR170 original-head merge "+expected+" and full provider/native/scope readbacks accepted. Original closed-domain single-polynomial negative resolution verified; exact stronger Oct2 overlap credited with Sep30/Oct2 chronology, no exclusive priority or mutual-independence certificate. Initial qualified package review preserved; V2 evidence/presentation repairs and fresh direct-input seal-first final review clean. Exact publication "+pub["doi_url"]+" and unique tracker "+tracker["range"]+" accepted. Scientific/external case100%; factual metadata pending actual acceptance. Completed34/dated99=34.34%,19published upon this checkpoint acceptance; persistent goal unfinished. No171 intake yet.\n"
+ with (A/"RESEARCH_LOG.md").open("a") as f:f.write(note)
+ completion={"UTC":now,"schema":"audited-pr-workflow-completion/v1","PR":170,"problem_id":30003480,"original_head":m.ORIGINAL,"original_QUEUE_status":"claimed_solved","original_budget":"2/5","status":"ALL_SCIENTIFIC_EXTERNAL_STEPS_ACTUALLY_COMPLETE_FACTUAL_METADATA_PENDING","case_workflow_percent":100,"mathematics":"No determinant-only single polynomial defines real binary closed-unit-ball Gram locus inside cube or convex hull for any n>=3; exact zero face transfer; strictly positive n4 counterexample.","priority":"Established ingredients and exact stronger Oct2 Ferudun overlap DOI10.5281/zenodo.23111048 credited; originalSep30 GitHub record. Contemporaneous separate disclosures; no exclusive priority/independence/historical-visibility archive certificate.","package_review":"Initial R1 mathematical pass qualified by accidental summary exposure; two presentation/evidence repairs in V2; new direct-input seal-first R2 complete-package clean.","DOI":pub["doi"],"Zenodo_record":pub["id"],"published_title":pub["title"],"published_files":pub["files"],"GitHub_PR_state":"MERGED","merged_at":merge["merged_at"],"merge_commit":expected,"native_files_accepted":merge["native_files_accepted"],"QUEUE_rows_changed":1,"tracker_range":tracker["range"],"tracker_append_requests":tracker["append_requests"],"tracker_DOI_count":1,"tracker_actual_readbacks_match":True,"fully_completed_count_upon_factual_acceptance":34,"published_count":19,"dated_eligible_total":99,"next_numeric_intake_cursor":171,"persistent_goal_complete":False,"actual_goal_runtime_status_last_read":"blocked; direct human-authorized work continues","public_completion_checkpoint":"This dated factual preparation needs actual nonforce MAIN acceptance; no future commit is predicted."};m.save(A/"WORKFLOW_COMPLETION.json",completion)
+ prefix="draft_pr_publication_program_20260930/";j=json.loads(m.body_at(prefix+"CURRENT_PROGRESS.json",expected))
+ m.require(j["fully_completed_count"]==33 and len(j["fully_completed_eligible_PRs"])==33 and 170 not in j["fully_completed_eligible_PRs"] and j["published_count"]==19 and len(j["published_PRs"])==19 and j["published_PRs"].count(170)==1,"Actual programme census differs")
+ j.setdefault("historical_completed_case_records",[]).append({"UTC":now,"PR":166,"fields":{k:v for k,v in j.items() if k.startswith("last_completed_")},"note":"Prior actual completion retained."})
+ for k in list(j):
+  if k.startswith("last_completed_"):del j[k]
+ j["fully_completed_eligible_PRs"].append(170);j.pop("persistent_goal_status",None)
+ j.update({"UTC":now,"updated_UTC":now,"fully_completed_count":34,"fully_completed_fraction_percent":round(3400/99,2),"workflow_estimate_percent":round(3400/99,2),"last_completed_PR":170,"last_completed_PR_workflow_percent":100,"last_completed_original_head":m.ORIGINAL,"last_completed_original_budget":"2/5","last_completed_original_QUEUE_status":"claimed_solved","last_completed_mathematical_result_valid":True,"last_completed_priority_clearance":False,"last_completed_outcome":"published_merged_qualified_contemporary_resolution_no_exclusive_priority_certificate","last_completed_DOI":pub["doi"],"last_completed_merge_commit":expected,"last_completed_tracker_range":tracker["range"],"last_completed_record":"audits/pr170_30003480/WORKFLOW_COMPLETION.json","last_published_PR":170,"last_published_DOI":pub["doi"],"current_status":"PUBLISHED_TRACKED_ORIGINAL_HEAD_MERGED_FACTUAL_ACCEPTANCE_PENDING","current_PR_workflow_percent":100,"current_workflow_estimate_percent":100,"current_original_PR_merged":True,"current_closed":True,"current_merge_commit":expected,"current_publication_disposition_pending":False,"current_remaining_required_steps":"All scientific/external steps actually complete; factual metadata acceptance and writer release remain.","next_numeric_intake_cursor":171,"next_eligible_PR_after_current_completion":None,"next_eligible_order_requires_fresh_status_check":True,"advance_to_next_PR_authorized_now":False,"persistent_goal_complete":False,"actual_goal_runtime_status_last_read":"blocked; direct human-authorized work continues","program_snapshot_semantics":"Actual math/package/publication/tracker/original-head merge accepted; this dated factual snapshot is effective only after its own actual scoped MAIN acceptance.","program_snapshot_authority_condition":"FINAL_CHECKPOINT_ACCEPTANCE.json must authenticate actual MAIN/tree/sole parent, complete semantic scope and every selected byte.","active_checkpoint_commit":None,"active_checkpoint_acceptance_receipt":"audits/pr170_30003480/FINAL_CHECKPOINT_ACCEPTANCE.json","completion_metadata_checkpoint_pending_at_snapshot":True,"next_step":"After actual factual checkpoint acceptance and writer release, continue ordered original-status-only intake from171; only literal claimed_solved, other statuses untouched."})
+ m.save(out/"CURRENT_PROGRESS.json",j);overlay={prefix+"CURRENT_PROGRESS.json":out/"CURRENT_PROGRESS.json"}
+ for n in ["CURRENT_PROGRESS.md","RESEARCH_LOG.md"]:
+  (out/n).write_bytes(m.body_at(prefix+n,expected)+note.encode());overlay[prefix+n]=out/n
+ for n in allowed:overlay["unsolved_math_prioritization/attempts/30003480/"+n]=native/n
+ for n in ["WORKFLOW_COMPLETION.json","CURRENT_CASE_STATUS.json","RESEARCH_LOG.md","MERGE_AND_NATIVE_ACCEPTANCE.json","SCOPED_MERGE_PREPARATION.json","PR_BODY_MERGED.md","PR_METADATA_MERGED_ACCEPTANCE.json","integration_preparation/CURRENT_TEMPLATE.json"]:
+  p=A/n;overlay[str(p.relative_to(m.C))]=p
+ m.require(set(overlay)==set(plan["post_merge_fact_only_metadata_scope"]),"Granted factual scope differs")
+ pins={n:pin(p) for n,p in sorted(overlay.items())}
+ tree=m.api("git/trees","POST",{"base_tree":parent["tree"]["sha"],"tree":[{"path":n,"mode":"100644","type":"blob","content":p.read_text()} for n,p in sorted(overlay.items())]})
+ changed={n for n,v in pins.items() if m.lookup(parent["tree"]["sha"],n)!=("100644","blob",v["git_blob"])}
+ m.require(m.changed_leaves(parent["tree"]["sha"],tree["sha"])==changed,"Unselected factual changes")
+ for n,v in pins.items():m.require(m.lookup(tree["sha"],n)==("100644","blob",v["git_blob"]),"Selected factual body differs")
+ commit=m.api("git/commits","POST",{"message":"Complete PR170 qualified publication, tracker and original-head merge\n\nRecord actual accepted scientific/external steps and factual current metadata;34/dated99completed,19published upon scope acceptance. Preserve qualifications, deposited scientific bytes and every other actual MAIN path.","tree":tree["sha"],"parents":[expected]})
+ actual=m.api("git/commits/"+commit["sha"]);m.require(actual["tree"]["sha"]==tree["sha"] and [p["sha"] for p in actual["parents"]]==[expected],"Actual factual commit differs")
+ m.require(datetime.datetime.now(datetime.UTC)<datetime.datetime.fromisoformat(grant["expires_UTC"]) and m.api("git/ref/heads/main")["object"]["sha"]==expected,"Window expired or MAIN advanced")
+ result={"UTC":datetime.datetime.now(datetime.UTC).isoformat(),"status":"SCOPED_FACTUAL_COMPLETION_PREPARED_MAIN_NOT_UPDATED","expected_main":expected,"parent_tree":parent["tree"]["sha"],"tree":tree["sha"],"commit":commit["sha"],"selected_files":pins,"actual_changed_paths":sorted(changed),"all_other_actual_base_tree_paths_preserved":True,"QUEUE_or_scientific_package_changes":0,"fully_completed_count":34,"published_count":19,"persistent_goal_complete":False};m.save(A/"FINAL_CHECKPOINT_PREPARATION.json",result)
+ print(json.dumps({k:result[k] for k in ["status","expected_main","tree","commit","fully_completed_count","published_count"]}))
+if __name__=="__main__":
+ m.require(len(sys.argv)==2,"Pass actual accepted merged MAIN");main(sys.argv[1])
+

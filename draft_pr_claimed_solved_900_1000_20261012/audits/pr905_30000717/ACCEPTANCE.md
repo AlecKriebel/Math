@@ -1,0 +1,5 @@
+Accepted after independent universal-proof, exact-computation, source/model and bounded priority audits, followed by two fresh full-package adversarial reviews. The first review identified a source-version locator mismatch; the corrected frozen revision 2 passed the second with no required or optional repairs.
+
+For the classical Robinson sextic R, every epsilon >= 0 fails the proposed ideal-only polynomial SOS certificate for either explicitly defined literal-product or tangency-minor ideal, even modulo its full real vanishing ideal. The elementary universal argument covers arbitrary finite sums and polynomial degrees.
+
+The four-page preprint and verification archive credit the classical ingredients, disclose extensive AI assistance and unrefereed status, and assert neither first bibliographic priority nor continued open status through 2026. Full-text priority access gaps and substantive product/minor normalization are explicit. The original candidate remains 1/5; this audits the imported proposal.

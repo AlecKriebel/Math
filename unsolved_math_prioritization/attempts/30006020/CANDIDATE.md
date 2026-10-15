@@ -1,6 +1,6 @@
 # Mesoscopic cylinder areas in the principal quadratic stratum
 
-**30006020 / OWR-14298589-005. Unreviewed full candidate, author turn 1.** The source's iterated sampling limit and principal-stratum scope are essential. No novelty or priority guarantee is made.
+**30006020 / OWR-14298589-005. Current credit revision, 2026-10-15.** Author proof turn 1/5. The mathematical core passed the separate source and proof audits; the credited preprint package completed the required sequential review after its precision fix and is published at https://doi.org/10.5281/zenodo.23387774. The source's iterated sampling limit and principal-stratum scope are essential. No universal first-priority guarantee is made. The complete original submission and its historical reviews are preserved byte-for-byte in `history/original_submission_20261001/`. Current status is in `FINAL_DISPOSITION.md`.
 
 ## 1. Exact statement
 
@@ -21,6 +21,8 @@ Choose an ordered positive composition j_1+...+j_k=n with probability
 The sum is over every k≥1 and every ordered composition, so (1) is normalized by the exponential formula. Given that composition, choose independent Gamma(2j_i,1) variables Y_i and form the unordered multiset
 
     {Y_i/(Y_1+...+Y_k):1≤i≤k}.                     (2)
+
+Equivalently, for fixed n, (C_1,…,C_n) has the law of independent Z_j~Poisson(a_j), 1≤j≤n, conditioned on Σ_(j=1)^n jZ_j=n; set C_j=0 for j>n. The event has probability exp(−Σ_(j=1)^n a_j)h_n>0. No infinite-vector conditioning on a finite total is used.
 
 Let μ_n be its law. Then d_TV(ν_g,μ_(3g−3))→0. This is a total-variation approximation of the whole area multiset, not just fixed macroscopic coordinates.
 
@@ -48,6 +50,11 @@ We use two full primary papers, with final-edition numbering:
 - [DGZZ] Delecroix–Goujard–Zograf–Zorich, Inventiones 230 (2022), 123–224, DOI 10.1007/s00222-022-01123-y: Theorem 1.12 gives the uniform probability-generating asymptotic for the number K_g of cylinders; Theorem 5.2 bounds the contribution of graphs with more than one vertex relative to one-vertex graphs in the low-k range.
 
 These substantial geometric/enumerative results are credited inputs, not proved here. We derive the mesoscopic statements and the uniform-integrability transfer explicitly below.
+
+**Exact prior model and probability credit.** The composition law (1) is precisely DGZZ's existing weighted permutation law P_(n,∞,1/2), equations (1.7)–(1.8) and Lemma3.6, equations (3.20)–(3.23). The whole-area TV comparison is an extraction from DL's positive uniform monomial expansion, not a new geometric enumeration. Aggarwal's uniform intersection-number estimates underlie DL's coefficient input. Arratia–Tavaré (1994), Lemma5/(126), supplies the classical factorial identity (19). Arratia–Barbour–Tavaré (2000), Theorem3.1, already implies the unmarked mesoscopic Poisson conclusion at every q→∞, q=o(n), under the uniform logarithmic condition verified by Poisson means a_j. The elementary derivations below expose the uniformity; they are not claims of new assembly theory. The added consequence is the geometric all-rate Gamma-marked limit and its count-moment transfer.
+
+**Earlier announcements and bounded priority finding.** Delecroix–Liu announced microscopic small-components work in DL p.5098 and OWR reference5, in preparation. Liu's 2022 thesis, *Random multi-geodesics on hyperbolic surfaces*, Remark1.5.9/p22, gives the all-multiplicity microscopic intensity and fixed windows at scale 1/(6g−6). His February2025 Durham slides26/195 concern primitive multigeodesics and label a microscopic version a conjecture. A fixed-window limit and its intensity tail do not themselves establish growing-window uniformity. The extensive public audit through 2026-10-15 did not locate a complete Small components manuscript or an explicit earlier same-ensemble geometric intermediate-window theorem. Unavailable contents remain a specific priority uncertainty. This supports a carefully credited consequence note answering the written intermediate-area question, not a universal first-priority certificate.
+
 
 The parameter called m in [DL] bounds multicurve multiplicities, equivalently cylinder heights in its surface correspondence. Here m=∞. It is unrelated to primitiveness of a square-tiled covering. The relevant mixture is the principal holomorphic quadratic law: lower-dimensional holomorphic strata do not change the fixed-genus N→∞ law. The original report states this same principal-stratum law as ν_(2,1^(4g−4)).
 
@@ -245,7 +252,7 @@ For each fixed large g, the endpoints of the requested area windows have no atom
 
 ## 10. Interpretation and exclusions
 
-Theorem A supplies an explicit full-area-multiset asymptotic model in total variation. Theorem B fills the mesoscopic gap between areas comparable to 1/g and areas comparable to one, and provides the requested count law and mean. The macroscopic Poisson–Dirichlet law and the microscopic law cited in the source remain credited prior results, not new claims here.
+Theorem A supplies an explicit full-area-multiset asymptotic model in total variation. Theorem B fills the mesoscopic gap between areas comparable to 1/g and areas comparable to one, and provides the requested count law and mean. The macroscopic Poisson–Dirichlet law is prior work; the microscopic theorem announced in the source and the thesis is also fully credited and is not a new claim here. No inference from its fixed-window formulation to moving windows is assumed.
 
 No assertion is made for arbitrary strata, quartic differentials, primitive-cover ensembles, all directional cylinders on one surface, a diagonal N(g) sampling scheme, or scales with g s_g bounded or s_g bounded away from zero under the mesoscopic theorem. The full-multiset model remains a distributional approximation for the stated iterated principal-stratum ensemble. Any broader scope needs separate work.
 
@@ -256,3 +263,14 @@ No assertion is made for arbitrary strata, quartic differentials, primitive-cove
 [DL] V. Delecroix, M. Liu, “Length partition of random multicurves on large genus hyperbolic surfaces,” J. Eur. Math. Soc. 27 (2025), 5093–5131. https://doi.org/10.4171/JEMS/1469 . Full publisher PDF: https://ems.press/content/serial-article-files/51451?nt=1
 
 [DGZZ] V. Delecroix, É. Goujard, P. Zograf, A. Zorich, “Large genus asymptotic geometry of random square-tiled surfaces and of random multicurves,” Invent. Math. 230 (2022), 123–224. https://doi.org/10.1007/s00222-022-01123-y . Full publisher-version author-hosted PDF: https://webusers.imj-prg.fr/~anton.zorich/Papers/Large_Genus_Asymptotic_Geometry_2022_Inventiones_published.pdf
+
+
+[AT] R. Arratia and S. Tavaré, Independent process approximations for random combinatorial structures, Adv. Math.104 (1994),90–154. https://www.columbia.edu/cu/simontavare/STpapers-pdf/AT94.pdf
+
+[ABT] R. Arratia, A.D. Barbour and S. Tavaré, Limits of logarithmic combinatorial structures, Ann. Probab.28 (2000),1620–1644. https://doi.org/10.1214/aop/1019160500
+
+[Liu] M. Liu, Random multi-geodesics on hyperbolic surfaces, doctoral thesis, Université Paris Cité,2022. https://www.imj-prg.fr/theses/pdf/mingkun_liu.pdf
+
+[Slides] M. Liu, Durham seminar slides,February2025,slides26/195. https://www.math.univ-paris13.fr/~mingkun.liu/talks/Durham.pdf
+
+**Research status and assistance.** This is unrefereed research with no external human peer review or proof-assistant formalization. AI tools were used extensively in development, derivation, computation, literature research, writing and independent internal adversarial checking. Internal AI checking is not human peer review. The named human author is responsible for the submitted work; cited researchers did not participate in or endorse it.

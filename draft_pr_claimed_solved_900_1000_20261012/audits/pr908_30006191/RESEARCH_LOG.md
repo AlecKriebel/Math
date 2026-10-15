@@ -1,0 +1,14 @@
+# PR908 research log
+
+2026-10-14T04:26:51.115684+00:00 — Exact claimed_solved gate, original26-file snapshot and source readiness passed. Full clean/original target statement and empty prior report read. Root independently reconstructed leakage, Slater variance and number-phase comparison before reading old analytical audit reports. Source/topology/dimension/current-literature hypotheses remain to verify; not accepted yet. Original1/5 preserved, no new proof search. Completion5% workflow; shard25.42%.
+
+2026-10-14T04:36:19.594324+00:00 — Root analytic checkpoint25% PR908/shard27.08%: independent reconstruction supports uniform leakage + exact Slater variance + two-vector phase comparison, and original operator-norm topology/source has been read. Four independent families running; historical child assertions/optimization and special-entry boundaries under audit, immutable originals retained. Current mathematical claim is d3 existential, not SOT/fixed-state/all-dimension/fixed-density failure. No priority or publication acceptance yet; original1/5 unchanged.
+
+2026-10-15T03:46:53.744226+00:00 — PR908 checkpoint: 82% workflow, 31.83% shard estimated; new clean-context full-package review02 is running on unchanged candidate02. Initial independent proof/authentication checks pass; final review not yet sealed. Read-only gws preflight confirms exact target gid/tab/header; no sheet append, merge or Zenodo staging.
+
+2026-10-15T03:50:19.943593+00:00 — Independent review02 interim: 80% of that review; proof/source/priority-bootstrap checks, all four isolated replays, all five PDF pages, current live corrected body/source gate pass. Fresh post-copy runner and historical-checker corruption controls reject before execution. No finding so far; acceptance still pending its sealed final verdict. Overall PR workflow estimate remains 82%, shard31.83%. Operational merge/finalization helpers prepared with head/source/allowlist/integrity/readback gates, not executed.
+
+2026-10-15T03:56:55.465409+00:00 — PR908 accepted (96% workflow; shard33%): both sequential fresh reviews authenticated; R1/O1 resolved globally and review02 clean. Exact frozen files, original26, live corrected body, claimed_solved1/5 and current source/holds all unchanged. Merge and exact-metadata publication next.
+
+### 2026-10-15T03:58:54.041087+00:00 — PR908 completed (100%; shard33.33%)
+Merged 30ba148fd75a61c7894dc09a998428c546aecb80; exact reviewed bytes and metadata published under 10.5281/zenodo.23383930; tracker 'Math Puzzles'!A89:D89 and native ledger dc28741019b8883b497b6850eda936d317ef8499 read back. Other targets untouched; original1/5 preserved.

@@ -1,0 +1,9 @@
+# Independent coupled-envelope probe checkpoint
+
+2026-10-03T07:47:33Z, still before candidate access. Audit 30%; cograph verification 30%; unrestricted discovery 0%.
+
+I tested the proposed multipartite upper profile numerically on 100,000 independent child tuples each for unions and joins, with 2–10 children, arbitrary randomly varied weights, zero weights, and child densities including 0, 1/2, 2/3, 3/4, 1, and continuous values. Child c_i was set to the proposed sharp profile, so the test probes the coupled recursive inequalities more strongly than actual randomly generated cotrees. The largest repaired trial excess was 4.44e-16 at a bipartite equality; no non-roundoff violation was found. This is a falsification probe, not proof and not evidence for unrestricted optimality.
+
+Initial `independent_envelope_probe.py` used `ceil(1/q−1e−12)` to avoid endpoint integer artifacts. That tolerance incorrectly chose the sparse k=2 branch for q infinitesimally below 1/2 and produced a spurious excess 2.76445533131664e-13. Initial code, complete stdout, and stderr were copied to ignored tmp before repair; changing only to `ceil(1/q)` restored the correct adjacent branch. The initial run's tolerance 1e-12 had still called the result no violation; the initial result is preserved rather than treated as an exact pass. Exact rational baseline controls did not use this formula or tolerance and are unaffected.
+
+A weighted singleton blow-up of any n-vertex cograph has ordered edge density 2m/n². The probability of a repeated index in a four-tuple is at most 6/n, so its graphon induced-C4 probability and the finite normalized induced density differ by O(1/n), uniformly over all graphs and cotree depths. This will allow a proven finite weighted inequality to pass to every cograph sequence, even with unbounded depth or part count, by continuity of the target profile. It cannot pass to arbitrary graph sequences by that argument.

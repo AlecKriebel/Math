@@ -1,0 +1,733 @@
+{
+  "generated_at_utc": "2026-10-12T06:01:08.679567+00:00",
+  "service_boundary": "Entirely in memory; never contacts remote service, invokes subprocess, loads credentials/state, or touches shared Git index.",
+  "case_count": 40,
+  "results": [
+    {
+      "case": "archive_delete204",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "prepared_at_utc": "2026-10-12T06:01:07.210197+00:00",
+          "environment": "production",
+          "id": 23310484,
+          "submitted": false,
+          "filename": "missing_faces_verification_v1.zip",
+          "file_id": "097f2463-43fd-42df-97b0-8cca5b9f51eb",
+          "old_archive_sha256": "1f4afed5aaca0b44b49e0f2aa2a780a4f069493bac9844f63c82b87df02043d4",
+          "accepted_archive_sha256": "3d87ba2ae2a4c9e7dc1cc99a08d75345df0b1f854c6a37ec6d4900a2c48118fa",
+          "pdf_preserved": true,
+          "metadata_exact": true,
+          "contract": "https://developers.zenodo.org/#delete-a-deposition-file",
+          "state": "superseded_zip_absent_verified",
+          "write_performed": true,
+          "delete_response_note": "Unexpected or incomplete Zenodo JSON response; operation outcome is unconfirmed",
+          "verified_at_utc": "2026-10-12T06:01:07.210665+00:00",
+          "next_action": "Resume stage on same stable manifest with existing repository kit"
+        }
+      },
+      "checks": {
+        "succeeds": true,
+        "one_delete": true,
+        "pdf_preserved": true,
+        "receipt_verified": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_lost_response",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "prepared_at_utc": "2026-10-12T06:01:07.245532+00:00",
+          "environment": "production",
+          "id": 23310484,
+          "submitted": false,
+          "filename": "missing_faces_verification_v1.zip",
+          "file_id": "097f2463-43fd-42df-97b0-8cca5b9f51eb",
+          "old_archive_sha256": "1f4afed5aaca0b44b49e0f2aa2a780a4f069493bac9844f63c82b87df02043d4",
+          "accepted_archive_sha256": "3d87ba2ae2a4c9e7dc1cc99a08d75345df0b1f854c6a37ec6d4900a2c48118fa",
+          "pdf_preserved": true,
+          "metadata_exact": true,
+          "contract": "https://developers.zenodo.org/#delete-a-deposition-file",
+          "state": "superseded_zip_absent_verified",
+          "write_performed": true,
+          "delete_response_note": "mock DELETE response lost",
+          "verified_at_utc": "2026-10-12T06:01:07.245769+00:00",
+          "next_action": "Resume stage on same stable manifest with existing repository kit"
+        }
+      },
+      "checks": {
+        "succeeds": true,
+        "one_delete": true,
+        "pdf_preserved": true,
+        "receipt_verified": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_resume_get_lost",
+      "outcome": {
+        "first": {
+          "ok": false,
+          "exception": "DepositError",
+          "error": "mock readback lost"
+        },
+        "second": {
+          "ok": true,
+          "output": {
+            "prepared_at_utc": "2026-10-12T06:01:07.281994+00:00",
+            "environment": "production",
+            "id": 23310484,
+            "submitted": false,
+            "filename": "missing_faces_verification_v1.zip",
+            "file_id": "097f2463-43fd-42df-97b0-8cca5b9f51eb",
+            "old_archive_sha256": "1f4afed5aaca0b44b49e0f2aa2a780a4f069493bac9844f63c82b87df02043d4",
+            "accepted_archive_sha256": "3d87ba2ae2a4c9e7dc1cc99a08d75345df0b1f854c6a37ec6d4900a2c48118fa",
+            "pdf_preserved": true,
+            "metadata_exact": true,
+            "contract": "https://developers.zenodo.org/#delete-a-deposition-file",
+            "state": "superseded_zip_absent_verified",
+            "write_performed": false,
+            "verified_at_utc": "2026-10-12T06:01:07.282090+00:00",
+            "next_action": "Resume stage on same stable manifest with existing repository kit"
+          }
+        }
+      },
+      "checks": {
+        "first_fails": true,
+        "resume_succeeds": true,
+        "no_repeat_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_request_not_reached",
+      "outcome": {
+        "first": {
+          "ok": false,
+          "exception": "RuntimeError",
+          "error": "Replacement removal outcome unconfirmed; no automatic retry"
+        },
+        "second": {
+          "ok": false,
+          "exception": "RuntimeError",
+          "error": "Prior DELETE exists; reconcile read-only rather than repeat it"
+        }
+      },
+      "checks": {
+        "both_fail_closed": true,
+        "one_attempt_only": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_hold_gate",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Final round4 acceptance absent"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Frozen round4 packet changed"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_published_record",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Published files must never be deleted"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_unknown_zip",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Remote ZIP is not the known superseded archive"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_changed_pdf",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Reviewed PDF differs remotely"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_wrong_draft_id",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Same saved production draft absent"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_unsafe_file_id",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Unsafe remote file ID"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_extra_remote_file",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Unexpected remote file set"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_metadata_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Draft metadata differs from exact canonical values"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_nonclaimed_source",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Selected status is excluded"
+      },
+      "checks": {
+        "rejected": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_already_replaced",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "verified_at_utc": "2026-10-12T06:01:07.704559+00:00",
+          "id": 23310484,
+          "state": "accepted_archive_already_present",
+          "write_performed": false
+        }
+      },
+      "checks": {
+        "succeeds": true,
+        "no_delete": true,
+        "idempotent_state": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_required_review_issue",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Accepted review has a remaining issue"
+      },
+      "checks": {
+        "rejects_required_issue": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_stale_round3_gate",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Final round4 acceptance absent"
+      },
+      "checks": {
+        "rejects": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "archive_report_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Accepted review changed"
+      },
+      "checks": {
+        "rejects": true,
+        "no_delete": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "tracker_normal",
+      "outcome": {
+        "first": {
+          "ok": true,
+          "output": {
+            "state": "appended_once",
+            "verified": true,
+            "updated_range": "'Math Puzzles'!A2:D2",
+            "doi": "https://doi.org/10.5281/zenodo.23310484"
+          }
+        },
+        "second": {
+          "ok": true,
+          "output": {
+            "state": "existing_identical_registration",
+            "verified": true,
+            "updated_range": "'Math Puzzles'!A2:D2",
+            "doi": "https://doi.org/10.5281/zenodo.23310484"
+          }
+        }
+      },
+      "checks": {
+        "expected_outcome": true,
+        "one_append_only": true,
+        "doi_count": true,
+        "canonical_registration_fields": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "row_fields": [
+          "30000689 / OWR-1455-008 \u2014 Embedding Obstructions from Missing Simplicial Faces; original conjecture: https://ems.press/content/serial-article-files/46090 (p.238, Conjecture4)",
+          "",
+          "https://doi.org/10.5281/zenodo.23310484",
+          "Missing faces and topological embeddings of sphere skeleta; Alec Kriebel; version1.0, 12October2026; https://github.com/AlecKriebel/Math/pull/468. Full topological-source/topological-embedding result; credited synthesis and dimension-four extension. Extensive AI use; unrefereed; no independent human peer review or first-priority claim. Paper and verification archive at DOI."
+        ]
+      }
+    },
+    {
+      "case": "tracker_lost_response",
+      "outcome": {
+        "first": {
+          "ok": true,
+          "output": {
+            "state": "recovered_append_readback",
+            "verified": true,
+            "updated_range": "'Math Puzzles'!A2:D2",
+            "doi": "https://doi.org/10.5281/zenodo.23310484"
+          }
+        },
+        "second": {
+          "ok": true,
+          "output": {
+            "state": "existing_identical_registration",
+            "verified": true,
+            "updated_range": "'Math Puzzles'!A2:D2",
+            "doi": "https://doi.org/10.5281/zenodo.23310484"
+          }
+        }
+      },
+      "checks": {
+        "expected_outcome": true,
+        "one_append_only": true,
+        "doi_count": true,
+        "canonical_registration_fields": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "row_fields": [
+          "30000689 / OWR-1455-008 \u2014 Embedding Obstructions from Missing Simplicial Faces; original conjecture: https://ems.press/content/serial-article-files/46090 (p.238, Conjecture4)",
+          "",
+          "https://doi.org/10.5281/zenodo.23310484",
+          "Missing faces and topological embeddings of sphere skeleta; Alec Kriebel; version1.0, 12October2026; https://github.com/AlecKriebel/Math/pull/468. Full topological-source/topological-embedding result; credited synthesis and dimension-four extension. Extensive AI use; unrefereed; no independent human peer review or first-priority claim. Paper and verification archive at DOI."
+        ]
+      }
+    },
+    {
+      "case": "tracker_not_reached",
+      "outcome": {
+        "first": {
+          "ok": false,
+          "exception": "RuntimeError",
+          "error": "Append outcome unconfirmed; inspect saved operation before any further write"
+        },
+        "second": {
+          "ok": false,
+          "exception": "RuntimeError",
+          "error": "A prior append is unconfirmed or its row was removed; reconcile read-only before another write"
+        }
+      },
+      "checks": {
+        "expected_outcome": true,
+        "one_append_only": true,
+        "doi_count": true,
+        "canonical_registration_fields": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "row_fields": null
+      }
+    },
+    {
+      "case": "tracker_existing_mismatch",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Existing DOI row differs from intended registration; do not duplicate"
+      },
+      "checks": {
+        "rejects_different_fields": true,
+        "does_not_append": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "tracker_unpublished",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Confirmed production publication is required"
+      },
+      "checks": {
+        "rejects_unpublished": true,
+        "no_cloud_call": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "tracker_title_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Publication title does not match canonical metadata"
+      },
+      "checks": {
+        "rejects_title_drift": true,
+        "no_cloud_call": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "tracker_duplicate_existing",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "More than one tracker row already has this DOI; reconcile"
+      },
+      "checks": {
+        "rejects_existing_duplicates": true,
+        "does_not_append": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "tracker_concurrent_same_doi",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "state": "appended_once",
+          "verified": true,
+          "updated_range": "'Math Puzzles'!A3:D3",
+          "doi": "https://doi.org/10.5281/zenodo.23310484"
+        }
+      },
+      "checks": {
+        "witness_returns_success": true,
+        "witness_duplicate_count_two": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "mechanism": "another runner appends same canonical DOI between duplicate read and this append; returned-row readback alone misses duplicate"
+      }
+    },
+    {
+      "case": "integration_normal",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "state": "branch_updated_verified",
+          "commit_sha": "installed-commit",
+          "file_count": 93
+        }
+      },
+      "checks": {
+        "expected_result": true,
+        "unrelated_main_file_preserved": true,
+        "one_queue_line_changed": true,
+        "latest_other_row_preserved": true,
+        "two_parents": true,
+        "one_nonforce_update": true,
+        "race_preserves_changed_ref": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "remote_tree_changed_paths": 93
+      }
+    },
+    {
+      "case": "integration_ref_response_lost",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "state": "branch_updated_verified",
+          "commit_sha": "installed-commit",
+          "file_count": 93
+        }
+      },
+      "checks": {
+        "expected_result": true,
+        "unrelated_main_file_preserved": true,
+        "one_queue_line_changed": true,
+        "latest_other_row_preserved": true,
+        "two_parents": true,
+        "one_nonforce_update": true,
+        "race_preserves_changed_ref": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "remote_tree_changed_paths": 93
+      }
+    },
+    {
+      "case": "integration_head_race",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Branch update uncertain or rejected; inspect saved commit before retrying"
+      },
+      "checks": {
+        "expected_result": true,
+        "unrelated_main_file_preserved": true,
+        "one_queue_line_changed": true,
+        "latest_other_row_preserved": true,
+        "two_parents": true,
+        "one_nonforce_update": true,
+        "race_preserves_changed_ref": true
+      },
+      "all_checks_pass": true,
+      "details": {
+        "remote_tree_changed_paths": 93
+      }
+    },
+    {
+      "case": "integration_hold_gate",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Final complete-package acceptance is absent"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_nonclaimed_source",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Selected PR is outside claimed_solved scope"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Accepted package changed: manuscript.tex"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_unrelated_original_scope",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Original PR includes unrelated changes"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_source_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Original source changed: unsolved_math_prioritization/attempts/30000689/EXPLANATORY_ADDENDUM.md"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_main_disposition_changed",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Main selected disposition changed; do not overwrite"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_published_file_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Published files do not match reviewed packet"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_published_title_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Published title drift"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_stale_round3_freeze",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Accepted package changed: metadata.json"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_report_hash_drift",
+      "outcome": {
+        "ok": false,
+        "exception": "RuntimeError",
+        "error": "Accepted review report changed"
+      },
+      "checks": {
+        "rejects": true,
+        "no_remote_mutation": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    },
+    {
+      "case": "integration_required_review_issue",
+      "outcome": {
+        "ok": true,
+        "output": {
+          "state": "branch_updated_verified",
+          "commit_sha": "installed-commit",
+          "file_count": 93
+        }
+      },
+      "checks": {
+        "witness_proceeds_with_required_issue": true,
+        "witness_branch_updated": true
+      },
+      "all_checks_pass": true,
+      "details": null
+    }
+  ]
+}

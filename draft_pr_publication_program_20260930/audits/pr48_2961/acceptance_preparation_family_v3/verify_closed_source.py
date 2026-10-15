@@ -1,0 +1,51 @@
+"""Separate ROOT V3 readonly verifier. Never imports closer, proposed sources or controls, never writes."""
+import argparse,hashlib,json,math,os,re,stat
+from pathlib import Path,PurePosixPath
+H=Path(__file__).absolute().parent;R=H.parents[3];NAME='PREPARATION_MANIFEST.json'
+def need(v,m):
+    if not v:raise ValueError(m)
+def sha(b):return hashlib.sha256(b).hexdigest()
+def raw(p):need(not p.is_symlink() and all(not x.is_symlink() for x in p.parents) and stat.S_ISREG(p.stat().st_mode),'Regular nonsymlink');return p.read_bytes()
+def parse(b):
+    def pairs(v):
+        d={}
+        for k,x in v:need(k not in d,'Duplicate key');d[k]=x
+        return d
+    def fl(s):v=float(s);need(math.isfinite(v),'Nonfinite float');return v
+    return json.loads(b,object_pairs_hook=pairs,parse_float=fl,parse_constant=lambda x:(_ for _ in ()).throw(ValueError(x)))
+def check(base,z,mode=None):
+    n=z['path'];need(type(n) is str and n and '\\' not in n and '\0' not in n,'Path');p=PurePosixPath(n);need(not p.is_absolute() and p.as_posix()==n and n!='.' and not {'.','..','.git','__pycache__'}.intersection(p.parts),'Canonical path');b=raw(base/n);need(type(z['bytes']) is int and z['bytes']>=0 and type(z['sha256']) is str and re.fullmatch('[0-9a-f]{64}',z['sha256']) and len(b)==z['bytes'] and sha(b)==z['sha256'],'Whole bound bytes')
+    if mode is not None:need(type(mode) is int and stat.S_IMODE((base/n).stat().st_mode)==mode,'Exact fullmode')
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--expected-manifest-sha256',required=True);a=p.parse_args();b=raw(H/NAME);need(sha(b)==a.expected_manifest_sha256,'Explicit actual closure SHA');m=parse(b);need(set(m)=={'schema','status','utc','self_excluded','files_count','files','source_only','proposed_helpers_imported_compiled_executed','future_acceptance_or_ROOT_approval_claimed'} and m['schema']=='pr48-acceptance-source-closure/v3' and m['status']=='CLOSED_SOURCE_ONLY' and m['self_excluded']==[NAME] and m['source_only'] is True and m['proposed_helpers_imported_compiled_executed'] is False and m['future_acceptance_or_ROOT_approval_claimed'] is False,'Exact source-only self closure');rr=m['files'];need(type(rr) is list and type(m['files_count']) is int and m['files_count']==len(rr),'Typed complete rows');names=set()
+    for z in rr:need(type(z) is dict and set(z)=={'path','bytes','sha256'} and z['path'] not in names and z['path']!=NAME,'Unique exact payload');check(H,z,0o444);names.add(z['path'])
+    names.add(NAME);files=set();dirs=set()
+    for p in H.rglob('*'):need(not p.is_symlink() and (p.is_file() or p.is_dir()),'No special topology');(files if p.is_file() else dirs).add(p.relative_to(H).as_posix())
+    expected={p.as_posix() for n in names for p in PurePosixPath(n).parents if p.as_posix()!='.'};need(files==names and dirs==expected and stat.S_IMODE((H/NAME).stat().st_mode)==0o444,'Exact topology and self444');inputs=parse(raw(H/'INPUT_BINDINGS.json'))
+    for z in list(inputs['pins'].values())+inputs['external_input_rows']+list(inputs['source_pattern_dated_references'].values())+[inputs['known_predecessor_source_contract'],inputs['known_predecessor_source_manifest']]+[inputs[n] for n in ['previous_mirror','previous_post','previous_root_post']]:check(R,z,z['full_mode'])
+    history=parse(raw(H/'SUPERSEDED_SOURCE_BINDINGS.json'));need(history['status']=='SUPERSEDED_V1_NEEDS_M1_REPAIR_NOT_PROMOTED' and history['previous_PASS_transferred'] is False,'Preserved M1 qualification')
+    for section in ['superseded_source','closed_adverse']:
+        old=history[section];check(R,old['manifest'],old['manifest']['full_mode']);need(parse(raw(R/old['manifest']['path']))==old['entire_manifest'],'Entire preserved historical closure')
+        for z in old['individual_closed_members']:check(R,z,z['full_mode']);need(z['full_mode']==0o444,'Exact old frozen fullmode')
+    for k in ['report','verdict']:z=history[k];check(R,z,z['full_mode'])
+    need(parse(raw(R/history['verdict']['path']))==history['entire_adverse_verdict'],'Entire closed M1 verdict')
+    for row in history['actual_source_and_adverse_closure_readback_captures']:
+        z=row['capture'];check(R,z,z['full_mode']);need(parse(raw(R/z['path']))==row['complete_capture'],'Entire retained actual CAP4')
+        for z in row['complete_members']:check(R,z,z['full_mode'])
+    newer=parse(raw(H/'V2_M2_HISTORY_BINDINGS.json'));need(newer['status']=='CLOSED_V2_AND_CLOSED_M2_ADVERSE_UNPROMOTED' and newer['previous_PASS_transferred'] is False,'V2 M2 unpromoted')
+    for section in ['superseded_V2','closed_M2_adverse']:
+        c=newer[section];check(R,c['manifest'],c['manifest']['full_mode']);need(parse(raw(R/c['manifest']['path']))==c['entire_manifest'],'Entire actual historical closure')
+        for z in c['individual_closed_members']:check(R,z,z['full_mode']);need(z['full_mode']==0o444,'Exact current historical full444')
+    for n in ['report','verdict']:z=newer[n];check(R,z,z['full_mode'])
+    need(parse(raw(R/newer['verdict']['path']))==newer['entire_M2_verdict'],'Entire M2 verdict')
+    for row in newer['actual_closure_and_readback_captures']:
+        z=row['capture'];check(R,z,z['full_mode']);need(parse(raw(R/z['path']))==row['complete_capture'],'Entire M2-era actual CAP4')
+        for z in row['complete_members']:check(R,z,z['full_mode'])
+    prior=parse(raw(H/'ACTUAL47_PREDECESSOR_BINDINGS.json'));need(prior['actual_PR47_ROOT_post_completed'] is True and prior['future_PR48_approval_supplied'] is False,'No future48 transfer')
+    for n in ['root_post','verifier_post','mirror','original47_post_operator_source']:z=prior[n];check(R,z,z['full_mode'])
+    need(parse(raw(R/prior['root_post']['path']))==prior['entire_ROOT22_post'] and len(prior['entire_ROOT22_post'])==22 and prior['entire_ROOT22_post']['entire_post']==prior['entire_verifier_post'],'Entire actual47 ROOT22')
+    for row in [prior['complete_actual_ROOT_post_capture']]+prior['complete_six_actual_phase_captures']:
+        z=row['capture'];check(R,z,z['full_mode']);need(parse(raw(R/z['path']))==row['complete_capture'],'Entire actual47 capture')
+        for z in row['complete_members']:check(R,z,z['full_mode'])
+    need(len(inputs['external_input_rows'])==3912 and inputs['actual_predecessor_PR47_completed'] is True and type(inputs['previous_root_post']) is dict,'Fixed3912 and genuine actual47, no48 approval');print(json.dumps({'status':'PASS_CLOSED_SOURCE_ONLY_READBACK','actual_readback_pid':os.getpid(),'payload_files':len(rr),'directories':len(dirs),'manifest_sha256':sha(b),'production_imported_compiled_executed':False,'future_acceptance_approved':False},sort_keys=True))
+if __name__=='__main__':main()

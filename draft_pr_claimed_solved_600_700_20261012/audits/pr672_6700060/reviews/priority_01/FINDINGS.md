@@ -1,0 +1,72 @@
+# Independent priority and contribution audit: PR 672 / 6700060
+
+The scoped implication is mathematically consistent with the accepted source gate, but the native submission supplies no original resolution of the problem. Its controlling README, proof application, approach log, and release status all explicitly credit the decisive pre-existing theorem and disclaim discovery. This is a positive overlap finding, not an inference from unsuccessful searches. One mandatory **publication-promotion** finding is recorded below; no new mathematical defect or attribution defect is alleged. Optional findings: zero.
+
+The reviewed immutable head is `13d9b2d944ce8ec121381a4bc21e48d2bb19846e`; its selected queue row is exactly `claimed_solved`, `1/5`. All 24 native files were bound before review and are rechecked unchanged at completion. This audit does not change any status or act on the PR.
+
+## Exact target and theorem containment
+
+Let T be the following statement, in the submission's ambient-smooth category: an extremal compact full-dimensional convex Euclidean P admits no corresponding Euclidean domain P' with nonnegative face mean curvatures, all corresponding interior angles weakly smaller, and at least one strictly smaller. The original question and quantifiers are on Gromov's 2017 printed p.60. The stipulated map F and inverse extend smoothly through corners with nonsingular differential. [Original source](https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf).
+
+The decisive prior statement is Bi's Theorem 1.1, printed p.2: for arbitrary such P and smooth neighborhood metric g, nonnegative scalar and face mean curvatures and ordered dihedral angles force angle equality; flatness and totally geodesic facets are additional conclusions. No acute, simple, or upper-dimensional restriction appears. The current arXiv record displays only v1, submitted 6 August 2026. No journal acceptance or correction was verified. [Pinned theorem](https://arxiv.org/abs/2608.06320v1), [current record](https://arxiv.org/abs/2608.06320), [author's publication list](https://yuchenof.github.io/).
+
+Here is an independent explicit deduction, so the overlap does not depend on matching titles or abstracts.
+
+1. Define g=F*e on P, where e is Euclidean on the competitor. For every nonzero tangent vector v, g(v,v)=|DF(v)|²>0 because DF is invertible. Ambient smooth extensions make g smooth locally through each corner.
+2. A finite partition of unity combines local positive tensor extensions into a positive metric on one neighborhood of P. Each local tensor agrees with g on P. Positivity survives convex combination. Although curvatures of the extensions outside P are uncontrolled, the theorem only needs their prescribed signs on P. On the interior of P, F is an isometry, so R_g=0; continuity gives the same value at the boundary.
+3. The isometry preserves which side of a corresponding face is outward and preserves its induced connection and second fundamental form. Therefore H_g=H_e(P')≥0. This uses the same convention in which the ball boundary has positive curvature. No pointwise size comparison between g and the reference metric is inserted.
+4. At a ridge, let θ denote the interior wedge angle and α the angle of outward normals. Then θ=π−α. Consequently θ'(F(x))≤θ_0 is precisely α_g(x)≥α_0. Equality of normal inner products yields equality of α, hence θ, because arccos is one-to-one on [−1,1]. Strict inequality at one point remains strict under the bijection F.
+5. Apply the prior theorem to obtain θ'=θ_0 at all such points, contradicting the required strict point. The convex-extremality premise was not used; the deduction proves a stronger statement for every P in the map category.
+
+The prior theorem allows nonflat comparison metrics, whereas the submission's metrics are already flat. It also proves geometric conclusions the submission does not need. Thus this is a strict specialization in hypotheses and a weakening in conclusion, not an extension of the prior theorem. The explicit smoothness bridge is useful exposition, but it does not introduce a new obstruction or mechanism.
+
+For n=2, write β_i=π−θ_i. Turning for the embedded competitor disk gives Σβ'_i+∫k ds=2π=Σβ_i. Its assumptions imply β'_i≥β_i and k≥0, so equality holds term by term. This is the classical Gauss–Bonnet specialization, already explicitly recognized for these conjectures in the earlier literature; n=1 is vacuous. Combining this planar case with the preceding specialization does not restore a new all-dimensional result.
+
+The ambient category must remain attached to every conclusion. For example, x↦x³ on a half-line is an interior diffeomorphism whose differential vanishes at the corner; its pullback is degenerate there. Neither this example nor the theorem above proves the broader corner-singular statement. Also, combinatorially equivalent nonsimple polytopes need not have the required ambient smooth identification. No conclusion that all combinatorial convex polyhedra are extremal follows from this review.
+
+## Earlier results and exact gaps
+
+| Source inspected | Relation to T and precise limitation |
+|---|---|
+| Brendle, arXiv:2301.05087v4, Theorem 1.1, printed pp.1–2; published Invent. Math. 235 (2024), 669–708 | Arbitrary dimension and polytope, but normal pairings are assumed equal at every intersecting pair. That matching-angle theorem cannot prohibit a strict decrease because a prohibited competitor need not satisfy its hypothesis. Its smooth-domain Propositions 2.14–2.15, printed pp.10–12, are a different analytic input. [Author final](https://arxiv.org/abs/2301.05087v4), [publisher](https://doi.org/10.1007/s00222-023-01229-x). |
+| Brendle–Wang, arXiv:2308.08000v2, Theorem 1.3, printed pp.1–2; J. Reine Angew. Math. 827 (2025), 191–225 | Ordered pairings give the required angle equality, but the reference pairings at intersecting faces must be nonpositive, corresponding to nonobtuse interior angles. It covers that restricted reference class, not every extremal P. The metric's global domain can be arranged from a neighborhood by positive interpolation; this does not remove the angle restriction. [Pinned version](https://arxiv.org/abs/2308.08000v2), [publisher](https://doi.org/10.1515/crelle-2025-0048). |
+| Li, arXiv:1710.08067v2, Theorems 1.4–1.5, read with the complete 2022 correction | Dimension three, cone/prism reference types and additional angle hypotheses. The correction explicitly changes the cone assumptions, including a base-geometry condition. The original broad abstract must not be used to claim an arbitrary-polytope theorem. Its displayed flat-polyhedron conclusion alone is not the angle-equality conclusion used in the decisive argument; no complete alternate proof of T from this route is certified here. [Original](https://arxiv.org/abs/1710.08067v2), [correction](https://doi.org/10.1007/s00222-022-01104-1). |
+| Li, arXiv:1907.03855v3, Theorem 1.6 and Appendix A | Dimensions 2–7 and prism/over-prism models. The displayed theorem uses matching angles; the appendix gives the bending reduction for ordered angles. Neither the restricted reference shape nor the dimension bound can be discarded. No full independent proof audit of this route is asserted. [Pinned version](https://arxiv.org/abs/1907.03855v3). |
+| Wang–Xie–Yu, arXiv:2112.01510v6, Theorem 1.8, printed p.6 | The stated angle-equality result would suffice in all dimensions via the same pullback. The 116-page proof is not independently audited here. Bär–Hanke–Schick's July 2026 note says v6 remains under verification and directs its counterexamples to v2. This audit neither validates nor refutes v6 and does not use it as a proven premise. [Statement](https://arxiv.org/abs/2112.01510v6), [status note](https://arxiv.org/abs/2202.05180v2). |
+| Wang–Xie, arXiv:2203.09511v2, Theorem 1.5, printed p.3 | States stronger flat-corner domination; its introduction explains its relation to their prior index-theory work. The complete analytic proof is unaudited here. It is evidence of an earlier claimed result, not an additional independently validated dependency or a reason to generalize BHS's counterexamples. [Pinned version](https://arxiv.org/abs/2203.09511v2). |
+| Wang–Xie–Yu, arXiv:2606.30130v1, Theorem 1.2, printed p.2 | A stronger degree-map theorem is stated in dimension three. Its 74-page proof is unaudited here. It supplies earlier claimed three-dimensional coverage, not a proof certificate for this audit. [Pinned version](https://arxiv.org/abs/2606.30130v1). |
+
+The present conclusion does not award Bi universal first priority over these earlier claims. Establishing first priority across their delicate proof histories is unnecessary: one positively identified, version-pinned sufficient theorem predates this submitted application and is the submission's own central dependency. The separately accepted mathematical gate supports its use, while its preprint status remains stated accurately.
+
+Gromov's earlier ambient-extension definition, printed pp.2–3 of the 2013 manuscript, supports the retained smooth category. It does not prove that every broader interpretation of the 2017 word “diffeomorphic” is covered. [Primary definition](https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/Plateauhedra_modified_apr23.pdf).
+
+## Contribution inventory and reasonable repair
+
+All substantive native mathematical documents were read, including the entire 33,680-byte historical independent audit. Their genuinely authored content is a credited application, source verification, expanded checks, and reproducibility infrastructure. That work may be useful and correct without being a fresh solution of an open problem.
+
+| Native component | Strongest contribution actually supported |
+|---|---|
+| `public_packet/PROOF_APPLICATION.md`, Sections 1–3 and scope controls | Explicit identification of the Euclidean question with a pullback-metric specialization; standard positive neighborhood extension; sign and quantifier bookkeeping. No new theorem beyond the cited implication. |
+| Its dimension-two section | Classical turning argument; no new planar theorem or method. |
+| `public_packet/PROOF_VERIFICATION.md`, Sections A–E | Detailed checks of the cited source proof and its published analytic input. The central smoothing, logarithmic trace, limiting, and angle recovery mechanisms are source mechanisms, not an independently devised proof method. |
+| `independent_audit/INDEPENDENT_AUDIT.md` | Substantial authored verification and clarifications. Cancelling a scalar multiple of a nonzero spinor homomorphism before proving invertibility is a local proof simplification, not a new solution or a new angle theorem. |
+| The finite controls | Reproducible rational/Clifford/convention/scaling diagnostics. They expressly do not prove the PDE/index/compactness theorem or constitute a formally checked proof. |
+| Manifests, wrappers, release guide, source bindings | Reproducibility and provenance improvements. No mathematical novelty follows from the number of assertions or successful corruption controls. |
+
+A reasonable repair must preserve the decisive credit and the category boundary. Rewriting the title as a new affirmative solution, replacing “recent preprint” by “our proof,” or removing the credited theorem would misrepresent the actual evidence. Adding a journal review caveat affects epistemic status, not chronological priority. Adding yet more finite controls would not produce a new theorem. A concise expository verification note could be honest, but would not meet the requested framing as an original decisive resolution of an unsolved problem.
+
+Two possible genuinely new directions would be an independent Euclidean proof mechanism, or a justified extension to a weaker corner category. Neither is present. The second presently transfers the central issue to the unsupported existence of a smooth positive pullback or a new singular theorem; that route is blocked without a materially new reduction. Inventing either result would go beyond reasonable repair of this submission. No outreach is needed or proposed.
+
+## Mandatory publication finding P1
+
+**Do not promote this native result as a new original-problem-resolution preprint.** The main higher-dimensional statement is already a direct specialization of the credited earlier theorem, and no remaining original theorem, counterexample, or independent method in the packet resolves the original problem. This is not a mathematical falsification, a plagiarism accusation, a negative judgment on the value of verification, or a reclassification of every broader corner category. It is a failure of the originality requirement for the proposed publication workflow.
+
+Reasonable repair was assessed above and does not supply a fresh resolution. Accordingly, I recommend retaining the audit as research evidence and declining the new-resolution publication/merge path for this PR under the user’s stated research objective. The parent should independently decide the PR disposition. I have made no remote action and do not require any queue-status change.
+
+## Search and verification boundary
+
+Twenty-six targeted web searches covered exact title/identifier, versions/corrections/withdrawal, author records, and earlier theorem families. Twelve primary PDFs were retrieved and hashed; relevant statements and proof locations were directly inspected. The complete BHS note and Li correction were read. Three critical pages were rendered and visually read: original p.60, decisive theorem p.2, BHS p.4. Raw source copies/extracts/images remain in this review's `tmp/` only and are excluded from the public freeze.
+
+No current journal acceptance for Bi and no relevant correction were found in this bounded search; neither negative observation is a comprehensive clearance or community-consensus certificate. The source-ledger inspection scopes distinguish full notes, statement checks, and proof checks. The complete WXY/WX proofs, all earlier literature, third-party problem detail pages, raw AI corpora, and exhaustive repository history were not audited. None is required for the positively verified direct prior overlap.
+
+This audit is AI-assisted and unrefereed. It does not establish human peer review or formal verification. Completion estimate: 100% of the assigned priority/contribution audit; 0% novelty certification for the proposed new-resolution paper.

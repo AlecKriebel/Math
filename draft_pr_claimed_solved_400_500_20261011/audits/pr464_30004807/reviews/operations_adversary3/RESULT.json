@@ -1,0 +1,87 @@
+{
+  "reviewer": "/root/pr464_operations_adversary3",
+  "identity": "/root/pr464_operations_adversary3",
+  "round": 3,
+  "review_type": "fresh_complete_operations_adversary",
+  "verdict": "REQUEST_CHANGES",
+  "pr": 464,
+  "problem_id": "30004807",
+  "original_pr_head": "97b2ed225574ca61bd03cb8db021a533e04938dc",
+  "completed_utc": "2026-10-12T15:02:22.101640+00:00",
+  "completion_percent": 100,
+  "blocking_issue_count": 2,
+  "required_correction_count": 2,
+  "helpers": {
+    "operations/common.py": "ba508397f2999c90f1d6e8bc1ef327f4258cc3a6e9acb4a7fe255051506a74ac",
+    "operations/zenodo_pr464.py": "f9bf46bb315cb62687504a261ef007f5b94e1ac3812137ff6af1866a09b50995",
+    "operations/register_pr464_tracker.py": "6454154cc7a24fac9e5b85a0147ddfccc58e3db4f72b5f855c39ef0080e70d44",
+    "operations/integrate_pr464_publication.py": "1f5629b7aea5c6de4dda3b67655540c9fae0a434130b872f485a662388f2ba5b"
+  },
+  "archive_builder_sha256": "3a893ba4f11fa6681e6dbd7c92366dfacde8658eefb67a25acddfd8e8c17c7f5",
+  "zenodo_kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "input_manifest_sha256": "6354507a17d9eca504e5db085621b645fc4afb9cd00291e74ee0e5a145c8a352",
+  "report": "REPORT.md",
+  "report_sha256": "26a423b7fd48e1a6f8383df744bb0bc618a82bd1245b0ba3ff18b36f4838219d",
+  "independent_expectations_per_mode": 84,
+  "independent_passed_expectations_per_mode": 80,
+  "independent_failed_expectations_per_mode": 4,
+  "failed_expectations": [
+    {
+      "case": "actual_operation_receipt_hardlink_boundary",
+      "passed": false,
+      "error_type": "RuntimeError",
+      "error": "Fixed Zenodo operation receipt overwrote an unrelated hard-linked file before dispatch",
+      "real_external_calls": 0
+    },
+    {
+      "case": "actual_stage_runner_preflight_hardlink_boundary",
+      "passed": false,
+      "error_type": "RuntimeError",
+      "error": "The actual stage runner clobbered an unrelated hard-linked preflight file and reached one mocked stage dispatch",
+      "real_external_calls": 0
+    },
+    {
+      "case": "actual_integration_body_symlink_boundary",
+      "passed": false,
+      "error_type": "RuntimeError",
+      "error": "Verified integration followed an unsafe PR_BODY_CURRENT.md output and overwrote the unrelated target",
+      "real_external_calls": 0
+    },
+    {
+      "case": "actual_integration_body_hardlink_boundary",
+      "passed": false,
+      "error_type": "RuntimeError",
+      "error": "Verified integration followed an unsafe PR_BODY_CURRENT.md output and overwrote the unrelated target",
+      "real_external_calls": 0
+    }
+  ],
+  "new_complete_builder_expectations_per_mode": 41,
+  "all_new_complete_builder_expectations_pass": true,
+  "sealed_preparer_replay_expectations_per_mode": 158,
+  "sealed_round2_replay_expectations_per_mode": 160,
+  "all_replays_pass": true,
+  "normal_optimized_results_byte_identical": true,
+  "actual_missing_gate_probes": 7,
+  "actual_final_gate_absent": true,
+  "all_reviewed_inputs_unchanged": true,
+  "eight_reviewed_candidate_files_unchanged": true,
+  "real_external_calls": 0,
+  "external_mutations_performed": false,
+  "individual_contact_performed": false,
+  "reviewed_sources_package_queue_checkout_index_edited": false,
+  "issues": [
+    {
+      "id": "R1",
+      "blocking": true,
+      "required_correction": true,
+      "mechanism": "common.dump follows existing hard links on actual fixed operational receipt paths; actual stage overwrites unrelated valid preflight target before mock dispatch."
+    },
+    {
+      "id": "R2",
+      "blocking": true,
+      "required_correction": true,
+      "mechanism": "Direct PR_BODY_CURRENT.md write follows symlink/hard link after successful mock integration; must preflight before all remote Git mutations and use common safe complete-file writer."
+    }
+  ],
+  "required_next_review": "NEW operations adversary 4 after global repairs; preserve this historical REQUEST_CHANGES evidence."
+}

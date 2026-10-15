@@ -1,0 +1,821 @@
+{
+  "summary": {
+    "total": 113,
+    "passed": 103,
+    "required_failures": [
+      {
+        "test": "31 current programme factual alias must reject next_intake_requires_actual_completion_receipt",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "31 current programme factual alias must reject actual_factual_checkpoint_accepted",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "31 current programme factual alias must reject last_completed_actual_final_receipt",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "31 current programme factual alias must reject completion_metadata_checkpoint_pending_at_snapshot",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32 false current Root case log factual acceptance/PR192 claim rejected",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32b factual100 current programme alias must reject next_intake_requires_actual_completion_receipt",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32b factual100 current programme alias must reject actual_factual_checkpoint_accepted",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32b factual100 current programme alias must reject completion_metadata_checkpoint_pending_at_snapshot",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32b factual100 current programme alias must reject last_completed_actual_final_receipt",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      },
+      {
+        "test": "32c factual100 false current Root log PR192 intake claim rejected",
+        "expectation": "reject",
+        "passed": false,
+        "observed": "accept"
+      }
+    ]
+  },
+  "tests": [
+    {
+      "test": "01 gate positive complete synthetic fixture50 original16",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "02 valid full flow publication-to-actual-factual-acceptance",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "03 programme live cursor remains191 even factual commit",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "04 factual receipt alone authorizes subsequent intake",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "05 service exactly one stage publish RAW append",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "06 inert imports all adapters no process/network/fixture mutation",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "07 direct publication consumption without runtime rejects",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: External observations require explicit production entrypoint or injected test services"
+    },
+    {
+      "test": "08 gate draft gate",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Final Root gate absent/unrecognized"
+    },
+    {
+      "test": "08 gate wrong original head",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Wrong original PR/head"
+    },
+    {
+      "test": "08 gate unresolved repairs",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Qualified route/review gate"
+    },
+    {
+      "test": "08 gate duplicate science identity",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Distinct successive reviewers/latest clean required"
+    },
+    {
+      "test": "08 gate duplicated scientific evidence",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Distinct per-review evidence paths required"
+    },
+    {
+      "test": "08 gate latest science review unfinished",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Distinct successive reviewers/latest clean required"
+    },
+    {
+      "test": "08 gate missing exact runtime clearance",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Trusted Root operational clearance absent from gate"
+    },
+    {
+      "test": "08 gate missing scientific projection",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Trusted Root case scientific projection absent"
+    },
+    {
+      "test": "09 installed runtime drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Operational clearance runtime identities differ"
+    },
+    {
+      "test": "10 publication rejects environment",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual production publication absent"
+    },
+    {
+      "test": "10 publication rejects id",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual production publication absent"
+    },
+    {
+      "test": "10 publication rejects state",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual production publication absent"
+    },
+    {
+      "test": "10 publication rejects doi_url",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual DOI/record identity invalid"
+    },
+    {
+      "test": "10 publication rejects gate_sha256",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Publication belongs to another gate"
+    },
+    {
+      "test": "10 publication rejects verified_utc",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Published observation is in the future"
+    },
+    {
+      "test": "10 publication rejects files",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Publication exact uploaded file pins absent/different"
+    },
+    {
+      "test": "11 fresh consumer rejects service file drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Publication exact uploaded file pins absent/different"
+    },
+    {
+      "test": "12 fresh consumer rejects changed assigned DOI",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Fresh exact-kit published identity differs from local acceptance"
+    },
+    {
+      "test": "13 fresh consumer rejects foreign row edit",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Fresh tracker pre-existing foreign rows changed; reconcile without repair"
+    },
+    {
+      "test": "14 fresh consumer rejects duplicate DOI row",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Fresh trusted tracker DOI uniqueness/row drift"
+    },
+    {
+      "test": "15 fresh consumer rejects own four-cell drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Fresh trusted own-row drift"
+    },
+    {
+      "test": "16 fresh consumer rejects target gid/tab drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Fresh tracker sheet/gid/tab drift"
+    },
+    {
+      "test": "17 fresh consumer permits ordered unrelated tracker addition",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "18 sanitized public tracker receipts omit foreign rows",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "19 native scientific JSON drift with rehashed pointer+manifest",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Native generation pin differs from deterministic expected bytes CURRENT_RESULT.json"
+    },
+    {
+      "test": "20 native companion exact bytes",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Current native companion manifest differs from pointer"
+    },
+    {
+      "test": "21 original16 preserved byte-exact",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Unapproved full native byte/JSON/text/log transformation ORIGINAL_SUBMISSION/original_00.txt"
+    },
+    {
+      "test": "22 coherent QUEUE foreign row map/tree/message internally valid",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "23 actual merge rejects coherent QUEUE foreign row",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Prepared QUEUE differs from exact true-parent/original-head/BASE transformation"
+    },
+    {
+      "test": "22 coherent QUEUE historical status map/tree/message internally valid",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "23 actual merge rejects coherent QUEUE historical status",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Prepared QUEUE differs from exact true-parent/original-head/BASE transformation"
+    },
+    {
+      "test": "22 coherent QUEUE actual DOI map/tree/message internally valid",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "23 actual merge rejects coherent QUEUE actual DOI",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Prepared QUEUE differs from exact true-parent/original-head/BASE transformation"
+    },
+    {
+      "test": "24 phase95 UTC before evidence",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase95 UTC future",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase95 UTC invalid date",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp value"
+    },
+    {
+      "test": "24 phase95 UTC non UTC",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp schema"
+    },
+    {
+      "test": "24 phase95 updated_UTC before evidence",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase95 updated_UTC future",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase95 updated_UTC invalid date",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp value"
+    },
+    {
+      "test": "24 phase95 updated_UTC non UTC",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp schema"
+    },
+    {
+      "test": "25 phase95 inclusive evidence lower bound both dates",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "26 phase95 dates reversed within allowed interval",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme UTC is later than updated_UTC"
+    },
+    {
+      "test": "24 phase100 UTC before evidence",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase100 UTC future",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase100 UTC invalid date",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp value"
+    },
+    {
+      "test": "24 phase100 UTC non UTC",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp schema"
+    },
+    {
+      "test": "24 phase100 updated_UTC before evidence",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase100 updated_UTC future",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "24 phase100 updated_UTC invalid date",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp value"
+    },
+    {
+      "test": "24 phase100 updated_UTC non UTC",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Invalid UTC factual timestamp schema"
+    },
+    {
+      "test": "25 phase100 inclusive evidence lower bound both dates",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "26 phase100 dates reversed within allowed interval",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme UTC is later than updated_UTC"
+    },
+    {
+      "test": "27 coherent unapproved content rejected draft_pr_publication_program_20260930/audits/pr191_5000005/IMMUTABLE_SUPPORT.txt",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Selected immutable case identity differs from trusted gate/source draft_pr_publication_program_20260930/audits/pr191_5000005/IMMUTABLE_SUPPORT.txt"
+    },
+    {
+      "test": "27 coherent unapproved content rejected draft_pr_publication_program_20260930/audits/pr191_5000005/package_fixture/note.tex",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Selected immutable case identity differs from trusted gate/source draft_pr_publication_program_20260930/audits/pr191_5000005/package_fixture/note.tex"
+    },
+    {
+      "test": "27 coherent unapproved content rejected draft_pr_publication_program_20260930/audits/pr191_5000005/lifecycle_common.py",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Selected immutable case identity differs from trusted gate/source draft_pr_publication_program_20260930/audits/pr191_5000005/lifecycle_common.py"
+    },
+    {
+      "test": "28 exact immutable operative message forbids suffix",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Exact approved operative commit message/map binding drift"
+    },
+    {
+      "test": "29 true parent tree mismatch",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Receipt parent tree differs from actual first parent"
+    },
+    {
+      "test": "30 exact programme facts reject advance_to_next_PR_authorized_now",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme actual phase facts/priority/cursor differ"
+    },
+    {
+      "test": "30 exact programme facts reject next_numeric_intake_cursor",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme actual phase facts/priority/cursor differ"
+    },
+    {
+      "test": "30 exact programme facts reject fully_completed_eligible_PRs",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme sets not exact true-parent stage increments"
+    },
+    {
+      "test": "30 exact programme facts reject current_priority_clearance",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Programme actual phase facts/priority/cursor differ"
+    },
+    {
+      "test": "31 current programme factual alias must reject next_intake_requires_actual_completion_receipt",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "31 current programme factual alias must reject actual_factual_checkpoint_accepted",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "31 current programme factual alias must reject last_completed_actual_final_receipt",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "31 current programme factual alias must reject completion_metadata_checkpoint_pending_at_snapshot",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32 false current Root case log factual acceptance/PR192 claim rejected",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32b factual100 current programme alias must reject next_intake_requires_actual_completion_receipt",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32b factual100 current programme alias must reject actual_factual_checkpoint_accepted",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32b factual100 current programme alias must reject completion_metadata_checkpoint_pending_at_snapshot",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32b factual100 current programme alias must reject last_completed_actual_final_receipt",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32c factual100 false current Root log PR192 intake claim rejected",
+      "expectation": "reject",
+      "passed": false,
+      "observed": "accept"
+    },
+    {
+      "test": "32d phase95 inclusive current-clock upper bound both dates",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "32d phase100 inclusive current-clock upper bound both dates",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "33 factual100 case rejects goal_complete",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Protected case scientific/identity/priority projection differs"
+    },
+    {
+      "test": "33 factual100 case rejects original_effort",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Protected case scientific/identity/priority projection differs"
+    },
+    {
+      "test": "33 factual100 case rejects actual_original_PR_merged",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Case actual phase publication/tracker/merge/count facts differ"
+    },
+    {
+      "test": "33 factual100 case rejects case_completion_requires_actual_factual_postimage_acceptance",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Case factual postimage authority condition missing"
+    },
+    {
+      "test": "34 factual100 exact workflow prevents premature effective status",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Exact workflow completion factual schema/values differ"
+    },
+    {
+      "test": "35 factual acceptance permits unrelated descendant",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "36 combined actual MAIN selected identities reject support drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Selected current MAIN identity drift draft_pr_publication_program_20260930/audits/pr191_5000005/IMMUTABLE_SUPPORT.txt"
+    },
+    {
+      "test": "37 uncertain publication first POST committed but response lost",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "TimeoutError: independent injected publish-after-commit response loss"
+    },
+    {
+      "test": "38 uncertain publication retry reconciles read-only published record",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "39 no duplicate publication POST after response loss",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "40 uncertain tracker append committed but response lost",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "TimeoutError: independent injected append-after-commit response loss"
+    },
+    {
+      "test": "41 retry accepts exact existing row after two new reads",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "42 no duplicate RAW append after response loss",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "43 unknown earlier append with absent row forbids blind retry",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Unknown earlier append outcome; no automatic second write"
+    },
+    {
+      "test": "44 unknown absent append issued zero writes",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "45 stale MAIN fresh preparation reuses immutable100 generation",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "46 stale retry retains pointer and every native byte",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "47 unchanged-generation stale retry actual full acceptance",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "48 protected fifty-file full derivation after all attacks",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "49 valid original head metadata ready guards",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "50 metadata exact approved title",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual PR metadata differs from final reviewed request"
+    },
+    {
+      "test": "50 metadata exact approved body",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual PR metadata differs from final reviewed request"
+    },
+    {
+      "test": "51 original PR head drift",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Original head/open state drift"
+    },
+    {
+      "test": "52 original PR readiness guard",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: PR draft/ready state drift"
+    },
+    {
+      "test": "53 explicit production entrypoint refuses existing injected context",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Use an explicit Python -B production entrypoint"
+    },
+    {
+      "test": "54 native future generation even coherent reconstructed bytes",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Native receipt predates its factual transformation"
+    },
+    {
+      "test": "55 native merged generation before actual accepted merge",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Actual factual timestamp outside accepted evidence/current-clock interval"
+    },
+    {
+      "test": "56 unselected foreign full-tree mutation",
+      "expectation": "reject",
+      "passed": true,
+      "observed": "reject",
+      "error": "RuntimeError: Full-tree foreign scope drift"
+    },
+    {
+      "test": "57 Root handoff exact frozen v4 content",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "58 Root handoff auth+input hashes precede exclusive install and authority",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "59 Root handoff exact9/no-overwrite/no-service/factual authority checks static",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    },
+    {
+      "test": "60 dated556 seed exact content and number of immutable pins",
+      "expectation": "accept",
+      "passed": true,
+      "observed": "accept"
+    }
+  ]
+}

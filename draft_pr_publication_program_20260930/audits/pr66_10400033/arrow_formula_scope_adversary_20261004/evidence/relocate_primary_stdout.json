@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "python3",
+    "-c",
+    "import pathlib,json,datetime; r=pathlib.Path(\".\"); f=r/\"evidence/primary_formula_text.json\"; j=json.loads(f.read_text()); p=pathlib.Path(j[\"stdout\"][\"path\"]); q=pathlib.Path(\"/Users/alec/.cache/codex-pr66-arrow-audit-20261004/receipts/primary_formula_text.stdout\"); q.parent.mkdir(exist_ok=True); p.rename(q); j[\"stdout\"][\"path\"]=str(q); j[\"stdout_relocation\"]={\"from\":str(p),\"to\":str(q),\"utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"reason\":\"keep copyrighted primary text outside repository\"}; f.write_text(json.dumps(j,indent=2)+\"\\n\"); print(j[\"stdout_relocation\"])"
+  ],
+  "pid": 36503,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004",
+  "utc_start": "2026-10-04T16:19:06.262550+00:00",
+  "utc_end": "2026-10-04T16:19:06.293420+00:00",
+  "exit_code": 0,
+  "stdout": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004/evidence/relocate_primary_stdout.stdout",
+    "bytes": 376,
+    "sha256": "e3b753a42f403616417c090965520dc18a0200244e0946356daec7b76756073c"
+  },
+  "stderr": {
+    "path": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/arrow_formula_scope_adversary_20261004/evidence/relocate_primary_stdout.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

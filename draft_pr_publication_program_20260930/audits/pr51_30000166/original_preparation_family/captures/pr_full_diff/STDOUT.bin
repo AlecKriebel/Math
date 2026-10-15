@@ -1,0 +1,1499 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..d556b39a9 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -74,7 +74,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+ | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+ | 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
++| 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | already_solved | 0/5 |  | 2026-09-30: The full all-positive-integer eta-product positivity theorem was proved by Berkovich-Garvan in2006 and published in2008. Separate audit verified the theta proof, all composite cases and q-exponent correction;2837author and35980independent checks. Duplicate30000167 shares this result; zero new discovery credit. Draft PR: https://github.com/AlecKriebel/Math/pull/51. |  |
+ | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30000166/PR_DRAFT.md b/unsolved_math_prioritization/attempts/30000166/PR_DRAFT.md
+new file mode 100644
+index 000000000..ddfea905e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/PR_DRAFT.md
+@@ -0,0 +1,13 @@
++## Summary
++
++- Correct the status of 30000166 and duplicate 30000167: the exact Möbius–totient eta-product positivity conjecture was proved by Berkovich–Garvan in 2006 and published in 2008
++- Match the original 2005 report to the full known proof, with explicit Fourier normalization, theta specialization, residue pairing, and all-integer coverage
++- Preserve attribution, source/version limitations, bounded reproducible checks, and 0/5 fresh proof-attempt accounting
++
++This package makes no campaign discovery claim. The exact frozen artifact passed independent adversarial review. Shared queue updates belong to the parent workflow and should use one PR for both duplicate records.
++
++## Validation
++
++`python3 unsolved_math_prioritization/attempts/30000166/verify.py`
++
++2,837 exact assertions pass. Independent adversarial review: PASS, with 35,980 additional exact assertions and no mandatory correction.
+diff --git a/unsolved_math_prioritization/attempts/30000166/README.md b/unsolved_math_prioritization/attempts/30000166/README.md
+new file mode 100644
+index 000000000..c9e56d7b4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/README.md
+@@ -0,0 +1,13 @@
++# 30000166 — Positivity of Saito's eta products
++
++The exact target, including duplicate 30000167, is already a theorem of Berkovich–Garvan (2006 preprint; published 2008). No fresh discovery or proof-attempt credit is claimed.
++
++- [Source status and credited proof audit](SOURCE_STATUS.md)
++- [Source provenance and prior-attempt gate](provenance.json)
++- [Exact target](source_record.json) and [duplicate](duplicate_source_record.json)
++- [Bounded exact checks](verify.py), [results](verification.json)
++- [Research log](RESEARCH_LOG.md), [attempt accounting](turns.json)
++
++Reproduce from this directory with `python3 verify.py`. It needs only Python 3's standard library. The finite checks support the source/transcription audit; the general proof uses the explicitly cited classical identities.
++
++The frozen mathematical artifact passed [separate adversarial review](independent_review/REVIEW.md): all 2,837 submitted and 35,980 independent exact assertions passed, with no required correction. Its historical pending-review sentence is retained to preserve the reviewed snapshot. The parent workflow owns shared queue edits; both duplicate rows should reference one package.
+diff --git a/unsolved_math_prioritization/attempts/30000166/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30000166/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..436783ac8
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/RESEARCH_LOG.md
+@@ -0,0 +1,11 @@
++# Research log
++
++All times UTC, September 30, 2026. Selected model: gpt-6-astra, xhigh. The repository's aspirational ultra setting is not the actual selected setting.
++
++- 06:18 — Began the exact-source and prior-attempt gates for rank 66. Read repository instructions and pinned complete record. The live problem page was unavailable to the web reader. Found Berkovich–Garvan's exact all-integer theorem immediately. No fresh proof search initiated. Source-audit completion estimate: 35%.
++- 06:21 — Read original OWR pp. 54–55 and the full relevant 2007 proof (Theorem 1.2, Sections 2–3); distinguished this formula from the regular-weight-system conjecture. Confirmed published 2008 metadata and earlier 2006 preprint. Source-audit completion estimate: 75%.
++- 06:27 — All-state PR searches, remote branch search, local state/group/folder checks found no earlier campaign attempt. Pinned record 30000167 is an exact duplicate composite-case question. It shares this result and does not receive a second budget or PR.
++- 06:28 — Visually checked OWR p. 54; its displayed denominator 12 in the prime-case leading exponent is inconsistent with its eta definition. Used the correct denominator 24, as in Berkovich–Garvan. This does not change positivity.
++- 06:31 — Froze SOURCE_STATUS.md with the exact all-integer factorization and a detailed justification of the theta specialization. All 2,837 bounded exact controls passed. No remaining case of the displayed target is open. Source-audit completion estimate: 100%; independent publication review pending. Fresh proof attempts: 0/5. This is a known-result correction with full prior attribution.
++
++- 06:41 — Separate reviewer passed the exact frozen source-status artifact, including all-integer and duplicate coverage. All 2,837 submitted and 35,980 independent assertions passed. Copied the five review deliverables unchanged. Publication readiness: 100%; one draft PR authorized, no mathematical change.
+diff --git a/unsolved_math_prioritization/attempts/30000166/SOURCE_STATUS.md b/unsolved_math_prioritization/attempts/30000166/SOURCE_STATUS.md
+new file mode 100644
+index 000000000..a33ecfc0a
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/SOURCE_STATUS.md
+@@ -0,0 +1,119 @@
++# Saito's Möbius–totient eta product: an already proved theorem
++
++**Target:** 30000166 / OWR-782-007; duplicate target 30000167.  
++**Classification:** known affirmative answer; recommended `already_solved`, 0/5 fresh proof attempts.  
++**Credit:** Alexander Berkovich and Frank G. Garvan, 2006 preprint, expanded 2007 preprint, published 2008. This is a source correction and proof-scope audit, not a new discovery. Separate review of this package is required before its draft PR.
++
++## 1. Exact source and resolution
++
++In Tomoyoshi Ibukiyama's contribution to [Oberwolfach Report 1/2005](https://doi.org/10.4171/owr/2005/01), printed pp. 54–55, the conjecture is the nonnegativity of every Fourier coefficient of
++
++$$S_N(\tau)=\eta(N\tau)^{\varphi(N)}\prod_{d\mid N}\eta(d\tau)^{-\mu(d)}\qquad(N\ge1).$$
++
++The report proves prime-power cases and leaves the case with at least two distinct prime factors open. This is precisely the present target. The report also discusses eta products from regular weight systems; that broader terminology must not replace this explicit formula. Pinned record 30000167 repeats the same remaining composite case and is covered by this one audit.
++
++Berkovich–Garvan's [July 25, 2006 preprint](https://arxiv.org/abs/math/0607606) states this exact formula as Conjecture 1.1 and proves it for every positive integer. Their [expanded February 1, 2007 paper](https://arxiv.org/abs/math/0702027), also Conjecture 1.1, gives the necessary theta identity in Theorem 1.2 and the full proof in Section 3 (printed pp. 5–6). The published reference is *Journal of Number Theory* **128** (2008), no. 6, 1731–1748, [DOI 10.1016/j.jnt.2007.02.002](https://doi.org/10.1016/j.jnt.2007.02.002), independently confirmed by the [author's publication list](https://qseries.org/fgarvan/publist.html). The mathematical audit below uses the full accessible 2007 preprint rather than claiming a line-by-line comparison with the typeset journal version.
++
++Both arXiv records currently show one version, with no withdrawal notice. The bounded current-source search found no correction affecting this theorem. Yasuda's [2010 paper](https://ems.press/content/serial-article-files/41111) treats the regular-weight-system conjecture and explicitly credits Berkovich–Garvan for the distinct eta-product family here (p. 563); it is not necessary to substitute that later theorem for the exact resolution.
++
++## 2. Fourier normalization
++
++Put $q=e^{2\pi i\tau}$ and $E(q)=\prod_{m\ge1}(1-q^m)$. Then
++
++$$S_N(\tau)=q^{A_N}\widetilde S_N(q),\qquad
++A_N=\frac{N\varphi(N)-\sum_{d\mid N}d\mu(d)}{24},\qquad
++\widetilde S_N(q)=\frac{E(q^N)^{\varphi(N)}}{\prod_{d\mid N}E(q^d)^{\mu(d)}}.$$
++
++Thus it suffices to prove $\widetilde S_N\in\mathbb Z_{\ge0}[[q]]$. A possibly fractional leading exponent does not change coefficient signs. For $N=1$ the product is exactly 1. For a prime $p$, $A_p=(p^2-1)/24$.
++
++The original report's displayed prime-case formula on p. 54 prints $(p^2-1)/12$. Direct inspection of the PDF confirms that denominator; with the report's own $\eta=q^{1/24}E(q)$ definition, the correct denominator is 24. Berkovich–Garvan's equation (1.6) uses 24. This local normalization discrepancy has no effect on the coefficient-positivity theorem.
++
++## 3. The imported positive identities
++
++We use two explicit identities from Berkovich–Garvan, with their original attribution. For every integer $t\ge1$,
++
++$$\frac{E(q^t)^t}{E(q)}=\sum_{m\ge0}a_t(m)q^m,$$
++
++where $a_t(m)$ counts $t$-core partitions. This is their equation (1.5), credited to Littlewood and to the combinatorial proof of Garvan–Kim–Stanton. In particular all coefficients are nonnegative, including the case $t=1$.
++
++For $a\ge2$, let $\Lambda_a=\{n\in\mathbb Z^a:\sum_i n_i=0\}$ and
++
++$$Q_a(n)=\frac a2\sum_{i=0}^{a-1}n_i^2+\sum_{i=0}^{a-1}i n_i,
++\qquad [z;q]_\infty=\prod_{m\ge0}(1-zq^m)(1-z^{-1}q^{m+1}).$$
++
++Their Theorem 1.2 states
++
++$$C_a(z;q):=\sum_{n\in\Lambda_a}\sum_{j=0}^{a-1}q^{Q_a(n)}z^{a n_j+j}
++=E(q)E(q^a)^{a-2}\frac{[z^a;q^a]_\infty}{[z;q]_\infty}.$$
++
++This is a convergent theta identity for $|q|<1$ and $z\ne0$, interpreted by removable continuation when necessary. Its proof in Section 2 is available in full: both sides satisfy $F(qz)=z^{-(a-1)}F(z)$; the theta summands are permuted by cyclic lattice changes of variables; equality at the $a$th roots of unity follows from cancellation and the known core theta identity at 1. The standard theta uniqueness step then establishes the identity. We rely on this credited theorem, rather than presenting it as newly proved here.
++
++### Specialization is legitimate and preserves positivity
++
++For integers $M>r>0$, the exponent after substituting $z=q^r$ and the base $q^M$ is
++
++$$e(n,j)=M Q_a(n)+r(a n_j+j).$$
++
++Here are explicit checks that this is a genuine nonnegative-power series, not merely a formal substitution in an uncontrolled Laurent series. On $\Lambda_a$,
++
++$$Q_a(n)=\sum_{i=0}^{a-1}\left(\frac a2 n_i(n_i-1)+i n_i\right)\ge0.$$
++
++Each individual summand is a nonnegative integer: this is immediate for $n_i\ge0$, while $n_i=-k<0$ gives $k(a(k+1)/2-i)>0$.
++
++Let $T_jn=(n_1,\ldots,n_{a-1},n_0)+e_{j-1}-e_{a-1}$ for $j\ge1$, and let $T_0n=(n_1,\ldots,n_{a-1},n_0)$. These are bijections of $\Lambda_a$, and direct expansion gives
++
++$$Q_a(T_jn)-Q_a(n)=a n_j+j.$$
++
++Consequently
++
++$$e(n,j)=(M-r)Q_a(n)+r Q_a(T_jn)\ge0.$$
++
++The positive-definite quadratic part also makes each sublevel set finite. Hence the specialized theta series belongs to $\mathbb Z_{\ge0}[[q]]$, with finitely many summands contributing to each coefficient.
++
++Define
++
++$$D_a(z;q)=\frac{E(q^a)^a}{E(q)}C_a(z;q)
++=E(q^a)^{2a-2}\frac{[z^a;q^a]_\infty}{[z;q]_\infty}.$$
++
++The two identities now imply $D_a(q^r;q^M)\in\mathbb Z_{\ge0}[[q]]$ whenever $0<r<M$.
++
++## 4. Factorization covering every positive integer
++
++This is the factorization in Section 3 of the cited paper, with its parameter coverage made explicit. First, Möbius inversion gives
++
++$$\prod_{d\mid M}E(q^d)^{\mu(d)}
++=\prod_{\substack{k\ge1\\(k,M)=1}}(1-q^k),$$
++
++since the exponent of $1-q^k$ on the left is $\sum_{d\mid(M,k)}\mu(d)$.
++
++Suppose $N=pM$, where $p$ is prime, $M>1$ is odd, and $p\nmid M$. Pair the reduced residue classes $r$ and $M-r$. With
++
++$$R_M=\{r:1\le r\le(M-1)/2,\ (r,M)=1\},$$
++
++there are $\varphi(M)/2$ pairs and
++
++$$\prod_{d\mid M}E(q^d)^{\mu(d)}=\prod_{r\in R_M}[q^r;q^M]_\infty.$$
++
++The divisors of $pM$ split into $d$ and $pd$, with $\mu(pd)=-\mu(d)$ for $d\mid M$. Therefore
++
++$$\boxed{\widetilde S_{pM}(q)=\prod_{r\in R_M}D_p(q^r;q^M).}$$
++
++Indeed, the numerator's exponent of $E(q^{pM})$ is $(2p-2)|R_M|=(p-1)\varphi(M)=\varphi(pM)$, and the bracket quotient gives precisely the ratio of the two Möbius products. Every factor has nonnegative coefficients by Section 3.
++
++For $N=p^\alpha M$ with $p\nmid M$, let $N'=pM$ and $t=p^{\alpha-1}$. The nonzero Möbius terms depend only on the prime divisors, so $N$ and $N'$ have the same denominator product. Also $\varphi(N)=t\varphi(N')$. Hence
++
++$$\boxed{\widetilde S_N(q)=
++\left(\frac{E((q^{N'})^t)^t}{E(q^{N'})}\right)^{\varphi(N')}
++\widetilde S_{N'}(q).}$$
++
++The first factor is a positive integral power of a $t$-core generating function. If $M=1$, begin instead with
++
++$$\widetilde S_p(q)=E(q^p)^p/E(q),$$
++
++and the same lifting formula handles all prime powers. Finally, every $N>1$ is covered: when $N$ is even choose $p=2$ and remove its full prime-power factor, leaving odd $M$; when $N$ is odd choose any prime divisor and again remove its full power, leaving odd $M$. Together with $N=1$, this proves the exact all-$N$ statement using the known identities.
++
++## 5. Scope and reproducibility
++
++There is no remaining mathematical case of targets 30000166 or 30000167 under the displayed formula. The conclusion is nonnegative, not strictly positive, coefficients. For instance zeros in core-partition series are permitted. No claim about all conceivable regular-weight eta products is made.
++
++Run `python3 verify.py` from this directory. It uses only the Python standard library and checks finite coefficient expansions, Möbius exponents, the full parameter split, the prime-power lifting formula, and the specialized theta identity in small exact cases. Those bounded diagnostics check transcription and boundary cases; they do not replace the general proof or the imported theta/core identities. The separate reviewer should verify exact source matching, the formal specialization, the odd-$M$ residue pairing, and the all-integer case split.
+diff --git a/unsolved_math_prioritization/attempts/30000166/duplicate_source_record.json b/unsolved_math_prioritization/attempts/30000166/duplicate_source_record.json
+new file mode 100644
+index 000000000..f53a0cd40
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/duplicate_source_record.json
+@@ -0,0 +1,64 @@
++{
++  "id": 30000167,
++  "problem_number": "OWR-782-008",
++  "title": "Duplicate Saito Positivity Conjecture",
++  "statement": "Prove or disprove K. Saito's positivity conjecture for the relevant eta products when h is divisible by at least two distinct primes.",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Gitter und Anwendungen (2005), Oberwolfach Reports, DOI 10.4171/owr/2005/01, pp. 5--67](https://doi.org/10.4171/owr/2005/01)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** open\n\n**Assessment.** The primary report states that the case with at least two distinct prime divisors has no general answer, with only affirmative examples; no later general solution was located.\n\n**Sources checked.**\n\n- [original OWR report](https://doi.org/10.4171/owr/2005/01)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2005,
++  "category_id": 1,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2005/01",
++  "source_citation": "Gitter und Anwendungen (2005), Oberwolfach Reports, DOI 10.4171/owr/2005/01, pp. 5--67",
++  "literature_assessment": "The primary report states that the case with at least two distinct prime divisors has no general answer, with only affirmative examples; no later general solution was located.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2005/01",
++      "label": "original OWR report"
++    }
++  ],
++  "literature_checked_at": "2026-08-21",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-782-008",
++    "literature-status:open",
++    "owr-year:2005"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 1,
++    "name": "number_theory",
++    "display_name": "Number Theory",
++    "description": "Properties of integers, prime numbers, Diophantine equations.",
++    "slug": "number-theory",
++    "order_index": 1,
++    "created_at": "2026-07-31T15:26:25.670Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "Prove or disprove K. Saito's positivity conjecture for the relevant eta products when h is divisible by at least two distinct primes.",
++  "clean_statement": null,
++  "statement_status": "unrecoverable",
++  "statement_verification": "The official Oberwolfach report was checked directly. This extraction repeats the same source problem as OWR-782-007 and restates the same Saito positivity conjecture without its formula."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/independent_review/REVIEW.md b/unsolved_math_prioritization/attempts/30000166/independent_review/REVIEW.md
+new file mode 100644
+index 000000000..426cbb831
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/independent_review/REVIEW.md
+@@ -0,0 +1,218 @@
++# Independent review: Saito's Möbius–totient eta product
++
++**Verdict: PASS — exact known affirmative resolution.** The recommendation
++**already_solved**, with **zero fresh proof attempts**, is justified for
++30000166 and its duplicate 30000167. Berkovich and Garvan prove the displayed
++product has nonnegative Fourier coefficients for every positive integer.
++No unresolved composite case survives, and this package makes no new-discovery
++claim. No mathematical correction to the frozen artifact is required.
++
++Reviewed artifact: SOURCE_STATUS.md, SHA-256
++**46b114d041624894c9e248e262703e58751c68f68969b3e4ba1a5ca11f23ac62**.
++Review date: 2026-09-30. This is a separate adversarial AI review using
++gpt-6-astra at xhigh reasoning effort, not human peer review.
++
++## 1. Exact source and publication identification
++
++Ibukiyama's contribution to [Oberwolfach Report 1/2005](https://doi.org/10.4171/owr/2005/01),
++printed pp. 54–55, explicitly asks for nonnegative Fourier coefficients of
++
++\[
++S_h(\tau)=\eta(h\tau)^{\varphi(h)}
++          \prod_{d\mid h}\eta(d\tau)^{-\mu(d)}.
++\]
++
++The quantifier is every natural number \(h\), with the unhandled case in that
++2005 report being integers divisible by at least two different primes. The
++nearby discussion of regular systems of weights is distinct. The pinned
++30000166 statement reproduces the formula; the pinned 30000167 statement and
++its source verification identify the repeated composite case of the same
++source question. Neither record requires strict positivity.
++
++Berkovich–Garvan's [2006 paper](https://arxiv.org/abs/math/0607606v1),
++Conjecture 1.1 and Section 3, and their
++[expanded 2007 paper](https://arxiv.org/abs/math/0702027v1), Conjecture 1.1
++and Section 3, have exactly this numerator, denominator, and all-positive-integer
++quantifier. The word “Conjecture” labels the historical statement being proved;
++it is not evidence that the paper leaves it open. The expanded paper supplies
++the necessary theta identity as Theorem 1.2 and proves it in Section 2.
++
++The published article is *Journal of Number Theory* **128** (2008), no. 6,
++1731–1748, [DOI 10.1016/j.jnt.2007.02.002](https://doi.org/10.1016/j.jnt.2007.02.002).
++The [publisher's indexed article record](https://www.sciencedirect.com/science/article/pii/S0022314X07000820)
++and [Garvan's publication list](https://qseries.org/fgarvan/publist.html)
++agree on the title, authors, and bibliographic details. The author list links
++a full manuscript with the same proof. Yasuda's published
++[2010 paper](https://ems.press/content/serial-article-files/41111), p. 563
++and reference [1], also explicitly credits their theorem and distinguishes
++its eta-product family from regular-weight-system products.
++
++I checked the full portions of the accessible 2007 primary proof needed here,
++including the proof of Theorem 1.2 and all of Section 3. I did not obtain the
++typeset journal PDF: the direct publisher article fetch returned HTTP 403.
++Thus the publication identification is independently corroborated, while
++the line-by-line mathematical audit uses the full primary manuscript, as the
++artifact accurately states. Both arXiv records currently list a single
++version and no withdrawal. A bounded current search revealed no relevant
++correction; this is not a claim of exhaustive bibliographic searching.
++
++## 2. Normalization and endpoint cases
++
++Substituting \(\eta(d\tau)=q^{d/24}E(q^d)\) gives exactly
++
++\[
++S_N=q^{A_N}\widetilde S_N,\qquad
++24A_N=N\varphi(N)-\sum_{d\mid N}d\mu(d).
++\]
++
++The normalized series has integer powers; the eta product can have a
++fractional leading exponent. Multiplication by \(q^{A_N}\) only shifts the
++exponents, so it does not change coefficient signs. In particular,
++\(A_1=0,\ A_2=1/8,\ A_3=1/3,\ A_4=3/8\). For \(N=1\), the original product
++is \(1\), not an exceptional limiting formula.
++
++Direct visual inspection confirms the original report prints
++\((p^2-1)/12\) in its prime-case display on p. 54, despite defining
++\(\eta=q^{1/24}E(q)\) above it. The correct shift is
++\((p^2-1)/24\), as in Berkovich–Garvan (1.6). The artifact correctly identifies
++this local discrepancy without altering the original conjecture.
++
++The identity \(E(q^t)^t/E(q)=\sum a_t(n)q^n\) is valid for every positive
++integer \(t\), including composite \(t\) and \(t=1\). Its coefficients count
++\(t\)-core partitions. Strict positivity would be false in general:
++the 2-core series has zero coefficient at degree 2.
++
++## 3. Theta identity and specialization audit
++
++Theorem 1.2 has \(a\ge2\). Its summation lattice is
++\(\sum_i n_i=0\), its quadratic expression is
++\(Q_a(n)=a\sum n_i^2/2+\sum i n_i\), and its monomial exponent is
++\(a n_j+j\). These indices, signs, and factors agree with the artifact.
++
++The functional-equation proof has the required analytic hypotheses.
++The lattice sums converge normally on compact subsets of
++\(\mathbb C^\times\) for fixed \(0<|q|<1\). The apparent poles of the
++bracket quotient at \(z=q^k\) are removable because the numerator vanishes
++there too. The cyclic affine lattice maps used in the manuscript are
++bijections of the zero-sum lattice and give the stated functional equation
++\(F(qz)=z^{-(a-1)}F(z)\) for both sides.
++
++Here is an independent check of the uniqueness step. A nonzero holomorphic
++function on \(\mathbb C^\times\) satisfying
++\(F(qz)=z^{-d}F(z)\) has exactly \(d\) zeros, with multiplicity, in an annulus
++\(|q|R<|z|<R\) whose boundary is zero-free. This follows from the argument
++principle: its logarithmic-derivative integral on the inner boundary equals
++the outer integral minus \(d\). Choose \(1<R<|q|^{-1}\) with zero-free
++boundaries. The difference of the two candidate functions vanishes at all
++\(a\) distinct \(a\)-th roots of unity, whereas \(d=a-1\). Therefore the
++difference must be zero. At nontrivial roots the inner geometric sum
++vanishes; at \(1\) the equality is the credited Klyachko/core theta identity.
++This validates the standard uniqueness argument without importing an
++unexamined zero-count assumption. The core generating function and core
++theta identity remain explicitly credited existing identities.
++
++The potentially delicate substitution \(z=q^r\), with the theorem's base
++replaced by \(q^M\), is also valid formally. On the zero-sum lattice,
++
++\[
++Q_a(n)=\sum_i\left(\frac a2n_i(n_i-1)+i n_i\right).
++\]
++
++Each displayed summand is a nonnegative integer. For a negative coordinate
++\(-k\), it is \(k(a(k+1)/2-i)>0\). For nonnegative coordinates the assertion
++is immediate. The affine bijection \(T_j\) in the artifact obeys
++
++\[
++Q_a(T_jn)-Q_a(n)=a n_j+j.
++\]
++
++Consequently, whenever \(0<r<M\),
++
++\[
++M Q_a(n)+r(a n_j+j)
++ =(M-r)Q_a(n)+rQ_a(T_jn)\ge0.
++\]
++
++The positive quadratic part makes every exponent sublevel finite. Thus no
++negative powers or infinite coefficient sums appear after specialization.
++This also covers \(r=M/2\) when it is integral; the two bracket progressions
++then have multiplicity two. The factorization below itself uses odd \(M\)
++and avoids that endpoint. Multiplying the specialized theta series by the
++positive core series gives precisely the claimed positivity of \(D_a\).
++
++## 4. All three factorization cases
++
++The elementary identity
++
++\[
++\prod_{d\mid M}E(q^d)^{\mu(d)}
++ =\prod_{\gcd(k,M)=1}(1-q^k)
++\]
++
++holds for arbitrary \(M\), not just squarefree \(M\), by the divisor sum
++for the Möbius function.
++
++For \(N=pM\), with \(p\nmid M\) and odd \(M>1\), the reduced residue classes
++split into distinct pairs \(r,M-r\). There are \(\varphi(M)/2\) pairs.
++The numerator exponent in the product of \(D_p(q^r;q^M)\) is therefore
++\((2p-2)\varphi(M)/2=\varphi(pM)\). Its bracket ratio is the quotient of
++the Möbius products with bases \(q^p\) and \(q\). This proves exactly the
++artifact's boxed factorization. Divisors with \(\mu(d)=0\) cause no problem:
++\(\mu(pd)=-\mu(d)\) remains true when \(p\nmid M\).
++
++For \(N=p^\alpha M\), let \(N'=pM\) and \(t=p^{\alpha-1}\).
++The nonzero Möbius divisor terms for \(N\) and \(N'\) are identical, and
++\(\varphi(N)=t\varphi(N')\). Cancelling the common denominator gives exactly
++the boxed lifting identity. Its extra factor is a core series at base
++\(q^{N'}\), raised to the nonnegative integer \(\varphi(N')\).
++It works for \(\alpha=1\) as well, with \(t=1\).
++
++When \(M=1\), the residue-pair formula is not used: the base case is
++\(\widetilde S_p=E(q^p)^p/E(q)\), followed by the same lift. This handles
++all prime powers. Finally, choose \(p=2\) for even \(N\), or any prime
++divisor for odd \(N\), and remove its full power. The remaining \(M\) is
++odd and coprime to \(p\). Together with \(N=1\), this exhausts every
++positive integer. There is no hidden restriction on the other prime
++powers dividing \(M\), or on the number of distinct primes.
++
++## 5. Reproducible independent checks
++
++The author's standard-library verifier reproduced **2,837 assertions**
++and the saved JSON output **byte-for-byte**. All three source PDF hashes
++match the package's provenance manifest.
++
++Run the separate checker from this review directory:
++
++    python3 independent_checks.py
++
++It performs **35,980 exact assertions**, using an independently implemented
++logarithmic-derivative recurrence for product coefficients and direct
++hook-length enumeration:
++
++- 7,338 partitions through degree 24; core counts for \(t=1,\ldots,8\),
++  and the core lattice identity for \(t=2,\ldots,8\)
++- 250 parameter values for normalization, Möbius exponents, and the full
++  factorization split, including 64 higher-power mixed cases and several
++  integers with three or four distinct primes
++- normalized coefficient checks through degree 80 for \(N\le80\)
++- 540 lattice vectors testing every affine index and specializations near
++  both ends of \(0<r<M\)
++- nine complete bounded theta comparisons through degree 32, including
++  composite \(a\), coincident bracket progressions, and \(r=M-1\)
++- negative controls for the incorrect denominator-12 shift, a reversed
++  bracket quotient, misuse of residue pairing at \(M=2\), and substitution
++  of the wrong target product
++
++The lattice truncations are certified by the nonnegative coordinate
++summands and the lower bound \((M-r)Q_a(n)\), not by an arbitrary box.
++These finite checks support transcription and boundary-case accuracy.
++They are not the proof of the infinite theorem.
++
++## Disposition
++
++The frozen source-status package passes without mandatory changes.
++**already_solved** is the justified mathematical/source status for both
++30000166 and 30000167. Credit belongs to Berkovich–Garvan and the earlier
++core/theta identities they use. This review establishes coverage of the
++explicit Möbius–totient product, not a new theorem or an unrestricted
++classification of eta products.
+diff --git a/unsolved_math_prioritization/attempts/30000166/independent_review/independent_checks.py b/unsolved_math_prioritization/attempts/30000166/independent_review/independent_checks.py
+new file mode 100644
+index 000000000..d0b11df2d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/independent_review/independent_checks.py
+@@ -0,0 +1,249 @@
++#!/usr/bin/env python3
++"""Independent exact diagnostics for the credited Berkovich--Garvan theorem.
++
++Uses hook-length enumeration and logarithmic-derivative recurrences, rather
++than the author's repeated multiplication/division verifier. No external
++packages. Finite diagnostics supplement the source/proof audit.
++"""
++from collections import Counter
++from fractions import Fraction
++from itertools import product
++from math import gcd
++import json
++
++checks = Counter()
++def require(value, category):
++    assert value, category
++    checks[category] += 1
++
++def primes(n):
++    result = []
++    for p in range(2, n + 1):
++        if n % p == 0:
++            result.append(p)
++            while n % p == 0:
++                n //= p
++        if n == 1:
++            break
++    return result
++
++def mobius(n):
++    ps = primes(n)
++    return 0 if any(n % (p*p) == 0 for p in ps) else (-1)**len(ps)
++
++def totient(n):
++    return sum(gcd(n,k) == 1 for k in range(1,n+1))
++
++def coefficients(exponents):
++    """F=prod(1-q^k)^e_k; n F_n=-sum_{j=1}^n b_j F_{n-j}."""
++    H = len(exponents)-1
++    b = [0]*(H+1)
++    for k in range(1,H+1):
++        for j in range(k,H+1,k):
++            b[j] += k*exponents[k]
++    out = [1]
++    for n in range(1,H+1):
++        numerator = -sum(b[j]*out[n-j] for j in range(1,n+1))
++        require(numerator % n == 0, 'integral_recurrence')
++        out.append(numerator//n)
++    return out
++
++def convolve(a,b):
++    H = min(len(a),len(b))-1
++    return [sum(a[j]*b[n-j] for j in range(n+1)) for n in range(H+1)]
++
++def target_exponents(N,H):
++    phi = totient(N)
++    return [0]+[phi*int(k%N == 0)-int(gcd(k,N) == 1) for k in range(1,H+1)]
++
++def core_exponents(t,H):
++    return [0]+[t*int(k%t == 0)-1 for k in range(1,H+1)]
++
++def partitions(n, maximum=None):
++    if n == 0:
++        yield ()
++        return
++    if maximum is None:
++        maximum = n
++    for first in range(min(n,maximum),1-1,-1):
++        for rest in partitions(n-first,first):
++            yield (first,)+rest
++
++def hooks(lam):
++    return {lam[i]-j + sum(row>j for row in lam[i+1:])
++            for i in range(len(lam)) for j in range(lam[i])}
++
++def summand(a,i,k):
++    return a*k*(k-1)//2+i*k
++
++def Q(n):
++    a = len(n)
++    assert sum(n) == 0
++    return sum(summand(a,i,k) for i,k in enumerate(n))
++
++def lattice(a,H):
++    # Each summand is nonnegative. For |k|>=2 it is at least |k|;
++    # hence every vector with Q<=H lies in these finite coordinate ranges.
++    allowed = [[(k,summand(a,i,k)) for k in range(-H-2,H+3)
++                if summand(a,i,k)<=H] for i in range(a)]
++    def generate(prefix, budget):
++        i = len(prefix)
++        if i == a-1:
++            k = -sum(prefix)
++            if summand(a,i,k) <= budget:
++                yield prefix+(k,)
++        else:
++            for k,cost in allowed[i]:
++                if cost <= budget:
++                    yield from generate(prefix+(k,),budget-cost)
++    yield from generate((),H)
++
++def transform(n,j):
++    m = list(n[1:]+n[:1])
++    if j:
++        m[j-1] += 1
++        m[-1] -= 1
++    return tuple(m)
++
++def theta_exponents(a,M,r,H):
++    # The two bracket progressions are counted WITH multiplicity, including
++    # the coincident progressions at M=2r. No boolean membership shortcut.
++    return [0]+[int(k%M == 0)+(a-2)*int(k%(a*M) == 0)
++                +int((k-a*r)%(a*M) == 0)
++                +int((k-a*(M-r))%(a*M) == 0)
++                -int((k-r)%M == 0)-int((k-(M-r))%M == 0)
++                for k in range(1,H+1)]
++
++# Direct partition counts independently check both positive core identities.
++Hcore = 24
++cores = {t:[0]*(Hcore+1) for t in range(1,9)}
++partition_count = 0
++for n in range(Hcore+1):
++    for lam in partitions(n):
++        partition_count += 1
++        hs = hooks(lam)
++        for t in cores:
++            if all(h%t for h in hs):
++                cores[t][n] += 1
++for t, counts in cores.items():
++    require(counts == coefficients(core_exponents(t,Hcore)), 'hook_core_identity')
++    if t >= 2:
++        theta = [0]*(Hcore+1)
++        for n in lattice(t,Hcore):
++            theta[Q(n)] += 1
++        require(theta == counts, 'core_lattice_identity')
++require(cores[1] == [1]+[0]*Hcore, 'boundary_cases')
++require(cores[2][2] == 0 and cores[2][3] == 1, 'boundary_cases')
++
++# Möbius and q-shift controls, including nonsquarefree composite integers.
++H = 80
++case_counts = Counter()
++Ns = list(range(1,241))+[252,315,360,420,504,630,840,900,945,1260]
++for N in Ns:
++    ds = [d for d in range(1,N+1) if N%d == 0]
++    phi = totient(N)
++    direct = [0]+[phi*int(k%N == 0)-sum(mobius(d) for d in ds if k%d == 0)
++                  for k in range(1,H+1)]
++    require(direct == target_exponents(N,H), 'mobius_exponents')
++    A = Fraction(N*phi-sum(d*mobius(d) for d in ds),24)
++    radical_product = 1
++    for p in primes(N):
++        radical_product *= 1-p
++    require(A == Fraction(N*phi-radical_product,24), 'normalization')
++    require(A>=0, 'normalization')
++    if N == 1:
++        require(coefficients(direct) == [1]+[0]*H, 'boundary_cases')
++        continue
++    p = 2 if N%2 == 0 else primes(N)[-1]
++    M,t = N,1
++    alpha = 0
++    while M%p == 0:
++        M //= p
++        alpha += 1
++    t = p**(alpha-1)
++    Np = p*M
++    require(M%2 == 1 and gcd(p,M) == 1, 'complete_parameter_split')
++    require(t*totient(Np) == phi, 'prime_power_lifting')
++    lifted = [0]+[target_exponents(Np,H)[k]
++        +totient(Np)*(t*int(k%N == 0)-int(k%Np == 0)) for k in range(1,H+1)]
++    require(lifted == direct, 'prime_power_lifting')
++    if M == 1:
++        case_counts['prime_power'] += 1
++        require(target_exponents(p,H) == core_exponents(p,H), 'prime_base')
++    else:
++        case_counts['coprime_p_times_odd_M' if alpha == 1 else 'higher_power_times_odd_M'] += 1
++        representatives = [r for r in range(1,M) if 2*r<M and gcd(r,M)==1]
++        residues = sorted([r for r in representatives]+[M-r for r in representatives])
++        require(residues == [r for r in range(1,M) if gcd(r,M)==1], 'residue_pairing')
++        paired = [0]*(H+1)
++        for r in representatives:
++            for k in range(1,H+1):
++                paired[k] += ((2*p-2)*int(k%Np == 0)
++                    +int((k-p*r)%Np == 0)+int((k-p*(M-r))%Np == 0)
++                    -int((k-r)%M == 0)-int((k-(M-r))%M == 0))
++        require(paired == target_exponents(Np,H), 'paired_D_factorization')
++    if N <= 80:
++        require(min(coefficients(direct)) >= 0, 'normalized_coefficients')
++
++# Explicit fractional q-shifts prevent unnoticed integral-power assumptions.
++for N,expected in [(1,Fraction(0)),(2,Fraction(1,8)),(3,Fraction(1,3)),(4,Fraction(3,8))]:
++    ds = [d for d in range(1,N+1) if N%d == 0]
++    actual = Fraction(N*totient(N)-sum(d*mobius(d) for d in ds),24)
++    require(actual == expected, 'fractional_shift_examples')
++    if N in (2,3):
++        require(actual != Fraction(N*N-1,12), 'negative_controls')
++
++# All j, zero coordinates, negative coordinates and affine lattice maps.
++vector_count = 0
++for a in range(2,9):
++    for n in lattice(a,12):
++        vector_count += 1
++        for j in range(a):
++            nn = transform(n,j)
++            require(sum(nn)==0 and Q(nn)-Q(n)==a*n[j]+j, 'affine_theta_shift')
++            for M,r in [(2,1),(4,3),(7,1),(7,6)]:
++                e = M*Q(n)+r*(a*n[j]+j)
++                require(e == (M-r)*Q(n)+r*Q(nn) and e>=0, 'specialization_nonnegativity')
++
++# Exact theta identities with rigorous finite bounds, including M=2r and
++# composite a. Compare independent lattice enumeration with log recurrence.
++theta_cases = [(2,2,1),(2,4,3),(3,2,1),(3,7,6),(4,3,1),
++               (4,4,2),(5,3,2),(6,5,1),(6,5,4)]
++Htheta = 32
++for a,M,r in theta_cases:
++    theta = [0]*(Htheta+1)
++    for n in lattice(a,Htheta//(M-r)):
++        for j in range(a):
++            e = M*Q(n)+r*(a*n[j]+j)
++            require(e>=0, 'theta_enumeration_nonnegative')
++            if e<=Htheta:
++                theta[e] += 1
++    exponents = theta_exponents(a,M,r,Htheta)
++    require(theta == coefficients(exponents), 'specialized_theta_identity')
++    d_exponents = [exponents[k]+a*int(k%(a*M)==0)-int(k%M==0)
++                   for k in range(Htheta+1)]
++    d_exponents[0] = 0
++    base = [0]+[a*int(k%(a*M)==0)-int(k%M==0) for k in range(1,Htheta+1)]
++    require(coefficients(d_exponents) == convolve(theta,coefficients(base)), 'D_product_identity')
++    require(min(coefficients(d_exponents))>=0, 'D_nonnegativity')
++
++# Controls that fail if the bracket ratio or crucial odd-M assumption is lost.
++correct = theta_exponents(3,5,2,Htheta)
++wrong = [0]+[int(k%5==0)+int(k%15==0)
++    -int((k-6)%15==0)-int((k-9)%15==0)
++    +int((k-2)%5==0)+int((k-3)%5==0) for k in range(1,Htheta+1)]
++require(coefficients(correct) != coefficients(wrong), 'negative_controls')
++require(2*len([r for r in range(1,2) if 2*r<2 and gcd(r,2)==1]) != totient(2), 'negative_controls')
++require(target_exponents(6,H) != target_exponents(3,H), 'negative_controls')
++
++result = {
++ 'status':'PASS', 'assertions':sum(checks.values()), 'checks_by_category':dict(sorted(checks.items())),
++ 'partitions_enumerated':partition_count, 'core_partition_degree':Hcore,
++ 'core_parameters':list(cores), 'normalized_product_degree':H,
++ 'factorization_parameters':Ns, 'case_counts':dict(case_counts),
++ 'affine_shift_lattice_vectors':vector_count, 'theta_degree':Htheta,
++ 'theta_cases':[{'a':a,'M':M,'r':r} for a,M,r in theta_cases],
++ 'method':'Hook-length enumeration, exhaustive bounded lattice sums, logarithmic-derivative coefficient recurrences and integer exponent identities; standard library only.',
++ 'limitation':'Bounded exact diagnostics. The all-parameter result follows from the audited, credited core/theta identities and general factorization.'
++}
++print(json.dumps(result,indent=2,sort_keys=True))
+diff --git a/unsolved_math_prioritization/attempts/30000166/independent_review/independent_results.json b/unsolved_math_prioritization/attempts/30000166/independent_review/independent_results.json
+new file mode 100644
+index 000000000..ce16c2f6d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/independent_review/independent_results.json
+@@ -0,0 +1,347 @@
++{
++  "affine_shift_lattice_vectors": 540,
++  "assertions": 35980,
++  "case_counts": {
++    "coprime_p_times_odd_M": 119,
++    "higher_power_times_odd_M": 64,
++    "prime_power": 66
++  },
++  "checks_by_category": {
++    "D_nonnegativity": 9,
++    "D_product_identity": 9,
++    "affine_theta_shift": 3524,
++    "boundary_cases": 3,
++    "complete_parameter_split": 249,
++    "core_lattice_identity": 7,
++    "fractional_shift_examples": 4,
++    "hook_core_identity": 8,
++    "integral_recurrence": 7808,
++    "mobius_exponents": 250,
++    "negative_controls": 5,
++    "normalization": 500,
++    "normalized_coefficients": 79,
++    "paired_D_factorization": 183,
++    "prime_base": 66,
++    "prime_power_lifting": 498,
++    "residue_pairing": 183,
++    "specialization_nonnegativity": 14096,
++    "specialized_theta_identity": 9,
++    "theta_enumeration_nonnegative": 8490
++  },
++  "core_parameters": [
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8
++  ],
++  "core_partition_degree": 24,
++  "factorization_parameters": [
++    1,
++    2,
++    3,
++    4,
++    5,
++    6,
++    7,
++    8,
++    9,
++    10,
++    11,
++    12,
++    13,
++    14,
++    15,
++    16,
++    17,
++    18,
++    19,
++    20,
++    21,
++    22,
++    23,
++    24,
++    25,
++    26,
++    27,
++    28,
++    29,
++    30,
++    31,
++    32,
++    33,
++    34,
++    35,
++    36,
++    37,
++    38,
++    39,
++    40,
++    41,
++    42,
++    43,
++    44,
++    45,
++    46,
++    47,
++    48,
++    49,
++    50,
++    51,
++    52,
++    53,
++    54,
++    55,
++    56,
++    57,
++    58,
++    59,
++    60,
++    61,
++    62,
++    63,
++    64,
++    65,
++    66,
++    67,
++    68,
++    69,
++    70,
++    71,
++    72,
++    73,
++    74,
++    75,
++    76,
++    77,
++    78,
++    79,
++    80,
++    81,
++    82,
++    83,
++    84,
++    85,
++    86,
++    87,
++    88,
++    89,
++    90,
++    91,
++    92,
++    93,
++    94,
++    95,
++    96,
++    97,
++    98,
++    99,
++    100,
++    101,
++    102,
++    103,
++    104,
++    105,
++    106,
++    107,
++    108,
++    109,
++    110,
++    111,
++    112,
++    113,
++    114,
++    115,
++    116,
++    117,
++    118,
++    119,
++    120,
++    121,
++    122,
++    123,
++    124,
++    125,
++    126,
++    127,
++    128,
++    129,
++    130,
++    131,
++    132,
++    133,
++    134,
++    135,
++    136,
++    137,
++    138,
++    139,
++    140,
++    141,
++    142,
++    143,
++    144,
++    145,
++    146,
++    147,
++    148,
++    149,
++    150,
++    151,
++    152,
++    153,
++    154,
++    155,
++    156,
++    157,
++    158,
++    159,
++    160,
++    161,
++    162,
++    163,
++    164,
++    165,
++    166,
++    167,
++    168,
++    169,
++    170,
++    171,
++    172,
++    173,
++    174,
++    175,
++    176,
++    177,
++    178,
++    179,
++    180,
++    181,
++    182,
++    183,
++    184,
++    185,
++    186,
++    187,
++    188,
++    189,
++    190,
++    191,
++    192,
++    193,
++    194,
++    195,
++    196,
++    197,
++    198,
++    199,
++    200,
++    201,
++    202,
++    203,
++    204,
++    205,
++    206,
++    207,
++    208,
++    209,
++    210,
++    211,
++    212,
++    213,
++    214,
++    215,
++    216,
++    217,
++    218,
++    219,
++    220,
++    221,
++    222,
++    223,
++    224,
++    225,
++    226,
++    227,
++    228,
++    229,
++    230,
++    231,
++    232,
++    233,
++    234,
++    235,
++    236,
++    237,
++    238,
++    239,
++    240,
++    252,
++    315,
++    360,
++    420,
++    504,
++    630,
++    840,
++    900,
++    945,
++    1260
++  ],
++  "limitation": "Bounded exact diagnostics. The all-parameter result follows from the audited, credited core/theta identities and general factorization.",
++  "method": "Hook-length enumeration, exhaustive bounded lattice sums, logarithmic-derivative coefficient recurrences and integer exponent identities; standard library only.",
++  "normalized_product_degree": 80,
++  "partitions_enumerated": 7338,
++  "status": "PASS",
++  "theta_cases": [
++    {
++      "M": 2,
++      "a": 2,
++      "r": 1
++    },
++    {
++      "M": 4,
++      "a": 2,
++      "r": 3
++    },
++    {
++      "M": 2,
++      "a": 3,
++      "r": 1
++    },
++    {
++      "M": 7,
++      "a": 3,
++      "r": 6
++    },
++    {
++      "M": 3,
++      "a": 4,
++      "r": 1
++    },
++    {
++      "M": 4,
++      "a": 4,
++      "r": 2
++    },
++    {
++      "M": 3,
++      "a": 5,
++      "r": 2
++    },
++    {
++      "M": 5,
++      "a": 6,
++      "r": 1
++    },
++    {
++      "M": 5,
++      "a": 6,
++      "r": 4
++    }
++  ],
++  "theta_degree": 32
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/independent_review/review_summary.json b/unsolved_math_prioritization/attempts/30000166/independent_review/review_summary.json
+new file mode 100644
+index 000000000..7181a221e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/independent_review/review_summary.json
+@@ -0,0 +1,36 @@
++{
++  "author_assertions": 2837,
++  "author_replay_byte_identical": true,
++  "deliverables": [
++    "REVIEW.md",
++    "review_summary.json",
++    "independent_checks.py",
++    "independent_results.json",
++    "source_verification.json"
++  ],
++  "duplicate_ids": [
++    30000167
++  ],
++  "fresh_proof_attempts": 0,
++  "independent_assertions": 35980,
++  "independent_checker_sha256": "3686e114bf5c07c894ce0be953983f1d0dc9f0ce1a17e9afed9f4a1d7a52ba8d",
++  "independent_results_sha256": "c5ab5d4a8e1b8d40a430772ce05ed59ca7c2f25b10570fc666deae2563615832",
++  "limitations": [
++    "Proof audit uses the complete relevant portions of the accessible 2007 primary manuscript; the typeset journal PDF was not obtained.",
++    "This is independent AI review, not human peer review.",
++    "No new discovery or broader eta-product classification claim.",
++    "Bounded computations are diagnostics, not the all-parameter proof."
++  ],
++  "mandatory_corrections": [],
++  "optional_replay_receipt": "author_replay/replayed_verification.json",
++  "problem_id": 30000166,
++  "publication": "Berkovich and Garvan, Journal of Number Theory 128 (2008), no. 6, 1731-1748, DOI 10.1016/j.jnt.2007.02.002",
++  "reasoning_effort": "xhigh",
++  "recommended_status": "already_solved",
++  "review_date": "2026-09-30",
++  "review_sha256": "129d6531adf1473319c2b30da67da3bf90e124945c27a44eed78f8f1bc97d136",
++  "reviewer_model": "gpt-6-astra",
++  "scope": "All positive integer N in the exact Mobius-totient eta product; duplicate composite-case record covered.",
++  "source_status_sha256": "46b114d041624894c9e248e262703e58751c68f68969b3e4ba1a5ca11f23ac62",
++  "verdict": "PASS_ALREADY_SOLVED_EXACT_SOURCE_MATCH"
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/independent_review/source_verification.json b/unsolved_math_prioritization/attempts/30000166/independent_review/source_verification.json
+new file mode 100644
+index 000000000..11cb639a1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/independent_review/source_verification.json
+@@ -0,0 +1,29 @@
++{
++  "author_assertions": 2837,
++  "author_replay_byte_identical": true,
++  "author_replay_equal": true,
++  "source_files": [
++    {
++      "bytes": 621654,
++      "name": "owr2005-01",
++      "sha256": "230cd6bee89ccab0a249d244b05bd9df1626eeff62a333e8a10b7e66e3e04d8b",
++      "url": "https://doi.org/10.4171/owr/2005/01",
++      "verified": true
++    },
++    {
++      "bytes": 153349,
++      "name": "berkovich-garvan2006",
++      "sha256": "148a71660025c8b6cd2d16d11d27da13ded2b1c3a65ddc535ba1f0fc35e873e8",
++      "url": "https://arxiv.org/pdf/math/0607606",
++      "verified": true
++    },
++    {
++      "bytes": 220946,
++      "name": "berkovich-garvan2007",
++      "sha256": "67f1512ced50785d17392c573ea675d871c48524a5600c7205cf3fe45812205c",
++      "url": "https://arxiv.org/pdf/math/0702027",
++      "verified": true
++    }
++  ],
++  "source_status_sha256": "46b114d041624894c9e248e262703e58751c68f68969b3e4ba1a5ca11f23ac62"
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/provenance.json b/unsolved_math_prioritization/attempts/30000166/provenance.json
+new file mode 100644
+index 000000000..60d4cafbf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/provenance.json
+@@ -0,0 +1,46 @@
++{
++  "problem_id": 30000166,
++  "duplicate_ids": [
++    30000167
++  ],
++  "checked_at": "2026-09-30T06:31:00Z",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "branch": "dot/math-30000166",
++  "repository": "AlecKriebel/Math",
++  "base_commit": "c6975ca76f9f667f1250ba403d0e6da2aafe14d0",
++  "pinned_dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "problem_source_first": "https://www.unsolvedmath.com/problems/30000166 (web reader unavailable; used pinned full record then original report)",
++  "prior_attempt_gate": {
++    "own_folder_before_work": false,
++    "all_state_pr_numeric_search": [],
++    "all_state_pr_saito_search": [],
++    "duplicate_numeric_pr_search": [],
++    "matching_remote_branches": [],
++    "state_record": false,
++    "related_group_record": false,
++    "queue_before_work": "rank 66, queued, 0/5"
++  },
++  "sources": [
++    {
++      "name": "owr2005-01",
++      "url": "https://doi.org/10.4171/owr/2005/01",
++      "sha256": "230cd6bee89ccab0a249d244b05bd9df1626eeff62a333e8a10b7e66e3e04d8b"
++    },
++    {
++      "name": "berkovich-garvan2006",
++      "url": "https://arxiv.org/pdf/math/0607606",
++      "sha256": "148a71660025c8b6cd2d16d11d27da13ded2b1c3a65ddc535ba1f0fc35e873e8"
++    },
++    {
++      "name": "berkovich-garvan2007",
++      "url": "https://arxiv.org/pdf/math/0702027",
++      "sha256": "67f1512ced50785d17392c573ea675d871c48524a5600c7205cf3fe45812205c"
++    }
++  ],
++  "source_status_sha256": "46b114d041624894c9e248e262703e58751c68f68969b3e4ba1a5ca11f23ac62",
++  "status_recommendation": "already_solved",
++  "fresh_proof_attempts": 0,
++  "novelty": "None claimed; known 2006 theorem, published 2008.",
++  "independent_review": "PASS; see independent_review/REVIEW.md"
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/source_record.json b/unsolved_math_prioritization/attempts/30000166/source_record.json
+new file mode 100644
+index 000000000..586d36453
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/source_record.json
+@@ -0,0 +1,64 @@
++{
++  "id": 30000166,
++  "problem_number": "OWR-782-007",
++  "title": "Positivity of Saito's Eta Products",
++  "statement": "For every natural number $h$, does the eta product $\\eta(h\\tau)^{\\varphi(h)}\\prod_{d\\mid h}\\eta(d\\tau)^{-\\mu(d)}$ have only nonnegative Fourier coefficients? In particular, prove or disprove this conjecture when $h$ is divisible by at least two distinct primes.",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Gitter und Anwendungen (2005), Oberwolfach Reports, DOI 10.4171/owr/2005/01, pp. 5--67](https://doi.org/10.4171/owr/2005/01)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** open\n\n**Assessment.** The sentence only says that one unnamed conjecture contains another in special cases; the conjectures themselves are absent from the extracted record.\n\n**Sources checked.**\n\n- [original OWR report](https://doi.org/10.4171/owr/2005/01)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2005,
++  "category_id": 1,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2005/01",
++  "source_citation": "Gitter und Anwendungen (2005), Oberwolfach Reports, DOI 10.4171/owr/2005/01, pp. 5--67",
++  "literature_assessment": "The sentence only says that one unnamed conjecture contains another in special cases; the conjectures themselves are absent from the extracted record.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2005/01",
++      "label": "original OWR report"
++    }
++  ],
++  "literature_checked_at": "2026-08-21",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-782-007",
++    "literature-status:open",
++    "owr-year:2005"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 1,
++    "name": "number_theory",
++    "display_name": "Number Theory",
++    "description": "Properties of integers, prime numbers, Diophantine equations.",
++    "slug": "number-theory",
++    "order_index": 1,
++    "created_at": "2026-07-31T15:26:25.670Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "For a natural number h divisible by at least two distinct primes, determine the asserted positivity property of K. Saito's eta product \\eta(h\\tau)^{\\varphi(h)}\\prod_{d\\mid h}\\eta(d\\tau)^{-\\mu(d)}.",
++  "clean_statement": "For every natural number $h$, does the eta product $\\eta(h\\tau)^{\\varphi(h)}\\prod_{d\\mid h}\\eta(d\\tau)^{-\\mu(d)}$ have only nonnegative Fourier coefficients? In particular, prove or disprove this conjecture when $h$ is divisible by at least two distinct primes.",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The official report was checked directly; Saito's coefficient-positivity conjecture and the remaining composite case were stated explicitly."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/turns.json b/unsolved_math_prioritization/attempts/30000166/turns.json
+new file mode 100644
+index 000000000..753803402
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/turns.json
+@@ -0,0 +1,20 @@
++{
++  "problem_id": 30000166,
++  "duplicate_ids": [
++    30000167
++  ],
++  "substantive_proof_attempts": 0,
++  "budget": 5,
++  "events": [
++    {
++      "timestamp": "2026-09-30T06:18:00Z",
++      "kind": "source_triage",
++      "outcome": "Exact known theorem identified; no fresh proof search."
++    },
++    {
++      "timestamp": "2026-09-30T06:31:00Z",
++      "kind": "source_scope_audit",
++      "outcome": "Full target covered by credited core/theta factorization; independent review pending."
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/verification.json b/unsolved_math_prioritization/attempts/30000166/verification.json
+new file mode 100644
+index 000000000..29295239c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/verification.json
+@@ -0,0 +1,38 @@
++{
++  "assertions": 2837,
++  "factorizations_checked_through_N": 120,
++  "limitation": "Finite exact controls only; the proof uses the credited core and theta identities.",
++  "normalized_products_checked": 40,
++  "product_degree": 48,
++  "status": "PASS",
++  "theta_cases": [
++    {
++      "M": 3,
++      "a": 2,
++      "coordinate_bound": 5,
++      "degree": 24,
++      "r": 1
++    },
++    {
++      "M": 5,
++      "a": 2,
++      "coordinate_bound": 4,
++      "degree": 24,
++      "r": 2
++    },
++    {
++      "M": 5,
++      "a": 3,
++      "coordinate_bound": 4,
++      "degree": 24,
++      "r": 1
++    },
++    {
++      "M": 5,
++      "a": 3,
++      "coordinate_bound": 4,
++      "degree": 24,
++      "r": 2
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30000166/verify.py b/unsolved_math_prioritization/attempts/30000166/verify.py
+new file mode 100644
+index 000000000..e6f605a65
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000166/verify.py
+@@ -0,0 +1,129 @@
++#!/usr/bin/env python3
++"""Bounded exact transcription controls; no numerical inference of positivity."""
++from collections import defaultdict
++from fractions import Fraction
++from itertools import product
++from math import gcd, isqrt
++import json
++
++checks = 0
++
++def check(x):
++    global checks
++    assert x
++    checks += 1
++
++def factors(n):
++    out = {}
++    p = 2
++    while p*p <= n:
++        while n % p == 0:
++            out[p] = out.get(p, 0)+1
++            n //= p
++        p += 1
++    if n > 1: out[n] = 1
++    return out
++
++def mu(n):
++    f = factors(n)
++    return 0 if any(a > 1 for a in f.values()) else (-1)**len(f)
++
++def phi(n):
++    for p in factors(n): n = n//p*(p-1)
++    return n
++
++def divisors(n): return [d for d in range(1,n+1) if n%d == 0]
++
++def exponents(n, L):
++    return [0]+[phi(n)*(k%n == 0)-sum(mu(d) for d in divisors(n) if k%d == 0) for k in range(1,L+1)]
++
++def series(exps, L):
++    a = [1]+[0]*L
++    for k, e in enumerate(exps):
++        if not k: continue
++        for _ in range(abs(e)):
++            if e > 0:
++                for j in range(L,k-1,-1): a[j] -= a[j-k]
++            else:
++                for j in range(k,L+1): a[j] += a[j-k]
++    return a
++
++def Q(n):
++    a=len(n)
++    twice=a*sum(v*v for v in n)+2*sum(i*v for i,v in enumerate(n))
++    assert twice%2 == 0
++    return twice//2
++
++def T(n,j):
++    out=list(n[1:]+n[:1])
++    if j:
++        out[j-1] += 1
++        out[-1] -= 1
++    return tuple(out)
++
++L=48
++for n in range(1,121):
++    for k in (1,2,3,6,17,30):
++        check(sum(mu(d) for d in divisors(gcd(n,k))) == int(gcd(n,k)==1))
++    if n > 1:
++        p=2 if n%2==0 else min(factors(n))
++        alpha=factors(n)[p]
++        M=n//p**alpha
++        Np=p*M
++        t=p**(alpha-1)
++        check(M%2==1 and gcd(p,M)==1)
++        check(phi(n)==t*phi(Np))
++        target=exponents(n,L)
++        lifted=[v+phi(Np)*(t*(k%n==0)-(k%Np==0)) for k,v in enumerate(exponents(Np,L))]
++        lifted[0]=0
++        check(target==lifted)
++        if M>1:
++            rs=[r for r in range(1,(M+1)//2) if gcd(r,M)==1]
++            check(2*len(rs)==phi(M))
++            exp=[0]*(L+1)
++            for r in rs:
++                for k in range(1,L+1):
++                    exp[k]+=(2*p-2)*(k%(p*M)==0)
++                    exp[k]+=int(k%(p*M) in (p*r,p*(M-r)))
++                    exp[k]-=int(k%M in (r,M-r))
++            check(exp==exponents(Np,L))
++    if n <= 40:
++        coeff=series(exponents(n,L),L)
++        check(coeff[0]==1 and min(coeff)>=0)
++    A=Fraction(n*phi(n)-sum(d*mu(d) for d in divisors(n)),24)
++    check(A>=0)
++    if len(factors(n))==1 and factors(n)[next(iter(factors(n)))]==1:
++        check(A==Fraction(n*n-1,24))
++check(series(exponents(1,L),L)==[1]+[0]*L)
++
++for a in (2,3,5):
++    for ns in product((-1,0,1),repeat=a-1):
++        n=tuple(ns)+(-sum(ns),)
++        check(Q(n)>=0)
++        for j in range(a):
++            check(Q(T(n,j))-Q(n)==a*n[j]+j)
++            for M,r in ((3,1),(5,2)):
++                e=M*Q(n)+r*(a*n[j]+j)
++                check(e==(M-r)*Q(n)+r*Q(T(n,j)) and e>=0)
++
++# Fully bounded theta coefficients: e >= (M-r)Q(n), and each coordinate
++# contributes >= a*|n_i|*(|n_i|-1)/2 to Q. The chosen B is safely larger
++# than any coordinate capable of contributing through degree H.
++H=24
++theta_cases=[]
++for a,M,r in ((2,3,1),(2,5,2),(3,5,1),(3,5,2)):
++    B=2+isqrt(2*H//(a*(M-r)))
++    theta=[0]*(H+1)
++    for ns in product(range(-B,B+1),repeat=a-1):
++        n=tuple(ns)+(-sum(ns),)
++        for j in range(a):
++            e=M*Q(n)+r*(a*n[j]+j)
++            if e<=H: theta[e]+=1
++    exp=[0]*(H+1)
++    for k in range(1,H+1):
++        exp[k]+=int(k%M==0)+(a-2)*int(k%(a*M)==0)
++        exp[k]+=int(k%(a*M) in (a*r,a*(M-r)))
++        exp[k]-=int(k%M in (r,M-r))
++    check(theta==series(exp,H))
++    theta_cases.append({'a':a,'M':M,'r':r,'degree':H,'coordinate_bound':B})
++print(json.dumps({'status':'PASS','assertions':checks,'normalized_products_checked':40,'product_degree':L,'factorizations_checked_through_N':120,'theta_cases':theta_cases,'limitation':'Finite exact controls only; the proof uses the credited core and theta identities.'},indent=2,sort_keys=True))

@@ -1,0 +1,296 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\C}{2^{\mathbb N}}
+\newcommand{\Act}{\operatorname{Act}}
+\newcommand{\asdimB}{\operatorname{asdim}_{\mathrm B}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\hypersetup{pdftitle={Generic Cantor actions of Z wr Z are hyperfinite},pdfauthor={Alec Kriebel}}
+\title{Generic Cantor actions of $\Z\wr\Z$ are hyperfinite}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 13, 2026\quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give an affirmative answer to Question 3 in Iyer's contribution, joint with
+Shinko, to Oberwolfach Report 2/2025. A dense $G_\delta$ of continuous actions
+of the restricted wreath product $\Z\wr\Z$ on Cantor space has hyperfinite
+orbit equivalence relation on the entire space. We specialize established
+Cantor-action lifting principles to obtain a continuous profinite shift height.
+Finite-width lamp slabs then satisfy the compatible-metric theorem of
+Conley--Jackson--Marks--Seward--Tucker-Drob. The full preimage of the embedded
+integers is treated by a separate finite Borel exhaustion. The auxiliary Borel
+theorem requires the height factor and allows stabilizers.
+\end{abstract}
+
+\section{The question and the imported theorems}
+Let $N=\bigoplus_{i\in\Z}\Z$ and $W=N\rtimes\Z$, with lamp generators $a_i$
+and shift $t$ satisfying $ta_it^{-1}=a_{i+1}$. Put $a=a_0$ and let
+$\chi:W\to\Z$ be the shift homomorphism. Here $\wr$ denotes the restricted,
+countable discrete wreath product. Give $\Act(W,\C)$ the subspace topology of
+$\operatorname{Homeo}(\C)^W$, with compact-open homeomorphism topologies.
+It is a closed Polish space. Generic means comeager in this full action space.
+A countable Borel equivalence relation is \emph{hyperfinite} if it is the
+increasing union of finite Borel equivalence relations.
+
+\begin{theorem}\label{main}
+There is a dense $G_\delta$ subset of $\Act(W,\C)$ such that every action in
+it has hyperfinite orbit equivalence relation on all of $\C$.
+\end{theorem}
+
+This is the exact whole-space question posed as open in
+\cite[printed p.~115, Question~3]{OWR}. The locally finite-asymptotic-dimension
+theorem of Iyer--Shinko \cite{IS} does not cover $W$: it is finitely generated
+and contains undistorted copies of $\Z^d$ for arbitrarily large $d$.
+Our theorem makes no restriction to a conull or comeager subset of the phase
+space, and does not assert hyperfiniteness for every Borel $W$-action.
+
+We use three published consequences of Conley--Jackson--Marks--Seward--
+Tucker-Drob \cite{CJMST}, with numbering from their author manuscript.
+Corollary~5.5 gives finite Borel asymptotic dimension for \emph{any} Borel
+action of each fixed $\Z^m$. Lemmas~2.2 and~3.1 and the paragraph following
+Definition~3.2 give its finite-color characterization: for every finite set of
+group moves there is a Borel coloring with a fixed finite number of colors
+and uniformly finite monochromatic move components. The number of colors
+depends on $m$, not on the move set. Finite Borel covers may be disjointized
+to obtain colorings.
+
+Theorem~7.3 of \cite{CJMST} says that if proper Borel extended metrics
+$\rho_n$ on a standard Borel space each have finite Borel asymptotic
+dimension and
+\begin{equation}\label{compatibility}
+\sup\{\rho_{n+1}(x,y):\rho_n(x,y)<R\}<\infty
+\quad(n\geq1,\ R>0),
+\end{equation}
+then $\bigcup_n E_{\rho_n}$ is hyperfinite, where $E_\rho$ is the relation of
+finite $\rho$-distance. No common bound on the dimensions is required.
+Finally, Corollary~7.5 gives hyperfiniteness for \emph{any} Borel action of
+a countable group of local polynomial growth; it applies to $N$.
+These are deep imported results, rather than claims proved by our diagnostics.
+
+\section{Generic compatible heights}
+Write $\widehat\Z=\varprojlim_n\Z/n!\Z$, with $W$ acting by addition of
+$\chi$. The generic-height argument below is an explicit specialization of
+established lifting principles. Akin--Glasner--Weiss \cite[Theorem~3.3,
+equation~(3.7)]{AGW} use conditional compatible lifts for single
+homeomorphisms. Doucha \cite[Proposition~2.12(3)]{Doucha} supplies all-group
+extension perturbation. Doucha--Melleray--Tsankov
+\cite[Proposition~3.2, Definition~A.3, Proposition~A.7]{DMT} give generic
+finite-extension realization for all Cantor group actions. In their Boolean
+coding, the finite partition equations below are a specialization of that
+principle. We include the direct construction to check the prescribed
+compatibility and the full action-space topology.
+
+\begin{lemma}\label{height}
+A dense $G_\delta$ of $\Act(W,\C)$ admits a continuous equivariant map
+$p:\C\to\widehat\Z$.
+\end{lemma}
+\begin{proof}
+Put $\mathcal A=\Act(W,\C)$. For continuous $c:\C\to\Z/m\Z$, let
+$D(c,m)$ be the set of actions $\alpha$ for which
+\[
+c(\alpha(a)x)=c(x),\qquad c(\alpha(t)x)=c(x)+1\pmod m.
+\]
+These equations imply $c(\alpha(g)x)=c(x)+\chi(g)$ for every $g\in W$.
+The set $D(c,m)$ is clopen: the finite clopen fibers of $c$ give uniform
+neighborhoods preserving all output labels of both generator maps.
+There are countably many such $c$, since every clopen set is a finite union
+from a countable clopen basis. For $m\mid n$, define the open set
+\[
+U(c;m,n)=(\mathcal A\setminus D(c,m))\ \cup\!
+\bigcup_{d\bmod m=c}D(d,n),
+\]
+where the union ranges over continuous maps $d:\C\to\Z/n\Z$.
+
+To prove density, fix $\alpha\in D(c,m)$ and an action neighborhood $V$.
+The fiber product
+\[
+Y=\{(x,j)\in\C\times\Z/n\Z:c(x)=j\bmod m\}
+\]
+carries the exact continuous action
+$\gamma(g)(x,j)=(\alpha(g)x,j+\chi(g))$. Choose a finite symmetric set $F$
+of group elements controlling $V$, a finite clopen partition $Q$ of
+sufficiently small mesh, and a common refinement $P$ of $Q$, all
+$\alpha(g)^{-1}Q$ for $g\in F$, and the fibers of $c$.
+For each nonempty atom $A$ of $P$, both $A$ and the inverse image $Y_A$
+of $A$ are Cantor spaces: $Y_A$ consists of $n/m$ copies of $A$.
+Choose atomwise homeomorphisms $A\to Y_A$ and combine them into
+$h:\C\to Y$. Let $\beta(g)=h^{-1}\gamma(g)h$.
+
+If $h(x)=(u,j)$, then $u,x$ are in the same $P$-atom. For $g\in F$,
+$\alpha(g)u$ and $\alpha(g)x$ are in one $Q$-atom. Also
+$\beta(g)x$ and $\alpha(g)u$ lie in one $P$-atom, hence one $Q$-atom.
+Thus $\beta(g)$ is uniformly close to $\alpha(g)$ on all of $F$.
+Symmetry of $F$ controls inverse maps as well, so $\beta\in V$.
+The second coordinate $d$ of $h$ is a continuous equivariant residue map
+modulo $n$, and $d\bmod m=c$ because $P$ refines the old fibers.
+This proves density of $U(c;m,n)$; outside $D(c,m)$ membership is automatic.
+
+Intersect these open dense sets over all $c,m,n$ with $m\mid n$.
+For a fixed action in the resulting dense $G_\delta$, start with $c_1=0$
+and recursively lift $c_{n!}$ to $c_{(n+1)!}$. Every map selected in this
+recursion was already included in the countably many obligations.
+The compatible residues define continuous equivariant $p$.
+Its compact nonempty image is invariant under $\pm1$, whose integer
+translates are dense in $\widehat\Z$, so $p$ is onto. A measurable choice
+of $p$ as the action varies is not required.
+\end{proof}
+
+\section{The Borel height theorem}
+\begin{theorem}\label{borel}
+Suppose $W$ acts Borelly on a standard Borel space $X$ and there is a Borel
+map $p:X\to\widehat\Z$ with $p(gx)=p(x)+\chi(g)$. Then its entire orbit
+equivalence relation $E_W$ is hyperfinite.
+\end{theorem}
+
+No freeness, minimality, invariant probability, or surjectivity of $p$ is
+assumed in Theorem~\ref{borel}.
+
+\subsection*{Finite-width lamp slabs}
+For $m\geq1$, let $r_m(x)\in\{0,\ldots,m-1\}$ be the residue of $p(x)$ and
+$B_m=r_m^{-1}(0)$. This is an $N$-invariant Borel set. The coordinate map
+\[
+x\longleftrightarrow (z,r)=(t^{-r_m(x)}x,r_m(x))\in B_m\times\{0,\ldots,m-1\}
+\]
+is a Borel bijection with inverse $(z,r)\mapsto t^r z$. Uniqueness uses
+the prescribed residue, even when lamps have stabilizers.
+
+Let $G_m$ be the undirected graph including all lamp edges $\{x,ax\}$ and
+the shift edge $\{x,tx\}$ when $r_m(x)<m-1$, with loops omitted.
+Its degree is at most four. Each distance-at-most-$k$ relation is a finite
+union of graphs of partial Borel move words, so its path metric $\rho_m$
+is a proper Borel extended metric. Proper here means that finite-radius
+balls are finite. In the displayed coordinates its edges are
+\[
+(z,r)\longleftrightarrow(a_{-r}z,r),\qquad
+(z,r)\longleftrightarrow(z,r+1)\quad(r<m-1),
+\]
+since $t^{-r}at^r=a_{-r}$. The subgroup
+$K_m=\langle a_0,a_{-1},\ldots,a_{-(m-1)}\rangle\cong\Z^m$ acts on $B_m$.
+
+\begin{lemma}\label{slab}
+Each $\rho_m$ has finite Borel asymptotic dimension.
+\end{lemma}
+\begin{proof}
+By \cite[Corollary~5.5]{CJMST} and its finite-move characterization, there
+is a fixed finite color count $D_m+1$ such that, for each $R\geq1$, $B_m$
+has a Borel coloring whose monochromatic components under $K_m$ words
+of length at most $\lceil R\rceil$ have at most $C_R<\infty$ points.
+Lift the color of $z$ to every $(z,r)$.
+A slab path of length at most $R$ changes its base by at most
+$\lceil R\rceil$ lamp letters. Hence a monochromatic $\rho_m$-distance-at-most-$R$
+chain projects into one monochromatic base component. Connecting paths
+need not themselves be monochromatic; only their endpoints are used.
+The lifted component has at most $mC_R$ points, and its diameter is at
+most $R(mC_R-1)$ by a simple path in the threshold graph.
+For $0<R<1$ the components are singletons. This is the finite-color
+characterization of finite Borel asymptotic dimension in
+\cite[Lemma~3.1]{CJMST}. No bound uniform in $m$ is asserted.
+\end{proof}
+
+\subsection*{Compatible exhaustion on the regular part}
+If $m\mid M$, a forbidden residue $M-1$ reduces to the forbidden residue
+$m-1$. Thus $G_m\subseteq G_M$ and $\rho_M\leq\rho_m$ on all pairs of
+finite old distance. In particular factorial widths satisfy
+\eqref{compatibility}, with bound $R$.
+
+The embedded integers form a countable Borel subset of $\widehat\Z$.
+Put $X_{\rm exc}=p^{-1}(\Z)$ and $X_{\rm reg}=X\setminus X_{\rm exc}$;
+both are Borel and $W$-invariant. On $X_{\rm reg}$, every forward shift
+edge eventually appears in a factorial slab: a point with
+$r_{n!}(x)=n!-1$ for every $n$ would have $p(x)=-1$, contrary to membership
+in this set. Once admitted, an edge stays admitted. Lamp edges are always
+present. Each finite generator word therefore fits in one sufficiently
+late slab, giving
+\[
+E_W\mathbin{\upharpoonright}X_{\rm reg}
+=\bigcup_n E_{\rho_{n!}\mathbin{\upharpoonright}X_{\rm reg}}.
+\]
+Invariance means that restricting the graphs removes no intervening path.
+Lemma~\ref{slab} and \cite[Theorem~7.3]{CJMST} imply hyperfiniteness here.
+This invokes the compatible-metric theorem, not a general increasing-union
+principle for hyperfinite relations.
+
+\subsection*{The full exceptional preimage}
+For $x\in X_{\rm exc}$, let $h(x)$ be the unique integer equal to $p(x)$,
+and put $B=p^{-1}(0)$ and $q(x)=t^{-h(x)}x\in B$.
+Both $h$ and $q$ are Borel, and $N$ preserves $B$.
+For $y=gx$, the element $t^{-h(y)}gt^{h(x)}$ has zero shift character and
+lies in $N$. Conversely an $N$-move between normalized points conjugates
+back to a $W$-move. Therefore
+\[
+x\ E_W\ y\quad\Longleftrightarrow\quad q(x)\ E_N\ q(y).
+\]
+Every finitely generated subgroup of $N$ has polynomial growth, so
+\cite[Corollary~7.5]{CJMST} supplies increasing finite Borel relations
+$F_j$ on $B$ exhausting its $N$ orbit relation. On $X_{\rm exc}$ define
+\[
+x\ H_j\ y\quad\Longleftrightarrow\quad
+x=y\ \text{ or }\
+\bigl(|h(x)|,|h(y)|\leq j\ \text{ and }\ q(x)\ F_j\ q(y)\bigr).
+\]
+Inside the band this is a pullback of $F_j$; outside it all classes are
+singletons. For each $z\in B$ and $k\in\Z$ there is exactly one point
+with $q(x)=z$ and $h(x)=k$, namely $t^kz$. Thus band classes are finite,
+of size at most $(2j+1)|[z]_{F_j}|$. The relations $H_j$ are Borel,
+increase, and exhaust the full exceptional orbit relation.
+The exceptional set is not assumed countable or negligible; pulling back
+$F_j$ without the height band would not give finite classes.
+
+Take the disjoint union of finite increasing exhaustions of the two
+invariant pieces. This proves Theorem~\ref{borel} on all of $X$.
+Lemma~\ref{height} then proves Theorem~\ref{main}.
+
+\section{Verification and publication status}
+The accompanying package preserves the original proof and reviews, adds
+fresh independent mathematical and dated priority audits, and supplies
+portable finite diagnostics and integrity checks. Finite computations
+check group identities, nonfree slab models, divisor cuts, projections,
+and bounded-height exhaustions; they do not prove the infinite theorem.
+The proof above relies on the precise published inputs stated in Section~1.
+
+The bounded priority audit of October~13, 2026 found no exact earlier
+resolution in its inspected corpus and identified the lifting predecessors
+credited above. It does not certify historical firstness or worldwide
+current openness. This note answers the historically posed exact question.
+
+OpenAI tools were used extensively in developing and checking the argument,
+drafting the note, writing diagnostics, and conducting independent adversarial
+AI reviews. This is an unrefereed preprint. No completed external human peer
+review or formal proof-assistant verification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{AGW} E.~Akin, E.~Glasner, and B.~Weiss,
+\emph{Generically there is but one self homeomorphism of the Cantor set},
+Trans. Amer. Math. Soc. \textbf{360} (2008), 3613--3630.
+\href{https://doi.org/10.1090/S0002-9947-08-04450-4}{doi:10.1090/S0002-9947-08-04450-4}.
+\bibitem{CJMST} C.~T.~Conley, S.~C.~Jackson, A.~S.~Marks, B.~M.~Seward,
+and R.~D.~Tucker-Drob,
+\emph{Borel asymptotic dimension and hyperfinite equivalence relations},
+Duke Math. J. \textbf{172} (2023), 3175--3226.
+\href{https://doi.org/10.1215/00127094-2022-0100}{doi:10.1215/00127094-2022-0100}.
+Author manuscript: \url{https://math.berkeley.edu/~marks/papers/polycyclic_v13.pdf}.
+\bibitem{Doucha} M.~Doucha,
+\emph{Strong topological Rokhlin property, shadowing, and symbolic dynamics
+of countable groups}, \href{https://arxiv.org/abs/2211.08145v3}{arXiv:2211.08145v3} (2024).
+\bibitem{DMT} M.~Doucha, J.~Melleray, and T.~Tsankov,
+\emph{Dense and comeager conjugacy classes in zero-dimensional dynamics},
+\href{https://arxiv.org/abs/2507.05474v1}{arXiv:2507.05474v1} (2025);
+revised \href{https://arxiv.org/abs/2507.05474v2}{v2} (2026).
+\bibitem{OWR} S.~Iyer (joint with F.~Shinko),
+\emph{Generic actions of countable groups}, in \emph{Set Theory},
+Oberwolfach Report 2/2025, 114--115, Question~3.
+\href{https://doi.org/10.4171/owr/2025/2}{doi:10.4171/owr/2025/2}.
+\bibitem{IS} S.~Iyer and F.~Shinko,
+\emph{Asymptotic dimension and hyperfiniteness of generic Cantor actions},
+Groups Geom. Dyn. (2025), published online first.
+\href{https://doi.org/10.4171/GGD/896}{doi:10.4171/GGD/896}.
+Inspected manuscript: \href{https://arxiv.org/abs/2409.03078v1}{arXiv:2409.03078v1}.
+\end{thebibliography}
+\end{document}

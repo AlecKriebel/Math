@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-01T21:24:27.198829+00:00: 25% of acceptance review complete; original discovery completion remains unresolved. Defined literal-source acceptance criteria and independently reconstructed the universal geometry and all full symmetry types before reading review evidence. EARLY_SEAL is immutable. This is validation, zero new proof-attempt responses.
+
+- 2026-10-01T21:32:57.139226+00:00: 70% of acceptance review complete. Independently inspected actual primary/prior pages and figures, full three-family reports and programs, historical review and current metadata. New107-check all-ambient-map/full-incidence controls PASS. Exact head/current/family manifest gate passed; pinned corpus and isolated replays underway. No substantive proof-search response added. Original full-source discovery remains unresolved (subjective20%).
+
+- 2026-10-01T21:41:38.431783+00:00: 100% of the fresh complete acceptance review finished. Scoped PASS for exact current candidate25505c28 and22-entry manifest725be2b3. All16 frozen files/exact head, all22 current files, full pinned corpus/input/readiness hashes and all57 family-listed entries verify; all six historical/family programs reproduce. New107-check controls PASS. Root57-first-party accounting issue reconciled separately and parent reconciliation read back; preserved original receipt. Original1/5 and unresolved source status remain. Discovery estimate20%, zero extra proof-search turns; no paper/DOI/contact/mutation.

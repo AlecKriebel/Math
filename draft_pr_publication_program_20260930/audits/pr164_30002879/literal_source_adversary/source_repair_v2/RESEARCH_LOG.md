@@ -1,0 +1,4 @@
+# Source repair v2 follow-up log
+
+- 2026-10-12T09:42:07.858697+00:00; completion estimate 10%. Started only the authorized source-wording follow-up. Verified the predecessor manifest digest and every predecessor artifact hash/mode before writing new files. No earlier assessment, final report, result, or manifest was edited. Remaining gap: authenticate candidate identity and exact wording difference.
+- 2026-10-12T09:42:07.858697+00:00; completion estimate 100%. V1 and v2 pins match; the exact change is one source-action sentence, with core Sections 2-5 and checker/source record unchanged. Derived the rank-one square-zero x operator directly from the two-arrow permutation action. Optional wording note resolved with no scientific issue. Strongest verified result: exact v2 source-action wording is accurate over all characteristic-two fields. Remaining scope exclusions: no broader re-review or global priority/publication gate.

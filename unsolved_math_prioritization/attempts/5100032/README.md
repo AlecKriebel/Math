@@ -1,0 +1,3 @@
+# 5100032 focal antipedal equality
+
+Literal original claimed_solved2/5; all17 original bodies and the nonempty prior preserved. One dated import does not recreate historical structured events. No additional proof-search turn. A successful existing native assess (worker23360) is continued after a guard omitted native-generated clear_holds:{}; the map is empty, supplies no clearance evidence and clears no hold. No reassessment. All three stopped workspaces remain intact and nonexportable. The successful worker assessed originalf9; integration onto currente0 preserves the reviewed unrelated30005460 row and additions. This new candidate awaits independent review and actual export. Published proof: https://doi.org/10.5281/zenodo.23191247

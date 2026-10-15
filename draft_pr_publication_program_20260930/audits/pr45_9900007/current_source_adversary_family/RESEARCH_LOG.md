@@ -1,0 +1,7 @@
+# PR45 independent current source adversary research log
+
+2026-10-03T02:30:43.906240+00:00 — Started independent source-only adversary. Completion estimate: 0%. Scope: frozen preparation source, exact schemas, source provenance, future fail-closed boundary, own handwritten controls. New mathematical discovery: 0. No production/native/original helper execution; no external communication.
+
+2026-10-03T02:40:34.623310+00:00 — Mechanical and semantic source review checkpoint. Audit completion estimate: 80%; new mathematical discovery: 0%. All frozen source pins and modes matched. Handwritten healthy control child 84687 passed 848 assertions; six distinct deliberate mutant children exited 1 as expected, complete captures retained. Review distinguishes honest ROOT attestation from optional schema/capture hardening; no mandatory correction found so far. Production code remains text-only and all actual future ROOT prerequisites were absent at healthy inspection.
+
+2026-10-03T02:42:20.520557+00:00 — Final own closure checkpoint. Audit completion estimate: 100%; discovery: 0%. Exact preparation pins rechecked. Healthy848 and six deliberate rejected mutant captures independently validated, complete first-party only topology checked; dated special-bit fixtures frozen0444. No production/native/original helper execution or acceptance. Optional hardening remains optional under the explicit truthful ROOT attestation boundary.
