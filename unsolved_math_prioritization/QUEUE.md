@@ -258,7 +258,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 247 | 5100064 / AMR-050-0064 | Elliptic-billiard invariant k_{905} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 248 | 5100065 / AMR-050-0065 | Elliptic-billiard invariant k_{906} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 249 | 30000661 / OWR-1452-025 | Generalized Tameness of an Explicit Polynomial Automorphism | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 250 | 30000708 / OWR-1461-003 | Cramér–Wold Uniqueness for Infinite Signed Measures | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 250 | 30000708 / OWR-1461-003 | Cramér–Wold Uniqueness for Infinite Signed Measures | 0.1844 | 5.0 | 3 | 2007 | already_solved | 0/5 |  | [Boman–Lindskog: credited signed-measure classes and counterexamples](attempts/30000708/FINAL_DISPOSITION.md) |  |
 | 251 | 30006395 / OWR-14299518-013 | Detection-Threshold Transition for Planted Random Trees | 0.1841 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 252 | 30006492 / OWR-14299580-009 | Cocycle-Weighted Representations of Welded Braid Groups | 0.1841 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 253 | 30001321 / OWR-4081-005 | RWRE Concentration at Transverse Dimension One | 0.1838 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
