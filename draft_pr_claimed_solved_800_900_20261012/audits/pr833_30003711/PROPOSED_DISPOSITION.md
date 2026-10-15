@@ -9,10 +9,10 @@ files in the audit record. Do not prepare or deposit a solved-result preprint,
 assign a DOI, or append a tracker row for this PR on the present evidence.
 
 The submitted exact claim is ordinary section genus equal to8. The combined
-finite-group and geometry/topology audits establish at most8. The matching
+finite-group and geometry/topology audits establish at most 8. The matching
 lower bound is imported from the inspected Chen--Wan v2 proof. Its explicit
 degree-seven constant-F3 detector is false: the entire map is zero by the
-order27 Heisenberg lift, an explicit cup coboundary, H1 surjectivity and
+order 27 Heisenberg lift, an explicit cup coboundary, H1 surjectivity and
 Poincare duality. The independent lower-bound adversary confirms this proof
 and exact cochain replay. The second fresh reconstruction independently
 reached the same contradiction before reading these other findings; its final
@@ -29,7 +29,7 @@ still establish equality; no inequality genus<8 has been proved here.
 The unresolved input is a central proof dependency, rather than an editorial
 change that can be patched without new mathematical evidence. Merely asserting
 a nontrivial local-coefficient class transfers that missing proof to an
-unsupported statement. The original effort remains1/5; the existing-input
+unsupported statement. The original effort remains 1/5; the existing-input
 verification and source recovery are not billed as new proof attempts.
 
 For the user's acceptance process, the verified partial bound cannot be
