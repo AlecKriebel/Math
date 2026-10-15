@@ -1,0 +1,16 @@
+# Finite-energy lattice percolation with internal critical probability one
+
+For problem10000036 / AMR-099-0036, the five-page [research note](publication_20261015/preprint/output/pdf/note.pdf) gives an affirmative construction for the historical ordinary finite-energy bond question in every d>=2. The law has full lattice-automorphism invariance, translation mixing, a unique infinite component, and quenched internal bond/site critical probabilities one. It uses established one-ended spanning-tree inputs and a maximum finite-past rule suppressing every bypass of late tree cuts.
+
+The construction develops Haggstrom-Mester's published summable tree-flip mechanism. The note also supplies the planar bounded-cutset deduction for their exact fixed-phase midpoint projection. This is a source-consequence deduction, not a located previously printed solution. No wholly new planar mechanism, verified first priority, certified novelty, or worldwide current-open status is claimed. The [priority statement](publication_20261015/preprint/CURRENT_PRIORITY.md) records exact credit, chronology and source/version limits. No uniform energy bound or failure of all uniform marginal bounds is asserted.
+
+[Editable source](publication_20261015/preprint/note.tex), [verification ZIP](publication_20261015/preprint/verification.zip), [portable guide](publication_20261015/preprint/README.md), and [current dated metadata](CURRENT_PUBLICATION.json) accompany the note. OpenAI tools were used extensively in solving, proof development, drafting, coding and adversarial verification. This is unrefereed, without completed external human peer review or formal proof-assistant verification. Automated checks authenticate bytes and archive relationships, not the infinite mathematical proof or priority.
+
+All27 original files and all 3 original evidence archives remain byte-identical in [the complete frozen source](publication_20261015/verification_package/source/README.md). At this level24 original files retain their bytes; README.md, RESEARCH_LOG.md and PUBLICATION_MANIFEST.json are current wrappers. The original complete wrappers are preserved inside the portable package. Original PUBLICATION_ACCEPTANCE.json, PUBLICATION_METADATA.json and PUBLICATION_TEST_RESULTS.json remain dated historical records; CURRENT_PUBLICATION.json and the external final acceptance govern the current package.
+
+Before running downloaded code, independently obtain the SHA-256 pins from the repository's final external acceptance receipt at draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/FINAL_PREPRINT_ACCEPTANCE.json and verify the startup file's bytes. From this directory substitute the externally trusted outer-manifest digest for PIN:
+
+    python3 -I -S -B verify_publication.py PIN --full
+    python3 -I -S -B -O verify_publication.py PIN --full
+
+The verifier binds the complete closed tree, metadata/PDF/ZIP copies and all frozen original evidence, then calls the portable checks. The guide documents independent startup trust and deterministic rebuilding. Raw primary publications, source extracts, renders, full input corpora and private credentials are excluded. The canonical production deposit manifest is in this shard's audit/preprint folder; no deposit or spreadsheet action is performed by these verification commands.
