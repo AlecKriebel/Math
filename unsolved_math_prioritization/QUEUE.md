@@ -244,7 +244,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 234 | 30003999 / OWR-16633-016 | Polynomial-Time Comparison of Sparse Algebraic Power Sums | 0.1886 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 235 | 30005449 / OWR-12697708-002 | Deterministic Limits of Trace-Reinforced Ant Walks | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 236 | 30005454 / OWR-12697708-007 | Critical Reinforcement Convergence on the Infinite Line | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 236 | 30005454 / OWR-12697708-007 | Critical Reinforcement Convergence on the Infinite Line | 0.1881 | 5.0 | 3 | 2023 | unsolved | 5/5 | https://github.com/AlecKriebel/Math/pull/222 | Reviewed partials: adjacent sums converge to 2 and deterministic selected times give a.s. limit 1 on all fixed edges; full temporal convergence unresolved |  |
 | 237 | 30005457 / OWR-12697708-010 | Reinforcement Counterexamples on Integer Lattices | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 238 | 30005731 / OWR-14298011-002 | Automatic Convexity of Optimal Spiral Strategies | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 239 | 7000013 / AMR-069-0013 | Geometry of Curves and Surfaces — Problem 2.4 | 0.1879 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
