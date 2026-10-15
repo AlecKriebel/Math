@@ -2,9 +2,9 @@
 
 Alec Kriebel · ORCID https://orcid.org/0009-0001-9320-500X · 15 October 2026 · version 1.0.0
 
-The four-page `output/pdf/note.pdf` answers the unrestricted diffuse-measure question in Last and Thorisson's 2009 *Some open problems in probability*: invariance under every deterministic, pair-generated, measure-preserving allocation does not imply mass-stationarity. The example is Lebesgue measure on parallel horizontal lines with alternating transverse weights 1 and 2. The proof treats all measurable allocations, including noninjective maps; finite computations are supporting diagnostics, not the proof.
+The four-page `output/pdf/note.pdf` answers the unrestricted diffuse-measure question in Thorisson's undated *Some Open Probability Problems*, Problem 4.1, also stated as Last–Thorisson (2009), Problem 7.5: invariance under every deterministic, pair-generated, measure-preserving allocation does not imply mass-stationarity. The example is Lebesgue measure on parallel horizontal lines with alternating transverse weights 1 and 2. The proof treats all measurable allocations, including noninjective maps; finite computations are supporting diagnostics, not the proof.
 
-The entire negative existential conclusion also follows from the atomic example in Last–Thorisson (2009), an allocation-transfer argument, and the product equivalence in their 2014 preprint/2015 paper. The note gives that deduction, credits Last–Thorisson (2023), Section 8 and Remark 8.1, for the prior invariant-direction obstruction, and distinguishes the balancing-allocation scope of Klatt–Mörters (2025), Remark 3.2. We claim neither a new general discovery nor first recognition; priority of the precise periodic formula is unverified. `CURRENT_PRIORITY.md` records the bounded search and operational disposition. The recorded `claimed_solved` status is not a certificate of novelty or present-day openness.
+The entire negative existential conclusion also follows from the atomic example in Last–Thorisson (2009), an allocation-transfer argument, and the product equivalence in their 2014 preprint/2015 paper. The note gives that deduction, credits Last–Thorisson (2023), Section 8 and Remark 8.1, for the prior invariant-direction obstruction, and distinguishes the balancing-allocation scope of Khezeli–Mellick (2025), Remark 3.2. We claim neither a new general discovery nor first recognition; priority of the precise periodic formula is unverified. `CURRENT_PRIORITY.md` records the bounded search and operational disposition. The recorded `claimed_solved` status is not a certificate of novelty or present-day openness.
 
 This is an unrefereed research note. AI tools were used extensively in reconstruction, checking, writing, and adversarial review. No completed human peer review or formal proof-assistant verification is represented.
 
@@ -14,7 +14,7 @@ This is an unrefereed research note. AI tools were used extensively in reconstru
 
 Historical reports, verdicts, proposals, and receipts remain dated evidence with their original scope. In particular, the proposed `already_solved` reclassification was rejected and never applied; the corrected qualified disposition governs this note. A corrected reviewer-only equal-weight control is documented without changing the candidate. Earlier source-credit omissions and the limitations of the original verifiers are retained in the audit record. Neither the original safe ZIPs nor a historical acceptance is approval of this current package.
 
-Before executing code, obtain the inventory digest from an independently trusted release/review record, inspect the scripts, and authenticate their bytes separately. A digest supplied only by the same untrusted directory is not an external trust anchor. The current portable verifier has SHA-256 `cade25ebe77a60c2810c3da2f5e2bae54eca654620f5b96e6960bb7778bf3555`; the original checker has `c4d2f9be86982459ade371f2bb152a79a9dde42a8dceeb7377b9e7df0188ea1b`; the builder has `f8413a3aa9b4463d30885be3e5ae9b01061c1ce3b341bdaa60b09bfd7a3fb157`. Authenticate the outer verifier separately when using the repository-level entrypoint.
+Before executing code, obtain the inventory digest from an independently trusted release/review record, inspect the scripts, and authenticate their bytes separately. A digest supplied only by the same untrusted directory is not an external trust anchor. The current portable verifier has SHA-256 `e80ce30e89547c52d63c44237a554f0b3bf1ae1959783bbbba1f3f1703e9f7f8`; the original checker has `e4fb73b16db72ed4387c08c38662a1ad9f836f9b0ecd2ff91778347deb74829b`; the builder has `2b0521d74a49360cbdd6d48427cb02763b586f3a5196766ec16f6ddc2fa41f2c`. Authenticate the outer verifier separately when using the repository-level entrypoint.
 
 ## Reproduce the portable package
 
@@ -32,10 +32,10 @@ Default verification authenticates every indexed file, strictly parses JSON, che
 To rebuild the ZIP, first authenticate the builder and portable verifier, then use a fresh or empty output directory outside the package and its ancestor chain; its parent must already exist:
 
 ```sh
-python3 -I -S -B PACKAGE/build_verification.py PACKAGE INDEX_SHA256 cade25ebe77a60c2810c3da2f5e2bae54eca654620f5b96e6960bb7778bf3555 OUTPUT
+python3 -I -S -B PACKAGE/build_verification.py PACKAGE INDEX_SHA256 e80ce30e89547c52d63c44237a554f0b3bf1ae1959783bbbba1f3f1703e9f7f8 OUTPUT
 ```
 
-The result is `OUTPUT/verification.zip`. The builder runs default verification before producing output, sorts members, fixes regular-file permissions and timestamps to 2026-10-15 00:00:00, and uses DEFLATE level 9. Byte-identical compression is promised only for identical inputs and the same Python ZIP implementation and zlib runtime; it is not promised across runtimes. The recorded build uses Python 3.14.6 and zlib 1.2.12. There are no ZIP directory entries, comments, extras, prefixes, or trailers.
+The result is `OUTPUT/verification.zip`. The builder runs default verification before producing output, sorts members, fixes regular-file permissions and timestamps to 2026-10-15 00:00:00, and uses DEFLATE level 9. Byte-identical compression is promised only for identical inputs and the same Python ZIP implementation and zlib runtime; it is not promised across runtimes. The recorded build uses Python 3.14.6 and zlib 1.2.12. There are no ZIP directory entries, comments, extras, prefixes, or trailers. Each declared raw DEFLATE region must be consumed completely by one bounded decoder with exact expected output, end-of-stream reached, and no unused data or unconsumed tail; decompressed byte equality alone is insufficient.
 
 ## Optional original-source authentication
 

@@ -16,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import zlib
 
 MAX_FILE = 256 * 1024 * 1024
 MAX_TOTAL = 512 * 1024 * 1024
@@ -215,6 +216,17 @@ def zip_payloads(raw, expected, generated=False):
                     info.CRC, info.compress_size, info.file_size, len(encoded), 0, 0, 0, 0, info.external_attr, info.header_offset), "ZIP raw central disagreement")
             require(raw[central + 46:central + 46 + len(encoded)] == encoded, "ZIP raw central name")
             central += 46 + len(encoded)
+            # ZipExtFile accepts unused bytes after the first DEFLATE stream.
+            # Validate the complete declared raw region independently, with one
+            # extra output byte as an expansion bound. EOF plus empty suffix and
+            # tail are necessary even when the expected output bytes match.
+            compressed = raw[start + local[9]:cursor]
+            decoder = zlib.decompressobj(-15)
+            inflated = decoder.decompress(compressed, len(want) + 1)
+            consumed = len(compressed) - len(decoder.unused_data) - len(decoder.unconsumed_tail)
+            require(inflated == want and decoder.eof and not decoder.unused_data and
+                    not decoder.unconsumed_tail and consumed == info.compress_size == len(compressed),
+                    "ZIP raw DEFLATE exact-consumption mismatch: " + name)
             with archive.open(info) as stream:
                 payload = stream.read(len(want) + 1)
                 require(not stream.read(1), "ZIP expanded bound")
@@ -268,7 +280,7 @@ def rejected_main(main):
         isolated()
         main()
     except (ValueError, OSError, KeyError, TypeError, RuntimeError, OverflowError, RecursionError,
-            zipfile.BadZipFile, subprocess.TimeoutExpired, UnicodeError, struct.error) as exc:
+            zipfile.BadZipFile, zlib.error, subprocess.TimeoutExpired, UnicodeError, struct.error) as exc:
         print(json.dumps({"status": "REJECTED", "reason": str(exc)}, sort_keys=True))
         sys.exit(1)
 

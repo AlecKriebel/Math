@@ -14,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import zlib
 
 BASE = Path(__file__).resolve().parent.parent
 TOOLS = BASE / 'tooling_candidate'
@@ -76,11 +77,43 @@ def zip_bytes(mapping):
     return out.getvalue()
 
 
+def add_deflate_suffix(raw, suffix):
+    """Reconcile metadata after extending the last member's compressed region."""
+    end_at = len(raw) - 22
+    end = struct.unpack_from('<4s4H2IH', raw, end_at)
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        infos = archive.infolist()
+        last = infos[-1]
+    local = struct.unpack_from('<4s5H3I2H', raw, last.header_offset)
+    payload_end = last.header_offset + 30 + local[9] + local[10] + last.compress_size
+    need(payload_end == end[6], 'fixture last member boundary')
+    central = end[6]
+    for _ in infos[:-1]:
+        row = struct.unpack_from('<4s6H3I5H2I', raw, central)
+        central += 46 + row[10] + row[11] + row[12]
+    changed = bytearray(raw[:payload_end] + suffix + raw[payload_end:])
+    struct.pack_into('<I', changed, last.header_offset + 18, last.compress_size + len(suffix))
+    struct.pack_into('<I', changed, central + len(suffix) + 20, last.compress_size + len(suffix))
+    struct.pack_into('<I', changed, len(changed) - 22 + 16, end[6] + len(suffix))
+    return bytes(changed)
+
+
+def invalid_deflate_block(raw):
+    """Keep ZIP metadata intact but use reserved raw-DEFLATE block type 3."""
+    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+        last = archive.infolist()[-1]
+    local = struct.unpack_from('<4s5H3I2H', raw, last.header_offset)
+    start = last.header_offset + 30 + local[9] + local[10]
+    changed = bytearray(raw)
+    changed[start] = 7
+    return bytes(changed)
+
+
 def main():
     need(sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode, 'run -I -S -B')
     current, original, outer = load('verify_package'), load('check_originals'), load('verify_current_publication')
     rejected, positives, receipts = [], [], []
-    exceptions = (ValueError, OSError, KeyError, TypeError, OverflowError, RecursionError, zipfile.BadZipFile, UnicodeError, struct.error)
+    exceptions = (ValueError, OSError, KeyError, TypeError, OverflowError, RecursionError, zipfile.BadZipFile, zlib.error, UnicodeError, struct.error)
     def reject(name, action):
         try:
             action()
@@ -109,7 +142,11 @@ def main():
     payload = {'a.json': b'{"typed":1}', 'b.txt': b'test'}
     rawzip = zip_bytes(payload)
     accept('ZIP-positive', lambda: current.zip_payloads(rawzip, payload, generated=True))
-    mutations = {'prefix': b'x' + rawzip, 'trailer': rawzip + b'x', 'truncated': rawzip[:-1]}
+    compressor=zlib.compressobj(wbits=-15)
+    second_stream=compressor.compress(b'innocent second stream')+compressor.flush()
+    mutations = {'prefix': b'x' + rawzip, 'trailer': rawzip + b'x', 'truncated': rawzip[:-1],
+                 'raw-deflate-surplus-bytes':add_deflate_suffix(rawzip,b'fixture suffix'),
+                 'raw-deflate-second-stream':add_deflate_suffix(rawzip,second_stream)}
     bad = bytearray(rawzip); bad[10] ^= 1; mutations['local-time-disagreement'] = bytes(bad)
     bad = bytearray(rawzip); bad[30] ^= 1; mutations['local-name-disagreement'] = bytes(bad)
     bad = bytearray(rawzip); central = struct.unpack_from('<4s4H2IH', bad, len(bad)-22)[6]; bad[central+12] ^= 1; mutations['central-time-disagreement'] = bytes(bad)
@@ -214,6 +251,21 @@ def main():
         reject('outer-typed-JSON-metadata-mismatch',lambda:outer.portable_inputs(bad))
         bad=dict(outerblobs); bad['preprint/verification.zip']=b'x'+zip1
         reject('outer-ZIP-prefix-with-reanchored-bytes',lambda:outer.portable_inputs(bad))
+        for label, suffix in [('surplus-bytes',b'fixture suffix'),('second-stream',second_stream)]:
+            badzip=add_deflate_suffix(zip1,suffix)
+            bad=dict(outerblobs); bad['preprint/verification.zip']=badzip
+            reject('outer-raw-deflate-'+label,lambda bad=bad:outer.portable_inputs(bad))
+            (outerroot/'preprint/verification.zip').write_bytes(badzip)
+            badpin=seal(outerroot,True)
+            receipts.append(invoke('verify_current_publication.py',[badpin,'--root',outerroot,'--verify-only'],False))
+        badzip=invalid_deflate_block(zip1)
+        bad=dict(outerblobs); bad['preprint/verification.zip']=badzip
+        reject('outer-invalid-raw-deflate-block',lambda:outer.portable_inputs(bad))
+        (outerroot/'preprint/verification.zip').write_bytes(badzip)
+        badpin=seal(outerroot,True)
+        receipts.append(invoke('verify_current_publication.py',[badpin,'--root',outerroot,'--verify-only'],False))
+        (outerroot/'preprint/verification.zip').write_bytes(zip1)
+        seal(outerroot,True)
         # Explicit metadata-preserving source change must fail even when the
         # outer and portable container inventories are reanchored by an attacker.
         bad=dict(outerblobs); bad['author/PROOF.md']+=b'changed'
