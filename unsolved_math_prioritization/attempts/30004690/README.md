@@ -1,6 +1,6 @@
 # 30004690: an interior second-order defect from a Hele–Shaw contact arc
 
-Original-HEAD-safe merge accepted; factual completion checkpoint pending.
+Published, tracked and original-HEAD-safe merged; factual completion checkpoint accepted.
 
 Preprint: [10.5281/zenodo.23397854](https://doi.org/10.5281/zenodo.23397854). Alec Kriebel, independent researcher, ORCID0009-0001-9320-500X. AI tools were used extensively; the note is unrefereed and has not undergone conventional human peer review.
 

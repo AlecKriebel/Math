@@ -1,6 +1,6 @@
 # Qualified contribution and historical priority
 
-2026-10-15T14:27:41.848315+00:00 — This verified theorem is published as an attributed proof/application note at https://doi.org/10.5281/zenodo.23397854. All contact-arc construction, flow/obstacle/duality machinery is credited to Ross–Witt Nyström. Their joint-work OWR2021 contribution already announces/sketches an interior construction. The present note writes a precise finite-time arc-filled Green comparison and finite-curvature Legendre deduction yielding an interior second-order Taylor defect.
+2026-10-15T14:29:16.170586+00:00 — This verified theorem is published as an attributed proof/application note at https://doi.org/10.5281/zenodo.23397854. All contact-arc construction, flow/obstacle/duality machinery is credited to Ross–Witt Nyström. Their joint-work OWR2021 contribution already announces/sketches an interior construction. The present note writes a precise finite-time arc-filled Green comparison and finite-curvature Legendre deduction yielding an interior second-order Taylor defect.
 
 A bounded18-entry source/list and64-query audit found no complete exact predecessor within the recorded inspection scope. Historical firstness, independent discovery and worldwide current openness remain unestablished. Dated survey questions, negative searches and incomplete author publication lists do not certify absence. The original local-ball paper, a separately published survey text and unindexed/unpublished followups remain coverage/access qualifications; exact source/version scopes are in the supplement.
 
