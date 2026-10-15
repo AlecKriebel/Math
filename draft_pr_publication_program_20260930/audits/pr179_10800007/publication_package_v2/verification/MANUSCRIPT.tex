@@ -1,0 +1,205 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\title{No open exact-root cover for Vassiliev's quadratic family}
+\author{Alec Kriebel\\
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{13 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Problem~2A in Vassiliev's 2015 problem list asks for the minimum number of
+open coefficient sets supporting continuous exact real-root selections for
+a six-parameter quadratic system. For the full coefficient space printed
+there, no such open cover exists, of any cardinality. Every neighborhood
+of the zero coefficients contains the complex square-root obstruction.
+We give an elementary proof and a translated family of obstructed
+coefficients. This is an explicit diagnosis of the literal formulation
+using classical topology and the source's own square-root slice.
+Historical firstness is not established. No result is claimed for a
+modified finite-genus question or the separate approximate-root problem.
+\end{abstract}
+
+\section{The printed question and its answer}
+For
+\(p=(a_1,a_2,a_0,b_1,b_2,b_0)\in\R^6\), put
+\begin{align}
+ F_p(x,y)&=x^2-y^2+a_1x+a_2y+a_0,\label{eq:f}\\
+ G_p(x,y)&=xy+b_1x+b_2y+b_0.\label{eq:g}
+\end{align}
+An admissible set is a Euclidean-open \(U\subset\R^6\) with a continuous
+map \(s:U\to\R^2\) satisfying \(F_p(s(p))=G_p(s(p))=0\) for every \(p\in U\).
+Vassiliev's Problem~2A asks for a minimum number of such sets covering
+all of \(\R^6\)~\cite[Section~2, p.~205]{V15}. Repeated-root coefficients
+are included. A selection chooses an actual point, irrespective of
+algebraic multiplicity.
+
+\begin{theorem}\label{thm:main}
+No open neighborhood of \(0\in\R^6\) is admissible.
+Consequently, no admissible open cover of \(\R^6\) exists, even if
+arbitrarily many members are allowed.
+\end{theorem}
+Thus the admissible-cover class is empty. If a finite-cover number is
+extended by assigning \(+\infty\) when no finite admissible cover exists,
+its value here is \(+\infty\); this notation does not assert the existence
+of an infinite admissible cover.
+
+\section{An elementary local proof}
+\begin{lemma}\label{lem:square}
+For every \(r>0\), there is no continuous \(S:D_r\to\C\), where
+\(D_r=\{w\in\C:|w|<r\}\), satisfying \(S(w)^2=w\).
+\end{lemma}
+\begin{proof}
+Consider the continuous path
+\[
+ \gamma(t)=
+ \begin{cases}
+ (1-t)+it,&0\leq t\leq1,\\
+ (1-t)+i(2-t),&1\leq t\leq2.
+ \end{cases}
+\]
+Its two formulas agree at \(t=1\), and
+\[
+ |\gamma(t)|^2=
+ \begin{cases}
+ 2(t-\tfrac12)^2+\tfrac12,&0\leq t\leq1,\\
+ 2(t-\tfrac32)^2+\tfrac12,&1\leq t\leq2.
+ \end{cases}
+\]
+Hence \(1/2\leq|\gamma(t)|^2\leq1\), with
+\(\gamma(0)=1\) and \(\gamma(2)=-1\).
+Choose \(c>0\) with \(c^2<r\). The path
+\(w(t)=c^2\gamma(t)^2\) lies in \(D_r\setminus\{0\}\) and has
+\(w(0)=w(2)=c^2\). If \(S\) existed, the continuous function
+\[
+ q(t)=\frac{S(w(t))}{c\gamma(t)}
+\]
+would satisfy \(q(t)^2=1\). Connectedness of \([0,2]\) makes \(q\)
+constant. But its numerator agrees at the endpoints and its nonzero
+denominator changes sign, so \(q(2)=-q(0)\), a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Restrict coefficients by the continuous embedding
+\[
+ \iota(u+iv)=(0,0,-u,0,0,-v/2).
+\]
+Equations~\eqref{eq:f}--\eqref{eq:g} then become
+\(x^2-y^2=u\) and \(2xy=v\), so their full real solution set is
+exactly the complex roots \(z=x+iy\) of \(z^2=u+iv\).
+If \(U\) were an admissible neighborhood of zero, \(\iota^{-1}(U)\)
+would be an open neighborhood of zero in \(\C\) and would contain
+some \(D_r\). Composing its exact selection with \(\iota\), and
+identifying \(\R^2\) with \(\C\), would contradict
+Lemma~\ref{lem:square}. Every open cover has a member containing zero,
+so its cardinality cannot evade this obstruction.
+\end{proof}
+
+\begin{remark}[Translated obstructions]\label{rem:translated}
+For any \(h,k\in\R\), define
+\[
+ p_{h,k}=(-2h,\,2k,\,h^2-k^2,\,-k,\,-h,\,hk).
+\]
+No open neighborhood of \(p_{h,k}\) is admissible. Indeed, replacing
+the constant coefficients by \(a_0=h^2-k^2-u\) and
+\(b_0=hk-v/2\), while fixing the linear coefficients, gives
+\[
+ (x-h)^2-(y-k)^2=u,\qquad 2(x-h)(y-k)=v.
+\]
+The same argument applies to \(z=(x-h)+i(y-k)\).
+In particular \(p_{1,0}=(-2,0,1,0,-1,0)\neq0\) is obstructed.
+Removing just the zero coefficient vector therefore does not yield
+an admissible open cover of the remaining coefficient space.
+\end{remark}
+
+\section{Provenance and the limits of the answer}
+The final journal statement~\cite{V15} and its arXiv version
+1504.01997v1 both ask for all of \(\R^6\), ordinary open domains, and
+continuous exact roots. The source itself identifies the complex-square
+slice. Its finite lower-bound hint does not remove zero.
+For \(z^2=w\) over \(\C\setminus\{0\}\), two slit domains support branches
+and one global branch is impossible. Including zero prevents even a
+local exact branch. This is the domain distinction responsible for
+Theorem~\ref{thm:main}; no intention to alter the source is attributed
+to its author.
+
+The strict-cover framework and the obstruction mechanism are classical.
+Smale's definition uses open sets with strict right inverses, while his
+root-selection Theorem~A removes the discriminant~\cite[pp.~83--85]{S87}.
+Pave\v{s}i\'c explicitly distinguishes ordinary open strict sections
+from filtered domains and homotopy sections, and warns that failure of
+local sectionability defeats open section covers
+\cite[Section~5, pp.~75--76]{P18}\cite[Section~2, pp.~109,111]{P19}.
+We credit that machinery and Vassiliev's slice; no new topological
+method is claimed.
+
+A bounded primary-body priority audit did not locate an earlier explicit
+diagnosis of this exact six-coefficient formulation. It cannot establish
+novelty or historical firstness. Important coverage limits include
+unread Schwarz originals/translation and Vassiliev's 1996 article;
+the complete 2011 author manuscripts were read without comparison
+to their final journal versions. Other version and selective-read
+limits are recorded in the accompanying priority audit. This note
+records the explicit literal answer, without a priority guarantee.
+
+Deleting an appropriate coefficient locus, changing admissible domains,
+or using homotopy sections would pose different questions.
+Theorem~\ref{thm:main} does not solve any unspecified repaired finite-genus
+problem. It also does not solve approximate Problem~2B in~\cite{V15}:
+on the square slice, for fixed \(\varepsilon>0\), the value zero is
+within \(\varepsilon\) of every root whenever \(|w|<\varepsilon^2\).
+
+\section*{Verification and disclosure}
+The supplementary package provides exact rational polynomial checks
+of the slice identities, the full Jacobian, the path's universal
+quadratic norm bounds, and adversarial input controls. The checks
+remain active with Python optimization. They do not prove continuity
+or the topological nonexistence statement; those are established by
+the written argument above. Finite numerical sampling is not used
+as a proof of the path bound.
+
+AI tools were used extensively in developing, drafting, sourcing,
+reproducing, and adversarially auditing this work. This preprint is
+unrefereed and has not undergone conventional human peer review.
+The author is responsible for the claims and their stated limits.
+
+\begin{thebibliography}{9}
+\bibitem{V15}
+V.~A.~Vassiliev,
+\emph{A Few Problems on Monodromy and Discriminants},
+Arnold Math.\ J.\ \textbf{1} (2015), 201--209.
+\href{https://doi.org/10.1007/s40598-015-0011-9}{doi:10.1007/s40598-015-0011-9}.
+arXiv:1504.01997v1.
+
+\bibitem{S87}
+S.~Smale,
+\emph{On the Topology of Algorithms, I},
+J.\ Complexity \textbf{3} (1987), 81--89.
+\href{https://doi.org/10.1016/0885-064X(87)90021-5}{doi:10.1016/0885-064X(87)90021-5}.
+
+\bibitem{P18}
+P.~Pave\v{s}i\'c,
+\emph{A Topologist's View of Kinematic Maps and Manipulation Complexity},
+Contemp.\ Math.\ \textbf{702} (2018), 61--83.
+\href{https://doi.org/10.1090/conm/702/14107}{doi:10.1090/conm/702/14107}.
+
+\bibitem{P19}
+P.~Pave\v{s}i\'c,
+\emph{Topological Complexity of a Map},
+Homology Homotopy Appl.\ \textbf{21}(2) (2019), 107--130.
+\href{https://doi.org/10.4310/HHA.2019.v21.n2.a7}{doi:10.4310/HHA.2019.v21.n2.a7}.
+The relevant final-body passages were checked separately from the
+later corrected arXiv:1809.09021v3.
+\end{thebibliography}
+\end{document}
+

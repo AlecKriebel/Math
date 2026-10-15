@@ -1,0 +1,96 @@
+{
+  "schema": "independent-whole-package-review-v1",
+  "review": "package_round2",
+  "completed_utc": "2026-10-14T03:29:10.130271+00:00",
+  "problem_id": 30001184,
+  "problem_number": "OWR-3392-012",
+  "pr": 623,
+  "original_head": "947442c091ae617804c6a0d07b98ff2c50368798",
+  "result": "NEEDS_REPAIR",
+  "mathematical_result": "SUPPORTED",
+  "source_scope": "SUPPORTED_SCOPED_NEGATIVE_CONJUNCTION_RESOLUTION",
+  "priority_framing": "SUPPORTED_NO_LITERATURE_FIRST_CLAIM",
+  "rendering": "PASS_ALL_5_PAGES",
+  "portable_reproduction": "PASS_NORMAL_O_AND_INHERITED_OPTIMIZATION",
+  "deterministic_archive_rebuild": "BYTE_IDENTICAL",
+  "local_metadata_intent": "PASS",
+  "mandatory_findings": [
+    {
+      "id": "F1",
+      "priority": "P2",
+      "title": "Preserve validated immutable notice and receipt bytes",
+      "locations": [
+        "prepare_integration.py:261",
+        "prepare_integration.py:284",
+        "prepare_integration.py:285",
+        "prepare_integration.py:420"
+      ],
+      "normal_and_optimized_reproduced": true,
+      "gap": "Notice validated against archive is reread for construction; validated receipt contents are reread for attestation hashes. Mutated second reads can be accepted and recorded under the earlier validation.",
+      "repair": "Capture each input once, validate/parse/hash/use the same immutable byte strings; bind installed notice to archive-validated notice.",
+      "evidence": [
+        "operations/ADDITIONAL_ADVERSARIAL_RESULTS.json",
+        "operations/ADDITIONAL_ADVERSARIAL_O1_RESULTS.json",
+        "operations/RECEIPT_BINDING_O0_RESULTS.json",
+        "operations/RECEIPT_BINDING_O1_RESULTS.json"
+      ]
+    },
+    {
+      "id": "F2",
+      "priority": "P3",
+      "title": "Require exact integer inventory schema type",
+      "locations": [
+        "publication/verify_package.py:36",
+        "prepare_integration.py:232"
+      ],
+      "normal_and_optimized_reproduced": true,
+      "gap": "Boolean true and decimal 1.0 are accepted by equality-based schema guards.",
+      "repair": "Require type(schema) is int and schema == 1 in both guards; add normal/optimized malformed-schema regressions and rebuild archive.",
+      "evidence": [
+        "INVENTORY_CONTROL_RESULTS.json",
+        "operations/SCHEMA_O0_RESULTS.json",
+        "operations/SCHEMA_O1_RESULTS.json"
+      ]
+    }
+  ],
+  "optional_findings": [
+    {
+      "id": "O1",
+      "title": "Use explicit Shalit-Skeide arXiv v3 Appendix R(i) pp211-212 and correct historical locator in current notice",
+      "status": "CITED_PREPRINT_LOCATOR_MISMATCH_CONFIRMED_JOURNAL_NUMBER_NOT_FALSIFIED"
+    },
+    {
+      "id": "O2",
+      "title": "Add direct BFH Section2 equations1-3 and DMB Method/AppendicesA-B source locators",
+      "status": "PRECISION_ONLY"
+    }
+  ],
+  "all_required_review_families_completed": true,
+  "completion_percent": 100,
+  "publication_authorized": false,
+  "required_next_step": "Global repairs, rebuilt/rebound input identities, then a NEW independent sequential whole-package review.",
+  "independence": "No package_round1 verdict/findings consulted; source and operations subagents used independent primary/local evidence.",
+  "input_sha256": {
+    "INTEGRATION_HELPER_CHECKS.json": "6c612545fa083cd773e5eb72b6db7e7343a3942f3175933b757aa7e6fa7ac45c",
+    "INTEGRATION_HELPER_NOTES.md": "77c17366173f74ae37a3739408d4554cc2a1a1d1415c80997e76ad0da3f9070e",
+    "PR_METADATA.json": "f872723f9243b3ebcff64afeea5738a6eed3f3df7f4ce51889dd175c9884e53c",
+    "native/unsolved_math_prioritization/attempts/30001184/packet/PROOF.md": "f2a1b3b4233c2850d8dd79ba17b464d74343aa66e7d22d12104d17fc5470e8a3",
+    "prepare_integration.py": "b1729250dce32ac4d28fe807bf1f9464169900b4e3a05e649fc04d79868b1472",
+    "publication/CURRENT_PRIORITY_AND_STATUS.md": "2139cf7842f5e781836da253e47fb3bcf2941dfdfafce63e853b617236e91def",
+    "publication/PACKAGE_README.md": "209d3b4f73160fcb8570fede318ead08c5b9d4fb351cec3bc2ba16a24f17edad",
+    "publication/build_package.py": "e7cf39475e96753eb6b2560e535400a8828cb553ed626d8dc64c5d606ade38c8",
+    "publication/gns_generation_counterexample.pdf": "d9cccada38421d088969a34458d5d7f48f0affd812184b5fe85ec689438806f6",
+    "publication/gns_generation_counterexample.tex": "1c91a3423e4727b401e51f61630c0a2df90da7a3b870bac49ef47fde25ec475c",
+    "publication/gns_verification.zip": "1c854a2b6c752e22d1e494076f1134136f18d11cec1d17321cff932a18ef2090",
+    "publication/requirements.txt": "47fd19021144e071cc43b6e265aafada0056abe89724ad95bd6e3a8e37995b94",
+    "publication/verify_package.py": "b05a118bf16e02c638396da4f10aa9f21772fc05549a1521c666c4324c0394a9",
+    "publication/zenodo-deposit.json": "0612ed1a8d1259168698cff199897acd80d0417061e55574f9819b32da1c7af0",
+    "record_tracker.py": "9dde2c212bc0066baf8da0c7d8f141f71290600b2244ec8e7d79523d91262b48",
+    "reviews/operations_01/check_helpers.py": "7ff31da444143f9e31dc7f2051ab9bd1d6dc6b993f9c743510ac633604a890f5"
+  },
+  "proof_sha256": "f2a1b3b4233c2850d8dd79ba17b464d74343aa66e7d22d12104d17fc5470e8a3",
+  "operational_checks_are_local_mocks_only": true,
+  "live_mutations": 0,
+  "input_mutations": 0,
+  "git_index_mutations": 0
+}

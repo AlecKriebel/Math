@@ -1,0 +1,78 @@
+{
+  "status": "PASS",
+  "checked_at_utc": "2026-10-15T06:24:06.833340+00:00",
+  "network_denied_by_OS": true,
+  "writes_restricted_to_disposable_copy": true,
+  "originals_unchanged": 18,
+  "dependency_versions": {
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "results": [
+    {
+      "script": "verify_release.py",
+      "result": {
+        "audit_assertions": 60731,
+        "geometric_existence_not_certified_by_computation": true,
+        "programs_replayed": 3,
+        "replays": [
+          {
+            "exact_stdout_sha256": "409f5e350e34e365d33d5ce00d839108474866b27bb4746a43032863530b8741",
+            "program": "author/verify_intersections.py"
+          },
+          {
+            "exact_stdout_sha256": "997da298e6aa23dc8b47408927b67270e7f0b9d63d2a560210f647f68098442f",
+            "program": "author/verify_formulas.py"
+          },
+          {
+            "exact_stdout_sha256": "b2b42fddc1facbface7a8a9534678a00c281eb76cabf37d25ab0c214cdb3a859",
+            "program": "audit/independent_checks.py"
+          }
+        ],
+        "status": "PASS",
+        "strict_manifest_entries": 17
+      }
+    },
+    {
+      "script": "test_integrity.py",
+      "result": {
+        "frozen_inputs_unchanged": true,
+        "negative_controls": [
+          {
+            "mutation": "changed_file",
+            "rejected": true
+          },
+          {
+            "mutation": "missing_file",
+            "rejected": true
+          },
+          {
+            "mutation": "extra_file",
+            "rejected": true
+          },
+          {
+            "mutation": "extra_directory",
+            "rejected": true
+          },
+          {
+            "mutation": "symlink",
+            "rejected": true
+          },
+          {
+            "mutation": "duplicate_manifest",
+            "rejected": true
+          },
+          {
+            "mutation": "traversal_manifest",
+            "rejected": true
+          },
+          {
+            "mutation": "optimized_python",
+            "rejected": true
+          }
+        ],
+        "status": "PASS"
+      }
+    }
+  ]
+}

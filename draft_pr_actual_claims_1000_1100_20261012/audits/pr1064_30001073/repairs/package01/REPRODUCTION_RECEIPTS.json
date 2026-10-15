@@ -1,0 +1,937 @@
+{
+  "checked_utc": "2026-10-14T04:56:32.320751+00:00",
+  "pass": true,
+  "actual_README_commands": 5,
+  "archive": {
+    "closed_independent_identical": true,
+    "bytes": 308222,
+    "sha256": "245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13",
+    "members": 117,
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "zlib": "1.2.12",
+    "zlib_runtime": "1.2.12",
+    "safe_actual_export": {
+      "bytes": 74899,
+      "sha256": "d1de75a86938f106c7d5df6838425378adb826d39e5b028ad9fecb5bf4f085a4",
+      "scope": "Disposable safe-output compilation only; no new canonical PDF/layout validation claim."
+    }
+  },
+  "commands": [
+    {
+      "label": "README verify",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "README mathematical checkers",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/run_checks.py",
+        "--out-dir",
+        "tmp/recheck"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"matrix_cases\": 11,\n  \"arbitrary_laws\": 2,\n  \"positive_histories\": 1573,\n  \"scalar_pairs\": 201,\n  \"negative_controls\": [\n    \"scalar-divergence\",\n    \"unit-endpoint\",\n    \"zero-mass-term\",\n    \"n1-purepower\",\n    \"confuse-KL\",\n    \"drop-sequential-KL\",\n    \"Dong-Jain-half\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "README build ZIP",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/build_archive.py",
+        "--output",
+        "tmp/rebuilt.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/rebuilt.zip SHA256 245221160023953cbeac0fa0a253762b0a46ac9b56b6bf9e721669144cc93e13\n",
+      "stderr": ""
+    },
+    {
+      "label": "README verify rebuilt",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "tmp/rebuilt.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "README safe actual PDF compilation",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/build_pdf.py",
+        "--out-dir",
+        "tmp/recompiled"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"paper.aux\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/recompiled/paper.pdf` (73.1435546875 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/recompiled/paper.pdf\n",
+      "stderr": "warning: paper.tex:161: Underfull \\hbox (badness 1874) in paragraph at lines 160--161\nwarning: paper.tex:161: Underfull \\hbox (badness 1874) in paragraph at lines 160--161\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+    },
+    {
+      "label": "normal clean absent binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal required absent binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 79, in check_binding\n    require(not required,'required deposit binding absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: required deposit binding absent\n"
+    },
+    {
+      "label": "normal strict external binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/rebuilt.zip",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/publication/DEPOSIT_BINDING.json",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal malformed explicit binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/bad_binding.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 82, in check_binding\n    require(set(binding)=={'schema_version','paper_pdf','support_archive'},'binding fields differ')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: binding fields differ\n"
+    },
+    {
+      "label": "normal malformed default binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 82, in check_binding\n    require(set(binding)=={'schema_version','paper_pdf','support_archive'},'binding fields differ')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: binding fields differ\n"
+    },
+    {
+      "label": "normal unmanifested file",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 45, in check\n    require(name in allow or name in excluded,'unmanifested file '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: unmanifested file UNMANIFESTED.txt\n"
+    },
+    {
+      "label": "normal member hash corruption",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 37, in check\n    data=p.read_bytes();require(len(data)==record['bytes'] and sha(data)==record['sha256'],'hash mismatch '+name)\n                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: hash mismatch README.md\n"
+    },
+    {
+      "label": "normal traversal ZIP",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/traversal.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 94, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 69, in check_archive\n    infos=z.infolist();require([i.filename for i in infos]==allow,'archive exact member set/order failed')\n                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive exact member set/order failed\n"
+    },
+    {
+      "label": "normal missing explicit ZIP",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/missing.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 94, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 67, in check_archive\n    require(path.is_file(),'archive missing')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive missing\n"
+    },
+    {
+      "label": "normal coherent old dated stage gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 56, in check\n    require(status['whole_package_reviews_completed']==0 and status['whole_package_reviews_required']>=2,'new review gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: new review gate altered\n"
+    },
+    {
+      "label": "normal coherent current readiness gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 60, in check\n    require(current['publication_ready'] is False and current['issues_updated'] is False,'current pending gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: current pending gate altered\n"
+    },
+    {
+      "label": "normal coherent current review count gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 61, in check\n    require(current['whole_package_reviews_completed']==1 and current['whole_package_reviews_required']>=2,'current new review gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: current new review gate altered\n"
+    },
+    {
+      "label": "normal coherent current hold gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 62, in check\n    require(current['ascending_publication_hold_after_pr']==1032,'ascending publication hold altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: ascending publication hold altered\n"
+    },
+    {
+      "label": "normal coherent copy-map mismatch",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 50, in check\n    require(sha(data)==c['sha256'] and len(data)==c['bytes'],'copy map mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: copy map mismatch\n"
+    },
+    {
+      "label": "normal coherent selected-pin mismatch",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 52, in check\n    require(load('SAFE_INPUT_PINS.json')['records']==copies,'selected input pins mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: selected input pins mismatch\n"
+    },
+    {
+      "label": "normal same-byte self-manifest symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "normal malformed self-manifest symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "normal allowlist symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 26, in check\n    local_regular('SUPPORT_ALLOWLIST.json')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_ALLOWLIST.json\n"
+    },
+    {
+      "label": "normal symlink member ancestry",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 20, in local_regular\n    require(all(not (ROOT/Path(*Path(name).parts[:i])).is_symlink() for i in range(1,len(Path(name).parts)+1)),'symlink in member ancestry '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: symlink in member ancestry support/history/ROOT_MATH_ACCEPTANCE.json\n"
+    },
+    {
+      "label": "normal deliberate manifest-guard deletion",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized clean absent binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized required absent binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 79, in check_binding\n    require(not required,'required deposit binding absent')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: required deposit binding absent\n"
+    },
+    {
+      "label": "optimized strict external binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/rebuilt.zip",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/publication/DEPOSIT_BINDING.json",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized malformed explicit binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--deposit-binding",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/bad_binding.json"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 82, in check_binding\n    require(set(binding)=={'schema_version','paper_pdf','support_archive'},'binding fields differ')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: binding fields differ\n"
+    },
+    {
+      "label": "optimized malformed default binding",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 96, in main\n    result=check_binding(binding,archive,args.require_deposit_binding)\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 82, in check_binding\n    require(set(binding)=={'schema_version','paper_pdf','support_archive'},'binding fields differ')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: binding fields differ\n"
+    },
+    {
+      "label": "optimized unmanifested file",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 45, in check\n    require(name in allow or name in excluded,'unmanifested file '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: unmanifested file UNMANIFESTED.txt\n"
+    },
+    {
+      "label": "optimized member hash corruption",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 37, in check\n    data=p.read_bytes();require(len(data)==record['bytes'] and sha(data)==record['sha256'],'hash mismatch '+name)\n                        ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: hash mismatch README.md\n"
+    },
+    {
+      "label": "optimized traversal ZIP",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/traversal.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 94, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 69, in check_archive\n    infos=z.infolist();require([i.filename for i in infos]==allow,'archive exact member set/order failed')\n                       ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive exact member set/order failed\n"
+    },
+    {
+      "label": "optimized missing explicit ZIP",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py",
+        "--archive",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/missing.zip"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 94, in main\n    if archive is not None:check_archive(archive,allow)\n                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 67, in check_archive\n    require(path.is_file(),'archive missing')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: archive missing\n"
+    },
+    {
+      "label": "optimized coherent old dated stage gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 56, in check\n    require(status['whole_package_reviews_completed']==0 and status['whole_package_reviews_required']>=2,'new review gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: new review gate altered\n"
+    },
+    {
+      "label": "optimized coherent current readiness gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 60, in check\n    require(current['publication_ready'] is False and current['issues_updated'] is False,'current pending gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: current pending gate altered\n"
+    },
+    {
+      "label": "optimized coherent current review count gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 61, in check\n    require(current['whole_package_reviews_completed']==1 and current['whole_package_reviews_required']>=2,'current new review gate altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: current new review gate altered\n"
+    },
+    {
+      "label": "optimized coherent current hold gate",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 62, in check\n    require(current['ascending_publication_hold_after_pr']==1032,'ascending publication hold altered')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: ascending publication hold altered\n"
+    },
+    {
+      "label": "optimized coherent copy-map mismatch",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 50, in check\n    require(sha(data)==c['sha256'] and len(data)==c['bytes'],'copy map mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: copy map mismatch\n"
+    },
+    {
+      "label": "optimized coherent selected-pin mismatch",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 52, in check\n    require(load('SAFE_INPUT_PINS.json')['records']==copies,'selected input pins mismatch')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: selected input pins mismatch\n"
+    },
+    {
+      "label": "optimized same-byte self-manifest symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "optimized malformed self-manifest symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_MANIFEST.json\n"
+    },
+    {
+      "label": "optimized allowlist symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 26, in check\n    local_regular('SUPPORT_ALLOWLIST.json')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 19, in local_regular\n    require(p.is_file() and not p.is_symlink(),'missing/symlink member '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: missing/symlink member SUPPORT_ALLOWLIST.json\n"
+    },
+    {
+      "label": "optimized symlink member ancestry",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 98, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 92, in main\n    allow=check()\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 32, in check\n    for name in allow:local_regular(name)\n                      ~~~~~~~~~~~~~^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 20, in local_regular\n    require(all(not (ROOT/Path(*Path(name).parts[:i])).is_symlink() for i in range(1,len(Path(name).parts)+1)),'symlink in member ancestry '+name)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py\", line 8, in require\n    if not c:raise ValueError(m)\n             ^^^^^^^^^^^^^^^^^^^\nValueError: symlink in member ancestry support/history/ROOT_MATH_ACCEPTANCE.json\n"
+    },
+    {
+      "label": "optimized deliberate manifest-guard deletion",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/verify_package.py"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": false,\n  \"deposit_binding\": \"absent (permitted for clean extraction)\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal PDF dot",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF absolute root",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF nonexistent-parent alias",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "nonexistent/.."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF directory symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "directory_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF file symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "file_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF existing hardlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "hardlink_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "normal PDF safe fake-compiler path",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/safe_normal"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/safe_normal/paper.pdf\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal deliberate PDF-guard deletion",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/paper.pdf\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized PDF dot",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF absolute root",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF nonexistent-parent alias",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "nonexistent/.."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF directory symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "directory_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF file symlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "file_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF existing hardlink",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "hardlink_alias"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "PDF output aliases canonical paper.pdf; choose a separate output directory\n"
+    },
+    {
+      "label": "optimized PDF safe fake-compiler path",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/safe_optimized"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/safe_optimized/paper.pdf\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized deliberate PDF-guard deletion",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/build_pdf.py",
+        "--out-dir",
+        "."
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe",
+      "returncode": 0,
+      "stdout": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/repairs/package01/tmp/clean/tmp/pdf_probe/paper.pdf\n",
+      "stderr": ""
+    },
+    {
+      "label": "normal final actual strict verification",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "label": "optimized final actual strict verification",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0/verify_package.py",
+        "--require-deposit-binding"
+      ],
+      "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1064_30001073/preprint_v1_0",
+      "returncode": 0,
+      "stdout": "{\n  \"pass\": true,\n  \"members\": 117,\n  \"archive_checked\": true,\n  \"deposit_binding\": \"present and valid\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "canonical_pdf_unchanged": true,
+  "scratch_scope": "One new disposable extraction only; removed after receipts captured."
+}

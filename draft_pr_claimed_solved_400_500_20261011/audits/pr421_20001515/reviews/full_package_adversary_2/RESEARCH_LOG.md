@@ -1,0 +1,11 @@
+# Second whole-package adversarial review log
+
+2026-10-13 00:03:56 UTC: Scope independently confirmed: open draft PR421; head 2e85a0b10c3793ed1d46726b50efac5a6306b707; branch queue header-derived status claimed_solved, 1/5. Criteria sealed before reading proof/code/package bodies. Completion estimate: 5%. No external communication or live mutations authorized or performed. Incidental prior-audit assertion in required PR metadata is excluded from reasoning.
+
+2026-10-13T00:05:40.806243+00:00: Independent occurrence-level proof and reversible algebra reconstructed; normal and -O runs passed. Reconstruction SHA seal created before peer/root/custody reads. Primary theorem checks pending. Completion estimate: 30%.
+
+2026-10-13T00:09:31.275379+00:00: 53 global SHA-256 pins and remote blob SHA-1 identities verified through 13 independently SHA-verified nonrecursive trees; 4/24 source/verification ZIP members safely extracted. Both full drivers passed; six canonical PDF pages visually inspected, archive source build and image comparison completed. Completion estimate: 65%.
+
+2026-10-13T00:19:21.660696+00:00: Primary theorem/chronology checks, nearby-result boundaries, independently justified earlier-tools route, licenses and AI/unrefereed disclosures passed. All additional mathematical/integrity mutations rejected. Current Zenodo optional fields supported by documentation and actual serializer/deserializer; offline adapter probes passed in normal and -O. Fresh live PR GET found R1: stale public 13-file scope/original head and source-evidence paragraph. Review verdict FINDINGS; one required public-description correction, no scientific repair. Completion estimate: 95%.
+
+2026-10-13T00:21:29.494891+00:00: Final targeted opaque-boundary comparison independently verified three original ancestor tree SHAs; all 111/24/45 nonselected sibling entries match current modes/types/object SHAs. Current commit has sole original source-head parent; no foreign blob body read. Report and original verdict completed: FINDINGS, R1 required, optional=0; scientific/package PASS, publication_ready=false. Review completion estimate: 100%. Initial seals retained; no author proof-search turns added. Final positive allowlist and seal are now being frozen; no subsequent artifact edits permitted.

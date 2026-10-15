@@ -1,0 +1,7 @@
+# Research log: literal higher Koszul equivalence
+
+- 2026-10-06, author preparation: one free-algebra/cyclic-orbit approach produced the characteristic-two witness, the uniform all-prime proof, and the full free-algebra orbit formula. The original immutable author archive records the exact result. Literal negative-answer proof completion estimate: 100%; characteristic-zero converse unresolved.
+- 2026-10-06, independent review: two separately authored mathematical and source-scope audits accept the unrestricted counterexample. The second source review supplies the contemporaneous December 2015 version and a four-file scope clarification. The first audit separately accepts the exact execution-hardened derivative. Review limitations and original acceptance records are preserved.
+- 2026-10-06T13:33:45Z, publication preparation: four archives and 55 members were checked; all three actual patches reproduced accepted bytes with zero fuzz. Corrected acceptance bindings, isolated replay, both mathematical review outputs, and all eighteen hostile/negative controls passed in their supported modes. Optimized author and second-review modes correctly failed closed. Publication workflow estimate at this checkpoint: 70%; remote readback and draft-PR status verification remained pending.
+
+The characteristic-zero vanishing-to-Koszulness implication is not proved or disproved by this work. Independent checks are verification, not additional proof-search approaches. No new priority, exhaustive literature status, human peer review, or formal certification is claimed.

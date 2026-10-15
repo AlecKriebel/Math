@@ -1,0 +1,342 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\cross}[2]{[#1,#2]}
+\title{The outer-pedal area centroid in even-period elliptic billiards}
+\author{Alec Kriebel\\Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{13 October 2026 \quad (version 1.0, unrefereed)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Reznik, Garcia and Koiller observed that the area centroid of the outer-side
+pedal polygon of an even-period elliptic billiard is independent of the orbit
+phase (invariant k307). We prove this observation on the natural domain of the
+signed-area centroid and give its explicit value. The proof uses antipodal
+pairing, support coordinates and telescoping edge moments. For simple even
+orbits the centroid exists for every fixed pedal point. For even star orbits
+it can be undefined on a fixed circle, which we determine exactly and realize
+in a noncircular eight-period example. The note includes a reproducible
+verification package; the written identities give the all-period proof.
+\end{abstract}
+
+\section{The statement and its domain}
+Let the billiard boundary and its fixed caustic be
+\[
+ E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ E_c:\frac{x^2}{a^2-\lambda}+\frac{y^2}{b^2-\lambda}=1,
+ \qquad a>b>0,\quad 0<\lambda<b^2.
+\]
+Assume this pair supports a Poncelet billiard family of least even period
+$N\geq4$. Primitive star trajectories are allowed. The vertices $P_i$ are
+ordered along the trajectory, with indices modulo $N$. The outer polygon has
+as its side lines the tangents to $E$ at the $P_i$. For a fixed point $M$, let
+$Q_i$ be its perpendicular foot on that full tangent line.
+For any ordered polygon $q_i$, identify the plane with $\mathbb C$ and set
+\begin{equation}\label{signed}
+ S(q)=\frac12\sum_i\cross{q_i}{q_{i+1}},\qquad
+ \mathcal T(q)=\sum_i\cross{q_i}{q_{i+1}}(q_i+q_{i+1}),\qquad
+ C(q)=\frac{\mathcal T(q)}{6S(q)},
+\end{equation}
+where $\cross{p}{q}=\Ima(\overline p q)$, and $C$ is defined only if $S\ne0$.
+These are signed moments, including multiplicity for self intersections.
+They agree with the area-centroid convention of \cite{RGK}; they are neither
+the arithmetic vertex mean nor an unsigned union-of-regions centroid.
+
+Put
+\begin{align*}
+ H&=(a^2+b^2)/2,& e&=(a^2-b^2)/2,\\
+ d&=1-\lambda(a^{-2}+b^{-2}),&F&=Hd+2\lambda,\\
+ v&=\frac{-4e\lambda d}{F^2-e^2d^2},&z&=M_x+iM_y,\\
+ R^2&=|z|^2,&G&=2F+dR^2.
+\end{align*}
+Write $S(M)=S(Q(M))$ for the chosen member of the family.
+\begin{theorem}\label{main}
+Orient the billiard counterclockwise around its elliptic caustic. Then
+$F>0$, $F^2-e^2d^2>0$, $S(0)>0$, and
+\begin{equation}\label{area}
+ S(M)=S(0)\frac{2F+d|z|^2}{2F}.
+\end{equation}
+Whenever $G\ne0$, the signed area centroid is
+\begin{equation}\label{centroid}
+ C(Q(M))=\frac z2-
+ \frac{z(F+2Hd+evd)+\overline z(2Fv+3ed+vd|z|^2/2)}
+ {3(2F+d|z|^2)}.
+\end{equation}
+Thus it is independent of the orbit phase wherever defined.
+If $d\geq0$, it is defined for every $M$. If $d<0$, its exact undefined locus
+is the phase-independent circle $|M|^2=-2F/d$. Least period four is equivalent
+to $d=0$, when the centroid is $M/3$. Every simple winding-one even family
+has $d\geq0$.
+\end{theorem}
+
+The theorem proves the k307 observation in Table 4 and Section 3.4 of
+\cite{RGK}, with the denominator qualification already inherent in its signed
+centroid definition. An unqualified assertion that a centroid exists for
+every $M$ in every even star family would be false. Equation \eqref{area}
+does not assert that $S(0)$ is phase independent.
+Reversal changes both signed moments by a sign and leaves the centroid
+unchanged. Repeated traversals of an even least-period orbit give the same
+centroid; repeating an odd primitive orbit does not create the antipodal
+hypothesis. Hyperbolic and degenerate caustics, and the circular boundary
+case, are outside the theorem.
+
+The originating observation is due to Reznik--Garcia--Koiller.
+Bialy--Tabachnikov \cite[Theorems 4.1 and 4.3]{BT} prove the neighboring
+vertex-centroid invariant k306 and recall the classical even-period symmetry.
+Schwartz--Tabachnikov \cite{ST} study signed centroid loci of Poncelet
+polygons between conics. We do not claim novelty for those methods, the
+symmetry, or the cyclic lemma below. Two independent bounded primary-source
+audits completed on 13 October 2026 found no earlier proof covering the
+present full statement; this is not a certification of historical firstness.
+
+\section{Support coordinates and antipodal pairing}
+Let $T$ be the counterclockwise Poncelet map on $E$ with the specified tangent
+choice, and $A(P)=-P$ its half-turn. The porism gives $T^N=\mathrm{id}$,
+and $A$ commutes with $T$. The finite group generated by them consists of
+orientation-preserving circle homeomorphisms and is cyclic. Indeed a finite
+order orientation-preserving circle homeomorphism fixing a point is the
+identity: after cutting there, a moved point has strictly monotone iterates.
+The group therefore acts faithfully on a finite orbit, preserving its circular
+order, and embeds into its cyclic permutation group. Uniqueness of the
+involution gives $T^{N/2}=A$. Consequently
+\begin{equation}\label{antipodes}
+ P_{i+N/2}=-P_i.
+\end{equation}
+Let $n_i=(\cos\psi_i,\sin\psi_i)$ be the outward unit normal and $h_i>0$
+the support number. Then
+\[
+ h_i^2=H+e\cos2\psi_i,\qquad
+ n_{i+N/2}=-n_i,\qquad h_{i+N/2}=h_i.
+\]
+The caustic strictly contains the origin. Each oriented tangent chord has its
+next endpoint less than a half-turn ahead on $E$. The increasing Gauss map
+commutes with the half-turn, so successive lifted normal angles satisfy
+$0<\Delta_i=\psi_{i+1}-\psi_i<\pi$. In particular the outer tangent
+intersections are finite, and
+\begin{equation}\label{positive}
+ S(0)=\frac12\sum_i h_i h_{i+1}\sin\Delta_i>0.
+\end{equation}
+This uses trajectory order and applies to stars too.
+
+For consecutive eccentric angles $u,w$, put $\tau=(u+w)/2$ and
+$q=(w-u)/2\in(0,\pi/2)$. Their chord is
+$(\cos\tau/a)x+(\sin\tau/b)y=\cos q$. Tangency to $E_c$ gives
+$\sin^2q=\lambda(\cos^2\tau/a^2+\sin^2\tau/b^2)$, equivalently
+\[
+ d=[1+\lambda(a^{-2}-b^{-2})]\cos u\cos w
+  +[1-\lambda(a^{-2}-b^{-2})]\sin u\sin w.
+\]
+Since the normal is $h_i(\cos u/a,\sin u/b)$, this yields
+\begin{equation}\label{support}
+ d h_i h_{i+1}=F\cos\Delta_i+ed\cos(\psi_i+\psi_{i+1}).
+\end{equation}
+All denominators in the theorem are controlled by
+\[
+ F+ed=a^2-\lambda(a^2/b^2-1)>b^2>0,\qquad
+ F-ed=b^2+\lambda(1-b^2/a^2)>0.
+\]
+In particular $F>0$ and $F^2-e^2d^2>0$.
+
+If $N=4$, apply \eqref{support} to $(n_0,n_1)$ and $(n_1,n_2)$.
+Their right sides negate because $n_2=-n_0$, whereas both left sides are
+$d h_0h_1$. Hence $2d h_0h_1=0$ and $d=0$.
+Conversely $d=0$ makes $\cos\Delta_i=0$, so each normal advances $\pi/2$
+and the least period is four. Its outer polygon is a rectangle. In an
+orthonormal side frame its pedal vertices are
+\[
+ (A,M_y),\ (M_x,B),\ (-A,M_y),\ (M_x,-B),\qquad A,B>0.
+\]
+Direct shoelace gives $S=2AB$ and $\mathcal T=4ABM$, proving both formulas
+and $C=M/3$. For the remaining proof assume $d\ne0$ and set $D=F/d$.
+Then $D^2-e^2>0$ and \eqref{support} reads
+\begin{equation}\label{Dsupport}
+ h_i h_{i+1}=D\cos\Delta_i+e\cos(\psi_i+\psi_{i+1}).
+\end{equation}
+
+\section{A doubled-normal telescope}
+Regard $n_i$ as a unit complex number and put $Z_i=n_i^2$.
+Squaring \eqref{Dsupport} and substituting the support squares gives
+\[
+ (D^2-e^2)\cos^2\Delta_i
+ =H^2-e^2+e(H-D)(\cos2\psi_i+\cos2\psi_{i+1}).
+\]
+Thus, with $u=2(H^2-e^2)/(D^2-e^2)-1$,
+\begin{equation}\label{cosrelation}
+ \Rea(\overline Z_iZ_{i+1})=u+v(\Rea Z_i+\Rea Z_{i+1}),\qquad
+ v=\frac{2e(H-D)}{D^2-e^2}=\frac{-4e\lambda d}{F^2-e^2d^2}.
+\end{equation}
+\begin{lemma}\label{cyclic}
+For ordered unit complex vertices satisfying \eqref{cosrelation},
+$\mathcal T(Z)=2vS(Z)$. No simplicity or nonzero-area assumption is needed.
+\end{lemma}
+\begin{proof}
+For unit $U,V$ the division-free identity
+\[
+ \cross{U}{V}(U+V)=-i(1+\Rea(\overline U V))(V-U)
+\]
+follows by multiplication. The constant part telescopes. Write
+$Z_i=X_i+iY_i$. The real part of
+$\sum_i(X_i+X_{i+1})(Z_{i+1}-Z_i)$ telescopes as
+$\sum_i(X_{i+1}^2-X_i^2)=0$. Its imaginary part is
+$\sum_i\cross{Z_i}{Z_{i+1}}$, because
+\[
+ (X_i+X_{i+1})(Y_{i+1}-Y_i)
+ =\cross{Z_i}{Z_{i+1}}+X_{i+1}Y_{i+1}-X_iY_i.
+\]
+Multiplication by $-iv$ proves the assertion.
+\end{proof}
+Write $S_Z=S(Z)$ and $\mathcal T_Z=\mathcal T(Z)$.
+The origin-area identity is
+\begin{equation}\label{origin}
+ S(0)=\frac D2 S_Z.
+\end{equation}
+Indeed multiply \eqref{Dsupport} by $\sin\Delta_i$ and use
+$\cos(\psi_i+\psi_{i+1})\sin\Delta_i
+=(\sin2\psi_{i+1}-\sin2\psi_i)/2$; the latter terms telescope.
+By \eqref{positive}, $S_Z\ne0$ when $d\ne0$.
+
+\section{The pedal area and full first moment}
+Projection onto $n_i\cdot x=h_i$ gives
+$Q_i=M+(h_i-M\cdot n_i)n_i$. Put $t=\overline z/2$ and $w_i=h_i n_i$.
+In complex notation,
+\begin{equation}\label{projection}
+ Q_i=z/2+V_i,\qquad V_i=w_i-tZ_i.
+\end{equation}
+Opposite indices negate $w_i$ and fix $Z_i$; hence terms odd in the $w$'s
+cancel in cyclic sums. Area is translation invariant, so
+\begin{equation}\label{pedalarea}
+ S(M)=S(0)+|t|^2S_Z=(D/2+|z|^2/4)S_Z,
+\end{equation}
+which proves \eqref{area}.
+
+We give the complete cubic reduction to make the essential calculation
+checkable. In $\mathcal T(V)$, the pure-$w$ and quadratic-in-$t$ terms
+cancel by antipodal pairing. The cubic term is $-|t|^2t\mathcal T_Z$.
+For one edge put $x=n_i$, $y=n_{i+1}$, $h=h_i$, $k=h_{i+1}$, $Z=x^2$,
+$W=y^2$. Average the edge moment with its antipodal edge moment.
+In $2i$ times that average the coefficients of
+$t$ and $\overline t$ are, respectively,
+\begin{align*}
+ c&=k^2x^2-h^2y^2+2hk(x^3/y-y^3/x),\\
+ b&=h^2x^2/y^2-k^2y^2/x^2+hk(x/y-y/x).
+\end{align*}
+Substitute
+\[
+ h^2=H+\tfrac e2(x^2+x^{-2}),\quad
+ k^2=H+\tfrac e2(y^2+y^{-2}),\quad
+ hk=\tfrac D2(y/x+x/y)+\tfrac e2(xy+(xy)^{-1}).
+\]
+With $r=Z/W-W/Z$ and $s=Z^2/W-W^2/Z$, multiplication gives the exact
+edge identities
+\begin{align*}
+ c&=Ds+\tfrac{3e}{2}r+(D+H)(Z-W)+e(Z^2-W^2),\\
+ b&=(D/2+H)r+\tfrac e2s+\tfrac e2(Z-W)+e(W^{-1}-Z^{-1}).
+\end{align*}
+The endpoint differences telescope. Moreover
+\[
+ \sum r=-4iS_Z,\qquad
+ s+2i\cross{Z}{W}(Z+W)=W-Z,
+ \qquad\sum s=-2i\mathcal T_Z=-4ivS_Z.
+\]
+Consequently the two linear terms together with the cubic term give
+\begin{equation}\label{moment}
+ \mathcal T(V)=-2S_Z\{t(Dv+3e/2+v|t|^2)
+                +\overline t(D/2+H+ev/2)\}.
+\end{equation}
+These identities involve no division by $S(M)$.
+For an arbitrary ordered polygon, translation by $c$ changes
+$\mathcal T$ by $6cS$. This follows by expanding
+$\cross{V_i+c}{V_{i+1}+c}$ and telescoping the coordinate-square and
+coordinate-product endpoint differences.
+Divide \eqref{moment} by $6S(M)$, translate by $z/2$ and use
+\eqref{pedalarea} to obtain
+\[
+ C=\frac z2-
+ \frac{z(D+2H+ev)+\overline z(2Dv+3e+v|z|^2/2)}
+ {3(2D+|z|^2)}.
+\]
+Multiplying numerator and denominator by $d$ proves \eqref{centroid}.
+
+\section{Definedness and an exact star example}
+Positivity of $S(0)$ and $F$ makes \eqref{area} an exact classification of
+the zero-area locus. For a simple winding-one family with $N\geq6$, the
+first $N/2$ normals occupy a half-turn in circular order. Their squares are
+at least three distinct circularly ordered unit-circle points. The full
+$Z$-polygon traverses their convex polygon twice, so $S_Z>0$.
+Equation \eqref{origin} implies $D>0$, hence $d>0$. Period four was
+treated above. This completes Theorem \ref{main}.
+
+The negative-$d$ case occurs in an exact primitive star. Take
+\[
+ a^2=221/96,\qquad b^2=27625/20736,\qquad\lambda=125/96.
+\]
+The caustic semiaxes are $1$ and $25/144$. Multiply the following normalized
+pairs coordinatewise by $(a,b)$, retaining their order:
+\begin{align*}
+ &(0,1),\ (-12/13,-5/13),\ (1,0),\ (-12/13,5/13),\\
+ &(0,-1),\ (12/13,5/13),\ (-1,0),\ (12/13,-5/13).
+\end{align*}
+The verification package checks exactly that every chord is tangent to the
+caustic and obeys the specular reflection law. The eight vertices are
+distinct, and an oriented-ray crossing count gives winding three.
+This example was previously used in the repository's problem 5100065; no
+novelty is claimed for its construction. Here
+\[
+ d=-120/221,\qquad F=2795/1728,\qquad v=7/13,\qquad
+ -2F/d=123539/20736.
+\]
+For $M=(X,Y)$, direct Cartesian projection and signed shoelace give
+\begin{align*}
+ S(M)&=-\frac{\sqrt{30}}{134784}
+          (20736(X^2+Y^2)-123539),\\
+ \mathcal T_x(M)&=-\frac{\sqrt{30}X}{109512}
+          (41472(X^2+Y^2)-272935),\\
+ \mathcal T_y(M)&=-\frac{\sqrt{30}Y}{97344}
+          (52992(X^2+Y^2)-347633).
+\end{align*}
+At $M=(13\sqrt{731}/144,0)$, $S=0$ but
+$\mathcal T=(221\sqrt{21930}/10368,0)\ne0$.
+Thus even a removable-zero interpretation cannot supply a centroid at
+this diagnostic point.
+
+\section*{Verification and disclosure}
+The accompanying source and verification archive provides exact symbolic
+checks of the displayed edge identities, unrestricted Cartesian star
+polynomials and a separately derived real-coordinate certificate. Independent
+orbit generators supply high-precision numerical controls, including stars,
+large periods and near-degenerate caustics. Initial floating-point failures
+and their precision repairs are recorded. Numerical tests corroborate, but
+do not replace, the all-period proof above.
+
+AI tools were used extensively in solving, verifying, literature research,
+writing and adversarial review. Independent AI reviews are not external
+human peer review or proof-assistant formalization. This is an unrefereed
+research note; it has not received external human peer review. The bounded
+priority reports, assumptions and reproducibility instructions accompany
+the note. No claim of exclusive historical priority is made.
+
+\begin{thebibliography}{9}
+\bibitem{RGK} D. Reznik, R. Garcia and J. Koiller,
+\emph{Fifty new invariants of N-periodics in the elliptic billiard},
+Arnold Math. J. \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+See also \emph{Eighty new invariants},
+\href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11}, Table 4.
+\bibitem{BT} M. Bialy and S. Tabachnikov,
+\emph{Dan Reznik's identities and more},
+Eur. J. Math. \textbf{8} (2022), 1341--1354.
+\href{https://doi.org/10.1007/s40879-020-00428-7}{doi:10.1007/s40879-020-00428-7}.
+\bibitem{ST} R. E. Schwartz and S. Tabachnikov,
+\emph{Centers of mass of Poncelet polygons, 200 years after},
+Math. Intelligencer \textbf{38} (2016), no. 2, 29--34.
+\href{https://arxiv.org/abs/1607.04766}{arXiv:1607.04766}.
+\end{thebibliography}
+\end{document}

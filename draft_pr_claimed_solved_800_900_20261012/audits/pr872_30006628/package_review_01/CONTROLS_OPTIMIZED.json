@@ -1,0 +1,227 @@
+{
+  "candidate_changed": false,
+  "disposable_fixtures_removed": true,
+  "large_source_replay": false,
+  "mode": "optimized",
+  "records": [
+    {
+      "reason": "duplicate JSON key: x",
+      "status": "EXPECTED_REJECTION",
+      "test": "strict-json-{\"x\":1,\"x\":2}"
+    },
+    {
+      "reason": "nonfinite JSON constant: NaN",
+      "status": "EXPECTED_REJECTION",
+      "test": "strict-json-{\"x\":NaN}"
+    },
+    {
+      "reason": "nonfinite JSON constant: Infinity",
+      "status": "EXPECTED_REJECTION",
+      "test": "strict-json-{\"x\":Infinity}"
+    },
+    {
+      "reason": "nonfinite JSON constant: -Infinity",
+      "status": "EXPECTED_REJECTION",
+      "test": "strict-json-{\"x\":-Infinity}"
+    },
+    {
+      "reason": "nonfinite JSON number",
+      "status": "EXPECTED_REJECTION",
+      "test": "strict-json-{\"x\":1e9999}"
+    },
+    {
+      "reason": "unsafe relative path: ../escape",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'../escape'"
+    },
+    {
+      "reason": "unsafe relative path: /absolute",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'/absolute'"
+    },
+    {
+      "reason": "unsafe relative path: a//b",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a//b'"
+    },
+    {
+      "reason": "unsafe relative path: a/./b",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a/./b'"
+    },
+    {
+      "reason": "unsafe relative path",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a\\\\b'"
+    },
+    {
+      "reason": "unsafe relative path: a:b",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a:b'"
+    },
+    {
+      "reason": "unsafe relative path",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a\\x00b'"
+    },
+    {
+      "reason": "unsafe relative path: a/../b",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a/../b'"
+    },
+    {
+      "reason": "unsafe relative path",
+      "status": "EXPECTED_REJECTION",
+      "test": "safe-path-'a\\nb'"
+    },
+    {
+      "reason": "duplicate inventory path",
+      "status": "EXPECTED_REJECTION",
+      "test": "duplicate-inventory"
+    },
+    {
+      "reason": "file/directory inventory collision",
+      "status": "EXPECTED_REJECTION",
+      "test": "parent-collision"
+    },
+    {
+      "reason": "invalid pinned byte count",
+      "status": "EXPECTED_REJECTION",
+      "test": "bad-size-True"
+    },
+    {
+      "reason": "invalid pinned byte count",
+      "status": "EXPECTED_REJECTION",
+      "test": "bad-size--1"
+    },
+    {
+      "reason": "invalid pinned byte count",
+      "status": "EXPECTED_REJECTION",
+      "test": "bad-size-268435457"
+    },
+    {
+      "reason": "invalid pinned byte count",
+      "status": "EXPECTED_REJECTION",
+      "test": "bad-size-1.5"
+    },
+    {
+      "reason": "inventory size limit",
+      "status": "EXPECTED_REJECTION",
+      "test": "total-size"
+    },
+    {
+      "status": "PASS",
+      "test": "tiny-positive-closed-inventory"
+    },
+    {
+      "exit_code": 1,
+      "reason": "external index pin mismatch",
+      "status": "EXPECTED_REJECTION",
+      "test": "external-index-pin"
+    },
+    {
+      "exit_code": 1,
+      "reason": "duplicate JSON key: schema",
+      "status": "EXPECTED_REJECTION",
+      "test": "resealed-duplicate-key"
+    },
+    {
+      "exit_code": 1,
+      "reason": "nonfinite JSON number",
+      "status": "EXPECTED_REJECTION",
+      "test": "resealed-nonfinite"
+    },
+    {
+      "exit_code": 1,
+      "reason": "unsafe relative path: ../check_originals.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "resealed-unsafe-path"
+    },
+    {
+      "exit_code": 1,
+      "reason": "duplicate inventory path",
+      "status": "EXPECTED_REJECTION",
+      "test": "resealed-duplicate-row"
+    },
+    {
+      "exit_code": 1,
+      "reason": "unlisted directory: extra",
+      "status": "EXPECTED_REJECTION",
+      "test": "extra-empty-directory"
+    },
+    {
+      "exit_code": 1,
+      "reason": "unlisted file: extra.txt",
+      "status": "EXPECTED_REJECTION",
+      "test": "extra-file"
+    },
+    {
+      "exit_code": 1,
+      "reason": "missing inventory file",
+      "status": "EXPECTED_REJECTION",
+      "test": "missing-file"
+    },
+    {
+      "exit_code": 1,
+      "reason": "nonregular inventory entry: check_originals.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "internal-leaf-alias"
+    },
+    {
+      "exit_code": 1,
+      "reason": "nonregular inventory entry: check_originals.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "internal-fifo-no-hang"
+    },
+    {
+      "exit_code": 1,
+      "reason": "nonregular inventory entry: root_evidence",
+      "status": "EXPECTED_REJECTION",
+      "test": "internal-directory-alias"
+    },
+    {
+      "reason": "input size limit: external.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "bounded-read-small-limit"
+    },
+    {
+      "reason": "byte count mismatch: external.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "pinned-size-before-read"
+    },
+    {
+      "reason": "nonregular input: fifo",
+      "status": "EXPECTED_REJECTION",
+      "test": "direct-fifo"
+    },
+    {
+      "reason": "nonregular input: alias",
+      "status": "EXPECTED_REJECTION",
+      "test": "direct-leaf-alias"
+    },
+    {
+      "exit_code": 1,
+      "marker_absent": true,
+      "reason": "byte count mismatch: check_originals.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "changed-inner-code-before-execution"
+    },
+    {
+      "reason": "nonregular input: fifo",
+      "status": "EXPECTED_REJECTION",
+      "test": "optional-source-fifo-preflight"
+    },
+    {
+      "reason": "nonregular input: alias",
+      "status": "EXPECTED_REJECTION",
+      "test": "optional-source-leaf-alias-preflight"
+    },
+    {
+      "reason": "byte count mismatch: external.py",
+      "status": "EXPECTED_REJECTION",
+      "test": "optional-source-wrong-size-preflight"
+    }
+  ],
+  "status": "PASS",
+  "tests": 41
+}

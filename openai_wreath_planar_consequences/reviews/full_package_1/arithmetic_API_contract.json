@@ -1,0 +1,9 @@
+{
+  "timestamp_utc": "2026-10-07T04:13:47.963627+00:00",
+  "source": "https://python-flint.readthedocs.io/en/latest/acb.html#flint.acb.integral",
+  "inspected_version": "python-flint 0.9.0 documentation",
+  "finding": "The official contract requires nonfinite evaluation when an argument ball is not an analytic domain; it gives meromorphic callbacks as one sufficient example. The inspected transformed callbacks have only the possible singularity -2i/5. Although exponentiating z(t) can create an essential singularity there (so global meromorphic is inaccurate), each transformed expression evaluates lambda=i/[b(t+2i/5)] and propagates nonfinite evaluation on any ball containing this point. On every remaining ball the formulas compose rational functions with nonvanishing denominator and entire functions. No branch-cut operation occurs; the constant sqrt(3)/2 is computed outside the callback. This is a direct domain argument, rather than classification of the full integrands as meromorphic.",
+  "scope": "API-domain check only; correct FLINT/Arb library implementation remains an external arithmetic dependency.",
+  "corrected_utc": "2026-10-07T04:27:14.148371+00:00",
+  "supplemental_controls": "check_callback_singularity.py and its receipt: 111 nonfinite propagation controls"
+}

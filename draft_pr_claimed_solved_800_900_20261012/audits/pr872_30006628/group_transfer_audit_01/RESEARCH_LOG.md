@@ -1,0 +1,7 @@
+# Independent group-transfer audit
+
+2026-10-15T07:35:11.976453+00:00 — 10% complete. Read only the candidate PROOF.md, before any previous audit verdicts. Assigned scope: free-product normal forms, inverse-fixed words, triangular presentation, index-at-most-two image, and property (T) transfer; adversarial finite checks and source validation pending. No central unfinished-proof search. Original effort remains 1/5.
+
+2026-10-15T07:38:52.594269+00:00 — 70% complete. Independent normal-form, inverse-fixed-word, suffix, conjugation, triangular-link, parity, and excluded-boundary tests pass identically in isolated normal and optimized Python. Fresh KK v2 and author-hosted BDV book retrieved with hashes; precise source applicability checked. Initial test-harness four-factor unpacking mistake was repaired before these successful recorded runs; it was not a defect in the candidate argument. Final report and public allowlist pending.
+
+2026-10-15T07:42:38.396431+00:00 — 100% complete for the assigned group-transfer audit. PASS with no requested repair or unresolved assigned-family gap. Deterministic transfer lemma is verified for every L>=4 and all length residues; finite checks and excluded-boundary controls pass in normal and optimized Python. External criterion and transfer source scopes are recorded. Other families, priority, and package acceptance remain separate obligations; no novelty/human/formal certification.

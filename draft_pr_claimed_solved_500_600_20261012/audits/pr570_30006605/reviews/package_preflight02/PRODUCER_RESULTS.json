@@ -1,0 +1,107 @@
+{
+  "expected_zip_sha256": "3ef7bdb40e86bef484796a0d27782e9eeed5847185c5dccc04183035f068317d",
+  "canonical_inputs_modified": false,
+  "checks": [
+    {
+      "case": "ordinary/checkout",
+      "returncode": 0,
+      "stderr": "",
+      "status": "PASS",
+      "zip_sha256": "3ef7bdb40e86bef484796a0d27782e9eeed5847185c5dccc04183035f068317d",
+      "byte_equal": true
+    },
+    {
+      "case": ".cache/checkout",
+      "returncode": 0,
+      "stderr": "",
+      "status": "PASS",
+      "zip_sha256": "3ef7bdb40e86bef484796a0d27782e9eeed5847185c5dccc04183035f068317d",
+      "byte_equal": true
+    },
+    {
+      "case": "scratch/checkout",
+      "returncode": 0,
+      "stderr": "",
+      "status": "PASS",
+      "zip_sha256": "3ef7bdb40e86bef484796a0d27782e9eeed5847185c5dccc04183035f068317d",
+      "byte_equal": true
+    },
+    {
+      "case": "internal_parent_symlink_forbidden_.cache",
+      "returncode": 0,
+      "stderr": "",
+      "status": "ACCEPTED",
+      "lexical_source": "reviews/oracle01/.cache/leak.md",
+      "resolved_source": "reviews/oracle01/exposed/leak.md",
+      "forbidden_name_in_output_archive": true
+    },
+    {
+      "case": "internal_parent_symlink_forbidden_sources",
+      "returncode": 0,
+      "stderr": "",
+      "status": "ACCEPTED",
+      "lexical_source": "reviews/oracle01/sources/leak.md",
+      "resolved_source": "reviews/oracle01/exposed/leak.md",
+      "forbidden_name_in_output_archive": true
+    },
+    {
+      "case": "internal_parent_symlink_forbidden_scratch",
+      "returncode": 0,
+      "stderr": "",
+      "status": "ACCEPTED",
+      "lexical_source": "reviews/oracle01/scratch/leak.md",
+      "resolved_source": "reviews/oracle01/exposed/leak.md",
+      "forbidden_name_in_output_archive": true
+    },
+    {
+      "case": "internal_parent_symlink_forbidden_qa",
+      "returncode": 0,
+      "stderr": "",
+      "status": "ACCEPTED",
+      "lexical_source": "reviews/oracle01/qa/leak.md",
+      "resolved_source": "reviews/oracle01/exposed/leak.md",
+      "forbidden_name_in_output_archive": true
+    },
+    {
+      "case": "internal_parent_symlink_forbidden_.secrets",
+      "returncode": 0,
+      "stderr": "",
+      "status": "ACCEPTED",
+      "lexical_source": "reviews/oracle01/.secrets/leak.md",
+      "resolved_source": "reviews/oracle01/exposed/leak.md",
+      "forbidden_name_in_output_archive": true
+    },
+    {
+      "case": "external_parent",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent/publication/make_package.py\", line 24, in add\n    relative = path.resolve().relative_to(AUDIT)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py\", line 490, in relative_to\n    raise ValueError(f\"{str(self)!r} is not in the subpath of {str(other)!r}\")\nValueError: '/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent_outside/sentinel.json' is not in the subpath of '/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent/publication/make_package.py\", line 92, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent/publication/make_package.py\", line 55, in main\n    add(\"root_reproduction/\" + path.name, path)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/external_parent/publication/make_package.py\", line 26, in add\n    raise RuntimeError(f\"Source escapes the audit: {name}\") from exc\nRuntimeError: Source escapes the audit: root_reproduction/sentinel.json\n",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "case": "leaf",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/leaf/publication/make_package.py\", line 92, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/leaf/publication/make_package.py\", line 34, in main\n    add(name, PUB / name)\n    ~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/leaf/publication/make_package.py\", line 20, in add\n    raise RuntimeError(f\"Invalid or duplicate source: {name}\")\nRuntimeError: Invalid or duplicate source: weighted_centers.tex\n",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "case": "forbidden_payload",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/forbidden_payload/publication/make_package.py\", line 92, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/forbidden_payload/publication/make_package.py\", line 45, in main\n    add(\"original/\" + name, AUDIT / \"original\" / name)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/forbidden_payload/publication/make_package.py\", line 28, in add\n    raise RuntimeError(f\"Excluded source: {name}\")\nRuntimeError: Excluded source: original/.cache/guard.txt\n",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "case": "traversal",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/traversal/publication/make_package.py\", line 92, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/traversal/publication/make_package.py\", line 44, in main\n    name = safe_path(record[\"path\"]).as_posix()\n           ~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/traversal/publication/integrity.py\", line 13, in safe_path\n    raise RuntimeError(f\"Invalid relative path: {name!r}\")\nRuntimeError: Invalid relative path: '../guard.txt'\n",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "case": "private",
+      "returncode": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/private/publication/make_package.py\", line 92, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/private/publication/make_package.py\", line 45, in main\n    add(\"original/\" + name, AUDIT / \"original\" / name)\n    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr570_30006605/reviews/package_preflight02/.cache/producer/private/publication/make_package.py\", line 20, in add\n    raise RuntimeError(f\"Invalid or duplicate source: {name}\")\nRuntimeError: Invalid or duplicate source: original/guard.private.md\n",
+      "status": "REJECTED_AS_REQUIRED"
+    }
+  ],
+  "known_repair_F01": "Relocation under .cache and scratch ancestors byte-identical: PASS",
+  "remaining_symlink_exclusion_test": "See five explicitly recorded accepted/rejected cases"
+}

@@ -1,0 +1,50 @@
+{
+  "utc": "2026-10-14T05:27:15.005035+00:00",
+  "commands": [
+    {
+      "mode": "normal",
+      "exit_code": 0,
+      "argv": [
+        "python3",
+        "-B",
+        "check_gate_reduction.py"
+      ],
+      "pass": true
+    },
+    {
+      "mode": "normal",
+      "exit_code": 1,
+      "argv": [
+        "python3",
+        "-B",
+        "check_gate_reduction.py",
+        "--self-test-invalid"
+      ],
+      "deliberate_fault_rejected": true
+    },
+    {
+      "mode": "optimized",
+      "exit_code": 0,
+      "argv": [
+        "python3",
+        "-O",
+        "-B",
+        "check_gate_reduction.py"
+      ],
+      "pass": true
+    },
+    {
+      "mode": "optimized",
+      "exit_code": 1,
+      "argv": [
+        "python3",
+        "-O",
+        "-B",
+        "check_gate_reduction.py",
+        "--self-test-invalid"
+      ],
+      "deliberate_fault_rejected": true
+    }
+  ],
+  "outputs_equal_except_utc": true
+}

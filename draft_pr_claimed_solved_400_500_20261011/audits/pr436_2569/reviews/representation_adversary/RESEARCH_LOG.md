@@ -1,0 +1,10 @@
+# PR436 representation adversary log
+
+- 2026-10-12T21:50:07Z — Initial reconstruction, 15% complete. Exact saved hypothesis: SL(2,5), p=2; all three F2 PIM classes have positive rational witnesses, but the rank-eight PIM has no rational projective lift. Frozen candidate proof read; historical independent/contributor reports and current peer conclusions deliberately unread. No new candidate search is authorized (original budget 5/5).
+- Independent mechanism selected: enumerate SL2(4) and its action on P1(F4), construct all F2 simple components and verify nilpotence of their joint kernel; derive PIMs by explicit primitive idempotents rather than a copied Cartan table. Enumerate the 120 exact quaternions and reduce coefficients modulo sqrt(5) to establish an actual all-products isomorphism with SL2(5). Symmetric cube then supplies an actual degree-four representation.
+
+- 2026-10-12T21:50:07Z — 55% complete. Constructed the actual F2A5 semisimple quotient and primitive idempotents. Initial verifier failed its ordinary involution value expectation for the C5 coset action; corrected 4 to 0, preserving the failed source and failure receipt. This does not affect odd-order Brauer values.
+
+- 2026-10-12T21:51:59.040212+00:00 — 90% complete. Independent finite/module reconstruction PASS, including nilpotent radical kernel, all primitive PIM ideals, actual central filters, quaternion-to-SL2F5 bijective homomorphism, actual Sym3 norm 1 / FS -1, every rational witness. Normal and -O outputs match except timestamp. Initial seal and hashes saved before historical audit/contributor reports.
+
+- 2026-10-12T21:55:23.097185+00:00 — 100% assigned verification complete. After the initial seal, historical reports/code inspected and all 26 frozen source hashes checked unchanged. Added exact characteristic-polynomial checks for all 60 underlying natural F4 matrices, normal/-O identical. Final verdict PASS, required representation/module repairs none; full parity and necessary semiperfect lifting bridges written in REPORT.md. No new research attempt or external write.

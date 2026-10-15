@@ -1,0 +1,13 @@
+# Current qualified source and prior-result gate
+
+Current research classification: **already_solved / credited existing-result alternative reproof**. Accepted Root mathematical and fresh aggregate priority receipts qualify the original source and establish the currently verified matching proof. The 1 October gate is preserved in `historical_submission_20261001/SOURCE_GATE.md` as dated history.
+
+The exact target is the arithmetic vertex centroid C0′* of the antipedal of the actual outer tangent polygon, for either original ellipse focus. Original tangent intersections and complete perpendicular lines are used. The primary v11/final Table 5 cells literally say “even”; our theorem adopts genuine **even least period N≥4**, strict nondegenerate confocal elliptical caustic, every phase and coprime stars. Least period is not a quotation from the table. Even lists repeating odd least periods do not qualify; unrestricted parity-by-list extension is false. Signed-area, one-sided-ray and outer-locus-focus substitutions change the target.
+
+The original bounded campaign/prior search is preserved as dated evidence, not a present absence-of-proof conclusion. Three independent priority families and Root have inspected Ferudun's matching complete [proof](https://eulersolve.org/papers/amr-050-0026/) and actual-file association to [DOI 10.5281/zenodo.23071366](https://doi.org/10.5281/zenodo.23071366). Existing-result/reproof credit is the accepted research classification: already_solved / alternative_reproof. The present record creation/modification and DOI clocks precede PR259 creation; exact-file first visibility and private/causal ordering are not established. The PDF/TeX printed date differs from record publication date and is retained.
+
+Reznik–Garcia–Koiller receive observation credit, Stachel receives parametrization credit, and classical elliptic/compact-curve machinery is attributed. The source editions' question marks describe those editions and cannot support a current first-proof claim. No new unsolved-target preprint or novelty clearance follows from valid mathematics. See CURRENT_AUDIT.md and its evidence pins.
+
+OpenAI Codex (AI) was used extensively for research, drafting, computation and adversarial checking of this reproof packet. It is an unrefereed AI-assisted mathematical draft. Independent AI audits are not human peer review; human peer review has not been performed.
+
+This source gate embeds no self-certified review of repaired bytes or action authority. See EVIDENCE_LOCATIONS.md and the separate dated repository audit receipts for report dependencies, exact package review and native publication acceptance.

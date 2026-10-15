@@ -1,0 +1,13 @@
+# Root disposition of fresh draft-v2 checkpoint review
+
+Timestamp: 2026-10-07T05:38:37.484833+00:00
+
+The new reviewer issued a qualified pass for the conditional research checkpoint, with no new substantive defect found. Its exact report SHA256 is `ad2ac2eacdb8ef889680f92dd3051e70f9c81b829168c08ad0abf7af1efa5dfa`; the supporting upstream-input report SHA256 is `396e659a72517e8d76aaf4c61a2fe58401f4bb0a78190b6664cddef59ea85b03`. The reviewed manifest SHA256 is `12f7df7edd621a9d8dfe89a8dfe143cee4239f888fbacd91b63804754ad335a4`.
+
+Accepted the conditional-scope verdict. No substantive mathematical repair follows from this fresh review. The original all-von-Neumann targets remain preserved and unachieved; the mandatory Roydor journal-source audit is unresolved. The proof-input audit is mathematical manuscript inspection with cited structural dependencies, not reproduced kernel verification. Three complete research-checkpoint reviews have occurred, including the post-repair fresh pass; zero final publication-package review cycles have occurred.
+
+For exact custody, every file listed in the v2 manifest is copied unchanged under `reviews/versions/draft_v2/checkpoint/` using its manifest-relative path. The original reviewed PROGRAM_STATE and RESEARCH_LOG are there too. The manifest is immutable. After review, current README, pending-action text, state and log only record that review completion and git receipts; those nonmathematical status updates are not new theorem or publication claims. The review authentication script/receipt are preserved as actually run on the original checkpoint: if checking its immutable v2 manifest later, compare against the frozen checkpoint copies rather than later status documents. No manuscript/PDF/check-algorithm byte changed.
+
+No full publication clearance is inferred. No deposit manifest, upload kit, Zenodo deposit/DOI or tracker row is asserted. Next dependency action and subsequent final-package/publication protocol remain in publication/PENDING_ACTIONS.md. The latest directly verified results are the standard adjoint distance inequality and inherited finite-dimensional boundary argument; the general proposition is an attributed conditional composition.
+
+Supplementary computation custody: the actual 1,022-pattern symbolic-check body was recovered from its retained original execution transcript without changing the frozen reports. Root inspected and independently replayed that exact body with matching successful output; see receipts/root_symbolic_central_homotopy_replay.json. This preserves an already reported finite check, without adding a new mathematical conclusion.

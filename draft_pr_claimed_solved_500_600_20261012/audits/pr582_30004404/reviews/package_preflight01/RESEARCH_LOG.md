@@ -1,0 +1,9 @@
+# Package preflight 01 research log
+
+- 2026-10-15T05:50:05.490728+00:00: 12% complete. Source-first independent reconstruction recorded before reading any older verdict. Universal target and metabelian obstruction are coherent; complete hypothesis and artifacts remain adversarial checks.
+
+- 2026-10-15T05:52:49.857289+00:00: 65% complete. All seven jobs actually passed with OS networking denied; exact complete JSON comparison and unchanged extraction confirmed. All 22 inputs independently equal Git objects. Ten seals/90 entries checked. Three relocated producers rebuild the exact ZIP, 29 actual producer guard rejections and eight real tamper rejections pass. Exact four-page PDF rebuilt and all pages visually inspected with no defect. Attribution and historical presentation review continue.
+
+- 2026-10-15T05:55:50.261476+00:00: 95% complete. Mathematical proof, all-rational hypothesis, versioned attribution, bounded-priority disclosures and historical reconciliations pass. Independently reproduced the old R1 acceptance with two manifested benign sentinels, each with full old mathematical replay; current pinned gate rejects both and a resealed snapshot. Ten actual current-driver mutations reject. Exact v2 primary metadata reveals one minor current locator correction: the gap notice is in Comments, not Abstract. Inputs remain frozen pending final report.
+
+- 2026-10-15T05:57:43.483523+00:00: 100% complete for the assigned review. One P3 citation-field correction F01 remains; no mathematical, priority-disclosure, actual replay, package-guard or PDF-layout issue found. Both mutable occurrences identified. Current input freeze rechecked unchanged before final seal. Parent must apply correction and obtain the requested new comprehensive review. All authored output checksums finalized; cache/raw sources excluded.

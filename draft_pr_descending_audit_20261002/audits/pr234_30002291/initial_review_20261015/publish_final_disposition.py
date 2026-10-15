@@ -1,0 +1,103 @@
+"""Native main publication of a completed qualified historical scope disposition; no local Git mutations."""
+from pathlib import Path
+from datetime import datetime,timezone
+from concurrent.futures import ThreadPoolExecutor
+import base64
+import hashlib
+import json
+import subprocess
+
+ROOT=Path('/Users/alec/Documents/Math')
+P=ROOT/'draft_pr_descending_audit_20261002'
+D=Path(__file__).resolve().parent
+T=D/'private_transport'/datetime.now(timezone.utc).strftime('checkpoint_%Y%m%dT%H%M%S%fZ')
+T.mkdir(parents=True,exist_ok=False)
+GH='/opt/homebrew/Cellar/gh/2.85.0/bin/gh';BASE='repos/AlecKriebel/Math/';seq=0
+
+
+def api(method,path,payload=None):
+    global seq
+    seq+=1;args=[GH,'api','--method',method,BASE+path]
+    if payload is not None:
+        target=T/f'{seq:02d}-request.json';target.write_text(json.dumps(payload));args+=['--input',str(target)]
+    run=subprocess.run(args,capture_output=True,timeout=60)
+    (T/f'{seq:02d}-stdout.json').write_bytes(run.stdout);(T/f'{seq:02d}-stderr.txt').write_bytes(run.stderr)
+    if run.returncode:raise RuntimeError(f'Native call{seq} failed; inspect retained outcome before mutation retry')
+    return json.loads(run.stdout)
+
+
+intake=json.loads((D/'INTAKE.json').read_text());repair=json.loads((D/'CLASSIFICATION_REPAIR_RECEIPT.json').read_text());assert repair['status']=='APPLIED_AND_VERIFIED';HEAD=repair['corrected_head'];plan=json.loads((D/'PROPOSED_NATIVE_CHANGES.json').read_text());pr=api('GET','pulls/234')
+assert pr['state']=='open' and pr['draft'] and pr['head']['sha']==HEAD
+queue=api('GET','contents/'+intake['Queue_path']+'?ref='+HEAD)
+assert queue['sha']==json.loads((P/'CURRENT_GOAL_SELECTION_20261013.json').read_text())['Queue_blob']
+rows=[s for s in base64.b64decode(queue['content']).decode().splitlines() if '30002291 / OWR-12337-002' in s]
+assert len(rows)==1 and rows[0].split('|')[8].strip()=='already_solved' and rows[0]==plan['new_row']
+assert json.loads((D/'ROOT_ORIGINAL_REPLAY_ACCEPTANCE.json').read_text())['status']=='PASS'
+assert json.loads((D/'ROOT_FRESH_REVIEW_REPLAY_ACCEPTANCE.json').read_text())['status']=='PASS'
+assert json.loads((D/'CURRENT_AUDIT_STATE.json').read_text())['completion_percent']==100
+paths=[p for p in D.iterdir() if p.is_file() and p.name!='FINAL_DISPOSITION_PUBLICATION_RECEIPT.json']
+paths += [p for p in (D/'submitted').rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+paths += [p for p in (D/'root_reproduction').rglob('*') if p.is_file() and not p.is_symlink() and 'private_reading' not in p.parts]
+for family,manifest in [('kernel_adversary_01','authored_manifest.json'),('stochastic_truncation_adversary_01','AUTHORED_MANIFEST.json'),('phase_mixing_adversary_01','MANIFEST.json'),('source_scope_adversary_01','ARTIFACT_MANIFEST.json')]:
+    folder=D/family; m=json.loads((folder/manifest).read_text());paths.append(folder/manifest)
+    rows=m.get('artifacts',m.get('authored_files'))
+    if rows is None:rows=[dict(path=k,sha256=v) for k,v in m['authored_files_sha256'].items()]
+    for row in rows:
+        q=Path(row['path']);q=q if q.is_absolute() else folder/q
+        assert hashlib.sha256(q.read_bytes()).hexdigest()==row['sha256'];paths.append(q)
+paths += [p for p in (D/'root_priority_01').iterdir() if p.is_file()]
+assert json.loads((D/'ROOT_FULL_PRIORITY_PACKET_VALIDATION.json').read_text())['status']=='PASS_FIVE_COMPLETED_PRIORITY_PACKETS'
+for family,name in [('priority_history_citations_01','SAFE_AUTHORED_MANIFEST.json'),('priority_classical_coverage_01','AUTHORED_MANIFEST.json'),('priority_novelty_scope_challenge_01','AUTHORED_MANIFEST.json'),('priority_boundary_class_01','SAFE_ARTIFACT_MANIFEST.json'),('priority_general_volterra_01','AUTHORED_MANIFEST.json')]:
+    folder=D/family;m=json.loads((folder/name).read_text());paths.append(folder/name)
+    for row in m.get('files',m.get('safe_authored_artifacts')):
+        q=Path(row['path']);q=q if q.is_absolute() else folder/q
+        assert q.resolve().is_relative_to(folder.resolve()) and hashlib.sha256(q.read_bytes()).hexdigest()==row['sha256'];paths.append(q)
+packet=json.loads((D/'PROPOSED_CURRENT_PACKET_MANIFEST.json').read_text())
+for row in packet['files']:
+    q=D/'corrected_packet'/row['path'];assert hashlib.sha256(q.read_bytes()).hexdigest()==row['sha256'];paths.append(q)
+folder=D/'final_priority_packet_adversary_01';name='SAFE_AUTHORED_MANIFEST.json';m=json.loads((folder/name).read_text());paths.append(folder/name)
+for row in m['files']:
+    q=folder/row['path'];assert hashlib.sha256(q.read_bytes()).hexdigest()==row['sha256'];paths.append(q)
+selection=P/'next_selection_after_pr239_20261015'
+paths += [p for p in selection.iterdir() if p.is_file()]
+paths += [P/'RESEARCH_LOG.md',P/'CURRENT_GOAL_SELECTION_20261013.json']
+# Held PR239 is preserved without further mutation in this checkpoint.
+entries=[];pins=[];expected={}
+for path in sorted(set(paths)):
+    assert path.resolve().is_relative_to(P.resolve()) and not path.is_symlink()
+    assert not set(path.parts).intersection({'private_reading','private_transport','private_revision_history'})
+    raw=path.read_bytes();rel=path.relative_to(ROOT).as_posix();expected[rel]=raw
+    entries.append(dict(path=rel,mode='100644',type='blob',content=raw.decode()))
+    pins.append(dict(path=rel,bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
+for attempt in range(4):
+    parent=api('GET','git/ref/heads/main')['object']['sha']
+    tree=api('GET','git/commits/'+parent)['tree']['sha']
+    newtree=api('POST','git/trees',dict(base_tree=tree,tree=entries))['sha']
+    commit=api('POST','git/commits',dict(message='Publish PR234 verified qualified historical credit disposition; skip corrected open draft',tree=newtree,parents=[parent]))['sha']
+    try:
+        assert api('PATCH','git/refs/heads/main',dict(sha=commit,force=False))['object']['sha']==commit
+        break
+    except RuntimeError:
+        error=json.loads((T/f'{seq:02d}-stdout.json').read_text());latest=api('GET','git/ref/heads/main')['object']['sha']
+        if str(error.get('status'))!='422' or latest==parent or attempt==3:raise
+
+
+def readback(row):
+    run=subprocess.run([GH,'api',BASE+'contents/'+row['path']+'?ref='+commit],capture_output=True,timeout=60)
+    assert run.returncode==0
+    raw=base64.b64decode(json.loads(run.stdout)['content']);assert raw==expected[row['path']]
+    return dict(path=row['path'],sha256=hashlib.sha256(raw).hexdigest(),byte_identical=True)
+
+
+with ThreadPoolExecutor(max_workers=6) as pool:verified=list(pool.map(readback,pins))
+main=api('GET','git/ref/heads/main')['object']['sha']
+if main!=commit:assert api('GET','compare/'+commit+'...'+main)['status']=='ahead'
+pr=api('GET','pulls/234');assert pr['state']=='open' and pr['draft'] and pr['head']['sha']==HEAD
+result=dict(utc=datetime.now(timezone.utc).isoformat(),commit=commit,parent=parent,main_readback=main,
+            owned_files=pins,actual_native_byte_readbacks=verified,case_completion_percent=100,completion_scope="eligible-intake audit and qualified historical disposition only",
+            reviewed_original_PR_head=intake['head'],corrected_PR_head_unchanged=HEAD,prior_PR239_held_uncompleted=True,
+            full_goal_active_incomplete=True,counts=[40,17,17,0],local_Git_or_index_mutations=0,
+            entire_third_party_reading_copies_excluded=True,all_four_completed_mathematical_source_packets_included=True,five_completed_priority_packets_included=True,clean_final_adversary_packet_included=True,qualified_credit_repair_applied_and_read_back=True,
+            manuscript_deposit_tracker_PR_comment_closure_or_merge=False,transport_receipts=str(T))
+(D/'FINAL_DISPOSITION_PUBLICATION_RECEIPT.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k not in ['owned_files','actual_native_byte_readbacks']},indent=2))

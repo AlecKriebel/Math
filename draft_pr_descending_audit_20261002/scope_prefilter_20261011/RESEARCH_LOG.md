@@ -1,0 +1,4 @@
+
+2026-10-11T21:24:43.451290+00:00 — descending scope checkpoint (filtering277–265100%; next eligible discovery pending; PR278case90%/native0%).
+
+Original-submission scope rows for PR277through265 are all excluded statuses: {"265": "unsolved", "266": "already_solved", "267": "already_solved", "268": "unsolved", "269": "already_solved", "270": "unsolved", "271": "unsolved", "272": "unsolved", "273": "already_solved", "274": "unsolved", "275": "already_solved", "276": "already_solved", "277": "already_solved"}. No math files reviewed, no repair/comment/paper/provider action on these PRs. Initial identifier parsing missed275/274 and later fixed;271 final PR-link commit followed creation, so pre-creation01e7 QUEUE read established originalunsolved. Scope-only filtering continues. PR278 current until actual merge complete; explicit peer hold still active.

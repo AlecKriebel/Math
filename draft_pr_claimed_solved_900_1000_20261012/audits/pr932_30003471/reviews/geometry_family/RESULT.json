@@ -1,0 +1,157 @@
+{
+  "accounting": {
+    "new_author_proof_search_turns_added": 0,
+    "no_claim_of_novelty_or_current_openness": true,
+    "original_author_proof_search_turns": "1/5",
+    "substantive_new_author_proof_search_routes": []
+  },
+  "actions": {
+    "commit_or_push_or_release": false,
+    "external_communication": false,
+    "index_HEAD_or_branch_modified": false,
+    "only_parent_root_contacted": true,
+    "original_or_candidate_files_modified": false,
+    "other_shard_or_agent_contact": false,
+    "service_or_PR_or_tracker_writes": false
+  },
+  "assumptions": [
+    "P and Q are fixed compact full-dimensional convex 3-polytopes; every actual facet is used exactly once.",
+    "A fixed face-lattice correspondence identifies facets, edges and all nonsimple incident-facet sets.",
+    "Interior dihedral angles satisfy theta_P<=theta_Q at every corresponding edge.",
+    "An orientation-correcting orthogonal reflection of Q is allowed because it preserves all target angle and Gram data.",
+    "All sufficiently-large-lambda thresholds and geometric constants may depend on the fixed P,Q and chosen smooth cutoff/q.",
+    "Standard finite-dimensional convexity, smooth approximation, Lipschitz area/composition/extension and trace facts, and classification of maps S2 to S2 by degree are imported foundational results.",
+    "Only for the analytic interface: precisely the smooth-domain existence/energy statement (2.1) as written, on smooth convex bodies including flat patches."
+  ],
+  "audit_scope": [
+    "PROOF Sections 3-6",
+    "degree component of PROOF Section 7"
+  ],
+  "candidate_stronger_claim": "Weak interior-dihedral domination at every corresponding edge forces equality of the Gram matrices of all outward unit facet normals.",
+  "completion_percent_assigned_family": 100,
+  "completion_qualification": "100 percent is completion of this assigned conditional geometry audit, not the entire candidate or a discovery/priority claim.",
+  "controls": {
+    "all_controls_passed": true,
+    "fresh_runtime_installed": false,
+    "reproducible_script": "geometry_controls.py",
+    "results_file": "CONTROL_RESULTS.json",
+    "seed": 93230003471,
+    "versions": {
+      "numpy": "2.3.5",
+      "python": "3.14.6",
+      "scipy": "1.17.0"
+    }
+  },
+  "discovery_goal_completion_percent": null,
+  "exact_original_target": "For fixed corresponding edges of combinatorially equivalent compact full-dimensional convex 3-polytopes, some corresponding interior dihedral angle of P is no greater than that of Q.",
+  "falsification_and_boundaries": {
+    "excluded_degeneracies": [
+      "flat or unbounded polytopes",
+      "exact source exterior angles 0 or pi at a purported edge",
+      "uniform estimates over all degenerating polytope families",
+      "unjustified general-dimensional extrapolation"
+    ],
+    "finite_samples_are_not_universal_proofs": true,
+    "negative_controls": [
+      "remove hemisphere: geodesic endpoint operator norm exceeds one",
+      "reverse exterior angle comparison: edge nuclear norm expands",
+      "fixed relative-width cutoff: L2 error need not vanish",
+      "dimension-four cube: three active facets meet an edge, requiring more than vertex-only removal"
+    ],
+    "no_counterexample_to_stated_candidate_hypotheses_found": true,
+    "nonsimple_vertices_handled_without_triple_normal_inversion": true,
+    "numerics_are_ordinary_floating_point_not_interval_validation": true,
+    "polytopes_tested": [
+      "cube",
+      "regular tetrahedron",
+      "nonsimple square pyramid",
+      "valence-12 pyramid",
+      "valence-32 pyramid"
+    ],
+    "retained_finite_scale_counterexample_to_stronger_uniform_reading": "32 sampled points on the fixed valence-32 pyramid at lambda=64 have empty active common intersection; the claimed construction requires sufficiently large lambda depending on the fixed polytope."
+  },
+  "integrity": {
+    "curated_public_map": "MANIFEST.json",
+    "end_authentication": "ORIGINAL_END.json",
+    "map_verifier_requires_external_digest": true,
+    "private_sources_renders_tmp_and_unmapped_files_excluded": true,
+    "public_map_self_excluded": true,
+    "read_only_original_verifier": "VERIFY_ORIGINAL.py",
+    "start_authentication": "ORIGINAL_START.json"
+  },
+  "mathematical_remaining_gap": {
+    "outside_family_scope": "This family has not independently verified the specialized smooth-domain Dirac statement (2.1), including flat-patch applicability, representation/index conventions, or the later analytic limit/Clifford steps. Those remain required for the whole proof; no whole-proof acceptance is asserted.",
+    "within_assigned_conditional_geometry_lemma": null
+  },
+  "mechanism_checks": [
+    {
+      "evidence": "simultaneous positive facet-normal margins; orientation reflection; normalized smooth approximation",
+      "mechanism": "face-chain PL correspondence and fixed collar q",
+      "remaining_gap": null,
+      "status": "verified by explicit construction"
+    },
+    {
+      "evidence": "position dot active normals and compact positive sum Phi prime; common balls; O(lambda^-1) actual radial displacement",
+      "mechanism": "flat cutoff smooth convex inner approximation",
+      "remaining_gap": null,
+      "status": "verified by regular-level argument"
+    },
+    {
+      "evidence": "uniform ratios and inverse ratios on all rays; bounded volume and area Jacobians",
+      "mechanism": "uniform radial transport and trace/extension constants",
+      "remaining_gap": null,
+      "status": "verified by polar support function bounds"
+    },
+    {
+      "evidence": "projection cone signs; nonempty and empty intersections; nonsimple vertices; pairs meeting only at vertices",
+      "mechanism": "all-face active-set localization",
+      "remaining_gap": null,
+      "status": "verified by finite normal-cone compactness"
+    },
+    {
+      "evidence": "rank-one positive shape operator and nuclear norm identity; atan2 coordinates; finite flat-function local gluing",
+      "mechanism": "edge contraction and global smooth gluing",
+      "remaining_gap": null,
+      "status": "verified by explicit local angle charts"
+    },
+    {
+      "evidence": "operator norm factors t and sin(t theta)/sin theta; uniform hemisphere; smooth theta=0; flat endpoint cutoffs",
+      "mechanism": "geodesic logarithmic vertex interpolation",
+      "remaining_gap": null,
+      "status": "verified by spherical endpoint differential"
+    },
+    {
+      "evidence": "O(lambda^-1)=o(delta^2), bounded area Jacobian and planar polar integration; degree 1 for eta and Gauss maps",
+      "mechanism": "actual-boundary L2 and degree",
+      "remaining_gap": null,
+      "status": "verified by radial pullback and global homotopies"
+    }
+  ],
+  "optional_issues": [],
+  "original_file_count": 29,
+  "original_head": "c09ef9df8b1f4642be0396ba6343344be8fa25b0",
+  "original_outer_manifest_sha256": "d1b3a0528bf518640a117c2cfecff5bc81d21f58632f7b4f647ae998eb4dcedd",
+  "original_proof_sha256": "6015fcacefd914217ddadc816a5c84c1be250ec58838df891f267835f9198415",
+  "problem_id": "30003471",
+  "pull_request": 932,
+  "recorded_utc": "2026-10-15T07:40:38.967680+00:00",
+  "required_issues": [],
+  "schema": "pr932-30003471-geometry-family-result-v1",
+  "sources": {
+    "analytic_published_DOI_supplied_but_not_inspected": "https://doi.org/10.1007/s00222-023-01229-x",
+    "analytic_source_version_supplied_but_not_inspected": "https://arxiv.org/abs/2301.05087v4",
+    "cached_target_sha256": "aa4d1332349687f3e0eee690f8a5ad26f81e298425afd4d9b0baea349a8a2355",
+    "current_sibling_family_folders_read": false,
+    "external_sources_downloaded_or_browsed_by_this_family": [],
+    "full_local_reads": [
+      "RESEARCH_CHARTER.md",
+      "source_record_private.txt",
+      "original/unsolved_math_prioritization/attempts/30003471/public/PROOF.md"
+    ],
+    "historical_audit_verdicts_read": false,
+    "primary_target_external_PDF_or_pixels_inspected_by_this_family": false,
+    "primary_target_url_supplied": "https://publications.mfo.de/bitstream/handle/mfo/3583/OWR_2017_19.pdf?isAllowed=y&sequence=1"
+  },
+  "strongest_verified_conditional_result": "For each fixed P,Q satisfying the candidate geometric hypotheses, the prescribed construction yields smooth inner convex approximations with uniform global radial bi-Lipschitz maps, smooth degree-one sphere maps eta_lambda, and actual-boundary L2 excess nuclear norm tending to zero. Uniform trace transport gives the boundary quadratic-form estimate. These are admissible geometric inputs if the exact analytic statement (2.1) is independently true with its stated hypotheses.",
+  "verdict": "CONDITIONAL_GEOMETRIC_LEMMA_VERIFIED_WITH_NO_REQUIRED_ISSUES"
+}

@@ -1,0 +1,1054 @@
+{
+  "schema": "pr278-completed-operation-corruption-controls-v1",
+  "UTC": "2026-10-06T20:26:28.373734+00:00",
+  "actual_validator_PID": 46977,
+  "actual_argv": [
+    "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python",
+    "-E",
+    "-B",
+    "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr278_30005468/completed_publication_tracker_adversary_01/adversarial_controls.py"
+  ],
+  "zero_provider_network_GWS_Git_calls": true,
+  "all_fixtures_explicitly_synthetic": true,
+  "synthetic_acceptance_as_actual_evidence": false,
+  "controls": [
+    {
+      "name": "independent exact original HTTP memory control",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP typed status string",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "HTTP not literal complete200",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP typed status string",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full HTTP200 body required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP literal body complete false",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "HTTP not literal complete200",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP literal body complete false",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full HTTP200 body required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP logical hash changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Full body hash/bytes mismatch",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP logical hash changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full HTTP raw body differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP incomplete full body",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Length mismatch",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP incomplete full body",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full raw Content-Length/body differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP raw403 with recorded200",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Malformed raw first status",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP raw403 with recorded200",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact first HTTP version/status token must match typed receipt200; interim/duplicate/malformed blocks rejected",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP raw2000 malformed status",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Malformed raw first status",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP raw2000 malformed status",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact first HTTP version/status token must match typed receipt200; interim/duplicate/malformed blocks rejected",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP raw status200 embedded in reason",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Malformed raw first status",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP raw status200 embedded in reason",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact first HTTP version/status token must match typed receipt200; interim/duplicate/malformed blocks rejected",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP duplicate raw status block",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Malformed raw first status",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP duplicate raw status block",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact first HTTP version/status token must match typed receipt200; interim/duplicate/malformed blocks rejected",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP raw final header incomplete",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Malformed raw first status",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP raw final header incomplete",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact first HTTP version/status token must match typed receipt200; interim/duplicate/malformed blocks rejected",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP raw parsed header conflict",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Raw/parsed headers disagree",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP raw parsed header conflict",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Received raw and parsed HTTP headers differ",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent HTTP unrecorded redirect",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "HTTP retries/redirects",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative HTTP unrecorded redirect",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "HTTP evidence request identity differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent exact draft object",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative state exact draft",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent draft contradiction submittedTrue",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative draft contradiction submittedTrue",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent draft contradiction state'done'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative draft contradiction state'done'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object state is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent draft contradiction status'published'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative draft contradiction status'published'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object status is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent draft contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative draft contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent exact submitted object",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative state exact submitted",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent submitted contradiction submittedFalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative submitted contradiction submittedFalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent submitted contradiction state'unsubmitted'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative submitted contradiction state'unsubmitted'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object state is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent submitted contradiction status'draft'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative submitted contradiction status'draft'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object status is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent submitted contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative submitted contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent exact public object",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative state exact public",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent public contradiction submittedFalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative public contradiction submittedFalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent public contradiction state'unsubmitted'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative public contradiction state'unsubmitted'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object state is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent public contradiction status'draft'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Explicit status/state contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative public contradiction status'draft'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Explicit full-object status is contradictory or unfamiliar; stop for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent public contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Submitted contradiction",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative public contradiction submitted'true'",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full-object literal submitted state contradicts the required phase",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent changed concept DOI",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Observed concept differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative changed concept DOI",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Actual concept DOI differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent inferred/unobserved concept missing",
+      "expected": "reject",
+      "rejected": true,
+      "type": "KeyError",
+      "reason": "'conceptrecid'",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative inferred/unobserved concept missing",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Actual conceptrecid must be observed",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent bool record ID",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Actual record DOI identity",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative bool record ID",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Actual record identity differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent remote thirdfile",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "File census",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative remote thirdfile",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exactly two full remote file objects required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent remote missingfile",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "File census",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative remote missingfile",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exactly two full remote file objects required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent remote MD5 changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Remote full-file size/MD5",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative remote MD5 changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Remote MD5/size differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent remote size bool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Remote full-file size/MD5",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative remote size bool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Remote MD5/size differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent remote duplicate name",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Remote file duplicate/unknown",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative remote duplicate name",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Remote file bijection differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent metadata invented extra",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Unadjudicated metadata extra/change",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative metadata invented extra",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Unadjudicated metadata extra; preserve for ROOT review",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent metadata lost claim",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Metadata changes outside exact observed apostrophe rule description",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative metadata lost claim",
+      "expected": "reject",
+      "rejected": true,
+      "type": "DepositError",
+      "reason": "Remote metadata differs at 'description'; inspect the draft",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent ORCID changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Metadata changes outside exact observed apostrophe rule creators",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative ORCID changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "DepositError",
+      "reason": "Remote metadata differs at 'creators'; inspect the draft",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent concept version changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Unadjudicated metadata extra/change",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative concept version changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Actual initial version/concept relation differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "exact normalized tracker memory",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent tracker wrongheader",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Header/column shape",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative tracker wrongheader",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact header/full A:D rows required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent tracker truncatedrange",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Full-table range/dimension",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative tracker truncatedrange",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Complete A:D response range differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent tracker fivecolumns",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Header/column shape",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative tracker fivecolumns",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact header/full A:D rows required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append countsbool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append exactly1x4",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative append countsbool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Single 1x4 update required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append 2x4",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append exactly1x4",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative append 2x4",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Single 1x4 update required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append wrongrange",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append returned range/values",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative append wrongrange",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Returned exact row differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append returnedvaluechanged",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append returned range/values",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative append returnedvaluechanged",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Returned exact row differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append options USER_ENTERED",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append RAW/INSERT_ROWS options",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append options OVERWRITE",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append RAW/INSERT_ROWS options",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append options wrongSheet",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append RAW/INSERT_ROWS options",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent append options wrongTab",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Append RAW/INSERT_ROWS options",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent oldprefix changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Older normalized prefix/target row differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative oldprefix changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Older tracker A:D prefix changed",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent concurrent duplicate",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative concurrent duplicate",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent duplicate 30005468",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative duplicate 30005468",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent duplicate OWR-12697710-015",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative duplicate OWR-12697710-015",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent duplicate PR278",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative duplicate PR278",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent duplicate /pull/278",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative duplicate /pull/278",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "independent duplicate 10.5281/zenodo.23196750",
+      "expected": "reject",
+      "rejected": true,
+      "type": "ValueError",
+      "reason": "Duplicate target problem/title/PR/DOI",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative duplicate 10.5281/zenodo.23196750",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Existing problem/title/PR/actual DOI row: reconcile read-only, never append",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "permitted concurrent peer suffix preserves prefix",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "returned exactrow changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Exact appended row identity/readback differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative own native fixture baseline",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native completefalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "UNKNOWN: native status/complete stream/wait/reap boundary absent",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native waitfalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "UNKNOWN: native status/complete stream/wait/reap boundary absent",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native reapfalse",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "UNKNOWN: native status/complete stream/wait/reap boundary absent",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native returnbool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "UNKNOWN: native status/complete stream/wait/reap boundary absent",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native nonzero",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Native command did not succeed",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native childPIDbool",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Typed positive native PID required",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native childPIDmissing",
+      "expected": "reject",
+      "rejected": true,
+      "type": "KeyError",
+      "reason": "'actual_child_PID'",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native argvchanged",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Native request/start/receipt custody differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native logicalhash",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full native stream byte custody differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native storedhash",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full native stream byte custody differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native streamincomplete",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Native stream completeness/type differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native cleanupfailure",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Native cleanup boundary failed",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native failurepresent",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Native command did not succeed",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native missingstream",
+      "expected": "reject",
+      "rejected": true,
+      "type": "FileNotFoundError",
+      "reason": "[Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr278_30005468/completed_publication_tracker_adversary_01/SYNTHETIC_CORRUPTION_FIXTURES_ONLY_03/NATIVE_14/stderr.gz'",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native missingstarted",
+      "expected": "reject",
+      "rejected": true,
+      "type": "FileNotFoundError",
+      "reason": "[Errno 2] No such file or directory: '/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr278_30005468/completed_publication_tracker_adversary_01/SYNTHETIC_CORRUPTION_FIXTURES_ONLY_03/NATIVE_15/started.json'",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative native changedstdout",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full native stream byte custody differs",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative own source snapshot baseline",
+      "expected": "pass",
+      "passed": true,
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative full current source changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Pinned full body changed: /Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr278_30005468/completed_publication_tracker_adversary_01/SYNTHETIC_CORRUPTION_FIXTURES_ONLY_03/SOURCE/actor.py",
+      "synthetic_not_actual_evidence": true
+    },
+    {
+      "name": "operative full source gzip logical relationship changed",
+      "expected": "reject",
+      "rejected": true,
+      "type": "GuardError",
+      "reason": "Full compressed/logical/current source relationship differs",
+      "synthetic_not_actual_evidence": true
+    }
+  ],
+  "total": 132,
+  "expected_rejections": 121,
+  "positive_controls": 11,
+  "issues": []
+}
