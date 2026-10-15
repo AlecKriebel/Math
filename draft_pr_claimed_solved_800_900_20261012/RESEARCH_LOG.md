@@ -154,3 +154,17 @@ R2 independently reconstructed the full theorem, checked primary source/attribut
 ## 2026-10-15T03:54:04.235947+00:00 — two successive fresh final reviews CLEAR; accepted package ready for scoped merge/publication (PR82265%; shard23%)
 
 FreshR3 fully independently reconstructed exacttarget/proof/source/classical relationship, reproduced7rationalbounds, fullnormal/-Oportable/outer checks,22currentcontrols ineachparentmode, exactpublicbuilder output,24additionalbuilderrejections, all3originalZIPs/32members/42sourcefiles, metadata and4PDFpages. Zeroactionablefindings. R2/R3 seal10core and163assembly bytes identical; R3authored19entrymanifest independently validated. Finalmapping changes only readiness/findings and points to the same163reviewed bytes. Qualifiedpreprint accepted, no firstness/currentopenness/novelmechanism claim; original1/5effort unchanged. Merge, productionZenodo, exactGWSrow and postpublicationmain receipts remain pending; broadtrackersearch5distinctiveIDs/title/PR terms found0matches. Userauthorization already covers these next steps.
+
+## 2026-10-15T03:59:07.855636+00:00 — exact reviewed PR822 merged and all163main files verified (PR82275%; shard23%)
+
+Normal existingbranch push confirmed reviewedhead4736aae01f31f02c62c3a114c168e0afbe8bf4dc; scopedGitvalidation confirmed163exactfiles, target-onlyqueuechange and unchangedforeign tree. PRtitle/body read back exactly, draft markedready, normal matched-head merge confirmed7da49693ab5aeb4114d34917e02a0df74b406068 at2026-10-15T03:57:23Z. Freshmain containsmergeancestor and everyreviewedfilebyte; targetclaimed_solved1/5 preserved. Canonicalsealedpreprint readyforproductionZenodostage. No GitHubrelease, DOI orsheetwrite yet.
+
+## 2026-10-15T04:06:48.217388+00:00 — productionDOI and exactGWSrow confirmed; mainannotation prepared (PR82295%; shard24%)
+
+ProductionZenodo record23383952 published as https://doi.org/10.5281/zenodo.23383952; exact4pPDF05ab2624… and110memberZIP06cb9c30…, metadata0normalizations, postpublishinspectverified and DOI HTTP200. GWSCLI appended unique DOI at 'Math Puzzles'!A91:D91 on exactgid1254632077 and read all4cellsback. Newpublicationworkcopy164files preserves159acceptedfilebytes includingall10cores; only4currentwrappers plusonefactualreceipt preparedfor main. ReviewedR2tree and canonicalimmutablepublishedfiles retained unchanged. Finalscopedmainannotation/readback and PRbodyupdate remain; originaleffort1/5 unchanged.
+
+## 2026-10-15T04:13:03.944593+00:00 — PR #822 complete (100%; shard best guess 25%)
+
+Merged reviewed head 4736aae01f31f02c62c3a114c168e0afbe8bf4dc as 7da49693ab5aeb4114d34917e02a0df74b406068. Production Zenodo record 23383952 and DOI https://doi.org/10.5281/zenodo.23383952 independently inspected with exact metadata and both file hashes, DOI HTTP 200. Google Workspace CLI appended the exact four cells once to Math Puzzles A91:D91 and read them back; DOI count one. Publication annotation 81af79164012e2cbb39cf5153d43d830525fece2 is on main: all 164 target blobs read back, all 159 protected accepted files and all ten preprint core files unchanged. Both complete outer/portable replays passed. Updated merged PR body read back exactly. No external human or formal verification, firstness or current-openness certification claimed.
+
+Fresh metadata-only gates skip #823, #824 and #825 (unsolved) without substantive processing; #826 remains draft claimed_solved at 286cc67c0727b4decfd4f261a0591cd8823ebce9. Overall goal remains active.
