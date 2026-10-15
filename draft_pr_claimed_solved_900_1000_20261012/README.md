@@ -20,10 +20,14 @@ Preprints disclose extensive AI assistance and their unrefereed status. Publicat
 uses the repository Zenodo tool followed by a Google Workspace CLI row in the
 requested `Math Puzzles` tracker (gid 1254632077). PR #904 is accepted, merged and published: [10.5281/zenodo.23331258](https://doi.org/10.5281/zenodo.23331258), tracker row 68. Its audited publication record is preserved in `audits/pr904_30000347/`.
 
-Own work is isolated here. No other shard or individual is contacted. Main
-checkpoints use a private index and nonforced remote main pushes; the shared
-checkout, shared index and local branch pointer are preserved.
+Own work is isolated here. No other shard or individual is contacted. Current main
+checkpoints replace only explicit own blobs and their ancestor trees, then use
+nonforced remote main pushes; no index is allocated and the shared checkout,
+shared index and local branch pointer are preserved. Earlier receipts document
+the retired private-index method.
 
 PR #905 is accepted, merged and published: [10.5281/zenodo.23333002](https://doi.org/10.5281/zenodo.23333002), tracker 'Math Puzzles'!A76:D76. The frozen revision 2 passed the fresh review after the source-version repair; its queue conflict reconciliation preserved all reviewed bytes.
 
 PR #906 is accepted, merged and published: [10.5281/zenodo.23356680](https://doi.org/10.5281/zenodo.23356680), tracker 'Math Puzzles'!A83:D83. Exact energy-specific scope, classical credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #908 is accepted, merged and published: [10.5281/zenodo.23383930](https://doi.org/10.5281/zenodo.23383930), tracker 'Math Puzzles'!A89:D89. Exact bounded-region scope, prior mechanism credits, bounded priority and unrefereed AI disclosures are explicit.
