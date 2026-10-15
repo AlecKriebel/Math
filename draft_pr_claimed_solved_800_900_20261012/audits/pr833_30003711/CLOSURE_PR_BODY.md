@@ -6,4 +6,4 @@ The actual 2025 journal article has later revisions, but its proof body was not 
 
 The stronger literal OWR connected/full-nine-sheet formulation and exact algorithmic branching count are not resolved by this PR. No solved-result preprint, Zenodo DOI or tracker row was produced for this PR. AI tools were used extensively; no completed conventional human peer review or formal certification is claimed.
 
-[Full audit and evidence](https://github.com/AlecKriebel/Math/blob/EVIDENCE_COMMIT/draft_pr_claimed_solved_800_900_20261012/audits/pr833_30003711/INTEGRATED_AUDIT.md). [Original frozen submission](https://github.com/AlecKriebel/Math/tree/0e6e23213494ecb4a7208f920d25d7b49502a5cb/unsolved_math_prioritization/attempts/30003711).
+[Full audit and evidence](https://github.com/AlecKriebel/Math/blob/98ee5482ef3352b81758c1590a7685947eec3725/draft_pr_claimed_solved_800_900_20261012/audits/pr833_30003711/INTEGRATED_AUDIT.md). [Original frozen submission](https://github.com/AlecKriebel/Math/tree/0e6e23213494ecb4a7208f920d25d7b49502a5cb/unsolved_math_prioritization/attempts/30003711).
