@@ -1,0 +1,4 @@
+# Geometry audit research log
+
+- 2026-10-15 04:07:40 UTC — 15% complete. Read the exact-head scope/snapshot, frozen author proof, and scope clarification. No prior audit has been read. The review target is the qualitative strict fixed-point and compact-set theorem. Began an independent area-theorem-to-slit-domain reconstruction; quantitative sharpness and historical priority are excluded.
+- 2026-10-15 04:09:18 UTC — 70% complete. Wrote `DERIVATION.md` independently, including the exterior square-root construction, equality propagation through the Koebe transform, affine-ray rigidity, derivative normalization, and the compactness quantifiers. Exact binding check passes for all 24 frozen native files against both snapshot SHA-256 and Git blobs at the specified head. Only after that derivation, read the existing audit: it agrees on the proof mechanism and identifies the same inverse-composition wording clarification already fixed by the scope note.
