@@ -1,0 +1,17 @@
+# Package engineering research log
+
+2026-10-15T09:52:12.686484+00:00 — 95% of engineering verification complete. The narrow goal is current PR880 byte authentication, portable finite replay and deterministic packaging. This is not an estimate of mathematical novelty or proof completeness. Candidate source remains unchanged.
+
+Initial relocated replay authenticated all 40 files (276581 bytes), both original ZIPs, the nested author ZIP and expanded duplicates, then matched eight normal/optimized diagnostic and self-test outputs. A first 104-probe synthetic-fixture engineering suite passed, including ten positive top-level processes and complete optional provenance via read-only hardlinks. No corpus bytes or private PDFs were copied into a public package.
+
+Independent review identified a restrictive-umask relocation defect: one chmod was outside its file-copy loop. It was moved inside the loop. A self-found explicit-assembly defect allowed a generated index path to collide with a directory prefix; preflight now rejects exact, ancestor and descendant collisions before output creation. Both changes are included in the final guard rerun, and the code candidate is frozen for the independent reviewer.
+
+A transient ENOSPC prevented the first small guard-harness write. Only this agent’s disposable construction helper and intermediate text were removed; root separately reclaimed its own completed ignored replays. No research evidence or foreign files were deleted.
+
+2026-10-15T09:56:16.669967+00:00 — 95%: final current-code receipts passed 108 probes (106 rejection, two acceptance controls) and 14 positive synthetic-fixture processes each. Full optional provenance passed once in its own receipt; source-free remains NOT_RUN. All disposable fixtures removed. Independent review is still in progress; no real final assembly, index or ZIP retained.
+
+2026-10-15T09:58:48.741596+00:00 — 95%: independent tooling review additionally found representation-level ZIP prefix/trailer and local-header-time acceptance under resealed synthetic metadata, with no fixed-pin bypass. Parent authorized a narrow outer guard strengthening; EOCD/local/central boundaries and metadata/names are now checked without recompression or a unique-DEFLATE-bitstream claim. Final fresh source-free and optional-source receipts each pass 111 probes (109 rejecting controls and two accepted controls) and 14 positive tool processes; optional-source provenance separately passes. All five tool hashes are explicit in each receipt.
+
+2026-10-15T10:04:05.215100+00:00 — 95%: parent requested final outer/assembler module-docstring corrections. Exact byte-reconstructible old/new hashes and identical stripped ASTs are recorded in DOCSTRING_PROVENANCE.json. The final source-free 111-probe/14-positive fixture bridge passes on final hashes. Earlier successful full-input and independent behavior receipts retain their original hashes; complete corpora were not reread solely for docstrings.
+
+2026-10-15T10:07:37.045513+00:00 — 100% of assigned tooling engineering: independent review CLOSED_PASS_TOOLING_ONLY on all final five hashes, with 335/347 comprehensive behavioral checks plus 53 final docstring-bridge checks. Own final source-free 111-probe/14-positive bridge passes; earlier optional provenance PASS is retained with explicit doc-only hash provenance. No real assembly/index/ZIP/outer candidate was made by this effort. Parent alone handles actual-package integration and separate final review.
