@@ -1,0 +1,7 @@
+# Final disposition for 30004563
+
+At alpha=16, one fixed admissible incoming realization admits at least five distinct outgoing centers; crossings permitted. The published <=3 expectation is contradicted in this scope. Proper embeddings excluded; exact total/global maximum unknown; alpha<1 outside. Old curve family credited to Ash--Bolker (1986), Bourne--Peletier--Roper (2014), Bourne--Roper (2015). No earlier >=4 pure-power shared-focus witness located in checked corpus through 15 October 2026; historical novelty/firstness unestablished. Extensive AI; unrefereed; no conventional human peer review.
+
+The two NEW whole-package adversaries completed clean and Root authenticated the final exact package. The note is actually published at https://doi.org/10.5281/zenodo.23392409; tracker row 'Math Puzzles'!A106:D106 was appended/read back with foreign rows retained. Original-HEAD merge 8bb6cb1c2734db67c56c3ec5dfba5238aa6819dc was actually accepted by Root. This is a factual100 postimage with prospective programme41/25; its separate actual-main factual acceptance remains required and is not asserted here.
+
+Original submitted HEAD: b9a399eeac816dbb8f0e50e81b498c26e5acef81. Actual accepted merge: 8bb6cb1c2734db67c56c3ec5dfba5238aa6819dc. Integrated queue remains claimed_solved / 2/5. Original19 and all scientific/publication bytes remain unchanged from the accepted95 derivation. This is a separately derived factual100 postimage; actual MAIN adoption must still be authenticated independently.

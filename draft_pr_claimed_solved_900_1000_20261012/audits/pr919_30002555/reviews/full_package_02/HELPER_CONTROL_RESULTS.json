@@ -1,0 +1,26 @@
+{
+  "status": "PASS_REPRODUCED_OPTIONAL_SEQUENCING_GAP",
+  "all_fixtures_synthetic": true,
+  "no_service_contact_or_real_publication_receipt": true,
+  "rows": [
+    {
+      "case": "correct_head_baseline",
+      "kit_publish_invocation_reached": true,
+      "actual_external_action": false,
+      "guard": null
+    },
+    {
+      "case": "stale_wrong_PR919_head",
+      "kit_publish_invocation_reached": true,
+      "actual_external_action": false,
+      "guard": null
+    },
+    {
+      "case": "wrong_PR_negative",
+      "kit_publish_invocation_reached": false,
+      "actual_external_action": false,
+      "guard": "Merge not confirmed"
+    }
+  ],
+  "finding": "run_pr919_zenodo.py validates merged PR number/state but not headRefOid against the accepted original/integration head before invoking publish. Its downstream guards detect this only after publication. Under the intended trusted sequence the merge helper creates the correct receipt; this is optional stale-receipt hardening, not a mathematical gap or evidence of actual wrong publication."
+}

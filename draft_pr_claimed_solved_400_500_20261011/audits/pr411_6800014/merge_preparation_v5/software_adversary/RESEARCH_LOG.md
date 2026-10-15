@@ -1,0 +1,10 @@
+# Independent V5 software review log
+
+- 2026-10-13T13:39:40Z — Scope fixed to ADMIN continuation source, independent synthetic controls, and read-only reported custody pins. No native requests, actual journals, science, or asset bytes are used. Completion estimate: 10% toward a finite adversarial software verdict.
+- 2026-10-13T13:39:40Z — Read exact V4/V5 source relation and new continuation mechanism. No concrete blocker identified in the original STOP/claim/run/root/canonical-plan joins. Synthetic fixtures will establish only structural behavior; caller-pinned root acceptance remains the authenticity boundary. Completion estimate: 25%.
+
+- 2026-10-13T13:48:03.250738+00:00 — Fresh independently generated fixtures pass 71/71 normal and 71/71 optimized controls, including seven subprocess controls per mode, concurrency, consumed-guard failure, original custody joins and late drift. Initial relative-path fixture error and read-only replay path-depth error are preserved privately and excluded from successes. Completion estimate: 85%.
+- 2026-10-13T13:48:03.250738+00:00 — Genuine caller-pinned ADMIN descriptor passed a read-only replay with API/Journal constructors forbidden. Compact parent public summary inspected and contains hashes/private references rather than raw plan or captures. Completion estimate: 90%.
+- 2026-10-13T13:48:03.250738+00:00 — A broader all-callers no-retry claim is falsified: direct reuse of the same already-open successor Journal with two execute calls yields two synthetic PUTs after response loss. The reviewed main/CLI calls execute once and has no retry loop. Counterexample preserved; awaiting scope disposition or repair. Completion estimate: 80%.
+
+- 2026-10-13T13:51:59.805503+00:00 — Direct-object reuse was designated a concrete blocker by the parent review. Source 942924177712fcf7c6211df84298a423f8397cc985c81fb05a6696c06ca8b7f8 remains archived, and the counterexample is preserved. The finite adversarial review is complete with one blocker; the wider discovery or live merge goal is not certified. Completion estimate: 100% toward this finite review.

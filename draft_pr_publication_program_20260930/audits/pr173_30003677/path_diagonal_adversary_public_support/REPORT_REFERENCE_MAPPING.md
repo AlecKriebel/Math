@@ -1,0 +1,17 @@
+# Mapping to the original family report
+
+The original report remains in the separately sealed `path_diagonal_adversary` folder. This export adds public companions without changing that report's allowlist, seals, log or inventory. Its exact report fingerprint is in `SAFE_IDENTITIES.json`.
+
+| Original report reference or claim | Public companion | Availability and limits |
+|---|---|---|
+| Own explicit-exception checker; 159,474 checks, 20,016 competitions, 25,176 protected witnesses | `explicit_controls.py`; two exact original baseline receipt files; `PUBLIC_REPRODUCTION_RUNS.json` | Fully standalone and rerun in this export; both execution modes reproduce the exact totals. |
+| Nine own semantic false variants reject ordinarily and with optimization | `explicit_controls.py --variant ...`; `OWN_ORIGINAL_RUNS.json`; `run_public_controls.py`; `PUBLIC_REPRODUCTION_RUNS.json` | All eighteen negative executions are present as actual exit statuses and exact safe exception payloads. Raw absolute-location tracebacks are omitted. |
+| Loops, separate parallel channels, disconnected topologies, nonnegative zero/fractional weights, both tie priorities, disjoint source choices | `explicit_controls.py` and both baseline receipts | Public own construction and exact bounded enumeration; no external source body needed. |
+| Resource, parity, root expectation, Markov, rate and logarithmic schedule controls; sparse-spike finite-variance law | `explicit_controls.py` and baseline `thin_tail_stages` | Arithmetic controls and symbolic schedules are reproducible. They do not compute the unknown all-n local-convergence thresholds. |
+| First substantive assessment preceded checker reading; first and final artifacts unchanged | `SAFE_IDENTITIES.json`; export seal | Sanitized UTC times and SHA256 fingerprints are exported. The original first-assessment body, first-seal manifest, consumed input bodies and original final inventory remain private and are unavailable in this standalone export. Fingerprints alone do not make those bodies publicly verifiable. |
+| Original author checker totals and original independent checker totals | No source bodies or original-checker receipts exported | These remain private audit evidence; this public package does not independently reproduce or certify their totals. |
+| Both original checker mutations pass falsely under optimized Python | No copied original checker, mutant body, or mixed private replay receipt exported | Remains a finding supported by private replay evidence. Public own controls demonstrate rejection under optimization, but do not publicly replay the external checker finding. |
+| Universal protected-path proof and stochastic local-exploration/diagonal argument | Original report's mathematical exposition; bounded controls here | Own finite controls support bounded consequences. They cannot establish the universal stochastic input or source/novelty claims. |
+| Full original mixed `REPLAY_RESULTS.json`, `replay_checks.py`, copied candidate/source/checker bodies and scratch | Excluded | The replay script depends on private source copies and original checker-relative candidate paths, so it is not a portable public reproduction driver. The new driver covers only the family's own standalone controls. |
+
+No raw external source bodies or headers, copied original checker/source bodies, private response bodies, scratch files, credentials, absolute user paths, or repository/provider operations are included in this package.

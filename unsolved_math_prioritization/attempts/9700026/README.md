@@ -1,42 +1,29 @@
-# Literal city-ODE collapse conjecture: negative answer
+# Quantitative persistence in a fixed-city area equation
 
-Problem 9700026 / AMR-096-0026, rank 934. Draft research package, 6 October 2026.
+Problem 9700026 / AMR-096-0026 · PR 880 · Alec Kriebel, ORCID 0009-0001-9320-500X.
 
-## Exact accepted conclusion
+The current five-page research note proves all-coordinate quantitative persistence for every fixed finite collection of at least two distinct interior sites in the unit square, every positive initial probability vector, and beta > 2 alpha in the exact hard weighted-Voronoi area ODE. An asymmetric alpha=2, beta=8 three-city instance stays in [1/4096,2047/2048] at all nonnegative times. This refutes the unrestricted alpha > 1 collapse alternative in the literal 2007 Conjecture 32(a), and the catalog conjunction containing it.
 
-The literal alpha > 1 collapse alternative in the 2007 fixed-site city ODE Conjecture 32(a) is false. For any finite number of at least two distinct interior sites and every positive initial probability vector, beta > 2 alpha gives uniform persistence. The asymmetric alpha=2, beta=8 three-city witness has every coordinate between 1/4096 and 2047/2048 for every t >= 0. This refutes the literal catalog conjunction, rather than merely identifying a heuristic concern or exceptional equilibrium.
+The result does not prove convergence, equilibrium uniqueness, initial-value independence of limits or stochastic city-founding conclusions. Zero initial weights, coincident or boundary sites and n=1 are excluded. The complete intended phase classification is outside this result. Original proof-search effort remains 2/5.
 
-The beta < 2 alpha collapse restriction, critical beta = 2 alpha case, convergence and uniqueness or initial-value independence of limiting equilibria, and stochastic models with new cities remain unresolved by this work. There is no claim of novelty, human peer review, or formal proof-assistant certification. The 2012 parameter-restricted stochastic paper is not refuted.
+Read `publication_20261015/preprint/output/pdf/note.pdf` and its editable source for the proof. `publication_20261015/preprint/CURRENT_PRIORITY.md` gives current priority and scope. Aldous's model, exponent and protected-neighborhood argument, classical weighted Voronoi geometry, and standard scalar comparison receive direct credit. Ferudun's stated 14 October 2026 unrefereed paper explicitly gives related Conjecture 32(a) counterexamples; its proved lemmas also imply qualitative two-city noncollapse in the present parameter regime. Our all-site, all-positive-start quantitative theorem is the scoped contribution. The complete original PR was recorded 6 October 2026, but neither chronology nor bounded searches certify firstness, independent discovery, exhaustive novelty or worldwide current openness. Historical no-identified-resolution language in frozen files is superseded for current claims.
 
-## Reading order
+The original 40-file snapshot is preserved in `publication_20261015/verification_package/source/`; 38 original root files remain byte-identical. Original README/manifest are preserved within that snapshot. Current root notices replace their historical counterparts. Historical execution counts are not automatically reasserted as fresh reproductions. Current audit evidence has explicit per-family inventories and assurance limits.
 
-- [Author proof](author/PROOF.md) and [source distinction](author/SOURCE_AUDIT.md)
-- [Independent audit A](audit_a/AUDIT_REPORT.md) and [exact acceptance](audit_a/ACCEPTANCE.json)
-- [Independent review B](review_b/REVIEW_B.md) and [exact acceptance](review_b/ACCEPTANCE_B.json)
-- [Publication scope and queue provenance](PUBLICATION_SCOPE.json)
+OpenAI tools were used extensively in solving, proof development, drafting, coding and adversarial verification. This is an unrefereed preprint; completed external human peer review and formal proof-assistant verification are not claimed. The author is responsible for the claims.
 
-Both mathematical/source reviews accept the same unchanged author bytes without repair. Each separately supplies a local-Lipschitz/trajectory-uniqueness supplement; equilibrium uniqueness remains open here. Historical pending-review labels inside the author freeze are preserved, with the later acceptance judgments kept separate.
+## Reproduction and startup trust
 
-## Reproducibility
+Authenticate interpreter/standard-library/script bytes and expected manifest/index digests independently before executing any supplied program. A self-hash after startup does not establish initial trust. Obtain the expected outer manifest pin from a separately trusted repository/program seal; it is intentionally not embedded in this indexed README. The wrapper SHA256 is `b8279f4945b2f05b3755bfec20ae6c78dbbb00d053abdb04f87d8068f2ff62a7`.
 
-The package includes both exact ZIP freezes, their external manifests, their expanded members, and the five unchanged review-B files. PUBLICATION_MANIFEST.json binds every other public member, including the wrapper. Its SHA-256 is published outside this directory in the draft PR description and the final verification receipt. Use that external value, not an untrusted replacement manifest's own claim.
+After authenticating startup bytes, run from this directory:
 
-Run from any directory with Python's standard library:
+```text
+python3 -I -S -B verify_current_publication.py EXPECTED_OUTER_MANIFEST_SHA256 --root . --full
+```
 
-    python -I -B verify_publication.py --manifest-sha256 EXTERNALLY_PINNED_SHA256
-    python -I -B -O verify_publication.py --manifest-sha256 EXTERNALLY_PINNED_SHA256
+Python >=3.10 and the standard library suffice. Add `-O` for optimized execution. The wrapper checks the exact closed outer tree, all current preprint/portable copies, deposit metadata and file-name binding, all 40 original files and 38 preserved root originals, exact portable ZIP members and representation boundaries, then invokes the authenticated portable verifier from a fresh relocated copy. This is byte/provenance/finite-check evidence, not a mathematical or priority certificate. Default finite replay has eight receipts; optional complete-input replay has ten. The historical root wrapper is never executed by current tools. Optional input locations, externally supplied PDF basenames, filesystem hardlink constraints and deterministic ZIP runtime limits are documented in the portable README.
 
-To also verify the separately held complete inputs:
+The portable index SHA256 is `7af74074708d9ee7b462be7d74546ef1f090a3262223d538082e872288e3df3d`; portable verifier SHA256 is `73faad1cfa4ab2e9c7e6cfa214e58fadb361ccf4de3199ed87e96883ae6a351a`; verification ZIP SHA256 is `944e5d99825a3ef6689cff551f28bc9bb7aee04a1f58dbbceb6fd55bace4af2f`. These pins need an independently authenticated copy of this record. The portable archive has 161 members. No primary PDFs, source extracts, page images, raw dataset records or credentials are redistributed.
 
-    python -I -B verify_publication.py --manifest-sha256 EXTERNALLY_PINNED_SHA256 --corpus CORPUS_DIRECTORY --sources PDF_DIRECTORY
-
-The corpus directory must contain catalog.json, problems.json, and research_results.json; the PDF directory must contain cities-notes.pdf and cities-2012.pdf matching the audit's public pins. A source-free run explicitly reports external inputs as NOT_RUN. Hashes and exact finite tests establish artifact identity, constants and algebra, not the analytic theorem or source interpretation.
-
-Source documents and corpus contents are excluded from this package. Only authored mathematics, authored verification code, public citations and verification metadata are distributed. The repository QUEUE.md change is limited to this problem's Status, Turns and Findings cells, with all other bytes retained, including its historical sha:size prefix.
-
-## Public sources
-
-- [Aldous, 25 April 2007 technical notes, section 6.4 and Conjecture 32](https://www.stat.berkeley.edu/~aldous/Research/OP/cities-notes.pdf)
-- [Aldous and Huang, A Spatial Model of City Growth and Formation, 2012](https://arxiv.org/abs/1209.5120v1)
-
-Draft review stage only; no merge, release, DOI or third-party outreach is part of this package.
+Canonical production upload instructions are `publication_20261015/preprint/zenodo-deposit.json`, binding exactly the reviewed note PDF and verification ZIP with the identical metadata object. The current package is prepared for independent whole-package review; this notice makes no claim that those later reviews, merge or publication have already occurred. Their eventual decisions and exact immutable pins are recorded in the separate program audit trail, avoiding self-referential archive hashes.

@@ -1,0 +1,13 @@
+# Independent recent/broad priority checkpoint
+
+UTC: 2026-10-12T16:25:27.557062+00:00
+
+Priority remains **unestablished**. No exact or semantically equivalent principal-ideal counterexample has been found in the actual body portions recorded in BODY_COVERAGE_ADDENDUM_01.json. This is bounded negative evidence, not a novelty conclusion. Polynomial restriction and non-geometric/formal points are plainly older ideas and must not be claimed as new. The MathOverflow2010 discussion is old explicit evidence for formal points, but its four answers do not give the target radical/actual-link-zero-set construction.
+
+The strongest unresolved access gap is Stoimenow2010 (and the related earlier preprint title); the inspected2007 restatement verifies the old polynomial-lattice mechanism. The2022 virtual twist paper remains unread despite publisher/institutional routes. Current body coverage includes Melikhov arXiv2406.09331v2 dated2025 and Wada2025; no claim of exhaustive2026 coverage. Sparse problem-status pages and web-query absence cannot certify that the question stayed open.
+
+Same-project disclosure bound: all1321 PR titles and descriptions in read-only API pages1–14 (page15 empty) were searched for Nullstellensatz/10400049/linking-number/finite-type/Bar-Natan strings. Five matching PR descriptions were read:177 plus639,469,125,34, with the four other descriptions stating different results. Candidate at commit89475e3e591b28869a738f5c60c2bc755a20d127 exactly matches supplied bytes/SHA256. Main-tree filenames at c6975ca76f9f667f1250ba403d0e6da2aafe14d0 contain neither10400049 norNullstellensatz. This bound does not search every changed file, branch or history for semantic duplicates.
+
+Timestamp distinctions: first returned candidate-path commit author/committer dates2026-09-30T13:31:21Z; PR177 creation2026-09-30T13:41:26Z; exact current draft/artifact publicly accessible at audit access. A commit timestamp alone is not a public-disclosure timestamp, and current-public repository metadata cannot prove visibility at creation. No mutual independence claim follows. No separate Zenodo disclosure established: API access failed, and web hits are not complete catalog coverage.
+
+Mechanism: exact/semantic search plus forward citation bodies and public-disclosure audit. Evidence:79 web queries, two citation providers, sealed source/access hashes, actual bodies as individually bounded. Status: active final-bound closure; exact gap: missing2010/2022 bodies and incomplete global coverage. Family audit75%; case40%; program35/99 completed,19 published. No Git mutation, public writing, comments, contact, outreach drafts, releases or tracker action. PR156 human qualification gives no blanket publication exception.

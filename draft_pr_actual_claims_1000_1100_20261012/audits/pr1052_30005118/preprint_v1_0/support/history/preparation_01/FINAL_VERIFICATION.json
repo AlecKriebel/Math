@@ -1,0 +1,126 @@
+{
+  "timestamp_utc": "2026-10-14T04:08:41.672873+00:00",
+  "preparation_task_complete": true,
+  "preparation_completion_percent": 100,
+  "overall_goal_completion_estimate_percent": 90,
+  "publication_ready": false,
+  "all_issues_resolved": false,
+  "next_gate": "NEW whole-package review; publication held after PR1032",
+  "final_pdf": {
+    "bytes": 58570,
+    "sha256": "e2be83ab3c334c8352f1c6a256c6038b59ed834d3beaa50ed7602f3c24f292a6",
+    "individually_viewed_pages": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "final_archive": {
+    "bytes": 447598,
+    "sha256": "34116a25f6632579fe8bf3494c50527a205560e55f511964350a71973e5b8625",
+    "members": 83,
+    "independent_clean_rebuild_byte_equal": true
+  },
+  "all_preexisting_348_inputs_unchanged": true,
+  "all_documented_clean_commands_passed": true,
+  "external_wrapper_excluded_from_archive_but_validated_when_present": true,
+  "commands": [
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "verify_support.py"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.065,
+      "stdout": "{\"payload_members\": 83, \"all_checks_passed\": true, \"upload_wrapper\": \"intentionally absent from extracted support archive\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "run_checks.py",
+        "--output",
+        "_runs/fresh.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.188,
+      "stdout": "{\"all_checks_passed\": true, \"runs\": 5, \"output\": \"_runs/fresh.json\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "test_integrity.py",
+        "--output",
+        "_runs/integrity.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.119,
+      "stdout": "{\"all_checks_passed\": true, \"valid_wrapper_controls\": 2, \"invalid_wrapper_and_path_controls_rejected\": 21, \"external_descriptor_required_for_clean_extraction\": false}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "build_support.py",
+        "--output",
+        "_runs/rebuilt.zip"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.101,
+      "stdout": "34116a25f6632579fe8bf3494c50527a205560e55f511964350a71973e5b8625  _runs/rebuilt.zip\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "_runs/rebuilt.zip"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.066,
+      "stdout": "{\"payload_members\": 83, \"all_checks_passed\": true, \"upload_wrapper\": \"intentionally absent from extracted support archive\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "build_pdf.py",
+        "--outdir",
+        "_runs/pdf"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.125,
+      "stdout": "note: Running TeX ...\nnote: Rerunning TeX because \"paper.out\" changed ...\nnote: Running xdvipdfmx ...\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/preprint_v1_0/tmp/final-sealed-jg_iocx5/_runs/pdf/paper.log` (16.74609375 KiB)\nnote: Writing `/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1052_30005118/preprint_v1_0/tmp/final-sealed-jg_iocx5/_runs/pdf/paper.pdf` (57.1982421875 KiB)\nnote: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)\n",
+      "stderr": "warning: paper.tex:109: Underfull \\hbox (badness 1715) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 4779) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 1715) in paragraph at lines 108--109\nwarning: paper.tex:109: Underfull \\hbox (badness 4779) in paragraph at lines 108--109\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-I",
+        "-B",
+        "verify_support.py",
+        "--archive",
+        "pr1052_support_v1_0.zip"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"payload_members\": 83, \"all_checks_passed\": true, \"upload_wrapper\": \"present, metadata and both upload files verified\"}\n",
+      "stderr": "",
+      "scope": "local upload wrapper present"
+    }
+  ]
+}

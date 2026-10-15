@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-15T07:48:25.918563+00:00",
+  "finding": "Python tuple equality admits numeric-equal floats into intended integer-only literal exception",
+  "observed_initial_case": "prepare_pr_revision with pid=30006628.0 accepted under fully mocked CLI and a synthetic queue matching str(pid)",
+  "direct_demonstration": {
+    "float_pid_tuple_equal": true,
+    "float_pr_tuple_equal": true
+  },
+  "limitation": "Synthetic float queue/mocked GitHub acceptance does not establish acceptance against current production QUEUE or GitHub CLI.",
+  "root_fix": "type(pid) is int and type(pr/number) is int and pid>0 enforced before any external calls in both helpers",
+  "no_helper_edits_by_auditor": true
+}

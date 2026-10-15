@@ -1,0 +1,130 @@
+{
+  "utc": "2026-10-15T09:30:52.823760+00:00",
+  "operational_main_actions_called": false,
+  "all_mutations_private_fixtures_only": true,
+  "review_gate": [
+    {
+      "case": "valid_consecutive_sealed_reviews",
+      "accepted": true
+    },
+    {
+      "case": "round01_and03_omit_unresolved_round02",
+      "accepted_by_current_gate": true,
+      "required_fix": "Require complete chronological consecutive round history, including every intervening required/optional issue."
+    },
+    {
+      "case": "empty_allowlist_with_unsealed_mutated_RESULT",
+      "accepted_by_current_gate": true,
+      "external_manifest_pin_unchanged": true,
+      "required_fix": "Require RESULT.json and mandatory review artifacts in authenticated public map before loading decisive verdict."
+    }
+  ],
+  "scalar_type_control": {
+    "case": "author_summary_bool_float_substitution",
+    "plain_equality_accepts": true,
+    "strict_recursive_equivalent_rejects": true,
+    "frozen_author_verifier_unchanged_and_emits_ints": true,
+    "classification": "optional consistency hardening to match README scalar-type claim"
+  },
+  "merge_description": {
+    "case": "merge_preflight_changed_description",
+    "preflight_accepts_changed_body": true,
+    "view_requests_body": false,
+    "required_fix": "Read live body and compare exact accepted freeze hash before ready/merge."
+  },
+  "receipt_and_preservation_controls": [
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "native_cross_publication_record",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "publication_cross_ID",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "merge_cross_head",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "tracker_cross_target",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "tracker_cross_gid",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "acceptance_cross_freeze",
+      "rejected": true
+    },
+    {
+      "script": "append_pr938_tracker.py",
+      "case": "tracker_range_other_tab",
+      "accepted_by_current_link_checker": true,
+      "classification": "optional destination consistency hardening"
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "native_cross_publication_record",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "publication_cross_ID",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "merge_cross_head",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "tracker_cross_target",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "tracker_cross_gid",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "acceptance_cross_freeze",
+      "rejected": true
+    },
+    {
+      "script": "update_pr938_publication_ledger.py",
+      "case": "tracker_range_other_tab",
+      "accepted_by_current_link_checker": true,
+      "classification": "optional destination consistency hardening"
+    },
+    {
+      "case": "replace_selected_state_entry",
+      "other_entry_bytes_preserved": true,
+      "absent_target_supported": true
+    }
+  ],
+  "accounting": {
+    "counts": [
+      0,
+      1,
+      1,
+      2
+    ],
+    "turn_commands": 2,
+    "limit": 5,
+    "current_known_turns": 2,
+    "original_observed_turns": 1,
+    "new_mechanism_turns": 1,
+    "verification_turns": 0,
+    "third_status_inherits_event_without_count_increment": true,
+    "claim_about_independently_observing_original_processes": false
+  }
+}

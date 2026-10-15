@@ -1,0 +1,9 @@
+# Package01 repair research log
+
+2026-10-14T03:11:02.732027+00:00 — Intake checkpoint (0% of repair assignment): read complete frozen package_01 report/verdict; baseline-pinned every existing file and preserved publication bytes before editing. Original review/root files remain immutable. Exact scope: missing summation operator, clean-build directory command, durable stage prose, preparation receipts and strict archive refresh. Mathematical proof rewrites are outside scope.
+
+2026-10-14T03:14:19.185261+00:00 — Compilation/visual checkpoint (60% of repair assignment): built-in compiler and Tectonic succeeded on exact repaired standalone source; all 13 refreshed 100dpi pages individually viewed. Page3 equation4 now has the intended summation operator. All pages show no clipping/overlap/missing glyph/equation/bibliography defects. Only the two bounded source edits occurred. Title/author/version/date/ORCID unchanged. Archive/clean-extraction verification remains; wider workflow estimate75%, novelty still undetermined.
+
+## 2026-10-14T03:20:34.174666+00:00 — Verified repair checkpoint; estimate100% of bounded repair,75% of wider workflow
+
+Repeated builds, independent in-memory ZIP construction and clean extraction reproduced identical archive/manifest/external-receipt bytes. The actual README mkdir/Tectonic commands succeeded from clean extraction; all19 original bytes and515 historical/root inputs are unchanged. All authored NEWwhole01 output-pin entries are retained, with raw/third-party/extracted/rendered/reconstruction/cache/bytecode/duplicate-archive bodies excluded. Final current receipts/pins are freezing at these authored bytes, with validation repeated against them. Current state remains NEWwhole02 pending/publication_readyfalse; historical novelty undetermined. No proof/checker replay or external action.

@@ -1,0 +1,22 @@
+# Primary source ledger
+
+Reviewed 2026-10-15 UTC. File sizes and SHA-256 digests are in `SOURCE_RETRIEVAL.json` and `SOURCE_RETRIEVAL_2.json`. All raw sources, extracts and rendered images are confined to `tmp/` and excluded from the final public freeze. Retrieval success is not proof validation. A direct HTTP 202 empty page is recorded as empty, not inspected content; HTTP failures are preserved.
+
+| ID | Version/location and primary URL | Actual inspection | Evidentiary role |
+|---|---|---|---|
+| S1 | Gromov, 2017 problem list, §22 pp.60–61, [author PDF](https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf) | Definitions, question, adjacent dimensional context; p.60 visually read | Exact original quantifiers. Title uses “around Scalar Curvature.” |
+| S2 | Bi, [2608.06320v1](https://arxiv.org/abs/2608.06320v1), pp.1–2, 12–18 | Statement, energy/trace/existence/limit/angle proof locations read; p.2 visually read; not a new full independent proof audit | Decisive dated prior overlap; mathematical gate was separately accepted by parent. |
+| S3 | Brendle, [2301.05087v4](https://arxiv.org/abs/2301.05087v4), pp.1–2, 10–12 | Matching-angle theorem and smooth-boundary propositions/proof checked | Separates restricted geometric theorem from imported analytic proposition. |
+| S4 | Brendle–Wang, [2308.08000v2](https://arxiv.org/abs/2308.08000v2), pp.1–2 | Complete introduction/theorem and stated method scope | Acute reference restriction; published metadata independently checked. |
+| S5 | Li, [1710.08067v2](https://arxiv.org/abs/1710.08067v2), pp.1–5 | Type definitions, theorem statements, proof outline | Restricted three-dimensional antecedent, read together with correction. |
+| S6 | Li correction, [10.1007/s00222-022-01104-1](https://doi.org/10.1007/s00222-022-01104-1), pp.535–538 | Complete four-page publisher PDF read | Corrected hypotheses; no use of the uncorrected broader statement. |
+| S7 | Li, [1907.03855v3](https://arxiv.org/abs/1907.03855v3), pp.1–5 and Appendix A | Exact theorem, dimension/type restrictions and bending reduction inspected | Restricted earlier prism route; complete proof not independently audited. |
+| S8 | Wang–Xie–Yu, [2112.01510v6](https://arxiv.org/abs/2112.01510v6), introduction and Theorem 1.8 p.6 | Exact statement and index-method outline inspected | Earlier sufficient claimed theorem; analytic correctness not adjudicated. |
+| S9 | Bär–Hanke–Schick, [2202.05180v2](https://arxiv.org/abs/2202.05180v2), all four pages | Complete note read; p.4 visually read | Counterexamples' v2 target and v6 verification boundary. |
+| S10 | Wang–Xie, [2203.09511v2](https://arxiv.org/abs/2203.09511v2), pp.1–5 | Stated theorem and relationship to earlier work read | Stronger earlier claimed flat-corner result; complete proof unaudited. |
+| S11 | Wang–Xie–Yu, [2606.30130v1](https://arxiv.org/abs/2606.30130v1), pp.1–2 | Stated theorem, dimension and claim of self-contained method read | Earlier three-dimensional claimed result; complete proof unaudited. |
+| S12 | Gromov, 2013 manuscript, [author PDF](https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/Plateauhedra_modified_apr23.pdf), §1 pp.2–3 | Ambient smooth and tangent-bundle definitions read | Supports retained category; does not certify broader conventions. |
+
+Metadata cross-checks: Bi's current [arXiv record](https://arxiv.org/abs/2608.06320) and [own publication page](https://yuchenof.github.io/) show the dated preprint without verified journal acceptance. Brendle's [publisher page](https://doi.org/10.1007/s00222-023-01229-x) and [own selected publications](https://www.columbia.edu/~sab2280/publ.html) confirm the 2024 publication. Brendle–Wang's [publisher page](https://doi.org/10.1515/crelle-2025-0048) and author list confirm 2025 publication. Li's [current NYU page](https://math.nyu.edu/~cl2765/) explicitly points to the correction and confirms the prism journal placement. The older Princeton page is stale and was not used as current status evidence. A failed direct author-page fetch did not override successfully read primary browser content.
+
+The related initial-data paper DOI 10.1515/crelle-2025-0080 was attempted but its full content was not obtained in the browser; it is not used to make a theorem-coverage assertion. Third-party aggregator/blog/search snippets were discovery aids only and are not proof or peer-review evidence. No people were contacted.

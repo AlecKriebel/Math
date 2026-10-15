@@ -1,0 +1,27 @@
+{
+  "UTC": "2026-10-12T13:54:30.431706+00:00",
+  "allowlisted_files": [
+    "REVIEW.md",
+    "RESEARCH_LOG.md",
+    "PINNED_INPUTS.json",
+    "audit_transport.py",
+    "controls.normal.json",
+    "controls.optimized.json",
+    "CROSS_MODE_VERIFICATION.json",
+    "VERDICT.json",
+    "PUBLIC_ALLOWLIST.json",
+    "FINAL_SEAL.json"
+  ],
+  "scope": "Only artifacts created by this bounded independent transport audit",
+  "excluded": [
+    "Any credential, token, or .secrets material",
+    "Any real .zenodo-state body",
+    "Any raw private API response body",
+    "Any candidate/kit/manuscript/PDF/ZIP copy",
+    "Any temporary synthetic fixture",
+    "Any file not explicitly named above"
+  ],
+  "source_body_handling": "Source inputs are referenced by hashes; no raw diagnostic/metadata/API body is copied into public artifacts.",
+  "publication_permission": "Parent may include exactly these owned artifacts as audit evidence; this does not authorize Zenodo publication.",
+  "seal_hash_policy": "FINAL_SEAL.json inventories every allowlisted artifact except itself, avoiding self-referential hashes."
+}

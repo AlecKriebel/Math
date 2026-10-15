@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Small, dependency-free Zenodo draft and publication client."""
+"""Dependency-free Zenodo upload and existing-record metadata client."""
 
 from __future__ import annotations
 
@@ -206,12 +206,12 @@ class ZenodoClient:
         self.token = token
 
     def request(self, method: str, url: str, payload: dict | None = None,
-                file: Path | None = None) -> dict:
+                file: Path | None = None, accept: str = "application/json") -> dict:
         parsed = urlsplit(url)
         if parsed.scheme != "https" or parsed.hostname != self.host or parsed.port not in (None, 443) or parsed.username:
             raise DepositError("Refusing an API URL outside the selected Zenodo environment")
         target = parsed.path + (("?" + parsed.query) if parsed.query else "")
-        headers = {"Authorization": f"Bearer {self.token}", "Accept": "application/json",
+        headers = {"Authorization": f"Bearer {self.token}", "Accept": accept,
                    "User-Agent": USER_AGENT}
         data = None
         if payload is not None:
@@ -257,6 +257,11 @@ class ZenodoClient:
     def get(self, deposit_id: int) -> dict:
         return self.request("GET", self.base + f"/api/deposit/depositions/{deposit_id}")
 
+    def native_get(self, deposit_id: int, draft: bool = False) -> dict:
+        suffix = "/draft" if draft else ""
+        return self.request("GET", self.base + f"/api/records/{deposit_id}{suffix}",
+                            accept="application/vnd.inveniordm.v1+json")
+
     def update(self, deposit_id: int, metadata: dict) -> dict:
         return self.request("PUT", self.base + f"/api/deposit/depositions/{deposit_id}", {"metadata": metadata})
 
@@ -265,6 +270,12 @@ class ZenodoClient:
 
     def publish(self, deposit_id: int) -> dict:
         return self.request("POST", self.base + f"/api/deposit/depositions/{deposit_id}/actions/publish")
+
+    def edit(self, deposit_id: int) -> dict:
+        return self.request("POST", self.base + f"/api/deposit/depositions/{deposit_id}/actions/edit")
+
+    def discard(self, deposit_id: int) -> dict:
+        return self.request("POST", self.base + f"/api/deposit/depositions/{deposit_id}/actions/discard")
 
 
 def server_files(deposit: dict) -> dict:
@@ -276,7 +287,7 @@ def server_files(deposit: dict) -> dict:
         if not isinstance(item, dict):
             raise DepositError("Zenodo returned an invalid file entry")
         name = item.get("filename") or item.get("key") or item.get("name")
-        if not name or name in result:
+        if not isinstance(name, str) or not name or name in result:
             raise DepositError("Zenodo returned an invalid file list")
         result[name] = item
     return result
@@ -389,6 +400,9 @@ def published_summary(summary: dict, deposit: dict, state: dict, place: Path,
 
 
 def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
+    if args.command in {"metadata", "update-metadata", "publish-metadata", "discard-metadata"}:
+        from metadata_updates import run_metadata
+        return run_metadata(args, client)
     path = args.manifest.resolve()
     metadata, files = load_manifest(path)
     environment = "sandbox" if args.sandbox else "production"
@@ -499,6 +513,17 @@ def main() -> int:
             sub.add_argument("--check-doi", action="store_true", help="Also check public DOI resolution")
         if command == "publish":
             sub.add_argument("--confirm-id", type=int, required=True)
+    for command in ("metadata", "update-metadata", "publish-metadata", "discard-metadata"):
+        sub = subcommands.add_parser(command)
+        sub.add_argument("record_id", type=int, help="ID of this specific record version")
+        sub.add_argument("--sandbox", action="store_true", help="Use the separate sandbox environment")
+        if command == "update-metadata":
+            sub.add_argument("patch", type=Path, help="JSON object containing a partial metadata object")
+            mode = sub.add_mutually_exclusive_group()
+            mode.add_argument("--dry-run", action="store_true", help="Preview only (the default)")
+            mode.add_argument("--confirm-id", type=int, help="Stage edits to this exact record; does not publish")
+        elif command != "metadata":
+            sub.add_argument("--confirm-id", type=int, required=True)
     args = parser.parse_args()
     try:
         print(json.dumps(run(args), indent=2))
@@ -509,4 +534,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # The metadata module uses the same client/state globals when invoked as a script.
+    sys.modules["zenodo"] = sys.modules[__name__]
     raise SystemExit(main())

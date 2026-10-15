@@ -1,0 +1,15 @@
+--- blocked_abd32/pr411_admin.py
++++ current98fb/pr411_admin.py
+@@ -1008,6 +1008,12 @@
+         if event.get('event') == 'intent' and self.continuation is not None:
+             directory, journal_fd = self.directory, self.fd
+             need(type(directory) is int and type(journal_fd) is int, 'closed continuation journal cannot claim a remote intent')
++            try:
++                os.stat('receipt.json', dir_fd=directory, follow_symlinks=False)
++            except FileNotFoundError:
++                pass
++            else:
++                raise Stop('terminal continuation receipt already exists; this phase cannot attempt a remote write')
+             case, root, ref, plan, certificate, plan_hash = self.continuation
+             need(digest(encoded(canonical_plan(plan))) == plan_hash, 'continuation plan drift before remote intent')
+             need(pre_intent_continuation(case, root, ref, plan) == certificate, 'original pre-intent custody drift before remote intent')

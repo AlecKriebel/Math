@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-12T14:52:07.814299+00:00",
+  "tests": [
+    {
+      "test": "complete exact inventory, hashes, sizes and0444",
+      "result": "PASS"
+    },
+    {
+      "test": "unlisted retained source must fail",
+      "result": "REJECTED_AS_REQUIRED",
+      "reason": "incomplete retained-file inventory"
+    },
+    {
+      "test": "same-size source corruption must fail",
+      "result": "REJECTED_AS_REQUIRED",
+      "reason": "hash mismatch: private/synthetic_source.bin"
+    },
+    {
+      "test": "writeable retained artifact must fail",
+      "result": "REJECTED_AS_REQUIRED",
+      "reason": "not sealed0444: public/own.md"
+    },
+    {
+      "test": "semantic source leak must fail",
+      "result": "REJECTED_AS_REQUIRED",
+      "reason": "private source or unsafe path in public allowlist"
+    },
+    {
+      "test": "outside path must fail",
+      "result": "REJECTED_AS_REQUIRED",
+      "reason": "unsafe manifest path"
+    },
+    {
+      "test": "ADMP fast-root/slow-many role reversal, exact rational exponents",
+      "result": "PASS; reversed regime rejected"
+    }
+  ],
+  "scope": "Authenticates artifacts and checks elementary regime algebra; does not validate a stochastic limit by computation."
+}
