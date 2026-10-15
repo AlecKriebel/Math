@@ -829,7 +829,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 818 | 30001054 / OWR-2090-003 | Realizability of Allowable Double-Permutation Sequences | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 819 | 30001066 / OWR-2090-019 | Helly Numbers for Isolated Line Transversals | 0.0986 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 820 | 4600024 / AMR-045-0024 | Extension of a block code II | 0.0986 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
-| 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | claimed_solved | 1/5 |  | Full finite smooth S3 counterexample to universal n>=3 weighted Yamabe heat trace comparison; credited quantitative classical application; fresh R2/R3 AI reviews CLEAR; unrefereed four-page preprint and verification package; n>=4/adjacent monotonicity unaddressed. |  |
+| 821 | 30001168 / OWR-3389-021 | Weighted Yamabe Heat-Trace Comparison | 0.0985 | 5.5 | 3 | 2009 | claimed_solved | 1/5 |  | Full finite smooth S3 refutation of universal n>=3 weighted Yamabe heat trace comparison; credited quantitative classical application; unrefereed AI-assisted four-page preprint and verification; fresh R2/R3 CLEAR; published Zenodo; tracker Math Puzzles A91:D91; n>=4/adjacent monotonicity unaddressed. | https://doi.org/10.5281/zenodo.23383952 |
 | 822 | 30001169 / OWR-3389-022 | Monotonicity of Weighted Yamabe Heat Traces | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 823 | 30001176 / OWR-3392-002 | Factorizations from Minimal Exchangeable Random Sequences | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 824 | 30001223 / OWR-3400-007 | Simple Tops of Young Modules | 0.0985 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |

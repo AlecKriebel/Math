@@ -25,3 +25,7 @@ Publication preparation resumed from main commit c40562362d60cce52a3128fa17313ad
 ## 2026-10-15T03:05:58.211722+00:00 — finite quantitative preprint preparation and package repairs (55%)
 
 Independent geometry and trace reviews accepted the full negative answer; bounded priority audit established the qualitative route as an assembled classical corollary. Four-page note credits this relationship and leaves exact historical priority unclaimed. A new exact certificate strengthens the round bound to <321/500. Original42 files and three archives are preserved. Fresh final package R1 found no mathematical defect but required current control-CLI and published builder-layout repairs; both current entry points are now updated with explicit reproducible commands. Fresh final reviews remain required before merge/publication. Original1/5 effort unchanged; no additional central proof search.
+
+## 2026-10-15T04:06:48.217388+00:00 — production publication and tracker confirmed (workflow95%)
+
+Published unchanged4pagePDF and110memberverification archive as https://doi.org/10.5281/zenodo.23383952 using canonical repositoryZenodokit; metadata exact with0normalizations, files verified, DOI HTTP200. Tracker 'Math Puzzles'!A91:D91 uniquely stores DOI and exact4cellsreadback. FinalR2/R3 CLEAR; original1/5 effort and all paper/source/archive bytes unchanged. This95% checkpoint prepares the scoped main DOI/receipt annotation; independent finalmainreadback remains next. No GitHubrelease or duplicate deposit.
