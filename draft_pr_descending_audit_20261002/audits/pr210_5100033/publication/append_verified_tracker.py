@@ -2,7 +2,7 @@
 import sys
 if not __debug__ or sys.flags.optimize:
     raise RuntimeError('Release helpers refuse optimized Python before any action')
-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
 from pathlib import Path
 from datetime import datetime, timezone
 import json
@@ -33,7 +33,7 @@ assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandat
 assert not clear['unresolved_optional_findings']
 z=publication(R,PUB,CTX)
 assert z['submitted'] and z['metadata_and_files_verified']
-T.mkdir(parents=True, exist_ok=True)
+durable_mkdir(T)
 doi = z['doi_url']
 meta = call('01-properties', ['sheets', 'spreadsheets', 'get', '--params', json.dumps({'spreadsheetId': SHEET})])
 tabs = [s['properties'] for s in meta['sheets'] if s['properties']['sheetId'] == 1254632077]

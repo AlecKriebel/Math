@@ -5,7 +5,7 @@ if not __debug__ or sys.flags.optimize:
 from pathlib import Path
 from datetime import datetime,timezone
 import json,subprocess,urllib.request
-from release_binding import context,binding,unchanged,publication,verify_doi,acquire,exclusive_json,require
+from release_binding import context,binding,unchanged,publication,verify_doi,acquire,exclusive_json,require,durable_mkdir
 
 
 def verify_existing(R,PUB,CTX):
@@ -13,7 +13,7 @@ def verify_existing(R,PUB,CTX):
     attempt=json.loads((PUB/'PUBLISH_ATTEMPT.json').read_text())
     require(attempt.get('release_binding')==binding(CTX),'Publication attempt belongs to another cleared release')
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-    T=PUB/'private_transport/zenodo';T.mkdir(parents=True,exist_ok=True)
+    T=PUB/'private_transport/zenodo';durable_mkdir(T)
     tool=Path('/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py')
     py='/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3'
     run=subprocess.run([py,'-B',str(tool),'inspect',str(R/'deposit.json'),'--check-doi'],capture_output=True,text=True,timeout=180)

@@ -133,7 +133,7 @@ def tracker(root,pub,ctx=None,z=None):
 
 def acquire(pub):
     """Caller retains this handle for the whole workflow; all stages share the lock."""
-    path=Path(pub)/'private_transport/release.lock';path.parent.mkdir(parents=True,exist_ok=True)
+    path=Path(pub)/'private_transport/release.lock';durable_mkdir(path.parent)
     handle=path.open('a+')
     try:fcntl.flock(handle.fileno(),fcntl.LOCK_EX|fcntl.LOCK_NB)
     except BlockingIOError:
@@ -145,6 +145,7 @@ def exclusive_json(path,data):
     """Atomic first-writer intent, flushed before the associated provider mutation."""
     with Path(path).open('x') as f:
         f.write(json.dumps(data,indent=2)+'\n');f.flush();os.fsync(f.fileno())
+    sync_directory(Path(path).parent)
 
 
 def pr_identity(pr,head,draft=None,state='open'):
@@ -153,3 +154,24 @@ def pr_identity(pr,head,draft=None,state='open'):
     require(pr['head'].get('repo',{}).get('full_name')=='AlecKriebel/Math','Wrong head repository')
     require(pr.get('base',{}).get('ref')=='main' and pr['base'].get('repo',{}).get('full_name')=='AlecKriebel/Math','Wrong base repository/branch')
     if draft is not None:require(pr.get('draft') is draft,'Wrong draft state')
+
+
+def sync_directory(path):
+    """Fail closed when the supported OS cannot sync a directory entry."""
+    fd=os.open(str(path),os.O_RDONLY|getattr(os,'O_DIRECTORY',0))
+    try:os.fsync(fd)
+    finally:os.close(fd)
+
+
+def durable_mkdir(path,exist_ok=True):
+    """Sync every newly created ancestor linkage, including a retry anchor."""
+    path=Path(path);missing=[];anchor=path
+    while not anchor.exists():missing.append(anchor);anchor=anchor.parent
+    require(anchor.is_dir(),'Directory anchor is not a directory')
+    if not missing and not exist_ok:raise FileExistsError(str(path))
+    # An earlier failed sync can leave the anchor visible but not confirmed durable.
+    sync_directory(anchor.parent)
+    for new in reversed(missing):
+        new.mkdir(exist_ok=exist_ok if new==path else True)
+        sync_directory(new.parent)
+    require(path.is_dir(),'Required durable directory is missing')

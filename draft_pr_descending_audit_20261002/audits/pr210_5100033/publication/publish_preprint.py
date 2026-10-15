@@ -2,7 +2,7 @@
 import sys
 if not __debug__ or sys.flags.optimize:
     raise RuntimeError('Release helpers refuse optimized Python before any action')
-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
 from pathlib import Path
 from datetime import datetime, timezone
 import hashlib
@@ -31,7 +31,7 @@ for row in clear['submission_files']:
 metadata = json.loads((R / 'metadata.json').read_text())
 assert json.loads(MANIFEST.read_text())['metadata'] == metadata == clear['publication_metadata']
 T = PUB / 'private_transport/zenodo'
-T.mkdir(parents=True, exist_ok=True)
+durable_mkdir(T)
 
 
 def preflight_read(label, command):

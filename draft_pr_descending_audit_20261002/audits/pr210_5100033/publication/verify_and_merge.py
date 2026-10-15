@@ -2,7 +2,7 @@
 import sys
 if not __debug__ or sys.flags.optimize:
     raise RuntimeError('Release helpers refuse optimized Python before any action')
-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
 from pathlib import Path
 from datetime import datetime, timezone
 import base64
@@ -18,7 +18,9 @@ B = 'repos/AlecKriebel/Math/'
 PREFIX = 'unsolved_math_prioritization/attempts/5100033/'
 assert not (PUB / 'PR_MERGED.json').exists(), 'Already merged; read-only reconciliation only'
 require(not (PUB/'NATIVE_MERGE_REQUEST.json').exists(),'Prior merge intent exists: read-only reconciliation only')
-p = json.loads((PUB / 'PR_PREPARED.json').read_text())
+prepared_raw=(PUB/'PR_PREPARED.json').read_bytes()
+p=json.loads(prepared_raw)
+prepared_receipt_sha256=hashlib.sha256(prepared_raw).hexdigest()
 head = p['prepared_head']
 _RELEASE_LOCK=acquire(PUB)
 CTX=context(R)
@@ -33,7 +35,7 @@ require(p.get('publication_receipt_sha256')==digest(PUB/'ZENODO_VERIFIED_PUBLICA
 assert z['submitted'] and z['metadata_and_files_verified']
 assert t['verified'] and t['doi_url'] == z['doi_url']
 T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_merge_%Y%m%dT%H%M%S%fZ')
-T.mkdir(parents=True, exist_ok=False)
+durable_mkdir(T,exist_ok=False)
 seq = 0
 
 
@@ -130,6 +132,15 @@ receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'status': 'PASS', 'hea
            'exact_queue_row': target[0], 'metadata_and_files_verified': True,
            'tracker_verified': True, 'release_status_only_native_delta': True}
 (PUB / 'NATIVE_SCIENTIFIC_READBACK.json').write_text(json.dumps(receipt, indent=2) + '\n')
+# Native readbacks can be lengthy. Refresh the actual PR and every accepted
+# local release/receipt binding immediately before the ready transition.
+pr=api('GET','pulls/210')
+pr_identity(pr,head)
+require(not pr['merged'],'PR merged during native readback: reconcile read-only')
+unchanged(R,CTX)
+require(publication(R,PUB,CTX)==z,'Accepted publication receipt changed')
+require(tracker(R,PUB,CTX,z)==t,'Accepted tracker receipt changed')
+require(digest(PUB/'PR_PREPARED.json')==prepared_receipt_sha256,'Accepted prepared receipt changed')
 if pr['draft']:
     exclusive_json(PUB/'NATIVE_READY_ATTEMPT.json',dict(utc=datetime.now(timezone.utc).isoformat(),head=head,release_binding=binding(CTX)))
     result = api('POST', 'graphql', {'query': 'mutation($id: ID!) { markPullRequestReadyForReview(input:{pullRequestId:$id}) { pullRequest { id isDraft } } }',
@@ -145,7 +156,9 @@ for attempt in range(8):
 assert pr['mergeable'] is True, 'Conflict or unknown native mergeability; resolve without forcing main'
 request = {'sha': head, 'merge_method': 'merge',
            'commit_title': 'Merge PR #210: audited odd outer focal-pedal area product and published preprint'}
-unchanged(R,CTX);publication(R,PUB,CTX);tracker(R,PUB,CTX,z)
+unchanged(R,CTX)
+require(publication(R,PUB,CTX)==z and tracker(R,PUB,CTX,z)==t,'Accepted release receipts changed before merge')
+require(digest(PUB/'PR_PREPARED.json')==prepared_receipt_sha256,'Prepared receipt changed before merge')
 exclusive_json(PUB/'NATIVE_MERGE_REQUEST.json',dict(request,release_binding=binding(CTX)))
 result = api('PUT', 'pulls/210/merge', request)
 assert result['merged'] is True

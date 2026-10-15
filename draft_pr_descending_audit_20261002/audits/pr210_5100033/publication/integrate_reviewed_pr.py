@@ -5,7 +5,7 @@ No local Git/index/ref writes. Never repeat an uncertain native ref mutation.
 import sys
 if not __debug__ or sys.flags.optimize:
     raise RuntimeError('Release helpers refuse optimized Python before any action')
-from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest,durable_mkdir
 from pathlib import Path
 from datetime import datetime, timezone
 import base64
@@ -39,7 +39,7 @@ t=tracker(R,PUB,CTX,z)
 assert z['submitted'] and z['metadata_and_files_verified']
 assert t['verified'] and t['doi_url'] == z['doi_url']
 T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_prepare_%Y%m%dT%H%M%S%fZ')
-T.mkdir(parents=True, exist_ok=False)
+durable_mkdir(T,exist_ok=False)
 seq = 0
 
 
@@ -161,7 +161,7 @@ for folder in ['verification','pr_update','history','manuscript_reviews']:
 paths += [p for p in D.iterdir() if p.is_file()]
 for folder in ['submitted','root_reproduction']:
     paths += [p for p in (D/folder).rglob('*') if p.is_file() and not any(x.startswith('private') or x=='__pycache__' for x in p.parts)]
-for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02']:
+for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02','release_helpers_adversary_03']:
     folder=D/family
     candidates=[p for p in [folder/'AUTHORED_MANIFEST.json',folder/'MANIFEST.json',folder/'SAFE_AUTHORED_MANIFEST.json'] if p.exists()]
     assert len(candidates)==1;seal=candidates[0];paths.append(seal);m=json.loads(seal.read_text())
