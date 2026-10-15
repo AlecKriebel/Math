@@ -1,0 +1,5 @@
+# PR214 /30005244 research log
+
+2026-10-15T07:45:12.934942+00:00 — PR214 /30005244 case5%: exact current open draft head and claimed_solved row authenticated, entire attempt frozen with every native blob size/SHA1/SHA256 verified. Author2/5. Every mathematical/source/priority claim remains a hypothesis; no acceptance or promotion. Skipped217–215 by fresh exact native statuses only, without science processing. PR218 is complete, published at DOI10.5281/zenodo.23387774, tracker99, merged8172b404db36b931005ac48a94ec91fdff866023. Counts41/18/18/0; held293/292/280/239 unchanged and uncompleted; full goal active/incomplete.
+
+2026-10-15T08:02:21.184590+00:00 — 15%: all31 frozen originals remain exact; four unchanged programs reproduced2156 reported exact controls, three exact JSON matches and only ≤8e−16 floating diagnostic drift in the fourth. Direct original and static-input proofs and page images checked. Source interpretation distinguishes the complete (G)-class phenomenon from arbitrary compact extrapolation. Four fresh independent families are pending; no math/priority/manuscript/publication clearance.

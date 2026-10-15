@@ -1,0 +1,1 @@
+Fresh exact current-head eligibility reconciliation after completed/published/merged PR218. No mathematical processing of non-claimed statuses is authorized. PR8 is excluded. Raw provider payloads remain private.
