@@ -4,6 +4,9 @@
 This is a transport check, not a proof checker. The extracted package has its
 own pinned verifier. No external application or publication action is used.
 """
+import sys
+if not (sys.flags.isolated or getattr(sys.flags, 'safe_path', False)):
+    raise SystemExit('Use python -I -B so source-directory files cannot shadow the standard library')
 import argparse
 import hashlib
 import io
