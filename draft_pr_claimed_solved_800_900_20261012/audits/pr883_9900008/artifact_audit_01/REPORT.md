@@ -66,3 +66,8 @@ This audit's strongest verified result is **exact original artifact provenance a
 ## Audit reproduction and public boundary
 
 The two included audit scripts are code artifacts for this specific repository audit. `audit_artifacts.py provenance` requires the frozen source and supplied manifest, the matching immutable Git objects, the three original local corpora and five already retrieved local PDFs. `replays` creates a fresh private baseline and intentionally refuses to overwrite an existing one. `consistency` consumes the saved baseline replay results. `adversarial_controls.py` requires that private baseline; normal and `-O` invocations create and clean their own private temporary fixtures. They are not asserted to be a standalone portable verification package without the declared external inputs. The safe public manifest excludes all private copies, corpus bodies, PDFs and source text. No optional external dependency or omitted historical control is silently represented as a default portable check.
+
+
+## Parent publication-metadata amendment — 2026-10-15T12:55:06.957125+00:00
+
+Only the two legacy command/error paths listed in PUBLIC_PATH_AMENDMENT.json were normalized for the current public package. Exact original receipts and the prior public-artifact snapshot are preserved privately, with byte counts and hashes recorded. Original subprocess stdout/hash observations, code pins, timestamps, finite decisions and the bounded verdict are unchanged. This is a parent-authored presentation amendment, not a rerun or a new mathematical/whole-package approval. The separate original r1 package and its ISSUES review remain immutable. Amendment completion:100%.

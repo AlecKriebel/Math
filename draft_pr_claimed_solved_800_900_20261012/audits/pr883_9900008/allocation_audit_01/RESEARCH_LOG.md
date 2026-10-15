@@ -17,3 +17,8 @@ The new read-only checker passed in ordinary and optimized Python with actual re
 ## 2026-10-15T11:31:37.610455+00:00 — bounded allocation-family audit complete (100%)
 
 Completed REPORT.md and machine-readable DECISION.json. Verdict PASS for the exact background-free pointwise-covariant allocation theorem, with no identified mathematical gap. Complete measurable model, analytic classification, direct mass-sampling failure, globally noninjective/nonsurjective admissible controls, and explicit stronger-class refutations are recorded. This percentage describes the assigned family only. The author result remains claimed_solved at 1/5; no candidate edits, new central proof-search turn, outreach, or publication action. Preparing the self-excluding public manifest.
+
+
+## Parent publication-metadata amendment — 2026-10-15T12:55:06.957125+00:00
+
+Only the two legacy command/error paths listed in PUBLIC_PATH_AMENDMENT.json were normalized for the current public package. Exact original receipts and the prior public-artifact snapshot are preserved privately, with byte counts and hashes recorded. Original subprocess stdout/hash observations, code pins, timestamps, finite decisions and the bounded verdict are unchanged. This is a parent-authored presentation amendment, not a rerun or a new mathematical/whole-package approval. The separate original r1 package and its ISSUES review remain immutable. Amendment completion:100%.

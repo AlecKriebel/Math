@@ -181,3 +181,8 @@ The 2023 [transportation manuscript](https://arxiv.org/abs/2112.13053), section 
 These are exact rational diagnostics and sign/implementation controls. They are not a finite enumeration offered in place of the universal proof. The test-function argument, finite per-period measure identity, measurable-state construction, explicit counterclass controls, and direct mass-sampling event supply the checkable mathematical artifacts.
 
 **Strongest verified result:** the entire source-scoped counterexample theorem stated at the top, with the full classification of preserving allocations on its phase orbit. **Exact remaining mathematical gap:** none identified. **Unverified broader claims:** none are needed; novelty, priority, general stronger-premise theorems, and whole-program completion are not certified by this bounded audit. Completion of the assigned allocation family is 100%.
+
+
+## Parent publication-metadata amendment — 2026-10-15T12:55:06.957125+00:00
+
+Only the two legacy command/error paths listed in PUBLIC_PATH_AMENDMENT.json were normalized for the current public package. Exact original receipts and the prior public-artifact snapshot are preserved privately, with byte counts and hashes recorded. Original subprocess stdout/hash observations, code pins, timestamps, finite decisions and the bounded verdict are unchanged. This is a parent-authored presentation amendment, not a rerun or a new mathematical/whole-package approval. The separate original r1 package and its ISSUES review remain immutable. Amendment completion:100%.
