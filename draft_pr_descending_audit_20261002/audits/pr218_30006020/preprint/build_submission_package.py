@@ -17,7 +17,7 @@ def add(path, name):
     payload[name] = path.read_bytes()
 
 
-for name in ['README.md', 'cylinder_areas.tex', 'metadata.json']:
+for name in ['README.md', 'cylinder_areas.tex', 'metadata.json', 'PROVENANCE_CLARIFICATIONS.md']:
     add(R / name, name)
 for folder, target in [('verification', 'verification'), ('pr_update/30006020', 'current_source')]:
     for p in sorted((R / folder).rglob('*')):

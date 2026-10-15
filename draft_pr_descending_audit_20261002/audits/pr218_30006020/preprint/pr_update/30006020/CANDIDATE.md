@@ -22,6 +22,8 @@ The sum is over every k≥1 and every ordered composition, so (1) is normalized 
 
     {Y_i/(Y_1+...+Y_k):1≤i≤k}.                     (2)
 
+Equivalently, for fixed n, (C_1,…,C_n) has the law of independent Z_j~Poisson(a_j), 1≤j≤n, conditioned on Σ_(j=1)^n jZ_j=n; set C_j=0 for j>n. The event has probability exp(−Σ_(j=1)^n a_j)h_n>0. No infinite-vector conditioning on a finite total is used.
+
 Let μ_n be its law. Then d_TV(ν_g,μ_(3g−3))→0. This is a total-variation approximation of the whole area multiset, not just fixed macroscopic coordinates.
 
 ### Theorem B: every mesoscopic scale
