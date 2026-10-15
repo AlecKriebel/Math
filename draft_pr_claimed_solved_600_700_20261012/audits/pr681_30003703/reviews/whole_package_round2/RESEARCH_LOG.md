@@ -1,3 +1,7 @@
 # Second independent whole-package review
 
 2026-10-15T06:45:23+00:00 — Started after the first review completed. Read self-contained paper, complete four-page rendering, literal OWR pp.88–89 and all executed code before consulting round 1 controls. Research goal: falsify scientific deductions and safe publication preparation for exact PR681 head; no live write authorized. Completion estimate: 25%.
+
+2026-10-15T07:04:04.966875+00:00 — Completed scientific reconstruction, primary statement/attribution checks, all107-member source/data/manifest/freeze validation and both complete capsule replays; rebuilt exact ZIP. The new mixed-characteristic probes supplement the universal proof. Completion estimate:80% of the scoped review; final operational evidence/pins then closed below.
+
+2026-10-15T07:04:04.966875+00:00 — All72 new operational cases,17 fake-client repository-kit cases,10 fresh capsule probes and7 independent math families pass in both modes. Ten proposed Git trees independently checked. Final39 input bindings, native23, extracted107, predecessor hash and shared main/head/index rechecked unchanged. Shared origin tracking refs moved during a parent-authorized concurrent checkpoint, documented separately; this reviewer issued no shared-ref mutation. No required/optional correction; no waived finding. Completion estimate:100% of this scoped whole-package review;0% of actual publication/tracker/push/merge execution performed by this reviewer. Missing final-journal access and all future cloud facts remain limitations.

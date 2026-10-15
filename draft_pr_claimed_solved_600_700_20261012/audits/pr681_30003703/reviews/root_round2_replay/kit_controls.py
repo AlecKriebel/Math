@@ -7,7 +7,7 @@ from pathlib import Path
 R=Path(__file__).absolute().parent;A=R.parent.parent
 source=A.parents[2]/'zenodo_deposit_tool/zenodo.py';m=types.ModuleType('round2_exact_kit');m.__file__=str(source)
 exec(compile(source.read_bytes(),str(source),'exec'),m.__dict__)
-tmp=R/'tmp'/('FAKE_KIT_OPT'if sys.flags.optimize else'FAKE_KIT_NORMAL');tmp.mkdir(parents=True,exist_ok=True)
+tmp=R/'tmp'/('FAKE_FIXTURE_KIT_OPT'if sys.flags.optimize else'FAKE_FIXTURE_KIT_NORMAL');tmp.mkdir(parents=True,exist_ok=True)
 m.STATE_DIR=tmp/'state';m.SECRETS=tmp/'NO_SECRETS_EXIST'
 def impossible(*a,**k):raise RuntimeError('LIVE TRANSPORT OR TOKEN PATH REACHED')
 m.token_for=impossible;m.http.client.HTTPSConnection=impossible
