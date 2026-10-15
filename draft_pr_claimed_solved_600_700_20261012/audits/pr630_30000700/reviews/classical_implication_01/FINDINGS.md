@@ -95,7 +95,7 @@ problem. Avoid an immutable research-result release on this audit alone.
 **Formal mathematical validity:** pass for the restricted frozen claims.
 **Classical implication attack:** succeeds for the literal negative answer
 and polynomial structure; identifies a prior exact template plus a short
-new specialization for the transcendental family.
+additional specialization for the transcendental family.
 **Prior exact publication / novelty certification:** not established.
 **Promote as a substantive novel solution:** not supported by this review.
 

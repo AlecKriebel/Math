@@ -100,6 +100,12 @@ The theorem classifies a different pair of partial-sharing assumptions;
 its hypotheses must not be applied directly to (T). Its printed template
 and Example 3 are the relevant prior construction.
 
+There is also no reliance on reversing a necessary-condition theorem:
+writing s=(U/2)exp(w/4), H=B(1+s)^2 and H'_w=(B/2)s(1+s).
+Thus H=0 implies H'_w=0; H=B forces s=-2 (s cannot be zero),
+and then H'_w=B. Every displayed source-template member can therefore be
+checked directly.
+
 Starting from (S), set U=-2, B=A and w=4 lambda(z-z0). Then
 
     H_(A,-2)(4 lambda(z-z0))=A(exp(lambda(z-z0))-1)^2.          (F)
