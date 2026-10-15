@@ -9,3 +9,7 @@ The characteristic-zero vanishing-to-Koszulness implication is not proved or dis
 ## 2026-10-15T05:03:37.193562+00:00 — Preprint preparation checkpoint (45%)
 
 The literal unrestricted negative answer passes independent algebra and primary-source audits. Deep bounded priority identifies a fully assembled classical consequence and leaves firstness/current openness uncertified. Three-page note, complete original snapshot and fresh explicit-guard diagnostics prepared for independent package review. Characteristic-zero/general converse remains unresolved. Original effort stays 1/5; no additional central proof search. No merge or production publication yet.
+
+## 2026-10-15T05:35:58.291632+00:00 — Published and tracked (100% of this PR publication package)
+
+Merged reviewed head b0495c0e8999ef578c519e10d51e11c66686b851; production https://doi.org/10.5281/zenodo.23385608 independently inspected with exact metadata/files and DOI HTTP200. Workspace CLI unique exact row 'Math Puzzles'!A96:D96 read back. Final R3/R4 CLEAR on same corrected core; all213 accepted protected files and all10 preprint cores unchanged. Only publication wrappers and this receipt update after release. Characteristic-zero/general converse and priority/human/formal limits unchanged.
