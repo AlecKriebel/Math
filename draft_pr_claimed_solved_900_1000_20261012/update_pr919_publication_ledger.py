@@ -1,5 +1,6 @@
 """Record the verified publication in remote main without touching shared files."""
 from datetime import datetime, timezone
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -94,12 +95,88 @@ def explicit_tree(parent, replacements):
                               check=True, capture_output=True).stdout.decode('ascii').strip()
     return rebuild(parent, updates)
 
+def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=None):
+    """Fail on stale/cross-target local receipts before downstream writes."""
+    def need(ok, label):
+        if not ok:
+            raise RuntimeError('PR919 receipt linkage: '+label)
+    def read(name):
+        return json.loads((a/name).read_text())
+    head = '704685791ec0053dc0a52590fdef49ed4aae61d9'
+    need(accepted.get('accepted') is True and accepted.get('original_pr_head') == head
+         and len(accepted.get('full_package_reviews', [])) >= 2, 'exact acceptance')
+    freeze_raw = (a/'publication/PREPUBLICATION_FREEZE.json').read_bytes()
+    pin = hashlib.sha256(freeze_raw).hexdigest()
+    freeze = json.loads(freeze_raw)
+    need(pin == accepted.get('freeze_sha256') and freeze['original_pr_head'] == head
+         and freeze['pr'] == 919 and freeze['problem_id'] == '30002555'
+         and freeze['files'] == accepted['files'], 'accepted frozen target')
+    live_head = head
+    if (a/'ACCEPTANCE_INTEGRATION_ADDENDUM.json').exists():
+        integration = read('ACCEPTANCE_INTEGRATION_ADDENDUM.json')
+        need(integration.get('accepted') is True and integration['original_audited_head'] == head,
+             'integration acceptance')
+        live_head = integration['integrated_head']
+    need(merge.get('number') == 919 and merge.get('state') == 'MERGED'
+         and merge.get('headRefOid') == live_head, 'merged PR/head')
+    merged = merge['mergeCommit']['oid']
+    ident = publication.get('id')
+    need(type(ident) is int and ident > 0 and publication.get('state') == 'published'
+         and publication.get('doi') == '10.5281/zenodo.'+str(ident)
+         and publication.get('record_url') == 'https://zenodo.org/records/'+str(ident),
+         'published ID/DOI/record')
+    intent = read('publication/ZENODO_PUBLISH_INTENT.json')
+    need(intent.get('action') == 'publish' and intent.get('pr') == 919
+         and intent['accepted_freeze_sha256'] == pin and intent['merged_commit'] == merged,
+         'publication intent/accepted freeze/merge')
+    descriptor_raw = (a/'publication/zenodo-deposit.json').read_bytes()
+    need(hashlib.sha256(descriptor_raw).hexdigest() == intent['descriptor_sha256']
+         == freeze['files']['zenodo-deposit.json']['sha256'], 'exact descriptor')
+    descriptor = json.loads(descriptor_raw)
+    expected = []
+    for item in descriptor['files']:
+        record = freeze['files'][item['path']]
+        data = (a/'publication'/item['path']).read_bytes()
+        need(len(data) == record['bytes'] and hashlib.sha256(data).hexdigest() == record['sha256'],
+             'current accepted upload bytes')
+        expected.append({'name':item['name'], 'size':record['bytes'], 'sha256':record['sha256']})
+    need(len(expected) == 2 and publication['files'] == expected, 'published file fingerprints')
+    stage = read('publication/ZENODO_STAGE.json')
+    inspected = read('publication/ZENODO_INSPECT.json')
+    need(stage.get('id') == ident and stage['files'] == expected, 'staged record/files')
+    need(inspected.get('id') == ident and inspected.get('doi') == publication['doi']
+         and inspected.get('state') == 'published' and inspected['files'] == expected,
+         'published readback ID/DOI/files')
+    if tracker is not None:
+        need(tracker.get('confirmed') is True and tracker.get('readback_matches') is True
+             and tracker.get('pr') == 919 and tracker.get('problem_id') == '30002555'
+             and tracker.get('original_pr_head') == head and tracker.get('merged_head') == live_head
+             and tracker.get('merge_commit') == merged and tracker.get('accepted_freeze_sha256') == pin
+             and tracker.get('doi') == publication['doi'] and tracker.get('zenodo_record_id') == ident,
+             'tracker target/head/freeze/DOI')
+        need(tracker.get('spreadsheet_id') == '1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
+             and tracker.get('gid') == 1254632077 and tracker.get('tab_title') == 'Math Puzzles'
+             and len(tracker['row']) == 4 and tracker['row'][2] == 'https://doi.org/'+publication['doi']
+             and read('TRACKER_READBACK.json').get('values') == [tracker['row']],
+             'tracker destination/exact row readback')
+    if native is not None:
+        need(tracker is not None and native.get('push_confirmed') is True, 'native/tracker confirmation')
+        event = native['published_event']
+        need(event.get('id') == '30002555' and event.get('pr') == 919
+             and event.get('doi') == publication['doi'] and event.get('original_pr_head') == head
+             and event.get('accepted_freeze_sha256') == pin and event.get('merged_commit') == merged
+             and event.get('zenodo_record_id') == ident
+             and event['evidence']['tracker_range'] == tracker['updated_range'],
+             'native target/head/freeze/DOI/tracker')
+
+
 def main():
     publication = json.loads((AUDIT / 'publication/ZENODO_PUBLISH.json').read_text())
     tracker = json.loads((AUDIT / 'TRACKER_RECEIPT.json').read_text())
     merge = json.loads((AUDIT / 'PR_MERGE_RECEIPT.json').read_text())
     accepted = json.loads((AUDIT / 'ACCEPTANCE.json').read_text())
     source = json.loads((AUDIT / 'TARGET_IDENTITY_PREFLIGHT.json').read_text())
+    verify_receipt_links(AUDIT, publication, merge, accepted, tracker)
     if not (publication['state'] == 'published' and type(publication['id']) is int and (publication['id'] > 0)):
         raise RuntimeError("Publication ledger guard: publication['state'] == 'published' and type(publication['id']) is int and (publication['id'] > 0)")
     if not publication['doi'] == f"10.5281/zenodo.{publication['id']}":
@@ -152,7 +229,7 @@ def main():
         if prior.get('doi'):
             if not prior['doi'] == publication['doi']:
                 raise RuntimeError("Publication ledger guard: prior['doi'] == publication['doi']")
-        event = {**prior, 'at': datetime.now(timezone.utc).isoformat(), 'id': KEY, 'status': 'preprint_published', 'note': note, 'doi': publication['doi'], 'pr': 919, 'event': 'audited_imported_candidate_publication', 'event_id': EVENT_ID, 'statement_hash': source['statement_hash'], 'review_hash': source['review_hash'], 'verified_candidate_approaches': 1, 'turn_count_status': 'one_original_substantive_approach_recorded', 'original_total_attempt_count_known': True, 'proof_search_turns_added_by_audit': 0, 'turn_limit': 5, 'original_pr_head': accepted['original_pr_head'], 'evidence': {'accepted_artifacts': EFFORT.relative_to(ROOT).as_posix() + '/audits/pr919_30002555/ACCEPTANCE.json', 'zenodo_record': publication['record_url'], 'tracker_range': tracker['updated_range'], 'source_free_archive_sha256': publication['files'][1]['sha256'], 'priority_limit': 'First priority unverified and not asserted', 'original_candidate_turns': '1/5; imported existing proposal, no new author proof-search turn'}}
+        event = {**prior, 'at': datetime.now(timezone.utc).isoformat(), 'id': KEY, 'status': 'preprint_published', 'note': note, 'doi': publication['doi'], 'pr': 919, 'event': 'audited_imported_candidate_publication', 'event_id': EVENT_ID, 'statement_hash': source['statement_hash'], 'review_hash': source['review_hash'], 'verified_candidate_approaches': 1, 'turn_count_status': 'one_original_substantive_approach_recorded', 'original_total_attempt_count_known': True, 'proof_search_turns_added_by_audit': 0, 'turn_limit': 5, 'original_pr_head': accepted['original_pr_head'], 'accepted_freeze_sha256': accepted['freeze_sha256'], 'merged_commit': merge['mergeCommit']['oid'], 'zenodo_record_id': publication['id'], 'evidence': {'accepted_artifacts': EFFORT.relative_to(ROOT).as_posix() + '/audits/pr919_30002555/ACCEPTANCE.json', 'zenodo_record': publication['record_url'], 'tracker_range': tracker['updated_range'], 'source_free_archive_sha256': publication['files'][1]['sha256'], 'priority_limit': 'First priority unverified and not asserted', 'original_candidate_turns': '1/5; imported existing proposal, no new author proof-search turn'}}
         if 'turns_used' in prior and prior['turns_used'] != 1:
             event['previous_state_recorded_turns_used'] = prior['turns_used']
         event['turns_used'] = 1

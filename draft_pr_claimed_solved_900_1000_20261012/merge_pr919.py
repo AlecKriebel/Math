@@ -40,7 +40,7 @@ def view():
 
 def main():
     decision = json.loads((A / 'PUBLICATION_DISPOSITION.json').read_text())
-    require(decision['decision'] == 'EVALUATE_AND_IF_ALL_FINAL_GATES_PASS_ACCEPT_EXPLICITLY_ATTRIBUTED_CLASSICAL_COROLLARY', 'Publication disposition changed')
+    require(decision['decision'] == 'PREPARE_EXPLICITLY_ATTRIBUTED_APPLICATION_NOTE', 'Publication disposition changed')
     accepted = json.loads((A / 'ACCEPTANCE.json').read_text())
     require(accepted.get('accepted') is True and
             accepted['original_pr_head'] == HEAD and

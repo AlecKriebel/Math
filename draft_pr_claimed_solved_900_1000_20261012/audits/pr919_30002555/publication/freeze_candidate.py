@@ -91,7 +91,7 @@ def main():
              'build_package.py', 'package_guard_challenges.py', 'replay_all_modes.py',
              'freeze_candidate.py', 'copy_guard_challenge.py', 'prepare_metadata.py']
     freeze = {'utc': datetime.now(timezone.utc).isoformat(), 'pr': 919, 'problem_id': '30002555',
-              'revision_candidate': 1, 'original_pr_head': HEAD,
+              'revision_candidate': 2, 'original_pr_head': HEAD,
               'original_candidate_turns': '1/5', 'original_files_unchanged': 27,
               'files': {name: fp(P/name) for name in files},
               'package_manifest_sha256': built['manifest_sha256'], 'pdf_pages': 3,
