@@ -59,6 +59,7 @@ for name in ['manuscript.tex','manuscript.pdf','metadata.json','README.md','RESE
     paths.append(R/name)
 for folder in ['verification','pr_update','manuscript_reviews','history']:
     paths += [p for p in (R/folder).rglob('*') if p.is_file()]
+if (R/'FINAL_CLEARANCE.json').exists():paths.append(R/'FINAL_CLEARANCE.json')
 paths += [p for p in (D.parent/'publication').iterdir() if p.is_file()]
 paths += [P/'RESEARCH_LOG.md',P/'CURRENT_GOAL_SELECTION_20261013.json']
 assert json.loads((D/'CURRENT_AUDIT_STATE.json').read_text())['completion_percent']==a.percent
@@ -115,7 +116,7 @@ assert api('GET','pulls/211')['head']['sha']==intake['head']
 receipt=dict(utc=datetime.now(timezone.utc).isoformat(),commit=new,parent=parent,main_readback=latest,
     owned_files=pins,actual_native_byte_readbacks=actual,unchanged_fresh_tree_identity_readbacks=carried,
     prior_actual_byte_readback_checkpoint=baseline['commit'],case_completion_percent=a.percent,
-    counts=[42,19,19,0],local_Git_or_index_mutations=0,preprint_upload_cleared=False,
+    counts=[42,19,19,0],local_Git_or_index_mutations=0,preprint_upload_cleared=json.loads((D/'CURRENT_AUDIT_STATE.json').read_text())['preprint_upload_cleared'],
     manuscript_only_preparation_or_review_checkpoint=True,full_goal_active_incomplete=True)
 out.write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({k:v for k,v in receipt.items() if k not in ['owned_files','actual_native_byte_readbacks','unchanged_fresh_tree_identity_readbacks']},indent=2))

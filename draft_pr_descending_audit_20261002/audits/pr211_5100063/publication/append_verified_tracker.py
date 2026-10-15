@@ -24,6 +24,7 @@ assert not (PUB / 'TRACKER_VERIFIED_APPEND.json').exists(), 'Already verified; u
 clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
+assert not clear['unresolved_optional_findings']
 z = json.loads((PUB / 'ZENODO_VERIFIED_PUBLICATION.json').read_text())
 assert z['submitted'] and z['metadata_and_files_verified']
 T.mkdir(parents=True, exist_ok=True)

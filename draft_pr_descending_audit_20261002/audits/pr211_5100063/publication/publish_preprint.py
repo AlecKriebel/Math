@@ -16,6 +16,7 @@ MANIFEST = R / 'deposit.json'
 clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
+assert not clear['unresolved_optional_findings']
 assert not (PUB / 'ZENODO_VERIFIED_PUBLICATION.json').exists(), 'Already verified: read-only reconciliation'
 assert not (PUB / 'STAGE_ATTEMPT.json').exists(), 'Prior stage attempt: reconcile before another provider action'
 for row in clear['submission_files']:
