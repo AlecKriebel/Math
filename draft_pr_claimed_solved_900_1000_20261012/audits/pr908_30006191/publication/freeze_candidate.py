@@ -59,6 +59,10 @@ def main():
     require(guards['status'] == 'PASS' and guards['hostile_inventory_runs'] == 140 and
             guards['false_assertion_child_runs'] == 4 and
             guards['package_manifest_sha256'] == built['manifest_sha256'], 'Guard gate not current')
+    copy_guard = json.loads((P/'COPY_GUARD_CHALLENGE.json').read_text())
+    require(copy_guard['status'] == 'PASS' and copy_guard['tampered_copy_runs'] == 4 and
+            copy_guard['all_copies_rejected_before_execution'] is True and
+            copy_guard['package_manifest_sha256'] == built['manifest_sha256'], 'Copy authentication gate not current')
     qa = json.loads((P/'PDF_VISUAL_QA.json').read_text())
     require(qa['all_pages_pass'] is True and qa['pages'] == 5 and
             qa['source_sha256'] == fp(P/'note.tex')['sha256'] and
@@ -82,9 +86,9 @@ def main():
     files = ['note.tex', 'output/pdf/note.pdf', archive.name, 'README.md',
              'requirements.txt', 'verify_package.py', 'run_checked.py', 'zenodo-deposit.json',
              'build_package.py', 'package_guard_challenges.py', 'replay_all_modes.py',
-             'freeze_candidate.py']
+             'freeze_candidate.py', 'copy_guard_challenge.py']
     freeze = {'utc': datetime.now(timezone.utc).isoformat(), 'pr': 908, 'problem_id': '30006191',
-              'revision_candidate': 1, 'original_pr_head': HEAD,
+              'revision_candidate': 2, 'original_pr_head': HEAD,
               'original_candidate_turns': '1/5_preserved', 'original_files_unchanged': 26,
               'files': {name: fp(P/name) for name in files},
               'package_manifest_sha256': built['manifest_sha256'], 'pdf_pages': 5,
@@ -92,6 +96,7 @@ def main():
                                   'remote_main': main_sha, 'source_hashes_and_holds_match': True},
               'local_gates': {'full_replays': modes, 'all_replays_identical': True,
                               'hostile_inventory_runs': 140, 'false_assertion_child_runs': 4,
+                              'post_copy_corruption_runs_rejected_before_execution': 4,
                               'all_pdf_pages_visual_pass': True, 'local_zenodo_check_pass': True},
               'priority': 'Prior mechanism and direct qualitative cutoff adaptation credited; an audit bootstrap also recovers maximal2. No firstness or continued-openness claim.',
               'acceptance': 'PENDING_NEW_SEQUENTIAL_FULL_PACKAGE_REVIEWS',

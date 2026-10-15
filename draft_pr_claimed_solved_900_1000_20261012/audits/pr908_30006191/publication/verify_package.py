@@ -185,6 +185,9 @@ def worker(root, pin, work):
         temp = Path(td)
         copied = temp/'package'
         shutil.copytree(root, copied)
+        # Authenticate the actual disposable bytes before executing any of them.
+        # Source validation alone does not establish the identity of a copy.
+        validate(copied, pin)
         env = clean_environment(temp)
         def run(name, *args):
             proc = subprocess.run([sys.executable, '-I', '-B', str(copied/'run_checked.py'),
