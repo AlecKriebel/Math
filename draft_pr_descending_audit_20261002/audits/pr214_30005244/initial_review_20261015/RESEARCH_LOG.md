@@ -9,3 +9,6 @@
 2026-10-15T08:22:07.375293+00:00 —45%: three independent priority reports and parent comparisons reviewed; required old-work credit mapped. No exact earlier full theorem found; named dynamic manuscript and Rahola full remain uninspected. Fresh final gate pending.
 
 2026-10-15T08:28:02.365292+00:00 —55%: fresh independent final priority adjudication sealed and accepted. Qualified credited preparation cleared with exact historical uncertainties retained. Current original head/open/draft and claimed_solved reverified; no publication clearance.
+
+## 2026-10-15T08:44:42.819735+00:00 — PR214 checkpoint65%
+The eleven-page credited exact-model note, metadata and authored-only verification package are prepared. All PDF pages were actually inspected and both compilation routes succeeded. Seven portable programs pass, including2156 original reported exact assertions and1244 new rational ball controls. All31 original artifacts are byte-exact history. New whole-manuscript adversary01 is now independently reviewing the frozen source/PDF/package; publication remains uncleared. Specific unavailable-priority sources remain visible.

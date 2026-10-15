@@ -1278,3 +1278,6 @@ Material BMP1999/complete relevantBMP2007 and Conlon–Song1999 source hold recu
 2026-10-15T08:22:07.375293+00:00 — PR214 checkpoint45%: three priority audits and classical credit ledger reviewed; actual access uncertainties retained; fresh final gate pending. Counts41/18/18/0, no new paper/publication.
 
 2026-10-15T08:28:02.365292+00:00 — PR214 checkpoint55%: fresh final priority gate permits qualified, fully credited research-note preparation; first priority remains unestablished. Manuscript and sequential review loop are next. Counts41/18/18/0.
+
+## 2026-10-15T08:44:42.819735+00:00 — PR214 checkpoint65%
+The eleven-page credited exact-model note, metadata and authored-only verification package are prepared. All PDF pages were actually inspected and both compilation routes succeeded. Seven portable programs pass, including2156 original reported exact assertions and1244 new rational ball controls. All31 original artifacts are byte-exact history. New whole-manuscript adversary01 is now independently reviewing the frozen source/PDF/package; publication remains uncleared. Specific unavailable-priority sources remain visible.
