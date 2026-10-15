@@ -249,7 +249,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 238 | 30005731 / OWR-14298011-002 | Automatic Convexity of Optimal Spiral Strategies | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 239 | 7000013 / AMR-069-0013 | Geometry of Curves and Surfaces — Problem 2.4 | 0.1879 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 240 | 30006020 / OWR-14298589-005 | Intermediate-Area Cylinders on Large-Genus Square-Tiled Surfaces | 0.1864 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 241 | 30004786 / OWR-8415342-014 | Automorphic L-Functions from Sigma–Rho Poisson Summation | 0.1862 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 241 | 30004786 / OWR-8415342-014 | Automorphic L-Functions from Sigma–Rho Poisson Summation | 0.1862 | 5.5 | 3 | 2021 | unsolved | 5/5 |  | [Reviewed conditional theta/boundary implications; original weak-functional normalization step remains open](https://github.com/AlecKriebel/Math/tree/math/30004786-poisson-lfunctions-wip/unsolved_math_prioritization/attempts/30004786) |  |
 | 242 | 5100024 / AMR-050-0024 | Elliptic-billiard invariant k_{406,a} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 243 | 5100035 / AMR-050-0035 | Elliptic-billiard invariant k_{607} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 244 | 5100036 / AMR-050-0036 | Elliptic-billiard invariant k_{608} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
