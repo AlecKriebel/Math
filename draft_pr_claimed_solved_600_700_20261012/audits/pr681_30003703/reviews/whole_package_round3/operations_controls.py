@@ -306,18 +306,25 @@ def isolated_description(f,description):
  f.h.archive_binding=lambda *a:({}, {'isolated_normalization_test_only':True})
  return f
 
-def root_diagnostic(f):
+def root_diagnostic(f,merge=False):
  p=f.a/'root_check_integration.py';shutil.copy2(LIVE/'root_check_integration.py',p)
  d=load(p,'fresh_exact_root_readonly_diagnostic')
+ live=copy.deepcopy(f.live)
+ if merge:
+  r=json.loads((f.a/'INTEGRATION_PUSHED_RECEIPT.json').read_bytes());env=dict(os.environ,GIT_OBJECT_DIRECTORY=r['object_directory'],GIT_ALTERNATE_OBJECT_DIRECTORIES=str(f.repo/'.git/objects'))
+  oid=real_subprocess.check_output(['git','commit-tree',r['tree'],'-p',f.base,'-p',r['integration_commit']],cwd=f.repo,env=env,input=b'FAKE root diagnostic merge fixture\n').decode().strip()
+  live.update(state='MERGED',isDraft=False,mergedAt=NOW.isoformat(),mergeCommit={'oid':oid})
  def run(command,**kw):
   if command[0]=='gh':
    need(command[:4]==['gh','pr','view','681'],'diagnostic wrong PR')
-   return types.SimpleNamespace(stdout=json.dumps(f.live),returncode=0)
+   return types.SimpleNamespace(stdout=json.dumps(live),returncode=0)
   need(command[0]=='git'and Path(kw['cwd'])==f.repo,'diagnostic escaped fixture')
-  need(command[1]in {'ls-tree','rev-parse','rev-list','show','diff','ls-remote'},'diagnostic nonread Git')
+  need(command[1]in {'ls-tree','rev-parse','rev-list','show','diff','ls-remote','fetch'},'diagnostic nonread Git')
+  if command[1]=='fetch':
+   need('--no-write-fetch-head'in command and '--refmap='in command,'unsafe diagnostic fetch');return types.SimpleNamespace(stdout=b'',returncode=0)
   if command[1]=='ls-remote':return types.SimpleNamespace(stdout=(f.remote_head+'\trefs/heads/'+f.h.BRANCH+'\n').encode(),returncode=0)
   return real_subprocess.run(command,**kw)
- d.subprocess=types.SimpleNamespace(run=run);argv=sys.argv;sys.argv=['root_check_integration.py']
+ d.subprocess=types.SimpleNamespace(run=run);argv=sys.argv;sys.argv=['root_check_integration.py']+(['--merge']if merge else[])
  try:
   with contextlib.redirect_stdout(io.StringIO())as out:d.main()
  finally:sys.argv=argv
@@ -387,6 +394,7 @@ def main():
  f=Fixture();norm(f);f.init_git();f.final_gate('integration');pushed=f.integration(True)
  check('integration_mock_push_durable_intent_and_readback',lambda:need(f.push_count==1 and pushed['pushed']and f.git_snapshot()==f.git_initial and pushed['remote_branch_head_verified'],'guarded push'))
  out=root_diagnostic(f);check('F1_repaired_exact_root_diagnostic_full_fixture',lambda:need(out['status']=='PASS' and out['all_23_native_bytes_blobs_modes_exact']and out['accepted_target_queue_changed_cells']==['Status','Turns','Findings'],'root diagnostic'))
+ out=root_diagnostic(f,True);check('repaired_exact_root_merge_readonly_diagnostic_full_fixture',lambda:need(out['status']=='PASS'and out['isolated_fetch_for_actual_merge_only']and out['whole_actual_tree_equals_accepted'],'merge diagnostic'))
  reject('successful_push_cannot_repeat',lambda:f.integration(True),'push was already dispatched')
  f=Fixture();norm(f);f.init_git();f.final_gate('integration');f.push_mode='lost';reject('ambiguous_push_sticky',lambda:f.integration(True));reject('ambiguous_push_no_repeat',lambda:f.integration(True),'push was already dispatched');need(f.push_count==1,'blind retry')
  f=Fixture();norm(f);f.init_git();f.final_gate('integration',created_utc=(NOW-dt.timedelta(minutes=16)).isoformat());reject('integration_stale_no_push',lambda:f.integration(True));need(f.push_count==0,'stale push')

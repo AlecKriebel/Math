@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Read-only independent native metadata and downloaded-byte comparison."""
-import argparse,datetime,hashlib,html,http.client,importlib.util,json,sys,urllib.parse,urllib.request
+import argparse,datetime,hashlib,html,http.client,types,json,sys,urllib.parse,urllib.request
 from pathlib import Path
 sys.dont_write_bytecode=True
 A=Path(__file__).absolute().parent;P=A/'publication';REPO=A.parents[2]
@@ -16,8 +16,10 @@ def normalize(native):
  return {'title':m['title'],'upload_type':'publication' if m['resource_type']['id'].startswith('publication-') else None,'publication_type':m['resource_type']['id'].removeprefix('publication-'),'publication_date':m['publication_date'],'version':m['version'],'description':m['description'],'creators':[{'name':x['person_or_org']['name'],'affiliation':x.get('affiliations',[{}])[0].get('name'),'orcid':next((i['identifier'] for i in x['person_or_org'].get('identifiers',[]) if i['scheme']=='orcid'),None)} for x in m['creators']],'access_right':'open' if native['access'].get('record')=='public' and native['access'].get('files')=='public' else None,'license':m['rights'][0]['id'],'keywords':[x['subject'] for x in m['subjects']],'related_identifiers':[{'identifier':x['identifier'],'scheme':x['scheme'],'relation':x['relation_type']['id'].lower()} for x in m['related_identifiers']]}
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['staged','published'],required=True);ap.add_argument('--receipt',required=True);args=ap.parse_args()
- require(sha(K.read_bytes())==EXPECTED_KIT,'repository kit changed')
- sp=importlib.util.spec_from_file_location('readonly_repository_zenodo',K);k=importlib.util.module_from_spec(sp);sp.loader.exec_module(k)
+ captured_kit=K.read_bytes()
+ require(sha(captured_kit)==EXPECTED_KIT,'repository kit changed')
+ k=types.ModuleType('readonly_repository_zenodo');k.__file__=str(K)
+ exec(compile(captured_kit,str(K),'exec'),k.__dict__)
  manifest=(P/'zenodo-deposit.json').resolve();metadata,files=k.load_manifest(manifest)
  place,state=k.local_state(manifest,'production');require(state is not None,'no known saved deposit identity')
  rid=state['id'];client=k.ZenodoClient('production',k.token_for('production'))
