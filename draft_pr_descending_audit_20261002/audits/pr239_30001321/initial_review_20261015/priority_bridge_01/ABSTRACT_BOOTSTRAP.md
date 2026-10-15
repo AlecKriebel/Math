@@ -20,7 +20,7 @@ Conclusion: for all M sufficiently large and all sufficiently large N,
     P_env( L_(N,M) > C M^(-a rho/gamma)+C N^(-b) )
        <= C exp[-c'(log N)^2],                            (Q)
 
-where rho is any fixed number in (2gamma,1), and a can be chosen no larger than min(b,1/2-gamma/rho). In particular (Q) gives the exact target for every deterministic M_N tending to infinity, with no lower rate. It does not establish uniformity over environment laws.
+where rho is any fixed number in (2gamma,1), and any fixed 0<a<=min(b,1/2-gamma/rho,1/8) is allowed. In particular (Q) gives the exact target for every deterministic M_N tending to infinity, with no lower rate. It does not establish uniformity over environment laws.
 
 ## 2. Iteration geometry
 
@@ -70,11 +70,11 @@ Optimizing lambda and using (W) yields
 
     P(B_j > p_n+t) <= exp[-c t^2 sqrt(N)/n].              (C)
 
-Take t=n^(-b1), with 0<b1<=min(b,1/8). For n sufficiently large, p_n<=n^(-b1). The exponent in (C), for n<=N^(1/4), is at least c N^(1/4-b1/2). Thus simultaneous control B_j<=2 n_j^(-b1) has stretched-exponentially small failure in N. No independence between different stages is asserted or needed.
+Take t=n^(-b1), choosing a<=b1<=min(b,1/8), for example b1=a; this is possible under the stated cap on a. For n sufficiently large, p_n<=n^(-b1). The exponent in (C), for n<=N^(1/4), is at least c N^(1/4-b1/2). Thus simultaneous control B_j<=2 n_j^(-b1) has stretched-exponentially small failure in N. No independence between different stages is asserted or needed.
 
 ## 5. Sum and quantifiers
 
-Input (H) gives lambda_0<=C N^(-b) outside C exp[-c(log N)^2]. Combine (R) with the stage controls, reducing a to min(b,b1,d) if needed. Because n_(j-1) is approximately n_j^(1/rho),
+Input (H) gives lambda_0<=C N^(-b) outside C exp[-c(log N)^2]. For any fixed 0<a<=min(b,d,1/8), the preceding choice of b1 ensures a<=min(b,b1,d). Combine (R) with the stage controls using this a. Because n_(j-1) is approximately n_j^(1/rho),
 
     sum_(j=1)^r n_j^(-a) <= C n_r^(-a)
                            <= C M^(-a rho/gamma)

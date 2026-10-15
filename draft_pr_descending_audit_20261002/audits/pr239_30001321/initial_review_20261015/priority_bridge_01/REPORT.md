@@ -120,3 +120,7 @@ An initial numerical-control implementation overflowed by converting a large bin
 ## Completion and remaining question
 
 This scoped bridge investigation is complete at 100% of its assigned check. The wider priority question remains open in the sense that no exact earlier scalar theorem has been authenticated here; this is not a claim that the mathematical research goal is 100% complete. The checkable outcome is a precise limitation on direct theorem inclusion, a successful exact BRAS ingredient inclusion, a complete reusable old-method bootstrap, and an explicit dated-publication gap. No outreach was prepared or initiated. No absence-of-match novelty inference is made.
+
+## Precision revision after independent synthesis review
+
+At 2026-10-15T04:50:19.821080+00:00, the generic statement in ABSTRACT_BOOTSTRAP Section 1 was restricted to 0<a<=min(b,1/2-gamma/rho,1/8), exposing the 1/8 cap already used for b1 in its concentration proof. Sections 4–5 now explicitly choose b1>=a and propagate that restriction. The concrete choice b=1/128 and M exponent 7/320, the bridge conclusions, and the priority assessment are unchanged. The complete initial authored seal, report, derivation, manifest, and pin are preserved in revision_history/initial_seal_20261015T044343Z/.
