@@ -12,3 +12,6 @@
 
 ## 2026-10-15T08:44:42.819735+00:00 — PR214 checkpoint65%
 The eleven-page credited exact-model note, metadata and authored-only verification package are prepared. All PDF pages were actually inspected and both compilation routes succeeded. Seven portable programs pass, including2156 original reported exact assertions and1244 new rational ball controls. All31 original artifacts are byte-exact history. New whole-manuscript adversary01 is now independently reviewing the frozen source/PDF/package; publication remains uncleared. Specific unavailable-priority sources remain visible.
+
+## 2026-10-15T09:03:04.610677+00:00 — PR214 checkpoint75%
+First fresh whole-manuscript review passed both mathematical theorems but found D1/D2 documentary defects. Root read and verified its sealed14-file review and replayed its fresh exact symbolic controls. Both defects were corrected globally; root added explicit weighting, verified AT pages and compilation-directory instructions. Old first-review inputs and31 originals are preserved unchanged. Both compilers pass, revised pages4/10 actually viewed, other nine render identically. New sequential adversary02 now reviews the entire revised frozen package. Publication remains uncleared; priority-access limitations stay visible. Counts41/18/18/0.

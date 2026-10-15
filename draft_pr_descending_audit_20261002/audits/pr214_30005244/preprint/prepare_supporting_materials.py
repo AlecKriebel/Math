@@ -34,7 +34,7 @@ for row in intake['original_source_files']:
 }, indent=2) + '\n')
 header = '''# Current scope and priority qualification (15 October 2026)
 
-This original analytical derivation remains valid under the explicit voxel-volume condition (G). The current result answers the OWR off-interval approximation question for that class, including bounded Lipschitz particles; it does not classify every irregular compact or bounded-open support. The compact-support example refutes an unrestricted extrapolation, not convergence for regular particles. See SOURCE_AUDIT.md and the separately reviewed research note for the operative source and priority statement.
+This original analytical derivation remains valid under the explicit voxel-volume condition (G). The current result answers the OWR off-interval approximation question for that class, including bounded Lipschitz particles; it does not classify every irregular compact or bounded-open support. The compact-support example refutes an unrestricted extrapolation, not convergence for regular particles. See SOURCE_AUDIT.md, the standalone research note and its version-bound review records for the operative source and priority statement.
 
 The static interval is Costabel--Dauge--Nedaiasl's established result. Cubic consistency, compact approximation, continuum poles, ball perturbation and center-value dependence have substantial prior literature. No first-priority or new general spectral principle claim is made. A named 2022/2023 dynamic manuscript remains unavailable, and Rahola's full paper and one forward-citing thesis were not fully read. The credited exact-model proof is independently verified within those explicit limits.
 
@@ -43,7 +43,15 @@ The entire original 31-file submission, including its original version of this f
 ---
 
 '''
-(U / 'CANDIDATE.md').write_text(header + (S / 'CANDIDATE.md').read_text())
+original_candidate = (S / 'CANDIDATE.md').read_text()
+old_status = '**Unreviewed.** One substantive author research turn. No novelty assertion.'
+old_review = 'Independent review and a broader novelty check remain required.'
+assert original_candidate.count(old_status) == original_candidate.count(old_review) == 1
+qualified_candidate = original_candidate.replace(old_status,
+    'Original analytical derivation. Current validation, scope and bounded priority assessment are recorded in the opening notice and accompanying reports. This file does not confer publication clearance. No first-priority assertion.')
+qualified_candidate = qualified_candidate.replace(old_review,
+    'Independent mathematical review and bounded priority assessment are recorded in the accompanying version-bound reports. Their source-access limitations remain explicit; publication clearance requires the later sequential manuscript review and final acceptance record.')
+(U / 'CANDIDATE.md').write_text(header + qualified_candidate)
 scope = '''# Source, credit and scope
 
 The exact question is Costabel's OWR43/2022 contribution, Section 4, printed p.2582: description and proof of the observed off-real-interval eigenvalue approximation. The current affirmative theorem concerns bounded measurable representatives whose center-selected cubic voxel unions satisfy |Omega_h triangle Omega| -> 0. This includes all bounded boundary-null and Lipschitz particles for arbitrary translated cubic grids. This geometric sufficient condition is explicit here and is not printed in the source; no necessary-and-sufficient geometry classification is claimed. No result inside the exact static lattice interval, convergence rate, varying frequency limit or individual Jordan-block preservation is asserted.
@@ -101,7 +109,7 @@ for source, family in original_checks:
 (V / 'requirements.txt').write_text('numpy==2.3.4\nsympy==1.14.0\n')
 (V / 'README.md').write_text('''# Reproducible finite controls
 
-Use Python3.13 with NumPy2.3.4 and SymPy1.14.0 (recorded replay versions). From the extracted archive root, install verification/requirements.txt in a disposable environment and run:
+Use Python3.14.6 with NumPy2.3.4 and SymPy1.14.0 (recorded replay versions). From the extracted archive root, install verification/requirements.txt in a disposable environment and run:
 
     python verification/run_checks.py --output verification_run.json
 
@@ -119,8 +127,8 @@ This research note gives an independent proof of the OWR43/2022 off-interval dis
 
 The static lattice interval, cubic consistency, abstract spectral approximation, continuum pole theory and sphere perturbation mechanisms are credited prior work. No first-priority claim is made. A named 2022/2023 dynamic manuscript remains unavailable; Rahola's full article and one forward-citing thesis were not fully read. SOURCE_CREDIT_SCOPE.md and the authored audits preserve these specific limitations. The theorem does not assert convergence for every irregular compact support, necessary geometry conditions, interval-interior correctness or rates.
 
-- dipole_spectrum.tex: standalone editable LaTeX; compile with `tectonic --outdir output/pdf dipole_spectrum.tex`.
-- output/pdf/dipole_spectrum.pdf: compiled eleven-page draft.
+- dipole_spectrum.tex: standalone editable LaTeX; first run `mkdir -p output/pdf`, then `tectonic --outdir output/pdf dipole_spectrum.tex`.
+- output/pdf/dipole_spectrum.pdf: compiled eleven-page note, supplied separately from the verification ZIP.
 - verification/: portable finite controls and execution instructions.
 - pr_update/30005244/: current qualified source with all 31 original files archived byte-for-byte.
 - metadata.json and deposit.json: one identical metadata object for the repository Zenodo tool.

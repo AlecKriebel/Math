@@ -19,7 +19,7 @@ def add(p, name):
 
 for name in ['README.md', 'dipole_spectrum.tex', 'metadata.json', 'SOURCE_CREDIT_SCOPE.md']:
     add(R / name, name)
-for folder in ['verification', 'pr_update/30005244']:
+for folder in ['verification', 'pr_update/30005244', 'history']:
     for p in sorted((R / folder).rglob('*')):
         if p.is_file():
             add(p, folder + '/' + str(p.relative_to(R / folder)))
@@ -51,7 +51,9 @@ for family in families:
         raw = p.read_bytes()
         assert len(raw) == row['bytes'] and hashlib.sha256(raw).hexdigest() == row['sha256'], p
         add(p, 'audits/' + family + '/' + str(p.relative_to(F)))
-for name in ['ROOT_VERIFICATION_RUN.json', 'ROOT_PACKAGE_PREPARATION_ACCEPTANCE.json', 'FINAL_CLEARANCE.json']:
+for name in ['ROOT_VERIFICATION_RUN.json', 'ROOT_PACKAGE_PREPARATION_ACCEPTANCE.json',
+             'ROOT_REVIEW01_ACCEPTANCE.json', 'ROOT_REVIEW01_GLOBAL_REPAIR_ACCEPTANCE.json',
+             'ROOT_REVIEW02_ACCEPTANCE.json']:
     if (R / name).exists():
         add(R / name, 'audits/manuscript/' + name)
 for F in sorted(R.glob('fresh_review_*')):

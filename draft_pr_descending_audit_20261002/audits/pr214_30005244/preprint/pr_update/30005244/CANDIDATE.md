@@ -1,6 +1,6 @@
 # Current scope and priority qualification (15 October 2026)
 
-This original analytical derivation remains valid under the explicit voxel-volume condition (G). The current result answers the OWR off-interval approximation question for that class, including bounded Lipschitz particles; it does not classify every irregular compact or bounded-open support. The compact-support example refutes an unrestricted extrapolation, not convergence for regular particles. See SOURCE_AUDIT.md and the separately reviewed research note for the operative source and priority statement.
+This original analytical derivation remains valid under the explicit voxel-volume condition (G). The current result answers the OWR off-interval approximation question for that class, including bounded Lipschitz particles; it does not classify every irregular compact or bounded-open support. The compact-support example refutes an unrestricted extrapolation, not convergence for regular particles. See SOURCE_AUDIT.md, the standalone research note and its version-bound review records for the operative source and priority statement.
 
 The static interval is Costabel--Dauge--Nedaiasl's established result. Cubic consistency, compact approximation, continuum poles, ball perturbation and center-value dependence have substantial prior literature. No first-priority or new general spectral principle claim is made. A named 2022/2023 dynamic manuscript remains unavailable, and Rahola's full paper and one forward-citing thesis were not fully read. The credited exact-model proof is independently verified within those explicit limits.
 
@@ -10,7 +10,7 @@ The entire original 31-file submission, including its original version of this f
 
 # Spectral correctness of cubic DDA away from the static lattice interval
 
-Numeric record **30005244 / OWR-11101924-008**. Full candidate for the source's off-interval spectral question, with the geometric consistency hypothesis made explicit. **Unreviewed.** One substantive author research turn. No novelty assertion.
+Numeric record **30005244 / OWR-11101924-008**. Full candidate for the source's off-interval spectral question, with the geometric consistency hypothesis made explicit. Original analytical derivation. Current validation, scope and bounded priority assessment are recorded in the opening notice and accompanying reports. This file does not confer publication clearance. No first-priority assertion.
 
 ## 1. Statement, normalization, and geometric hypothesis
 
@@ -232,7 +232,7 @@ The OWR discussion gives the cubic point-sampling matrix and the shift by I/3, t
 
 Condition (G) is an explicit sufficient geometric condition, not an asserted necessary-and-sufficient criterion for spectral convergence. Without any such control, point sampling can fail even to approximate the underlying volume measure. For example, a countable union of chosen rational grids can be covered by an open subset of a box of arbitrarily small volume; its compact complement has positive volume but contains no grid points. For that set the chosen DDA systems are empty. This illustrates the missing geometric issue; it is not being presented as an exact nonreal-eigenvalue counterexample.
 
-The essential established input is the static lattice operator theorem of Costabel–Dauge–Nedaiasl, not a numerical estimate of Λ_±. The underlying compact-operator and Riesz-projection arguments are standard functional analysis. The proposed contribution is their rigorously justified application to this diagonal-omitting DDA scheme, especially static strong consistency, Hilbert–Schmidt convergence of the dynamic correction, and handling changing particle grids. Independent review and a broader novelty check remain required.
+The essential established input is the static lattice operator theorem of Costabel–Dauge–Nedaiasl, not a numerical estimate of Λ_±. The underlying compact-operator and Riesz-projection arguments are standard functional analysis. The proposed contribution is their rigorously justified application to this diagonal-omitting DDA scheme, especially static strong consistency, Hilbert–Schmidt convergence of the dynamic correction, and handling changing particle grids. Independent mathematical review and bounded priority assessment are recorded in the accompanying version-bound reports. Their source-access limitations remain explicit; publication clearance requires the later sequential manuscript review and final acceptance record.
 
 ### References
 

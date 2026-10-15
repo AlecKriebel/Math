@@ -6,8 +6,8 @@ This research note gives an independent proof of the OWR43/2022 off-interval dis
 
 The static lattice interval, cubic consistency, abstract spectral approximation, continuum pole theory and sphere perturbation mechanisms are credited prior work. No first-priority claim is made. A named 2022/2023 dynamic manuscript remains unavailable; Rahola's full article and one forward-citing thesis were not fully read. SOURCE_CREDIT_SCOPE.md and the authored audits preserve these specific limitations. The theorem does not assert convergence for every irregular compact support, necessary geometry conditions, interval-interior correctness or rates.
 
-- dipole_spectrum.tex: standalone editable LaTeX; compile with `tectonic --outdir output/pdf dipole_spectrum.tex`.
-- output/pdf/dipole_spectrum.pdf: compiled eleven-page draft.
+- dipole_spectrum.tex: standalone editable LaTeX; first run `mkdir -p output/pdf`, then `tectonic --outdir output/pdf dipole_spectrum.tex`.
+- output/pdf/dipole_spectrum.pdf: compiled eleven-page note, supplied separately from the verification ZIP.
 - verification/: portable finite controls and execution instructions.
 - pr_update/30005244/: current qualified source with all 31 original files archived byte-for-byte.
 - metadata.json and deposit.json: one identical metadata object for the repository Zenodo tool.
