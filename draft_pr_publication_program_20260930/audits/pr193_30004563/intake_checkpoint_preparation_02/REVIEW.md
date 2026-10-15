@@ -1,0 +1,11 @@
+# Bounded reviewed-QUEUE inheritance repair
+
+Completed UTC:2026-10-15T09:38:54.586912+00:00. Helper preparation100% complete; this pinned initial case193 intake remains20% with clearance false. Later mathematical audit progress is a separate Root checkpoint.
+
+Read the full revision01 source and documents, the complete Root drift/failure/pin receipts, and the resulting revision01→02 source delta. Verified all35 input byte/SHA256 pins locally, the prior937 map's historical QUEUE pin, the two exact public old/new row strings and IDs, and all seven frozen revision01 files against their manifest/seal. Revision01 is unchanged.
+
+The new inherited_baseline function preserves the original historical937 authentication before substituting the single manually reviewed QUEUE pin. Future runtime requires exact historical/current QUEUE body pins, unchanged line inventory, exact two row replacements, unique unchanged own5000005/30004563 rows and all937 derived identities at reviewed source MAIN. This proves no other selected drift is accepted by the inheritance exception. A fresh preparation requires that same derived map at its actual current MAIN. Acceptance reconstructs the baseline from the same pinned receipts and authenticates it at the actual candidate parent, so the old191 QUEUE pin is never used as an inappropriate current baseline.
+
+Candidate verification explicitly excludes QUEUE from overlays and changed_paths, checks its true parent pin, all selected candidate identities, and exact full-tree delta. Acceptance independently rederives the programme and source postimages, rejects changed inherited receipt bindings, checks every combined current identity and freshly reads QUEUE bytes/hash/blob. Future foreign QUEUE changes fail rather than being silently accepted. Only the three programme files may change prior content; no native/QUEUE/science write is proposed.
+
+AST parsing and static guard/dataflow review passed. The generated helper was not imported/executed; no service/native/Git/ref calls or new fixture harness were run. Thus current remote state and operational utility behavior remain for Root's guarded runtime verification. Exact selected-map/full-delta/head/custody and full programme postimage checks from revision01 remain present. Only this revision02 folder was written.
