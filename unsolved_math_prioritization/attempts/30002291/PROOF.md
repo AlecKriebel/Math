@@ -1,16 +1,50 @@
-# Quadratic variation limits for a class of general pure-jump Itô drivers
+# Quadratic variation limits under bounded pure-jump characteristics
 
-**30002291 / OWR-12337-002. First substantive author turn, full sufficient-conditions candidate. Awaiting independent review. No novelty claim.**
+30002291 / OWR-12337-002. **Mathematics verified. Qualified historical
+classification: already_solved, because the original open-ended request
+already had a substantial sufficient-conditions answer.** Author turn1/5.
+This does **not** assert that the exact arbitrary-predictable-kernel theorem
+below was proved earlier. Its exact novelty remains unresolved.
 
-The original OWR09/2013 contribution, printed p492, gives a compound-Poisson fixed-time stable limit and asks for an extension to a rather general pure-jump semimartingale under sufficient conditions. It does not specify a maximal class. This theorem supplies explicit conditions on an arbitrary predictable jump kernel. It is not a statement for every pure-jump semimartingale and does not assume that its jump measure is a scaled deterministic Lévy measure.
+No certified new solution of a previously unanswered original target is
+claimed. See [PRIORITY_AUDIT.md](PRIORITY_AUDIT.md) for the precise historical
+meaning, nonnested classes, mesh qualification and unresolved extension
+priority. All17 original files and historical reviews/manifests are preserved
+byte for byte under original_submission/. Mathematical Sections2–7 below
+are unchanged. The current introduction and disposition supply updated credit.
+
+AI tools were used extensively in solving, checking and auditing. This work
+is unrefereed; AI adversarial reviews are not human peer review. This credited
+packet is not a preprint and has no Zenodo deposit or tracker entry.
 
 ## 1. Known results and exact scope
 
-Basse-O'Connor–Lachièze-Rey–Podolskij, *Power variation for a class of stationary increments Lévy driven moving averages*, Ann. Probab.45 (2017),4477–4528, proves the corresponding Lévy-driver theorem. Basse-O'Connor–Heinrich–Podolskij, *On limit theory for Lévy semi-stationary processes*, Bernoulli24(4A) (2018),3117–3146, Theorem1.2(i), extends it to `dY_s=sigma_(s-) dL_s`, with adapted càdlàg volatility and a symmetric pure-jump Lévy process under their assumptions (A),(B1), `beta<2`, `p>beta`, and `alpha<k-1/p`. Taking p=2,k=1 gives the source limit for that substantial non-Lévy semimartingale class. Their functional topology is M1, and Remark1.4 explicitly warns that J1 fails. These are prior results, not discoveries of this attempt.
+The original OWR2013 contribution asks for an analogous limit for a rather
+general pure-jump semimartingale under sufficient conditions; it defines no
+maximal class. A broad adapted scalar-volatility answer is already in
+Basse-O'Connor–Heinrich–Podolskij, arXiv1604.02307v2 (14October2016),
+Theorem1.2(i), associated with Bernoulli24(4A) (2018),3117–3146,
+DOI10.3150/17-BEJ956. At p=2,k=1 the jump coefficients agree exactly,
+and reflection of independent uniforms reindexes its phase weight into
+W_alpha. The prior result has a functionalM1 statement at its printed1/n
+mesh; do not silently attribute an arbitrary-mesh theorem to that statement.
 
-The proof below uses the established finite-jump truncation mechanism. Its hypotheses permit non-symmetric, time-dependent, state-dependent or path-dependent compensator kernels, and do not impose a Blumenthal–Getoor index strictly below2. The conclusion is joint fixed-time stable convergence. No stronger functional topology is asserted.
+The2015 preprint associated with the2017 AOP paper10.1214/16-AOP1170
+supplies the Levy antecedent. A2014 survey already announced that Levy
+phase law. The2018 primary general-function preprint arXiv1806.10352,
+associated with EJP24 (2019), article79, DOI10.1214/19-EJP336,
+Theorem2.1(i) and Proposition2.3(i), formally covers nonsymmetric Levy
+drivers below index2. These originals and the established truncation method
+must be credited. Exact final-publisher PDF comparison was unavailable;
+dated complete primary preprints control the theorem comparisons here.
 
-The source's smoother kernel assumption is made precise by an explicit derivative tail bound. An additive random constant in X has no effect on the statistic, so its naming as X0 in the source does not affect this argument.
+The verified theorem below permits arbitrary predictable jump kernels and
+some finite-quadratic-rate index2 drivers. Those are real distinctions from
+the inspected predecessor hypotheses, but do not certify novelty. Its global
+moment assumptions also exclude some earlier heavy-tail examples, so the
+classes are nonnested. The original question's breadth is qualitative; the
+historical catalog judgment concerns a prior substantive affirmative answer,
+not proof of complete containment of the present class in an old theorem.
 
 ## 2. Driver and kernel assumptions
 
@@ -196,6 +230,23 @@ The source target is fixed-time stable convergence. The theorem proves that and 
 
 ## 8. Disposition and limitations
 
-Under the explicit bounded-characteristic, absolutely-continuous-compensator and kernel-tail hypotheses, the OWR limit holds for a broad class of general pure-jump Itô drivers. The class need not have stationary increments, independent increments, symmetry, a deterministic Lévy measure, or a scalar-volatility-times-Lévy representation. Its square-integrability assumptions are sufficient, not claimed necessary or maximal. Drivers with deterministic/predictable atoms in the compensator, a continuous martingale component, arbitrary singular drift, or uncontrolled prehistory are not included.
+The theorem under its explicit hypotheses passes independent mathematical
+reconstruction, three fresh adversarial mathematical families and source-scope
+review. The finite controls supplement the analytic proof. Its sufficient
+conditions are not necessary or maximal, and no functional topology is
+proved here. The restrictions and deterministic-time counterexample in the
+preceding sections remain essential.
 
-The published Lévy and Lévy-semistationary theorems and their proof method are explicitly credited. The result is presented for independent source-scope and mathematical review as a sufficient-conditions answer to the original open-ended question, not a certified new discovery and not a blanket resolution for all semimartingales.
+For the original open-ended request, a substantial earlier semimartingale
+sufficient answer exists. The current catalog status already_solved has
+that qualified historical meaning. It does not mean that the exact theorem
+above is known, nor that every possible generalization of the original
+question is settled. Independent priority searches did not establish either
+full anticipation or novelty of this exact bounded-rate class. The remaining
+question is a separately scoped extension-priority investigation.
+
+Under the active claimed_solved-only publication workflow, skip this
+corrected open draft. No new paper, DOI, deposit, tracker row, merge, closure
+or PR comment accompanies this credit correction. The broader goal remains
+active and incomplete. The original proof and older verdicts remain in the
+immutable original_submission archive; current manifests bind this packet.
