@@ -1,0 +1,5 @@
+# PR570 research validation log
+
+2026-10-15T04:12:54.200610+00:00 — Exacthead OPEN/draft claimed_solved/mainqueued verified;16authoredfiles capturedimmutably. Rootindependent conditionalreduction/searchproofcheckpoint saved beforeoldauditread. Two newindependentfamilies: completeBDHoracle/target source-first and adversarialreduction/search. Root fetchedthreepublicprimaryPDFs; allbinaryhashesmatchauthorhistoricalcopies. BDHdefinition/Theorem1 explicitlyadditive integerweights; fullproofsourceaudit exposesnatural-vs-binarylog volumeinequality issue, completeparameterrepairunderreview. Originalauthorandauditfinitechecksrunninginscratch; controlsdo notimplementfastgeneraloracle. Exactfinitevertex/unit-edge/comparisonmodelpreserved; no adjacentlocalitytargetclaim. Completionestimate15% ofPR570lifecycle; no publicationpriorityclearance.
+
+2026-10-15T04:13:33.562766+00:00 — Root original author and independent-audit replays complete: both fullJSON records match,14plainmanifestentriesverified. All finite checks are reference-oracle checks, not fastBDHbenchmarks. Completionestimate18%; oracleproofconstantrepair remains under independent review.
