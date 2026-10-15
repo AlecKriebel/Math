@@ -23,3 +23,9 @@ All22 captured originals and all four completed review-family seals are retained
 
 No formal verification or human peer review is claimed. Exact finite controls
 supplement the universal proof and its credited topological dependencies.
+
+F01 (new comprehensive review01): the 2023v2 arXiv gap notice is in the
+record's Comments field, not its mathematical Abstract field. The current
+bibliography and root priority assessment now identify Comments precisely.
+The actual warning, classical proof dependencies and mathematical body are
+unchanged. The earlier reviewed freeze is retained in review01 receipts.

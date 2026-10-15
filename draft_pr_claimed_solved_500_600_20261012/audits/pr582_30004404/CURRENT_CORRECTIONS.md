@@ -32,3 +32,8 @@ controls and `ROOT_MATH_ACCEPTANCE.md` for mathematical acceptance. Earlier
 dated receipts may retain the old locator or a pre-repair status; this document
 states the current interpretation. The paper and publication driver now integrate these corrections. Final
 publication-package adversaries and production acceptance remain pending.
+
+F01 from comprehensive review01 is now corrected: the versioned arXiv record's
+Comments field, rather than its Abstract, reports the precursor's Claim6.3
+gap. The bibliography and priority assessment agree. The mathematical result
+and credited classical dependencies are unchanged. See receipts/ARXIV_GAP_FIELD_RECHECK.json.
