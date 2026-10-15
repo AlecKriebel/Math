@@ -1,6 +1,24 @@
 # An explicit joint stationary law for the drift–jump process
 
-9700040 / AMR-096-0040. **First-turn full candidate, not yet independently reviewed.** This is an explicit classical RSK/Schur-process consequence, with no novelty claim. The source asks for a fairly explicit stationary distribution; the result below supplies every finite joint distribution by positive factorial-determinant sums and an effective certified truncation. It does not claim a closed elementary density, an efficient algorithm for large indices, or a Markov property in particle index.
+9700040 / AMR-096-0040. **Mathematics verified; classification already_solved
+because the complete joint law is covered by earlier explicit constructions
+and joint formulas.** Author turn 1/5. This is a credited classical consequence,
+not a novel resolution of an unsolved problem. See [PRIORITY_AUDIT.md](PRIORITY_AUDIT.md)
+for the exact equivalence, source chronology, and historical limits.
+
+The derivation below is retained as a useful independent exposition and rational
+verification implementation. Its mathematical Sections 1–7 are unchanged from
+the original 20-file submission, preserved byte for byte under
+`original_submission/`. The original independent reviews and their manifests
+refer to that archived original input, not a later edited proof. The source asks
+for a fairly explicit simultaneous stationary distribution; the displayed
+positive determinant sums and exact rational enclosure provide one defensible
+description. No proposer endorsement, worldwide historical firstness, or prior
+appearance of the identical rational wrapper is asserted.
+
+All solving and checking used AI tools extensively. This work is unrefereed;
+AI adversarial checks do not constitute human peer review. There is no preprint,
+Zenodo deposit or tracker entry for this credit correction.
 
 ## 1. Exact process and notation
 
