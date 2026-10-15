@@ -1,0 +1,119 @@
+{
+  "baseline": {
+    "numeric_id": true,
+    "actual_ledger_turns": true,
+    "turn_limit": true,
+    "proof_hash": true,
+    "model_matches": true,
+    "reasoning_matches": true,
+    "deadline_order": true,
+    "literal_scope": true,
+    "review_receipt": true
+  },
+  "mutants": [
+    {
+      "label": "wrong_numeric_id",
+      "where": "status",
+      "key": "id",
+      "value": 20001425,
+      "checks": {
+        "numeric_id": false,
+        "actual_ledger_turns": true,
+        "turn_limit": true,
+        "proof_hash": true,
+        "model_matches": true,
+        "reasoning_matches": true,
+        "deadline_order": true,
+        "literal_scope": true,
+        "review_receipt": true
+      },
+      "caught_by_audit_predicates": true,
+      "caught_by_original_verifiers": false,
+      "original_verifiers_do_not_read_metadata": true
+    },
+    {
+      "label": "hidden_extra_turn",
+      "where": "status",
+      "key": "turns_used",
+      "value": 2,
+      "checks": {
+        "numeric_id": true,
+        "actual_ledger_turns": false,
+        "turn_limit": true,
+        "proof_hash": true,
+        "model_matches": true,
+        "reasoning_matches": true,
+        "deadline_order": true,
+        "literal_scope": true,
+        "review_receipt": true
+      },
+      "caught_by_audit_predicates": true,
+      "caught_by_original_verifiers": false,
+      "original_verifiers_do_not_read_metadata": true
+    },
+    {
+      "label": "deadline_before_candidate",
+      "where": "readiness",
+      "key": "deadline_utc",
+      "value": "2026-09-30T05:10:00Z",
+      "checks": {
+        "numeric_id": true,
+        "actual_ledger_turns": true,
+        "turn_limit": true,
+        "proof_hash": true,
+        "model_matches": true,
+        "reasoning_matches": true,
+        "deadline_order": false,
+        "literal_scope": true,
+        "review_receipt": true
+      },
+      "caught_by_audit_predicates": true,
+      "caught_by_original_verifiers": false,
+      "original_verifiers_do_not_read_metadata": true
+    },
+    {
+      "label": "source_narrowed_to_odd_set",
+      "where": "source",
+      "key": "statement",
+      "value": "Are all PCF maps with odd postcritical sets defined over their field of moduli?",
+      "checks": {
+        "numeric_id": true,
+        "actual_ledger_turns": true,
+        "turn_limit": true,
+        "proof_hash": true,
+        "model_matches": true,
+        "reasoning_matches": true,
+        "deadline_order": true,
+        "literal_scope": false,
+        "review_receipt": true
+      },
+      "caught_by_audit_predicates": true,
+      "caught_by_original_verifiers": false,
+      "original_verifiers_do_not_read_metadata": true
+    },
+    {
+      "label": "stale_proof_hash",
+      "where": "status",
+      "key": "proof_sha256",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000",
+      "checks": {
+        "numeric_id": true,
+        "actual_ledger_turns": true,
+        "turn_limit": true,
+        "proof_hash": false,
+        "model_matches": true,
+        "reasoning_matches": true,
+        "deadline_order": true,
+        "literal_scope": true,
+        "review_receipt": true
+      },
+      "caught_by_audit_predicates": true,
+      "caught_by_original_verifiers": false,
+      "original_verifiers_do_not_read_metadata": true
+    }
+  ],
+  "policy_reasoning_budget": "queue policy says ultra, historical attempt records xhigh; metadata compatibility differs and no unrecorded upgrade is inferred",
+  "original_turns_preserved": 1,
+  "added_research_turns": 0,
+  "shared_queue_not_changed": true
+}

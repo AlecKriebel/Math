@@ -1,0 +1,5 @@
+# Reviewer harness diagnostic history
+
+The first local harness attempt stopped at Unix socket creation because the absolute assigned audit path exceeded AF_UNIX path length. The harness was corrected to bind the socket using its basename after a temporary working-directory change. This was a reviewer harness limitation, not an input failure.
+
+The next 158-control attempt reported unexpected success for the 44 first-loop missing/extra/type/mutation fixtures: inspection showed that the fixture-copy loop had omitted its call to the already defined mutate(root, mutation, outer) function. Those were intact positive fixtures mistakenly classified as negative tests. This was independently noticed during review and also flagged by the parent. The harness was corrected by inserting the mutation call and all controls rerun from fresh disposable copies. The earlier generated receipt was overwritten by the complete rerun; this log preserves the diagnostic history explicitly rather than misreporting the first run as a package rejection. Subsequent receipts identify actual mutations.

@@ -1,0 +1,26 @@
+# Query record (UTC 2026-10-01)
+
+All searches were read-only. No outreach or communication with individuals occurred. Queries used the web search tool; full responses reside only in ignored tmp/priority_exact/subsequent_checker/.
+
+| Batch | Exact query strings | Result and limitation |
+|---|---|---|
+| 1 | "On primary decomposition of Hermite projectors" Shekhtman; "On simultaneous similarity of families of commuting operators" Shekhtman | Primary MDPI/arXiv results plus discovery-only author/citation indexes. |
+| 2 | "Boris Shekhtman" "Hermite" 2025; "Boris Shekhtman" "complete intersection"; "Shektman" "Hermite" "Koszul"; "10.1007/s00365-015-9311-5" | 2023 primary decomposition is direct later citing work. New 2025 interpolation and 2026 ideal-complement leads delegated for independent inspection. No explicit Koszul criterion hit. |
+| 3 | "On one class of Hermite projectors" -site:researchgate.net -site:ebsco.com -site:scispace.com; "Shekhtman" "Koszul" "matrices"; "Shekhtman" "generated" "d" "commuting" "ideal" 2017 2018 2019 2020 2021 2022 2023 2024; "Hermite projectors" "complete intersection" | OWR original question and earlier de Boor/Shekhtman commuting-matrix smoothability papers; no exact-question later criterion surfaced. |
+| 4 | site:mdpi.com/2073-8994/15/9/1658 "Problem 2"; site:mdpi.com/2073-8994/15/9/1658 "matrices" "Theorem"; site:ams.org "16594" "2023" "Kouchekian" | MDPI HTML blocked by 403/429, so publisher PDF inspected locally. |
+| 5 | "On One class of Hermite projectors" "cited"; "10.1007/s00365-015-9311-5" -site:researchgate.net -site:ebsco.com; "Shekhtman" "complete intersection" "criterion"; "Shekhtman" "Hermite projectors" "Koszul" | Original paper/repository duplicates; no exact-question later criterion surfaced. |
+
+Direct read URLs and download errors are recorded in source_manifest.json and raw download manifests. Citation-index requests include Crossref original, primary-decomposition and similarity DOI records, OpenAlex original work W1698169260 and citing-work filter, and Semantic Scholar original DOI citation record. Citation indexes are discovery-only and cannot prove universal absence.
+
+| UTC interval / batch | Exact query strings | Result and limitation |
+|---|---|---|
+| Batch 6 | "On Primary Decomposition of Hermite Projectors" -site:researchgate.net -site:mdpi.com -site:scirate.com -site:arxiv.org -site:ebsco.com; "Hermite projectors" "Koszul" "criterion"; "complete intersection" "multiplication matrices" Shekhtman; "commuting matrices" "characterization of complete intersection" | No later exact answer surfaced; KLR algorithm lead passed to parent as local/strict CI source, outside my later-author family. |
+| Batch 7 | "Shektman" "complete intersection" "commuting"; "Shekhtman" "affine complete intersection" "matrix"; "Шехтман" "полное пересечение"; "Шектман" "коммутирующие матрицы" | No later exact primary answer; other Shekhtman identities/unrelated results. |
+| Batch 8 | "Boris Shekhtman" "ideal" 2026; "Boris Shektman" "projectors"; "Boris Shekhtman" "Koszul complex"; "B. Shekhtman" "rank criterion" | 2026 chapter lead; older interpolation and smoothability sources. |
+| Child 05:22:08–05:22:11 | "Shekhtman" "Koszul"; "Shektman" "Koszul"; "Шехтман" "нулевомерных"; "Полиномиальная интерполяция" "Шехтман" | No relevant exact-question primary result surfaced. |
+| Child 05:22:22–05:22:23 | "Polynomial interpolation on arbitrary varieties" "2025"; "On Linear Spaces with Ideal Complements" pdf; "Shekhtman" "multiplication matrices"; "Shekhtman" "complete intersection" | Located 2025 publisher fulltext; 2026 fulltext unavailable. |
+| Child 05:22:42–05:22:43 | "Шехтман" "полное пересечение"; "Шектман" "коммутирующие матрицы"; "Борис Шехтман" "идеал" "матрицы"; "Шехтман" "нулевомерный идеал" | No relevant exact-question primary result surfaced. |
+| Child 05:22:53–05:22:53 | "Shekhtman" "intersection complète" "matrices"; "Shekhtman" "vollständiger Durchschnitt"; "Shekhtman" "komutující matice"; "Шехтман" "коммутирующие матрицы" "идеал" | French, German, Czech and Russian variants did not surface an exact primary answer. |
+| Child 05:23:04–05:23:05 | "Шектман" "полное пересечение"; "Борис" "Шехтман" "коммутирующие матрицы"; "Шехтман" "матрицы умножения"; "нулевомерный идеал" "d" "образующих" "матрицы" | No relevant exact-question primary result surfaced. |
+| 2026 bounded access attempt, 05:25 UTC | "On Linear Spaces with Ideal Complements" pdf -site:springer.com; "On Linear Spaces with Ideal Complements" site:usf.edu; "On Linear Spaces with Ideal Complements" site:researchgate.net; "Shekhtman" "Ideal Complements" 2026 filetype:pdf | Publisher exposes only subscription preview; ResearchGate says no fulltext available and offers author request (not initiated); no author-university PDF surfaced. Access gap preserved. |
+| Combined-report adversarial review, 05:29 UTC | Mohan Kumar 1978 "Theorem 5" "complete intersections"; Mohan Kumar complete intersection ideals dimension zero polynomial ring 1978 efficiently generated | Primary2024 author paper restates threshold n>=dim(A/I)+2. Original1978fulltext was already parentverified; no new claim of original1978independentretrieval here. |

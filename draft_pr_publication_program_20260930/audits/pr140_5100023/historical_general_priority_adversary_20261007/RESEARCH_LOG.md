@@ -1,0 +1,5 @@
+# Historical/general priority research log
+
+- 2026-10-07T16:08:28.705950+00:00; PID17195: distinct family checkpoint frozen. Estimate35%. Scope, classical-construction distinctions and prospective extra bridge lemma recorded. Two preprint and two published primary PDFs plus2016 primary HTML retrieved in ignored storage. Initial bounded2016PDF attempts preserved as access/resource receipts, no full body saved.
+
+- 2026-10-07T16:28:09.850804+00:00; PID32071: final historical/general verdict frozen. Family estimate100% of the bounded assignment; overall case/priority incomplete. Actual12 private primary bodies verified against retrieval hashes plusROOTexisting companion pin. Added actual1878TheoremXXXI and actual2002 exactskew/isoperimetric theorem. Reviewer reduction uses candidateEq8, not prior full antipedal proof; historical full subsumption unestablished and novelty undetermined.18 exact controls passnormal/optimized; precursors preserved privately. No otherfamilyreports read, no forbidden mutations or outreach.

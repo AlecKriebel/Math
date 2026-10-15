@@ -1,0 +1,9 @@
+# PR193 exact target and audit scope
+
+The primary target is the at-most-three expectation for alpha>1 in Melotti, Ramassamy and Thevenin, Cube moves for s-embeddings and alpha-realizations (2023), Remark4.8, printedp811, DOI10.4171/AIHPD/163. The earlier OWR35/2020 report printedp1785 conjectures a maximum of three possible cube-move centers after Theorem4. Root checked the official full PDFs and visually inspected the relevant definition and statement pages.
+
+For a quad ABCD the required equation is AB^alpha+CD^alpha=AD^alpha+BC^alpha. The realization definition permits crossed faces. Definition2.5 requires six distinct fixed boundary vertices, with neither alternating triple collinear. Proper embeddings impose additional conditions and are a separate question. The submitted witness must satisfy every old and new quad equation, and its multiple outgoing centers must be actual distinct points in the same fixed instance. A numerical plot or unsupported assumption that a cube move exists is insufficient.
+
+The original proposes alpha16 and five centers via a one-variable residual, exact rational sign intervals, algebraically specified boundary vertices and a separately certified incoming center. These are hypotheses under audit. Three new independent families investigate primary-source geometry, alternate algebra/analysis, and independently implemented exact computation before author replay. Their final reports remain required; no mathematical, priority or publication clearance is issued here.
+
+The investigation does not identify the true maximum or settle proper embeddings. Source hash custody and current pagination are in ROOT_EXACT_PRIMARY_TARGET_01.json. Original19 files remain byte-exact/read-only, including historical status labels and prior-review claims. New independent audits do not inherit those judgments. Full primary bodies and their derivatives are private.

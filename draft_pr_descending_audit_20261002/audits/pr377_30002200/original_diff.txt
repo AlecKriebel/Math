@@ -1,0 +1,684 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 3259aaa7c..c964dabb1 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -413,7 +413,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
+ | 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | queued | 0/5 |  |  |  |
+-| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
++| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | already_solved | 0/5 |  |  |  |
+ | 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+ | 407 | 6600013 / AMR-065-0013 | A. Julien: Relationship between Complexity and Cohomology — Problem | 0.1374 | 6.0 | 4 | 2016 | queued | 0/5 |  |  |  |
+ | 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30002200/CREDITED_PROOF_GUIDE.md b/unsolved_math_prioritization/attempts/30002200/CREDITED_PROOF_GUIDE.md
+new file mode 100644
+index 000000000..72dd440f4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/CREDITED_PROOF_GUIDE.md
+@@ -0,0 +1,70 @@
++# Verification guide for the prior sharpness construction
++
++This is a source reconstruction of Franz's existing proof, restricted to the cases needed for the OWR question. The general classification of all length vectors is unnecessary. We use rational coefficients throughout.
++
++## 1. Geometry and source hypotheses
++
++For odd r=2m+1, set X={sum u_j=0} inside (S³)^r, with S³={(u,z) in C²: |u|²+|z|²=1}. The sum map to C is a submersion on its zero set. To see this directly, if some z_j is nonzero then the tangent u_j variation is arbitrary complex and its radial correction can be made through z_j. If every z_j vanishes, a failure of surjectivity would give a nonzero real linear functional on C annihilating each tangent line i u_j R. All u_j would then be ±v for one unit v. An odd number of these cannot sum to zero. Thus X is a closed regular level, compact and oriented, of dimension 3r−2.
++
++It is connected: scale all u_j continuously to zero and enlarge the moduli of the z_j to maintain the sphere equations, retaining each phase when defined and choosing any phase when its initial coordinate is zero. The endpoint lies in {u=0}, a connected torus. This gives a path for each initial point, not an asserted globally continuous deformation retraction.
++
++At u=0 and all z_j=1 the stabilizer is trivial, so the r-dimensional torus action is effective and really has full-dimensional orbits. All stabilizers are coordinate subtori, hence there are finitely many. The orbit skeletons are finite unions of real algebraic subsets and are semialgebraic, locally contractible, with finite-dimensional cohomology. The examples therefore satisfy the locally compact, second-countable, finite-dimensional, finite-orbit-type and cohomological conditions in Allday–Franz–Puppe Sections3.1,3.2 and Assumption4.1. Compact connected orientability supplies rational Poincaré duality.
++
++For even r=2m+2, ell=(0,1,...,1) gives exactly S³×X(1,...,1) for 2m+1 positive entries. The same conclusions follow by products. The zero length is permitted by Franz's genericity condition: the total positive length is odd, so no subset has half the total. If desired, replacing that zero by any epsilon in (0,1) stays in the same generic chamber, and Lemma2.1(3) identifies the equivariant diffeomorphism type. No positivity restriction is required by the OWR question.
++
++## 2. Equilateral Morse input and literal presentation cautions
++
++The needed geometric input is Franz's Lemmas3.1–3.2 in the equal-length case. Put V=S³, and consider f=-|sum u_j|² on V^r minus X. Critical manifolds P_J are circles, indexed by |J|<=m, with u_j=-v on J and u_j=v outside J, z=0. Their index is 3|J|. The negative normal directions are supplied by the submanifolds W_J, while V_J and W_J provide the two homology classes associated with each critical circle.
++
++For clarity, the index can be checked without relying on sign wording in the source. Write j=|J|, s_i=-1 on J and +1 elsewhere, q=r−2j>0. Near v=1 use
++
++    u_i=s_i exp(i theta_i) sqrt(1−|w_i|²), z_i=w_i.
++
++The quadratic part of f is
++
++    q sum_i s_i(theta_i²+|w_i|²) − (sum_i s_i theta_i)².
++
++Its w-block has 2j negative directions. Its theta-block has one zero direction (the critical circle), j negative directions and r−j−1 positive ones. Indeed, split off the common theta direction; on sum s_i theta_i=0 the form is q sum s_i theta_i², with that signature. Hence the total index is 3j, and the kernel is exactly tangent to P_J. On the tangent space to W_J transverse to P_J this quadratic form is negative definite.
++
++The printed derivative in equation(3.10) has the opposite sign from direct differentiation of f, and its minimum/maximum wording is not used here. Also, the unweighted function in equation(3.9) is used only for equal lengths. This restricted verification avoids extrapolating that display to arbitrary ell. It does not dispute or require the general classification theorem.
++
++The perfection argument in Lemma3.2 then applies as written: conjugating z_i supplies (Z/2)^r characters on the negative bundles. Distinct J give different characters, so boundary maps between successive critical levels vanish over Q. Thus H_*(V^r minus X;Q) has the stated V_J,W_J basis. This is a verification of the credited Morse argument, not an independent new construction.
++
++## 3. The equivariant map and Koszul modules
++
++Franz's Lemmas4.4–4.5 and Proposition4.6 give free equivariant homology modules on those geometric classes and the inclusion map
++
++    V_J -> V_J,
++    W_J -> sum_{i notin J} (-1)^{(J,i)} t_i V_{J union i}.
++
++The coefficient t_i is the equivariant Euler class of the normal complex line to the fixed S¹ in S³; the shuffle sign comes from the ordered product orientations. The resulting differential is exterior multiplication by sum t_i e_i.
++
++In the equilateral case, J is short precisely when |J|<=m. The identity part on V_J cancels. The only nontrivial middle map is the Koszul map from exterior degree m to m+1. Let K_j be the j-th syzygy of Q=R/(t_1,...,t_r), with grading shifts suppressed. Exactness and self-duality of the Koszul resolution give
++
++    coker(iota)=free summands ⊕ K_m,
++    ker(iota)=free summands ⊕ K_{m+2}.                    (A)
++
++The cohomology lies in the exact sequence
++
++    0 -> coker(iota)[3r] -> H_T^*(X)
++         -> ker(iota)[3r−1] -> 0.                        (B)
++
++These are precisely the calculation behind corrected Proposition5.1. Omitting the shifts in (A) does not change syzygy order.
++
++For an additional check of the corrected grading, the two nonfree summands in Proposition5.1 specialize at a=b=1 to K_m[3m] and K_{m+2}[3m+3]. The free summands have shifts 3|J| for |J|<m and 3|J|−2 for |J|>m+1. The odd difference between the two Koszul shifts removes their graded extension. The only possible extension of K_{m+2} by a free summand occurs when m=2, r=5; the relevant free target shifts are 10 and 13, differing from 9 by 1 and 4, rather than the exceptional difference 2. Allday–Franz–Puppe Lemma2.4 therefore also verifies the split description used by Franz.
++
++One can recover the order from (A)–(B) without any grading issue. The Koszul resolution is exact because the variables form a regular sequence, and is minimal at the homogeneous maximal ideal. Thus K_j has projective dimension r−j and depth j there, and syzygy order exactly j. The class of m-th syzygies is closed under extensions, by the localized depth characterization. In (B), the left term has depth m and the right term depth at least m+2 at the maximal ideal. The depth lemma gives depth m for H_T^*(X), so it is an m-th syzygy but not an (m+1)-st. In particular it is not free. This is the same order conclusion as Proposition5.1; it is not a substitute general classification.
++
++## 4. Even-rank extension
++
++For the additional sphere factor let S¹ act on S³ by multiplying z and fixing u. Its Borel construction is the sphere bundle of the complex rank-two bundle 1⊕L over BS¹. Its Euler class is zero. The Gysin sequence consequently expresses H_{S¹}^*(S³;Q) as the free Q[t]-module Q[t]⊕Q[t][3].
++
++The equivariant Künneth formula gives a direct sum of two shifts of H_{T'}^*(X_odd)⊗Q[t]. Polynomial extension preserves the syzygy order: tensoring a free resolution proves the lower bound, and a regular sequence witnessing failure at the next order remains nonregular after this faithful extension. This is Franz's Lemma5.2, used in Corollary5.3. Therefore the even example has the same exact order m, now with rank r=2m+2.
++
++For all r>=5, m=floor((r−1)/2)<r, and the examples realize exactly the requested nonfree maximum.
++
++## 5. Checked dependencies and limits
++
++Read in full for the relevant chain: Franz's construction and Lemma2.1; equilateral Lemmas3.1–3.2; Lemmas4.4–4.5 and Proposition4.6; Koszul discussion, corrected Proposition5.1, Lemma5.2 and Corollary5.3. The standard equivariant duality and module criteria used there are credited established inputs. Allday–Franz–Puppe Lemma2.4, Corollary1.4 and the proof of Proposition5.12 were checked directly.
++
++Franz–Huang Theorem1.2 and its coefficient convention give a later corroboration, but the full general-length proof is not needed or claimed as independently reconstructed in this packet. The finite checker tests parity, subset patterns, Koszul signs and the explicit Hessian; it does not certify arbitrary-rank topology through finite enumeration. The all-rank conclusion comes from the analytic argument and the cited primary theorem.
+diff --git a/unsolved_math_prioritization/attempts/30002200/CURRENT_STATE.json b/unsolved_math_prioritization/attempts/30002200/CURRENT_STATE.json
+new file mode 100644
+index 000000000..e88acb35b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/CURRENT_STATE.json
+@@ -0,0 +1,10 @@
++{
++  "problem_id": 30002200,
++  "author_turns": 0,
++  "turn_budget": 5,
++  "proposed_status": "already_solved",
++  "disposition_basis": "credited published prior construction, source reconstruction only",
++  "claim": "sharp nonfree syzygy order floor((r-1)/2) realized over Q for every r>=5",
++  "independent_review_pending": true,
++  "new_result_claimed": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/FINAL_SOURCE_MANIFEST.json b/unsolved_math_prioritization/attempts/30002200/FINAL_SOURCE_MANIFEST.json
+new file mode 100644
+index 000000000..8c9d1df5b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/FINAL_SOURCE_MANIFEST.json
+@@ -0,0 +1,57 @@
++{
++  "problem_id": 30002200,
++  "author_turns": 0,
++  "proposed_status": "already_solved",
++  "files": [
++    {
++      "path": "CREDITED_PROOF_GUIDE.md",
++      "bytes": 8533,
++      "sha256": "6a146feec392237f4cc991be30569e9907676186fd3ff83fc92cee152d0ef4ed"
++    },
++    {
++      "path": "CURRENT_STATE.json",
++      "bytes": 357,
++      "sha256": "6a6e38f60694ea0ede7fe6b641f59bce93497862c182062fc9cc372215917d9d"
++    },
++    {
++      "path": "PRIOR_GATE.json",
++      "bytes": 594,
++      "sha256": "f73e0a0288d35750f32467fa6176e987e73043d331e802f8ac8f10267a624cf9"
++    },
++    {
++      "path": "README.md",
++      "bytes": 869,
++      "sha256": "45433b745e0c954914f5c556c8aebcaf2a58f24469cac1d6c6a4f4c1b9850838"
++    },
++    {
++      "path": "REPLAY.json",
++      "bytes": 131,
++      "sha256": "c892e1502f76b581cb978bc9ebc617a0125e9a42e4c9a38538b8ee91978498eb"
++    },
++    {
++      "path": "REVIEW_REQUEST.md",
++      "bytes": 1538,
++      "sha256": "330c1f8b6b976b4e956fddf25a3c905fdc71ec339a46ab8d83072e3b6f28a14a"
++    },
++    {
++      "path": "SOURCE_CASE_CHECKS.json",
++      "bytes": 192,
++      "sha256": "f6ff3d76e1e7acb299b233e911d49a6ce49de45be212465ebe2aade25aeea1c5"
++    },
++    {
++      "path": "SOURCE_MANIFEST.json",
++      "bytes": 1410,
++      "sha256": "ac50e99e2c3136e755af043802ddf2777634a850a75c7919eaa043ab5aa2437f"
++    },
++    {
++      "path": "SOURCE_RESOLUTION.md",
++      "bytes": 3586,
++      "sha256": "133445b0a01b0e3485bd84b982b6e487135545545d16730642d6d813ccd418d4"
++    },
++    {
++      "path": "verify_source_cases.py",
++      "bytes": 2313,
++      "sha256": "fe21be52edaf2cd53317673995153b206581340bbaf3f8514d99bc9a1804ecaa"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/PRIOR_GATE.json b/unsolved_math_prioritization/attempts/30002200/PRIOR_GATE.json
+new file mode 100644
+index 000000000..a44214d8f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/PRIOR_GATE.json
+@@ -0,0 +1,24 @@
++{
++  "problem_id": 30002200,
++  "alias": "OWR-12172-003",
++  "rank": 405,
++  "main": "efd29c05204703acca9a0860812f54b94fae54b1",
++  "queue_at_gate": "queued 0/5",
++  "mirrored_refs": 475,
++  "live_branches": 419,
++  "queries": [
++    "30002200",
++    "OWR-12172-003",
++    "syzygy",
++    "big polygon",
++    "equivariant cohomology"
++  ],
++  "target_path_histories": 0,
++  "matching_prior_proof_attempts": 0,
++  "matching_invalidations": 0,
++  "related_imported_torus_syzygy_records": [
++    30002200
++  ],
++  "all_blob_fulltext_exhaustive": false,
++  "pinned_revision": "37e53eabe540fb458758e198be61634bd02ee008"
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/PUBLICATION.md b/unsolved_math_prioritization/attempts/30002200/PUBLICATION.md
+new file mode 100644
+index 000000000..45ec9d914
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/PUBLICATION.md
+@@ -0,0 +1,17 @@
++# Credited prior resolution: already solved, 0/5
++
++Matthias Franz's published big polygon spaces answer the exact source sharpness question affirmatively for every rational torus rank r>=5. This is a verification of that prior result, with no new author proof turn or novelty claim.
++
++Odd ranks use the equilateral big polygon space; even ranks add the sphere factor corresponding to one zero length. The rational equivariant cohomology is nonfree and has exact syzygy order floor((r−1)/2). The corrected 2023 author version of the 2015 IMRN paper is used, with the 2020 Franz–Huang theorem as corroboration.
++
++All 11 author files and five independent review files remain unchanged. The source rank typo, Morse sign wording and corrected Koszul degree shifts are retained explicitly. The review checks the exact source hypotheses, required geometric/Morse/equivariant/Koszul/product chain and every requested rank. It does not claim minimal dimension or integral/positive-characteristic extensions.
++
++The source reconstruction and separate audit were AI-assisted, using primary papers, Python and SymPy. Finite controls support the mathematical verification and do not prove arbitrary-rank topology by enumeration. Source PDFs are linked and hash-bound rather than redistributed.
++
++Run with Python 3 and SymPy:
++
++    python verify_publication.py
++
++Author head: 5ba83eccde1e5a5655d199fc3abb47a277f82b31.
++Author manifest: 2b15a00aeb0addb5650793dc8ce1783d4e1416b9181d99bea7fe9edaa96af324.
++Review manifest: 77ad130b466f55cce9e79ce3778bd33f43884cfb1cf0de6d890f1c931df31ec8.
+diff --git a/unsolved_math_prioritization/attempts/30002200/PUBLICATION_MANIFEST.json b/unsolved_math_prioritization/attempts/30002200/PUBLICATION_MANIFEST.json
+new file mode 100644
+index 000000000..c1ff1d79b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/PUBLICATION_MANIFEST.json
+@@ -0,0 +1,97 @@
++{
++  "problem_id": 30002200,
++  "status": "already_solved",
++  "author_turns": 0,
++  "files": [
++    {
++      "path": "CREDITED_PROOF_GUIDE.md",
++      "bytes": 8533,
++      "sha256": "6a146feec392237f4cc991be30569e9907676186fd3ff83fc92cee152d0ef4ed"
++    },
++    {
++      "path": "CURRENT_STATE.json",
++      "bytes": 357,
++      "sha256": "6a6e38f60694ea0ede7fe6b641f59bce93497862c182062fc9cc372215917d9d"
++    },
++    {
++      "path": "FINAL_SOURCE_MANIFEST.json",
++      "bytes": 1629,
++      "sha256": "2b15a00aeb0addb5650793dc8ce1783d4e1416b9181d99bea7fe9edaa96af324"
++    },
++    {
++      "path": "PRIOR_GATE.json",
++      "bytes": 594,
++      "sha256": "f73e0a0288d35750f32467fa6176e987e73043d331e802f8ac8f10267a624cf9"
++    },
++    {
++      "path": "PUBLICATION.md",
++      "bytes": 1566,
++      "sha256": "214ad8e0e2dd3cd09a7dceada79a882144a54e8e6ed17c6810b70649efea9601"
++    },
++    {
++      "path": "README.md",
++      "bytes": 869,
++      "sha256": "45433b745e0c954914f5c556c8aebcaf2a58f24469cac1d6c6a4f4c1b9850838"
++    },
++    {
++      "path": "REPLAY.json",
++      "bytes": 131,
++      "sha256": "c892e1502f76b581cb978bc9ebc617a0125e9a42e4c9a38538b8ee91978498eb"
++    },
++    {
++      "path": "REVIEW_REQUEST.md",
++      "bytes": 1538,
++      "sha256": "330c1f8b6b976b4e956fddf25a3c905fdc71ec339a46ab8d83072e3b6f28a14a"
++    },
++    {
++      "path": "SOURCE_CASE_CHECKS.json",
++      "bytes": 192,
++      "sha256": "f6ff3d76e1e7acb299b233e911d49a6ce49de45be212465ebe2aade25aeea1c5"
++    },
++    {
++      "path": "SOURCE_MANIFEST.json",
++      "bytes": 1410,
++      "sha256": "ac50e99e2c3136e755af043802ddf2777634a850a75c7919eaa043ab5aa2437f"
++    },
++    {
++      "path": "SOURCE_RESOLUTION.md",
++      "bytes": 3586,
++      "sha256": "133445b0a01b0e3485bd84b982b6e487135545545d16730642d6d813ccd418d4"
++    },
++    {
++      "path": "review/AUTHOR_REPLAY.json",
++      "bytes": 192,
++      "sha256": "f6ff3d76e1e7acb299b233e911d49a6ce49de45be212465ebe2aade25aeea1c5"
++    },
++    {
++      "path": "review/INDEPENDENT_CHECKS.json",
++      "bytes": 272,
++      "sha256": "29954952b131dfa5407ea40c91b3f6e3a10af5e4aab54d4f8ce4b95d6b9a07fb"
++    },
++    {
++      "path": "review/REVIEW.md",
++      "bytes": 5421,
++      "sha256": "576fe906968bb3c3ca0bd34d079750ec9b00c36ff77bf2dba9402e48aa05973c"
++    },
++    {
++      "path": "review/REVIEW_MANIFEST.json",
++      "bytes": 804,
++      "sha256": "77ad130b466f55cce9e79ce3778bd33f43884cfb1cf0de6d890f1c931df31ec8"
++    },
++    {
++      "path": "review/independent_check.py",
++      "bytes": 1550,
++      "sha256": "801f8e7689f3d55beabfbd272e53e85f1057d5bb80a615faf1b5bba330dca568"
++    },
++    {
++      "path": "verify_publication.py",
++      "bytes": 841,
++      "sha256": "a1169ea5d95a0a09787e4ea665e8c6b4c3a1871cf4cc0d814cf51b0216a71e35"
++    },
++    {
++      "path": "verify_source_cases.py",
++      "bytes": 2313,
++      "sha256": "fe21be52edaf2cd53317673995153b206581340bbaf3f8514d99bc9a1804ecaa"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/README.md b/unsolved_math_prioritization/attempts/30002200/README.md
+new file mode 100644
+index 000000000..bbf6903f1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/README.md
+@@ -0,0 +1,11 @@
++# Credited source-resolution packet
++
++Read SOURCE_RESOLUTION.md, then CREDITED_PROOF_GUIDE.md. The proposed status is already_solved, zero author turns: the existence theorem is Franz's published prior result, with the corrected author version used for verification.
++
++The two source notation/presentation cautions are explicit. Only the odd equilateral construction and even product extension are required; there is no claim to have independently reconstructed every general-length or positive-characteristic theorem.
++
++Run the finite control with Python 3 and SymPy (checked with version1.14.0):
++
++    python verify_source_cases.py
++
++Its output must match SOURCE_CASE_CHECKS.json. The source URLs and SHA-256 hashes are bound separately; raw papers and rendered pages are not part of this public packet. The finite controls do not replace the all-rank mathematical proof.
+diff --git a/unsolved_math_prioritization/attempts/30002200/REPLAY.json b/unsolved_math_prioritization/attempts/30002200/REPLAY.json
+new file mode 100644
+index 000000000..a69018167
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/REPLAY.json
+@@ -0,0 +1,6 @@
++{
++  "source_pdfs_byte_exact": 4,
++  "checker_receipt_byte_exact": true,
++  "exact_assertions": 358064,
++  "sympy_version": "1.14.0"
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/REVIEW_REQUEST.md b/unsolved_math_prioritization/attempts/30002200/REVIEW_REQUEST.md
+new file mode 100644
+index 000000000..941888136
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/REVIEW_REQUEST.md
+@@ -0,0 +1,11 @@
++# Independent source/proof review request
++
++Proposed credited prior-resolution disposition: already_solved, 0/5. Check the exact rational Poincaré-duality question against OWR49/2012 pp2954–2956 and the rank typo against Allday–Franz–Puppe Corollary1.4.
++
++Verify that every r>=5 is covered by the corrected Franz construction, with a=b=1, all-one length vector for odd r and one zero followed by odd-many ones for even r. Check compactness, smoothness, orientability, connectedness, effective rank, finite coordinate isotropy types and semialgebraic orbit skeletons.
++
++The proof guide restricts the source's Morse argument to the equilateral case, verifies its Hessian directly, tracks the Koszul kernel/cokernel and corrected degree shifts, and verifies the sphere-product extension. It explicitly flags the derivative/minimum-maximum wording instead of silently inheriting it. The depth-lemma argument avoids dependence on grading for the exact-order conclusion.
++
++Primary PDFs/text and rendered source pages are in the sibling source directory and are hash-bound by SOURCE_MANIFEST.json. The later Franz–Huang theorem is corroboration; its complete general-vector proof is not claimed as newly reconstructed. No novelty, minimal-dimension or integral/positive-characteristic assertion is proposed.
++
++The finite checker replays 358,064 exact assertions. This is supporting algebra/combinatorics, not an all-rank topological certificate. All files are frozen by FINAL_SOURCE_MANIFEST.json; return any required correction additively.
+diff --git a/unsolved_math_prioritization/attempts/30002200/SOURCE_CASE_CHECKS.json b/unsolved_math_prioritization/attempts/30002200/SOURCE_CASE_CHECKS.json
+new file mode 100644
+index 000000000..d18cfe5d7
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/SOURCE_CASE_CHECKS.json
+@@ -0,0 +1,7 @@
++{
++  "exact_assertions": 358064,
++  "length_subset_cases": 131040,
++  "symbolic_hessian_cases": 35,
++  "formal_koszul_square_cases": 8100,
++  "all_rank_topology_proved_by_finite_controls": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/SOURCE_MANIFEST.json b/unsolved_math_prioritization/attempts/30002200/SOURCE_MANIFEST.json
+new file mode 100644
+index 000000000..363947da4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/SOURCE_MANIFEST.json
+@@ -0,0 +1,34 @@
++{
++  "problem_id": 30002200,
++  "accessed": "2026-10-02",
++  "sources": [
++    {
++      "file": "OWR_2012_49.pdf",
++      "url": "https://ems.press/content/serial-article-files/46421?nt=1",
++      "bytes": 458283,
++      "sha256": "93682c62a8049a0a20ee8ea8352fe26378d3eb0ca0e770149696a6389a6bfe73",
++      "checked_scope": "full Franz contribution2954-2956; visual2955-2956"
++    },
++    {
++      "file": "Franz_2015_corrected_2023.pdf",
++      "url": "https://arxiv.org/pdf/1403.4485v4",
++      "bytes": 318396,
++      "sha256": "aa2866827acb2dbc8db7d464facc878f9e1f45b5a38b37842bd534f5c55516a3",
++      "checked_scope": "corrected v4(2023), relevant construction/Morse/equivariant/Koszul/product proof chain; visual5,13"
++    },
++    {
++      "file": "Franz_Huang_2020.pdf",
++      "url": "https://msp.org/agt/2020/20-5/agt-v20-n5-p12-s.pdf",
++      "bytes": 373944,
++      "sha256": "58ba540ad7424be1900ed8e9bc7ac4e7ae9fd71fd96c3ca793e884ea87595fc6",
++      "checked_scope": "later general theorem1.2 and characteristic-zero convention; corroboration, not full general-proof reconstruction"
++    },
++    {
++      "file": "Allday_Franz_Puppe.pdf",
++      "url": "https://arxiv.org/pdf/1111.0957v2",
++      "bytes": 343895,
++      "sha256": "cc310c9404c6e215d221bab0f249f6352e1aeabc135fb1e0668e704b337184d8",
++      "checked_scope": "v2(2013), source hypotheses, Cor1.4, Lemma2.4, proofProp5.12 and its indicated dependencies"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/SOURCE_RESOLUTION.md b/unsolved_math_prioritization/attempts/30002200/SOURCE_RESOLUTION.md
+new file mode 100644
+index 000000000..6d0e7cb46
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/SOURCE_RESOLUTION.md
+@@ -0,0 +1,36 @@
++# 30002200 / OWR-12172-003: credited prior positive answer
++
++**Proposed disposition: already solved, 0/5 author turns.** The sharp nonfree syzygy bound is realized for every requested torus rank by Matthias Franz's big polygon spaces. This packet verifies the source match and reconstructs the relevant published construction; it is not a new solution or novelty claim.
++
++## Exact question
++
++The complete Franz contribution, “Equivariant cohomology, syzygies and orbit structure,” is on OWR49/2012 pp2954–2956 (report published 7 August 2013). It fixes T=(S¹)^r and rational Borel equivariant cohomology over R=Q[t_1,...,t_r]. For rational Poincaré duality spaces, nonfree equivariant cohomology has syzygy order at most floor((r−1)/2). The text asks whether this is sharp for r>=5.
++
++The original displays on pp2955–2956 contain an undeclared n; the surrounding torus-rank notation is r. This is not interpreted as the manifold dimension. The primary Allday–Franz–Puppe Corollary1.4 and Proposition5.12 explicitly use r/2, resolving that typographical mismatch. The “mild” topological hypotheses are recovered from their Sections3.1,3.2 and Assumption4.1. They are satisfied by the compact smooth algebraic examples below, including their orbit skeletons.
++
++The requested numeric UnsolvedMath page failed direct retrieval. Its pinned record was checked against these primary pages, including visual inspection of pp2955–2956. No additional free-action, almost-free-action, fixed dimension, integral-coefficient or positive-characteristic requirement appears in the question.
++
++## Prior answer and every rank
++
++Use Franz, *Big polygon spaces*, IMRN2015, 13379–13405, DOI10.1093/imrn/rnv090. The checked author version is arXiv:1403.4485v4 (12June2023), which corrects degree shifts in Proposition5.1. Its characteristic-zero convention includes Q.
++
++Set a=b=1. For odd r=2m+1 take the equal length vector (1,...,1); for even r=2m+2 take (0,1,...,1). In both cases define
++
++    X(ell)={ (u,z) in (C×C)^r :
++             |u_j|²+|z_j|²=1 for every j,
++             sum_j ell_j u_j=0 }.
++
++T acts by coordinatewise multiplication on z. These are compact connected orientable smooth manifolds of dimension 3r−2. Proposition5.1 and Corollary5.3 give syzygy order exactly m=floor((r−1)/2), so the module is nonfree and attains the bound. The even example is S³ times the odd example with the additional circle acting on its sphere factor.
++
++The relevant construction and proof chain, including its algebraic and geometric checks, is recorded in CREDITED_PROOF_GUIDE.md. The later Franz–Huang paper in AGT20(2020),2657–2675, Theorem1.2, determines the order for all generic length vectors and corroborates these cases. Its introduction uses real coefficients, but Section2 explicitly permits every characteristic-zero field. No coefficient-extension inference is needed for the rational result.
++
++## Scope of this gate
++
++The supplied dated “open” triage is superseded by this direct primary answer. Current literature and repository checks are bounded, not an exhaustive novelty certification. Minimal possible dimension for realizing maximal syzygy order is a different question and is not resolved here. No new author proof turn was opened: source retrieval, verification, reconstruction, finite controls and packaging remain at zero turns.
++
++Primary links:
++- https://ems.press/journals/owr/articles/12172
++- https://arxiv.org/pdf/1111.0957v2
++- https://arxiv.org/pdf/1403.4485v4
++- https://doi.org/10.1093/imrn/rnv090
++- https://msp.org/agt/2020/20-5/agt-v20-n5-p12-s.pdf
+diff --git a/unsolved_math_prioritization/attempts/30002200/review/AUTHOR_REPLAY.json b/unsolved_math_prioritization/attempts/30002200/review/AUTHOR_REPLAY.json
+new file mode 100644
+index 000000000..d18cfe5d7
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/review/AUTHOR_REPLAY.json
+@@ -0,0 +1,7 @@
++{
++  "exact_assertions": 358064,
++  "length_subset_cases": 131040,
++  "symbolic_hessian_cases": 35,
++  "formal_koszul_square_cases": 8100,
++  "all_rank_topology_proved_by_finite_controls": false
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/review/INDEPENDENT_CHECKS.json b/unsolved_math_prioritization/attempts/30002200/review/INDEPENDENT_CHECKS.json
+new file mode 100644
+index 000000000..d3a5ffd4a
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/review/INDEPENDENT_CHECKS.json
+@@ -0,0 +1,5 @@
++{
++  "status": "PASS",
++  "independent_assertions": 983,
++  "scope": "Independent exact angular-Hessian characteristic polynomials, Koszul signs, rank parities and corrected shifts. The all-rank topology and syzygy result are credited primary theorems audited separately."
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/review/REVIEW.md b/unsolved_math_prioritization/attempts/30002200/review/REVIEW.md
+new file mode 100644
+index 000000000..383d706b1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/review/REVIEW.md
+@@ -0,0 +1,33 @@
++# Independent review: sharp syzygy bounds for torus actions
++
++PASS: the exact requested sharpness has a credited prior positive answer for every rank r>=5. Recommended disposition is already_solved, 0/5 author turns. This packet reconstructs Matthias Franz's published construction; it does not claim a new solution, minimal dimension, integral coefficients or positive-characteristic result.
++
++The frozen author packet is bound by FINAL_SOURCE_MANIFEST SHA256 2b15a00aeb0addb5650793dc8ce1783d4e1416b9181d99bea7fe9edaa96af324, backed up at 5ba83eccde1e5a5655d199fc3abb47a277f82b31.
++
++## Source match
++
++The original OWR pages 2955–2956 were visually inspected together with the surrounding rank and rational-coefficient setup. The question asks whether the nonfree bound is sharp for torus ranks at least five. The report's undeclared n is correctly interpreted using the primary Allday–Franz–Puppe Corollary 1.4 and Proposition 5.12, which explicitly say r/2. It is not a manifold-dimension parameter.
++
++Franz's corrected 2023 version of Big polygon spaces states Proposition 5.1 for odd equilateral rank and Corollary 5.3 for arbitrary rank with zero-length sphere factors. Its coefficient convention is every characteristic-zero field, so Q is directly covered. The 2020 Franz–Huang general theorem and its own characteristic-zero convention were checked as corroboration, not used to replace the needed proof with a broader unreviewed classification.
++
++## Geometric realization
++
++For the equilateral odd rank, the sum map on the product of three-spheres is a submersion on its zero set. A nonzero z coordinate permits arbitrary complex u variation; when all z vanish, a nonzero annihilating real functional would force an odd number of signed collinear unit vectors to sum to zero, impossible. Compactness, smoothness and orientability follow. The pathwise scaling argument proves connectedness without asserting a continuous global choice of phases or a deformation retraction.
++
++The point with all u zero and all z equal to one has trivial stabilizer, so the action has the requested effective torus rank. Stabilizers are coordinate subtori; orbit skeletons are semialgebraic and satisfy the stated finiteness and local topological hypotheses. The even-rank example is precisely an extra S3 factor times the odd example. Its zero length is generic and permitted; a small positive replacement lies in the same chamber if desired. No additional almost-free or dimension restriction is inserted.
++
++## Relevant published proof chain
++
++I read the equilateral portions of Lemmas 3.1–3.2, the geometric cycle definitions, Lemmas 4.2, 4.4–4.5, Proposition 4.6, the Koszul calculation, corrected Proposition 5.1, Lemma 5.2 and Corollary 5.3. The source's literal sign/minimum wording is not inherited blindly: the displayed local quadratic form independently has exactly 3|J| negative directions and a one-dimensional critical-circle kernel. The angular form splits into the common direction and its signed-orthogonal hyperplane, giving the claimed signature. The character argument then distinguishes the negative-bundle orientations at distinct critical strata and kills the Morse boundary maps over Q. This verification is restricted to the equilateral case and makes no unsupported use of the unweighted function for general lengths.
++
++The equivariant inclusion map has the stated Euler-class coefficients and shuffle signs. Its kernel and cokernel are the required Koszul syzygies plus free summands, and equivariant duality gives the short exact sequence. The corrected a=b=1 shifts are 3m and 3m+3. The potentially exceptional free extension at r=5 has shift differences 1 and 4, not 2, agreeing with AFP Lemma 2.4.
++
++The exact-order conclusion also follows without any grading-sensitive splitting: at the homogeneous maximal ideal the left nonfree summand has depth m and the right has depth at least m+2. The depth lemma and the localized syzygy criterion give order exactly m and nonfreeness. The Koszul indices used for r>=5 are strictly below the free terminal index. Standard equivariant duality, regular-sequence/Koszul exactness and localized depth criteria remain explicit credited foundations, not re-proved topology from finite tests.
++
++For the extra circle acting on S3, the Borel sphere bundle of 1 plus the universal complex line has zero Euler class and a free two-summand equivariant cohomology module. Equivariant Künneth and faithful polynomial extension preserve the exact order. Failure of the next regular sequence is retained; one does not incorrectly infer the order solely from depth at the larger full maximal ideal. Thus every odd and even requested rank is covered.
++
++## Reproduction and conclusion
++
++All frozen file bindings and four primary PDF hashes verify. The 358,064 author controls replay byte-exact. An independent SymPy checker adds 983 exact controls for angular-Hessian characteristic polynomials, Koszul signs, parity and corrected shifts. These supplement the reviewed all-rank construction and published theorem; they do not prove topology by finite enumeration.
++
++The answer to the original sharpness question is yes, already supplied by Franz's big polygon spaces. Publish as a credited prior resolution at zero author turns, with the narrow source cautions and correction history retained. No unresolved mathematical gap remains within this exact existence/sharpness request.
+diff --git a/unsolved_math_prioritization/attempts/30002200/review/REVIEW_MANIFEST.json b/unsolved_math_prioritization/attempts/30002200/review/REVIEW_MANIFEST.json
+new file mode 100644
+index 000000000..ee14a4761
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/review/REVIEW_MANIFEST.json
+@@ -0,0 +1,27 @@
++{
++  "problem_id": 30002200,
++  "verdict": "PASS_CREDITED_PRIOR_RESOLUTION_0_OF_5",
++  "author_manifest_sha256": "2b15a00aeb0addb5650793dc8ce1783d4e1416b9181d99bea7fe9edaa96af324",
++  "files": [
++    {
++      "path": "REVIEW.md",
++      "bytes": 5421,
++      "sha256": "576fe906968bb3c3ca0bd34d079750ec9b00c36ff77bf2dba9402e48aa05973c"
++    },
++    {
++      "path": "AUTHOR_REPLAY.json",
++      "bytes": 192,
++      "sha256": "f6ff3d76e1e7acb299b233e911d49a6ce49de45be212465ebe2aade25aeea1c5"
++    },
++    {
++      "path": "INDEPENDENT_CHECKS.json",
++      "bytes": 272,
++      "sha256": "29954952b131dfa5407ea40c91b3f6e3a10af5e4aab54d4f8ce4b95d6b9a07fb"
++    },
++    {
++      "path": "independent_check.py",
++      "bytes": 1550,
++      "sha256": "801f8e7689f3d55beabfbd272e53e85f1057d5bb80a615faf1b5bba330dca568"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/30002200/review/independent_check.py b/unsolved_math_prioritization/attempts/30002200/review/independent_check.py
+new file mode 100644
+index 000000000..d7edb379d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/review/independent_check.py
+@@ -0,0 +1,34 @@
++import sympy as S,itertools,json
++N=0
++def ck(v):
++ global N
++ assert v;N+=1
++t=S.symbols('t')
++# Independent exact characteristic-polynomial proof controls for the equilateral angular Hessian.
++for r in range(5,16,2):
++ for j in range((r-1)//2+1):
++  signs=[-1]*j+[1]*(r-j);q=r-2*j;v=S.Matrix(signs)
++  H=q*S.diag(*signs)-v*v.T
++  target=t*(t-r)**(r-1) if j==0 else t*(t+r)*(t+q)**(j-1)*(t-q)**(r-j-1)
++  ck(S.Poly(H.charpoly().as_expr()).all_coeffs()==S.Poly(target,t).all_coeffs())
++  ck(H*S.ones(r,1)==S.zeros(r,1));ck(q>0)
++  ck(j+2*j==3*j)
++# Koszul exterior multiplication squares to zero by an independently generated signed basis.
++for r in range(2,9):
++ for size in range(r-1):
++  for J in itertools.combinations(range(r),size):
++   out={}
++   for a in range(r):
++    if a in J:continue
++    I=tuple(sorted(J+(a,)));sa=(-1)**sum(i>a for i in J)
++    for b in range(r):
++     if b in I:continue
++     K=tuple(sorted(I+(b,)));sb=(-1)**sum(i>b for i in I);key=(K,tuple(sorted((a,b))))
++     out[key]=out.get(key,0)+sa*sb
++   ck(all(x==0 for x in out.values()))
++# All requested rank parities and the corrected special-case shifts.
++for r in range(5,101):
++ m=(r-1)//2;ck(m< S.Rational(r,2));ck(2*m+1 in [r,r-1]);ck(m+2<2*m+1)
++ ck((m+2)*3-2*1-1==3*m+3)
++ck([3*j-2-9 for j in [4,5]]==[1,4])
++print(json.dumps({'status':'PASS','independent_assertions':N,'scope':'Independent exact angular-Hessian characteristic polynomials, Koszul signs, rank parities and corrected shifts. The all-rank topology and syzygy result are credited primary theorems audited separately.'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30002200/verify_publication.py b/unsolved_math_prioritization/attempts/30002200/verify_publication.py
+new file mode 100644
+index 000000000..8686e0f14
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/verify_publication.py
+@@ -0,0 +1,11 @@
++from pathlib import Path
++import hashlib,json,subprocess,sys
++p=Path(__file__).resolve().parent
++for manifest,root in [(p/'PUBLICATION_MANIFEST.json',p),(p/'FINAL_SOURCE_MANIFEST.json',p),(p/'review/REVIEW_MANIFEST.json',p/'review')]:
++ for e in json.loads(manifest.read_text())['files']:
++  b=(root/e['path']).read_bytes()
++  assert len(b)==e['bytes'] and hashlib.sha256(b).hexdigest()==e['sha256'],(manifest.name,e['path'])
++for script,receipt in [('verify_source_cases.py','SOURCE_CASE_CHECKS.json'),('review/independent_check.py','review/INDEPENDENT_CHECKS.json')]:
++ out=subprocess.check_output([sys.executable,str(p/script)])
++ assert out==(p/receipt).read_bytes(),script
++print(json.dumps({'publication_bound_files':18,'frozen_author_files':11,'frozen_review_files':5,'receipts_byte_exact':True,'source_pdfs_reverified':False},sort_keys=True))
+diff --git a/unsolved_math_prioritization/attempts/30002200/verify_source_cases.py b/unsolved_math_prioritization/attempts/30002200/verify_source_cases.py
+new file mode 100644
+index 000000000..22db18fbc
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30002200/verify_source_cases.py
+@@ -0,0 +1,60 @@
++#!/usr/bin/env python3
++"""Exact finite controls for the credited source reconstruction."""
++from itertools import combinations
++import json
++import sympy as sp
++checks=0;lengthcases=0;hessiancases=0;koszulcases=0
++for r in range(5,17):
++ m=(r-1)//2
++ ell=[1]*r if r%2 else [0]+[1]*(r-1)
++ total=sum(ell);assert total==2*m+1;checks+=1
++ positive=[]
++ for mask in range(1<<r):
++  J=[i for i in range(r) if mask>>i&1]
++  s=sum(ell[i] for i in J)
++  assert 2*s!=total;checks+=1
++  assert (2*s<total)==(s<=m);checks+=1
++  if 2*s>total:
++   sigma=sum(2*(s-ell[i])<total for i in J)
++   if sigma:positive.append(sigma)
++  lengthcases+=1
++ assert min(positive)==m+1;checks+=1
++ if not r%2:
++  # Twice the perturbed positive length vector (1/2,1,...,1).
++  ep=[1]+[2]*(r-1);tot=sum(ep)
++  for mask in range(1<<r):
++   s=sum(ep[i] for i in range(r) if mask>>i&1)
++   old=sum(ell[i] for i in range(r) if mask>>i&1)
++   assert 2*s!=tot and (2*s<tot)==(2*old<total);checks+=1
++# Symbolic characteristic polynomial of the theta Hessian.
++x=sp.Symbol('x')
++for r in range(3,16,2):
++ for j in range((r-1)//2+1):
++  q=r-2*j;s=sp.Matrix([-1]*j+[1]*(r-j))
++  H=q*sp.diag(*s)-s*s.T
++  actual=H.charpoly(x).as_expr()
++  expected=x*(x-r)**(r-1) if j==0 else x*(x+r)*(x+q)**(j-1)*(x-q)**(r-j-1)
++  assert sp.expand(actual-expected)==0;checks+=1;hessiancases+=1
++  assert H*sp.ones(r,1)==sp.zeros(r,1);checks+=1
++  assert j+2*j==3*j;checks+=1
++# Formal monomial cancellation in two successive wedge differentials.
++for r in range(2,13):
++ for k in range(r-1):
++  for J in combinations(range(r),k):
++   coeff={}
++   for i in range(r):
++    if i in J:continue
++    J1=tuple(sorted(J+(i,)));sgn1=(-1)**sum(a>i for a in J)
++    for h in range(r):
++     if h in J1:continue
++     sgn2=(-1)**sum(a>h for a in J1)
++     key=(tuple(sorted((i,h))),tuple(sorted(J1+(h,))))
++     coeff[key]=coeff.get(key,0)+sgn1*sgn2
++   assert all(v==0 for v in coeff.values());checks+=1;koszulcases+=1
++for r in range(5,202):
++ m=(r-1)//2
++ assert m<r and m==(r-1)//2;checks+=1
++ assert 3*r-2>0;checks+=1
++# Corrected exceptional extension shifts, a=b=1, m=2.
++assert 10-9!=2 and 13-9!=2;checks+=1
++print(json.dumps({'exact_assertions':checks,'length_subset_cases':lengthcases,'symbolic_hessian_cases':hessiancases,'formal_koszul_square_cases':koszulcases,'all_rank_topology_proved_by_finite_controls':False},indent=2))

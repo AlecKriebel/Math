@@ -1,0 +1,67 @@
+[
+  {
+    "label": "all_pendants_inside",
+    "program": "verify_graph.py",
+    "replace_old": "if i<2 else",
+    "replace_new": "if i<4 else",
+    "original_sha256": "958a4392cf3ec633104870a1e2c75ab69900385a604fd917ad37da357a999407",
+    "mutant_sha256": "db19cc40454cf839c10da8d3a406e57837f6d45c0a0df394a25652687743daa4",
+    "actual_execution": true,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/all_pendants_inside.py\", line 46, in <module>\n    assert len(pres)==len(rev)==1\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "caught": true
+  },
+  {
+    "label": "wrong_pendant_length",
+    "program": "verify_graph.py",
+    "replace_old": "1:[5,6]",
+    "replace_new": "1:[5]",
+    "original_sha256": "958a4392cf3ec633104870a1e2c75ab69900385a604fd917ad37da357a999407",
+    "mutant_sha256": "b2c55a8864b602fbe65dce05ae8fc9e4f58b8f514b95c15a7896cf37fe76ce45",
+    "actual_execution": true,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/wrong_pendant_length.py\", line 21, in <module>\n    assert len(E)==10 and len(V)==10\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "caught": true
+  },
+  {
+    "label": "incorrect_degree_assertion",
+    "program": "verify_graph.py",
+    "replace_old": "20==2*11-2",
+    "replace_new": "20==2*12-2",
+    "original_sha256": "958a4392cf3ec633104870a1e2c75ab69900385a604fd917ad37da357a999407",
+    "mutant_sha256": "4001201207481b3e05e51cb015aeba18a95f258eb0604c606d608fd3fc4666c4",
+    "actual_execution": true,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/incorrect_degree_assertion.py\", line 94, in <module>\n    assert sum((d-1)*n for d,n in local.items())==20==2*12-2\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+    "caught": true
+  },
+  {
+    "label": "wrong_antipode_sign",
+    "program": "review/independent_checks.py",
+    "replace_old": "return(-z[0]/norm,-z[1]/norm)",
+    "replace_new": "return(z[0]/norm,z[1]/norm)",
+    "original_sha256": "dc864433cc301810d08fdab4f224fa83c235527e8d5ecfed13cf94f13bc32017",
+    "mutant_sha256": "ebbd42c825abd3358032b00fa734c1ef615a359682c7374784c67a304bcae5bc",
+    "actual_execution": true,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/wrong_antipode_sign.py\", line 98, in <module>\n    check(J(z)==points[h[i]],'exact coordinate antipode')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/wrong_antipode_sign.py\", line 16, in check\n    assert ok,label\n           ^^\nAssertionError: exact coordinate antipode\n",
+    "caught": true
+  },
+  {
+    "label": "all_coordinates_pendants_inside",
+    "program": "review/independent_checks.py",
+    "replace_old": "(-2,0),(0,-2),(0,-3)",
+    "replace_new": "(Q(-1,2),0),(0,Q(-1,2)),(0,Q(-1,3))",
+    "original_sha256": "dc864433cc301810d08fdab4f224fa83c235527e8d5ecfed13cf94f13bc32017",
+    "mutant_sha256": "a4f74da137e2aa2df4fe96da7ef151413ccd08a1ddd56914220b35d8a5ea9da0",
+    "actual_execution": true,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/all_coordinates_pendants_inside.py\", line 52, in <module>\n    for v in expected:check(cyclic(rot[v],expected[v]),'rotation derived from exact tangents')\n                      ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/primary_scope_family/tmp/all_coordinates_pendants_inside.py\", line 16, in check\n    assert ok,label\n           ^^\nAssertionError: rotation derived from exact tangents\n",
+    "caught": true
+  }
+]

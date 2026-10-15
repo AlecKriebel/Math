@@ -1,0 +1,11 @@
+# Fresh whole-package adversarial audit 01
+
+2026-10-13T05:02:01.472666+00:00 — Started independent review; completion estimate 5%. Candidate claims and previous PASS records are hypotheses. Scope: unrestricted actual local-action functors, primary quantifiers/credit, 39 portable cases, 27 submitted pins, archive inventory, provenance, metadata and five-page PDF. Writes are confined to this review folder; no candidate edits or external communication/publication.
+
+2026-10-13T05:04:38.314880+00:00 — Checkpoint: 55% complete. Independent mathematical reconstruction yields full fixed fields, sharp invariant lattice, complete-series H1 vanishing and actual-class recipient collapse. All 39 portable cases reproduced; five PDF pages inspected. Continuing original-source, inventory, AST and adversarial fault-control checks. No blocker found so far.
+
+2026-10-13T05:09:51.581453+00:00 — Checkpoint: 90% complete. Fresh primary retrievals independently confirmed OWR question, thesis Q6.4.4, arXiv Q4.4 and published BC Props4.1/6.1. Manifest107 files/ZIP108 entries byte-exact; all27 submitted pins match Git objects. Arithmetic AST exact modulo guard conversion. Archived 39-case runner passed under outer normal/-O/-OO; nine additional damaged-package controls rejected under -OO and five strict JSON controls passed. Independent cubic/quartic, square-root-injection, 1024 conjugator and truncation-boundary checks passed. No actionable issue found; writing complete derivations and final verdict.
+
+2026-10-13T05:14:41.681937+00:00 — Final checkpoint: 100% complete. Full independent derivation/report and machine verdict written. Zero actionable findings at all severities. Exact candidate input remained unchanged. No candidate edit, commit/push, publication, merge, closure, comment or individual outreach performed. Limits explicitly retained.
+
+2026-10-13T05:15:21.074417+00:00 — Reviewer-tool validation: the first inventory script flagged local build outputs outside the declared deposit and checked for assertions after an in-place AST restoration. These were review-tool false positives, corrected by auditing the declared archive membership and restoring a deep copy. Final integrity receipt passes; no candidate defect was hidden or repaired.

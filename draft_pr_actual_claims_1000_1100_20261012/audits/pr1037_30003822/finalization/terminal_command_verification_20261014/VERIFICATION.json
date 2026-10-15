@@ -1,0 +1,227 @@
+{
+  "utc": "2026-10-14T04:26:28.794328+00:00",
+  "pr": 1037,
+  "status": "PASS_ADMIN_ONLY_PARENT_ADOPTION_PENDING",
+  "original_input_files_rehashed": 9123,
+  "finalizer_output_files_rehashed": 12,
+  "final_audit_payload_files_rehashed": 9172,
+  "archive": {
+    "path": "preprint/pr1037_supportkit_v1.0.zip",
+    "bytes": 1041495,
+    "sha256": "cf9ca0625bd17bedfe7b78c90cb9e444fd11950b537da0677fa69407561241e2"
+  },
+  "clean_builder_byte_exact": true,
+  "explicit_fault_controls": [
+    {
+      "control": "protected_paper",
+      "intended_gate": "protected reviewed paper",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": false
+    },
+    {
+      "control": "pending_state",
+      "intended_gate": "accepted terminal ready",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": false
+    },
+    {
+      "control": "nonzero_terminal",
+      "intended_gate": "terminal actionable",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": false
+    },
+    {
+      "control": "wrong_root_report",
+      "intended_gate": "root-adopted terminal",
+      "rejected": true,
+      "scratch_only": true,
+      "generic_input_pins_refreshed_to_force_specific_gate": false
+    }
+  ],
+  "documented_finite_replays": [
+    {
+      "family": "transfer",
+      "mode": "symbolic",
+      "ordinary_python_only": true,
+      "substantive_records": 11,
+      "exact_equal": true
+    },
+    {
+      "family": "transfer",
+      "mode": "exterior",
+      "ordinary_python_only": true,
+      "substantive_records": 38,
+      "exact_equal": true
+    },
+    {
+      "family": "transfer",
+      "mode": "n4tree",
+      "ordinary_python_only": true,
+      "substantive_records": 3,
+      "exact_equal": true
+    },
+    {
+      "family": "invariant",
+      "ordinary_python_only": true,
+      "nonvolatile_exact_equal": true,
+      "volatile_keys": [
+        "elapsed_seconds",
+        "finished_utc",
+        "python",
+        "started_utc"
+      ]
+    }
+  ],
+  "process_receipts": [
+    {
+      "name": "CLEAN_BUILDER",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_supportkit.py"
+      ],
+      "cwd": "clean_extraction",
+      "exit_code": 0,
+      "elapsed_seconds": 0.2536691669956781,
+      "stdout_sha256": "eef3a62d23f75b551bb017be8feabc3710e4d2643d7dd5871f7e0a21cf321e00",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "FAULT_protected_paper",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_supportkit.py"
+      ],
+      "cwd": "faults/protected_paper",
+      "exit_code": 1,
+      "elapsed_seconds": 0.055134750000433996,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "4eac4683ebd7143666cdbe417877682d6f814cad0da63450cf1f8da58bceb18d",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_pending_state",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_supportkit.py"
+      ],
+      "cwd": "faults/pending_state",
+      "exit_code": 1,
+      "elapsed_seconds": 0.05730829099775292,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "d3760d7a0a46c0de560a439dfce3a12de36621c62511c47497281fd55a6fb1d7",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_nonzero_terminal",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_supportkit.py"
+      ],
+      "cwd": "faults/nonzero_terminal",
+      "exit_code": 1,
+      "elapsed_seconds": 0.053619625003193505,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "2310eb4663b7bcaa891700ca32dd2b1b35e895a202741e678fee9e820d58c4f3",
+      "expected": "rejection"
+    },
+    {
+      "name": "FAULT_wrong_root_report",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "build_supportkit.py"
+      ],
+      "cwd": "faults/wrong_root_report",
+      "exit_code": 1,
+      "elapsed_seconds": 0.05232833300397033,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "7175368bb4425c2fd787724a1e17eb625a84f664ff6d4a4cb3b73ea8c8f0c769",
+      "expected": "rejection"
+    },
+    {
+      "name": "transfer_symbolic",
+      "command": [
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1037_30003822/reviews/package_02/.venv/bin/python",
+        "-B",
+        "fresh_checks.py",
+        "--mode",
+        "symbolic"
+      ],
+      "cwd": "replay/transfer_symbolic",
+      "exit_code": 0,
+      "elapsed_seconds": 5.536074124996958,
+      "stdout_sha256": "a2dfe4e6aff7adc8bc210dca13eb29a16f2ff1b51d6d64b04f15ad54a7234cc3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "transfer_exterior",
+      "command": [
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1037_30003822/reviews/package_02/.venv/bin/python",
+        "-B",
+        "fresh_checks.py",
+        "--mode",
+        "exterior"
+      ],
+      "cwd": "replay/transfer_exterior",
+      "exit_code": 0,
+      "elapsed_seconds": 6.822282041997823,
+      "stdout_sha256": "db01729d5316533ada9a304bc961116b332233a915a99b9749e2495fa07bddc2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "transfer_n4tree",
+      "command": [
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1037_30003822/reviews/package_02/.venv/bin/python",
+        "-B",
+        "fresh_checks.py",
+        "--mode",
+        "n4tree"
+      ],
+      "cwd": "replay/transfer_n4tree",
+      "exit_code": 0,
+      "elapsed_seconds": 9.75944950000121,
+      "stdout_sha256": "6c78451770e81a698c849be2106c39bc5490d2f948a6ad15186b4123bfff59e3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    },
+    {
+      "name": "invariant_all",
+      "command": [
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1037_30003822/reviews/package_02/.venv/bin/python",
+        "-B",
+        "verify_invariants.py",
+        "--mode",
+        "all",
+        "--max-m",
+        "6",
+        "--max-n",
+        "7",
+        "--max-r",
+        "6",
+        "--output",
+        "NEW_RESULTS.json"
+      ],
+      "cwd": "replay/invariant",
+      "exit_code": 0,
+      "elapsed_seconds": 0.6202567500004079,
+      "stdout_sha256": "44c20dbd6a168e7d35bd44c62d2101c95cd24a639404bb4dba1b6e37ec814b3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expected": "success"
+    }
+  ],
+  "unchanged_pdf_not_recompiled": true,
+  "historical_optimized_graph_comparator_replayed": false,
+  "PR1037_optimized_graph_comparator_unsupported": true,
+  "compiler_Git_index_branch_remote_services_outreach": false,
+  "no_original_source_checker_report_or_sealed_finalizer_change": true
+}

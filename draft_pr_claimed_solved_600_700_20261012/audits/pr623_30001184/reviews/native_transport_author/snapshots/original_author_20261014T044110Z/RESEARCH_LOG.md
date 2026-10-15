@@ -1,0 +1,10 @@
+# Native recovery adapter research log
+
+Scope: own recovered PR623 draft 23356540 only. No live writes by this author agent. Parent independently reviews before any upload or publication. Existing paper, archive, manifest, global kit, shared state and reviewed helpers remain untouched.
+
+- Event time not recorded (before the observed source retrieval at 2026-10-14T04:17:23Z) — Checkpoint, estimated 25% of adapter authoring/validation. Read the repository kit and pinned publication manifest. The kit retains manifest loading, checksum verification, exact metadata checks, final publication readback, DOI lookup and durable publication receipts. Current branch is main.
+- 2026-10-14T04:18:32.814076Z — Checkpoint, estimated 45%. Official InvenioRDM API documentation confirms initialize POST /draft/files (JSON array), content PUT /content, commit POST /commit, and publish POST /draft/actions/publish. Authenticated read-only requests confirm exact native metadata and no registered files. Filtered snapshots contain no tokens or account-owner identities. Full native metadata hash is pinned to reject hidden rich fields or drift. File mutations get durable intent before the call; ambiguous writes never repeat automatically.
+
+- 2026-10-14T04:23:20.391224+00:00 — Final author checkpoint: assigned adapter/mock-validation goal 100%; best guess operational readiness 85% pending independent adversary and live lifecycle boundaries. All 25 offline tests pass; read-only preflight confirmed exact metadata and empty file list. No live Zenodo mutation, shared-file edit, commit, push, merge, release, tracker write or external communication occurred. The publication goal itself remains unfinished. Final hashes and remaining gaps are in AUTHOR_RECEIPT.json.
+
+- 2026-10-14T04:23:46.486554+00:00 — Scope-preservation checkpoint, author goal 100%, operational readiness 85%: runner disables shared bytecode-cache writes before importing the unchanged kit. The same 25 tests pass after this final source change. Final adapter SHA-256 14e4345d31b4b43bdb415d9fc0f4cb510871bd1d693a46c55ab88d76e21274ac.

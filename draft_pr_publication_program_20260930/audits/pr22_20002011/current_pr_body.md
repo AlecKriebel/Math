@@ -1,0 +1,7 @@
+The literal AIM2003 Conjecture1, repeated as Problem30, is false without formal self-adjointness: Branson2005 printed p40 explicitly gives the six-dimensional divergence obstruction. The current package verifies that known negative answer on a closed six-torus, with complete density variation, formal-adjoint and integrated variational arguments. No new discovery or resolution of the repaired FSA/generalizedQ formulation is claimed.
+
+Records20002011 and20002052 are exact duplicates. The original shared budget remains one substantive attempt of five; duplicate0/5 adds no separate proof attempt. Three new independent variational, geometric and full-primary-source families pass. Root reproduces both original receipts and6585 new exact controls byte-identically; finite checks supplement the universal written proof. A new complete current acceptance adversary is running.
+
+The corrected candidate preserves original provenance/readiness and all historical source records/reviews, and qualifies the original no-queue-edit flag as predating later commits. This exact PR changes unsolved_math_prioritization/attempts/20002011/ AND BOTH selected rows20002011 and20002052 in unsolved_math_prioritization/QUEUE.md. Current repairs and audits are on main under draft_pr_publication_program_20260930/audits/pr22_20002011/.
+
+This is proposed already_solved partial acceptance, with the duplicate marked duplicate. Extensive AI assistance; unrefereed and not human peer reviewed or formally certified. No paper, new Zenodo deposit, DOI or publication-tracker row.

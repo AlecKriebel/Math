@@ -1,0 +1,18 @@
+--- root_kernel_audit_20261007/check_image_and_spectral_flux.py
++++ scaffold/sources/check_image_and_spectral_flux.py
+@@ -79,7 +79,7 @@
+             laplace_checks += 2
+ 
+ receipt = {
+-    'actual_ROOT_PID':os.getpid(), 'UTC':datetime.now(timezone.utc).isoformat(),
++    'actual_process_PID':os.getpid(), 'UTC':datetime.now(timezone.utc).isoformat(),
+     'precision_decimal_digits':mp.mp.dps, 'mpmath_version':mp.__version__,
+     'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+     'verdict':'PASS_SCALAR_DIAGNOSTICS', 'kernel_cases':len(rows),
+@@ -89,5 +89,4 @@
+     'scope':'Independent image-sum versus spectral exit flux and explicit Laplace normalization. Finite high-precision diagnostics; no certified quadrature, uniform numerical-error theorem, or proof by computation.',
+     'cases':rows,
+ }
+-(HERE/'RESULT.json').write_text(json.dumps(receipt, indent=2)+'\n')
+-print(json.dumps({k:v for k,v in receipt.items() if k != 'cases'}, indent=2))
++print(json.dumps(receipt, indent=2))

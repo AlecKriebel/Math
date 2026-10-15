@@ -1,0 +1,9 @@
+# PR946 current findings to propagate
+
+No required mathematical correction identified by root or first two sealed families. Remaining independent families and priority are pending.
+
+For any new preprint, address all optional source/exposition findings: Amari1997p84/87 explicit torsion/curvature and local-coordinate definition; Whitney1936Theorem1p654 plusLemma19p665/footnote32 properness; precise noncompact normal-addition tube citation; dr=P_T,dnu=P_N and vanished correction firstjet; completed-square Schur formula; explicit scalar thirdjet chart law, nonholonomic jet/germ versus basepoint distinction; concise unbounded log(t) splitting example or equally explicit explanation. Keep old frozen proof/reports unchanged and record how each is addressed in current note.
+
+Packaging required: preserve original strict float-comparison failures; build separate typed bounded portable replay, exact allnonfloat fields and twelve documented finite-only sample floats. Never call this a proved roundoffbound. All assertion-based originals and family diagnostics must execute only under an explicit nonoptimized process guard. Preserve every original33bytes and oldseal. Actual native per-turn author provenance absent; preserve observed4/5 and fourdeclaredapproaches, never fabricate earlier invocation/history. Audit adds0.
+
+Scope: full general-dual-pair torsion necessity and statistical sufficiency; smoothpositive boundaryless proper global finiteHessian realization. No convex/complete/globaldualchart/finitesimplex/minimaldimensional claim. Deepprimary priority starts only aftermath gate and must test any complete older generic-Hessian global theorem, not merely compact simplex claims.

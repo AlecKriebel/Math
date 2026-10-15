@@ -1,0 +1,5 @@
+# PR45: scoped synchronous weak-shift coupling obstruction
+
+The original binary process approaches a stationary constant-path law weakly while every fixed joining has coordinate mismatch tending to1/2. The original metric-error law and uniformly tight nonnegative-offset boundary are preserved. The broad two-process characterization remains UNSOLVED; novelty is unestablished. Original1/5,new0,audit0. Current Asmussen access is recorded separately from immutable historical failure. No paper/new DOI/tracker; NEW whole-current reviewPENDING.
+
+Read PARTIAL.md with SOURCE_PRECISION_QUALIFICATIONS.md and CURRENT_PARTIAL_CONTEXT.md; original_archive preserves all18 originals. Family reports, true future ROOT evidence and actual execution references remain inspectable. Finite diagnostics support identities and do not replace the full proof. AI tools were used extensively; unrefereed, no claimed human peer review. This is a prospective current presentation; source preparation does not authorize execution or acceptance.

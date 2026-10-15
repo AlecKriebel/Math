@@ -1,0 +1,5 @@
+# Actual merge adversarial audit of PR367
+
+Qualified PASS for actual merge 1d9831741c4f3ee56f590d45240a9d56559a8df2, with exact parents 25c85b2e7610e442932bf21dff744acc9284c084 and de8fe5ff5841f3fe31c15141dde1734a14e3bd80 and tree 31621105f06c6b35278706ac20f142844014a8f2. The actual Git object, API commit, merged PR/head/body, all44 changed files/modes/blobs, all43 original bytes, whole queue and all106 nested bindings agree. Only own queue physical line400 cells8/9 became claimed_solved4/5. Current local main, origin/main and API main contain the merge. All reviewed four-file submission bindings and earlier127/110/104/family/priority/preprint manifests remain intact.
+
+Complete Git/API and validator outputs are retained. No heavy mathematical replay was repeated: all mathematical/source/submission bytes remain bound to the already complete independent replays. This audit checks actual-merge scope, not historical novelty, external human peer review or Zenodo/DOI/tracker/release completion. No candidate, Git, service or person was modified or contacted.

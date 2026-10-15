@@ -1,0 +1,42 @@
+# Independent priority audit log — PR #1024
+
+## 2026-10-12 20:37 PDT / 2026-10-13 03:37 UTC — scope checkpoint
+
+- Goal: independently test whether the exact characteristic-two Klein-four counterexample to the unrestricted local-deformation fibre-product question is already stated or proved in prior work, and determine defensible publication credit/framing.
+- Inputs: only the candidate `submitted/current/COUNTEREXAMPLE.md` and assignment; no root search findings or other reviewers' reports used.
+- Claim under audit: for k=F4, G=(F4,+), N=(F2,+), rho(a)(t)=t/(1+at), no prorepresentable F can make restriction–induction formally smooth into D_N^(G/N) x_F D_(G/N).
+- Existing building blocks to distinguish from the assembled result: weakly ramified additive local actions; involution deformation nonprorepresentability and e -> e+e^2 conjugacy; tangent cohomology and restriction/induction diagrams.
+- Plan: primary-source body inspection for original question, all located versions/publication, thesis, local-deformation papers, and later references/citations; independent multi-term searches; document unavailable sources.
+- Completion estimate for this bounded priority audit: 5%. Mathematical validity is outside this audit's central deliverable and is not assumed to imply priority.
+
+## 2026-10-12 20:40 PDT / 2026-10-13 03:40 UTC — primary-source checkpoint
+
+- Independently downloaded OWR 54/2008, arXiv:1112.0352v1, published AIF 2009 paper, a 2009 Kato preprint, and Dang's 2026 Algebraic Geometry article. Checksummed downloads and text-extraction outcomes are in sources/retrieval_02.json.
+- Read OWR pp.3038–3040 and arXiv pp.1–3, 13, 15: exact unrestricted question is posed separately from prorepresentability assumptions in the conditional obstruction theorem. ArXiv submission history inspected: only v1, 1 December 2011; no later version or journal reference on this record. This is a bounded metadata observation, not an absence-of-solution proof.
+- Read published AIF pp.895–901: Proposition 4.1 proves the exact e -> e+e^2 equivalence; Proposition 4.2 treats mixed-characteristic Klein-four nonprorepresentability; Proposition 5.3 proves equicharacteristic Klein-four prorepresentability; Proposition 6.1 gives involution failure to preserve injections; Propositions 6.2–6.3 sandwich D between group functor quotients. None of these inspected statements asserts the candidate's restriction–induction no-recipient factorization result.
+- Read Dang 2026 pp.314–316: cites Byszewski for induction and raises separate cyclic-tower deformation questions. Candidate has noncyclic G; the inspected cyclic-cover claims do not match it. Final-form acceptance date on paper is 26 September 2024, publication 2026.
+- Thesis access gap: Utrecht research portal PDF and page return 403 to direct retrieval, web PDF open returns 403; legacy igitur hostname no longer resolves. Found exact DSpace handle through supervisor's page (1874/33749), followup retrieval underway. Indexed snippets are leads and not treated as complete body inspection.
+- Completion estimate: 40% of bounded priority audit. No competing proof found in inspected bodies so far; remaining work is thesis recovery, Dokchitser framework, reference/citation chains and further independent term families.
+
+## 2026-10-12 20:44:35 PDT / 2026-10-13 03:44:35 UTC — antecedent and citation-chain checkpoint
+
+- Recovered the thesis through exact DSpace handle 1874/33749, then followed the rendered page's bitstream and its advertised content endpoint. Full publisher-version PDF downloaded successfully; sources/retrieval_07.json records hash and endpoint. Earlier research-portal and legacy retrieval failures are resolved for body access, retained as provenance.
+- Read thesis printed pp.55–60 and 73–80, including Question 6.4.4, Remark 6.4.5, full proof of Theorem 6.4.7, and Lemma 6.4.9 statement. Exact unrestricted wording persists; subgroup/quotient prorepresentability is a distinct assumption on the conditional theorem. No exact counterexample is stated in these inspected sections.
+- Important credit refinement: published AIF Proposition 6.1, p.899, exhibits A=k[e]/e² -> B=k[w]/w³ (e -> w²), under which the nonzero involution tangent direction becomes the basepoint. Every prorepresentable h_R preserves injections. Therefore the candidate's universal-recipient tangent-collapse assertion is an elementary consequence of this prior proposition and naturality, even though the candidate proves it by the parameter-shift argument. This is a prior antecedent of an essential lemma, not by itself a prior negative answer to the factorization question.
+- Independently inspected Dokchitser arXiv:math/0511514v1, all 4 pages, including theorem/proof: constant group quotient classification and question about smooth group functor quotients. It has no local Klein-four restriction–induction assertion.
+- OpenAlex is used only for discovery: citing works for arXiv:1112.0352 retrieved, yielding BCK2012, Obus2017/2019 survey, Dang2026. Semantic Scholar graph request failed 429; no repeated polling. OpenAlex citation records are not treated as exhaustive. An accidental query for Kontogeorgis's 2007 work was labeled and corrected immediately and is not used as BC citation evidence.
+- Read Obus survey pp.34–38: universality classification, restriction isomorphism only for prime-to-p quotient, local-lifting open questions; no negative factorization claim. Candidate has |G/N|=p=2, so the prime-to-p theorem does not apply.
+- Recovered published BCK2012 pp.25–27 through DSpace and inspected theorem/proof. Group C5, characteristic 5, conductor 2; only universality is proved. References explicitly still label Byszewski's 2011 local-action article a preprint.
+- Read BC arXiv:0708.3279v3 relevant nonrepresentability and quotient sections (pp.9–10, 14–15), matching published antecedents under different proposition numbering. Read current available Nottingham automata preprint introduction and locate Klein-four construction: these are series constructions over F2, not the deformation-functor factorization result.
+- Visually inspected original question pages in arXiv (p.13) and thesis (printed p.73), and AIF Proposition 6.1 page. The displayed hypotheses and matrices agree with extracted text.
+- Completion estimate: 75% of the bounded audit. No matching prior negative factorization theorem identified; completion requires recorded query ledger, last focused followups, exact scope/credit matrix and final disposition.
+
+## 2026-10-12 20:50:16 PDT / 2026-10-13 03:50:16 UTC — final checkpoint
+
+- Completed the bounded independent priority audit. Deliverables: PRIORITY_AUDIT.md, VERDICT.json, QUERY_LEDGER.json, SOURCE_INSPECTION_MANIFEST.json, ARTIFACT_VALIDATION.json, source retrieval records and checkable primary-source copies.
+- Final focused search ledger has 65 queries; 11 primary-source/version records have precise body-inspection levels and hashes. All recorded source hashes checked; all retrieval/ledger/verdict JSON parses successfully.
+- Recovered and read actual published 2022 Nottingham paper Section8.1–8.2 (pp526–528), including proofs; it explicitly credits the additive weakly ramified family and proves a different F2 automata construction. No deformation-factorization theorem there. Read the remaining claimed introductory pages of Dang/AIF and Obus's tower discussion to make inspection-level declarations accurate.
+- Strongest verified priority conclusion: source wording permits the candidate's exceptional case, and no exact competing negative factorization result was found in inspected primary bodies and focused returned leads. Essential antecedent of recipient tangent collapse is published AIF Proposition6.1; required paper/global-credit correction recorded.
+- Publication recommendation: proceed with concise unrestricted-scope counterexample note after explicit prior credit, without first-result or exhaustive-novelty assertions. Do not label the prorepresentable-component variant solved.
+- Residual gap: unindexed/differently worded/inaccessible/unpublished work and incomplete citation records. Specialist human literature review could improve confidence; no outreach drafted or initiated.
+- Completion estimate for this documented bounded audit: 100%. Absolute novelty is not certified. No GitHub mutations, comments, deposits, releases or external individual communications.

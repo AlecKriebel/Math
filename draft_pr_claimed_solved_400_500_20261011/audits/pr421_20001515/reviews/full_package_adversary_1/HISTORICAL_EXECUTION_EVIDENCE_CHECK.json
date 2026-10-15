@@ -1,0 +1,51 @@
+{
+  "utc": "2026-10-12T23:42:39.754857+00:00",
+  "prior_preparation_evidence_explicitly_historical": "These reports bind the preparation snapshot before the final evidence/log/report updates. Program and packet bytes are unchanged. Final integrity records are regenerated after evidence is written, avoiding a hash cycle; root receives a separate final fresh readback. The recorded preparation manifest/whitelist digests are historical run identities, not asserted to be the final delivery digests.",
+  "tested_driver_hash_matches_current": true,
+  "no_new_proof_turns": true,
+  "normal_optimized_evidence": [
+    {
+      "mode": "normal",
+      "historical_status": "PASS",
+      "baseline_runs": 6,
+      "math_rejections": 14,
+      "SHA_rejections": 3,
+      "baseline_records_match_new_fresh_runs": true,
+      "negative_control_records_match_new_fresh_runs": true,
+      "relocation_matches_new_fresh_runs": false,
+      "snapshot_manifest_record_count": 22,
+      "snapshot_whitelist_record_count": 23,
+      "snapshot_manifest_hash": "7b238b157ff53d5585c3ed8b3737e55bc6c2552a95d00f623b26170410c6a9d1",
+      "snapshot_whitelist_hash": "455897632de0689c58a1997f225c2af60c63ad48f487ad48aea6ee85de206d20",
+      "relocation_differing_fields": [
+        "stdout_canonical_sha256"
+      ],
+      "relocation_semantic_fields_match": true,
+      "relocation_digest_difference_explained": "The relocated driver JSON includes the historical vs final manifest/whitelist digests; this expected preparation-snapshot difference changes only the relocation JSON checksum."
+    },
+    {
+      "mode": "optimized",
+      "historical_status": "PASS",
+      "baseline_runs": 6,
+      "math_rejections": 14,
+      "SHA_rejections": 3,
+      "baseline_records_match_new_fresh_runs": true,
+      "negative_control_records_match_new_fresh_runs": true,
+      "relocation_matches_new_fresh_runs": false,
+      "snapshot_manifest_record_count": 22,
+      "snapshot_whitelist_record_count": 23,
+      "snapshot_manifest_hash": "7b238b157ff53d5585c3ed8b3737e55bc6c2552a95d00f623b26170410c6a9d1",
+      "snapshot_whitelist_hash": "455897632de0689c58a1997f225c2af60c63ad48f487ad48aea6ee85de206d20",
+      "relocation_differing_fields": [
+        "stdout_canonical_sha256"
+      ],
+      "relocation_semantic_fields_match": true,
+      "relocation_digest_difference_explained": "The relocated driver JSON includes the historical vs final manifest/whitelist digests; this expected preparation-snapshot difference changes only the relocation JSON checksum."
+    }
+  ],
+  "finite_record_file_content_read_closure": {
+    "author_checks": "complete JSON inspected; exact counts/pins, forward relations and evidence ceiling agree",
+    "independent_geometry": "complete JSON parsed/reproduced; actual links and cube face/corner arrays agree with fresh reconstruction",
+    "independent_algebra": "complete JSON parsed/reproduced; all nine target relations identity, inverse phi and normal forms agree"
+  }
+}

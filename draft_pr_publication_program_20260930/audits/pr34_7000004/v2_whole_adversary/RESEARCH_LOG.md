@@ -1,0 +1,7 @@
+# Research log
+
+- 2026-10-02T05:32:12.581462+00:00 — Sealed reconstructed universal proof before historical interpretation exposure. Source-first order failure disclosed. Preliminary math passes; full audit pending. Completion estimate: 20%.
+
+- Retrospective checkpoint for 2026-10-02T05:42:40.469162+00:00, recorded 2026-10-02T06:02:54.212364+00:00 — Full38+235 bindings and allJSON/JSONL parsed; actual nine historical replays and new52/19/6 verification passed. Current metadata repair agrees across frozen fields. Completion estimate:70%.
+- Retrospective checkpoint for completed first-whole replay/operative primary comparisons, recorded 2026-10-02T06:02:54.212364+00:00 — Actual44/12/5 controls reproduce old mandatory failure; fresh exact-source hashes agree; mathematical/prior claims are universal. Full v1/v2 delta is12 administrative/scope members, all other bytes unchanged. Completion estimate:90%.
+- 2026-10-02T06:02:54.212364+00:00 — Closed comprehensive proof/source/history/program/current-packet review; no mandatory frozen-v2 packet correction found. Private replay helper ACTUALLY tested allthree replay helpers and preserved before/after bindings and the historical failure. Review effort completion estimate:100%; mathematical/current-packet PASS, procedural source-first requirement unsatisfied. Root final acceptance remains pending a different source-first reviewer. No new attempt, publication, outreach, queue/state/history or protected-packet write. Final self-excluding seal follows.

@@ -1,0 +1,49 @@
+{
+  "at_utc": "2026-10-12T23:41:22.861665+00:00",
+  "result": "prepared_only_v3_targeted_merkle_repair",
+  "delegated_preparation_completion_percent": 100,
+  "actual_live_api_calls": 0,
+  "actual_remote_writes": 0,
+  "default_mode": "plan",
+  "expected_branch": "research/20001515-explicit-cubulation",
+  "pr": 421,
+  "helper_sha256": "2c4bb9263af9df1b41323bbf5553646b0ea3665c33b89499724091c48f99cbae",
+  "author": {
+    "name": "Alec Kriebel",
+    "email": "me@aleckriebel.com"
+  },
+  "committer": "same configured identity; fresh UTC date bound in per-run durable plan",
+  "normal_scenarios_passed": 34,
+  "optimized_scenarios_passed": 34,
+  "bare_assert_count": 0,
+  "private_fixture_driver_sha256": "6c334ab8f015d19e000dd324f4dd8aa4398b162c85b13af276e692239293ac53",
+  "tree_mechanism": {
+    "reads": "complete nonrecursive root/modified-ancestry tree objects only",
+    "preservation": "Exact copied untouched sibling mode/type/SHA; opaque subtrees remain opaque; expected root SHA computed bottom-up",
+    "verification": "Hash every visited tree object; exact expected root and modified-directory entries; root-anchored candidate descent",
+    "durable_evidence": "merkle_overlay stores base and expected directory entries and SHAs",
+    "fixture": "40000 opaque files; recursive response truncated at 34680; helper uses no recursive endpoint or opaque subtree/body GET",
+    "safe_limitation": "A truncated nonrecursive object stops before mutation"
+  },
+  "current_packet_verification_requires": [
+    "Exact candidate byte/hash/mode bindings at observed actual head",
+    "OPEN and draft at initial/final readback",
+    "Exact header-derived claimed_solved QUEUE Status",
+    "Final PR/ref agree with candidate-read head"
+  ],
+  "drift_disposition": "Retain historical publication evidence; receipt current_packet_verified=false; raise PacketDrift/exit nonzero; never retry mutation automatically",
+  "historical_preparations": [
+    {
+      "path": "operations/history/preparation_v1_20261012T232846Z",
+      "helper_sha256": "3526d36e6f9e99629c56126e1d34c2a05ed682a68db6d357ae733e1c44d8bea3",
+      "public_artifacts_preserved": 7
+    },
+    {
+      "path": "operations/history/preparation_v2_20261012T233419Z",
+      "helper_sha256": "025a6583d6e6e8cc92f49fc74b04c69c02bb8e4a49829946f055bcb333b6cd51",
+      "public_artifacts_preserved": 7
+    }
+  ],
+  "next_step": "Root inspect current Merkle helper; fresh run-id for read-only plan; no --apply until candidate audit clearance",
+  "ref_update_limitation": "Pre-read ref plus force:false is not an atomic expected-head compare-and-swap; concurrent forced rollback remains outside protection."
+}

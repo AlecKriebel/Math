@@ -1,0 +1,15 @@
+# Whole-package adversarial review 01
+
+2026-10-15T09:51:35.518790+00:00 — 0% complete. Fresh independent source-first review initiated. No manuscript, support code, or prior reviews read. Scope: exact primary target and entire frozen publication_package_v2; no external communications, shared edits, Git operations, or publication.
+
+2026-10-15T09:52:15.110394+00:00 — 10% complete. Primary target reconstructed directly from published definitions and remarks; source-first attack plan sealed SHA256 a94fdb682702b776357dc3532c8eae2fd202f9caae789923d7ceb038e0b766ab. Proper-embedding claim excluded by source scope; fixed boundary and exact powered-equation tests prioritized.
+
+2026-10-15T09:52:59.272274+00:00 — 28% complete. Seal and all 15 file hashes/bytes independently verified; no extra files. Main manuscript and verifier inspected, six face identities reconstructed, monotonic boundary-root argument checked. Owned default verifier reproduced certificate without writing; detailed independent arithmetic still underway.
+
+2026-10-15T09:55:03.862850+00:00 — 53% complete. Core mathematical audit independently passed: iterated isqrt interval roots and transformed boundary polynomials reproduce IVT signs for one fixed algebraic boundary, incoming existence, all six symbolic identities, all noncollinearity and strict crossing claims, and selected root boxes. No code imported from author. All six paper PDF pages visually inspected; no layout problem observed. Core assessment sealed before any prior-review reading.
+
+2026-10-15T09:56:48.067840+00:00 — 70% complete. ZIP all 64 names/bytes/hashes and self-excluded 63-member manifest verified; inner/outer science files, metadata and stdout exact. Prior reports read only after independent core assessment. Ash–Bolker primary scanned pp.209–210,241–242 and BPR/BR primary definitions rendered and checked: same old weighted-cost family, oscillatory nonpower example does not imply pure-power multiplicity. Historical10^17 versus final10^16 labeling is explicit. Additional evidence/code consistency and final sealed report remain.
+
+2026-10-15T10:04:14.340226+00:00 — 92% complete. Historical code fully inspected before owned execution; all three independent certificates reproduced (geometry equal except UTC) and original author replay6987 reproduced. Final verifier traced17472 successful calls by label, read-only -O replay writes nothing. Extra gradient/face claims independently recomputed. Four nested audit manifests and144 excluded-private-source hash references authenticate. Reference/metadata/priority audit complete; no substantive issue found. Final report/seal remain.
+
+2026-10-15T10:04:14.345978+00:00 — 100% complete toward this assigned whole-publication-package adversarial review. CLEAN PASS in the expressly qualified crossing-permitted/at-least-five scope; zero substantive issues and no repair required. Final package hashes unchanged. Report and explicit safe-only read-only seal finalized; historical firstness and all stronger mathematical questions remain unestablished, not assigned a completion probability.

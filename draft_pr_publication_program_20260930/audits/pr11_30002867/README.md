@@ -1,7 +1,5 @@
-# PR11 audit
+# PR11 accepted partial outcome
 
-Problem30002867 / OWR-13678-008. Frozen head810559762f906624e0939191f5aface0ce7ce301. The source asks for a global affine complete-intersection characterization from regular coordinate multiplication matrices.
+Mathematics, sources, exact reproduction, two full priority families and a fresh complete adversary pass. Dispositionalready_solved / credited known-method reformulation. PR11MERGED at 2026-10-01T05:59:31Z, commit7d834c507a891a1c13fac4f485bf55f96f88ac8b. No paper, Zenodo deposit or tracker row. Workflow100%.
 
-Core mathematics passes independent Koszul/Tor/global-generation and primary-source reconstruction. Exact suites reproduce13 author and20 prior examples byte for byte; new independent quotient construction checks14 additional cases with separately certified ideals/resolutions. The original1978 theorem has now been recovered directly; this supersedes the historical publisher-route limitation. A supplemental independently reconstructed global proof awaits its own fresh falsifier and is not needed for core acceptance.
-
-Full priority audit follows the mathematical pass. Exact-question history and equivalent-method families remain independent. Prior matrix-convertible local-CI algorithms may already resolve the original task through the classical global bridge; do not claim a novel solution or prepare a paper until that scope match is settled. Current canonical proposal is still the immutable snapshot. Raw source PDFs/fulltexts/search responses and scratch remain ignored. No outside individual contacted.
+source_snapshot is immutable originalhead evidence; reviewed_candidate is the historical15-file preacceptance freeze. Current accepted source/administrative metadata is in unsolved_math_prioritization/attempts/30002867. The canonical proofbody is byteidentical to the independently reviewed proof; its accepted header and metadata updates are explicitly recorded. Original reviews identify historical hashes. Positive priority certificates preserve exact inputs, nilpotents and multiple support; exactD2 priorabsence is not proved or claimed.

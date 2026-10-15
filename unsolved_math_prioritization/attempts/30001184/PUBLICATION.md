@@ -1,0 +1,5 @@
+# Published unrefereed counterexample
+
+Current publication assessment (2026-10-15T03:17:33.789029+00:00): the generation-only universal GNS-descent assertion for general unital C*-E0 dilations has an accepted explicit negative counterexample. The counterexample is an explicit corollary of Burgarth-Facchi-Hillier's established clock/evaluation/translated-unitary mechanism. The extensively AI-assisted, unrefereed paper and exact verification archive are published at https://doi.org/10.5281/zenodo.23356540. No exhaustive first-priority, independent-development or independent human peer-review claim is made. The conditional problem after imposed kernel invariance, stronger minimality and normal W*-promotion remain outside this result. All 13 original packet files and all 11 original audit files below are historical and remain byte-identical; their earlier priority/pending-review prose is superseded by CURRENT_SOURCE_AUDIT.md.
+
+Paper, source, exact verification archive and deposit metadata are in `publication/`. Run `python3 verify_publication.py` and `python3 test_integrity.py`. The frozen packet/audit integrity checks remain mandatory.

@@ -1,0 +1,5 @@
+# PR58 initial independent scope
+
+Head 465d771ec1ddc91877e8d9db51ed59aea1b0d97d; 30002298 / OWR-12339-004. First read only literal source_record.json and SOURCE_STATUS.md. Core mechanism formed before author checker/history/fresh-family mathematics: squarefree triangulation bound, simplex interpolation, homogeneous tangent residues, cone flips into a common pointed cone and weighted Fourier injectivity. Origin factors are units; ambient null sets, holes, overlap, dependent vertices and measure conventions require separate controls. No other mathematical bodies read. Prior PR56/57 supplies no PR58 credit. Initial remit estimate20%.
+
+The attempted longer INITIAL_SCOPE/RESEARCH_LOG write failed with ENOSPC at15:07 UTC and left no family files. This saved scope records the earlier mechanism visible in that tool call and message to ROOT; it is saved later rather than falsely claiming earlier filesystem custody. No author checker or historical/fresh-family mathematical body has subsequently been read.

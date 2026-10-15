@@ -1,0 +1,32 @@
+--- INDEPENDENT_STATIC_CONTROLS_V1.py
++++ independent_static_controls.py
+@@ -1,8 +1,8 @@
+ """Independent inert source/text and evidence audit. No imported or compiled production code."""
+ from pathlib import Path,PurePosixPath
+ import argparse,copy,datetime as dt,hashlib,io,json,math,os,re,sqlite3,stat,subprocess,sys,tokenize
+-H=Path(__file__).resolve().parent;A=H.parent;R=A.parents[2];P=A/'acceptance_preparation_family';C=A/'reviewed_candidate';W=A/'whole_current_source_first_family';PREP='867faf71a96ada5acf2a92539bfdacd3b69bd3a1a1e0cb7e37ea6a106be1958e204'
+-checks=[];reads={};captures=[]
++H=Path(__file__).resolve().parent;A=H.parent;R=A.parents[2];P=A/'acceptance_preparation_family';C=A/'reviewed_candidate';W=A/'whole_current_source_first_family';PREP='867faf71a96ada5acf2a92539bfdacd3b69bd3a1a1e0cb7e37ea6a106be1958e'
++checks=[];reads={};captures=[];RUN='unset'
+ def need(x,m):
+     if not x:raise ValueError(m)
+     checks.append(m)
+@@ -71,7 +71,7 @@
+ def stream(z,base):
+     s=z['path'];return verify(z,R if s.startswith('draft_pr_publication_program_20260930/') else base)
+ def own_git(label,args):
+-    d=H/'actual_git'/label;d.mkdir(parents=True);src=Path(__file__).read_bytes();op=(H/'capture_own.py').read_bytes();argv=['git',*args]
++    d=H/'actual_git'/RUN/label;d.mkdir(parents=True);src=Path(__file__).read_bytes();op=(H/'capture_own.py').read_bytes();argv=['git',*args]
+     pre={'schema':'pr45-source-adversary-local-git-prelaunch/v1','argv':argv,'cwd':str(R),'operator_pid':os.getpid(),'prepared_utc':utc(),'source_sha256':sha(src),'operator_sha256':sha(op),'stdin_supplied':False}
+     for n,b in [('PRELAUNCH_SOURCE.py',src),('PRELAUNCH_OPERATOR.py',op),('PRELAUNCH.json',json.dumps(pre,sort_keys=True,indent=2).encode()+b'\n')]: (d/n).write_bytes(b)
+     started=utc();p=subprocess.Popen(argv,cwd=R,stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=dict(os.environ,GIT_OPTIONAL_LOCKS='0'));out,err=p.communicate();finished=utc()
+@@ -83,7 +83,8 @@
+     except (ValueError,TypeError,KeyError,OverflowError):return label
+     raise ValueError('hostile control escaped: '+label)
+ def main():
+-    ap=argparse.ArgumentParser();ap.add_argument('--mutant',default='none');v=ap.parse_args()
++    global RUN
++    ap=argparse.ArgumentParser();ap.add_argument('--mutant',default='none');ap.add_argument('--run-tag',required=True);v=ap.parse_args();RUN=v.run_tag;rel(RUN)
+     if not __debug__ or sys.flags.optimize or os.environ.get('PYTHONOPTIMIZE','') not in ('','0'):raise ValueError('unoptimized auditor required')
+     # These deliberately failing children exercise the independent oracle, never production.
+     if v.mutant=='boolean':need(typed({'n':True},{'n':1}),'deliberate boolean impostor rejected')

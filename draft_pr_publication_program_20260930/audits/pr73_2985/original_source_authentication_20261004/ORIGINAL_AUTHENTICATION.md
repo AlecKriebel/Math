@@ -1,0 +1,15 @@
+# PR73 original source authentication
+
+Source custody is complete for draft PR73, problem 2985, branch dot/math-2985, immutable head 6f82e81631fd43abc0140a831acfb43c150f4210, root tree 9b5a3402b56f97aeeb9435ffa388eef6bbc1edfb. The initial fresh status-only gate authenticates OPEN draft and literal original QUEUE claimed_solved 1/5 before source interpretation.
+
+All 19 original attempt files and the entire original QUEUE are retained as whole bytes. The complete incoming changed domain has 20 files and equals QUEUE plus every target attempt file. Paginated PR files, final exact-head metadata, immutable base/head comparison, modes, Git blob SHA1s, bytes, SHA256s, and all 3547 recursive tree serializations agree. Exact commit serialization recovered and digest matched: True.
+
+The native wrapper keys are dataset, dataset_revision, license, problem, exact_separate_prior_report. The latter is present JSON null; prior_upstream_report and upstream_report are absent. status.json is absent. readiness.json contains the native substantive_attempts and attempt_limit fields, preserved in ORIGINAL_COUNTER_AUTHENTICATION.json. The original ledger has 1 event(s), turn numbers [1]; budget counts substantive proof-attempt turns, not event rows. Global state is an empty object and target status is absent there; whole state/history are retained.
+
+Current local raw dataset files and SQL copy are authenticated against the whole pinned manifest and original source_record. Primary immutable Hugging Face revision metadata and both full raw files independently match byte counts and SHA256s. The raw prior report lookup absence, native wrapper null, and SQL normalized empty object remain distinct typed states. The original current cache and manifest remained byte-identical. Large raw and mathematical/copyright source bodies stay local and are unstaged.
+
+ACTUAL_COMMANDS.jsonl preserves actual PID, cwd, argv, UTC interval, exit, and separately retained stdout/stderr for each child process. Python bootstrap/controller executions have their own complete receipts. The tool's launcher shell PID/argv/UTC was unavailable and is explicitly a gap; no unavailable values are fabricated. No web tool execution is claimed. External PDF declarations are retained, but no external PDF byte/hash custody is asserted.
+
+No mathematical review, original checker execution, new substantive proof attempt, Git/index/ref/fetch/checkout/commit/push mutation, PR/native/paper/editor/upload/tracker action, or external human communication occurred. Custody completion estimate: 100%.
+
+All 3 entries of native frozen_artifacts.json sha256 object independently match whole retained bytes. Original global history is literally empty (0 bytes). 43 child subprocess executions are fully instrumented; the local read-only cat-file miss exited 128 and is retained, followed by successful exact commit-body reconstruction with matching Git digest. The deep filesystem inventory excludes only its own bytes and the final seal receipt/output that would otherwise be self-circular.

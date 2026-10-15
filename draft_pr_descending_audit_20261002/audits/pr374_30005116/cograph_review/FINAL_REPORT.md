@@ -1,0 +1,15 @@
+# Final independent cograph audit report
+
+**PASS for the full weighted-cograph theorem; no mandatory correction found.** The unrestricted induced-C4 problem remains unresolved. Audit 100%; scoped cograph verification 100%; unrestricted discovery 0%. Completed 2026-10-03T07:55:07.255509+00:00.
+
+Frozen candidate: c683fc4b84266a6a153c087e182cf427ed502d6c. Own report reconstructs the moment input, profile derivative/lower bounds, coupled join closure, strict high-density union gap, arbitrary cotree-depth induction, and the uniform 6/n finite-sampling normalization. It covers zero-mass children, complete and empty leaf endpoints, reciprocal knots, and changing/unbounded depths along cograph sequences. It explicitly distinguishes a positive local union gap from uniform stability.
+
+The exact remaining gap is a density-preserving reduction or a bound for arbitrary non-cograph hosts. Neither P4-free terminology nor order-six enumeration supplies that reduction. This review makes no unrestricted optimality or historical novelty claim.
+
+Independent baseline and control bytes were sealed before candidate prose access. The proof verdict was sealed before author code/receipts, manifests, previous-review or sibling/root derivation access. Only then were relevant author controls replayed privately and old evidence consulted for corroboration. No root or sibling derivation was read. No individual was contacted. No candidate, index, branch, remote, or service was modified.
+
+Evidence: 210 own exact rational cotree-vs-direct-tuple formula comparisons, endpoint checks, 31,941 exact union arithmetic tuples (3,666 relevant high-density tuples), and 200,000 numerical relaxed-child falsification probes with explicit roundoff/repair limits. Author Turn 1 and Turn 4 receipts replay byte-for-byte, totaling 83,768 assertions with zero stderr. All 12 selected snapshot bindings and all 5 Turn 4 manifest members check; three fresh PDF hashes exactly match author source records. This is a scoped integrity check, not a whole-packet or five-turn audit.
+
+Preserved limitations and repairs: the initial wrapper's reserved zsh `status` assignment failed after its mathematical control had run; unchanged replay stdout is identical. A numerical probe's near-half branch tolerance produced a spurious 2.76e-13 excess; its initial code/stdout/stderr were retained before repair, and the repaired maximum excess is 4.44e-16 roundoff. A baseline author-entered timestamp typo is documented with exact filesystem seal times without changing sealed baseline bytes. Raw PDFs, extracts, full author streams, initial failed-control evidence, and Python cache remain ignored under own tmp. They are excluded from the public allowlist.
+
+The reusable proof is in `PROOF_AND_VERDICT.md`; sealed baseline, own control code/results, post-seal replay summary, binding summary, research log, and bounded public manifest accompany it. Runtime replays should use `python3 -B` to keep generated Python caches out of public paths.

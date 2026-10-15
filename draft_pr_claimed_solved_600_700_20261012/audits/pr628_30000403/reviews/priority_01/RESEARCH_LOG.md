@@ -1,0 +1,13 @@
+# PR628 priority review log
+
+All times UTC. Completion percentages concern the assigned priority audit and may decrease when new evidence changes the task. No Git, PR, queue, Zenodo or spreadsheet writes are performed by this reviewer.
+
+* **2026-10-15 03:28:28 — 10%.** Inspected immutable scope and complete original proof. Exact target is a universal constant for inner coarse lifting; actual-cover objects, positive characteristic and per-point optimality are excluded. Read existing source receipts and older audit limitations.
+* **2026-10-15 03:29:25 — 45%.** Independently retrieved Bresciani divisor preprint v1 and published paper, Huggins, Doyle–Silverman and Lercier–Ritzenthaler–Sijsling. Bresciani's general gerbe Proposition 2 / 28 is a materially stronger priority lead than its title or the older bounded audit suggested. Failed downloads retained honestly in receipts.
+* **2026-10-15 03:29:44 — 65%.** Retrieved both versions and publication of Bresciani's general structures paper and Beauville's subgroup classification. Preserved early distinction between the kernel of H1(N)->H1(PGL2) and mere H1(N)->H1(N/E) surjectivity; the latter alone is insufficient for a split-target lift.
+* **2026-10-15 03:31:15 — 80%.** Retrieved Bresciani–Vistoli dated v1 and a later Hidalgo general-action paper. Reconstructed the faithful coarse gerbe and associated compression conic. A point on its free locus splits the target PGL2 torsor, so a second quadratic extension is unnecessary. Sent the explicit implication candidate to the parent for independent falsification.
+* **2026-10-15 03:34:03 — 95%.** Verified dated arXiv records and original Cadoret degree-two lower-bound discussion. Parent independently reconstructed the quotient argument. Noncyclic compression result also gives V4 degree one and stronger other-stratum consequences. Central novelty objection established; no exact earlier six-point formula or earliest historical recognition certified.
+
+Final timestamp, input recheck and verdict are recorded in VERDICT.json. The strongest verified result is a complete prior-theory implication covering the central claimed theorem. The exact remaining uncertainty is historical recognition/earliest priority and novelty of a particular presentation or explicit formula, not validity of the implication.
+
+* **2026-10-15T03:38:32.285418+00:00 — 100%.** Completed the source/search ledgers, full finding and exact implication derivation. Rehashed all 36 native files against the immutable original Git head; all match. Bound four fresh mathematical-review inputs. Final recommendation is to close as a prior-theory consequence, subject to the parent's separate adversarial verification and final disposition. No remote or shared-file mutation occurred.

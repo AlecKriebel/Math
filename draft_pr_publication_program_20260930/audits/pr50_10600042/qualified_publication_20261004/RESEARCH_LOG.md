@@ -1,0 +1,5 @@
+# Qualified PR50 publication
+
+2026-10-04T03:33:07.876030+00:00 — Applied the human-authorized publication exception to PR50 only. Preserved preauthorization payload bytes, edited the open manuscript in place, and propagated explicit incomplete priority/access wording to metadata and portable materials. Mathematics, checker, expected results and original 1/5 attempt budget are unchanged. Fresh exact-package reviews and real publication/readback/tracker/merge remain required. Wording 100%; current qualified workflow 10%; overall program 3.030303%.
+
+2026-10-04T04:10:08.938180+00:00 — PR50 qualified publication complete: DOI 10.5281/zenodo.23131001, exact public files/metadata, unique tracker 'Math Puzzles'!A18:D18, actual exact-head merge 295abcdda7a30ca8c324a18c24b23341220b0808 and native acceptance 1cf3c856adc73b47239fb2b3c874e934cfabca04. Historical priority remains unresolved under explicit human exception. Two fresh package reviews clean. Original1/5; new central attempts0. PR50 workflow100%; dated program4/99=4.040404%. NextPR55; persistent goal active.

@@ -1,0 +1,189 @@
+{
+  "completed_utc": "2026-10-14T04:37:04.826103+00:00",
+  "status": "CHANGES_REQUIRED",
+  "mandatory_findings": 3,
+  "optional_findings": 1,
+  "findings": [
+    {
+      "id": "F1",
+      "priority": "P1",
+      "mandatory": true,
+      "title": "Imported kit is not bound to checked source bytes",
+      "code_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/native_transport_author/native_transport.py",
+      "line": 26,
+      "evidence": "IMPORT_BINDING_PROBE.json",
+      "status": "REPRODUCED"
+    },
+    {
+      "id": "F2",
+      "priority": "P1",
+      "mandatory": true,
+      "title": "Legitimate published OAI identifier prevents final native readback and receipt",
+      "code_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/native_transport_author/native_transport.py",
+      "line": 337,
+      "evidence": [
+        "ADVERSARIAL_NORMAL.json",
+        "ADVERSARIAL_OPTIMIZED.json",
+        "PRIMARY_IMPLEMENTATION_BINDING.json",
+        "PARENT_CALIBRATION_BINDING.json"
+      ],
+      "status": "REPRODUCED_WITH_PRIMARY_SERVICE_AND_DEPLOYED_CALIBRATION"
+    },
+    {
+      "id": "F3",
+      "priority": "P2",
+      "mandatory": true,
+      "title": "Mutable upload path permits unpinned bytes to be sent and committed",
+      "code_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_600_700_20261012/audits/pr623_30001184/reviews/native_transport_author/native_transport.py",
+      "line": 406,
+      "evidence": [
+        "ADVERSARIAL_NORMAL.json",
+        "ADVERSARIAL_OPTIMIZED.json"
+      ],
+      "status": "REPRODUCED_NO_PUBLICATION"
+    },
+    {
+      "id": "O1",
+      "priority": "P2",
+      "mandatory": false,
+      "title": "Atomic journal save lacks power-loss durability barriers",
+      "code_path": "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+      "line": 175,
+      "evidence": [
+        "ADVERSARIAL_NORMAL.json",
+        "ADVERSARIAL_OPTIMIZED.json"
+      ],
+      "status": "NO_FSYNC_OBSERVED_POWER_LOSS_NOT_TESTED"
+    }
+  ],
+  "full_report": "FINDINGS.md",
+  "review_completion_percent": 100,
+  "publication_execution_ready": false,
+  "reviewed_adapter_sha256": "14e4345d31b4b43bdb415d9fc0f4cb510871bd1d693a46c55ab88d76e21274ac",
+  "reviewed_kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "reviewed_manifest_sha256": "0612ed1a8d1259168698cff199897acd80d0417061e55574f9819b32da1c7af0",
+  "publication_inputs_unchanged": {
+    "count": 45,
+    "matched": 45
+  },
+  "native_inputs_unchanged": {
+    "count": 29,
+    "equal_original_commit": 29,
+    "equal_archive": 29
+  },
+  "archive_and_pdf_binding": {
+    "entries": 88,
+    "unique_names": true,
+    "pdf_in_archive": [
+      {
+        "name": "gns_generation_counterexample.pdf",
+        "size": 79172,
+        "sha256": "05c6bcaee280209a52493a6d7b330a31041ed33d6ffae2bfdcd2d46f888b912d"
+      }
+    ],
+    "native_adapter_in_archive": false
+  },
+  "supplied_tests": {
+    "normal": {
+      "count": 25,
+      "failures": 0,
+      "errors": 0
+    },
+    "optimized": {
+      "count": 25,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "additional_control_families": 7,
+  "live_own_draft_GET_requests": 2,
+  "live_mutations": 0,
+  "doi_from_empty_pids": {
+    "status": "PRIMARY_IMPLEMENTATION_VERIFIED",
+    "separate_reserve_required": false,
+    "public_record_required_scheme_auto_creation": true,
+    "expected_version_doi": "10.5281/zenodo.23356540",
+    "external_registration": "ASYNCHRONOUS_AND_NOT_LIVE_VERIFIED"
+  },
+  "remaining_gaps": [
+    "Repair all mandatory findings and obtain fresh independent review",
+    "Resolve optional O1 or accurately scope process-interruption guarantee",
+    "Observe deployed initialize/content/commit schemas without blind mutation retries",
+    "Pending-content readability after ambiguous PUT remains unknown",
+    "Own draft postpublication native readback and actual DOI resolver success remain unexecuted"
+  ],
+  "artifact_hashes": {
+    ".gitignore": {
+      "size": 18,
+      "sha256": "1410caa22a9048b554bc9347fbf5a8cfb66f74823f0ebc24c5caf6065b3fecb9"
+    },
+    "ADVERSARIAL_NORMAL.json": {
+      "size": 1370,
+      "sha256": "227b306bffbd5030c4333b2a5104f7006d2a6e7a9e4ec1a0ae87214c5cdfccd6"
+    },
+    "ADVERSARIAL_OPTIMIZED.json": {
+      "size": 1370,
+      "sha256": "612b2e9d9f5ff7f498f2b57d59d720f218a0f2bdc295e969eff34ca7e8f580b9"
+    },
+    "ARCHIVE_INTEGRITY.json": {
+      "size": 52,
+      "sha256": "4c07628638f8e838681d09feadf594df8c629aa07e3668401f3c0b8ce97ced87"
+    },
+    "FINAL_RECHECK.json": {
+      "size": 7392,
+      "sha256": "e7f3ca2cccc6eda0d6d53bf07ad290f50c57e2a62a67c5538c554030036ff161"
+    },
+    "FINDINGS.md": {
+      "size": 13616,
+      "sha256": "b0db89eb54ad7fd3e86e5715f702bbda7e2a2d489207f60b299d0c69d45e692a"
+    },
+    "IMPORT_BINDING_PROBE.json": {
+      "size": 518,
+      "sha256": "f8ed4505506a3985874f3d53a7671661749854caafd20eaccd48ec0b42150843"
+    },
+    "INPUT_BINDING.json": {
+      "size": 17764,
+      "sha256": "e7ef41d1c931a8d51efb4c5909de38bae62bfbeaa6400abc00963b82a1bf1ff9"
+    },
+    "LIVE_READONLY_CHECK.json": {
+      "size": 435,
+      "sha256": "cc5aee9269c77ef9f9c8c31e13bfbcdffba1a30c5c8ed87932ed12f479af4b93"
+    },
+    "PARENT_CALIBRATION_BINDING.json": {
+      "size": 1946,
+      "sha256": "947fb2adcec57de43a3e6ff0c0a6839910574e4ead73512d3afd81d7141cde0d"
+    },
+    "PRIMARY_IMPLEMENTATION_BINDING.json": {
+      "size": 2266,
+      "sha256": "b74fc26d42204865b74f76a50f506ff69f4e189079728de3f8709e2cc2ccf768"
+    },
+    "RESEARCH_LOG.md": {
+      "size": 1233,
+      "sha256": "4c93408bfcd31dc9ea93bdf4c9022346e440edc7b59a10de68536ba94e53cd13"
+    },
+    "SOURCE_RECEIPTS.json": {
+      "size": 1277,
+      "sha256": "f016de80524adec956e82e7491ab36b5aa4db974c542eda785e09f415751d891"
+    },
+    "adversarial_controls.py": {
+      "size": 6660,
+      "sha256": "23cbbc5afe761829ca2b3fb47da1371929a2ce13e79d943e1d5ef214bf9efc82"
+    },
+    "import_binding_probe.py": {
+      "size": 1679,
+      "sha256": "6806af2494e0048a854b4117469114bf9de684fed56fcdf4a226ddc9cd2a9101"
+    },
+    "run_supplied_tests.py": {
+      "size": 661,
+      "sha256": "76699b998fc10b7283c057287b913684f95896406a0f86649cfd933b2098989a"
+    },
+    "supplied_normal.txt": {
+      "size": 3815,
+      "sha256": "210e994eb9d715eba6e851071c68122ff5bcccb74d72a26f1e26deca6d8ee279"
+    },
+    "supplied_optimized.txt": {
+      "size": 3815,
+      "sha256": "8d498e44f4c53f5a86560a24969b4312707d80418cc61fe827ab079213f8971c"
+    }
+  }
+}

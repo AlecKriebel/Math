@@ -1,0 +1,15 @@
+First control run, retained failure before schema repair:
+exit_code: 1
+
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr32_6800007/priority_flag_family/priority_binding_controls.py", line 70, in <module>
+    preservation = [check_manifest(path, expected) for path, expected in closed]
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr32_6800007/priority_flag_family/priority_binding_controls.py", line 70, in <listcomp>
+    preservation = [check_manifest(path, expected) for path, expected in closed]
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr32_6800007/priority_flag_family/priority_binding_controls.py", line 22, in check_manifest
+    for entry in document['files']:
+KeyError: 'files'
+
+The recorded line numbers belong to the failed version. The final program supports
+the actual files/size and first_party_artifacts/bytes schemas without modifying
+either closed manifest. CONTROL_RESULTS.json records the corrected actual run.

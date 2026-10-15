@@ -1,0 +1,9 @@
+# Finite conditioning and historical audit scope
+
+The first fresh manuscript review found one mandatory precision issue, M1: conditional Poisson representations must use the finite independent vector Z_1,…,Z_n and event Σ_(j=1)^n jZ_j=n. Its probability is exp(−Σ_(j=1)^n a_j)h_n>0. The infinite independent sequence has infinite total almost surely and is not conditioned on a finite total. An infinite comparison sequence can be used for ABT's approximation, whose conditioning relation still truncates at n.
+
+The manuscript, current CANDIDATE/disposition/README, root classical-primary comparison and verification evidence map now state this finite convention explicitly. The ordered-composition definition, original mathematical core sections3–9 and all four computational programs are unchanged. Historical sealed reports or comments using a bare conditional-Poisson phrase are read under this standard finite-vector convention; they have not been rewritten or resealed as reviews of new bytes.
+
+The exact reviewed first manuscript, PDF, archive, metadata, deposit specification and old root comparison are preserved under `history/before_review01_M1_fix_20261015/` in the repository and at the published preparation checkpoint. The first report remains a one-finding review of its old input hashes. It is not counted as a clean review of the revised package. The revised package requires a new full adversary; later explicit clearance records establish whether that requirement was met.
+
+The archive contains selected mathematical/priority audits and this clarification; fresh manuscript audit records are maintained separately in the repository to avoid a circular requirement that a report include the hash of an archive containing itself. All22 original submission files remain byte-identical in `current_source/history/original_submission_20261001/` inside this archive.

@@ -1,0 +1,103 @@
+{
+  "utc": "2026-10-05T01:37:49.781055+00:00",
+  "status": "REPAIRS_REQUIRED_BEFORE_OPERATIONAL_CLEARANCE",
+  "scope": "Exact publication/tracker operational preparation; no mathematical adjudication and no publication authority",
+  "review_completion_percent": 100,
+  "publication_completion_percent": null,
+  "criteria_sha256": "5c169505bc6d1ea9caabc39b0d80527ac5d5f8bb18ccf3d11820ddc8fcc186f0",
+  "executed_test_runs": [
+    {
+      "artifact_directory": ".",
+      "tests": 13,
+      "exit_code": 0
+    },
+    {
+      "artifact_directory": "test_run_002",
+      "tests": 15,
+      "exit_code": 0
+    }
+  ],
+  "all_pinned_inputs_unchanged_at_finish": true,
+  "changed_input_paths": [],
+  "intended_actual_authority_files_absent_at_finish": [
+    "ROOT_FULL_PREPRINT_PUBLICATION_CLEARANCE.json",
+    "ROOT_PUBLICATION_OPERATIONAL_CLEARANCE.json",
+    "ROOT_FINAL_WRITE_LEASE.json",
+    "ROOT_PR80_PUBLICATION_WINDOW_RELEASE_VERIFICATION.json"
+  ],
+  "mandatory_findings": [
+    {
+      "id": "M1",
+      "priority": "P1",
+      "source": "publication_preparation/submission_gate.py and safeguards throughout the other four operators",
+      "mechanism": "Python assert guards disappear under -O/PYTHONOPTIMIZE. The prescribed native -B prevents bytecode writes, not optimization.",
+      "counterexample": "Exact submission_gate source compiled optimize=1 accepted an in-memory paused/revoked/wrong-owner/wrong-PR/wrong-token/wrong-endpoint lease fixture. No actual clearance was created and no external command ran.",
+      "evidence_test": "test_optimized_source_accepts_pause_and_bad_identity",
+      "actual_environment_limit": "The measured native test environment has PYTHONOPTIMIZE unset; the counterexample is a supported runtime boundary, not a claim of present bypass.",
+      "minimal_repair": "Fail explicitly before any gate/source execution if sys.flags.optimize != 0, or replace security/correctness assertions with explicit exceptions. Ensure top-level invocation and inherited child environment cannot disable assertions. A separately verified environment contract is an alternative only if it is bound to the actual launch and fail closed."
+    },
+    {
+      "id": "M2",
+      "priority": "P1",
+      "source": "publication_preparation/submission_gate.py:window()",
+      "mechanism": "Logical lease identity/token/branch/head/origin are checked, but no temporal validity is checked. No issue time, not-before, expiry, maximum lifetime, or remaining execution window is required.",
+      "counterexample": "Exact window() accepted a matching lease with created/expires in 2000 and not_before in 2099. All checks unrelated to time were satisfied by isolated mocks.",
+      "evidence_test": "test_expired_and_future_window_currently_accepted",
+      "minimal_repair": "Define required actual lease UTC issue/not-before/expiry fields, validate ordered bounded lifetime and present validity using actual time, and bind the same temporal grant across shared status and final lease. Ensure the permitted subprocess deadline fits inside that window or is capped by remaining validity. Missing or expired fields must reject."
+    }
+  ],
+  "optional_hardening": [
+    {
+      "id": "O1",
+      "topic": "Closed review evidence schema",
+      "observation": "operational_clearance() accepts an empty closed_review_evidence map with exact operator pins. current_clearance() likewise iterates its evidence map without requiring named independent closure artifacts.",
+      "evidence": "test_operational_clearance_accepts_empty_closed_review_evidence",
+      "required_assumption": "Future root grant producer is trusted and actually includes completed independent review artifacts; operators do not create grants.",
+      "suggestion": "Require a nonempty expected set of completed independent review report/inventory/transcript bindings and actual status fields, or validate those requirements at the trusted grant producer. Local root authority is not a cryptographic signature."
+    },
+    {
+      "id": "O2",
+      "topic": "Binding tracker prerequisite receipt",
+      "observation": "The actual append operator mock completed using public file entries containing only true success flags; filename/size/hash/native capture linkage was absent. Genuine reviewed verify_public_record.py emits complete file and native evidence.",
+      "evidence": "test_full_tracker_mock_single_raw_row_and_complete_postscan",
+      "required_assumption": "PUBLIC_RECORD_VERIFICATION.json is the untampered recent output of the reviewed public verifier for this reviewed manifest, and upstream root independently checks that provenance before append.",
+      "suggestion": "Bind public receipt to submission manifest/operator hashes, exact named two-file digests/bytes and retained native body digests; compare those fields in append_tracker.py. This closes stale or hand-crafted local-receipt acceptance without changing the service workflow."
+    },
+    {
+      "id": "O3",
+      "topic": "Public HTTP native trace completeness",
+      "observation": "public_request() records argv/time/code/streams, but its native record omits cwd and the source/tool identity. execute() pins its gate and Python argv source but not the calling wrapper itself.",
+      "suggestion": "Include actual cwd and reviewed source bindings in public HTTP receipts, and pin all five operational sources in the enclosing attempt record. Current independent review captures all tested source hashes."
+    }
+  ],
+  "verified_strengths": [
+    "All five operator size/SHA256 targets, submission PDF/ZIP/metadata, frozen manifest and repository Zenodo kit hash matched. Every frozen candidate payload matched declared bytes/hash and mode 0444; namespace had exactly 23 payloads plus manifest.",
+    "Normal-mode absent actual scientific/operational grants fail before a subprocess. Paused status and token mismatch reject. Pin rejects symlink. Git URL rewrite rejection does not reflect private rewrite values.",
+    "OS acquisition uses one existing no-follow lock inode and nonblocking exclusive flock; caller retains file object throughout the operation. This is a cooperative lock assumption, not protection against arbitrary foreign filesystem writes.",
+    "Zenodo launcher selects production, exact manifest, two reviewed files, exact confirmation ID; repository kit re-verifies draft metadata/files and never automatically repeats mutating requests. Isolated lost publication response made one POST and two reads, recovered truthful published state, and separated unresolved DOI from publication.",
+    "execute() records preattempt before child invocation, retains actual partial stdout/stderr and timeout=124 evidence, and refuses a second same-label invocation. This also blocks automatic retries after ambiguous writes.",
+    "Anonymous public verifier requests record, entire two files, and exact DOI resolver, compares all 11 reviewed metadata keys through only public schema field mappings, complete bytes/size/MD5/SHA256 and exact public record/DOI identity. Curl -q first disables default config; netrc and origin Authorization/Cookie are disabled, HTTPS redirects bounded by timeout, and exact final DOI target checked.",
+    "Stored actual tracker capture targets exact spreadsheet/GID1254632077 Math Puzzles with 43 columns. It has 23 nontrailing row arrays, exact first-four headers and no target/title duplicate. Runtime derives complete column span from fresh metadata and requests FORMULA before/post scans.",
+    "Whole actual tracker-code mock made one RAW INSERT_ROWS append with four cells and blank chat cell, exact row readback, whole postscan equality with every before row plus the new row, and one target/DOI count. A modified prior header prevented TRACKER_COMPLETE. No individual contact tool or preparation exists."
+  ],
+  "bounded_assumptions_and_exact_gap": [
+    "No actual current clearance, operational clearance, final write lease, or PR80 release verification exists. This review neither constructs nor grants them. Trust and closure of future root-issued files are not inferred from status strings.",
+    "Root-controlled file ownership and cooperative writers are required. pin() is a check/read path operation rather than a durable descriptor to prevent malicious concurrent replacement; held flock coordinates only cooperating processes.",
+    "Existing git origin/state/held-set and account service state were not rechecked live: actual shared status and held sets were frozen, Git/API/service mutations prohibited, and network unnecessary. Gate behavior was mocked rather than executed on real shared lock or live Git.",
+    "Future tracker before/post reads are fresh in the reviewed code. Exclusive tracker writer behavior during the scan-to-append interval is an assumption: local flock cannot constrain other remote Sheets editors. A racing edit/duplicate is detected by whole postscan after the one append, requiring read-only reconciliation.",
+    "55-second child timeout can interrupt a request after remote acceptance. Permanent preattempt marker and private/local state/retained streams support read-only reconciliation; no tests claim timeout cancelled remote service effects. If initial stage has no saved ID, inspect account read-only before any later restage.",
+    "Public-schema exact matching may stop if Zenodo changes or transforms a field beyond the three explicit schema mappings. Such a stop leaves no tracker row; actual public equality and DOI resolution remain required rather than assumed.",
+    "After implementing the two mandatory repairs, conduct a new exact-source adversarial review and rebind actual review evidence to revised source hashes before producing operational clearance. Mathematical full-preprint review is separate and remains outside this report."
+  ],
+  "mutations_performed": "Only review-local files and isolated temporary fixtures under the assigned directory. No source/input edit, Git mutation, API/service write, individual contact or actual authority artifact creation.",
+  "native_finalization": {
+    "argv": [
+      "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/MacOS/Python",
+      "-B",
+      "finalize_review.py"
+    ],
+    "cwd": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr305_5100034/root_during_peer_pause_20261005/publication_operations_review_01",
+    "utc": "2026-10-05T01:37:49.781055+00:00",
+    "finalizer_sha256": "ede13d6528fc7461ca84f713e321b17c5c9c8b229815420d8665c5970ab37dfd"
+  }
+}

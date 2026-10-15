@@ -1,0 +1,193 @@
+# Independent review of two Exact Matching proof objections
+
+Review date: 9 October 2026 (UTC).
+
+## Acceptance and scope
+
+**Accept both bounded objections** developed in Sections 1 and 2 below: the actual graph-cofactor example refutes the coprimality clause of Du's Theorem 4.4 and the valuation assertion of Corollary 4.6(ii); the colored six-cycle refutes the independent target-sum inference in Proposition 2.3 under the standard brace convention. Preserve the distinction between these false local statements and the main mathematical claims.
+
+This standalone edition is confined to these two local objections, their source hypotheses, and their stated limitations. No other proof step, additional audit issue, or manuscript claim is certified. The original research target remains unresolved by this work.
+
+Neither exhibit is a counterexample to ASNC. This review does not disprove the existence of a deterministic polynomial-time Exact Matching algorithm, certify a repaired algorithm, or establish any Lean-kernel inconsistency. The restricted formalization repository was not accessed, and no restriction was bypassed.
+
+## 1 The graph-cofactor obstruction
+
+### 1.1 Exact source statements and hypotheses
+
+The source is Yuefeng Du, *Bipartite Exact Matching in P*, [arXiv:2604.01571v3](https://arxiv.org/pdf/2604.01571v3), revised 9 April 2026. Page numbers below are both PDF page numbers and printed page numbers.
+
+- Section 2.1, p. 6, sets up a bipartite graph with row and column labels in `{0,...,n-1}` and an edge coloring taking values in `{0,1}`.
+- The opening of Section 4 and Definition 4.1, p. 19, fix a bipartite graph and define the signed cofactors obtained by deleting column `c`.
+- Definition 4.3, p. 20, allows any list of distinct support rows and signs in `{+1,-1}`. The coefficients are the corresponding signed entries of that graph's column-hole vector.
+- Theorem 4.4, p. 20, assumes distinct increasing nonnegative exponents and vanishing of the first `m-1` support-family functionals. Its final clause asserts coprimality of the generalized Vandermonde determinant with each support base.
+- Step 5 of that proof, pp. 21-22, specializes one base to zero and infers that the remaining numeric generalized Vandermonde determinant is nonzero.
+- Corollary 4.6(ii), pp. 22-23, uses the claimed coprimality to identify the surviving functional's valuation with the baseline exponent plus the quotient's valuation.
+
+Neither the Section 4 setup nor these two statements assumes that the graph is connected, matching covered, a brace, or a realized index-1 extension patch. The support-row list is not required to be increasing. The parameter `lambda` is a polynomial indeterminate, with no positivity restriction preventing specialization at a negative root.
+
+### 1.2 Actual four-row realization
+
+Take `n=4`, with both label sets `{0,1,2,3}`, and all edges blue. Use the edge set
+
+    (0,2), (1,0), (1,1), (2,0), (2,1), (2,3), (3,0), (3,1).
+
+The source's matrix is therefore exactly
+
+    M = [[0, 0,        lambda^2, 0],
+         [1, lambda+1, 0,        0],
+         [1, lambda+2, 0,        (lambda+2)^3],
+         [1, lambda+3, 0,        0]].
+
+Deleting column `c=3`, Definition 4.1 gives
+
+    u_a = (-1)^(a+3) det M[delete row a, delete column 3],
+    U^(3) = (0, lambda^2, -2 lambda^2, lambda^2).
+
+For example, the unsigned minors for deleted rows 1, 2, and 3 are respectively `lambda^2`, `2 lambda^2`, and `lambda^2`; the row-2 cofactor has negative sign. The row-0 minor is zero because column 2 has no remaining nonzero entry.
+
+Choose the support-row order `(2,1,3)` and signs `(-1,-1,-1)`. The bases and coefficients from Definition 4.3 are then
+
+    (mu_1,mu_2,mu_3) = (lambda+2,lambda+1,lambda+3),
+    A = lambda^2 (2,-1,-1).
+
+All three bases are monic, have distinct nonnegative integer row labels and positive constant terms, and are pairwise coprime in `Q[lambda]`. The exponents `(e_0,e_1,e_2)=(0,1,3)` are distinct and nonnegative. Both the labels and these exponents fit the ambient label set. All coefficients are actual signed minors of one source-permitted graph, and all algebra is already in `Q[lambda]` because every edge is blue.
+
+Set `u=lambda+2`, so the support bases are `(u,u-1,u+1)`. Direct substitution gives
+
+    F_0 = lambda^2 [2-1-1] = 0,
+    F_1 = lambda^2 [2u-(u-1)-(u+1)] = 0,
+    F_3 = lambda^2 [2u^3-(u-1)^3-(u+1)^3]
+        = -6 lambda^2 u.
+
+Thus all vanishing hypotheses are satisfied exactly.
+
+### 1.3 Determinant and valuation contradiction
+
+The exponent gaps equal `(0,1,3)`, since `e_0=0`. The generalized Vandermonde matrix is
+
+    W = [[1,   1,       1],
+         [u,   u-1,     u+1],
+         [u^3, (u-1)^3, (u+1)^3]].
+
+Its last-row signed cofactors are `(2,-1,-1)`. Expanding along that row yields
+
+    G_D = det W = 2u^3-(u-1)^3-(u+1)^3 = -6u.
+
+The first two rows have rank two, with these constant maximal minors. Their polynomial kernel is generated by `(2,-1,-1)`. Consequently the quotient in the displayed factorization is unambiguously
+
+    h = F_3/G_D = lambda^2.
+
+This avoids any quotient-integrality ambiguity or issue arising from a nonzero baseline exponent. The factorization itself holds on this example. Its asserted coprimality and valuation consequences do not:
+
+    gcd(G_D,mu_1) = mu_1 = lambda+2,
+    ord_(lambda+2)(F_3) = 1,
+    ord_(lambda+2)(h) = 0,
+    h(-2) = 4.
+
+The exact failed inference in Step 5 is visible without symbolic expansion. At `lambda=-2`,
+
+    W(-2) = [[1,  1, 1],
+             [0, -1, 1],
+             [0, -1, 1]].
+
+The last two rows coincide. Distinct affine polynomial bases do not prevent this specialized generalized Vandermonde determinant from vanishing.
+
+The graph also has perfect matchings: its only row-to-column permutations are `(2,0,3,1)` and `(2,1,3,0)`. Its determinant is `-2 lambda^2 (lambda+2)^3`, and its deleted-column matrix has rank three over `Q(lambda)`.
+
+### 1.4 Limits and dependency consequence
+
+The displayed graph is disconnected, is not matching covered, and is not a brace. Those facts do not violate the stated hypotheses. If connectedness alone were desired, adding the blue edge `(0,3)` connects it and leaves every relevant cofactor unchanged, since column 3 is deleted. This variant does not establish matching-coveredness or brace-patch realizability.
+
+The acceptance is therefore directed at the universal assertions as stated. It does not refute a more restricted replacement lemma whose additional hypotheses are precisely stated and proved for every actual index-1 patch state. In particular, `F_3` is nonzero as a polynomial; this example is not an ASNC counterexample.
+
+The source itself invokes this valuation reduction in the paragraph following Theorem 6.5, p. 33. Theorem 3.11's index-1 discussion, p. 18, and the assembly of the main proof in Section 8, p. 48, invoke the three-node elimination. The flaw therefore affects an advertised proof step. That observation does not certify the remainder of the proof or establish falsity of its final theorem.
+
+## 2 The tight-cut target obstruction
+
+### 2.1 What the source actually specifies
+
+Du's Proposition 2.3, p. 7, computes feasible red counts separately in every brace block, then uses only a partition of the target into the sum of block targets. No selected cut-edge identity, conditioned boundary state, or compatibility requirement is included in this decision DP. Remark 1.4, p. 4, and Remark 8.1, p. 48, reinforce independent testing of blocks.
+
+Theorem 3.11, Step 1, pp. 17-18, attempts to justify that reduction by identifying a tight cut with a balanced Hall partition, assigning defect zero, and applying an independent block-feasibility argument. The two decompositions are different.
+
+Boundary-minor states occur elsewhere in the manuscript. The bounded objection is specifically that the stated general-graph decision DP does not retain the information needed to glue the contraction matchings.
+
+### 2.2 The complete six-cycle calculation
+
+Let the graph be the cycle with edges
+
+    01, 12, 23, 34, 45, 50,
+
+with bipartition `{0,2,4}` and `{1,3,5}`. Color `01` and `34` red and all other edges blue. Its only perfect matchings are
+
+    {01,23,45}, with one red edge,
+    {12,34,50}, with one red edge.
+
+The graph is connected, and these two matchings together cover every edge. Hence it is matching covered. Its actual feasible target set is `{1}`.
+
+For the shore `S={0,1,2}`, the cut is `{23,50}`. Each of the two matchings uses exactly one cut edge. Both shores have three vertices, so this is a nontrivial tight cut.
+
+Contract `{3,4,5}` to `L`. The left factor is the four-cycle with edges `01,12,2L,0L`. Its perfect matchings are
+
+    {01,2L}: target 1, using the copy of original cut edge 23;
+    {12,0L}: target 0, using the copy of original cut edge 50.
+
+Contract `{0,1,2}` to `R`. The right factor is the four-cycle with edges `R3,34,45,5R`. Its perfect matchings are
+
+    {R3,45}: target 0, using the copy of original cut edge 23;
+    {34,5R}: target 1, using the copy of original cut edge 50.
+
+Each factor therefore has feasible target set `{0,1}`. Moreover each feasible target has just one perfect matching, so its exact-target determinant coefficient is a single nonzero signed monomial. There is no issue of cancellation obscuring the per-block feasibility in this example.
+
+Independent addition produces `{0,1,2}`. The false target-0 combination chooses edge `50` on the left and edge `23` on the right. The false target-2 combination chooses edge `23` on the left and edge `50` on the right. Both combinations fail to glue. Both cut edges are blue, so double counting a red cut edge cannot explain the discrepancy.
+
+### 2.3 Correct compatibility identity
+
+For an original cut edge `e`, let `T_L(e)` and `T_R(e)` be the feasible red counts of contraction matchings required to use the copy of that same edge. Then the original target set is
+
+    T(G) = {a+b-rho(e) : e lies in the cut,
+                         a in T_L(e), b in T_R(e)}.
+
+Every original matching restricts to such a pair. Conversely, two contraction matchings using the same original cut edge glue to one original perfect matching: remove the contracted vertices and identify the two copies of that edge as a single edge. The subtraction counts its color contribution once rather than twice.
+
+Unconditioned target sets lose this essential compatibility information. The identity above describes a correct one-cut relation; it does not establish that a repaired recursive algorithm has the manuscript's claimed polynomial complexity.
+
+### 2.4 Brace conventions and the balanced-Hall distinction
+
+For the standard definitions, use Phelipe A. Fabres, Nishad Kothari, and Marcelo H. de Carvalho, *Minimal Braces*, [arXiv:1903.11170v2](https://arxiv.org/pdf/1903.11170v2), revised 12 September 2020.
+
+- Page 2 defines a tight cut by the use of exactly one cut edge in each perfect matching, defines the two shore-contraction factors, and defines a bipartite brace by the absence of nontrivial tight cuts in a matching-covered graph.
+- Proposition 1.2, p. 3, characterizes bipartite tight cuts using odd shores with majority and minority parts differing in size by one, with no edge between the two minority parts.
+- Proposition 1.3, p. 4, states the Hall+2 characterization for order at least six and only for subsets with `|Z|<|A|-1`.
+- The paragraph following Corollary 1.4, p. 4, explicitly includes `K2` and `C4` as braces.
+
+Each contraction above is a connected matching-covered `C4`. Any tight-cut shore must have odd cardinality: in a perfect matching, the number of crossing matching edges has the same parity as the shore's size. A nontrivial tight cut on four vertices would need two odd shores larger than one, which is impossible. Hence these two factors are terminal braces under the standard convention.
+
+The wording “standard brace convention” is important. Du's literal Definition 3.1, p. 12, imposes Hall+2 on every proper nonempty subset. For `n>=2`, taking a subset of size `n-1` would require at least `n+1` neighbors in a side of size `n`. That malformed condition excludes every such graph, including `C4`; it should not be used either to deny the standard contraction example or to treat the main theorem as vacuous. The example concerns the intended standard tight-cut decomposition.
+
+For a balanced Hall partition with `|A_1|=|B_1|` and no edges from `A_1` to `B_2`, every perfect matching must match all of `A_1` into all of `B_1`. No edge from `A_2` to `B_1` can then belong to a perfect matching. Matching-coveredness excludes those edges entirely. Thus a proper such partition would disconnect the graph. It cannot model the connected six-cycle's nontrivial tight cut. If only balanced Hall components were intended, the independent product argument would not exhaust genuine tight cuts or ensure that the remaining components are braces.
+
+## 3 Verification and exact source identities
+
+The review used independent symbolic recomputation of the displayed matrices and cofactors, finite enumeration of the three explicit matching examples, checks of the source context, and visual PDF inspection of Du pp. 7, 17, 19-22 and *Minimal Braces* pp. 3-4. The symbolic calculation used installed SymPy; no third-party repository code or Lean build was run. Only these bounded exhibits were evaluated; no broad counterexample search is claimed.
+
+### Du v3
+
+- Public PDF: https://arxiv.org/pdf/2604.01571v3
+- Title: *Bipartite Exact Matching in P*
+- Author: Yuefeng Du
+- Version: arXiv:2604.01571v3, 9 April 2026
+- PDF pages: 52
+- PDF bytes: 683,388
+- PDF SHA-256: `1550bf3b0652bb11ec53d8505e93118011c50a4e5709b912e7cf022544896527`
+
+### Minimal Braces v2
+
+- Public PDF: https://arxiv.org/pdf/1903.11170v2
+- Title: *Minimal Braces*
+- Authors: Phelipe A. Fabres, Nishad Kothari, Marcelo H. de Carvalho
+- Version: arXiv:1903.11170v2, 12 September 2020
+- PDF bytes: 276,587
+- PDF SHA-256: `1c4f5218a3747e8a50bd67e500bf11fe5462537ddf16d2ec8e46ea17ea8e30ea`
+
+The accompanying edition manifest binds the files actually included here; the acceptance notice identifies this edition of the written review. Raw public PDF identities above identify the inspected sources. No source documents are distributed. The authored finite examples and complete derivations are retained, with all mathematical limitations. Administrative references to an omitted report and derived-text identities were removed for this standalone edition; Sections 1 and 2 are unchanged.

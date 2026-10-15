@@ -1,0 +1,15 @@
+# PR379 fresh problem audit log
+
+2026-10-03T05:49:27.796066+00:00 - New independent assignment for PR379. This reviewer previously completed only unrelated PR377 source/priority work. No PR379 candidate, prior/root/sibling proof, report, code, or derivation has been read. This is reviewer reuse, not a newly spawned chat; fresh allocation was unavailable. Began literal-source-first audit. Completion estimate: 0% of assigned whole-package adversarial review. No external-person communication or candidate/Git/index/remote/service mutation.
+
+- 2026-10-03T05:54:11.283173+00:00: Source-first baseline and falsifiable controls sealed before any PR379 content access. Completion estimate 15%. Original virtual-FP formulation, conventions, finite-index/top-degree proofs and un-realized ring counterexample recorded; supplied MSP article misbinding discovered independently.
+
+- 2026-10-03T05:58:43.801450+00:00: All five proofs and author executable sources independently reconstructed; primary passages reread/rendered. Own mathematical verdict sealed before any PR379 prior/root/sibling review report or reviewer code. Completion estimate 55%; metadata/replay/Git scope still unverified. Failed image locator retained in tool history and corrected from actual inventory.
+
+- 2026-10-03T06:02:21.188286+00:00: Exact-head verifier first attempt failed because this reviewer guessed CURRENT_STATE was one of three changed wrappers. Actual object diff shows PUBLICATION_MANIFEST, PUBLICATION_STATUS, verify_publication; CURRENT_STATE is preserved historical data. Failed code/stdout/stderr preserved as failed_01_*; correcting own verifier, no candidate issue. Completion estimate 70%.
+
+- 2026-10-03T06:03:35.408796+00:00: Second exact-head verifier attempt exposed assignment ambiguity: queue414 is physical line414; literal rank is403. Both actual objects retain rank403. Own mistaken rank assertion corrected; failed_02 code/stdout/stderr preserved. No candidate repair. Subsequent summary parse failed because the preceding verifier output was empty; no source-copy/replay operation occurred in that attempted helper.
+
+- 2026-10-03T06:11:41.752573+00:00: Exact actual-object/queue/nested-history verification passed; twelve current/pre-final private replay modes passed, all stdout/stderr saved and checked. Fresh independent Q16 noncentral nonsplit and variable-shift controls passed (14,427); all six separately freshly fetched source PDFs match historical bindings. Completion estimate 90%. Added checks cover superseded publication manifest and actual-original-object wrapper replay; no candidate repair identified.
+
+- 2026-10-03T06:16:55.278810+00:00: Final bounded corrected-head report and source audit written. Fourteen current/pre-final/actual-old-object modes and all nested historical manifests verified; full streams retained. Completion estimate100% for this independent review; original mathematical target remains unresolved, novelty uncertified. No further mandatory repairs found; essential finite-graph qualification recognized. Creating final explicit owned-only whitelist and checking its closure; no publication action by this reviewer.

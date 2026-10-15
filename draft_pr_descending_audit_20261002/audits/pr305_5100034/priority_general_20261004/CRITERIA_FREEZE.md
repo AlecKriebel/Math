@@ -1,0 +1,19 @@
+# Independent general-literature priority criteria — frozen 2026-10-04T23:28:11Z
+
+This file was written before reading the candidate result, source-gate files, or previous audits. The task statement supplies an audit target, not a priority assumption. No other priority team's results will be consulted before closure.
+
+## Comparison object
+The literal Table 7 item must first be reconstructed from the primary versioned 2020 arXiv source and 2021 journal publication. Distinguish (E) equality of the two signed focal-pedal area ratios; (M) a same-focus multiplier, common to both foci and phase independent, between the original-chord and outer-tangent pedal signed areas; (C) constancy of either focal ratio across a Poncelet family. Compare each separately. Preserve the exact nested nondegenerate confocal ellipse hypotheses, primitive period N>=3, coprime convex/star turning number, signed-area convention, and both foci. Degenerate boundary cases must not silently extend scope.
+
+## Prior-art success criteria
+A preexisting public primary source defeats a novelty claim for a component if it either states the component with at least this scope or supplies a published theorem whose hypotheses are met and whose conclusion yields the component by a short, explicit, checkable specialization/derivation without a new central lemma. Terminology need not match. Publication/version dates must precede the candidate's relevant documented timestamp. Historical journal versus preprint dates will be reported separately.
+
+Full-equivalent: complete component and all target scope, by direct statement or demonstrated implication. Partial: proper restricted scope (e.g. odd N only, even N only, convex only, one focus, low period, unsigned-only, or generic conditions with unverified exceptions). Method: useful known identity or method that still requires a substantive new central argument. No-located-full-prior: audited sources have no demonstrated full-equivalent theorem; this is bounded by the disclosed coverage and is not a worldwide-first certificate. Unresolved: a plausible equivalence cannot be established or refuted from inspected full primary material.
+
+## Derivation and counterexample requirements
+For implied priority, record source theorem/equation, all hypotheses, exact substitution, every nontrivial bridge, and a reproducible algebraic or geometric check. A known fixed perimeter, caustic, energy, Joachimsthal integral, elliptic pole-trace formula, Steiner/pedal quadratic form, or area-ratio invariant is not itself equivalent unless the bridge to the two signed focal pedals is established. A route transferring the central difficulty to another unsupported invariant is blocked, not counted as a proof.
+
+For C, a published exact counterexample with the same scope or an old theorem that explicitly implies nonconstancy counts; an exact counterexample merely reconstructible today from old standard data must be separately labelled a new derivation from old methods, not a documented historical statement. For E/M, inspect whether known identities and closure conditions force them. Numerical plots/snippets/keyword absence are insufficient.
+
+## Primary-source custody and audit closure
+For each decisive source: record title, authors, DOI/arXiv/version/date, page/theorem/equation locator, local native artifact and SHA-256, retrieval and extraction argv/cwd/start+end UTC/full streams/exit. Verify the full relevant statement/proof text rather than a search snippet. PDFs/texts stay private in this folder. Secondary sources may identify leads but cannot alone establish the verdict. Stop writing only after a final comparison report, exact remaining gaps, source sealing and explicit closure are recorded. This verdict does not authorize merge, push, release or publication.

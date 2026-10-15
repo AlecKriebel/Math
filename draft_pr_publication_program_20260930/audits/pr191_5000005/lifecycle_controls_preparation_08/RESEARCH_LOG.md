@@ -1,0 +1,5 @@
+# Lifecycle controls08 research log
+
+2026-10-15T08:23:53.045447+00:00 — Preparation100% complete for NEW independent08 review; actual lifecycle completion remains pending. Read/authenticated full terminal07 REPAIR_REQUIRED report. Narrowly bound current merge receipt DOI to exact published scalar and selected_files to exact independently checked original map cardinality. No public/gate/Root constructor interface change; seven pure constructor ASTs and other8 runtime files unchanged.
+
+2026-10-15T08:23:53.045447+00:00 — 721 offline assertions passed, all prior674 entries retained. Frozen07 ordinary full factual flow reproduces wrong scalar/nested DOI and count999999 publication;08 rejects at direct/scope/preparation/final consumers. Positive full lifecycle/actual190 formats/unknown-write recovery/immutable100 stale retry remain. Frozen01–07 and scientific/shared files unchanged. V7/644/terminal07/Root-auth pins recorded; exact safe files/seal frozen0444. No actual Root/service/Git/canonical/shared actions. Author PASS is not approval.

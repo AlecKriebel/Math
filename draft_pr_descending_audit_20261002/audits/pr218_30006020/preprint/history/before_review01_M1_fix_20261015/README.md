@@ -1,0 +1,1 @@
+Frozen package actually reviewed by fresh_review_01 before M1 finite-vector clarification. Old input hashes and the first report govern this snapshot. No old review is relabeled as clean for new bytes. All original source files are recoverable within the preserved old ZIP.

@@ -1,0 +1,33 @@
+# Historical authored correction, superseded by delivered REPORT.md
+# This contextual diff records the attribution and arithmetic-note correction.
+# Its complete original base is intentionally not delivered. Patch application
+# is NOT_RUN by the portable validator. Use REPORT.md as the accepted version.
+# Subsequent report edits update disposition and receipt references only.
+
+--- REPORT.md (original)
++++ REPORT_CORRECTED.md
+@@ -28,7 +28,7 @@
+ 
+ ## 2. Two elementary observations
+ 
+-**Observation A: a collapsed edge is detected by its coordinate support.** Suppose \(e=\{i,j\}\in E(G)\). A stress whose only nonzero coordinate is \(w_e=1\) belongs to \(W_G(P)\) if and only if \(p_i=p_j\). Indeed, all equilibrium equations are zero except possibly those at \(i,j\), where the forces are \(p_j-p_i\) and \(p_i-p_j\). Consequently, a collapsed and a noncollapsed realization of this edge cannot have sign-preservingly equivalent \(G\)-fibers: a homeomorphism preserving every coordinate sign would have to preserve the existence of this singleton-support positive stress.
++**Observation A: a collapsed edge is detected by its coordinate support.** This is the degenerate-edge criterion in Panina, Section 3, Lemma 4 ([preprint v4, p.8](https://arxiv.org/pdf/1902.07212v4)); it is reproved here for completeness. Suppose \(e=\{i,j\}\in E(G)\). A stress whose only nonzero coordinate is \(w_e=1\) belongs to \(W_G(P)\) if and only if \(p_i=p_j\). Indeed, all equilibrium equations are zero except possibly those at \(i,j\), where the forces are \(p_j-p_i\) and \(p_i-p_j\). Consequently, a collapsed and a noncollapsed realization of this edge cannot have sign-preservingly equivalent \(G\)-fibers: a homeomorphism preserving every coordinate sign would have to preserve the existence of this singleton-support positive stress.
+ 
+ **Observation B: collinear motion with no collapsed graph edge gives explicit sign equivalences.** Let \(a\in\mathbb R^d\) be nonzero and write \(p_k(t)=x_k(t)a\), with \(t\) ranging over an interval \(I\). Suppose each scalar difference \(x_v(t)-x_u(t)\), for \(\{u,v\}\in E(H)\), is continuous and never zero on \(I\). Fix \(t_0\in I\). Define, for each edge,
+ \[
+@@ -88,9 +88,15 @@
+ 
+ Doray, Karpenkov and Schepers introduced the sign-preserving equivalence and proved semialgebraicity: *Geometry of configuration spaces of tensegrities*, Discrete & Computational Geometry **43** (2010), 436–466, [DOI 10.1007/s00454-009-9229-4](https://doi.org/10.1007/s00454-009-9229-4), [author preprint](https://arxiv.org/abs/0806.4976). Its Definitions 2.1–2.6 and Theorem 2.8 establish the foundational setting. The present proof needs neither semialgebraic triviality nor a classification of those strata.
+ 
++Observation A is already Panina's Lemma 4; no novelty is claimed for that criterion, the sign-set formulation, or the equivalence reduction. The argument specific to this note combines the known collision criterion with the explicit collinear transport to compare full fixed-label partitions.
++
+ Panina's *A universality theorem for stressable graphs in the plane*, Ars Mathematica Contemporanea **18** (2020), 137–148, [DOI 10.26493/1855-3974.641.e06](https://doi.org/10.26493/1855-3974.641.e06), [preprint v4](https://arxiv.org/abs/1902.07212v4), proves equivalence of stress-sign-set equality and sign-preserving homeomorphism in her setting. Her framework convention excludes collapsed graph edges and her realization spaces use an affine quotient. Neither that convention nor that quotient replaces Karpenkov's full base in the theorem here. The proof above constructs its homeomorphisms directly rather than claiming the oriented-matroid reduction as new.
+ 
+ A bounded primary-source search on 8 October 2026 located no prior full-graph classification under the exact equality convention above. That is not a guarantee of novelty or a certification of the author's intended open problem. Later generic-tensegrity, bounded-valence, and semi-discrete-framework results located in that search do not by their stated scopes classify these full labeled partitions.
++
++### Source arithmetic note
++
++The numerical fiber-dimension statement for exactly two coincident vertices of \(K_3\) in Karpenkov Example 1.4 (journal p.21) and Doray--Karpenkov--Schepers Example 2.7 (preprint p.5) is inconsistent with their displayed equilibrium equations: each states dimension 2, whereas the dimension is 1. For \(p_1=p_2=0\) and \(p_3=a\neq0\), equilibrium at vertices 1 and 2 forces \(w_{13}=w_{23}=0\), leaving only \(w_{12}\) free. This narrow arithmetic discrepancy does not change the cited full-space definitions, the explicit allowance of collisions, or the proof here; no conclusion about other results in those papers is drawn.
+ 
+ ## 6. Reproducible checks and their limits
+ 

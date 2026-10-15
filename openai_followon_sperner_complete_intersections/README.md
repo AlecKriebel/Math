@@ -1,0 +1,19 @@
+# The Sperner property of standard graded Artinian complete intersections in characteristic zero
+
+Alec Kriebel — ORCID https://orcid.org/0009-0001-9320-500X.
+
+**Published and verified:** [10.5281/zenodo.23204810](https://doi.org/10.5281/zenodo.23204810); [Zenodo record](https://zenodo.org/records/23204810). Publication-date metadata: October 6, 2026; public submission/readback confirmed October 7 UTC (October 6, America/Los_Angeles). The DOI resolves with HTTP 200 to this record. All three public downloads match the final independently reviewed candidate v3 by byte size, SHA-256 and MD5.
+
+For every standard graded Artinian complete intersection over any characteristic-zero field, max over all ideals of their minimal generator count equals the maximal coefficient of the product of the factors 1+t+⋯+t^(d_i−1). This includes nonhomogeneous ideals, degree-one elimination, the empty sequence and the all-linear case. A power m^p of the maximal ideal at the last maximal Hilbert degree attains equality; for A=k the maximum is 1, attained by A.
+
+This five-page note records an immediate consequence of OpenAI's Artinian EGH input and the established Harima–Wachi–Watanabe implication. The upstream breakthrough, all-ideal scope and known reductions are inherited. No first-priority claim, new EGH proof, Lefschetz theorem, nongraded extension or unrestricted positive-characteristic assertion is made. The necessary unrefereed source construction and downstream proof were scrutinized directly; no substantive gap remains identified. AI tools were used extensively; automated adversarial reviews are not conventional human refereeing. No formalization of this follow-on theorem is claimed.
+
+Four complete-package review cycles and exact hashes are retained under reviews/. Review 2 transparently records incidental prior-verdict exposure; a further independent review was used. Review 3 required the standard-graded title scope, repaired globally. Review 4 then examined the entire exact v3 package from scratch without prior complete-review verdicts and found no substantive issue or required repair. Scoped audit notes inside the frozen archives remain historical evidence; current closure/publication status is recorded here and in publication/PUBLISHED.md.
+
+Downloads: [paper PDF](https://zenodo.org/records/23204810/files/paper.pdf?download=1), [standalone TeX source archive](https://zenodo.org/records/23204810/files/source.zip?download=1), [verification archive](https://zenodo.org/records/23204810/files/verification.zip?download=1). Extract both ZIPs together and run the reproduction instructions in publication/README.md. Exact calculations, clean builds and all PDF pages were independently checked; bounded computations are illustrations/audits, not a proof of EGH.
+
+Tracker entry was appended once through gws and read back exactly at **'Math Puzzles'!A48:D48**, numeric tab 1254632077 of spreadsheet 1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20. The optional solution-chat URL is blank because no such URL was supplied. The own-row-only nonsecret receipt is receipts/tracker_verified.json.
+
+Sources remain pinned and read-only at https://github.com/openai/math/tree/adc7f1241b42e322a6451854ab7e4b4c146bf78a. Third-party PDFs/source trees, credentials and scratch are excluded from the deposit. No external individual was contacted; no GitHub release or duplicate Zenodo pathway was used. Checkpoints publish only owned files on current remote main via an isolated index, preserving the shared checkout and index.
+
+Completion estimates: required mathematical proof/audit work **100%**; publication/tracker package **100%**. These are workflow completion estimates, not probability-of-correctness claims. Exact original brief, theorem status, dependency ledger, approach table, research log, reviews, manifest and receipts are preserved in this folder.

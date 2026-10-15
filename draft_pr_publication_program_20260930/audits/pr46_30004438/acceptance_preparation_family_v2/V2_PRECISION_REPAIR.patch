@@ -1,0 +1,67 @@
+--- initial_v2/pr46_guards.py
++++ operative_v2/pr46_guards.py
+@@ -1,5 +1,4 @@
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Prepared source only. Root owns all actual execution and Git/remote writes."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Prepared source only. Root owns all actual execution and Git/remote writes."""
+ from __future__ import annotations
+ import copy
+ import datetime as dt
+@@ -544,7 +543,7 @@
+         require(before['path']==after['path']==name and retained['path']==(A/'integration_log_preimages'/(label+'.bin')).relative_to(R).as_posix(),'Exact retained log paths')
+         raw=regular(R,retained['path']).read_bytes();check(R,[retained,after])
+         require(len(raw)==before['bytes'] and sha(raw)==before['sha256'] and regular(R,name).read_bytes()==raw+note.encode(),'Exact preserved whole log prefix plus reviewed append')
+-        require(type(row['before_worktree_mode']) is int and row['before_worktree_mode']==row['after_worktree_mode']
++        require(type(row['before_worktree_mode']) is int and type(row['after_worktree_mode']) is int and row['before_worktree_mode']==row['after_worktree_mode']
+             and 0<=row['before_worktree_mode']<=0o7777
+             and stat.S_IMODE(path.stat().st_mode)==row['after_worktree_mode'],'Full owned log mode preserved')
+     return record
+--- initial_v2/seal_final_evidence.py
++++ operative_v2/seal_final_evidence.py
+@@ -1,6 +1,5 @@
+ #!/usr/bin/env python3
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Future root administrative reconciliation only; no scientific helper execution."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Future root administrative reconciliation only; no scientific helper execution."""
+ import argparse
+ import ctypes
+ import os
+--- initial_v2/capture_root_final_operation.py
++++ operative_v2/capture_root_final_operation.py
+@@ -1,5 +1,4 @@
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Capture a genuinely launched ROOT-reviewed audit-local administrative script."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Capture a genuinely launched ROOT-reviewed audit-local administrative script."""
+ from pathlib import Path
+ import argparse
+ import datetime as dt
+--- initial_v2/integrate_reviewed_partial.py
++++ operative_v2/integrate_reviewed_partial.py
+@@ -1,6 +1,5 @@
+ #!/usr/bin/env python3
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Prepared root-only preflight/overlay/prepush/finalize. Root performs Git/remote mutations."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Prepared root-only preflight/overlay/prepush/finalize. Root performs Git/remote mutations."""
+ import argparse
+ import copy
+ import sys
+--- initial_v2/state_mirror_reconciliation.py
++++ operative_v2/state_mirror_reconciliation.py
+@@ -1,6 +1,5 @@
+ #!/usr/bin/env python3
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Future root present acceptance mirror: one event, zero new proof turns."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Future root present acceptance mirror: one event, zero new proof turns."""
+ import argparse
+ import copy
+ import fcntl
+--- initial_v2/verify_post_acceptance.py
++++ operative_v2/verify_post_acceptance.py
+@@ -1,6 +1,5 @@
+ #!/usr/bin/env python3
+-"""V2 SOURCE ONLY: rejected V1 S1 repaired; independent clean SOURCE audit remains required."""
+-"""Future root final exact acceptance/mirror/source verification; writes only own receipt."""
++"""V2 SOURCE ONLY: rejected V1 S1 repaired; new clean SOURCE audit required. Future root final exact acceptance/mirror/source verification; writes only own receipt."""
+ import argparse
+ import sys
+ sys.dont_write_bytecode = True

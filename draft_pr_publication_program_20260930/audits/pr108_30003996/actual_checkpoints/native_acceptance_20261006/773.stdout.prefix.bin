@@ -1,0 +1,26 @@
+"""Seal the completed single joint source/configuration review; no native or services."""
+from pathlib import Path
+import datetime,hashlib,json,os,stat
+O=Path(__file__).absolute().parent;A=O.parent;D=A/'native_publication_integration_plan_20261006/corrected_v5';now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+def h(b):return hashlib.sha256(b).hexdigest()
+def canon(v):return (json.dumps(v,sort_keys=True,indent=2,ensure_ascii=False)+'\n').encode()
+auth=json.loads((O/'EXACT_INPUT_AUTHENTICATION.json').read_bytes());normal=json.loads((O/'NORMAL_RESULTS.json').read_bytes());optimized=json.loads((O/'OPTIMIZED_RESULTS.json').read_bytes());criteria=json.loads((O/'CRITERIA_FROZEN.json').read_bytes())
+for p,v in [(D/'OUTPUT_MANIFEST.json',auth['source_manifest_sha256']),(D/'EXECUTION_INPUTS_FROZEN_20261006.json',auth['execution_inputs_sha256'])]:
+ if h(p.read_bytes())!=v:raise RuntimeError('exact reviewed input changed before seal')
+for x in json.loads((D/'OUTPUT_MANIFEST.json').read_bytes())['files']:
+ b=(D/x['relative_path']).read_bytes()
+ if len(b)!=x['bytes'] or h(b)!=x['sha256']:raise RuntimeError('sealed source changed')
+inputs=json.loads((D/'EXECUTION_INPUTS_FROZEN_20261006.json').read_bytes());C=A.parents[2]
+for x in inputs['input_files']:
+ b=(C/x['path']).read_bytes()
+ if len(b)!=x['bytes'] or h(b)!=x['sha256']:raise RuntimeError('nongate input changed')
+programs={Path(p['path']).name:{k:p[k] for k in ['bytes','sha256']} for p in inputs['program_files']}
+report=f'''# Fresh joint PR108 V5 source and actual configuration review
+
+The exact sealed V5 source and actual frozen execution choices are **clean within this review boundary**. Required findings: **none**. Optional findings: **none**. F10 is closed for the documented narrow physical-line guard and the authenticated actual existing configuration; F09 remains closed. This is the existing combined source/configuration review, not an extra paper or publication review. Actual helper execution, native candidate correctness, public export, acceptance and merge are still subsequent boundaries.
+
+The reviewed source OUTPUT_MANIFEST SHA256 is {auth['source_manifest_sha256']}; its exact111 payloads/1,453,854B plus manifest and seal (113 original sealed files) were authenticated. The five-program family SHA is f0e5185cda10f88894dfc7c94146d7943de3e329b08d0700335c9a486c5a08e2. All five programs were completely read: four retain their V4 bytes and the complete regenerated V4→V5 diff changes only v3_guards.py. Previous source/seal/reviewer pins remain exact. PLAN, correction ledger, scope contracts, inert configuration template and exact prospective merge plan were read. Templates grant no execution approval. Criteria were frozen at {criteria['UTC']} before reading V5/actual inputs; the historical V4 report/source and F10 diagnosis had already been read, as the criteria file candidly records.
+
+F10: CR/LF/CRLF partition lines physically; only ASCII space/tab advances within a clause. Empty, quoted-empty and commented default sockets no longer consume a following key. Nonempty sockets, socket continuations and direct/quoted executable alias clauses or immediate executable continuations reject. The guard explicitly is a narrow conservative field checker, not a general YAML security parser or a certificate against unrelated host tampering. All458 independent pure checks pass normally (PID{normal['actual_PID']}) and under optimization (PID{optimized['actual_PID']}); tests never call prepare, execute, assess or resource setup. Existing35-test normal/optimized custody (PIDs51704/51792) was independently authenticated in full, including observed streams, bounded prefixes, UTC/argv/exit/reaping and terminal OK; the sealed creator fixture suite was not rerun.
+
+F09: canonical whole-control equality independently derives every field from immutable execution choices, all12 native pins and authenticated manifest before applying resources or loading queue.py. Parent rederives against its frozen bytes, checks unchanged control bytes and exact returned control/hash, requested policy, enfo

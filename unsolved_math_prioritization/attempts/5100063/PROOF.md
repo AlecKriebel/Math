@@ -1,6 +1,6 @@
 # Odd-period products of the two outer focal-inverse areas
 
-**5100063 / AMR-050-0063 / k904,a. Complete author-turn-1 candidate; independent review pending.** No historical-priority or human-peer-review claim.
+**5100063 / AMR-050-0063 / k904,a. Mathematical/source audit accepted. Current manuscript-review and publication status: PUBLICATION_STATUS.md.** Author turn1/5. Historical novelty remains undetermined; no first-proof or human-peer-review claim. Historical19-file original is preserved under history/original_submission_20261015/.
 
 ## 1. Exact target and source distinction
 
@@ -199,4 +199,15 @@ Stachel's canonical parametrization and the Jacobi identities are published inpu
 
 The distinct [k903,a proof](https://github.com/AlecKriebel/Math/pull/206) was inspected. Its original-ellipse isotropic-contact argument was not assumed for these outer vertices, because the inversion centers here are generally not foci of their locus ellipse. A ratio transfer through the separate k806,a target is also not assumed. Shared framework and source advice are not independent verification.
 
-Exact symbolic, lattice, pole-coefficient and exception controls accompany the proof. Separate numerical diagnostics compute actual outer tangent intersections, actual Euclidean inversions and signed areas. They support but do not replace the universal meromorphic argument. Bounded literature checks did not certify historical novelty. An uninvolved independent reviewer must audit the full candidate before a claimed-result PR.
+Exact symbolic, lattice, pole-coefficient and exception controls accompany the proof. Separate numerical diagnostics compute actual outer tangent intersections, actual Euclidean inversions and signed areas. They support but do not replace the universal meromorphic argument. Bounded literature checks did not certify historical novelty. Three fresh mathematical/source families and two independent priority families have now been integrated; all five core programs reproduced byte-identically in isolated folders. The whole-manuscript/package reviews and release receipts are recorded separately in PUBLICATION_STATUS.md and the case audit. The original imported checker result binds the historical original proof, not this amended presentation.
+
+
+## 9. Repetitions and priority qualifications
+
+For a fixed r-fold traversal of a least-period family, each shoelace sum is repeated r times, so B_+B_- is multiplied by r^2. In particular every odd repeated traversal has odd least period and is covered. This is not a new primitive-period case.
+
+The same target was k808,a in arXiv2004.12497v10, posted25October2020, before its v11 k904,a label. Extensive bounded priority audits verified no exact general earlier proof in the read primary corpus, but historical novelty remains undetermined. Credit Akopyan--Schwartz--Tabachnikov's complex billiard methods, Khare--Lakshminarayan--Sukhatme cyclic elliptic/principal-part methods, and AnaC.Chavez-Caliz's complementary area-zero/pole proof for an even untransformed product (AMJ7(2021)91--106, Theorem6, DOI10.1007/s40598-020-00154-8). No new general elliptic-function theorem is claimed.
+
+Earlier original-vertex triangular products (Garcia--Reznik arXiv2011.06640v1 Prop15; Reznik--Garcia--Helman arXiv2012.03020v2 Prop7) and AlperFerudun's2026 general original-vertex preprint DOI10.5281/zenodo.23096994 concern different vertices. No prior general k806,a inverse-area-ratio proof was verified to transfer these results. The final TalentedMrInversiveTriangle journal full text was subscription-limited; open author versions read without claiming final-byte equivalence. Other partial-primary/unresolved-source limits remain in the sealed priority ledgers. No first-proof, absolute-priority or present-worldwide-open assertion is made.
+
+Extensive AI use includes development, derivation, computation, source research, writing and internal independent adversarial checks. This is unrefereed, without independent human peer review or proof-assistant formalization. The full self-contained research note and current disposition supersede historical pending-review text; originals remain immutable. The inherited verification.json and independent_review receipts bind their original candidate; current review status is stated in PUBLICATION_STATUS.md.

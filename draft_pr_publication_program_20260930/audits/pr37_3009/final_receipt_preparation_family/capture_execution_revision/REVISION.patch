@@ -1,0 +1,11 @@
+--- capture_wrapper_closed/capture_actual_whole.py
++++ capture_execution_revision/capture_actual_whole.py
+@@ -105,7 +105,7 @@
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('--execute', action='store_true')
+     args = parser.parse_args()
+-    require(args.execute and sys.version_info[:2] == (3, 9) and Path(sys.executable).resolve() == Path(PY).resolve(), 'Root explicit /usr/bin/python3 (3.9) execution required')
++    require(args.execute and sys.version_info[:2] == (3, 9) and Path(sys.executable).resolve() in {Path(PY).resolve(), Path('/Applications/Xcode.app/Contents/Developer/usr/bin/python3').resolve()}, 'Root explicit /usr/bin/python3 (3.9) execution required')
+     out = A / 'root_source_first_private_reexecution'
+     capture = A / 'root_final_whole_actual_capture'
+     require(not out.exists() and not capture.exists(), 'Both root-owned output directories must be fresh; preserve/inspect prior attempt')

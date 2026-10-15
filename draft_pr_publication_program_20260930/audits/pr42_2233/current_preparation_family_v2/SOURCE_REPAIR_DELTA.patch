@@ -1,0 +1,90 @@
+--- current_preparation_family/prepare_current_packet.py
++++ current_preparation_family_v2/prepare_current_packet.py
+@@ -15,6 +15,7 @@
+ from pathlib import Path, PurePosixPath
+ import re
+ import subprocess
++import stat
+ import sys
+ import traceback
+ 
+@@ -191,17 +192,45 @@
+         require(rec['completed'] is True and type(rec['exit_code']) is int and rec['exit_code'] == 0, 'Actual readonly Git failed; retained')
+         return (directory / (str(index) + '.stdout')).read_bytes()
+ 
+-    prep_raw = bind('current_preparation_family/PREPARATION_MANIFEST.json', 'closed_source_preparation')
++    prep_raw = bind('current_preparation_family_v2/PREPARATION_MANIFEST.json', 'closed_source_preparation')
+     prep = load(prep_raw)
+     require(prep['status'] == 'CLOSED_SOURCE_ONLY_CURRENT_PREPARATION' and prep['self_excluded'] == ['PREPARATION_MANIFEST.json'], 'Closed source-only preparation required')
+     names = rows(prep['files'])
+     require(inventory(script.parent) == names | {'PREPARATION_MANIFEST.json'}, 'Preparation recursive closure changed')
+     for row in prep['files']:
+-        local = dict(row, path='current_preparation_family/' + row['path'])
++        local = dict(row, path='current_preparation_family_v2/' + row['path'])
+         outputs['build/source_preparation/' + row['path']] = checked(local, 'reviewed_source_preparation')
+     outputs['build/source_preparation/PREPARATION_MANIFEST.json'] = prep_raw
+-    pins = load(bind('current_preparation_family/INPUT_PINS.json', 'exact_input_contract'))
++    pins = load(bind('current_preparation_family_v2/INPUT_PINS.json', 'exact_input_contract'))
+     require(pins['status'] == 'SOURCE_ONLY_FIXED_INPUTS_FUTURE_ROOT_PREREQUISITES_PENDING', 'No future verdict in source preparation')
++    repair = load(bind('current_preparation_family_v2/REPAIR_INPUT_PINS.json', 'adjacent_permission_guard_repair_contract'))
++    # Bind the unchanged original source audit and full adversarial closure.
++    # These already-retained sources/captures stay in their closed audit folders;
++    # no large forensic logs are copied again into the current candidate.
++    for info in repair['prior_closed_evidence']:
++        prefix = relative(info['directory'])
++        self_name = relative(info['manifest']['path'])
++        raw = checked(dict(info['manifest'], path=prefix + '/' + self_name), 'unchanged_prior_source_or_adversary_manifest')
++        manifest = load(raw)
++        normalized = [{key: item[key] for key in ['path', 'bytes', 'sha256']} for item in manifest['files']]
++        expected_files = rows(normalized) | {self_name}
++        require(manifest['files_count'] == info['files_count'] and type(manifest['files_count']) is int and manifest['self_excluded'] == [self_name], 'Exact prior closed manifest shape required')
++        actual_files, actual_directories = set(), set()
++        for path in (audit / prefix).rglob('*'):
++            require(not path.is_symlink(), 'Prior closure symlink rejected')
++            name = relative(path.relative_to(audit / prefix).as_posix())
++            if path.is_file():
++                actual_files.add(name)
++            else:
++                require(path.is_dir(), 'Prior closure special member rejected')
++                actual_directories.add(name)
++        require(actual_files == expected_files and actual_directories == set(info['directories']), 'Prior closure extra/missing file/directory rejected')
++        if 'directories' in manifest:
++            require(equal(manifest['directories'], info['directories']) and equal(manifest['explicitly_retained_own_empty_finite_control_directories'], info['intentional_empty_directories']), 'Exact prior intentional directories changed')
++        for item in manifest['files']:
++            checked(dict({key: item[key] for key in ['path', 'bytes', 'sha256']}, path=prefix + '/' + item['path']), 'unchanged_prior_source_or_adversary_member')
++            if 'permission_mode' in item:
++                require(oct(stat.S_IMODE((audit / prefix / item['path']).stat().st_mode)) == item['permission_mode'], 'Original adversary control permission changed')
+     require(git('branch', '--show-current').strip() == b'main', 'Stay on main')
+     snapshot_raw = bind('snapshot_manifest_v2.json', 'original17_snapshot', SNAPSHOT)
+     snapshot = load(snapshot_raw)
+@@ -306,8 +335,8 @@
+     after = '|'.join(after_fields).encode()
+     prospective = b''.join(after if line == before else line for line in lines)
+ 
+-    qualification = bind('current_preparation_family/SOURCE_PRECISION_QUALIFICATIONS.md', 'current_precision_correction', pins['qualification_sha256'])
+-    overview = bind('current_preparation_family/CURRENT_OVERVIEW.md', 'current_scoped_presentation')
++    qualification = bind('current_preparation_family_v2/SOURCE_PRECISION_QUALIFICATIONS.md', 'current_precision_correction', pins['qualification_sha256'])
++    overview = bind('current_preparation_family_v2/CURRENT_OVERVIEW.md', 'current_scoped_presentation')
+     notice = b'Historical body follows. Its model/reasoning, search/access and review labels are reported archival claims; this administrative packet does not certify genuine historic runtime or transfer old PASS to the NEW whole-current review. See SOURCE_PRECISION_QUALIFICATIONS.md.\n\n'
+     outputs.update({'original_archive/' + name: raw for name, raw in original.items()})
+     outputs.update({name: original[name] for name in IMMUTABLE})
+@@ -377,8 +406,8 @@
+     for row in members:
+         path = stage / row['path']
+         raw = regular(path)
+-        require(len(raw) == row['bytes'] and sha(raw) == row['sha256'] and path.stat().st_mode & 0o777 == 0o444, 'Staged bytes/mode differ')
+-    require((stage / 'MANIFEST.json').stat().st_mode & 0o777 == 0o444, 'Manifest readonly mode required')
++        require(len(raw) == row['bytes'] and sha(raw) == row['sha256'] and stat.S_IMODE(path.stat().st_mode) == 0o444, 'Staged bytes/mode differ')
++    require(stat.S_IMODE((stage / 'MANIFEST.json').stat().st_mode) == 0o444, 'Manifest readonly mode required')
+     require(not destination.exists() and not destination.is_symlink(), 'Candidate appeared; retain stage')
+     publish_absent(stage, destination)
+     print(json.dumps({'status': 'ACTUAL_CURRENT_FREEZE_NEW_WHOLE_GATE_PENDING', 'destination': str(destination), 'manifest_sha256': sha(regular(destination / 'MANIFEST.json')), 'full_problem': 'UNSOLVED', 'original_attempts': '2/5', 'new_attempts': 0, 'audit_turns': 0, 'native_writes': 0}, indent=2))
+@@ -393,7 +422,7 @@
+     require(args.execute and all(hex64(value) for key, value in vars(args).items() if key.endswith('sha256')), 'ROOT explicit execution and four genuine prerequisite SHA pins required')
+     require(not sys.flags.optimize and os.environ.get('PYTHONOPTIMIZE', '') in ('', '0'), 'Optimization must not suppress checks')
+     script = Path(__file__).resolve()
+-    require(script.parent.name == 'current_preparation_family' and script.parent.parent.name == 'pr42_2233', 'Exact PR42 audit anchor required')
++    require(script.parent.name == 'current_preparation_family_v2' and script.parent.parent.name == 'pr42_2233', 'Exact PR42 audit anchor required')
+     audit = script.parent.parent
+     repo = audit.parents[2]
+     (audit / 'tmp').mkdir(exist_ok=True)

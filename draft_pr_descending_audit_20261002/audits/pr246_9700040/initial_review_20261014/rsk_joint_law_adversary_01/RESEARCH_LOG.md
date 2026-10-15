@@ -1,0 +1,9 @@
+# Research log: independent RSK joint-law adversary
+
+- 2026-10-15T03:39:06.027832+00:00: Read PROOF.md and original source list, directly inspected primary RSK/Jacobi–Trudi/exponential-specialization/low-index inputs. Saved read-only independent reconstruction before opening inherited reviews. Completion estimate: 35%. Strongest result: conditional exact joint law follows from finite permutation RSK counting, with explicit normalization and all boundary conventions. Remaining: actual script reproductions, distinct finite controls, inherited comparison, final manifest.
+
+- 2026-10-15T03:40:17.585079+00:00: Replayed the unchanged author and independent scripts in separate directories. Entire parsed and byte receipts equal submitted artifacts; reconstructed all 42 cross-comparisons and the full AUTHOR_COMPARISON summary. Completion estimate: 55%. No discrepancy found; further independent inverse-RSK/growth-diagram controls remain.
+
+- 2026-10-15T03:42:51.807970+00:00: New independent controls PASS with 88,173 counted exact checks. Verified all 20 frozen files against native byte count, SHA256, and independently computed Git blob SHA1 without using Git. Rehashed the exact root-retrieved Schur sampling PDF against the original pin, resolving the local DNS retrieval limitation. Completion estimate: 90%. Conditional RSK law verified; no mathematical blocker in assigned family. Optional source-locator typo (Section6.3 → Section6) is recorded for final report. Remaining: final report/manifest.
+
+- 2026-10-15T03:44:55.524457+00:00: Final REPORT.md completed. Conditional all-query RSK law passes; no mandatory finding. Optional source-section locator correction recorded. Original entire receipts and 42 comparisons reproduced; 88,173 new controls retained. Completion estimate: 100% for the assigned RSK family, with dynamics/uniqueness and full priority/source-scope conclusions outside role. Final authored-file/native-input manifest follows.

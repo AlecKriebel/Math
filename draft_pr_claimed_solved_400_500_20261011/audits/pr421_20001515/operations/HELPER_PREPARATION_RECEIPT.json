@@ -1,0 +1,59 @@
+{
+  "at_utc": "2026-10-12T23:58:28.470213+00:00",
+  "result": "prepared_only_v5_narrow_message_and_ref_only_resume",
+  "delegated_preparation_completion_percent": 100,
+  "actual_live_api_calls": 0,
+  "actual_remote_writes": 0,
+  "default_mode": "plan",
+  "expected_branch": "research/20001515-explicit-cubulation",
+  "pr": 421,
+  "helper_sha256": "57e476c72fbee9d5e18534263788636e996b54c43c939c7f9311f26c81c5191a",
+  "normal_scenarios_passed": 47,
+  "optimized_scenarios_passed": 47,
+  "bare_assert_count": 0,
+  "private_fixture_driver_sha256": "897376eaf27679da6d329f12153dc823e87a3a9b46e183abf4393bc2f25cb714",
+  "message_acceptance": "Exact submitted message or omission of exactly one final newline, only with exact predicted commit SHA/parent/tree/author/committer and complete Merkle proof; other changes reject",
+  "root_reported_target": {
+    "original_run_id": "root-reviewed-packet-apply-20261012t2350",
+    "existing_commit": "2e85a0b10c3793ed1d46726b50efac5a6306b707",
+    "parent": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+    "tree": "f2649daec6286218bf44b8279bb5d7475b334957",
+    "original_author_committer_date": "2026-10-12T23:49:15Z",
+    "evidence_source": "root task instruction; no live query by this agent"
+  },
+  "resume_guards": [
+    "Initial exact administrative gate before even journal/candidate reads",
+    "Original durable apply plan has one commit intent and zero ref/PATCH intents",
+    "Original source-head claim binding retained",
+    "Current manifest/local pins and complete Merkle proof equal original plan",
+    "Original deterministic commit SHA/spec/date retained; GET-verify existing tree and every candidate blob byte",
+    "Default GET-only; explicit root apply creates exclusive fsynced per-original-run resume claim and durable journal binding",
+    "Recheck original journal hash and fresh source-head gate; one non-force PATCH to existing commit; zero POSTs",
+    "Uncertainty handled through GET-only readback/reconcile; second apply blocked; old claim never deleted",
+    "Post-publication actual administrative gates before candidate trees/bodies; drift gives truthful unchecked bindings"
+  ],
+  "historical_preparations": [
+    {
+      "path": "operations/history/preparation_v1_20261012T232846Z",
+      "helper_sha256": "3526d36e6f9e99629c56126e1d34c2a05ed682a68db6d357ae733e1c44d8bea3",
+      "public_artifacts_preserved": 7
+    },
+    {
+      "path": "operations/history/preparation_v2_20261012T233419Z",
+      "helper_sha256": "025a6583d6e6e8cc92f49fc74b04c69c02bb8e4a49829946f055bcb333b6cd51",
+      "public_artifacts_preserved": 7
+    },
+    {
+      "path": "operations/history/preparation_v3_20261012T234006Z",
+      "helper_sha256": "2c4bb9263af9df1b41323bbf5553646b0ea3665c33b89499724091c48f99cbae",
+      "public_artifacts_preserved": 7
+    },
+    {
+      "path": "operations/history/preparation_v4_20261012T234506Z",
+      "helper_sha256": "0bca205f2e0aa4d84ec585a8da5a1cbd24c10d041c25d2a047b1a6bd04c6bffc",
+      "public_artifacts_preserved": 7
+    }
+  ],
+  "next_step": "Root inspect final diff and run read-only resume plan with a fresh run-id before explicit approved ref-only apply",
+  "ref_update_limitation": "Pre-read ref plus force:false is not atomic expected-head compare-and-swap against concurrent forced rollback."
+}
