@@ -1,0 +1,238 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue,
+ pdftitle={Integer endpoint discontinuity of normalized uniformization for positively curved surfaces},
+ pdfauthor={Alec Kriebel},pdfsubject={Unrefereed AI-assisted preprint, version 1.0}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\dd}{\mathrm d}
+\title{Integer endpoint discontinuity of normalized uniformization\newline for positively curved surfaces}
+\author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Preprint, version 1.0 --- 3 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every finite integer $r\geq0$, we construct smooth complete metrics of strictly positive Gaussian curvature on both the plane and the sphere which converge in the ordinary compact-open $C^r$ topology, but whose point-normalized uniformizing diffeomorphisms fail to converge in $C^{r+1}$. Consequently the inverse of the usual normalized conformal metric parametrization is discontinuous at every finite integer endpoint. A slow radial twist treats $r=0$. Regularized logarithmic coordinate perturbations treat $r\geq1$; the critical case $r=1$ requires a small $C^1$ conformal correction whose convex-radius Hessian controls the full nonlinear curvature operator. These classical endpoint mechanisms realize the exact smooth geometric setting of the question recorded in the 2017 Oberwolfach report, published in January 2018. Priority of this full geometric realization is subject to a bounded literature review.
+\end{abstract}
+
+\noindent\textbf{Review and assistance disclosure.} This unrefereed preprint was developed with extensive AI assistance in mathematical derivation, checking, literature review and manuscript preparation. Internal AI reviews checked the universal construction. No human peer review or journal acceptance is claimed. The manuscript and new documentation are licensed under Creative Commons Attribution 4.0; accompanying verification code is licensed under MIT.
+
+\section{The precise endpoint question}
+Put $M_0=\C$, $g_0=|\dd z|^2$, and let $M_1=S^2$ with unit round metric
+\[
+ g_1=\frac{4|\dd z|^2}{(1+|z|^2)^2}
+\]
+in a stereographic chart. Let $\mathcal D(M_0)$ be the smooth orientation-preserving diffeomorphisms fixing $0,1$, and let $\mathcal D(M_1)$ fix $0,1,\infty$. Let $\mathcal O_\kappa$ be the smooth real functions $u$ for which $e^{-2u}g_\kappa$ is complete and has nonnegative Gaussian curvature. The normalized uniformization parametrization is the continuous bijection
+\begin{equation}\label{eq:parameter}
+ P_\kappa^{(r)}:\mathcal O_\kappa^{,r}\times\mathcal D^{,r+1}(M_\kappa)
+ \longrightarrow \mathcal R_{\geq0}^{,r}(M_\kappa),\qquad
+ (u,\phi)\longmapsto \phi^*(e^{-2u}g_\kappa).
+\end{equation}
+All objects are smooth; superscripts specify ordinary compact-open $C^r$ and $C^{r+1}$ topologies, rather than finite-regularity object classes. The extra derivative on $\phi$ is part of the question. The 2016 erratum of Belegradek--Hu \cite{BH16} and published Sections 2, 8--9 of Banakh--Belegradek \cite{BB18} make this convention explicit. These sources establish inverse continuity in noninteger H\"older topologies and in the smooth topology. The 2017 Oberwolfach report \cite{OWR}, printed p.~149, asks about the integer endpoint and expects failure. The report was published on 3 January 2018; a curated 2018 citation is compatible with that chronology.
+
+\begin{theorem}\label{thm:main}
+For every fixed finite integer $r\geq0$ and $\kappa\in\{0,1\}$, there are smooth complete strictly positive-curvature metrics $g_n,g_*$ on $M_\kappa$ with $g_n\to g_*$ in compact-open $C^r$, whose unique normalized diffeomorphism factors in \eqref{eq:parameter} do not converge to that of $g_*$ in compact-open $C^{r+1}$. Hence $(P_\kappa^{(r)})^{-1}$ is discontinuous, including on the strictly positive-curvature subspace.
+\end{theorem}
+
+This concerns the specified parametrization, rather than possible abstract homeomorphisms of its domain and codomain. Each $r$ has its own sequence. No assertion concerns $\R P^2$, the $C^\infty$ topology or noninteger H\"older topologies. On the plane positivity is pointwise, with no prescribed global positive lower curvature bound.
+
+Logarithmic and twisting endpoint mechanisms are classical. For example, Mateljevi\'c--Salimov--Sevost'yanov \cite[Section 7, Example 5]{MSS22} recall a quasiconformal logarithmic map with continuous Beltrami coefficient which is not $C^1$, attributing it to Astala--Iwaniec--Martin \cite{AIM09} and Bojarski--Gutlyanskii--Martio--Ryazanov \cite{BGR13}. Those book attributions are indirect here, through \cite{MSS22}; the complete books were not directly examined. The potential contribution is the explicit realization of every finite endpoint in the precise smooth, complete, positive-curvature setting, including the critical curvature correction. A bounded primary-source search through 3 October 2026 did not locate an earlier full geometric resolution. This is not an exhaustive priority certificate or a claim to have invented the general endpoint mechanism.
+
+\section{Backgrounds and normalized uniqueness}
+For the appropriate surface set
+\begin{equation}\label{eq:background}
+ b(z)=\begin{cases}\frac12\log(1+|z|^2),&M_0,\\
+ \log(1+|z|^2)-\log2,&M_1,
+ \end{cases}\qquad g_*=e^{-2b}|\dd z|^2.
+\end{equation}
+The planar background has curvature $2/(1+|z|^2)>0$. It is complete: the length of any escaping curve is at least the total variation of $\operatorname{arsinh}|z|$, which is unbounded. The spherical background is the unit round metric. In both cases $\Delta b>0$; curvature and $\Delta b$ have positive minima on every fixed compact coordinate disk.
+
+Fix $R=1/4$. All metric perturbations equal $g_*$ outside $|z|<R$, and all coordinate maps are the identity there. Every smooth positive metric with this property is complete: on the compact disk it is uniformly comparable to $g_*$, and outside it they coincide. Each conformal target metric is complete as well, since the coordinate map is an onto isometry.
+
+We exhibit the normalized decomposition directly. Its uniqueness needs no continuity theorem for Beltrami solutions. If two orientation-preserving maps $f,\psi$ represent the same metric as pullbacks of conformal multiples of $g_\kappa$, then $\psi\circ f^{-1}$ is a conformal automorphism of the standard plane or sphere. On the plane it is affine; fixing $0,1$ forces the identity. On the sphere it is M\"obius; fixing $0,1,\infty$ again forces the identity. Their conformal factors then agree. Thus our coordinate maps are the actual inverse factors in \eqref{eq:parameter}. No derivative normalization at $0$ is imposed.
+
+\section{The zero endpoint}
+Choose a smooth $\eta:\R\to[0,1]$, zero on $(-\infty,0]$ and one on $[1,\infty)$, and choose $\theta_0\notin2\pi\mathbb Z$. For $t>0$ put
+\[
+ \theta_n(t)=\theta_0\eta\left(\frac{\log(R/t)}n\right),\qquad
+ \phi_n(z)=e^{i\theta_n(|z|)}z,\qquad \phi_n(0)=0.
+\]
+This map is a constant rotation near $0$ and the identity for $|z|\geq R$. It is smooth and preserves orientation; its inverse subtracts the same radial angle. It fixes all normalization points. With $q_n(t)=t\theta'_n(t)$,
+\[
+ \|q_n\|_\infty\leq\frac{|\theta_0|\|\eta'\|_\infty}{n}.
+\]
+After rotation, its differential in orthonormal polar frames is the shear $\bigl(\begin{smallmatrix}1&0\\q_n&1\end{smallmatrix}\bigr)$. Because $b$ is radial, the tensor matrix of $g_n=\phi_n^*g_*$ relative to $g_*$ is
+\[
+ \begin{pmatrix}1+q_n^2&q_n\\q_n&1\end{pmatrix}.
+\]
+It tends uniformly to the identity, including at $0$ where the tensor is unchanged. Hence $g_n\to g_*$ in compact-open $C^0$. Completeness and positive curvature follow by isometry. The conformal factor is $b$ on the plane and zero on the sphere, and uniqueness identifies the normalized map as $\phi_n$. But $D\phi_n(0)=\operatorname{Rot}(\theta_0)\ne I$ for every $n$. This proves Theorem~\ref{thm:main} for $r=0$.
+
+\section{Logarithmic perturbations and uniform bounds}
+Fix an integer $r\geq1$ and a smooth radial cutoff $\chi$ equal to one on $|z|\leq R/2$ and zero for $|z|\geq R$. Define
+\begin{equation}\label{eq:fn}
+ \rho=e^{-n},\quad \varepsilon=1/n,\quad s=(|z|^2+\rho^2)^{1/2},
+ \quad L=\log s,\quad f(z)=z+\varepsilon\chi(z)z^{r+1}L(z).
+\end{equation}
+Symbols without subscripts depend on $n$. Constants may depend on $r$, $\chi$ and the background, but not on $n$. Discard finitely many initial $n$ when necessary. On the perturbation disk $s<1$ for $n\geq1$.
+
+\begin{lemma}\label{lem:bounds}
+For each fixed $r\geq1$, the maps \eqref{eq:fn} satisfy
+\[
+ \|Df-I\|_\infty=O(\varepsilon),\quad
+ \|f_z\|_{C^r}\leq C_r,\quad
+ \|f_{\bar z}\|_{C^r}=O(\varepsilon),\quad
+ \left\|\frac{f_{\bar z}}{f_z}\right\|_{C^r}=O(\varepsilon).
+\]
+These derivative norms are on the fixed disk, with constant values outside understood. Moreover
+\begin{equation}\label{eq:jet}
+ \partial_x^{r+1}(f-\id)(0)=-(r+1)!
+\end{equation}
+for every $n$.
+\end{lemma}
+\begin{proof}
+For any ordered real derivative of order $j\geq1$, write $D^jL=P_j/s^{2j}$. Initially $P_1=x$ or $y$. Differentiation replaces $P_j$ by
+\[
+ s^2\partial_iP_j-2j x_iP_j.
+\]
+The new numerator is homogeneous of degree $j+1$ in $(x,y,\rho)$. If its predecessor has coefficient $\ell^1$ norm $C_j$, the new norm is at most $5jC_j$. Every coordinate is bounded by $s$, proving for every finite $j$
+\[
+ |D^jL|\leq5^{j-1}(j-1)!s^{-j}.
+\]
+Leibniz's rule and polynomial homogeneity give on the inner disk
+\begin{equation}\label{eq:leibniz}
+ |D^k(z^{r+1}L)|\leq C_{r,k}s^{r+1-k}(1+|\log s|),
+ \qquad 0\leq k\leq r+1.
+\end{equation}
+For $0<s\leq1$, $s^p(1+|\log s|)$ is bounded for every integer $p\geq1$. At exponent zero, $s\geq\rho$ gives $\varepsilon(1+|\log s|)\leq2$. Every cutoff contribution is $O(\varepsilon)$ at any fixed derivative order because $s\geq R/2$ on the cutoff annulus. This proves the first two estimates.
+
+With $\partial_z=(\partial_x-i\partial_y)/2$, direct differentiation on the inner disk gives
+\[
+ f_{\bar z}=\frac{\varepsilon z^{r+2}}{2s^2}.
+\]
+After $k$ real derivatives, $z^{r+2}/(2s^2)$ has a homogeneous polynomial numerator of degree $r+2+k$ over $s^{2(k+1)}$, by the same differentiation recurrence. Its magnitude is therefore at most $C_{r,k}s^{r-k}$. For $k\leq r$ this is uniformly bounded; cutoff terms again are $O(\varepsilon)$. Since $Df\to I$ uniformly, $|f_z|\geq1/2$ for large $n$. Differentiating $1/f_z$ finitely many times using the uniform $C^r$ bound on $f_z$ bounds the reciprocal in $C^r$. The final estimate follows. In particular, $f_z$ need only be bounded in $C^r$, not converge to one there.
+
+The same estimates give $f_z\to1$ in $C^{r-1}$, while the $C^r$ norm need only remain bounded.
+
+Near $0$, for each fixed $n$, $L=\log\rho+O(|z|^2)$. Since $\chi=1$ there, the degree-$r+1$ displacement term is $\varepsilon\log\rho\,z^{r+1}=-z^{r+1}$. This proves \eqref{eq:jet} exactly.
+\end{proof}
+
+Write $f=\id+w$. For large $n$, $\|Dw\|_\infty<1$, and
+\[
+ |f(z)-f(z')|\geq(1-\|Dw\|_\infty)|z-z'|.
+\]
+For each target $y$, the contraction $z\mapsto y-w(z)$ on the complete plane has a unique fixed point, proving surjectivity as well as injectivity. Its positive Jacobian and the smooth inverse function theorem give a global smooth orientation-preserving inverse. Since $f=\id$ outside the disk, injectivity implies that the disk maps to itself; $f^{-1}$ is also the identity outside. Thus $f$ fixes $0,1$ and extends as the identity near spherical infinity. Equation~\eqref{eq:jet} prevents $C^{r+1}$ convergence to $\id$.
+
+\section{Exact reconstruction and the higher endpoints}
+Put $\mu=f_{\bar z}/f_z$. For a smooth real correction $a$ supported in the same disk, define
+\begin{equation}\label{eq:metric}
+ g_n=e^{-2(b+a)}|\dd z+\mu\dd\bar z|^2,\qquad
+ h=\log|f_z|,\qquad U=(b+a+h)\circ f^{-1}.
+\end{equation}
+The tensor $|\dd z+\mu\dd\bar z|^2$ has eigenvalues $(1\pm|\mu|)^2$, so the metric is positive for large $n$. The exact identity $\dd f=f_z(\dd z+\mu\dd\bar z)$ gives
+\[
+ g_n=f^*(e^{-2U}|\dd w|^2).
+\]
+The required factor is $u=U$ on the plane and $u=U-b(w)$ on the sphere. Outside the disk $U=b$, because $f^{-1}=\id$ and $a=h=0$. Thus the spherical $u$ is zero near infinity and extends smoothly. Each metric equals $g_*$ outside the disk and is complete by the earlier comparison argument. Its target conformal metric is complete by isometry. Once positivity is proved, its factor belongs to $\mathcal O_\kappa$, and normalized uniqueness identifies the inverse map as $f$.
+
+For $r\geq2$ take $a=0$. Lemma~\ref{lem:bounds} and the product rule imply $g_n\to g_*$ in $C^r$, in particular in $C^2$ on the disk. Gaussian curvature is a continuous expression in a positive metric, its inverse and its first two derivatives. The positive minimum of background curvature on that disk ensures $K(g_n)>0$ there for all sufficiently large $n$. Outside, curvature is unchanged. Equation~\eqref{eq:jet} proves the theorem for $r\geq2$.
+
+\section{The critical endpoint and nonlinear curvature}
+Fix $r=1$. Positivity cannot follow from $C^1$ metric convergence alone. On the inner disk set $\ell=1+|\log s|$. The bounds above and the vanishing of the third derivative of $z^2$ give
+\begin{equation}\label{eq:criticalbounds}
+ |Df-I|\leq C\varepsilon,\quad |D^2f|\leq C\varepsilon\ell,
+ \quad |D^3f|\leq C\varepsilon/s.
+\end{equation}
+Since $|f_z|\geq1/2$, the chain rule gives
+\[
+ |Dh|\leq C\varepsilon\ell,\qquad
+ |D^2h|\leq C(\varepsilon/s+\varepsilon^2\ell^2)
+ \leq C'\varepsilon/s.
+\]
+The last bound uses $s\ell^2\leq4/e$ and $\varepsilon\leq1$.
+
+For a smooth scalar $v$ define the exact operator
+\[
+ \mathcal L_n v=[\Delta_w(v\circ f^{-1})]\circ f.
+\]
+Let $J_{ai}=\partial_i f_a$ and $H=J^{-1}$. Differentiating $f(f^{-1}(w))=w$ twice yields
+\begin{equation}\label{eq:operator}
+ \mathcal L_n v=A^{ij}\partial_{ij}v+B^i\partial_i v,\qquad
+ A=HH^{\mathsf T},\qquad
+ B^i=-H_{ia}(\partial_{jk}f_a)A^{jk},
+\end{equation}
+with repeated indices summed. Indeed $\partial_{w_a}(f^{-1})_i\circ f=H_{ia}$, and the second inverse derivative contributes $B$. This fixes the order $HH^{\mathsf T}$ rather than $H^{\mathsf T}H$ and retains the full drift. Thus $A-I=O(\varepsilon)$, $A\geq I/2$ for large $n$, and $|B|\leq C\varepsilon\ell$.
+
+Since $b$ has bounded first and second derivatives on the disk, these bounds imply, with an $n$-independent $C_0$,
+\begin{equation}\label{eq:badbound}
+ \mathcal L_n(b+h)\geq\Delta b-C_0\varepsilon/s
+\end{equation}
+on the inner disk. Explicitly the background error is at most $C\varepsilon(1+\ell)$, the $h$ Hessian term at most $C\varepsilon/s$, and its drift term at most $C\varepsilon^2\ell^2$. Each is bounded by a constant times $\varepsilon/s$ because $s\ell$ and $s\ell^2$ are bounded.
+
+The Hessian of the regularized radius is positive semidefinite:
+\[
+ D^2s=I/s-zz^{\mathsf T}/s^3,\qquad
+ \Delta s=\frac{|z|^2+2\rho^2}{s^3}\geq1/s,\qquad |Ds|\leq1.
+\]
+Here $z$ denotes the real coordinate vector in the Hessian formula. Its radial and tangential eigenvalues are $\rho^2/s^3$ and $1/s$. Hence
+\[
+ \mathcal L_n s\geq\tfrac12\Delta s-C\varepsilon\ell
+ \geq\frac1{2s}-C\varepsilon\ell\geq\frac1{4s}
+\]
+uniformly for all sufficiently large $n$, using bounded $s\ell$. Choose a fixed $K>4C_0$, enlarging $C_0$ to work for both backgrounds if needed, and set
+\begin{equation}\label{eq:correction}
+ a=K\varepsilon\chi s.
+\end{equation}
+It is smooth for every $n$, and $\|a\|_{C^1}=O_K(\varepsilon)$. On the inner disk $\chi=1$, so
+\[
+ \mathcal L_n(b+h+a)\geq\Delta b+(K/4-C_0)\varepsilon/s>0.
+\]
+On the fixed closed annulus $R/2\leq|z|\leq R$, all fixed-order derivatives of $f-\id$, $h$ and $a$ needed in the operator are $O_K(\varepsilon)$ because $s\geq R/2$. Thus $\mathcal L_n(b+h+a)\to\Delta b$ uniformly there. The positive minimum of $\Delta b$ gives positivity for large $n$, with $K$ already fixed. Beyond the support the expression is exactly $\Delta b$. The smooth cutoff ensures the estimates include its boundary transitions.
+
+For the conformal target, curvature is $e^{2U}\Delta_w U$. Pulling back by the exact isometry yields
+\[
+ K(g_n)(z)=e^{2U(f(z))}\mathcal L_n(b+h+a)(z)>0.
+\]
+This controls the full nonlinear curvature, inverse-coordinate drift and cutoff annulus. No numerical value of $K$ or finite sample replaces these uniform estimates. Finally $\mu\to0$ and $a\to0$ in $C^1$ imply $g_n\to g_*$ in $C^1$, but \eqref{eq:jet} gives $\partial_x^2(f-\id)(0)=-2$. The normalized maps fail $C^2$ convergence, completing Theorem~\ref{thm:main}.
+
+\begin{remark}
+The critical correction is small in $C^1$, but its $C^2$ norm need not be small. Its exact curvature sign, not curvature continuity in $C^1$, supplies positivity. For higher $r$ no correction is needed. The plane background stays unchanged at infinity, so completeness is proved directly, without a new growth classification assumption.
+\end{remark}
+
+\section*{Verification and literature limits}
+The derivative recurrences and estimates quantify over every fixed finite integer $r$. Historical exact and numerical controls in the research record check formulas and boundary cases, not universal claims by finite testing. Internal AI reviews independently checked the analytic estimates and geometric normalization, completeness and curvature. This manuscript preparation adds no substantive proof attempt or independent-review credit.
+
+The official workshop passage, complete 2016 erratum, and relevant topology and published uniformization sections of \cite{BB18} were examined. The complete cited endpoint section of \cite{MSS22} was also examined in the wider review. Not every cited dependency or historical book was read directly. Earlier unindexed geometric realizations, especially of the $r=1$ correction, remain a priority limitation. The accompanying exact algebraic diagnostics supplement the written universal proof; finite checks do not certify all derivative orders, global curvature, completeness or priority. No human peer review or journal acceptance is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{BH16} I.~Belegradek and J.~Hu,
+Erratum to: Connectedness properties of the space of complete nonnegatively curved planes,
+\emph{Math. Ann.} \textbf{364} (2016), 711--712.
+\href{https://doi.org/10.1007/s00208-015-1354-1}{doi:10.1007/s00208-015-1354-1}.
+\bibitem{BB18} T.~Banakh and I.~Belegradek,
+Spaces of nonnegatively curved surfaces,
+\emph{J. Math. Soc. Japan} \textbf{70} (2018), 733--756.
+\href{https://doi.org/10.2969/jmsj/07027344}{doi:10.2969/jmsj/07027344}.
+\bibitem{OWR} Mini-Workshop: Spaces and Moduli Spaces of Riemannian Metrics,
+\emph{Oberwolfach Reports} \textbf{14} (2017), 133--166, especially p.~149;
+workshop 8--14 January 2017, report published 3 January 2018.
+\href{https://doi.org/10.4171/OWR/2017/3}{doi:10.4171/OWR/2017/3}.
+\bibitem{MSS22} M.~Mateljevi\'c, R.~Salimov and E.~Sevost'yanov,
+H\"older and Lipschitz continuity in Orlicz--Sobolev classes, distortion and harmonic mappings,
+2022 preprint, \href{https://arxiv.org/abs/2208.02551}{arXiv:2208.02551}, Section~7, Example~5.
+\bibitem{AIM09} K.~Astala, T.~Iwaniec and G.~J.~Martin,
+\emph{Elliptic Partial Differential Equations and Quasiconformal Mappings in the Plane},
+Princeton University Press, 2009. Attribution read indirectly through \cite{MSS22}.
+\bibitem{BGR13} B.~Bojarski, V.~Gutlyanskii, O.~Martio and V.~Ryazanov,
+\emph{Infinitesimal Geometry of Quasiconformal and Bi-Lipschitz Mappings in the Plane},
+EMS Tracts in Mathematics 19, European Mathematical Society, 2013.
+Attribution read indirectly through \cite{MSS22}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,30 @@
+{
+  "name": "old_review_coordinate_corruption",
+  "actual_materialized_path": "executed_controls/old_review_coordinate_corruption",
+  "mutant_hashes": {
+    "review/independent_checks.py": "ae46071abebb1e99d2fd5bdf8c53b9335fc491baeb0832bb28a6b8b3f6e8a0a8"
+  },
+  "pinned_artifact_binding_rejects": [
+    "review/independent_checks.py"
+  ],
+  "unchanged_original_check_execution": [
+    {
+      "code": "verify_graph.py",
+      "exit": 0,
+      "stdout_sha256": "d50e8e4a908da50a157b5d2b7aac9723d816e899f6c99369209e5d85a7edd99e",
+      "stdout_exact_original": true,
+      "stdout_full_json_exact_original": true,
+      "stderr": ""
+    },
+    {
+      "code": "review/independent_checks.py",
+      "exit": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_exact_original": false,
+      "stdout_full_json_exact_original": false,
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/graph_family/executed_controls/old_review_coordinate_corruption/review/independent_checks.py\", line 98, in <module>\n    check(J(z)==points[h[i]],'exact coordinate antipode')\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr36_20001424/graph_family/executed_controls/old_review_coordinate_corruption/review/independent_checks.py\", line 16, in check\n    assert ok,label\n           ^^\nAssertionError: exact coordinate antipode\n"
+    }
+  ],
+  "original_code_covers_changed_source": true,
+  "interpretation": "Corrupted hardcoded graph data rejects during original assertions."
+}

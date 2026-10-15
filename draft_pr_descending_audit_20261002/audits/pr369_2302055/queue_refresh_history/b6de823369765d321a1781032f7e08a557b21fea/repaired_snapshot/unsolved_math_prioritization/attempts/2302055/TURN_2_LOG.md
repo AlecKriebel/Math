@@ -1,0 +1,5 @@
+# Substantive author turn 2
+
+This turn pursued the unrestricted third-coordinate gap left by turn 1. It proves connectedness of generic separated Laurent curves using disjoint branch-value monodromies, obtains a uniform finite index bound for the puncture winding lattice, and supplies a local lifted isotopy instead of assuming properness of the exponential family. Bounded component values then have holomorphic symmetric coefficients in the arbitrary third variable; bounded removability covers the exceptional parameter set and continuity covers the exceptional fibers. The theorem allows two Laurent-polynomial exponential inputs with polynomial phases and a completely arbitrary nonconstant entire third input. It does not resolve three arbitrary inputs.
+
+The 7,551 exact controls supplement the analytic argument and are explicitly not an analytic proof. The turn credits Demailly's simpler exponential case and the classical irreducibility and abelian-cover inputs. No frozen turn-1 file is changed. Author count is 2/5.

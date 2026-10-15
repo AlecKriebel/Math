@@ -1,0 +1,149 @@
+{
+  "Git_SQL_native_shared_remote_writes": false,
+  "actual_future_final_reconciliation_or_acceptance_or_prior39_or_native_mirror_claimed": false,
+  "audit_turns": 0,
+  "closed_utc": "2026-10-02T13:39:04.264030+00:00",
+  "current_deadline_utc": null,
+  "current_model": null,
+  "current_reasoning_effort": null,
+  "findings": [
+    {
+      "correction": "Split Kuhlmann1.1 orientable coverage and Xia1.2/4.1 direct nonorientable coverage with retained qualifications",
+      "id": "S1",
+      "kind": "scientific_attribution",
+      "locations": [
+        "SCIENTIFIC_SCOPE.json credited_existing_coverage[2]",
+        "DRAFT_FINAL_PLAN.json scientific_scope",
+        "pr40_guards.py:230,232,300",
+        "integrate_reviewed_partial.py:102"
+      ],
+      "mandatory": true,
+      "priority": "P1",
+      "summary": "Published Kuhlmann incorrectly credited for nonorientable cusps; Xia omitted",
+      "target_counterexample": false
+    },
+    {
+      "correction": "Require timezone-aware UTC clocks and finish at or after start",
+      "id": "S2",
+      "kind": "actual_capture_validation",
+      "locations": [
+        "pr40_guards.py:262"
+      ],
+      "mandatory": true,
+      "priority": "P2",
+      "summary": "Nonempty clock strings do not validate parseability, UTC or ordering"
+    },
+    {
+      "correction": "Require distinct capture/source/stdout/stderr filenames and full bound streams",
+      "id": "S3",
+      "kind": "actual_capture_closure",
+      "locations": [
+        "pr40_guards.py:266-268"
+      ],
+      "mandatory": true,
+      "priority": "P2",
+      "stdout_equals_stderr_already_rejected": true,
+      "summary": "stderr may alias prelaunch source; four claimed files collapse to three"
+    },
+    {
+      "correction": "Use atomic non-overwrite publication when exclusive=True; preserve original failure/evidence",
+      "id": "S4",
+      "kind": "exclusive_publication",
+      "locations": [
+        "pr40_guards.py:156-163"
+      ],
+      "mandatory": true,
+      "priority": "P2",
+      "summary": "exists check followed by os.replace overwrites an intervening target"
+    },
+    {
+      "correction": "Require concrete root-reviewed UTC rebase metadata and verify its required date or accurately revise the contract",
+      "fresh_native_HEAD_or_prior39_bypass_claimed": false,
+      "id": "S5",
+      "kind": "dated_rebase_contract",
+      "locations": [
+        "CONTRACT.md:21",
+        "pr40_guards.py:273"
+      ],
+      "mandatory": true,
+      "priority": "P3",
+      "summary": "Undated reason passes a guard whose contract requires a dated reason"
+    },
+    {
+      "correction": "Advance next-target metadata to41",
+      "discovery_lead": "Root subsequent whole-source read; independently confirmed literal assignment and PR39 convention",
+      "id": "S6",
+      "kind": "next_target_metadata",
+      "locations": [
+        "integrate_reviewed_partial.py:98"
+      ],
+      "mandatory": true,
+      "priority": "P3",
+      "summary": "PR40 completion leaves current_pr at40 rather than advancing to41"
+    }
+  ],
+  "findings_count": 6,
+  "full_problem_solved": false,
+  "genuine_new_target_counterexamples": [],
+  "mandatory_frozen_SOURCE_STATUS_corrections": [],
+  "mathematical_discovery_completion_percent": 0,
+  "new_substantive_attempts": 0,
+  "novelty_claimed": false,
+  "original_and_current_mathematical_bounded_partial_unchanged": true,
+  "original_substantive_attempts": 0,
+  "outside_communication": false,
+  "own_control_capture_receipts": [
+    {
+      "bytes": 1077,
+      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_static_adversary_family/inspect_static_inputs_actual_capture/CAPTURE.json",
+      "sha256": "de9df55474201d9d87a7180b136843f7a29f16db65d3116d8a04aa11d99608e5"
+    },
+    {
+      "bytes": 1087,
+      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_static_adversary_family/independent_static_controls_actual_capture/CAPTURE.json",
+      "sha256": "fbd8cb5aa4f2a07765d83d03fa430412a4c461bec533fa57e604a1bd903d5c5a"
+    }
+  ],
+  "own_control_results": {
+    "bytes": 3825,
+    "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_static_adversary_family/independent_static_controls_actual_capture/stdout.bin",
+    "sha256": "4bef268ee5b0e5374e1b0ed18fd5d3ff500dd58b2107c36eb27e1969f9b7b988"
+  },
+  "own_control_status": "FINDINGS_REPRODUCED_STATIC_ONLY",
+  "own_data_inspection": {
+    "actual_current_freeze_retained_members": 4,
+    "actual_original_family_retained_members": 42,
+    "authored_closed_family_members": [
+      97,
+      38,
+      5,
+      7,
+      25
+    ],
+    "current_JSON_including_root_manifest": 110,
+    "current_including_root_manifest": 240,
+    "current_members": 239,
+    "dependencies": 216,
+    "original_root_archive_source_files": 13,
+    "status": "PASS_INPUT_IDENTITY_AND_TYPED_TOPOLOGY_ONLY",
+    "whole_foreign_members_separately_bound": 21
+  },
+  "paper_or_new_DOI_or_tracker": false,
+  "partial_valid": true,
+  "pr": 40,
+  "problem_id": 2814,
+  "proposed_or_old_verifier_import_compile_or_execution": false,
+  "reviewed_authored_members": 12,
+  "reviewed_package_preserved_before_and_after": true,
+  "reviewed_preparation_manifest_sha256": "a7bbde5e024a6e432d7456586651208b3f365170cfc80112e0b98de1cae4c39b",
+  "reviewed_source_lines": 632,
+  "reviewed_source_programs": 5,
+  "root_followup": "New adjacent closed acceptance revision and fresh static review before actual gates; do not edit any closed scope",
+  "schema": "pr40-independent-acceptance-static-adversary/v1",
+  "science_reading_qualification": "Prior sealed complete operative reading/reconstruction and disclosed raw-background exposure; no renewed unexposed independence or recursive foundational recertification claimed",
+  "scientific_acceptance_scope_new_attribution_regression": true,
+  "source_hold": true,
+  "static_audit_completion_percent": 100,
+  "status": "REQUIRES_ACCEPTANCE_SOURCE_REVISION",
+  "turn_limit": 5
+}

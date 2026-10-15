@@ -1,0 +1,9 @@
+# Final adversarial research log
+
+- 2026-10-03T02:23:30.867638+00:00: Source-first reconstruction sealed before reading candidate proofs or prior verdicts. Independent audit completion estimate 15%. Strongest verified input: exact full weighted split Green ring question and conjugation bars. Remaining gap: all five candidate proofs, controls, and bindings. No author search turn added.
+
+- 2026-10-03T02:28:56.883962+00:00: Five proofs and eight programs reviewed; own new controls sealed before family/root comparisons. Audit estimate 65%. Strongest verified result: actual induced-endotrivial completed decomposition is valid; full question remains unsolved 5/5. Remaining audit gap: metadata, replay, bindings, queue three-way, and comparison.
+
+- 2026-10-03T02:34:43.871119+00:00: Comparison completed only after independent reconstruction and initial 18,622 controls. All four family manifests pass (44 bindings, some nested duplicates); root reconstruction agrees. Added own explicit rational finite-truncation feasibility boundary after comparison, producing 59,132 controls total. No author imports. Historical/publication replays and 52 Git blobs pass; current main changed externally during concurrent root work, so refreshed queue three-way against a5dfd64903e7abe6c8af9a078e19a7a490f0494c. Audit estimate 95%. Remaining gap: final report and sealed output manifest. No new author turn or universal discovery completion certified.
+
+- 2026-10-03T02:36:18.075340+00:00: Whole-package final adversarial report complete. Completion estimate100% of assigned audit;0% additional universal-discovery completion certified. Verdict PASS scoped results, mandatory repairs none, original unsolved5/5. Strongest verified result and exact remaining gap are stated in REPORT.md. No merge readiness or novelty certification.

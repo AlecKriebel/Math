@@ -1,0 +1,156 @@
+--- INITIAL_GENERATED_SOURCE/pr46_guards.py
++++ pr46_guards.py
+@@ -205,7 +205,7 @@
+ def remote():
+     o=parse(subprocess.check_output(['gh','pr','view',str(PR),'--repo','AlecKriebel/Math','--json','number,url,state,isDraft,headRefOid,headRefName,baseRefName,mergeCommit,mergedAt,body'],cwd=R,timeout=30))
+     keyset(o,{'number','url','state','isDraft','headRefOid','headRefName','baseRefName','mergeCommit','mergedAt','body'},'Complete known GitHub receipt')
+-    required(o,{'number':46,'url':'https://github.com/AlecKriebel/Math/pull/45','headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main'},'Actual remote')
++    required(o,{'number':46,'url':'https://github.com/AlecKriebel/Math/pull/46','headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main'},'Actual remote')
+     return o
+ 
+ 
+@@ -414,7 +414,7 @@
+         relative(n);require(n not in NATIVE and not n.startswith(K.relative_to(R).as_posix()+'/') and not n.startswith(A.relative_to(R).as_posix()+'/'),'Foreign exception outside exact owned/native scope')
+     snap=load(A/'snapshot_manifest.json');original_native(C/'original_archive')
+     raw=git_bytes('diff',ORIGINAL_BASE,HEAD);require(raw==(C/'original_diff.patch').read_bytes() and raw==(A/'original_diff.patch').read_bytes() and len(raw)==89103,'Entire original14-path diff')
+-    require(len(git_bytes('diff','--name-only',ORIGINAL_BASE,HEAD).decode().splitlines())==19,'Original14 changed paths')
++    require(len(git_bytes('diff','--name-only',ORIGINAL_BASE,HEAD).decode().splitlines())==14,'Original14 changed paths')
+     for z in snap['files']:
+         require(git_bytes('show',HEAD+':'+z['path'])==(C/'original_archive'/z['relative_path']).read_bytes(),'Original Git/archive full bytes')
+         require(git_bytes('ls-tree','-z',HEAD,'--',z['path']).decode().rstrip('\0')==z['git_mode']+' blob '+z['git_object']+'\t'+z['path'],'Exact original Git mode/object')
+@@ -582,14 +582,14 @@
+ 
+ def preflight_record(pins):
+     o=load(A/'integration_preflight.json')
+-    keyset(o,set(pins)|{'schema','utc','main_before','pr','foreign_logs','whole_queue_before_sha256','selected_row_before','state_before_sha256','history_before_sha256','inventory_before_sha256','original_substantive_attempts','new_substantive_attempts','audit_turns','dated_frozen_preimage_not_rewritten'},'Complete original-head preflight')
++    keyset(o,set(pins)|{'schema','utc','main_before','pr','foreign_logs','whole_queue_before_sha256','selected_row_before','state_before_sha256','history_before_sha256','inventory_before_sha256','original_substantive_attempts','original_source_verification_responses','new_substantive_attempts','audit_turns','dated_frozen_preimage_not_rewritten'},'Complete original-head preflight')
+     required(o,{'schema':'pr46-original-head-integration-preflight/v1',**pins,'original_substantive_attempts':0,'original_source_verification_responses':1,'new_substantive_attempts':0,'audit_turns':0,'dated_frozen_preimage_not_rewritten':True},'Original-head preflight source and scope')
+     fresh=load(R/o['fresh_preimage']);require(o['main_before']==fresh['current_head'],'Original preflight main differs from fresh inputs')
+     rr={z['path']:z for z in fresh['files']}
+     for field,path in [('whole_queue_before_sha256',Q.relative_to(R).as_posix()),('state_before_sha256','unsolved_math_prioritization/state.json'),('history_before_sha256','unsolved_math_prioritization/history.jsonl'),('inventory_before_sha256','draft_pr_publication_program_20260930/inventory.json')]:
+         require(o[field]==rr[path]['sha256'],'Complete fresh preflight source binding differs')
+     keyset(o['pr'],{'number','url','state','isDraft','headRefOid','headRefName','baseRefName','mergeCommit','mergedAt','body'},'Complete preflight remote schema')
+-    required(o['pr'],{'number':46,'url':'https://github.com/AlecKriebel/Math/pull/45','state':'OPEN','isDraft':True,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main','mergeCommit':None,'mergedAt':None},'Literal original draft head')
++    required(o['pr'],{'number':46,'url':'https://github.com/AlecKriebel/Math/pull/46','state':'OPEN','isDraft':True,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main','mergeCommit':None,'mergedAt':None},'Literal original draft head')
+     before=regular(A,'integration_queue_before.md').read_bytes()
+     require(sha(before)==o['whole_queue_before_sha256'] and selected(before)==o['selected_row_before'],'Complete retained queue preimage differs')
+     require(sha(regular(A,'integration_inventory_before.json').read_bytes())==o['inventory_before_sha256'],'Complete retained inventory preimage differs')
+@@ -600,7 +600,7 @@
+ 
+ def overlay_record(pins,frozen):
+     o=load(A/'integration_check.json')
+-    keyset(o,set(pins)|{'schema','utc','canonical_overlay_files','whole_queue_after_sha256','automatic_merge_queue_preimage_sha256','original_substantive_attempts','new_substantive_attempts','audit_turns','remote_pending'},'Complete overlay schema')
++    keyset(o,set(pins)|{'schema','utc','canonical_overlay_files','whole_queue_after_sha256','automatic_merge_queue_preimage_sha256','original_substantive_attempts','original_source_verification_responses','new_substantive_attempts','audit_turns','remote_pending'},'Complete overlay schema')
+     required(o,{'schema':'pr46-original-head-overlay/v1',**pins,'original_substantive_attempts':0,'original_source_verification_responses':1,'new_substantive_attempts':0,'audit_turns':0,'remote_pending':True},'Complete overlay scope and pins')
+     for z in o['canonical_overlay_files']:exact_reference(z)
+     require({z['path'] for z in rows(o['canonical_overlay_files'])}==canonical_names(frozen),'Entire owned overlay closure differs')
+@@ -619,7 +619,7 @@
+     overlay=overlay_record(pins,rows(load(C/'MANIFEST.json')['files']))
+     require(equal(o['canonical_overlay_files'],overlay['canonical_overlay_files']) and o['whole_queue_after_sha256']==overlay['whole_queue_after_sha256'],'Entire prepush overlay and queue derivation')
+     observed=o['remote_before_push'];keyset(observed,{'number','url','state','isDraft','headRefOid','headRefName','baseRefName','mergeCommit','mergedAt','body'},'Entire actual archived prepush remote')
+-    expected={'number':46,'url':'https://github.com/AlecKriebel/Math/pull/45','state':'OPEN','isDraft':False,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main','mergeCommit':None,'mergedAt':None,'body':regular(A,'accepted_pr_body.md').read_text()}
++    expected={'number':46,'url':'https://github.com/AlecKriebel/Math/pull/46','state':'OPEN','isDraft':False,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main','mergeCommit':None,'mergedAt':None,'body':regular(A,'accepted_pr_body.md').read_text()}
+     require(equal(observed,expected),'Complete typed actual original-head prepush remote/body')
+     return o
+ 
+--- INITIAL_GENERATED_SOURCE/integrate_reviewed_partial.py
++++ integrate_reviewed_partial.py
+@@ -37,10 +37,10 @@
+         g.native_modes(fresh['files'])
+         queue=g.Q.read_bytes(); g.selected(queue); queue_after(queue)
+         state=g.load(g.R/'unsolved_math_prioritization/state.json'); inv=g.load(g.B/'inventory.json')
+-        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==36 and g.ID not in state and sum(z['turns_used'] for z in state.values())==44,'Require postPR45 native35targets/43turns, selected identity absent')
+-        g.require(inv['completed_count']==35 and sum(z.get('stage')=='complete' for z in inv['items'])==35,'Require33 complete primaries before44')
++        g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==36 and g.ID not in state and sum(z['turns_used'] for z in state.values())==44,'Require postPR45 native36targets/44turns, selected identity absent')
++        g.require(inv['completed_count']==35 and sum(z.get('stage')=='complete' for z in inv['items'])==35,'Require35 complete primaries before46')
+         item=[z for z in inv['items'] if z['number']==46]; g.require(len(item)==1 and item[0]['headRefOid']==g.HEAD and item[0]['headRefName']=='dot/math-30004438' and item[0].get('stage')!='complete','Exact original PR46 inventory required')
+-        pre={'schema':'pr46-original-head-integration-preflight/v1','utc':now,**pins,'main_before':head,'pr':observation,'foreign_logs':foreign,'whole_queue_before_sha256':g.sha(queue),'selected_row_before':g.selected(queue),'state_before_sha256':g.sha((g.R/'unsolved_math_prioritization/state.json').read_bytes()),'history_before_sha256':g.sha((g.R/'unsolved_math_prioritization/history.jsonl').read_bytes()),'inventory_before_sha256':g.sha((g.B/'inventory.json').read_bytes()),'original_substantive_attempts':0,'new_substantive_attempts':0,'audit_turns':0,'dated_frozen_preimage_not_rewritten':True}
++        pre={'schema':'pr46-original-head-integration-preflight/v1','utc':now,**pins,'main_before':head,'pr':observation,'foreign_logs':foreign,'whole_queue_before_sha256':g.sha(queue),'selected_row_before':g.selected(queue),'state_before_sha256':g.sha((g.R/'unsolved_math_prioritization/state.json').read_bytes()),'history_before_sha256':g.sha((g.R/'unsolved_math_prioritization/history.jsonl').read_bytes()),'inventory_before_sha256':g.sha((g.B/'inventory.json').read_bytes()),'original_substantive_attempts':0,'original_source_verification_responses':1,'new_substantive_attempts':0,'audit_turns':0,'dated_frozen_preimage_not_rewritten':True}
+         g.dump(g.A/'integration_preflight.json',pre,exclusive=True); g.write(g.A/'integration_queue_before.md',queue,exclusive=True); g.write(g.A/'integration_inventory_before.json',(g.B/'inventory.json').read_bytes(),exclusive=True); g.write(g.A/'accepted_pr_body.md',BODY.encode(),exclusive=True)
+         g.write(g.A/'integration_state_before.json',(g.R/'unsolved_math_prioritization/state.json').read_bytes(),exclusive=True)
+         g.write(g.A/'integration_history_before.jsonl',(g.R/'unsolved_math_prioritization/history.jsonl').read_bytes(),exclusive=True)
+@@ -72,7 +72,7 @@
+         g.dump(g.K/'ACCEPTED_QUEUE_PATCH.json',{'utc':now,'header_names':g.HEADER,'column_count':12,'named_changes':['Status','Turns','Findings'],'whole_before_sha256':g.sha(before),'whole_after_sha256':g.sha(after),'row_before':g.selected(before),'row_after':row,'all_other_bytes_preserved':True,'selected_chat_DOI_preserved':True,'fresh_preimage_sha256':a.fresh_preimage_sha256},exclusive=True)
+         g.canonical(frozen)
+         rr=[{'path':n,'bytes':len((g.K/n).read_bytes()),'sha256':g.sha((g.K/n).read_bytes())} for n in sorted(g.canonical_names(frozen))]
+-        g.dump(g.A/'integration_check.json',{'schema':'pr46-original-head-overlay/v1','utc':now,**pins,'canonical_overlay_files':rr,'whole_queue_after_sha256':g.sha(after),'automatic_merge_queue_preimage_sha256':g.sha(automatic),'original_substantive_attempts':0,'new_substantive_attempts':0,'audit_turns':0,'remote_pending':True},exclusive=True)
++        g.dump(g.A/'integration_check.json',{'schema':'pr46-original-head-overlay/v1','utc':now,**pins,'canonical_overlay_files':rr,'whole_queue_after_sha256':g.sha(after),'automatic_merge_queue_preimage_sha256':g.sha(automatic),'original_substantive_attempts':0,'original_source_verification_responses':1,'new_substantive_attempts':0,'audit_turns':0,'remote_pending':True},exclusive=True)
+         g.fresh_check(pre,{qpath}); print('OVERLAY PASS PR46; root stages exact owned paths and commits'); return
+     overlay=g.overlay_record(pins,frozen); g.canonical(frozen)
+     g.require(g.Q.read_bytes()==after,'Whole accepted named-column queue differs'); g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'})
+@@ -96,7 +96,7 @@
+         value=g.load(g.K/n); value.update(status='already_solved_accepted_credited_known_result_merged',merge_commit=merge,merge_tree=tree,merged_at=observation['mergedAt']); g.dump(g.K/n,value)
+     accept=g.expected_acceptance(pins,pre)
+     g.accepted_invariants(accept,pins,pre); g.dump(g.K/'acceptance.json',accept,exclusive=True)
+-    g.write(g.K/'ACCEPTANCE.md',('# Accepted credited known rational-map result: 30004438 / OWR-17475-003\n\n'+BODY+'\nActual original-head merge '+merge+', tree '+tree+'. Full exact final reconciliation '+a.final_receipt_sha256+'; original0/5 exact one-turn ledger, source, present raw prior and matching upstream dictionary remain unchanged.\n').encode(),exclusive=True)
++    g.write(g.K/'ACCEPTANCE.md',('# Accepted credited known rational-map result: 30004438 / OWR-17475-003\n\n'+BODY+'\nActual original-head merge '+merge+', tree '+tree+'. Full exact final reconciliation '+a.final_receipt_sha256+'; original0/5 exact object ledger plus source-verification responses1 and plain raw source remain unchanged; prior-key absence and saved{} fallback remain distinct from null.\n').encode(),exclusive=True)
+     names=g.canonical_names(frozen,True)-{'MANIFEST.json'}; g.exact(g.K,names)
+     rr=[{'path':n,'bytes':len((g.K/n).read_bytes()),'sha256':g.sha((g.K/n).read_bytes())} for n in sorted(names)]
+     g.dump(g.K/'MANIFEST.json',{'schema':'pr46-accepted-strict-self-excluding-closure/v1','utc':now,'self_excluded':['MANIFEST.json'],'files_count':len(rr),'files':rr,'foreign_excluded_prefixes':[]},exclusive=True)
+@@ -107,7 +107,7 @@
+     g.manifest(g.K,'MANIFEST.json',frozen=True)
+     g.accepted_invariants(g.load(g.K/'acceptance.json'),pins,pre); g.accepted_invariants(g.load(g.A/'acceptance.json'),pins,pre,audit=True)
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md'}); g.dump(g.B/'inventory.json',inv); inventory_guard(before_inv,g.load(g.B/'inventory.json'),observation,now); g.foreign_check(pre)
+-    note='\n## '+now+' — PR46 actual accepted qualified scoped partial\n\nWorkflow100%; scientific discovery0%; original0/5,new0,audit0. Actual MERGED original-head/tree checked. Program36/180=20%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
++    note='\n## '+now+' — PR46 actual accepted credited known-result source correction\n\nWorkflow100%; scientific discovery0%; original0/5,new0,audit0. Actual MERGED original-head/tree checked. Program36/180=20%; one present native mirror remains. No paper/newDOI/tracker/release.\n'
+     logdir=g.A/'integration_log_preimages'; g.require(not logdir.exists() and not logdir.is_symlink(),'New retained log-preimage directory required'); logdir.mkdir()
+     log_receipt=[]
+     for name,f in [('root_problem',g.A/'ROOT_RESEARCH_LOG.md'),('program',g.B/'RESEARCH_LOG.md')]:
+--- INITIAL_GENERATED_SOURCE/state_mirror_reconciliation.py
++++ state_mirror_reconciliation.py
+@@ -24,8 +24,8 @@
+     g.require(g.equal(patch,expected_patch),'Entire typed accepted queue receipt, no meaningful extension')
+     push=g.prepush_record(pins); g.require(tree==canonical['merge_tree']==push['merge_tree'] and push['merge_commit']==canonical['merge_commit'],'Actual original-head tree/parents/prepush differ')
+     final,retained_remote=g.finalization(pins,pre)
+-    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':47,'completed_count':36},'PostPR46 next-target metadata'); g.require(inv['completed_count']==36 and sum(z.get('stage')=='complete' for z in inv['items'])==36,'Exactly35 primary completions')
+-    item=next(z for z in inv['items'] if z['number']==46); g.required(item,{'stage':'complete','outcome':'already_solved_accepted_known_result','queue_status':'already_solved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'0/5','cumulative_attempts':'0/5','new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
++    inv=g.load(g.B/'inventory.json'); inventory_guard(g.load(g.A/'integration_inventory_before.json'),inv,retained_remote,final['utc']); g.required(inv,{'current_pr':47,'completed_count':36},'PostPR46 next-target metadata'); g.require(inv['completed_count']==36 and sum(z.get('stage')=='complete' for z in inv['items'])==36,'Exactly36 primary completions')
++    item=next(z for z in inv['items'] if z['number']==46); g.required(item,{'stage':'complete','outcome':'already_solved_accepted_known_result','queue_status':'already_solved','audited_head':g.HEAD,'merge_commit':canonical['merge_commit'],'merged_at':canonical['merged_at'],'original_attempts':'0/5','cumulative_attempts':'0/5','original_source_verification_responses':1,'new_substantive_attempts':0,'paper_or_new_doi_or_tracker':False},'Exact selected accepted inventory')
+     g.fresh_check(pre,{'unsolved_math_prioritization/QUEUE.md','draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'})
+     return pre,canonical
+ 
+@@ -35,7 +35,7 @@
+     g.require(not (g.A/'state_mirror_intent.json').exists(),'Inspect retained intent before retry')
+     state=g.R/'unsolved_math_prioritization/state.json'; history=g.R/'unsolved_math_prioritization/history.jsonl'; old_state,old_history=state.read_bytes(),history.read_bytes(); prior=g.parse(old_state)
+     g.require(g.sha(old_state)==pre['state_before_sha256'] and g.sha(old_history)==pre['history_before_sha256'],'Exact full preflight state/history differs')
+-    g.require(len(prior)==36 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==44,'Require35targets/43turns and selected identity absent')
++    g.require(len(prior)==36 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==44,'Require36targets/44turns and selected identity absent')
+     proposal=copy.deepcopy(g.load(g.R/a.previous_mirror)); old_entries=copy.deepcopy(proposal['entries']); old_duplicates=copy.deepcopy(proposal.get('duplicate_mirrors'))
+     proposal.update(created_at_utc=g.stamp(),scope='Incremental present accepted primary PR46 exact known rational-map result credited to Kozhasov–Kummer2020preprint; original0/5 plus source-verification responses1, no new proof turn or historical reconstruction.')
+     for k in ['inventory','queue']: proposal[k]=g.binding(g.R/proposal[k]['path'])
+@@ -47,12 +47,12 @@
+     for label,raw,used,limit in [('empty',b'',0,5),('whitespace_only',b'\n',0,5),('invented_object',b'{"substantive_turns_used":0}\n',0,5),('bool_used',g.regular(g.K,'turns.json').read_bytes(),False,5),('wrong_used',g.regular(g.K,'turns.json').read_bytes(),1,5),('wrong_limit',g.regular(g.K,'turns.json').read_bytes(),0,4)]:
+         try:m.ledger_budget(raw,'pr46_exact_original_zero_turn_object',used,limit)
+         except m.Rejected:negatives.append(label)
+-        else:raise ValueError('Exact one-turn-ledger guard accepted mutant '+label)
++        else:raise ValueError('Exact zero-turn-object-ledger guard accepted mutant '+label)
+     plan=m.build_plan(g.R,proposal); validation=m.validate_plan(g.R,plan)
+-    g.require(plan['primary_count']==36 and plan['duplicate_count']==1 and len(plan['state_after'])==37 and sum(z['turns_used'] for z in plan['state_after'].values())==44,'Exactly36targets/44turns/35primary/one preserved duplicate required')
++    g.require(plan['primary_count']==36 and plan['duplicate_count']==1 and len(plan['state_after'])==37 and sum(z['turns_used'] for z in plan['state_after'].values())==44,'Exactly37targets/44turns/36primary/one preserved duplicate required')
+     g.require(len(plan['history_append'])==1 and plan['history_append'][0]['id']==g.ID and plan['history_append'][0]['event']=='acceptance_mirror_import','Exactly one present primary acceptance event')
+     g.require(all(g.equal(plan['state_after'][k],v) for k,v in prior.items()),'Every prior state unchanged; no new duplicate')
+-    event=plan['history_append'][0]; g.required(event,{'turns_used':0,'turn_limit':5,'status':'already_solved'},'Native original0/5 exact one-turn ledger budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
++    event=plan['history_append'][0]; g.required(event,{'turns_used':0,'turn_limit':5,'status':'already_solved'},'Native original0/5 exact zero-turn object ledger budget'); g.required(event['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'Present event only')
+     g.dump(g.A/'state_mirror_bindings.json',proposal,exclusive=True); g.dump(g.A/'state_mirror_plan.json',plan,exclusive=True)
+     protected={}
+     for z in plan['bindings']:
+--- INITIAL_GENERATED_SOURCE/verify_post_acceptance.py
++++ verify_post_acceptance.py
+@@ -19,7 +19,7 @@
+     g.require(state==plan['state_after_bytes'].encode() and g.equal(current,plan['state_after']) and set(current)==set(old)|{g.ID},'Exact native planned state membership/content differs')
+     g.require(all(g.equal(current[k],v) for k,v in old.items()) and len(current)==37 and sum(z['turns_used'] for z in current.values())==44,'Prior states/budget/duplicate source-only disposition differ')
+     for k,raw in [('state',state),('history',history)]: g.require(g.sha(raw)==intent[k+'_after_sha256']==receipt[k+'_sha256']==plan[k+'_after_sha256'],'Actual state/history receipt SHA differs')
+-    g.required(current[g.ID],{'id':g.ID,'pr':46,'status':'already_solved','turns_used':0,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original0/5 exact one-turn ledger budget')
++    g.required(current[g.ID],{'id':g.ID,'pr':46,'status':'already_solved','turns_used':0,'turn_limit':5,'event':'acceptance_mirror_import'},'Native present original0/5 exact zero-turn object ledger budget')
+     g.required(current[g.ID]['evidence'],{'historical_transitions_asserted':False,'import_is_present_day_mirror':True,'duplicate_ids':[]},'No invented historical/duplicate transition')
+     previous=g.load(g.R/a.previous_mirror); g.require(g.equal(proposal['entries'][:-1],previous['entries']) and g.equal(proposal.get('duplicate_mirrors'),previous.get('duplicate_mirrors')),'Prior proposal accounting differs')
+     m=g.mirror_module(proposal); g.require(g.sha(m.encode(plan))==intent['plan_sha256'],'Actual complete plan binding differs')
+@@ -28,7 +28,7 @@
+     g.source(g.K); g.source(g.C); g.accepted_invariants(acceptance,pins,pre); g.foreign_check(pre)
+     final,remote=g.finalization(pins,pre);inventory=g.load(g.B/'inventory.json')
+     g.require(g.equal(inventory,g.derive_inventory(g.load(g.A/'integration_inventory_before.json'),remote,final['utc'])),'Complete final typed derived inventory differs')
+-    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':46,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':37,'consumed_substantive_turns':44,'primary_acceptances':36,'program_completed_count':36,'program_completion_estimate_percent':inventory['program_completion_estimate_percent'],'exact_original13_and_PARTIAL_unchanged':True,'whole_current946_and826dependencies_bound':True,'entire_history_prefix_and36prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_target_resolved_in_prior_preprint':True,'prior_publication_doi':None,'full_problem_solved_by_project':False,'full_problem_solved':True,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
++    g.dump(g.A/'post_acceptance_verification.json',{'utc':g.stamp(),'status':'PASS','pr':46,**pins,'merge_commit':acceptance['merge_commit'],'merge_tree':acceptance['merge_tree'],'actual_remote_state':'MERGED','targets':37,'consumed_substantive_turns':44,'primary_acceptances':36,'program_completed_count':36,'program_completion_estimate_percent':inventory['program_completion_estimate_percent'],'exact_original13_and_SOURCE_STATUS_unchanged':True,'whole_current946_and826dependencies_bound':True,'entire_history_prefix_and36prior_states_preserved':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'current_metadata_present_null':True,'fresh_native_mirror_noop':True,'full_target_resolved_in_prior_preprint':True,'prior_publication_doi':None,'full_problem_solved_by_project':False,'full_problem_solved':True,'novelty_claimed':False,'scientific_completion_estimate_percent':0,'workflow_completion_estimate_percent':100,'paper_or_new_doi_or_tracker':False},exclusive=True)
+     print(g.encode({'status':'PASS','pr':46,'targets':37,'turns':44,'primary_acceptances':36,'new_proof_turns':0}).decode(),end='')
+ 
+ 

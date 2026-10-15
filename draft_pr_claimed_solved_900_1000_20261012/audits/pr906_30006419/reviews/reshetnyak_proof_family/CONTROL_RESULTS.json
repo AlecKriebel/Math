@@ -1,0 +1,116 @@
+{
+  "purpose": "independent finite and adversarial analytic controls",
+  "formal_analytic_proof": false,
+  "imports_original_check_code": false,
+  "all_passed": true,
+  "check_count": 6,
+  "checks": [
+    {
+      "name": "same-trace scalar calibration exact polynomial control",
+      "passed": true,
+      "evidence": {
+        "integral_partial_x_w": "0",
+        "integral_grad_w_squared": "256/45",
+        "energy_formula": "4 + epsilon^2 * 256/45"
+      },
+      "negative_control": "Dropping the fixed trace permits f=0 with energy 0; the lower bound 4 fails."
+    },
+    {
+      "name": "exact cutoff comass and zero-period algebra",
+      "passed": true,
+      "evidence": {
+        "tested_area_fractions": [
+          "1/10",
+          "1/4",
+          "49/100"
+        ],
+        "signed_period": "0 exactly",
+        "coefficient_range": "[-b,1]"
+      },
+      "negative_control": "For m/A=3/5, b=3/2 violates comass <=1. The full sphere area form has nonzero period and cannot use the exact-form gluing proof."
+    },
+    {
+      "name": "cutoff and positive energy surplus floating control",
+      "passed": true,
+      "evidence": {
+        "status": "illustrative quadrature; no certified error bound",
+        "sample_count": 20001,
+        "c_estimates": [
+          0.3724273200219126,
+          0.3724273200219126,
+          0.3724273200219126
+        ],
+        "analytic_c_bounds": "47/192 <= c < 11/24",
+        "energy_surplus_estimate_4pi_c": 4.680059730307902
+      },
+      "negative_control": "Setting a=1 removes c and the entire distortion counterexample; keeping only the rank defect at a single point would not prove essential unboundedness."
+    },
+    {
+      "name": "positive-measure distortion and seam boundary controls",
+      "passed": true,
+      "evidence": {
+        "exact_point_ratios": [
+          {
+            "t": "1/8",
+            "distortion": "64"
+          },
+          {
+            "t": "1/16",
+            "distortion": "256"
+          },
+          {
+            "t": "1/32",
+            "distortion": "1024"
+          },
+          {
+            "t": "1/64",
+            "distortion": "4096"
+          },
+          {
+            "t": "1/128",
+            "distortion": "16384"
+          },
+          {
+            "t": "1/256",
+            "distortion": "65536"
+          },
+          {
+            "t": "1/512",
+            "distortion": "262144"
+          },
+          {
+            "t": "1/1024",
+            "distortion": "1048576"
+          },
+          {
+            "t": "1/2048",
+            "distortion": "4194304"
+          }
+        ],
+        "round_band_area": "4*pi*tanh(delta)>0 for every delta>0",
+        "cover": "|t|<1 or |t|>1/2, plus both poles"
+      },
+      "negative_control": "The equator alone is a zero-area set and cannot establish failure of almost-everywhere quasiconformality."
+    },
+    {
+      "name": "ambient angular-coordinate Lipschitz negative control",
+      "passed": true,
+      "evidence": {
+        "coordinate_gap": 6.083185307179586,
+        "ambient_path_upper_bound": 0.2
+      },
+      "negative_control": "An angular branch on (-pi,pi) with gradient norm 1 is not ambient 1-Lipschitz across its seam. The strong convex ball restriction is essential."
+    },
+    {
+      "name": "Dirichlet negative variation and operator-norm distinction",
+      "passed": true,
+      "evidence": {
+        "integral_t_psi_exact": "1/322122547200",
+        "Dirichlet_first_variation_exact": "-1/80530636800",
+        "matrix_control_largest_eigenvalue": 1.0001041662146055,
+        "bump_regularization": "Polynomial bump and its first derivative vanish at the boundary; smooth approximation retains the strict negative variation."
+      },
+      "negative_control": "Energy comparability cannot equate minimizers. A theta-dependent first-coordinate variation need not retain operator norm exactly 1, but scalar calibration still forbids lowering E_+."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "pr57-current-preparation-tool-write-failures/v1",
+  "failures": [
+    {
+      "utc_observed": "2026-10-03 15:58:46 UTC",
+      "operation": "initial apply_patch; then mkdir current_preparation_family",
+      "tool_first_error": "Failed to create parent directories",
+      "mkdir_exit": 1,
+      "mkdir_stderr": "mkdir: current_preparation_family: No space left on device",
+      "owned_shell_PID": "not exposed by tool; not invented"
+    },
+    {
+      "utc_observed": "2026-10-03 16:02:55 UTC",
+      "operation": "mkdir succeeded; subsequent stored manuscript patch failed",
+      "mkdir_exit": 0,
+      "patch_error": "Failed to write file current_preparation_family/INITIAL_SCOPE.md",
+      "partial_presence": "Inventoried 16:09:00 UTC: directory existed and contained no file"
+    },
+    {
+      "utc_observed": "2026-10-03 16:09 UTC",
+      "operation": "retry stored complete manuscript patch after empty-directory read",
+      "patch_error": "Failed to write file current_preparation_family/INITIAL_SCOPE.md"
+    }
+  ],
+  "failed_authored_manuscript_source": "Whole intended source retained in tool memory; saved source, when possible, is operative and includes the bounded-f_z clarification. No historical SOURCE seal existed.",
+  "mathematical_run_or_ROOT_helper_run": false,
+  "custody_from_failures": false
+}

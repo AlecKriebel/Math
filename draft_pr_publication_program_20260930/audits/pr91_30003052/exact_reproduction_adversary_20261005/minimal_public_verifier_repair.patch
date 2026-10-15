@@ -1,0 +1,36 @@
+--- a/unsolved_math_prioritization/attempts/30003052/verify.py
++++ b/unsolved_math_prioritization/attempts/30003052/verify.py
+@@ -10,7 +10,8 @@
+ import hashlib,json,math
+ counts=Counter()
+ def ck(k,v):
+-    assert bool(v),k
++    if not bool(v):
++        raise AssertionError(k)
+     counts[k]+=1
+ def zero(M):return all(s.simplify(z)==0 for z in M)
+ S=s.Matrix([[1,1,0,2,0],[0,1,1,0,1],[0,0,1,1,0],[0,0,0,1,1],[0,0,0,0,1]])
+--- a/unsolved_math_prioritization/attempts/30003052/review/independent_checks.py
++++ b/unsolved_math_prioritization/attempts/30003052/review/independent_checks.py
+@@ -6,7 +6,8 @@
+ import sympy as S
+ checks={}
+ def ck(label,x):
+- assert bool(x),label
++ if not bool(x):
++  raise AssertionError(label)
+  checks[label]=checks.get(label,0)+1
+ def zero(M):return all(S.simplify(v)==0 for v in M)
+ # An adapted l1 norm, not the submitted l-infinity example.
+--- a/unsolved_math_prioritization/attempts/30003052/review/author_replay/verify.py
++++ b/unsolved_math_prioritization/attempts/30003052/review/author_replay/verify.py
+@@ -10,7 +10,8 @@
+ import hashlib,json,math
+ counts=Counter()
+ def ck(k,v):
+-    assert bool(v),k
++    if not bool(v):
++        raise AssertionError(k)
+     counts[k]+=1
+ def zero(M):return all(s.simplify(z)==0 for z in M)
+ S=s.Matrix([[1,1,0,2,0],[0,1,1,0,1],[0,0,1,1,0],[0,0,0,1,1],[0,0,0,0,1]])

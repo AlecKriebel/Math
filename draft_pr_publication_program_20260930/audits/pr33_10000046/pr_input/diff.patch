@@ -1,0 +1,1267 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..c1c8e69f1 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -58,7 +58,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed the finite coupling reductions and source-scope audit. Existing2024 dimension-four progress is credited with its full-proof-audit caveat; dimension three and the combined original target remain unresolved. Unrestricted versus Markovian and full-range event distinctions are explicit; no campaign solution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/33. |  |
+ | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+ | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/10000046/PARTIAL.md b/unsolved_math_prioritization/attempts/10000046/PARTIAL.md
+new file mode 100644
+index 000000000..cf7aa2b71
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/PARTIAL.md
+@@ -0,0 +1,66 @@
++# 10000046: four-dimensional prior progress; three-dimensional gap
++
++**Outcome: unresolved as a combined target.** A directly relevant 2024 preprint gives the four-dimensional result. No three-dimensional solution is established here. The transport reduction below is a standard matching/compactness reformulation, not a new resolution. Model: gpt-6-astra, xhigh; checked2026-09-30.
++
++## Exact target and scope
++
++[Benjamini, *Coarse Geometry and Randomness*](https://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf), dated October30,2013, Open Problem12.33 on printed/PDF p104, asks for couplings of simple random walks in dimensions3 or4, starting distance10 apart, with positive probability of disjoint paths. The recovered [archived author PDF](https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf) was read in its section12 context.
++
++Fix vertices \(x,y\in\mathbb Z^d\), \(\|x-y\|_1=10\), and the laws \(\mu_x,\mu_y\) of the complete walks, including time0. The desired coupling \(\pi\) must satisfy
++\[
++\pi\{X_i\ne Y_j\text{ for every }i,j\ge0\}>0.
++\]
++The source imposes no Markovian or co-adapted restriction on the coupling. Correct one-time distributions alone do not suffice: both complete marginal path laws must be those of simple random walk. Simultaneous avoidance \(X_n\ne Y_n\) is much weaker than this full-range condition.
++
++## Corrected literature status
++
++[Benjamini–Kozma, *Coupled but distant*](https://arxiv.org/abs/2412.16600v1), December21,2024, states the positive four-dimensional theorem on p2 and explicitly leaves dimension3 unresolved on p1. Its introduction specifies intersections at different times, and §1.2 includes the initial vertices in each trace. Although the introduction mentions neighbouring starts, the proof on pp17–18 begins with0 and an arbitrary fixed \(x\ne0\); thus the intended theorem includes distance10. The argument uses Hall matching and annular coupling, rather than providing a Markovian construction; p2 asks about Markovian couplings separately.
++
++The full preprint and its TeX source were obtained; the theorem, matching construction and final induction were inspected. This is attribution to an existing preprint, not independent certification of every estimate. Literal typographical inconsistencies require care: Lemma8 says the exceptional events occur despite assuming their probabilities are small, and p17 prints a growing \(Cn_1^6\) where its preceding estimate requires \(C/n_1^6\). These observations neither supply a refutation nor constitute a complete repair audit.
++
++No later solution of dimension3 was located in the bounded search. [Shi et al., *Intersection Exponents of Simple Random Walks in Two and Three Dimensions*](https://arxiv.org/abs/2609.25968), September2026, concerns independent-walk exponent estimates; its stated scope does not resolve unrestricted couplings. The upstream report missed the 2024 preprint, so retaining an undifferentiated “no progress found” status would be misleading.
++
++## A precise finite-transport formulation
++
++Let \(\mathcal P_N(x)\) be the \((2d)^N=L_N\) length-\(N\) walks from \(x\), and define \(\mathcal P_N(y)\) similarly. Join two paths in a bipartite graph exactly when their vertex ranges, including initial vertices, are disjoint. Write \(M_N\) for its maximum matching size and
++\[
++a_N=M_N/L_N.
++\]
++
++**Proposition.** The largest possible probability of disjoint infinite ranges among all couplings of \(\mu_x,\mu_y\) equals
++\[
++\alpha(x,y)=\lim_{N\to\infty}a_N=\inf_Na_N.
++\tag{1}
++\]
++
++**Proof.** Every finite path has probability \(1/L_N\). Finite couplings are therefore doubly stochastic matrices after multiplication by \(L_N\). Decomposition into permutation matrices shows that the maximum mass on disjoint pairs is the maximum number of disjoint pairs in a permutation, divided by \(L_N\). A maximum matching can be completed arbitrarily to a permutation, so this value is \(a_N\).
++
++Use increment sequences to identify each infinite path space with the compact space \(\{\pm e_1,\ldots,\pm e_d\}^{\mathbb N}\). Couplings with the prescribed marginals form a weakly compact set. Let \(R_N\) be disjointness through time\(N\); these sets are clopen and decrease to the full-disjointness event \(R\). The numbers \(a_N\) decrease, since any coupling through\(N+1\) restricts to one through\(N\). For each\(N\), extend an optimal finite coupling using independent random-walk tails. Choose a weakly convergent subsequence of the resulting infinite couplings, with limit \(\pi\). For fixed\(k\) and every sufficiently large index,
++\[
++\pi_N(R_k)\ge\pi_N(R_N)=a_N.
++\]
++Clopen continuity yields \(\pi(R_k)\ge\inf_Na_N\). Continuity from above gives the same lower bound for \(\pi(R)\). Conversely every coupling has \(\pi(R)\le a_N\) for each\(N\). This proves(1). \(\square\)
++
++Equivalently, finite matching duality gives
++\[
++a_N=1-\frac1{L_N}\max_{A\subseteq\mathcal P_N(x)}
++\bigl(|A|-|\mathcal N(A)|\bigr),
++\tag{2}
++\]
++where \(\mathcal N(A)\) is the set of paths disjoint from at least one member of\(A\). A three-dimensional proof still needs a uniform positive lower bound in(1), or a proof that the limit is zero. Equations(1)–(2) do not evaluate that limit. Hall's theorem is already central to the cited four-dimensional work, so this route must not be promoted as a novel solution mechanism by itself.
++
++## Exact checks and the remaining obstruction
++
++For the actual distance10, synchronous translation \(Y_n=X_n+(y-x)\) makes the first\(N\) ranges disjoint whenever \(N<10\): a displacement between two points of one length-\(N\) nearest-neighbour path has graph distance at most\(N\). Consequently \(a_N=1\) for \(N\le9\). This supplies no infinite-time conclusion. In fact, for this same translation coupling, choose any fixed length10 increment word with displacement\(y-x\). Independent disjoint blocks of the increment sequence equal that word infinitely often almost surely. Each occurrence gives \(X_{10k+10}=Y_{10k}\), so full-range avoidance has probability zero.
++
++Every coupling also satisfies
++\[
++\alpha(x,y)\le1-\mathbb P_x(T_y<\infty)<1,
++\]
++because visiting the other initial vertex already forces an intersection. If \(a_i=|y_i-x_i|\) and \(\sum_i a_i=10\), then
++\[
++\mathbb P_x(T_y\le10)=\frac{10!}{a_1!\cdots a_d!}(2d)^{-10},
++\]
++a strict, though small, finite-horizon upper obstruction.
++
++The accompanying program checks exact finite matching/minimum-cover certificates in small dimension/horizon controls, the range-versus-simultaneous distinction, and the first-hit count. These diagnostics do not certify any uniform lower bound. The investigation stops after one substantive transport route: the central three-dimensional Hall-deficiency estimate remains unproved. The combined target stays unresolved, with credited four-dimensional prior progress.
+diff --git a/unsolved_math_prioritization/attempts/10000046/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/10000046/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..15e469e33
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/RESEARCH_LOG.md
+@@ -0,0 +1,8 @@
++#10000046 research log
++
++- 2026-09-30 04:53UTC: checked full pinned source/report, repository instructions, queued0/5, prior matching paths and related records. No prior substantive proof attempt found.
++- 04:54–04:56UTC: recovered complete original2013 notes from archive after author URL returned502; read exact Problem12.33 and surrounding context. Located Benjamini–Kozma2024 preprint, which explicitly gives dimension4 and leaves dimension3 open. Reported correction immediately.
++- 04:56–04:59UTC: obtained full21-page PDF, alternative PDF and TeX source; inspected theorem, conventions, Hall construction and final induction. Preserved literal source-typo cautions without claiming a complete independent repair audit. Bounded later search found no3D resolution; recent exponent paper has different independent-walk scope.
++- 04:59UTC: one substantive route reduces the remaining3D target to a uniform finite-path matching bound. No such estimate found. Exact finite checks pass, without extrapolation. Package frozen unresolved; no new theorem resolving the target or priority claim.
++
++Root owns queue and publication after separate review. Actual model gpt-6-astra xhigh. Early stop at precise equivalent obstruction; move to assigned independent subsurface review.
+diff --git a/unsolved_math_prioritization/attempts/10000046/prior_report.json b/unsolved_math_prioritization/attempts/10000046/prior_report.json
+new file mode 100644
+index 000000000..a0dcdf63b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/prior_report.json
+@@ -0,0 +1,10 @@
++{
++  "classification": "OPEN-TRIAGE",
++  "wording_corrected": "no",
++  "difficulty_suggested": null,
++  "problem": "Can two simple random walks on $\\mathbb Z^3$ or $\\mathbb Z^4$, started at distance $10$, be coupled so their paths are disjoint with positive probability? (Saint-Flour, Open Problem.)",
++  "status_literature": "Listed as open. In $d\\ge5$ such couplings exist via transience + EIT; in $d=3,4$ (polynomially recurrent/transient boundary) it is delicate. Related to \"nonintersection probability\" and Kapri\u2013... I did not find a settled answer.",
++  "work_done": "Web + arXiv search; no resolution located.",
++  "result": "Open (triage).",
++  "what_remains": "Decide existence of disjoint couplings in $d=3,4$."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/readiness.json b/unsolved_math_prioritization/attempts/10000046/readiness.json
+new file mode 100644
+index 000000000..62c100612
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/readiness.json
+@@ -0,0 +1,39 @@
++{
++  "id": 10000046,
++  "review_hash": "7113131d180ad4fc26f7c07dfcd858a7a4d2a8a66d520478b0b2105ca126e8f3",
++  "statement_hash": "843571f90f1db50ceea703161b9882e11f19ad0a8c48fbb85e0a889538d013a0",
++  "exact_claim": "Positive probability of disjoint complete vertex ranges for a coupling of the full simple-random-walk laws in each of dimensions3 and4, starting at graph distance10; no co-adapted or Markov restriction.",
++  "primary_sources": [
++    {
++      "url": "https://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf",
++      "location": "October30,2013 notes, Problem12.33 p104; archived full PDF recovered and relevant context inspected"
++    },
++    {
++      "url": "https://arxiv.org/abs/2412.16600v1",
++      "location": "Benjamini\u2013Kozma2024, theorem p2; dimension3 open p1; definitions p2\u20133; Hall construction Lemma8; final proof pp17\u201318"
++    },
++    {
++      "url": "https://arxiv.org/abs/2609.25968",
++      "location": "September2026 abstract: independent-walk exponent numerical estimates, not unrestricted coupling"
++    }
++  ],
++  "literature_checked_at": "2026-09-30T04:59:00Z",
++  "success_test": "Construction/proof preserving both complete path laws and a strictly positive infinite full-range avoidance probability, or a proof no such coupling exists; must cover remaining dimension3.",
++  "budget": {
++    "maximum_substantive_attempts": 5,
++    "used_substantive_attempts": 1,
++    "time_cap_utc": "2026-09-30T06:53:00Z",
++    "model": "gpt-6-astra",
++    "reasoning_effort": "xhigh",
++    "compute": "12 finite matching/minimum-cover certificates,292 exact shortest-path counts,2 cross-time controls"
++  },
++  "prior_attempt_gap": "Upstream report only web/arXiv source triage; no prior substantive attempt found. The2024 four-dimensional preprint is existing progress missed by that report.",
++  "duplicate_check": "Full pinned scan found no equivalent target. Other random-walk coupling records concern simultaneous avoidance, convergence, or exact coalescence. Main tree has no target attempt; initial queue queued0/5; related groups no match.",
++  "status": "blocked",
++  "queue_outcome_requested": "unsolved",
++  "remaining_gap": "Three-dimensional uniform Hall-deficiency bound, equivalently a strictly positive limiting optimal finite-path avoidance mass; no such bound established.",
++  "artifact": "PARTIAL.md",
++  "completion_estimate_percent": 5,
++  "independent_review": "pending",
++  "publication": "No branch or PR created"
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/review/REVIEW.md b/unsolved_math_prioritization/attempts/10000046/review/REVIEW.md
+new file mode 100644
+index 000000000..062458bde
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/review/REVIEW.md
+@@ -0,0 +1,100 @@
++# Independent review: random-walk coupling, 10000046
++
++**Verdict: PASS for the unresolved partial and qualified source-status report.** The finite-transport proposition and elementary bounds are correct. The combined target remains unresolved because no three-dimensional construction or obstruction is established. This review does not certify the complete proof of the cited four-dimensional preprint.
++
++Reviewed on 2026-09-30 by GPT-6 Astra at xhigh reasoning. Frozen PARTIAL.md SHA-256:
++
++b5f326fcff5e86cee87c4b1c6db9c9633ee9b88efedda74976e1f7c63ebd9cfa
++
++No correction to the frozen artifact is required. This is an independent adversarial AI review, not peer review or formal verification.
++
++## 1. Original question and conventions
++
++I read the original archived author PDF, including its introductory conventions and the context around Open Problem 12.33, and visually checked printed/PDF page 104. It asks for simple random walks on the three- or four-dimensional lattice, initially distance ten apart, with a coupling giving positive probability of nonintersecting paths. The notes define graph distance as shortest-path length on page 5; on the nearest-neighbor lattice this is the \(\ell^1\) distance used in the artifact. The document is dated October 30, 2013. The current university URL returns 404; the preserved archived PDF has the hash in the source manifest. [Archived author notes](https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf)
++
++The event is disjointness of complete vertex ranges, including both starting vertices:
++\[
++X_i\ne Y_j\quad\hbox{for all }i,j\ge0.
++\]
++Requiring only \(X_n\ne Y_n\) does not answer this question. Each complete marginal path law must be simple random walk; checking one-time marginals alone is insufficient. The question places no Markovian or co-adapted restriction on the joint law.
++
++The artifact correctly seeks positive probability. Probability one is impossible even under unrestricted coupling, since the first walk has a fixed positive probability of visiting the second walk's deterministic starting vertex. No assumption about conditional laws in the joint filtration is needed for this upper obstruction.
++
++## 2. Credited four-dimensional result and its audit boundary
++
++Benjamini–Kozma's December 2024 preprint explicitly states the positive four-dimensional theorem on page 2, leaves the three-dimensional case unresolved on page 1, and defines intersection at different times in its introduction. Section 1.2 includes time zero in the trace. It uses Hall matching and a multiscale construction and separately asks whether a Markovian coupling is possible. Thus the preprint is directly relevant prior progress and does not settle a stronger Markovian variant. [Coupled but distant, version 1](https://arxiv.org/abs/2412.16600v1)
++
++The introduction informally describes neighboring starting vertices. The proof of the theorem on pages 17–18 instead begins with independent walks from \(0\) and \(x\) to a sufficiently large sphere. No neighboring-site restriction on \(x\) is imposed in the induction. This supports the artifact's carefully stated intended scope for a fixed nonzero displacement, including distance ten. This is source-scope verification, not a new transfer proof obtained by conditioning or splicing an arbitrary neighboring-site coupling. Such a splice would require checking the full marginal laws and avoidance of all prefix vertices.
++
++The initial nonintersection estimate cites Lawler explicitly for the neighboring case, without expanding the general fixed-\(x\) extension there. This belongs to the full proof-audit boundary already stated in the package; I do not claim to have independently verified every estimate or that extension from first principles.
++
++I inspected the rendered paper and the TeX for the reported inconsistencies. Lemma 8 literally says that the events \(E_i\) occur with a probability close to one although its right-hand side depends on their small probabilities. Taking both events empty demonstrates the literal statement cannot be correct. The induction's first-step bound prints \(Cn_1^6\), although the preceding exceptional-event estimate has order \(n_1^{-6}\). There are related event-complement and inequality-direction inconsistencies in the final induction. Merely silently changing two symbols would not constitute a complete repair audit. The artifact explicitly does not claim such an audit, and this qualification must remain with any description of the four-dimensional prior result.
++
++The currently available arXiv record still lists the 2024 version. A bounded additional search did not locate a three-dimensional solution. The September 2026 Shi–Liu–Li–Li–Deng preprint studies numerical intersection exponents for independent walks and related moments; its stated scope does not establish an unrestricted avoidance coupling. This is a scope check, not an independent audit of its numerical results. [Intersection Exponents of Simple Random Walks in Two and Three Dimensions](https://arxiv.org/abs/2609.25968)
++
++## 3. Finite matching and infinite compactness
++
++The proposition in the artifact is correct.
++
++There are \(L_N=(2d)^N\) labeled increment sequences of length \(N\) on either side, each having probability \(1/L_N\). Different paths that happen to have the same range are still different equally likely outcomes. After multiplying a finite coupling matrix by \(L_N\), its rows and columns sum to one. The Birkhoff decomposition makes its allowed-edge mass at most the largest allowed-edge count in a permutation matrix. A maximum matching can be completed to a permutation; a permutation with more allowed edges would contradict maximality of that matching. Therefore the exact finite optimum is \(M_N/L_N\).
++
++The Hall-deficiency formula is also correct:
++\[
++M_N=L_N-\max_{S\subseteq\mathcal P_N(x)}
++          (|S|-|\mathcal N(S)|).
++\]
++The empty set ensures the maximum deficiency is nonnegative. Neighborhood here means being disjoint from at least one path in the selected set, as the artifact states.
++
++For the infinite statement, increment path space is a compact metrizable product of a finite alphabet. The set of probability measures with the prescribed two marginals is weakly compact. Every finite optimizer extends to such a measure by sampling independent uniform tails conditionally on the two prefixes; this preserves both entire simple-random-walk marginal laws.
++
++Each finite avoidance event \(R_k\) is a clopen cylinder event. For an optimizer at horizon \(N\ge k\), its mass on \(R_k\) is at least \(a_N\). A weak subsequential limit consequently has mass at least \(\inf_Na_N\) on every \(R_k\). Continuity from above gives that bound on their intersection, the infinite avoidance event. Conversely every infinite coupling has mass at most \(a_N\) on full avoidance for every \(N\). This establishes the equality and, in particular, attainment of the optimal infinite mass.
++
++This argument does not presuppose that the different finite optimizers are projectively consistent. Extension followed by compactness is exactly what addresses that issue. Nor does it interchange a supremum and a limit without justification.
++
++The formula is a complete reformulation, not an evaluation of the unknown limit. Finite certificates give upper bounds on that limit; positive values at every finite horizon would still not provide a strictly positive infimum.
++
++## 4. Elementary controls and remaining gap
++
++For synchronous translation by \(v=y-x\), the range of a length-\(N\) walk cannot contain two vertices differing by \(v\) when \(N<\|v\|_1=10\). The maximum distance between two vertices along one such path is at most \(N\), not \(2N\). Therefore \(a_N=1\) for \(N\le9\), exactly as stated.
++
++The same translation coupling fails almost surely over infinite time. Choose a fixed ten-step increment word summing to \(v\). Disjoint blocks of ten independent increments equal that word independently with probability \((2d)^{-10}>0\). Almost surely at least one, indeed infinitely many, blocks do so. Such a block gives \(X_{10k+10}=Y_{10k}\). In contrast, simultaneous collision never occurs because the displacement at equal times stays equal to \(v\). The artifact uses this correctly as a failed coupling, not as a universal obstruction.
++
++For every coupling,
++\[
++\alpha(x,y)\le1-\mathbb P_x(T_y<\infty)<1.
++\]
++The strict inequality follows from a single prescribed shortest path having positive probability. If the coordinate distances are \(a_i\) with sum ten, a visit by time ten must occur at exactly time ten and follow a shortest path. Counting the orderings of its coordinate steps gives
++\[
++\mathbb P_x(T_y\le10)=
++  \frac{10!}{\prod_i a_i!}(2d)^{-10}.
++\]
++The formula handles zero coordinates and either sign of each displacement.
++
++The remaining three-dimensional question is exactly whether the limiting optimal finite avoidance mass is positive. Neither the transport reduction, the short-horizon perfect matchings, the hitting upper bounds, nor independent-walk exponent estimates decide this.
++
++As a separate illustration of the logical limitation, in one dimension every finite horizon has some disjoint pairs of positive probability, while recurrence forces \(\alpha=0\): the first walk eventually visits the other starting vertex under every coupling.
++
++## 5. Independent exact checks
++
++The author checker was replayed in a separate directory, and its verification receipt reproduced byte for byte.
++
++The independent checker takes a different computational route. It groups paths by identical vertex ranges while retaining their integer multiplicities, solves the resulting capacitated transport problem by a layered max-flow algorithm, reconstructs a matching of individually labeled paths, and verifies a minimum weighted vertex cover. It completes the matching to a permutation and checks the exact uniform marginal on every labeled path. For the smallest cases it also enumerates every Hall subset directly.
++
++All **665 independent exact assertions pass**, covering:
++
++- 28 matching/cover cases, including all 12 author cases with identical results
++- One-dimensional controls through horizon ten, non-axis distance-two starts in dimensions two and three, and time-zero collision controls
++- 352 actual distance-ten shortest-path counts in dimensions three and four, checked against unrestricted random-walk endpoint recursion
++- Signed non-axis displacement and cross-time collision examples
++
++For example, the two-step optimum from displacement \((1,1)\) in dimension two is \(7/8\), and from \((1,1,0)\) in dimension three is \(17/18\). For a one-dimensional displacement of ten at horizon ten, the matching and cover both have size 1023 out of 1024. These are finite diagnostic results, not evidence of a uniform infinite-horizon lower bound.
++
++The four review deliverables are REVIEW.md, review_summary.json, independent_checks.py, and independent_results.json. Reproduce the independent receipt with:
++
++    python independent_checks.py > independent_results.json
++
++The review source images and the author's replay directory are not publication deliverables.
++
++## 6. Disposition
++
++The package is suitable as a reviewed unresolved attempt with credited, qualified four-dimensional literature progress. The three-dimensional target and thus the combined target must remain unresolved. No novelty claim, full four-dimensional proof certificate, or Markovian-coupling result is supported or requested.
+diff --git a/unsolved_math_prioritization/attempts/10000046/review/independent_checks.py b/unsolved_math_prioritization/attempts/10000046/review/independent_checks.py
+new file mode 100644
+index 000000000..e17a21a96
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/review/independent_checks.py
+@@ -0,0 +1,181 @@
++#!/usr/bin/env python3
++"""Exact finite diagnostics for 10000046, independent of the author's matcher.
++The solver groups identical ranges with integer multiplicities and uses a
++capacitated Dinic flow, then reconstructs a matching on labeled paths.
++Run: python independent_checks.py > independent_results.json
++Python standard library only. This does not evaluate the infinite-horizon limit.
++"""
++from collections import defaultdict, deque
++from fractions import Fraction
++from itertools import product
++from math import factorial, prod
++import json
++
++assertions = 0
++def check(ok, label):
++    global assertions
++    assert ok, label
++    assertions += 1
++
++def walks(d, n, start):
++    result = [(start,)]
++    for _ in range(n):
++        nxt = []
++        for path in result:
++            for j in range(d):
++                for sign in (-1,1):
++                    z=list(path[-1]); z[j]+=sign
++                    nxt.append(path+(tuple(z),))
++        result = nxt
++    return result
++
++def group_ranges(paths):
++    groups=defaultdict(list)
++    for i,p in enumerate(paths):
++        groups[frozenset(p)].append(i)
++    return list(groups.items())
++
++class Flow:
++    def __init__(self,n):
++        self.g=[[] for _ in range(n)]
++    def add(self,u,v,c):
++        a=[v,len(self.g[v]),c,c]
++        b=[u,len(self.g[u]),0,0]
++        self.g[u].append(a); self.g[v].append(b)
++        return a
++    def run(self,source,sink):
++        answer=0
++        while True:
++            level=[-1]*len(self.g);level[source]=0;q=deque([source])
++            while q:
++                u=q.popleft()
++                for v,rev,c,old in self.g[u]:
++                    if c and level[v]<0:level[v]=level[u]+1;q.append(v)
++            if level[sink]<0:return answer
++            current=[0]*len(self.g)
++            def send(u,amount):
++                if u==sink:return amount
++                while current[u]<len(self.g[u]):
++                    edge=self.g[u][current[u]];v,rev,c,old=edge
++                    if c and level[v]==level[u]+1:
++                        z=send(v,min(c,amount))
++                        if z:
++                            edge[2]-=z; self.g[v][rev][2]+=z
++                            return z
++                    current[u]+=1
++                return 0
++            while True:
++                z=send(source,10**20)
++                if not z:break
++                answer+=z
++    def reachable(self,source):
++        seen={source};q=[source]
++        while q:
++            u=q.pop()
++            for v,rev,c,old in self.g[u]:
++                if c and v not in seen:seen.add(v);q.append(v)
++        return seen
++
++def test(d,n,displacement):
++    X=walks(d,n,(0,)*d);Y=walks(d,n,displacement)
++    L=len(X);A=group_ranges(X);B=group_ranges(Y)
++    na,nb=len(A),len(B);sink=1+na+nb
++    flow=Flow(sink+1)
++    for i,(a,ids) in enumerate(A):flow.add(0,1+i,len(ids))
++    for j,(b,ids) in enumerate(B):flow.add(1+na+j,sink,len(ids))
++    links=[]
++    for i,(a,_) in enumerate(A):
++        for j,(b,_) in enumerate(B):
++            if a.isdisjoint(b):
++                links.append((i,j,flow.add(1+i,1+na+j,L+1)))
++    maximum=flow.run(0,sink)
++    reached=flow.reachable(0)
++    coverA={i for i in range(na) if 1+i not in reached}
++    coverB={j for j in range(nb) if 1+na+j in reached}
++    dual=sum(len(A[i][1]) for i in coverA)+sum(len(B[j][1]) for j in coverB)
++    check(dual==maximum,'flow equals weighted cover')
++    check(all(i in coverA or j in coverB for i,j,e in links),'every edge is covered')
++    # Reconstruct a literal matching of individual path labels.
++    pendingA=[ids.copy() for a,ids in A];pendingB=[ids.copy() for b,ids in B]
++    matching=[]
++    for i,j,e in links:
++        for _ in range(e[3]-e[2]):
++            matching.append((pendingA[i].pop(),pendingB[j].pop()))
++    check(len(matching)==maximum,'matching size')
++    check(len({i for i,j in matching})==maximum,'left labels unique')
++    check(len({j for i,j in matching})==maximum,'right labels unique')
++    check(all(set(X[i]).isdisjoint(Y[j]) for i,j in matching),'every matched pair has disjoint full ranges')
++    # Complete to a permutation, checking both exact full-path marginals.
++    restA=[i for ids in pendingA for i in ids];restB=[j for ids in pendingB for j in ids]
++    permutation=matching+list(zip(restA,restB))
++    check(sorted(i for i,j in permutation)==list(range(L)),'first finite marginal uniform')
++    check(sorted(j for i,j in permutation)==list(range(L)),'second finite marginal uniform')
++    check(sum(set(X[i]).isdisjoint(Y[j]) for i,j in permutation)==maximum,'permutation optimal mass')
++    # A direct exhaustive Hall deficiency audit, with original path multiplicity.
++    if L<=8:
++        neighbors=[{j for j,b in enumerate(Y) if set(a).isdisjoint(b)} for a in X]
++        defect=0
++        for mask in range(1<<L):
++            ids=[i for i in range(L) if mask>>i&1]
++            union=set().union(*(neighbors[i] for i in ids))
++            defect=max(defect,len(ids)-len(union))
++        check(maximum==L-defect,'exhaustive Hall deficiency')
++    distance=sum(map(abs,displacement))
++    if n<distance:check(maximum==L,'synchronous finite-horizon threshold')
++    if distance==0:check(maximum==0,'time-zero collision excludes every edge')
++    return {'d':d,'N':n,'displacement':displacement,'labeled_paths':L,
++            'range_groups':[na,nb],'maximum_matching':maximum,'minimum_cover':dual,
++            'a_N':str(Fraction(maximum,L))}
++
++cases=[]
++for n in range(11):cases.append((1,n,(2,)))
++for d in (2,3):
++    for n in range(4):cases.append((d,n,(2,)+(0,)*(d-1)))
++    cases.append((d,2,(1,1)+(0,)*(d-2)))
++cases.extend([(4,1,(2,0,0,0)),(4,2,(2,0,0,0)),
++              (3,2,(10,0,0)),(4,2,(10,0,0,0)),
++              (1,2,(0,)),(3,1,(0,0,0)),(1,10,(10,))])
++results=[test(*case) for case in cases]
++for d in (1,2,3):
++    seq=[Fraction(r['a_N']) for r in results if r['d']==d and r['displacement']==(2,)+(0,)*(d-1)]
++    check(all(a>=b for a,b in zip(seq,seq[1:])),'finite optimal masses decrease')
++
++# Independent unrestricted SRW endpoint recursion, including negative steps.
++# At graph distance ten the first possible hitting time is exactly ten.
++shortest=0
++hit_records=[]
++for d in (3,4):
++    counts={(0,)*d:1}
++    for n in range(1,11):
++        out=defaultdict(int)
++        for z,m in counts.items():
++            for j in range(d):
++                for sign in (-1,1):
++                    w=list(z);w[j]+=sign;out[tuple(w)]+=m
++        counts=out
++        check(sum(counts.values())==(2*d)**n,'SRW endpoint total mass')
++    for a in product(range(11),repeat=d):
++        if sum(a)!=10:continue
++        value=factorial(10)//prod(factorial(k) for k in a)
++        check(counts[a]==value,'distance-ten multinomial first-hit count')
++        shortest+=1
++    # A signed non-axis displacement, plus the original axis convention.
++    targets=[(10,)+(0,)*(d-1), ((3,-4,3) if d==3 else (2,-3,1,4))]
++    for z in targets:
++        count=factorial(10)//prod(factorial(abs(k)) for k in z)
++        check(counts[z]==count,'signed shortest-path count')
++        hit_records.append({'d':d,'displacement':z,'hit_by_10':str(Fraction(count,(2*d)**10))})
++        # One fixed ten-step word gives a cross-time collision for synchronous translation.
++        path=[(0,)*d]
++        for j,a in enumerate(z):
++            for _ in range(abs(a)):
++                nxt=list(path[-1]);nxt[j]+=1 if a>0 else -1;path.append(tuple(nxt))
++        Y=[tuple(v+w for v,w in zip(pos,z)) for pos in path]
++        check(len(path)==11 and path[-1]==Y[0],'translation collision at different times')
++        check(all(a!=b for a,b in zip(path,Y)),'translation has no simultaneous collision')
++        check(set(path[:-1]).isdisjoint(Y[:-1]),'the first nine-step ranges are disjoint')
++
++print(json.dumps({'pass':True,'assertions':assertions,'matching_cases':results,
++                  'distance_ten_shortest_path_counts':shortest,
++                  'first_hit_examples':hit_records,
++                  'scope':'Exact finite transport certificates and elementary controls only. No positive lower bound uniform in the horizon, no three-dimensional solution, and no full proof audit of the cited four-dimensional preprint.'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/10000046/review/independent_results.json b/unsolved_math_prioritization/attempts/10000046/review/independent_results.json
+new file mode 100644
+index 000000000..8ab66790b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/review/independent_results.json
+@@ -0,0 +1,496 @@
++{
++  "pass": true,
++  "assertions": 665,
++  "matching_cases": [
++    {
++      "d": 1,
++      "N": 0,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 1,
++      "range_groups": [
++        1,
++        1
++      ],
++      "maximum_matching": 1,
++      "minimum_cover": 1,
++      "a_N": "1"
++    },
++    {
++      "d": 1,
++      "N": 1,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 2,
++      "range_groups": [
++        2,
++        2
++      ],
++      "maximum_matching": 2,
++      "minimum_cover": 2,
++      "a_N": "1"
++    },
++    {
++      "d": 1,
++      "N": 2,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 4,
++      "range_groups": [
++        4,
++        4
++      ],
++      "maximum_matching": 3,
++      "minimum_cover": 3,
++      "a_N": "3/4"
++    },
++    {
++      "d": 1,
++      "N": 3,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 8,
++      "range_groups": [
++        7,
++        7
++      ],
++      "maximum_matching": 6,
++      "minimum_cover": 6,
++      "a_N": "3/4"
++    },
++    {
++      "d": 1,
++      "N": 4,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 16,
++      "range_groups": [
++        11,
++        11
++      ],
++      "maximum_matching": 10,
++      "minimum_cover": 10,
++      "a_N": "5/8"
++    },
++    {
++      "d": 1,
++      "N": 5,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 32,
++      "range_groups": [
++        15,
++        15
++      ],
++      "maximum_matching": 20,
++      "minimum_cover": 20,
++      "a_N": "5/8"
++    },
++    {
++      "d": 1,
++      "N": 6,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 64,
++      "range_groups": [
++        20,
++        20
++      ],
++      "maximum_matching": 35,
++      "minimum_cover": 35,
++      "a_N": "35/64"
++    },
++    {
++      "d": 1,
++      "N": 7,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 128,
++      "range_groups": [
++        26,
++        26
++      ],
++      "maximum_matching": 70,
++      "minimum_cover": 70,
++      "a_N": "35/64"
++    },
++    {
++      "d": 1,
++      "N": 8,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 256,
++      "range_groups": [
++        32,
++        32
++      ],
++      "maximum_matching": 126,
++      "minimum_cover": 126,
++      "a_N": "63/128"
++    },
++    {
++      "d": 1,
++      "N": 9,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 512,
++      "range_groups": [
++        39,
++        39
++      ],
++      "maximum_matching": 252,
++      "minimum_cover": 252,
++      "a_N": "63/128"
++    },
++    {
++      "d": 1,
++      "N": 10,
++      "displacement": [
++        2
++      ],
++      "labeled_paths": 1024,
++      "range_groups": [
++        47,
++        47
++      ],
++      "maximum_matching": 462,
++      "minimum_cover": 462,
++      "a_N": "231/512"
++    },
++    {
++      "d": 2,
++      "N": 0,
++      "displacement": [
++        2,
++        0
++      ],
++      "labeled_paths": 1,
++      "range_groups": [
++        1,
++        1
++      ],
++      "maximum_matching": 1,
++      "minimum_cover": 1,
++      "a_N": "1"
++    },
++    {
++      "d": 2,
++      "N": 1,
++      "displacement": [
++        2,
++        0
++      ],
++      "labeled_paths": 4,
++      "range_groups": [
++        4,
++        4
++      ],
++      "maximum_matching": 4,
++      "minimum_cover": 4,
++      "a_N": "1"
++    },
++    {
++      "d": 2,
++      "N": 2,
++      "displacement": [
++        2,
++        0
++      ],
++      "labeled_paths": 16,
++      "range_groups": [
++        16,
++        16
++      ],
++      "maximum_matching": 15,
++      "minimum_cover": 15,
++      "a_N": "15/16"
++    },
++    {
++      "d": 2,
++      "N": 3,
++      "displacement": [
++        2,
++        0
++      ],
++      "labeled_paths": 64,
++      "range_groups": [
++        54,
++        54
++      ],
++      "maximum_matching": 60,
++      "minimum_cover": 60,
++      "a_N": "15/16"
++    },
++    {
++      "d": 2,
++      "N": 2,
++      "displacement": [
++        1,
++        1
++      ],
++      "labeled_paths": 16,
++      "range_groups": [
++        16,
++        16
++      ],
++      "maximum_matching": 14,
++      "minimum_cover": 14,
++      "a_N": "7/8"
++    },
++    {
++      "d": 3,
++      "N": 0,
++      "displacement": [
++        2,
++        0,
++        0
++      ],
++      "labeled_paths": 1,
++      "range_groups": [
++        1,
++        1
++      ],
++      "maximum_matching": 1,
++      "minimum_cover": 1,
++      "a_N": "1"
++    },
++    {
++      "d": 3,
++      "N": 1,
++      "displacement": [
++        2,
++        0,
++        0
++      ],
++      "labeled_paths": 6,
++      "range_groups": [
++        6,
++        6
++      ],
++      "maximum_matching": 6,
++      "minimum_cover": 6,
++      "a_N": "1"
++    },
++    {
++      "d": 3,
++      "N": 2,
++      "displacement": [
++        2,
++        0,
++        0
++      ],
++      "labeled_paths": 36,
++      "range_groups": [
++        36,
++        36
++      ],
++      "maximum_matching": 35,
++      "minimum_cover": 35,
++      "a_N": "35/36"
++    },
++    {
++      "d": 3,
++      "N": 3,
++      "displacement": [
++        2,
++        0,
++        0
++      ],
++      "labeled_paths": 216,
++      "range_groups": [
++        189,
++        189
++      ],
++      "maximum_matching": 210,
++      "minimum_cover": 210,
++      "a_N": "35/36"
++    },
++    {
++      "d": 3,
++      "N": 2,
++      "displacement": [
++        1,
++        1,
++        0
++      ],
++      "labeled_paths": 36,
++      "range_groups": [
++        36,
++        36
++      ],
++      "maximum_matching": 34,
++      "minimum_cover": 34,
++      "a_N": "17/18"
++    },
++    {
++      "d": 4,
++      "N": 1,
++      "displacement": [
++        2,
++        0,
++        0,
++        0
++      ],
++      "labeled_paths": 8,
++      "range_groups": [
++        8,
++        8
++      ],
++      "maximum_matching": 8,
++      "minimum_cover": 8,
++      "a_N": "1"
++    },
++    {
++      "d": 4,
++      "N": 2,
++      "displacement": [
++        2,
++        0,
++        0,
++        0
++      ],
++      "labeled_paths": 64,
++      "range_groups": [
++        64,
++        64
++      ],
++      "maximum_matching": 63,
++      "minimum_cover": 63,
++      "a_N": "63/64"
++    },
++    {
++      "d": 3,
++      "N": 2,
++      "displacement": [
++        10,
++        0,
++        0
++      ],
++      "labeled_paths": 36,
++      "range_groups": [
++        36,
++        36
++      ],
++      "maximum_matching": 36,
++      "minimum_cover": 36,
++      "a_N": "1"
++    },
++    {
++      "d": 4,
++      "N": 2,
++      "displacement": [
++        10,
++        0,
++        0,
++        0
++      ],
++      "labeled_paths": 64,
++      "range_groups": [
++        64,
++        64
++      ],
++      "maximum_matching": 64,
++      "minimum_cover": 64,
++      "a_N": "1"
++    },
++    {
++      "d": 1,
++      "N": 2,
++      "displacement": [
++        0
++      ],
++      "labeled_paths": 4,
++      "range_groups": [
++        4,
++        4
++      ],
++      "maximum_matching": 0,
++      "minimum_cover": 0,
++      "a_N": "0"
++    },
++    {
++      "d": 3,
++      "N": 1,
++      "displacement": [
++        0,
++        0,
++        0
++      ],
++      "labeled_paths": 6,
++      "range_groups": [
++        6,
++        6
++      ],
++      "maximum_matching": 0,
++      "minimum_cover": 0,
++      "a_N": "0"
++    },
++    {
++      "d": 1,
++      "N": 10,
++      "displacement": [
++        10
++      ],
++      "labeled_paths": 1024,
++      "range_groups": [
++        47,
++        47
++      ],
++      "maximum_matching": 1023,
++      "minimum_cover": 1023,
++      "a_N": "1023/1024"
++    }
++  ],
++  "distance_ten_shortest_path_counts": 352,
++  "first_hit_examples": [
++    {
++      "d": 3,
++      "displacement": [
++        10,
++        0,
++        0
++      ],
++      "hit_by_10": "1/60466176"
++    },
++    {
++      "d": 3,
++      "displacement": [
++        3,
++        -4,
++        3
++      ],
++      "hit_by_10": "175/2519424"
++    },
++    {
++      "d": 4,
++      "displacement": [
++        10,
++        0,
++        0,
++        0
++      ],
++      "hit_by_10": "1/1073741824"
++    },
++    {
++      "d": 4,
++      "displacement": [
++        2,
++        -3,
++        1,
++        4
++      ],
++      "hit_by_10": "1575/134217728"
++    }
++  ],
++  "scope": "Exact finite transport certificates and elementary controls only. No positive lower bound uniform in the horizon, no three-dimensional solution, and no full proof audit of the cited four-dimensional preprint."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/review/review_summary.json b/unsolved_math_prioritization/attempts/10000046/review/review_summary.json
+new file mode 100644
+index 000000000..0649d8793
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/review/review_summary.json
+@@ -0,0 +1,27 @@
++{
++  "problem_id": "10000046",
++  "verdict": "PASS_PARTIAL",
++  "scope": "Correct finite-transport reduction and elementary bounds; qualified attribution of four-dimensional prior preprint; three-dimensional and combined targets unresolved.",
++  "reviewed_sha256": "b5f326fcff5e86cee87c4b1c6db9c9633ee9b88efedda74976e1f7c63ebd9cfa",
++  "review_sha256": "367dbb1a9b4df9a44fa31d4c0010289c749b869bc666fd16339a7dad38614385",
++  "independent_check_sha256": "76c6b258ec780fe296d16a79106e00dfaa84a5d5d0358d5338acbd148de97caa",
++  "independent_receipt_sha256": "e3af17200b82e16ccb317a7d0c193ea03468d8237a75066bc726c7365df901d9",
++  "date_utc": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "required_corrections": [],
++  "independent_assertions": 665,
++  "independent_matching_cases": 28,
++  "author_cases_independently_reproduced": 12,
++  "distance_ten_shortest_path_counts": 352,
++  "author_receipt_reproduced_byte_for_byte": true,
++  "main_boundaries": [
++    "Full path marginals and complete-range nonintersection, including time zero",
++    "Positive probability, not almost sure avoidance",
++    "No restriction to Markovian or co-adapted couplings",
++    "No full proof audit or complete typo repair of Benjamini-Kozma2024",
++    "No uniform positive three-dimensional Hall bound",
++    "No novelty claim"
++  ],
++  "source_status": "Benjamini-Kozma2024 states the four-dimensional result and explicitly leaves dimension three unresolved; later bounded search found no verified three-dimensional resolution."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/source_checksums.json b/unsolved_math_prioritization/attempts/10000046/source_checksums.json
+new file mode 100644
+index 000000000..3615004db
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/source_checksums.json
+@@ -0,0 +1,27 @@
++[
++  {
++    "file": "benjamini-kozma-coupled.pdf",
++    "sha256": "2bf5c220f9bfee7b697482e1448bed5be268142bdb063861ba1f83aa005567f5",
++    "bytes": 515694
++  },
++  {
++    "file": "benjamini-notes.pdf",
++    "sha256": "aaab65b3acf65f4d21657da94464e9d5edb93969a4c353805099a220a0717cfe",
++    "bytes": 1101523
++  },
++  {
++    "file": "coupled-source/avoiding_coupling.tex",
++    "sha256": "97650de9c6a65da504dfdce0825ce3aa4650b1f109f9cf215b6362c2ff1e28e7",
++    "bytes": 73808
++  },
++  {
++    "file": "coupled-source/avoiding_coupling_no_yellow_boxes.pdf",
++    "sha256": "e289ec054567634c2c6d6144d6e799f153812a2c2034b881d683c957a84cd89d",
++    "bytes": 321502
++  },
++  {
++    "file": "lawler-limic.pdf",
++    "sha256": "cb10ab9e665913f5041fd12511c2492c41d3e4bbebcf2d6ba7162c78acfbd9ea",
++    "bytes": 1826510
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/10000046/source_record.json b/unsolved_math_prioritization/attempts/10000046/source_record.json
+new file mode 100644
+index 000000000..622707959
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/source_record.json
+@@ -0,0 +1,45 @@
++{
++  "id": 10000046,
++  "problem_number": "AMR-099-0046",
++  "title": "Nonintersecting couplings of random walks in dimensions three and four",
++  "statement": "Can two simple random walks on $\\mathbb{Z}^3$ or $\\mathbb{Z}^4$, started at vertices at graph distance $10$, be coupled so that their paths are disjoint with positive probability?",
++  "background": "The item is retained after cross-document deduplication and source-side status review.\n\nSource list: Benjamini - Coarse Geometry and Randomness (Saint-Flour notes)\nSource item: Open problem 12.33, PDF page 104\nSource URL: https://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf#page=104 (preserved at https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf)\nAccessed: 2026-07-29\nExtraction: pypdf text checked against the rendered PDF\nStatus evidence: NEEDS_REVIEW; the recovered author-hosted source labels this item as open or as a conjecture, no source-side resolution is recorded, and the bounded modern audit found no complete primary-literature resolution.\nRights note: NEEDS_REVIEW; publicly accessible author-hosted or publisher copy, with release reuse terms requiring review.\nDifficulty assignment: default L3",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": "Itai Benjamini",
++  "proposed_year": null,
++  "category_id": 19,
++  "set_id": 13,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-07-29T00:00:00Z",
++  "updated_at": "2026-08-06T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 19,
++    "name": "probability",
++    "display_name": "Probability",
++    "description": "Problems involving probability theory, stochastic processes, and random structures.",
++    "slug": "probability",
++    "order_index": 19,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 13,
++    "name": "amr_open_problem_lists",
++    "display_name": "AMR Open Problem Lists",
++    "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
++    "slug": "amr-open-problem-lists",
++    "order_index": 13,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "research_classification": "OPEN-TRIAGE",
++  "research_summary": "Open (triage). Literature status: Listed as open. In $d\\ge5$ such couplings exist via transience + EIT; in $d=3,4$ (polynomially recurrent/transient boundary) it is delicate. Related to \"nonintersection probability\" and Kapri\u2013... I did not find a settled answer."
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/turns.jsonl b/unsolved_math_prioritization/attempts/10000046/turns.jsonl
+new file mode 100644
+index 000000000..7d71aa6ec
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "timestamp": "2026-09-30T04:59:00Z", "mechanism": "Full-path finite transport/matching reduction and compactness; check elementary synchronous-coupling and starting-point obstructions.", "outcome": "blocked", "artifact": "PARTIAL.md", "remaining_gap": "Three-dimensional uniform Hall-deficiency bound, equivalently a strictly positive limiting optimal finite-path avoidance mass; no such bound established.", "completion_estimate_percent": 5, "model": "gpt-6-astra", "reasoning_effort": "xhigh"}
+diff --git a/unsolved_math_prioritization/attempts/10000046/verification.json b/unsolved_math_prioritization/attempts/10000046/verification.json
+new file mode 100644
+index 000000000..ec4a95bb3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/verification.json
+@@ -0,0 +1,116 @@
++{
++  "all_passed": true,
++  "scope": "Finite matching certificates and elementary controls only. No asymptotic inference.",
++  "matching_cases": [
++    {
++      "d": 1,
++      "N": 1,
++      "distance": 2,
++      "paths": 2,
++      "matching": 2,
++      "cover": 2,
++      "alpha": "1"
++    },
++    {
++      "d": 1,
++      "N": 2,
++      "distance": 2,
++      "paths": 4,
++      "matching": 3,
++      "cover": 3,
++      "alpha": "3/4"
++    },
++    {
++      "d": 1,
++      "N": 3,
++      "distance": 2,
++      "paths": 8,
++      "matching": 6,
++      "cover": 6,
++      "alpha": "3/4"
++    },
++    {
++      "d": 2,
++      "N": 1,
++      "distance": 2,
++      "paths": 4,
++      "matching": 4,
++      "cover": 4,
++      "alpha": "1"
++    },
++    {
++      "d": 2,
++      "N": 2,
++      "distance": 2,
++      "paths": 16,
++      "matching": 15,
++      "cover": 15,
++      "alpha": "15/16"
++    },
++    {
++      "d": 2,
++      "N": 3,
++      "distance": 2,
++      "paths": 64,
++      "matching": 60,
++      "cover": 60,
++      "alpha": "15/16"
++    },
++    {
++      "d": 3,
++      "N": 1,
++      "distance": 2,
++      "paths": 6,
++      "matching": 6,
++      "cover": 6,
++      "alpha": "1"
++    },
++    {
++      "d": 3,
++      "N": 2,
++      "distance": 2,
++      "paths": 36,
++      "matching": 35,
++      "cover": 35,
++      "alpha": "35/36"
++    },
++    {
++      "d": 3,
++      "N": 3,
++      "distance": 2,
++      "paths": 216,
++      "matching": 210,
++      "cover": 210,
++      "alpha": "35/36"
++    },
++    {
++      "d": 4,
++      "N": 2,
++      "distance": 2,
++      "paths": 64,
++      "matching": 63,
++      "cover": 63,
++      "alpha": "63/64"
++    },
++    {
++      "d": 3,
++      "N": 2,
++      "distance": 10,
++      "paths": 36,
++      "matching": 36,
++      "cover": 36,
++      "alpha": "1"
++    },
++    {
++      "d": 4,
++      "N": 2,
++      "distance": 10,
++      "paths": 64,
++      "matching": 64,
++      "cover": 64,
++      "alpha": "1"
++    }
++  ],
++  "shortest_path_count_checks": 292,
++  "cross_time_controls": 2
++}
+diff --git a/unsolved_math_prioritization/attempts/10000046/verify.py b/unsolved_math_prioritization/attempts/10000046/verify.py
+new file mode 100644
+index 000000000..5f02af274
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/10000046/verify.py
+@@ -0,0 +1,60 @@
++"""Exact finite diagnostics only; no infinite-time certificate."""
++import itertools,json,math,sys
++from fractions import Fraction
++from pathlib import Path
++sys.setrecursionlimit(10000)
++def paths(d,N,start):
++ steps=[tuple(s if i==j else 0 for i in range(d)) for j in range(d) for s in (-1,1)]
++ out=[]
++ for word in itertools.product(steps,repeat=N):
++  z=start;trace=[z]
++  for w in word:z=tuple(a+b for a,b in zip(z,w));trace.append(z)
++  out.append(frozenset(trace))
++ return out
++def test(d,N,distance):
++ A=paths(d,N,(0,)*d);B=paths(d,N,(distance,)+(0,)*(d-1));L=len(A)
++ adj=[[j for j,b in enumerate(B) if not a&b] for a in A]
++ mate=[-1]*L
++ def augment(i,seen):
++  for j in adj[i]:
++   if j in seen:continue
++   seen.add(j)
++   if mate[j]<0 or augment(mate[j],seen):mate[j]=i;return True
++  return False
++ M=sum(augment(i,set()) for i in range(L));left={i:j for j,i in enumerate(mate) if i>=0}
++ # Alternating reachability gives an exact Konig cover.
++ ZL=set(range(L))-set(left);ZR=set();todo=list(ZL)
++ while todo:
++  i=todo.pop()
++  for j in adj[i]:
++   if left.get(i)==j or j in ZR:continue
++   ZR.add(j)
++   if mate[j]>=0 and mate[j] not in ZL:ZL.add(mate[j]);todo.append(mate[j])
++ CL=set(range(L))-ZL;CR=ZR
++ assert len(CL)+len(CR)==M
++ assert all(i in CL or j in CR for i,row in enumerate(adj) for j in row)
++ assert all(j in adj[i] for i,j in left.items())
++ assert len(set(left.values()))==M
++ if N<distance:assert M==L
++ return dict(d=d,N=N,distance=distance,paths=L,matching=M,cover=len(CL)+len(CR),alpha=str(Fraction(M,L)))
++results=[test(d,N,2) for d in (1,2,3) for N in (1,2,3)]
++results += [test(4,2,2),test(3,2,10),test(4,2,10)]
++# The synchronous translation has no simultaneous collision but intersects cross-time.
++for d in (3,4):
++ X=[(k,)+(0,)*(d-1) for k in range(11)];Y=[(k+10,)+(0,)*(d-1) for k in range(11)]
++ assert all(x!=y for x,y in zip(X,Y)) and X[10]==Y[0]
++# Exact multinomial shortest-path counts against recursion for all small targets.
++checks=0
++for d in (3,4):
++ for N in range(1,7):
++  counts={(0,)*d:1}
++  for _ in range(N):
++   nxt={}
++   for a,v in counts.items():
++    for j in range(d):
++     b=list(a);b[j]+=1;b=tuple(b);nxt[b]=nxt.get(b,0)+v
++   counts=nxt
++  for a,v in counts.items():
++   assert v==math.factorial(N)//math.prod(math.factorial(k) for k in a);checks+=1
++out={'all_passed':True,'scope':'Finite matching certificates and elementary controls only. No asymptotic inference.','matching_cases':results,'shortest_path_count_checks':checks,'cross_time_controls':2}
++Path(__file__).with_name('verification.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

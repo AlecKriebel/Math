@@ -1,0 +1,307 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+pdftitle={An exact period criterion for focal-distance products in elliptic billiards},
+pdfauthor={Alec Kriebel}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\DeclareMathOperator{\sn}{sn}
+\DeclareMathOperator{\cn}{cn}
+\DeclareMathOperator{\dn}{dn}
+\title{An exact period criterion for focal-distance\\products in elliptic billiards}
+\author{Alec Kriebel\thanks{Independent researcher.
+ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{11 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a noncircular elliptic billiard with a strictly nested nondegenerate
+confocal elliptical caustic, we prove that the product of ordinary distances
+from all vertices to either fixed focus is independent of phase if and only
+if the least period is \(2\) modulo \(4\).
+This proves the least-period interpretation of entry \(k_{114}\) in
+Reznik--Garcia--Koiller's list of unproved invariants and classifies every
+other primitive period and every repeated traversal.
+The proof identifies the complete divisor of the focal-distance factor
+in the classical Jacobi parameter. An exact doubled-triangle example
+shows why a condition on return length alone is insufficient.
+The parametrization, identities and divisor method are established tools.
+This AI-assisted research note is unrefereed.
+\end{abstract}
+
+\section{The invariant and its exact scope}
+Let the boundary and caustic be
+\[
+ \mathcal E:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1,\qquad
+ \mathcal C:\frac{x^2}{A^2}+\frac{y^2}{B^2}=1,
+ \quad a>b>0,\quad A>B>0,
+\]
+with \(a>A\), \(b>B\) and \(a^2-b^2=A^2-B^2=c^2>0\).
+Fix a periodic billiard family tangent to \(\mathcal C\), with
+\emph{least period} \(n\), vertices \(P_j\), and fixed foci
+\(F_\pm=(\pm c,0)\). Write
+\[
+ D_n^\pm=\prod_{j=0}^{n-1}|P_j-F_\pm|.
+\]
+These are ordinary positive Euclidean distances.
+
+Reznik, Garcia and Koiller recorded \(D_N^+\) as invariant \(k_{114}\)
+for \(N\equiv2\pmod4\), with proof column \emph{?}, in their 2020
+preprint and 2021 article \cite[Table~2, p.~345]{source}.
+Their introductory setting is a confocal ellipse pair.
+The entry does not explicitly settle whether \(N\) is least period or
+a return length permitting repetitions. The following theorem decides
+both interpretations within that setting.
+
+\begin{theorem}\label{thm:criterion}
+For the fixed noncircular confocal pair above, each \(D_n^\pm\) is
+independent of phase if and only if \(n\equiv2\pmod4\).
+Every admissible primitive star winding and both orientations are included.
+For every even \(n\), \(D_n^+=D_n^-\) at each phase.
+For an \(r\)-fold traversal, \(r\ge1\), the product is
+\((D_n^\pm)^r\), and is constant exactly in the same least-period class.
+For a circular boundary the two foci coincide with the center, and
+every listed product is \(a^N\).
+\end{theorem}
+
+For return length \(N\equiv2\pmod4\), its least period divides \(N\)
+and is either odd or \(2\) modulo \(4\). The product is therefore
+constant exactly when its least period is even.
+Hyperbolic and degenerate caustics are outside the source setting and
+this theorem.
+
+\section{The classical real parameter}
+Put \(k=c/A\in(0,1)\), \(k'=\sqrt{1-k^2}\), \(K=K(k)\) and
+\(K'=K(k')\). All Jacobi functions have \emph{modulus} \(k\).
+Stachel's canonical parametrization
+\cite[Theorem~4.3 and (4.9), p.~1614]{stachel} is
+\begin{equation}\label{eq:param}
+ P(u)=(-a\sn u,b\cn u),\quad
+ a=A\frac{\dn v}{\cn v},\quad b=\frac{B}{\cn v},\quad
+ 0<v<K,\quad P_j(u)=P(u+2jv).
+\end{equation}
+Here \(v\) is uniquely determined by \(\cn v=B/b\); confocality
+gives the other axis relation.
+
+For completeness, the geometric bridge can be checked directly.
+The tangent at \(Q(U)=(-A\sn U,B\cn U)\) on \(\mathcal C\) is
+\[
+ -x\sn U/A+y\cn U/B=1.
+\]
+Jacobi addition \cite[Section~22.8]{dlmf} places both \(P(U-v)\)
+and \(P(U+v)\) on it: substitution gives
+\[
+ \frac{\dn^2v\,\sn^2U+\cn^2U}
+ {1-k^2\sn^2U\,\sn^2v}=1.
+\]
+The contact lies strictly inside \(\mathcal E\), so this is an
+actual tangent chord.
+The two tangent directions at \(P=(x,y)\) satisfy
+\(d^{\mathsf T}Md=0\), with
+\[
+ M=\begin{pmatrix}B^2-y^2&xy\\xy&A^2-x^2\end{pmatrix}.
+\]
+The outer normal \(\nu=(x/a^2,y/b^2)\) and its perpendicular
+\(t=(-y/b^2,x/a^2)\) obey
+\[
+ \nu^{\mathsf T}Mt=\frac{xyc^2}{a^2b^2}
+ \left(1-x^2/a^2-y^2/b^2\right)=0.
+\]
+Also \(\det M=A^2B^2(1-x^2/A^2-y^2/B^2)<0\).
+Thus the distinct inward tangent rays are interchanged by reflection
+across the normal, proving the elastic billiard law.
+The real Jacobi amplitude increases strictly through \(2\pi\) over
+\(4K\); hence this parameter covers every boundary point and both
+oriented caustic-tangent families.
+
+Real injectivity modulo \(4K\) gives the least-period condition
+\begin{equation}\label{eq:closure}
+ \delta=2v=\frac{4K\tau}{n},\qquad
+ \gcd(\tau,n)=1,\qquad 0<\tau<n/2.
+\end{equation}
+The orientation is positive and \(\tau\) is its turning number.
+Neither \(n=1\) nor \(n=2\) can occur with \(0<v<K\).
+Elementary ellipse algebra gives
+\[
+ |P(u)-F_\pm|^2=(a\pm c\sn u)^2.
+\]
+Since \(a>c\), the linear factors are strictly positive on the real
+axis. Therefore the actual distance functions are
+\begin{equation}\label{eq:factor}
+ g_\pm(u)=a\pm c\sn u,\qquad
+ D_n^\pm(u)=\prod_{j=0}^{n-1}g_\pm(u+j\delta).
+\end{equation}
+
+\section{The complete divisor and the period criterion}
+Regard the focal factor on
+\[
+ T=\mathbb C/(4K\mathbb Z+2iK'\mathbb Z),\qquad p=iK'.
+\]
+This torus is used for \(\sn\) and \(g_\pm\); only the real vertex
+period \(4K\) was used in \eqref{eq:closure}.
+The standard Jacobi periods, poles and shifts
+\cite[Tables~22.4.1 and 22.4.3]{dlmf} give two simple poles of
+\(g_+\), at \(p,p+2K\), and
+\[
+ \sn(p+K\pm v)=\frac{\dn v}{k\cn v}=\frac ac,\qquad
+ \sn(u+2K)=-\sn u.
+\]
+Thus its zeros are \(q_\pm=p-K\pm v\).
+They are distinct and nonpolar because \(0<v<K\).
+The coefficient \(c\ne0\) prevents removal of either pole.
+An elliptic function has equal total zero and pole degree, so these
+two zeros are simple and exhaustive.
+
+Let \(H=\langle\delta\rangle\) on \(T\). It has exact order \(n\).
+Subtracting \(p\) and dividing real offsets by \(4K\) identifies
+it with \(\{j/n\bmod1\}\).
+Orders in a product add, so the complete product divisor is the sum
+of translates of the divisor of \(g_+\).
+The two zeros differ by one step \(\delta\); their translates make
+a single zero coset of multiplicity two, represented by
+\[
+ z=-\frac14+\frac{\tau}{2n}.
+\]
+The pole cosets are \(H\) and \(1/2+H\).
+
+If \(n\) is odd, these pole cosets are disjoint. Both
+\[
+ nz=\frac{-n+2\tau}{4},\qquad
+ n(z-1/2)=\frac{-3n+2\tau}{4}
+\]
+have odd numerators and are not integers. The zero coset misses
+both pole cosets, leaving \(2n\) simple poles.
+
+If \(n\) is even, \(\tau\) is odd and \(1/2\in H\).
+The pole cosets coincide, giving \(n\) double poles.
+The double-zero coset cancels them precisely when
+\[
+ nz=\frac{-n+2\tau}{4}\in\mathbb Z,
+\]
+equivalently \(n\equiv2\pmod4\).
+Then the full divisor vanishes, the product extends holomorphically
+to the compact connected torus, and it is constant.
+For \(n\equiv0\pmod4\), it retains \(n\) double poles.
+
+The products are holomorphic near the real axis. If a product with
+uncancelled poles were constant on the real family, the identity
+theorem would force its meromorphic extension to be constant,
+a contradiction. This proves physical real-family nonconstancy:
+\eqref{eq:factor} equals the ordinary Euclidean product itself
+on that line.
+
+Finally \(g_-(u)=g_+(u+2K)\). The cyclic product is invariant under
+\(H\), proving the same classification for both foci; when \(n\)
+is even, \(2K\in H\) also proves equality at each phase.
+For \(n=2m\equiv2\pmod4\), antipodal pairing and phase-zero evaluation
+give the positive value
+\[
+ D_n^\pm=\prod_{j=0}^{m-1}
+ \bigl(a^2-c^2\sn^2(2jv)\bigr)>0.
+\]
+An \(r\)-fold traversal raises the positive primitive product to
+the power \(r\). This operation is injective on positive reals,
+so it preserves constancy in both directions.
+For a circle every focal distance is \(a\).
+This proves Theorem~\ref{thm:criterion}.
+
+\section{An exact return-length counterexample}
+Take \(a=\sqrt{15}\), \(b=\sqrt7\), \(c=\sqrt8\),
+\(A^2=135/16\), \(B^2=7/16\).
+The triangle
+\[
+ T=\bigl((a,0),(-3a/4,7/4),(-3a/4,-7/4)\bigr)
+\]
+and its central reflection are primitive three-bounce members of
+one confocal family. Their vertices lie on \(\mathcal E\).
+The side lines are \(x=-3a/4=-A\) and \(x\pm ay=a\);
+tangency follows from \(A^2+a^2B^2=a^2\).
+At the upper off-axis vertex the inward unit rays
+\((a/4,-1/4)\), \((0,-1)\) sum to five times the inward normal
+\((a/20,-1/4)\). Symmetry handles the other vertices, independently
+checking physical reflection.
+
+At \(F_+=(c,0)\) the primitive products are
+\[
+ (a-c)(a+3c/4)^2=\frac{15a}{2}+3c,\qquad
+ (a+c)(a-3c/4)^2=\frac{15a}{2}-3c.
+\]
+Twice traversing each triangle gives return length six, but the
+six-event products differ by
+\[
+ \left(\frac{15a}{2}+3c\right)^2-
+ \left(\frac{15a}{2}-3c\right)^2=90ac=180\sqrt{30}>0.
+\]
+Thus listed return length cannot replace least period.
+
+\section{Attribution, verification and status}
+The theorem proves the least-period \(k_{114}\) observation and
+classifies its broader return-period interpretation, which is partly
+false. Stachel's parametrization, classical Jacobi identities and
+pole-removal method are prior machinery.
+Meromorphic Poncelet functions and pole-removal arguments were used
+by Schwartz \cite{schwartz} and, for example,
+Akopyan--Schwartz--Tabachnikov \cite{ast} and
+Roitman--Garcia--Reznik \cite{bicentric}.
+The target-specific step is the focal divisor and its coset arithmetic;
+no new elliptic-function method is claimed.
+Ferudun's related unrefereed note \cite{ferudun} treats the different
+outer-tangent-polygon product \(k_{115}\).
+
+The accompanying priority note records the primary sources checked
+and search limits. No explicit earlier proof of this exact target was
+located in the checked sources; the novelty of this specific formulation
+and exclusive historical priority are not certified.
+The full text of a related inertia-and-billiards paper by
+Dragovi\'c and Gaji\'c \cite{dg} was unavailable; its uninspected
+billiard sections remain a disclosed bibliography coverage gap.
+Portable exact checks reproduce finite divisor inventories and
+physical counterexample arithmetic. They support the written proof,
+and do not replace its all-period analytic argument.
+No validated numerical certification or proof-assistant formalization
+is claimed.
+
+AI tools were used extensively in solving, drafting, comparing
+sources, reproducing computations and independent adversarial
+reviews. This preprint has not undergone conventional human peer
+review or refereeing. The author is responsible for its claims.
+
+\begin{thebibliography}{9}
+\bibitem{source} D.~Reznik, R.~Garcia and J.~Koiller,
+Fifty New Invariants of \(N\)-Periodics in the Elliptic Billiard,
+\emph{Arnold Mathematical Journal} \textbf{7} (2021), 341--355.
+\href{https://doi.org/10.1007/s40598-021-00174-y}{doi:10.1007/s40598-021-00174-y}.
+Preprint: \href{https://arxiv.org/abs/2004.12497v11}{arXiv:2004.12497v11}.
+\bibitem{stachel} H.~Stachel, On the motion of billiards in ellipses,
+\emph{European Journal of Mathematics} \textbf{8} (2022), 1602--1622.
+\href{https://doi.org/10.1007/s40879-021-00524-2}{doi:10.1007/s40879-021-00524-2}.
+\bibitem{dlmf} F.~W.~J. Olver et al., eds.,
+\emph{NIST Digital Library of Mathematical Functions},
+Chapter~22: Jacobian elliptic functions,
+\url{https://dlmf.nist.gov/22}.
+\bibitem{ast} A.~Akopyan, R.~Schwartz and S.~Tabachnikov,
+Billiards in ellipses revisited,
+\emph{European Journal of Mathematics} \textbf{8} (2022), 1313--1327
+(published online in 2020).
+\href{https://doi.org/10.1007/s40879-020-00426-9}{doi:10.1007/s40879-020-00426-9}.
+\bibitem{bicentric} P.~Roitman, R.~Garcia and D.~Reznik,
+New Invariants of Poncelet--Jacobi Bicentric Polygons,
+\emph{Arnold Mathematical Journal} \textbf{7} (2021), 619--637.
+\href{https://doi.org/10.1007/s40598-021-00188-6}{doi:10.1007/s40598-021-00188-6}.
+\bibitem{schwartz} R.~Schwartz,
+The pentagram integrals for Poncelet families,
+\emph{Journal of Geometry and Physics} \textbf{87} (2015), 432--449.
+\href{https://doi.org/10.1016/j.geomphys.2014.07.024}{doi:10.1016/j.geomphys.2014.07.024}.
+\bibitem{ferudun} A.~Ferudun,
+Focal Distance Products of Outer Elliptic Billiard Polygons,
+unrefereed preprint, 2 October 2026.
+\href{https://doi.org/10.5281/zenodo.23093258}{doi:10.5281/zenodo.23093258}.
+\bibitem{dg} V.~Dragovi\'c and B.~Gaji\'c,
+Points with rotational ellipsoids of inertia, envelopes of hyperplanes
+which equally fit the system of points in \(\mathbb R^k\), and ellipsoidal billiards,
+\emph{Physica D} \textbf{451} (2023), 133776.
+\href{https://doi.org/10.1016/j.physd.2023.133776}{doi:10.1016/j.physd.2023.133776}.
+\end{thebibliography}
+\end{document}

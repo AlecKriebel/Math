@@ -1,0 +1,106 @@
+{
+  "status": "pass",
+  "role": "finite exact supplementary evidence, not the universal proof",
+  "python_version": "3.14.6",
+  "optimization_active": true,
+  "checker_sha256": "67f7573cb3d4dfc56976cedd53ecd878a46c31958d833d9dad5b5a3c7e0f508b",
+  "positive_checks": [
+    "no assert statements in checker",
+    "generic real parity support eigenvalue identities",
+    "exact parity-weight grid including zeros and half-eigenvalue endpoints",
+    "each determinant substitution involution",
+    "affine reflection sends boundary equation to negative interior equation",
+    "full orbit product invariant under all coordinate involutions",
+    "exact orbit-product multiplicity is one on both planes",
+    "squared orbit-product multiplicity is two on both planes",
+    "generic nonzero residual restrictions at exact multiplicity",
+    "symbolic true-boundary strict-H margins",
+    "symbolic reflected-plane strict-H margins",
+    "both rational local crossings remain strictly in cube and H_3",
+    "odd invariant candidate passes actual crossing and fails interior nonnegativity",
+    "even invariant candidate fails actual crossing exclusion",
+    "infeasible determinant point strictly inside H_3 excludes zero restrictions",
+    "triangle product illustrates why dropping determinant-only invariance changes problem",
+    "exact rank-one embedding Gram preservation for four through six factors and zero tensor",
+    "exact normalization-ratio order at a feasible positive trace"
+  ],
+  "finite_weight_grid": {
+    "total_points": 125,
+    "triangle_feasible_points": 65
+  },
+  "negative_mutations": [
+    {
+      "mutation": "replace t(1-t) by t(1+t)",
+      "caught": true,
+      "reason": "altered determinant map loses involution"
+    },
+    {
+      "mutation": "swap the 011 and 101 weights",
+      "caught": true,
+      "reason": "mode 1 eigenvalue"
+    },
+    {
+      "mutation": "reflect t1 to -t1 rather than 1-t1",
+      "caught": true,
+      "reason": "incorrect affine reflection"
+    },
+    {
+      "mutation": "claim divisibility exponent one is exact for squared orbit product",
+      "caught": true,
+      "reason": "exact exponent is two"
+    },
+    {
+      "mutation": "assume quotient nonzero on plane after underdividing squared factor",
+      "caught": true,
+      "reason": "underdivided residual vanishes on entire plane"
+    },
+    {
+      "mutation": "allow odd multiplicity on an interior feasible plane",
+      "caught": true,
+      "reason": "odd multiplicity gives opposite interior signs"
+    },
+    {
+      "mutation": "allow even multiplicity to exclude actual outside side",
+      "caught": true,
+      "reason": "even multiplicity stays positive outside"
+    },
+    {
+      "mutation": "change boundary determinant-H margin from +2bc to -2bc",
+      "caught": true,
+      "reason": "wrong strict-H identity"
+    },
+    {
+      "mutation": "accept an identically zero polynomial on higher-factor face",
+      "caught": true,
+      "reason": "zero restriction includes infeasible face point"
+    },
+    {
+      "mutation": "use a nonunit vector in rank-one factor removal",
+      "caught": true,
+      "reason": "unit-factor norm preservation"
+    },
+    {
+      "mutation": "reverse the trace-ratio monotonicity",
+      "caught": true,
+      "reason": "reversed ratio order would require sqrt(21)<=4"
+    },
+    {
+      "mutation": "let triangle-coordinate polynomial descend without invariance",
+      "caught": true,
+      "reason": "triangle polynomial is not a polynomial in determinant coordinates"
+    }
+  ],
+  "positive_check_count": 18,
+  "negative_mutation_count": 12,
+  "outside_H3_point": [
+    "55/256",
+    "28/256",
+    "28/256"
+  ],
+  "sampled_higher_factor_counts": [
+    4,
+    5,
+    6
+  ],
+  "universal_claim_proof": "DERIVATION.md"
+}

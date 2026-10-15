@@ -1,0 +1,7 @@
+# Common tangent null locus: current audited candidate
+
+CANDIDATE.md proves the exact OWR2090-028 Conjecture4 outer-null assertion for arbitrary disjoint convex subsets of R3. Three fresh independent families verify the cap-cover, density/rank/area and primary-scope mechanisms. Current proof SHA256 8ac19b70bd9081107e903ca47bb9dd6ad05274f604d03000a7fd18e3cfb3bf12. Notation and source-context corrections are documented in REVIEW_UPDATES.md. Historical priority and full publication readiness remain pending; Conjecture3 is excluded.
+
+The original15-file snapshot and one-attempt turns.jsonl remain frozen separately under the program source_snapshot. The copied review/REVIEW.md and review/review_summary.json apply only to original proof b04aaf0b5a42d79ad26daf27880774a3f126858ef545b3f366a2b8b62e277252, and are dated historical evidence, not a verdict on this corrected hash. Current family reports live in the surrounding program audit, with the exact original input bindings.
+
+Verification scripts/receipts, source_record/source_checksums, turns and historical proof input are unchanged. Exact diagnostics supplement analytic arguments. LITERATURE.md separates dated search history from freshly inspected source versions/access qualifications. This validation adds no proof attempt: claimed_solved1/5 is only the candidate classification, pending priority/paper/fresh-review/publication. No deposit, DOI, tracker row or acceptance yet. AI tools used extensively; no external human peer review or formal proof verification.

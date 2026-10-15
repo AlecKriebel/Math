@@ -1,0 +1,324 @@
+Common L1 basin boundaries for a bistable mean-field interval map
+                                              Alec Kriebel
+                                        Independent researcher
+                                      ORCID: 0009-0001-9320-500X
+
+                       3 October 2026       (version 1.0; unrefereed preprint)
+
+
+                                                Abstract
+         We prove the common-basin-boundary conjecture stated by Keller in the 2009 Oberwolfach
+     mini-workshop report on the spectrum of transfer operators. For the prescribed two-branch
+     Möbius interval maps with feedback G(m) = A tanh(Bm/A), 0 < A ≤ 2/5 and 6 < B ≤ 16,
+     the basin of the constant density equals the boundary of each noncentral stable basin in the
+     relative L1 topology of all probability densities. We prove the stronger intermediate statement
+     that the central basin is the L1 closure of the finite preimages of the constant density. A
+     terminal cumulative transport is lifted backward with self-consistent feedback. A probability-
+     space inverse contraction and uniform distortion bound make this construction valid for arbitrary
+     integrable densities, including unbounded densities and densities with zeros. The global three-
+     limit theorem and boundary seed are prior results of Bardet, Keller and Zweimüller.
+
+
+1   The original question
+Let I = [−1/2, 1/2], with Lebesgue measure dx, and let
+                                             Z                                 Z
+                D = {u ∈ L (I) : u ≥ 0 a.e.,
+                           1
+                                               u dx = 1},             ϕ(u) =           xu(x) dx.
+                                                  I                                I
+
+All closures and boundaries below are relative to D with its L1 metric. Fix 0 < A ≤ 2/5 and
+6 < B ≤ 16. For |r| ≤ 2/5 define
+                                                       (
+                          (r + 4)x + r + 1               fr (x),     x < −r/4,
+                 fr (x) =                  ,  Tr (x) =
+                              2rx + 2                    fr (x) − 1, x > −r/4.
+
+The value at the cut is immaterial for densities. Write Pr for the density transfer operator of Tr ,
+so (Tr )∗ (u dx) = (Pr u) dx, and set
+                           G(m) = A tanh(Bm/A),               F (u) = PG(ϕ(u)) u.
+The question in [2, pp. 2713–2715, especially p. 2715] concerns exactly this parameter range and
+the full space D.
+    We use the following established facts from [1, Theorem 2, Propositions 3 and 4]; they are also
+stated in [2, Theorem 2 and the discussion following it]. There are three fixed densities 1, u+ , u− ,
+every orbit in D converges in L1 to one of them, and the basins of u+ and u− are open. Moreover,
+1 is in both basin boundaries. The last fact follows from the earlier boundary theorem on the
+analytic integral-representation class. Put
+                 W = {u : F n u −→ 1 in L1 },             B± = {u : F n u −→ u± in L1 }.
+
+                                                      1
+The cited theorem supplies D = W t B+ t B− . In particular W is closed. The earlier analytic-core
+boundary theorem does not itself give a boundary theorem on all D: that core is compact and is
+not L1 dense.
+Theorem 1. For the model and parameters above,
+                                      [                  D
+                              W =           F −n ({1})       = ∂ D B+ = ∂ D B− .
+                                      n≥0
+
+No boundedness, bounded variation, or positive lower bound on the densities is assumed.
+    The new step is the full-density finite-preimage closure. The inverse expansion mechanism and
+invariant integral representations originate in [1, Sections 3–4]; we extend the inverse construction
+to an arbitrary probability space and give a simple exact continuous estimate. Sections 2–5 prove
+the theorem. No differentiable stable-manifold theorem on L1 is used.
+
+
+2   An open map on all densities
+For hr (x) = (x + r/4)/(1 + rx), direct algebra gives h−1 r = h−r and Tr = T0 ◦ hr away from the
+cut. Let Qr be pushforward of densities by hr . It is a signed-L1 isometry, with inverse Q−r . The
+map (r, u) 7→ Qr u is jointly strongly continuous: this follows first for continuous functions from the
+smooth Jacobians, then for L1 functions by approximation and the isometry.
+Lemma 2. F : D → D is a continuous open surjection. For either stable basin,
+
+                                            F −1 (∂D B± ) = ∂D B± .
+                                                                                    R
+Proof. Write F = P0 K with K(u) = QG(ϕ(u)) u. For v ∈ D put Mv (r) =                    I h−r (x)v(x) dx.   This
+decreases in r, since
+                                             x2 − 1/4
+                                ∂r h−r (x) =           ≤ 0.
+                                             (1 − rx)2
+Thus r −G(Mv (r)) increases by at least the parameter increment and changes sign between −A and
+A. Its unique zero ρ(v) satisfies |ρ(v) − ρ(w)| ≤ (B/2) kv − wk1 , since |h−r | ≤ 1/2 and kG′ k∞ ≤ B.
+Consequently K −1 (v) = Q−ρ(v) v is continuous. Checking the mean and scalar equation in both
+directions proves this is the inverse of K; hence K is a homeomorphism.
+    For a prescribed w ∈ D let v = P0 w. On fibers with v(T0 x) > 0 put q(x) = w(x)/v(T0 x), and
+put q(x) = 1 on the other fibers. Since
+                                                                          
+                            (P0 w)(y) = 21 w(y/2 − 1/4) + w(y/2 + 1/4) ,
+
+both branch values vanish on almost every zero fiber. It follows that 0 ≤ q ≤ 2 and P0 q = 1,
+including there. For z ∈ D define Rw (z)(x) = q(x)z(T0 x). Then
+
+                     P0 Rw (z) = z,    Rw (v) = w,           kRw (z) − wk1 = kz − vk1 .
+
+These positive sections show that P0 is open and onto, in the relative topology. This proves the
+first assertion for F .
+     For B = B+ or B− , tail convergence gives F −1 B = B. If x ∈ ∂B, continuity puts F (x) in
+B, while x ∈  / B implies F (x) ∈  / B. Thus F (x) ∈ ∂B. Conversely, if F (x) ∈ ∂B, every relative
+neighborhood U of x has open image F (U ) containing F (x), hence meets B. Therefore U meets
+F −1 B = B; since x ∈  / B, it is a boundary point.
+
+                                                         2
+3   A self-consistent inverse contraction
+Put J = [−1/2, 3/2]. The inverse of the lifted branch is
+
+                              2z − r − 1                     4 − r2                           1 − 4br (z)2
+       br (z) = fr−1 (z) =               ,     fr′ (x) =              ,       ∂r br (z) = −                .
+                             r + 4 − 2rz                   2(1 + rx)2                           4 − r2
+On any probability space, for a bounded J-valued random variable Z, solve
+
+                                   r = G(Ebr (Z)),          V (Z) = br (Z).                                    (1)
+
+The residual is increasing by at least the parameter increment, because br decreases in r, and has
+opposite signs at ±A. Thus the root exists uniquely. In particular its scalar derivative is at least 1.
+Lemma 3. On every real probability-space L2 , for bounded J-valued Z, Z ′ ,
+                                                            21
+                                     V (Z) − V (Z ′ ) 2 ≤      Z − Z′ 2 .
+                                                            25
+The constant is uniform over the stated A, B range.
+Proof. Interpolate Zt = (1 − t)Z + tZ ′ , and set Xt = V (Zt ), with root rt . For each fixed A > 0,
+scalar implicit differentiation and differentiation under expectation are valid: all derivatives of br
+are bounded on the compact rectangle J × [−2/5, 2/5], the feedback is smooth, and the residual
+derivative is at least 1. Put q = 1 − 4Xt2 , g = G′ (EXt ), β = g/(4 − rt2 ) and let D multiply by
+fr′ t (Xt ). Differentiating (1) gives the identity
+                                                           
+                                                      βqE
+                                        Ẋt = id −            D−1 Żt .                            (2)
+                                                    1 + βEq
+This differentiates a bounded path, not a map on an unrestricted Banach-space neighborhood.
+   We first show that the rank-one factor in (2) has squared norm at most C = 1 + β/4.√     Let
+m = Eq, s = Eq 2 ; then m2 ≤ s ≤ m. When s > m2 , in the orthonormal basis 1, (q − m)/ s − m2
+the factor has matrix                                         
+                                           (1 + βm) −1       0
+                               L=        √                       .
+                                      −β s − m2 /(1 + βm) 1
+It is the identity on the orthogonal complement. The lower diagonal entry of C id −L∗ L is β/4,
+and direct expansion gives
+                                                                  
+                                  ∗     β 2 (Cm − 1/4)2 + C(m − s)
+                       det(C id −L L) =                              ≥ 0.
+                                                 (1 + βm)2
+For β > 0 these imply positive semidefiniteness. For β = 0 the factor is the identity; constant q
+gives a scalar contraction on constants and identity on their orthogonal complement. This proves
+the claimed bound.
+    Set a = |rt | ≤ 2/5. The self-consistent tanh relation yields
+                                                                                  2+a
+                   0 ≤ g = B(1 − rt2 /A2 ) ≤ 16 − 100a2 ,             D−1 ≤               .
+                                                                                 2(2 − a)
+Consequently the squared norm of the derivative in (2) is bounded by
+                                                   
+                         (2 + a)2        16 − 100a2     (2 + a)(4 − 13a2 )   7
+                U (a) =              1 +              =                    < .
+                        4(2 − a) 2        4(4 − a )
+                                                 2          2(2 − a) 3      10
+
+                                                      3
+The strict inequality on the entire closed interval follows from
+
+              7(2 − a)3 − 5(2 + a)(4 − 13a2 ) = 172(a − 13/43)2 + 12/43 + 58a3 > 0.
+
+Integrate (2) along the path and use 7/10 < (21/25)2 .
+
+    We also need elementary uniform branch sensitivities, valid throughout the same rectangle:
+
+                          0 < ∂z br ≤ 34 ,                           |∂r br | ≤ 96
+                                                                                25
+                                                                                   ,
+                     |∂x log fr′ (x)| ≤ 1,                   |∂r log fr′ (x)| ≤ 24
+                                                                                35
+                                                                                   .              (3)
+
+Indeed 1 + rx ≥ 4/5, fr′ ≥ 4/3, and |∂r br | = (1 − 4b2r )/(4 − r2 ) ≤ 25/96. The last two logarithmic
+derivatives are −2r/(1 + rx) and −2r/(4 − r2 ) − 2x/(1 + rx), respectively.
+
+
+4    Backward correction of a central orbit
+Proposition 4. Every u ∈ W is an L1 limit of densities vn with F n vn = 1.
+Proof. Work on the original probability space (I, u(x)dx); write E for its expectation. Let X0 (x) =
+x, Xj+1 = Trj (Xj ), rj = G(EXj ) and uj = F j u, the density of Xj . Let aj ∈ {0, 1} be its branch
+label, so frj (Xj ) = Xj+1 + aj . All Xj are bounded; u need not be in L2 . Fix n ≥ 1 and set
+ϵ = kun − 1k1 . Define
+                                        Z y
+                         Hn (y) = − 2 +
+                                     1
+                                              un (t) dt,    Yn = Hn (Xn ).
+                                             −1/2
+
+Hn is absolutely continuous, nondecreasing, onto I, fixes both endpoints, and kHn − idk∞ ≤ ϵ. The
+cumulative transform sends the nonatomic law of Xn to uniform law, even if Hn has flat intervals.
+   Recursively for j = n − 1, . . . , 0 define
+
+                                Yj = V (Yj+1 + aj ),     ρj = G(EYj ).                            (4)
+
+The branch-event sublaw of Yj+1 is dominated by its total law. If the latter is absolutely continu-
+ous, each such sublaw is too, and its smooth inverse-branch pushforward is absolutely continuous.
+Starting from uniform Yn , induction proves that every Yj has a density. The parameter in (4) is
+exactly its feedback, and Tρj (Yj ) = Yj+1 almost surely: away from endpoints, bρj (Yj+1 +aj ) belongs
+to the branch aj . Thus the density vn of Y0 satisfies F n vn = 1. No independence of branch labels
+and later variables is assumed.
+    Uniqueness in (1) also gives Xj = V (Xj+1 + aj ). The same labels cancel in the input difference,
+so Lemma 3, with κ = 21/25, gives
+                                                                      X
+                 kYj − Xj k2 ≤ κn−j ϵ, ∆j := |ρj − rj | ≤ 16κn−j ϵ,       ∆j ≤ 84ϵ.                (5)
+                                                                         j<n
+
+The terminal estimate holds because Hn displaces by at most ϵ; the feedback estimate uses Cauchy–
+Schwarz on a probability space.
+   Define deterministic maps backward on each old branch by
+                                                                   
+                               Hj (x) = bρj Hj+1 (Trj (x)) + aj (x) .                          (6)
+
+Here aj (x) is the label for Trj at a point in I, not a new random label; evaluated at Xj it is the
+label used in (4). Since Hj+1 fixes the endpoints, the two limits at the old cut in (6) are both
+
+                                                    4
+bρj (1/2) = −ρj /4. Each Hj is therefore continuous, nondecreasing and onto, fixes the endpoints,
+and Yj = Hj (Xj ). It is absolutely continuous: on each branch the inner old map is smooth bi-
+Lipschitz, the later map is absolutely continuous, and the outer inverse branch is smooth Lipschitz.
+The finitely many branches glue continuously. This argument permits flats and does not assume
+that arbitrary compositions of absolutely continuous maps are absolutely continuous.
+     Put dj = kHj − idk∞ . Equations (3) and (6) give
+
+                                      dj ≤ 43 dj+1 + 96
+                                                     25
+                                                        ∆j ,         dn ≤ ϵ.
+
+Iterating and then summing, using (5), yields
+                                        X                 X
+                        d0 ≤ 183
+                               8 ϵ,         d j ≤ 3ϵ + 25
+                                                       24   ∆j ≤ 181
+                                                                  2 ϵ.                                      (7)
+                                              j<n                    j<n
+
+Every fixed finite old cylinder map is smooth bi-Lipschitz onto its image, so it pulls exceptional
+derivative-null sets back to null sets. The chain rule applied on these cylinders gives, for Lebesgue-
+a.e. x,
+                                                              Y fr′ j (Xj (x))
+                     H0′ (x) = un (Xn (x))Rn (x),   Rn (x) =                          .
+                                                                  fρ′ j (Hj (Xj (x)))
+                                                                      j<n
+
+This makes sense for merely integrable un ; it divides by no density. Equations (3), (5), and (7)
+show                                      X           X
+                             | log Rn | ≤          35
+                                             dj + 24    ∆j ≤ 213ϵ.                            (8)
+                                                 j<n           j<n
+
+    The integral required next is against Lebesgue measure, not against u dx. For the external
+sequence of old parameters let cn = Prn−1 · · · Pr0 1. Then cn ≤ 2. For completeness, the source
+integral-representation identities [1, Section 4.1] give
+
+                      1 − y 2 /4
+           wy (x) =              ,    |y| ≤ 2/3,       Pr wy = pr (y)wσr (y) + (1 − pr (y))wτr (y) ,
+                      (1 − xy)2
+where
+                           r+y                       2(y + r)                             2(y + r)
+           pr (y) = 12 −          ,   σr (y) =                    ,        τr (y) =                    .
+                           4 + ry                (r + 1)y + r + 4                     (r − 1)y − r + 4
+Direct substitution in the two inverse branches proves the identity. For |r| ≤ 2/5, |y| ≤ 2/3 the
+weight is in [0, 1], both images remain in [−2/3, 2/3], and 1/2 ≤ wy ≤ 2. Since 1 = w0 , induction
+gives cn ≤ 2. Transfer duality and monotone truncation therefore imply
+                          Z                       Z
+                            |un (Xn (x)) − 1| dx = |un (y) − 1|cn (y) dy ≤ 2ϵ.
+                           I                            I
+
+Together with (8) this proves
+
+                                       H0′ − 1 1 ≤ 2ϵe213ϵ + e213ϵ − 1.                                     (9)
+
+    Finally, any absolutely continuous nondecreasing onto map H : I → I satisfies H∗ (H ′ dx) = dx,
+by applying the fundamental theorem of calculus to antiderivatives of continuous test functions.
+Flat intervals are allowed. Write k·kTV for the full variation norm of a finite signed measure, equal
+to the L1 norm for its density. Pushforward contracts this norm. For continuous g, comparison
+with g(H)H ′ dx gives
+
+                      kH∗ (g dx) − g dxkTV ≤ ωg (kH − idk∞ ) + kgk∞ H ′ − 1 1 ,                            (10)
+
+                                                       5
+where ωg is its modulus of continuity. Although H∗ (g dx) may have atoms, (10) is a measure
+inequality and remains valid. The actual H0∗ (u dx) = vn dx is already absolutely continuous by
+(4). For any continuous approximation g to the fixed u, (7), (9), and (10) yield
+
+                 kvn − uk1 ≤ 2 ku − gk1 + ωg (183ϵ/8) + kgk∞ (2ϵe213ϵ + e213ϵ − 1).
+
+As u ∈ W , ϵ → 0. First fix g and let n → ∞, then let its approximation error tend to zero. This
+proves vn → u in L1 , without any attraction-rate hypothesis.
+
+
+5   Completion, scope and verification
+Every finite preimage of 1 belongs to W , and W is closed; together with Proposition 4 this proves
+the closure identity. The cited boundary seed and Lemma 2 place every such preimage in both
+basin boundaries. Boundary closedness then gives W ⊆ ∂D B± . Conversely, no point of either
+disjoint open stable basin can be in either boundary, and global three-limit convergence exhausts
+D. Thus ∂D B± ⊆ W , completing Theorem 1.
+    The result concerns the specified feedback and rectangle; it does not resolve the separate finite-
+particle limiting-mixture question, extend to A = 0 or B = 6, or assert a nonlinear L1 differen-
+tiable stable manifold. The proof is analytic. The accompanying verification supplement retains
+the submitted exact identities and interval certificate, the sharper polynomial certificate above,
+rough-density/zero-fiber controls, source identities, and a dated bounded priority audit. Numeri-
+cal controls are labeled corroboration and are not used to prove the infinite-dimensional theorem.
+The source audit distinguishes accessible preprint versions from the final journal version, whose
+proof text was not obtained. The original OWR statement postdates the journal publication and
+explicitly formulates this conjecture.
+
+AI use and review status. AI tools were used extensively for proof development, verification,
+literature research, manuscript preparation, and adversarial review. The independent adversarial
+reviews were performed by AI agents. This is an unrefereed preprint and has not undergone
+independent external human peer review. Responsibility for its contents rests with the author.
+
+
+References
+[1] J.-B. Bardet, G. Keller, and R. Zweimüller, Stochastically stable globally coupled maps with
+    bistable thermodynamic limit, Communications in Mathematical Physics 292 (2009), 237–270,
+    doi:10.1007/s00220-009-0854-9. Accessible proof version: arXiv:0812.4040v1; also author-hosted
+    manuscript.
+
+[2] Mini-Workshop: Spectrum of Transfer Operators—Recent Developments and Applications,
+    Oberwolfach Reports 6 (2009), no. 4, report 49, doi:10.4171/OWR/2009/49. G. Keller, Self-
+    consistent Perron-Frobenius operators for globally coupled maps, pp. 2713–2715.
+
+
+
+
+                                                  6
+

@@ -1,0 +1,446 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ess}{\mathrm{ess}}
+\newcommand{\dd}{\,\mathrm d}
+\title{Robin half-space perturbations: a credited\\ dimension-dependent answer to AIM Problem 1.4}
+\author{Alec Kriebel\\Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Version 1.0 --- 14 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to the literal dimension-unrestricted wording of
+AIM Problem 1.4 on attractive Robin bound states under compact half-space
+perturbations. A nonzero smooth graph in $\R^4$, specified explicitly, has
+spectrum $[-1,\infty)$ at Robin strength one. In contrast, every connected,
+smooth, nontrivial compact half-space perturbation in ambient dimension two
+or three binds below the flat threshold at every positive strength, including
+overhangs and compact boundary components. Every compact Lipschitz graph in
+dimension at least four has no below-threshold spectrum at sufficiently weak
+strength. This is a credited exposition of standard mechanisms: Exner--Minakov
+already proved planar binding and used the exponential/Stokes normal-defect
+argument; the graph absence conclusion also follows from the established
+Hoang--Hundertmark--Richter--Vugalter bound after the explicit geometric
+comparison supplied here. We give both that implication and a self-contained
+Hardy--trace certificate. Historical priority of the exact remaining geometric
+formulations, novelty, worldwide open status and independent discovery remain
+unresolved. Extensive AI assistance was used; this note is unrefereed.
+\end{abstract}
+
+\section{Question, conventions and attribution}
+Write $n=m+1\ge2$, $z=(x,y)\in\R^m\times\R$, and $H=\{y>0\}$.
+The attractive Robin operator $L_{\beta,\Omega}$, $\beta>0$, is the
+self-adjoint operator associated with
+\begin{equation}\label{form}
+ q_{\beta,\Omega}[u]=\int_\Omega|\nabla u|^2\dd z
+       -\beta\int_{\partial\Omega}|u|^2\dd S,\qquad D(q)=H^1(\Omega).
+\end{equation}
+Its outward condition is $\partial_\nu u=\beta u$; the flat threshold is
+$-\beta^2$. The negative parameter $\alpha$ on the AIM source page
+\cite{AIM} equals $-\beta$. The relevant problem and its immediately preceding
+introduction impose no ambient-dimension restriction. Our negative answer is
+to that literal wording, without a claim about an unstated intended dimension
+or the question's current worldwide status.
+
+A \emph{smooth compact perturbation} means a connected open $\Omega$ with
+$C^\infty$ boundary, $\Omega\mathbin\triangle H$ bounded and $\Omega\ne H$.
+We allow disconnected boundary and overhangs. For the graph statement we use
+$f\in W^{1,\infty}_c(\R^m)$ and $\Omega_f=\{y>f(x)\}$.
+
+\begin{theorem}\label{main}
+The following statements hold.
+\begin{enumerate}
+\item Every smooth compact perturbation has
+$\sigma_\ess(L_{\beta,\Omega})=[-\beta^2,\infty)$.
+In ambient dimensions $n=2,3$, it has a discrete eigenvalue below
+$-\beta^2$ for every $\beta>0$.
+\item If $m\ge3$ and $f\in W^{1,\infty}_c(\R^m)$, there is
+$\beta_0(f)>0$ such that, for $0<\beta\le\beta_0(f)$,
+\[
+ \sigma(L_{\beta,\Omega_f})=
+ \sigma_\ess(L_{\beta,\Omega_f})=[-\beta^2,\infty).
+\]
+\item In $\R^4$, the nonzero $C^\infty$ graph $f=h/100$, where
+\begin{equation}\label{bump}
+ h(x)=\begin{cases}\exp(-1/(1-|x|^2)),&|x|<1,\\0,&|x|\ge1,\end{cases}
+\end{equation}
+satisfies $\sigma(L_{1,\Omega_f})=[-1,\infty)$.
+For every prescribed $\beta_*>0$, a sufficiently small nonzero
+$f=\varepsilon h$ gives another absence example at $\beta_*$.
+\end{enumerate}
+\end{theorem}
+
+The planar single-infinite-$C^4$-curve, same-line-tail case of part 1 is due to
+Exner--Minakov \cite[Theorem 5.2]{EM}. Their proof already uses
+$\psi(x)e^{-\beta y}$ and Stokes' formula; its oriented curve factor is exactly
+the planar specialization of our $-(1+\nu_y)$ defect. We credit the mechanism
+as well as the theorem. The argument below verifies the additional boundary
+components and dimension-three scope directly. These scopes' exact historical
+priority remains unknown. Part 2 and the explicit example are also corollaries
+of the published massive-relativistic bound \cite[Theorem A.6]{HHRV}, through
+the all-form comparison in Section~\ref{prior}. We do not present the
+dimensional threshold or the flat Robin/relativistic reduction as new
+mechanisms. The latter is established in Frank--Laptev \cite{FL}; ground-state
+null sequences and criticality are established frameworks \cite{PV}.
+
+The theorem does not assert absence for one fixed nonzero graph at all
+couplings, classify arbitrary nongraph perturbations in $n\ge4$, or exclude
+embedded eigenvalues. Equality of spectral sets with the essential interval
+alone does not exclude embedded point spectrum.
+
+\section{Forms and essential spectrum}
+Finite boundary charts on the altered compact part, together with the flat
+trace estimate elsewhere, give for every $\epsilon>0$
+\[
+ \|\operatorname{Tr}u\|^2_{L^2(\partial\Omega)}
+ \le \epsilon\|\nabla u\|^2+C_\epsilon\|u\|^2.
+\]
+Thus \eqref{form} is semibounded and closed, with a sufficiently shifted form
+norm equivalent to $H^1$. Smooth functions compactly supported on the closure
+are a form core in the smooth case. For Lipschitz graphs the bi-Lipschitz
+flattening $(x,t)\mapsto(x,t+f(x))$ transfers density from $H$. Trial functions
+need not satisfy the operator's Robin boundary condition.
+Integration on flat vertical fibers gives
+\begin{equation}\label{flat}
+ Q_H[u]:=q_{\beta,H}[u]+\beta^2\|u\|^2
+ =\|\nabla_xu\|^2+\|\partial_yu+\beta u\|^2\ge0.
+\end{equation}
+For any geometry in the theorem choose a smooth real partition
+$\chi^2+\zeta^2=1$, with $\chi$ compactly supported and $\zeta$ zero near all
+geometric changes. The function $\zeta u$, extended across the missing part
+where necessary, lies in $H^1(H)$. IMS localization and semiboundedness of the
+compact part imply, for a fixed bounded $K$,
+\begin{equation}\label{ims}
+ Q_\Omega[u]:=q_{\beta,\Omega}[u]+\beta^2\|u\|^2
+ \ge -C\int_K|u|^2.
+\end{equation}
+Indeed the exterior form is nonnegative by \eqref{flat}; the compact form and
+IMS error are bounded below by local $L^2$ mass.
+If $\lambda<-\beta^2$ were essential, a normalized weakly null operator Weyl
+sequence at $\lambda$ would have bounded $H^1$ norm by trace coercivity.
+Local Rellich compactness makes its mass in $K$ tend to zero, contradicting
+\eqref{ims} and $Q[u_j]\to\lambda+\beta^2<0$.
+
+Conversely let $\eta\in C_c^\infty(\R^m)$ have norm one and choose
+\[
+ \eta_R(x)=R^{-m/2}\eta((x-a_R)/R),\qquad
+ u_R(x,y)=\sqrt{2\beta}\,\eta_R(x)e^{ik\cdot x}e^{-\beta y}.
+\]
+Choose $a_R$ so the entire tangential support escapes to infinity and lies
+outside the projection of every alteration. Extend by zero off those flat
+fibers. Integration by parts against all $H^1$ tests shows $u_R$ is in the
+operator domain: it has the flat Robin condition on its boundary support and
+$L u_R=-\Delta u_R$. This uses no global $H^2$ domain characterization.
+Its norm is one, it tends weakly to zero, and its residual at
+$|k|^2-\beta^2$ has norm $O(|k|R^{-1})+O(R^{-2})$.
+These operator Weyl sequences prove
+\begin{equation}\label{ess}
+ \sigma_\ess(L_{\beta,\Omega})=[-\beta^2,\infty).
+\end{equation}
+Below this interval spectrum is discrete, of finite multiplicity, and can
+accumulate only at the threshold.
+
+\section{Normal defect and low-dimensional binding}
+Put $\phi=e^{-\beta y}$. Since $\Delta\phi=\beta^2\phi$ and
+$\partial_\nu\phi=-\beta\nu_y\phi$, integration by parts gives, first for
+compactly supported core functions $v$,
+\begin{equation}\label{gs}
+ Q_\Omega[\phi v]=\int_\Omega\phi^2|\nabla v|^2
+ -\beta\int_{\partial\Omega}(1+\nu_y)\phi^2|v|^2\dd S.
+\end{equation}
+Real parts of the cross term give the same formula for complex $v$.
+The integrand in
+\[
+ B_\beta(\Omega)=\int_{\partial\Omega}(1+\nu_y)e^{-2\beta y}\dd S
+\]
+is nonnegative and supported on the compact altered part. It is finite and
+strictly positive. To see the latter, zero total would force
+$\nu=-e_y$ everywhere by continuity. Each boundary component would then be
+locally horizontal, open in its containing horizontal plane, and closed in
+$\R^n$, hence the full plane. Compact agreement permits only $y=0$.
+Connectedness and agreement with $H$ at infinity then force $\Omega=H$,
+a contradiction. Overhangs and compact obstacle boundaries do not change
+this sign or this argument.
+
+Take $R_0$ larger than the projection of all alterations and a compactly
+supported Lipschitz $\psi(x)$ equal to one near $B_{R_0}$.
+The function $\phi\psi$ lies in $H^1(\Omega)$: the domain is bounded below,
+and its upward tail is exponentially integrable. Vertical truncations above
+the alteration have vanishing exponential errors, so \eqref{gs} applies.
+The support of $\nabla\psi$ sees exactly flat whole vertical fibers, whence
+\begin{equation}\label{capacity}
+ Q_\Omega[\phi\psi]=\frac1{2\beta}\int_{\R^m}|\nabla\psi|^2
+                         -\beta B_\beta(\Omega).
+\end{equation}
+For $m=1$ use two linear tapers of length $L$ outside $[-R_0,R_0]$;
+their total energy is $2/L$. For $m=2$ use the radial logarithmic taper from
+$R_0$ to $R$, of energy $2\pi/\log(R/R_0)$. Both tend to zero.
+Equation~\eqref{capacity} is negative for a sufficiently large cutoff;
+\eqref{ess} and min--max prove part 1.
+
+This is an actual-domain null-sequence argument. In the terminology of
+\cite{PV}, the auxiliary pair $P_0=-\Delta+\beta^2$,
+$B_0u=\partial_\nu u+\beta\nu_yu$ has the positive solution $\phi$ and
+transformed energy $\int_\Omega\phi^2|\nabla v|^2$.
+The same tangential cutoffs, with vertical heights chosen afterwards to kill
+each tail error and normalization on a fixed interior ball, supply its null
+sequence. Smooth approximation supplies the required local core.
+Subtracting the strictly positive compact boundary defect gives binding.
+Thus we verify geometry and trace mass rather than assume flat criticality
+transfers to an altered domain. The interior-potential perturbation remark in
+\cite[Remark 5.22]{PV} is not a theorem about arbitrary domain changes.
+
+\section{An elementary all-form graph estimate}\label{hardy}
+Let $m\ge3$, $K=\operatorname{supp}f\subset\overline B_R$, and put
+\[
+ M=\|f\|_\infty,\quad G=\|\nabla f\|_\infty,\quad
+ D=\sqrt{1+G^2}-1,\quad A=\frac{4R^2}{(m-2)^2},\quad
+ c=\frac1{2(1+G^2)}.
+\]
+Classical tangential Hardy gives
+\begin{equation}\label{localhardy}
+ \int_K|a|^2\le A\int_{\R^m}|\nabla a|^2.
+\end{equation}
+For completeness, expand
+$0\le\int|\nabla a+a_0p_\delta a|^2$ with
+$a_0=(m-2)/2$ and $p_\delta=x/(|x|^2+\delta^2)$.
+Since $\operatorname{div}p_\delta=((m-2)|x|^2+m\delta^2)/
+(|x|^2+\delta^2)^2$, integration by parts yields
+\[
+ \int|\nabla a|^2\ge a_0^2\int
+   \frac{|x|^2}{(|x|^2+\delta^2)^2}|a|^2.
+\]
+The omitted $a_0m\delta^2$ term is nonnegative for $m\ge3$.
+Fatou and density prove Hardy; $1\le R^2/|x|^2$ on the ball gives
+\eqref{localhardy}.
+
+For a compact-support flattened core write
+$u(x,t+f(x))=e^{-\beta(t+f(x))}w(x,t)$, $t>0$, and set
+\[
+ E_x=\int_H e^{-2\beta t}|\nabla_xw|^2,\quad
+ E_t=\int_H e^{-2\beta t}|w_t|^2,\quad E=E_x+E_t.
+\]
+If $L_K=\int_{K\times(0,\infty)}e^{-2\beta t}|w|^2$
+and $T_K=\int_K|w(x,0)|^2$, then
+$L_K\le A E_x$ and vertical integration gives
+\begin{equation}\label{trace}
+ T_K=2\beta L_K-2\operatorname{Re}\int_{K\times(0,\infty)}
+   e^{-2\beta t}\overline w w_t
+ \le (2\beta A+\sqrt A)E.
+\end{equation}
+The last step uses $2\sqrt{E_xE_t}\le E_x+E_t$.
+The weak chain rule and vertical-fiber integration give the exact identity
+\begin{align}\label{graph}
+ Q_f[u]={}&\int_H e^{-2\beta(t+f)}
+    (|\nabla_xw-\nabla f\,w_t|^2+|w_t|^2)\nonumber\\
+ &-\beta\int_{\R^m}e^{-2\beta f}
+       (\sqrt{1+|\nabla f|^2}-1)|w(x,0)|^2\dd x.
+\end{align}
+In particular the Robin surface Jacobian is retained; the fiber endpoint
+$+\beta|w(0)|^2$ combines with $-\beta\sqrt{1+|\nabla f|^2}|w(0)|^2$.
+For $|g|\le G$, the triangle inequality squared gives
+\[
+ |a|^2+|b|^2\le2|a-gb|^2+(2G^2+1)|b|^2
+ \le2(1+G^2)(|a-gb|^2+|b|^2).
+\]
+Equations~\eqref{trace}--\eqref{graph} therefore imply
+\begin{equation}\label{lower}
+ Q_f[u]\ge
+ \big[e^{-2\beta M}c-\beta e^{2\beta M}D(2\beta A+\sqrt A)\big]E.
+\end{equation}
+Consequently
+\begin{equation}\label{criterion}
+ \beta D e^{4\beta M}(2\beta A+\sqrt A)\le c
+\end{equation}
+implies $Q_f\ge0$ on all of $H^1(\Omega_f)$. Indeed we first used a dense
+compact-support core, where the exponential and its inverse are bounded,
+then use form continuity and $H^1$ density. We never assume multiplication
+by the globally growing $e^{\beta y}$ preserves $H^1$.
+For fixed $f$, the left side of \eqref{criterion} tends to zero as
+$\beta\downarrow0$; an interval $(0,\beta_0]$ follows. Together with
+\eqref{ess} this proves part 2. The flat case $f=0$ holds for all strengths.
+The homogeneous estimate \eqref{localhardy} is unavailable in $m=1,2$,
+consistently with their capacity cutoffs.
+
+\section{A complete earlier-theorem implication}\label{prior}
+We now give the alternative derivation from the published
+Hoang--Hundertmark--Richter--Vugalter theorem \cite{HHRV}, to make the
+attribution substantive. Set
+$U(x,t)=e^{\beta f(x)}u(x,t+f(x))$.
+This is a bounded $H^1$ isomorphism because flattening is bi-Lipschitz and
+$e^{\beta f}$ and its inverse are bounded Lipschitz multipliers.
+Writing $b=U_t+\beta U$, direct expansion gives, on all of $H^1$ by density,
+\begin{align*}
+ Q_f[u]={}&\int_H e^{-2\beta f}
+       (|\nabla_xU-\nabla f\,b|^2+|b|^2)\\
+ &-\beta\int e^{-2\beta f}(\sqrt{1+|\nabla f|^2}-1)|U(x,0)|^2.
+\end{align*}
+Hence, with $a_\beta=e^{-2\beta M}c>0$,
+$v_\beta=\beta D e^{4\beta M}/c$ and
+$E_\beta[U]=\int_H(|\nabla_xU|^2+|U_t+\beta U|^2)$,
+\begin{equation}\label{bridge}
+ Q_f[u]\ge a_\beta\left(E_\beta[U]
+                      -v_\beta\int_K|U(x,0)|^2\right).
+\end{equation}
+For the unitary tangential Fourier transform put
+$\rho=(|p|^2+\beta^2)^{1/2}$ and $a_0=U(\cdot,0)$. Completion of the vertical
+square gives
+\begin{align}\label{square}
+ E_\beta[U]&=\int_{\R^m}\int_0^\infty
+       |\partial_t\widehat U+\rho\widehat U|^2\dd t\dd p
+       +\int_{\R^m}(\rho-\beta)|\widehat a_0|^2\dd p\nonumber\\
+ &\ge\langle a_0,T_\beta a_0\rangle,
+ \qquad T_\beta=\sqrt{-\Delta+\beta^2}-\beta.
+\end{align}
+The identity extends from the core; $a_0\in H^{1/2}$.
+Frank--Laptev \cite[Theorem 3.2 and Lemma 3.4]{FL} already establish the flat
+Robin/relativistic duality, but their form-compact boundary-potential
+hypothesis does not include the nondecaying attractive constant baseline.
+We use \eqref{square} directly rather than apply that theorem outside its
+hypotheses.
+
+For fixed $\beta>0$ the form norm of $T_\beta+1$ is equivalent to
+$H^{1/2}(\R^m)$. The bounded potential $V=-v_\beta\mathbf1_K$ is relatively
+form small. Multiplication by $|V|^{1/2}$ is compact from $H^{1/2}$ to $L^2$,
+by local Rellich compactness on a ball containing $K$. Thus the essential
+spectrum stays $[0,\infty)$ and the hypotheses for the quantitative bound
+in \cite{HHRV} are satisfied.
+
+For $m\ge3$, published Theorem A.6 gives
+\begin{equation}\label{hhrv}
+ N(T_\beta+V)\le\frac{\theta^2}{(1-2\theta)^2}C_m
+ \int(\theta^{-2}V_-)^{m/2}
+      (\theta^{-2}V_-+2\beta)^{m/2},
+\end{equation}
+where $0<\theta<1/2$, $C_m=\frac m{m-2}\frac{\omega_m}{(2\pi)^m}$,
+$\omega_m$ is the unit-ball volume, and $N$ counts strictly negative
+eigenvalues with multiplicity. The version of record was published in 2022
+and appears in the 2023 journal volume. Its source mass is our $\beta$ and
+its dimension is our boundary dimension $m$. The 2017 arXiv v2
+Theorem 3.6 instead has denominator $(1-4\theta)^2$ and
+$0<\theta<1/4$. Our choice $\theta=1/4$ uses only the authenticated
+\emph{published} formula; it must not be inserted in that preprint formula.
+
+Take $\theta=1/4$. For $0<\beta\le1$ set $C_f=D e^{4M}/c$,
+so $v_\beta\le\beta C_f$. Then
+\begin{equation}\label{count}
+ N(T_\beta-v_\beta\mathbf1_K)
+ \le L_f\beta^m,\quad
+ L_f=\frac{|K|C_m}{4}[16C_f(16C_f+2)]^{m/2}.
+\end{equation}
+For $D>0$ choose
+$\beta_0=\min\{1,(2L_f)^{-1/m}\}$; for $D=0$, compact support makes
+$f=0$. Since $N$ is an integer, \eqref{count} gives $N=0$.
+There is no other negative spectrum, by the verified essential-spectrum
+hypothesis; hence $T_\beta-v_\beta\mathbf1_K\ge0$.
+Equations~\eqref{bridge}--\eqref{square} prove $Q_f\ge0$ on its entire
+form domain. This is a complete earlier-theorem corollary for part 2,
+not an effective-operator heuristic. Its exact geometric historical priority
+remains unknown.
+
+\section{Two exact certificates for the specified graph}
+The flat extension of $e^{-1/s}$ at $s=0$ makes \eqref{bump} smooth.
+It is positive at zero. For $r=|x|<1$ and $q=(1-r^2)^{-1}\ge1$,
+\[
+ |\nabla h|=2r q^2e^{-q}\le2q^2e^{-q}\le8/e^2<2.
+\]
+Thus for $f=h/100$, $M<1/100$, $G<1/50$, $D<1/5000$,
+and $c>1250/2501$. At $\beta=1$ and $m\ge3$, $A\le4$ and
+$2A+\sqrt A\le10$. The power-series comparison
+$e^{1/25}<1/(1-1/25)=25/24$ gives
+\[
+ D e^{4M}(2A+\sqrt A)<1/480<1250/2501<c.
+\]
+The rational margin is $1250/2501-1/480=597499/1200480>0$.
+This proves \eqref{criterion} exactly, without numerical spectral input.
+
+Independently, for $m=3$, \eqref{hhrv} gives a certificate from the prior
+bound. Here $v_1<2501/6000000$; putting $s=16v_1$ gives
+$s<2501/375000<1/100$ and $s(s+2)<201/10000<1/40$.
+Since $C_3=1/(2\pi^2)$ and $|K|\le4\pi/3$,
+\[
+ N(T_1-v_1\mathbf1_K)\le\frac{[s(s+2)]^{3/2}}{6\pi}<1/240<1.
+\]
+We used $s(s+2)<1$ and $\pi>1$ in the final coarse strict bound.
+Both routes establish part 3 with \eqref{ess}. The graph and its domain
+are connected and smoothly diffeomorphic to $\R^3$ and $H$, respectively;
+$\Omega_f\mathbin\triangle H$ lies in a bounded unit cylinder.
+For each fixed prescribed $\beta_*$, replacing $f$ by $\varepsilon h$ makes
+$M,G\to0$ and $D=O(\varepsilon^2)$, so either certificate eventually applies.
+The graph is allowed to depend on $\beta_*$.
+
+\section{Source and verification limits}
+The standard large-strength curvature binding theorem of
+Pankrashkin--Popoff \cite{PP} is compatible with weak-strength absence.
+The 2017 delta-interaction work and slides \cite{EKL} describe Robin
+expectations, not the Robin theorems proved here. Deformation amplitude and
+Robin strength are distinct parameters. Delta absence does not imply
+selected-side Robin absence: the two-sided Robin form has the larger direct
+sum form domain and its restriction to matching traces is the delta form
+at strength $2\beta$. Its form order points the wrong way for that inference.
+The full printed magnetic model of \cite{BSZ} requires $B>0$ comparable to
+$\beta^\sigma$, $\sigma\ge2$, and sufficiently large $\beta$; it does not
+apply to our zero-field statements.
+
+The support kit preserves exact submitted and authored audit bytes, versioned
+source-access records and finite standard-library checks. It excludes full
+third-party bodies and image caches individually; access failures are not
+evidence of novelty. The AIM passage was retrieved over plain HTTP without a
+certificate bypass, a qualified provenance rather than authenticated HTTPS.
+The published HHRV theorem was checked from the publisher body; the
+Exner--Minakov and other specified arXiv interfaces are not represented as
+byte-identical journal bodies. Priority of the exact remaining geometric
+formulations, novelty, worldwide open status and independent discovery are
+all unknown. No claim of first solution is made.
+
+AI tools were used extensively in solving, checking, source comparison and
+writing. This independent research note is unrefereed, has not received human
+peer review, and is not a proof-assistant certificate. Its finite checks
+verify selected exact algebra and custody; they do not replace the universal
+arguments above. The accompanying edition records the required subsequent
+whole-package adversarial review gate separately from historical math audits.
+The paper and newly authored support materials are offered under CC BY 4.0.
+
+\begin{thebibliography}{9}
+\bibitem{AIM} American Institute of Mathematics, \emph{Shape optimization with
+surface interactions}, Problem 1.4, \url{http://aimpl.org/shapesurface/1/}
+(accessed 14 October 2026; literal dimension-unrestricted passage).
+\bibitem{EM} P. Exner and A. Minakov, \emph{Curvature-induced bound states in
+Robin waveguides and their asymptotical properties}, J. Math. Phys. 55 (2014),
+122101, \href{https://doi.org/10.1063/1.4903184}{doi:10.1063/1.4903184}.
+Inspected arXiv:1406.7624v1, Section 5, especially Theorem 5.2 and its proof.
+\bibitem{HHRV} V. Hoang, D. Hundertmark, J. Richter and S. Vugalter,
+\emph{Quantitative bounds versus existence of weakly coupled bound states
+for Schr\"odinger type operators}, Ann. Henri Poincar\'e 24 (2023), 783--842,
+\href{https://doi.org/10.1007/s00023-022-01228-3}{doi:10.1007/s00023-022-01228-3}.
+Published online 10 September 2022; publisher Theorem A.6, printed p. 817.
+The distinct arXiv:1610.09891v2 (2017) has different constants.
+\bibitem{FL} R. L. Frank and A. Laptev, \emph{Spectral inequalities for
+Schr\"odinger operators with surface potentials}, AMS Transl. Ser. 2,
+225 (2008), 91--102. Inspected arXiv:0711.3473v1 and author-hosted version,
+Theorem 3.2 and Lemma 3.4.
+\bibitem{PV} Y. Pinchover and I. Versano, \emph{On criticality theory for
+elliptic mixed boundary value problems in divergence form},
+arXiv:2008.03699v1 (2020), especially Definition 3.15 and Theorem 6.4.
+\bibitem{PP} K. Pankrashkin and N. Popoff, \emph{An effective Hamiltonian
+for the eigenvalue asymptotics of the Robin Laplacian with a large parameter},
+J. Math. Pures Appl. 106 (2016), 615--650,
+\href{https://doi.org/10.1016/j.matpur.2016.03.005}{doi:10.1016/j.matpur.2016.03.005}.
+Inspected arXiv:1502.00877v2, Corollary 1.6.
+\bibitem{EKL} P. Exner, S. Kondej and V. Lotoreichik,
+\emph{Asymptotics of the bound state induced by delta-interaction supported
+on a weakly deformed plane}, arXiv:1703.10854v1 (2017), Section 4;
+V. Lotoreichik, Trier 2017 slides, printed slides 9 and 15,
+\url{https://aamp.fjfi.cvut.cz/lotoreichik/Trier2017.pdf}.
+\bibitem{BSZ} D. Barseghyan, B. Schneider and Y. Zhang,
+\emph{Spectral properties of the magnetic Robin Laplacian on curvilinear half-plane}, arXiv:2609.03783v1 (2026), Theorem 1.
+The full printed positive-field and large-strength assumptions were checked
+for applicability only, not every magnetic argument.
+\end{thebibliography}
+\end{document}

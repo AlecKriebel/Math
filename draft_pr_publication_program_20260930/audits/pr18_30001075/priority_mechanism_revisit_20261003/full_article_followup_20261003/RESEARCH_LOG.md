@@ -1,0 +1,6 @@
+# PR18 full published-article follow-up
+
+- 2026-10-03T21:15:29Z: The preceding bounded access-limited report/source receipt completed just before ROOT supplied the user's legitimate full PDF. Preserve that dated snapshot unchanged; new priority adjudication depends on direct full-body reading. Completion0% for this full-body follow-up; attempt/audit/novelty credit0.
+- 2026-10-03T21:19:47Z:90% of this follow-up. Personally read all30 extracted pages674–703 including all presented proofs, remarks and bibliography, and visually inspected9 notation-critical pages. Genuine extraction/render operator/source/fullstream evidence retained privately. Actual k-flat extension and Mnëv range identified; no exact support-line spatial-measure theorem or complete adapter found.
+- Remaining work: finalize authored report and source reading receipt; ROOT personally reads and adjudicates priority. No publication, Git, native status or remote change is authorized to this preparer.
+- 2026-10-03T21:24:54.793855+00:00:100% of the full published-article follow-up. All30 pages personally read;9 selected page images inspected; authored exact scope/non-adapters complete. Source body unchanged; owned files frozen. No combined-body access gap remains in this family. ROOT priority decision/publication remain later steps; new attempt/audit/novelty0.

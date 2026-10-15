@@ -1,0 +1,3 @@
+# Superseded source-framing checkpoint
+
+2026-10-06T17:43:00Z: Root reported that a high-resolution inspection of the actual Kuznetsov–Mokaev PDF shows the partial-sum relation is >=0. The smaller image had obscured the lower bar, producing an incorrect source-attribution statement in root repaired_diagnostics_v1/COUNTEREXAMPLE.md. This snapshot preserves the prior checkpoint, whose review explicitly did not independently verify external primary-source wording. Its v1-body acceptance is withdrawn and must not be used as final clearance. The independently reconstructed Cartesian flow, exact global attractor, and nonnegative-convention Lyapunov spectra/dimension calculations are unchanged. A new v2 body will be checked before final source-bound clearance.

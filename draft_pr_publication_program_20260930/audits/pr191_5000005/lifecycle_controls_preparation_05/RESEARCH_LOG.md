@@ -1,0 +1,3 @@
+# PR191 lifecycle controls generation05 research log
+
+2026-10-15T06:55:29.141508+00:00 —100% preparation for independent05 review; wider programme active. Read/authenticated complete terminal04 REPAIR_REQUIRED. Applied exactly two runtime additions: full true-parent/HEAD/BASE/DOI QUEUE rederivation at every95 consumption, and schema/evidence/current-clock/order checks on both programme dates at95/100. Retained all384 controls, added reported coherent full-flow/bad/boundary-date/no-expiry regressions;440 assertions pass. Earlier01–04 and shared science unchanged; no production/network/Git or actual authority actions. Pinned inert Rootv4 and dated556 seed. Terminal freeze awaits NEW independent05 adversary.

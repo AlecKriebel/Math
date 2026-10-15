@@ -1,0 +1,1 @@
+Original old review files apply to ORIGINAL_PARTIAL.md only. Edited current PARTIAL and source qualification separately passed a NEW complete current gate plus root reproduction; immutable reviewed manifests and complete dependencies are preserved. Accepted administration archives every superseded pending field. No full3D or4D theorem, novel solution, paper or new DOI.

@@ -1,0 +1,26 @@
+{
+  "label": "try_older_public_fs_downloads",
+  "argv": [
+    "/usr/bin/python3",
+    "-c",
+    "import urllib.request,pathlib,hashlib,json; p=pathlib.Path(\"/tmp/pr66_mechanism_priority_20261004_private\"); urls=[(\"fs-citeseer-1999.pdf\",\"https://citeseerx.ist.psu.edu/document?doi=012c27ee014fc232d822cdccf7fbffe75ee2f532&repid=rep1&type=pdf\"),(\"fs-publisher.pdf\",\"https://www.worldscientific.com/doi/pdf/10.1142/9789812792679_0006\")];\nfor name,url in urls:\n try:\n  r=urllib.request.urlopen(url,timeout=20); d=r.read(); mime=r.headers.get(\"Content-Type\");\n  if d.startswith(b\"%PDF\"): (p/name).write_bytes(d)\n  print(json.dumps({\"url\":url,\"mime\":mime,\"bytes\":len(d),\"pdf\":d.startswith(b\"%PDF\"),\"sha256\":hashlib.sha256(d).hexdigest()}))\n except Exception as e: print(json.dumps({\"url\":url,\"error\":str(e)}))"
+  ],
+  "pid": 66679,
+  "cwd": "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/mechanism_priority_20261004",
+  "started_utc": "2026-10-04T16:57:16.679850+00:00",
+  "runner_pid": 66671,
+  "runner_argv": [
+    "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr66_10400033/mechanism_priority_20261004/audit_runner.py",
+    "try_older_public_fs_downloads",
+    "--",
+    "/usr/bin/python3",
+    "-c",
+    "import urllib.request,pathlib,hashlib,json; p=pathlib.Path(\"/tmp/pr66_mechanism_priority_20261004_private\"); urls=[(\"fs-citeseer-1999.pdf\",\"https://citeseerx.ist.psu.edu/document?doi=012c27ee014fc232d822cdccf7fbffe75ee2f532&repid=rep1&type=pdf\"),(\"fs-publisher.pdf\",\"https://www.worldscientific.com/doi/pdf/10.1142/9789812792679_0006\")];\nfor name,url in urls:\n try:\n  r=urllib.request.urlopen(url,timeout=20); d=r.read(); mime=r.headers.get(\"Content-Type\");\n  if d.startswith(b\"%PDF\"): (p/name).write_bytes(d)\n  print(json.dumps({\"url\":url,\"mime\":mime,\"bytes\":len(d),\"pdf\":d.startswith(b\"%PDF\"),\"sha256\":hashlib.sha256(d).hexdigest()}))\n except Exception as e: print(json.dumps({\"url\":url,\"error\":str(e)}))"
+  ],
+  "ended_utc": "2026-10-04T16:57:36.840299+00:00",
+  "exit_status": 0,
+  "stdout_bytes": 269,
+  "stderr_bytes": 0,
+  "stdout_sha256": "c83ea7236ecb349215208833fe7eb8dbbfb2adf07cde33d6d265209d1131cab5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

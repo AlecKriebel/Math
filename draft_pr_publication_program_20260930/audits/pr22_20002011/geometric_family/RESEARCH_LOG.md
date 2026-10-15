@@ -1,0 +1,7 @@
+# Geometric realization audit log
+
+- 2026-10-01T19:00:02Z: Established the independently assigned geometric and closed-manifold family, confined to this directory. Read root and prioritization policies. Completion estimate 10% toward this family's audit, with no new original target attempt.
+- 2026-10-01T19:00:40Z: Independently retrieved the full 2003 AIM source, SHA-256 `6819b9d6e0143abd6db6c456490950375b801fc67564b4b195c36b2596c63d72`. Read printed pp. 16–18 and 28. Confirmed the primitive-versus-divergence distinction and exact duplicate. Completion estimate 25%.
+- First-pass seal timestamp is recorded in `FIRST_PASS_SEAL.json`. Reconstructed the full density variation, cubic torus jets, absence of connection commutator terms, exact point value 24, and a global integral witness by a squared skew-operator output. No old scripts, old results, old reviews, parent mathematics, or sibling mathematics were consulted. Completion estimate 45%; published-source proof and exact reproduction remain.
+
+- 2026-10-01T19:14:26.346692+00:00: Completed fresh primary proof/source adapters, rendered original AIM and Branson typeset pages, all 15 exact Git/snapshot bindings and both byte-identical old replays. New whole-cubic/trace/dimension/volume controls pass 3,194 assertions. Mathematics and published negative source status pass; one P3 current provenance scope correction is required. Family audit completion estimate 100%, original attempt remains 1/5, repaired conjecture not evaluated. No external communication/publication/Git mutation.

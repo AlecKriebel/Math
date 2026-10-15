@@ -1,0 +1,1070 @@
+                                                         On the Approximation of Submodular Functions
+                                                Nikhil R. Devanur∗           Shaddin Dughmi†     Roy Schwartz∗                     Ankit Sharma‡
+                                                                                                ∗
+                                                                                     Mohit Singh
+
+                                                                                       October 29, 2018
+
+
+
+
+arXiv:1304.4948v1 [cs.DS] 17 Apr 2013
+                                                                                             Abstract
+                                                    Submodular functions are a fundamental object of study in combinatorial optimization,
+                                                economics, machine learning, etc. and exhibit a rich combinatorial structure. Many subclasses
+                                                of submodular functions have also been well studied and these subclasses widely vary in their
+                                                complexity. Our motivation is to understand the relative complexity of these classes of functions.
+                                                Towards this, we consider the question of how well can one class of submodular functions
+                                                be approximated by another (simpler) class of submodular functions. Such approximations
+                                                naturally allow algorithms designed for the simpler class to be applied to the bigger class of
+                                                functions. We prove both upper and lower bounds on such approximations. Our main results
+                                                are:
+                                                   • General submodular functions1 can be approximated by cut functions of directed graphs
+                                                     to a factor of n2 /4, which is tight.
+                                                   • General symmetric submodular functions1 can be approximated by cut functions of undi-
+                                                     rected graphs to a factor of n − 1, which is tight up to a constant.
+                                                   • Budgeted additive functions can be approximated by coverage functions to a factor of
+                                                     e/(e − 1), which is tight.
+                                                Here n is the size of the ground set on which the submodular function is defined. We also
+                                                observe that prior works imply that monotone
+                                                                                           √ submodular functions can be approximated by
+                                                coverage functions with a factor between O( n log n) and Ω(n1/3 / log2 n).
+
+
+                                        1       Introduction
+                                        Submodular optimization problems have been a rich area of research in recent years, motivated
+                                        by the principle of diminishing marginal returns which is prevalent in real world applications.
+                                        Such functions are ubiquitous in diverse disciplines, including economics, algorithmic game theory,
+                                        machine learning, combinatorial optimization and combinatorics. While submodular function can
+                                        be minimized efficiently, i.e., in polynomial time [16, 23, 18], many natural optimization problems
+                                        over submodular functions are NP-hard, e.g., Max-k-Coverage [20], Max-Cut and Max-DiCut [14],
+                                        and Max-Facility-Location [9]. Consequently, many works, specifically in the setting of algorithmic
+                                        game theory [7, 10, 11, 17], have explored simpler subclasses of submodular functions for which
+                                            ∗
+                                              Microsoft Research, Redmond {nikdev, roysch, mohits}@microsoft.com
+                                            †
+                                              University of Southern California shaddin@usc.edu
+                                            ‡
+                                              Carnegie Mellon University ankits@cs.cmu.edu
+                                            1
+                                              We additionally assume that the submodular function takes value 0 on the null set and the universe.
+
+
+                                                                                                 1
+the given algorithmic problem can still be well-approximated. Such subclasses of submodular
+functions have included cut functions of graphs, coverage functions of set systems, budgeted additive
+functions, matroid rank functions, etc.
+     Our work is motivated by the question, how complex can a submodular function be? Since
+this is such a fundamental question, it has been asked in different forms previously. Goemans et
+al. [13] consider how many queries to a submodular function are sufficient to infer the value of the
+function, approximately, at every point in the domain. Balcan and Harvey [2] focus on the problem
+of learning submodular functions in a probabilistic model; are few random queries enough to infer
+the value at almost all points in the domain? Badanidiyuru et al. [1] ask whether an approximate
+sketch of a submodular function, or more generally a subadditive function, exists (i.e., can the
+function be represented in polynomial space)? Seshadri and Vondrák [24] consider the testability
+of submodular functions: how many queries does it take to check whether a function is close to
+being submodular?
+     We approach this question by noting that not all submodular functions are identically complex
+and some have been more amenable to optimization than others. Thus, one natural way to charac-
+terize the relative complexity of one class of submodular functions w.r.t another, is to ask how well
+can a function in the first class be approximated by a function in the second. Formally, we ask the
+following question. Given two classes of submodular functions F and G (typically G ⊂ F), what is
+the smallest θ, such that for every f ∈ F, there exists a g ∈ G such that f (S) ≤ g(S) ≤ θ · f (S) for
+each S ⊆ U ? Here class G would represent the class of submodular functions which are easier to
+optimize for some problem and class F would represent a bigger class which we want to optimize
+over. We also note that this concept of approximation is not special to submodular functions and
+can be asked for any two classes of functions. We focus on submodular functions due to their
+ubiquitous nature in optimization.
+     Intuitively, this notion of approximation resembles the long and rich line of work that deals
+with the algorithmic applications of geometric embeddings, in which the goal is to embed hard
+metric spaces into simpler ones. Some successful examples include embedding general metrics into
+normed spaces [5], dimension reduction in a Euclidean space [19] and the probabilistic embedding
+into ultrametrics [4, 12]. As in the metric case, a natural byproduct of the above approach is that
+if there exists an α-approximation algorithm for any submodular function in G, then there exists a
+(θ · α)-approximation algorithm for all functions in F. As an application of our approach, we show
+how to obtain an algorithm for the online submodular function maximization problem, for general
+monotone submodular functions [6]. Previously, results were known for only certain subclasses of
+submodular functions; see Appendix E for details.
+
+1.1   Our Results and Techniques
+We start by asking how well a general submodular function f : 2U → R+ (with the additional prop-
+erty that f (φ) = 0 = f (U )) can be approximated by a function in the canonical simpler subfamily
+of non-symmetric submodular functions, cut function of a directed graph. We give matching upper
+and lower bounds for such an approximation (Theorem 1.1). Next, we ask the same question for
+symmetric submodular functions vis-a-vis its canonical simpler subfamily, cut functions of undi-
+rected graphs. In this case, we provide nearly matching upper and lower bounds (Theorem 1.2).
+We then move our attention to two subfamilies, budgeted additive functions and coverage func-
+tions, both of which, as already mentioned in the introduction, have received considerable interest
+in the algorithmic game theory setting. We show tight upper and lower bounds for approximating
+
+                                                  2
+                                                             Approximation       Approximation
+        Input Class                Output Class
+                                                             Upper Bound          Lower Bound
+                                                                    n2                    n2
+   General Submodular         Cut Functions (directed)              4                     4
+                                                                                          n
+ Symmetric Submodular        Cut functions (undirected)            n−1                    4
+                                                                     e                    e
+      Budgeted Additive               Coverage                      e−1                  e−1
+                                                               √                       n1/3
+  Monotone Submodular       Coverage/Budgeted Additive       O( n log n) [13]      Ω( log 2 ) [2, 1]
+                                                                                           n
+
+
+Table 1: Our results are described in the first three rows. The results in the last row are either
+implicit in the references or follow as a corollary (Appendix G). When the output class is a cut
+function of a graph, we assume that the input function f satisfies f (∅) = f (U ) = 0, as every cut
+function must satisfy this constraint. Here, n denotes the size of the ground set.
+budgeted additive functions with coverage functions (Theorem 1.3). These results are summarized
+in Table 1. While previous works [13, 2, 1] studied the complexity of submodular functions from
+different perspectives, they do imply some additional results, both positive and negative, on the
+approximation of monotone submodular functions by simpler classes of submodular functions (as
+illustrated in Table 1 and discussed in detail in Appendix G).
+    Let us now briefly discuss the main techniques that we use to obtain our results. In contrast
+to previous works [13, 2, 1], arbitrary submodular functions, as opposed to monotone submodular
+functions, present different challenges. As an illustration, for approximating a submodular function
+f via a cut function of a graph G, consider the case when there is a non-trivial set ∅ 6= S 6= U
+for which f (S) = 0. Then the weight of the cut (S, S̄) in G is forced to be zero. Indeed, all
+sets S with f (S) = 0 must be in a correspondence with cuts in G of value zero. Thus, given
+a submodular function f , our construction of G optimizes for the minimizers of the submodular
+function f . Surprisingly, this can be shown to give the best possible approximation. For a symmetric
+submodular function f , we show that it suffices to use the cut function of a tree (as opposed to a
+general undirected graph) utilizing the Gomory-Hu tree representation [15, 21] of f .
+    For approximating budgeted additive functions by coverage functions, we first give a randomized
+construction achieving an approximation factor of e/(e − 1). We then show that this is the best
+possible approximation factor as characterized by a linear program. The proof of the lower bound
+of e/(e − 1) uses linear programming duality and proceeds by presenting a feasible dual solution to
+the linear program achieving an objective value of e/(e − 1) in the limit. We would like to point
+out that all our results are algorithmic and the claimed approximations can be found in polynomial
+time given a value oracle for the submodular function.
+
+1.2     Related Work
+Goemans et al. [13] considered the problem of how well a given monotone submodular function f can
+be approximated when only polynomially many value oracle queries√   are permitted. They presented
+                         √
+an approximation of O ( n log n), and an improved guarantee of n + 1 in the case that f is a
+matroid rank function. Implicit in this algorithm and relevant to our setting is an approximation
+of all monotone submodular functions by budgeted additive functions (Appendix G). The current
+best lower bound for the problem studied by [13] is given by Svitkina and Fleischer [25] and is
+
+
+                                                 3
+   p
+Ω( n/ log n).
+    Balcan and Harvey [2] take the learning perspective to the study of the complexity of submodular
+functions. They study the problem of probabilistically learning a monotone submodular function,
+given the values the function takes on a polynomial sized sample of its domain. They provide a
+lower bound of Ω(n1/3 ) on the best possible approximation a learning algorithm can give to the
+submodular function, even when it knows the underlying sampling distribution, and the submodular
+function to be learned is Lipschitz. Another result with this perspective is by Balcan et al. [3] who
+                                                                                               √
+show that a symmetric non-monotone submodular function can be approximated to within n by
+the square root of a quadratic function. Furthermore, they show how to learn such submodular
+functions.
+    Badanidiyuru et al. [1], motivated by the problem of communicating bidders’ valuations in
+combinatorial auctions, study how well specific classes of set functions can be approximated given
+the constraint that the approximating function be representable in polynomially many bits. They
+named such an approximation a sketch, proving that coverage functions admit sketches with an
+arbitrarily good approximation factors. Additionally, for the larger class of monotone subadditive
+                                                                         √
+functions, they construct sketches that achieve an approximation of n · polylog(n). Combining
+the results of Badanidiyuru et al. [1] and Balcan and Harvey [2], a lower bound of Ω(n1/3 / log2 n)
+follows for the approximation of monotone submodular functions by budgeted additive functions
+(Appendix G).
+    Testing of submodular functions has been studied recently by Seshadri and Vondrák [24] for
+general monotone submodular functions and for coverage functions by Chakrabarty and Huang [8].
+The goal here is to query the function on few domain points and answer whether a function is close
+to being submodular or not. The measure of closeness is the fraction of the domain in which the
+function needs to be modified so as to make it submodular.
+
+1.3   Preliminaries and Formal Statement of Results
+Given a ground set U , a function f : 2U → R+ is called submodular if for all subsets S, T ⊆ U ,
+we have f (S) + f (T ) ≥ f (S ∪ T ) + f (S ∩ T ). A submodular function f is called non-negative if
+f (S) ≥ 0 for each S ⊆ U . In this paper, we only consider non-negative submodular functions. A
+submodular function f is called symmetric if f (S) = f (U \ S) for each S ⊆ U , and monotone if
+f (S) ≤ f (T ) for each S ⊆ T ⊆ U . We say that a class of functions G θ-approximates another class
+F, if for every f ∈ F there exists a g ∈ G such that f (S) ≤ g(S) ≤ θ · f (S) for any S ⊆ U . We
+denote by n the size of the ground set U . We now define certain subclasses of submodular functions
+that we consider in the paper.
+
+Definition 1 (Coverage function). A function f is a coverage function if there exists an auxiliary
+ground set Z, a weight
+                P      function w : Z → R+ and family of subsets {Ai : Ai ⊆ Z, i ∈ U } such that
+∀S ⊆ U , f (S) = z∈∪i∈S Ai w(z).
+
+Definition 2 (Budgeted additive function). A function f is a budgeted additive function if there
+exist non-negative
+        P          reals ai for each i ∈ U , and a non-negative real B such that ∀S ⊆ U , f (S) =
+min{B, i∈S ai }.
+
+  It is well known that coverage functions and budgeted additive functions are monotone sub-
+modular functions.
+
+
+
+                                                 4
+Definition 3 (Cut function). A function f is a directed cut function if there exists a directed graph
+G = (U, A) with non-negative arc weights w : A → R+ , such that ∀S ⊆ U , f (S) = w(δ+ (S)),P where
+δ+ (S) denotes the set of outgoing arcs, with their tails in S and heads in S̄, and w(F ) , a∈F w(a)
+for any subset F ⊆ A of arcs.
+
+    Similarly, one can define f to be the undirected cut function of an undirected graph by substi-
+tuting δ+ (S) with δ(S), the set of edges with exactly one endpoint in S. It is well known that cut
+functions, whether directed or undirected, are submodular. Furthermore, clearly, undirected cut
+functions are symmetric.
+    Let us now formally state our main results:
+
+Theorem 1.1. Let f : 2U → R+ be a non-negative submodular function with f (∅) = f (U ) = 0.
+Then the class of directed cut functions (n2 /4)-approximates f . Moreover, there exists a non-
+negative submodular function f : 2U → R+ with f (∅) = f (U ) = 0 such that any directed cut
+function cannot approximate f within a factor better than n2 /4.
+
+Theorem 1.2. Let f : 2U → R+ be a non-negative symmetric submodular function with f (∅) =
+0. Then the class of undirected cut functions (n − 1)-approximates f . Moreover, there exists a
+symmetric submodular function f : 2U → R+ with f (∅) = 0 such that any undirected cut function
+cannot approximate f within a factor better than n/4.
+
+Theorem 1.3. Let f : 2U → R+ be a budgeted additive function. Then coverage functions (e/(e −
+1))-approximates f . Moreover, for every fixed ε > 0, there exists a budgeted additive function
+f : 2U → R+ such that any coverage function cannot approximate f within a factor better than
+e/(e − 1) − ε.
+
+    Theorems 1.1, 1.2 and 1.3, are proved in Sections 2, 3 and 4 respectively.
+
+
+2    Approximating General Submodular Functions by Directed Cut
+     Functions of Graphs
+In this section we prove Theorem 1.1 which provides a tight approximation of a non-negative
+submodular function f using a directed cut function of a graph G. Before proving the main result
+of this section, we first state a technical lemma, whose proof we defer to Appendix C.
+
+Lemma 2.1.PFor every submodular function f , and any collection of sets A1 , A2 , . . ., An ⊆ U :
+f (∩ni=1 Ai ) ≤ ni=1 f (Ai ).
+
+    We are now ready to prove Theorem 1.1.
+
+Proof of Theorem 1.1.
+Upper Bound: Given a submodular function f , we construct a directed graph G = (U, A) with
+non-negative weights w on the arcs such for every S ⊆ U , f (S) ≤ w(δ+ (S)) ≤ n2 /4 · f (S). For
+every (u, v) ∈ U × U and u 6= v, introduce a directed arc from u to v with weight: wuv = f (Tuv )
+where Tuv = argmin {f (R) : R ⊆ U, u ∈ R, v ∈/ R}. We start by proving that:
+
+                                    f (S) ≤ w(δ+ (S))   ∀S ⊆ U.                                   (1)
+
+
+
+                                                 5
+If S = U or S = φ, then clearly w(δ+ (S)) = f (S) = 0 and (1) holds. We now restrict our attention
+to the case where S, S̄ 6= ∅. For any u ∈ S note that u ∈ ∩v∈S̄ Tuv , since the definition of Tuv implies
+that u ∈ Tuv for all v ∈ S̄. Additionally, for any w ∈ S̄ note that w ∈  / ∩v∈S̄ Tuv , since the definition
+of Tuv implies that w ∈ / Tuw . Thus, one can conclude that ∪u∈S ∩v∈S̄ Tuv = S and therefore,
+
+                               (i) X                  (ii) X X
+                         f (S) ≤         f (∩v∈S̄ Tuv ) ≤              wuv = w(δ+ (S)).
+                                   u∈S                      u∈S v∈S̄
+
+Inequality (i) is derived from the fact that f is submodular and non-negative. Inequality (ii) is
+derived from Lemma 2.1 and the definition of wuv . This concludes the proof of (1).
+    We continue by proving that:
+
+                                                     n2
+                                     w(δ+ (S)) ≤        f (S) ∀S ⊆ U.                                  (2)
+                                                     4
+If S = U or S = φ, then clearly w(δ+ (S)) = f (S) = 0 and (2) holds. We now restrict our
+attention to the case where S, S̄ 6= ∅. Note that for any u ∈ S and v ∈ S̄, by the definition of Tuv :
+f (Tuv ) ≤ f (S). Thus, one can conclude that:
+
+                                   (i) X X              (ii) X X             (iii) n2
+                       w(δ+ (S)) =              f (Tuv ) ≤              f (S) ≤         f (S).
+                                                                                  4
+                                     u∈S v∈S̄                u∈S v∈S̄
+
+Equality (i) is by the definition of weights wuv . Inequality (ii) is be the definition of Tuv . Inequality
+(iii) is by the fact that the number of pairs (u, v) ∈ S × S̄ is at most n2 /4. This concludes the proof
+of (2). Combining both (1) and (2) concludes the proof of the upper bound of the theorem.
+Lower Bound: Assume that n is even and fix an arbitrary A ⊆ U of size |A| = n/2. Consider the
+following function f
+                                        
+                                           1 if S ∩ A 6= ∅, Ā \ S 6= ∅
+                                f (S) =
+                                           0 otherwise
+
+Namely, f (S) is the indicator function that S hits A but does not hit all of Ā. A simple check shows
+that f is submodular. Let G = (U, A) be a weighted graph with non-negative weights w : A → R+
+on the arcs whose directed cut function satisfies for each set S ⊆ U , f (S) ≤ w(δ+ (S)) ≤ θ · f (S)
+                                      2
+for some θ. We will show that θ ≥ n4 proving the lower bound.
+    First, we prove that the arcs with non-zero weight must go from A to Ā. We consider the
+following cases.
+
+   1. Consider an edge (u, v) ∈ A×A. But (u, v) ∈ δ+ (U \ {v}) and w(δ+ (U \{v})) ≤ θ·f (U \{v}) =
+      0 since Ā \ (U \ {v}) = ∅. Thus, w(u,v) = 0.
+
+   2. Consider an edge (u, v) ∈ Ā× Ā. But (u, v) ∈ δ+ (Ā\{v}) and w(δ+ (Ā\{v})) ≤ θ·f (Ā\{v}) =
+      0 since A ∩ (Ā \ {v}) = ∅. Thus, w(u,v) = 0.
+
+   3. Consider an edge (u, v) ∈ Ā × A. But (u, v) ∈ δ+ (Ā) and , w(δ+ (Ā)) ≤ θ · f (Ā) = 0 since
+      A ∩ Ā = ∅. Hence, w(u,v) = 0.
+
+
+
+                                                        6
+Therefore, all arcs with non-zero weight must go from A to Ā. For any u ∈ A and v ∈ Ā note that
+w(u,v) ≥ 1 since:
+
+                                                 (i)                (ii)
+                    w(u,v) = w(δ+ {u} ∪ Ā \ {v} ) ≥ f {u} ∪ Ā \ {v} = 1.                               (3)
+
+Inequality (i) is derived from the fact w(δ+ (S)) ≥ f (S) for each set S. Equality (ii) is by the
+definition of f . Furthermore, note that:
+
+                              n2              (i)         (ii)        (iii)
+                                 = |A| · |Ā| ≤ w(δ+ (A)) ≤ θ · f (A) = θ.                               (4)
+                              4
+Inequality (i) is derived from inequality (3). Inequality (ii) is derived from the fact that w(δ+ (S)) ≤
+θf (S) for each set S ⊆ U . Equality (iii) is by the definition of f . Note that inequality (4) implies
+           2
+that θ ≥ n4 , thus, concluding the proof of the lower bound of the theorem.                            
+
+
+3    Approximating Symmetric Submodular Functions by Undirected
+     Cut Functions of Graphs
+In this section, we prove Theorem 1.2 which provides upper and lower bounds on the approximation
+of a symmetric submodular function using an undirected cut function of a graph. For the upper
+bound, our algorithm uses Gomory-Hu trees of symmetric submodular functions [15, 21]. Given
+a symmetric non-negative submodular function f , a tree T = (U, ET ) is a Gomory-Hu tree if for
+every edge e = (u, v) ∈ ET : f (Re ) = min {f (R) : R ⊆ U, u ∈ R, v ∈/ R}, where Re is one of the
+two connected components obtained after removing e from T (since f is symmetric, it does not
+matter which one of the two connected components we choose). In other words, in a Gomory-Hu
+tree, the cut e = (u, v) induced in T , corresponds to a minimum value subset that separates u and
+v. We prove that the cut function of the Gomory-Hu tree of f is a good approximation.
+
+Proof of Theorem 1.2.
+Upper Bound: Let f be a symmetric submodular function. We shall construct an undirected
+tree T = (U, ET ) with non-negative weights w : E → R+ on the edges such that for every S ⊆ U ,
+f (S) ≤ w(δ(S)) ≤ (n − 1) · f (S). We set T to be a Gomory-Hu tree of f and let the weight of any
+edge e = {u, v} to be f (Re ) where Re is the one of the two connected components obtained after
+removing edge e. As mentioned above, the weight of edge e = {u, v} is the minimum of f (R) over
+all R separating u and v.
+     Fix an arbitrary S ⊆ U and denote by {e1 , . . . , ek } all the edges crossing the cut that S defines
+in T . Let T1 , . . . , Tk+1 denote the partition of U induced by deleting the edges e1 , . . . , ek from T .
+Furthermore, denote by {S1 , . . . , Sp } the non-empty sets in {Ti ∩ S : 1 ≤ i ≤ k + 1}. Observe that
+S1 , . . . , Sp is a partition of S. Since each ei , 1 ≤ i ≤ k, has exactly one vertex in S and the other in
+S̄, we can associate ei with a unique set from S1 , . . . , Sp , the set containing one of the endpoints of
+e. Additionally, let us denote Fi to be the edges which are associated with set Si for each 1 ≤ i ≤ p.
+Clearly F1 , . . . , Fp form a partition of {e1 , . . . , ek }.
+     We claim that for every 1 ≤ i ≤ p:
+                                                            X
+                                              f (Si ) ≤         f (Rf ).                                 (5)
+                                                    f ∈Fi
+
+
+
+                                                     7
+Recall that Rf is one of the connected component after removing edge f from T . Since Si is a
+subset of a connected component formed after removing all the edges {e1 , . . . , ek } from T , it must
+be contained in one of the components formed after removing edge f ∈ Fi from T . Without loss
+of generality, we assume that Rf ∩ Si = ∅ for each edge f ∈ Fi . It is straightforward to see that
+∩f ∈Fi R̄f = Si . Now, we have
+                      X               (i)             (ii)                       (iii)
+                              f (Rf ) ≥ f (∪e∈Fi Rf ) = f ∪f ∈Fi Rf = f ∩e∈Fi R̄f = f (Si ).
+                      f ∈Fi
+
+Inequality (i) is derived from the fact that f is submodular and non-negative. Equality (ii) is
+derived from the symmetry of f . Equality (iii) is derived from the fact that ∩f ∈Fi R̄f = Si .
+    We start by proving that:
+                                                   f (S) ≤ w(δ(S))          ∀S ⊆ U.                                    (6)
+This can be proved as follows:
+                                  k               p                             p
+                              (i) X          (ii) X X                     (iii) X         (iv)
+                 w(δ(S)) =            f (Rei ) =               f (Rf ) ≥            f (Si ) ≥ f (∪pi=1 Si ) = f (S).
+                                i=1                i=1 f ∈Fi                 i=1
+
+Equality (i) is by the definition of edge weights in T . Equality (ii) is by the fact that F1 , . . . , Fp
+form a partition of {e1 , . . . , ek }. Inequality (iii) is derived from inequality (5). Inequality (iv) is
+derived from the fact that f is submodular and non-negative. This concludes the proof of (6).
+    We continue by proving that:
+                                           w(δ(S)) ≤ (n − 1) · f (S) ∀S ⊆ U.                                           (7)
+Let u and v be the endpoints of edge ei and without loss of generality assume that u ∈ S and
+v∈/ S. Note that for every 1 ≤ i ≤ k, f (Rei ) ≤ f (S) since S is a candidate set separating u and v.
+Hence, one can conclude that:
+                                                k              (ii)            (iii)
+                                            (i) X
+                                 w(δ(S)) =           f (Rei ) ≤ k · f (S) ≤ (n − 1) · f (S).
+                                               i=1
+
+Equality (i) is by the definition of edge weights in T . Inequality (ii) is what we proved above, and
+inequality (iii) is derived from the fact that T contains at most n − 1 edges, thus, k ≤ n − 1. This
+concludes the proof of (7). Combining both (6) and (7) concludes the proof of the upper bound of
+the theorem.
+Lower Bound: Refer to Appendix A.                                                                   
+
+
+4        Approximating Budgeted Additive Functions by Coverage Func-
+         tions
+In this section, we present matching upper and lower bounds for approximating budgeted additive
+functions by coverage functions (Theorem 1.3)2 . The following lemma from Chakrabarty and
+Huang [8] provides the alternate representation of coverage functions used in our proof of the lower
+bound.
+    2
+        It is easy to show that a coverage function can be written exactly as a sum of budgeted additive functions.
+
+
+                                                                      8
+Lemma 4.1. [8] A function f : 2U → RP  + is a coverage function if and only if there exist reals
+xT ≥ 0 for each T ⊆ U such that f (S) = T :T ∩S6=∅ xT for each S ⊆ U .
+
+Proof of Theorem 1.3.
+Upper Bound: Refer to Appendix B.
+Lower Bound: We will construct a budgeted additive function which cannot be approximated
+                                              e
+by coverage functions to factor better than e−1   − ǫ for any ǫ > 0. We will consider the family of
+budgeted additive function fk , parameterized by the size of domain |U | = n they are defined on,
+where n = k2 for some integer k. Under fk , all n = k2 items have value one and the budget is k.
+Please note that these also constitute a family of uniform matroid rank functions. Therefore,
+                                             
+                                                |S| if |S| ≤ k
+                                    fk (S) =                                                    (8)
+                                                k    o.w.
+
+    Let hk be a coverage function that gives the maximum value of β such that ∀S ⊂ [n], β ·fk (S) ≤
+hk (S) ≤ fk (S) and αk be the value of β as given by hk . Observe that here function hk is always
+smaller than the function fk . The function hβk would give a β1 -approximation for approximating
+function fk . This slight change in notation helps for exposition below. We shall show that as
+k → ∞, αk tends to a value that is at most 1 − 1/e. This shall prove our claim.
+    Using Lemma 4.1, we note that αk can be characterized by a solution to a linear problem (P )
+given below. Here, the variables are xT , one for each set T ⊆ U . The dual (D) of this linear
+program is given alongside. We will construct a dual solution of value approaching 1 − 1e as k → ∞.
+Since every feasible dual solution is an upper bound on αk , the result follows.
+
+                                                                                 X
+                       max αk                           (P)                min         fk (S) · uS   (D)
+          subject to                                                             S⊆U
+                                                              subject to
+                        X
+         ∀S ⊆ U,                 xT ≤ fk (S)                                X
+                       T ∩S6=φ                                 ∀S ⊆ U,            (uT − vT ) ≥ 0
+                                      X
+         ∀S ⊆ U,       αk fk (S) −             xT ≤ 0                      T ∩S6=φ
+                                                                           X
+                                     T ∩S6=φ                                     fk (S) · vS ≥ 1
+         ∀S ⊆ U,       xS ≥ 0                                              S⊆U
+
+
+
+    Since, f (·) is symmetric across sets of the same cardinality, we can assume, without loss of
+generality, that the optimal dual solution is also symmetric. Specifically, the values of the dual
+variables uT and vT shall depend only the cardinality |T |. Let us write the symmetrized dual
+program.
+
+
+
+
+                                                         9
+                            k                 n     
+                            X         n         X     n
+                      min         j·     · uj +   k·     · uj             Symmetrized Dual Program
+                                      j               j
+                            j=1                 j=k+1
+
+         subject to
+                      n  
+                                       n−j
+                                          
+                      X   n
+      ∀j ∈ [n],                   −           (ui − vi ) ≥ 0                                              (9)
+                              i          i
+                      i=1
+                       k                 n      
+                      X        n           X       n
+                          j·       · vj +     k·        · vj ≥ 1                                         (10)
+                                j                  j
+                      j=1               j=k+1
+
+
+    Let cj denote the coefficient of vk in the equation corresponding to set size j, i.e., cj = nk − n−j
+                                                                                                           
+                                                                                                          k .
+Further, define ∆cj = cj+1 − cj .
+    We give the following solution to the dual linear program. Let vk = n1 ·k , u1 = ∆ck · vk and
+                                                                                (k)
+un = (ck − k · ∆ck ) · vk . Rest of the variables are set to zero.
+    We first show that the above solution is feasible for the dual and has objective value that tends
+to 1−1/e as k → ∞. It is easy to see that with the proposed setting of vk , Equation        (10)is satisfied.
+To show that Equation (9) is satisfied, we show that ∀j ∈ [n], j · u1 + un ≥ ( k − n−j
+                                                                                    n
+                                                                                              k )vk . Using
+our notation, it suffices to show that for all j ∈ [n], (j − k) · ∆ck + ck ≥ cj .
+Claim 4.2. cj is an increasing function of j and ∆cj = cj+1 − cj is a decreasing function of j.
+
+Proof. ∆cj = cj+1 − cj = ( nk − n−j−1         n     n−j       n−j     n−j−1    n−j−1
+                                                                                                
+                                                                              
+                                   k    ) − ( k   −  k    ) =  k    −   k    =  k−1 .
+
+Claim 4.3. For all j ∈ [n], (j − k) · ∆ck + ck ≥ cj .
+
+Proof.    • For j = k + i such that 0 ≤ i ≤ n − k: LHS = i · ∆ck + ck ≥ ck+i = RHS
+                                                             Pk−1
+   • For j = k − i with 0 ≤ i ≤ k: LHS = ck − i · ∆ck ≥ ck − q=k−i   ∆cq = ck−i · vk = RHS
+   where the second inequality in both the cases follows because ∆cj is a decreasing function in
+j.                                                                                            
+
+    Let us now bound the value of the dual objective function. Look at the value that the dual
+objective function attains with this setting of variables. The function value is n · u1 + k · un =
+(n · ∆ck + k · (ck − k · ∆ck )) · vk . Since n = k2 , the dual objective value is equal to
+                                                               k 2 −k 
+                                                                  k
+                                           k · ck · vk = 1 −     k2
+                                                                     .
+                                                                  k
+
+This quantity tends to 1 − 1/e as k → ∞.                                                                   
+
+
+
+
+                                                        10
+5    Future Directions
+We mention here a couple of main research questions that are left open by the present work. The
+first is how well a non-negative monotone submodular function can be approximated by the sum of
+matroid rank functions. Dughmi et al. [11] show that the Hessian matrix for a matroid rank sum
+has to be negative semi-definite, and it is easy to come with a budgeted additive function that does
+not obey this property. Hence, we cannot hope for the best approximation factor for a submodular
+function by a matroid rank sum to be 1; in fact we can show that the approximation factor   p     cannot
+be better than some constant bounded away from 1. In terms of positive results, a O( (n)) factor
+approximation follows from [13] and a O( max     e∈U f (e)
+                                              mine∈U f (e) ) follows from a result in Section 44.6(B) in
+[22].
+     The second is approximating a non-negative symmetric submodular function by a hypergraph
+cut function (in this paper, we only considered graph cut functions). The lower bound example
+in the paper for graph cut functions can be extended to show that a r-regular hypergraph cannot
+approximate to a factor better than O( nr ). In terms of positive results, we know no better than the
+ones mentioned in this paper.
+
+
+References
+ [1] Ashwinkumar Badanidiyuru, Shahar Dobzinski, Hu Fu, Robert Kleinberg, Noam Nisan, and
+     Tim Roughgarden. Sketching valuation functions. In SODA, pages 1025–1035, 2012.
+
+ [2] Maria-Florina Balcan and Nicholas J. A. Harvey. Learning submodular functions. In STOC,
+     pages 793–802, 2011.
+
+ [3] Maria-Florina Balcan, Nicholas J.A. Harvey, and Satoru Iwata. Learning symmetric non-
+     monotone submodular functions. In Discrete Optimization in Machine Learning (DISCML),
+     2012.
+
+ [4] Yair Bartal. Probabilistic approximations of metric spaces and its algorithmic applications. In
+     FOCS, pages 184–193, 1996.
+
+ [5] J. Bourgain. On lipschitz embedding of finite metric spaces in Hilbert space. Israel Journal of
+     Mathematics, 52(1):46–52, March 1985.
+
+ [6] Niv Buchbinder, Joseph Naor, R. Ravi, and Mohit Singh. Approximation algorithms for online
+     weighted rank function maximization under matroid constraints. In ICALP (1), pages 145–156,
+     2012.
+
+ [7] David Buchfuhrer, Michael Schapira, and Yaron Singer. Computation and incentives in com-
+     binatorial public projects. In ACM EC, pages 33–42, 2010.
+
+ [8] Deeparnab Chakrabarty and Zhiyi Huang. Testing coverage functions. In ICALP (1), pages
+     170–181, 2012.
+
+ [9] G. Cornuejols, M. L. Fisher, and G. L. Nemhauser. Location of bank accounts to optimize float:
+     an analytic study of exact and approximate algorithms. Management Sciences, 23:789–810,
+     1977.
+
+                                                  11
+[10] Shaddin Dughmi. A truthful randomized mechanism for combinatorial public projects via
+     convex optimization. In ACM EC, pages 263–272, 2011.
+
+[11] Shaddin Dughmi, Tim Roughgarden, and Qiqi Yan. From convex optimization to randomized
+     mechanisms: toward optimal combinatorial auctions. In STOC, pages 149–158, 2011.
+
+[12] Jittat Fakcharoenphol, Satish Rao, and Kunal Talwar. A tight bound on approximating arbi-
+     trary metrics by tree metrics. J. Comput. Syst. Sci., 69(3):485–497, 2004.
+
+[13] Michel X. Goemans, Nicholas J. A. Harvey, Satoru Iwata, and Vahab S. Mirrokni. Approxi-
+     mating submodular functions everywhere. In SODA, pages 535–544, 2009.
+
+[14] Michel X. Goemans and David P. Williamson. Improved approximation algorithms for max-
+     imum cut and satisfiability problems using semidefinite programming. J. ACM, 42(6):1115–
+     1145, 1995.
+
+[15] Ralph E Gomory and Tien Chung Hu. Multi-terminal network flows. Journal of the Society
+     for Industrial & Applied Mathematics, 9(4):551–570, 1961.
+
+[16] M. Grtschel, L. Lovsz, and A. Schrijver. The ellipsoid method and its consequences in combi-
+     natorial optimization. Combinatorica, 1:169–197, 1981.
+
+[17] Martin Hoefer and Thomas Kesselheim. Secondary spectrum auctions for symmetric and
+     submodular bidders. In ACM EC, pages 657–671, 2012.
+
+[18] Satoru Iwata, Lisa Fleischer, and Satoru Fujishige. A combinatorial strongly polynomial algo-
+     rithm for minimizing submodular functions. J. ACM, 48(4):761–777, 2001.
+
+[19] W. Johnson and J. Lindenstauss. Extensions of Lipschitz maps into a Hilbert space. Contem-
+     porary Mathematics, 1984.
+
+[20] G. L. Nemhauser, L. A. Wolsey, and M. L. Fisher. An analysis of approximations for maxi-
+     mizing submodular set functions - I. Mathematical Programming, 14:265–294, December 1978.
+
+[21] M. Queyranne. A gomory-hu tree for symmetric sub- modular functions.            unpublished
+     manuscript, Faculty of Commerce, University of British Columbia, 1993.
+
+[22] A. Schrijver. Combinatorial Optimization - Polyhedra and Efficiency. Springer, 2003.
+
+[23] Alexander Schrijver. A combinatorial algorithm minimizing submodular functions in strongly
+     polynomial time. J. Comb. Theory, Ser. B, 80(2):346–355, 2000.
+
+[24] C. Seshadhri and Jan Vondrák. Is submodularity testable? In ICS, pages 195–210, 2011.
+
+[25] Zoya Svitkina and Lisa Fleischer. Submodular approximation: Sampling-based algorithms and
+     lower bounds. SIAM J. Comput., 40(6):1715–1737, 2011.
+
+
+
+
+                                               12
+A     Lower Bound of Theorem 1.2
+Lower Bound of Theorem 1.2. Consider the following symmetric submodular function f :
+                                       
+                                          1 if S 6= ∅, U
+                               f (S) =
+                                          0     otherwise
+
+Let G = (U, E) be an edge weighted graph with non-negative weights w : E → R+ on the edges
+whose cut function satisfies f (S) ≤ w(δ(S)) ≤ θ · f (S) for each set S ⊆ U for some θ. We will show
+that θ ≥ n4 .
+    For any vertex v ∈ U , 1 = f ({v}) ≤ w(δ({v})). Thus, the total weight of edges in G is at least
+1P                     n
+2    v∈U w(δ ({v})) ≥ 2 . Every undirected graph has a non-trivial cut that contains at least half
+the total weight of edges in the graph, thus, there exists a cut S ⊆ U , S 6= ∅, U , where w(δ(S)) ≥ n4 .
+The existence of such a cut can be shown by picking a cut at random where each vertex is in S with
+probability 21 independently. The expected weight of the cut will be exactly half the total weight
+of all edges. Now, we have n4 ≤ w(δ(S)) ≤ θ · f (S) = θ, concluding the proof of the lower bound of
+the theorem.                                                                                          
+
+
+B     Upper Bound of Theorem 1.3
+Upper Bound of Theorem 1.3. Consider any budgeted additive function f (·) over some domain U ,
+with budget B and the values of the elements be denoted by v1 , v2 , · · · vn where n = |U |. Without
+loss of generality, we assume all these values to be integers. Take an auxiliary ground set G of size
+B. For each i ∈ U , construct a set Ai ⊆ G, formed by choosing vi points (with replacement) at
+random from G. Consider function g : 2U → Z, defined as g(S) = | ∪i∈S Ai | for all S ⊆ U .
+    By definition, g(·) is a coverage function. Furthermore, it is easy to see that for all S ⊆ U ,
+g(S) ≤ f (S). We now show that E[g(S)] ≥ (1 − 1/e) · f (S), where the expectation is taken over the
+randomness of the procedure described to construct g(S). P           Note that g′ (·) = E[g(·)] is a coverage
+function. Consider any set S ⊆ U . Let f (S) = V , i.e.,              i∈S vi = V . Consider the case when
+V < B. Consider any point in auxiliary ground set G. The probability that this point is not
+covered by any of the sets Ai for i ∈ S is at most (1 − 1/B)V . Hence, the expected value of
+| ∪i∈S Ai | is at least B · (1 − (1 − 1/B)V ) ≥ B · (1 − e−V /B ) ≥ (1 − 1/e) · V . Here we use the inequality
+1 − e−x ≥ (1 − 1/e) · x. Hence, | ∪i∈S Ai | ≥ (1 − 1/e) · f (S). The proof for the case when V = B is
+similar. Thus for each set S ⊆ U , we have
+                                        1
+                                  (1 − )f (S) ≤ g ′ (S) ≤ f (S).
+                                        e
+                              e   ′                                       e
+Thus, we obtain the function e−1 g (·) approximates f within a factor of e−1 .                             
+
+
+C     Proof of Lemma 2.1
+Proof of Lemma 2.1. The following inequalities are derived from the definition of submodularity:
+
+
+
+
+                                                     13
+                         f (A1 ) + f (A2 ) ≥ f (A1 ∩ A2 ) + f (A1 ∪ A2 )
+                    f (A3 ) + f (A1 ∩ A2 ) ≥ f (A1 ∩ A2 ∩ A3 ) + f ((A1 ∩ A2 ) ∪ A3 )
+                                           ..
+                                            .
+                                  n−1                             n−1
+                    f (An ) + f (∩i=1 Ai ) ≥ f (∩ni=1 Ai ) + f ((∩i=1 Ai ) ∪ An )
+
+   Summing up the above inequalities and canceling     common terms on the two sides and using
+the fact that f is non-negative we obtain that ni=1 f (Ai ) ≥ f (∩ni=1 Ai ).                
+                                              P
+
+
+D     Uniform Submodular and Matroid Rank Functions
+Definition 4 (Uniform Submodular Function). A submodular function is said to be uniform if the
+value it takes on a set depends only on the cardinality of the set.
+
+Lemma D.1. Any non-negative, integer-valued, monotone, uniform, submodular function is 1-
+approximated by a sum of uniform matroid rank functions, and hence by a sum of budgeted additive
+functions.
+
+Proof. Consider an integer-valued, non-negative, monotone, uniform, submodular function f (·)
+over the universe [n] and let fk be the value f takes for sets S of cardinality k. Consider uniform
+matroid rank functions g1 , g2 , · · · gn where
+                                                    
+                                                      |S| |S| ≤ i
+                                           gi (S) =                                             (11)
+                                                      i   |S| > i
+
+    We claim that there exist a set of αi ’s, such that αi ≥ 0 for all i ∈ [n] such that
+                                                  k
+                                                  X                n
+                                                                   X
+                                 ∀j ∈ [n], fj =         αi · j +           αi · i                  (12)
+                                                  i=1              i=k+1
+                                                            P
+It is easy to see that the above claim implies that f (S) = i αi · gi (S) for all S ⊆ [n].
+     Now, we prove the claim. If, for every j ∈ [n − 1], we substract equation j from j + 1, we get
+the following set of equations
+                                                                    n
+                                                                    X
+                                   ∀j ∈ [n − 1], fj+1 − fj =                αi                     (13)
+                                                                    i=j+1
+
+   From here, we can see that the following assignments to αi is a valid solution to the above
+equations. Set α1 = 2 · f2 − f1 , αn = fn − fn−1 and for i ∈
+                                                           / {1, n}, set αi = 2 · fi − fi+1 − fi−1 . All
+the αi ’s are positive since f is monotone and f is submodular.
+   Finally, it is easy to see that every uniform matroid rank function is also a budgeted additive
+function with all elements having value one, and the budget equal to the rank of the matroid. 
+
+
+
+
+                                                    14
+E     Application to Online Submodular Function Maximization
+We consider the problem of online submodular function maximization as studied by Buchbinder et.
+al [6]. We are given a universe U and matroid M = (U, I). In an online manner, at each step for
+1 ≤ i ≤ m, we are given a monotone submodular function fi : 2U → R+ . The goal is to maintain
+Pmindependent set Fi ∈ I at any step i such that Fi ⊆ Fi+1 . The objective value to maximize is
+an
+   i=1 fi (Fi ). As inP
+                      the notion of competitive analysis, any algorithm is compared to the best offline
+optimum maxO∈I m        i=1 fi (O).
+    Buchbinder et. al [6] give a O(log2 n log m log fratio )-competitive algorithm when each of the
+                                                                                  maxi,a fi ({a})
+submodular function is weighted matroid rank function where fratio = min                                 . In
+                                                                                 i,a:fi ({a})>0 fi ({a})
+particular, the result applies when each of the functions fi is a coverage function.
+    Using the fact every monotone submodular function can be approximated by a coverage function
+                    √
+to a factor of O( n log n), we directly obtain the following corollary.
+                                    √
+Corollary E.1. There is a O( n log3 n log mfratio )-competitive online algorithm for the online
+submodular function maximization problem when each of the submodular functions is an arbitrary
+monotone submodular function.
+
+
+F     Approximating Monotone Submodular Functions by Coverage
+      Functions and by Budgeted Additive Functions
+The two main results of the section are the following.
+
+Theorem F.1. Coverage functions can approximate every non-negative monotone submodular
+                               √
+function to within a factor O ( n log n). Additionally, the class of coverage functions
+                                                                                   1/3 cannot
+                                                                                              ap-
+                                                                                    n
+proximate every non-negative monotone submodular function to a factor within o log2 n .
+
+Theorem F.2. The class of sum of budgeted additive functions can approximate every non-negative
+                                                   √
+monotone submodular function to a factor within ( n log n). Additionally, the class of sum of
+budgeted additive functions
+                     1/3  cannot approximate every non-negative monotone submodular function
+                      n
+to a factor within o log 2
+                           n
+                             .
+
+F.1    Upper Bound
+                                                                    √
+For the upper-bound, we show that budgeted additive functions can n log(n)-approximate the
+class of non-negative, monotone, submodular functions. Then we use Theorem 1.3 to infer that the
+coverage functions too can give approximately the same guarantee.
+
+Lemma F.3. The class of sum of budgeted additive functions can approximate every non-negative
+                                                 √
+monotone submodular function to within a factor ( n log n).
+
+    The following corollary follows easily from Lemma G.3 and Theorem 1.3
+
+Corollary F.4. The class of sum of coverage functions can approximate every non-negative mono-
+                                      √
+tone submodular function to factor O ( n log n).
+
+
+
+                                                     15
+   The proof of Lemma G.3 follows from Lemmas G.5 and G.6. Lemma G.5 [13] gives a particular
+               √
+function that n log(n)-approximates a general monotone, non-negative, sub-modular function,
+and Lemma G.6 implies that this approximating function can be written as a sum of budgeted
+additive functions.
+
+Lemma F.5. [13] For every monotone submodular function f p                 2U → R+ , there exists positive
+                                                                          :P
+                                         U
+reals ae for each e ∈ E such that g : 2 → R+ defined as g(S) =
+        √                                                                    e∈S ae , approximates f within
+factor n log(n).
+
+Lemma F.6. Every submodular function f : 2[n] → Z+ of the form f (S) = g( i∈S ai ), where
+                                                                                             P
+ai ∈ Z+ and g is a non-negative, monotone, concave and integer valued on integral inputs, can be
+written as a sum of budgeted additive functions.
+
+Proof. Let m = ni=1 ai . Consider the function h, over the domain [m], defined as h(S) = g(|S|) for
+                  P
+all S ⊆ [m]. Since g(·) is a non-negative, monotone, concave function, it is easy to verify that h(·)
+is a non-negative, monotone, submodular function. Construct n mutually disjoint sets Ai ⊆ [m]
+such that |Ai | = ai . Clearly, ∀S ⊆ [n], f (S) = h(∪i∈S Ai ).
+     From Lemma D.1, we know that h(·) can be expressed as m
+                                                                         P
+                                                                           i=1 αi · ti (·) where each ti is a
+uniform matroid rank function with rank i, P    over the domain [m] and each αi ≥ 0.
+     This implies that for all S ⊆ [n], f (S) = m i=1 αi · ti (∪i∈S Ai ). Now,
+                                                                           P for every i ∈ [m], construct
+                                 ′
+the budget additive function ti , defined as ∀S ⊆ [n], ti (S) = min{ i∈S vij , Bi }, where for j ∈ [n],
+the value vij = aj and the budget Bi is i. Since ti is a uniform matroid rank function of rank i and
+Ai ’s are mutually disjoint, we have for all i ∈ [m],
+
+                                    ∀S ⊆ [n], t′i (S) = ti (∪i∈S Ai )                                   (14)
+
+   Therefore, we get for all sets S ⊆ [n], f (S) = m         ′                                             
+                                                     P
+                                                       i=1 ti (S).
+
+
+F.2    Lower Bound
+For the lower bound, we first show that sum of coverage functions cannot approximate the class of
+monotone, submodular functions well, and then use Theorem 1.3, to infer that, therefore, even the
+class of sum of budgeted additive functions cannot approximate a monotone submodular function
+well.
+
+Lemma F.7. The class of sum of coverage functions
+                                              1/3 cannot approximate every non-negative mono-
+                                               n
+tone submodular function to a factor within o log 2
+                                                    n
+                                                      .
+
+   An easy corollary of Lemma G.7 that follows from Theorem 1.3 is the following.
+
+Corollary F.8. The class of sum of budgeted additive   functions 
+                                                                  cannot approximate every non-
+                                                             n1/3
+negative monotone submodular function to a factor within o log 2
+                                                                 n
+                                                                    .
+
+   We now present the proof of Lemma G.7. We will need to use results from [1] and [2], for which
+we first present a definition.
+
+Definition 5. A β-sketch of a function f : 2U → R is a polynomially sized (in |U | and 1/(1 − β))
+representable function g such that ∀S ⊆ U , β · f (S) ≤ g(S) ≤ f (S).
+
+
+                                                     16
+   The following result is from [1].
+
+Lemma F.9. [1] Coverage functions allow from arbitrary well sketches i.e., for any ǫ > 0, there
+exists a 1 − ǫ sketch.
+
+    The following result is from [2]. It gives a ‘large’ family of matroid rank functions, such that
+any two functions in the class have at least one point where the values that they take differ by a
+‘significant’ factor.
+                                       1/3
+Lemma F.10. [2] For any k = 2o(n ) , there exists a family of sets A ⊆ 2[n] with |A| = k and a
+family of matroids M = {MB |B ⊆ A} such that for all B ⊆ A, it is the case that
+                                            
+                                               8 log k if S ∈ B
+                          ∀S ∈ A, rMB (S) =                                               (15)
+                                               n1/3    if S ∈
+                                                            /B
+
+where rMB is the rank function of the matroid MB
+
+of Lemma G.7. Let the class of matroid rank functions on the domain of size n be α-approximable
+by coverage functions, for some α. That is, for a domain [n], for all matroid rank function r, there
+exists a coverage function g such that ∀S ⊆ [n], r(S) ≤ g(S) ≤ α · r(S).
+    By Lemma G.9, for every ǫ > 0 and every coverage function g, there exists a polynomially sized
+(polynomial in n and 1/ǫ) representable function h such that ∀S ⊆ [n], (1 − ǫ) · g(S) ≤ h(S) ≤ g(S).
+Hence, for all ǫ > 0 and for all matroid rank functions r, there exists a polynomial sized representable
+                                                          α
+function h such that ∀S ⊆ [n], r(S) ≤ h(S)/(1 − ǫ) ≤ 1−ǫ     · r(S). For any given ǫ > 0, there are only
+2O(n,1/ǫ) many different h functions.
+                                      2
+    From Lemma G.10, for k = 2log (n) , there exists family of sets A ⊆ 2[n] with |A| = k, and a 2k
+sized matroid family MB such that for all sets A ∈ A and ∀B ⊆ A,
+
+                                                      8 log2 n if S ∈ B
+                                                   
+                                ∀S ∈ A, rMB (S) =                                                   (16)
+                                                      n1/3       if S ∈
+                                                                      /B
+
+    Now while the number of different g′ functions are 2O(n,1/ǫ) , the number of different matroid rank
+                               log(n)
+functions in this family is 2n        . Hence, by pigeon-hole principle, there must be two matroids
+B and B ′ (B 6= B ′ ) such that the best coverage functions g and g′ approximating B and B ′
+respectively, have the same best polysized representation h. But since, for every set S ∈ B∆B ′ ,
+rMB and rMB′ , differ by a factor of Ω(n1/3 / log2 (n)), therefore, h cannot approximate at least one
+of these two to a factor better Ω(n1/3 / log2 (n)). Since the value of g and g′ at any point in the
+domain is off from that of h by at most 1 − ǫ, and hence it follows that α = Ω(n1/3 / log2 (n)). 
+
+
+
+
+                                                  17
+G     Approximating Monotone Submodular Functions by Coverage
+      Functions and by Budgeted Additive Functions
+The two main results of the section are the following.
+Theorem G.1. Coverage functions can approximate every non-negative monotone submodular
+                               √
+function to within a factor O ( n log n). Additionally, the class of coverage functions
+                                                                                   1/3 cannot
+                                                                                              ap-
+                                                                                    n
+proximate every non-negative monotone submodular function to a factor within o log2 n .
+
+Theorem G.2. The class of sum of budgeted additive functions can approximate every non-negative
+                                                   √
+monotone submodular function to a factor within ( n log n). Additionally, the class of sum of
+budgeted additive functions
+                     1/3  cannot approximate every non-negative monotone submodular function
+                      n
+to a factor within o log 2
+                           n
+                             .
+
+G.1     Upper Bound
+                                                                    √
+For the upper-bound, we show that budgeted additive functions can n log(n)-approximate the
+class of non-negative, monotone, submodular functions. Then we use Theorem 1.3 to infer that the
+coverage functions too can give approximately the same guarantee.
+Lemma G.3. The class of sum of budgeted additive functions can approximate every non-negative
+                                                 √
+monotone submodular function to within a factor ( n log n).
+    The following corollary follows easily from Lemma G.3 and Theorem 1.3
+Corollary G.4. The class of sum of coverage functions can approximate every non-negative mono-
+                                      √
+tone submodular function to factor O ( n log n).
+   The proof of Lemma G.3 follows from Lemmas G.5 and G.6. Lemma G.5 [13] gives a particular
+               √
+function that n log(n)-approximates a general monotone, non-negative, sub-modular function,
+and Lemma G.6 implies that this approximating function can be written as a sum of budgeted
+additive functions.
+Lemma G.5. [13] For every monotone submodular function fp                  2U → R+ , there exists positive
+                                                                          :P
+                                        U
+reals ae for each e ∈ E such that g : 2 → R+ defined as g(S) =
+       √                                                                     e∈S ae , approximates f within
+factor n log(n).
+Lemma G.6. Every submodular function f : 2[n] → Z+ of the form f (S) = g( i∈S ai ), where
+                                                                                             P
+ai ∈ Z+ and g is a non-negative, monotone, concave and integer valued on integral inputs, can be
+written as a sum of budgeted additive functions.
+Proof. Let m = ni=1 ai . Consider the function h, over the domain [m], defined as h(S) = g(|S|) for
+                 P
+all S ⊆ [m]. Since g(·) is a non-negative, monotone, concave function, it is easy to verify that h(·)
+is a non-negative, monotone, submodular function. Construct n mutually disjoint sets Ai ⊆ [m]
+such that |Ai | = ai . Clearly, ∀S ⊆ [n], f (S) = h(∪i∈S Ai ).
+    From Lemma D.1, we know that h(·) can be expressed as m
+                                                                         P
+                                                                           i=1 αi · ti (·) where each ti is a
+uniform matroid rank function with rank i, P    over the domain [m] and each αi ≥ 0.
+    This implies that for all S ⊆ [n], f (S) = m  i=1 αi · ti (∪i∈S Ai ). Now,
+                                                                           P for every i ∈ [m], construct
+the budget additive function t′i , defined as ∀S ⊆ [n], ti (S) = min{ i∈S vij , Bi }, where for j ∈ [n],
+
+                                                     18
+the value vij = aj and the budget Bi is i. Since ti is a uniform matroid rank function of rank i and
+Ai ’s are mutually disjoint, we have for all i ∈ [m],
+
+                                    ∀S ⊆ [n], t′i (S) = ti (∪i∈S Ai )                          (17)
+
+   Therefore, we get for all sets S ⊆ [n], f (S) = m         ′                                    
+                                                     P
+                                                       i=1 ti (S).
+
+
+G.2    Lower Bound
+For the lower bound, we first show that sum of coverage functions cannot approximate the class of
+monotone, submodular functions well, and then use Theorem 1.3, to infer that, therefore, even the
+class of sum of budgeted additive functions cannot approximate a monotone submodular function
+well.
+
+Lemma G.7. The class of sum of coverage functions
+                                              1/3 cannot approximate every non-negative mono-
+                                               n
+tone submodular function to a factor within o log 2
+                                                    n
+                                                      .
+
+   An easy corollary of Lemma G.7 that follows from Theorem 1.3 is the following.
+
+Corollary G.8. The class of sum of budgeted additive functions
+                                                           1/3 cannot approximate every non-
+                                                            n
+negative monotone submodular function to a factor within o log2 n .
+
+   We now present the proof of Lemma G.7. We will need to use results from [1] and [2], for which
+we first present a definition.
+
+Definition 6. A β-sketch of a function f : 2U → R is a polynomially sized (in |U | and 1/(1 − β))
+representable function g such that ∀S ⊆ U , β · f (S) ≤ g(S) ≤ f (S).
+
+   The following result is from [1].
+
+Lemma G.9. [1] Coverage functions allow from arbitrary well sketches i.e., for any ǫ > 0, there
+exists a 1 − ǫ sketch.
+
+    The following result is from [2]. It gives a ‘large’ family of matroid rank functions, such that
+any two functions in the class have at least one point where the values that they take differ by a
+‘significant’ factor.
+                                        1/3
+Lemma G.10. [2] For any k = 2o(n ) , there exists a family of sets A ⊆ 2[n] with |A| = k and a
+family of matroids M = {MB |B ⊆ A} such that for all B ⊆ A, it is the case that
+                                            
+                                               8 log k if S ∈ B
+                          ∀S ∈ A, rMB (S) =                                               (18)
+                                               n1/3    if S ∈
+                                                            /B
+
+where rMB is the rank function of the matroid MB
+
+of Lemma G.7. Let the class of matroid rank functions on the domain of size n be α-approximable
+by coverage functions, for some α. That is, for a domain [n], for all matroid rank function r, there
+exists a coverage function g such that ∀S ⊆ [n], r(S) ≤ g(S) ≤ α · r(S).
+    By Lemma G.9, for every ǫ > 0 and every coverage function g, there exists a polynomially sized
+(polynomial in n and 1/ǫ) representable function h such that ∀S ⊆ [n], (1 − ǫ) · g(S) ≤ h(S) ≤ g(S).
+
+                                                    19
+Hence, for all ǫ > 0 and for all matroid rank functions r, there exists a polynomial sized representable
+                                                          α
+function h such that ∀S ⊆ [n], r(S) ≤ h(S)/(1 − ǫ) ≤ 1−ǫ     · r(S). For any given ǫ > 0, there are only
+2O(n,1/ǫ) many different h functions.
+                                      2
+    From Lemma G.10, for k = 2log (n) , there exists family of sets A ⊆ 2[n] with |A| = k, and a 2k
+sized matroid family MB such that for all sets A ∈ A and ∀B ⊆ A,
+
+                                                      8 log2 n if S ∈ B
+                                                   
+                                ∀S ∈ A, rMB (S) =                                                   (19)
+                                                      n1/3       if S ∈
+                                                                      /B
+
+    Now while the number of different g′ functions are 2O(n,1/ǫ) , the number of different matroid rank
+                               log(n)
+functions in this family is 2n        . Hence, by pigeon-hole principle, there must be two matroids
+B and B ′ (B 6= B ′ ) such that the best coverage functions g and g′ approximating B and B ′
+respectively, have the same best polysized representation h. But since, for every set S ∈ B∆B ′ ,
+rMB and rMB′ , differ by a factor of Ω(n1/3 / log2 (n)), therefore, h cannot approximate at least one
+of these two to a factor better Ω(n1/3 / log2 (n)). Since the value of g and g′ at any point in the
+domain is off from that of h by at most 1 − ǫ, and hence it follows that α = Ω(n1/3 / log2 (n)). 
+
+
+
+
+                                                  20
+

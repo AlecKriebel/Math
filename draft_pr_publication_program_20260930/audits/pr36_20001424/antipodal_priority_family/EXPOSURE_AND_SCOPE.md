@@ -1,0 +1,11 @@
+# Exposure and scope disclosure
+
+The early independence record is a historical checkpoint, retained unchanged. Its phrase “no other priority opinions” means no new sibling/root priority analysis or old review verdict was read. It should not be interpreted as a blind review with no original-packet prior-art context.
+
+Before reconstructing the BBM mechanism, I read the original CANDIDATE.md and the original source_snapshot/SOURCES.md. The latter is part of the original submitted packet and contains a bounded prior-art audit, references, warnings about generic pseudo-real examples and BBM centers, and an unestablished novelty assessment. The parent task expressly named these source warnings. This context exposure is disclosed; the original bibliography's prior-art conclusion was not treated as a premise or trusted verdict.
+
+The live AIM literal statement was independently recovered before reading operative primary proofs. No embedded original review file was opened. No current sibling or parent priority report was read before the BBM reconstruction was sealed. The later Silverman PCF deduction was found independently by reading the actual earlier formula in the Hidalgo–Quispe primary source, then retrieving and visually checking the Silverman original, and checking the ramification, all six orbit evaluations, centralizer, conjugation and real-model obstruction directly. The task message did not supply that formula or its PCF property.
+
+At the meaningful Silverman checkpoint an independent adversarial source verifier was assigned. Its prompt named the primary paper/pages and posed the PCF/no-real-model question without supplying the answer, critical cycle, or centralizer proof. That verifier sealed its own proof before reading any original PR36 report or other priority opinion. Its independent report was read only after this family's complete authored proof and verification seal existed.
+
+This family is therefore independently reconstructed mathematics and independently cross-verified source consequence checking, with original-source-context exposure disclosed. It adds zero candidate attempts and makes no whole-packet acceptance decision or historical-first assertion.

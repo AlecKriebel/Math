@@ -1,0 +1,1 @@
+2026-10-03T02:54:04.751746+00:00 — actual administrative freeze; publication workflow75%, discovery0%. Scoped original synchronous obstruction accepted by genuine ROOT reading; full problem UNSOLVED. Original1/5,new0,audit0. NEW whole-current review PENDING. No paper/new DOI/tracker.

@@ -1,0 +1,11 @@
+# Five completed compression readbacks
+
+All five current logical body and metadata identities match their exact successful receipt.after snapshots, excluding **only st_atime_ns**. Preparer child83908 ran18:48:47.380901–18:48:47.896746 UTC, exit0, with complete38,736-byte stdout and empty stderr. It authenticated each original ROOT CAP4, complete receipt, executed helper.prelaunch.py and current reviewed helper before using runpy under a non-main name. No production compressor main was invoked and no target/receipt was rewritten.
+
+The cases are V4 checkpoint1745-private/1530-private (actual ROOT compressors69732/69969) and V3 pr38-results/pr39-results/pr41-typed (29791/32233/32363). Complete logical SHA256, full07777 mode, uid/gid, mtime, inode/ctime/birthtime, flags, allocated blocks, original provenance xattr, returned xattr domain, and ACL all match receipt.after exactly. The reviewed helper uses compact hashes for any exposed added compression bookkeeping attribute; this does not assert reading hidden attributes outside its API inventory. Original receipt bytes/modes and every original ROOT capture body/mode are unchanged. Logical bytes match the pre-compression hashes too. Future writer absence or permanent immutability is not inferred.
+
+The original ROOT runs reported39,116,800 allocated bytes saved across the two V4 indexes and192,004,096 across these three V3 files. This readback creates no new saving and does not claim an equal device-wide space increase.
+
+Fifteen native xattr and ls **read-only metadata commands did execute** and all true child identities/argv/UTC/streams are in RESULT.json. Its composite negative workflow flag `production_main_compression_Git_native_remote_executed` refers to the absence of production main, compression, Git, native bookkeeping and remote mutations; it must not be interpreted as claiming that native read-only metadata commands did not run. BOOKKEEPING.json explicitly records those positive execution facts. No original captured record is rewritten to resolve that naming ambiguity.
+
+This is authenticated **preparer** readback, not ROOT personal reading or approval. ROOT can inspect the complete result, actual capture and exact prelaunch operator/helper sources. Administrative readback100%; mathematical discovery0%; no native acceptance change.

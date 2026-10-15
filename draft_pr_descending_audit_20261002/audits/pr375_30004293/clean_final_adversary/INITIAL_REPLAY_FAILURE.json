@@ -1,0 +1,9 @@
+{
+  "utc": "2026-10-03T07:17:34Z",
+  "completion_estimate_percent": 65,
+  "action": "First private whole-current-packet replay using a byte comparison with a historical 42-file author receipt",
+  "result": "Assertion failed; all five direct author receipts were byte-exact and source checks succeeded",
+  "diagnosis": "replay_author.py scans all *MANIFEST.json except two named manifests. The current packet includes PUBLICATION_MANIFEST.json with 52 new entries, so historical_manifest_entries correctly changes from 120 to 172. The original AUTHOR_REPLAY.json was created in the historical 42-file author-only workspace.",
+  "correction": "Preserve initial source and raw streams under ignored tmp/replay_initial. Replay a private historical author-only 42-file copy for exact historical receipt; separately validate the current 172-entry replay with the exactly expected 52-entry difference. Candidate and frozen original receipts unchanged.",
+  "mathematical_consequence": "None; this is a replay-scope distinction, not a mathematical failure. No original source/hash failure was suppressed."
+}

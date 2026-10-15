@@ -1,0 +1,347 @@
+An explicit complex polynomial retract in ﬁve variables:
+a consequence of aﬃne-space cancellation failure
+Alec Kriebel
+ORCID: 0009-0001-9320-500X
+
+October 6, 2026
+Abstract
+OpenAI’s explicit complex cancellation fourfold has a polynomial one-variable cylinder and
+is not aﬃne four-space. We transport coeﬃcient inclusion and evaluation at zero through its
+concrete cylinder coordinates. This gives a complex algebra retract of a ﬁve-variable polynomial
+ring, of transcendence degree four, that is not a polynomial algebra. We provide split maps and a
+ﬁve-component idempotent polynomial endomorphism, in factored form with no denominators,
+and exact symbolic certiﬁcates for the coordinate identities, including the ﬁber at the parameter
+zero. The implication from cancellation failure to a negative answer to Costa’s retract question
+is classical; the nonpolynomiality input and cancellation breakthrough belong to OpenAI. This
+note makes that consequence explicit in ambient dimension ﬁve and makes no assertion about
+ambient dimension four.
+
+1
+
+The question and the inherited input
+
+Costa asked whether a retract of k [n] containing the ﬁeld k must itself be a polynomial k-algebra
+[1]. Here a retract is speciﬁed by unital k-algebra maps i : A → B and r : B → A with ri = 1A ;
+we identify A with i(A) ⊂ B. Nagamine explicitly records the classical implication: a positive
+answer in n + 1 variables implies cancellation for An [2, Proposition 1.4]. His proof is coeﬃcient
+inclusion followed by evaluation of the cylinder variable at zero. Nagamine settles the ambient
+three-variable case in characteristic zero. Earlier literature also states the polynomial-extension
+retract relationship [5, Introduction]. More generally, every characteristic-zero polynomial-ring
+retract of transcendence degree two is polynomial [3, Theorem 5.8]. The August 2026 version of
+Chakraborty–Pal still records the general characteristic-zero question as open for ambient n ≥ 4
+[4].
+We use the following particular input, with its authorship explicit. Set
+P = C[p, s, u, F, J],
+
+x = s2 + u3 + p2 F,
+
+H = x2 F − (1 + 2sx)J − p2 J 2 − pu,
+
+A = P/(H).
+
+(1)
+
+OpenAI [6, Theorem 1 and Sections 2–6] proves that A is an integral four-dimensional complex
+∼ C[5] , and that A 6=
+∼ C[4] . The pinned source commit is
+algebra, that A[w] =
+adc7f1241b42e322a6451854ab7e4b4c146bf78a
+
+The source manuscript is dated September 23, 2026; the public repository evidence checked for this
+note dates from October 6, 2026. We do not equate the manuscript date with a veriﬁed public
+disclosure date.
+1
+
+The written nonpolynomiality proof is a pivotal external theorem, rather than a conclusion of
+the computations below. Its mechanism is worth stating precisely. The valuation degeneration is
+the smooth algebra
+G = R[τ, I/τ 2 ],
+
+R = C[x, y, z, u]/(xy − z(z + 1)),
+
+where sR = y − x(x − u3 ) and I = (x − s2R − u3 , z − sR x). Polynomiality would give a nonzero
+homogeneous locally nilpotent derivation of G with a positive-degree invariant. The determinant
+torus bundle
+e = C[a, d, b, c, u]/(ac − bd − 1), (x, y, z) = (ab, dc, db)
+R
+principalizes I to (v), where v = a3 b − a2 u3 − d2 . A normalized additive lift to its line-bundle
+e with
+pullback, together with the invariant, produces a nonzero locally nilpotent derivation E of R
+2
+nonpositive shift for weights (1, 1, −1, −1, 0) and E (v) = 0. The highest part for auxiliary weights
+(0, 3, −3, 0, 2) satisﬁes E 02 (d2 + a2 u3 ) = 0. The Mason–Stothers orbit-polynomial argument and
+the nonsquareness of −u3 in C(a, d, b)(u) force E 0 to ﬁx a, d, u. Regularity across the determinant
+charts then forces its nonzero shift to be positive, a contradiction. The full proofs of the exact
+degeneration, bundle lift, sign extraction, and rigidity are in [6, Sections 3–6]; our dependency
+audit checks each of these steps.
+Theorem 1. The algebra A in (1) is a smooth integral complex algebra of transcendence degree
+four. There are explicit complex algebra maps i : A → B = C[p, s, u, m, e] and r : B → A with
+ri = 1A . The image i(A) is not a polynomial complex algebra. The ﬁve polynomial components
+given in Section 3 deﬁne the idempotent algebra endomorphism ir of B and hence an idempotent
+endomorphism of A5 with image isomorphic to Spec A.
+Thus Costa’s assertion is false over C in ambient dimension ﬁve. The four-variable retract
+question is not settled here. The new work in this note is the explicit transport, formulas, and
+veriﬁcation package; the conditional reduction and the cancellation input are inherited.
+
+2
+
+Concrete cylinder coordinates
+
+All substitutions in this section are polynomial algebra homomorphisms. We reproduce the coordinate construction of [6, Section 2] in a form adapted to the split maps.
+For independent p, s, u, F, J, w, with x as in (1), deﬁne
+Dw = −3u2 w + 3p2 uw2 − p4 w3 ,
+Φ(p) = p,
+
+Φ(w) = w,
+
+Φ(u) = u − p2 w,
+
+2
+Φ(F ) = F − (1 + 2sx)Dw − p x Dw
+,
+2 2
+
+Φ(s) = s + p2 xDw ,
+
+(2)
+
+Φ(J) = J − x Dw .
+2
+
+The polynomial x is ﬁxed. Replacing w by −w in these substitution formulas gives the inverse.
+One way to verify them is to exponentiate the locally nilpotent derivation
+∆(p) = 0,
+
+∆(u) = −p2 ,
+
+∆(s) = −3p2 xu2 ,
+
+∆(F ) = (6sx + 3)u2 ,
+
+∆(J) = 3x2 u2 .
+
+Indeed, in the localized coordinates y = s + x(x − u3 ), z = sx + p2 J, the derivation is −p2 ∂u , ﬁxing
+p, x, y, z. Its displayed values are in P , so it restricts to a locally nilpotent derivation of P . Direct
+substitution gives Φ(H) = H + p3 w. Consequently
+Φ : A[w] −→ T = P [w]/(H + p3 w)
+2
+
+(3)
+
+is an isomorphism, with inverse induced by Φ−1 .
+Put x0 = s2 + u3 and introduce
+L = x20 F − (1 + 2sx0 )J,
+
+M = (1 − 2sx0 )F + 4s2 J.
+
+(4)
+
+The determinant of this linear coordinate change in F, J is one; its inverse is
+j(L) = (2sx0 − 1)L + x20 M.
+
+f (L) = 4s2 L + (1 + 2sx0 )M,
+In the coeﬃcient ring K0 = C[p, s, u, M ], set
+
+Q(L) = 2x0 f (L)2 − 2sf (L)j(L) − j(L)2 ,
+C = Q(0) = M 2 (2x0 + 6sx20 + 4s2 x30 − x40 ),
+
+(5)
+
+L∗ = pu − p C.
+2
+
+Q(L) = C + LQ1 (L),
+
+The factor Q1 is a polynomial. An explicit expression, avoiding any division in the formulas, is
+Q1 (L) = q1 + q2 L, where
+a0 = 4s2 ,
+
+c0 = 2sx0 − 1,
+
+b0 = 1 + 2sx0 ,
+
+d0 = x20 ,
+
+q1 = M {4x0 a0 b0 − 2s(a0 d0 + b0 c0 ) − 2c0 d0 },
+
+(6)
+
+q2 = 2x0 a20 − 2sa0 c0 − c20 .
+In these coordinates the equation is
+H(L) = L − pu + p2 Q(L) + p4 f (L)3 .
+
+(7)
+
+Deﬁne the following polynomial in K0 [L, w]:
+h = u − pQ(L) − p3 f (L)3 − p2 w,
+
+e0 = −w − pf (L)3 − Q1 (L)h.
+
+(8)
+
+Two exact identities are
+H(L∗ ) = p3 {(u − pC)Q1 (L∗ ) + pf (L∗ )3 },
+p3 e0 − (L − L∗ ) = (p2 Q1 (L) − 1)(H(L) + p3 w).
+
+(9)
+(10)
+
+In particular the class of e0 in T is the unlocalized polynomial representative of (L − L∗ )/p3 ; no
+division is required at p = 0.
+Deﬁne B = C[p, s, u, m, e], replacing M by m in expressions evaluated in B, and put
+ℓ = pu − p2 C + p3 e,
+
+f = f (ℓ),
+
+j = j(ℓ),
+
+W = −e − (u − pC + p e)Q1 (ℓ) − pf 3 .
+2
+
+These satisfy H(ℓ) + p3 W = 0 identically in B. There are maps
+q : B −→ T,
+
+(p, s, u, m, e) 7−→ (p, s, u, M, e0 ),
+
+and g : T → B with (p, s, u, F, J, w) 7→ (p, s, u, f, j, W ).
+Lemma 2. The maps q and g are inverse isomorphisms.
+
+3
+
+(11)
+
+Proof. The determinant-one calculation recovers L, M from f (L), j(L). Equations (11) and (10)
+recover L in T . Substituting (L, w) = (ℓ, W ) into (8) gives exactly e, as a polynomial identity,
+and hence gq = 1B on all ﬁve generators. For the other composition, qg ﬁxes p, s, u, M and L.
+The deﬁning equation and H(L∗ ) ∈ p3 K0 then give p3 (qg(w) − w) = 0. The ring T is a domain
+∼ A[w], and the UFD localization argument below proves that A is a domain with
+and p 6= 0: T =
+nonzero p. Cancellation proves qg(w) = w. Thus qg ﬁxes every generator of T .
+For clarity, the domain argument does not use nonpolynomiality. Over C[p, p−1 ], x, y, z, u are
+coordinates, with inverse
+s = y − x(x − u3 ),
+
+F = p−2 (x − s2 − u3 ),
+
+J = p−2 (z − sx).
+
+Here H = p−2 (xy − z(z + 1)) − pu is a coordinate, with a unit coeﬃcient of u, so (H) is prime after
+localization. Since p does not divide H (its residue is the nonzero polynomial L), no factor of H
+can be lost by inverting p. Unique factorization proves H irreducible and prime in P . Moreover
+A[p−1 ] = C[p, p−1 , x, y, z], so A has transcendence degree four.
+
+3
+
+Split maps and the ﬁve components
+
+Let ȷ : A → A[w] be coeﬃcient inclusion and ϵ : A[w] → A send w to zero. The actual cylinder
+isomorphism is θ = gΦ. Set
+−1
+i = θȷ,
+r = ϵΦ q.
+(12)
+The retraction is particularly simple on generators:
+r(e) = EA := −pF 3 − Q1 (L)(u − pQ(L) − p3 F 3 )
+(13)
+in A, where L, M, Q, Q1 are evaluated at the original s, u, F, J. This follows because every exponential correction vanishes at w = 0.
+For the inclusion use (11), now in B, and set
+r(p) = p,
+
+r(s) = s,
+
+r(u) = u,
+
+r(m) = M,
+
+X = s2 + u3 + p2 f,
+
+D = −3u2 W + 3p2 uW 2 − p4 W 3 ,
+U = u − p2 W,
+
+S = s + p2 XD,
+
+F = f − (1 + 2sX)D − p2 X 2 D2 ,
+
+(14)
+
+J = j − X 2 D.
+
+Then i(p, s, u, F, J) = (p, S, U, F, J ). In particular H(p, S, U, F, J ) = 0. For arbitrary arguments
+deﬁne the two polynomial functions
+M(s, u, F, J) = (1 − 2s(s2 + u3 ))F + 4s2 J,
+and E(p, s, u, F, J) = EA from (13), using (4)–(6). The promised ﬁve components are
+ρ = (p, S, U, M(S, U, F, J ), E(p, S, U, F, J )).
+
+(15)
+
+This is a fully speciﬁed polynomial substitution on B, with all abbreviations deﬁned above. It
+represents ir.
+Proof of Theorem 1. Lemma 2 and (3) prove that θ is an actual isomorphism. Hence ri = ϵθ−1 θȷ =
+ϵȷ = 1A and (ir)2 = i(ri)r = ir. Its image is exactly i(A), since r is surjective and i is injective.
+
+4
+
+∼ C[4] ; since A has transcendence
+The cited nonpolynomiality theorem [6, Theorem 1] gives A 6=
+degree four, it is not a polynomial algebra in any number of variables.
+Smoothness can be checked directly. On p 6= 0 the displayed Laurent polynomial presentation
+is smooth. On p = 0, the partial derivatives of H with respect to F, J are x20 and −(1 + 2sx0 ). They
+cannot vanish simultaneously, since 4s2 x20 + (1 − 2sx0 )(1 + 2sx0 ) = 1. The hypersurface Jacobian
+criterion therefore proves smoothness everywhere.
+On spectra, π = Spec(i) : A5 → Spec A and σ = Spec(r) : Spec A → A5 obey πσ = 1Spec A . The
+endomorphism with components (15) is σπ. Its scheme-theoretic image is the closed subscheme
+∼ A. This explains both the contravariance and the
+σ(Spec A), with coordinate algebra B/ ker r =
+image assertion.
+The zero ﬁber is also explicit. Let κ = q1 /m, meaning the bracketed polynomial in (6), not a
+division operation. At p = 0, W = −e − uκm and
+ρ(0, s, u, m, e) = (0, s, u, m + 3u2 W, −uκ(m + 3u2 W )).
+Its new W is zero, so a second application ﬁxes all components. This veriﬁes the limiting ﬁber
+independently of localization.
+
+4
+
+Veriﬁcation, attribution, and limits
+
+The supplement identiﬁes all source hashes, the exact dependency statements, audit scopes, and
+reproducible checks. The symbolic script uses integer polynomial arithmetic through SymPy. It
+checks the derivation, exponential inverse, determinant-one change, root and ﬁfth-coordinate certiﬁcates, and the polynomial inverse identities. The other inverse composition on w uses the proved
+domain and p-cancellation, rather than a sample-point test. The structural proof of (12) then certiﬁes idempotence and the image algebra. Additional exact rational examples are regression checks
+only; they do not prove nonpolynomiality or replace polynomial identities.
+The actual upstream Lean declaration is OAI.ComplexCancellation.main in OAI/Algebra/
+AffineCancellation/Main.lean; its statement matches (1) and the cylinder/nonpolynomiality
+claim. The comparator’s sorry is a separate challenge statement. We inspected the actual solution sources and their semantic scope, but did not reproduce the full Lean kernel build: the
+local exact-version dependency build was stopped by disk limits. Accordingly this note relies on
+the independently audited written theorem, and claims neither a reproduced formal proof nor a
+formalization of the follow-on retract theorem.
+Our primary-source and companion-corpus audit found no earlier explicit statement or ﬁvecomponent transport for this particular complex example. A failed search is not proof of priority.
+The general cylinder-to-retract mechanism is already explicit in Nagamine and is not claimed as
+new. We attribute the deﬁning example, stabilization, and nonpolynomiality to OpenAI using its
+manuscript-speciﬁc citation. This is a consequence note, not an independent cancellation breakthrough.
+Research disclosure. AI tools were used extensively for research, drafting, symbolic veriﬁcation,
+and adversarial audits. The upstream work is itself AI-produced and is credited to its supplied
+author, OpenAI. This preprint has not undergone conventional human peer review or refereeing at
+publication. Automated adversarial reviews are not human peer review. No external individuals
+were contacted.
+
+5
+
+References
+[1] D. L. Costa, Retracts of polynomial rings, J. Algebra 44 (1977), 492–502. doi:10.1016/00218693(77)90197-1.
+[2] T. Nagamine, A note on retracts of polynomial rings in three variables, J. Algebra 534 (2019),
+339–343; arXiv:1811.04153v2 (2018).
+[3] S. Chakraborty, N. Dasgupta, A. K. Dutta and N. Gupta, Some results on retracts of polynomial
+rings, arXiv:1910.11023v1 (2019).
+[4] S. Chakraborty and M. Pal,
+arXiv:2504.14382v2 (2026).
+
+Monomial and binomial retracts of polynomial rings,
+
+[5] N. Epstein and H. D. Nguyen, Algebra retracts and Stanley–Reisner rings, J. Pure Appl. Algebra
+218 (2014), 1665–1682; arXiv:1301.3967v1 (2013).
+[6] OpenAI, An explicit failure of complex aﬃne-space cancellation, OpenAI Math Release preprint,
+2026. Pinned manuscript and repository.
+
+6
+
+

@@ -1,0 +1,31 @@
+# Source resolution and bounded priority for 5100006 / k114
+
+Source/claim resolution, 11 October 2026. The reviewed research note is published at [https://doi.org/10.5281/zenodo.23306203](https://doi.org/10.5281/zenodo.23306203); fresh whole-package R2 passed after the R1 reference locator repair. The source interpretation and bounded priority limits below remain unchanged.
+
+## Historical record and exact resolution
+
+The unchanged source_record.json and prior_imported_report.json preserve the original database/intake statement and historical open-triage status. The unchanged source_manifest.json preserves the submitted primitive theorem's sources, scope and credits. These provenance records are historical; they do not override the active proof's explicit least-period formulation. They have not been rewritten to make an old source appear to contain a later theorem.
+
+[Reznik–Garcia–Koiller, arXiv:2004.12497v11](https://arxiv.org/abs/2004.12497v11), Table 2, printed p.5, records k114 as the product of ordinary vertex-to-focus distances for N=2 modulo 4, experimentally observed in April 2020, with proof column “?”. The [2021 version of record, *Fifty New Invariants*, Arnold Mathematical Journal 7, 341–355](https://doi.org/10.1007/s40598-021-00174-y), defines the factors on p.344 and retains the unproved entry on p.345. Observation credit belongs to these authors. An old proof-table question mark states the status at publication; it does not prove that no subsequent proof exists.
+
+The introductory setting is a confocal ellipse pair. The row does not expressly define least period versus a listed return length admitting repeated traversals. The active theorem proves the least-period interpretation and classifies every repeated traversal. For a noncircular, strictly nested nondegenerate confocal elliptical-caustic family, the product is constant iff its least period n=2 modulo 4. For a listed return length N=2 modulo 4, it is constant iff its least period is even. Odd-period orbits repeated to that length are counterexamples, not newly primitive even polygons. The explicit doubled-triangle products in PROOF.md differ by 180√30.
+
+The active proof also includes both fixed foci, equality of their products for every even least period, all primitive star windings, reversed orientation and the direct circle exception. No hyperbolic-caustic, degenerate-caustic, separatrix or degenerate two-bounce theorem is claimed.
+
+## Established inputs and bounded priority
+
+[Stachel, *On the motion of billiards in ellipses*, European Journal of Mathematics 8 (2022), 1602–1622](https://doi.org/10.1007/s40879-021-00524-2), Theorem 4.3 and (4.9), p.1614, supplies the canonical parameter with the **caustic** eccentricity as modulus, the axis formulas and vertex step. Jacobi periods, poles, shifts and addition formulas are classical and specified by [NIST DLMF, Chapter 22](https://dlmf.nist.gov/22). The adjacent erroneous dn(u+2K) sign printed in Stachel's preprint and published p.1613 is not used; the proof uses correct sn/cn shifts.
+
+Meromorphic Poncelet products, compact-torus constancy and pole removal are established tools, with precedents including [Schwartz (2015)](https://doi.org/10.1016/j.geomphys.2014.07.024), [Akopyan–Schwartz–Tabachnikov](https://doi.org/10.1007/s40879-020-00426-9), Chavez-Caliz, and Roitman–Garcia–Reznik. The target-specific deduction identifies the ordinary focal factor's complete divisor and its finite translation cosets. No new parametrization, Jacobi identity, Liouville principle, cyclic-product method or new general method is claimed.
+
+The publication preparation's bounded primary-source audit reported no explicit earlier theorem or proof of the exact ordinary focal-vertex product or its full least-period classification in the checked material. This is a bounded search finding, not certification of novelty or exclusive historical priority. The known caustic-contact products k117, side-perpendicular products k202 and outer-tangent-polygon focal product k115 have different factors; none was treated as a proof of this target. Ferudun's related unrefereed k115 note is credited in the package's source assessment as a distinct recent comparison, not as a k114 proof.
+
+A disclosed full-text gap remains for **Vladimir Dragović and Borislav Gajić, *Points with rotational ellipsoids of inertia, envelopes of hyperplanes which equally fit the system of points in R^k, and ellipsoidal billiards*, Physica D 451 (2023), 133776**, [doi:10.1016/j.physd.2023.133776](https://doi.org/10.1016/j.physd.2023.133776). The audit checked the abstract and public publisher introduction but did not obtain a legitimate public full text. Sections 3.1 and 5.2 remain uninspected and may contain relevant facts or citations. The accessible scope supplied no positive evidence of this focal-product theorem; that is an inference about accessible scope, not clearance of the full paper. Other unindexed texts and later specializations of general classical results were not exhaustively checked.
+
+The detailed provenance and search limits are preserved in the frozen publication_package_v1/SOURCES_AND_PRIORITY.md. No additional literature search or external outreach was performed for this native preparation.
+
+## Historical controls and current verification
+
+All independent_review/ and author_replay/ files are unchanged historical evidence for the valid submitted primitive n=2 modulo 4 theorem. Their old proof hash and counts refer to the immutable original_submission archive listed in README.md. No historical review verdict was altered or represented as a fresh review of the strengthened active proof.
+
+The current verify.py is the package's explicit standard-library verify_exact.py; current verification.json is its actual replayed output. Its finite exact controls support the analytic theorem and physical counterexample arithmetic, but do not establish the classical analytic inputs, certify floating-point errors or constitute a formal proof-assistant verification. This AI-assisted work remains unrefereed. Publication reference: [*An exact period criterion for focal-distance products in elliptic billiards*](https://doi.org/10.5281/zenodo.23306203).

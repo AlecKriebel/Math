@@ -1,0 +1,162 @@
+{
+  "recorded_at_utc": "2026-10-12T22:49:47.890846+00:00",
+  "reviewer": "validation_repair_adversary",
+  "problem_id": "20001515",
+  "pr": 421,
+  "source_head": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+  "scope": "Only the three historical finite-verification programs at the exact frozen HEAD; validation-only repair. No peer-script optimization-safety or global mathematical/novelty/priority verdict.",
+  "family_verdict": "PASS_VALIDATION_REPAIR_READY_FOR_ACCEPTANCE",
+  "candidate_sha256": {
+    "verify.py": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42",
+    "audit/independent_audit.py": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903",
+    "audit/independent_algebra.py": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96"
+  },
+  "candidate_seal_sha256": "8cb14cc0d1e88c4ad48158004e8b90c8b144b326c24e25f35fe4722b44cd90dd",
+  "criteria_seal_sha256": "6136b5c2bbbf35ba9f6a5558993e7c03f05e266dbd9bc763398e8cd42abcadd7",
+  "precomparison_independent_result_seal_sha256": "e08a113ed8508f98ac26d7f464410e884a1a9bae37bec33c9a832e78e69c4343",
+  "independence": {
+    "all_six_original_candidate_programs_read_before_execution": true,
+    "criteria_sealed_before_reports_verdicts_provenance_or_replays": true,
+    "own_reconstruction_and_results_sealed_before_prior_reports_read": true,
+    "repair_generator_code_used_or_read": false,
+    "prior_replay_outputs_or_provenance_used_or_read": false,
+    "later_report_comparison": "POST_SEAL_COMPARISON.json; no required discrepancy"
+  },
+  "source_binding": {
+    "all13_receipt_lengths_and_hashes_match": true,
+    "all13_source_objects_at_exact_HEAD_match": true,
+    "read_only_git_branch": "main",
+    "evidence": [
+      "STATIC_CHECKS.json",
+      "LOCAL_HEAD_BINDING.json",
+      "FINAL_RECHECK.json"
+    ]
+  },
+  "structural_result": {
+    "exact_gate_counts": {
+      "verify.py": 34,
+      "audit/independent_audit.py": 24,
+      "audit/independent_algebra.py": 4
+    },
+    "total": 62,
+    "every_original_assert_exact_one_to_one_if_not_raise": true,
+    "tests_and_lazy_messages_AST_identical": true,
+    "entire_candidate_AST_with_corresponding_gates_restored_equals_original": true,
+    "all_mathematical_and_nonvalidation_ASTs_unchanged": true,
+    "candidate_asserts_remaining": 0,
+    "original_exception_constructor_name": "unshadowed builtin AssertionError",
+    "exception_arguments_arity_preserved": true,
+    "source_locations_formatting_comments_not_claimed_identical": true,
+    "evidence": "STATIC_CHECKS.json"
+  },
+  "direct_execution": {
+    "fresh_direct_subprocess_baselines": 36,
+    "programs": 3,
+    "versions": [
+      "original",
+      "candidate"
+    ],
+    "modes": [
+      "normal",
+      "-O"
+    ],
+    "hash_seeds": [
+      0,
+      1,
+      42
+    ],
+    "deleted_all3_saved_outputs_before_each_run": true,
+    "all_exit0_empty_stderr": true,
+    "candidate_success_stdout_byte_identical_to_original_normal": true,
+    "author_stdout_matches_frozen_checks_json_bytes_without_file_generation": true,
+    "geometry_full_generated_artifact_matches_correct_frozen_file_bytes": true,
+    "geometry_shorter_stdout_compared_to_correct_expected_projection": true,
+    "algebra_full_stdout_and_generated_artifact_match_correct_frozen_file_bytes": true,
+    "proof_bytes_unchanged_on_all_clean_runs": true,
+    "different_cwd_and_copied_source_relative_layout_verified": true,
+    "runtime": "Python3.14.6; /opt/homebrew/opt/python@3.14/bin/python3.14",
+    "evidence": "FRESH_BASELINES.json"
+  },
+  "failure_execution": {
+    "original_gates_independently_forced_false": 62,
+    "subprocess_runs": 248,
+    "original_normal_and_candidate_normal_and_O_builtin_AssertionError_type_and_typed_args_identical": true,
+    "original_O_drops_every_forced_historical_assert": true,
+    "no_message_string_tuple_and_computed_dict_messages_covered": true,
+    "meaningful_corruptions": 10,
+    "meaningful_corruption_runs": 40,
+    "corruption_families": {
+      "author": 2,
+      "geometry": 4,
+      "algebra": 4
+    },
+    "all_meaningful_original_normal_and_candidate_normal_O_rejections_type_args_identical": true,
+    "all_meaningful_original_O_controls_false_PASS": true,
+    "syntax_import_or_incidental_failures_used_as_controls": false,
+    "proof_changed_byte_rejected_both_candidate_modes": true,
+    "evidence": [
+      "ALL_GATE_FAILURES.json",
+      "MEANINGFUL_CORRUPTIONS.json"
+    ]
+  },
+  "semantic_shape_probes": {
+    "gate_shapes": 62,
+    "scenarios": 620,
+    "original_normal_vs_candidate_normal_and_optimization2_comparisons": 1240,
+    "lazy_once_only_message_evaluation_preserved": true,
+    "single_boolean_evaluation_preserved": true,
+    "and_or_short_circuit_and_propagated_exceptions_preserved": true,
+    "actual_predicate_AST_identity_checked_separately": true,
+    "evidence": "LAZY_AND_SHORT_CIRCUIT.json"
+  },
+  "required_findings": [],
+  "documented_scope_boundaries": [
+    {
+      "id": "BND001",
+      "kind": "runtime namespace assumption",
+      "mechanism": "Candidate explicitly raises the name AssertionError, whereas compiler assert uses the builtin type. Injecting AssertionError=RuntimeError into foreign execution globals reproduces a type mismatch.",
+      "applies_to_current_standalone_candidate": false,
+      "reason": "No candidate/source binding shadows AssertionError, and clean standalone launches use unmodified builtins. Prior sealed report already states this assumption.",
+      "acceptance_condition": "Ordinary standalone execution with standard unshadowed builtin AssertionError; universal embedding/rebinding equivalence is not claimed."
+    },
+    {
+      "id": "BND002",
+      "kind": "source-relative proof/output layout",
+      "mechanism": "Geometry reads parent ATTEMPT_1.md and writes audit/independent_results.json. Overlay directory alone lacks the proof file.",
+      "acceptance_condition": "Replace only the three program paths in a clean copied exact13-file attempt packet; preserve pinned proof bytes and writable output directory."
+    },
+    {
+      "id": "BND003",
+      "kind": "claim scope",
+      "acceptance_condition": "Finite executable certificate and optimization-safe validation only; no new certification of global proof, exact external source identity, novelty, historical unpublished script provenance, or peer reviewer scripts."
+    }
+  ],
+  "exact_remaining_gap_for_this_validation_scope": [],
+  "original_budget": "1/5",
+  "author_proof_attempts_added": 0,
+  "audit_completion_estimate_percent": 100,
+  "outreach": false,
+  "source_or_candidate_mutation": false,
+  "shared_git_index_branch_remote_mutation": false,
+  "positive_public_allowlist": [
+    "ALL_GATE_FAILURES.json",
+    "CRITERIA_SEAL.json",
+    "FINAL_RECHECK.json",
+    "FRESH_BASELINES.json",
+    "INDEPENDENT_RESULT_SEAL.json",
+    "LAZY_AND_SHORT_CIRCUIT.json",
+    "LOCAL_HEAD_BINDING.json",
+    "MEANINGFUL_CORRUPTIONS.json",
+    "POST_SEAL_COMPARISON.json",
+    "RESEARCH_LOG.md",
+    "REPORT.md",
+    "STATIC_CHECKS.json",
+    "VERDICT.json",
+    "exception_capture.py",
+    "independent_validation.py",
+    "PUBLIC_FILES.txt",
+    "FINAL_FREEZE.json"
+  ],
+  "private_inputs_excluded": "Entire private_sources/validation_repair_adversary tree, all raw/copied/mutated source fixtures and individual wrapper capture files.",
+  "ready_for_root_acceptance": true
+}

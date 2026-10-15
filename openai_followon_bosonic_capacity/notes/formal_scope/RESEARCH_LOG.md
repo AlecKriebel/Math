@@ -1,0 +1,5 @@
+# Formal scope research log
+
+- 2026-10-07T04:16:43.461220+00:00 — Inspected exact pinned upstream theorem, all foundational semantics and auxiliary assumptions. Strongest verified result: unconditional source theorem matches physical full-Fock finite-energy n-mode EPnI; actual/proposed statements and definitions coincide. Mathematical resolution estimate: 20%; publication package estimate: 5%.
+- 2026-10-07T04:16:43.461220+00:00 — Exported and hashed the complete 26-module OAI transitive source closure. No placeholder/axiom/native proof bypass markers were found.
+- 2026-10-07T04:16:43.461220+00:00 — Tried isolated dependency setup; exact depth-one Mathlib pin retrieved, but disk pressure blocks cache/build. Deleted only the failed temporary pack created by that setup, restored free space to 371 MiB, then suspended downloads per lead instruction. Machine verification, axiom inspection and comparator run remain unverified. Mathematical resolution estimate: 20%; publication package estimate: 5%.

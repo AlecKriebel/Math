@@ -1,0 +1,9 @@
+# Fresh final independent software review log
+
+2026-10-13T14:08:15.325463+00:00 — 10%: All twelve exact final input pins verified. Reviewing finite ADMIN-only continuation and remote-intent fence after both repairs. No service calls, source-science or asset reads, root Journal construction, or root mutations.
+
+2026-10-13T14:13:45.120973+00:00 — 85%: 89 independently generated normal controls, 89 optimized controls and 14 isolated subprocess CLI controls passed the bounded one-remote-intent and one-shot CLI checks. Original administration custody unchanged under read-only validation; 82 original top-level nodes unchanged. Exploratory same-object reuse after a pre-intent terminal STOP issued its first synthetic PUT on a second execute call and failed at the old receipt; recorded as a claim-boundary issue, not hidden. No native requests/mutations. Final verdict scope pending exact boundary adjudication.
+
+2026-10-13T14:15:20.523472+00:00 — 95%: Independent normal and optimized counterexamples both establish post-pre-intent-terminal-STOP same-open-object reuse. This falsifies the requested phase-attempt termination property; source abd32 review is BLOCKED. The 89/89 bounded controls and 14 CLI checks remain valid partial evidence. Frozen exact input bytes retained privately for reproduction while any later repairs are independently reviewed.
+
+2026-10-13T14:19:36.370227+00:00 — 100% of this frozen-source review complete; 85% estimated toward software acceptance. Verdict BLOCKED by one independently reproduced terminal-STOP reuse gap. 89/89 controls and 14 isolated CLI controls are partial evidence only. Both exact counterexample reproductions, initial independent code, frozen replay code, pinned inputs and raw before/after evidence retained privately. No live continuation acceptance or future repair endorsement.

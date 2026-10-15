@@ -1,0 +1,78 @@
+{
+  "status": "CONSISTENCY_PASS",
+  "utc": "2026-10-04T12:51:37.877186+00:00",
+  "candidate_input_sha256": {
+    "manuscript.tex": "3338be58c5c6250a826f2a2af772db5a3838dad1d45c6c4a847c62cc00b4f9df",
+    "manuscript.pdf": "0325be9bc4b754ad1d94baadf2f1b88af587e9443b9d242a2d7af7b2dda79420",
+    "zenodo-deposit.json": "b4d99b620320f9a0a46eac60f9e61308cbc859364fadd632fd9976e9e942b863",
+    "verification.zip": "e916946b6ffaaec2dae08b4a3622d19293d087ced789297ee38b86c671d76dab"
+  },
+  "program_records": {
+    "division_chord": {
+      "original_sha256": "abef6246e8dd1de18976f646ca3320429f7665078b0d02b918ae5f5cb42ae305",
+      "exported_sha256": "45454cbad95e633ff25a13c1e516372411dd5eb01ae89a6299a4c6b8d271637b",
+      "archive_equal": true,
+      "guard_only": true,
+      "declared_changes": [
+        "Add explicit assertion-preserving optimization guard; original mathematical body unchanged."
+      ],
+      "version_sha256": {
+        "v01": "45454cbad95e633ff25a13c1e516372411dd5eb01ae89a6299a4c6b8d271637b",
+        "v02": "45454cbad95e633ff25a13c1e516372411dd5eb01ae89a6299a4c6b8d271637b",
+        "v03": "45454cbad95e633ff25a13c1e516372411dd5eb01ae89a6299a4c6b8d271637b"
+      }
+    },
+    "division_model": {
+      "original_sha256": "723d849a01833ba43f290df710c8ed12952864b6b557fa106bd724d9d14e0619",
+      "exported_sha256": "ed7fd8130e1750c9e7d8e884458b514ebd44113610e91f1ce2b13bdfe5c40004",
+      "archive_equal": true,
+      "guard_only": true,
+      "declared_changes": [
+        "Add explicit assertion-preserving optimization guard; original mathematical body unchanged."
+      ],
+      "version_sha256": {
+        "v01": "ed7fd8130e1750c9e7d8e884458b514ebd44113610e91f1ce2b13bdfe5c40004",
+        "v02": "ed7fd8130e1750c9e7d8e884458b514ebd44113610e91f1ce2b13bdfe5c40004",
+        "v03": "ed7fd8130e1750c9e7d8e884458b514ebd44113610e91f1ce2b13bdfe5c40004"
+      }
+    },
+    "division_finite": {
+      "original_sha256": "3fdfcc392d66161595e8b87c4282583f7882167ecb85229a8226d1ee533b7b9d",
+      "exported_sha256": "94ea98b2011494bc9f6807049418c0794a451b496a2c9d43fa4762fc5bb2fbfe",
+      "archive_equal": true,
+      "guard_only": true,
+      "declared_changes": [
+        "Add explicit assertion-preserving optimization guard; original mathematical body unchanged."
+      ],
+      "version_sha256": {
+        "v01": "94ea98b2011494bc9f6807049418c0794a451b496a2c9d43fa4762fc5bb2fbfe",
+        "v02": "94ea98b2011494bc9f6807049418c0794a451b496a2c9d43fa4762fc5bb2fbfe",
+        "v03": "94ea98b2011494bc9f6807049418c0794a451b496a2c9d43fa4762fc5bb2fbfe"
+      }
+    },
+    "division_quintic": {
+      "original_sha256": "d224f3b787eefd08bbfa208f42944321e48c997e124196755baa344dfd174651",
+      "exported_sha256": "d7b6ff808482f703a8d90cdc37ea946e658e9785a4dad41673c995777a4b84dd",
+      "archive_equal": true,
+      "guard_only": false,
+      "declared_changes": [
+        "Add explicit assertion-preserving optimization guard; original mathematical body unchanged.",
+        "Bind independently derived coefficients to packaged expected/division_chord.json instead of the historical private native-record path."
+      ],
+      "version_sha256": {
+        "v01": "d7b6ff808482f703a8d90cdc37ea946e658e9785a4dad41673c995777a4b84dd",
+        "v02": "d7b6ff808482f703a8d90cdc37ea946e658e9785a4dad41673c995777a4b84dd",
+        "v03": "d7b6ff808482f703a8d90cdc37ea946e658e9785a4dad41673c995777a4b84dd"
+      }
+    }
+  },
+  "public_derivative_diffs_after_guard_removal": {
+    "division_chord": "",
+    "division_model": "",
+    "division_finite": "",
+    "division_quintic": "--- division_polynomial/independent_quintic_factors.py\n+++ export_after_guard_removal\n@@ -4,7 +4,7 @@\n from pathlib import Path\n import sympy as s\n x,beta=s.symbols('x beta');r=s.sqrt(5)\n-record=json.loads((Path(__file__).parent/'native/independent_generic_chord_final.stdout').read_text())\n+record=json.loads((Path(__file__).parent.parent/'expected/division_chord.json').read_text())\n co=[s.sympify(a,locals={'beta':beta}) for a in record['Tate_remainder_coefficients']]\n R=sum(a*x**(10-j) for j,a in enumerate(co))\n Rp=x**5+((beta**2-5*beta+1)/2+r*(-beta**2+11*beta+1)/10)*x**4+(4*beta**2-2*beta+r*(beta**3-11*beta**2-beta)/5)*x**3+((beta**4-7*beta**3+7*beta**2)/2+r*(-beta**4+11*beta**3+beta**2)/10)*x**2+(beta**4-3*beta**3)*x+beta**4\n"
+  },
+  "expected_R_coefficients_match_our_fresh_Vieta_derivation": true,
+  "portability_entries_for_four_programs_unchanged_across_v01_v02_v03": true,
+  "limits": "Static proof/code/record consistency. Parent conducts fresh program replay. Quintic checker is conditional on the packaged coefficient record; verify.py independently reconstructs and compares that record before quintic use."
+}

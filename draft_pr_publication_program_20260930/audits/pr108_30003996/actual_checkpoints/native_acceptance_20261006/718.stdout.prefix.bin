@@ -1,0 +1,49 @@
+"""Seal only the current own-folder nonexecuted V5 draft; no native/Git/service action."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import datetime,json,os,shutil,stat
+import v3_guards as g
+D=Path(__file__).resolve().parent
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def write(name,obj):(D/name).write_bytes(g.canonical(obj))
+g.validate_python_startup(os.environ)
+g.require(not (D/'OUTPUT_MANIFEST.json').exists() and not (D/'SEAL_RECEIPT.json').exists(),'V5 already sealed')
+prior=g.loads((D/'PREDECESSOR_UNCHANGED_INPUT_PINS.json').read_bytes());counts={}
+for item in prior['files']:
+    p=Path(item['path']);g.regular(p);data=p.read_bytes()
+    g.require(len(data)==item['bytes'] and g.sha(data)==item['sha256'],'Predecessor changed at final seal')
+    counts[item['group']]=counts.get(item['group'],0)+1
+read=g.loads((D/'READ_SCOPE_MANIFEST.json').read_bytes())
+for item in read['files']:
+    chosen=item.get('retained_byte_identical_copy',item);p=Path(chosen['path']);g.regular(p);data=p.read_bytes()
+    g.require(len(data)==item['bytes'] and g.sha(data)==item['sha256'],'Actual read pin body unverified')
+for mode in ['NORMAL','OPTIMIZED']:
+    result=g.loads((D/(mode+'_FIXTURE_RESULTS.json')).read_bytes())
+    g.require(result['all_passed'] is True and result['tests']==35 and result['exit_code']==0,'Final fixtures not successful')
+    for field in ['stdout','stderr']:
+        p=Path(result[field]['path']);data=p.read_bytes();g.require(len(data)==result[field]['bytes'] and g.sha(data)==result[field]['sha256'],'Test output body differs')
+for mode in ['normal','optimized']:
+    fixture=D/'fixture_startup'/mode
+    g.require(not (fixture/'STARTUP_INJECTION_SENTINEL_MUST_BE_ABSENT').exists(),'Startup injection sentinel exists')
+    result=g.loads((fixture/'ABSENT_SENTINEL_RESULT.json').read_bytes())
+    g.require(result['sentinel_present'] is False and result['native_prepare_assess_export_calls']==0,'Startup regression not passed')
+core={name:{'bytes':(D/name).stat().st_size,'sha256':g.sha((D/name).read_bytes())} for name in g.PROGRAMS}
+ledger=g.loads((D/'FIELD_SPECIFIC_CORRECTION_LEDGER.json').read_bytes())
+g.require({Path(p['path']).name:p['sha256'] for p in ledger['program_pins']}=={k:v['sha256'] for k,v in core.items()},'Template/ledger core pins stale')
+g.require([x['finding'] for x in ledger['corrections']]==['F01','F02','F03','F04','F05','F06','F07','F08','F09','F10'],'Correction ledger incomplete')
+for name,function in [('CONFIG_TEMPLATE_DO_NOT_RUN.json',g.validate_thin_config),('EXECUTION_INPUTS_TEMPLATE_DO_NOT_RUN.json',lambda o:g.validate_execution_manifest(o,g.canonical(o)))]:
+    try:function(g.loads((D/name).read_bytes()))
+    except ValueError:pass
+    else:raise ValueError('Inert template accepted at seal')
+diff=g.loads((D/'SOURCE_DIFF_MANIFEST.json').read_bytes())
+for item in diff['programs']:
+    for label in ['V4','V5']:
+        pin=item[label];data=Path(pin['path']).read_bytes();g.require(len(data)==pin['bytes'] and g.sha(data)==pin['sha256'],'Full source diff pin changed')
+data=(D/diff['diff']['path']).read_bytes();g.require(len(data)==diff['diff']['bytes'] and g.sha(data)==diff['diff']['sha256'],'Full source diff body changed')
+g.require(g.loads((D/'WORKER_CONTROL_CONTRACT.json').read_bytes())['runtime_control_constructed'] is False,'Contract is not inert')
+utc=now();free=shutil.disk_usage(D).free
+write('CORE_FAMILY_MANIFEST.json',{'schema':'pr108-corrected-v5-core-family/v1','UTC':utc,'draft_only':True,'program_files':core,
+    'code_family_sha256':g.sha(g.canonical(core)),'joint_V5_actual_inputs_review_clearance':False})
+with (D/'RESEARCH_LOG.md').open('a') as file:
+    file.write('\n'+utc+' — Sealed corrected_v5 draft100% for exact-code adversarial review, not native commissioning. Normal/optimized35/35 custody verified; every read input body and predecessor pin verified. V1/V2/V3/V4 unchanged. Final native prepare/assess/export/install count0, service calls0, Git commands0, central proof turns0. Real config/capacity/gates and later candidate/DIFF/readbac
