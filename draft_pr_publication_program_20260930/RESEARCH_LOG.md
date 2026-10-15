@@ -280,3 +280,6 @@ Universal FuchsConjecture2.7 all n>=3; corrected physical/intrinsic label chart 
 
 
 2026-10-15T03:47:50.268634+00:00 — PR190 workflow68%: bounded two-family priority audit complete with historicalfirstness unresolved, exact current Ferudun overlap credited. Protected4-page paper/source/metadata/repaired exact supportZIP and49-file native draft prepared; next NEW whole-package adversary active. Mathematics is explicitly two-part: bare-angle false, adopted parity-selected theorem true. No author-authenticated source correction or certified novelty/independence. Current DOI-version files of overlapping work match inspected copies, superseding historical access failures. No own DOI/tracker/merge yet;38completed/22published unchanged;broadergoalactive.
+
+
+2026-10-15T04:07:07.105424+00:00 — PR190 workflow95%: exact reviewed qualified two-part endpoint note https://doi.org/10.5281/zenodo.23384007 actually published and tracker 'Math Puzzles'!A92:D92 verified. Qualified bare-angle counterexamples and adopted parity-selected theorem cleared, historicalpriority unresolved with explicit gaps; no firstness/author-intent/independence claim. Successive NEW complete-package reviews accepted. Original-head integration prepared; actualmergepending.38completed/22published unchanged until factual acceptance.

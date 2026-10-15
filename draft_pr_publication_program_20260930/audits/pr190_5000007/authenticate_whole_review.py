@@ -10,7 +10,7 @@ seal=json.loads((D/'FINAL_SEAL.json').read_text());entries=seal.get('files',seal
 names=set()
 for x in entries:
  n=x['path'];q=Path(n);require(not q.is_absolute() and '..' not in q.parts and not (D/q).is_symlink(),'Unsafe review entry');p=D/q;actual=pin(p);require(actual['sha256']==x.get('sha256',x.get('SHA256')) and actual['bytes']==x['bytes'],'Review content identity drift '+n);require(stat.S_IMODE(p.stat().st_mode)==0o444,'Unprotected review artifact '+n);names.add(n)
-safe=json.loads((D/'SAFE_AUTHORED_ALLOWLIST.json').read_text())['key_files'];require(isinstance(safe,list) and len(safe)==len(set(safe)),'Invalid safeallowlist')
+safe_j=json.loads((D/'SAFE_AUTHORED_ALLOWLIST.json').read_text());safe=safe_j.get('files',safe_j.get('key_files'));require(isinstance(safe,list) and len(safe)==len(set(safe)),'Invalid safeallowlist')
 for n in safe:
  require(n in names or n=='FINAL_SEAL.json','Unsealed safe artifact '+n)
  require(not any('private' in x.lower() or 'chrome' in x.lower() for x in Path(n).parts) and not n.endswith('.layout.txt'),'Private/source body path in safeallowlist')
