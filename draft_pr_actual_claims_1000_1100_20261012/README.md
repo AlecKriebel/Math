@@ -36,31 +36,8 @@ completed Zenodo publication, exact tracker readback and exact-head merge.
 The latest completed result is #1031: [DOI](https://doi.org/10.5281/zenodo.23353160),
 tracker row 81, merge `9182035ca5205514a32f003007fbe5c8100e4855`.
 
-Sixteen of the eighteen full-claim candidates have passed combined scoped
-mathematical audits. #1032 remains the ascending disposition cursor: its
-critical full-text priority comparison is pending, and an exact connected-Drive
-search found no matching paper. #1033, #1034, #1037, #1041 and #1047 are now
-root sealed and ready locally, held for later publication after #1032.
-#1052's second full review found zero actionable issues and is root adopted;
-its final administrative package awaits root verification.
-#1064's second full review accepted mathematics, sources, five-page PDF and
-ordinary reproduction; a newly reproduced archive-output hardlink defect is
-being repaired before a new complete whole03 review.
-#1071's attributed seven-page proof and source-version boundaries are root
-checked; whole01 is active, with writer-alias and citation-format repairs needed.
-#1080's credited seven-page deduction is root read and all pages viewed; its
-current custom metadata needs a repository-tool upload manifest, and an archive
-output alias needs repair. New full reviews still govern clearance. Higher-genus
-exact maxima and classifications remain unresolved in this work.
-#1085's priority audit proves an earlier HHRV theorem implies the graph result
-and credits Exner–Minakov's exact planar mechanism. A globally credited edition
-is being prepared; exact remaining geometric priority remains UNKNOWN.
-#1094's full smooth classification passed two independent families and root
-reproduction and now undergoes extensive priority audit. #1097's eight original
-files are acquired and two distinct mathematical families are active. #1098
-remains the final candidate to acquire and audit.
-All 101 assertions are screened; the eighty-three partial/prior exclusions remain
-outside processing. At least two fresh whole-package reviews are required before
-clearance. Cursor: #1032. Best-guess overall completion: 58%.
-Candidate and mathematical acceptance do not establish historical novelty or
-current worldwide openness.
+Seventeen of eighteen full-claim candidates have passed combined scoped mathematical audits. All eighteen original packages are acquired; the last candidate, #1098, has one clean independent family and a second full family in progress. Six later packages (#1033, #1034, #1037, #1041, #1047, #1052) are root sealed and ready locally. #1064 completed a clean third whole review and awaits final administrative adoption. #1071 completed bounded repairs and root reproduction, and a new full whole02 review is active. #1080 is completing native metadata and output-alias repairs before its second full review. #1085 has a prepared credited seven-page note awaiting root review. #1094 has a terminal priority audit awaiting root adoption. #1097 passed root full mathematical/source review and fresh reproduction, and its extensive priority audit continues.
+
+The ascending service/disposition cursor remains #1032: the critical Luo–Zha full-body priority comparison is unresolved. No later result is published, tracked or merged ahead of it. Four earlier results are published, tracked and merged as recorded above. All 101 assertions are screened, with 83 partial/prior exclusions outside processing. At least two fresh complete whole-package reviews are required before clearance. Historical novelty and worldwide current openness remain separate unproved questions.
+
+Checkpoint 2026-10-15T13:57:46.639054+00:00: best-guess overall completion 59%. A continuation check found four incomplete agent handles missing; their existing frozen evidence was retained and work resumed in place. Byte-identical hardlink deduplication of inactive ignored third-party source caches recovered approximately 488 MiB without deleting a source body or changing any path, bytes or authored artifact; an exact custody ledger records the operation.

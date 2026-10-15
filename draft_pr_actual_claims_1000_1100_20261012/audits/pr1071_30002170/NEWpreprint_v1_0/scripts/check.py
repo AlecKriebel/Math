@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Replay byte-exact original finite checker; use explicit guards under -O."""
 import argparse,hashlib,json,shutil,subprocess,sys,tempfile
+sys.dont_write_bytecode=True
 from pathlib import Path
+from package_paths import fresh_output,safe_path
 root=Path(__file__).resolve().parents[1]
 def require(condition,message):
     if not condition:raise RuntimeError(message)
@@ -24,18 +26,19 @@ def expect_rejection(fn,label):
     except RuntimeError:return {'control':label,'rejected':True}
     raise RuntimeError('Negative control escaped: '+label)
 def run(out):
-    out.mkdir(parents=True,exist_ok=True)
-    copies=json.loads((root/'INPUT_COPY_MAP.json').read_text())['copies']
+    out=fresh_output(out,root)
+    out.mkdir()
+    copies=json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']
     row=next(r for r in copies if r['package_copy']=='checks/original_finite_checks.py')
-    src=root/row['package_copy'];require(digest(src)==row['sha256'],'Original checker bytes changed.')
-    expected=json.loads((root/'checks/original_expected.json').read_text())
-    tex=(root/'paper.tex').read_text();q=(root/'custody/ROOT_CURRENT_SOURCE_QUALIFICATION.md').read_text();add=(root/'custody/ROOT_SOURCE_VERSION_ADDENDUM_20261014.md').read_text()
+    src=safe_path(root,row['package_copy']);require(digest(src)==row['sha256'],'Original checker bytes changed.')
+    expected=json.loads(safe_path(root,'checks/original_expected.json').read_text())
+    tex=safe_path(root,'paper.tex').read_text();q=safe_path(root,'custody/ROOT_CURRENT_SOURCE_QUALIFICATION.md').read_text();add=safe_path(root,'custody/ROOT_SOURCE_VERSION_ADDENDUM_20261014.md').read_text()
     source_guard(tex,q,add)
     modes=[]
     for mode,flags in [('normal',[]),('optimized',['-O'])]:
         dest=out/mode;dest.mkdir(exist_ok=True);checker=dest/'original_finite_checks.py';shutil.copyfile(src,checker)
         require(digest(checker)==row['sha256'],'Isolated replay copy is not byte-exact.')
-        proc=subprocess.run([sys.executable,*flags,str(checker)],capture_output=True,text=True)
+        proc=subprocess.run([sys.executable,*flags,str(checker)],capture_output=True,text=True,cwd=dest)
         (dest/'stdout.txt').write_text(proc.stdout);(dest/'stderr.txt').write_text(proc.stderr)
         require(proc.returncode==0 and proc.stderr=='','Original finite checker failed.')
         result=json.loads((dest/'FINITE_CHECKS.json').read_text());result_guard(result,expected)
@@ -47,6 +50,6 @@ def run(out):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path);args=parser.parse_args()
     if args.out:
-        require(args.out.resolve()!=root,'Use an output directory separate from frozen package contents.');run(args.out.resolve())
+        run(args.out)
     else:
-        with tempfile.TemporaryDirectory(prefix='pr1071-finite-') as d:run(Path(d))
+        with tempfile.TemporaryDirectory(prefix='pr1071-finite-',dir=Path(tempfile.gettempdir()).resolve()) as d:run(Path(d)/'result')

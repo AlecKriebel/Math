@@ -65,6 +65,17 @@ def check():
  require(latest['publication_ready'] is False and latest['issues_updated'] is False,'latest pending gate altered')
  require(latest['whole_package_reviews_completed']==2 and latest['whole_package_reviews_required']>=2,'latest new review gate altered')
  require(latest['ascending_publication_hold_after_pr']==1032,'latest ascending hold altered')
+ terminal=load('TERMINAL_STATUS.json')
+ require(terminal['stage']=='READY_FOR_SUBMISSION_UNPUBLISHED_HELD_AFTER_1032' and terminal['snapshot_date']=='2026-10-14','terminal stage altered')
+ require(terminal['whole_package_reviews_completed']==3 and terminal['whole_package_reviews_required']>=2,'terminal complete-review count altered')
+ require(terminal['actionable_P0_P1_P2_P3']==0 and terminal['ready_for_submission_after_root_adoption'] is True,'terminal clean-review readiness altered')
+ require(terminal['root_terminal_adoption_required'] is True and terminal['publication_ready'] is False and terminal['published'] is False and terminal['issues_updated'] is False,'terminal adoption/publication gate altered')
+ require(terminal['ascending_publication_hold_after_pr']==1032,'terminal ascending hold altered')
+ require(terminal['novelty']=='UNKNOWN' and terminal['historical_priority']=='UNKNOWN','terminal novelty boundary altered')
+ review=load('support/history/reviews/package_03/VERDICT.json')
+ require(review['verdict']=='ZERO_ACTIONABLE_FINDINGS' and all(review['severity_counts'][s]==0 for s in ['P0','P1','P2','P3']),'terminal complete-review verdict altered')
+ adoption=load('support/history/ROOT_WHOLE_PACKAGE_REVIEW_03.json')
+ require(adoption['whole_reviews_completed']==3 and adoption['minimum_whole_reviews']>=2 and adoption['actionable_P0_P1_P2_P3']==0,'terminal ROOT review adoption altered')
  require(load('support/CHECKS.json')['pass'] is True,'authored diagnostic record not passed')
  return allow
 
