@@ -1,0 +1,334 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\SOS}{\sum F[X]^2}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{A fixed moment separator without a rational\\ normalized sum-of-squares certificate}
+\author{Alec Kriebel\\
+  \small Independent researcher\\
+  \small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 6, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We apply Scheiderer's classical rational quartic, which is a sum of real
+squares but not rational squares, to the fixed-polynomial certificate question
+in Oberwolfach Report 14/2023. On the rational unit ball in three variables,
+an explicit rational degree-four moment vector has mass one and annihilates
+a rational polynomial \(p\) with minimum one. The identity
+\(p\in1+Q_{\R}(g)\) has a real certificate, whereas
+\(p\notin1+Q_{\Q}(g)\), even allowing arbitrary finite multiplier degrees.
+Here rational certificates mean rational polynomial square factors.
+The all-degree obstruction is a classical local leading-form argument.
+The moment matrix is not positive semidefinite, another polynomial gives a
+rational certificate for the same vector, and every rational rescaling
+\(cp\), \(c>1\), has a rational normalized certificate.
+Thus the example exhibits the phenomenon for one fixed boundary separator;
+it does not address the companion paper's strict-margin regime.
+\end{abstract}
+
+\section{The question and certificate convention}
+The end of Naldi's contribution, joint work with Henrion and Safey El Din,
+in Oberwolfach Report 14/2023 \cite[pp.~802--804]{OWR} asks whether a
+rational polynomial certifying truncated-moment nonrepresentability can have
+no rational certificate for its fixed membership in \(1+Q(g)\).
+We exhibit this phenomenon under the rational-square convention below.
+The quartic, its irrationality mechanism, and the local obstruction used
+here are established results. The purpose of this note is their explicit
+application to the printed moment question and clarification of its
+normalization boundary.
+
+For \(F=\Q\) or \(\R\), \(X=(x,y,z)\), and \(g\in F[X]\), define
+\[
+ Q_F(g)=
+ \left\{\sum_{i=1}^r a_i^2+g\sum_{j=1}^s b_j^2:
+ r,s\geq0,\quad a_i,b_j\in F[X]\right\}.
+\]
+All sums are finite; there is no degree bound on the factors.
+A \emph{rational certificate} means that these factors lie in \(\Q[X]\).
+This is equivalent to rational positive-semidefinite Gram data
+\cite[Lemma~1.6]{Gram}. It is stronger than requiring rational coefficients
+only in the real-SOS multiplier polynomials. The printed OWR question does
+not formally specify this distinction; its Scheiderer reference provides
+the rational-SOS context. We state our convention explicitly rather than
+attribute an unstated formal definition to that source.
+
+For \(m=(m_\alpha)_{|\alpha|\leq4}\), let
+\[
+ L_m\left(\sum_{|\alpha|\leq4}p_\alpha X^\alpha\right)
+       =\sum_{|\alpha|\leq4}p_\alpha m_\alpha .
+\]
+A representing measure is a nonnegative Borel measure supported on
+\(K=\{X\in\R^3:g(X)\geq0\}\), with the specified moments.
+
+\section{Explicit example and proof}
+Use the classical Scheiderer quartic
+\cite[Theorem~2.1 and Example~2.8]{Sch16}:
+\begin{equation}\label{eq:f}
+\begin{split}
+ f={}&x^4+xy^3+y^4-3x^2yz-4xy^2z\\
+     &+2x^2z^2+xz^3+yz^3+z^4 .
+\end{split}
+\end{equation}
+Set
+\begin{equation}\label{eq:data}
+ g=1-x^2-y^2-z^2,\qquad p=1+f,\qquad
+ m_{000}=1,\quad m_{400}=-1,\quad
+ m_\alpha=0\ \text{otherwise}.
+\end{equation}
+There are \(\binom{7}{3}=35\) moment entries.
+
+\begin{theorem}\label{thm:main}
+For the data \eqref{eq:data}, \(K\) is the nonempty compact unit ball,
+and \(Q_{\Q}(g)\) is Archimedean. The vector \(m\) has no representing
+measure, even on \(\R^3\), and \(L_m(p)=0\). Moreover,
+\[
+ \min_Kp=1,\qquad
+ p\in1+Q_{\R}(g),\qquad p\notin1+Q_{\Q}(g).
+\]
+The last nonmembership holds for every finite choice of polynomial
+square factors, of arbitrary degrees.
+\end{theorem}
+
+We recall the credited quartic argument to make the obstruction checkable.
+No new quartic or Galois construction is claimed.
+
+\begin{lemma}[Scheiderer's quartic]\label{lem:quartic}
+The polynomial \(f\) in \eqref{eq:f} is a sum of real polynomial squares
+and is not a sum of rational polynomial squares.
+\end{lemma}
+\begin{proof}
+Let \(h(t)=t^4-t+1\). It has no real roots: for \(t\leq0\) or
+\(t\geq1\) its value is at least one, and for \(0<t<1\) both
+\(t^4\) and \(1-t\) are positive. Modulo \(2\), \(h\) is irreducible:
+it has no linear factor and is not divisible by the sole irreducible
+monic quadratic \(t^2+t+1\). Modulo \(3\),
+\[
+ h(t)=(t+1)(t^3-t^2+t+1),
+\]
+where the cubic is irreducible and the factors are distinct.
+The usual factorization-cycle theorem gives a \(4\)-cycle and a \(3\)-cycle
+in the Galois group. Its order therefore is \(12\) or \(24\);
+the index-two subgroup \(A_4\) contains no \(4\)-cycle. Thus the group is
+\(S_4\).
+
+For the four roots \(\alpha_i\), put
+\(\ell_i=x+\alpha_i y+\alpha_i^2z\).
+The norm identity \(f=\prod_i\ell_i\) follows by expansion, or by the
+determinant of multiplication by \(x+ty+t^2z\) in \(\Q[t]/(h)\).
+Every three \(\ell_i\) are independent by the Vandermonde determinant.
+Complex conjugation pairs the roots. Choosing one root from each pair,
+\(f=|\ell_1\ell_2|^2\), after relabeling, is a sum of two real
+quadratic squares.
+
+Suppose \(f=\sum_j q_j^2\) with rational homogeneous quadratics \(q_j\).
+The intersection of each conjugate pair of projective lines
+\(\{\ell_i=0\}\) is a real projective point, since its one-dimensional
+complex vector space is conjugation-stable. At those points \(f=0\),
+so every \(q_j\) vanishes. Rational coefficients and the \(S_4\) action
+then force vanishing at all six pairwise line intersections.
+On each of the four lines there are three distinct such points.
+A binary quadratic vanishing at three distinct projective points
+vanishes identically on that line. Hence all four distinct \(\ell_i\)
+divide each \(q_j\), impossible for a nonzero quadratic.
+
+An inhomogeneous rational-square representation gives no escape.
+The highest homogeneous square terms cannot cancel over \(\R\),
+so all factors have degree at most two. The constant part of \(f\)
+forces all constant factors to vanish; its degree-two part then
+forces their linear parts to vanish. The factors would be precisely
+the homogeneous quadratics just excluded.
+\end{proof}
+
+For an explicit real certificate, let \(\beta\in(-2,-1)\) satisfy
+\(\beta^3-4\beta-1=0\). Scheiderer's displayed identity is
+\begin{equation}\label{eq:beta}
+\begin{gathered}
+ U=2x^2+\beta y^2-yz+(2+\beta^{-1})z^2,\\
+ V=2xy-\beta^{-1}y^2+2\beta^{-1}xz+\beta yz-z^2,\\
+ 4f=U^2-\beta V^2.
+\end{gathered}
+\end{equation}
+Existence of this negative root follows from opposite signs at \(-2,-1\).
+Thus \(f=(U/2)^2+(\sqrt{-\beta}\,V/2)^2\).
+The supplement checks \eqref{eq:beta} exactly after clearing denominators,
+modulo the cubic.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+The geometry of \(K\) is immediate, and its displayed rational ball
+generator makes the module Archimedean.
+The negative fourth moment \(m_{400}\) excludes every nonnegative
+representing measure. The coefficient of \(x^4\) in \(f\) is one, so
+\(L_m(p)=1-1=0\).
+Lemma~\ref{lem:quartic} gives \(f\geq0\) and
+\(p\in1+Q_{\R}(g)\). Since \(f(0)=0\), the minimum is one.
+
+For the remaining assertion, suppose a finite rational identity
+\[
+ f=\sum_i a_i^2+(1-x^2-y^2-z^2)\sum_j b_j^2
+\]
+holds, with arbitrary factor degrees.
+At the origin, both weights are one, so every \(a_i(0),b_j(0)\) vanishes.
+The homogeneous degree-two part is then the sum of the squares of all
+linear parts. It is zero, so these linear parts also vanish.
+Writing \(a_i^{[2]},b_j^{[2]}\) for the homogeneous quadratic parts,
+the degree-four part of the identity is exactly
+\[
+ f=\sum_i (a_i^{[2]})^2+\sum_j(b_j^{[2]})^2.
+\]
+The product of \(g-1\) with any \(b_j^2\) starts at degree six;
+higher factor terms do not affect degree four. This contradicts
+Lemma~\ref{lem:quartic}. No global degree bound or assertion that
+higher weighted terms cannot cancel was used.
+\end{proof}
+
+This local argument is classical. Scheiderer's leading-form lemma and
+positive-generator completion argument already give its mechanism
+\cite[Lemma~1.1 and proof of Proposition~6.1]{Sch00}.
+Benoist explicitly observes that this same quartic is not a sum of
+squares in \(\Q[[x,y,z]]\) \cite[Remark~2.7]{Benoist}.
+Alternatively, a rational ball-module identity would become a rational
+formal-square identity after multiplying the \(b_j\) by the binomial
+series \(\sqrt{1-x^2-y^2-z^2}\).
+Nie previously applied the corresponding leading-form obstruction over
+the reals to the homogeneous Motzkin form on a ball
+\cite[Example~5.3]{Nie}.
+
+\section{Normalization, scope, and related work}
+The following controls are part of the result, not optional qualifications.
+First, the same \(m\) has the rationally certifiable separator
+\[
+ q=1+x^4,\qquad L_m(q)=0,\qquad q-1=(x^2)^2 .
+\]
+Second, Powers' rational Putinar theorem for a rational ball generator
+\cite[Theorem~7]{Powers} gives \(p\in Q_{\Q}(g)\):
+\(p\) itself is strictly positive on \(K\).
+For every rational \(c>1\),
+\[
+ cp-1=(c-1)+cf\geq c-1>0 \quad\hbox{on }K,
+\]
+so the same theorem gives \(cp\in1+Q_{\Q}(g)\), with
+\(L_m(cp)=0\). The obstruction concerns \(c=1\). For \(c<1\),
+\(cp(0)-1<0\), so even real normalized membership fails.
+No degree bound for Powers' certificates is asserted.
+
+Third, \(M_2(m)\), indexed by monomials of degree at most two, is not
+positive semidefinite: its diagonal entry indexed by \(x^2\) is
+\(m_{400}=-1\). The construction does not address a PSD-input
+restriction. Finally, a merely rational-coefficient list of real-SOS
+multipliers already exists, namely \(\sigma_0=f,\sigma_1=0\).
+It is the rational square factors that are impossible.
+
+The companion preprint of Henrion, Naldi, and Safey El Din
+\cite[Definition~3, Corollary~2, and Remark~2]{TMP} distinguishes a
+strict-margin sufficient regime, \(\min_Kp>1\). Our minimum-one example
+addresses the literal fixed-polynomial OWR question and is outside that
+corollary's regime. It supplies neither an algorithmic claim nor a
+minimal-relaxation-degree claim, and does not settle general
+Archimedean descent variants.
+
+The same quartic's irrational Gram points were studied by Henrion,
+Naldi, and Safey El Din \cite[\S6.2]{LMI}. Naldi and Sinn already used it
+to construct a strongly infeasible rational semidefinite program without
+a rational PSD separating certificate \cite[Example~3.8]{NS}.
+That matrix-certificate application is substantial prior work; the
+present note uses the fixed normalized moment identity and arbitrary
+polynomial multiplier degrees instead. Our contribution is this
+explicit application and its scope clarification, rather than a new
+irrationality mechanism.
+
+A dated bounded priority note is included in the supplement. It records
+the primary passages inspected and exact access limits, including the
+unexamined remainder of the 2026 corrected journal proof on descent
+\cite{Descent}, whose full body was unavailable. Its inspected
+univariate, strict-positive, and zero-dimensional-support scopes do not
+conflict with this example. The module here is already rationally
+Archimedean, and its support ideal is zero because \(K\) has interior.
+The quotient \(\Q[X]/(Q_{\Q}(g)\cap -Q_{\Q}(g))\) therefore has
+dimension three. No statement about the unavailable Appendix~B
+theorem is inferred. We make no worldwide-firstness or current-openness
+assertion.
+
+\paragraph{Verification and disclosure.}
+The portable supplement contains this manuscript source, exact rational
+data, a standard-library checker and its full expected output, scope and
+priority notes, and a hash manifest. Its 2,059 finite checks cover the
+norm identity, finite-field factorizations, real-SOS identity, moment
+data, and representative leading-form/incidence controls. The proofs
+above, not finite searches, establish the Galois and all-degree
+nonmembership assertions. AI tools were used extensively in developing
+the application, literature comparison, exact computations, writing,
+and adversarial checking. This is an unrefereed preprint; those checks
+do not constitute independent human peer review or formal
+proof-assistant certification.
+
+\begin{thebibliography}{10}
+\bibitem{OWR}
+S. Naldi, On Algebraic Certificates for the Truncated Moment Problem
+(joint work with D. Henrion and M. Safey El Din),
+in \emph{Real Algebraic Geometry with a View toward Koopman Operator Methods},
+Oberwolfach Report 14/2023, pp.~802--804.
+\href{https://doi.org/10.4171/OWR/2023/14}{doi:10.4171/OWR/2023/14}.
+
+\bibitem{TMP}
+D. Henrion, S. Naldi, and M. Safey El Din,
+\emph{Algebraic certificates for the truncated moment problem},
+arXiv:2302.06927v1 (2023).
+\url{https://arxiv.org/abs/2302.06927v1}.
+
+\bibitem{Sch16}
+C. Scheiderer, Sums of squares of polynomials with rational coefficients,
+\emph{J. Eur. Math. Soc.} 18 (2016), 1495--1513.
+\href{https://doi.org/10.4171/JEMS/620}{doi:10.4171/JEMS/620}.
+
+\bibitem{Sch00}
+C. Scheiderer, Sums of squares of regular functions on real algebraic varieties,
+\emph{Trans. Amer. Math. Soc.} 352 (2000), 1039--1069.
+\href{https://doi.org/10.1090/S0002-9947-99-02522-2}{doi:10.1090/S0002-9947-99-02522-2}.
+
+\bibitem{Benoist}
+O. Benoist, On the bad points of positive semidefinite polynomials,
+\emph{Math. Z.} 300 (2022), 3383--3403.
+\href{https://doi.org/10.1007/s00209-021-02804-9}{doi:10.1007/s00209-021-02804-9}.
+
+\bibitem{Nie}
+J. Nie, \emph{An Exact Jacobian SDP Relaxation for Polynomial Optimization},
+author manuscript dated May 26, 2011, Example~5.3, p.~21.
+\url{https://mathweb.ucsd.edu/~njw/PUBLICPAPERS/JacSdp.pdf}.
+
+\bibitem{LMI}
+D. Henrion, S. Naldi, and M. Safey El Din,
+Exact algorithms for linear matrix inequalities,
+\emph{SIAM J. Optim.} 26 (2016), 2512--2539.
+\href{https://doi.org/10.1137/15M1036543}{doi:10.1137/15M1036543}.
+
+\bibitem{NS}
+S. Naldi and R. Sinn, Conic programming: Infeasibility certificates and
+projective geometry, \emph{J. Pure Appl. Algebra} 225 (2021), 106605.
+\href{https://doi.org/10.1016/j.jpaa.2020.106605}{doi:10.1016/j.jpaa.2020.106605}.
+
+\bibitem{Powers}
+V. Powers, Rational certificates of positivity on compact semialgebraic sets,
+\emph{Pacific J. Math.} 251 (2011), 385--391.
+\href{https://doi.org/10.2140/pjm.2011.251.385}{doi:10.2140/pjm.2011.251.385}.
+
+\bibitem{Gram}
+L. Chua, D. Plaumann, R. Sinn, and C. Vinzant,
+\emph{Gram Spectrahedra}, arXiv:1608.00234v1 (2016), Lemma~1.6.
+\url{https://arxiv.org/abs/1608.00234v1}.
+
+\bibitem{Descent}
+M. K. Keshari, D. Ojha, and N. S. Patra,
+\emph{Descent problem for certificate of non-negativity on semi-algebraic sets},
+arXiv:2508.07060v1 (2025); corrected journal proof (2026),
+\href{https://doi.org/10.1016/j.indag.2026.09.003}{doi:10.1016/j.indag.2026.09.003}.
+The journal full body and Appendix~B statement were not audited.
+\end{thebibliography}
+\end{document}

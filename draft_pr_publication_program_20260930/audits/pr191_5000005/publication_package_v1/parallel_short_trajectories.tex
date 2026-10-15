@@ -1,0 +1,435 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\K}{K_{\mathrm{PS}}}
+\title{Parallel short trajectories in regular polygons:\\
+a type convention and signed angle law}
+\author{Alec Kriebel\thanks{ORCID: \url{https://orcid.org/0009-0001-9320-500X}.}}
+\date{15 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a checked, self-contained geometric proof of the signed type law
+in Fuchs's Conjecture~2.6, after explicitly retaining the segment-parity
+convention in his definition of type. The proof includes existence of
+the required first-vertex trajectories, all polygon sizes, and boundary
+directions. An unqualified type-zero shorthand is incompatible with
+the unrestricted law, as direct diagonals show. Ferudun's preprint of
+9~October~2026 already proves the same theorem for $n\ge4$, identifies
+the same type convention issue, and uses closely related angular,
+cylinder, and descent arguments. Those results are explicitly credited;
+this note makes no claim of a new theorem, historical priority, or
+certified independent discovery. Extensive AI assistance was used.
+This is an unrefereed research note without conventional human peer review.
+\end{abstract}
+
+\section{The precise statement and its convention}
+Put $N=n-2$, $\rho=\pi/n$, and $\delta=N\rho$, with $n\ge3$.
+Let $P_0=O,P_1,\ldots,P_{n-1}$ be the clockwise vertices of the regular
+polygon above the horizontal side $OP_{n-1}$.
+A short trajectory stops at its first subsequent vertex; its open
+trajectory contains no vertex. Sides are included. At its first vertex
+$\alpha$ is the angle from the counterclockwise outgoing boundary
+edge to the trajectory. At its last vertex the corresponding interior
+angle is $\pi-\beta$, as in Fuchs's Figure~8~\cite{Fuchs}. Thus
+\[
+0\le\alpha\le\delta,\qquad 2\rho\le\beta\le\pi.
+\]
+For $q$ straight segments define the parity-selected type
+$\K(\gamma)=k\in\Z/N$ by
+\begin{equation}\label{type}
+\begin{array}{lll}
+q\text{ odd}:&s=(\alpha+\beta)/(2\rho)\in\Z,&k=n-1-s\pmod N,\\
+q\text{ even}:&s=(\beta-\alpha)/(2\rho)\in\Z,&k=s-1\pmod N.
+\end{array}
+\end{equation}
+Integrality and the geometric meaning are proved below. These formulas
+retain the parity instruction immediately before Definition~2.1 of
+\cite{Fuchs}. Its branch inequalities then choose representatives:
+the sum case has $1\le s\le n-1$ and $0\le n-1-s\le N$.
+In particular the lower side uses the representative $N\equiv0$,
+before reduction, and the upper side uses $0$. In the difference case
+the endpoint bounds similarly give the two difference branches.
+The formulas agree with Figure~9: $OP_j$ has type $j-1$.
+
+We explicitly adopt this completion of the printed convention.
+A parity-free union of its angle branches can be ambiguous on
+symmetry directions. We do not assert an authenticated author erratum
+or a uniquely compelled interpretation of every printed shorthand.
+Ferudun gives the same formulas and qualification in
+Definition~1.1 and Remark~1.2~\cite{Ferudun}.
+
+\begin{proposition}\label{obstruction}
+For every $n\ge5$, unique types satisfying both the unrestricted
+characterization $A_0\iff\beta-\alpha=2\rho$ and the unrestricted signed
+law in Theorem~\ref{law} cannot exist.
+\end{proposition}
+\begin{proof}
+The direct chord $OP_j$ has
+$\alpha=(n-1-j)\rho$ and $\beta=(n+1-j)\rho$.
+Every such chord therefore satisfies $\beta-\alpha=2\rho$,
+although the parity-selected type is $j-1$.
+For $j=n-2$, the bare characterization gives $k=0$ and
+$\alpha=\rho$. The allowed choice $\ell=2$, $\varepsilon=-1$
+fixes this same first-vertex ray, but the signed law would assign
+$-2\ne0$ in $\Z/N$.
+
+One can use distinct interior diagonals instead. Starting from this
+chord, take $(\ell,\varepsilon)=(1,1)$ when $n$ is odd, or $(2,1)$
+when $n$ is even. The resulting chords have slopes $2\rho$ and
+$3\rho$, respectively, and again satisfy the bare type-zero criterion.
+The required type is instead $-1$ or $-2$, nonzero modulo $N$.
+Strict convexity ensures that these chords have no earlier vertex.
+\end{proof}
+These examples concern the unrestricted imported formulation
+AMR-049-0005. Their starting angle $\rho$ is outside the odd open
+sector $(0,\rho/2)$ and on the boundary of the even open sector
+$(0,\rho)$ preceding the conjecture in \cite[\S2.5]{Fuchs}.
+They do not refute the conjecture restricted to those generic sectors.
+
+\begin{theorem}[Signed angle law, with the stated type]\label{law}
+Suppose a short trajectory from $O$ has slope $\alpha$ and type
+$\K=k$. If
+\[
+\alpha'=\ell\rho+\varepsilon\alpha\in[0,\delta],
+\quad \ell\in\Z,\quad \varepsilon\in\{1,-1\},
+\]
+with $\ell$ even when $n$ is even, there is a short trajectory from $O$
+with this slope, and its type is $\varepsilon k-\ell$ in $\Z/N$.
+\end{theorem}
+For $n\ge4$ this is also \cite[Theorem~B]{Ferudun}.
+The triangle is the elementary one-type case.
+The following proof uses classical double-polygon geometry
+\cite{Veech,Finster}, affine centrality~\cite{BL}, and a common
+labelling of outgoing and backward endpoint germs. Its reflection
+pairing and descent also substantially overlap
+\cite[\S\S2--3]{Ferudun}; they are not presented as new results.
+
+\section{Endpoint labels and affine transport}
+Take two distinct labelled polygons $P,Q=-P$, and glue each side to its
+parallel partner by translation, reversing endpoint order.
+This is the double surface $X_n$, including for even $n$.
+The corner succession is $P_0,Q_1,P_2,Q_3,\ldots$.
+For odd $n$ it gives one cone of angle $2N\pi$ and genus $(n-1)/2$;
+for even $n$ it gives two cones of angle $N\pi$ and genus $(n-2)/2$.
+These counts follow from $V-E+F$, with $E=n,F=2$.
+All vertex points are retained as marked endpoints.
+
+Number corners in a cone by $t$, beginning at $P_0$, or at $Q_0$ for
+the second even cone. Give corner $t$ the angular interval
+$[t\delta,(t+1)\delta]$ with coordinate $\phi$.
+For odd $n$ physical direction is $\phi\bmod2\pi$.
+For even $n$, cone $c\in\{0,1\}$ has physical direction
+$\phi+c\pi\bmod2\pi$.
+The physical lower side at $P_j$ is $-2j\rho$, and at $Q_j$ is
+$\pi-2j\rho$, which checks this calibration.
+
+Fix a real physical direction $\theta$. For either a forward germ
+in direction $\theta$ or a backward germ in direction $\theta+\pi$ set
+\begin{equation}\label{label}
+L_\theta(\phi)=(\phi-\theta)/\pi\pmod N .
+\end{equation}
+For each oriented direction the $N$ germs are labelled bijectively.
+For odd $n$, $N$ is odd and their labels are $2j$ or $2j+1$ modulo $N$.
+For even $n$, each cone supplies $N/2$ labels, with complementary
+parities at the two cones. Cone periods make \eqref{label} well defined.
+For a saddle connection write $a,b$ for its initial and backward
+terminal labels, with the same reference $\theta$.
+
+Ordinary polygon development alternates translates of $P$ and $Q$.
+Indeed reflection across a side equals the half-turn about its midpoint
+composed with a polygon symmetry. Translation into $X_n$ therefore
+identifies first-vertex trajectories with saddle connections in the
+specified initial germ. The terminal copy is $P$ for odd $q$ and $Q$
+for even $q$.
+
+For a trajectory from $P_0$ take $\theta=\alpha$, so $a=0$.
+At terminal corner $t$, the backward coordinate is
+$t\delta+\pi-\beta$ in $P$, or $t\delta+\beta-2\rho$ in $Q$.
+The physical directions give $t+s\equiv0\pmod n$ in the first case
+and $t-s+1\equiv0\pmod n$ in the second, and imply the integrality of
+$s$ in \eqref{type}. Substitution gives
+\[
+b=\begin{cases}
+1+(tN-2s)/n\equiv n-1-s\pmod N,&q\text{ odd},\\
+(tN+2s-2)/n\equiv s-1\pmod N,&q\text{ even}.
+\end{cases}
+\]
+Thus $b-a=\K$; the terminal supplement and parity are essential.
+
+\begin{lemma}\label{shift}
+For $n\ge5$, every orientation-preserving affine automorphism of $X_n$
+adds a common residue to all forward and backward labels in a fixed
+direction. In particular it preserves $b-a$.
+\end{lemma}
+\begin{proof}
+An angular lift $F$ of its derivative satisfies
+$F(x+\pi)=F(x)+\pi$ by linear antipodality.
+For odd $n$, the map on the sole cone differs from $F$ by $2\pi r$,
+which gives the common shift $2r$.
+
+For even $n$, synchronization needs justification. The half-turn
+$\iota$ exchanging $P,Q$ exchanges the two cones with identical $\phi$.
+It fixes exactly the $n$ glued edge midpoints. For odd $n$ it also fixes
+the sole vertex point. Hence for $n\ge5$ it has $2g+2$ fixed points,
+and Riemann--Hurwitz gives a sphere quotient.
+Its affine conjugate is holomorphic (its derivative is $-I$) and again
+has a sphere quotient. Uniqueness of the hyperelliptic involution
+gives commutation with every affine automorphism, the classical
+centrality statement in \cite[Lemma~2.3]{BL}.
+For completeness, two distinct degree-two sphere quotients would give
+a birational curve of bidegree $(2,2)$ in
+$\mathbb P^1\times\mathbb P^1$, whose normalization has genus at most one.
+This proves the required uniqueness in genus at least two.
+
+If cone $0$ maps to cone $e$, its angular map is
+$G(\phi)=F(\phi)-e\pi+2\pi r$ modulo $N\pi$.
+Commutation with $\iota$ makes the map on cone $1$ the same $G$.
+With $\theta'=F(\theta)$, every germ considered has
+$\phi-\theta\in\pi\Z$, so its new label is
+$L_\theta(\phi)-e+2r$ in both cones and both direction signs.
+\end{proof}
+
+\section{A finite-length reduction}
+
+The double-polygon cylinders and shears below are classical
+\cite[\S5]{Veech}; see also \cite[\S3.1]{Finster}.
+The descent has the same mechanism as \cite[Lemmas~2.8--2.13]{Ferudun}.
+Finite-length descent is already explicit for the pentagon in
+\cite[Theorem~2.11]{DL}.
+We give details for the actual double surface in both even families.
+
+Temporarily center $P$ with vertices
+$v_j=(\cos 2j\rho,\sin 2j\rho)$, and put $m=\lfloor n/2\rfloor$.
+For $1\le j\le m$, let
+\[
+a_j=\cos 2j\rho,\quad b_j=\cos 2(j-1)\rho,\quad S_j=a_j+b_j.
+\]
+The vertical strip $a_j<x<b_j$ in $P$ and the reflected strip
+$-b_j<x<-a_j$ in $Q$ form a cylinder. Crossing the upper edge of
+$P$ translates $x$ to $x-S_j$ in $Q$; crossing the next upper edge
+returns to $P$ with $x$ restored. The two vertical chord lengths
+are complementary linear functions. Their sum and the transverse width are
+\[
+\begin{split}
+\Lambda_j&=2\{\sin 2j\rho+\sin 2(j-1)\rho\}
+          =4\sin((2j-1)\rho)\cos\rho,\\
+H_j&=b_j-a_j=2\sin((2j-1)\rho)\sin\rho .
+\end{split}
+\]
+Thus $\Lambda_j/H_j=\lambda:=2\cot\rho$ in every cylinder.
+In flat cylinder coordinates $(x,s\bmod\Lambda_j)$, the maps
+$(x,s)\mapsto(x,s+\lambda(x-a_j))$ twist once.
+They fix the boundaries pointwise and have the same derivative, so glue
+to one affine automorphism. This constructs the shear directly on
+the double, without assuming a lift from the smaller even quotient.
+Rotation by $\rho$ exchanges $P,Q$ for odd $n$; rotation by $2\rho$
+preserves them for even $n$. Both respect the gluing.
+Rotation of this centered picture by $-\pi/2-\rho$ identifies $v_j$
+with the source vertex $P_{-j}$; the vertical model becomes direction
+$-\rho$. Hence the model directions used here are source directions
+$h\rho$.
+
+\begin{lemma}\label{reduce}
+For $n\ge5$, one orientation-preserving affine automorphism maps
+any saddle-connection direction of $X_n$ to a direction $h\rho$.
+\end{lemma}
+\begin{proof}
+There are finitely many saddle connections of length at most any $B$.
+Indeed the complete simply connected metric cover of the unpunctured
+compact Euclidean cone surface is proper and CAT(0): its cone angles
+are at least $2\pi$, and the usual disk-bigon Gauss--Bonnet argument
+gives uniqueness of lifted geodesics.
+The finite marked endpoint set has finitely many lifts in each bounded
+ball. Fixing a lift of each possible initial vertex therefore leaves
+finitely many endpoint pairs at distance at most $B$, and at most one
+geodesic per pair. This argument does not assume a discrete holonomy
+module.
+
+Conjugate the coordinates so that the shear has derivative
+$T=\left(\begin{smallmatrix}1&\lambda\\0&1\end{smallmatrix}\right)$.
+Using the actual rotations above, a saddle vector $v=(x,y)$ can be
+put in a sector with $x>0$ and angle $|\eta|\le\rho/2$ for odd $n$,
+or $|\eta|\le\rho$ for even $n$.
+Stop if $y=0$, or at an even boundary $|\eta|=\rho$.
+Otherwise an actual $T$ or $T^{-1}$ sends $v$ to
+$v'=(x-\lambda|y|,y)$, and
+\[
+|v'|^2-|v|^2
+=\lambda|y|(\lambda|y|-2x)<0
+\]
+The strict inequality is $x/|y|>\cot\rho$.
+Rotate back into the sector and repeat. Finiteness below the initial
+length forces termination. The terminal direction is the model
+direction or, in the even case, one separated from it by $\rho$.
+This is a finite composition of maps of the whole surface.
+\end{proof}
+
+\section{Reflection pairing and the signed law}
+In a model direction $\theta=h\rho$, reflection across the polygon
+symmetry axis perpendicular to $\theta$ pairs vertices by direct chords.
+At a fixed vertex that direction is supporting, with no inward germ.
+All other inward germs reach the reflected vertex; boundary germs
+give sides and their two corner descriptions are identified by gluing.
+
+For a chord from $P_j$ to $P_{j'}$ (or in $Q$), let
+$u\in\{1,\ldots,n-1\}$ represent $j'-j$ modulo $n$.
+Its initial and backward corner offsets are $(n-1-u)\rho$ and
+$(u-1)\rho$. Their sum is $\delta$.
+With corner numbers $t,t'$, physical alignment gives
+$t+t'+1\equiv n-h\pmod n$. Thus its endpoint labels obey
+\begin{equation}\label{modelsum}
+a+b=\frac{(t+t'+1)N-2h}{n}\equiv-h\pmod N .
+\end{equation}
+This works in both polygons and for side germs.
+By Lemma~\ref{reduce} and the common shift in Lemma~\ref{shift},
+every direction $\theta$ containing a saddle connection has one residue
+$C_\theta$ such that every connection in it satisfies
+\begin{equation}\label{reflection}
+b=C_\theta-a\pmod N.
+\end{equation}
+Every outgoing germ in that direction terminates: its image is a model
+chord, whose inverse preserves the absence of intermediate vertices.
+This proves the all-germ existence assertion, rather than assuming it.
+The equivalent endpoint-reflection transport appears in
+\cite[Lemma~3.1]{Ferudun}.
+
+\begin{proof}[Proof of Theorem~\ref{law}]
+First take $n\ge5$. The given trajectory has initial label $0$
+and backward label $k$, so $C_\alpha=k$.
+Suppose $\varepsilon=1$.
+The isometry rotating by $-\ell\rho$ exists on $X_n$ under the stated
+parity condition. Apply it to the germ at $P_0$ of slope $\alpha'$.
+It now has direction $\alpha$, so terminates by the preceding argument;
+pulling back proves existence at $\alpha'$.
+
+If its new initial corner number is $t$, its preserved corner offset
+is $\alpha'$ and its label is the integer
+\[
+a=(tN+\ell)/n,\qquad na=tN+\ell,\qquad 2a\equiv\ell\pmod N.
+\]
+The first integrality follows from actual physical alignment.
+The last congruence uses $n=N+2$ and does not divide by two modulo $N$.
+Equation~\eqref{reflection} gives $b=k-a$, hence intrinsic type
+$b-a=k-\ell$. Affine invariance and the type calculation in
+Section~2 identify this with the desired type.
+
+Bisector reflection sends
+$(\alpha,\beta)$ to $(\delta-\alpha,\pi+2\rho-\beta)$, preserving $q$.
+It sends $s$ in \eqref{type} to $n-s$ for odd $q$, or to $2-s$
+for even $q$, and so sends $k$ to $-k$.
+For $\varepsilon=-1$ write
+\[
+\alpha'=\ell\rho-\alpha
+=\delta-\{\alpha+(N-\ell)\rho\}.
+\]
+The bracketed angle is admissible whenever $\alpha'$ is.
+Apply the positive rule with $N-\ell$, then bisector reflection.
+The type becomes $-[k-(N-\ell)]=-k-\ell\pmod N$.
+For even $n$, $N-\ell$ is even, as required.
+
+For $n=3$ the sole residue is trivial. A triangular-lattice development
+has a primitive first-vertex endpoint in every transformed direction,
+since the allowed rotations and reflections preserve that lattice.
+For $n=4$, the primitive square-lattice endpoint $(p,q)$ has type
+$1$ precisely when both coordinates are odd, and type $0$ otherwise.
+For positive coprime coordinates the segment count is $p+q-1$:
+when both are odd, $\alpha+\beta=\pi$ gives type $1$;
+when exactly one is even, the selected difference is $\pi/2$,
+giving type $0$. Sides have type $0$ directly.
+The interior nonidentity admissible transformation swaps coordinates;
+the remaining boundary transformations exchange or fix sides.
+This proves the rule and existence modulo two.
+The geometric proof above already includes $n=6$; Fuchs also supplies
+its elementary lattice proof in \cite[pp.~511--512]{Fuchs}.
+\end{proof}
+
+\section{Credit, chronology, and verification}
+Fuchs formulated the problem and defined the types. Veech's
+double surfaces and uniform cylinder shears, and classical
+hyperelliptic affine centrality, are underlying inputs.
+Ferudun's dated preprint~\cite{Ferudun}, Definition~1.1,
+Remark~1.2 and Theorem~B, contains the same type convention,
+diagonal qualification, all-admissible signed law and first-vertex
+existence. Its Lemmas~2.8--2.13 and~3.1 substantially overlap the
+cylinder, finite-descent, uniform angular and reflection mechanisms
+used here. The full-group angular formulation above follows from
+classical centrality; it is not claimed as a new discovery.
+Nor is the trivial triangle case claimed as a new extension.
+This note is a credited rederivation and verification of the
+precisely stated result.
+
+The fixed original candidate in
+\href{https://github.com/AlecKriebel/Math/pull/191}{Math PR191}
+already contains the common-germ argument.
+GitHub reports PR creation on 1~October~2026, and the currently
+retrieved Zenodo record for \cite{Ferudun} reports creation on
+9~October~2026. Commit timestamps and present fixed-byte retrieval
+do not prove when the exact proof was publicly accessible, awareness
+of other work, or independent discovery. We describe these as
+contemporaneous overlapping treatments, without certifying priority.
+The supporting audit records source versions, hashes, read depths,
+and the limits of these chronology checks.
+
+The verification package contains exact rational and quadratic-field
+first-hit tracers, the protected original candidate and checkers,
+independent analytic audits, and machine-readable provenance.
+The original author and original reviewer programs reproduce their
+finite check counts in ordinary and optimized Python. The supplementary
+type checker distributed here uses explicit failure guards.
+Independent physical tracing compares 1,280 transformed pairs for
+$n=3,4,5,6,8$, with 1,628 terminated trace invocations
+(including repetitions). Deliberately wrong signs and terminal-angle
+conventions are rejected. These computations corroborate the argument;
+they do not establish universality or priority.
+
+AI tools were used extensively for reconstruction, derivation, literature
+search, drafting, computation and adversarial checking.
+Separate AI audit passes are not conventional human peer review.
+This preprint is unrefereed, and no conventional human peer review is
+claimed at publication. No theorem in this note is advertised as
+previously unknown.
+
+\begin{thebibliography}{9}
+\bibitem{Fuchs}
+D.~Fuchs, \emph{Billiard Trajectories in Regular Polygons and Geodesics
+on Regular Polyhedra}, Arnold Math.\ J.\ \textbf{7} (2021), 493--517.
+\href{https://doi.org/10.1007/s40598-020-00170-8}
+{doi:10.1007/s40598-020-00170-8}.
+
+\bibitem{Ferudun}
+A.~Ferudun, \emph{On Seven Conjectures of Fuchs on Billiard Trajectories
+in Regular Polygons and Geodesics on the Regular Dodecahedron},
+unrefereed preprint, version~1.0, 9~October~2026.
+\href{https://doi.org/10.5281/zenodo.23267641}
+{doi:10.5281/zenodo.23267641}.
+
+\bibitem{Veech}
+W.~A.~Veech, \emph{Teichm\"uller curves in moduli space, Eisenstein
+series and an application to triangular billiards},
+Invent.\ Math.\ \textbf{97} (1989), 553--583.
+\href{https://doi.org/10.1007/BF01388890}{doi:10.1007/BF01388890}.
+
+\bibitem{Finster}
+M.~Finster, \emph{A series of coverings of the regular $n$-gon},
+\href{https://arxiv.org/abs/1005.4588v3}{arXiv:1005.4588v3} (2011),
+\S\S3.1--3.2.
+
+\bibitem{BL}
+C.~Boissy and E.~Lanneau, \emph{Pseudo-Anosov homeomorphisms on
+translation surfaces in hyperelliptic components have large entropy},
+\href{https://arxiv.org/abs/1005.4148v2}{arXiv:1005.4148v2} (2010),
+Lemma~2.3. The earlier author draft of 21~July~2010 numbers the
+same centrality statement Lemma~2.2.
+\bibitem{DL}
+D.~Davis and S.~Leli\`evre, \emph{Periodic paths on the pentagon,
+double pentagon and golden L},
+\href{https://arxiv.org/abs/1810.11310v1}{arXiv:1810.11310v1} (2018),
+Theorem~2.11.
+\end{thebibliography}
+\end{document}

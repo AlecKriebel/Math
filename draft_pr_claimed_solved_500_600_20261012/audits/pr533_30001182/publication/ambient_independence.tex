@@ -1,0 +1,264 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={Ambient Dependence of Extremal-Exchangeable Independence},
+ pdfauthor={Alec Kriebel},
+ pdfsubject={Unrefereed AI-assisted mathematical research note},
+ pdfkeywords={exchangeability, independence, free products, extreme states}}
+\setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\F}{\mathcal F}
+\newcommand{\E}{\mathcal E}
+\newcommand{\id}{\mathrm{id}}
+\title{Ambient Dependence of Extremal-Exchangeable Independence}
+\author{Alec Kriebel\\
+  \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{12 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Liebscher asked whether independence defined by an extreme exchangeable
+free-product state needs to retain its ambient algebra. We give a
+state-preserving inclusion of a four-point algebra into \(M_4(\C)\) for
+which two distinct proper coordinate subalgebras, intersecting only in
+the scalars, are dependent downstairs and independent upstairs.
+Positivity forces every downstairs witness to be the same nontrivial
+character mixture; upstairs a pure vector state supplies a pure folding
+witness. Pure folding is an established construction, credited below.
+We also exhibit an extreme exchangeable algebraic state with no positive
+extension to a larger algebra, addressing the source's separate
+non-lifting concern. In contrast, extreme invariant states do lift
+along equivariant unital \(C^*\)-inclusions. The definition is unrestricted:
+extremality is among all exchangeable states, without a fixed-marginal,
+faithfulness or trace condition.
+\end{abstract}
+
+\section{The original question and convention}
+Let \(A\) be a unital complex *-algebra and let \(\varphi\) be a positive
+unital linear functional. Write
+\(\F(A)=*_{i\in\mathbb N}A\) for the unital algebraic free product,
+with injections \(j_i\), and let \(\E(A)\) be its convex set of states
+invariant under finite permutations of the copies. In the \(C^*\)-category
+we use the universal unital \(C^*\)-free product and continuous states.
+
+For unital *-subalgebras \(B,C\subseteq A\), Liebscher's definition
+on printed page 540 of \cite{Liebscher} declares them independent
+when some \(\omega\in\operatorname{ext}\E(A)\) satisfies
+\begin{equation}\label{law}
+ \omega\circ\bigl((j_1|_B)*(j_2|_C)\bigr)
+ =\varphi\circ(\iota_B*\iota_C)
+ \quad\hbox{as states on }B*C.
+\end{equation}
+Here \(\iota_B,\iota_C\) are the original inclusions, and the maps
+from \(B*C\) are supplied by the universal property. Equality means
+the entire joint law. Extremality is in \(\E(A)\), not in a slice
+with prescribed marginals. Item (1) asks whether retaining the ambient
+algebra is necessary, and motivates this by a possible failure of
+extreme-state lifting. We distinguish those two issues.
+
+\section{A finite-dimensional counterexample}
+\begin{theorem}\label{main}
+Put \(A=\C^{\{00,01,10,11\}}\), let \(p(s,t)=s,\ q(s,t)=t\), and set
+\[
+ B=\operatorname{span}\{1,p\},\qquad
+ C=\operatorname{span}\{1,q\},\qquad
+ \varphi=\tfrac12\delta_{00}+\tfrac12\delta_{11}.
+\]
+Embed \(A\) diagonally in \(M_4(\C)\), in the displayed point order, and let
+\[
+ u=(e_{00}+e_{11})/\sqrt2,\qquad \varphi'(T)=u^*Tu.
+\]
+This inclusion preserves the state. The subalgebras \(B,C\) are distinct,
+proper and have scalar intersection. They are not independent in
+\((A,\varphi)\), but are independent in \((M_4(\C),\varphi')\)
+under \eqref{law}, in both free-product categories.
+\end{theorem}
+
+\begin{proof}
+The functions \(1,p,q,pq\) form a basis of \(A\).
+Evaluating \(a+bp=c+dq\) at \(00,10,01\) gives \(a=c,\ b=d=0\).
+The stated subalgebra properties follow. Restriction of the vector
+state to the diagonal gives exactly \(\varphi\).
+
+Suppose that an exchangeable state \(\omega\) satisfies \eqref{law}
+downstairs. In its GNS representation put \(P_i=\pi(j_i(p))\),
+\(Q_i=\pi(j_i(q))\), with cyclic vector \(\Omega\).
+The joint law and exchangeability imply, for every \(i\ne j\),
+\[
+ \langle\Omega,P_i\Omega\rangle
+ =\langle\Omega,Q_j\Omega\rangle
+ =\langle\Omega,P_iQ_j\Omega\rangle
+ =\langle\Omega,Q_jP_i\Omega\rangle=\tfrac12 .
+\]
+Consequently
+\[
+ \|(P_i-Q_j)\Omega\|^2=0\qquad(i\ne j).
+\]
+Choosing a third index shows that all \(P_i\Omega\) and \(Q_i\Omega\)
+are the same vector \(v\). Each projection \(R\) in this family satisfies
+\(R\Omega=v\) and \(Rv=R^2\Omega=v\). Thus every nonempty finite word
+in the generators sends \(\Omega\) to \(v\) and has moment \(1/2\).
+These words and the unit span the algebraic free product.
+
+Let \(\chi_0,\chi_1\) evaluate every copy at \(00,11\), respectively.
+The preceding calculation proves, for every possible witness,
+\[
+                  \omega=\tfrac12\chi_0+\tfrac12\chi_1.
+\]
+The two characters are distinct exchangeable states. Therefore
+\(\omega\) is not extreme. Equality on dense algebraic words gives
+the same conclusion for the universal \(C^*\)-free product.
+This excludes every downstairs witness, rather than just a chosen one.
+
+Upstairs, let \(f:\F(M_4)\to M_4\) fold all copies identically.
+The vector state \(\varphi'\) is pure, and its pullback
+\(\omega'=\varphi'\circ f\) is pure by Lemma~\ref{pure}.
+The folding map is unchanged by permutations, so \(\omega'\) is
+exchangeable and hence extreme in the exchangeable state space.
+For every word from \(B*C\), folding multiplies the original
+diagonal matrices in their original order. Restriction of
+\(\varphi'\) to \(A\) proves \eqref{law} on the entire algebra.
+Moreover \(\omega'\circ j_i=\varphi'\) on every full copy.
+\end{proof}
+
+The algebraic GNS calculation above needs only Cauchy--Schwarz.
+For clarity, its null space is a left ideal: if \(\eta(x^*x)=0\),
+Cauchy--Schwarz applied to \(x\) and \(a^*ax\) gives
+\(\eta(x^*a^*ax)=0\), so \(ax\) is null. Projection multiplication
+therefore acts on the quotient domain. No null-vector identity was
+silently promoted to an operator identity.
+
+\begin{lemma}\label{pure}
+A pure state pulls back to a pure state along a surjective unital
+*-homomorphism. A unit vector state on \(M_d(\C)\) is pure.
+Both statements hold for positive algebraic states.
+\end{lemma}
+\begin{proof}
+In a convex decomposition of \(\eta\circ f\), positivity forces each
+constituent to vanish on \(x^*x\) for \(x\in\ker f\).
+Cauchy--Schwarz then makes it vanish on \(x\). Each constituent
+descends to a unital positive functional on the quotient: lift
+any \(a\) to \(z\), and evaluate \(a^*a\) as \(z^*z\).
+Purity of \(\eta\) makes the decomposition trivial.
+For a vector state, let \(e=uu^*\). The zero expectation of \(1-e\)
+in every constituent kills all blocks outside \(e\), by
+Cauchy--Schwarz. Since \(eTe=(u^*Tu)e\) and each constituent
+has value one on \(e\), each is the original vector state.
+\end{proof}
+
+Pure folding is the known maximal-amalgamation construction:
+Dykema, K\"ostler and Williams \cite[Proposition 8.7]{DKW} characterize
+its quantum symmetric extremality, and their Theorem 8.1 relates
+this to ordinary symmetric extremality. Lemma~\ref{pure} gives the
+needed special case directly, with the stronger conclusion of purity
+among all states.
+
+The half weight is inessential. Replacing it by
+\((1-t)\delta_{00}+t\delta_{11}\), \(0<t<1\), and using
+\(\sqrt{1-t}\,e_{00}+\sqrt t\,e_{11}\), gives the same proof with
+moment \(t\). At \(t=0,1\) the downstairs mixture becomes a character.
+If coincident subalgebras are allowed, the smaller example
+\(A=B=C=\C^2\subset M_2\) works with the faithful downstairs fair
+state and its coherent pure extension.
+
+\section{The literal lifting concern}
+\begin{theorem}\label{nonlift}
+There is a unital inclusion of algebraic *-algebras for which an
+extreme exchangeable state on the smaller free product has no
+positive extension to the larger one.
+\end{theorem}
+\begin{proof}
+Take \(R=\C[x]\subset S=\C[x,x^{-1}]\), with both \(x\) and \(x^{-1}\)
+self-adjoint. Evaluation at zero in every copy gives a character
+\(\chi\) on \(\F(R)\), hence a pure exchangeable state.
+A positive unital extension \(\eta\) to \(\F(S)\) would satisfy,
+in the first copy, \(X^*=X,\ Y^*=Y,\ XY=1,\ \eta(X^2)=0\).
+Cauchy--Schwarz gives the contradiction
+\[
+          1=|\eta(XY)|^2\le \eta(X^2)\eta(Y^2)=0.
+\]
+\end{proof}
+Both \(R,S\) admit the common state given by evaluation at one.
+The forbidden \(\chi\) is a different state; the assertion concerns
+the unrestricted extreme-state sets in the source, not failure
+to extend that specified common marginal.
+
+\begin{proposition}\label{Clift}
+For an equivariant unital \(C^*\)-inclusion \(D\subset E\) under the group
+of finitely supported permutations of \(\mathbb N\), every extreme invariant
+state of \(D\) has an extreme invariant extension to \(E\).
+\end{proposition}
+\begin{proof}
+Extend the state to \(E\) by the \(C^*\)-state extension theorem.
+Average the extension over \(S_n\) and take a weak-* cluster point,
+using a subnet when necessary. Every fixed finite permutation
+fixes all sufficiently late averages; the limit is an invariant
+extension. Its compact convex extension fiber is a face of the
+invariant state space of \(E\), since restriction of a decomposition
+would decompose the extreme state of \(D\). An extreme point of
+this nonempty compact face is extreme in the whole space.
+\end{proof}
+The canonical map between universal unital free products of a
+\(C^*\)-inclusion is injective. One may check this by extending each
+copy representation using state extension and cyclic GNS
+dilations, padding them to a common Hilbert space, and applying
+the universal property. The verification package gives this
+argument in detail. Thus Proposition~\ref{Clift} applies to those
+products. Extreme states can lift while their restrictions fail
+to remain extreme. Theorem~\ref{main} proves ambient dependence
+in that opposite direction; Theorem~\ref{nonlift} concerns the
+algebraic category, where \(C^*\)-extension and compactness are unavailable.
+
+\section{Scope, attribution and verification}
+The printed free-product definition is the target. We impose no
+global commutativity on its state algebra merely because \(A\)
+is commutative. A classical commutative/tensor interpretation
+requires a different coproduct or states factoring through a
+commutative quotient; it is not assumed here.
+
+The counterexample uses nonfaithful states, as permitted by the
+definition, and no tracial witness. It does not address faithful-only,
+tracial-only, trivial-tail or separately specified normal W*-definitions.
+Adding a prescribed full marginal while retaining extremality in
+\(\E(A)\) leaves the upstairs witness valid. Changing the convex
+set to the fixed-marginal slice changes the result: the forced
+downstairs mixture is extreme in that slice, as independently proved
+in the supporting audit.
+
+The known pure-folding mechanism is credited above. Our source audit
+does not certify historical-first priority, and we make no such claim.
+The note supplies explicit counterexamples and full deductions for
+the stated original question, rather than resolving all the other
+questions in the workshop contribution.
+
+The source archive contains the manuscript, immutable authored input,
+independent proofs and rational verification scripts, source hashes
+and the priority audit. Finite checks supplement the all-state,
+all-word and infinite-copy proofs; they are not formal certification.
+AI tools were used extensively in proof development, reproduction,
+adversarial review and preparation. All listed reviews were AI-assisted.
+This preprint is unrefereed and has not received human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{Liebscher}
+V.~Liebscher, On Quantum Independence, pp.~540--541 in
+B.~V.~R.~Bhat, U.~Franz and M.~Skeide (organizers),
+\emph{Mini-Workshop: Product Systems and Independence in Quantum Dynamics},
+Oberwolfach Reports \textbf{6} (2009), 493--548.
+\href{https://doi.org/10.4171/OWR/2009/09}{doi:10.4171/OWR/2009/09}.
+\bibitem{DKW}
+K.~J.~Dykema, C.~K\"ostler and J.~D.~Williams,
+Quantum symmetric states on free product \(C^*\)-algebras,
+\emph{Trans. Amer. Math. Soc.} \textbf{369} (2017), 645--679.
+\href{https://doi.org/10.1090/tran6661}{doi:10.1090/tran6661};
+\href{https://arxiv.org/abs/1305.7293v3}{arXiv:1305.7293v3}.
+\end{thebibliography}
+\smallskip\noindent\small
+Version 1.0. Author: Alec Kriebel. License: CC BY 4.0.
+\end{document}

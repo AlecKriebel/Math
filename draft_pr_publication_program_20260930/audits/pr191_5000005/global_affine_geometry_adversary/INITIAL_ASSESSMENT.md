@@ -1,0 +1,25 @@
+# Source-first independent assessment: global geometry family
+
+UTC: 2026-10-15T04:17:24.443089+00:00
+
+Boundary: only assigned Fuchs PDF, its locally generated page renderings/text, and the PDF tool skill have been read. No candidate, original code, old review, sibling opinion, or author-selected dependency has been read. Primary PDF matches assigned SHA-256.
+
+## Exact claim and source calibration
+Conjecture 2.6 (printed p. 511) asserts: for actual slope angles alpha and alpha'=ell*pi/n+epsilon*alpha in the vertex sector [0,(n-2)*pi/n], type k transforms to epsilon*k-ell modulo n-2. For even n ell must be even. Source p. 510 exhibits all parallel directions from O, starting with generic alpha in (0,pi/(2n)) for odd n or (0,pi/n) for even n. Definition 2.1, pp. 502-505, uses oriented initial angle a and terminal supplementary angle b; it is not simply an endpoint vertex number. Source p. 503 calibrates clockwise diagonal X0 X_(k+1) as type k. Edges are included by that calibration. Special cases n=3,4,6 include regular marked points on genus-one quotients.
+
+## Independent mechanism, before author exposure
+Use the reduced regular-polygon translation surface: odd n requires two oppositely oriented copies with parallel sides glued, and even n one polygon with opposite sides glued. Polygon-set reflections justify these models, but billiard folding labels require an explicit additional check. Corner angle delta=(n-2)*pi/n. Odd double n has one vertex equivalence class containing 2n corners, cone angle 2pi(n-2), genus (n-1)/2. Even n=0 mod4 has one vertex class containing n corners, cone angle pi(n-2), genus n/4. Even n=2 mod4 has two vertex classes each with n/2 corners, cone angle pi(n-2)/2, genus (n-2)/4. These formulae follow from edge/face/vertex counts and are internal deductions, not yet body-verified dependencies. For n=3,4,6 the cone factors are one, so the vertex set must remain marked.
+
+At any cone point of angle 2pi*q, the q outgoing germs of a fixed developed oriented direction have a cyclic order. A local orientation-preserving affine map with derivative A induces a lifted angle map F(t) with F(t+2pi)=F(t)+2pi and F(t+pi)=F(t)+pi. Thus at one cone point it rotates the prong labels by one common amount on opposite directions. Consequently, if the first-return endpoint pairing in a canonical periodic direction is a translation of cyclic prong labels, its affine transport remains a translation in the one-singularity cases. This is a concrete possible route to an all-direction theorem, not yet a theorem: it requires explicit canonical pairing, correct conversion of prong labels to Fuchs types, and exhaustive cusp/orbit coverage. Generic cyclic order alone does not constrain an arbitrary endpoint permutation to be a translation.
+
+The two-singularity even family is a distinct potential obstruction. Local affine lifts at different cone points can have different additive sheet offsets; a common derivative does not synchronize them. A distinguished derivative -I involution h exchanging the cone points may synchronize the offsets if every relevant affine map commutes with h. Both existence and centrality must be proved, including genus-one marked-point exceptions. Merely calling h hyperelliptic does not make it central among arbitrary affine homeomorphisms: conjugation must be shown to preserve the relevant involution, not just its derivative. Likewise canonical straight chords need not be individually invariant under h; double-polygon interior chords may be paired rather than fixed.
+
+## Falsifiable checks / exact gaps
+1. Derive corner equivalence classes, signed corner labels, and terminal supplement convention without assuming the conjecture.
+2. Determine canonical saddle-connection pairing for every n, including side and alternate diagonal cusp families. Count all outgoing germs and ensure no first-vertex segment omitted.
+3. Find checkable primary bodies or give proofs for complete cusp orbit classification and the all-affine centrality needed by the proposed transport. Veech dichotomy alone gives periodicity, not classification into canonical orbits.
+4. Verify affine transport from starts to endpoints preserves one *common* label or pairing relation, not a separate shift chosen for each trajectory. A lemma asserting this already for every special direction may be equivalent to the target.
+5. Keep actual (unwrapped) angles. Reducing ell modulo 2n or replacing alpha' by a reflected/folded representative changes ell modulo n-2 and must be justified, not silently done.
+6. Test n=3,4,6 independently and retain regular marked vertex points. A zero set alone loses these endpoints.
+
+Initial verdict: global proof plausible but unverified. No all-n proof or counterexample obtained. Completion estimate toward a verified audit: 20%; toward proving the universal conjecture: 5%. Exact remaining gap is the canonical pairing plus complete, correctly labelled affine transport, especially the two-cone case. No firstness, current-openness, or human-peer-review assertion is made.

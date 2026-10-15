@@ -1,0 +1,439 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\Hess}{\operatorname{Hess}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\dV}{\,dV}
+\newcommand{\dA}{\,dA}
+\title{A regular zero-area singularity with a nonzero weak Bianchi defect}
+\author{Alec Kriebel\protect\\[3pt]
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{Version 1.0 --- 12 October 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We apply a negative-mass member of the known Dadhich--Kar--Mukherjee--Visser
+metric family to the regular-zero-area-singularity conjecture in Burtscher's
+Oberwolfach report. Its natural static slices have harmonically regular
+zero-area singularities of mass $-2a$, but the homogeneous weak second Bianchi
+identity fails under the boundary-reaching vector-test convention of
+Burtscher--Kiessling--Tahvildar-Zadeh. We prove absolute convergence of the full
+scalar contraction for every such compactly supported smooth test and compute
+its exact boundary functional; a normalized radial test gives $-8\pi$.
+The metric and its Einstein tensor are classical, and the flux method is
+already present in the cited weak-identity work. The contribution is this
+explicit counterexample application and its convergence check. The example
+violates the null energy condition. The conclusion concerns the geometric
+implication in the cited static-foliation framework, with no specified matter
+model; it asserts neither regularity on every arbitrary tilted slice nor an
+identity for tests smooth after collapsing the boundary sphere to a point.
+\end{abstract}
+
+\section{The geometric question and the test convention}
+
+Burtscher's contribution to Oberwolfach Report 40/2021 describes admissible
+timelike singularities using regular zero-area singularities (ZAS) of negative
+mass on spacelike slices, and conjectures the homogeneous weak Einstein-tensor
+identity for that class \cite[pp.~2232--2233]{OWR}. The cited technical framework
+of Burtscher--Kiessling--Tahvildar-Zadeh (BKTZ) uses static slices and a retained
+inner boundary \cite[Sections~1.3--1.4]{BKTZ}. This note addresses that geometric
+implication with their boundary-reaching vector tests. The short report does
+not give a fully formal definition for every nonsymmetric spacetime or
+explicitly require regularity on every tilted hypersurface. We state the
+foliation interpretation explicitly rather than claim to settle every
+possible strengthening of its wording. The report's broader matter and
+evolution program remains a separate question.
+
+Fix $a>0$ and define
+\[
+ \overline M=\mathbb R_t\times\{x\in\mathbb R^3:|x|\ge a\},\qquad
+ M=\operatorname{int}\overline M,\qquad
+ \rho=|x|,\quad S_a=\{\rho=a\},\quad \phi=1-\frac a\rho.
+\]
+The smooth structure of $\overline M$ retains the sphere $S_a$. Our test space
+is $\mathcal T=C_c^\infty(\overline M;T\overline M)$: smooth vector-field sections
+with compact support in the manifold-with-boundary topology. Their normal
+boundary component need not vanish. This is the convention in BKTZ,
+Definition~2.1, the boundary-support footnote to Theorem~1.1, and the radial term
+in equation~(2.5) \cite{BKTZ}. A section of the tangent bundle at a boundary is
+not required to be tangent to that boundary.
+
+We use signature $(-+++)$, $c=G_{\rm Newton}=1$, and
+$G_{\mu\nu}=\Ric(g)_{\mu\nu}-\tfrac12 R_g g_{\mu\nu}$, with the Ricci convention
+\[
+R_{\mu\nu}=\partial_\lambda\Gamma^\lambda_{\mu\nu}
+-\partial_\nu\Gamma^\lambda_{\mu\lambda}
++\Gamma^\lambda_{\mu\nu}\Gamma^\kappa_{\lambda\kappa}
+-\Gamma^\kappa_{\mu\lambda}\Gamma^\lambda_{\nu\kappa}.
+\]
+For a metric smooth on $M$, write
+\begin{equation}\label{eq:I}
+ I_g(\psi)=\int_M G^\mu{}_{\nu}\nabla_\mu\psi^\nu\dV_g,
+ \qquad \psi\in\mathcal T,
+\end{equation}
+whenever the full scalar contraction is absolutely integrable. On $M$ this
+equals $\int_M G_{\mu\nu}\nabla^\mu\psi^\nu\dV_g$ pointwise. Lowering a test vector
+with a singular metric need not preserve boundary smoothness; independently
+smooth covectors are not substituted for $\mathcal T$. The homogeneous weak
+identity is $I_g(\psi)=0$ for every test in this specified class.
+
+\section{A classical metric and an explicit counterexample}
+
+The metric used below and the affine-lapse family used in its calculation are
+known. Dadhich--Kar--Mukherjee--Visser (DKMV) give
+\cite[equations~(9)--(15)]{DKMV}
+\[
+ ds^2=-\left(\kappa+\lambda\frac{1-m/(2\bar r)}{1+m/(2\bar r)}\right)^2dt^2
+       +\left(1+\frac{m}{2\bar r}\right)^4
+        (d\bar r^2+\bar r^2d\Omega^2),
+\]
+along with its Einstein-tensor components. The substitution
+\begin{equation}\label{eq:dictionary}
+ (m,\bar r,\kappa,\lambda)=(-2a,\rho,A,B),\qquad
+ N_v=\frac{\rho+a}{\rho-a},\qquad N=A+B N_v
+\end{equation}
+gives $g_N=-N^2dt^2+\phi^4\delta$, where $\delta$ is the Euclidean metric.
+We take $A,B\ge0$, $A+B>0$, so $N>0$. DKMV's subsequent wormhole parameter
+classification takes $m>0$; the negative-mass substitution here is an
+application of their metric formula, not an attribution of this later ZAS or
+weak-Bianchi conclusion to that classification. No new metric family or
+Einstein tensor is claimed. The spatial negative-mass Schwarzschild ZAS is
+also the standard example in Bray--Jauregui \cite{BJ}.
+
+\begin{theorem}\label{thm:main}
+For $a>0$, the metric
+\begin{equation}\label{eq:mainmetric}
+ g=-\phi^{-2}dt^2+\phi^4(d\rho^2+\rho^2d\Omega^2)
+\end{equation}
+is static, spherically symmetric and asymptotically flat on $M$. Every slice
+of its natural static foliation is totally geodesic and has a harmonically
+regular ZAS at $S_a$ of regular mass $-2a$. Its inner end is a genuine
+curvature singularity, timelike in the limiting radial conformal sense.
+For every $\psi\in\mathcal T$, the scalar in \eqref{eq:I} is absolutely
+integrable and
+\begin{equation}\label{eq:mainflux}
+ I_g(\psi)=-\frac{2}{a^2}
+ \int_{\mathbb R\times S_a}
+       \langle\psi_{\rm spatial},n\rangle_\delta\,dt\dA_\delta,
+ \qquad n=\frac{x}{\rho}.
+\end{equation}
+In particular there is a test in $\mathcal T$ with $I_g(\psi)=-8\pi$.
+The effective tensor $T=G/(8\pi)$ violates the null energy condition.
+\end{theorem}
+
+The theorem disproves the proposed implication from regular negative-mass
+ZAS slice geometry to the homogeneous identity under the stated foliation
+and test convention. A specified matter system or an added energy condition
+is not among its hypotheses. We prove the theorem through the following
+geometric and analytic calculations; no numerical verification is used as a
+proof of a quantified assertion.
+
+\subsection{Regular ZAS and the timelike singular end}
+
+The resolution $(\delta,\phi)$ extends smoothly to $S_a$, where $\phi$ vanishes
+simply. The Euclidean unit normal into the exterior is $+\partial_\rho$, and
+\[
+ \partial_\rho\phi|_{S_a}=\frac1a>0,\qquad \Delta_\delta\phi=0.
+\]
+These are the regular and harmonic resolution conditions of
+Bray--Jauregui, Definitions~6--7 \cite{BJ}. Their ZAS area condition concerns
+approaching boundary graphs converging in $C^1$ (Definition~4). For every such
+family the Euclidean areas stay bounded, while the supremum of $\phi^4$
+on the surfaces tends to zero. Since $dA_h=\phi^4dA_\delta$ for
+$h=\phi^4\delta$, their physical areas tend to zero. This checks the full
+approaching-surface condition, not just coordinate spheres. Definition~10
+then gives
+\begin{equation}\label{eq:mass}
+ m_{\rm reg}=-\frac14\left(\frac1\pi\int_{S_a}
+       (\partial_\rho\phi)^{4/3}\dA_\delta\right)^{3/2}
+ =-\frac14(4a^{2/3})^{3/2}=-2a.
+\end{equation}
+The time-independent spatial metric and zero shift give second fundamental
+form $K=0$. These statements concern the natural static foliation.
+
+The area radius satisfies
+\begin{equation}\label{eq:areal}
+ r=\rho\phi^2=\frac{(\rho-a)^2}{\rho},\qquad
+ f=1+\frac{4a}{r}=N_v^2,
+ \qquad h=f^{-1}dr^2+r^2d\Omega^2.
+\end{equation}
+Here $dr/d\rho=1-a^2/\rho^2>0$ on $M$; the change of variable is used only
+on the smooth interior. At infinity $\phi^4=1-4a/\rho+O(\rho^{-2})$ and
+$\phi^{-1}=1+a/\rho+O(\rho^{-2})$, with the corresponding differentiated
+decay. Thus \eqref{eq:mainmetric} is asymptotically flat.
+
+For its radial causal geometry put
+\[
+ s(\rho)=\int_a^\rho\phi(u)^3\,du
+ \sim\frac{(\rho-a)^4}{4a^3}.
+\]
+The radial metric is $\phi^{-2}(-dt^2+ds^2)$, so its limiting conformal
+boundary $s=0$ is timelike. Each nearby constant-$\rho$ tube has spacelike
+normal and Lorentzian induced metric. A radial null geodesic with conserved
+energy $E=\phi^{-2}dt/d\lambda>0$ obeys $|d\rho/d\lambda|=E/\phi$; its remaining
+affine length is
+\[
+ \frac1E\int_a^\rho\phi(u)\,du
+ =\frac{\rho-a-a\log(\rho/a)}{E}
+ \sim\frac{(\rho-a)^2}{2aE}.
+\]
+The invariant computed below diverges at this finite-affine-length end.
+The timelike statement is about this limiting causal structure; no
+nondegenerate smooth extension of the physical four-metric to the cylinder
+is asserted.
+
+\subsection{Curvature calculation}
+
+For completeness we recover the old tensor directly. For
+$h=f^{-1}dr^2+r^2d\Omega^2$, its spatial Ricci and radial-Hessian mixed
+eigenvalues are
+\begin{align*}
+ (\Ric(h)^r{}_r,\Ric(h)^\theta{}_\theta,\Ric(h)^\varphi{}_\varphi)
+   &=\left(\frac{4a}{r^3},-\frac{2a}{r^3},-\frac{2a}{r^3}\right),\\
+ (\Hess_h u)^r{}_r&=fu''+\frac{f'}2u',\qquad
+ (\Hess_h u)^\theta{}_\theta=(\Hess_h u)^\varphi{}_\varphi=\frac{fu'}r.
+\end{align*}
+These follow from
+$\Gamma^r_{rr}=-f'/(2f)$, $\Gamma^r_{\theta\theta}=-fr$,
+$\Gamma^r_{\varphi\varphi}=-fr\sin^2\theta$,
+$\Gamma^\theta_{r\theta}=\Gamma^\varphi_{r\varphi}=1/r$, and the usual
+unit-sphere connection. With $q=N_v=\sqrt f$,
+\[
+ q'=-\frac{2a}{qr^2},\qquad
+ q''=\frac{4a}{qr^3}-\frac{4a^2}{q^3r^4},
+ \qquad \Hess_hq=q\Ric(h),\quad \Delta_hq=0.
+\]
+For $g_N=-N^2dt^2+h$, the additional time connection gives
+\[
+ \Ric(g_N)_{tt}=N\Delta_hN,\quad \Ric(g_N)_{ti}=0,\quad
+ \Ric(g_N)_{ij}=\Ric(h)_{ij}-N^{-1}(\Hess_hN)_{ij}.
+\]
+Using $N=A+Bq$ and $R_h=0$, we obtain $R_{g_N}=0$, all off-diagonal
+mixed Einstein entries zero, and
+\begin{equation}\label{eq:familyG}
+ G^t{}_t=0,\qquad
+ (G^r{}_r,G^\theta{}_\theta,G^\varphi{}_\varphi)
+ =\frac A N\left(\frac{4a}{r^3},-\frac{2a}{r^3},-\frac{2a}{r^3}\right).
+\end{equation}
+These agree with DKMV's equations~(9)--(11) under \eqref{eq:dictionary}.
+The main lapse is $N=(1+q)/2=\phi^{-1}$, so
+\begin{equation}\label{eq:mainG}
+ (G^t{}_t,G^\rho{}_\rho,G^\theta{}_\theta,G^\varphi{}_\varphi)
+ =\left(0,\frac{2a}{\rho^3\phi^5},
+            -\frac{a}{\rho^3\phi^5},-\frac{a}{\rho^3\phi^5}\right).
+\end{equation}
+Since $R_g=0$, squaring the Ricci tensor yields
+\begin{equation}\label{eq:invariant}
+ \Ric(g)_{\mu\nu}\Ric(g)^{\mu\nu}
+       =\frac{6a^2}{\rho^6\phi^{10}}\longrightarrow+\infty
+       \quad(\rho\downarrow a).
+\end{equation}
+This is invariant curvature blow-up, despite the zero scalar curvature.
+In a static orthonormal frame the energy density is zero and each angular
+pressure is $-a/(8\pi\rho^3\phi^5)<0$. An angular null vector with frame
+components $(1,0,1,0)$ therefore has $T(k,k)<0$, proving the stated NEC
+violation.
+
+\section{Absolute convergence and the exact defect}
+
+We establish the full boundary functional for the classical family; its
+main member gives \eqref{eq:mainflux}. BKTZ already use a limiting
+boundary-flux calculation \cite[Definition~2.1 and the calculation following
+equation~(2.5)]{BKTZ}. Here the necessary convergence is proved directly,
+without invoking their sufficient theorem outside its hypotheses.
+
+\begin{proposition}\label{prop:flux}
+For $a>0$, $A,B\ge0$, $A+B>0$, let $g_N$ be defined by
+\eqref{eq:dictionary}. For every $\psi\in\mathcal T$ the full contraction is
+absolutely integrable and
+\begin{equation}\label{eq:familyflux}
+ I_{g_N}(\psi)=-\frac{4A}{a^2}
+ \int_{\mathbb R\times S_a}
+       \langle\psi_{\rm spatial},n\rangle_\delta\,dt\dA_\delta.
+\end{equation}
+Thus the homogeneous identity for every test in $\mathcal T$ holds within
+this family exactly when $A=0$.
+\end{proposition}
+
+\begin{proof}
+In exterior Cartesian coordinates $dV_{g_N}=N\phi^6\,dt\,d^3x$.
+Equation~\eqref{eq:familyG} and $r^3=\rho^3\phi^6$ give the weighted mixed
+spatial tensor
+\begin{equation}\label{eq:D}
+ D^i{}_j:=N\phi^6G^i{}_j
+    =\frac{Aa}{\rho^3}(6n_i n_j-2\delta_{ij}).
+\end{equation}
+It is Euclidean symmetric, traceless, and smooth up to $\rho=a>0$.
+Writing $\phi_i=\partial_i\phi$, the spatial connection is
+\[
+ \Gamma^j_{ik}=\frac2\phi
+    (\delta^j_i\phi_k+\delta^j_k\phi_i-\delta_{ik}\phi^j),
+ \qquad
+ D^i{}_j\Gamma^j_{ik}
+ =\frac2\phi\bigl((\tr D)\phi_k+D^i{}_k\phi_i-D^k{}_j\phi_j\bigr)=0.
+\]
+The time row and column of $G^\mu{}_{\nu}$ vanish, and
+$\Gamma^j_{it}=0$. Hence, pointwise on $M$,
+\begin{equation}\label{eq:scalar}
+ G^\mu{}_{\nu}\nabla_\mu\psi^\nu\dV_{g_N}
+       =D^i{}_j\partial_i\psi^j\,dt\,d^3x.
+\end{equation}
+On the compact support of any $\psi\in\mathcal T$, $D$ and the Cartesian
+first derivatives of $\psi$ are bounded, including at the boundary.
+The support has finite Euclidean measure. Thus the absolute value of the
+right side is integrable. This proves convergence for arbitrary time and
+angular dependence and avoids spherical-coordinate pole issues.
+
+The radial and tangential eigenvalues of $D$ are
+$D_r=4Aa/\rho^3$ and $D_T=-2Aa/\rho^3$. Consequently
+\[
+ \partial_iD^i{}_j
+ =\left(D_r'+\frac2\rho(D_r-D_T)\right)n_j=0.
+\]
+Integrate \eqref{eq:scalar} by parts over $a+\varepsilon<\rho<R$, with $R$
+and the time endpoints outside the support. The inner outward Euclidean
+normal of this exterior domain is $-n$. The only boundary contribution is
+\[
+ -\frac{4Aa}{(a+\varepsilon)^3}
+  \int_{\mathbb R\times S_{a+\varepsilon}}
+       \langle\psi_{\rm spatial},n\rangle_\delta\,dt\dA_\delta.
+\]
+Absolute convergence of the interior integral and smoothness of the
+boundary trace permit $\varepsilon\downarrow0$, proving
+\eqref{eq:familyflux}. At $A=0$ the Einstein tensor is identically zero.
+For $A>0$ the radial test below has nonzero functional, proving the final
+assertion.
+\end{proof}
+
+Choose $\eta\in C_c^\infty(\mathbb R)$ with $\int\eta\,dt=1$ and
+$\chi\in C_c^\infty([a,\infty))$ equal to $1$ near $a$. Set
+\begin{equation}\label{eq:test}
+ \psi=\eta(t)\chi(\rho)\partial_\rho.
+\end{equation}
+Since $\partial_\rho=x^i\partial_{x^i}/\rho$ and $a>0$, this is smooth on
+$\overline M$ and has a nonzero normal boundary trace. Its spherical
+components are angular independent, meeting also the convenient restriction
+used in BKTZ's equation~(2.5). Formula~\eqref{eq:familyflux} gives
+$I_{g_N}(\psi)=-16\pi A$, hence $-8\pi$ at $A=B=1/2$.
+As a direct sign and density check, its complete scalar density is
+\[
+ 4Aa\eta(t)\left(\frac{\chi'(\rho)}\rho-
+                     \frac{\chi(\rho)}{\rho^2}\right)
+        \,dt\,d\rho\,d\Omega
+ =4Aa\eta(t)\partial_\rho(\chi/\rho)\,dt\,d\rho\,d\Omega.
+\]
+The boundary endpoint is $\chi(a)/a=1/a$, which gives the same negative
+sign. This completes the proof of Theorem~\ref{thm:main}.
+
+Individual connection summands in this radial computation can each have
+logarithmically divergent integrals. Equation~\eqref{eq:scalar} combines
+the ordinary smooth summands on $M$ before integration. It does not
+separately integrate divergent terms, take a principal value, multiply
+tensor distributions, or assign a nonsingular boundary value to the
+physical metric.
+
+\section{Scope, checks, and disclosure}
+
+The counterexample has nonzero order $(\rho-a)^{-5}$ mixed Einstein
+components. In particular, with $x=\rho-a$,
+$x^5G^\rho{}_\rho\to2a^3\ne0$. BKTZ Theorem~1.1 assumes the strictly
+improved bound $O(x^{-5+\kappa})$ for some $\kappa>0$ \cite{BKTZ}; it does
+not cover this borderline case. The old boundary-flux method and the
+independent convergence proof are distinct from an invocation of that
+sufficient theorem. The vacuum control $A=0,B>0$ is the negative-mass
+Schwarzschild vacuum spacetime after time rescaling and has zero functional.
+Sharing its spatial metric does not make the main lapse vacuum.
+
+The static-slice condition is essential to the claim's formulation.
+Bray--Jauregui use a time-symmetric setting and discuss extensions beyond
+it separately \cite[p.~3 and Section~6.6 of the arXiv version]{BJ}. For
+example, a uniformly spacelike local tilt $t=t_0+q s(\rho)$, $|q|<1$, has
+induced metric
+\[
+ h_q=\phi^4\bigl((1-q^2)d\rho^2+\rho^2d\Omega^2\bigr),
+ \qquad m_{\rm reg}(h_q)=-\frac{2a}{1-q^2}<0.
+\]
+Its resolution remains smooth and positive. Arbitrary nearly null tilts
+need not have that property: $t=u(\rho)$ with
+$u'=\phi^3\sqrt{1-\phi^2}$ is interior-spacelike but has induced metric
+$\phi^6d\rho^2+\phi^4\rho^2d\Omega^2$. Any simple defining conformal factor
+in the retained cylinder structure leaves a zero radial eigenvalue in the
+resolved boundary metric. No all-arbitrary-tilted-slices assertion is made.
+
+Tests confined to the open interior give the ordinary classical identity,
+and tests smooth after collapsing $S_a$ to a point have a different
+smoothness requirement. In particular the radial test \eqref{eq:test}
+must not be replaced through that collapse. The effective matter violates
+NEC, so neither an energy-constrained version nor a specified electromagnetic
+matter system is resolved. The conclusion is the failure of the geometric
+implication in the stated boundary/static framework.
+
+The accompanying verification materials bind the thirteen available
+historical source files and preserve their original bytes. Independent
+analytic derivations and exact symbolic or rational-jet calculations check
+the tensor, mass, scalar cancellation, boundary sign and relevant controls.
+Historical 17-check and 35-check outputs reproduce in ordinary and optimized
+Python. The author's historical final assertion alone disappears in
+optimized mode; a separate explicit replay guard checks every Boolean,
+the expected counts, success flags and exact output bytes in both modes.
+Eleven extant historical payload references are checked; one standalone
+historical author-manifest hash has no supplied manifest path or bytes and
+is not claimed verified. These provenance facts supplement the analytic
+proof rather than replace it.
+
+A bounded independent literature search found no earlier printed application
+of this metric resolving the exact report conjecture in the inspected
+routes. This is not a certificate of historical first priority or continued
+openness. The metric, tensor, spatial ZAS example and boundary-flux method
+are attributed to the sources above. The supporting priority ledger records
+search coverage and its limits.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in developing, writing, reproducing and
+adversarially checking this work, including parallel AI reviews. This is an
+unrefereed research note. No independent human peer review or formal
+proof-assistant verification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{OWR}
+A. Burtscher, \emph{Matter particles, naked singularities, and a weak second
+Bianchi identity}, in \emph{Mathematical Aspects of General Relativity},
+Oberwolfach Reports \textbf{18} (2021), no.~3, Report~40, pp.~2231--2233.
+\href{https://doi.org/10.4171/OWR/2021/40}{doi:10.4171/OWR/2021/40}.
+The volume/workshop year is 2021; the publisher lists publication on
+26 November 2022.
+
+\bibitem{BKTZ}
+A. Burtscher, M. K.-H. Kiessling and A. S. Tahvildar-Zadeh,
+\emph{Weak second Bianchi identity for static, spherically symmetric
+spacetimes with timelike singularities}, Classical and Quantum Gravity
+\textbf{38} (2021), 185001.
+\href{https://doi.org/10.1088/1361-6382/ac1853}{doi:10.1088/1361-6382/ac1853};
+\href{https://arxiv.org/abs/1901.00813v3}{arXiv:1901.00813v3}.
+Numbered locations in this note refer to that arXiv version.
+
+\bibitem{DKMV}
+N. Dadhich, S. Kar, S. Mukherjee and M. Visser,
+\emph{$R=0$ spacetimes and self-dual Lorentzian wormholes},
+Physical Review D \textbf{65} (2002), 064004.
+\href{https://doi.org/10.1103/PhysRevD.65.064004}{doi:10.1103/PhysRevD.65.064004};
+\href{https://arxiv.org/abs/gr-qc/0109069}{arXiv:gr-qc/0109069} (2001).
+Published 7 February 2002. Equation numbers refer to the original arXiv
+manuscript.
+
+\bibitem{BJ}
+H. L. Bray and J. L. Jauregui, \emph{A geometric theory of zero area
+singularities in general relativity}, Asian Journal of Mathematics
+\textbf{17} (2013), 525--559;
+\href{https://arxiv.org/abs/0909.0522v2}{arXiv:0909.0522v2}.
+Definition and section locations refer to that arXiv version.
+\end{thebibliography}
+\end{document}

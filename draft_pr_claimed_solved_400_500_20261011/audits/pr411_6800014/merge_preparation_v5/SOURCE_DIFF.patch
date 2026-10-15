@@ -1,0 +1,233 @@
+--- accepted_v4/pr411_admin.py
++++ current98fb/pr411_admin.py
+@@ -851,29 +851,147 @@
+         raise Stop('journal directory must exist without symlinks') from exc
+ 
+ 
++def pre_intent_continuation(case, root, descriptor_ref, plan):
++    """Validate one terminal merge abort with no remote intent, read-only.
++
++    The prior claim survives. The new plan binds this descriptor and must
++    independently pass all existing evidence, scope and approval gates.
++    """
++    need(plan.get('phase') == 'merge' and plan.get('expected_head') == plan.get('integrated_head')
++         and plan.get('pre_intent_continuation') == {'descriptor': descriptor_ref}, 'continuation not bound to a merge plan')
++    spec = document(case, descriptor_ref)
++    fields = {'format', 'journal_root', 'prior_run_id', 'prior_plan', 'prior_claim', 'prior_journal', 'prior_stop',
++              'prior_cli_native', 'root_stop_acceptance'}
++    need(isinstance(spec, dict) and set(spec) == fields and spec['format'] == 'pr411-merge-pre-intent-continuation-v1',
++         'continuation descriptor schema differs')
++    prior_run = spec['prior_run_id']
++    need(re.fullmatch(r'[A-Za-z0-9_-]{1,80}', prior_run or '') is not None, 'prior continuation run invalid')
++    root_relative = path_name(spec['journal_root'])
++    need(Path(root).absolute() == Path(case).absolute() / root_relative, 'continuation must use the exact original journal root')
++    handle = secure_directory(root)
++    os.close(handle)
++    for key in fields - {'format', 'journal_root', 'prior_run_id'}:
++        ref = spec[key]
++        need(isinstance(ref, dict) and set(ref) == {'path', 'sha256'} and HASH.fullmatch(ref['sha256'] or '') is not None,
++             'continuation original reference invalid')
++        path_name(ref['path'])
++    prior = document(case, spec['prior_plan'])
++    need(prior.get('format') == 'pr411-administration-plan-v1' and prior.get('phase') == 'merge'
++         and prior.get('expected_head') == plan['expected_head'] == prior.get('integrated_head')
++         and 'pre_intent_continuation' not in prior, 'only original merge pre-intent abort can continue once')
++    allowed_refresh = {'helper_sha256', 'evidence_bindings_sha256', 'native_evidence', 'pre_intent_continuation'}
++    need(encoded({k: v for k, v in canonical_plan(prior).items() if k not in allowed_refresh}) ==
++         encoded({k: v for k, v in canonical_plan(plan).items() if k not in allowed_refresh}),
++         'continuation changed original source/head/main/registration/confirmed phase bindings')
++    prior_hash = digest(encoded(canonical_plan(prior)))
++    head = plan['expected_head']
++    paths = {'prior_claim': root_relative + '/claims/merge-' + head + '.json',
++             'prior_journal': root_relative + '/' + prior_run + '/journal.jsonl',
++             'prior_stop': root_relative + '/' + prior_run + '/receipt.json'}
++    need(all(spec[key]['path'] == value for key, value in paths.items()), 'prior claim/journal/STOP is outside the exact original run/root')
++    claim_raw = read_local(case, spec['prior_claim']['path'], spec['prior_claim']['sha256'])
++    claim = json.loads(claim_raw)
++    need(claim_raw == encoded(claim) + b'\n' and encoded(claim) == encoded({'run_id': prior_run, 'phase': 'merge',
++         'head': head, 'plan_sha256': prior_hash}), 'original exclusive claim/run/head/plan differs')
++    journal_raw = read_local(case, spec['prior_journal']['path'], spec['prior_journal']['sha256'])
++    need(journal_raw.endswith(b'\n') and len(journal_raw.splitlines()) == 1, 'original journal torn or has any additional event; no retry')
++    exclusive = json.loads(journal_raw)
++    need(isinstance(exclusive, dict) and set(exclusive) == {'at_utc', 'event', 'phase', 'head', 'plan_sha256'}
++         and exclusive['event'] == 'exclusive_intent' and exclusive['phase'] == 'merge' and exclusive['head'] == head
++         and exclusive['plan_sha256'] == prior_hash and journal_raw == encoded(exclusive) + b'\n',
++         'original journal is not a sole canonical zero-write exclusive event')
++    need(timestamp(exclusive['at_utc']) <= dt.datetime.now(dt.timezone.utc), 'original exclusive event is in the future')
++    stopped = document(case, spec['prior_stop'])
++    need(set(stopped) == {'format', 'phase', 'result', 'plan', 'error_type', 'mutation_resume_permitted'}
++         and stopped['format'] == 'pr411-administration-result-v1' and stopped['phase'] == 'merge'
++         and stopped['result'] == 'STOP_UNCONFIRMED_OR_DRIFT' and stopped['error_type'] == 'Stop'
++         and stopped['mutation_resume_permitted'] is False and encoded(canonical_plan(stopped['plan'])) == encoded(canonical_plan(prior)),
++         'original terminal STOP/plan differs; no intent-free continuation')
++    native = document(case, spec['prior_cli_native'])
++    need(native.get('evidence_kind') == 'actual_root_in_process_python_CLI_capture' and type(native.get('returncode')) is int
++         and native['returncode'] == 2 and native.get('helper_sha256') == prior.get('helper_sha256')
++         and native.get('stdout_base64') == '' and base64.b64decode(native.get('stderr_base64', ''), validate=True) ==
++         b'STOP: ordinary merge not clean/mergeable\n', 'original completed CLI did not confirm the pre-intent guard STOP')
++    argv = native.get('argv')
++    need(isinstance(argv, list) and len(argv) >= 2 and argv[1] == 'apply' and len(argv[2:]) % 2 == 0
++         and all(isinstance(v, str) for v in argv), 'original CLI argument custody missing')
++    pairs = list(zip(argv[2::2], argv[3::2]))
++    need(len({key for key, value in pairs}) == len(pairs), 'duplicate original CLI options')
++    options = dict(pairs)
++    need(all(options.get(key) == value for key, value in {'--phase': 'merge', '--head': head, '--run-id': prior_run,
++         '--case': str(Path(case).absolute()), '--journal-root': str(Path(root).absolute()),
++         '--plan': spec['prior_plan']['path'] + ':' + spec['prior_plan']['sha256']}.items()),
++         'completed CLI does not bind the original exclusive run/root/plan')
++    acceptance = document(case, spec['root_stop_acceptance'])
++    need(acceptance.get('result') == 'VERIFIED_PREINTENT_MERGE_ABORT_NO_REMOTE_WRITE_ATTEMPT' and acceptance.get('head') == head
++         and acceptance.get('original_exclusive_claim_retained') is True and acceptance.get('original_terminal_STOP_retained') is True
++         and all(type(acceptance.get(k)) is int and acceptance[k] == v for k, v in
++                 (('original_journal_events', 1), ('original_mutation_intents', 0), ('original_acknowledgments', 0)))
++         and all(acceptance.get('pins', {}).get(spec[k]['path']) == spec[k]['sha256'] for k in
++                 ('prior_claim', 'prior_journal', 'prior_stop', 'prior_cli_native')),
++         'root zero-write acceptance does not join the actual original custody')
++    return {'descriptor': descriptor_ref, 'journal_root': root_relative, 'prior_run_id': prior_run,
++            'prior_plan_sha256': prior_hash, 'prior_claim': spec['prior_claim'], 'prior_journal': spec['prior_journal'],
++            'prior_stop': spec['prior_stop'], 'prior_cli_native': spec['prior_cli_native'], 'root_stop_acceptance': spec['root_stop_acceptance']}
++
++
+ class Journal:
+     """FD-anchored exclusive phase/head claim and fsynced append-only intents."""
+-    def __init__(self, root, run_id, phase, head, plan_hash):
++    def __init__(self, root, run_id, phase, head, plan_hash, continuation=None):
+         need(re.fullmatch(r'[A-Za-z0-9_-]{1,80}', run_id or '') is not None and phase in ('integrate', 'ready', 'merge')
+              and SHA.fullmatch(head or '') is not None and HASH.fullmatch(plan_hash or '') is not None, 'journal identity invalid')
+         self.root = secure_directory(root)
+         self.fd = self.directory = None
++        self.continuation = self.continuation_guard = None
+         try:
++            if continuation is not None:
++                need(isinstance(continuation, tuple) and len(continuation) == 3, 'continuation custody inputs missing')
++                case, descriptor_ref, plan = continuation
++                need(phase == 'merge' and plan['expected_head'] == head and digest(encoded(canonical_plan(plan))) == plan_hash,
++                     'continuation journal/new plan binding differs')
++                certificate = pre_intent_continuation(case, root, descriptor_ref, plan)
++                need(run_id != certificate['prior_run_id'], 'continuation cannot reuse the stopped run')
++                self.continuation = (case, root, descriptor_ref, plan, certificate, plan_hash)
+             try:
+                 os.mkdir('claims', mode=0o700, dir_fd=self.root)
+             except FileExistsError:
+                 pass
+             claims = os.open('claims', os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=self.root)
+             try:
+-                try:
+-                    claim = os.open(phase + '-' + head + '.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=claims)
+-                except FileExistsError as exc:
+-                    raise Stop('exclusive phase/head intent already exists; GET-only reconcile, never retry') from exc
+-                with os.fdopen(claim, 'wb') as stream:
+-                    stream.write(encoded({'run_id': run_id, 'phase': phase, 'head': head, 'plan_sha256': plan_hash}) + b'\n')
+-                    stream.flush()
+-                    os.fsync(stream.fileno())
+-                os.fsync(claims)
++                if self.continuation is None:
++                    try:
++                        claim = os.open(phase + '-' + head + '.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=claims)
++                    except FileExistsError as exc:
++                        raise Stop('exclusive phase/head intent already exists; GET-only reconcile, never retry') from exc
++                    with os.fdopen(claim, 'wb') as stream:
++                        stream.write(encoded({'run_id': run_id, 'phase': phase, 'head': head, 'plan_sha256': plan_hash}) + b'\n')
++                        stream.flush()
++                        os.fsync(stream.fileno())
++                    os.fsync(claims)
++                else:
++                    try:
++                        os.mkdir('continuations', mode=0o700, dir_fd=self.root)
++                    except FileExistsError:
++                        pass
++                    guards = os.open('continuations', os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=self.root)
++                    try:
++                        name = 'merge-' + head + '.json'
++                        try:
++                            guard = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=guards)
++                        except FileExistsError as exc:
++                            raise Stop('the one merge continuation guard is already consumed; no further attempt') from exc
++                        guard_raw = encoded({'run_id': run_id, 'phase': phase, 'head': head, 'plan_sha256': plan_hash,
++                                             'pre_intent_continuation': certificate}) + b'\n'
++                        with os.fdopen(guard, 'wb') as stream:
++                            stream.write(guard_raw)
++                            stream.flush()
++                            os.fsync(stream.fileno())
++                        os.fsync(guards)
++                        os.fsync(self.root)
++                        self.continuation_guard = {'path': certificate['journal_root'] + '/continuations/' + name,
++                                                   'sha256': digest(guard_raw)}
++                    finally:
++                        os.close(guards)
+             finally:
+                 os.close(claims)
+             os.mkdir(run_id, mode=0o700, dir_fd=self.root)
+@@ -887,6 +1005,37 @@
+             raise
+ 
+     def add(self, event):
++        if event.get('event') == 'intent' and self.continuation is not None:
++            directory, journal_fd = self.directory, self.fd
++            need(type(directory) is int and type(journal_fd) is int, 'closed continuation journal cannot claim a remote intent')
++            try:
++                os.stat('receipt.json', dir_fd=directory, follow_symlinks=False)
++            except FileNotFoundError:
++                pass
++            else:
++                raise Stop('terminal continuation receipt already exists; this phase cannot attempt a remote write')
++            case, root, ref, plan, certificate, plan_hash = self.continuation
++            need(digest(encoded(canonical_plan(plan))) == plan_hash, 'continuation plan drift before remote intent')
++            need(pre_intent_continuation(case, root, ref, plan) == certificate, 'original pre-intent custody drift before remote intent')
++            read_local(case, self.continuation_guard['path'], self.continuation_guard['sha256'])
++            body = {'sha': plan['integrated_head'], 'merge_method': 'merge',
++                    'commit_title': 'Merge PR411: published result for 6800014'}
++            need(event.get('method') == 'PUT' and event.get('route') == 'pulls/411/merge'
++                 and event.get('expected') == plan['integrated_head']
++                 and encoded(event.get('native_request_body')) == encoded(body)
++                 and event.get('body_sha256') == digest(encoded(body)), 'continuation remote intent is not the exact ordinary merge action')
++            try:
++                fence = os.open('remote_intent_guard.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
++                                0o600, dir_fd=directory)
++            except FileExistsError as exc:
++                raise Stop('continuation remote intent already claimed; no second write or retry') from exc
++            fence_raw = encoded({'plan_sha256': plan_hash, 'descriptor': ref,
++                                 'remote_intent_sha256': digest(encoded(event))}) + b'\n'
++            with os.fdopen(fence, 'wb') as stream:
++                stream.write(fence_raw)
++                stream.flush()
++                os.fsync(stream.fileno())
++            os.fsync(self.directory)
+         raw = encoded({'at_utc': utc(), **event}) + b'\n'
+         while raw:
+             count = os.write(self.fd, raw)
+@@ -1287,11 +1436,14 @@
+     parser.add_argument('--stop-receipt')
+     parser.add_argument('--journal-root', type=Path)
+     parser.add_argument('--run-id')
++    parser.add_argument('--continuation', help='Pinned merge-only original pre-intent STOP descriptor; one successor under the same root')
+     args = parser.parse_args()
+     api = API()
+     # No local input is opened until this fresh native head/claimed QUEUE gate.
+     gate, _, _ = fresh_gate(api, args.head, draft=None, closed=args.operation in ('reconcile', 'recover') and args.phase == 'merge')
+     need(not gate['skip'], 'STOP: nonclaimed/out-of-scope; no local evidence read')
++    need(args.continuation is None or (args.operation in ('plan', 'apply') and args.phase == 'merge' and args.journal_root is not None),
++         'pre-intent continuation is merge plan/apply only and requires the original journal root')
+     map_ref, evidence_ref = reference(args.map_reference), reference(args.evidence)
+     if args.operation in ('reconcile', 'recover'):
+         need(args.plan is not None, 'reconcile needs the pinned original plan')
+@@ -1324,6 +1476,9 @@
+                                  None if args.integration is None else reference(args.integration),
+                                  None if args.ready is None else reference(args.ready),
+                                  None if pinned_plan is None or args.phase != 'integrate' else pinned_plan['main_head'])
++        if args.continuation is not None:
++            plan['pre_intent_continuation'] = {'descriptor': reference(args.continuation)}
++            pre_intent_continuation(args.case, args.journal_root, reference(args.continuation), plan)
+         if args.operation == 'plan':
+             result = {'canonical_plan_sha256': digest(encoded(canonical_plan(plan))), 'plan': plan, 'native_write': False}
+         else:
+@@ -1332,7 +1487,8 @@
+             approval = document(args.case, reference(args.approval))
+             check_approval(plan, approval)
+             evidence_fresh(plan['native_evidence'])
+-            journal = Journal(args.journal_root, args.run_id, args.phase, args.head, digest(encoded(canonical_plan(plan))))
++            journal = Journal(args.journal_root, args.run_id, args.phase, args.head, digest(encoded(canonical_plan(plan))),
++                              None if args.continuation is None else (args.case, reference(args.continuation), plan))
+             try:
+                 result = execute(api, plan, approved, journal, approval)
+             finally:

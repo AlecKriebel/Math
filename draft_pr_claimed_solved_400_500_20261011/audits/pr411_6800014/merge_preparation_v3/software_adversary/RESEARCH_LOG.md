@@ -1,0 +1,13 @@
+# Research log
+
+2026-10-13T05:14:14.328313Z — 10% complete. Defined independent administration schema and control fault families before reading the helper, producer tests, or earlier review conclusions. Exact source freeze, native scope binding, and executable falsification remain pending.
+
+2026-10-13T05:15:13.188454Z — 20% complete. Fresh native GET-only scope gate passed after independent recomputation of immediate Git trees and QUEUE blob. Recorded actual-schema integer reservation and explicit public version projection; source execution paused until the parent freezes the corrected source.
+
+2026-10-13T05:21:25.229286Z — 60% complete. Frozen8072 helper and a910 harness passed all151 inherited cases in normal and optimized Python. Independent188-case falsification passed183 and found5 accepted raw/parsed bool-integer custody mismatches. The route remains blocked pending canonical JSON raw-join repair and exact-source rerun. This is synthetic administration evidence; no native write or scientific content was inspected.
+
+2026-10-13T05:23:08.694968Z — 65% complete. The parent accepted the five type-custody findings as blockers and will repair all evidence() metadata joins with canonical JSON equality. Preserved old8072 helper/harness and188-case normal/optimized reproductions. Pinned actual-schema replay passed four expected candidate outcomes in both modes, stopping before assets and tracker. An independent actual raw-parent test used a synthetic-only key absent in the actual record; that unfinished run is excluded from the verdict and the target was corrected. Source executions are paused pending the next freeze.
+
+2026-10-13T05:28:36.269925Z — 70% complete. Repaireded85 helper/c83 harness/130 replay are frozen for execution. A broad agent-status enumeration unintentionally returned unrelated review-summary text; no scientific artifact was opened and none of that text contributes to this verdict. Further status enumeration is discontinued.
+
+2026-10-13T05:33:58.746624Z — 100% complete for this independent repair review. Repaireded85/c83/130 source passed195 independent cases,6 actual ADMIN raw-join cases,156 inherited cases including12 isolated CLI cases, and5 expected pinned actual-schema outcomes in both normal and optimized Python. Independently confirmed evidence() alone changed and83 other AST nodes remain exact; custody verifier and original64c seal are preserved. Fresh final six-GET scope gate passed at 2026-10-13T05:30:38.987530Z. Zero observed unresolved blockers remain in the tested administration scope. A distinct fresh final reviewer, root approval, and live publication/tracker/merge actions remain parent-owned.

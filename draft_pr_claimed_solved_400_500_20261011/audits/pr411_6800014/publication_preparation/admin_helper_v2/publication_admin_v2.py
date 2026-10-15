@@ -1,0 +1,340 @@
+#!/usr/bin/env python3
+"""PR411: adopt one confirmed existing stage with GETs, then explicit publish/tracker.
+
+No create/upload/metadata mutation, no automatic retry, and no original-state edits.
+Publisher is editable: only the historically attested exact auto-default is accepted.
+"""
+import argparse
+import base64
+from contextlib import contextmanager, nullcontext
+import fcntl
+import hashlib
+import importlib.util
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import sys
+import uuid
+
+sys.dont_write_bytecode = True
+HERE = Path(__file__).resolve().parent
+CASE = HERE.parents[1]
+PRIVATE = CASE / "private_sources/publication_admin_helper_v2"
+STATE = PRIVATE / "PRODUCTION_STATE.json"
+V1_PATH = CASE / "publication_preparation/admin_helper/publication_admin.py"
+V1_SHA = "a4258a8648c5f3dca4509b68a87bff4afe34c33276cd370fe9d69e811dbbebfa"
+
+
+def sealed_module(path, digest):
+    if any(p.is_symlink() for p in (path, *path.parents)) or not stat.S_ISREG(path.lstat().st_mode):
+        raise RuntimeError("unsafe sealed helper path")
+    before = path.lstat(); fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "rb") as f:
+        opened = os.fstat(f.fileno()); raw = f.read(1024 * 1024 + 1); after = os.fstat(f.fileno())
+    identity = lambda s: (s.st_dev, s.st_ino, s.st_mode, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
+    if identity(before) != identity(opened) or identity(opened) != identity(after) or hashlib.sha256(raw).hexdigest() != digest:
+        raise RuntimeError("sealed helper changed")
+    spec = importlib.util.spec_from_file_location("publication_admin_v1", path)
+    obj = importlib.util.module_from_spec(spec); exec(compile(raw, str(path), "exec"), obj.__dict__)
+    return obj
+
+
+v1 = sealed_module(V1_PATH, V1_SHA)
+g, z = v1.g, v1.z
+need, Stop, sha, encoded = g.need, g.Stop, g.sha, g.encoded
+ID = 23331232
+HEAD = "ff7a7521458c1d2d9ae6f762eac04a3c3d9b9568"
+SPEC_SHA = "905ad377e80d68421b12ce9dc3bb6905814117134e9fa8e1f9423bd3f6189b3c"
+ORIGINAL_STATE = v1.PRIVATE / "PRODUCTION_STATE.json"
+STATE_COPY = CASE / "private_sources/root_publication_runs/draft_getonly_20261013T0414/ORIGINAL_PRODUCTION_STATE.json"
+ORIGINAL_STATE_SHA = "0c0359d83619cdecd0104051d516202b164a6e0e1183763650797f029d2a9d77"
+STAGE_DIR = v1.PRIVATE / "20261013T041021Z_ae08cd7dbd4e426eafa4a1aacd347cf5"
+ROOT_ACCEPTANCE = CASE / "publication_preparation/ROOT_NATIVE_DRAFT_SNAPSHOT_ACCEPTANCE.json"
+ROOT_ACCEPTANCE_SHA = "000b882053542d4c7cd6bb473e589b8d469dd6cc95958e7b98b6b4f450f0bb40"
+ROOT_SNAPSHOT = v1.PRIVATE / "ROOT_READONLY_DRAFT_NATIVE_20261013T0414/NATIVE_METADATA_ACCESS_SNAPSHOT.json"
+ROOT_SNAPSHOT_SHA = "0743c2bed2a7081bd4417ee5e5f594d6856bbe35eedcbcb7be70fb446d69d6ee"
+WHOLE_ACCEPTANCE_SHA = "01fe1ab553f8f17a78f222863cb6afa173323c7bd63ed32b55879ca3db4299fe"
+METADATA12 = {"access_right", "creators", "description", "keywords", "language", "license", "notes",
+              "publication_date", "publication_type", "title", "upload_type", "version"}
+STAGE_FILES = {f"{i:04d}_{kind}.json" for i in range(2, 8) for kind in ("intent", "response")}
+
+
+def own_private(path):
+    p = g.safe_path(path, private=True)
+    need(p.is_relative_to(PRIVATE) and p != PRIVATE, "outside V2 private custody")
+    return p
+
+
+def pinned(path, digest):
+    raw, _ = g.read_regular(path, private=True)
+    need(sha(raw) == digest, "original source/approval custody changed")
+    return raw, json.loads(raw)
+
+
+@contextmanager
+def local_lock():
+    PRIVATE.mkdir(parents=True, exist_ok=True)
+    p = own_private(PRIVATE / "PRODUCTION_LOCK")
+    fd = os.open(p, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW | os.O_NONBLOCK, 0o600)
+    try:
+        need(stat.S_ISREG(os.fstat(fd).st_mode), "nonregular V2 operation lock")
+        try: fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc: raise Stop("another V2 operator holds local lock") from exc
+        yield
+    finally: os.close(fd)
+
+
+class Admin(v1.Admin):
+    def __init__(self, api, evidence, state_path=STATE):
+        self.api, self.state_path = api, own_private(state_path)
+        self.evidence = own_private(evidence); self.evidence.mkdir(parents=True, exist_ok=False)
+        self.kind = "native_production_api" if isinstance(api, v1.Production) else "offline_model"
+        self.count, self.state, self.contract, self._active_phase = 0, None, None, None
+
+    def stage(self, *args, **kwargs):
+        raise Stop("V2 cannot create, upload, restage, or update metadata")
+
+    def request(self, service, operation, params=None, payload=None, file=None, write=False):
+        need(type(write) is bool and file is None, "V2 upload/write type unavailable")
+        publish_op = f"POST /api/deposit/depositions/{ID}/actions/publish"
+        mutation = service == "zenodo" and operation == publish_op or service == "sheet" and operation == "append"
+        need(write is mutation, "actual mutation must use durable write dispatch")
+        if service == "zenodo":
+            gets = {f"GET /api/deposit/depositions/{ID}", *[f"GET /api/records/{ID}{suffix}" for suffix in ("", "/draft", "/files", "/draft/files")]}
+            need(operation in gets | {publish_op} and payload is None, "nonpositive Zenodo operation")
+            expected = {"accept": "application/vnd.inveniordm.v1+json"} if operation in (f"GET /api/records/{ID}", f"GET /api/records/{ID}/draft") else None
+            need(params == expected, "nonpositive Zenodo parameters")
+        elif service in ("public_json", "public_hash"):
+            need(operation == "GET" and payload is None and isinstance(params, dict) and type(params.get("id")) is int
+                 and params["id"] == ID, "nonpositive public GET")
+            if service == "public_json":
+                need(set(params) == {"id", "native"} and type(params["native"]) is bool, "public JSON GET shape differs")
+            else:
+                need(self.state and set(params) == {"id", "name"} and params["name"] in
+                     {f["name"] for f in self.state["spec"]["assets"]}, "nonpositive public asset GET")
+        elif service == "sheet":
+            need(operation in ("get", "batchGet", "append") and isinstance(params, dict), "nonpositive Sheet operation")
+            if operation == "get":
+                need(params == {"spreadsheetId": v1.SHEET, "fields": "spreadsheetId,sheets.properties"} and payload is None,
+                     "nonpositive Sheet identity GET")
+            elif operation == "batchGet":
+                need(set(params) == {"spreadsheetId", "ranges", "majorDimension", "valueRenderOption"} and payload is None
+                     and params["spreadsheetId"] == v1.SHEET and params["majorDimension"] == "ROWS"
+                     and params["valueRenderOption"] == "UNFORMATTED_VALUE", "nonpositive Sheet value GET")
+                ranges = params["ranges"]
+                need(ranges in ([v1.TAB + "C2:C"], [v1.TAB + "A1:D1"]) or isinstance(ranges, list) and len(ranges) == 2
+                     and ranges[0] == v1.TAB + "A1:D1" and re.fullmatch(r"A([1-9][0-9]*):D\1", v1.canonical_range(ranges[1]))
+                     and int(v1.canonical_range(ranges[1]).split(":")[0][1:]) >= 2, "nonpositive Sheet ranges")
+        else: raise Stop("nonpositive service")
+        if mutation:
+            original = self.check_original(); j = self.state
+            need(j and self.contract and j.get("adoption") == self.contract and j.get("spec") == original["spec"]
+                 and j.get("approved_native_sha256") == ROOT_SNAPSHOT_SHA and j.get("publish_intent") is True,
+                 "mutation lacks accepted source/native phase")
+            self.accepted_native(ROOT_SNAPSHOT_SHA)
+            if service == "zenodo":
+                need(self._active_phase == "publish" and j["phase"] == "staged_pending_native_acceptance"
+                     and j["append_intent"] is False, "publish requires explicit guarded phase")
+            else:
+                need(self._active_phase == "tracker" and j["phase"] == "published_verified" and j["append_intent"] is True,
+                     "append requires explicit verified tracker phase")
+                publication = j.get("publication", {})
+                need(publication.get("id") == ID and publication.get("doi_url") == f"https://doi.org/10.5281/zenodo.{ID}", "verified DOI identity differs")
+                expected_params = {"spreadsheetId": v1.SHEET, "range": v1.TAB + "A:D", "valueInputOption": "RAW",
+                                   "insertDataOption": "INSERT_ROWS", "includeValuesInResponse": True, "responseValueRenderOption": "UNFORMATTED_VALUE"}
+                t = j["spec"]["tracker"]; expected_payload = {"majorDimension": "ROWS", "values": [[t["original_problem"], t["solution_chat"], publication["doi_url"], t["notes"]]]}
+                need(encoded(params) == encoded(expected_params) and encoded(payload) == encoded(expected_payload), "append target/options/approved four cells differ")
+        try: return super().request(service, operation, params, payload, file, write)
+        finally:
+            if write: self.check_original()
+
+    def check_original(self):
+        raw, j = pinned(ORIGINAL_STATE, ORIGINAL_STATE_SHA)
+        copy, _ = pinned(STATE_COPY, ORIGINAL_STATE_SHA)
+        need(raw == copy and type(j.get("id")) is int and j["id"] == ID and j["phase"] == "intent_recorded"
+             and j["publish_intent"] is False and j["append_intent"] is False, "original stage/never-attempted flags differ")
+        need(j["evidence_kind"] == "native_production_api" and j["case"] == "pr411_6800014"
+             and j["dependencies"] == {"guards": v1.GUARDS_SHA, "zenodo": v1.KIT_SHA}, "original provenance/dependency binding differs")
+        original = base64.b64decode(j["spec_bytes_base64"], validate=True)
+        need(sha(original) == SPEC_SHA == j["spec_sha256"] and json.loads(original) == j["spec"]
+             and sha(encoded(j["spec"])) == j["parsed_spec_sha256"], "original approved spec changed")
+        self.validate_spec(j["spec"])
+        return j
+
+    def validate_spec(self, s):
+        g.fields(s, ["schema", "case", "asset_root", "assets", "metadata", "tracker"])
+        need(type(s["schema"]) is int and s["schema"] == 1 and s["case"] == "pr411_6800014", "spec case/type differs")
+        m = s["metadata"]
+        need(isinstance(m, dict) and set(m) == METADATA12 and m["upload_type"] == "publication"
+             and m["publication_type"] == "preprint" and m["access_right"] == "open", "approved twelve-field metadata shape differs")
+        need(all(isinstance(m[k], str) and m[k] for k in METADATA12 - {"creators", "keywords"}), "metadata text/type differs")
+        need(isinstance(m["keywords"], list) and all(isinstance(x, str) for x in m["keywords"])
+             and isinstance(m["creators"], list) and m["creators"]
+             and all(isinstance(c, dict) and isinstance(c.get("name"), str) and c["name"] for c in m["creators"]), "creator/keyword type differs")
+        g.fields(s["tracker"], ["original_problem", "solution_chat", "notes"])
+        need(all(isinstance(x, str) and x for x in s["tracker"].values()), "tracker types differ")
+        need(isinstance(s["assets"], list) and len(s["assets"]) == 3, "three approved assets required")
+        names = set()
+        for f in s["assets"]:
+            g.fields(f, ["local_path", "name", "sha256", "md5", "size", "mode"])
+            need(isinstance(f["name"], str) and f["name"] not in ("", ".", "..") and not re.search(r"[/\\\x00]", f["name"])
+                 and f["name"] not in names and type(f["size"]) is int and 0 < f["size"] <= 128 * 1024**2
+                 and f["mode"] in ("100644", "100755") and re.fullmatch(r"[0-9a-f]{64}", f["sha256"])
+                 and re.fullmatch(r"[0-9a-f]{32}", f["md5"]), "asset pin/name/type differs")
+            names.add(f["name"])
+
+    def load_adoption(self, path, approved):
+        raw, _ = g.read_regular(v1.public_path(path)); a = json.loads(raw)
+        need(sha(raw) == approved, "root-approved adoption digest differs")
+        g.fields(a, ["schema", "case", "id", "science_head", "spec_sha256", "whole_acceptance_sha256", "publisher",
+                     "source_state", "source_state_copy", "stage_directory", "stage_files_sha256", "root_acceptance", "root_snapshot"])
+        need(type(a["schema"]) is int and a["schema"] == 2 and a["case"] == "pr411_6800014" and type(a["id"]) is int
+             and a["id"] == ID and a["science_head"] == HEAD and a["spec_sha256"] == SPEC_SHA
+             and a["whole_acceptance_sha256"] == WHOLE_ACCEPTANCE_SHA and a["publisher"] == "Zenodo", "adoption scope differs")
+        for field, expected_path, digest in (("source_state", ORIGINAL_STATE, ORIGINAL_STATE_SHA),
+                ("source_state_copy", STATE_COPY, ORIGINAL_STATE_SHA), ("root_acceptance", ROOT_ACCEPTANCE, ROOT_ACCEPTANCE_SHA),
+                ("root_snapshot", ROOT_SNAPSHOT, ROOT_SNAPSHOT_SHA)):
+            g.fields(a[field], ["path", "sha256"])
+            need(a[field] == {"path": str(expected_path), "sha256": digest}, "adoption source pointer differs")
+        need(a["stage_directory"] == str(STAGE_DIR) and isinstance(a["stage_files_sha256"], dict)
+             and set(a["stage_files_sha256"]) == STAGE_FILES, "stage receipt positive map differs")
+        j = self.check_original(); s = j["spec"]
+        receipts = {name: pinned(STAGE_DIR / name, h)[1] for name, h in a["stage_files_sha256"].items()}
+        create = receipts["0002_response.json"]; bucket = create.get("links", {}).get("bucket")
+        need(isinstance(bucket, str) and re.fullmatch(r"https://zenodo\.org/api/files/[0-9a-f-]+", bucket), "original bucket differs")
+        ops = ["POST /api/deposit/depositions", *["PUT " + bucket.removeprefix("https://zenodo.org") + "/" + v1.quote(f["name"], safe="") for f in s["assets"]], f"PUT /api/deposit/depositions/{ID}"]
+        intents = []
+        for index, op in enumerate(ops, 2):
+            record = receipts[f"{index:04d}_intent.json"]; intent = record["intent"]; intents.append(intent)
+            need(intent["service"] == "zenodo" and intent["operation"] == op and intent["evidence_kind"] == "native_production_api",
+                 "original ordered mutation intent differs")
+            payload = {"metadata": s["metadata"]} if index in (2, 6) else None
+            need(record["payload"] == payload and intent["payload_sha256"] == sha(encoded(payload)), "original payload pin differs")
+            if index in (3, 4, 5):
+                f = s["assets"][index - 3]; response = receipts[f"{index:04d}_response.json"]
+                need(intent["file_sha256"] == f["sha256"] and response.get("key") == f["name"]
+                     and z.matching_file(response, f), "original confirmed upload differs")
+        need(intents == j["intents"] and j["last_intent"] == intents[-1], "original five-intent history differs")
+        get_intent = receipts["0007_intent.json"]["intent"]
+        need(get_intent["operation"] == f"GET /api/deposit/depositions/{ID}" and get_intent["service"] == "zenodo"
+             and get_intent["evidence_kind"] == "native_production_api", "original post-PUT native GET differs")
+        for index in (2, 6, 7):
+            d = receipts[f"{index:04d}_response.json"]; z.validate_record(d, ID)
+            need(d["submitted"] is False and d["metadata"].get("imprint_publisher") == "Zenodo"
+                 and {k: d["metadata"].get(k) for k in s["metadata"]} == s["metadata"], "original actual publisher/requested fields differ")
+            cleaned = {**d, "metadata": {k: v for k, v in d["metadata"].items() if k != "imprint_publisher"}}
+            v1.Admin.legacy(self, cleaned, s, ID, complete=index != 2)
+        need(not z.server_files(create), "original new draft already had files")
+        _, acceptance = pinned(ROOT_ACCEPTANCE, ROOT_ACCEPTANCE_SHA); snapshot_raw, snapshot = pinned(ROOT_SNAPSHOT, ROOT_SNAPSHOT_SHA)
+        need(acceptance["result"] == "ROOT_ACTUAL_DRAFT_NATIVE_METADATA_ACCEPTED" and acceptance["id"] == ID
+             and acceptance["all12_requested_legacy_fields_exact"] is True and acceptance["publication_confirmed"] is False
+             and acceptance["publisher_is_read_only"] is False and acceptance["generated_editable_default_publisher"] == "Zenodo"
+             and acceptance["approved_native_snapshot_sha256"] == ROOT_SNAPSHOT_SHA
+             and acceptance["original_stage_state_sha256"] == ORIGINAL_STATE_SHA
+             and acceptance["native_files_exact3_completed_MD5_size_matched"] is True
+             and acceptance["native_full12field_representation_and_author_orcid_access_license_checked"] is True,
+             "root actual native acceptance differs")
+        need(snapshot == {k: snapshot[k] for k in ("metadata", "access", "custom_fields")}
+             and snapshot["metadata"].get("publisher") == "Zenodo", "actual native publisher/snapshot shape differs")
+        self.contract = {"path": str(path), "sha256": approved, "source_sha256": ORIGINAL_STATE_SHA,
+                         "publisher": "Zenodo", "concept_id": str(receipts["0007_response.json"].get("conceptrecid"))}
+        need(re.fullmatch(r"[1-9][0-9]*", self.contract["concept_id"]) and self.contract["concept_id"] != str(ID), "actual concept ID differs")
+        self.check_original()
+        return j, snapshot_raw, snapshot
+
+    def legacy(self, deposit, s, record_id, complete=True):
+        need(self.contract and record_id == ID and deposit.get("metadata", {}).get("imprint_publisher") == "Zenodo",
+             "attested editable default publisher differs")
+        need("relations" not in deposit["metadata"], "unattested generated relations; observe only, never retry publication")
+        cleaned = {**deposit, "metadata": {k: v for k, v in deposit["metadata"].items() if k != "imprint_publisher"}}
+        return v1.Admin.legacy(self, cleaned, s, record_id, complete)
+
+    def native(self, record_id, s, draft, expected=None):
+        snapshot, n = super().native(record_id, s, draft, expected)
+        need(n.get("is_draft") is draft and str(n.get("parent", {}).get("id")) == self.contract["concept_id"], "native draft/concept identity differs")
+        files = n.get("files", {}); entries = files.get("entries", {})
+        need(files.get("enabled") is True and files.get("count") == 3 and isinstance(entries, dict)
+             and set(entries) == {f["name"] for f in s["assets"]}
+             and all(v.get("key") == k and v.get("access", {}).get("hidden") is False for k, v in entries.items()), "native file visibility/mapping differs")
+        suffix = "/draft" if draft else ""
+        listing = self.request("zenodo", f"GET /api/records/{record_id}{suffix}/files")
+        need(listing.get("enabled") is True and isinstance(listing.get("entries"), list)
+             and all(f.get("status") == "completed" and f.get("access", {}).get("hidden") is False for f in listing["entries"]),
+             "native files incomplete/hidden")
+        z.verify({"metadata": s["metadata"], "files": listing["entries"]}, s["metadata"], s["assets"])
+        return snapshot, n
+
+    def read_state(self, approved):
+        j = super().read_state(approved)
+        need(j.get("revision") == 2 and j.get("v1_helper_sha256") == V1_SHA, "wrong recovery revision")
+        self.load_adoption(j["adoption"]["path"], j["adoption"]["sha256"])
+        need(j["adoption"] == self.contract, "versioned adoption binding differs")
+        return j
+
+    def accepted_native(self, approved):
+        need(approved == ROOT_SNAPSHOT_SHA == self.state.get("native_snapshot_sha256"), "root actual native digest required")
+        raw, _ = g.read_regular(own_private(self.state["native_snapshot_path"]), private=True)
+        need(sha(raw) == approved and json.loads(raw) == self.state["native_staged"], "copied accepted native bytes differ")
+        return self.state["native_staged"]
+
+    def recover(self, adoption_path, approved_adoption, approved_spec, approved_native):
+        need(not self.state_path.exists(), "V2 recovery already claimed; reconcile only")
+        need(approved_spec == SPEC_SHA and approved_native == ROOT_SNAPSHOT_SHA, "exact source/native approvals required")
+        original, snapshot_raw, expected = self.load_adoption(adoption_path, approved_adoption)
+        s = original["spec"]; d = self.request("zenodo", f"GET /api/deposit/depositions/{ID}")
+        self.legacy(d, s, ID); need(d["submitted"] is False, "existing draft submitted; no adoption/publish retry")
+        actual, _ = self.native(ID, s, True, expected); need(sha(encoded(actual)) == approved_native, "fresh native serialization differs")
+        snapshot_path = self.evidence / "NATIVE_METADATA_ACCESS_SNAPSHOT.json"
+        v1.save(snapshot_path, json.loads(snapshot_raw), True)
+        need(sha(g.read_regular(snapshot_path, private=True)[0]) == approved_native, "snapshot copy altered bytes")
+        j = {**original, "revision": 2, "v1_helper_sha256": V1_SHA, "adoption": self.contract, "evidence_kind": self.kind,
+             "intents": [], "publish_intent": False, "append_intent": False, "phase": "staged_pending_native_acceptance",
+             "native_staged": actual, "native_snapshot_path": str(snapshot_path), "native_snapshot_sha256": approved_native}
+        j.pop("last_intent", None); self.check_original(); v1.save(self.state_path, j, True); self.state = j; self.check_original()
+        return {"status": "existing_stage_get_verified_adopted", "id": ID, "read_only_remote": True,
+                "spec_sha256": SPEC_SHA, "adoption_sha256": approved_adoption, "native_snapshot_sha256": approved_native}
+
+    def publish(self, approved, confirm_id, native_approval):
+        self.check_original(); self._active_phase = "publish"
+        try: return super().publish(approved, confirm_id, native_approval)
+        finally: self._active_phase = None; self.check_original()
+
+    def tracker(self, approved, confirm_id, native_approval):
+        self.check_original(); self._active_phase = "tracker"
+        try: return super().tracker(approved, confirm_id, native_approval)
+        finally: self._active_phase = None; self.check_original()
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("mode", choices=("inspect", "recover", "publish", "tracker", "reconcile"))
+    p.add_argument("--adoption"); p.add_argument("--approved-adoption-sha256", required=True)
+    p.add_argument("--approved-spec-sha256", required=True); p.add_argument("--approved-native-sha256", required=True)
+    p.add_argument("--confirm-id", type=int, required=True)
+    a = p.parse_args(); need(a.confirm_id == ID and a.approved_spec_sha256 == SPEC_SHA and a.approved_native_sha256 == ROOT_SNAPSHOT_SHA,
+                            "root approved existing ID/spec/native pins required")
+    with local_lock() if a.mode in ("recover", "publish", "tracker") else nullcontext():
+        e = Admin(v1.Production(), PRIVATE / (g.dt.datetime.now(g.dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "_" + uuid.uuid4().hex))
+        if a.mode in ("inspect", "recover"):
+            need(a.adoption, "adoption positive source map required")
+            if a.mode == "inspect":
+                e.load_adoption(a.adoption, a.approved_adoption_sha256)
+                result = {"status": "immutable_stage_history_locally_verified", "id": ID, "read_only_remote": True, "remote_requests": 0}
+            else: result = e.recover(a.adoption, a.approved_adoption_sha256, a.approved_spec_sha256, a.approved_native_sha256)
+        else:
+            j = e.read_state(a.approved_spec_sha256)
+            need(j["adoption"]["sha256"] == a.approved_adoption_sha256, "explicit adopted source digest differs")
+            if a.mode == "publish": result = e.publish(a.approved_spec_sha256, ID, a.approved_native_sha256)
+            elif a.mode == "tracker": result = e.tracker(a.approved_spec_sha256, ID, a.approved_native_sha256)
+            else: result = e.reconcile(a.approved_spec_sha256, native_approval=a.approved_native_sha256)
+        result["evidence_kind"] = e.kind; result["revision"] = 2
+        v1.save(e.evidence / "RESULT.json", result, True); print(json.dumps(result, sort_keys=True))
+
+
+if __name__ == "__main__":
+    try: main()
+    except Exception as exc:
+        print("STOP: " + (str(exc) if isinstance(exc, Stop) else type(exc).__name__ + "; inspect private custody"), file=sys.stderr)
+        sys.exit(2)

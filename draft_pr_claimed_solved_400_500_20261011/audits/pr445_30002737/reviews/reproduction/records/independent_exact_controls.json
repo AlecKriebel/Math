@@ -1,0 +1,104 @@
+{
+  "baseline_runs": 2,
+  "baseline_stdout_identical": true,
+  "negative_runs": 10,
+  "negative_runs_rejected": 10,
+  "runs": [
+    {
+      "mutant": null,
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"arithmetic\": \"exact Fraction and polynomial moment reduction\",\n  \"marker_pairs\": [\n    [\n      0,\n      1\n    ]\n  ],\n  \"minimum_squared_slot_distance\": \"1/50\",\n  \"translated_local_geometry_cases\": 256,\n  \"motif_pair_moment_identities\": 2704,\n  \"weighted_moment_identities\": 169,\n  \"product_observable_moment_identities\": 169,\n  \"density\": \"3\",\n  \"autocorrelation_at_zero\": \"3\",\n  \"bragg_at_zero\": \"9\",\n  \"floor_bin_suspension_checks\": 3007,\n  \"planar_section_checks\": 289,\n  \"suspension_cocycle_checks\": 3249,\n  \"scope\": \"Finite exact controls conditional on RS first/second moments; not an infinite RS proof\"\n}\n",
+      "stderr": "",
+      "expected_rejection": false
+    },
+    {
+      "mutant": null,
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"arithmetic\": \"exact Fraction and polynomial moment reduction\",\n  \"marker_pairs\": [\n    [\n      0,\n      1\n    ]\n  ],\n  \"minimum_squared_slot_distance\": \"1/50\",\n  \"translated_local_geometry_cases\": 256,\n  \"motif_pair_moment_identities\": 2704,\n  \"weighted_moment_identities\": 169,\n  \"product_observable_moment_identities\": 169,\n  \"density\": \"3\",\n  \"autocorrelation_at_zero\": \"3\",\n  \"bragg_at_zero\": \"9\",\n  \"floor_bin_suspension_checks\": 3007,\n  \"planar_section_checks\": 289,\n  \"suspension_cocycle_checks\": 3249,\n  \"scope\": \"Finite exact controls conditional on RS first/second moments; not an infinite RS proof\"\n}\n",
+      "stderr": "",
+      "expected_rejection": false
+    },
+    {
+      "mutant": "marker",
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 86, in main\n    require(pairs == [(0, 1)], f'Marker is ambiguous: {pairs}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Marker is ambiguous: [(0, 1), (1, 2)]\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "marker",
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 86, in main\n    require(pairs == [(0, 1)], f'Marker is ambiguous: {pairs}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Marker is ambiguous: [(0, 1), (1, 2)]\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "moments",
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 118, in main\n    require(actual == claimed, f'Occupancy coefficient differs: {(c,d,m,n,actual,claimed)}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Occupancy coefficient differs: (0, 2, -6, -6, Fraction(2, 3), Fraction(1, 2))\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "moments",
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 118, in main\n    require(actual == claimed, f'Occupancy coefficient differs: {(c,d,m,n,actual,claimed)}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Occupancy coefficient differs: (0, 2, -6, -6, Fraction(2, 3), Fraction(1, 2))\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "normalization",
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 133, in main\n    require(density == gamma_zero == decomposition_zero == target_density,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Density/self-pair/decomposition normalization fails')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Density/self-pair/decomposition normalization fails\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "normalization",
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 133, in main\n    require(density == gamma_zero == decomposition_zero == target_density,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            'Density/self-pair/decomposition normalization fails')\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Density/self-pair/decomposition normalization fails\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "flow",
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 141, in main\n    require(actual == target, f'Floor-bin triangle fails at {p}/{q}: {actual} != {target}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Floor-bin triangle fails at -1/1: 1 != 0\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "flow",
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 141, in main\n    require(actual == target, f'Floor-bin triangle fails at {p}/{q}: {actual} != {target}')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Floor-bin triangle fails at -1/1: 1 != 0\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "cocycle",
+      "inherited_PYTHONOPTIMIZE": null,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 161, in main\n    require(sequential == (u+s+t).__floor__(), 'Suspension action cocycle fails')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Suspension action cocycle fails\n",
+      "expected_rejection": true
+    },
+    {
+      "mutant": "cocycle",
+      "inherited_PYTHONOPTIMIZE": "1",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 176, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 161, in main\n    require(sequential == (u+s+t).__floor__(), 'Suspension action cocycle fails')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/reviews/reproduction/exact_controls.py\", line 16, in require\n    raise ValueError(message)\nValueError: Suspension action cocycle fails\n",
+      "expected_rejection": true
+    }
+  ]
+}

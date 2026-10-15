@@ -1,0 +1,5 @@
+# Package06 research log
+
+- 2026-10-15T03:50:23.999000+00:00 — 15% complete. Saved EARLY_INDEPENDENCE_CHECKPOINT.md before prior review conclusions. Froze current publication inventory and verified the exact PDF, TeX and ZIP digests. Independently reconstructed actual-extremizer proof and distinct alternate-tip/direct-Z estimates.
+- 2026-10-15T03:56:00.033066+00:00 — 85% complete. Exact rational controls pass; complete five-page PDF visually checked; fresh pinned offline environment and independently isolated 17-job replays pass; all254 outer payloads and164 nested entries/16seals checked; exact PDF and ZIP rebuilds pass;15 rejection controls preserve inputs. Complete Goh1992 read and compared. No actionable finding. Finalizing whole-package scope report, input-drift check and authored-output seal.
+- 2026-10-15T03:57:36.902501+00:00 — 100% complete. Whole-package verdict PASS_SUBMISSION_READY_WITH_ACCEPTED_PRIORITY_LIMITS; zero actionable findings. All initial publication files,254 canonical payload inputs and4 recorded primary PDFs unchanged. Final report and verdict sealed; no canonical/Git/remote/outreach actions.

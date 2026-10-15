@@ -1,0 +1,40 @@
+{
+  "sealed_at_utc": "2026-10-12T16:15:22.935849+00:00",
+  "reviewed_helper_sha256": "96431115586558f37922254c65753264871319f7b580d40685e1796e68cc5976",
+  "blocking_issues": 1,
+  "required_corrections": 2,
+  "issues": [
+    {
+      "id": "D1",
+      "severity": "blocking",
+      "scope": "operational_disposition_gate",
+      "finding": "Six declared family labels and zero counts suffice even if reviewed_files is empty or contains only one unrelated matching report. No required family REPORT/RESULT objects are connected to their declared counts.",
+      "reproduced_cases": [
+        "empty_evidence_gate",
+        "disconnected_matching_evidence"
+      ],
+      "actual_effect": "Actual main --apply proceeds through blob, tree, commit and one branch PATCH in offline API mock. No genuine calls made.",
+      "required_fix": "Require exact expected final REPORT and RESULT/DECISION files for each distinct family, nonempty uniquely keyed hash/size bindings, reviewed synthesis/source inputs, and verified disposition-specific result counts. Preserve any raw original-publication blocker count and explicitly map it to the accepted corrected-disposition outcome; do not fabricate raw zero."
+    },
+    {
+      "id": "D2",
+      "severity": "required_correction",
+      "scope": "published_disposition_link",
+      "finding": "The claimed immutable disposition link accepts blob/main and an unrelated path/query as long as DISPOSITION_SYNTHESIS.md appears somewhere.",
+      "reproduced_cases": [
+        "mutable_main_disposition_link",
+        "unqualified_wrong_path_link"
+      ],
+      "actual_effect": "Actual --apply accepts both malformed immutable links and inserts them into the new Findings cell.",
+      "required_fix": "Parse and enforce exact HTTPS GitHub owner/repository, full hexadecimal 40-character commit SHA, exact audit synthesis path, no query/fragment; root must bind/check the published immutable synthesis bytes."
+    }
+  ],
+  "mathematical_or_priority_defect_so_far": false,
+  "final_acceptance": false,
+  "reason": "Final candidate report and complete root notification pending. Confirmed helper defects sealed for root repair; this is not final disposition acceptance.",
+  "initial_normal_tests_before_expansion": 39,
+  "initial_optimized_tests_before_expansion": 39,
+  "final_expanded_normal_tests": 51,
+  "final_expanded_optimized_tests": 51,
+  "current_control_receipts": "operations_normal.json and operations_optimized.json contain expanded51-case runs; earlier39-case initial count is retained as chronology only."
+}

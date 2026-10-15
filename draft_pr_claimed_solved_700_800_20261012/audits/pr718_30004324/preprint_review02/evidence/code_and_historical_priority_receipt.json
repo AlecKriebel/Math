@@ -1,0 +1,193 @@
+{
+  "checked_utc": "2026-10-13T04:13:28.547539+00:00",
+  "python_scripts": [
+    {
+      "path": "audit/review_pointed_geometry/check_boundary_controls.py",
+      "sha256": "227a4e8f981619afc63ce0876d7585773ff3b072a1fc7c56f25c750eb4dfd3d8",
+      "imports": [
+        "itertools",
+        "json"
+      ],
+      "process_file_api_calls": []
+    },
+    {
+      "path": "historical_candidate/audit_supplements/tangent_seshadri_30004324_independent_audit/independent_controls.py",
+      "sha256": "0978b64038ceccdb3083df115363ebb8c6384b1066574fd988dbd5d78fe745ee",
+      "imports": [
+        "fractions",
+        "itertools",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "process_file_api_calls": []
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/checks.py",
+      "sha256": "ed641dd127164214ce715a896059a6b9edd5674ac8125be72e88806c6276bd31",
+      "imports": [
+        "fractions",
+        "itertools",
+        "json",
+        "pathlib"
+      ],
+      "process_file_api_calls": []
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/historical/v1_verify_manifest.py",
+      "sha256": "fe67729ae7947a1d5712dbf96a2af306a5d7c47e2a05e1fab784328993dddf2f",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "process_file_api_calls": []
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/replay.py",
+      "sha256": "3e8583f594205a4d4347e74333fa5ccd77f1acaa53fbf96c1baea487630c83b2",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys"
+      ],
+      "process_file_api_calls": [
+        {
+          "function": "subprocess.run",
+          "line": 12,
+          "shell_kw": null
+        }
+      ]
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/test_integrity.py",
+      "sha256": "92693a4824863c2d22ab90c43f137b8a39fab2f997eb010f86b4163b01972f9f",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile"
+      ],
+      "process_file_api_calls": [
+        {
+          "function": "subprocess.run",
+          "line": 45,
+          "shell_kw": null
+        },
+        {
+          "function": "shutil.copy2",
+          "line": 33,
+          "shell_kw": null
+        }
+      ]
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/test_nested_manifest_regression.py",
+      "sha256": "af85d60e69b58a2fff5b148c2fdd7d528a1d8d25f57ef4423b138525e171a530",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile"
+      ],
+      "process_file_api_calls": [
+        {
+          "function": "subprocess.run",
+          "line": 15,
+          "shell_kw": null
+        }
+      ]
+    },
+    {
+      "path": "historical_candidate/tangent_seshadri_30004324_v2/verify_manifest.py",
+      "sha256": "f1ea37b72d00627eae52e71b5c9bd29d41cb8cf57836eb0bb2e44d9f734734fe",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "stat",
+        "sys"
+      ],
+      "process_file_api_calls": []
+    },
+    {
+      "path": "historical_candidate/verify_publication.py",
+      "sha256": "fec33bed72d03b65ea04c0cbc341f33fa5c51ab0aefd5d9fa2c7777d48d485f3",
+      "imports": [
+        "collections",
+        "difflib",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "shutil",
+        "stat",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "zipfile"
+      ],
+      "process_file_api_calls": [
+        {
+          "function": "subprocess.run",
+          "line": 42,
+          "shell_kw": null
+        },
+        {
+          "function": "subprocess.run",
+          "line": 63,
+          "shell_kw": null
+        },
+        {
+          "function": "shutil.copytree",
+          "line": 110,
+          "shell_kw": null
+        },
+        {
+          "function": "subprocess.run",
+          "line": 111,
+          "shell_kw": null
+        }
+      ]
+    },
+    {
+      "path": "verify_bundle.py",
+      "sha256": "05b3c70f81b98fa233c5e65950c648ced7189ada26a5dac55117c0a17ba06949",
+      "imports": [
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "stat",
+        "subprocess",
+        "sys"
+      ],
+      "process_file_api_calls": [
+        {
+          "function": "subprocess.run",
+          "line": 58,
+          "shell_kw": null
+        },
+        {
+          "function": "subprocess.run",
+          "line": 51,
+          "shell_kw": null
+        }
+      ]
+    }
+  ],
+  "packaged_priority_query_count_claimed": 64,
+  "counted_queries": 64,
+  "unique_queries": 64,
+  "manual_code_review": "Executed replay paths call Python and patch through argv, not shell=True; imports/paths were read; no network/client or git command is invoked by packaged verification. Integrity authority uses explicit require rather than assert. Auxiliary finite control assertions are checked in the full normal run; -O expected outputs match.",
+  "no_formal_geometry_verification": true
+}

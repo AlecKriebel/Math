@@ -1,0 +1,278 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\T}{\mathbb T}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\dd}{\mathrm d}
+\title{A positive-volume ugly band in a smooth Hamiltonian system}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 12, 2026\quad(version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a compact connected symplectic four-manifold and a smooth,
+real-valued autonomous Hamiltonian with an invariant open band of normalized
+Liouville volume $1/4$. Every Lyapunov exponent at every point of the band is
+zero, but no invariant measurable subset of positive volume supports an
+almost-periodic Koopman representation. Each energy component in the band
+is itself ergodic and non-almost-periodic. This gives an affirmative answer to
+the existential question in item 10 of Knill's 2000 Hamiltonian problem list,
+in the unrestricted smooth symplectic category and with almost periodicity
+defined by precompact $L^2$ orbits. The proof combines the classical irrational
+skew shift with a symplectic mapping torus and an explicit smooth cutoff.
+Historical first priority is not asserted. AI tools were used extensively;
+this research note is unrefereed and no human peer review is claimed.
+\end{abstract}
+
+\section{Question, convention, and result}
+
+Item 10 of Knill's problem list \cite{knill2000} asks whether a Hamiltonian
+system can have positive Liouville volume outside both its maximal
+almost-periodic invariant region and its positive-Lyapunov-exponent region.
+We call this complement the \emph{ugly set}. The printed existential question
+does not specify a Euclidean phase space or an exact symplectic form.
+We give an example on a compact smooth symplectic manifold. The construction
+does not address additional requirements of analyticity, natural mechanics,
+contact-type energies, genericity, or a prescribed cotangent bundle.
+
+For a finite measure-preserving flow $\phi_s$ on $(X,\mu)$, we say that
+the system is \emph{almost periodic} if every orbit
+$\{f\circ\phi_s:s\in\R\}$ is relatively compact in $L^2(X,\mu)$.
+An almost-periodic \emph{region} is an invariant measurable subset equipped
+with its restricted measure; an almost-periodic factor or individual
+eigenfunction is insufficient. This spectral convention is consistent with
+Knill's later explicit terminology \cite[Section 4]{knill2016}; it is a stated
+interpretation, since the 2000 item does not give a formal definition.
+The proof below establishes noncompactness directly.
+
+\begin{theorem}\label{thm:main}
+There are a compact connected smooth symplectic four-manifold $(M,\omega)$,
+a globally real-valued $H\in C^\infty(M)$, and an invariant open set $B$
+with the following properties. The Liouville measure
+$\mu=\omega^2/2$ has $\mu(M)=1$ and $\mu(B)=1/4$.
+Every Lyapunov exponent of the Hamiltonian flow at every point of $B$ is zero.
+No invariant measurable $C\subset B$ with $\mu(C)>0$ is almost periodic.
+Each connected energy component in $B$, with its normalized conditional
+Liouville measure, is ergodic and non-almost-periodic.
+Consequently the ugly set has measure at least $1/4$.
+\end{theorem}
+
+We use $\iota_{X_H}\omega=\dd H$. Reversing the convention reverses
+time and changes none of these assertions. The measure of a region always
+means full four-dimensional Liouville measure unless explicitly described
+as a conditional energy measure.
+
+\section{The skew shift and its suspension}
+
+Put $a=\sqrt2$ and let $m_2$ be normalized Haar measure on
+$\T^2=\R^2/\Z^2$. The classical skew shift is
+\[
+ F(x,y)=(x+a,y+x)\pmod{\Z^2}.
+\]
+It is a smooth area-preserving diffeomorphism: integer changes of lifts
+give integer changes of images, its inverse is
+$(x-a,y-x+a)$, and its derivative is
+$A=\left(\begin{smallmatrix}1&0\\1&1\end{smallmatrix}\right)$.
+For every $n\in\Z$,
+\begin{equation}\label{eq:iterate}
+ F^n(x,y)=\left(x+na,y+nx+\frac{a n(n-1)}2\right),\qquad
+ D F^n=\begin{pmatrix}1&0\\n&1\end{pmatrix}.
+\end{equation}
+These formulas follow by forward and backward induction.
+
+The Fourier characters $e_{k,l}(x,y)=\exp(2\pi i(kx+ly))$
+form an orthonormal basis, and
+\[
+ e_{k,l}\circ F=\exp(2\pi i k a)\,e_{k+l,l}.
+\]
+For an $F$-invariant $L^2$ function, Fourier coefficients have equal
+absolute values along each chain $(k+nl,l)$, $n\in\Z$.
+If $l\ne0$, square summability forces these coefficients to vanish.
+If $l=0$, irrationality of $a$ eliminates every coefficient with $k\ne0$.
+Thus $F$ is ergodic. Independently, $g(x,y)=\exp(2\pi i y)$ has
+orthonormal integer translates under $F$, since for $n\ne m$ the
+inner product of $g\circ F^n$ and $g\circ F^m$ contains the integral
+of $\exp(2\pi i(n-m)x)$ over the circle. Its orbit is not precompact.
+
+Form the mapping torus
+\[
+ N=(\T^2\times\R)/\bigl((z,t)\sim(Fz,t-1)\bigr).
+\]
+The deck action is free and properly discontinuous, and
+$\T^2\times[0,1)$ is a fundamental domain. Hence $N$ is a compact
+connected smooth three-manifold. The invariant closed forms
+$\dd x\wedge\dd y$ and $\dd t$ descend to forms $\beta$ and $\tau$.
+Their product $\nu=\beta\wedge\tau$ is a volume form of total mass one.
+The volume-preserving suspension flow is
+\[
+ \psi_s[z,t]=[z,t+s],\qquad \psi_n[z,t]=[F^n z,t]\quad(n\in\Z).
+\]
+
+The flow $\psi$ is ergodic. Indeed, an invariant $v\in L^2(N,\nu)$
+has zero distributional derivative in $t$ in each product chart and so is
+$v(z,t)=w(z)$ almost everywhere. The seam gives $w\circ F=w$;
+the preceding Fourier argument makes $w$ constant. Strong continuity of
+the Koopman group follows from uniform continuity for continuous functions
+on compact $N$, density of those functions in $L^2$, and unitarity.
+In particular invariance at all rational times is enough for this argument.
+
+The fundamental-domain observable
+\begin{equation}\label{eq:G}
+ G([x,y,t])=\exp(2\pi i y),\qquad 0\le t<1,
+\end{equation}
+is a valid measurable $L^2$ function; values on the measure-zero seam
+do not matter. Its integer translates under $\psi$ are orthonormal.
+Thus the continuous-time suspension, although ergodic, is not almost periodic.
+Its time-one map need not be ergodic, and we do not use such an assertion.
+
+\section{Hamiltonian construction and derivative bounds}
+
+Let $S^1_E=\R/\Z$ and set
+\[
+ M=N\times S^1_E,\qquad \omega=\beta+\tau\wedge\dd E.
+\]
+Here $\dd E$ denotes the global circle one-form, not the differential of
+a globally real circle coordinate. Both summands are closed, and
+\begin{equation}\label{eq:volume}
+ \frac{\omega^2}{2}=\beta\wedge\tau\wedge\dd E
+\end{equation}
+is nowhere zero and has total integral one. Thus $\omega$ is symplectic.
+It is nonexact: its integral over a torus fiber is one.
+
+To define a genuine real-valued Hamiltonian, set
+\[
+ \eta(r)=\begin{cases}0&r\le0,\\e^{-1/r}&r>0,\end{cases}
+ \qquad q(r)=\frac{\eta(r)}{\eta(r)+\eta(1-r)}.
+\]
+The denominator is everywhere positive; flatness of $\eta$ at zero makes
+$q$ smooth, with $q=0$ on $(-\infty,0]$ and $q=1$ on $[1,\infty)$.
+On the representative interval $0\le E<1$, define
+\[
+ \chi(E)=q\bigl(16(E-1/16)\bigr)q\bigl(16(7/16-E)\bigr),
+ \qquad h(E)=E\chi(E).
+\]
+The function $h$ is zero near both endpoints, so its periodic extension is
+a globally smooth real function on $S^1_E$. On
+$I=(1/8,3/8)$ it equals $E$, with $h'=1$ and $h''=0$.
+Define $H(q,E)=h(E)$. Contraction gives
+\[
+ \iota_{\partial_t}\omega=\dd E,\qquad X_H=h'(E)\partial_t.
+\]
+The global flow is complete by compactness. On $B=N\times I$ it is
+\begin{equation}\label{eq:bandflow}
+ \Phi_s(q,E)=(\psi_s(q),E),\qquad \mu(B)=|I|=1/4.
+\end{equation}
+Since $H=E$ in the band, each $N\times\{E\}$ there is a compact
+connected energy component, regular along that component. Its normalized
+conditional measure is $\nu$. Other components at the same energy value
+outside the band do not affect this claim.
+
+On the cover $\T^2\times\R\times S^1_E$, consider the frame
+\[
+ V_1=\partial_x-t\partial_y,\qquad V_2=\partial_y,
+ \qquad V_3=\partial_t,\qquad V_4=\partial_E.
+\]
+The derivative of $(z,t,E)\mapsto(Fz,t-1,E)$ sends $V_1(t)$ to
+$\partial_x+(1-t)\partial_y=V_1(t-1)$ and fixes the other frame vectors.
+The frame is therefore global and smooth. Give $M$ the smooth metric in
+which it is orthonormal. On $B$, at arbitrary real time $s$,
+\[
+ D\Phi_s(V_1)=V_1+sV_2,\qquad D\Phi_s(V_j)=V_j\quad(j=2,3,4),
+\]
+with the right-hand frame evaluated at the image point. This formula includes
+seam crossings and the transverse energy direction. The shear and its inverse
+have norm at most $1+|s|$, so for every nonzero tangent vector $v$,
+\[
+ \frac{\|v\|}{1+|s|}\le\|D\Phi_s v\|\le(1+|s|)\|v\|.
+\]
+Taking logarithms and dividing by $|s|$ proves that all exponents are zero,
+at every band point. Uniform equivalence of smooth metrics on compact $M$
+makes the conclusion metric independent.
+
+\section{Every positive-volume invariant region fails almost periodicity}
+
+Let $C\subset B$ be measurable and invariant modulo null sets, with
+$\mu(C)>0$. Invariance of its indicator for each rational time, followed by
+Fubini and a countable intersection, shows that for almost every $E$ the
+section $1_C(\cdot,E)$ is invariant under every rational-time $\psi_s$.
+Strong continuity extends this to every real time. Ergodicity of $\psi$
+then makes the section indicator either zero or one almost everywhere.
+The section mass is measurable in $E$, hence for a measurable $J\subset I$,
+\[
+ C=N\times J\quad\hbox{modulo null sets},\qquad \mu(C)=|J|>0.
+\]
+Restrict $G$ from \eqref{eq:G} to $C$. Formula \eqref{eq:iterate} gives
+\[
+ \langle G\circ\Phi_n,G\circ\Phi_m\rangle_{L^2(C,\mu|_C)}
+ =|J|\,\delta_{n,m}.
+\]
+After multiplication by $|J|^{-1/2}$ these form unit vectors at pairwise
+distance $\sqrt2$. Their orbit is not relatively compact. Thus $C$ is
+not almost periodic. Taking a single energy fiber instead proves the same
+statement for its conditional measure, completing the energy claim.
+
+For clarity, the maximal good region in our convention exists modulo null
+sets. Almost periodicity passes to invariant subsets by restriction and to
+countable disjoint unions: truncate an $L^2$ function to finitely many
+summands, use precompactness on each, and control the invariant tail norm.
+General countable unions reduce to disjoint ones by successive differences.
+Choose almost-periodic regions whose measures tend to their supremum;
+their union is almost periodic and attains that supremum. Adding any other
+almost-periodic region changes it only by a null set. This gives a maximal
+good region. If it met $B$ in positive measure, restriction to that
+intersection would contradict the preceding paragraph. The bad region
+has no point in $B$ by the exact derivative bounds. The ugly complement
+therefore has measure at least $1/4$, proving Theorem~\ref{thm:main}.
+
+\section{Scope, provenance, and verification}
+
+This is an explicit answer to the printed existential question under the
+stated spectral convention. The skew shift, its Fourier mechanism, and the
+symplectic mapping-torus construction are classical ingredients. We do not
+assert historical first priority for these ingredients or for this consequence.
+The original source's subsequent speculation about weak mixing is a distinct
+claim: the suspension here has clock eigenfunctions $\exp(2\pi i t)$,
+so it is not weakly mixing. Those eigenfunctions do not make its entire
+Koopman representation almost periodic. The per-energy result ensures
+that the example is not merely an artifact of averaging varying integrable
+frequencies over energies.
+
+The supporting package preserves the original candidate proof and exact
+verification scripts, the prior independent audit, and new adversarial review
+records. The original replay gives 3,248 exact author checks and 2,460 checks
+from the prior independent implementation, including negative controls.
+These finite checks verify algebra and implementation consistency; they do
+not prove smooth flatness, Fourier completeness, irrationality, disintegration,
+strong continuity, or infinite-time limits. Those steps are supplied in the
+written proof above. Python 3 and its standard library suffice for the original
+replay; any additional dependency of a supplemental checker is documented.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in developing and verifying the construction,
+checking sources, preparing this note, and conducting adversarial reviews.
+AI reviews are fallible and are not human peer review or formal proof
+certification. This is an unrefereed preprint; no human peer review is claimed.
+The author is responsible for the claims. No journal submission is included.
+
+\begin{thebibliography}{9}
+\bibitem{knill2000} O. Knill,
+\emph{Some intriguing open problems in Hamiltonian dynamics},
+talk, Montana State University, October 19, 2000, item 10.
+\url{https://people.math.harvard.edu/~knill/seminars/intr/}.
+Primary PDF: \url{https://people.math.harvard.edu/~knill/seminars/bozeman/intr-l.pdf}.
+\bibitem{knill1998} O. Knill,
+Singular continuous spectrum and quantitative rates of weak mixing,
+\emph{Discrete and Continuous Dynamical Systems} \textbf{4} (1998), 33--42.
+\href{https://doi.org/10.3934/dcds.1998.4.33}{doi:10.3934/dcds.1998.4.33}.
+\bibitem{knill2016} O. Knill, \emph{Differential equations on graphs},
+Summer 2016, Section 4.
+\url{https://people.math.harvard.edu/~knill/pde/pde.pdf}.
+\end{thebibliography}
+\end{document}

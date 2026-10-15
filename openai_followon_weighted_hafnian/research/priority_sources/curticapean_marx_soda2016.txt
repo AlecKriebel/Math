@@ -1,0 +1,1329 @@
+  Tight conditional lower bounds for counting perfect matchings on
+        graphs of bounded treewidth, cliquewidth, and genus
+
+                                           Radu Curticapean∗                      Dániel Marx†
+                                                            October 14, 2015
+
+
+Abstract                                                                   1 Introduction
+By now, we have a good understanding of how NP-hard                        Many NP-hard optimization problems are solvable in
+problems become easier on graphs of bounded treewidth                      polynomial time when restricted to graphs of bounded
+and bounded cliquewidth: for various problems, match-                      treewidth. This fact is exploited in a wide range of con-
+ing upper bounds and conditional lower bounds describe                     texts, perhaps most notably, in the design of parame-
+exactly how the running time has to depend on treewidth                    terized algorithms and approximation schemes. There
+or cliquewidth. In particular, Fomin et al. (2009, 2010)                   has been a signiﬁcant amount of research on devel-
+have shown a signiﬁcant difference between these two                       oping and improving algorithms for bounded-treewidth
+parameters: assuming the Exponential-Time Hypothesis                       graphs, as well as on trying to understand the limita-
+(ETH), the optimal algorithms for problems such as M AX                    tions of treewidth-based algorithms. Courcelle’s Theorem
+C UT and E DGE D OMINATING S ET have running time                          [25, 26] is a very general result showing that if a prob-
+2O(t) nO(1) when parameterized by treewidth, but nO(t)                     lem can be formulated in a logical language called MSO2 ,
+when parameterized by cliquewidth.                                         then it can be solved in linear-time on graphs of bounded
+     In this paper, we show that a similar phenomenon                      treewidth; however, problem-speciﬁc techniques usually
+occurs also for counting problems. Speciﬁcally, we                         give more efﬁcient algorithms that have better dependence
+prove that, assuming the counting version of the Strong                    on treewidth.
+Exponential-Time Hypothesis (#SETH), the problem of                             Thanks to a series of recent results, by now we have a
+counting perfect matchings                                                 fairly good understanding on how the running time has
+   • has no (2 − ε)k nO(1) time algorithm for any ε > 0 on                 to depend on the treewidth of the input graph. Con-
+     graphs of treewidth k (but it is known to be solvable                 cerning upper bounds, the development of new algorith-
+     in time 2k nO(1) if a tree decomposition of width k is                mic techniques, such as fast subset convolution [6, 88],
+     given), and                                                           Cut & Count [36, 76], and rank-based dynamic program-
+   • has no O(n(1−ε)k ) time algorithm for any ε > 0 on                    ming [8, 34, 53], improved the running times for various
+     graphs of cliquewidth k (but it can be solved in time                 problems, sometimes in unexpected ways. On the other
+     O(nk+1 ) if a k-expression is given).                                 hand, matching conditional lower bounds were obtained
+                                                                           for many of these problems [9, 12, 35, 36, 71, 72]. For ex-
+A celebrated result of Fisher, Kasteleyn, and Temper-                      ample, fast subset convolution can be used to solve D OM -
+ley from the 1960s shows that counting perfect match-                      INATING S ET in time 3k nO(1) if a tree decomposition of
+ings in planar graphs is polynomial-time solvable. This                    width k is given [88], but there is no such algorithm with
+was later extended by Gallucio and Loebl (1999), Tesler                    running time (3 − ε)k nO(1) for any ε > 0, assuming the
+(2000) and Regge and Zechina (2000) who gave 4k · nO(1)                    Strong Exponential-Time Hypothesis (SETH) [71]. This
+time algorithms for graphs of genus k. We show that the                    hypothesis, introduced by Impagliazzo, Paturi, and Zane
+dependence on the genus k has to be exponential: as-                       [61, 62], can be informally stated as the assertion that
+suming #ETH, the counting version of ETH, there is no                      n-variable m-clause CNF-SAT cannot be solved in time
+2o(k) · nO(1) time algorithm for the problem on graphs of                  (2 − ε)n mO(1) for any ε > 0. While the validity of this
+genus k.                                                                   hypothesis is not accepted as widely in the community as
+    ∗ Simons Institute for the Theory of Computing, Berkeley, and Insti-
+                                                                           some other complexity conjectures, SETH seems to be a
+                                                                           very fruitful working assumption that explains why cer-
+tute for Computer Science and Control, Hungarian Academy of Sciences
+(MTA SZTAKI), Budapest, Hungary, curticapean@cs.uni-sb.de                  tain well-known algorithms are best possible and cannot
+    † Institute for Computer Science and Control, Hungarian Academy of     be improved further [1–4, 10, 11, 15, 33, 71, 75, 90].
+Sciences (MTA SZTAKI), dmarx@cs.bme.hu. Research supported by
+ERC Grant PARAMTIGHT (No. 280152) and OTKA grant NK105645.
+
+
+
+                                                                      1650                                         Copyright © by SIAM.
+                                                                                   Unauthorized reproduction of this article is prohibited.
+       Cliquewidth. The notion of cliquewidth was intro-            is ﬁxed-parameter tractable parameterized by treewidth.
+duced by Courcelle and Olariu [29] and can be seen as a             Furthermore, standard dynamic programming techniques
+generalization of treewidth that keeps some of the favor-           directly give a 3k nO(1) time algorithm. The base of the ex-
+able algorithmic properties of bounded-treewidth graphs.            ponential part was improved by van Rooij et al. [88] using
+The main motivation for this width measure lies in the              the technique of fast subset convolution:
+observation that highly homogeneous structures of large
+treewidth, such as cliques and complete bipartite graphs,           T HEOREM 1.1. ([88]) The problem #P ERF M ATCH can
+do not pose great difﬁculties for, e.g., I NDEPENDENT               be solved in time 2k nO(1) on an n-vertex graph G if a tree
+S ET, D OMINATING S ET, or V ERTEX C OLORING. This                  decomposition of width k is given.
+homogeneity is then captured by so-called k-expressions:            Our ﬁrst result gives a matching lower bound: assuming
+For a graph G, this is a construction scheme that succes-           #SETH (the natural counting analog of SETH, which a
+sively builds G from graphs whose vertices are labeled by           priori is a weaker hypothesis than SETH), the base of the
+1, . . . , k such that vertices of the same label cannot be dis-    exponent cannot be improved any further.
+tinguished in later steps. A graph has cliquewidth at most
+k if it has a k-expression.                                         T HEOREM 1.2. Assuming #SETH, there is no algorithm
+       Courcelle, Makowsky, and Rotics [27] general-                that, given an n-vertex graph G together with a tree
+ized, to some extent, Courcelle’s Theorem to bounded-               decomposition of width k, solves #P ERF M ATCH in time
+cliquewidth graphs, but this generalization comes at a              (2 − ε)k nO(1) for some ﬁxed ε > 0.
+price: it gives linear-time algorithms only for problems
+deﬁned by MSO1 formulas, which is a proper subset                   Our proof in fact gives a lower bound for the problem
+of MSO2 that does not allow quantiﬁcation over edge                 parameterized by cutwidth, a parameter that is an upper
+sets. Many problems, such as H AMILTONIAN C YCLE,                   bound on treewidth and also on the related notion of
+are (provably) not deﬁnable in MSO1 and there is a                  pathwidth. Therefore, our proof implies Theorem 1.2,
+large literature on designing algorithms for problems on            even when treewidth is replaced by pathwidth.
+bounded-cliquewidth graphs with problem-speciﬁc ap-                      Parameterizing by cliquewidth. Besides the gen-
+proaches [48, 56–58, 67, 68, 73, 79, 81, 89]. Unlike for            eral algorithmic result on counting problems deﬁn-
+problems parameterized by treewidth, most of these prob-            able in MSO1 , counting problems for graphs of
+lems are not known to be ﬁxed-parameter tractable pa-               bounded cliquewidth were investigated mostly in the
+rameterized by cliquewidth, that is, they can be solved in          context of computing graph polynomials [57, 58, 73].
+time n f (k) , but not in time f (k)nO(1) . Fomin et al. [50, 51]   Makowsky et al. [73] showed that, given a k-expression
+showed conditional lower bounds suggesting that this is             of an n-vertex graph G, the matching polynomial can be
+not a shortcoming of algorithm design, but an inevitable            computed in time O(n2k+1 ); in particular, this gives an
+price one has to pay for the generalization to cliquewidth.         O(n2k+1 ) time algorithm for #P ERF M ATCH. In the full
+       Counting perfect matchings. Some of the algorith-            version of this paper, we improve this algorithm:
+mic results mentioned above can be generalized to the               T HEOREM 1.3. The problem #P ERF M ATCH can be
+counting versions of the problems, where the task is to             solved in time O(nk+1 ) on an n-vertex graph G if a k-
+count the number of solutions. For example, Courcelle’s             expression of G is given in the input.
+Theorem and its variant for cliquewidth have counting
+analogs [28]. However, it is a well-known fact that a               Makowsky et al. [73] asked whether #P ERF M ATCH (or
+counting problem can be signiﬁcantly harder than its de-            computing the matching polynomial) is ﬁxed-parameter
+cision version: ﬁnding a perfect matching is a classic              tractable parameterized by cliquewidth. We show that, as-
+polynomial-time solvable problem [47], but a seminal re-            suming #SETH, the algorithm of Theorem 1.3 is optimal,
+sult of Valiant showed that counting the number of perfect          up to constant additive terms in the exponent.
+matchings is #P-hard [85], even in bipartite graphs, where
+this problem is equivalent to evaluating the permanent of a         T HEOREM 1.4. There exists a constant c∗ ∈ N such that
+matrix. In the present paper, we show that problems such            the following holds: Assuming #SETH, there is no integer
+as counting perfect matchings are also amenable to the              k ≥ 1 such that #P ERF M ATCH can be solved in time
+                                                                            ∗
+study of quantitative lower bounds outlined in the previ-           O(nk−c ) on n-vertex graphs G that are given together
+ous paragraphs: We obtain tight upper and lower bounds              with a k-expression.
+on the running time needed to count perfect matchings               Thus in particular #P ERF M ATCH is not ﬁxed-parameter
+when parameterized by treewidth, cliquewidth or genus.              tractable (assuming #SETH), and this holds also for the
+       Parameterizing by treewidth. The counting ver-               more general problem of computing the matching poly-
+sion of Courcelle’s Theorem [28] immediately shows that             nomial, answering the question of Makowsky et al. [73].
+the problem #P ERF M ATCH of counting perfect matchings             Our proof also shows that the problem is W[2]-hard.
+
+
+                                                               1651                                         Copyright © by SIAM.
+                                                                            Unauthorized reproduction of this article is prohibited.
+     Parameterizing by crossing number or genus. Fi-                           root phenomenon for counting problems have also been
+nally, we turn our attention to graphs that are almost pla-                    observed for #P ERF M ATCH on k-apex graphs, where a
+nar. A celebrated result of Fisher, Kasteleyn, and Temper-                     nΩ(k/ log k) lower bound is known [32].
+ley [63, 64, 82] showed that #P ERF M ATCH is polynomial-                           Reductions among counting problems. If the de-
+time solvable on planar graphs. If a graph is not planar,                      cision version of a problem is polynomial-time solvable,
+but a drawing with k crossings is given, then a simple                         then hardness of the counting version cannot be proved
+branching algorithm can reduce the problem to 2k planar                        by a parsimonious reduction from an NP-hard problem, as
+instances of #P ERF M ATCH.1                                                   this would imply that the decision version of the NP-hard
+                                                                               problem is polynomial-time solvable. Therefore, such
+T HEOREM 1.5. Given an n-vertex planar graph G with a                          hardness results necessarily involve a “mysterious” step
+drawing in the plane with k crossings, #P ERF M ATCH can                       that is highly non-parsimonious and usually very speciﬁc
+be solved in time 2k nO(1) .                                                   to the particular reduction source and target.
+Thus the problem is polynomial-time solvable (and ac-                               A standard way of doing this for #P ERF M ATCH in-
+tually ﬁxed-parameter tractable) for graphs of bounded                         troduces a weighted version of the problem: each edge is
+crossing number; we avoid the discussion of how to ﬁnd                         equipped with a weight, the weight of a perfect match-
+the drawing. More generally, Gallucio and Loebl [55],                          ing is deﬁned as the product of the weights of its edges,
+Tesler [83], and Regge and Zecchina [80] showed that the                       and the task is to compute the sum of the weights of all
+problem is ﬁxed-parameter tractable even for graphs of                         the perfect matchings. Crucially, weights can be nega-
+bounded genus.                                                                 tive, thus allowing different perfect matchings to cancel
+                                                                               out each other. After proving hardness for the weighted
+T HEOREM 1.6. ([55, 80, 83]) Given an n-vertex graph                           version, the negative weights can be eliminated by modu-
+G embedded on a surface of genus g, the problem #P ERF -                       lar arithmetic [85] or polynomial interpolation [7, 30, 37],
+M ATCH can be solved in time 4g nO(1) .                                        yielding hardness of the unweighted problem under Tur-
+The base of the exponential is worse in Theorem 1.6 than                       ing reductions. It is precisely at this step that the reduc-
+in Theorem 1.5, which raises the obvious question of what                      tion becomes non-parsimonious: the existence of a perfect
+the best possible base could be. While we cannot answer                        matching in one of the constructed instances does not tell
+this question as tightly as in Theorems 1.2 and 1.4, we can                    directly whether the source instance has a solution or not.
+at least show that the dependence on the parameter has to                           While this technique is very powerful, we do not
+be exponential.                                                                want to repeat it all over again every time a lower bound
+                                                                               is proved for some counting problem. Therefore, we
+T HEOREM 1.7. Assuming #ETH, there is no 2o(k) nO(1)                           hide these steps behind a layer of abstraction, the so-
+time algorithm for #P ERF M ATCH when given as input                           called Holant framework: We ﬁrst prove hardness for
+an n-vertex graph G and a drawing of G in the plane with                       a certain type of Holant problem and then reduce this
+k crossings.                                                                   to #P ERF M ATCH in a second step. This last step en-
+                                                                               capsulates the arguments involving negative weights and
+As the crossing number of a graph is always an upper                           polynomial interpolation, which allows us focus on our
+bound on its genus, this theorem also gives a lower bound                      main task: constructing instances with bounded treewidth
+for the problem parameterized by genus.                                        or cliquewidth. While the Holant framework introduces
+     Somewhat interestingly, this opposes a certain                            some notational overhead, the proofs become relatively
+“square root phenomenon” that has been observed in the                         transparent and comparable to similar lower bounds for
+context of parameterized algorithms on planar graphs: for                      decision problems.
+many decision problems, the best possible running
+                                               √
+                                                      times                         The Holant framework. Let us brieﬂy present the
+(assuming
+    √
+            ETH) are often of the form 2    O(   k) nO(1) or                   Holant framework (see Section 3 for more details), which
+nO( k) [24, 38–46, 52, 54, 65, 66, 77, 78, 84]. Thus one                       was introduced by Valiant in the context of holographic
+could have expected √ that the running time has a depen-                       algorithms [86], and which was extended into a more
+dence of the form 2O( k) on the number k of crossings in-                      general framework since then [13, 15–20, 59, 60, 69].
+troduced into the planar drawing. However, Theorem 1.7                              A signature graph is a graph Ω with a weight w(e)
+shows that this is not the case: the dependence has to                         on each edge and a function fv : {0, 1}I(v) → Q associated
+be single-exponential. Similar violations of the square                        with each vertex v, where I(v) is the set of edges incident
+                                                                               to v. That is, fv assigns a rational value to every subset of
+    1 The basic idea is that we select one edge from each of the k crossings   edges of I(v); we call fv the signature of v. Then for every
+and branch on which of the 2k possible subsets of these k edges appear         subset x ∈ {0, 1}E(Ω) of edges, the functions fv determine
+in the perfect matching. If an edge does not appear in the matching, then      a rational value at each vertex v in a natural way. We
+we remove it; otherwise, we remove its endpoints. In all cases, we get a
+planar graph.
+                                                                               deﬁne the value of x to be the product of these values for
+
+
+                                                                         1652                                          Copyright © by SIAM.
+                                                                                       Unauthorized reproduction of this article is prohibited.
+all v ∈ V (Ω) and we deﬁne the weight of a subset of edges     and then invoke Theorem 4.1 to complete the reduction
+to be the product of the weights of the edges. The Holant      to #P ERF M ATCH. We believe that this way of approach-
+of Ω sums up, for every subset x of edges, the product of      ing hardness results for counting problems would also be
+the weight of x and the value of x:                            fruitful for other problems and parameters.
+
+    Holant(Ω) =        ∑      ∏ w(e) ∏ fv (x|I(v) ).           2 Preliminaries
+                   x∈{0,1}E(Ω) e∈x    v∈V (Ω)
+                                                               2.1 Complexity assumptions. The Exponential Time
+      To approach this somewhat abstract problem, it may       Hypothesis (ETH) conjectured by Impagliazzo, Paturi and
+help to observe that it contains counting perfect matchings    Zane [62] and its strong variant (SETH) are conjectures
+as a special case. Let G be a graph, deﬁne Ω := G, and         about the exponential time complexity of k-SAT. Let sk
+assign w(e) = 1 to every e ∈ E(Ω). For every v ∈ V (Ω),        be the inﬁmum over all δ such that n-variable k-SAT can
+deﬁne fv to be 1 if exactly one edge of I(v) is selected       be solved in 2δ n time. Then ETH states that s3 > 0. A
+and 0 otherwise. In this case, we also say that fv has         simple and perhaps more intuitive consequence of ETH is
+the signature HW=1 , which is short for “Hamming weight        that there is no 2o(n) time algorithm for n-variable 3SAT,
+= 1”. Then Holant(Ω) counts exactly those edge subsets         that is, no algorithm for 3SAT is subexponential in the
+x ⊆ E(G) where fv (x) = 0 at every vertex v, that is, where   number of variables. On its own, this may not rule out
+every vertex has degree exactly one in x. Therefore, one       algorithms that are subexponential in the input size: the
+can think of Holant problems as a certain generalization       number of clauses can be superlinear in the number of
+of counting weighted perfect matchings and other degree-       variables. However, the Sparsiﬁcation Lemma shows that
+bounded subgraph counting problems.                            ETH in fact rules out such algorithms as well. One way
+      In our proofs of lower bounds based on the Holant        to formulate this result is the following:
+framework, we ﬁrst reduce the problem of counting the          L EMMA 2.1. ([62]) Assuming ETH, n-variable m-
+satisfying assignments of a CNF-SAT formula to that of         clause 3SAT has no 2o(n+m) time algorithm.
+computing the Holant of a certain signature graph Ω.
+Then we transform Ω to a signature graph Ω in which                 Since CNF-SAT with n variables and m clauses
+every vertex has signature HW=1 . This can equivalently be     has a 2n · mO(1) time algorithm, the sequence {sk }k∈N is
+viewed as a weighted version of #P ERF M ATCH. Finally, a      bounded from above by 1. Impagliazzo and Paturi [61]
+self-contained weight removal step shows that Holant(Ω )       conjecture that 1 is indeed the limit of this sequence, a
+can be reduced to unweighted #P ERF M ATCH. The trans-         statement that became later known as SETH, the Strong
+formation from Ω to Ω is performed using certain gad-          Exponential Time Hypothesis [23]. We can formulate
+gets: if a vertex v of degree d features some signature fv ,   a convenient consequence of SETH by saying that n-
+then we replace it with a signature graph that has d exter-    variable m-clause CNF-SAT has no (2 − ε)n mO(1) time
+nal edges and (in a well-deﬁned sense) computes exactly        algorithm for any ε > 0.
+the function fv . The Holant framework provides a natural           In the context of counting problems, it is natural to
+language for a rigorous treatment of this operation.           use the counting versions of ETH and SETH, which are
+      For our purposes, gadgets using only the signature       deﬁned analogously in terms of the counting problems
+HW=1 are of particular interest; such gadgets are known as     #3SAT and #CNF-SAT (see [37]). Clearly, #ETH and
+matchgates in the literature [14, 87]. It should be noted      #SETH are weaker assumptions than ETH and SETH,
+here that the established meaning of the term “matchgate”      respectively, as they only rule out the existence of im-
+refers to planar gadgets, whereas in this paper, we devi-      proved counting algorithms. Thus stating negative results
+ate from this convention by explicitly allowing non-planar     assuming #ETH instead of ETH makes the result a pri-
+matchgates as well. This allows us to make the crucial ob-     ori stronger, but perhaps more importantly, it seems very
+servation that every signature of constant size (satisfying    natural and closer to the spirit of the problem to start our
+a trivially necessary parity condition) can be realized by a   reductions from genuine counting problems.
+matchgate of constant size. Therefore, for our purposes,            Dell et. al [37] showed that the Sparsiﬁcation Lemma
+it is sufﬁcient to construct a signature graph Ω where ev-     can be made to work also for the counting version. Thus
+ery vertex has the signature HW=1 or has bounded degree.       we have the following counting analog of Lemma 2.1.
+Then the rest of the reduction from Holant(Ω) to #P ERF -      L EMMA 2.2. ([62]) Assuming #ETH, the problem
+M ATCH is completely automatic, we only need to verify         #3SAT on formulas with n variables and m clauses
+that the these steps change treewidth or cliquewidth of        cannot be solved in time 2o(n+m) .
+the graph in a controlled way (but usually this is easy).
+We encapsulate this reduction from Holant problems to          Analogously to SETH, assuming #SETH has the con-
+#P ERF M ATCH in Theorem 4.1. The hardness proofs in           sequence that n-variable m-clause #CNF-SAT has no
+Theorems 1.2, 1.4, and 1.7 all construct Holant instances      (2 − ε)n · mO(1) time algorithm for any ε > 0.
+
+
+                                                          1653                                         Copyright © by SIAM.
+                                                                       Unauthorized reproduction of this article is prohibited.
+2.2 Inserting gadgets into graphs. Our graph notation                    The following lemma shows that inserting gadgets of
+is standard, but we need to introduce formal deﬁnitions            bounded cutwidth increases cutwidth only by a constant
+for replacing vertices with gadgets in graphs. For this pur-       (this property of cutwidth is the main reason we are using
+pose, we ﬁnd it convenient to use the notion of dangling           it in our proofs).
+edges, which are edges having only one endpoint [22].
+                                                                   L EMMA 2.3. Let G be a graph and let X ⊆ V (G) be a
+        Let Hv be a graph with d distinguished dan-
+                                                                   subset of vertices, each of degree at most d. For every
+gling edges e1 , . . . , ed incident to distinct portal vertices
+                                                                   v ∈ X, let us replace v by inserting a graph Hv of cutwidth
+v1 , . . . , vd , respectively. Let G be a graph, let v ∈ V (G)
+                                                                   at most c; let G be the resulting graph. Then cutw(G ) =
+be of degree d, and assume that an ordering f1 , . . . , fd of
+                                                                   cutw(G) + d + c.
+the d edges incident to v is given. Then the operation of
+inserting Hv at v is deﬁned as follows: take the disjoint
+                                                                   2.4 Cliquewidth. We follow Fomin et al. [51] for the
+union of G and Hv , remove v, and for every 1 ≤ i ≤ d,
+                                                                   basic deﬁnitions of cliquewidth. Let G be a graph and t
+remove ei and replace it with an edge connecting vi with
+                                                                   be a positive integer. A t-graph is a graph with vertices
+the other endpoint of fi .
+                                                                   labeled by integers from {1, 2, . . . ,t}. We refer to a t-
+        We can extend this operation to inserting more than
+                                                                   graph consisting of exactly one vertex labeled by some i ∈
+one graph in parallel. That is, assume we are given ver-
+                                                                   {1, 2, . . . ,t} as an initial t-graph. The cliquewidth cw(G)
+tices v1 , . . . , vt in G (each vertex having a ﬁxed ordering
+                                                                   is the smallest integer t such that G can be constructed by
+of the edges incident to it) and graphs Hv1 , . . . , Hvt such
+                                                                   repeated applications of the following four operations:
+that the number of dangling edges of Hvi and the degree
+of vi agree, we can deﬁne the insertion of Hvi at vi in par-          i(v): Introduce operation constructing an initial t-graph
+allel for 1 ≤ i ≤ t with the obvious meaning depicted in                    with vertex v labeled by i,
+Figure 1.                                                             ⊕: Disjoint union of two t-graphs,
+                                                                      ρi→ j : Relabel operation changing all labels i to j, and
+2.3 Treewidth, pathwidth and cutwidth. We recall ηi, j : Join operation making all vertices labeled by i adja-
+the most important notions related to treewidth in this                     cent to all vertices labeled by j.
+section. A tree decomposition of a graph G is a pair (T, B)
+                                                                      An expression tree of a graph G is a rooted tree T with
+in which T is a tree and B = {Bt | t ∈ V (T )} is a family of
+                                                                      nodes of four types i, ⊕, ρ, and η, corresponding to
+subsets of V (G) such that
+                                                                      the operations described above. To each node, a t-graph
+                                                                     is associated such that G is isomorphic to the graph
+  1. t∈V (T ) Bt = V ;                                                corresponding to the root of T after removal of all labels.
+  2. for each edge e = uv ∈ E(G), there exists a node
+        t ∈ V (T ) such that u, v ∈ Bt , and                          Introduce nodes i(v) are precisely the leaves of T , and
+  3. the set of nodes {t ∈ V (T )|v ∈ Bt } forms a connected                each such node corresponds to an initial t-graph
+        subtree of T for every v ∈ V (G).                                   consisting of the i-labeled vertex v.
+                                                                      Union node ⊕ stands for a disjoint union of graphs asso-
+                                                                            ciated with its children.
+To distinguish between vertices of the original graph G
+                                                                      Relabel node ρi→ j has one child and is associated with
+and vertices of T in the tree decomposition, we call
+                                                                            the t-graph obtained by the application of the relabel-
+vertices i of T nodes and their corresponding Bi ’s bags.
+                                                                            ing operation to the graph corresponding to its child.
+The width of the tree decomposition is the maximum size
+                                                                      Join node ηi, j has one child and is associated with the
+of a bag in B minus 1. The treewidth of a graph G, denoted
+                                                                            t-graph resulting from the application of the join
+by tw(G), is the minimum width over all possible tree
+                                                                            operation to the graph corresponding to its child.
+decompositions of G.
+       A path decomposition is a tree decomposition where The width of the expression tree T is the number of
+T is a path. The pathwidth pw(G) of a graph G is the different labels appearing in T . If G is of cliquewidth t,
+minimum width over all possible path decompositions of then there is a rooted expression tree T of width t for G.
+G. By deﬁnition, we have tw(G) ≤ pw(G).                               An expression tree T is irredundant if for any join node
+       A linear layout of an n-vertex graph G is an ordering ηi, j , the vertices labeled by i and j are not adjacent in the
+v1 , . . . , vn of V (G). For 1 ≤ i ≤ n, the cut after vi is the graph associated with its child. It was shown by Courcelle
+set of edges between {v1 , . . . , vi } and {vi+1 , . . . , vn }. The and Olariu [29] that every expression tree T of G can be
+cutwidth of the linear layout is the maximum size of the transformed into an irredundant expression tree T of the
+cut after vi for 1 ≤ i < n. The cutwidth of G, denoted same width in time linear in the size of T . We will use
+by cutw(G), is the minimum cutwidth over all possible this for algorithmic purposes.
+linear layouts of G. A linear layout of cutwidth cutw(G)                   The following deﬁnitions related to clique expres-
+is called optimal. It is easy to see that pw(G) ≤ cutw(G). sions are nonstandard, but we ﬁnd them very useful for
+
+
+                                                              1654                                         Copyright © by SIAM.
+                                                                           Unauthorized reproduction of this article is prohibited.
+                                  1                      v12
+                  Hv1      e11 v1                              e12
+                                                   v13                v1
+                                                                     1       2
+                                             e13                         3
+                                             e22                     v2 2
+                                                v22                  1       3
+                                                                         4
+                  Hv2      e21   v21                     v23   e23
+                                       v24
+
+                                             e34
+
+
+Figure 1: Inserting gadgets Hv1 and Hv2 at v1 and v2 , respectively. The numbers around v1 and v2 show the ordering of
+the edges incident to them.
+
+
+our purposes. We say that a label i is singleton if for every                3.1 Holants. Given a graph G and v ∈ V (G), we denote
+subexpression, the labeled graph associated to it contains                   the edges incident with v by I(v).
+at most one vertex with label i and there is no operation
+ρ j→i in the expression (i.e., the only way a vertex can get                 D EFINITION 1. A signature graph is an edge-weighted
+label i is by an i(v) operation). Sometimes we say that                      graph Ω, which may feature parallel edges, and which
+a label is large to emphasize that it is not required to be                  has a signature fv : {0, 1}I(v) → Q associated with each
+singleton. A (k, s)-expression is a (k + s)-expression with                  vertex v ∈ V (Ω).
+at least s singleton labels.                                                 The Holant of Ω is a particular sum over the edge assign-
+     We say that an edge uv is singular in an irredundant                    ments x ∈ {0, 1}E(Ω) . Given an assignment x ∈ {0, 1}E(Ω) ,
+clique expression if the unique operation ηi, j creating uv                  we say that an edge e ∈ E(Ω) is active in x if x(e) = 1
+created exactly one edge (i.e., there was exactly one vertex                 holds, otherwise e is inactive in x. We tacitly identify x
+with label i and exactly one vertex with label j at this                     with the set of active edges in x. Given a subset S ⊆ E(Ω),
+point). We say that label i is a forget label if there is no                 we write x|S for the restriction of x to S, which is the
+operation i(v), ρi→ j , or ηi, j in the k-expression for any j               unique assignment in {0, 1}S that agrees with x on S.
+(thus label i may appear only in an operation of the form
+ρ j→i ). We say that a vertex v is singular if every edge                    D EFINITION 2. ([87]) Let Ω be a signature graph with
+incident to v is singular and whenever the graph associated                  edge weights w : E(Ω) → Q and a function fv :
+to a subexpression contains v, then v has either a singleton                 {0, 1}I(v) → Q for each v ∈ V (Ω). Furthermore, let
+label or a forget label.                                                     x ∈ {0, 1}E(Ω) be an assignment to the edges of Ω. Then
+     It is known and easy to see that cw(G) ≤ pw(G) +                        we deﬁne
+2 [49] and we can verify that the proof provides a
+(1, pw(G) + 1)-expression featuring only singular ver-                       (3.1)        valΩ (x)   :=    ∏ fv (x|I(v) ),
+tices. We prove that inserting bounded-pathwidth gadgets                                                  v∈V (Ω)
+
+at singular vertices increases the cliquewidth only moder-                   (3.2)         wΩ (x)    :=   ∏ w(e),
+ately: only the number of singleton labels is increased.                                                  e∈x
+
+                                                                             and we say that x satisﬁes Ω if valΩ (x) = 0 holds. Fur-
+L EMMA 2.4. Let G be a graph and let X ⊆ V (G) be a                          thermore, we deﬁne
+subset of vertices, each of degree at most d. Suppose that
+G has a (k, s)-expression T where every v ∈ X is singular.
+                                                           (3.3)      Holant(Ω) :=     ∑ wΩ (x) · valΩ (x).
+                                                                                   x∈{0,1}E(Ω)
+For every v ∈ X, replace v by inserting a graph Gv of
+pathwidth at most p; let G be the resulting graph. Then A particularly useful type of signatures is that of Boolean
+cw(G ) ≤ k + d(s + 1) + p + 1.                             functions, whose ranges are restricted to {0, 1} rather
+                                                           than Q. If all signatures appearing in Ω are Boolean,
+3 Holants and Matchgates                                   then Holant(Ω) simply sums over those assignments x ∈
+We give an introduction to what we call the Holant {0, 1}E(Ω) that pass all constraints imposed by the vertex
+framework, a toolbox based on [21, 22, 87]. A more functions, and each x is weighted by wΩ (x). We use the
+detailed exposition can be found in Chapter 2 of [31].     following Boolean signatures:
+
+
+                                                                      1655                                           Copyright © by SIAM.
+                                                                                     Unauthorized reproduction of this article is prohibited.
+D EFINITION 3. For x ∈ {0, 1}∗ , let hw(x) be the Ham-
+ming weight of x, that is, the number of ones in x. For
+statements ϕ, we deﬁne [ϕ] = 1 if ϕ is true, and [ϕ] = 0
+otherwise. For any arity k ∈ N and x ∈ {0, 1}k , we then
+deﬁne signatures                                         Figure 2: The gate ΓEQ with Sig(ΓEQ ) = EQk in Example 1.
+       HW=d (x) = [hw(x) = d],            for d ∈ N,
+       EVEN(x) = [hw(x) even],                                      Its correctness can be veriﬁed from the deﬁnition: an
+                                                               assignment to the dangling edges of ΓEQ can be extended
+        ODD(x) = [hw(x) odd].
+                                                               to a satisfying assignment for ΓEQ only if all values agree,
+3.2 Gates and matchgates. Given a signature graph              in which case there is exactly one assignment.
+Ω, we can sometimes simulate signatures by gadgets or            In the following, we formalize the operation of in-
+gates, which are signature graphs with dangling edges. A serting a gate Γ into a signature graph so as to simulate a
+dangling edge is an “edge” with only one endpoint. These vertex of a speciﬁc signature.
+notions are borrowed from the F-gates in [22].
+                                                             D EFINITION 5. Let Ω be a signature graph, let v ∈ V (Ω)
+D EFINITION 4. For disjoint sets A and B, and for assign- with D = I(v) and let Γ be a gate with dangling edges D.
+ments x ∈ {0, 1}A and y ∈ {0, 1}B , we write xy ∈ {0, 1}A∪B      Then we can insert Γ at v by (i) deleting v and keeping
+for the assignment that agrees with x on A, and with y on D as dangling edges, and then (ii) placing a copy of Γ into
+B. We also say that the assignment xy extends x.             Ω and identifying each dangling edge e ∈ D across Γ and
+     A gate is a signature graph Γ, possibly containing a Ω. That is, if e has an endpoint u in Ω, and an endpoint
+set D ⊆ E(Γ) of dangling edges, all of which have edge v in Γ, then we consider e as an edge uv in the resulting
+weight 1. A gate Γ is a matchgate if it features only the graph.
+signature HW=1 . The signature realized by Γ is the function
+                                                             A simple calculation shows that insertions of suitable
+Sig(Γ) : {0, 1}D → Q that maps x to
+                                                             matchgates preserve Holants.
+(3.4)       Sig(Γ, x) =     ∑      w Γ (xy) · valΓ (xy).     L EMMA 3.1. Let Ω be a signature graph and let v ∈
+                        xy∈{0,1}E(Γ)                           V (Ω). Let Ω be derived from Ω by inserting a gate Γ
+                          extends x
+                                                               with Sig(Γ) = fv at v. Then Holant(Ω) = Holant(Ω ).
+We consider the dangling edges D of gates Γ to be labeled
+as 1, . . . , |D|. This way, we can consider signatures Sig(Γ) We focus on matchgates, as deﬁned above, since these
+as functions of type {0, 1}|D| → Q instead of {0, 1}D → Q. allow us to reduce the problem of computing Holants to
+                                                               #P ERF M ATCH. Note that only graphs with an even num-
+R EMARK 1. Note that we allow matchgates to be non- ber of vertices admit perfect matchings. This implies the
+planar. This deviates from the notion of matchgates following parity condition on signatures of matchgates.
+established in the literature [14, 87], which are required FACT 3.1. (PARITY C ONDITION ) If a signature f :
+to be planar. More precisely, a matchgate on dangling {0, 1}d → Q can be realized by a matchgate, then at least
+edges 1, . . . , d is planar if it can be drawn in the plane one of the following holds:
+without crossings such that its dangling edges appear in
+the order 1, . . . , d on its outer face.                         • For all x ∈ {0, 1}d with odd hw(x), we have f (x) = 0.
+                                                                    Then we call f even.
+     The usefulness of gates for our arguments lies in            • For all x ∈ {0, 1}d with even hw(x), we have f (x) =
+their ability of simulating complex signatures by simpler           0. Then we call f odd.
+signatures. For instance, for any even arity k ∈ N, we can
+realize the k-ary signature                                    We say that f is parity-consistent if it is even or odd. We
+                                                               also say that a signature graph is parity-consistent if every
+                 EQk (x1 , . . . , xk ) := [x1 = . . . = xk ]  vertex has a parity-consistent signature.
+
+by a gate whose vertices feature only the equality signa- Furthermore, we can summarize the use of matchgates in
+ture EQ4 of arity 4.                                              the following fact. To this end, given a graph G with edge
+                                                                  weights w : E(G) → Q, let us deﬁne
+E XAMPLE 1. For all even k ≥ 4, there exists a gate
+ΓEQ with Sig(ΓEQ ) = EQk . This gate consists of vertices                       PerfMatch(G) = ∑ ∏ w(e),
+                                                                                                   M e∈M
+v1 , . . . , vk/2−1 , each equipped with EQ4 , internal edges
+e1 , . . . , ek/2−2 with ei = vi vi+1 for all i, and k additional where M ranges over the perfect matchings M ⊆ E(G) of
+dangling edges, as shown in Figure 2.                             G. This was also deﬁned in [87].
+
+
+                                                           1656                                        Copyright © by SIAM.
+                                                                       Unauthorized reproduction of this article is prohibited.
+Figure 3: The equality matchgate Γ= that realizes EQ4 .
+Edges of weight −1, 1/2 and 1 are shown gray, dashed and        Figure 4: The gate Γ constructed in the proof of
+black, respectively. A comparable matchgate is shown in         Lemma 3.3. In this example, Γ realizes the signature f
+[7], but it realizes only a weighted version of the signature   that maps {00011, 11101, 11000} to 1 and all other inputs
+EQ4 .                                                           to 0.
+
+
+                                                              Γ that realizes f . Furthermore, if supp( f ) denotes the
+FACT 3.2. Let Ω be a signature graph. If there is a
+                                                              support of f , then
+matchgate Γv with Sig(Γv ) = fv for every vertex v ∈ V (Ω),
+then we can insert Γv as a gate at v, as speciﬁed in             • Γ has O(|supp( f )| · d) vertices and edges,
+Deﬁnition 5. This yields a signature graph that uses only        • Γ has maximum degree at most |supp( f )| + O(1),
+edge weights and the signature HW=1 . In other words,            • the edge weights of Γ are contained in the set I ∪
+we obtain a graph G = G(Ω) on ∑v |V (Γv )| vertices and             {−1, 1/2, 1},
+∑v |E(Γv )| edges with                                           • given as input {(x, f (x)) | x ∈ supp( f )}, we can
+                                                                    construct Γ in time O(|supp( f )| · d).
+              Holant(Ω) = PerfMatch(G(Ω)).
+                                                              The construction of Γ resembles the construction of a
+3.3 Matchgates for parity-consistent signatures. As formula in DNF from a given Boolean function. For each
+seen in Example 1, we can use matchgates for simple sig- element x ∈ supp( f ), we create an assignment gate Lx that
+natures to construct matchgates for more complex signa- tests whether the dangling edges of Γ are assigned x and
+tures. In the following, we use this to realize the signature this way ensures that Sig(Γ, x) = f (x). Furthermore, we
+EQk for even k ∈ N from the matchgate Γ= for EQ4 shown ensure that Sig(Γ, x) = 0 holds only if exactly one of these
+in Figure 3. We discovered Γ= using a computer alge- tests succeeds.
+bra system, in a process that is detailed in Appendix C of
+[31]. Note that EQk for odd k ∈ N does not satisfy the par- Proof. of Lemma 3.3. For this proof, we assume that
+ity condition and hence cannot be realized by matchgates. d − hw(x) is odd for every x ∈ supp( f ), which implies
+                                                              that exactly one of d and f is even, while the other one is
+L EMMA 3.2. For all even k ∈ N, there is a matchgate odd. If d − hw(x) is even, the proof proceeds similarly.
+realizing EQk . This matchgate features O(k) vertices and          We ﬁrst deﬁne the following gate Γ on dangling
+edges and only −1, 12 , 1 as edge weights.                    edges [d], shown exemplarily in Figure 4. The matchgate
+                                                              Γ is then obtained by realizing all signatures appearing in
+Proof. For k = 2, we use a path on 4 vertices with Γ by matchgates.
+dangling edges at its endpoints. For k = 4, we can verify
+that the matchgate Γ= in Figure 3 realizes EQ4 . For            1. Create vertices O = {o1 , . . . , od } with signature
+k > 4, we use the gate from Example 1 and realize each              HW=1 , and for i ∈ [d], add the dangling edge i and
+occurrence of EQ4 by Γ= .                                           make it incident to oi .
+                                                                2. Create a vertex a with signature HW=1 .
+     The parity condition in Fact 3.1 tells us that every       3. Let supp( f ) = {x1 , . . . , xr } for some r ∈ N. For each
+signature of a matchgate is even or odd. In the following,          κ ∈ [r], let Sκ = O \ {oi | i ∈ xκ }. Note that |Sκ | is
+we show that the converse holds as well:                            odd by assumption. We perform the following steps.
+L EMMA 3.3. Let f : {0, 1}[d] → I be a signature of arity              (a) Create a vertex vκ with signature EQ|Sκ |+1 and
+d ∈ N that is parity-consistent. Then there is a matchgate                 make it adjacent to all vertices in Sκ . Note that
+
+
+                                                            1657                                        Copyright © by SIAM.
+                                                                        Unauthorized reproduction of this article is prohibited.
+            |Sκ | + 1 is even, so EQ|Sκ |+1 can be realized by Proof. By Lemma 3.3, we obtain a matchgate Γv on
+            a matchgate by Lemma 3.3.                          O(2d d) vertices for each parity-consistent signature fv
+       (b) Draw an edge of weight f (xκ ) from vκ to a.        at v ∈ V (Ω) of arity d. Let G denote the graph on
+                                                               edge   weights {−1, 1/2, 1} obtained from Ω by inserting
+We prove that Γ realizes f . Let y ∈ {0, 1}E(Γ ) be a Γ at v, for all v. By Fact 3.2, we have Holant(Ω) =
+                                                                 v
+satisfying assignment. By HW=1 at the vertex a and EQ PerfMatch(G).
+at vκ for κ ∈ [r], there is exactly one κ ∈ [r] such that all       To reduce to unweighted #P ERF M ATCH, it remains
+edges of I(vκ ) are active under y, while all edges in I(vκ ) to remove the edge weights −1 and 1/2 from G. To
+for κ = κ are inactive. In particular, we then have           this end, we apply a standard interpolation argument:
+(3.5)              valΓ (y) · wΓ (y) = f (xκ ).                Introduce two indeterminates x, y and replace each edge
+                                                               weight −1 by x, and each edge weight 1/2 by y. This yields
+     Let x = y|[d] be the restriction of y to the dangling a graph Gx,y on edge weights 1, x, y. Then
+edges of Γ . We observe that, if the edges in I(vκ )
+are active under y, for κ ∈ [r], then x = xκ : Since y                     p(x, y) := PerfMatch(Gx,y ) ∈ Z[x, y]
+is satisfying, by HW=1 at O, every oi ∈ O for i ∈ [d] is
+incident with exactly one active edge, and this edge must is a polynomial of maximum degree  := |V (G)|/2 in the
+be dangling if x(i) = 1, or contained in I(vk ) if x(i) = indeterminates x and y. Assume we can evaluate p(ξ )
+0. Hence, for every x ∈ {0, 1}[d] , there is a satisfying on all points ξ ∈ A for an arbitrary set A ⊆ Q with
+                                                                                      2
+
+assignment y of Γ that extends x if and only if x = xκ |A| =  + 1. That is, we can evaluate PerfMatch(Gξ )
+for some κ ∈ [s]. Furthermore, in this case, y is unique for graphs on edge weights {1} ∪ A. Then we can use
+and satisﬁes (3.5). We conclude that Sig(Γ , x) = f (x).       multivariate polynomial interpolation (see [30]) to obtain
+                                                               all coefﬁcients of p in time O(1) . In particular, we can
+4 From Holants to perfect matchings                            then evaluate p(−1, 1/2) = PerfMatch(G).
+                                                                    In the following, the set A will be chosen according to
+In this section, we present our main technical tool that
+                                                               the parameter we wish to bound. We then evaluate p(ξ )
+encapsulates the reduction from Holant problems to un-
+                                                               for ξ ∈ A2 by means of certain gadgets/matchgates that
+weighted #P ERF M ATCH. From the previous section, we
+                                                               simulate the edge weights from A. To this end, we present
+know that bounded-arity signatures can be replaced with
+                                                               two different ways of choosing A and simulating the edge
+matchgates that may feature edge weights (which are pos-
+                                                               weights (see Figure 5).
+sibly even negative). In the following, we show how
+to simulate these weights in a careful way to ensure Method 1. We let A = {2i | i ∈ []} and observe that an
+an overall bound on the cutwidth, crossing number, or                edge ab of weight 2i can be simulated with a path
+cliquewidth of the resulting graphs.                                 of length 2i − 1 on edges e , . . . , e  , where edge
+                                                                                                 1      2i−1
+T HEOREM 4.1. For every integer d ≥ 1, there is some             e2κ−1 for κ ∈ [i] has weight 2. Then an edge of
+cd ∈ N such that the following holds. Let Ω be a signature       weight    2 between vertices u and v can in turn be
+graph featuring no edge weights and only Boolean signa-          simulated    by two parallel edges between u and v,
+tures that are parity-consistent. Let X ⊆ V (Ω) be a set of      each   of  which  is subdivided twice. We obtain a
+vertices of degree at most d such that every vertex not in       gadget   of cutwidth 2 on O() vertices.
+X has the signature HW=1 . Then there is a cd · n  O(1) time Method  2.  We   let A =  [] and use a construction from
+Turing reduction from computing Holant(Ω) to #P ERF -            [37]  to  simulate  the  weight i ∈ [] with O(log2 i)
+M ATCH on unweighted graphs, and we can choose one of            vertices and pathwidth 2. It is clear that we can
+the following three statements to hold:                          simulate an edge of weight r + s by two parallel
+                                                                 edges of weights r and s, respectively. Hence, we
+  1. For every constructed instance G of #P ERF M ATCH,          can simulate weight i ∈ [] by at most log i parallel
+     we have cutw(G ) ≤ cutw(Ω) + cd .                           edges by introducing an edge for each 1-bit in the
+  2. If Ω is a graph embedded in the plane and there are         binary representation of i: if the κ-th bit is 1, then we
+     t vertices in X whose signatures can be realized by         introduce a parallel edge of weight 2κ−1 . Then we
+      planar matchgates, then every constructed instance         realize each weight 2κ−1 by a path on O(κ) vertices
+      G of #P ERF M ATCH has crossing number at most             as in Method 1.
+     cd · (|X| − t). Here, we assume that all used planar
+      matchgates feature only weights 1 and −1.                  Using interpolation as described above, we can then
+  3. If Ω has no parallel edges and has a (k, s)-expression reduce the computation of Holant(Ω) to unweighted
+      where every vertex of X is singular, then every con- #P ERF M ATCH with either of the two methods. To ensure
+      structed instance G of #P ERF M ATCH has cw(G ) ≤ that one of the three chosen statements holds, we choose
+     k + s · cd .                                            between the two methods in the following way:
+
+
+                                                          1658                                         Copyright © by SIAM.
+                                                                       Unauthorized reproduction of this article is prohibited.
+                        Method 1                                                 Method 2
+
+                        a       b                                               a       b
+                            8                                                   21=1+4+16
+
+
+
+                                                                                      1
+       a                                      b                           a           4           b
+            2       1       2       1    2                                           16
+
+
+
+
+       a                                      b
+                                                      a                                                               b
+
+
+
+
+                Figure 5: Removing weights using Method 1 and Method 2 in the proof of Theorem 4.1.
+
+
+     In the case of cutwidth, we use Method 1. Every        multiple times) can increase pathwidth at most by 1, as
+weighted matchgate Γ to be inserted into Ω has size         shown in [5]. Thus, after the application of Method 2,
+bounded by a function of d, hence its cutwidth is also      the unweighted gadgets still have pathwidth bounded by a
+bounded by a function of d. Method 1 can be expressed       function of d. Then by Lemma 2.4, the graph G obtained
+as subdividing edges of Γ a certain number of times,        after the insertion of the weighted gadgets has cliquewidth
+replacing some edges with two parallel edges, and then      at most k + d(s + 1) plus a constant depending only on
+again subdividing some edges. Subdividing edges does        d, hence we can indeed bound cw(G ) by k + s · cd for a
+not increase cutwidth and duplicating edges increases       suitably large constant cd . This concludes the proof.
+cutwidth at most by a factor of 2, hence the matchgates
+have cutwidth bounded by a function of d even after         5   Parameterizing by cutwidth or crossing number
+simulating the weights. Then Lemma 2.3 shows that           In this section, we prove Theorems 1.2 and 1.7 by a
+inserting these gadgets increases cutwidth at most by a     lower bound for parameterization by cutwidth (implying
+function of d.                                              the lower bound for parameterization by pathwidth and
+     In the case of crossing number, we use Method 1.       treewidth) and by a lower bound for parameterization by
+We can extend the planar drawing of Ω to a drawing of G     crossing number (implying the lower bound for parame-
+that features crossings only in the drawings of nonplanar   terization by genus).
+matchgates Γ. Subdividing edges does not increase the            We ﬁrst show how to reduce counting the number of
+crossing number, duplicating edges increases it at most     satisfying assignments of an n-variable m-clause d-CNF
+by a factor of 4. Thus each nonplanar matchgate has         formula ϕ to computing the Holant of certain signature
+crossing number bounded by some function of d, even         graphs. Then we invoke Theorem 4.1 to reduce the
+after simulation of weights. Since Ω features at most       resulting Holant problem to #P ERF M ATCH on graphs
+(|X| − t) nonplanar matchgates, we obtain that G has        with O(nm) vertices and edges that have cutwidth n +
+crossing number at most (|X| − t) · cd for some suitably    O(1) or crossing number O(n + dm).
+large constant cd . Note that no crossings are introduced
+into planar matchgates by simulating edge-weights.          5.1 Parameterizing by cutwidth. Let ϕ be a d-CNF
+     In the case of cliquewidth, we use Method 2. Every     formula on n variables x1 , . . . , xn and m clauses C1 , . . . ,Cm .
+weighted matchgate Γ has size bounded by a function of      As an intermediate step in the reduction to #P ERF M ATCH,
+d, hence its pathwidth is also bounded by a function of     we derive two signature graphs from ϕ, following the
+d. Method 2 can be expressed as replacing edges with        structure outlined in Figure 6.
+several parallel copies, subdividing edges several times,        That is, each graph consists essentially of an n × m
+duplicating certain edges, and then again subdividing       square grid whose rows and columns correspond to the
+them. Replacing an edge with parallel edges has no effect   variables and clauses of ϕ, respectively. The horizontal
+on pathwidth and subdividing a subset of the edges (even
+
+
+                                                       1659                                          Copyright © by SIAM.
+                                                                     Unauthorized reproduction of this article is prohibited.
+edges in row i ∈ [n] will serve to propagate a binary Proof. We deﬁne the graphs underlying Ω0 and Ω1 as
+assignment to the variable xi , and in column j ∈ [m], we follows, see also Figure 6:
+will test whether the assignment to x1 , . . . , xn encoded this
+way satisﬁes clause C j .                                          1. Create an n × m grid of vertices vi, j for i ∈ [n] and
+      To realize this construction, we need to deﬁne certain            j ∈ [m]. Copy each vertical edge, such that vi, j
+auxiliary Boolean signatures that play the role of negative            and   vi+1, j are connected by two parallel edges for
+and positive (and neutral) literals in ϕ.                              i ∈ [n − 1] and j ∈ [m]. We will later describe how to
+                                                                       assign signatures to these vertices.
+D EFINITION 6. We deﬁne the Boolean 6-ary signatures               2. Create two additional sets of vertices {vi,0 | i ∈ [n]}
+LIT0 , LIT− and LIT+ on the following six inputs,                      and {vi,m+1 | i ∈ [n]}. For each i ≤ n − 1, connect
+grouped into three pairs of inputs                                     vi,0 to vi+1,0 and to vi,1 . Connect vn,0 to vn,1 . Also
+                                                                       connect vi,m+1 to vi+1,m+1 and to vi,m for each i ≤
+            (xin , xout ), (xtop1 , xtop2 ), (xbtm1 , xbtm2 ).         n − 1. Connect vn,m+1 to vn,m .
+                                                                   3.  In the case of Ω0 , assign the signature EVEN of ap-
+For any assignment a ∈ {0, 1}6 , the signatures yield value            propriate arity to each vertex created in the previous
+1 iff all of the following holds: Firstly, for each input pair,        step. Deﬁne Ω1 likewise, but assign ODD to the two
+the two values in the pair agree. That is, we have a(xin ) =           vertices vn,0 and vn,m+1 . Note that the vertex sets
+a(xout ) and a(xtop1 ) = a(xtop2 ) and a(xbtm1 ) = a(xbtm2 ).          {vi,0 | i ∈ [n]} and {vi,m+1 | i ∈ [n]} each effectively
+      Secondly, if the top input pair is active, then so is            express an EVEN gate of arity n in Ω0 , and an ODD
+the bottom input pair, regardless of the assignment to                 gate of arity n in Ω1 . That is, we may contract, say,
+any other inputs. That is, if a(xtop1 ) = a(xtop2 ) = 1, then          {vi,0 | i ∈ [n]} to a single vertex of arity n with signa-
+a(xbtm1 ) = a(xbtm2 ) = 1.                                             ture EVEN without changing the Holant of Ω0 . How-
+      On the other hand, if the top input pair is inactive,            ever, in order to use Theorem 4.1, we would like to
+that is, a(xtop1 ) = a(xtop1 ) = 0, then LIT0 , LIT− and LIT+          use only EVEN and ODD gates of constant arity.
+differ in their behavior:                                          4. Create m additional vertices vn+1, j for j ∈ [m]. For
+                                                                       all j ∈ [m], connect vn+1, j to vn, j with two parallel
+   • For LIT0 , we require a(xbtm1 ) = a(xbtm2 ) = 0.
+                                                                       edges and assign HW=2 to vn, j .
+   • For LIT+ , require a(xbtm1 ) = a(xbtm2 ) = a(xin ).
+                                                                   5. Create m additional vertices v0, j for j ∈ [m]. For all
+   • For LIT− , require a(xbtm1 ) = a(xbtm2 ) = a(¬xin ).
+                                                                        j ∈ [m], connect v0, j to v1, j with two parallel edges
+      It is evident that LIT0 , LIT− and LIT+ are all even             and assign HW=0 to v0, j .
+signatures. As a matter of fact, the inputs xtop1 , xtop2 and         It is evident from the construction and the drawing in
+xbtm1 , xbtm2 are deﬁned to come in pairs with enforced Figure 6 that Ω and Ω are planar. Furthermore, if we
+                                                                                     0        1
+equality for no other reason than to ensure this.                enumerate the vertices of the graphs column by column,
+      All signatures deﬁned above propagate the assign- we obtain linear layouts with cutwidth at most n + c for a
+ment of xin to xout . This ensures that, in every satisfying constant c ∈ N independent of the input.
+assignment to the constructed signature graph, the same               It remains to assign signatures to the vertices vi, j for
+binary value will be assigned to all horizontal edges. If i ∈ [n] and j ∈ [m] constructed in the ﬁrst step. Recall
+xtop1 = 1, then we require xbtm1 = 1 as well. This en- that ϕ has variables x , . . . , x and clauses C , . . . ,C . We
+                                                                                           1      n                 1      m
+sures that if a clause is satisﬁed by previous literals, then deﬁne an array A ∈ {0, +, −}n×m by
+this information will be propagated to the next literal. If
+                                                                                       ⎧
+xtop1 = 0, then LIT0 simply passes this information to                                 ⎪
+                                                                                       ⎨0 xi does not appear in C j
+xbtm1 . The signatures LIT− and LIT+ however check
+                                                                            A(i, j) = + xi appears in C j
+whether xin is assigned 1 (in which case a positive literal                            ⎪
+                                                                                       ⎩
+would be satisﬁed and LIT+ assigns xin to xbtm1 ) or 0 (in                               − ¬xi appears in C j
+which case LIT− assigns ¬xin to xbtm1 ). We can now de-
+                                                                 and assign to vi, j the signature LITA(i, j) . In the following,
+ﬁne the relevant signature graphs from ϕ.
+                                                                 we verify that Holant(Ω0 ) indeed counts the satisfying
+L EMMA 5.1. Let ϕ be a d-CNF formula on n variables assignments a : {x1 , . . . , xn } → {0, 1} for ϕ with even
+and m clauses. Then we can construct two unweighted Hamming weight. The same can be veriﬁed for Ω1 and the
+signature graphs Ω0 and Ω1 such that                             assignments of odd weight. As a notational simpliﬁcation,
+                                                                 for i ∈ [n], we write vi, for the vertices in row i, and for
+(5.6)         #SAT(ϕ) = Holant(Ω0 ) + Holant(Ω1 ).               j ∈ [m], we write v, j for the vertices in column j.
+                                                                      For each i ∈ [n], the signatures LIT0 , LIT− and LIT+
+Furthermore, both Ω0 and Ω1 are planar, have cutwidth in vi, ensure that all horizontal edges between vertices in
+n + O(1) and maximum degree O(1).                                vi, have the same value ai . By the two columns of EVEN
+
+
+                                                             1660                                         Copyright © by SIAM.
+                                                                          Unauthorized reproduction of this article is prohibited.
+                                          HW=0 HW=0 HW=0 HW=0 HW=0 HW=0 HW=0
+
+
+                                        v1,1                          LIT−                 v1,m
+                              EVEN                                                                EVEN
+
+                                                                      LIT0
+                              EVEN                                                                EVEN
+
+                                                                      LIT+
+                              EVEN                                                                EVEN
+
+                                                                      LIT+
+                              EVEN                                                                EVEN
+
+                                                                      LIT0
+                              EVEN      vn,1                                               vn,m   EVEN
+
+
+                                          HW=2 HW=2 HW=2 HW=2 HW=2 HW=2 HW=2
+
+Figure 6: A drawing of Ω0 with n = 5 and m = 7. As an example, the column corresponding to clause C4 =
+(x1 ∨ x3 ∨ x4 ) is highlighted.
+
+
+signatures (which act like two vertices of degree n with              would yield a (2 − ε)n mO(1) time algorithm for n-variable
+signature EVEN), evenly many rows have active edges.                  m-clause CNF-SAT, violating #SETH. As the treewidth
+Altogether, this implies that the satisfying assignments to           of a graph is always bounded from above by its cutwidth,
+Ω0 encode even assignments a : {x1 , . . . , xn } → {0, 1} to         the theorem follows.
+the formula ϕ.
+        For each j ∈ [m], we propagate along the vertical             5.2 Parameterizing by crossing number. With a
+edges in column v, j whether the clause C j is satisﬁed              slight modiﬁcation, the construction of Lemma 5.1 also
+by the assignment a. For each 1 ≤ i ≤ n, the vertex vi, j             allows us to prove the lower bound for #P ERF M ATCH pa-
+has two top edges whose assignment encodes whether C j                rameterized by crossing number. To this end, we ﬁrst need
+is satisﬁed by a1 , . . . , ai . At v1, j , this value is false, as   to observe that the signature LIT0 can almost be realized
+ensured by the HW=0 signatures at v0, j . If the variable x j         by a planar matchgate. That is, we can realize a signature
+does not appear in the clause C j , then we propagate the             LIT0 ∗ that agrees with LIT0 on assignments a ∈ {0, 1}6
+assignment at the top edges downward by deﬁnition of                  that give the same value to xtop1 and xtop2 , but LIT0 ∗ may
+LIT0 . If x j appears positively or negatively, then we check         attain arbitrary values on all other assignments.
+whether xi satisﬁes C j and propagate the result downward
+by deﬁnition of LIT− or LIT+ . At the bottom of each                  L EMMA 5.2. There is a signature LIT0 ∗ that can be
+column j ∈ [m], the vertex vn+1, j of signature HW=2 tests            realized by a planar matchgate (on edge-weights 1 and
+whether clause C j was satisﬁed by the assignment a =                 −1) and satisﬁes, on all a ∈ {0, 1}6 with a(xtop1 ) =
+a 1 . . . an .                                                        a(xtop2 ), the condition LIT0 (a) = LIT0 ∗ (a). The signature
+        Altogether, this shows that the satisfying assignments        LIT0 ∗ may however attain arbitrary values on all other
+to Ω0 encode the satisfying assignments to ϕ where an                 a ∈ {0, 1}6 .
+even number of variables is set to true. A similar proof              From this, we can conclude the desired lower bound.
+applies for Ω1 . This proves (5.6) and hence the theorem.
+                                                                      Proof. of Theorem 1.7. Since we wish to prove a lower
+By invoking Theorem 4.1, we obtain hardness for the                   bound under #ETH, we may reduce from #SAT on 3-
+parameterization by cutwidth.                                         CNF formulas. Given such a formula ϕ on n variables
+                                                                      and m clauses, it is clear that ϕ contains at most 3m literals
+Proof. of Theorem 1.2. Given a CNF formula ϕ on n                     that occur positively or negatively.
+variables, invoke Lemma 5.1 to obtain signature graphs                     We construct the planar signature graphs Ω0 and
+Ω0 and Ω1 of cutwidth n + O(1) that satisfy (5.6). Us-                Ω1 from ϕ described in Lemma 5.1, replacing each
+ing Theorem 4.1 and choosing statement 1, we can then                 occurrence of LIT0 by LIT0 ∗ . It can be checked that this
+determine Holant(Ωi ) for i ∈ {0, 1} with an oracle for un-           particular replacement preserves Holants: At the top-most
+weighted #P ERF M ATCH that asks only queries on graphs               vertex v1, j of each column j ∈ [m], the two inputs xtop1 and
+with nO(1) vertices and cutwidth n + O(1). Thus an algo-              xtop2 are forced to the same assignment, and by deﬁnition
+rithm with running time (2−ε)cutw(G) nO(1) for some ε > 0             of LIT0 ∗ , LIT− and LIT+ , the same applies inductively
+
+
+                                                                 1661                                         Copyright © by SIAM.
+                                                                              Unauthorized reproduction of this article is prohibited.
+at all vertices vi, j for i ∈ [n]. Hence, under any satisfying     colors, and we are looking for a colorful hitting set. A
+assignment, LIT0 would yield the same value as LIT0 ∗ .            tight lower bound for this problem can be established in a
+     As described above, there are at most 3m occurrences          similar way as in [75].
+of the non-planar signatures LIT− and LIT+ in Ω0 and
+Ω1 . In addition, there are O(n + m) occurrences of                L EMMA 6.1. For each ﬁxed k ≥ 2, the following holds:
+the signatures HW=2 , ODD, and EVEN, which in fact have            If there exists an ε > 0 such that, for each d ∈ N, there
+planar matchgates, but we do not use this here. Thus,              is an O(nk−ε ) time algorithm for #C OL HS on instances
+using Theorem 4.1, we obtain a reduction from #SAT                 with universe size n and O(kd · logd n) sets, then #SETH
+on 3-CNF formulas with n variables and m clauses to                fails. Here, the constant factor in the running time may
+#P ERF M ATCH with O(nm) vertices and crossing number              depend on d.
+O(n + m). Consequently, an algorithm for #P ERF M ATCH
+with running time 2o(k) nO(1) on graphs with crossing              6.2 Construction of the signature graph. In the re-
+number k would imply a 2o(n+m) nO(1) time algorithm for            mainder of this section, we show how to solve an in-
+#SAT on 3-CNF formulas, and thus refute #ETH by                    stance (X, A, k) for the problem #C OL HS by reduction
+Lemma 2.2.                                                         to the problem #P ERF M ATCH on unweighted graphs of
+                                                                   cliquewidth k + O(1). To this end, we ﬁrst construct a
+6   Parameterizing by cliquewidth                                  grid-like signature graph Ω on k rows and m columns con-
+                                                                   taining cell gates Ci, j for i ∈ [k] and j ∈ [m]. The i-th row
+In this section, we prove the following conditional lower
+                                                                   corresponds to the individual from Xi to be picked in our
+bound under #SETH that complements Theorem 1.3. This
+                                                                   hitting set, while the j-th column, which we denote by D j ,
+lower bound then implies Theorem 1.4.
+                                                                   corresponds to the set A j .
+T HEOREM 6.1. For any ﬁxed k ∈ N and ε > 0, the                          The construction resembles that of Section 5: Each
+following holds: If we can solve #P ERF M ATCH in time             row i propagates an element xi ∈ Xi from left to right,
+O(|T | · nk−2−ε ) on an unweighted graph G given with an           and each column D j will check whether A j is hit by the
+expression for G with k large and O(1) singleton labels,           elements {x1 , . . . , xk } propagated by the rows. The checks
+then #SETH fails.                                                  at each column D j are performed from top to bottom, so
+                                                                   that cell Ci, j will know the value of xi and whether A j was
+     Since expressions with k large and O(1) singleton la-         already hit by {x1 , . . . , xi−1 }. This allows Ci, j to determine
+bels trivially have k +O(1) labels, this indeed proves The-        whether A j is hit by {x1 , . . . , xi } and to propagate this
+orem 1.4. We note that it is crucial to obtain unweighted          information to the cell Ci+1, j below. When reaching the
+graphs, as the evaluation of PerfMatch is trivially #P-hard        bottom-most cell Ck, j , the column D j will know whether
+on edge-weighted cliques, whose underlying graphs have             A j is hit by {x1 , . . . , xk }. The main difference to Section 5
+cliquewidth 2. (We can simply assign weight zero to non-           is that we do not transfer a Boolean value along the i-
+edges. If zero-weight edges are explicitly forbidden, then         th row, but rather a number xi ∈ [n], which encodes the
+a simple interpolation argument allows to simulate them            element (i, xi ) chosen in our hitting set. In particular, cell
+by edges of non-zero weight.)                                      gates will therefore feature O(n) dangling edges (rather
+                                                                   than a constant number).
+6.1 The colored hitting set problem. To prove Theo-                      In the following, we give a formal construction of a
+rem 6.1, we reduce from counting colorful hitting k-sets.          cell by ﬁrst specifying its underlying graph. We will then
+This is a simple variant of the hitting k-set problem, for         attach signatures to this graph to obtain a gate.
+which a tight lower bound was already shown by Patrascu
+                                                                  D EFINITION 8. A cell is a gate containing pairs of dan-
+and Williams [75].
+                                                                  gling edges (etop1 , etop2 ) and (ebtm1 , ebtm1 ) and (aκ , bκ )
+D EFINITION 7. In the problem #C OL HS, the input con- for κ ∈ [n]. It is deﬁned as follows; see also Figure 7.
+sists of k disjoint universes X = (X1 , . . . , Xk ) with n indi-
+                                                                    1. Create vertices c1 , . . . , cn . For all κ ∈ [n], connect cκ
+viduals each and sets A = (A1 , . . . , Am ) with A j ⊆ X1 ∪
+                                                                       to the dangling edges aκ and bκ .
+. . . ∪ Xk for j ∈ [m]. We may assume that Xi = {i} × [n]
+                                                                    2. For 1 ≤ κ ≤ n − 1, connect cκ to cκ+1 by 4 parallel
+for all i ∈ [k]. The task is then to determine the number of
+                                                                       edges. Add (etop1 , etop2 ) as dangling edges to c1 and
+colorful hitting sets, that is, the size of the set
+                                                                       add (ebtm1 , ebtm2 ) to cn .
+                                                                    3. Connect c1 to an extra vertex utop of signature HW=2
+     C OL HS(X, A, k) = {(s1 , . . . , sk ) ∈ X1 × . . . × Xk |
+                                                                       with 2 parallel edges, and connect cn to an extra
+                              ∀ j ∈ [m] : ∃i ∈ [k] : si ∈ A j }.       vertex ubtm of signature HW=0 with 2 parallel edges.
+     The difference to the usual hitting k-set problem is          Intuitively speaking, the 4 parallel edges between consec-
+that the universe X can be considered to be colored by k           utive vertices in a cell are used to transfer 2 bits in a
+
+
+                                                              1662                                          Copyright © by SIAM.
+                                                                            Unauthorized reproduction of this article is prohibited.
+parity-consistent way. We require the cell Ci, j to behave as           In the following, we give formal deﬁnitions for the
+follows. For every satisfying assignment x ∈ {0, 1}E(Ci, j )        signatures MSTR0 and MSTR+ .
+to Ci, j , the following conditions have to be fulﬁlled:
+                                                                    D EFINITION 9. The master signatures MSTR0 and MSTR+
+Doubling: For each pair of dangling edges, its two edges            are 10-ary Boolean signatures
+    must agree in their values on x. This implies in
+                                                                                  MSTR0 , MSTR+ : {0, 1}10 → {0, 1}
+    particular that the assignment to a1 , . . . , an is propa-
+    gated to b1 , . . . , bn .                                      with inputs
+Block: There exists a number t ∈ [n] such that all dan-
+    gling edges aκ , bκ for 1 ≤ κ ≤ t are active in x, and                   (xin , xout ), (ein
+                                                                                              bool1 , ebool2 ), (ebool1 , ebool2 ),
+                                                                                                       in         out      out
+
+    all dangling edges aκ , bκ for κ > t are inactive.
+                                                                                       thru1 , ethru2 ), (ethru1 , ethru2 ).
+                                                                                     (ein       in         out      out
+    That is, the active dangling edges in any satisfying
+    assignment appear in a consecutive block starting at            They are deﬁned such that MSTR0 (x) = 1 and MSTR+ (x) =
+    a1 and b1 . The length of this block will encode the            1 hold for x ∈ {0, 1}10 iff all of the following conditions
+    propagated element from [n].                                    are fulﬁlled:
+Propagation: If (etop1 , etop2 ) is active, then so is
+    (ebtm1 , ebtm2 ). This will later ensure that, if a set           1. For each pair of dangling edges, such as (xin , xout ),
+    A j was already hit by elements x1 , . . . , xi−1 preced-            the two dangling edges in x have the same assign-
+    ing xi , then this information is propagated down. If                ment. In the remainder of this deﬁnition, we will
+    (etop1 , etop2 ) is inactive, then (ebtm1 , ebtm2 ) is active        therefore refer only to one of the two dangling edges,
+    iff the set A j is hit by (i,t), where t is the number               say to xin .
+    deﬁned in the block condition.                                    2. If ein                              out
+                                                                             thru1 is inactive, then so is ethru1 .
+                                                                         If ethru1 is active, then ethru1 is active iff xin is.
+                                                                             in                     out
+It remains to add signatures to the cell Ci, j to ensure these        3. If ein                            out
+                                                                             bool1 is active, then so is ebool1 . Furthermore:
+conditions. To this end, we deﬁne the following “master”
+                                                                           (a) In the case of MSTR0 , if ein bool1 is inactive, then
+signatures MSTR0 and MSTR+ on ﬁve pairs of dangling
+                                                                               eout
+                                                                                bool1 is  inactive as  well.
+edges. See also Figure 7. There is one “wire” pair, two
+                                                                           (b) In the case of MSTR+ , if ein bool1 is inactive, then
+pairs that we denote as “Boolean” in-/outputs, and two
+                                                                               eout
+                                                                                bool1  is  active  iff e in
+                                                                                                        thru1 is active and x is
+                                                                                                                                in
+pairs that we denote as “thru” in-/outputs.
+                                                                               inactive
+      These signatures are used in a similar way as the
+signatures LIT0 and LIT+ from Section 5. If i ∈ [k],                     We apply these signatures as follows to the vertices of
+ j ∈ [m] and κ ∈ [n] are such that (i, κ) ∈ A j , then we place     a cell Ci, j : For all κ ∈ [n], if (i, κ) ∈ A j , we place MSTR+
+MSTR+ at the vertex cκ in the cell Ci, j . Otherwise, we            at cκ . If (i, κ) ∈ / A j , then we place MSTR0 at cκ . This
+place MSTR0 at cκ .                                                 concludes the deﬁnition of the cell Ci, j .
+      The main difference to Section 5 is the presence of
+dangling edges that are considered as “thru” in-/outputs.           It is clear from the deﬁnitions of MSTR0 and MSTR+ that
+These will ensure that active dangling edges of the cell            both signatures are even. Furthermore, we can verify that
+Ci, j appear in a consecutive block as deﬁned above: An             the cell Ci, j satisﬁes the conditions of Deﬁnition 8 (dou-
+inactive thru input at cκ enforces that the thru output of cκ       bling, block, propagation): The doubling condition fol-
+is inactive as well, and we use this to ensure that the active      lows from item 1 of Deﬁnition 9, the block condition fol-
+edges among a1 , . . . , an appear as a consecutive block.          lows from item 2, and the propagation condition follows
+Due to the vertex utop , the thru inputs at c1 are forced to        from item 3.
+be active.                                                                To proceed, for any j ∈ [m], we connect the cells Ci, j
+      The Boolean in-/outputs of MSTR0 and MSTR+ at cκ              for i ∈ [n] into the column D j .
+will then be used to propagate whether the set A j was hit          D EFINITION 10. For any j ∈ [m], we deﬁne the column
+by any of the elements (i, 1), . . . (i, κ), precisely as for the   D j as follows: First, we create a disjoint union of cells
+signatures LIT0 and LIT+ from Section 5: In the case of             C1, j , . . . ,Ck, j . Denote the subset of dangling edges {aκ |
+MSTR0 (which we use if (i, κ) ∈   / A j ), we simply propagate      κ ∈ [n]} in Ci, j by Fi,inj , and the subset {bκ | κ ∈ [n]} by
+the Boolean inputs to the outputs, as seen for LIT0 . In
+                                                                        j . This results in 2k sets Fi, j and Fi, j for i ∈ [k].
+                                                                    Fi,out                               in      out
+the case of MSTR+ (which we use if (i, κ) ∈ A j ), we test
+                                                                           Within a column, we then connect cells in the follow-
+whether aκ is the ﬁrst inactive edge after the block of
+                                                                    ing way:
+active edges among a1 . . . , an . If this is the case, then A j
+is hit by (i, κ), and we propagate this information down to           1. For 1 ≤ i ≤ n−1, connect the input pair (ebtm1 , ebtm2 )
+the Boolean output pair. This is parallel to the behaviour               of Ci, j with the input pair (etop1 , etop2 ) of Ci+1, j to
+of LIT+ .                                                                obtain two parallel edges.
+
+
+                                                               1663                                          Copyright © by SIAM.
+                                                                             Unauthorized reproduction of this article is prohibited.
+                                                                          ein
+                                                                           thru2         ein
+                                                                                          bool1
+                          HW=2
+                                                                ein
+                                                                 thru1                             ein
+                                                                                                    bool2
+
+
+
+
+                                                          xin                                                 xout
+
+
+
+
+                                                                eout
+                                                                 thru1                             eout
+                                                                                                    bool2
+                          HW=0
+                                                                          eout
+                                                                           thru2         eout
+                                                                                          bool1
+
+                                       Figure 7: A cell and a vertex of signature MSTR.
+
+                                                                                   (t)      (t)         (t)
+  2. Add two extra vertices u0 and un+1 . Assign HW=0                       by Ii, j = {ai, j,1 , . . . , ai, j,n }. Assign the signature HW=1
+     to u0 and HW=2 to un+1 , similarly as in Lemma 5.1.                    to these vertices.
+                                                                                                                              (1)          (2)
+     Connect u0 with two parallel edges to the input pair                3. For κ ∈ [n], connect vertex cκ to ai, j,κ and to ai, j,κ .
+     (etop1 , etop2 ) of C1, j , and likewise connect un+1 to the                                 (2)         (3)
+                                                                            Then connect ai, j,κ to ai, j,κ .
+     input pair (ebtm1 , ebtm2 ) of Cn, j .                                                                                (3)         (4)
+                                                                         4. Add all edges between vertices in I j and I j to
+Note that the resulting gate D j has 2kn dangling edges,                    obtain a complete bipartite graph between these sets.
+                                        j for i ∈ [k], each of
+grouped into the 2k sets Fi,inj and Fi,out                                  Consider Figure 8 for an example.
+which has size n.                                                        5. For 1 ≤ j ≤ m − 1, add all edges between vertices in
+                                                                              (4)     (1)
+We observe that the column D j has a Boolean signature                      I j and I j+1 , see also Figure 8.
+when considered as a gate. For i ∈ [k], the propagation                  6. Add two vertices u∗ and v∗ .
+condition of cell Ci, j ensures that the assignments for Fi,inj                                                   (1)
+                                                                        (a) Delete the independent set I1 , so that the
+        out
+and Fi, j agree. Furthermore, by construction of the cells                              in ∪ . . . ∪ F in of the left-most column
+                                                                            edges in F1,1             n,1
+Ci, j for i ∈ [k], if x is a satisfying assignment to D j , then            become dangling edges. Connect them to u∗
+there are numbers t1 , . . . ,tk ∈ [n] such that precisely the              and assign the signature EVEN to u∗ .
+ﬁrst ti edges in Fi,inj are active, while no other edges are                                                     (2) (3) (4)
+                                                                        (b) Delete the independent sets Im , Im , Im , so
+active. Finally, we can verify that the column D j yields
+                                                                            that the edges in F1,m ∪ . . . ∪ Fn,m
+                                                                                                    out            out of the right-
+value 1 on an input x as above iff the set {(i,ti ) | i ∈ [k]}
+                                                                            most column become dangling edges. Connect
+hits the set A j .
+                                                                            them to v∗ and assign the signature EVEN to v∗ .
+      To conclude our construction, we connect the m
+                                                                        (c) Finally, as in Section 3, replace u∗ and v∗ by
+columns D1 , . . . , Dm to a signature graph Ω. This requires
+                                                                            paths of vertices on EVEN signatures of arity 3.
+a slightly cumbersome construction to ensure that each
+colorful hitting k-set in (X, A, k) corresponds to a ﬁxed FACT 6.1. For an instance to #C OL HS with k universes
+number of satisfying assignments in G while preserving of size n each, and m sets, the signature graph Ω con-
+a low cliquewidth. To this end, we “wrap” the cells of structed above has O(kmn) vertices. Furthermore, all sig-
+columns by bicliques, as demonstrated in Figure 8 and natures other than HW=1 in it have constant arity.
+speciﬁed in the following.
+                                                                 6.3 Correctness of the signature graph. We prove
+D EFINITION 11. Let (X, A, k) be an instance to #C OL HS
+                                                                 that, for Ω = Ω(X, A, k), the quantity Holant(Ω) counts
+with universes {i} × [n] for i ∈ [k] and sets A1 , . . . , Am .
+                                                                 colorful hitting sets in (X, A, k) up to a simple factor.
+Without limitation of generality, we may assume that each
+A j for j ∈ [m] contains only elements (i, κ) with even L EMMA 6.2. Let (X, A, k) be an instance to #C OL HS
+κ ∈ [n]. Proceed as follows to obtain Ω = Ω(X, A, k):            with Xi = {i} × [n] for i ∈ [k] and sets A1 , . . . , Am . Let
+  1. For j ∈ [m], construct the column D as in Deﬁni-            Ω = Ω(X, A) be constructed as in Deﬁnition 11. Then
+                                                j
+                                 j for i ∈ [k] denote its sets of
+     tion 10. Let Fi,inj and Fi,out
+                                                                               Holant(Ω) = (n!)k(m−1) · #C OL HS(X, A, k).
+     dangling edges.
+  2. For each i ∈ [k] and j ∈ [m], add four independent              Proof. Consider the satisfying assignments for Ω. It
+           (t)
+     sets Ii, j of size n, for t ∈ [4], and denote its vertices      follows from Deﬁnition 8 that, for each i ∈ [k], there exists
+
+
+                                                                1664                                            Copyright © by SIAM.
+                                                                                Unauthorized reproduction of this article is prohibited.
+                                   (4)       (1)                    (2)          (3)               (4)     (1)
+                                  Ii, j−1   Ii, j    Ci, j         Ii, j        Ii, j             Ii, j   Ii, j+1
+
+
+
+
+               Figure 8: The subgraph of G containing the cell Ci, j and its surrounding independent sets
+
+
+a number xi ∈ [n] such that the ﬁrst xi dangling edges in hit by S), or there are precisely
+  in and F out are active, while no other edges in these sets
+Fi,1      i,1
+are active. Please recall Figure 8 in the following.                  ∏ ((n)xi · (n − xi )!)m−1 = (n!)k(m−1)
+                                                                                          i∈[k]
+  • Since the ﬁrst xi dangling edges in Fi,1in and F out are
+                                                    i,1
+    active, while no other dangling edges are active, the                  satisfying assignments x to Ω, each having value 1 as all
+                                                         (2)               involved signatures are Boolean. We use here that ∑i xi is
+    following holds: Among the independent set Ii,1 ,
+    precisely the ﬁrst xi vertices are matched by dangling                 even to ensure that an even number of dangling edges is
+    edges of the cell Ci, j .                                              active in each column, thus satisfying the paths of EVEN
+  • This in turn implies that exactly the last n − xi edges                signatures at the ﬁrst and last columns. This proves the
+                              (2)    (3)                                   lemma.
+    are active between Ii,1 and Ii,1 , so the last n − xi
+                  (3)                                (2)     (3)
+      vertices of Ii,1 are matched by edges from Ii,1 to Ii,1 . 6.4 Bounding the cliquewidth. Finally, we bound the
+                                                              (3)
+   • Consequently, there are xi active edges between Ii,1 cliquewidth of the graph Ω = Ω(X, A, k) obtained from
+             (4)                                (3)               an instance (X, A, k) of counting colorful hitting k-sets
+      and Ii,1 . Since their endpoints in Ii,1 are ﬁxed (to
+                                                                  via Deﬁnition 11. Let us note that parallel edges (which
+      the ﬁrst xi vertices, as the last n − xi vertices are
+                                                                  appear in Ω) cannot be obtained by clique expressions.
+      already matched), there are (n)xi ways of choosing
+                                                                  We can however subdivide each parallel edge twice, and
+      these active edges. Here, we denote by (n)t the
+                                                                  this way obtain a simple graph Ω from Ω. If all parallel
+      falling factorial (n)t = (n)(n − 1) . . . (n − t + 1).
+                                                          (4)     edges are singular (which can be veriﬁed for Ω), then the
+   • Finally, there are n − xi active edges between Ii,1 and subdivision introduces only O(1) new singleton labels.
+       (1)                                                (4)
+      Ii,2 . The endpoints of these n − xi edges in Ii,1 are
+      ﬁxed by the choices in the preceding step, and by the L EMMA 6.3. Let (X, A, k) be an instance for #C OL HS
+      block property of the cell Ci,2 , the endpoints of these and let Ω = Ω(X, A, k). Then we can construct in polyno-
+                 (1)                                              mial time a (k + 2, O(1))-expression for Ω.
+      edges in Ii,2 are ﬁxed to the last n − xi vertices as
+      well. Hence, there are (n − xi )! ways of choosing the
+                                (4)       (1)                     Proof. (Sketch.) We construct the graph Ω column by
+      active edges between Ii,1 and Ii,2 . In particular, the column. For this, we use a large forget label κ ∗ , large
+                               in are now active. That is, the
+      ﬁrst xi edges among Fi,2                                    labels κ1 , . . . , κk , and an additional large working label τ.
+      value xi was propagated correctly from Ci,1 to Ci,2 .       Furthermore, we use O(1) singleton labels.
+                                                                       To construct column D j , assume that the columns
+From this initial step, we obtain inductively that, for D , . . . , D
+                                                                    1          j−1 have been constructed already, that τ is
+satisfying assignment and every i ∈ [k] and j ∈ [m], the empty, and that the label κ for i ∈ [k] contains precisely
+                                                                                                    i
+ﬁrst xi edges in every set Fi,inj and Fi,out
+                                          j are active. We can                                                (4)
+                                                                  the elements in the independent set Ii, j−1 speciﬁed in Def-
+thus associate with each satisfying assignment x to Ω the
+                                                                  inition 11. Then we can construct D j and its independent
+encoding of a set Sx = {(i, xi ) | i ∈ [k]} with |Sx ∩ Xi | = 1         (b)
+for all i ∈ [k].                                                  sets Ii, j for i ∈ [k] and b ∈ [4] as follows. Please consider
+     For a given set S as above, either there is no satisfying again Figure 8.
+assignment x to Ω with S = Sx (this occurs when at least               Consider i ∈ [k] ﬁxed for now. For b ∈ [4], let us write
+                                                                   (b)        (b)
+one of the column signatures D j yields value 0, which in Ii, j = {ai, j,κ | κ ∈ [n]}. For each κ ∈ [n], we perform the
+turn occurs precisely if there is some set A j that was not following steps:
+
+
+                                                              1665                                                      Copyright © by SIAM.
+                                                                                        Unauthorized reproduction of this article is prohibited.
+                                    (1)     (2)     (3)
+  1. Construct the vertices ai, j,κ , ai, j,κ and ai, j,κ , and the that admit clique expressions with k + 2 large and O(1)
+     cell vertex cκ of Ci, j on singleton labels.                    labels. The theorem also asserts that the size of these
+                      (1)                                                                          d+2
+  2. Connect ai, j,κ to all vertices of label κi by means of graphs is bounded by O(n log              n). Hence, if there were
+                                                                 (1) an  algorithm   with running time  O(t k−2−ε ) for solving
+     the join operation. This adds all edges between ai, j,κ #P ERF M ATCH on t-vertex graphs G that are given to-
+                                      (4)
+     and the independent set Ii, j−1 .                               gether with a (k, O(1))-expression, then we would obtain
+                             (1)        (2)                  (2)
+  3. Connect cκ to ai, j,κ and ai, j,κ , and connect ai, j,κ to an O((n log          n) ) = O(nk−ε ) time algorithm for solv-
+                                                                                 d+2 k−ε
+
+       (3)                                                           ing #C OL HS, for any ε < ε, thus refuting #SETH.
+     ai, j,κ by means of join operations on their singleton
+     labels.                                                         References
+                     (3)
+  4. Relabel ai, j,κ from its singleton label to τ. Relabel
+       (1)      (2)
+                                                                       [1] A. Abboud, A. Backurs, and V. V. Williams.
+     ai, j,κ , ai, j,κ to the forget label κ ∗ .                           Quadratic-time hardness of LCS and other sequence
+  5. If κ > 1, connect cκ−1 to cκ . (Here, we assume that                  similarity measures. FOCS 2015.
+     cκ−1 is contained in a singleton label.) Relabel cκ−1
+     to the forget label κ ∗ .                                         [2] A. Abboud and V. V. Williams. Popular conjectures
+                                                                           imply strong lower bounds for dynamic problems.
+     So far, we have constructed the cell Ci, j and the in-                In FOCS 2014, pages 434–443.
+                       (1) (2)       (3)
+dependent sets Ii, j , Ii, j and Ii, j . Our expression contains
+                                        (3)                            [3] A. Abboud, V. V. Williams, and O. Weimann. Con-
+precisely the independent set Ii, j in label τ. To add the                 sequences of faster alignment of sequences. In
+                         (4)
+independent set Ii, j , we proceed as follows:                             ICALP 2014, pages 39–51.
+
+  1. Relabel κi to the forget label κ ∗ . Note that κi is         [4] A. Backurs and P. Indyk. Edit distance cannot
+     empty now.                                                       be computed in strongly subquadratic time (unless
+                                (4)
+  2. Add the independent set Ii, j on label κi .                      SETH is false). In STOC 2015, pages 51–58.
+  3. Join labels τ and κi so as to add all edges between
+      (3)       (4)                                               [5] D. Bienstock. Graph searching, path-width, tree-
+     Ii, j and Ii, j .                                                width and related problems (a survey). In Reliabil-
+  4. Relabel τ to the forget label κ ∗ .                              ity of computer and communication networks (New
+     This ﬁnishes the construction of a single cell Ci, j and         Brunswick, NJ, 1989), volume 5 of DIMACS Ser.
+                          (b)                                         Discrete Math. Theoret. Comput. Sci., pages 33–49.
+its independent sets Ii, j for i ∈ [k] and b ∈ [4]. Repeat
+                                                                      Amer. Math. Soc., Providence, RI, 1991.
+this process for all i ∈ [k], and connect vertically adjacent
+cells Ci, j and Ci+1, j to columns by adding edges between        [6] A. Björklund, T. Husfeldt, P. Kaski, and M. Koivisto.
+vertices on singleton labels.                                         Fourier meets Möbius: fast subset convolution. In
+                                                                      STOC 2007, pages 67–74.
+6.5 Finishing the proof. By combining Lemmas 6.1,
+6.2 and 6.3, we obtain the proof of Theorem 6.1.                  [7] M. Bläser and H. Dell. Complexity of the cover
+                                                                      polynomial. In ICALP 2007, pages 801–812.
+Proof. By Lemma 6.1, an algorithm with running time
+O(nk−ε ) for #C OL HS on instances (X, A, k) with k uni-          [8] H. L. Bodlaender, M. Cygan, S. Kratsch, and J. Ned-
+verses of size n and m = O(logd (n)) sets for ﬁxed d ∈ N              erlof. Deterministic single exponential time algo-
+would refute #SETH. Using Deﬁnition 11, we can trans-                 rithms for connectivity problems parameterized by
+form (X, A, k) to a signature graph Ω such that                       treewidth. In ICALP 2013, pages 196–207.
+  1. the value Holant(Ω) allows to recover the solution           [9] G. Borradaile and H. Le. Optimal dynamic pro-
+     #C OL HS(X, A, k) by Lemma 6.2,                                  gram for r-domination problems over tree decom-
+  2. all signatures appearing in Ω other than HW=1 are                positions. CoRR, abs/1502.00716, 2015.
+     even by Fact 6.1,
+  3. Ω has O(nmk) = O(n logd n) vertices by Fact 6.1,           [10] K. Bringmann. Why walking the dog takes time:
+  4. and there is an expression for Ω with at most k + 2             Frechet distance has no strongly subquadratic algo-
+     large labels and O(1) singleton labels by Lemma 6.3.            rithms unless SETH fails. In FOCS 2014, pages
+     In particular, all vertices of signatures other than            661–670.
+     HW=1 are singular in this expression.
+                                                                [11] K. Bringmann and M. Künnemann. Quadratic con-
+    Together with Theorem 4.1, we then obtain a re-                  ditional lower bounds for string problems and dy-
+duction from Holant(Ω) to #P ERF M ATCH on graphs G                  namic time warping. To appear in FOCS 2015.
+
+
+                                                            1666                                         Copyright © by SIAM.
+                                                                         Unauthorized reproduction of this article is prohibited.
+[12] H. Broersma, P. A. Golovach, and V. Patel. Tight [27] B. Courcelle, J. A. Makowsky, and U. Rotics. Lin-
+     complexity bounds for FPT subgraph problems pa-       ear time solvable optimization problems on graphs
+     rameterized by the clique-width. Theor. Comput.       of bounded clique-width. Theory Comput. Syst.,
+     Sci., 485:69–84, 2013.                                33(2):125–150, 2000.
+
+[13] J. Cai and V. Choudhary. Valiant’s Holant theo- [28] B. Courcelle, J. A. Makowsky, and U. Rotics. On
+     rem and matchgate tensors. Theor. Comput. Sci.,      the ﬁxed parameter complexity of graph enumer-
+     384(1):22–32, 2007.                                  ation problems deﬁnable in monadic second-order
+                                                          logic. Discrete Applied Mathematics, 108(1-2):23–
+[14] J. Cai and A. Gorenstein. Matchgates revisited.
+                                                          52, 2001.
+     Theory of Computing, 10:167–197, 2014.
+
+[15] J. Cai, H. Guo, and T. Williams. The complexity of [29] B. Courcelle and S. Olariu. Upper bounds to the
+     counting edge colorings and a dichotomy for some         clique width of graphs. Discrete Applied Mathemat-
+     higher domain Holant problems. In FOCS 2014,             ics, 101(1-3):77–114, 2000.
+     pages 601–610.
+                                                         [30] R. Curticapean. Block interpolation: A framework
+[16] J. Cai, S. Huang, and P. Lu. From Holant to              for tight exponential-time counting complexity. In
+                                             c
+     #CSP and back: Dichotomy for Holant problems.            ICALP 2015, pages 380–392.
+     Algorithmica, 64(3):511–533, 2012.
+                                                         [31] R. Curticapean. The simple, little and slow things
+[17] J. Cai, P. Lu, and M. Xia. Holant problems and           count: on parameterized counting complexity. PhD
+     counting CSP. In STOC 2009, pages 715–724.               thesis, Universität des Saarlandes, Postfach 151141,
+                                                              66041 Saarbrücken, 2015.
+[18] J. Cai, P. Lu, and M. Xia. Computational complexity
+     of Holant problems. SIAM J. Comput., 40(4):1101– [32] R. Curticapean and M. Xia. Parameterizing the
+     1132, 2011.                                              permanent: Genus, apices, minors, evaluation mod
+                                                              2k . To appear in FOCS 2015.
+[19] J. Cai, P. Lu, and M. Xia. Dichotomy for Holant*
+     problems of Boolean domain. In SODA 2011, pages
+                                                         [33] M. Cygan, H. Dell, D. Lokshtanov, D. Marx, J. Ned-
+     1714–1728.
+                                                              erlof, Y. Okamoto, R. Paturi, S. Saurabh, and
+[20] J. Cai, P. Lu, and M. Xia. Dichotomy for Holant*         M. Wahlström. On problems as hard as CNF-SAT.
+     problems with domain size 3. In SODA 2013, pages         In CCC 2012, pages 74–84.
+     1278–1295.
+                                                         [34] M. Cygan, S. Kratsch, and J. Nederlof. Fast hamil-
+[21] J.-Y. Cai and P. Lu. Holographic algorithms: From        tonicity checking via bases of perfect matchings. In
+     art to science. In STOC 2007, pages 401–410.             STOC 2013, pages 301–310.
+
+[22] J.-Y. Cai, P. Lu, and M. Xia. Holographic algorithms [35] M. Cygan, D. Marx, M. Pilipczuk, and M. Pilipczuk.
+     by Fibonacci gates and holographic reductions for         Hitting forbidden subgraphs in graphs of bounded
+     hardness. In FOCS 2008, pages 644–653.                    treewidth. In MFCS 2014, pages 189–200.
+[23] C. Calabro and R. Paturi. k-Sat is no harder than     [36] M. Cygan, J. Nederlof, M. Pilipczuk, M. Pilipczuk,
+     Decision-Unique-k-Sat. In CSR 2009, pages 59–70.           J. M. M. van Rooij, and J. O. Wojtaszczyk. Solving
+[24] R. H. Chitnis, M. Hajiaghayi, and D. Marx. Tight           connectivity problems parameterized by treewidth in
+     bounds for Planar Strongly Connected Steiner Sub-          single exponential time. In FOCS 2011, pages 150–
+     graph with ﬁxed number of terminals (and exten-            159.
+     sions). In SODA 2014, pages 1782–1801, 2014.
+                                                           [37] H. Dell, T. Husfeldt, D. Marx, N. Taslaman, and
+[25] B. Courcelle. The monadic second-order logic of            M. Wahlen. Exponential time complexity of the per-
+     graphs I: Recognizable sets of ﬁnite graphs. Infor-        manent and the Tutte polynomial. ACM Transac-
+     mation and Computation, 85:12–75, 1990.                    tions on Algorithms, 10(4):21:1–21:32, 2014.
+
+[26] B. Courcelle. The monadic second-order logic of       [38] E. D. Demaine, F. V. Fomin, M. T. Hajiaghayi, and
+     graphs III: Treewidth, forbidden minors and com-           D. M. Thilikos. Bidimensional parameters and local
+     plexity issues. Informatique Théorique, 26:257–            treewidth. SIAM J. Discrete Math., 18(3):501–511,
+     286, 1992.                                                 2004.
+
+
+                                                      1667                                        Copyright © by SIAM.
+                                                                  Unauthorized reproduction of this article is prohibited.
+[39] E. D. Demaine, F. V. Fomin, M. T. Hajiaghayi, and     [52] F. V. Fomin, D. Lokshtanov, V. Raman, and
+     D. M. Thilikos. Fixed-parameter algorithms for             S. Saurabh. Subexponential algorithms for partial
+     (k, r)-Center in planar graphs and map graphs. ACM         cover problems. Inf. Process. Lett., 111(16):814–
+     Transactions on Algorithms, 1(1):33–47, 2005.              818, 2011.
+
+[40] E. D. Demaine, F. V. Fomin, M. T. Hajiaghayi,         [53] F. V. Fomin, D. Lokshtanov, and S. Saurabh. Efﬁ-
+     and D. M. Thilikos. Subexponential parameterized           cient computation of representative sets with appli-
+     algorithms on bounded-genus graphs and H-minor-            cations in parameterized and exact algorithms. In
+     free graphs. J. ACM, 52(6):866–893, 2005.                  SODA 2014, pages 142–151.
+
+[41] E. D. Demaine and M. Hajiaghayi. The bidimen-         [54] F. V. Fomin and D. M. Thilikos. Dominating sets in
+     sionality theory and its algorithmic applications.         planar graphs: Branch-width and exponential speed-
+     Comput. J., 51(3):292–302, 2008.                           up. SIAM J. Comput., 36(2):281–309, 2006.
+
+[42] E. D. Demaine and M. Hajiaghayi. Linearity of grid    [55] A. Galluccio and M. Loebl. On the theory of Pfafﬁan
+     minors in treewidth with applications through bidi-        orientations. I. Perfect matchings and permanents.
+     mensionality. Combinatorica, 28(1):19–36, 2008.            Electr. J. Comb., 6, 1999.
+
+[43] E. D. Demaine and M. T. Hajiaghayi. Fast algo-        [56] M. U. Gerber and D. Kobler. Algorithms for vertex-
+     rithms for hard graph problems: Bidimensionality,          partitioning problems on graphs with ﬁxed clique-
+     minors, and local treewidth. In Graph Drawing,             width. Theor. Comput. Sci., 1-3(299):719–734,
+     pages 517–533, 2004.                                       2003.
+
+[44] F. Dorn, F. V. Fomin, D. Lokshtanov, V. Raman, and    [57] O. Giménez, P. Hlinený, and M. Noy. Computing
+     S. Saurabh. Beyond bidimensionality: Parameter-            the Tutte polynomial on graphs of bounded clique-
+     ized subexponential algorithms on directed graphs.         width. SIAM J. Discrete Math., 20(4):932–946,
+     In STACS 2010, pages 251–262, 2010.                        2006.
+
+[45] F. Dorn, F. V. Fomin, and D. M. Thilikos. Subexpo-    [58] B. Godlin, T. Kotek, and J. A. Makowsky. Evalu-
+     nential parameterized algorithms. Computer Science         ations of graph polynomials. In WG 2008, pages
+     Review, 2(1):29–39, 2008.                                  183–194.
+
+[46] F. Dorn, E. Penninkx, H. L. Bodlaender, and F. V.     [59] H. Guo, P. Lu, and L. G. Valiant. The complexity of
+     Fomin. Efﬁcient exact algorithms on planar graphs:         symmetric Boolean parity Holant problems. SIAM
+     Exploiting sphere cut decompositions. Algorith-            J. Comput., 42(1):324–356, 2013.
+     mica, 58(3):790–810, 2010.
+                                                           [60] S. Huang and P. Lu. A dichotomy for real weighted
+[47] J. Edmonds. Paths, trees, and ﬂowers. Canad. J.            Holant problems. In CCC 2012, pages 96–106.
+     Math., 17:449–467, 1965.
+                                                           [61] R. Impagliazzo and R. Paturi. On the complexity of
+[48] W. Espelage, F. Gurski, and E. Wanke. How to solve         k-sat. J. Comput. Syst. Sci., 62(2):367–375, 2001.
+     NP-hard graph problems on clique-width bounded
+     graphs in polynomial time. In WG 2001, pages 117– [62] R. Impagliazzo, R. Paturi, and F. Zane. Which prob-
+     128.                                                       lems have strongly exponential complexity? J. Com-
+                                                                puter and System Sciences, 63(4):512–530, 2001.
+[49] M. R. Fellows, F. A. Rosamond, U. Rotics, and
+     S. Szeider. Clique-width is NP-complete. SIAM J. [63] P. W. Kasteleyn. The statistics of dimers on a lattice:
+     Discrete Math., 23(2):909–939, 2009.                       I. The number of dimer arrangements on a quadratic
+                                                                lattice. Physica, 27(12):1209–1225, 1961.
+[50] F. V. Fomin, P. A. Golovach, D. Lokshtanov, and
+     S. Saurabh. Intractability of clique-width parameter- [64] P. W. Kasteleyn. Graph theory and crystal physics.
+     izations. SIAM J. Comput., 39(5):1941–1956, 2010.          In Graph Theory and Theoretical Physics, pages 43–
+                                                                110. Academic Press, London, 1967.
+[51] F. V. Fomin, P. A. Golovach, D. Lokshtanov, and
+     S. Saurabh. Almost optimal lower bounds for prob- [65] P. N. Klein √    and D. Marx. Solving Planar k-Terminal
+     lems parameterized by clique-width. SIAM J. Com-           Cut in O(n k ) time. In ICALP 2012 (1), pages 569–
+                                                                           c
+
+     put., 43(5):1541–1563, 2014.                               580.
+
+
+                                                      1668                                        Copyright © by SIAM.
+                                                                  Unauthorized reproduction of this article is prohibited.
+[66] P. N. Klein and D. Marx. A subexponential param- [79] M. Rao. MSOL partitioning problems on graphs
+     eterized algorithm for Subset TSP on planar graphs.   of bounded treewidth and clique-width. Theor.
+     In SODA 2014, pages 1812–1830.                        Comput. Sci., 377(1-3):260–267, 2007.
+
+[67] D. Kobler and U. Rotics. Polynomial algorithms for    [80] T. Regge and R. Zecchina. Combinatorial and topo-
+     partitioning problems on graphs with ﬁxed clique-          logical approach to the 3d ising model. Journal of
+     width (extended abstract). In SODA 2001, pages             Physics A: Mathematical and General, 33(4):741–
+     468–476.                                                   761, 2000.
+
+[68] D. Kobler and U. Rotics. Edge dominating set          [81] K. Suchan and I. Todinca. On powers of graphs
+     and colorings on graphs with ﬁxed clique-width.            of bounded NLC-width (clique-width). Discrete
+     Discrete Applied Mathematics, 126(2-3):197–221,            Applied Mathematics, 155(14):1885–1893, 2007.
+     2003.                                              [82] H. N. V. Temperley and M. E. Fisher. Dimer problem
+                                                             in statistical mechanics-an exact result. Philosophi-
+[69] M. Kowalczyk and J. Cai. Holant problems for            cal Magazine, 6(68):1061–1063, 1961.
+     regular graphs with complex edge functions. In
+     STACS 2010, pages 525–536.                         [83] G. Tesler. Matchings in graphs on non-orientable
+                                                             surfaces. J. Comb. Theory, Ser. B, 78(2):198–231,
+[70] J. M. Landsberg. Tensors: geometry and applica-         2000.
+     tions, volume 128 of Graduate Studies in Mathemat-
+     ics. American Mathematical Society, Providence, [84] D. M. Thilikos. Fast sub-exponential algorithms and
+     RI, 2012.                                               compactness in planar graphs. In ESA 2011, pages
+                                                             358–369.
+[71] D. Lokshtanov, D. Marx, and S. Saurabh. Known al-
+     gorithms on graphs on bounded treewidth are prob- [85] L. G. Valiant. The complexity of computing the
+     ably optimal. In SODA 2011, pages 777–789.              permanent. Theor. Comput. Sci., 8:189–201, 1979.
+
+                                                         [86] L. G. Valiant. Holographic algorithms (extended
+[72] D. Lokshtanov, D. Marx, and S. Saurabh. Slightly
+                                                              abstract). FOCS 2004, pages 306–315.
+     superexponential parameterized problems. In SODA
+     2011, pages 760–776.                                [87] L. G. Valiant. Holographic algorithms. SIAM J.
+                                                              Comput., 37(5):1565–1594, 2008.
+[73] J. A. Makowsky, U. Rotics, I. Averbouch, and
+     B. Godlin. Computing graph polynomials on graphs [88] J. M. M. van Rooij, H. L. Bodlaender, and P. Ross-
+     of bounded clique-width. In WG 2006, pages 191–          manith. Dynamic programming on tree decomposi-
+     204.                                                     tions using generalised fast subset convolution. In
+                                                              ESA 2009, pages 566–577.
+[74] V. Y. Pan. Simple multivariate polynomial multipli-
+     cation. J. Symb. Comput., 18(3):183–186, 1994.      [89] E. Wanke. k-NLC graphs and polynomial algo-
+                                                              rithms. Discrete Applied Mathematics, 54(2-3):251–
+[75] M. Patrascu and R. Williams. On the possibility of       266, 1994.
+     faster SAT algorithms. In SODA 2010, pages 1065–
+                                                         [90] R. Williams and H. Yu. Finding orthogonal vectors
+     1075.
+                                                              in discrete structures. In SODA 2014, pages 1867–
+[76] M. Pilipczuk. Problems parameterized by treewidth        1877.
+     tractable in single exponential time: A logical ap-
+     proach. In MFCS 2011, pages 520–531.
+
+[77] M. Pilipczuk, M. Pilipczuk, P. Sankowski, and E. J.
+     van Leeuwen. Subexponential-time parameterized
+     algorithm for Steiner Tree on planar graphs. In
+     STACS 2013, pages 353–364.
+
+[78] M. Pilipczuk, M. Pilipczuk, P. Sankowski, and E. J.
+     van Leeuwen. Network sparsiﬁcation for Steiner
+     problems on planar and bounded-genus graphs. In
+     FOCS 2014, pages 276–285.
+
+
+                                                      1669                                        Copyright © by SIAM.
+                                                                  Unauthorized reproduction of this article is prohibited.
+

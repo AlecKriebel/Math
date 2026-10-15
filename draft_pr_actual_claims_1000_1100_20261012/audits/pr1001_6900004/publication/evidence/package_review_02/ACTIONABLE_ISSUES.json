@@ -1,0 +1,13 @@
+[
+  {
+    "id": "PKG02-1",
+    "severity": "P3",
+    "kind": "reproduction prerequisites",
+    "file": "README.md",
+    "line": 43,
+    "cause": "Runtime requirement omits Unix-like OS; included unchanged independent_kernel_check.py line188 calls os.getuid unconditionally.",
+    "verified_effect": "With the Unix-only API absent, the checker exits 1 with AttributeError while creating its receipt. Native Windows execution is not claimed.",
+    "mathematical_effect": "none",
+    "minimal_repair": "Document Python3.10+ on Unix-like macOS/Linux providing os.getuid in README and SUPPLEMENT; preserve original checker; record repair and regenerate archive; next fresh reviewer checks corrected package."
+  }
+]

@@ -1,0 +1,7 @@
+# Review round 4 research log
+
+- 2026-10-13T04:40:06.401123+00:00 — 35%: verified all nine sealed input hashes and sizes; read current proof and original author proof; fetched Hayman–Lingham v2 into ignored private_sources; independently reconstructed Green/Martin identification, minimality, all-direction gap, Taylor remainder, curve quantifiers, and punctured-disc deduction before historical review. No input bytes modified.
+
+- 2026-10-13T04:45:49.523505+00:00 — 90%: primary key locators verified visually; explicit punctured-disc deduction independently agrees; 66-member supplement closed inventory and all three nested frozen identities verified; metadata equal in four representations; clean extraction assembly byte-identical; normal/optimized diagnostic agreement and real invariant corruption controls checked; fourteen current integrity/negative production runs and seven resealed structural negatives behaved correctly; all five PDF pages visually clean and isolated source compilation successful. Final exact limitations, public report, and ending input seal remain.
+
+- 2026-10-13T04:49:59.075629+00:00 — 100% of assigned bounded R4 review: public authored review report and result written; exact source snapshot and physical ZIP layout verified; complete Köhn original article screened with key p.63 visual confirmation; all nine sealed inputs rehashed successfully unchanged. No actionable current defect found. Acceptance retains source/contact/priority/unrefereed limitations and makes no publication or live-service claim.

@@ -5,3 +5,7 @@
 - 2026-10-06T13:33:45Z, publication preparation: four archives and 55 members were checked; all three actual patches reproduced accepted bytes with zero fuzz. Corrected acceptance bindings, isolated replay, both mathematical review outputs, and all eighteen hostile/negative controls passed in their supported modes. Optimized author and second-review modes correctly failed closed. Publication workflow estimate at this checkpoint: 70%; remote readback and draft-PR status verification remained pending.
 
 The characteristic-zero vanishing-to-Koszulness implication is not proved or disproved by this work. Independent checks are verification, not additional proof-search approaches. No new priority, exhaustive literature status, human peer review, or formal certification is claimed.
+
+## 2026-10-15T05:03:37.193562+00:00 — Preprint preparation checkpoint (45%)
+
+The literal unrestricted negative answer passes independent algebra and primary-source audits. Deep bounded priority identifies a fully assembled classical consequence and leaves firstness/current openness uncertified. Three-page note, complete original snapshot and fresh explicit-guard diagnostics prepared for independent package review. Characteristic-zero/general converse remains unresolved. Original effort stays 1/5; no additional central proof search. No merge or production publication yet.

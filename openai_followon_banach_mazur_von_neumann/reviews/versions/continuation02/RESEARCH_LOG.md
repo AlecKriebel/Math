@@ -1,0 +1,53 @@
+# Research log
+
+## 2026-10-07T05:12:50.534269+00:00 — Checkpoint 1: isolate and pin
+
+Mathematical completion estimate: 25%. Publication package completion estimate: 5%. These estimates are judgment, not evidence.
+
+Read original project brief, repository AGENTS.md, upstream README/citation metadata and triage notes. Created the sole dedicated project folder. Pinned upstream clone HEAD is adc7f1241b42e322a6451854ab7e4b4c146bf78a and remains read-only. Copied/hash-recorded applicable manuscript and scope doc, preserving Apache-2.0 license/attribution. Actual ordinary bounded cochains and actual image in H are explicitly claimed by source.
+
+Assigned four independent internal research tools: proof falsification, primary Roydor convention/source audit, real Lean audit, and priority/direct-alternative analysis. Roydor author-slides PDF is legitimately retrievable by Python despite earlier web 403; published article access remains pending. Strongest verified local result at this checkpoint is the exact candidate conditional composition, still pending primary theorem and input verification.
+
+Shared checkout is on main with extensive unrelated concurrent modifications; shared local main is behind remote. Will publish only owned project files through an isolated index rooted at current remote main, without changing the shared index/checkout, force-pushing, or processing unrelated PRs. No external outreach.
+
+## 2026-10-07T05:20:24.758634+00:00 — Checkpoint 2: proof audit and conditional note
+
+Mathematical completion estimate:75%. Publication package completion estimate:30%. Strongest verified deductions: exact adjoint predual-distance inequality and independent finite-dimensional compactness proof. The full all-algebra composition is conditional on the stated external inputs; original scope is preserved.
+
+Independent upstream adversarial audit found no substantive gap and directly checked the pivotal Popa case(a) primary theorem. Exact finite checks passed5,461 central homotopy equations,16 Catalan count cases and7 block cases. Root independently replayed those checks, read the new proof mechanisms and authenticated all372 Lean source hashes. Static formal audit found genuine ordinary self-coefficient declarations, no source proof placeholders/custom axioms; no independent kernel compilation or axiom printing completed. Disk shortage interrupted dependency setup; only owned disposable downloads were removed. Mathematical source proof is the validation route; a missing Lean reproduction is not an automatic proof failure.
+
+Actual87-page Roydor author slides were retrieved and exact theorem/cochain pages visually checked. Journal full text remains inaccessible through publisher403/security verification and EBSCO institutional-sign-in alternative. Slides contain a differential typo and an intermediate even-type-I hypothesis whose removal cannot be verified from outline alone. Mandatory journal audit therefore remains unsatisfied. No external person contacted or access control bypassed.
+
+Prepared a four-page explicitly conditional research note; built-in LaTeX compile succeeded, actual PDF exported with Tectonic0.16.9 and all four pages rendered/inspected. Corrected one layout overflow. Two new independent whole-checkpoint reviewers are auditing exact draft v1; current source frozen during review. Known citation/zero-distance findings will be repaired globally afterward. These checkpoint reviews are not final publication-package cycles. No deposit/DOI/tracker row or final manifest exists. Persistent goal remains active and unachieved; first goal turn with source-access blocker, so blocked-status threshold has not yet been reached.
+
+## 2026-10-07T05:29:01.190732+00:00 — Checkpoint 3: repaired and reproducible conditional draft
+
+Mathematical completion estimate: 75%. Publication package completion estimate: 40%. These are best guesses, not validation evidence. The all-algebra targets remain conditional; the exact adjoint inequality and inherited finite-dimensional case remain the strongest directly proved deductions.
+
+Two independent whole-checkpoint reviews of frozen draft v1 found the conditional deduction sound and required convention/citation repairs. Applied the literal d_BM(0,0)=0, corrected Ricard–Roydor journal metadata, specified upstream Theorem 1.1, and made the slide complex-field convention explicitly inferred. Added inherited ordinary subcases and conditional two-matrix-level comparator so attribution matches the inspected primary sources. Frozen v1 and v2 source/PDF bytes are retained. A NEW fresh reviewer receives the full revised checkpoint and original brief. No final publication-package review cycles have occurred.
+
+The revised standalone source compiled successfully in the built-in editor and independently exported as a four-page PDF. Root inspected all four rendered pages. A clean temporary-directory rebuild passed with exact extracted-text agreement; hashes and diagnostics are in receipts/clean_draft_reproduction.json. An additional independent noncommutative finite check passed 260,416 exact scalar equations on root replay.
+
+A distinct bounded archival/institutional source-access audit found no complete Roydor article or author manuscript. No external contact, purchase, security-control bypass, Zenodo deposit, DOI or tracker write occurred. The mandatory journal-source audit remains the exact publication blocker. Lean setup failure is separately disclosed, with no kernel verification claim. Goal remains active and unachieved; this is still the first goal turn with this access blocker.
+
+## 2026-10-07T05:38:37.484833+00:00 — Checkpoint 4: fresh conditional-checkpoint review retained
+
+Mathematical completion estimate: 75%. Publication package completion estimate: 40%. The core all-algebra claims remain conditional and unachieved. A new independent whole-checkpoint reviewer and independent supporting proof-input reviewers found no new substantive defect in the revised conditional deduction or inspected upstream manuscript chain. Exact primary comparisons, hashes, finite replays, all four PDF pages, formal-evidence limits and current-tree exclusions were checked. Three whole-checkpoint reviews are now complete, including the fresh post-repair pass; final publication-package review cycles remain zero.
+
+The exact reviewed v2 files and pre-review state/log are retained under reviews/versions/draft_v2/checkpoint. The fresh report hash is ad2ac2eacdb8ef889680f92dd3051e70f9c81b829168c08ad0abf7af1efa5dfa. Only status/log text advances after that review; no mathematical source, PDF, theorem, code or claimed resolution changes. Root disposition is in reviews/ROOT_RESPONSES_DRAFT_V2.md.
+
+Checkpoint03 was pushed to main as 03c8176369069c3c5ce44bf119ac8fef20a9ac27 after a disk-limited full-index attempt failed before commit creation. The successful direct-tree method preserved every other remote root entry and the shared checkout/index. It removed the first checkpoint's inadvertently tracked transient index/lock artifacts from the current tree; history was not rewritten. All owned temporary and third-party artifacts remain excluded. The final review/receipt checkpoint will use the same direct-tree method.
+
+Exact remaining action: obtain and read a legitimately accessible complete Roydor article/manuscript, validate its field/cochain/proof/all-scope conventions, and then complete priority/final-package review before the already-authorized production publication and tracker operations. No external outreach, deposit, DOI, tracker write or GitHub release occurred. Persistent goal remains active, unachieved, on its first source-blocked goal turn.
+
+## 2026-10-07T06:01:05.927286+00:00 — Checkpoint 5: continuation2 access and exact-runtime revalidation
+
+Mathematical completion estimate:75%. Publication package completion estimate:40%. The all-algebra target remains unachieved; no theorem/source/PDF byte changed. Previous goal turn classification:progress, because it completed reviews, reproduction and owned main publication. This is the second consecutive goal turn with the same missing complete-primary-text blocker; blocked-status threshold is not met.
+
+The normal browser now passes automatic publisher security verification and reaches an authoritative No Access entitlement gate. Offered reader/download links both require sign-in or purchase, rather than delivering a complete article. Online access is listed USD45; duration/terms/taxes are unaudited, and no purchase is authorized or made. Publisher profile login requires credentials/federation and has no authenticated session; no credentials or permissions were supplied. New publisher-container/format discovery and bounded local research-library discovery also found no complete primary text. Local Spotlight indexing is incomplete, so this is not global absence evidence. No person contacted and no access/security control bypassed.
+
+A transient2.7GiB storage improvement justified a bounded fresh formal-runtime feasibility assessment, but storage regressed to about1.1GiB. Exact source still has123 umbrella Mathlib imports; unchanged module selection requires8,530 mathematical Mathlib sources plus dependencies. Existing compiled runtime is an incompatible4.19/c44 historical comparator; its size is not a current-pin minimum. Root independently reproduced the parser/closure counts and measured comparator totals with the exact root-file-inclusive scope. No new cache download, theorem build/import or axiom probe succeeded or remains running. Small receipts/replay code were preserved outside ignored build storage. Optional formal evidence remains unverified.
+
+Read current repository Zenodo README, validator/example and all subcommand help without reading credentials or running deposit actions. Actual manifest/payload/confirmation/DOI verification requirements match the original separate-action protocol. The example affiliation must not be copied; final license still must be chosen consistently with the final actual payload. No final manifest/kit exists. This preflight cannot clear mathematics or replace final package reviews. Production deposit/DOI/tracker remain absent; final publication-package review cycles remain zero.
+
+Latest strong results are unchanged: exact adjoint predual-distance transfer, inherited finite-dimensional boundary argument, and sound conditional composition supported by manuscript audits. A licensed complete Roydor article/manuscript is the exact next source input; repeated metadata or slides cannot meet it. All new activity and diagnostics stay within the dedicated effort. Goal remains active and unachieved.

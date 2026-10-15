@@ -1,0 +1,55 @@
+{
+  "timestamp_utc": "2026-10-14T04:21:24.440780+00:00",
+  "fixtures": "Disposable separate clean-extraction copies; frozen inputs and candidate files were not changed.",
+  "results": [
+    {
+      "test": "ordinary -O with PYTHONOPTIMIZE absent",
+      "command": "python3 -O -B verify_bundle.py",
+      "exit_code": 0,
+      "outer_optimized": true,
+      "stderr": ""
+    },
+    {
+      "test": "extra_file",
+      "outer_optimized": false,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: File inventory mismatch",
+      "rejected": true
+    },
+    {
+      "test": "extra_file",
+      "outer_optimized": true,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: File inventory mismatch",
+      "rejected": true
+    },
+    {
+      "test": "edited_readme",
+      "outer_optimized": false,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: Content mismatch: README.md",
+      "rejected": true
+    },
+    {
+      "test": "edited_readme",
+      "outer_optimized": true,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: Content mismatch: README.md",
+      "rejected": true
+    },
+    {
+      "test": "changed_expected_finite_result",
+      "outer_optimized": false,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: Independent finite controls differ",
+      "rejected": true
+    },
+    {
+      "test": "changed_expected_finite_result",
+      "outer_optimized": true,
+      "exit_code": 1,
+      "stderr_final_line": "ValueError: Independent finite controls differ",
+      "rejected": true
+    }
+  ]
+}

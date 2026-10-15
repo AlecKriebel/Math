@@ -1,0 +1,11 @@
+--- before/verify_support.py
++++ current/verify_support.py
+@@ -32,6 +32,8 @@
+     require(z['license'] == 'cc-by-4.0' and z['access_right'] == 'open', 'invalid license/access')
+     require(z['creators'] == [{'name': 'Kriebel, Alec', 'affiliation': 'Independent researcher', 'orcid': '0009-0001-9320-500X'}], 'invalid creator')
+     require(w['publication_ready'] is False and w['all_issues_resolved'] is False, 'preparation hold changed')
++    require(w['preparation_snapshot_date'] == '2026-10-14' and w['stage'] == 'PENDING_NEW_WHOLE_02', 'current preparation stage/date changed')
++    require(z['notes'] == 'Alec Kriebel is the sole named author. OpenAI Codex AI systems were used extensively. Exact historical priority of the cyclic formulation is unknown. Prepared locally on 2026-10-14 before deposit or publication.', 'dated preparation notes changed')
+     require(w['pr'] == 1052 and w['problem_id'] == 30005118 and not w['novelty_established'] and not w['human_peer_review'] and not w['formal_certification'], 'scope/status changed')
+     require('iff P=NP' in z['description'] and 'Extensive AI assistance' in z['description'] and 'Unrefereed' in z['description'], 'missing conditional/disclosure')
+     return z
