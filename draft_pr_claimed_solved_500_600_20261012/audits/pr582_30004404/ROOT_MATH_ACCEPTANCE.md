@@ -1,4 +1,4 @@
-# Root mathematical acceptance
+# Root mathematical acceptance (historical checkpoint051)
 
 The mathematical gate passes for PR582, problem30004404, at reviewed head
 `e4b27ac757babc1aea75149ea986ed2beea438f9`. All 22 original inputs are unchanged.
@@ -53,3 +53,6 @@ all-rational argument excludes finite surgeries.
 
 No paper, production deposition, DOI, tracker entry or PR change for this
 result has yet been made.
+
+Current reconciliation: CURRENT_CORRECTIONS.md and CURRENT_PRIORITY_ASSESSMENT.json
+supersede the dated pending-priority and driver-integration remarks above.

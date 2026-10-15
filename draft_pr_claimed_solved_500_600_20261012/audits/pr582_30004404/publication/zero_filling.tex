@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\title{Zero Filling and Persistent Free Subgroups\\of the Figure-Eight Knot}
+\author{Alec Kriebel\\\small Independent researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{October 14, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The figure-eight knot gives a negative answer to the universal rank-two
+free-subgroup question printed in Motegi's 2020 Oberwolfach contribution.
+It is hyperbolic and has no finite nonmeridional surgery, but no rank-two
+free subgroup of its knot group injects into every rational filling group.
+Indeed, zero filling is a torus bundle, so its metabelian fundamental group
+kills a nontrivial second-derived word in every such free subgroup.
+We give the short obstruction and verify the no-finite-surgery hypothesis
+using the classical filling classification. The ingredients are classical;
+this note records their application and the question's quantifiers. It does
+not resolve the search for a positive hyperbolic example. Historical priority
+cannot be fully cleared, and no firstness claim is made.
+\end{abstract}
+
+\section{The question and the conclusion}
+For a knot $K\subset S^3$, let $G=\pi_1(S^3\setminus\nu K)$, with meridian
+$\mu$ and preferred longitude $\lambda$. For a rational slope $r=p/q$,
+where $\gcd(p,q)=1$ and $q\ne0$, write
+\[
+ N_r=\langle\!\langle\mu^p\lambda^q\rangle\!\rangle_G
+      =\ker(q_r),\qquad
+ q_r:G\longrightarrow\pi_1(K(r)).
+\]
+Thus $0$ is included; the meridian $\infty=1/0$ is excluded.
+The final question on printed p.~493 of \cite{OWR} asks whether a hyperbolic
+knot with no finite nonmeridional surgery admits $H\cong F_2$ such that
+\begin{equation}\label{target}
+ H\cap\bigcup_{r\in\Q}N_r=\{1\}.
+\end{equation}
+Here ``finite surgery'' means a filling with finite fundamental group.
+Condition \eqref{target} requires that \emph{each} $q_r|_H$ be injective.
+Injectivity of a map into a product of filling groups would be a weaker,
+different condition.
+
+\begin{theorem}\label{main}
+The figure-eight knot $4_1$ is hyperbolic and every rational filling
+$4_1(r)$ has infinite fundamental group. Nevertheless, for every subgroup
+$H\le\pi_1(S^3\setminus\nu4_1)$ isomorphic to $F_2$,
+\[
+ H\cap N_0\ne\{1\}.
+\]
+Consequently \eqref{target} fails for this knot.
+\end{theorem}
+
+This refutes the affirmative assertion for \emph{every} knot satisfying
+the stated hypotheses. It says nothing against the existence of some other
+hyperbolic knot for which \eqref{target} holds. Nor does it settle a variant
+that is allowed to discard finitely many slopes.
+
+\section{The algebraic obstruction}
+Use $[u,v]=uvu^{-1}v^{-1}$ and write $J'=[J,J]$ and $J''=[J',J']$.
+A group $M$ is metabelian if $M''=1$.
+
+\begin{lemma}\label{law}
+If $f:J\to M$ is a homomorphism into a metabelian group, its restriction
+to every free rank-two subgroup of $J$ has nontrivial kernel.
+\end{lemma}
+\begin{proof}
+Let $a,b$ be a free basis of such a subgroup $H$. Put
+$c=[a,b]$, $d=aca^{-1}$ and $w=[c,d]\in H''$.
+In the free alphabet $x=a$, $y=b$, $X=a^{-1}$, $Y=b^{-1}$, the freely
+reduced form of $w$ is
+\[
+ \texttt{xyXYxxyXYXyxxYXX}.
+\]
+It is a nonempty reduced word of length $16$, so $w\ne1$ in $H$, and
+therefore in $J$. But $f(w)\in M''=1$.
+\end{proof}
+
+If a closed three-manifold $T$ is a torus bundle over $S^1$, the homotopy
+sequence gives
+\begin{equation}\label{extension}
+ 1\longrightarrow\Z^2\longrightarrow\pi_1(T)
+ \longrightarrow\Z\longrightarrow1.
+\end{equation}
+The left injection uses $\pi_2(S^1)=0$; surjectivity on the right uses the
+connected fiber. Since the quotient is abelian, $\pi_1(T)'$ lies in the
+abelian fiber subgroup. Hence $\pi_1(T)$ is metabelian. No monodromy matrix,
+linearity theorem, or claim about a particular embedding of $H$ is needed.
+Applying Lemma~\ref{law} to zero filling will prove the obstruction once
+its classical topology and the surgery hypothesis are established.
+
+\section{The required figure-eight topology}
+The figure-eight exterior is hyperbolic; see the ideal-tetrahedron
+construction in Thurston's notes \cite[Chapter~4]{Th}.
+Brittenham--Wu \cite[Theorem~1.1(4)]{BW} record the complete rational
+exceptional-slope list, attributing this case to Thurston:
+\[
+ E=\{0,\pm1,\pm2,\pm3,\pm4\}.
+\]
+Every rational slope outside $E$ gives a closed hyperbolic manifold and
+therefore infinite fundamental group. Indeed, a finite fundamental group
+would make its universal cover a finite-sheeted cover of a compact
+manifold, whereas that cover is the noncompact space $\mathbb H^3$.
+
+For completeness, all nine remaining slopes also have infinite groups:
+\begin{center}
+\begin{tabular}{c|l|l}
+Slopes & Classical description & Reason for infinitude\\\hline
+$0,\pm4$ & toroidal & an incompressible torus injects $\Z^2$\\
+$\pm1$ & Seifert base $S^2(2,3,7)$ & hyperbolic triangle quotient\\
+$\pm2$ & Seifert base $S^2(2,4,5)$ & hyperbolic triangle quotient\\
+$\pm3$ & Seifert base $S^2(3,3,4)$ & hyperbolic triangle quotient
+\end{tabular}
+\end{center}
+The toroidal classification is in \cite{BW}. The positive-slope Seifert
+data are listed in \cite[Section~9.4, p.~71]{GM}. The three orbifold Euler
+characteristics are, respectively,
+\[
+ -1+\tfrac12+\tfrac13+\tfrac17=-\tfrac1{42},\quad
+ -1+\tfrac12+\tfrac14+\tfrac15=-\tfrac1{20},\quad
+ -1+\tfrac13+\tfrac13+\tfrac14=-\tfrac1{12}.
+\]
+A Seifert group surjects onto its base orbifold group. Each of these
+triangle groups is infinite, for it has the hyperbolic triangle action.
+Amphichirality gives the negative-slope descriptions independently
+\cite[Chapter~4]{Th}. In particular we do not use the displayed
+$2$ versus $-3$ equality in the inspected version of \cite[Section~9.4]{GM}.
+
+Finally, zero surgery is a torus bundle, as stated explicitly in Khoi's
+Section~3, unnumbered figure-eight example on printed p.~524 \cite{Khoi}.
+This also accords with Thurston's torus mapping-torus discussion
+\cite[p.~70]{Th}; the latter's D-shaped surgery subscript is not our sole
+basis for identifying slope zero. Equation~\eqref{extension} now shows
+that $\pi_1(4_1(0))$ is metabelian, and Lemma~\ref{law} supplies a
+nonidentity element of $H\cap\ker q_0$ for every $H\cong F_2$.
+This proves Theorem~\ref{main}.
+The no-finite hypothesis concerns all rational slopes; the meridional
+$S^3$ filling is excluded throughout. Even imposing the absence of reducing
+surgeries does not remove this example, by \cite[Lemma~2.1]{BW}.
+
+\section{Context, credit, and limits}
+The later question in \cite[Section~7.1]{IMT26} is again phrased for an
+arbitrary hyperbolic knot. Its surrounding discussion motivates the search
+for a positive hyperbolic example, which Theorem~\ref{main} leaves unresolved.
+We do not infer an unstated intended quantifier or a zero-slope exception.
+
+The topological classification and the group law above are classical.
+Boden--Friedl \cite[Section~4.6, proof of Proposition~24, equation~(5)]{BF}
+explicitly relate the genus-one free fiber, its longitude commutator, and
+metabelian representations. A 2023 precursor \cite[p.~37]{IMT23} explicitly
+records the figure-eight zero filling's abelian commutator subgroup.
+That passage is cited as historical ingredient evidence only: the precursor's
+Claim~6.3 was subsequently reported as having a gap, and no proof here relies
+on that claim. The present proof instead uses the classical topology above.
+
+Two independent primary-source priority audits found no explicit earlier
+statement of this full counterexample in the text they inspected. This is
+not a certificate of priority. In particular, the full body of the 2024
+cyclic-persistence paper \cite{IMT24} and of the 2019 vanishing-elements paper
+\cite{IMT19} was not inspected. Some longer precursor versions were scanned
+and selectively read; Bart's 2001 surgery paper was compared only in relevant
+publicly indexed text, not in full. Unindexed statements or remarks may
+already contain this elementary obstruction. Priority cannot be fully cleared;
+no claim of historical firstness, new topological ingredients, or continued
+open status in 2026 is made.
+
+The accompanying authored-only verification archive preserves the original
+inputs, independent derivations and reviews, source locators and fingerprints,
+and an offline replay driver for exact finite controls. These computations
+supplement the proof; they neither exhaust arbitrary free subgroups nor replace
+the cited topology. A pinned exact-inventory gate repairs a historical release
+verifier's unanchored manifest and constant source-exclusion flag; the original
+files remain unchanged. Raw third-party papers and account information are
+excluded. Checksums establish consistency, not authenticity or priority.
+
+AI tools were used extensively in solving, research, writing, reproduction,
+and adversarial verification. This is an unrefereed preprint with internal AI
+adversarial reviews. It has not received human peer review or proof-assistant
+certification.
+
+\begin{thebibliography}{10}\small
+\bibitem{OWR} K. Motegi (with T. Ito and M. Teragaito), Dehn fillings on knot
+groups, in \emph{Low-dimensional Topology}, Oberwolfach Reports 8/2020,
+491--493. \href{https://doi.org/10.4171/OWR/2020/8}{doi:10.4171/OWR/2020/8}.
+\bibitem{Th} W. P. Thurston, \emph{The Geometry and Topology of Three-Manifolds},
+1980 lecture notes, electronic version 1.1 (2002), Chapter~4.
+\url{https://library.slmath.org/nonmsri/gt3m/PDF/4.pdf}.
+\bibitem{BW} M. Brittenham and Y.-Q. Wu, The classification of exceptional
+Dehn surgeries on 2-bridge knots, \emph{Comm. Anal. Geom.} 9 (2001), 97--113.
+\href{https://doi.org/10.4310/cag.2001.v9.n1.a4}{doi:10.4310/cag.2001.v9.n1.a4}.
+The inspected author preprint is headed 1995.
+\bibitem{Khoi} V. T. Khoi, On the integral of $\log x\,dy/y-\log y\,dx/x$
+over the $A$-polynomial curves, \emph{Acta Math. Vietnam.} 33 (2008), 519--528.
+\url{https://math.ac.vn/public/uploads/files/0803519.pdf}.
+\bibitem{GM} S. Gukov and C. Manolescu, A two-variable series for knot
+complements, author version, Section~9.4.
+\url{https://web.stanford.edu/~cm5/surgeries.pdf}.
+\bibitem{IMT26} T. Ito, K. Motegi, and M. Teragaito, Dehn filling and the
+knot group II: Ubiquity of persistent elements, arXiv:2604.01697v1 (2026).
+\url{https://arxiv.org/abs/2604.01697v1}.
+\bibitem{BF} H. U. Boden and S. Friedl, Metabelian $\mathrm{SL}(n,\mathbb C)$
+representations of knot groups, III: deformations, \emph{Q. J. Math.} 65
+(2014), 817--840. \href{https://doi.org/10.1093/qmath/hat047}{doi:10.1093/qmath/hat047}.
+Inspected version: \url{https://arxiv.org/abs/1208.1708v1} (2012).
+\bibitem{IMT23} T. Ito, K. Motegi, and M. Teragaito, Dehn filling trivialization
+on a knot group: separation and realization, arXiv:2303.15738v1 (2023).
+\url{https://arxiv.org/abs/2303.15738v1}. The v2 abstract reports the Claim~6.3 gap.
+\bibitem{IMT24} T. Ito, K. Motegi, and M. Teragaito, Dehn filling and the knot
+group III: cyclic persistent subgroups, \emph{Bol. Soc. Mat. Mex.} 30 (2024), 99.
+\href{https://doi.org/10.1007/s40590-024-00674-9}{doi:10.1007/s40590-024-00674-9}.
+Full body not inspected.
+\bibitem{IMT19} K. Ichihara, K. Motegi, and M. Teragaito, Vanishing nontrivial
+elements in a knot group by Dehn fillings, \emph{Topology Appl.} 264 (2019),
+223--232. \href{https://doi.org/10.1016/j.topol.2019.06.023}{doi:10.1016/j.topol.2019.06.023}.
+Full body not inspected.
+\end{thebibliography}
+\end{document}

@@ -24,11 +24,11 @@ reconcile their historical wording with the current verification and presentatio
    at infinity. The result refutes a universal affirmative assertion. It does
    not decide whether some other hyperbolic knot has a persistent rank-two free
    subgroup. The topology and metabelian ingredients are credited classical
-   facts. The current priority audit is pending; this reconciliation provides
+   facts. The current priority audit is explicitly incomplete; this reconciliation provides
    no firstness or continued-open certification.
 
 See `root_reproduction/ORIGINAL_STRICT_REGRESSION.json` for the new gate's
 controls and `ROOT_MATH_ACCEPTANCE.md` for mathematical acceptance. Earlier
 dated receipts may retain the old locator or a pre-repair status; this document
-states the current interpretation. Paper and publication-driver integration
-remain pending the priority gate.
+states the current interpretation. The paper and publication driver now integrate these corrections. Final
+publication-package adversaries and production acceptance remain pending.
