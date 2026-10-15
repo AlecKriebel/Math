@@ -38,6 +38,7 @@ ROOT_FILES = (
     'ROOT_GEOMETRY_CONTROL_REPLAY.json', 'ROOT_COVARIANCE_CONTROL_REPLAY.json',
     'ROOT_NUMERICAL_REPRODUCTION.json', 'ROOT_RODEMICH_ADDENDUM_REPLAY.json',
     'ROOT_PRIORITY_SOURCE_ACCESS_CHECKPOINT.json',
+    'ROOT_PAPER_QA.json',
 )
 REVIEW_FILES = {
     'geometry_01': (
@@ -191,6 +192,13 @@ def inspect_payload(payload):
         for name, record in gate[field].items():
             need(name in payload and len(payload[name]) == record['bytes'] and
                  digest(payload[name]) == record['sha256'], 'gate review binding: ' + name)
+    paper_qa = json_data(payload['ROOT_PAPER_QA.json'])
+    need(paper_qa['pages'] == 5 and paper_qa['all_pages_rendered_and_visually_inspected'] is True,
+         'paper QA scope')
+    for name, record in paper_qa['pins'].items():
+        member = 'README.md' if name == 'PACKAGE_README.md' else name
+        need(member in payload and len(payload[member]) == record['bytes'] and
+             digest(payload[member]) == record['sha256'], 'paper QA binding: ' + member)
     meta = json_data(payload['zenodo-deposit.json'])
     need(meta['metadata']['upload_type'] == 'publication' and
          meta['metadata']['publication_type'] == 'preprint' and
@@ -280,12 +288,18 @@ def replay(root, numerical=False):
         need(geometry['check_count'] == 7 and geometry['all_pass'] is True and
              len(geometry['checks']) == 7 and all(v is True for v in geometry['checks'].values()),
              'geometric shortcut controls')
-        rodemich = child(target / 'reviews/classical_priority_01/rodemich_addendum_controls.py',
-                         [], scratch)
-        need(rodemich['exact_check_count'] == 9 and len(rodemich['exact_checks']) == 9 and
-             all(v is True for v in rodemich['exact_checks'].values()) and
-             rodemich['countermodel_is_globally_univalent'] is False and
-             rodemich['countermodel_refutes_PR662'] is False, 'Rodemich countermodel scope')
+        rodemich_reports = {}
+        for optimized in (False, True):
+            label = 'optimized' if optimized else 'normal'
+            rodemich = child(target / 'reviews/classical_priority_01/rodemich_addendum_controls.py',
+                             [], scratch, optimized)
+            need(rodemich['exact_check_count'] == 9 and len(rodemich['exact_checks']) == 9 and
+                 all(v is True for v in rodemich['exact_checks'].values()) and
+                 rodemich['countermodel_is_globally_univalent'] is False and
+                 rodemich['countermodel_refutes_PR662'] is False, 'Rodemich countermodel scope')
+            rodemich_reports[label] = {k: v for k, v in rodemich.items() if k != 'utc'}
+        need(rodemich_reports['normal'] == rodemich_reports['optimized'],
+             'Rodemich ordinary/optimized equality')
         alternative = None
         if numerical:
             alternative = child(target / 'reviews/covariance_source_01/independent_numerical.py',
@@ -301,6 +315,7 @@ def replay(root, numerical=False):
             'independent_covariance_checks_per_mode': 87,
             'independent_covariance_normal_optimized_equal': True,
             'geometry_exact_checks': 7, 'rodemich_exact_margins': 9,
+            'rodemich_normal_optimized_equal': True,
             'rodemich_countermodel_in_target_class': False,
             'alternative_numerical': alternative,
             'numerical_interval_certification': False, 'formal_proof_certificate': False,
