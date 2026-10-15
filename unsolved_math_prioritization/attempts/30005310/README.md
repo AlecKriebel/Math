@@ -1,5 +1,18 @@
-# Literal threshold classification: counterexample
+# 30005310 / OWR-11695865-009
 
-`PROOF.md` gives a complete negative answer to the supplied numerical threshold classification, using K4,4 and a genuinely colored connected variant. Both have I(G,4)=0, nonzeroI(G,3), and weak threshold2 rather than3or4. The singleton model's known MLT4 is credited.
+**Mathematics PASS; already_solved for the full literal numerical question.**
+Earlier Gross–Sullivant/Blekherman–Sinn results cover the singleton K4,4
+negative answer. Homs–Kuznetsova–Stolz2609.02382v1 independently covers a
+coloredC4 negative answer before this candidate. The bare SOS/intersection
+alternative remains unresolved here. Exact earlier tied-variant publication
+and explicit prior recognition of the2022error are not certified.
 
-This does not settle a repaired pure SOS-versus-intersection dichotomy or an unstated colored4-cycle-only restriction. Independent review is pending. Run `python3 verify.py` for exact Jacobian, determinant, completion and open-box controls; no simulation is used. No novelty claim.
+PROOF.md retains mathematical Sections2–7 unchanged. PRIORITY_AUDIT.md
+gives the exact primary-source bridges and limits. All20 original files,
+reviews/checkers/manifests are archived in original_submission/ byte for byte.
+Run `python3 verify.py` with SymPy1.14.0 to reproduce188 exact controls against
+the current proof hash; original receipts remain archived separately.
+
+Author1/5 preserved. Skip corrected open draft; no new paper, upload, tracker
+row, merge, closure or PRcomment. AI tools used extensively; unrefereed,
+without human peer review. This credited verification record has no DOI.

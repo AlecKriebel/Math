@@ -1,25 +1,55 @@
-# A literal counterexample to the proposed threshold scenarios
+# Credited counterexample to the printed numerical threshold scenarios
 
-**30005310 / OWR-11695865-009. Complete source-literal negative-answer candidate, author turn1; independent review pending.** This is a consequence of elementary completion constructions and credited existing threshold results, not a claim of a new Gaussian-model discovery.
+30005310 / OWR-11695865-009. **Mathematics PASS; historical classification
+already_solved for the full literal numerical question.** Author turn1/5.
+The negative answer is covered by established results before this candidate.
+No certified new solution of the original bare SOS/intersection conjecture
+is claimed. That separate question remains unresolved here.
 
-## 1. Precisely what is answered
+All20 original files, old reviews and manifests are preserved byte for byte
+under original_submission/. Mathematical Sections2–7 below are unchanged.
+Those historical review verdicts apply to their frozen inputs. The current
+credit, source scope and disposition are explained in PRIORITY_AUDIT.md.
+AI tools were used extensively; this record is unrefereed and has had no
+human peer review. It is not a new preprint or Zenodo deposit.
 
-The [2022 Oberwolfach report](https://ems.press/content/serial-article-files/46992), Roser Homs with Olga Kuznetsova, printedpp3146-3149, defines colored linear concentration models, the sufficient-statistic projection pi_G, and the elimination ideal I(G,n). Proposition3 assumes
+## 1. Exact original target and prior coverage
+
+Homs's contribution with Kuznetsova in OWR55/2022, printed3146–3149,
+DOI10.4171/OWR/2022/55, defines unrestricted colored concentration models.
+Proposition3 assumes the ideal hypothesis
 
     I(G,n+1)=0,    I(G,n) nonzero.                        (1)
 
-Its second bullet then asserts WMLT(G)=n when a positive-definite S0 has statistics in V(I(G,n)); both listed threshold scenarios have WMLT at leastn. Conjecture4 says these are the only scenarios. The supplied cleaned question explicitly retains these numerical threshold conclusions.
+Its second bullet asserts WMLT=n if a positive-definite matrix has statistics in V(I(G,n));
+both full numerical scenarios also assert MLT=n+1. Conjecture4 refers
+back to the two cases. A numerical error in these assertions is distinct
+from the bare claim that one of their two algebraic mechanisms holds.
 
-**Counterexample.** Take the complete bipartite graph K4,4, with each vertex and edge its own color. Then
+For singleton K4,4, Gross–Sullivant's2015 primary version, Section5,
+Corollary5.3 and explicit bipartite specialization already gives WMLT2.
+Blekherman–Sinn's2017 primary version, Theorems2.1 and2.7, already gives
+generic completion rank4 and MLT4. These results combine to the exact
+singleton counterexample below atn=3. The algebraic ideal bridge is also
+proved directly in the unchanged mathematics. The rank-two completion
+construction is the bipartition instance of the earlier splitting lemma.
 
-    I(G,4)=0,    I(G,3) is nonzero,
-    WMLT(G)=2,    MLT(G)=4.                              (2)
+Independently, Homs–Kuznetsova–Stolz, arXiv2609.02382v1, public2September2026,
+Proposition3.26, gives an equally vertex-colored C4 with four individually
+colored edges, generic completion rank2 and MLT1. Proposition3.9 identifies
+generic completion rank as the first zero elimination ideal. Thus atn=1
+it contradicts both printed numerical scenarios, which require MLT2.
+This earlier same-author theorem decides the literal universal numerical
+question even within a four-cycle class. It does not assert a solution of
+the bare mechanisms alternative. Both prior routes precede the present
+candidate's1October2026 record.
 
-The ideal assertions and WMLT=2 are proved directly below. MLT=4 is a credited instance of Blekherman-Sinn's prior complete-bipartite theorem; it is not needed merely to refute the two scenarios. Here n=3, so neither proposed value WMLT=3 nor WMLT=4 is correct.
-
-There is also a **connected genuinely colored variant**: give vertices1 and2 one shared color, keep every other vertex color distinct, and keep every edge color distinct. It still satisfies I(G,4)=0, I(G,3) nonzero, and WMLT=2. Thus the objection does not depend on calling the singleton-colored model a colored graph. No exact MLT value is asserted here for that tied-diagonal variant.
-
-**Boundary of the answer.** This refutes the literal general numerical threshold classification, including the stated implication in the second bullet. It does **not** refute a separately repaired, purely algebraic dichotomy saying only “a strict signed-SOS separator or a positive-definite intersection,” after removing its threshold claims. Our example has the second intersection. Nor does this example settle an unstated restriction to colored4-cycles: the graph used has eight vertices. The displayed definitions and Proposition3 impose no such restriction, though the surrounding examples are4-cycles. Any intended restricted or repaired question should be stated separately.
+The verified K4,4 construction has WMLT2, I3nonzero and I4zero and remains
+valid after tying K11=K22. Exact MLT4 is asserted only for the singleton
+model. Earlier exact publication of the tied variant, and earlier explicit
+recognition of the2022report's error, have not been established. Those
+limitations do not erase the earlier negative answer to the full numerical
+question and are not grounds for a new first-solution claim.
 
 ## 2. Model, statistics and sample convention
 
@@ -136,10 +166,24 @@ For a=b=4, M=4, hence MLT(K4,4)=4. Their Theorem2.1 also gives generic completio
 
 where the proposed cases at n=3 would give(4,4) or(3,4). We do not transfer the ordinary-graph MLT value automatically to the tied-diagonal variant; its independently proved WMLT is sufficient for the counterexample.
 
-## 8. What is and is not resolved
+## 8. Current disposition and exact remaining gap
 
-The literal universal threshold classification in the supplied question has a negative answer. The example is explicit, small, connected, and remains valid with a genuine color equality. The ideal conditions, weak threshold and positive-definite intersection are fully checked without an appeal to generic-rank/MLT equality.
+The displayed ideal, likelihood and weak-threshold proofs pass three fresh
+independent mathematical/source families and root reproduction. No
+mathematical repair is required. The numerical implication is false, but
+its negative answer is already covered by the primary results identified
+above. Status already_solved records that historical finding for the full
+literal numerical question; it does not certify all readings of Conjecture4.
 
-This is a source correction and an application of classical threshold/completion facts, with no novelty claim. The repaired Boolean separator-versus-intersection question, or an explicitly restricted colored4-cycle question, is a different problem and is not declared solved here. No outreach to the report's authors is undertaken.
+The example satisfies the positive-definite-intersection mechanism. It
+cannot refute a bare SOS-or-intersection alternative. That route remains
+unresolved here and cannot be repaired by merely changing the description
+of this same example. The K4,4 example itself does not address a four-cycle
+restriction; the earlier2026 coloredC4 theorem separately refutes the full
+numerical assertion there. Neither route answers the bare mechanism problem.
 
-Exact computation checks the matrix identities, ideal obstruction polynomial, full-Jacobian minors and rational open-box bounds. Those checks support the written proofs; probabilities are established analytically by an open set and positive density, not by sampling. Independent adversarial review is required before any result PR.
+Under the active claimed_solved-only workflow, skip this corrected open
+draft. No new paper, DOI, upload, tracker row, merge, closure or PR comment
+accompanies this credit correction. Preserve author1/5 and all original
+mathematical evidence. Exact probabilities, the tied model's exact MLT,
+and a historical first-recognition certificate remain unclaimed.
