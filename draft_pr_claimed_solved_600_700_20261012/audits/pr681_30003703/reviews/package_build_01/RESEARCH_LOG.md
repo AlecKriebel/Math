@@ -1,0 +1,7 @@
+# PR681 package implementation log
+
+2026-10-15T06:14:33Z — 20% complete toward an offline reproducible package implementation. Read the full PR662 builder/verifier baseline and full PR681 native wrapper, author controls, native validators, native independent controls, and all four fresh family control sources before any execution. Target is original head e92320ea5979c812089780a982fbd88136a26522; original native inventory is 23 files. No native/review/shared-Git/cloud mutations are authorized. Author inputs are not yet stable. Implementation will separate immutable mathematical/source receipt pins from publication author inputs and exclude mutable builder logs and later whole-package reviews from the archive.
+
+This is an implementation log, not independent whole-package approval, human peer review, historical priority clearance, or publication authorization.
+
+2026-10-15T06:20:00Z — 55% complete. Implemented strict captured-byte allowlisting, finite/duplicate-safe JSON, native SHA256/Git-blob/mode checks, all four family freeze checks, exact claim scope, metadata/visual-QA bindings, offline temporary-copy replay, and thirty hostile integrity controls, each planned in ordinary and optimized Python. Builder supports audit layout and extracted-package deterministic rebuild, validates captures before/after, and atomically replaces prepared outputs. Final receipt pins/build remain gated on parent author-input stability. No package approval is claimed.
