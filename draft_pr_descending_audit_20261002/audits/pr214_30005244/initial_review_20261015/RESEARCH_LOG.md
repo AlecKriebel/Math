@@ -7,3 +7,5 @@
 2026-10-15T08:06:40.332545+00:00 — 35%: all four new independent mathematical/source families pass; parent full derivations/readings and manifest pins accepted. No math repair required. Exact source-aware (G) scope accepted without an invented N&S geometry target. Priority families now independently challenge same-team history, classical approximation coverage and the compact-support counterexample. No manuscript/publication clearance.
 
 2026-10-15T08:22:07.375293+00:00 —45%: three independent priority reports and parent comparisons reviewed; required old-work credit mapped. No exact earlier full theorem found; named dynamic manuscript and Rahola full remain uninspected. Fresh final gate pending.
+
+2026-10-15T08:28:02.365292+00:00 —55%: fresh independent final priority adjudication sealed and accepted. Qualified credited preparation cleared with exact historical uncertainties retained. Current original head/open/draft and claimed_solved reverified; no publication clearance.
