@@ -1,5 +1,7 @@
 # Quantitative persistence in a fixed-city area equation
 
+Published preprint: [10.5281/zenodo.23393139](https://doi.org/10.5281/zenodo.23393139). The accepted PDF and verification archive are unchanged. [Publication receipt](PUBLICATION_RECEIPT.json) records the accepted merge, exact pins and unique tracker readback.
+
 Problem 9700026 / AMR-096-0026 · PR 880 · Alec Kriebel, ORCID 0009-0001-9320-500X.
 
 The current five-page research note proves all-coordinate quantitative persistence for every fixed finite collection of at least two distinct interior sites in the unit square, every positive initial probability vector, and beta > 2 alpha in the exact hard weighted-Voronoi area ODE. An asymmetric alpha=2, beta=8 three-city instance stays in [1/4096,2047/2048] at all nonnegative times. This refutes the unrestricted alpha > 1 collapse alternative in the literal 2007 Conjecture 32(a), and the catalog conjunction containing it.
@@ -26,4 +28,4 @@ Python >=3.10 and the standard library suffice. Add `-O` for optimized execution
 
 The portable index SHA256 is `7af74074708d9ee7b462be7d74546ef1f090a3262223d538082e872288e3df3d`; portable verifier SHA256 is `73faad1cfa4ab2e9c7e6cfa214e58fadb361ccf4de3199ed87e96883ae6a351a`; verification ZIP SHA256 is `944e5d99825a3ef6689cff551f28bc9bb7aee04a1f58dbbceb6fd55bace4af2f`. These pins need an independently authenticated copy of this record. The portable archive has 161 members. No primary PDFs, source extracts, page images, raw dataset records or credentials are redistributed.
 
-Canonical production upload instructions are `publication_20261015/preprint/zenodo-deposit.json`, binding exactly the reviewed note PDF and verification ZIP with the identical metadata object. The current package is prepared for independent whole-package review; this notice makes no claim that those later reviews, merge or publication have already occurred. Their eventual decisions and exact immutable pins are recorded in the separate program audit trail, avoiding self-referential archive hashes.
+Canonical production upload instructions are `publication_20261015/preprint/zenodo-deposit.json`, binding exactly the reviewed note PDF and verification ZIP with the identical metadata object. Two successive fresh independent whole-package adversaries cleared the identical accepted core and baseline outer package; the accepted head merged, and the unchanged files were published and uniquely entered in the tracker. Their decisions, immutable pins and exact publication readbacks are recorded in the separate program audit trail. FINAL_PREPRINT_ACCEPTANCE.json there anchors the accepted baseline; POSTPUBLICATION_VALIDATION.json anchors this updated outer manifest, avoiding self-referential archive hashes.
