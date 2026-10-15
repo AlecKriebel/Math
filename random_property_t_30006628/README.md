@@ -1,5 +1,7 @@
 # Property (T) above one-third density in random free-product quotients
 
+Published preprint: [10.5281/zenodo.23390181](https://doi.org/10.5281/zenodo.23390181). The accepted PDF and verification archive are unchanged. [Publication receipt](PUBLICATION_RECEIPT.json) records the accepted merge, exact file pins and unique tracker readback.
+
 The current seven-page research note by Alec Kriebel (ORCID 0009-0001-9320-500X), version 1.0.0 dated 2026-10-15, is in [publication_20261015/preprint/output/pdf/note.pdf](publication_20261015/preprint/output/pdf/note.pdf). The editable source, exact deposit metadata and verification ZIP accompany it. The complete extracted [verification package](publication_20261015/verification_package/README.md) explains trust, commands, diagnostics and limitations.
 
 The theorem resolves the at-least-three-factor question in Problem 16 of the 2026 Oberwolfach report *Median Geometry and Applications*. Fix at least three nontrivial finitely generated factors, fixed finite nonempty inverse-closed generating alphabets of nonidentity elements, and fixed 1/3<d<1. IID uniform rooted cyclically reduced syllable relators, sampled with replacement, give a quotient with property (T) with probability tending to one through all integer lengths. Fixed nonidentity word balls of integer radius at least one are included. Two factors, critical density 1/3, varying-parameter uniformity and finite-length guarantees are outside the claim. The paper separately proves a thinning transfer for the report's abbreviated linear-word formulation. Known collapse above 1/2 already implies property (T); the substantive extension includes (1/3,1/2].
@@ -14,7 +16,7 @@ PROOF.md, original acceptance/review files and the three original ZIPs are prese
 
 ## Current package authentication
 
-Before executing downloaded code, independently obtain the outer manifest and startup-script SHA256 values from draft_pr_claimed_solved_800_900_20261012/audits/pr872_30006628/FINAL_PREPRINT_ACCEPTANCE.json and check the startup file's bytes. That final acceptance record is outside the ZIP to avoid circular hashes; while absent, this is a candidate under review. A mutable adjacent manifest or script self-hash does not establish startup trust.
+Before executing downloaded code, independently obtain the outer manifest and startup-script SHA256 values from draft_pr_claimed_solved_800_900_20261012/audits/pr872_30006628/FINAL_PREPRINT_ACCEPTANCE.json for the immutable accepted files, and POSTPUBLICATION_VALIDATION.json in that same audit folder for this updated outer manifest and check the startup file's bytes. That final acceptance record is outside the ZIP to avoid circular hashes; while absent, this is a candidate under review. A mutable adjacent manifest or script self-hash does not establish startup trust.
 
 With ROOT meaning this problem folder and PIN the separately trusted outer-manifest hash:
 
