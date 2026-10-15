@@ -24,11 +24,15 @@ zero('strict_confocal_nonhomothetic_ratio',A/U-B/V+(A-B)*lam/(U*V))
 # Polar dual wrt radius-a auxiliary circle: point (X,Y) represents
 # line (X/A,Y/A).X_old=1. Track the PLUS-focus convention literally.
 ss=A*A*V/U;matrix=s.Matrix([[ux,0,-ell],[0,vy,0],[-ell,0,-ss]])
-Z=s.Matrix([X/A,Y/A,1]);dual=(Z.T*matrix.adjugate()*Z)[0]
+Z=s.Matrix([X/A,Y/A,-1]);dual=(Z.T*matrix.adjugate()*Z)[0]
 dual_lead=-vy*ss/(A*A)
-circle_center=c*lam/V;circle_radius_squared=U*B*B/(V*V)
+circle_center=-c*lam/V;circle_radius_squared=U*B*B/(V*V)
 circle_form=X*X+Y*Y-2*circle_center*X+circle_center**2-circle_radius_squared
-zero('polar_image_is_bicentric_outer_circle_with_correct_plus_sign',dual/dual_lead-circle_form)
+zero('polar_image_is_bicentric_outer_circle_with_correct_plus_focus_negative_center',dual/dual_lead-circle_form)
+# Discriminating literal example: (x-1)^2/4+y^2/3=1, unit polarity.
+example_matrix=s.Matrix([[s.Rational(1,4),0,-s.Rational(1,4)],[0,s.Rational(1,3),0],[-s.Rational(1,4),0,-s.Rational(3,4)]])
+example_line=s.Matrix([X,Y,-1]);example_dual=s.expand((example_line.T*example_matrix.adjugate()*example_line)[0])
+zero('explicit_offset_focus_ellipse_unit_polarity_sign',example_dual/example_dual.coeff(X,2)-(X*X+Y*Y+s.Rational(2,3)*X-s.Rational(1,3)))
 # Exact genuine triangular caustic example, all inequalities literal.
 val={A:s.Integer(21),B:s.Integer(16),lam:s.Rational(336,25)}
 aX=s.factor((R2/ux).subs(val));aY=s.factor((R2/vy).subs(val));hh=s.factor(h.subs(val))
