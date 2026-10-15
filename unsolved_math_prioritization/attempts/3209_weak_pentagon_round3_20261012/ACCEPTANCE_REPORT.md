@@ -1,0 +1,13 @@
+# Combined third-round edition decision
+
+**ACCEPTED restricted mathematical results, with the stated dependency and finite-scope limits.** This edition combines two independently accepted mathematical lanes and their complete reports. It is an editorial preservation of accepted work, not a claim of human peer review, novelty, or a full Weak pentagon resolution.
+
+The mixed-boundary proof establishes both exact signed reductions, the degree-four boundary theorem with unbounded opposite-side demand count, and the explicit 18/28-vertex obstructions. Its full audit accepts the proof and applications while retaining Theorem 2.1(a),(c),(e) and Lemma 2.4 of Schweser–Stiebitz as external. The separate dependency audit inspected the complete 21-page primary source and checks the whole application, including nonsymmetric lists, block palettes, opposite-sign multiplicity, component closure, and the end-block exclusions. It is not an independent proof of the source theorem.
+
+The elementary one-versus-four theorem is separately accepted without mathematical correction or reliance on signed degree choosability. Its full audit validates the boundary slot bound, strict surplus, isolated-list orientation injection, completion, low-degree and disconnected cases, and cubic consequences. Together with the one-versus-five subcubic obstruction it makes four the sharp opposite-side threshold. For cubic graphs, every five-demand matching cut is 4+1 and is covered; 1+7 is the first arithmetically possible failing one-versus-many count.
+
+Both obstruction cuts are nonglobal, of sizes 20 and 34. Exact global maxima are 22 and 35, with 7 and 72 normalized maximizers. The second audit verifies all 79 maximum-cut maps against the first audit's exhaustive counts after checking graph identities. Every maximum of these two graphs therefore extends, and explicit unrestricted maps also exist. No disproof of the original target or the universal global-maximum strengthening follows.
+
+The complete source proofs and complete audits are reproduced with reversible editorial removal of excluded operational identifiers and byte counts. The actual distributed files are identified solely by PUBLIC_MANIFEST.json. Only authored prose and permitted public-source metadata are distributed. Programs, raw datasets and certificates, copied source documents, internal original manifests and receipts, and private coordination files are absent. This is not a runnable public bundle.
+
+The mixed 2+2 four-demand case remains unresolved in this round. The third confirmed continuation round is recorded; the earlier lifetime total is unknown. No fourth-round material is incorporated. Local preparation does not by itself constitute repository integration or publication.
