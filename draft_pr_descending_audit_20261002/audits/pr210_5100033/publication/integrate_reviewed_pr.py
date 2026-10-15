@@ -2,6 +2,10 @@
 
 No local Git/index/ref writes. Never repeat an uncertain native ref mutation.
 """
+import sys
+if not __debug__ or sys.flags.optimize:
+    raise RuntimeError('Release helpers refuse optimized Python before any action')
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
 from pathlib import Path
 from datetime import datetime, timezone
 import base64
@@ -21,15 +25,17 @@ OLD = '2180d64b648b81ac660a792f7823d0b715f9cf12'
 PREFIX = 'unsolved_math_prioritization/attempts/5100033/'
 assert not (PUB / 'PR_PREPARED.json').exists(), 'Already integrated: reconcile read-only'
 assert not (PUB / 'NATIVE_PREPARE_ATTEMPT.json').exists(), 'Prior ref attempt: reconcile read-only'
-clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
+_RELEASE_LOCK=acquire(PUB)
+CTX=context(R)
+clear=CTX['clear']
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
 assert not clear['unresolved_optional_findings']
 for row in clear['submission_files']:
     raw = (R / row['path']).read_bytes()
     assert len(raw) == row['bytes'] and hashlib.sha256(raw).hexdigest() == row['sha256']
-z = json.loads((PUB / 'ZENODO_VERIFIED_PUBLICATION.json').read_text())
-t = json.loads((PUB / 'TRACKER_VERIFIED_APPEND.json').read_text())
+z=publication(R,PUB,CTX)
+t=tracker(R,PUB,CTX,z)
 assert z['submitted'] and z['metadata_and_files_verified']
 assert t['verified'] and t['doi_url'] == z['doi_url']
 T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_prepare_%Y%m%dT%H%M%S%fZ')
@@ -54,7 +60,7 @@ def api(method, path, payload=None):
 
 
 pr = api('GET', 'pulls/210')
-assert pr['state'] == 'open' and pr['draft'] and pr['head']['sha'] == OLD
+pr_identity(pr,OLD,True)
 intake = json.loads((D / 'INTAKE.json').read_text())
 oq = api('GET', 'contents/unsolved_math_prioritization/QUEUE.md?ref=' + OLD)
 assert oq['sha'] == intake['Queue_blob']
@@ -155,7 +161,7 @@ for folder in ['verification','pr_update','history','manuscript_reviews']:
 paths += [p for p in D.iterdir() if p.is_file()]
 for folder in ['submitted','root_reproduction']:
     paths += [p for p in (D/folder).rglob('*') if p.is_file() and not any(x.startswith('private') or x=='__pycache__' for x in p.parts)]
-for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02']:
+for family in ['source_domain_adversary_01','physical_geometry_adversary_01','meromorphic_divisor_adversary_01','priority_author_updates_01','priority_classical_general_01','whole_manuscript_adversary_01','whole_manuscript_adversary_02','whole_manuscript_adversary_03','release_helpers_adversary_01','release_helpers_adversary_02']:
     folder=D/family
     candidates=[p for p in [folder/'AUTHORED_MANIFEST.json',folder/'MANIFEST.json',folder/'SAFE_AUTHORED_MANIFEST.json'] if p.exists()]
     assert len(candidates)==1;seal=candidates[0];paths.append(seal);m=json.loads(seal.read_text())
@@ -187,17 +193,18 @@ tree = api('POST', 'git/trees', {'base_tree': main_commit['tree']['sha'], 'tree'
 head = api('POST', 'git/commits', {'message': 'Integrate PR210 reviewed odd outer focal-pedal area-product preprint and verified DOI/tracker; preserve20 original artifacts',
                                 'tree': tree, 'parents': [OLD, main]})['sha']
 fresh_pr=api('GET', 'pulls/210')
-assert fresh_pr['state']=='open' and fresh_pr['draft'] and fresh_pr['head']['sha']==OLD
+pr_identity(fresh_pr,OLD,True)
+unchanged(R,CTX);publication(R,PUB,CTX);tracker(R,PUB,CTX,z)
 actual_commit=api('GET','git/commits/'+head)
 assert [x['sha'] for x in actual_commit['parents']]==[OLD,main] and actual_commit['tree']['sha']==tree
-(PUB/'NATIVE_PREPARE_ATTEMPT.json').write_text(json.dumps(dict(utc=datetime.now(timezone.utc).isoformat(),old=OLD,head=head,main=main,branch=pr['head']['ref'],nonforce=True),indent=2)+'\n')
+exclusive_json(PUB/'NATIVE_PREPARE_ATTEMPT.json',dict(utc=datetime.now(timezone.utc).isoformat(),old=OLD,head=head,main=main,branch='dot/math-5100033',nonforce=True,release_binding=binding(CTX)))
 api('PATCH', 'git/refs/heads/' + pr['head']['ref'], {'sha': head, 'force': False})
 # Save a durable ref receipt before a potentially stale PR API read.
 receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'prepared_head': head, 'original_head': OLD,
            'main_parent': main, 'parents': [OLD, main], 'tree': tree, 'target_queue_row': queue_row,
            'included_owned_pins': pins, 'doi_url': z['doi_url'], 'tracker_range': t['updated_range'],
            'native_merge': 'pending full exact readback', 'local_Git_index_ref_mutations': 0,
-           'foreign_main_tree_preserved': True}
+           'foreign_main_tree_preserved': True,'release_binding':binding(CTX),'publication_receipt_sha256':digest(PUB/'ZENODO_VERIFIED_PUBLICATION.json'),'tracker_receipt_sha256':digest(PUB/'TRACKER_VERIFIED_APPEND.json')}
 (PUB / 'PR_PREPARED.json').write_text(json.dumps(receipt, indent=2) + '\n')
 body = ('Proves the historical k605,a (published k606; v1 k604) signed product of the two original-focus pedal areas of the OUTER tangent polygon, for every odd least-period strict confocal elliptical-caustic family, all coprime stars/N3 and fixed repetitions. Author turn1/5 and all20 original artifacts retained. Exact N4 counterexamples delimit the primitive-even boundary.\n\n'
         'Explicit focal-foot geometry, adjacent collinear residue cancellation, reflection and classical complementary torus divisor proof. Stachel/Jacobi/auxiliary-circle and cyclic elliptic/area methods, the exact Khare–Sukhatme2004 analytic identity and related Ferudun results receive substantive credit, with complete geometric comparison bridges. Historical novelty/public priority remain undetermined; no first-proof/new-general-method/current-worldwide-open claim. Source-access limits and related-source fixture correction remain explicit.\n\n'

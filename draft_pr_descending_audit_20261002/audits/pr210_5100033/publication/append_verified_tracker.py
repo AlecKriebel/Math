@@ -1,4 +1,8 @@
 """Append PR210's verified published DOI once, never before final clearance."""
+import sys
+if not __debug__ or sys.flags.optimize:
+    raise RuntimeError('Release helpers refuse optimized Python before any action')
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
 from pathlib import Path
 from datetime import datetime, timezone
 import json
@@ -21,11 +25,13 @@ def call(label, args):
 
 
 assert not (PUB / 'TRACKER_VERIFIED_APPEND.json').exists(), 'Already verified; use read-only reconciliation'
-clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
+_RELEASE_LOCK=acquire(PUB)
+CTX=context(R)
+clear=CTX['clear']
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
 assert not clear['unresolved_optional_findings']
-z = json.loads((PUB / 'ZENODO_VERIFIED_PUBLICATION.json').read_text())
+z=publication(R,PUB,CTX)
 assert z['submitted'] and z['metadata_and_files_verified']
 T.mkdir(parents=True, exist_ok=True)
 doi = z['doi_url']
@@ -38,18 +44,23 @@ row = ['https://arxiv.org/abs/2004.12497v11', '', doi, 'The outer focal-pedal ar
 values = call('02-before', ['sheets', 'spreadsheets', 'values', 'get', '--params', json.dumps({
     'spreadsheetId': SHEET, 'range': "'Math Puzzles'!A:D"})]).get('values', [])
 assert values and values[0] == ['Original Problem', 'Solution Chat URL', 'DOI', 'Notes']
+import re
+problem=re.compile(r'(?<![0-9])5100033(?![0-9])|AMR-050-0033',re.I)
+problem_rows=[(i,r) for i,r in enumerate(values,1) if any(problem.search(str(c)) for c in r)]
 existing = [(i, r) for i, r in enumerate(values, 1) if any(z['doi'] in str(c) for c in r)]
+require(not problem_rows or (len(problem_rows)==1 and problem_rows==existing and problem_rows[0][1]==row),'Conflicting problem row already exists; reconcile read-only')
 attempt = T / 'APPEND_ATTEMPT.json'
 if existing:
     assert len(existing) == 1 and existing[0][1] == row and attempt.exists(), 'Existing DOI requires reconciliation'
+    old_attempt=json.loads(attempt.read_text())
+    require(old_attempt.get('release_binding')==binding(CTX) and old_attempt.get('payload',{}).get('values')==[row],'Prior attempt belongs to different release/payload')
     target = "'Math Puzzles'!A" + str(existing[0][0]) + ':D' + str(existing[0][0])
     append_count = 0
 else:
     assert not attempt.exists(), 'Previous append outcome unresolved; no second write permitted'
     payload = {'majorDimension': 'ROWS', 'values': [row]}
-    attempt.write_text(json.dumps({'utc': datetime.now(timezone.utc).isoformat(), 'spreadsheet_id': SHEET,
-                                  'sheet_id': 1254632077, 'doi_url': doi, 'payload': payload,
-                                  'status': 'write about to be attempted; outcome not yet known'}, indent=2) + '\n')
+    unchanged(R,CTX);publication(R,PUB,CTX)
+    exclusive_json(attempt,{'utc':datetime.now(timezone.utc).isoformat(),'spreadsheet_id':SHEET,'sheet_id':1254632077,'doi_url':doi,'payload':payload,'release_binding':binding(CTX),'status':'single append about to be attempted'})
     result = call('03-append', ['sheets', 'spreadsheets', 'values', 'append', '--params', json.dumps({
         'spreadsheetId': SHEET, 'range': "'Math Puzzles'!A:D", 'valueInputOption': 'RAW',
         'insertDataOption': 'INSERT_ROWS', 'includeValuesInResponse': True}), '--json', json.dumps(payload)])
@@ -64,6 +75,6 @@ assert readback['values'] == [row]
 receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'verified': True, 'spreadsheet_id': SHEET,
            'sheet_id': 1254632077, 'updated_range': target, 'doi_url': doi, 'values': row,
            'cli': 'Google Workspace CLI', 'append_count': append_count,
-           'reconciled_existing_attempt': append_count == 0, 'exact_all_four_cells_readback': True}
+           'reconciled_existing_attempt': append_count == 0, 'exact_all_four_cells_readback': True,'release_binding':binding(CTX),'publication_receipt_sha256':digest(PUB/'ZENODO_VERIFIED_PUBLICATION.json')}
 (PUB / 'TRACKER_VERIFIED_APPEND.json').write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + '\n')
 print(json.dumps(receipt, indent=2, ensure_ascii=False))

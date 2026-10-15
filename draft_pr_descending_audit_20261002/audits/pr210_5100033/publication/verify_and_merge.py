@@ -1,4 +1,8 @@
 """Read actual native PR210 science/provenance bytes before the authorized merge."""
+import sys
+if not __debug__ or sys.flags.optimize:
+    raise RuntimeError('Release helpers refuse optimized Python before any action')
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
 from pathlib import Path
 from datetime import datetime, timezone
 import base64
@@ -13,14 +17,19 @@ GH = '/opt/homebrew/Cellar/gh/2.85.0/bin/gh'
 B = 'repos/AlecKriebel/Math/'
 PREFIX = 'unsolved_math_prioritization/attempts/5100033/'
 assert not (PUB / 'PR_MERGED.json').exists(), 'Already merged; read-only reconciliation only'
+require(not (PUB/'NATIVE_MERGE_REQUEST.json').exists(),'Prior merge intent exists: read-only reconciliation only')
 p = json.loads((PUB / 'PR_PREPARED.json').read_text())
 head = p['prepared_head']
-clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
+_RELEASE_LOCK=acquire(PUB)
+CTX=context(R)
+clear=CTX['clear']
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
 assert not clear['unresolved_optional_findings']
-z = json.loads((PUB / 'ZENODO_VERIFIED_PUBLICATION.json').read_text())
-t = json.loads((PUB / 'TRACKER_VERIFIED_APPEND.json').read_text())
+z=publication(R,PUB,CTX)
+t=tracker(R,PUB,CTX,z)
+require(p.get('release_binding')==binding(CTX),'Prepared PR belongs to another release')
+require(p.get('publication_receipt_sha256')==digest(PUB/'ZENODO_VERIFIED_PUBLICATION.json') and p.get('tracker_receipt_sha256')==digest(PUB/'TRACKER_VERIFIED_APPEND.json'),'Prepared native receipts changed')
 assert z['submitted'] and z['metadata_and_files_verified']
 assert t['verified'] and t['doi_url'] == z['doi_url']
 T = PUB / 'private_transport' / datetime.now(timezone.utc).strftime('native_merge_%Y%m%dT%H%M%S%fZ')
@@ -45,7 +54,10 @@ def api(method, path, payload=None, graphql=False):
 
 
 pr = api('GET', 'pulls/210')
-assert pr['state'] == 'open' and not pr['merged'] and pr['head']['sha'] == head
+pr_identity(pr,head)
+assert not pr['merged']
+actual_commit=api('GET','git/commits/'+head)
+require(actual_commit['tree']['sha']==p['tree'] and [x['sha'] for x in actual_commit['parents']]==[clear['original_native_head'],p['main_parent']],'Actual commit tree/parents disagree with prepared receipt')
 cache = {}
 
 
@@ -58,7 +70,7 @@ def tree_entries(sha):
 
 
 def native_blob(path):
-    sha = p['tree']
+    sha = actual_commit['tree']['sha']
     parts = path.split('/')
     for i, part in enumerate(parts):
         row = tree_entries(sha)[part]
@@ -119,28 +131,31 @@ receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'status': 'PASS', 'hea
            'tracker_verified': True, 'release_status_only_native_delta': True}
 (PUB / 'NATIVE_SCIENTIFIC_READBACK.json').write_text(json.dumps(receipt, indent=2) + '\n')
 if pr['draft']:
+    exclusive_json(PUB/'NATIVE_READY_ATTEMPT.json',dict(utc=datetime.now(timezone.utc).isoformat(),head=head,release_binding=binding(CTX)))
     result = api('POST', 'graphql', {'query': 'mutation($id: ID!) { markPullRequestReadyForReview(input:{pullRequestId:$id}) { pullRequest { id isDraft } } }',
                                     'variables': {'id': pr['node_id']}}, graphql=True)
     assert not result.get('errors') and result['data']['markPullRequestReadyForReview']['pullRequest']['isDraft'] is False
 for attempt in range(8):
     pr = api('GET', 'pulls/210')
-    assert pr['state'] == 'open' and not pr['merged'] and not pr['draft'] and pr['head']['sha'] == head
+    pr_identity(pr,head,False)
+    assert not pr['merged']
     if pr['mergeable'] is not None:
         break
     time.sleep(3)
 assert pr['mergeable'] is True, 'Conflict or unknown native mergeability; resolve without forcing main'
 request = {'sha': head, 'merge_method': 'merge',
            'commit_title': 'Merge PR #210: audited odd outer focal-pedal area product and published preprint'}
-(PUB / 'NATIVE_MERGE_REQUEST.json').write_text(json.dumps(request, indent=2) + '\n')
+unchanged(R,CTX);publication(R,PUB,CTX);tracker(R,PUB,CTX,z)
+exclusive_json(PUB/'NATIVE_MERGE_REQUEST.json',dict(request,release_binding=binding(CTX)))
 result = api('PUT', 'pulls/210/merge', request)
 assert result['merged'] is True
 pr = api('GET', 'pulls/210')
 assert pr['merged'] and pr['state'] == 'closed' and pr['merge_commit_sha'] == result['sha']
-assert pr['head']['sha'] == head
+pr_identity(pr,head,False,state='closed')
 receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'PR': 210, 'url': pr['html_url'],
            'merged': True, 'merge_commit': result['sha'], 'reviewed_head': head,
            'doi_url': z['doi_url'], 'tracker_range': t['updated_range'],
            'case_completion_percent': 100, 'program_counts': [44, 21, 21, 0],
-           'full_goal_active_incomplete': True}
+           'full_goal_active_incomplete': True,'release_binding':binding(CTX)}
 (PUB / 'PR_MERGED.json').write_text(json.dumps(receipt, indent=2) + '\n')
 print(json.dumps(receipt, indent=2))

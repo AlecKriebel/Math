@@ -1,4 +1,8 @@
 """One authorized, guarded repository-kit publication. Reconcile uncertainty read-only."""
+import sys
+if not __debug__ or sys.flags.optimize:
+    raise RuntimeError('Release helpers refuse optimized Python before any action')
+from release_binding import context,binding,unchanged,publication,tracker,acquire,exclusive_json,pr_identity,require,digest
 from pathlib import Path
 from datetime import datetime, timezone
 import hashlib
@@ -13,7 +17,9 @@ R = PUB.parent / 'preprint'
 PY = '/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3'
 KIT = ROOT / 'zenodo_deposit_tool/zenodo.py'
 MANIFEST = R / 'deposit.json'
-clear = json.loads((R / 'FINAL_CLEARANCE.json').read_text())
+_RELEASE_LOCK=acquire(PUB)
+CTX=context(R)
+clear=CTX['clear']
 assert clear['release_cleared'] and clear['fresh_manuscript_reviews'] >= 2
 assert clear['final_frozen_clean_reviews'] >= 1 and not clear['unresolved_mandatory_findings']
 assert not clear['unresolved_optional_findings']
@@ -37,7 +43,7 @@ def preflight_read(label, command):
 
 
 pr = preflight_read('PR-head-preflight', ['/opt/homebrew/Cellar/gh/2.85.0/bin/gh', 'api', 'repos/AlecKriebel/Math/pulls/210'])
-assert pr['state'] == 'open' and pr['draft'] and pr['head']['sha'] == '2180d64b648b81ac660a792f7823d0b715f9cf12'
+pr_identity(pr,'2180d64b648b81ac660a792f7823d0b715f9cf12',True)
 q = preflight_read('PR-status-preflight', ['/opt/homebrew/Cellar/gh/2.85.0/bin/gh', 'api',
     'repos/AlecKriebel/Math/contents/unsolved_math_prioritization/QUEUE.md?ref=' + pr['head']['sha']])
 qrows = [x for x in base64.b64decode(q['content']).decode().splitlines() if '5100033 / AMR-050-0033' in x]
@@ -54,7 +60,7 @@ assert not matches, 'This problem already appears in the publication tracker: re
 
 
 def call(label, operation, extra=()):
-    r = subprocess.run([PY, str(KIT), operation, str(MANIFEST), *extra], cwd=ROOT,
+    r = subprocess.run([PY, '-B', str(KIT), operation, str(MANIFEST), *extra], cwd=ROOT,
                        capture_output=True, text=True, timeout=600)
     (T / (label + '-stdout.json')).write_text(r.stdout)
     (T / (label + '-stderr.txt')).write_text(r.stderr)
@@ -64,43 +70,20 @@ def call(label, operation, extra=()):
 
 
 local = call('01-local-check', 'check')
-assert local['environment'] == 'production' and len(local['files']) == 2
-(PUB / 'STAGE_ATTEMPT.json').write_text(json.dumps({'utc': datetime.now(timezone.utc).isoformat(),
-    'operation': 'repository kit stage about to be attempted', 'manifest': str(MANIFEST),
-    'frozen_files': clear['submission_files']}, indent=2) + '\n')
+assert local['environment'] == 'production' and local['files']==CTX['expected_files']
+unchanged(R,CTX)
+exclusive_json(PUB/'STAGE_ATTEMPT.json',{'utc':datetime.now(timezone.utc).isoformat(),'operation':'single stage about to be attempted','release_binding':binding(CTX),'files':CTX['expected_files']})
 stage = call('02-stage', 'stage')
-assert stage['state'] == 'ready_to_publish' and stage['files'] == local['files']
+assert stage['state'] == 'ready_to_publish' and stage['files'] == CTX['expected_files']
 (PUB / 'ZENODO_STAGED_VERIFIED.json').write_text(json.dumps(stage, indent=2) + '\n')
 inspect = call('03-inspect-before-publication', 'inspect')
 assert inspect['id'] == stage['id'] and inspect['files'] == local['files']
 assert inspect['state'] != 'published', 'Unexpected pre-existing publication: reconcile without a new POST'
-(PUB / 'PUBLISH_ATTEMPT.json').write_text(json.dumps({'utc': datetime.now(timezone.utc).isoformat(),
-    'id': stage['id'], 'operation': 'single repository kit publish about to be attempted'}, indent=2) + '\n')
+unchanged(R,CTX)
+exclusive_json(PUB/'PUBLISH_ATTEMPT.json',{'utc':datetime.now(timezone.utc).isoformat(),'id':stage['id'],'operation':'single publish about to be attempted','release_binding':binding(CTX)})
 published = call('04-publish', 'publish', ['--confirm-id', str(stage['id'])])
 assert published['state'] == 'published' and published['id'] == stage['id']
 (PUB / 'ZENODO_TOOL_PUBLICATION_RECEIPT.json').write_text(json.dumps(published, indent=2) + '\n')
-verified = call('05-inspect-published', 'inspect', ['--check-doi'])
-assert verified['state'] == 'published' and verified['id'] == stage['id']
-assert verified['files'] == local['files'] and verified['doi'] == published['doi']
-downloads = []
-download_error = None
-try:
-    for row in local['files']:
-        url = verified['record_url'] + '/files/' + row['name'] + '?download=1'
-        request = urllib.request.Request(url, headers={'User-Agent': 'Math-Research-Publication-Verification/1.0'})
-        with urllib.request.urlopen(request, timeout=60) as response:
-            raw = response.read()
-        assert len(raw) == row['size'] and hashlib.sha256(raw).hexdigest() == row['sha256']
-        downloads.append({'file': row['name'], 'bytes': len(raw), 'sha256': row['sha256'], 'actual_public_download_byte_hash_match': True})
-except Exception as e:
-    download_error = str(e)
-receipt = {'utc': datetime.now(timezone.utc).isoformat(), 'submitted': True,
-           'metadata_and_files_verified': True, 'id': verified['id'], 'doi': verified['doi'],
-           'doi_url': verified['doi_url'], 'record_url': verified['record_url'],
-           'metadata': metadata, 'files': local['files'],
-           'metadata_normalizations': verified.get('metadata_normalizations', []),
-           'doi_resolution': verified.get('doi_resolution'), 'tool_postpublication_readback': verified,
-           'additional_actual_public_file_downloads': downloads, 'additional_public_readback_error': download_error,
-           'exact_reviewed_frozen_files_published': True, 'single_publish_attempt': True}
-(PUB / 'ZENODO_VERIFIED_PUBLICATION.json').write_text(json.dumps(receipt, indent=2) + '\n')
-print(json.dumps({k: v for k, v in receipt.items() if k not in ['metadata', 'tool_postpublication_readback']}, indent=2))
+from verify_published_readonly import verify_existing
+receipt=verify_existing(R,PUB,CTX)
+print(json.dumps({k:v for k,v in receipt.items() if k not in ['metadata','tool_postpublication_readback']},indent=2))
