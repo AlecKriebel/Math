@@ -39,7 +39,7 @@ def main():
     require(st['30001345']['doi']==doi and st['30001345']['verified_candidate_approaches']==1 and
             st['30001345']['original_total_attempt_count_known'] is False and
             st['30001345']['turn_count_status']=='total_unknown_earlier_attempt_history_unavailable' and
-            'turns_used' not in st['30001345'],
+            st['30001345']['turns_used'] is None,
             'State readback failed')
     record = {'utc':now,'pr':909,'problem_id':'30001345',
               'outcome':'accepted_merged_preprint_published',

@@ -156,7 +156,8 @@ def main():
         # Do not fabricate a standard total-turn count or silently retain zero.
         if 'turns_used' in prior:
             event['previous_state_recorded_turns_used'] = prior['turns_used']
-        event.pop('turns_used', None)
+        event['turns_used'] = None
+        event['turns_used_interpretation'] = 'unknown total, not zero; verified recovered approach count recorded separately'
         revised_state = replace_entry(state_raw, KEY, event)
         history = blob(parent, 'unsolved_math_prioritization/history.jsonl')
         matches = [json.loads(s) for s in history.splitlines() if EVENT_ID in s]
