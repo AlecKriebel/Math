@@ -5,7 +5,7 @@ PUBLICATION_PRS=(618,623,662,681)
 PRIVATE_KEYS=('tracker_all_A_D','tracker_metadata',*(f'pr{n}_tracker_exact' for n in PUBLICATION_PRS))
 HEADER=['Original Problem','Solution Chat URL','DOI','Notes']
 def normalize_doi(value):
- return re.sub(r'^https?://(?:dx\.)?doi\.org/','',value.strip(),flags=re.I).rstrip('/').lower()
+ return re.sub(r'^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)','',value.strip(),count=1,flags=re.I).removesuffix('/').lower()
 def pad(row):return (row+['']*4)[:4]
 def digest(value):return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
 def scoped_evidence(key,raw,raw_bytes,entries):

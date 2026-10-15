@@ -3,6 +3,7 @@
 from pathlib import Path
 from datetime import datetime,timezone
 import hashlib,json,re
+from metadata_rules import expected_metadata,description_rule_evidence,MetadataRuleError
 NUMBERS=(615,618,623,628,630,662,672,681)
 SHEET='1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
 EXPECTED_681_ORIGINAL='e92320ea5979c812089780a982fbd88136a26522'
@@ -12,7 +13,7 @@ def sha(data):return hashlib.sha256(data).hexdigest()
 def require(condition,message):
  if not condition:raise NotReady(message)
 def valid_oid(value):return isinstance(value,str) and re.fullmatch('[0-9a-f]{40}',value) is not None
-def normalize_doi(value):return re.sub(r'^https?://(?:dx\.)?doi\.org/','',value.strip(),flags=re.I).rstrip('/').lower()
+def normalize_doi(value):return re.sub(r'^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)','',value.strip(),count=1,flags=re.I).removesuffix('/').lower()
 def build_expected(root):
  """Read only local completed state/receipts; never execute a CLI or network call."""
  root=Path(root);state_path=root/'PROGRAM_STATE.json'
@@ -80,6 +81,10 @@ def build_expected(root):
    require(t.get('applied') is True and t['spreadsheet_id']==SHEET and t['sheet_id']==1254632077 and t['updated_range']==e['tracker_range'],f'PR{n} tracker receipt is pending or inconsistent')
    require(len(t['row'])==4 and normalize_doi(t['row'][2])==e['doi'].lower() and t['read_back']==[t['row']],f'PR{n} exact tracker row/DOI readback differs')
    require(z['title']==meta['metadata']['title'] and len(z['files'])==2,f'PR{n} publication title/file inventory differs')
+   try:
+    expected_metadata(n,meta['metadata'],z)
+    e['metadata_comparison_rule']=description_rule_evidence(n,meta['metadata']['description'],z)
+   except MetadataRuleError as exc:raise NotReady(f'PR{n} actual publication metadata normalization is not authorized: {exc}') from exc
    e['publication_receipt']=z;e['metadata']=meta;e['tracker_row']=t['row'];e['tracker_range']=t['updated_range']
    require({x['name'] for x in z['files']}=={Path(x.get('name',x['path'])).name for x in meta['files']},f'PR{n} metadata file names differ')
    for f in z['files']:

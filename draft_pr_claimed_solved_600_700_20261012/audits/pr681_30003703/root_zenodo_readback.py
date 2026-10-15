@@ -42,7 +42,7 @@ def main():
  checks={}
  for file in files:
   name=file['name'];entry=entries[name]
-  url=entry['links']['content'] if staged else f'https://zenodo.org/api/records/{rid}/files/{urllib.parse.quote(name)}/content'
+  url=f'https://zenodo.org/api/records/{rid}' + ('/draft' if staged else '') + f'/files/{urllib.parse.quote(name)}/content'
   u=urllib.parse.urlsplit(url);require(u.scheme=='https' and u.hostname=='zenodo.org' and u.port in (None,443) and not u.username and not u.password,'unsafe download URL')
   headers={'User-Agent':k.USER_AGENT}
   if staged:headers['Authorization']='Bearer '+client.token

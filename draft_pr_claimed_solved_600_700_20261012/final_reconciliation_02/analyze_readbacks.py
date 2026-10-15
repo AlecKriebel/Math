@@ -6,6 +6,7 @@ import json,hashlib,subprocess,re
 import sys
 sys.dont_write_bytecode=True
 from scope_sheet_evidence import PRIVATE_KEYS,scoped_evidence
+from metadata_rules import expected_metadata,description_rule_evidence,MetadataRuleError
 OUT=Path(__file__).resolve().parent;ROOT=OUT.parent;REPO=ROOT.parent
 N=(615,618,623,628,630,662,672,681)
 def now():return datetime.now(timezone.utc).isoformat()
@@ -17,7 +18,7 @@ def response(key):
  if d.get('returncode',0)!=0 or 'error' in d:raise ValueError(f'Failed response {key}')
  return d['response']
 def pad(r):return (r+['']*4)[:4]
-def doi_value(v):return re.sub(r'^https?://(?:dx\.)?doi\.org/','',v.strip(),flags=re.I).rstrip('/').lower()
+def doi_value(v):return re.sub(r'^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)','',v.strip(),count=1,flags=re.I).removesuffix('/').lower()
 def git(args):
  p=subprocess.run(['git','--no-optional-locks',*args],cwd=REPO,capture_output=True,timeout=30)
  if p.returncode:raise ValueError(p.stderr.decode(errors='replace'))
@@ -94,9 +95,17 @@ for e in entries:
    needed=load(a/'ACCEPTED_PUBLICATION_INPUTS.json')['files']
    check(f'PR{n}:accepted_local_publication_pins',all(sha((a/'publication'/k).read_bytes())==v['sha256'] and (a/'publication'/k).stat().st_size==v['bytes'] for k,v in needed.items()),{'files':len(needed)})
   native=response(f'pr{n}_zenodo_native');normalized=native_normalized(native);expected=metadata_input_normalized(e['metadata']['metadata'])
+  try:
+   expected=expected_metadata(n,expected,e['publication_receipt'])
+   description_rule=description_rule_evidence(n,e['metadata']['metadata']['description'],e['publication_receipt'])
+   check(f'PR{n}:actual_publication_receipt_authorizes_only_exact_recorded_description_rule',True,description_rule)
+  except MetadataRuleError as exc:
+   description_rule={'invalid_rule':str(exc)}
+   check(f'PR{n}:actual_publication_receipt_authorizes_only_exact_recorded_description_rule',False,description_rule)
   mdiff={k:{'expected':expected.get(k),'actual':normalized.get(k)} for k in set(normalized)|set(expected) if normalized.get(k)!=expected.get(k)}
-  check(f'PR{n}:every_supplied_metadata_field_exact_after_documented_native_schema_mapping',not mdiff,{'mismatches':mdiff,'local_field_count':len(expected)})
-  check(f'PR{n}:production_public_published_exact_DOI',native['is_published'] is True and native['status']=='published' and native['pids']['doi']['identifier']==e['doi'] and str(native['id'])==e['doi'].split('.')[-1] and native['access']['status']=='open')
+  dump(OUT/f'pr{n}_METADATA_COMPARISON.json',{'local_metadata_raw':e['metadata']['metadata'],'public_native_metadata_raw':native['metadata'],'expected_comparison_metadata':expected,'actual_comparison_metadata':normalized,'actual_publication_receipt_metadata_normalizations':e['publication_receipt'].get('metadata_normalizations'),'record_specific_description_rule':description_rule,'mismatches':mdiff,'all_other_fields_compared_exactly':True})
+  check(f'PR{n}:every_supplied_metadata_field_matches_exact_native_schema_and_actual_record_specific_rule',not mdiff,{'mismatches':mdiff,'local_field_count':len(expected),'description_rule':description_rule})
+  check(f'PR{n}:production_public_published_exact_DOI',native['is_published'] is True and native['status']=='published' and native['pids']['doi']['identifier']==e['doi'] and str(native['id'])==e['doi'].split('.')[-1] and str(native['id'])==str(e['publication_receipt']['id']) and native['access']['status']=='open')
   files=native['files']['entries'];published=e['publication_receipt']['files']
   check(f'PR{n}:public_exact_file_inventory',set(files)=={f['name'] for f in published} and native['files']['count']==len(published))
   fresults=[]
@@ -114,7 +123,7 @@ for e in entries:
   target=int(re.search(r'!A(\d+):D',e['tracker_range']).group(1))
   fullmatches=[i+1 for i,row in enumerate(allrows) if pad(row)==e['tracker_row']]
   check(f'PR{n}:globally_unique_DOI_and_exact_row',hits==[target] and fullmatches==[target],{'normalized_DOI_column_C_rows':hits,'exact_A_D_row_matches':fullmatches,'total_returned_rows':len(allrows)})
-  own={'pr':n,'disposition':'MERGED_PUBLISHED_TRACKED','original_head':e['original_head'],'accepted_head':e['accepted_head'],'merge_commit':e['merge_commit'],'merged_at':live['mergedAt'],'doi':e['doi'],'record_url':e['record_url'],'metadata_fields_verified':len(expected),'public_files':fresults,'tracker_range':e['tracker_range'],'global_DOI_rows':hits,'whole_merge_tree_equals_accepted':gitproof['whole_trees_equal'],'own_scoped_merge_files_verified':gitproof.get('scope_file_count')}
+  own={'pr':n,'disposition':'MERGED_PUBLISHED_TRACKED','original_head':e['original_head'],'accepted_head':e['accepted_head'],'merge_commit':e['merge_commit'],'merged_at':live['mergedAt'],'doi':e['doi'],'record_url':e['record_url'],'metadata_fields_verified':len(expected),'metadata_receipt_normalizations':e['publication_receipt']['metadata_normalizations'],'description_comparison_rule':description_rule,'public_files':fresults,'tracker_range':e['tracker_range'],'global_DOI_rows':hits,'whole_merge_tree_equals_accepted':gitproof['whole_trees_equal'],'own_scoped_merge_files_verified':gitproof.get('scope_file_count')}
  results.append(own)
 meta=response('tracker_metadata');sheets=[x['properties'] for x in meta['sheets'] if x['properties']['sheetId']==1254632077]
 check('Tracker:spreadsheet_id_gid_and_tab_title',meta['spreadsheetId']=='1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20' and len(sheets)==1 and sheets[0]['title']=='Math Puzzles')

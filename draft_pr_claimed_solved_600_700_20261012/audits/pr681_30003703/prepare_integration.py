@@ -12,6 +12,7 @@ import contextlib
 import datetime
 import fcntl
 import hashlib
+import html
 import io
 import json
 import os
@@ -564,7 +565,17 @@ def publication_inputs(publication, doi, receipt_path, inspection_path):
         require(type(listed) is list and len(listed) == 2 and all(type(e) is dict for e in listed)
                 and len({e.get('name') for e in listed}) == 2
                 and {e.get('name'): e for e in listed} == expected_files, 'published/local upload bytes differ')
-        require(receipt.get('metadata_normalizations') == [], 'unreviewed metadata normalization; reconcile explicitly')
+        normalizations = receipt.get('metadata_normalizations')
+        require(type(normalizations) is list and normalizations in (
+            [], [{'field': 'description', 'kind': 'plain_text_html_entities'}]),
+            'unreviewed metadata normalization')
+        if normalizations:
+            require(not re.search(r'<(?:/?[A-Za-z]|[!?])[^>]*>', description)
+                    and html.unescape(description) == description
+                    and html.escape(description, quote=False) != description,
+                    'entity normalization requires eligible plain text and an actual escaped representation')
+    require(receipts[0]['metadata_normalizations'] == receipts[1]['metadata_normalizations'],
+            'publication/inspection metadata normalization differs')
     require(timestamp(receipts[0]['verified_utc'], 'publication receipt')
             <= timestamp(receipts[1]['verified_utc'], 'post-publication inspection'), 'inspection predates publication confirmation')
     members, binding = archive_binding(files['satoh_filtration_verification.zip'], original, files, snapshot_bytes)
@@ -588,6 +599,9 @@ def publication_inputs(publication, doi, receipt_path, inspection_path):
     validation = {'accepted_input_gate_sha256': sha(accepted_bytes), 'whole_package_reviewers': [r['reviewer_id'] for r in accepted['whole_package_review_rounds']],
                   'publication_receipt_sha256': sha(receipt_bytes[0]), 'inspection_receipt_sha256': sha(receipt_bytes[1]),
                   'deposit_metadata_sha256': sha(files['zenodo-deposit.json']), 'archive_binding': binding,
+                  'metadata_normalizations': receipts[0]['metadata_normalizations'],
+                  'remote_description_representation_sha256': sha((html.escape(description, quote=False)
+                      if receipts[0]['metadata_normalizations'] else description).encode()),
                   'helper_sha256': accepted['helper_sha256'],
                   'publication_confirmed_utc': receipts[0]['verified_utc'],
                   'inspection_verified_utc': receipts[1]['verified_utc'], 'source_bindings': source_bindings,
