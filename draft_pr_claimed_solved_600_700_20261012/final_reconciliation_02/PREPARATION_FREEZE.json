@@ -1,13 +1,16 @@
 {
-  "frozen_utc": "2026-10-15T07:16:25.735378+00:00",
-  "revision": 2,
-  "supersedes_v1_freeze_sha256": "b48b0c6069c98d3cfb38399aa43f28c8f3b4dd1755c5bcbe461e07785bb61928",
-  "v1_preserved_under": "preparation_v1/ and PREPARATION_FREEZE.v1.json",
-  "scope": "Revised prepared eight-PR read-only reconciliation sources only; no actual final readbacks or publication outcome certified",
+  "frozen_utc": "2026-10-15T07:36:53.922294+00:00",
+  "revision": 3,
+  "supersedes_v2_freeze_sha256": "5e223e5e674bdccb7f19193cca945f739d6e88145942071123a529cd04794a25",
+  "v1_v2_histories_preserved": true,
+  "scope": "Source-faithful prepared eight-PR read-only reconciliation only; actual external final collection pending",
   "status": "PREPARATION_PASS_COLLECTION_PENDING",
-  "preparation_checks_passed": 8,
-  "adversarial_controls_passed": 265,
+  "preparation_checks_passed": 10,
+  "adversarial_controls_passed": 289,
+  "stale_cache_controls": 24,
+  "stale_sentinel_executions": 0,
   "normal_optimized_reports_byte_identical": true,
+  "all_tested_root_source_bytes_match_current_sources": true,
   "files": {
     ".gitignore": {
       "bytes": 5,
@@ -16,6 +19,18 @@
     "BASELINE_PRESERVATION.json": {
       "bytes": 9741,
       "sha256": "a589b5215ba4398dcc1617415b842f0d495f5503a02df5f914c558697b4ae314"
+    },
+    "FROZEN_PREPARATION_ENTRY_REPLAY.json": {
+      "bytes": 2813,
+      "sha256": "2d148170bf59ca5fd0639f0ee3e9203e93c605a9014b135ba8023016b213ec47"
+    },
+    "FROZEN_SOURCE_CONTROLS.normal.json": {
+      "bytes": 5074,
+      "sha256": "865890147f8b8447ee66d5cb36e32ceb56df5948d45359e16948688572f35b6e"
+    },
+    "FROZEN_SOURCE_CONTROLS.optimized.json": {
+      "bytes": 5074,
+      "sha256": "865890147f8b8447ee66d5cb36e32ceb56df5948d45359e16948688572f35b6e"
     },
     "PREPARATION_CONTROLS.normal.json": {
       "bytes": 26925,
@@ -33,29 +48,41 @@
       "bytes": 2189,
       "sha256": "b48b0c6069c98d3cfb38399aa43f28c8f3b4dd1755c5bcbe461e07785bb61928"
     },
+    "PREPARATION_FREEZE.v2.json": {
+      "bytes": 5571,
+      "sha256": "5e223e5e674bdccb7f19193cca945f739d6e88145942071123a529cd04794a25"
+    },
     "PREPARATION_GATE_CHECK.json": {
       "bytes": 383,
       "sha256": "507d5171d195464f1b446b731e4d14b22f6d962c323e49067a32e6320ce2b603"
     },
     "PREPARATION_READINESS.json": {
-      "bytes": 2634,
-      "sha256": "68e3543a41721d1c6ec601269d80e8928cdbf8eb1cb4e09f824af7ccb4717000"
+      "bytes": 3486,
+      "sha256": "4cbbe01d7ba38e3a9c5f872ceddb895f6d53c5b838d17fb5f0ba8f94249d24a9"
+    },
+    "PREPARATION_SOURCE_TEST_FREEZE.json": {
+      "bytes": 11348,
+      "sha256": "6077efae09d6230d5c3c20410c056b367d0469466227c982b68f25809a7c485c"
     },
     "PREPARATION_V1_PRESERVATION.json": {
       "bytes": 423,
       "sha256": "e8928414e507fc1582b4e8f3a64cfa7f1bc90aa93d7d3404a20d98f3acf5eecf"
     },
+    "PREPARATION_V2_PRESERVATION.json": {
+      "bytes": 421,
+      "sha256": "f781c02f2ce716b6cceef7e61f0e622bb346dfb82486f130924027965d7976c4"
+    },
     "PREPARATION_VALIDATION.json": {
-      "bytes": 1509,
-      "sha256": "92e59e8b3b65a52a128b6e80b70d8eb36af006f7801db042b6b96cd04b64c292"
+      "bytes": 1726,
+      "sha256": "278b3bcccf431790a193aa808ca8322e559d2edd9c55f8550376b451badcdfa9"
     },
     "README.md": {
-      "bytes": 6671,
-      "sha256": "97604760fea274b58c38f965832332bba2dc53190b8e07f19ce5570caf21e8fe"
+      "bytes": 10000,
+      "sha256": "0e9810fdf76063efa55a02e0f1ae370b3570d3e6214e9a726b6d1689e7b347f6"
     },
     "RESEARCH_LOG.md": {
-      "bytes": 2131,
-      "sha256": "6639d90ccedaa4fb11651536ad89232b27a0b4aed7268211db753cbf76bc7807"
+      "bytes": 3430,
+      "sha256": "90ba4ef76b0bb0d16bfa728f89cc782195e30c68e63fda65874f2d34323af040"
     },
     "analyze_readbacks.py": {
       "bytes": 13679,
@@ -72,6 +99,10 @@
     "finalize_snapshot.py": {
       "bytes": 6929,
       "sha256": "649a353317286ad8ebcc87ffc24a92974ef4e6050d0c94de4c9ce6255b827437"
+    },
+    "frozen_source_cache_controls.py": {
+      "bytes": 8503,
+      "sha256": "32a01e22160f0bd9b9a59dee9ceadd3f0bfd76f7782deded1661b71804f686c5"
     },
     "metadata_rules.py": {
       "bytes": 3342,
@@ -133,12 +164,148 @@
       "bytes": 3500,
       "sha256": "f3d87e58a06fde94e1e08a122705dfea474c40adaa8d68ca12ad16345f9130fd"
     },
+    "preparation_v2/.gitignore": {
+      "bytes": 5,
+      "sha256": "1a9ba1479331c1ee35add00917198fb47e2c75de2e39eae2c6ed9963f4eca2cd"
+    },
+    "preparation_v2/BASELINE_PRESERVATION.json": {
+      "bytes": 9741,
+      "sha256": "a589b5215ba4398dcc1617415b842f0d495f5503a02df5f914c558697b4ae314"
+    },
+    "preparation_v2/PREPARATION_CONTROLS.normal.json": {
+      "bytes": 26925,
+      "sha256": "c3026b95dfe286baa919696dca79312896a5523481e3b5e43375fdd4a263d7ad"
+    },
+    "preparation_v2/PREPARATION_CONTROLS.optimized.json": {
+      "bytes": 26925,
+      "sha256": "c3026b95dfe286baa919696dca79312896a5523481e3b5e43375fdd4a263d7ad"
+    },
+    "preparation_v2/PREPARATION_CONTROL_INITIAL_HARNESS_ERROR.json": {
+      "bytes": 758,
+      "sha256": "ad8bb4ede76bd84a2c0e8647ceca2ecf218d578f66dcab5705d012b711c4e398"
+    },
+    "preparation_v2/PREPARATION_FREEZE.json": {
+      "bytes": 5571,
+      "sha256": "5e223e5e674bdccb7f19193cca945f739d6e88145942071123a529cd04794a25"
+    },
+    "preparation_v2/PREPARATION_FREEZE.v1.json": {
+      "bytes": 2189,
+      "sha256": "b48b0c6069c98d3cfb38399aa43f28c8f3b4dd1755c5bcbe461e07785bb61928"
+    },
+    "preparation_v2/PREPARATION_GATE_CHECK.json": {
+      "bytes": 383,
+      "sha256": "507d5171d195464f1b446b731e4d14b22f6d962c323e49067a32e6320ce2b603"
+    },
+    "preparation_v2/PREPARATION_READINESS.json": {
+      "bytes": 2634,
+      "sha256": "68e3543a41721d1c6ec601269d80e8928cdbf8eb1cb4e09f824af7ccb4717000"
+    },
+    "preparation_v2/PREPARATION_V1_PRESERVATION.json": {
+      "bytes": 423,
+      "sha256": "e8928414e507fc1582b4e8f3a64cfa7f1bc90aa93d7d3404a20d98f3acf5eecf"
+    },
+    "preparation_v2/PREPARATION_VALIDATION.json": {
+      "bytes": 1509,
+      "sha256": "92e59e8b3b65a52a128b6e80b70d8eb36af006f7801db042b6b96cd04b64c292"
+    },
+    "preparation_v2/README.md": {
+      "bytes": 6671,
+      "sha256": "97604760fea274b58c38f965832332bba2dc53190b8e07f19ce5570caf21e8fe"
+    },
+    "preparation_v2/RESEARCH_LOG.md": {
+      "bytes": 2131,
+      "sha256": "6639d90ccedaa4fb11651536ad89232b27a0b4aed7268211db753cbf76bc7807"
+    },
+    "preparation_v2/analyze_readbacks.py": {
+      "bytes": 13679,
+      "sha256": "252d51cddae707a41c5e2ef5d91bc5410926ed21c9f3f3ba7f78a30ea7f17da9"
+    },
+    "preparation_v2/collect_readbacks.py": {
+      "bytes": 7725,
+      "sha256": "7c990827deb8512a2fd36f6e1eb843b3b175dd81752883d0b0cdd821a319b279"
+    },
+    "preparation_v2/expected_state.py": {
+      "bytes": 10510,
+      "sha256": "835d42839a4a3dfe890a2ce9658072657af5e44459964013c50620be3faf015c"
+    },
+    "preparation_v2/finalize_snapshot.py": {
+      "bytes": 6929,
+      "sha256": "649a353317286ad8ebcc87ffc24a92974ef4e6050d0c94de4c9ce6255b827437"
+    },
+    "preparation_v2/metadata_rules.py": {
+      "bytes": 3342,
+      "sha256": "90af4a68f0be247ded3e3d396c88e26d03063cfb44456a89361ba1a07d948944"
+    },
+    "preparation_v2/preparation_controls.py": {
+      "bytes": 9958,
+      "sha256": "1bdd663f3635298176eb4eec1430cb55d0c570a5177017c4990fc1f33bce4fb2"
+    },
+    "preparation_v2/preparation_v1/.gitignore": {
+      "bytes": 5,
+      "sha256": "1a9ba1479331c1ee35add00917198fb47e2c75de2e39eae2c6ed9963f4eca2cd"
+    },
+    "preparation_v2/preparation_v1/BASELINE_PRESERVATION.json": {
+      "bytes": 9741,
+      "sha256": "a589b5215ba4398dcc1617415b842f0d495f5503a02df5f914c558697b4ae314"
+    },
+    "preparation_v2/preparation_v1/PREPARATION_FREEZE.json": {
+      "bytes": 2189,
+      "sha256": "b48b0c6069c98d3cfb38399aa43f28c8f3b4dd1755c5bcbe461e07785bb61928"
+    },
+    "preparation_v2/preparation_v1/PREPARATION_GATE_CHECK.json": {
+      "bytes": 383,
+      "sha256": "caa980101fa40837bf243d4844f5f0d6d2e4364cd719aafaeccd14ada91ff7b7"
+    },
+    "preparation_v2/preparation_v1/PREPARATION_READINESS.json": {
+      "bytes": 1707,
+      "sha256": "24be4049d21c4684804c0245d4f4022104a62b4f226415fde54cbe4421acaae7"
+    },
+    "preparation_v2/preparation_v1/PREPARATION_VALIDATION.json": {
+      "bytes": 1858,
+      "sha256": "b50a4028bc4b6de80ff4c88b07eb4007945198a5bc4fde1011ef6030f6174daa"
+    },
+    "preparation_v2/preparation_v1/README.md": {
+      "bytes": 4147,
+      "sha256": "bddeb60ba8437ecc805fb877d5acc5e29bc5b840ffe8193089ffcd3caa9e4fdb"
+    },
+    "preparation_v2/preparation_v1/RESEARCH_LOG.md": {
+      "bytes": 951,
+      "sha256": "e929b395c4169a1dfc2fb6b946a9ba332ab3383919fac296e0c5df9f226b93e1"
+    },
+    "preparation_v2/preparation_v1/analyze_readbacks.py": {
+      "bytes": 12374,
+      "sha256": "b53dbb2cea5f9c07aa7ead12ef091d5d5f5c5743d210fe9a921576aa371d995f"
+    },
+    "preparation_v2/preparation_v1/collect_readbacks.py": {
+      "bytes": 7725,
+      "sha256": "7c990827deb8512a2fd36f6e1eb843b3b175dd81752883d0b0cdd821a319b279"
+    },
+    "preparation_v2/preparation_v1/expected_state.py": {
+      "bytes": 10110,
+      "sha256": "b64b75715ca496793d9822a76a7655b5fd22302d875556d79a565315772dc502"
+    },
+    "preparation_v2/preparation_v1/finalize_snapshot.py": {
+      "bytes": 6125,
+      "sha256": "88454a9ac4a921207b4198b35a4c6ca700cab7da0eccda1333b5986768f467f1"
+    },
+    "preparation_v2/preparation_v1/scope_sheet_evidence.py": {
+      "bytes": 3500,
+      "sha256": "f3d87e58a06fde94e1e08a122705dfea474c40adaa8d68ca12ad16345f9130fd"
+    },
+    "preparation_v2/scope_sheet_evidence.py": {
+      "bytes": 3526,
+      "sha256": "1b1ebc640992c1570beaf8d746e6419ae0156a9a0c09d2fa0cef0d5cee864132"
+    },
+    "run_frozen_sources.py": {
+      "bytes": 4970,
+      "sha256": "4d5e2835dc2143add1a469927611446301f15c70b1a065fbde2c07378078d09d"
+    },
     "scope_sheet_evidence.py": {
       "bytes": 3526,
       "sha256": "1b1ebc640992c1570beaf8d746e6419ae0156a9a0c09d2fa0cef0d5cee864132"
     }
   },
-  "excluded": "Ignored tmp/ and this self-referential current preparation freeze",
+  "excluded": "Ignored tmp/ cache fixtures/raw responses and this self-referential current preparation freeze",
   "external_requests_made": 0,
   "awaiting_later_explicit_collection_authorization": true,
   "persistent_program_goal_modified": false

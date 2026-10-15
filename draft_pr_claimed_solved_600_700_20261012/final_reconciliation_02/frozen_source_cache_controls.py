@@ -85,10 +85,10 @@ def main():
  refused('Offline_collection_refused_before_dispatch',path,pin,'Offline preparation cannot dispatch collection',entry='collect_readbacks.py',args=('--collect',))
  import socket,subprocess
  try:socket.socket()
- except namespace['OfflineTransportError']:check('Socket_creation_denied_before_network_dispatch',True)
+ except RuntimeError as exc:check('Socket_creation_denied_before_network_dispatch',str(exc).startswith('Offline preparation forbids transport: socket.__new__'))
  else:check('Socket_creation_denied_before_network_dispatch',False)
  try:subprocess.run([sys.executable,'-c','raise SystemExit(0)'])
- except namespace['OfflineTransportError']:check('Child_process_denied_before_launch',True)
+ except RuntimeError as exc:check('Child_process_denied_before_launch',str(exc).startswith('Offline preparation forbids transport: subprocess.Popen'))
  else:check('Child_process_denied_before_launch',False)
  check('All_actual_preparation_source_files_remain_unchanged',all((OUT/name).stat().st_size==pin['bytes'] and sha((OUT/name).read_bytes())==pin['sha256'] for name,pin in source_pins.items()))
  print(json.dumps({'status':'PASS','scope':'Purely offline source-only execution controls; synthetic harmless stale caches only','controls':len(controls),'matching_timestamp_size_caches_per_module':2,'cached_dependency_modules':3,'cached_entry_scripts':1,'ordinary_loader_cache_acceptance_proved_without_execution':True,'stale_sentinel_executions':0,'external_requests_made':0,'child_processes_launched':0,'transport_audit_guard_enabled':True,'source_pins':source_pins,'results':controls},indent=2,sort_keys=True))
