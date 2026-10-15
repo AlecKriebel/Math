@@ -246,7 +246,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 235 | 30005449 / OWR-12697708-002 | Deterministic Limits of Trace-Reinforced Ant Walks | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 236 | 30005454 / OWR-12697708-007 | Critical Reinforcement Convergence on the Infinite Line | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 237 | 30005457 / OWR-12697708-010 | Reinforcement Counterexamples on Integer Lattices | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 238 | 30005731 / OWR-14298011-002 | Automatic Convexity of Optimal Spiral Strategies | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 238 | 30005731 / OWR-14298011-002 | Automatic Convexity of Optimal Spiral Strategies | 0.1881 | 5.0 | 3 | 2023 | unsolved | 5/5 |  | 2026-10-01: independently reviewed five-turn partial packet. Conditional radial/nonradial prefix length-convexity and causal arrival lemmas; explicit nonconfining prefix refutes unchanged-suffix splicing, not the optimizer conjecture; admissible Lipschitz prefix can lack an initial tangent. Exact global objective, e2/e1 source convention and optimizer regularity/closure gap remain unresolved. Five checker outputs replayed; separate review accepts scoped partials. See attempts/30005731/RESULT.md and independent_review/. |  |
 | 239 | 7000013 / AMR-069-0013 | Geometry of Curves and Surfaces — Problem 2.4 | 0.1879 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 240 | 30006020 / OWR-14298589-005 | Intermediate-Area Cylinders on Large-Genus Square-Tiled Surfaces | 0.1864 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 241 | 30004786 / OWR-8415342-014 | Automorphic L-Functions from Sigma–Rho Poisson Summation | 0.1862 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
