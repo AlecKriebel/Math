@@ -74,6 +74,16 @@ f(z)=\frac{k_\lambda(\phi_{-a}(z))-k_\lambda(-a)}{(1-|a|^2)k'_\lambda(-a)}.
 
 Such inverse transforms are normalized schlicht functions; in general they have an affine slit image with a different marked interior point and are not Koebe rotations. What transfers immediately is only that \(f(\mathbb D)\) is the complement of a straight ray, because the range differs from \(F(\mathbb D)\) by a nondegenerate complex affine map.
 
+An exact adversarial control takes \(a=i/2\), \(\lambda=1\) in this formula. It has
+
+\[
+f(z)=z+\left(\frac65-\frac45i\right)z^2
++\left(\frac{11}{25}-\frac{48}{25}i\right)z^3+\cdots,
+\qquad T_{i/2}f=k_1,\qquad A_f(i/2)=4.
+\]
+
+For any Koebe rotation, its coefficients obey \(4a_3-3a_2^2=0\); for this map that residual is \(-16/25-48i/25\). Thus it is not a Koebe rotation. Its omitted ray has endpoint \(-5/12\) and outgoing vector \(7/15-8i/5\). In particular, an endpoint can be real while the ray fails conjugation invariance. This verifies that the proof must constrain both the endpoint and the direction. The seven exact checks in `exact_adversarial_controls.py` all pass; they target this false shortcut rather than sample the claimed strict inequality.
+
 ## 3. Symmetry of the slit and conformal-radius normalization
 
 If \(f\in S_{\mathbb R}\), its image is invariant under conjugation. Thus, under equality, its omitted ray \(R\) is conjugation invariant. A closed ray \(R=c+v[0,\infty)\), \(|v|=1\), has a unique finite endpoint \(c\). Conjugation must fix that endpoint, so \(c\) is real; equality of the remaining ray forces \(\bar v=v\), so \(v=\pm1\). Since 0 lies in the image, the ray is exactly one of
@@ -138,3 +148,7 @@ For nonzero \(z\), multiplication by \(|z|/(1-|z|^2)\) transfers the bound to th
 ## 5. Exact residual limitations
 
 This argument determines neither the magnitude of \(4-M(z)\) at a general nonreal point nor its extremizer. It also does not settle priority, current literature, or the strongest intended meaning of the original problem. These are scope limitations, not defects in the stated qualitative theorem. No step of the reconstruction transfers the central qualitative strictness question to an unsupported stronger claim.
+
+## 6. Later comparison with the existing audit
+
+The core reconstruction in Sections 1–5 was recorded before the existing `audit/INDEPENDENT_AUDIT.md` was read; the explicit inverse-transform control in Section 2 was added afterwards. The existing audit's geometric conclusion agrees with this reconstruction. Its inverse-composition wording correction is already explicitly incorporated by `SCOPE_CLARIFICATION.md`. The existing audit is corroboration, not a premise used in the core reconstruction; its numerical/source claims were not certified in this analytic/geometric review.
