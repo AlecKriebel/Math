@@ -33,3 +33,5 @@ PR #906 is accepted, merged and published: [10.5281/zenodo.23356680](https://doi
 PR #908 is accepted, merged and published: [10.5281/zenodo.23383930](https://doi.org/10.5281/zenodo.23383930), tracker 'Math Puzzles'!A89:D89. Exact bounded-region scope, prior mechanism credits, bounded priority and unrefereed AI disclosures are explicit.
 
 PR #909 is accepted, merged and published: [10.5281/zenodo.23384938](https://doi.org/10.5281/zenodo.23384938), tracker 'Math Puzzles'!A93:D93. Exact summed multibranch scope, classical construction/method credits, bounded priority and unrefereed AI disclosures are explicit.
+
+PR #919 is accepted, merged and published: [10.5281/zenodo.23387550](https://doi.org/10.5281/zenodo.23387550), tracker 'Math Puzzles'!A98:D98. Exact prescribed-matrix scope, prior finiteness credits, bounded priority and unrefereed AI disclosures are explicit.
