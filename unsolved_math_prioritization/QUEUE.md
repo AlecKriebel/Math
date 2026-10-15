@@ -1756,7 +1756,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1745 | 2485 / EP-1095 | Erdős Problem #1095 | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1746 | 3047 / OPG-37222 | Dividing up the unrestricted partitions | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1747 | 3100047 / AMR-030-0047 | Is the 1/3-2/3 Conjecture for Pressing Sequences true | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1748 | 3100082 / AMR-030-0082 | Consider p(v, t), the probability that a walk beginning from the origin ends at the point v on the d-dimensional integer | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1748 | 3100082 / AMR-030-0082 | Consider p(v, t), the probability that a walk beginning from the origin ends at the point v on the d-dimensional integer | 0.0585 | 5.0 | 3 | unknown | claimed_solved | ≥1; total unknown |  | 2026-10-11: Accepted credited counterexample to parity-restricted discrete-time temporal unimodality: dimension 26, endpoint (17,0,...,0), p65 > p67 < p69, with exact independent counts and two-step normalization 2704. Anonymous/EvidencePress witness of 2026-09-19 credited. No novelty, minimal-dimension, continuous-time or infinite-family claim. [Proof and audit, draft PR #1311](https://github.com/AlecKriebel/Math/pull/1311). |  |
 | 1749 | 3100089 / AMR-030-0089 | Let G be a bicolored graph, and let H be the graph whose vertices are the valid pressing sequences of G and whose edges | 0.0585 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1750 | 3109 / OPG-37182 | Odd cycles and low oddness | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1751 | 3200 / OPG-388 | List colorings of edge-critical graphs | 0.0585 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
