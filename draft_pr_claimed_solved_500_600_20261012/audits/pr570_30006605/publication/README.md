@@ -24,7 +24,7 @@ All-pairs reference routines and brute structural preprocessing are deliberately
 
 `BUILD.json` and `PDF_QA.json` document the exported five-page PDF. Rebuild it with Tectonic0.16.9 and the recorded SOURCE_DATE_EPOCH; the desktop compiler was also checked without changing the open PR521 editor. A TeX installation can require network access for fonts/packages; that is separate from the offline controls. The source date is a reproducibility setting, not evidence of a discovery date. `make_package.py` deterministically recreates the ZIP from the audit checkout and is included for inspection; it is not intended to run inside the extracted archive.
 
-`MANIFEST.json` inventories every payload except itself; nested seals and the independently recorded original snapshot preserve earlier freezes. Integrity hashes establish consistency, not authenticity, historical priority, proof-assistant certification or human peer review. Fresh final package adversaries and their acceptance receipts are stored beside the publication in the repository, outside this archive to avoid self-reference.
+`MANIFEST.json` inventories every payload except itself; nested seals and the independently recorded original snapshot preserve earlier freezes. The producer validates source containment and excludes forbidden material relative to the audit root, so the same checkout can be rebuilt under ordinary, `.cache` or `scratch` ancestors. Integrity hashes establish consistency, not authenticity, historical priority, proof-assistant certification or human peer review. Fresh final package adversaries and their acceptance receipts are stored beside the publication in the repository, outside this archive to avoid self-reference.
 
 ## Disclosure and reuse
 
