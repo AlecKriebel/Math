@@ -617,6 +617,25 @@ def premerge_gate(freeze, require_draft=False):
     return pr, parent, source, originals
 
 
+def accepted_review_check(accepted, freeze, context):
+    """Reauthenticate the complete accepted chain, including new canonical rounds."""
+    rows = accepted.get('full_package_reviews')
+    need(type(rows) is list and len(rows) >= 2, 'accepted full review history required')
+    specs = []
+    for number, row in enumerate(rows, 1):
+        need(type(row) is dict and type(row.get('round')) is int and row['round'] == number
+             and type(row.get('manifest_sha256')) is str
+             and re.fullmatch('[0-9a-f]{64}', row['manifest_sha256']) is not None,
+             'accepted review history schema/consecutive external seals')
+        specs.append(f"{number:02d}:" + row['manifest_sha256'])
+    _, originals = original_check()
+    checked, latest = review_check(specs, freeze, accepted['freeze_sha256'], context, originals)
+    need(exact(checked, rows) and type(accepted.get('exact_claim')) is str
+         and accepted['exact_claim'] == latest['strongest_verified_theorem'],
+         'accepted review records/theorem differ from freshly authenticated complete history')
+    return checked
+
+
 def accepted_package(context):
     accepted = load(A / 'ACCEPTANCE.json')
     need(accepted.get('accepted') is True and accepted.get('pr') == PR
@@ -629,6 +648,7 @@ def accepted_package(context):
     need(exact(accepted['files'], freeze['files']) and exact(accepted['future_helpers'], freeze['future_helpers']),
          'accepted file/helper inventory')
     disposition_check()
+    accepted_review_check(accepted, freeze, context)
     return accepted, freeze
 
 
@@ -698,6 +718,7 @@ def merge(args, context):
              'accepted_freeze_sha256': accepted['freeze_sha256'], 'pre_action': pr,
              'remote_main': parent, 'source_gate': source, 'blind_retry_permitted': False}, exclusive=True)
         if pr['isDraft']:
+            accepted_review_check(accepted, freeze, context)
             ready = subprocess.run(['gh', 'pr', 'ready', str(PR), '--repo', 'AlecKriebel/Math'],
                                    cwd=ROOT, capture_output=True, text=True)
             save(A / 'PR_READY_ACTION.json', {'utc': utc_now(), 'returncode': ready.returncode,
@@ -705,6 +726,7 @@ def merge(args, context):
             need(ready.returncode == 0, 'ready action uncertain/failed: inspect saved action')
         # Refresh all target and destination gates after the ready mutation.
         premerge_gate(freeze)
+        accepted_review_check(accepted, freeze, context)
         result = subprocess.run(['gh', 'pr', 'merge', str(PR), '--repo', 'AlecKriebel/Math',
                                  '--merge', '--match-head-commit', HEAD], cwd=ROOT,
                                 capture_output=True, text=True)
@@ -802,6 +824,7 @@ def zenodo(args, context):
     bootstrap = ('import sys; p=sys.argv[1]; sys.argv=sys.argv[1:]; '
                  'g={"__name__":"__main__","__file__":p,"__package__":None}; '
                  'exec(compile(sys.stdin.buffer.read(),p,"exec",dont_inherit=True,optimize=0),g)')
+    accepted_review_check(accepted, freeze, context)
     result = subprocess.run([sys.executable, '-I', '-S', '-B', '-c', bootstrap,
                              str(ROOT / KIT), *kit_args], cwd=ROOT, input=source, capture_output=True)
     if result.returncode != 0:
@@ -939,6 +962,7 @@ def tracker_append(args, context):
         params = {'spreadsheetId': SID, 'range': table, 'valueInputOption': 'RAW', 'insertDataOption': 'INSERT_ROWS'}
         save(A / 'TRACKER_APPEND_INTENT.json', {'utc': utc_now(), 'params': params, 'row': row,
              'accepted_freeze_sha256': accepted['freeze_sha256'], 'blind_retry_permitted': False}, exclusive=True)
+        accepted_review_check(accepted, freeze, context)
         response = gws(['sheets', 'spreadsheets', 'values', 'append', '--params', json.dumps(params), '--json', json.dumps({'values': [row]})])
         save(A / 'TRACKER_APPEND_RESPONSE.json', response)
         updates = response.get('updates', {})
@@ -1111,6 +1135,7 @@ def native_write(args, context):
         intent_name = A / f'NATIVE_PUBLICATION_CAS_{attempt:02d}_INTENT.json'
         save(intent_name, {'utc': utc_now(), 'parent': parent, 'commit': commit, 'source_gate': source,
              'accepted_freeze_sha256': accepted['freeze_sha256'], 'paths': paths}, exclusive=True)
+        accepted_review_check(accepted, freeze, context)
         pushed = subprocess.run(['git', 'push', 'origin', commit + ':refs/heads/main'], cwd=ROOT, capture_output=True, text=True)
         save(A / f'NATIVE_PUBLICATION_CAS_{attempt:02d}_ACTION.json', {'utc': utc_now(), 'returncode': pushed.returncode,
              'stdout': pushed.stdout, 'stderr': pushed.stderr})
@@ -1272,6 +1297,7 @@ def finalize(args, context):
         need(not (A / 'PR_FINAL_METADATA_INTENT.json').exists(), 'prior metadata edit intent needs readback reconciliation')
         save(A / 'PR_FINAL_METADATA_INTENT.json', {'utc': utc_now(), 'title': title, 'body_sha256': sha(body.encode()),
              'merged_commit': merge['mergeCommit']['oid'], 'blind_retry_permitted': False}, exclusive=True)
+        accepted_review_check(accepted, freeze, context)
         edit = subprocess.run(['gh', 'pr', 'edit', str(PR), '--repo', 'AlecKriebel/Math', '--title', title,
                                '--body-file', str(path)], cwd=ROOT, capture_output=True, text=True)
         save(A / 'PR_FINAL_METADATA_ACTION.json', {'utc': utc_now(), 'returncode': edit.returncode,
@@ -1280,6 +1306,7 @@ def finalize(args, context):
     main_destination(confirmed, merged=True)
     need(confirmed['mergeCommit'] == merge['mergeCommit'] and confirmed.get('title') == title
          and confirmed.get('body') == body, 'final PR metadata exact readback')
+    accepted_review_check(accepted, freeze, context)
     save(A / 'PR_PUBLISHED_METADATA.json', confirmed)
     state = load(P / 'CURRENT_STATE.json')
     already = PR in state['completed_prs']
