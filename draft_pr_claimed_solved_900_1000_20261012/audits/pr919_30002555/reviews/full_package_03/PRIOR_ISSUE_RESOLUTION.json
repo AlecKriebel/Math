@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "prior_reviews": [
+    {
+      "round": 1,
+      "manifest_sha256": "5bf7174357ccf4e228aeb14e1d25e44c9692b253919cde867c42b1a65956d3a1",
+      "public_members": 36,
+      "completed_utc": "2026-10-15T06:07:54.813555+00:00",
+      "required_issues": [
+        {
+          "id": "R1",
+          "severity": "workflow_blocker",
+          "path": "reviewed_helpers/merge_pr919.py",
+          "line": 43,
+          "finding": "Expected disposition is obsolete and differs from authenticated current/frozen PUBLICATION_DISPOSITION value. Helper deterministically stops before an otherwise valid accepted-candidate merge.",
+          "expected_current_value": "PREPARE_EXPLICITLY_ATTRIBUTED_APPLICATION_NOTE",
+          "fix": "Align disposition gate with intended current framing while retaining exact acceptance/freeze/head checks; refresh helper preparation pins."
+        },
+        {
+          "id": "R2",
+          "severity": "public_prerequisite_omission",
+          "paths": [
+            "README.md",
+            "requirements.txt",
+            "zenodo-deposit.json"
+          ],
+          "finding": "Python>=3.10+stdlib prerequisites omit POSIX dependence: full entrypoint reaches unconditional os.O_NOFOLLOW and leading-slash canonical root checker in HARDENED_VERIFY.py; native Windows is unsupported.",
+          "actual_Windows_execution": false,
+          "fix": "Document POSIX/macOS/Linux plus O_NOFOLLOW support, explicitly distinguishing actual macOS execution from untested systems; or implement and test Windows support if desired. Rebuild and re-anchor modified public package/metadata/freeze."
+        }
+      ],
+      "optional_issues": [
+        {
+          "id": "O1",
+          "finding": "RMV Question0.2 is broader, with nested genus/end spaces and additional group classes, rather than literally the same restatement.",
+          "fix": "Use broader formulation containing the all-nonplanar X_infinity=X subcase in note/README/metadata/PR prose."
+        },
+        {
+          "id": "O2",
+          "finding": "Later tracker/ledger/finalizer helpers rely on trusted sequencing and receipt placement rather than explicitly checking every cross-receipt PR/head/freeze/DOI linkage. No wrong-target action observed or executed.",
+          "fix": "Add explicit identity/DOI equality links before downstream writes if strengthening operational guards."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "manifest_sha256": "98cbe02d1862614c0696a44b0ad8f5a3d8f3afe49dbd4fd55806c87311bcd0b2",
+      "public_members": 43,
+      "completed_utc": "2026-10-15T06:44:21.506708+00:00",
+      "required_issues": [],
+      "optional_issues": [
+        {
+          "id": "O3",
+          "path": "reviewed_helpers/run_pr919_zenodo.py",
+          "line": 28,
+          "finding": "The Zenodo launcher accepts MERGED/number919 without verifying merge.headRefOid equals the accepted original/integration head before invoking stage/publish. Downstream guards check this only after publication. A synthetic wrong-head PR919 merge receipt reaches a fully mocked publish call.",
+          "classification": "Optional stale-receipt sequencing hardening, no actual incorrect publication observed",
+          "fix": "Check accepted original/integration merged head before kit invocation; retain exact freeze/upload/descriptor/staged-ID gates; add wrong-head negative and accepted integrated-head positive controls; update helper pins.",
+          "evidence": "HELPER_CONTROL_RESULTS.json; HELPER_CONTROLS.py; identical preserved launcher source"
+        }
+      ]
+    }
+  ],
+  "preserved_candidates": [
+    {
+      "revision": 1,
+      "members": 30,
+      "snapshot_sha256": "f5313541c5a8724ed5df4c5074101c77415a256bf678b442a213f7120885bba4"
+    },
+    {
+      "revision": 2,
+      "members": 30,
+      "snapshot_sha256": "f87720a52bde872a054341e96efb19f6e9989dba47c9312c161603faa215fa34"
+    }
+  ],
+  "prior_issue_resolution": {
+    "R1": {
+      "verified": true,
+      "evidence": "Actual current label and later acceptance/freeze/live-head gates retained; independent and root synthetic regressions pass."
+    },
+    "R2": {
+      "verified": true,
+      "evidence": "Actual candidate and archived README/requirements/note/metadata/generator/PR/framing scoped to POSIX, O_NOFOLLOW, macOS tested and Linux untested."
+    },
+    "O1": {
+      "verified": true,
+      "evidence": "Actual RMV p530 broader nested-end/multi-group scope checked against note/README/metadata/PR/framing."
+    },
+    "O2": {
+      "verified": true,
+      "evidence": "Identical guard in all three actual downstream sources, called before writes; root27 and independent48 negative substitutions plus positive original/integration chains pass."
+    },
+    "O3": {
+      "verified": true,
+      "evidence": "Actual repaired launcher resolves original/integration head and rejects mismatch before intent or kit; root27 and independent9 negative pre-intent cases plus original/integration positives pass."
+    }
+  },
+  "historical_as_of_helper_pins_preserved": true,
+  "current_operational_revision": 3
+}
