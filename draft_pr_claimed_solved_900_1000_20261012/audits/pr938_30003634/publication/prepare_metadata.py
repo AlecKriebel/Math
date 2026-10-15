@@ -14,7 +14,7 @@ m={
  'keywords':['pure braid groups','derived series','solvable filtration','string link concordance','link signatures','homogeneous quasimorphisms','Meyer cocycle','Goeritz matrix','reproducible mathematics'],
  'related_identifiers':[{'identifier':'https://github.com/AlecKriebel/Math/pull/938','relation':'isSupplementTo','scheme':'url'}]+[{'identifier':d,'relation':'references','scheme':'doi'} for d in ['10.4171/OWR/2017/50','10.24033/bsmf.2496','10.2969/msjmemoirs/020010000','10.2140/agt.2025.25.1169','10.2140/agt.2014.14.2627','10.1017/S0013091522000153']],
  'references':[
- 'S. Harvey (joint work with J. H. Park and A. Ray), Pure braids, Whitney towers, and0-solvability, in Knot Theory, Oberwolfach Reports14(2017), report50,3020-3021, Question3; published2018; doi:10.4171/OWR/2017/50.',
+ 'S. Harvey (joint work with J. H. Park and A. Ray), Pure braids, Whitney towers, and0-solvability, in Mini-Workshop: Interactions between Low-dimensional Topology and Complex Algebraic Geometry, Oberwolfach Reports14(2017), report50,3020-3021, Question3; published2018; doi:10.4171/OWR/2017/50.',
  'J.-M. Gambaudo and E. Ghys, Braids and signatures, Bulletin de la Societe mathematique de France133(2005),541-579; doi:10.24033/bsmf.2496. TheoremA, Remarks1/3, three-strand Lemma4.1, homogenization p575.',
  'D. Calegari, scl, MSJ Memoirs20, Mathematical Society of Japan,2009; doi:10.2969/msjmemoirs/020010000. Proposition2.65p33 and solvable amenability p27.',
  'M. Kawasaki, M. Kimura, S. Maruyama, T. Matsushita and M. Mimura, The space of nonextendable quasimorphisms, Algebraic and Geometric Topology25(2025),1169-1226; doi:10.2140/agt.2025.25.1169. Lemma7.12p1207.',
