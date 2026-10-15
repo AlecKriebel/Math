@@ -606,7 +606,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 595 | 2887 / KP-4.11 | Kirby Problem 4.11 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 596 | 2927 / KP-4.51 | Kirby Problem 4.51 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 597 | 2995 / KP-4.119 | Kirby Problem 4.119 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 598 | 30006605 / OWR-14299911-007 | Weighted Centers on Bounded-Dimensional Median Graphs | 0.1125 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 598 | 30006605 / OWR-14299911-007 | Weighted Centers on Bounded-Dimensional Median Graphs | 0.1125 | 6.0 | 3 | 2026 | claimed_solved | 1/5 |  | Audited complete candidate: deterministic O(n log^5(2n)) weighted centers on finite adjacency-list graphs promised median, with nonnegative vertex weights and exact comparisons. BDH additive oracle and Ducoffe decision-to-optimization credited; encoding-dependent bit costs, no fast-oracle implementation/benchmark or novelty claim. |  |
 | 599 | 3341 / OPG-37448 | MSO alternation hierarchy over pictures | 0.1125 | 6.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 600 | 30000080 / OWR-734-005 | Powers of Linearly Presented Primary Ideals | 0.1124 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 601 | 30000203 / OWR-793-006 | Minimal Subdegrees of Twisted-Wreath Permutation Groups | 0.1122 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
