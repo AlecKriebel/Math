@@ -41,8 +41,8 @@ row = ['https://doi.org/10.4171/owr/2024/41', '', doi,
        'Announced Delecroix–Liu microscopic work credited; unavailable manuscript contents remain a priority '
        'uncertainty, no universal first-priority claim. The separate 4g−4/6g−6 microscopic reservation is retained. '
        'Mathematical/source reproduction, extensive bounded priority audit and fresh sequential manuscript '
-       'reviews passed after global fixes. Seven-page note and portable verification:7100 exact assertions, '
-       '46233 labelled permutations,123 DVV cases. AI tools used extensively; unrefereed, no external human '
+       'reviews passed after global fixes. Seven-page note and portable verification: 7,100 exact assertions, '
+       '46,233 labelled permutations, 123 DVV cases. AI tools used extensively; unrefereed, no external human '
        'peer review. PR:https://github.com/AlecKriebel/Math/pull/218']
 values = call('02-before', ['sheets', 'spreadsheets', 'values', 'get', '--params', json.dumps({
     'spreadsheetId': SHEET, 'range': "'Math Puzzles'!A:D"})]).get('values', [])

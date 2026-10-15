@@ -10,6 +10,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import zipfile
 
 ROOT = Path('/Users/alec/Documents/Math')
 R = Path(__file__).resolve().parent
@@ -82,6 +83,12 @@ release = {'utc': datetime.now(timezone.utc).isoformat(), 'status': 'claimed_sol
 U = R / 'pr_update/30006020'
 F = PUB / 'native_current_source'
 assert not F.exists(), 'Native source already prepared; reconcile before another attempt'
+with zipfile.ZipFile(R / 'output/cylinder_areas_verification.zip') as archive:
+    local_names = {x.relative_to(U).as_posix() for x in U.rglob('*') if x.is_file()}
+    archived_names = {x[len('current_source/'):] for x in archive.namelist() if x.startswith('current_source/')}
+    assert local_names == archived_names
+    for name in local_names:
+        assert (U / name).read_bytes() == archive.read('current_source/' + name)
 shutil.copytree(U, F)
 candidate = (U / 'CANDIDATE.md').read_text()
 old = 'the credited preprint package is undergoing fresh sequential review.'
@@ -168,11 +175,11 @@ body = ('Derives the intermediate-area cylinder Poisson law in the principal hol
         'The exact weighted model, DL/DGZZ geometric foundation, Aggarwal estimates and ABT/AT probability '
         'inputs are credited. Announced Delecroix–Liu microscopic work and the unavailable manuscript '
         'priority uncertainty are explicit; no universal first-priority or new microscopic theorem is claimed. '
-        'The unused OWR4g−4 versus exact6g−6 discrepancy is retained. All22 original files are archived.\n\n'
+        'The unused OWR microscopic factor 4g−4 versus exact total 6g−6 discrepancy is retained. All 22 original files are archived.\n\n'
         'Independent mathematical/source reproduction, extensive bounded priority work and two sequential '
         'fresh manuscript reviews completed. The first precision finding was fixed globally; the new final '
-        'review found no mandatory remaining issue. Portable verification reproduces7100 exact assertions, '
-        '46233 labelled permutations and123 DVV cases; finite controls supplement the analytic proof. '
+        'review found no mandatory remaining issue. Portable verification reproduces 7,100 exact assertions, '
+        '46,233 labelled permutations and 123 DVV cases; finite controls supplement the analytic proof. '
         'AI tools were used extensively; this is unrefereed without external human peer review.\n\n'
         'Seven-page preprint and source/verification package: ' + z['doi_url'] + '. '
         'Google Workspace tracker verified at ' + t['updated_range'] + '.')
