@@ -35,7 +35,7 @@ From the extracted archive root, use an output directory outside the intact inpu
 
     python3 -I -S -B build_verification.py --from-package . --trusted-index-sha256 PIN --output-root /absolute/new-output
 
-From an assembled repository preprint directory, use --from-package ../verification_package instead. The builder binds the index and verifier before execution and reproduces package_index.json and verification.zip byte for byte. The default development assembly mode requires the original canonical audit layout; use the documented --from-package mode for a downloaded or assembled package. LaTex compilation is optional and not needed for verification; regenerating a PDF can alter its timestamp and bytes. The accepted PDF is the included one.
+From an assembled repository preprint directory, use --from-package ../verification_package instead. The builder rejects a nonregular input index before reading it, binds the index and verifier before execution, and reproduces package_index.json and verification.zip byte for byte. The default development assembly mode requires the original canonical audit layout; use the documented --from-package mode for a downloaded or assembled package. LaTex compilation is optional and not needed for verification; regenerating a PDF can alter its timestamp and bytes. The accepted PDF is the included one.
 
 ## Publication files and metadata
 

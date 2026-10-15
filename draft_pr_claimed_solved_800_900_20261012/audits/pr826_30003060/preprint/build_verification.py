@@ -97,7 +97,10 @@ def main():
             raise RuntimeError('rebuild output must be outside the intact input package')
         if output.exists() and (not output.is_dir() or any(output.iterdir())):
             raise RuntimeError('rebuild output must be a fresh or empty directory')
-        index_raw = (root / 'package_index.json').read_bytes()
+        index_path = root / 'package_index.json'
+        if not stat.S_ISREG(index_path.lstat().st_mode):
+            raise RuntimeError('input index must be a regular file')
+        index_raw = index_path.read_bytes()
         if digest(index_raw) != args.trusted_index_sha256:
             raise RuntimeError('external input index pin mismatch')
         index = json.loads(index_raw)
