@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-15T04:27:40.074679+00:00 — Intake and independent view preserved. Completion estimate: 5% of bounded historical-priority audit, 0% of any novelty certification (not attainable by search alone).
+
+- 2026-10-15T04:30:40.192574+00:00 — Berger full report authenticated: workshop 16–22 Aug 2009, journal metadata published 30 Jun 2010. Exact theorem/conjecture and proof-credit sketch verified. BCR2016 Theorem 5.1 identified as strong all-scale prior in static d≥4 uniformly elliptic ballistic model; no legitimate embedding into target found. Independent historical adversary reports BS2002 directed L2 invariant-density theorem covering NE-encoded target, with exact concentration gap under review. Completion estimate: 40% of bounded audit.
+
+- 2026-10-15T04:38:07.648066+00:00 — Strong same-shaped prior found and authenticated inBBDS2024v1/v2; source result belongs to a different transition model. Original fixed-m-to-every-diverging-width corollary proved and independently adversarially checked; 38,814 exact rational controls pass. Peretz2022/2025 lineage and dates checked; publisherHTML failure correctly labeled. Main report, source catalog, query log drafted. Completion estimate: 85% of bounded audit; priority itself unresolved.
+
+- 2026-10-15T04:39:16.330552+00:00 — Independent historical adversary finished its bounded early-source investigation with BMP1999 andConlon–Song1999 full-source gaps explicit (its90% estimate retained). Read its report only after independent initial views/reports. Independently viewed BS published page363 to settle locator; corrected preliminaryp364 locator. Source hashes/content types and unchanged frozen pins verified; third-party full copies excluded from publication manifest. Completion estimate:100% of this bounded historical/direct-lineage audit report, with exact priority unresolved and no novelty clearance.
