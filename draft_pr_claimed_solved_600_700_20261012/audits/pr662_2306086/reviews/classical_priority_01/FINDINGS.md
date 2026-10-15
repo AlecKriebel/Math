@@ -1,5 +1,8 @@
 # Findings — classical priority family
 
+**Post-review source update (2026-10-15):** The recovered Rodemich A68 primary closes the earlier Rodemich access/formula gap below. See `RODEMICH_ADDENDUM.md` for the exact functional and an analytic countermodel to the naive derivative implication. Earlier access statements are retained as historical audit facts. The Jenkins1960 derivative-bound formulas remain unresolved.
+
+
 Immutable input: PR 662, head `e31701151c331a6eed9224fb37a75a374ea1043e`; original 24 target files all matched the immutable Git blobs and captured SHA-256 inventory. No new literature-family report was read. Only this review directory was written.
 
 ## Verdict

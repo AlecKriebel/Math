@@ -1,5 +1,8 @@
 # Classical structural priority audit: explicit implication tests
 
+**Post-review source update (2026-10-15):** The recovered Rodemich A68 primary closes the earlier Rodemich access/formula gap below. See `RODEMICH_ADDENDUM.md` for the exact functional and an analytic countermodel to the naive derivative implication. Earlier access statements are retained as historical audit facts. The Jenkins1960 derivative-bound formulas remain unresolved.
+
+
 UTC audit date: 2026-10-15. PR 662 / problem 2306086 only. Immutable head: `e31701151c331a6eed9224fb37a75a374ea1043e`.
 
 ## Exact proposition being tested
