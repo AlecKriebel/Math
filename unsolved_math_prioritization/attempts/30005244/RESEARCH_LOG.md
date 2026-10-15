@@ -1,0 +1,1 @@
+2026-10-15T09:27:25.029427+00:00 — case95%: required sequential manuscript reviews and global fixes completed. The final frozen credited preprint is published at https://doi.org/10.5281/zenodo.23390551, exact tracker readback 'Math Puzzles'!A105:D105. Native integration/readback/merge remains. Original31 artifacts and proofs are preserved.

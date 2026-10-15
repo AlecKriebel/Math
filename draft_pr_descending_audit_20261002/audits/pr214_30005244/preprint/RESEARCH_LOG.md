@@ -7,3 +7,6 @@ First fresh whole-manuscript adversary passed both theorems and found D1/D2 docu
 
 ## 2026-10-15T09:19:56.699337+00:00 —85%
 Second NEW full-manuscript/package adversary is sealed with no mandatory or optional finding. Root read its entire report/reconstruction, verified all14 safe hashes and exactly replayed its independent symbolic controls. The qualified credited scientific package is cleared for preprint release; first-priority/source-access limitations remain explicit. Final archive adds only completed review/acceptance and historical manifests; mathematical source, PDF, metadata and all reviewed payload remain unchanged. Provider publication, one tracker append and native integration/merge remain.
+
+## 2026-10-15T09:27:21.698776+00:00 — PR214 checkpoint95%
+The cleared note and764472-byte verification archive are published at https://doi.org/10.5281/zenodo.23390551. Repository kit confirms exact metadata with no normalizations, DOI resolves200, both actual public downloads match the cleared SHA256 bytes. One Google Workspace CLI append at 'Math Puzzles'!A105:D105 was verified in all4 cells; no duplicate deposit or tracker action. Native current-source integration, exact readback and merge remain. Counts41/19/18/0, goal active/incomplete.
