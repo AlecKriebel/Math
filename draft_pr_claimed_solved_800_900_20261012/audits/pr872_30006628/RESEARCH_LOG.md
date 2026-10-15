@@ -13,3 +13,8 @@ Root independently reconstructed all candidate mechanisms before inherited revie
 ## 2026-10-15T07:47:15.107068+00:00 — mathematical acceptance; priority open (25%)
 
 Root read full reports and decisions for five independent families and verified every public allowlisted byte. Counting, group transfer and spectral/probability families independently cleared the original exact completed proof; source scope matches OWRn>=3 and includes linear/cyclic robustness; original15files/26members and full source replays authenticate. No central mathematical repair or extra proof search. New wrapper requirements from artifact audit remain mandatory before package acceptance. Priority found direct ESI2024 syllable-spectral program and Ashcroft2023 all-length free-group predecessor; no strategy invention claim is permitted. Two priority lanes and separate helper-scope audit continue. No paper or publication promoted yet.
+
+
+## 2026-10-15T07:51:35.145147+00:00 — scoped publication tooling checked (25%)
+
+Original evidence lives under legacy random_property_t_30006628/. Both publication helpers now permit exactly integer(PR872,PID30006628) there and retain other targets default scope. A fresh independent adversary found Python numeric tuple equality accepted float aliases in permissive fixtures; root added strict integer keys before any external call. Corrected helpers pass107 offline executions/mode (92 rejection,15 accepted;1182 explicit checks), with all18 public allowlisted files verified and no remaining delta regression. Tree helper unchanged. This is tooling verification, not preprint acceptance; priority and package reviews remain pending.

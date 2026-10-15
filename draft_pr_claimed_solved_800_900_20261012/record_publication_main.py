@@ -44,6 +44,8 @@ def main():
     args = parser.parse_args()
     mapping = json.loads(Path(args.mapping).read_text())
     pid, pr = mapping['problem_id'], mapping['pr']
+    if type(pid) is not int or type(pr) is not int or pid <= 0:
+        raise RuntimeError('PR and problem ID must be positive integer keys')
     if not 800 <= pr <= 900 or mapping['final_review_status'] != 'CLEAR':
         raise RuntimeError('Out of scope or missing final acceptance')
     publication = mapping['published_record']
@@ -57,7 +59,10 @@ def main():
         '--json', 'state,mergeCommit'], text=True))
     if merged['state'] != 'MERGED':
         raise RuntimeError('PR is not merged')
-    prefix = 'unsolved_math_prioritization/attempts/' + str(pid) + '/'
+    # Keep PR872's verified legacy root; other targets retain the default scope.
+    # This literal exception never permits arbitrary caller-selected prefixes.
+    prefix = ('random_property_t_30006628/' if (pr, pid) == (872, 30006628)
+              else 'unsolved_math_prioritization/attempts/' + str(pid) + '/')
     seen = set()
     for entry in mapping['files']:
         name, local = entry['repo_path'], Path(entry['local_path'])
