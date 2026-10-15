@@ -1,0 +1,65 @@
+"""Pure native presentation; consumes authenticated actual lifecycle facts.
+No writes or remote operations. Original19 separately archived unchanged.
+"""
+from pathlib import Path
+import hashlib,json
+A=Path(__file__).resolve().parent.parent
+NATIVE='unsolved_math_prioritization/attempts/30004690/'
+CASE='draft_pr_publication_program_20260930/audits/pr196_30004690/'
+HEAD='a229ac722a3b1733bcb590a5f796b4a52f68cc73'
+STAGES={'published_pending_merge','actual_merge_accepted','factual_checkpoint_accepted'}
+CHANGED={'README.md','PUBLICATION_STATUS.json','RESEARCH_LOG.md','turns.json','CANDIDATE_REVIEW_MANIFEST.json','source_manifest.json','SHA256SUMS'}
+def enc(j):return (json.dumps(j,indent=2)+'\n').encode()
+def originals():
+ j=json.loads((A/'ORIGINAL_SUBMISSION_CUSTODY.json').read_bytes());assert j['original_head']==HEAD and j['original_QUEUE_status']=='claimed_solved' and len(j['files'])==19;out={}
+ for n,x in j['files'].items():
+  p=A/'original_submitted_head'/n;b=p.read_bytes();assert p.is_file() and not p.is_symlink() and p.stat().st_mode&0o777==0o444
+  assert len(b)==x['bytes'] and hashlib.sha256(b).hexdigest()==x['sha256'] and hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==x['git_blob'];out[n]=b
+ return out
+def construct(stage,f):
+ assert stage in STAGES and f['publication_ready_gate_accepted'] is True and f['actual_publication_verified'] is True and f['actual_tracker_row_verified'] is True
+ assert f['DOI']=='10.5281/zenodo.'+str(f['record_id']) and f['record_id']>0 and len(f['whole_package_review_events'])>=2 and f['historical_priority_established'] is False
+ if stage!='published_pending_merge':assert f['actual_merge_receipt']['accepted'] and f['actual_merge_receipt']['original_head']==HEAD
+ if stage=='factual_checkpoint_accepted':assert f['actual_factual_receipt']['accepted']
+ old=originals();out=dict(old);url='https://doi.org/'+f['DOI'];state={'published_pending_merge':'Preprint published and tracker verified; original-HEAD-safe merge pending.','actual_merge_accepted':'Original-HEAD-safe merge accepted; factual completion checkpoint pending.','factual_checkpoint_accepted':'Published, tracked and original-HEAD-safe merged; factual completion checkpoint accepted.'}[stage]
+ common={'UTC':f['UTC'],'problem_id':30004690,'original_head':HEAD,'status':'claimed_solved','publication_lifecycle_stage':stage,'state':state,'mathematical_result_valid':True,'exact_theorem':'Smooth strictly positive fibre boundary data on P1 times circle whose bounded weak Bedford–Taylor homogeneous complex Monge–Ampere solution has no second-order real Taylor expansion at a genuine point0<|tau|<1.','publication_form':'Attributed source-specific proof/application note','prior_OWR2021_interior_announcement_credited':True,'Ross_Witt_Nystrom_flow_and_duality_inputs_credited':True,'historical_priority_established':False,'first_discovery_or_independent_discovery_certified':False,'current_worldwide_openness_certified':False,'extensive_AI_use':True,'conventional_human_peer_review':False,'unrefereed':True,'DOI':f['DOI'],'Zenodo_record_id':f['record_id'],'actual_publication_verified':True,'tracker_range':f['tracker_range'],'actual_tracker_row_verified':True,'publication_package':CASE+f['package'],'whole_package_review_events':f['whole_package_review_events'],'documented_recovered_substantive_turns':4,'historical_substantive_turns':None,'historical_count_status':'unknown/nonzero interrupted history; not reset','audit_or_publication_work_is_separate_from_author_proof_turns':True,'actual_merge_receipt':f.get('actual_merge_receipt'),'actual_factual_receipt':f.get('actual_factual_receipt')}
+ out['PUBLICATION_STATUS.json']=enc({**common,'historical_original_publication_status':json.loads(old['PUBLICATION_STATUS.json'])})
+ text=f'''# 30004690: an interior second-order defect from a Hele–Shaw contact arc
+
+{state}
+
+Preprint: [{f['DOI']}]({url}). Alec Kriebel, independent researcher, ORCID0009-0001-9320-500X. AI tools were used extensively; the note is unrefereed and has not undergone conventional human peer review.
+
+The bounded weak HCMA solution on P1 times the disc for suitable smooth strictly Kähler fibre boundary data has no second-order real Taylor expansion at a point with0<|tau|<1. A positive-length finite-time contact arc gives a strict Green-function time-slope gap; finite negative curvature on the smooth lift and global concavity force incompatible Legendre quadratic coefficients. This is an existence recipe, not a closed-form potential or numerical PDE proof.
+
+This is an attributed proof/application note. Ross–Witt Nyström supplied the contact geometry, strong flow, obstacle identity and duality. Witt Nyström's joint-work OWR2021 contribution with Ross already announces/sketches an interior construction and is explicitly credited. Historical priority, firstness, independent discovery and current worldwide openness remain unestablished. The current contribution is the written Green-slope/curvature/Legendre interior deduction, not a new contact-flow construction or discovery of the general phenomenon. See QUALIFIED_PRIORITY.md and CURRENT_SOURCE_AND_PRIORITY.json.
+
+The imported source_record.json is retained as dated upstream metadata, including its overstrong open/unresolved triage; it is not the current source statement or current priority assessment. CURRENT_SOURCE_AND_PRIORITY.json is authoritative. The original report does not literally pose the imported numbered open question. Its announced terminal-domain route has a tentative smooth-density step; the current proof uses a different supported finite-time arc route with strict positivity.
+
+The five-page note, LaTeX source and71-entry authored verification archive are in [the publication package](../../../{CASE}{f['package']}/). The exact scalar checker controls signs and conjugacy only; source geometry/PDE contracts are verified analytically. Three new distinct mathematical audit families and two successive new whole-package reviews are recorded in the audit folder; current receipts are in PUBLICATION_STATUS.json.
+
+All19 original submitted files are preserved byte-for-byte in [the immutable submission archive](../../../{CASE}original_submitted_head/). TURN_1 through TURN_4_CANDIDATE and the original independent-review files remain dated historical records. Current source/status qualifications supersede imported open-status or pending-review wording. Turns1–3 are unsuccessful/conditional routes, not extra certified theorems. Frozen candidate manifest hashes target the immutable archive; current SHA256SUMS targets this current native directory.
+
+Four recovered substantive author turns are documented; earlier interrupted consumption is unknown/nonzero and is not reset. Later audits/publication work are separate from author proof-search turns.
+'''
+ out['README.md']=text.encode()
+ source={'UTC':f['UTC'],'problem_id':30004690,'historical_source_record':'source_record.json','historical_upstream_status_preserved_as_dated_metadata':True,'current_original_source':'Witt Nystrom (joint Ross), Singular solutions to the homogeneous Monge–Ampere equation via the Hele-Shaw flow, OWR25/2021 pp1321–1325, DOI10.4171/owr/2021/25','literal_source_contract':'Original2021 contribution announces/sketches interior construction; terminal-density smoothness tentative and vanishing density allowed. It is not a literal unresolved numbered conjecture or worldwide-open certificate.','verified_current_theorem':common['exact_theorem'],'current_proof_contribution':'Arc-filled Green strict right-time slope gap plus finite negative lifted left curvature and global Legendre support; exact interior Taylor defect.','credited_known_inputs':'Ross–Witt Nystrom AIF2019 Prop3.4/2.5, Thm2.15/6.2 proof, Section4 duality and AppendixA; IHES2015 duality; moduli flow two-sided extension. Classical Green/Hopf/elliptic/convex tools.','normalization':'dc=i/(4pi)(barpartial-partial); ddc=i/(2pi)partialbarpartial; unit log-squared Green pole and FSarea1. Apparent printed prefactor inconsistency is not author-confirmed erratum.','bounded_priority_audit_complete':True,'priority_audit_scope':'18 recorded source/list entries,64 discovery queries, exact full/partial inspection scopes and access/coverage gaps retained in published supplement.','historical_priority_established':False,'firstness_independence_or_current_worldwide_openness_certified':False,'no_exact_complete_predecessor_found_within_recorded_scope':True,'access_and_coverage_gaps':'Original Gamelin–Sibony article not obtained (local-ball formula inspected in source expositions); published survey chapter not independently downloaded (authorv2 available); unindexed2021 proof materials/followups and all worldwide/unpublished work not exhaustively enumerable.','publication_DOI':f['DOI'],'AI_and_review_status':'Extensive AI use; unrefereed; no conventional human peer review.'}
+ out['CURRENT_SOURCE_AND_PRIORITY.json']=enc(source)
+ out['QUALIFIED_PRIORITY.md']=(f'''# Qualified contribution and historical priority
+
+{f['UTC']} — This verified theorem is published as an attributed proof/application note at {url}. All contact-arc construction, flow/obstacle/duality machinery is credited to Ross–Witt Nyström. Their joint-work OWR2021 contribution already announces/sketches an interior construction. The present note writes a precise finite-time arc-filled Green comparison and finite-curvature Legendre deduction yielding an interior second-order Taylor defect.
+
+A bounded18-entry source/list and64-query audit found no complete exact predecessor within the recorded inspection scope. Historical firstness, independent discovery and worldwide current openness remain unestablished. Dated survey questions, negative searches and incomplete author publication lists do not certify absence. The original local-ball paper, a separately published survey text and unindexed/unpublished followups remain coverage/access qualifications; exact source/version scopes are in the supplement.
+
+The result is not inferred from rank loss or failure of harmonic-disc coverage alone. Point-only contact, terminalT=1, the injection point and zero/infinite left curvature are outside the mechanism. The original imported source_record is dated curation whose open/unresolved wording is superseded by CURRENT_SOURCE_AND_PRIORITY.json. No claim that the original report literally posed an unresolved numbered conjecture is made. AI was used extensively; no conventional human peer review/refereeing has occurred.
+''').encode()
+ ledger=json.loads(old['turns.json']);assert ledger['historical_substantive_turns'] is None and ledger['documented_recovered_substantive_turns']==4;ledger.update(status='verified_attributed_proof_note',historical_original_status=ledger['status'],current_publication_status=stage,current_DOI=f['DOI'],current_historical_priority_established=False,dated_turn_records_are_historical=True,audit_publication_work_not_new_recovered_author_turns=True);out['turns.json']=enc(ledger)
+ manifest=json.loads(old['CANDIDATE_REVIEW_MANIFEST.json']);manifest.update(scope='Historical original candidate freeze only. Hashes refer to original_submitted_head archive, not later current presentation/status files.',files_root=CASE+'original_submitted_head/',current_status_file='PUBLICATION_STATUS.json',current_source_file='CURRENT_SOURCE_AND_PRIORITY.json');out['CANDIDATE_REVIEW_MANIFEST.json']=enc(manifest)
+ sm=json.loads(old['source_manifest.json']);sm.update(scope='Historical original author reading-copy manifest. Initial incomplete publisher download was later completed in SOURCE_SUPPLEMENT; this historical metadata is not a current source-priority assessment.',current_authoritative_source_access_record=CASE+f['package']+'/SOURCE_REFERENCES.json',current_source_priority_file='CURRENT_SOURCE_AND_PRIORITY.json');out['source_manifest.json']=enc(sm)
+ note='\n\n## '+f['UTC']+' — Current publication checkpoint\n\n'+state+' Preprint '+url+'; tracker '+f['tracker_range']+'. Verified attributed interior Taylor-defect proof from credited contact geometry; prior OWR2021 announcement preserved, historical priority unresolved. Three new mathematical families and successive new whole-package reviews accepted. Four recovered author turns plus unknown/nonzero interrupted history retained. Original19 archived unchanged; source_record retained as dated curation superseded by current source/priority statement. Estimate: math100%; PR workflow '+('100% after actual factual checkpoint acceptance.' if stage=='factual_checkpoint_accepted' else '95%, actual integration/factual completion remain.')+'\n'
+ out['RESEARCH_LOG.md']=old['RESEARCH_LOG.md']+note.encode()
+ out['SHA256SUMS']=''.join(hashlib.sha256(b).hexdigest()+'  '+n+'\n' for n,b in sorted(out.items()) if n!='SHA256SUMS').encode()
+ assert set(out)==set(old)|{'CURRENT_SOURCE_AND_PRIORITY.json','QUALIFIED_PRIORITY.md'} and len(out)==21
+ preserved=set(old)-CHANGED;assert len(preserved)==12
+ for n in preserved:assert out[n]==old[n]
+ return {NATIVE+n:b for n,b in out.items()}
