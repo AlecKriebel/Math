@@ -7,3 +7,5 @@
 Current top-level manifests bind the reconciled presentation, while old manifests, pending-review statements, old source-only checkpoint and worktree paths are preserved as dated history. `readiness.json` separates the immutable imported review hash from the current assessment. Author research turn1/5 is preserved.
 
 The standalone note, exact planned metadata, source/verification archive and independent audit records accompany the case. This is a dated source snapshot; required whole-package review and publication outcomes are recorded in the case's final clearance and later native release receipts. See `PUBLICATION_STATUS.md`.
+
+The top-level `MANIFEST_V1.json` is a retained historical copy. Interpret its entries against `history/original_submission_20261015/`, with the one documented superseded SOURCES.md hash explained by the historical metadata correction. It is not an active manifest for edited current files; use CURRENT_PACKET_MANIFEST.json and the current MANIFEST/PUBLICATION_MANIFEST.

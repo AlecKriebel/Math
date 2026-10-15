@@ -27,7 +27,7 @@ that precise formulation is a mathematical reconstruction, not a claim that
 the historical source explicitly specified every repetition convention.
 An `r`-fold repeated traversal multiplies each signed area by `r` and their
 product by `r²`. Odd repeated traversals and the circular limit have separately
-justified direct extensions. Even-period products vary in the negative
+justified direct extensions. Even primitive-period products vary in the negative
 controls. Hyperbolic, collapsed, or boundary caustics are outside the theorem.
 The outer-pedal construction differs from original-chord pedals and focal
 inversion.
@@ -56,7 +56,7 @@ python -B run_verification.py
 python -B run_verification.py --run root_projective
 ```
 
-The default runs all nine current jobs. Any ID in the table below can be passed
+The default runs all ten current jobs. Any ID in the table below can be passed
 to `--run`. `-O` and `-OO` disable scientific assertions and are refused. Wrong
 scientific library versions are refused. A mismatch is an error requiring
 investigation; tolerances and scientific comparison fields are never relaxed
@@ -84,7 +84,7 @@ paths are these top-level metadata fields:
 | `priority_author` | `$.utc` | Wall clock |
 | `priority_classical` | `$.python` | Interpreter build/version text |
 
-No fields are excluded in the other five jobs. Scientific library version
+No fields are excluded in the other six jobs. Scientific library version
 fields remain exact in every result. No elapsed error, numerical residual,
 precision, scientific count, source hash, proof hash or program hash is
 excluded. The replay receipt records the actual excluded metadata differences.
@@ -132,6 +132,7 @@ required to agree with the same frozen scientific JSON.
 | `priority_author` | 84 exact Euclidean finite checks on two credited triangular phases | None |
 | `priority_classical` | 15 zero identities; exact nonconfocal counterexample in two phases | 11 cases/55 phases at 70 digits, including even negative controls and the classical dn bridge |
 | `root_exact_geometry` | 113 exact zero assertions, two genuine triangular phases; repetition, isometry and scaling controls | None |
+| `root_exact_even` | 96 exact zero residuals; genuine N4 products16 and25, corrected source fixture | None |
 | `root_projective` | 10 exact identities, including the corrected plus-focus polarity and a discriminating offset-ellipse example | None |
 
 Counts overlap between programs and must not be added as independent theorems.
@@ -158,7 +159,7 @@ remaining scientific result field as well.
   source-reading provenance, presentation repairs and polarity erratum.
   Earlier “priority pending” or “preparation not cleared” receipts are
   chronological; `ROOT_PRIORITY_ACCEPTANCE.json` records the later decision.
-- `scope_controls/` contains the two **current** root scripts and frozen results.
+- `scope_controls/` contains the three **current** root scripts and frozen results.
   `forensic_history/polarity_sign_intermediate_20261015/` contains the wrong
   polarity intermediate, its old result, progress ledger and historical status.
   That program is **never a current replay job**. The error used the homogeneous
@@ -220,3 +221,12 @@ new sequential full-package reviews, corrections, final seals and native guards
 remain root's responsibility.
 
 Author: Alec Kriebel, ORCID https://orcid.org/0009-0001-9320-500X.
+
+
+## Current review01 revision and conventions
+
+The current harness has ten jobs, including the new exact primitive-even control. The earlier embedded preparation/replay receipts describe the dated nine-job version; their frozen inputs and scientific hashes must not be relabelled as the revised ten-job result. Final current-package root replays and subsequent whole-manuscript reviews are recorded alongside the case, outside this ZIP, to avoid a self-referential approval archive.
+
+`CURRENT_CONVENTIONS_AND_CORRECTIONS.md` explains the exact parity example, related primary-source fixture error, parameter notation and current versus historical interpretation bindings. In the sealed earlier bicentric bridge, section6's `K(m_N)` uses the complete-integral parameter convention: with the modulus convention of its section1 and the current manuscript, this is `K_N=K(sqrt(m_N))`. The `dn(x,m_N)` in that comparison also uses parameter syntax. The historical family document is preserved byte-for-byte.
+
+The original polarity erratum still binds the then-current negative-center program/result. Their stale limits sentence was subsequently corrected under R3; `audit_receipts/ROOT_PROJECTIVE_PRESENTATION_RECONCILIATION.json` binds both preserved older files and the current pair. Only interpretation text changed; all ten symbolic identities and geometric fields are identical. Old receipts are historical, not silently rebound. The relocated old-sign status pointer now correctly resolves to `audit_receipts/ROOT_POLARITY_SIGN_CORRECTION.json`; its wrong-sign program/result bytes remain unchanged. No forensic program is in the current JOBS table.

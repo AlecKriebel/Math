@@ -36,7 +36,7 @@ def main():
         source_head='2180d64b648b81ac660a792f7823d0b715f9cf12', files=rows))
     selected = [BASE/n for n in ['manuscript.tex', 'manuscript.pdf', 'metadata.json', 'README.md',
                                 'build_bundle.py', 'prepare_native_presentation.py',
-                                'NATIVE_RELEASE_PLAN.json', 'RENDER_QA.json']]
+                                'NATIVE_RELEASE_PLAN.json', 'RENDER_QA.json', 'apply_review01_fixes.py', 'resume_review01_fixes.py', 'REVIEW01_RESOLUTION.json']]
     for folder in ['verification', 'pr_update']:
         for path in sorted((BASE/folder).rglob('*')):
             if path.is_symlink() or set(path.relative_to(BASE).parts) & FORBIDDEN:

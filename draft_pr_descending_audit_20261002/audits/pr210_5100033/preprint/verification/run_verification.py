@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Portable nine-job replay, with strict integrity and scientific JSON equality."""
+"""Portable ten-job replay, with strict integrity and scientific JSON equality."""
 from pathlib import Path
 from datetime import datetime,timezone
 import argparse,copy,hashlib,json,os,shutil,subprocess,sys,tempfile,time
@@ -22,6 +22,7 @@ JOBS={
  'priority_author':('audits/priority_author_updates_01/exact_pedal_inverse_control.py','audits/priority_author_updates_01/EXACT_CONTROL_RESULTS.json','EXACT_CONTROL_RESULTS.json'),
  'priority_classical':('audits/priority_classical_general_01/check_controls.py','audits/priority_classical_general_01/CONTROL_RESULTS.json','CONTROL_RESULTS.json'),
  'root_exact_geometry':('scope_controls/root_exact_geometry_controls.py','scope_controls/ROOT_EXACT_GEOMETRY_CONTROLS.json','stdout'),
+ 'root_exact_even':('scope_controls/root_exact_even_control.py','scope_controls/ROOT_EXACT_EVEN_CONTROL.json','stdout'),
  'root_projective':('scope_controls/root_priority_projective_control.py','scope_controls/ROOT_PRIORITY_PROJECTIVE_CONTROL.json','stdout'),
 }
 

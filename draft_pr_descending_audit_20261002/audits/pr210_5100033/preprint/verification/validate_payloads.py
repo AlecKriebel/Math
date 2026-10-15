@@ -39,8 +39,14 @@ def archive_checks():
     for r in hist['files']:
         f=BASE/'forensic_history/polarity_sign_intermediate_20261015'/r['path'];require(f.stat().st_size==r['bytes'] and digest(f)==r['sha256'],'forensic row')
     correction=load('audit_receipts/ROOT_POLARITY_SIGN_CORRECTION.json')
-    require(digest(BASE/'scope_controls/root_priority_projective_control.py')==correction['corrected_program_sha256'],'corrected projective script')
-    require(digest(BASE/'scope_controls/ROOT_PRIORITY_PROJECTIVE_CONTROL.json')==correction['corrected_result_sha256'],'corrected projective result')
+    current=load('audit_receipts/ROOT_PROJECTIVE_PRESENTATION_RECONCILIATION.json')
+    require(current['old_program']['sha256']==correction['corrected_program_sha256'],'historical corrected program binding')
+    require(current['old_result']['sha256']==correction['corrected_result_sha256'],'historical corrected result binding')
+    for item in ['old_program','old_result','current_program','current_result']:
+        require(digest(BASE/current[item]['path'])==current[item]['sha256'],'projective reconciliation '+item)
+    a=load(current['old_result']['path']);b=load(current['current_result']['path'])
+    require({k:v for k,v in a.items() if k!='limits'}=={k:v for k,v in b.items() if k!='limits'},'unchanged projective algebra')
+    require(current['changed_result_fields']==['limits'],'limited interpretation correction')
     return {'original_files':20,'family_payload_counts':counts,'family_manifests':5,'original_current_manifest_rows':17,'historical_V1_rows':len(old['files']),'historical_V1_documented_superseded_rows':mismatches,'forensic_manifest_rows':len(hist['files']),'attested_primary_hash_count':len(primaries)}
 
 def result_checks(job,d):
@@ -116,6 +122,14 @@ def result_checks(job,d):
     if job=='root_exact_geometry':
         require(d['exact_zero_assertions']==113 and len(d['phases'])==2 and all(r['outer_product']=='12544/25' for r in d['phases']),'root geometry')
         return {'exact_zero_assertions':113,'exact_triangular_phases':2}
+    if job=='root_exact_even':
+        require(d['primitive_period']==4 and d['caustic_lambda']=='4/5' and d['exact_zero_count']==96,'exact even parameters/count')
+        require([x['outer_pedal_product'] for x in d['cases']]==['16','25'],'exact even products')
+        require([x['original_unit_inverse_product'] for x in d['cases']]==['1','25/16'],'corrected source inverse products')
+        for r in d['cases']:
+            require(r['exact_zero_count']==48 and len(r['zero_residuals'])==48 and set(r['zero_residuals'].values())=={'0'},'exact even residuals')
+        require(d['literal_printed_Ferudun0062_p6_rectangle']['genuine_billiard'] is False,'source false fixture labelled')
+        return {'exact_zero_residuals':96,'genuine_primitive_even_phases':2,'source_false_fixture':1}
     if job=='root_projective':
         require(len(d['checks'])==10 and all(v=='0' for v in d['checks'].values()) and d['polar_dual_circle']['exact_triangle_center_x']=='-21*sqrt(5)/4','root corrected projective')
         return {'exact_zero_identities':10,'corrected_plus_focus_polarity':True}

@@ -40,6 +40,7 @@ def main():
         'The theorem states its strictly nested nondegenerate elliptical-caustic domain explicitly. Primitive/star/repetition conventions are proved formulations here, rather than attributed verbatim to the source tables. Hyperbolic and collapsed caustics are outside this theorem; fixed repeats follow from the direct corollary below.')
     proof = proof.replace('This source-specific outer-focal-pedal argument needs its own uninvolved independent review. No exhaustive novelty search or historical-first claim is made.',
         'Three fresh independent mathematical/source adversaries and two distinct bounded priority investigations have checked this target, followed by root replays and synthesis. These are AI-assisted internal checks, not independent human peer review or formal proof-assistant verification. Required whole-manuscript reviews and actual release receipts are recorded separately. No exhaustive novelty search or historical-first claim is made.')
+    proof = proof.replace('The present author did not coauthor those candidates. ', '')
     proof += '''
 
 ## 8. Current source, credit and repeated-traversal clarification
@@ -61,7 +62,7 @@ Historical novelty and public proof priority remain undetermined after a bounded
 
 `history/original_submission_20261015/` preserves all20 original files, including the independent_review/ packet, byte-for-byte. Top-level `verification.json` explicitly wraps an inherited run binding the original proof; it does not pretend to bind this edited presentation. `verify.py` is unchanged and, if run here, will produce a new result binding the adjacent current proof. The portable harness runs the original checkers in isolated folders and leaves all archived inputs unchanged.
 
-Current top-level manifests bind the reconciled presentation, while old manifests, pending-review statements, old source-only checkpoint and worktree paths are preserved as dated history. `readiness.json` separates the immutable imported review hash from the current assessment. Author research turn1/5 is preserved.
+Current top-level manifests bind the reconciled presentation. The top-level MANIFEST_V1.json is historical: evaluate its entries against history/original_submission_20261015/, allowing the one documented superseded SOURCES.md hash, never against edited current files. Old pending-review statements, source-only checkpoint and worktree paths are preserved as dated history. `readiness.json` separates the immutable imported review hash from the current assessment. Author research turn1/5 is preserved.
 
 The standalone note, exact planned metadata, source/verification archive and independent audit records accompany the case. This is a dated source snapshot; required whole-package review and publication outcomes are recorded in the case's final clearance and later native release receipts. See `PUBLICATION_STATUS.md`.
 ''')
