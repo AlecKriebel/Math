@@ -1,0 +1,56 @@
+# Independent source/model-scope adversarial report
+
+Record 30005244 / OWR-11101924-008; PR 214, submitted head `36d5ef15098163e74bf14c2e696f560ce592affd`; two substantive author turns. This is an independent review, not a further proof attempt. No source status, submitted artifact, repository ref, provider state, or shared database was changed. No external individual was contacted.
+
+## Adjudication
+
+**PASS for a source-aware qualified resolution of the full off-interval phenomenon for the stated class (G).** The theorem addresses every isolated eigenvalue outside the exact static lattice interval, absence of spectral pollution, algebraic multiplicities, and embedded spectral projections. It includes every bounded Lipschitz particle and every bounded particle with boundary of measure zero, on arbitrary translated cubic meshes. This is a complete spectral-convergence answer for that class, not a single-mode example or a weaker eigenvalue-existence statement.
+
+**The source does not state a universal theorem over every compact measurable support.** Its Section 4 describes an observed numerical phenomenon and asks for a correct mathematical description and proof. The imported formulation likewise asks to characterize and prove the observed convergence; it does not ask for a necessary-and-sufficient classification of all geometries. Requiring such a classification would add a target not printed in either source. Conversely, the short report does not print (G), or a technical boundary hypothesis that implies it. Thus (G) must remain in the theorem and in any resolution label.
+
+The paired result is therefore honest when described as: **off-interval spectral correctness for geometrically consistent cubic DDA particles, including all boundary-null physical particles; failure of an unrestricted arbitrary-compact extrapolation.** TURN_2 addresses the latter extrapolation. Its counterexample does not disprove the observed behavior for regular particles, and need not do so to accompany the positive theorem.
+
+The precise residual gap is one of unspecified source ambit: the original report does not identify which irregular particles, if any, its observation was intended to cover. No inference from its wording establishes (G) for every such particle. The packet does not prove spectral convergence for every bounded open set, every closure of an open set, or every sequence failing (G). Those are additional broader formulations, not missing parts of an expressly demanded geometry classification. This review finds no source/model-scope reason to withhold the qualified result for the declared class, and no basis to promote it to an unconditional theorem for every measurable compact support.
+
+## Independent reading order
+
+I first read the complete original contribution, OWR printed pp. 2580–2582, and the full relevant CDN author-manuscript definitions and proofs: introduction, Sections 1.2–1.6, Sections 2.1–2.4, and Sections 3.5.1–3.5.4. I saved `INDEPENDENT_TARGET_FREEZE.md` at 2026-10-15T07:55:58Z before opening CANDIDATE.md, TURN_2.md, parent reconstructions, or inherited verdicts. I then read both author proofs in full and assessed them against that freeze. Only afterward did I compare SOURCE_AUDIT, FINAL_DISPOSITION, readiness, and both earlier independent reviews. The complete imported record and empty prior-report object were also read; the exact IDs have no entry in the related-target groups file.
+
+The preliminary freeze intentionally recorded the possible compact/open distinction before adjudicating it. The present conclusion refines that provisional caution: the primary question is descriptive, so absence of a universal geometry classification is not itself a failed requirement.
+
+## Model and operator correspondence
+
+| Item | Independent finding |
+|---|---|
+| Particle | OWR says the material differs from its background only within a compact subset. This specifies bounded support; it does not give a boundary regularity axiom. CDN's static framework explicitly uses bounded open domains. Neither sentence makes arbitrary point-sampling masks converge in volume. |
+| Material model | The scalar spectral equation and the cited static kernel correspond to a homogeneous isotropic dielectric particle. CDN explicitly specializes to constant relative permittivity inside the domain, with constant permeability/background. The packet does not claim a theorem for arbitrary spatially varying or tensor-valued contrast. |
+| Frequency | CANDIDATE fixes any finite κ in C while h tends to zero. This covers the real positive frequencies emphasized in the original question, as well as a bounded-volume analytic extension to complex κ. It gives no joint high-frequency/vanishing-mesh limit. |
+| Mesh | Cubic point-membership grids, zero diagonal, and volume weight h³ match OWR. CDN explicitly permits arbitrary origins aᴺ. Homogeneity makes the static coefficients K₀(m−n), independent of h and translation; the finite-section form extends to all positive h without an extra theorem about nested grids. |
+| Operator | The differentiated negative Hessian has the distributional delta term +I/3. Hence the zero-diagonal matrix compares with Sκ=Aκ−I/3. CANDIDATE retains this shift throughout; eigenvalues of Aκ itself are obtained by adding 1/3. |
+| Scope of (G) | The mask condition is explicit, sufficient, and sequence-specific. Boundary-null particles satisfy it for arbitrary translations because misclassified cells lie within a shrinking boundary neighborhood. Neither author document claims it is necessary for every individual spectral problem. |
+| Static interval | J is the exact closed numerical range of the static selfadjoint full-lattice operator. No endpoint decimal or guessed maximizing wavevector is used as a theorem input. |
+| Nonzero lattice | Only the static whole-lattice convolution is treated as a bounded operator. Dynamic corrections are restricted to bounded particle differences. This avoids the real-positive-frequency unboundedness stated by OWR. |
+
+A further **source sign discrepancy** should be preserved in future exposition. The visually checked OWR page 2580 prints `(1/η)u−Aκu=Einc` together with `η=εr−1`. With the displayed negative kernel this conflicts with the constant-material convention derived in CDN Section 1.2, which gives `z=1/(1−εr)−1/3`; it also conflicts with OWR's later negative-permittivity interpretation. This is present in the printed source, not caused by text extraction. The candidate uses Kκ and Sκ directly and never relies on the conflicting η-to-material formula, so it does not inherit the inconsistency. Any future conversion back to εr should use an explicitly fixed convention rather than silently copying the short report's η sign.
+
+## The actual established static input
+
+The controlling full proof was checked in the 34-page arXiv v3 author manuscript, not inferred from an abstract. Its assumptions are a translation-invariant, degree −d kernel with homogeneous quadratic numerator and spherical cancellation, applied componentwise to the matrix kernel. The three-dimensional Maxwell K₀ has precisely these properties.
+
+The proof chain needed here is: Fourier-series/Parseval representation of the Toeplitz form; Ewald decomposition with exponentially convergent real/dual sums; bounded multiplier F; cubic cancellation giving the continuous correction's value zero at the origin; matrix numerical-range extension; and finite-section quadratic-form bounds. The continuum multiplier is the rank-one orthogonal projection minus I/3. These steps justify bounded selfadjoint static T, finite-section containment in its numerical-range interval, and inclusion of [−1/3,2/3] in that interval. The candidate does not require the stronger instability direction of Proposition 3.15 for every irregular support.
+
+CDN's three-dimensional endpoint discussion uses numerically identified extrema. Its equations giving approximately −0.4260241507 and 0.7709022228 do not certify the maximizing wavevectors or exact sharp decimal bounds. CANDIDATE correctly defines J intrinsically and credits the established theorem. There is no numerical-endpoint substitution.
+
+Publication provenance was independently checked through the [publisher](https://link.springer.com/article/10.1007/s00020-023-02750-7), [arXiv v3](https://arxiv.org/abs/2302.13159v3), Crossref, and the official HAL document link. The journal is IEOT 95, article 29, published 12 November 2023. The direct journal PDF URL returned subscription-preview HTML. The official HAL v3 PDF was retrieved in full; it consists of a HAL cover and a 34-page author manuscript. It corroborates the source lineage but is not the journal typeset version. Thus the numbering in this report and the packet is expressly **author-manuscript numbering**. The journal's complete typeset text and numbering were not independently inspected. This is a version-coverage limit, not an unproved mathematical input: the full relevant author proof is available and checkable. It does not create a permission or outreach requirement.
+
+## Fresh falsification controls and remaining limits
+
+The separate `SCOPE_CONTROLS.md` records two exact logical controls. First, boundary-nullness makes (G) automatic without a lattice-translation restriction. Second, even bounded openness alone does not imply (G): a small-volume open set containing every rational point in a cube is sampled as the whole cube along rational meshes. This control tests the geometry inference only; it is not offered as a new off-interval spectral counterexample.
+
+TURN_2's support is compact, positive-volume, and has empty interior. Its added isolated point is invisible to the volume operator and makes each selected DDA matrix the nonempty 3×3 zero matrix. It is a literal point-membership pathology, exactly the type of information (G) excludes. The statement is existential in a sufficiently large hole index; it gives an explicit frequency, not an effective selected support index or computed eigenvalue. These qualifications are mathematically material.
+
+I inspected the model connection of the ball perturbation and surviving nonreal eigenvalue argument, but the separate ball/counterexample family is responsible for the independent detailed verification of its estimates and completeness argument. Similarly, kernel algebra and the full Fredholm proof have separate adversaries. My source conclusion does not substitute their numerical controls for an analytic proof.
+
+No correction of the submitted mathematical statements is requested on source/model-scope grounds. The phrase that the theorem answers the “intended numerical setting” is an interpretation supported by the regular-particle context, not a verbatim additional source hypothesis. It is acceptable if immediately accompanied by (G) and the boundary-null/Lipschitz coverage. An unqualified “all compact supports converge” or “the physical DDA observation is false” would be incorrect. A broad priority/novelty audit has not been performed and is not certified here.
+
+Review completion estimate: 100% for the assigned source/model-scope audit. Qualified target coverage is complete for (G); broader unprinted geometry formulations are not assigned an artificial completion percentage.
