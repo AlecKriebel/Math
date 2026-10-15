@@ -1,0 +1,9 @@
+# PR883: A periodic counterexample to the diffuse allocation characterization
+
+Current qualified research note: preprint/output/pdf/note.pdf. The original source-scoped question is answered negatively, but the entire conclusion also follows from established inputs. No new-discovery, firstness or current-openness claim is made. See preprint/CURRENT_PRIORITY.md and the complete deduction in the note. LT2023 Section8/Remark8.1 and KM2025 final Remark3.2 receive direct scope-specific credit.
+
+All26original files are byte-preserved under preprint/verification_package/source/, and24original root files remain unchanged. The old PUBLICATION_MANIFEST.json and check_publication.py describe only that frozen historical root; use the new CURRENT_PUBLICATION_MANIFEST.json and verify_current_publication.py for this revised tree. The original proof-search count remains1/5.
+
+The preprint/README.md gives exact authentication, replay, source-mode, build and trust-scope instructions. Current wrapper SHA256: 3fc89372bae6cc3ed2f6a8d4f93d890e94e9fd635b712223853630d26f034672. Portable index SHA256: 9c547acc859c79b26704df0d9d278aaa469d02e22093b3ab7d199d6b50e2c49b. ZIP SHA256: 5fd482efb102cb5cddb85e87d67e4446a35306b7a3c649ed409e46439a531adc. Obtain the current outer inventory digest from a separately trusted review/release record; it is not self-authenticating.
+
+This is an unrefereed AI-assisted prepublication candidate. Two NEW successive whole-package adversaries must clear these exact final bytes before merger and production publication. Tools-only and disposition-only reviews do not count. No DOI or tracker update is inferred.
