@@ -1,0 +1,38 @@
+{
+  "utc": "2026-10-15T04:11:39.379112+00:00",
+  "read_only_focused_guard_probe": true,
+  "original_packet_edited": false,
+  "rows": [
+    {
+      "case": "canonical",
+      "returncode": 0,
+      "accepted": true,
+      "stdout": "{\n  \"directories\": 3,\n  \"files\": 28,\n  \"proof_certified\": false,\n  \"source_head\": \"d186dea31791cd3e8acf6829e0b65d01849623b8\",\n  \"status\": \"VERIFIED_ORIGINAL_BYTES\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "trailing_slash",
+      "returncode": 0,
+      "accepted": true,
+      "stdout": "{\n  \"directories\": 3,\n  \"files\": 28,\n  \"proof_certified\": false,\n  \"source_head\": \"d186dea31791cd3e8acf6829e0b65d01849623b8\",\n  \"status\": \"VERIFIED_ORIGINAL_BYTES\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "repeated_separator",
+      "returncode": 0,
+      "accepted": true,
+      "stdout": "{\n  \"directories\": 3,\n  \"files\": 28,\n  \"proof_certified\": false,\n  \"source_head\": \"d186dea31791cd3e8acf6829e0b65d01849623b8\",\n  \"status\": \"VERIFIED_ORIGINAL_BYTES\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "case": "dotdot",
+      "returncode": 1,
+      "accepted": false,
+      "stdout": "",
+      "stderr": "FAIL: Root aliases prohibited\n"
+    }
+  ],
+  "claim_under_test": "Docstring says noncanonical root spelling rejected; Path normalization may accept redundant separators/trailing slash",
+  "mathematical_impact": "None; equal resolved source bytes remain pinned",
+  "disposition": "Qualify input spelling policy in the new verifier report before publication; no mathematical repair"
+}
