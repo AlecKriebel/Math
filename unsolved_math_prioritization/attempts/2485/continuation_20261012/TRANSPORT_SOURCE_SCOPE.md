@@ -1,0 +1,10 @@
+# Primary-source check scope
+
+Access date: 12 October 2026 (UTC). Searches and primary PDF text inspection only; no copied source PDFs, source page text, or screenshots belong to this packet.
+
+1. Ecklund, Erdos, Selfridge (1974), A new function associated with the prime factors of (n choose k), https://www.renyi.hu/~p_erdos/1974-01.pdf . The complete three-page primary PDF was accessed. Scope: definition/exclusions and original successive-ratio questions; no discovery claimed.
+2. Lukes, Scheidler, Williams (1997), Further tabulation of the Erdos-Selfridge function, https://cspages.ucalgary.ca/~rscheidl/Papers/es.pdf . Primary author-hosted PDF accessed. Scope: prime-power residue changes on printed pp.1711-1712, and already-known composite lattice on printed p.1715. No new inspection claim about its numerical table, no author code execution, and no repeated literature-invalidity claim.
+3. Bakir Farhi (2009), An identity involving the least common multiple of binomial coefficients and its application, https://arxiv.org/pdf/0906.2295 . Tool text identified v2, 13 June 2009. The complete five-page primary author preprint was accessed. Scope: Theorem 1 and its proof, giving lcm binomial-row = L_k/k. This directly identifies the lcm of the coefficients c_{k,j}; that known identity is credited rather than claimed as new.
+4. Bakir Farhi (2007 publication; 2008 author preprint), Nontrivial lower bounds for the least common multiple of some finite sequences of integers, https://arxiv.org/pdf/0803.0290 . Primary author preprint accessed. Scope: Theorems 11-12 and their proofs on preprint pp.14-15; interval-lcm divisibility and a related product-of-binomials identity. The exact quotient-lcm formula in our Theorem 1 was not located in these targeted checks.
+
+The failure to locate the exact quotient-lcm formula or smooth-part formulation is not a novelty finding. Web searches can miss prior formulations, and closely related established results exist. The packet gives elementary full proofs and makes no priority claim.
