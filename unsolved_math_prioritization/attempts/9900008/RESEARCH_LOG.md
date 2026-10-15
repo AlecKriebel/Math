@@ -11,3 +11,7 @@ Author proof-search turns used: 1 of 5. Audits and publication verification add 
 ## 2026-10-15T12:56:15.507978+00:00 — Current qualified package candidate (PR88350%; shard70%)
 
 Exact historical question answered by the analytic periodic proof; entire old-input deduction shown prominently and all identified source credits supplied. Fresh source/mathematics, priority, disposition-repair and tooling evidence included with their distinct scopes. All26originals preserved; original1/5unchanged. Current four-page PDF and exact metadata/ZIP/deposit contract assembled. Two NEW whole-package reviews pending; no production deposit, DOI, sheet entry or merge yet.
+
+## 2026-10-15T13:46:14.237854+00:00 — publication completed (100%)
+
+Two successive NEW whole-package adversaries cleared the identical 244-file baseline, 204-member portable archive and eleven core files. Accepted head merged; production DOI https://doi.org/10.5281/zenodo.23397026 resolves. Exact unchanged PDF/ZIP and metadata verified, unique tracker row 'Math Puzzles'!A111:D111. Only four outer notices/inventory and this new receipt are updated; all 240 other accepted files, all cores and original effort1/5 remain unchanged.
