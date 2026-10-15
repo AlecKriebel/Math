@@ -1,13 +1,55 @@
 # Root mathematical acceptance
 
-2026-10-15T05:34:17.143103+00:00; currentPR582 lifecycle estimate30%, shard86%. Exact originalhead e4b27ac757babc1aea75149ea986ed2beea438f9,22originals unchanged. This gate concerns the theorem, not publication readiness or historical priority.
+The mathematical gate passes for PR582, problem30004404, at reviewed head
+`e4b27ac757babc1aea75149ea986ed2beea438f9`. All 22 original inputs are unchanged.
+Checkpoint051 records the acceptance time and the then-current estimate of
+30% completion for this PR's entire publication lifecycle. This gate concerns
+the theorem, not publication readiness or historical priority.
 
-PASS for the full literal universal OWR8/2020questionprinted493. Figure-eight is hyperbolic, every nonmeridional rational filling has infinitefundamentalgroup, and0fillingisatorusbundle. Everyfree rank-two H has nontrivialH'' killedbyq0, witnessedbythe16letterfreereduced commutator. Theunionconditionrequiresinjectivityatevery rationalfilling, so0alone defeatsallH. This does not settleexistenceofsomeotherpositivehyperbolicexample or variantsomittingfinitelymanyslopes.
+The figure-eight knot refutes the literal universal question printed on p.493
+of OWR8/2020. It is hyperbolic, every nonmeridional rational filling has infinite
+fundamental group, and its zero filling is a torus bundle. Every free rank-two
+subgroup H has a nontrivial second-derived subgroup killed by zero filling.
+The displayed 16-letter freely reduced commutator is an explicit witness.
+Avoiding the union of rational filling kernels requires injectivity under
+each filling, so zero alone defeats every H. This does not decide whether
+some other hyperbolic knot has a positive example, or a variant that omits
+finitely many slopes.
 
-Rootreadcompleteoriginalcandidate, exactsource/priorreport(empty), completehistoricalaudit, source-specificcriticalpassages and8criticalrenderedpages. Rootderivedthelawandquantifiersbeforeold-auditread. Importedclassicaltopologyandtriangle-groupfactsremaincreditedtheorems, notformallyre-provedhere. Allrationalcasepartitionandtheinfinite-groupimplicationswerecheckedlogically; finitecontrolsareseparateconsistencyevidence.
+Root read the complete candidate, exact source record and empty prior report,
+complete historical audit, relevant primary-source passages and eight critical
+rendered pages. Root derived the group-law argument and quantifiers before
+reading the old audit. The classical topology and triangle-group facts remain
+credited imports; they were not formally re-proved here. The exhaustive
+rational-slope partition and each implication proving an infinite fundamental
+group were checked logically. Finite controls provide separate evidence.
 
-TwoNEWsource-firstindependentfamilies complete: topology01sealed10authoredfiles, rootfullreportreadandentiremathematicalJSONreproduced; algebra01sealed17authoredfilesincludingnested4payloadseal (21sealentriesincludingoverlap), rootfullparent+childreportsread, newpermutationandindependentsemidirectfullJSONbothreproduced. Originalself-testandbotholdprogramsreplaybyteexact. Rootacceptancereceiptsareinroot_reproduction. No normalizationofmathematicalfields.
+Two new source-first independent families completed their reviews:
 
-No requiredmathematicalcorrection. Requiredcurrentpublicationcorrectionsaretrackedseparately: citeKhoiSection3unnumberedfigure-eightexamplep524ratherthan§3.1; strengthenoriginalverifierexclusioncontractwithanchoredexactoriginalinventory/manifestandtruthfuldescriptionofitshistoricalflag. RootindependentlyconfirmedR1usingbenigncopiedfixture. Originalsealedinputs mustremainunchanged. Actualfrozeninventoryisclean.
+- `topology01`: ten authored sealed files. Root read the full report and
+  reproduced its entire mathematical JSON.
+- `algebra01`: seventeen authored sealed files, including a four-payload child
+  seal. Root read both reports and reproduced the complete fresh permutation
+  and independent semidirect-product JSON records. Counting both seal levels
+  verifies 21 entries, with overlap.
 
-TwoNEWpriorityfamiliesarenowrunningonthefullyverifiedmathematicalscope. No novelty/historycertificationorpublicationacceptanceisprovidedhere. Primary2026Q7.1's arbitrary-Kwordingandcontextualexistentialmotivationarebothpreserved. Eveninheritedno-torsionfocuscannotremovefigure-eightbecauseBWLemma2.1excludesreducingsurgeriesandallfinitecasesareexcluded. No paper,productiondeposit,DOI,trackerorPRmutationyet.
+The original self-test and both historical programs also reproduced their
+complete outputs byte for byte. No mathematical fields were normalized.
+The root replay and acceptance receipts are in `root_reproduction/`.
+
+No mathematical correction is required. The current presentation must correct
+Khoi's locator to Section3, the unnumbered figure-eight example, p.524.
+The historical release verifier's exclusion-policy overstatement is confirmed
+in a benign copied fixture; the actual inventory is clean. A separate strict
+snapshot gate now repairs that trust boundary. See `CURRENT_CORRECTIONS.md`;
+paper and final driver integration remain pending.
+
+Two new priority families are examining the verified scope. This gate makes
+no novelty or historical-priority certification. Both the arbitrary-K wording
+of the 2026 question and its contextual motivation to find a positive example
+are retained. Even an inherited exclusion of torsion surgeries does not remove
+figure-eight: Brittenham-Wu Lemma2.1 excludes reducing surgeries, while the
+all-rational argument excludes finite surgeries.
+
+No paper, production deposition, DOI, tracker entry or PR change for this
+result has yet been made.
