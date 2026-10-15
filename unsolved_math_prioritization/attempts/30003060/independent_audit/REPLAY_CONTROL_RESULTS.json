@@ -1,0 +1,149 @@
+{
+  "control_count": 18,
+  "controls": [
+    {
+      "control": "relocated strict normal replay with hostile cwd and startup environment",
+      "diagnostic": null,
+      "expected_success": true,
+      "passed": true,
+      "returncode": 0
+    },
+    {
+      "control": "optimized corrected bootstrap fails closed",
+      "diagnostic": "optimized execution rejected",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "missing no-bytecode flag rejected",
+      "diagnostic": "run bootstrap with python -I -S -B",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "archive symlink rejected",
+      "diagnostic": "input paths must not use symlinks",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "manifest symlink rejected",
+      "diagnostic": "input paths must not use symlinks",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "bootstrap entrypoint symlink rejected",
+      "diagnostic": "bootstrap entrypoint must not use symlinks",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "symlinked archive ancestor rejected",
+      "diagnostic": "input paths must not use symlinks",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "symlinked entrypoint ancestor rejected",
+      "diagnostic": "bootstrap entrypoint must not use symlinks",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "truncated archive rejected",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "same-size archive mutation rejected",
+      "diagnostic": "archive SHA-256 mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "external manifest mutation rejected",
+      "diagnostic": "external manifest pin mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "changed checker rejected by whole-archive pin",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "added entrypoint rejected by whole-archive pin",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "traversal entry rejected by whole-archive pin",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "symlink member rejected by whole-archive pin",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "duplicate member rejected by whole-archive pin",
+      "diagnostic": "archive byte count mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "control": "coherent archive and manifest substitution rejected",
+      "diagnostic": "external manifest pin mismatch",
+      "expected_success": false,
+      "passed": true,
+      "returncode": 1
+    },
+    {
+      "author_or_mutated_code_executed": false,
+      "control": "changed bootstrap rejected by outer pin before execution",
+      "expected_success": false,
+      "passed": true
+    }
+  ],
+  "corrected_replay": {
+    "archive_sha256": "98cff6efc620ab156ceb1876a3252d002db1dad1bc3a6c9650268d0350bfc8e3",
+    "isolated_execution": true,
+    "manifest_sha256": "d1516daeb5bd8b21c987b55a15ba1755fc3af0a4491a80669eeb50b7a20cb7df",
+    "mathematical_independent_review": "NOT_PERFORMED_BY_REPLAY",
+    "members_verified": 12,
+    "no_bytecode_execution": true,
+    "no_site_execution": true,
+    "optimized_execution": false,
+    "optional_provenance_rehash": "NOT_RUN_SOURCE_INPUTS_NOT_SUPPLIED",
+    "results_reproduced_byte_exactly": true,
+    "status": "PASS",
+    "textual_source_inspection": "NOT_PERFORMED_BY_REPLAY"
+  },
+  "hostile_marker_absent": true,
+  "no_bytecode_artifacts": true,
+  "optimized_independent_harness_supported": true,
+  "status": "PASS",
+  "threat_model": "Pinned reproducible execution under tested path, archive and startup mutations; not an OS sandbox or proof against hostile root/system Python."
+}

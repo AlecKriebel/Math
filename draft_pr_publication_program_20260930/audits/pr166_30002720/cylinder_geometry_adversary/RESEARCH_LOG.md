@@ -1,0 +1,6 @@
+# Cylinder geometry adversarial audit research log
+
+- 2026-10-12T10:24:49.380399+00:00: Audit initialized against original head efc3f35a72543ad9ae76fd31a860116f1ffd4a32. Candidate SHA256 independently matched. Only candidate and permitted neutral inputs read. Completion estimate: 5%.
+- 2026-10-12T10:33:34.926527+00:00: Independently reconstructed all-index coding, square counts, endpoint means, local lengths, rank-tail bounds, stopping-cost recursion, uniform approximation, triangular binomial CLT and deterministic-centering obstruction. Rational controls passed for 8191 cylinder words, 49 square indices and 9216 rank-selection cases; six negative mutations detected. Deterministic rerun matched exact bytes. Completion estimate: 85%.
+- 2026-10-12T10:33:34.939072+00:00: First assessment sealed, both assessment and seal mode 0444, binding exact original inputs and independent evidence. No prohibited material read. Completion estimate: 90%.
+- 2026-10-12T10:36:14.600190+00:00: Final review/result and explicit own-output whitelist completed. All independent evidence remains unchanged after sealing; no author comparison was required. Complete retained/input inventory and external digest are being produced as the final packaging step. Completion estimate: 100%.

@@ -1,0 +1,89 @@
+{
+  "completed_utc": "2026-10-12T05:51:57.242832+00:00",
+  "validation_status": "PASS",
+  "checker_sha256": "9933ed0cc1b0f5eb6b32f44a2639f5d3f82634716854d0c75f6cd6e21d9b77d2",
+  "python_executable": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "python_version": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "python_executable_sha256": "4158f03e1bae2b759f25a1ba1fbdab8bfb7161eba4caf22e28f0915986625bbc",
+  "positive_control_counts": [
+    3788,
+    3788
+  ],
+  "negative_control": "Falsely require Ann(B3) to contain nonzero r=(1,0). Both ordinary and optimized runs must fail with no PASS and no receipt.",
+  "runs": [
+    {
+      "label": "normal",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/verify_scope.py",
+        "--receipt",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/CHECKS.json"
+      ],
+      "exit_code": 0,
+      "stdout_file": "harness_runs/normal.stdout.txt",
+      "stderr_file": "harness_runs/normal.stderr.txt",
+      "stdout_sha256": "dfa35e4cc13979538fb8519dc2dfbcc09c4f88a81636918e78990bbce87eda19",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt_created": true,
+      "receipt_file": "CHECKS.json",
+      "receipt_sha256": "dfa35e4cc13979538fb8519dc2dfbcc09c4f88a81636918e78990bbce87eda19",
+      "exact_controls": 3788,
+      "optimization_level": 0
+    },
+    {
+      "label": "optimized",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/verify_scope.py",
+        "--receipt",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/CHECKS_OPTIMIZED.json"
+      ],
+      "exit_code": 0,
+      "stdout_file": "harness_runs/optimized.stdout.txt",
+      "stderr_file": "harness_runs/optimized.stderr.txt",
+      "stdout_sha256": "55926282b525b4d39f815dd1b79ddc80c374b3a9a35f585f285879d738f032c6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "receipt_created": true,
+      "receipt_file": "CHECKS_OPTIMIZED.json",
+      "receipt_sha256": "55926282b525b4d39f815dd1b79ddc80c374b3a9a35f585f285879d738f032c6",
+      "exact_controls": 3788,
+      "optimization_level": 1
+    },
+    {
+      "label": "corrupt_normal",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/verify_scope.py",
+        "--receipt",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/CORRUPT_NORMAL_SHOULD_NOT_EXIST.json",
+        "--corrupt-annihilator"
+      ],
+      "exit_code": 1,
+      "stdout_file": "harness_runs/corrupt_normal.stdout.txt",
+      "stderr_file": "harness_runs/corrupt_normal.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "fac61b99863fe64e242f26f103202db163524c6337e877d4e34aac593d8229ba",
+      "receipt_created": false,
+      "expected_mathematical_failure": true
+    },
+    {
+      "label": "corrupt_optimized",
+      "command": [
+        "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/verify_scope.py",
+        "--receipt",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr85_30001203/isolated_main_integration_20261005/checkout/draft_pr_publication_program_20260930/audits/pr156_30005432/literal_source_review/CORRUPT_OPTIMIZED_SHOULD_NOT_EXIST.json",
+        "--corrupt-annihilator"
+      ],
+      "exit_code": 1,
+      "stdout_file": "harness_runs/corrupt_optimized.stdout.txt",
+      "stderr_file": "harness_runs/corrupt_optimized.stderr.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "fac61b99863fe64e242f26f103202db163524c6337e877d4e34aac593d8229ba",
+      "receipt_created": false,
+      "expected_mathematical_failure": true
+    }
+  ]
+}

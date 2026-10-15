@@ -1,0 +1,7 @@
+# Review log
+
+- 2026-10-15T03:42:38Z — Initial checkpoint: clean-context second whole-package review restricted to PR908/problem30006191 candidate2. Candidate and live PR are read-only. Reconstructed all proof steps before reading prior verdicts. No mathematical counterexample found in the reconstruction; primary-source scope still to bind. Completion estimate 20%.
+
+- 2026-10-15T03:50:46.226124+00:00 — Source/model and proof-mechanism checks complete. Four archive modes agree; outer140 hostile and4 false-child controls, replacement104 hostile/12positive plus24optimization/22legacy boundaries replayed, and8 fresh post-copy corruptions rejected before execution. All5 paper pages visually clean; text/renders reproduce while PDF bytes differ. Current live corrected PR/head/status/source binding passes. Completion estimate 90%.
+
+- 2026-10-15T03:56:12.027024+00:00 — Final checkpoint: no required or optional issues. Exact current ZIP rebuilt byte-identically from authenticated current source copies; final freeze and live/source/body gates rechecked. Local descriptor and both upload files bind exactly. Earlier R1/O1 repairs verified; no candidate edit. Completion estimate 100% for this review only; novelty/firstness remains uncertified and unclaimed. Internal review-harness handling of list-based family manifests and GitHub large-file raw response was repaired; the initially mistyped neighboring publisher DOI is transparently recorded and corrected. No Git/publication mutation or outside contact.

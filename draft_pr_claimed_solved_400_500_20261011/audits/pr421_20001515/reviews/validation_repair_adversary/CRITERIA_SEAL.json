@@ -1,0 +1,40 @@
+{
+  "sealed_at_utc": "2026-10-12T22:39:42.511619+00:00",
+  "reviewer": "validation_repair_adversary",
+  "source_head": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+  "source_receipt_sha256": "154c1b45ca3231fdfa89763f775d22279bd17b6caf117b98584ea1f8f6232a32",
+  "candidate_seal_sha256": "8cb14cc0d1e88c4ad48158004e8b90c8b144b326c24e25f35fe4722b44cd90dd",
+  "candidate_bytes": [
+    {
+      "path": "verify.py",
+      "sha256": "e3357a9af58d68c2f450d2901ab71c58ed955112017fe0ec758d1adc3b36ca42"
+    },
+    {
+      "path": "audit/independent_audit.py",
+      "sha256": "281ebf97900d047447a2a3865f233cfba1c41df6dd6c4e8aaae66150250b1903"
+    },
+    {
+      "path": "audit/independent_algebra.py",
+      "sha256": "3fda0f889aa454390c6f30c54c842a0a49a5f5a3d1bdea0bce5819711e3dbc96"
+    }
+  ],
+  "independence": "All six original/candidate programs read in full. Candidate seal read only to bind bytes. No reviewer reports, verdicts, provenance, replay outputs, frozen results, or repair-generator code read before this seal.",
+  "claim": "For exactly three historical programs, exactly62 historical assert nodes (34/24/4) become one-to-one if-not tests raising builtin AssertionError, preserving test and lazy message AST, exception args and every non-validation AST. Direct clean executions in normal/-O preserve the correct frozen success artifacts and proof bytes, while negative controls reject meaningful corruptions.",
+  "falsification_criteria": [
+    "Any of the13 source receipt hashes, byte lengths, supplied candidate hashes, candidate seal hash, or exact HEAD binding fails.",
+    "An original assert is missing, duplicated, reordered, weakened, has altered test/message AST, or its candidate if-not gate has an else, extra statements, alternate exception type, or unexpected arguments.",
+    "Collapsing corresponding candidate gates back into asserts fails whole-module AST equality against original; additional assertions or mathematical/non-validation AST edits exist.",
+    "Fresh isolated normal or optimized candidate execution fails, uses retained stale output, prints incorrect author/geometry/algebra JSON, writes a wrong full geometry/algebra artifact, alters any proof bytes, or changes success stdout bytes relative to same-mode original normal execution.",
+    "Each gate forced to falsity fails to raise the original builtin AssertionError with original.args in candidate normal and -O; message evaluation occurs on truth, evaluates more than once, or changes original short circuit semantics.",
+    "Meaningful geometry and algebra corruption is accepted by repaired normal/-O, raises syntax/import errors rather than validation AssertionError, or differs from original normal exception args.",
+    "The proof-byte pin or path-derived output behavior fails in a clean copied relative layout; cwd dependence, namespace lookup, or source path assumptions remain undocumented.",
+    "Any positive result depends on reading repair-generator self-claims rather than independently reconstructed correspondence and observed subprocess results."
+  ],
+  "boundary_cases": [
+    "No-message, string-message, tuple-message, and computed dict-message gates; and/not/all/any/generator predicates; author bad face length/closure/duplicate link; geometry omitted triangle/sign/cube-side/changed proof byte; algebra monodromy inverse/b-sign/vertical-generator/recovered-generator corruption; runtime builtin/name rebinding documented as a launch assumption."
+  ],
+  "success_criteria": "All pin/static/baseline/exhaustive gate/meaningful mutation/proof binding checks succeed, scope assumptions are explicit, and public allowlist excludes raw sources and mutated fixtures.",
+  "author_proof_attempts_before": "1/5",
+  "author_proof_attempts_added": 0,
+  "audit_completion_percent": 10
+}

@@ -1,0 +1,11 @@
+# Full package adversary 1 research log
+
+2026-10-12T23:27:19.954593+00:00 — 5% complete. Exact claims, success criteria, boundary cases and 53 candidate file hashes sealed before independent reconstruction and any peer convergence. No conclusions yet.
+
+2026-10-12T23:30:05.826104+00:00 — 40% complete. Independent corner/face/link reconstruction, reversible group proof, primary theorem chain and all-page PDF visual audit sealed before reading packet audit or prior review conclusions. No mathematical/visual correction found. Archive and metadata adversaries remain.
+
+2026-10-12T23:35:07.609239+00:00 — 85% complete. Both complete extracted drivers passed; 62 repairs preserved the original AST, exact13 nonscript bytes remain fixed, and source rebuild is text/pixel-identical on all six pages. Added 14 independent inventory/pin adversaries, including rehashed proof and saved-success tampering; all rejected. Fresh HTTP and both archival AIM sources match exact formula and pins. Global53 map and dated historical overrides checked. Candidate has no required or optional repair so far. Final review and artifact seal remain.
+
+2026-10-12T23:42:13.819316+00:00 — 100% complete for this first full-package review. PASS; zero required findings and zero optional candidate edits. Complete report and verdict saved. Independent primary license/schema readback confirms metadata values; final candidate53 readback remains identical. Reviewer-only permutation transcription and initial flat-archive harness assumption are disclosed without altering initial seals. Owned disposable fixtures removed; original private sources and render evidence remain private. New second whole-package reviewer remains the parent process gap. No new proof-search turns, Git/index/remote action, or external-person contact.
+
+2026-10-12T23:43:29.337555+00:00 — 100% complete. Final historical execution evidence compared to fresh results: baseline/control and relocation semantic records agree; relocation JSON digest differs only with explicitly historical integrity pins. Final report/verdict updated and all original review outputs positively allowlisted before peer convergence. Current candidate is still exact53 and unchanged.

@@ -1,0 +1,5 @@
+# Primary-source formulation check
+
+Independently retrieved the publisher/journal HTML and final published PDF after the initial mathematical seal. Section 2 of the HTML and page 205 (PDF page index 4) define arbitrary affine real polynomials a and b, the family f=x²−y²+a and g=xy+b, and Problem 2A over all of R⁶ with open domains and continuous exact root selections. No excluded ramification locus appears in this printed formulation. The immediately following square-root comparison asserts a finite covering number; this does not alter the explicit domain in the question. Problem 2B separately relaxes root exactness. This confirms the literal-formulation premise; it does not establish the author's intended correction, historical priority, or a current literature-status result.
+
+Primary links: [published PDF](https://armj.math.stonybrook.edu/pdf-Springer-final/015-0011-9.pdf), [journal HTML](https://armj.math.stonybrook.edu/html-articles/Files-2015-2024/15-11/). Full third-party copies remain under private_sources and are excluded from the safe own-file allowlist.

@@ -1,0 +1,64 @@
+{
+  "recorded_at_utc": "2026-10-15T04:18:12.706238+00:00",
+  "purpose": "Source and definition audit; no deep priority census",
+  "queries": [
+    {
+      "tool": "web.open",
+      "requests": [
+        "https://ems.press/journals/owr/articles/14218",
+        "https://arxiv.org/abs/1512.00183v1",
+        "https://doi.org/10.1017/S0017089517000167"
+      ],
+      "outcome": "EMS and arXiv landing pages read; DOI resolver inaccessible in web tool"
+    },
+    {
+      "tool": "direct_HTTP_GET",
+      "requests": [
+        "https://content.ems.press/assets/public/full-texts/serials/owr/13/1/14218/online/10.4171-owr-2016-10.pdf",
+        "https://arxiv.org/pdf/1512.00183v1",
+        "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3C88B4F8A1123BAC193B64F0631E49CC/S0017089517000167a.pdf/div-class-title-koszul-calculus-div.pdf"
+      ],
+      "outcome": "All three original PDFs downloaded successfully without access-control workaround; exact metadata in SOURCE_LEDGER.json"
+    },
+    {
+      "tool": "web.open",
+      "requests": [
+        "https://content.ems.press/assets/public/full-texts/serials/owr/13/1/14218/online/10.4171-owr-2016-10.pdf",
+        "https://arxiv.org/pdf/1512.00183v1",
+        "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3C88B4F8A1123BAC193B64F0631E49CC/S0017089517000167a.pdf/div-class-title-koszul-calculus-div.pdf"
+      ],
+      "outcome": "v1 PDF accessible; EMS and Cambridge PDF open returned inaccessible; direct original-host HTTP downloads succeeded"
+    },
+    {
+      "tool": "web.search",
+      "queries": [
+        "site.cambridge.org/core \"S0017089517000167\" \"Koszul calculus\"",
+        "site.arxiv.org \"1512.00183\" \"higher Koszul homology\" characteristic"
+      ],
+      "outcome": "Official Cambridge bibliographic record corroborates DOI, authors,2018volume/pages and18October2017online date. Non-primary search hits not relied upon."
+    },
+    {
+      "tool": "local_text_search",
+      "patterns": [
+        "Throughout",
+        "characteristic",
+        "char(",
+        "finite dimensional",
+        "finite-dimensional",
+        "free algebra",
+        "tensor algebra",
+        "fundamental",
+        "Definition4.1",
+        "Definition3.4",
+        "6.2",
+        "6.5"
+      ],
+      "outcome": "Searched complete v1/final extractions; inspected relevant full pages. No global char0 or finite-dimensional A convention found."
+    }
+  ],
+  "limitations": [
+    "No novelty, worldwide openness or exhaustive literature conclusion is drawn.",
+    "Web PDF resolver failures do not affect successful exact-byte retrieval from original hosts.",
+    "No historical audit verdict files were opened."
+  ]
+}

@@ -1,0 +1,20 @@
+"""Authenticate independent terminal03 counterexamples; no promotion authority."""
+from pathlib import Path
+import datetime,hashlib,json,stat
+A=Path(__file__).resolve().parent;D=A/'lifecycle_adversary_03'
+def require(x,m):
+ if not x:raise RuntimeError(m)
+def pin(p):
+ b=p.read_bytes();return {'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()}
+require(pin(D/'FINAL_SEAL.json')['sha256']=='4f0350feb391d68bca79c9f683bacd57b51e7b266a9c71c67e1c221f96caf2fb','Terminal seal drift')
+seal=json.loads((D/'FINAL_SEAL.json').read_text());require(seal['verdict']=='REPAIR_REQUIRED','Unexpected verdict')
+for key in ['report','manifest','public_safe_allowlist','input_bindings','independent_probes','results','plan_seal']:match=seal[key];require(pin(D/match['path'])=={k:match[k] for k in ['bytes','sha256']},'Seal member drift '+key)
+files=json.loads((D/'FINAL_MANIFEST.json').read_text())['files'];allow=json.loads((D/'PUBLIC_SAFE_ALLOWLIST.json').read_text())['files'];require(set(allow)=={x['path'] for x in files}|{'FINAL_MANIFEST.json','FINAL_SEAL.json'},'Public manifest/allowlist mismatch')
+for x in files:require(pin(D/x['path'])=={k:x[k] for k in ['bytes','sha256']},'Owned bytes drift '+x['path'])
+for n in allow:require(stat.S_IMODE((D/n).stat().st_mode)==0o444 and not (D/n).is_symlink(),'Owned mode/symlink drift '+n)
+out={'UTC':datetime.datetime.now(datetime.UTC).isoformat(),'PR':191,'status':'ROOT_AUTHENTICATED_NEW_OPERATIONAL_REVIEW03_REPAIR_REQUIRED','report':{'path':'lifecycle_adversary_03/FINAL_REPORT.md',**pin(D/'FINAL_REPORT.md')},'seal':{'path':'lifecycle_adversary_03/FINAL_SEAL.json',**pin(D/'FINAL_SEAL.json')},'proposal_seal':seal['proposal_seal'],'public_safe_owned_files_authenticated':len(allow),'Root_read_full_report':True,'independent_probes':54,'unsafe_acceptances':6,'required_repairs':seal['required_repairs'],'separate_repair_generation':'lifecycle_controls_preparation_04','NEW_independent_review_plan_already_sealed':'lifecycle_adversary_04','Root_handoff03_frozen_unused_must_not_inherit_future_approval':True,'two_clean_NEW_science_reviews_unchanged':True,'canonical_runtime_installed':False,'actual_operational_clearance_or_publication_gate_created':False,'actual_published':False,'actual_tracker_updated':False,'actual_original_PR_merged':False,'case_percent':78,'fully_completed_count':39,'published_count':23,'goal_complete':False}
+p=A/'ROOT_OPERATIONAL_REVIEW03_REPAIR_REQUIRED.json';require(not p.exists(),'Never overwrite receipt');p.write_text(json.dumps(out,indent=2)+'\n');p.chmod(0o444)
+case=json.loads((A/'CURRENT_CASE_STATUS.json').read_text());case.update(UTC=out['UTC'],status='SCIENTIFIC_PACKAGE_READY_REPAIRING_THIRD_OPERATIONAL_REVIEW_FINDINGS',case_percent=78,publication_ready=False,operational_lifecycle_audit_active=True,operational_required_repairs=seal['required_repairs'],operational_review03_Root_authentication=p.name,operational_review03_report='lifecycle_adversary_03/FINAL_REPORT.md',remaining_required_steps='Repair direct approved-file identity checks, actual factual postimages, exact commit messages and bounded native timestamps; NEW04 review, actual Zenodo DOI/tracker/original-head merge/full factual MAIN acceptance before192.')
+(A/'CURRENT_CASE_STATUS.json').write_text(json.dumps(case,indent=2)+'\n')
+with (A/'RESEARCH_LOG.md').open('a') as f:f.write('\n'+out['UTC']+' — PR191 workflow78%: Root read full NEW independent03 terminal REPAIR_REQUIRED report;13 safe owned files authenticated0444.54 own probes found6 unsafe acceptances in4 categories: gate-approved immutable identities vs producer map, actual factual status/census postimages, exact operative commit claims, and future native factual timestamps. Frozen03 and unused Root handoff preserved; separate04 repairs begun, NEW04 plan independently sealed before implementation. Root case scientific projection will bind approved claims separately from actual evolving facts. Scientific proof/currentv4, packetv1 and both clean whole-science reviews unchanged. No runtime/gate/publication/DOI/tracker/PR metadata/ready/merge or192 intake;39/23 unchanged.\n')
+print(json.dumps(out))

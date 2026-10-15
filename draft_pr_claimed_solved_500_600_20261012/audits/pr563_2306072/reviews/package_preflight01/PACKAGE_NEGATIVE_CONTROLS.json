@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "unlisted hidden file",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Inventory mismatch: extra={'.unlisted'}, missing=set()"
+    },
+    {
+      "name": "missing archived gitignore",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Inventory mismatch: extra=set(), missing={'reviews/priority03/.gitignore'}"
+    },
+    {
+      "name": "missing complete JSONL evidence ledger",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Inventory mismatch: extra=set(), missing={'reviews/priority03/SOURCE_RETRIEVALS.jsonl'}"
+    },
+    {
+      "name": "source changed without updating authority",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Payload mismatch: support_slit.tex"
+    },
+    {
+      "name": "unlisted symlink",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Unexpected symlink: unlisted-symlink"
+    },
+    {
+      "name": "optimizer flag",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Run without Python optimization"
+    },
+    {
+      "name": "optimizer environment",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Run without Python optimization"
+    },
+    {
+      "name": "outer-authorized content still disagrees with inner seal",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Nested size mismatch: reviews/priority03/MANIFEST.json: reviews/priority03/BROWN_SUPPORT_WAVER.md"
+    },
+    {
+      "name": "independently registered seal list disagreement",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Nested seal registry disagrees with SEALS.json"
+    },
+    {
+      "name": "mathematical field cannot be normalized away",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Unsupported replay normalization"
+    },
+    {
+      "name": "timestamp exception cannot migrate to different job",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Timestamp normalization assigned to wrong job"
+    },
+    {
+      "name": "source bridge mathematical result drift after consistent resealing",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Replay mismatch: reviews/source01/check_source_bridge.py"
+    },
+    {
+      "name": "normalization requires recorded generated timestamp",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Missing generated check timestamp"
+    },
+    {
+      "name": "write into sealed root during otherwise successful jobs",
+      "expected": "REJECT",
+      "actual": "REJECT",
+      "returncode": 1,
+      "diagnostic": "RuntimeError: Frozen payload changed during replay"
+    },
+    {
+      "name": "all 11 execution paths and working directories are disposable scratch",
+      "expected": "PASS",
+      "actual": "PASS",
+      "returncode": 0,
+      "diagnostic": "SCRATCH_JOBS=11"
+    },
+    {
+      "name": "documented __pycache__ directory is outside sealed inventory",
+      "expected": "PASS",
+      "actual": "PASS",
+      "returncode": 0,
+      "diagnostic": "{\"status\": \"PASS\", \"outer_payloads_verified\": 114, \"nested_entries_verified\": 66, \"replayed_jobs\": 11, \"offline\": true, \"frozen_payloads_unchanged\": true, \"limits\": \"Finite controls supplement analytic proofs. Seals establish consistency, not authenticity, novelty or formal certification.\"}"
+    }
+  ],
+  "count": 16,
+  "limits": "Disposable mutations intentionally alter declared authority for selected tests. Seals are consistency controls, not an adversary-proof signature. __pycache__ and .venv are intentional whole-directory exceptions; unchanged means unchanged sealed inventory."
+}

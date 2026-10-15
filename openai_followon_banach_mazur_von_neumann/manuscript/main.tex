@@ -2,6 +2,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{2em}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -9,221 +10,408 @@
 \newcommand{\BM}{d_{\mathrm{BM}}}
 \newcommand{\Cb}{C_b}
 \newcommand{\Hb}{H_b}
-\title{Ordinary Banach--Mazur rigidity from bounded Hochschild vanishing}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Z}{\mathcal Z}
+\title{Ordinary Banach--Mazur rigidity of von Neumann algebras}
 \author{Alec Kriebel\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
-\date{October 6, 2026\\\small Research draft: journal-source audit outstanding}
-\hypersetup{pdftitle={Ordinary Banach-Mazur rigidity from bounded Hochschild vanishing},pdfauthor={Alec Kriebel},pdfsubject={Conditional consequence; dependency audit outstanding}}
+\date{October 7, 2026}
+\hypersetup{pdftitle={Ordinary Banach-Mazur rigidity of von Neumann algebras},pdfauthor={Alec Kriebel},pdfsubject={Consequence of bounded Hochschild vanishing; arbitrary predual scope}}
 \begin{document}
 \maketitle
 \begin{abstract}
-Roydor's cohomological rigidity theorem and the vanishing assertion in
-OpenAI's family 295 manuscript imply local ordinary complex
-Banach--Mazur rigidity for every von Neumann algebra and its canonical
-predual. We give the precise composition, including an elementary
-adjoint argument for the predual conclusion. The threshold may depend on
-the algebra and the conclusion is Jordan $*$-isomorphism. This draft
-records a conditional consequence, rather than a certified new
-unconditional theorem: Roydor's actual author slides have been read,
-but his journal full text has not been obtained. The upstream proof
-has received independent mathematical audits; a fresh kernel build
-of its actual Lean declarations has not been reproduced. This
-document is not cleared for Zenodo publication as a full solution.
+Using OpenAI's all-algebra bounded Hochschild vanishing theorem, we derive
+local ordinary complex Banach--Mazur rigidity for every von Neumann
+algebra and its canonical predual. The threshold depends on the algebra;
+the conclusion is Jordan $*$-isomorphism. Roydor announced the general
+cohomological implication in 2020, while his published Theorem~1.2 assumes
+separable predual. We give an explicit extension of his geometric argument
+using deformation stability on two fixed source algebras and reconstruction
+of odd finite type-I summands from full abelian projections. This avoids
+separability, moving-corner perturbation constants, and enumeration of
+infinite cardinal degrees. The cohomological input and geometric machinery
+are attributed external results; no new solution of the underlying
+cohomology problem or universal numerical threshold is claimed.
 \end{abstract}
 
-\section{The target and conventions}
-
-All Banach spaces and linear maps are complex. For Banach spaces $X,Y$, put
+\section{Statement, inputs and attribution}
+All Banach spaces and linear maps are complex. Define
 \[
- \BM(X,Y)=\inf_T \|T\|\,\|T^{-1}\|,
+ \BM(X,Y)=\inf_T\|T\|\,\|T^{-1}\|,
 \]
-where the infimum ranges over bounded bijective complex-linear maps
-$T:X\to Y$ with bounded inverse. It is infinity when no such map
-exists. The literal norm-product formula gives $\BM(0,0)=0$, and
-$\BM(0,X)=\BM(X,0)=\infty$ for
-$X\ne0$. For a von Neumann algebra $M$, $M_*$ is its canonical
-Banach predual, with $M=(M_*)^*$ isometrically. The notation does
-not assume a trace or a semifinite realization.
+where $T$ ranges over bounded bijective complex-linear maps with bounded
+inverse; the infimum is infinity when there is no such map. The literal
+formula gives $\BM(0,0)=0$ and $\BM(0,X)=\infty$ for $X\ne0$.
+For a von Neumann algebra $M$, write $M_*$ for its canonical predual, with
+$M=(M_*)^*$ isometrically. A Jordan $*$-isomorphism is a bijective
+complex-linear map preserving involution and $x\circ y=(xy+yx)/2$.
 
-A Jordan $*$-isomorphism is a bijective complex-linear map preserving
-involution and $x\circ y=(xy+yx)/2$. On nonzero unital algebras it
-preserves the unit. The core question is whether, for each complex
-von Neumann algebra $M$, there exists $\varepsilon_M>0$ such that
-for every complex von Neumann algebra $N$ either inequality
-\begin{equation}\label{eq:targets}
+\begin{theorem}\label{thm:main}
+For every complex von Neumann algebra $M$ there is $\varepsilon_M>0$
+such that, for every complex von Neumann algebra $N$, either condition
+\[
  \BM(M,N)<1+\varepsilon_M,
  \qquad \BM(M_*,N_*)<1+\varepsilon_M
-\end{equation}
-forces a Jordan $*$-isomorphism. The comparisons are with von Neumann
-algebras and their canonical preduals. No assertion about arbitrary
-nearby Banach spaces is intended.
+\]
+implies that $M$ and $N$ are Jordan $*$-isomorphic. With this threshold,
+Jordan $*$-isomorphism, algebra-space linear isometry, predual linear
+isometry, and the two displayed strict distance conditions are equivalent.
+\end{theorem}
 
-\section{The two inputs}
+The essential new input is the following attributed theorem.
+\begin{theorem}[OpenAI, family 295]\label{thm:input}
+For every complex von Neumann algebra $V$ and every $k\ge2$,
+every bounded complex $k$-linear Hochschild cocycle $V^k\to V$
+has a bounded complex $(k-1)$-linear primitive. Thus $\Hb^k(V,V)=0$.
+\end{theorem}
+This is \cite[Theorem 1.1]{OAI295}, at the pinned repository version
+\texttt{adc7f124} (full identifier in the pinned bibliography link). The mathematical proof
+of that input has received independent source audits recorded in the
+supplement. We rely on its manuscript proof, not a claim that our
+follow-on result has been formalized. No fresh Lean kernel build of the
+upstream declarations was reproduced.
 
-For $k\ge1$, $\Cb^k(M,M)$ denotes bounded complex $k$-linear maps
-with the usual multilinear operator norm; $\Cb^0(M,M)=M$. For a
-$k$-cochain $f$, $k\ge1$, the differential is
+Roydor's published reduction \cite[Theorem 1.2]{Roydor2022} assumes
+\emph{separable predual}, $\Hb^2(M,M)=0$, and closed $B^3(M,M)$ in
+$Z^3(M,M)$. Degree-three vanishing supplies the latter condition, since
+$B^3=Z^3$ and $Z^3$ is a closed kernel. For separable-predual $M$,
+Theorem~\ref{thm:main} is therefore an immediate consequence of that
+published theorem and Theorem~\ref{thm:input}. Roydor's earlier author
+slides already announce the unrestricted conditional formulation
+\cite[Theorem 2, PDF pp.~28--29]{RoydorSlides}. Our contribution is the
+explicit fixed-source extension below and the consequence of the newly
+available cohomology input, not priority for that conditional formulation
+or invention of its geometric machinery.
+
+The supplied complete 26-page publisher-formatted Roydor version, dated
+December 2020 and carrying the article's DOI, was read in full. Its
+printed Theorem~1.2 and type-I argument must not be replaced by the
+less restricted slide statement. We use only Corollary~2.4,
+Proposition~2.13, Lemma~3.1 and Theorem~3.2 of that article, and its
+approximate-order estimate, Lemma~2.5. Their proofs have no separability
+hypothesis. In Theorem~3.2's proof, the off-diagonal relation in the
+heading of Claim~4 should read $T(e_{ij})\simeq g_{ij}+h_{ji}$, as used
+immediately above and in Claim~7. We do not use the article's
+Theorem~1.1 or its compressed-map invocation in Lemma~4.3.
+
+\section{An involutive form of multiplication stability}
+For a complex $C^*$-algebra $A$, let $\Cb^k(A,A)$ be all bounded complex
+$k$-linear maps, with the usual multilinear norm; $\Cb^0(A,A)=A$.
+We use actual-image Hochschild cohomology, with
 \begin{align*}
  (df)(a_1,\ldots,a_{k+1})={}&a_1f(a_2,\ldots,a_{k+1})\\
- &+\sum_{j=1}^k(-1)^j
- f(a_1,\ldots,a_ja_{j+1},\ldots,a_{k+1})\\
- &+(-1)^{k+1}f(a_1,\ldots,a_k)a_{k+1}.
+ &+\sum_{j=1}^k(-1)^j f(a_1,\ldots,a_ja_{j+1},\ldots,a_{k+1})\\
+ &+(-1)^{k+1}f(a_1,\ldots,a_k)a_{k+1},
 \end{align*}
-In degree zero, $(db)(a)=ab-ba$. We use
+and $(db)(a)=ab-ba$ in degree zero. Thus
+$\Hb^k=\ker d/\operatorname{im}d$, with no closure in the denominator.
+Neither normality nor complete boundedness is required. The differential
+printed in \cite[Sec.~4.2.1]{Roydor2022} omits the last adjacent merge and
+has an incorrect final sign; the standard differential above is the
+intended one, agrees with family 295, and is used throughout this paper.
+
+The following is an involutive version of the classical multiplication
+stability mechanism of Johnson and Raeburn--Taylor
+\cite{Johnson,RaeburnTaylor}; see also the symmetry-preserving iteration
+in \cite[Proposition 3.2]{RicardRoydor}. We include the argument to make
+its field, involution and fixed-algebra constants explicit.
+\begin{lemma}\label{lem:deform}
+Let $A$ be a fixed complex unital $C^*$-algebra with
+$\Hb^2(A,A)=\Hb^3(A,A)=0$. There is $\delta_A>0$ such that every bounded
+associative complex bilinear product $\mu$ on $A$ satisfying
 \[
- \Hb^k(M,M)=\ker(d:\Cb^k\to\Cb^{k+1})/
- \operatorname{im}(d:\Cb^{k-1}\to\Cb^k).
+ \|\mu-m_A\|\le\delta_A,
+ \qquad \mu(x,y)^*=\mu(y^*,x^*)
 \]
-The denominator is the actual image, with no closure. Neither
-complete boundedness nor normality is imposed on these cochains.
+admits an invertible bounded complex-linear $*$-preserving map $\Phi$
+with $\|\Phi-\id\|<1/2$ and
+$\Phi\mu(x,y)=\Phi(x)\Phi(y)$. If $\mu$ has the original unit, $\Phi$
+preserves it.
+\end{lemma}
+\begin{proof}
+Put $Z^k=\ker(d:\Cb^k\to\Cb^{k+1})$. Since $\Hb^3=0$, the map
+$d:\Cb^2/Z^2\to Z^3$ is a bounded bijection of Banach spaces. Since
+$\Hb^2=0$, $d:\Cb^1\to Z^2$ is onto. The open mapping theorem gives
+constants $K,L\ge1$ such that each $f\in\Cb^2$ has $z\in Z^2$ with
+$\|f-z\|\le K\|df\|$, and each $z\in Z^2$ has a primitive $h$ with
+$\|h\|\le L\|z\|$. Choose $K,L$ strictly larger than the respective
+quotient inverse bounds, to accommodate nonattained infima; for a zero
+right side choose the exact zero-error solution. A bounded linear
+selection is unnecessary.
 
-\begin{theorem}[Roydor's reduction, author-slide formulation]\label{thm:roydor}
-Let $M$ be a complex von Neumann algebra with
-$\Hb^2(M,M)=\Hb^3(M,M)=0$. There is $\varepsilon_M>0$ such that,
-for every complex von Neumann algebra $N$, the following conditions
-are equivalent: $M,N$ are Jordan $*$-isomorphic; $M,N$ are linearly
-isometric; $M_*,N_*$ are linearly isometric; and each of the two
-strict distance inequalities in \eqref{eq:targets} holds.
-\end{theorem}
+Define conjugate-linear isometric involutions, for $n\ge1$, by
+\[
+ S_n f(a_1,\ldots,a_n)
+ =(-1)^{(n-1)(n-2)/2}f(a_n^*,\ldots,a_1^*)^*.
+\]
+Reversing the differential's terms gives $dS_n=S_{n+1}d$. Averaging
+$z$ with $S_2z$, and its primitive with $S_1h$, preserves the preceding
+bounds when $f=S_2f$. The $S_1$-fixed maps preserve the involution;
+$S_2$-fixed bilinear maps satisfy the product symmetry in the statement.
 
-This is the stated scope of Theorem 2 in Roydor's CIRM slides,
-interpreted in the standard complex operator-algebra setting,
-\cite[PDF pp.~28--29]{RoydorSlides}, repeated later in the file. No
-separability, factoriality, type or trace hypothesis occurs in that
-statement. The bounded-cochain convention is introduced on PDF
-pp.~30--32 and distinguished from completely bounded cohomology.
-The displayed differential on p.~32 has apparent index/sign errors;
-we use the standard differential written above, also used by family
-295. The published article is \cite{Roydor2022}; its precise theorem
-number, proof and correspondence with the slide version remain
-unverified because journal full-text access was unsuccessful. We
-therefore retain Theorem~\ref{thm:roydor} as an explicitly identified
-external input rather than claiming to have independently reproved it.
-The slides do not explicitly declare the scalar field; the journal's
-preliminary field convention remains to be checked.
+Write $\mu=m_A+\Delta$, $\delta=\|\Delta\|$. Associativity gives
+\[
+ d\Delta(x,y,z)=\Delta(\Delta(x,y),z)-\Delta(x,\Delta(y,z)),
+ \qquad \|d\Delta\|\le2\delta^2.
+\]
+Choose symmetric $z,h$ with
+\[
+ dh=z,\quad \|\Delta-z\|\le2K\delta^2,\quad
+ \|h\|\le L(\delta+2K\delta^2).
+\]
+For $g=\id+h$ and $b=g^{-1}$, transport the product to
+$\nu(x,y)=g\mu(bx,by)$. Its exact defect is
+\[
+ (\nu-m_A)(x,y)
+ =\bigl[(\Delta-dh)+h\Delta-m_A(h\cdot,h\cdot)\bigr](bx,by).
+\]
+If $\delta\le1/(2K)$ and $\delta\le1/(4L)$, then
+$\|h\|\le2L\delta\le1/2$, $\|b\|\le2$, and
+\[
+ \|\nu-m_A\|\le D\delta^2,
+ \qquad D=8K+8L+16L^2.
+\]
+Transport preserves associativity and the involution. Take
+$\delta_A=\min\{1/(2K),1/(16L),1/(2D)\}$ and iterate, using the
+original differential of the fixed algebra $A$ at every stage.
+Then $\delta_n\le2^{-n}\delta_0$ and
+$\sum_n\|h_n\|\le4L\delta_0\le1/4$.
+The ordered products $\Phi_n=g_{n-1}\cdots g_0$ converge in operator
+norm and satisfy
+$\|\Phi-\id\|\le\exp(4L\delta_0)-1<1/2$.
+Thus $\Phi$ is invertible and $*$-preserving. Passing to the limit in
+$\Phi_n\mu(x,y)=\mu_n(\Phi_nx,\Phi_ny)$ proves the conjugacy.
+An onto algebra isomorphism sends a unit to a unit, proving the last
+assertion when both original products have unit $1$.
+\end{proof}
 
-\begin{theorem}[OpenAI family 295 assertion]\label{thm:input}
-For every complex von Neumann algebra $M$ and every $k\ge2$, every
-bounded complex $k$-linear Hochschild cocycle $M^k\to M$ has a
-bounded complex $(k-1)$-linear primitive. Thus $\Hb^k(M,M)=0$.
-\end{theorem}
+\section{Rigidity on a fixed algebra whose unit halves}
+Say that a von Neumann algebra \emph{halves} if its unit is the sum of two
+orthogonal equivalent projections. Equivalently, its finite type-I
+homogeneous summands have even degrees only; properly infinite summands
+and type-II summands also halve. This is the projection-halving criterion
+used in Roydor's proof of Theorem~3.2, with the standard structure theory
+\cite{KR,Takesaki}. All infinite cardinal dimensions are included.
 
-This is Theorem 1.1 of the manuscript \cite{OAI295}, pinned to repository
-commit \texttt{adc7f124} (the full identifier is recorded in the
-source receipt and the pinned link below). In particular,
-its assertion has exactly the field, coefficient module, boundedness,
-actual-image and degree conventions required above. Its proof reduces
-ordinary cocycles to separately normal cocycles, constructs uniformly
-bounded primitives on tracial type $\mathrm{II}_1$ algebras using a
-unitary random walk and a Liouville argument, removes separability by
-conditional expectations and compactness, and assembles central
-summands with an explicit homotopy. The accompanying audit reports
-record which arguments were checked. This description is an audit
-summary, not a replacement proof of that input.
+\begin{lemma}\label{lem:halve}
+Let $V$ be a fixed von Neumann algebra which halves and satisfies
+$\Hb^2(V,V)=\Hb^3(V,V)=0$. There is $\eta_V>0$ such that every von
+Neumann algebra $W$ with $\BM(V,W)<1+\eta_V$ is Jordan $*$-isomorphic
+to $V$.
+\end{lemma}
+\begin{proof}
+For a sufficiently small distance excess, Roydor's Corollary~2.4 supplies
+a unital self-adjoint linear isomorphism $T:V\to W$ with
+$\max\{\|T\|,\|T^{-1}\|\}\le1+t$, where $t\to0$ with that excess.
+His Theorem~3.2 and Lemma~3.1 provide central $p\in V,q\in W$ and a
+block isomorphism
+\[
+ F=T_p^q\oplus T_{1-p}^{1-q}
+\]
+The first block nearly preserves multiplication; the second nearly
+reverses it. The estimates are
+\begin{align*}
+ \|F^{-1}\|&\le1+988\sqrt t,\\
+ \max\{\|(T_p^q)^\vee\|,\|(T_{1-p}^{1-q})^\wedge\|\}
+ &\le3147585\sqrt t.
+\end{align*}
+The superscripts denote the ordinary bilinear multiplicative and
+anti-multiplicative defects, respectively. Zero blocks are omitted.
+Put $y\diamond z=qyz+(1-q)zy$ on $W$. Centrality of $q$ makes this
+an associative unital $C^*$-product on the same normed $*$-space, namely
+the original product on $qW$ and the opposite product on $(1-q)W$.
+The pulled-back product
+\[
+ \mu(x,y)=F^{-1}(F(x)\diamond F(y))
+\]
+is associative, unital and involution-compatible, and
+\[
+ \|\mu-m_V\|\le(1+988\sqrt t)3147585\sqrt t\longrightarrow0.
+\]
+Apply Lemma~\ref{lem:deform} once to the fixed algebra $V$.
+Then $F\Phi^{-1}$ is a $*$-isomorphism from $V$ to $(W,\diamond)$,
+hence a Jordan $*$-isomorphism to $W$ with its original product.
+The constants are attached to $V$, not the moving projection $p$.
+\end{proof}
 
-\section{The consequence and an independent predual argument}
+\section{Full carriers and odd finite type-I summands}
+The central carrier $c(h)$ of a projection is the least central
+projection dominating it. We need the following quantitative observation.
+\begin{lemma}\label{lem:carrier}
+Let $T:C\to D$ be a unital self-adjoint linear isomorphism of von
+Neumann algebras with both norms at most $1+t$, for sufficiently small
+$t$. If $c_C(h)=1$ and a projection $k\in D$ satisfies
+$\|T(h)-k\|\le r(t)=140\sqrt t$, then $c_D(k)=1$.
+\end{lemma}
+\begin{proof}
+Roydor's Proposition~2.13 gives a center $*$-isomorphism $\theta$
+with $\|T(z)-\theta(z)\|\le r(t)$ for central projections $z$.
+Put $w=c_D(k)$ and $z=\theta^{-1}(w)$. His Lemma~2.5 applied to
+$T^{-1}$ and $k\le w$ yields
+\[
+ T^{-1}(k)\le T^{-1}(w)+\gamma(t)1,
+ \qquad \gamma(t)=2(1+t)\sqrt{2t+t^2}.
+\]
+Both $\|h-T^{-1}(k)\|$ and $\|T^{-1}(w)-z\|$ are at most
+$(1+t)r(t)$. Therefore
+\[
+ h-z\le\bigl[2(1+t)r(t)+\gamma(t)\bigr]1.
+\]
+Choose $t$ so that the bracket is less than one. Since $z$ is central,
+$h(1-z)$ is a projection; compressing the inequality by $1-z$ forces
+it to be zero. Thus $h\le z$, and $c_C(h)=1$ forces $z=1$, $w=1$.
+The same argument applies to complements, since $T$ is unital.
+\end{proof}
 
-\begin{lemma}\label{lem:adjoint}
-For complex von Neumann algebras $M,N$,
+\begin{lemma}\label{lem:odd}
+Let $O$ be a fixed von Neumann algebra consisting of finite homogeneous
+type-$I_n$ central summands with odd $n\ge3$. Choose a projection $e$
+which has rank $n-1$ on each such summand. Suppose
+$E=eOe$ satisfies $\Hb^2(E,E)=\Hb^3(E,E)=0$. Then $O$ is locally
+Jordan rigid for ordinary Banach--Mazur distance among von Neumann
+algebras, without a separability assumption.
+\end{lemma}
+\begin{proof}
+Both $e$ and $1-e$ have full central carrier; $(1-e)O(1-e)$ is
+abelian, and the fixed algebra $E$ halves. These assertions follow by
+writing each finite homogeneous summand as its arbitrary abelian center
+tensored with $M_n$, choosing the diagonal rank-$n-1$ projection,
+and taking the bounded central direct product.
+
+Let $T:O\to D$ be a unital self-adjoint near isomorphism as in
+Lemma~\ref{lem:halve}. Round $T(e)$ to a projection $q$ using Roydor's
+Proposition~2.13. Then $1-q$ is equally close to $T(1-e)$.
+Lemma~\ref{lem:carrier} gives $c_D(q)=c_D(1-q)=1$.
+Roydor's Lemma~3.1 gives near isomorphisms from $E$ to $qDq$, and
+from $(1-e)O(1-e)$ to $(1-q)D(1-q)$, with both distortions tending
+to one. His Proposition~2.13 applied to the latter compression makes
+$(1-q)D(1-q)$ abelian. Its full carrier implies that $D$ is type I.
+Lemma~\ref{lem:halve}, applied to the single fixed algebra $E$, gives
+an exact Jordan $*$-isomorphism $J:E\to qDq$.
+
+For full projection corners, compression identifies their centers with
+the center of the original algebra. The center restriction of $J$
+therefore induces a $*$-isomorphism $\beta:\Z(O)\to\Z(D)$.
+It preserves arbitrary existing joins: a Jordan $*$-isomorphism and
+its inverse are positive order isomorphisms, hence normal.
+Let $z_n$ be the source homogeneous degree-$n$ central projection and
+put $w_n=\beta(z_n)$. The corner $w_nqDq$ is homogeneous of degree
+$n-1$. This follows from the usual central homomorphism/anti-homomorphism
+decomposition of a von Neumann Jordan $*$-isomorphism; either part
+preserves finite homogeneous degree.
+
+Consequently $w_nq$ is the sum of $n-1$ orthogonal equivalent abelian
+projections, each with central carrier $w_n$ in $D$. The complementary
+projection $w_n(1-q)$ is abelian and also has carrier $w_n$.
+Abelian projections with the same central carrier are equivalent
+\cite{KR,Takesaki}. Thus $w_n$ is the sum of $n$ orthogonal equivalent
+abelian projections, and $w_nD$ is homogeneous of degree $n$.
+Its center is identified by $\beta$ with that of $z_nO$, so finite
+homogeneous matrix classification gives $z_nO\cong w_nD$ as von
+Neumann algebras. Taking their bounded central direct product gives
+$O\cong D$. The centers can have arbitrary density. No measurable
+fiber decomposition or infinite-cardinal cancellation was used.
+
+All constants were chosen for the fixed $E$, and the compression
+bounds depend only on the initial norm excess. Hence one threshold
+works for all $D$, all $q$ and all finite odd degrees simultaneously.
+\end{proof}
+
+\section{Completion of the algebra and predual conclusions}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+For $M\ne0$, use its three fixed central summands
+\[
+ M=A\oplus P\oplus O,
+\]
+where $A$ is type $I_1$, $O$ contains the finite odd type-$I_n$
+summands with $n\ge3$, and $P$ contains everything else: finite even
+and all infinite type-I summands, and all type-II and type-III summands.
+Then $P$ halves, and the projection $e$ in Lemma~\ref{lem:odd}
+chooses the second fixed source algebra $E=eOe$.
+Theorem~\ref{thm:input} applies to each of $P,E$, since both are von
+Neumann algebras. This is why the proof uses universal vanishing;
+we do not infer the noncentral corner's cohomology merely by applying
+a central restriction to $M$.
+
+For sufficiently small ordinary distance, normalize the initial Banach
+isomorphism using Roydor's Corollary~2.4. Its Proposition~2.13 sends the
+three central projections to an orthogonal partition of $1_N$, and
+Lemma~3.1 gives near isomorphisms from the fixed three source summands
+to the corresponding target summands, with uniform distortion bounds
+converging to one. The commutative pieces are $*$-isomorphic by
+Proposition~2.13; Lemmas~\ref{lem:halve} and \ref{lem:odd} handle
+$P$ and $O$. Their finite direct sum is a Jordan $*$-isomorphism
+$M\to N$. Omit zero summands. This includes arbitrary nonseparable
+centers and arbitrary infinite type-I cardinal dimensions.
+
+Choose the deformation thresholds once for the at most two nonzero
+fixed algebras $P,E$. There are only finitely many subsequent center,
+compression, carrier and halving inequalities; all their norm error
+bounds tend to zero as the original distortion tends to one. Choosing
+a small positive $\varepsilon_M$ to satisfy them proves the stated
+$\forall M\,\exists\varepsilon_M\,\forall N$ quantifiers. No universal
+constant is inferred. An infimum-attaining map is unnecessary: a
+strict distance bound supplies some isomorphism with distortion
+strictly below that bound.
+
+For the predual implication, if $S:M_*\to N_*$ is a bounded
+complex-linear isomorphism, its Banach adjoint $S^*:N\to M$ has inverse
+$(S^{-1})^*$ and exactly the same two norms. Taking infima gives
 \[
  \BM(M,N)\le\BM(M_*,N_*).
 \]
-\end{lemma}
-\begin{proof}
-If $T:M_*\to N_*$ is a bounded isomorphism, its Banach adjoint
-$T^*:N\to M$ is a bounded complex-linear isomorphism, with inverse
-$(T^{-1})^*$ and norms $\|T^*\|=\|T\|$,
-$\|(T^*)^{-1}\|=\|T^{-1}\|$. Inverting this algebra-space
-isomorphism does not change its distortion. Taking the infimum over
-$T$ proves the inequality. If no $T$ exists, the right side is
-infinite. Our zero convention gives the remaining cases.
+Thus the same algebra threshold suffices. Exact Jordan
+$*$-isomorphisms are normal order isomorphisms and induce isometric
+canonical-predual maps. Conversely, predual isometries adjoint to
+algebra-space isometries, and Kadison's isometry theorem gives Jordan
+$*$-isomorphism; see also \cite[Theorem 1.1]{Sherman}.
+This proves all equivalences. For $M=0$, either strict distance
+inequality forces $N=0$, so any positive threshold works.
 \end{proof}
 
-\begin{proposition}[Conditional composition]\label{prop:consequence}
-If Theorems~\ref{thm:roydor} and \ref{thm:input} hold in the stated
-scope, both targets in \eqref{eq:targets} hold for every complex von
-Neumann algebra, with a common algebra-dependent threshold. In that
-case Jordan $*$-isomorphism, algebra-space linear isometry, predual
-linear isometry, and the two strict distance inequalities are equivalent.
-\end{proposition}
-\begin{proof}
-For $M\ne0$, apply Theorem~\ref{thm:input} in degrees $2$ and $3$,
-then apply Theorem~\ref{thm:roydor}. Its algebra threshold already
-suffices for the predual implication by Lemma~\ref{lem:adjoint}.
-Thus the predual conclusion needs no quantitative estimate beyond the
-algebra reduction. The equivalences are supplied by the stated Roydor
-input. For $M=0$, either strict distance inequality forces $N=0$,
-so any positive threshold works.
-\end{proof}
+\section{Prior scope and verification limits}
+Ricard--Roydor's unconditional theorem concerns \emph{completely bounded}
+Banach--Mazur distance \cite[Theorem A]{RicardRoydor}; it cannot be used
+from small ordinary distance, since $\BM\le d_{cb}$ has the wrong
+direction for that inference. Its predual observation and conditional
+two-matrix-level version are also inherited \cite[Remarks 3.4 and
+3.7]{RicardRoydor}. Roydor's special ordinary-stable classes include
+those whose type-$\mathrm{II}_1$ summand has property $\Gamma$, a
+Cartan MASA or McDuff absorption \cite[Corollary 1.3]{Roydor2022}.
+Neither those cases nor exact predual duality are new contributions.
 
-There is no use of an infimum attaining map. If an ordinary distance
-is strictly below a given bound, some isomorphism has distortion
-strictly below that bound, directly from the definition of infimum.
-No continuity of the initial algebra-space isomorphism in a weak
-topology is assumed. The predual map's adjoint is weak-star
-continuous, but Roydor's ordinary-distance assertion does not require
-that extra property.
+A fresh primary-source priority audit on October 7, 2026 checked the
+literature, equivalent formulations, companion manuscripts and current
+upstream version. No explicit duplicate full arbitrary-algebra consequence
+and proof was identified in that bounded search. This does not establish
+firstness. The general conditional formulation was already announced
+by Roydor; the present note gives a fixed-source proof extension and
+records a consequence of OpenAI's newly public vanishing theorem.
+Opposite algebras explain the Jordan conclusion: ordinary Banach norm
+geometry need not determine the orientation of the associative product.
 
-\section{Scope, attribution and unresolved verification}
-
-The outcome sought is Jordan $*$-isomorphism. Opposite algebras have
-the same underlying Banach norm and are Jordan $*$-isomorphic, so
-ordinary Banach-space geometry cannot determine an orientation of the
-associative product. Likewise, no universal $\varepsilon$ follows from
-the qualitative input: its quantifiers are $\forall M\ \exists
-\varepsilon_M>0\ \forall N$, not a uniform threshold over $M$.
-
-Ricard and Roydor already proved unconditional stability for
-\emph{completely bounded} Banach--Mazur distance
-\cite[Theorem A]{RicardRoydor}. Completely bounded distortion involves
-all matrix levels; its smallness is a stronger hypothesis than the
-ordinary distortion considered here. The earlier theorem therefore
-does not, by itself, supply the ordinary-distance conclusion.
-This draft does not claim a new completely bounded result.
-
-Roydor's slides already state ordinary rigidity when the type
-$\mathrm{II}_1$ summand has property $\Gamma$, a Cartan subalgebra,
-or McDuff absorption \cite[PDF pp.~47--48]{RoydorSlides}. Those
-subcases are inherited. Ricard--Roydor also record a conditional
-two-matrix-level distance version \cite[Remark 3.7]{RicardRoydor};
-that stronger metric hypothesis is distinct from ordinary distance.
-
-The claimed cohomology vanishing is attributed to OpenAI, and the
-cohomological geometric reduction to Roydor. The present composition
-is an immediate consequence if both dependencies are correct, not
-an independent solution of the Kadison--Ringrose cohomology problem
-or a new rigidity mechanism. The adjoint observation is standard
-Banach-space duality. A bounded current primary-source search and
-search of the pinned upstream manuscript corpus found no duplicate
-general ordinary consequence. Absence of a search result does not
-establish priority or firstness. The original reduction was publicly
-described before its journal publication; a 2020 slide date is not
-evidence for the upstream vanishing assertion's public priority.
-
-The present package preserves a mathematical proof audit of family
-295 and a static inspection of its genuine Lean declarations. It
-does not claim that a formalization catalogue or a comparator stub
-verifies a theorem. A fresh Lean kernel reproduction remains pending,
-and the follow-on Banach--Mazur theorem is not formalized here.
-The independent mathematical source audit is the intended validation
-basis for the cohomology input; a missing kernel build is a limitation
-of formal evidence, not a mathematical counterexample.
-Full journal-source validation of Roydor's reduction, completion of
-the priority audit, and fresh reviews of a final publication package
-are still required. No Zenodo deposit or tracker entry is warranted
-as a full resolution at this stage.
+Independent mathematical source audits found no substantive gap in the
+pinned cohomology manuscript, and separate adversarial checks examined
+the fixed-source deformation, carrier and reconstruction arguments.
+Finite computations in the supplement are checks of proof mechanisms,
+not proofs of the infinite-dimensional input. Static authentication of
+the actual upstream Lean sources is distinguished from kernel verification:
+no fresh compilation/import or axiom probe was reproduced, and this
+Banach--Mazur consequence is not formalized here. Complete-package
+reviews and publication verification are recorded separately in the
+accompanying research records.
 
 \paragraph{Disclosure.}
-AI tools were used extensively for research, drafting and
-verification. Independent automated adversarial reviews are internal
-checks, not conventional human peer review. This research draft has
-not undergone conventional human peer review or refereeing.
+AI tools were used extensively in the research, drafting and verification.
+Automated adversarial reviews are internal checks, not conventional human
+peer review. This preprint has not undergone conventional human peer
+review or refereeing.
 
 \begin{thebibliography}{9}
 \bibitem{Roydor2022}
 J.~Roydor, \emph{Banach--Mazur stability of von Neumann algebras},
 Journal of Topology and Analysis \textbf{14}(3) (2022), 767--792.
 \href{https://doi.org/10.1142/S1793525321500151}{doi:10.1142/S1793525321500151}.
-Published online December 11, 2020. Journal full text not read in this audit.
+Published online December 11, 2020.
 \bibitem{RoydorSlides}
 J.~Roydor, \emph{Banach--Mazur stability of von Neumann algebras},
 CIRM lecture slides, October 2020, Theorem 2, PDF pp.~28--29.
@@ -239,5 +427,23 @@ theorem for von Neumann algebras and nuclear $C^*$-algebras},
 Journal of Functional Analysis \textbf{267}(4) (2014), 1121--1136,
 \href{https://doi.org/10.1016/j.jfa.2014.05.018}{doi:10.1016/j.jfa.2014.05.018};
 \href{https://arxiv.org/abs/1108.1970v2}{arXiv:1108.1970v2}.
+\bibitem{Johnson}
+B.~E.~Johnson, \emph{Perturbations of Banach algebras},
+Proceedings of the London Mathematical Society (3) \textbf{34}
+(1977), 439--458.
+\bibitem{RaeburnTaylor}
+I.~Raeburn and J.~L.~Taylor, \emph{Hochschild cohomology and
+perturbations of Banach algebras}, Journal of Functional Analysis
+\textbf{25} (1977), 258--266.
+\href{https://doi.org/10.1016/0022-1236(77)90072-6}{doi:10.1016/0022-1236(77)90072-6}.
+\bibitem{KR}
+R.~V.~Kadison and J.~R.~Ringrose, \emph{Fundamentals of the Theory of
+Operator Algebras}, Vol.~II, American Mathematical Society, 1997.
+\bibitem{Takesaki}
+M.~Takesaki, \emph{Theory of Operator Algebras I}, Springer, 2002.
+\bibitem{Sherman}
+D.~Sherman, \emph{Noncommutative $L^p$ structure encodes exactly Jordan
+structure}, \href{https://arxiv.org/abs/math/0309365}{arXiv:math/0309365v2}
+(2004), Theorem 1.1.
 \end{thebibliography}
 \end{document}

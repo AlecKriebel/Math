@@ -1,0 +1,23 @@
+# Exact-conjecture history priority audit
+
+## 2026-10-12 00:03 UTC — initial independent checkpoint (20%)
+
+Read the repaired all-n candidate, the original SOURCE_AUDIT and source_manifest, ROOT_MATHEMATICAL_GATE, and the primary Fuchs 2021 text. No other fresh priority conclusions were read. Target fixed as Fuchs Conjecture 2.7, the source-labelled sine ratio for source-parallel first-vertex-to-next-vertex billiard paths, all n>=3.
+
+Independent exact-title/DOI/author searches found a material competitor: Alper Ferudun, EulerSolve AMR-049, manuscript/online 9 October 2026, author-hosted page https://eulersolve.org/papers/amr-049/ and advertised DOI 10.5281/zenodo.23267641. Its abstract claims Conjecture 2.7 for all n>=4 by double-polygon affine automorphisms and an angular invariant. The primary webpage claim requires fulltext and release-record inspection; no priority conclusion is yet promoted. Parent notified of the lead. Search also found Curtis McMullen's primary author-hosted Billiards in regular polygons (dated 30 December 2023, typeset September 2025), which needs theorem-level scope comparison.
+
+Next: inspect exact competitor PDF/source and date evidence, publisher correction history, author bibliography, and primary citing works. This folder alone is writable. No external individual has been contacted and no publication actions are authorized for this audit.
+
+## 2026-10-12 00:08 UTC — overlap and chronology checkpoint (65%)
+
+Retrieved full Ferudun PDF, source ZIP, TeX, metadata, and verification report without executing its scripts. Theorem C (printed p.5; proof p.17) matches the exact canonical-labelled sine ratio for n>=4, with the source parity and parallelism conventions explicitly defined. Its elementary B-uniform affine subgroup and descent route differs from this project's full-affine/hyperelliptic/cusp route. Zenodo record created 2026-10-09T17:25:38.397439+00:00 is open and submitted; deposited PDF/ZIP/report checksums and sizes match all website artifacts. Competing theorem correctness is not certified by this priority audit.
+
+Parent supplied and local/API reads independently corroborated earlier project chronology: PR152 created 2026-09-30T12:11:38Z, last updated 12:19:32Z; original candidate was committed at 11:51:54Z in 7ef58eacc6c85150fcbbb37630c5c327d28850a1. Current unauthenticated raw file at original head matches original candidate SHA256 100454abdfcbeb6647e0e0596a86b86b3a39d330de2605fe485ae242d9e91c9a. Commit timestamps are author/committer metadata; the PR timestamps are GitHub server records. No contemporaneous repository visibility history was retrieved.
+
+Original candidate already has the central all-n weight mechanism, the sine identity w(-k)=w(k), and common-direction derivative cancellation. It overstates physical-label invariance/reversal; the now accepted chart-sign repair is substantively required for a fully checkable proof. Record earlier candidate antecedence without claiming that a complete corrected proof was publicly available on September 30.
+
+Publisher/Crossref source record checked: original published 7 January 2021, no correction/update relation displayed in inspected metadata. Fuchs's curated bibliography inspected through its 2024 entries; no sequel resolving this target found there. OpenAlex currently supplies one indexed citer, Protasov 2024, whose full published PDF concerns simple closed geodesics on polyhedra. Full McMullen author PDF retrieved and theorem-level comparison separates periodic geodesics/prime-n closed billiards from the labelled target. These indices are incomplete: the directly found 2026 competing preprint is itself absent from the current one-citer list. A primary institutional fulltext for Popov's 2026 regular-polygon periodic-trajectory preprint has been located and is being retrieved.
+
+## 2026-10-12T00:15:18.504430+00:00 — sealed bounded audit checkpoint (100%)
+
+Completed exact overlap and release chronology comparison. No pre-September30 exact labelled all-n resolution found within this family, with explicit coverage limitations. Original mathematical content versus substantive chart-sign repair recorded. Fully credited alternative-proof preparation criterion added without certifying novelty, exclusivity, independence, or publication clearance. The exact competing fulltext is available; dedicated adversarial correctness review remains separate. McMullen published/author PDFs and Popov institutional22-page PDF retrieved fully; related statements distinguished at theorem level. Report, structured result, query/source/download inventories written. Private source cache is ignored and must not be redistributed. No external individual contacted and no commit, push, or publication action performed.

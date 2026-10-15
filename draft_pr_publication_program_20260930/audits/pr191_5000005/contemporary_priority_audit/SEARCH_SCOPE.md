@@ -1,0 +1,11 @@
+# Search scope and negative-evidence limits
+
+Independent initial exact queries, before current proof or prior audit opinion: Fuchs + Conjecture2.6 + parallel trajectories; AMR-049-0005; Types of parallel short trajectories; exact printed article title + proof/conjecture. These found the current EulerSolve author page and primary Fuchs PDF. The initial seal records the candidate without adopting its claims.
+
+Follow-up web queries included arxiv.org/Fuchs/types/parallel/billiard; zenodo.org/AMR-049-0005; github.com/Conjecture2.6/Fuchs; Fuchs/parallel short trajectories/proof; exact contemporary title on arxiv.org; Conjecture2.6/Ferudun; exact AMR ID excluding the author site. Only the inspected actual contemporary primary manuscript was used to certify exact theorem overlap. Secondary catalogues/search snippets were leads only, and were not treated as proofs or novelty evidence.
+
+Direct primary API checks: arXiv exact-title query returned0 results; author Ferudun plus Fuchs returned0; the phrase query parallel short trajectories returned one unrelated chemistry-package title (2610.14234v1), which was not promoted to a mathematical overlap. These queries have indexing, title/alias and query-semantics limits. GitHub current exact-ID code query returned0; conjecture-number/Fuchs query returned4 unrelated/catalogue paths; AMR-049 restricted to AlperTheKing returned0. Current public author repository listing returned17 repositories without a repository advertised for this manuscript. This does not prove no author source/history exists. Zenodo's current version endpoint returned one version of23267641; earlier drafts/publication elsewhere remain unexhausted.
+
+Read-only GitHub records collected: PR191 and PR152 metadata, commit lists, current changed-file lists; PR191 timeline; original commit objects; fixed raw PR191 candidate; current author public repository inventory. No credential or environment scans, outreach, public comment, Git write or external code execution occurred.
+
+The important positive finding is exact overlap in an actually readable primary proof. No-hit results are bounded search observations only. Classical broad literature is handled independently by another family, and no pre-contemporary absence theorem is asserted here.

@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,microtype}
+\usepackage[T1]{fontenc}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\newcommand{\dd}{\,\mathrm d}
+\title{A periodic counterexample to the diffuse allocation characterization}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{15 October 2026 \quad (version 1.0.0)}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We record an explicit diffuse measure on $\R^2$ whose rooted law is invariant under every measurable, pointwise-covariant preserving allocation of the original observed state, but is not mass-stationary. The measure consists of periodic parallel lines of alternating densities $1$ and $2$. Covariance reduces every allocation to two line translations; mass resampling changes the root type with probability $2/3$. This gives a negative answer to the historical unrestricted diffuse allocation question. The full negative conclusion is also an elementary consequence of Last--Thorisson's atomic counterexample and Lebesgue-product proposition, through the allocation transfer explained below. The periodic model is an illustration of these established mechanisms; no novelty or historical-firstness claim is made.
+\end{abstract}
+
+\section{Question and conventions}
+
+Thorisson's Problem~4.1 in \cite[pp.~5--6]{Thorisson} asks whether a diffuse pair $(X,\xi)$ is mass-stationary whenever its law is invariant under every measurable preserving allocation, without an independent stationary background. The earlier formulation is Last--Thorisson's Problem~7.5 \cite{LT09}. We use their pointwise allocation convention and give a negative answer within its stated group class, already on $\R^2$ with constant $X$.
+
+Write $\theta_t\eta(B)=\eta(B+t)$. A measurable displacement $\pi$ of the observed state $\omega=(X,\xi)$ generates an allocation
+\begin{equation}\label{allocation}
+ \tau_\omega(s)=s+\pi(\theta_s\omega).
+\end{equation}
+Equivalently, $\tau_{\theta_t\omega}(s-t)=\tau_\omega(s)-t$ for every state and every $s,t$ \cite[Example~3.4]{LT09}. Preservation means $(\tau_\omega)_*\xi_\omega=\xi_\omega$; the separate law-invariance test is $\theta_{\pi(\omega)}\omega\overset d=\omega$. Allocations need not be injective.
+
+For a probability law, mass-stationarity requires
+\begin{equation}\label{MS}
+ (\theta_V\omega,U+V)\overset d=(\omega,U)
+\end{equation}
+for every relatively compact Borel $C$ of positive Haar measure and Haar-null boundary: $U$ is uniform on $C$, independent of $\omega$, and, conditionally on $(\omega,U)$, $V$ has the normalized $\xi_\omega$-restriction to $C-U$ \cite[Definition~6.1 and Remark~6.2]{LT09}. Our test window always has positive finite mass.
+
+\section{The periodic example}
+
+Let $\lambda_1$ be Lebesgue measure on $\R$, and set
+\begin{equation}\label{measure}
+ \nu=\sum_{n\in\Z}\delta_n+2\sum_{n\in\Z}\delta_{n+1/2},
+ \qquad \mu=\lambda_1\otimes\nu.
+\end{equation}
+On $\Omega=\T=\R/\Z$, with its Borel sigma-field, put
+\[
+ \theta_{(a,b)}u=u+b\pmod1,\qquad
+ \xi(u)=\mu_u:=\theta_{(0,u)}\mu,\qquad Q=\delta_0.
+\]
+Take $X$ constant with trivial action. Horizontal support lines of $\mu_u$ have heights $n-u$ and $n+1/2-u$, and densities $1$ and $2$.
+
+\begin{theorem}\label{counterexample}
+The random measure $\xi$ under $Q$ is nonzero, locally finite and diffuse. Its law, together with constant $X$, is invariant under every measurable pointwise-covariant preserving allocation of the original pair, even if preservation is required only $Q$-almost surely. It is not mass-stationary.
+\end{theorem}
+
+\begin{proof}
+A compact rectangle intersects finitely many supporting lines, each in finite length. Thus each $\mu_u$ is a locally finite Radon measure. It is diffuse, being a countable sum of atomless line-length measures, and the origin belongs to the support under $Q$. The action is jointly Borel and $\xi$ is flow-adapted. For each compactly supported continuous test function, its integral against $\mu_u$ is locally a finite sum of continuous line integrals. Hence $u\mapsto\mu_u$ is vaguely continuous. It is injective because the density-$1$ line family distinguishes the phase. Compactness of $\T$ makes this an embedding into the Hausdorff Radon-measure space; in particular $\sigma(\xi)=\mathcal B(\T)$. No hidden random coordinate enlarges the observed pair.
+
+Fix an arbitrary measurable allocation~\eqref{allocation}, and write
+\[
+ \pi(0)=(a_0,b_0),\qquad \pi(1/2)=(a_1,b_1).
+\]
+The stabilizer $\R\times\Z$ forces, for every real $x$ and integer $n$,
+\[
+ \tau_0(x,n)=(x+a_0,n+b_0),\qquad
+ \tau_0(x,n+1/2)=(x+a_1,n+1/2+b_1).
+\]
+Translation preserves horizontal length. Thus
+\[
+ (\tau_0)_*\mu=\lambda_1\otimes
+ \left(\sum_n\delta_{n+b_0}+2\sum_n\delta_{n+1/2+b_1}\right).
+\]
+Preservation at the sole $Q$-supported state implies, by testing on the finite segments $[0,1)\times\{r\}$ for $0\le r<1$,
+\begin{equation}\label{quotient}
+ \delta_{[b_0]}+2\delta_{[1/2+b_1]}
+   =\delta_0+2\delta_{1/2}\quad\text{on }\T.
+\end{equation}
+Brackets denote residues modulo one. This compares finite per-period measures; it does not push an entire infinite measure onto the quotient. Positivity excludes other target residues. Collision gives mass $3$ at one residue; swapping gives the wrong unequal weights. Only retention is possible, so $b_0,b_1\in\Z$. Within a source family, consecutive lines have consecutive images, so two light lines cannot merge to supply a heavy line. No injectivity assumption has been used.
+
+Consequently $\pi(0)\in\R\times\Z$, and $\theta_{\pi(0)}0=0$. Every preserving allocation fixes the rooted state. The class is nonempty: identity and all fixed stabilizer translations preserve $\xi$. Only preservation at $u=0$ was needed. Although the root singleton has zero mass, changing its image under pointwise covariance changes the images of every light line, including positive-mass segments; its image cannot be reassigned independently.
+
+Now choose $C=[0,1)^2$ in~\eqref{MS}. Each translated vertical unit interval contains exactly one light line and one heavy line, across horizontal length one. Hence $\mu(C-U)=3$, including the half-open endpoint cases. Conditional mass sampling chooses a heavy line with probability $2/3$. The measurable evaluation
+\[
+ H(\eta)=\eta([0,1)\times\{0\})
+\]
+equals $1$ originally, whereas
+\[
+ \mathbb P\{H(\theta_V\mu)=2\}=2/3.
+\]
+The first marginals already disagree, so the full joint identity~\eqref{MS} fails.
+\end{proof}
+
+The compact phase orbit is Borel and invariant. Globally defined allocations restrict to the class tested; a displacement on the orbit extends by zero off it, giving identity allocation there. For consistency, uniform phase is stationary with intensity $3$ and normalized Palm law $(\delta_0+2\delta_{1/2})/3$. The direct counterevent, rather than comparison with that one Palm law, proves the failure.
+
+\section{The complete route from prior results}\label{prior}
+
+Last--Thorisson's Example~7.1 \cite{LT09} already gives an atomic law invariant under every preserving allocation but not mass-stationary. Their \S8 Proposition~1 \cite{LT15}, present already in arXiv v1 of 29 May 2014, preserves and reflects mass-stationarity under adjoining a Lebesgue coordinate. The following elementary allocation calculation explains why these inputs give the entire negative conclusion, not merely its ingredients.
+
+\begin{lemma}
+Extend the action on an observed pair $y=(X,\zeta)$ on $\R^d$ trivially in an additional coordinate and put $J(y)=(X,\zeta\otimes\lambda_1)$. Invariance under all original-pair measurable pointwise-covariant preserving allocations holds for the base law if and only if it holds for its lifted law.
+\end{lemma}
+
+\begin{proof}
+Every lifted displacement has measurable coordinates $(a(y),b(y))$, so its allocation is
+\[
+ \widehat\tau_y(s,u)
+ =\bigl(\rho_y(s),u+b(\theta_sy)\bigr),
+ \qquad \rho_y(s)=s+a(\theta_sy).
+\]
+The map $\rho$ is a base allocation. For bounded Borel $A$ and a bounded interval $B$ of positive length, Tonelli's theorem gives
+\begin{equation}\label{transfer}
+ (\widehat\tau_y)_*(\zeta_y\otimes\lambda_1)(A\times B)
+ =\lambda_1(B)(\rho_y)_*\zeta_y(A).
+\end{equation}
+Therefore lifted preservation implies base preservation. Conversely base preservation gives equality on a countable rectangle cover with finite target masses, and hence on all Borel sets. The argument allows arbitrary collisions. Root shifts satisfy
+\[
+ \theta_{(a(y),b(y))}J(y)=J(\theta_{a(y)}y).
+\]
+This proves forward law-invariance transfer for every lifted allocation. Every base allocation lifts by taking $b=0$, giving the converse.
+
+No observed information is added. On the measure component write $J_0\zeta=\zeta\otimes\lambda_1$. Then $D\eta(A)=\eta(A\times[0,1))$ is a measurable locally finite measure-valued map with $DJ_0\zeta=\zeta$. The product image is the invariant Borel set $\{\eta:J_0(D\eta)=\eta\}$, where equality is tested on a countable determining class. A displacement extends by zero off that image when a global canonical definition is required. Thus the converse uses neither unobserved randomness nor a global measurability assumption left unproved.
+\end{proof}
+
+Apply the lemma to the $\xi$ marginal of the 2009 example on $\R$. A measure-dependent allocation pulls back to its two-Poisson-process state and is covered by its stronger allocation invariance. Failure of mass-stationarity remains observable: the root atom has weight $1$ originally and has the other, irrational weight with positive probability after mass sampling. The product is diffuse; the cited product proposition transfers this failure. Constant $X$ suffices. This supplies a prior-input route to the full conclusion of Theorem~\ref{counterexample} independently of its periodic formula.
+
+The canonical parallel-line and continuous invariant-direction obstruction is explicit for balancing two different measures in Last--Thorisson~\cite[\S8 and Remark~8.1]{LT23}. Khezeli--Mellick's final published Remark~3.2 \cite{KM25} explicitly reduces the Lebesgue-product balancing-allocation existence problem to its atomic quotient and permits noninjective atomic maps. Those are different stated problems; we do not attribute the present self-preserving characterization statement to those results. The exact periodic realization's priority and the first explicit recognition of the combined negative consequence are unestablished by our bounded literature checks. This note claims neither as a new discovery.
+
+\section{Scope and verification status}
+
+The measure is singular and has a continuous invariant direction. These features are allowed in the historical question. The example does not address one-dimensional, positive-density, free-action or no-invariant-direction variants. Independent stationary backgrounds enlarge the allocation class; the established background characterization \cite[Theorem~7]{LT15} retains that hypothesis.
+
+Nor does the example satisfy the stronger all-Markov-kernel premise. On the two rooted line types, the matrix
+\[
+ P=\begin{pmatrix}0&1\\1/2&1/2\end{pmatrix},\qquad (1,2)P=(1,2),
+\]
+is realized by displacement $+1/2$ from a light line, and by half displacement $-1/2$, half retention from a heavy line, with identity off support. The phase-defined kernel is measurable and covariant, preserves every $\mu_u$, and moves the light root to the heavy type surely. The neighboring Markovian characterization question is not resolved by this allocation example.
+
+The accompanying package retains the original proof and reviews, exact source fingerprints, rational diagnostics, and source/priority limitations. Finite checks supplement the analytic proof; they do not prove its universal measurable claims.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in mathematical development, source review, writing, computation and adversarial checking. The recorded adversarial reviews were performed by AI agents. This is an unrefereed preprint; no completed independent human peer review or formal proof-assistant verification is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{Thorisson}
+H.~Thorisson, \emph{Some Open Probability Problems}, undated preprint, \S4, pp.~5--6.
+\url{https://cms.dm.uba.ar/depto/public/Some%20Open%20Problems-preprint.pdf}.
+
+\bibitem{LT09}
+G.~Last and H.~Thorisson, Invariant transports of stationary random measures and mass-stationarity, \emph{Ann. Probab.} \textbf{37} (2009), 790--813.
+\href{https://doi.org/10.1214/08-AOP420}{doi:10.1214/08-AOP420}.
+
+\bibitem{LT15}
+G.~Last and H.~Thorisson, Construction and characterization of stationary and mass-stationary random measures on $\R^d$, \emph{Stochastic Process. Appl.} \textbf{125} (2015), 4473--4488.
+\href{https://doi.org/10.1016/j.spa.2015.07.006}{doi:10.1016/j.spa.2015.07.006}.
+Primary manuscripts: \href{https://arxiv.org/abs/1405.7566v1}{arXiv:1405.7566v1} and \href{https://arxiv.org/abs/1405.7566v2}{v2}.
+
+\bibitem{LT23}
+G.~Last and H.~Thorisson, Transportation of diffuse random measures on $\R^d$, \emph{ALEA} \textbf{20} (2023), 577--592.
+\href{https://doi.org/10.30757/ALEA.v20-21}{doi:10.30757/ALEA.v20-21}.
+
+\bibitem{KM25}
+A.~Khezeli and S.~Mellick, On the existence of balancing allocations and factor point processes, \emph{ALEA} \textbf{22} (2025), 1327--1334.
+\href{https://doi.org/10.30757/ALEA.v22-51}{doi:10.30757/ALEA.v22-51}. Final published edition, especially Remark~3.2.
+\end{thebibliography}
+\end{document}

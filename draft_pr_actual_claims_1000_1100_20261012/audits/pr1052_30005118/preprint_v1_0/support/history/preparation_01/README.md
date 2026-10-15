@@ -1,0 +1,33 @@
+# Cyclic self-sumset recognition: a credited corollary of the integer hardness theorem
+
+Version 1.0, 2026-10-14. Alec Kriebel, independent researcher; [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). Authored materials: CC BY 4.0. AI-assisted and unrefereed; no external human peer review or formal certification.
+
+For unbounded positive input n, deciding ordinary B=A+A with both sets in the same Z/nZ is NP-complete separately for binary n with a sorted explicit binary residue list and for an n-bit characteristic vector. All pairs, including diagonal pairs, count. Hardness already holds for odd n and nonempty B containing 0 with every canonical 2b<n. A deterministic polynomial-time exact decision algorithm in either model exists iff P=NP.
+
+This is a credited exposition of the consequence of Abboud, Fischer, Safier, and Wallheimer's integer Theorem 1.2, not a new hardness-gadget, novelty, first-publication, or independent-discovery claim. The inspected source proof is arXiv2410.18661v2 (26 October 2024); SODA2025 pp4484-4506, DOI10.1137/1.9781611978322.153 is separately verified metadata. The source construction's bound 2^57(v+c)^4 is used directly for dense hardness. No arbitrary sparse integer-to-dense expansion is used. Campos Problem15, attributed to Alon and Granville, motivates the same-group target; its original word “efficient” does not specify either representation. Exact historical priority of the full cyclic formulation remains unknown.
+
+Read `paper.pdf` or its editable `paper.tex` for the full universal proof. `support/SOURCE_RECONSTRUCTION.md` explains the credited source interface and repaired coarse-bound calculation; complete authored source and transfer derivations are preserved in `support/history/reviews/`. All eight original files are exact copies in `support/history/submitted/`. `support/COPY_MAP.json` and `support/FROZEN_INPUT_PINS.json` bind selected copies. `support/HISTORY.md` explains which historical values are retained and points to the dated current preparation status in `metadata.json`. Historical pin manifests may reference excluded raw/source bodies; the current package inventory is `SUPPORT_MANIFEST.json`.
+
+The draft upload metadata is identical in `.zenodo.json` and `metadata.json`'s `metadata` object. At the 2026-10-14 preparation snapshot, `publication_ready=false` and `all_issues_resolved=false`: a NEW whole-package review is required, with publication held after PR1032. No deposit, Git publication, or external communication occurred. The locally prepared `zenodo-deposit.json`, when present, binds the PDF and archive with the same metadata; it is intentionally external and excluded from the support archive. Extracted verification does not require that descriptor. The verifier checks it fully whenever present.
+
+Python 3.10 or later and its standard library suffice for the support checks and deterministic archive build. From a clean extraction, run:
+
+```sh
+python3 -I -B verify_support.py
+python3 -I -B run_checks.py --output _runs/fresh.json
+python3 -I -B test_integrity.py --output _runs/integrity.json
+python3 -I -B build_support.py --output _runs/rebuilt.zip
+python3 -I -B verify_support.py --archive _runs/rebuilt.zip
+```
+
+`run_checks.py` copies the exact authored checkers into an isolated temporary work tree, preserving historical results and code. The primary checker uses active Python assertions in normal mode. The cyclic and new checkers use explicit guards in both normal and optimized modes. Source-family output is matched exactly; cyclic substantive output is matched after excluding execution timestamps. These are fresh reproductions of authored checks, not replay of omitted historical scripts. Finite tests corroborate the universal proof and do not establish asymptotic hardness by enumeration. `verification/FRESH_RUN.json` and `verification/INTEGRITY_TESTS.json` are the frozen preparation outputs. Repeated runs write only under `_runs/`.
+
+To rebuild the PDF, install Tectonic (which may need to fetch its TeX bundle on first use), then run:
+
+```sh
+python3 -I -B build_pdf.py --outdir _runs/pdf
+```
+
+PDF rebuilding verifies compilation, not byte-for-byte PDF identity; the shipped PDF is pinned and every rendered page was inspected. Archive rebuilding is byte deterministic for the same payload: explicit allowlist, regular files, safe relative paths, sorted member order, fixed timestamp and mode, stored compression. The manifest lists every payload member and hashes every member except itself, avoiding a circular self-hash. The archive SHA-256 sidecar is external. Raw third-party bodies, extracted text, page images, caches and raw command trees are not distributed.
+
+OpenAI Codex AI systems were used extensively for mathematical reasoning, source work, adversarial review, coding, computational verification, writing and preparation. Alec Kriebel is the sole named author. The audits are AI-assisted and do not claim human peer review or proof-assistant certification. The theorem is limited to deterministic exact decision in the two explicit encodings, ordinary repeated self-sums, the same cyclic group and unbounded input n; it makes no prime-only, distinct-summand, unrelated A+B, succinct, oracle, randomized, approximation, average-case or promised-search claim.

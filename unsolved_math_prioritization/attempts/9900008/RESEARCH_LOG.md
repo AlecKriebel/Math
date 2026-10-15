@@ -7,3 +7,7 @@
 - 2026-10-07: The included-package checker records ordinary, optimized, isolated, and isolated-optimized replays with corruption controls in `PUBLICATION_CHECKS.json`. Publication is a scoped draft PR for this one problem. Queue editing is limited to row 938's Status, Turns, and Findings cells; all other queue bytes are preserved.
 
 Author proof-search turns used: 1 of 5. Audits and publication verification add zero search turns. Current mathematical disposition: source-scoped negative answer accepted with required attribution; novelty and historical priority remain unassessed. No merge, release, DOI, or external outreach is part of this checkpoint.
+
+## 2026-10-15T12:56:15.507978+00:00 — Current qualified package candidate (PR88350%; shard70%)
+
+Exact historical question answered by the analytic periodic proof; entire old-input deduction shown prominently and all identified source credits supplied. Fresh source/mathematics, priority, disposition-repair and tooling evidence included with their distinct scopes. All26originals preserved; original1/5unchanged. Current four-page PDF and exact metadata/ZIP/deposit contract assembled. Two NEW whole-package reviews pending; no production deposit, DOI, sheet entry or merge yet.

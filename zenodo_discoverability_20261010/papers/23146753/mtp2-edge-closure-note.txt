@@ -1,0 +1,243 @@
+                  Closedness and attractive approximation
+                            of binary MTP2 edge models
+                                                             Alec Kriebel∗
+
+                                                          October 4, 2026
+
+
+
+                                                                Abstract
+              For any ﬁxed ﬁnite graph, the binary MTP2 distributions admitting ﬁnite nonnegative unary
+          and edge factors are exactly the pointwise limits of strictly positive attractive Ising distributions
+          on that same graph. In particular, the ﬁnite-factor class is closed, answering Conjecture 1 in
+          Lauritzen’s 2022 problem statement. The proof handles zero cells by contracting determinis-
+          tic equalities and aggregating interactions, then uses a classical residual-ﬂow representation to
+          bound local factors without losing normalization. We distinguish this characterization from
+          earlier natural-lattice factorization results and from a previously published counterexample to
+          the accompanying factorization conjectures.
+
+
+1        Statement and relation to prior work
+Fix a ﬁnite simple graph G = (V, E) and Ω = {0, 1}V with its coordinate order. A probability mass
+function p is MTP2 if
+                           p(x ∧ y)p(x ∨ y) ≥ p(x)p(y)     (x, y ∈ Ω).
+Zeros are allowed. Deﬁne F2 (G) to consist of these mass functions having a representation
+                              ∏                ∏
+                     p(x) =         ϕi (xi )          ψij (xi , xj ),        ϕi , ψij ﬁnite and nonnegative.      (1)
+                              i∈V              ij∈E
+
+The product itself is normalized; any normalizing scalar can be incorporated into a factor, except
+on the empty vertex set, where the unique mass is 1. Deﬁne the strictly positive attractive family
+                                                                                                    
+                                    1               ∑              ∑                                  
+                        A(G) =            exp            hi xi +           Jij xi xj  : hi ∈ R, Jij ≥ 0 .       (2)
+                                    Z                                                                 
+                                                      i             ij∈E
+
+All closures below are in the ﬁnite-dimensional probability simplex.
+
+Theorem 1. For every ﬁnite G, F2 (G) = A(G). Consequently F2 (G) is closed.
+
+   Finite local products are globally G-Markov, including at zeros: conditioning on a separator of
+positive probability separates the remaining product into component products with ﬁnite positive
+normalizers. Null conditioning events impose no constraint. The theorem concerns ﬁnite factors on
+the original edges; it introduces no hidden variables or additional edges. Finite signed real factors
+    ∗
+        ORCID: 0009-0001-9320-500X.
+
+
+
+                                                                        1
+producing a nonnegative p can be replaced by their absolute values, so allowing such signs does not
+enlarge the class.
+    Lauritzen [1, pp. 3125–3126] deﬁnes MI (G) by an edge-only product of ﬁnite real factors, and
+M2 (G) by global Markov and MTP2 . Its Conjecture 1 asks whether MI (G) ∩ M2 (G) is closed.
+Section 4 reduces that exact convention to Theorem 1.
+    Geiger, Meek and Sturmfels [2, Theorems 3.1–3.2] distinguish ﬁnite nonnegative factorization
+from toric closure by a local support-feasibility condition. Lauritzen, Uhler and Zwiernik [3,
+Lemma 4.9 and Section 4.4] give all-pair reconstruction of binary lattice supports and compactness
+of an extended MTP2 graphical family. Those statements do not alone produce ﬁnite factors on the
+original edges. Fallat et al. [4, Theorem 7.5] identify attraction with MTP2 when pair potentials
+are strictly positive; cancellation cannot be used indiscriminately at zeros.
+    Kahle and Sullivant [5, Proposition 4.1, Lemma 5.4 and Theorem 5.5] prove a closely related
+limit-factorization theorem for natural lattice supports, using clique factors. Pins and repeated
+equal coordinates violate that naturality assumption. Their proof framework also gives the closure
+consequence here after contraction, connectedness of tied coordinate classes, and an adaptation to
+the edge design. We therefore make no claim that the underlying toric or lattice-support method is
+new. Theorem 1 additionally identiﬁes every zero-containing edge-MTP2 law as a limit of positive
+attractive laws on the unchanged graph; the proof below supplies that approximation explicitly. The
+cut representation and residual-ﬂow reparameterization used in the reverse inclusion are classical [6,
+7, 8]. The inspected prior statements do not explicitly state the complete characterization above;
+this is a bounded literature comparison, not a claim that all earlier literature has been exhausted.
+
+
+2    Attractive approximation at zero cells
+Lemma 2. Every p ∈ F2 (G) is a pointwise limit of distributions in A(G).
+
+Proof. Let S = {x : p(x) > 0}. MTP2 implies that S is closed under meet and join. Moreover,
+ﬁnite factorization gives
+
+                         S = {x : xi ∈ Si (i ∈ V ), (xi , xj ) ∈ Sij (ij ∈ E)},                    (3)
+
+where Si , Sij are the actual projections of S. Indeed, each local cell occurring in S has a positive
+factor entry. An assignment meeting every actual projection therefore has a positive product. The
+reverse inclusion is immediate.
+    Delete coordinates pinned throughout S. Its meet and join are respectively 0 and 1 on the
+remaining active coordinates. Thus each active edge projection contains 00 and 11; it is the full
+square, one of the two implication supports, or {00, 11}. Write i ⇒ j for the constraint xi ≤ xj , and
+use both directions for equality. Equation (3) says that pins and these original-edge implications
+describe S exactly. Contract the strongly connected classes of the directed implication graph. Their
+variables yK form a poset; support states are precisely its upsets.
+    On S, take ﬁnite logarithms of the positive local factor cells. Extend those logarithms arbitrarily
+to missing cells. Every extended two-bit function has the form c + axi + bxj + dxi xj . Substituting
+the pins and equalities, and using yK yL = yK whenever K ⇒ L, gives
+                                 ∑                    ∑
+                log p(x) = c +       HK yK +                        BKL yK yL     (x ∈ S).         (4)
+                                 K             {K,L} incomparable
+
+Here BKL = 0 if no original edge joins the two classes. For incomparable K, L, take the upset
+comprising all their strict successors, with K, L absent. Adding either or both classes gives four
+
+                                                     2
+permitted support states. The logarithmic MTP2 inequality on this square yields BKL ≥ 0. This
+is an assertion about the aggregate coeﬃcient between classes, not about each originally supplied
+potential.
+    Put each HK on one coordinate in its class and each nonzero BKL on one original edge joining
+K, L. The resulting ﬁnite quadratic polynomial L(x) has nonnegative pair coeﬃcients and agrees
+with log p(x) − c on S. Let D(x) be the sum of unary pin violations and directed original-edge
+implication violations xi (1 − xj ). Equality uses both directions. By (3), S = {D = 0}, and D ≥ 1
+outside S. For ﬁnite t ≥ 0,
+                                               exp(L(x) − tD(x))
+                                   pt (x) = ∑
+                                              z∈Ω exp(L(z) − tD(z))
+belongs to A(G): an implication penalty contributes +txi xj and a unary term. On S the un-
+normalized weights are e−c p(x); outside S they tend to zero. The ﬁnite sum normalizer tends to
+e−c > 0, proving pt → p. If no coordinates are active, this same pin-penalty construction applies
+directly. The empty vertex set is immediate.
+
+
+3    Bounded factors for attractive limits
+Lemma 3. Every pointwise limit of distributions in A(G) belongs to F2 (G).
+Proof. We give the classical cut gauge explicitly, since bounding factors without controlling nor-
+malization would not suﬃce. For a distribution (2), set
+                                              ∑              ∑
+                                   E(x) = −        hi xi −          Jij xi xj .
+                                               i             ij∈E
+
+Orient each original edge arbitrarily and use −Jij xi xj = Jij xi (1 − xj ) − Jij xi . After collecting
+unary terms bi xi , add an arc i → t of capacity bi if bi ≥ 0, and an arc s → i of capacity −bi if
+bi < 0. The nonterminal arc i → j has capacity Jij . With xi = 1 denoting the source side, the
+cut cost is C(x) = E(x) + κ for a scalar κ. This is a graph on the original vertices and the two
+terminals only [6].
+    Choose a maximum ﬂow f of value v. Finite real capacities cause no problem: the feasible-ﬂow
+polytope is compact and the max-ﬂow/min-cut theorem applies. Include zero capacities for absent
+reverse arcs, and deﬁne
+                                    ruv = cuv − fuv + fvu ≥ 0.
+For every source–sink cut U , ﬂow conservation gives
+                               ∑
+                                       ruw = C(U ) − v = E(x) − min E(z).                               (5)
+                                                                            z
+                                  ∈U
+                            u∈U, w /
+
+This is the residual-ﬂow energy reparameterization [7, 8]. Nonterminal residual arcs still use original
+edges. Terminal arcs give unary functions; the two orientations on an edge give
+
+                             ψij (a, b) = exp{−rij a(1 − b) − rji b(1 − a)}.
+
+All local entries lie in (0, 1]. Their product, including the terminal factors, is
+                                                                                ∑
+                  W (x) = e−E(x)+min E ,      0 < W (x) ≤ 1,            1≤            W (x) ≤ 2|V | .
+                                                                                  x
+
+Apply this representation separately to each term of a convergent sequence in A(G). Finitely
+many factor entries lie in [0, 1], so some subsequence has entrywise limits. Its product W∗ satisﬁes
+
+                                                     3
+      ∑
+Z∗ := x W∗ (x) ≥ 1. The given probability limit equals W∗ /Z∗ , hence has ﬁnite nonnegative unary
+and original-edge factors. For nonempty V absorb Z∗−1 into any unary factor; the empty case has
+mass 1. MTP2 passes to the limit because its deﬁning inequalities are polynomial. This proves
+membership in F2 (G).
+
+   Positive attractive laws are MTP2 and have ﬁnite factors, so A(G) ⊆ F2 (G). Lemmas 2 and 3
+prove Theorem 1.
+
+
+4    The literal source convention
+Corollary 4. For every ﬁnite G, Lauritzen’s MI (G) ∩ M2 (G) is closed.
+
+Proof. If E ̸= ∅, an edge-only product is independent of each isolated coordinate; normalization
+makes those coordinates jointly uniform and independent of the others. Limits retain this property.
+Apply Theorem 1 on the subgraph of nonisolated vertices. Absorb each unary factor into an
+incident original edge, and absorb the scalar for the uniform isolated law into any original edge.
+Replace signed factors by absolute values at the outset. Global Markov and MTP2 are closed ﬁnite
+polynomial conditions, so the resulting limit is in the required intersection.
+    With the displayed source deﬁnition taken literally, if E = ∅ and V ̸= ∅, the empty product is 1
+at every conﬁguration, so there are no normalized laws in MI (G); the closure assertion is vacuous.
+If a tacit scalar normalization is intended instead, that family is the single uniform law and is also
+closed. If V = ∅, the sole mass is 1.
+
+
+5    The accompanying counterexample and veriﬁcation
+The factorization conjectures in the same source are separate from the closure statement. Their
+negative answers already follow from Gandolﬁ–Lenarda [9, Lemma 5.2]. On the cycle 12, 23, 34, 41,
+their law is supported on x3 = x4 , with mass 2/9 at 1111 and 1/9 at each other supported point.
+Equality support is a lattice. Comparable MTP2 pairs give equality; incomparable supported pairs
+have weights 1 · 1 and meet–join weights at least 1; oﬀ-support right sides vanish. Its global Markov
+conditions hold because the appropriate conditioned coordinates determine one side. Yet every
+ﬁnite edge product must satisfy
+
+                             p0000 p0111 p1011 p1100 = p0011 p0100 p1000 p1111 ,
+
+whose products for this law are 1/94 and 2/94 . The identity follows by balancing each edge’s cell
+multiplicities, without division, so also covers signed factors and their limits [2]. Rotating the coor-
+dinates gives the counterexample in the audited problem packet. We claim no new counterexample
+here. Kahle–Sullivant [5, Example 6.5] subsequently give the same equality-support obstruction
+with diﬀerent weights.
+    The accompanying veriﬁcation package contains exact rational checks of these laws, support
+and coeﬃcient examples, residual gauges, and failure controls for invalid zero-cell shortcuts. Finite
+calculations illustrate and falsify checks; the all-graph result is established by the proofs above.
+
+Disclosure. AI tools were used extensively in developing the arguments, searching primary liter-
+ature, writing code and conducting independent adversarial reviews. This is an unrefereed preprint.
+AI review and exact computation are not human peer review or formal proof-assistant certiﬁcation.
+No claim of human peer review is made.
+
+
+                                                     4
+References
+[1] S. Lauritzen, Two open problems in graphical models of algebraic nature, in Oberwolfach Reports
+    19 (2022), Report 55/2022, pp. 3125–3127. doi:10.4171/OWR/2022/55.
+
+[2] D. Geiger, C. Meek and B. Sturmfels, On the toric algebra of graphical models, Ann. Statist.
+    34 (2006), 1463–1492. doi:10.1214/009053606000000263.
+
+[3] S. Lauritzen, C. Uhler and P. Zwiernik, Total positivity in exponential families with application
+    to binary variables, Ann. Statist. 49 (2021), 1436–1459. doi:10.1214/20-AOS2007.
+
+[4] S. Fallat, S. Lauritzen, K. Sadeghi, C. Uhler, N. Wermuth and P. Zwiernik, Total positivity in
+    Markov structures, Ann. Statist. 45 (2017), 1152–1184. doi:10.1214/16-AOS1478.
+
+[5] T. Kahle and S. Sullivant, Lattice supported distributions and graphical models,
+    arXiv:2411.03139v1 (2024). arxiv.org/abs/2411.03139.
+
+[6] V. Kolmogorov and R. Zabih, What energy functions can be minimized via graph cuts?, IEEE
+    Trans. Pattern Anal. Mach. Intell. 26 (2004), 147–159. doi:10.1109/TPAMI.2004.1262177.
+
+[7] J.-C. Picard and M. Queyranne, On the structure of all minimum cuts in a network and appli-
+    cations, technical report EP-R-79-15, March 1979. Published in Math. Programming Study 13
+    (1980), 8–16. doi:10.1007/BFb0120902.
+
+[8] V. Kolmogorov and C. Rother, Minimizing nonsubmodular functions with graph cuts—a review,
+    IEEE Trans. Pattern Anal. Mach. Intell. 29 (2007), 1274–1279. doi:10.1109/TPAMI.2007.1031.
+
+[9] A. Gandolﬁ and P. Lenarda, A note on Gibbs and Markov random ﬁelds with constraints and
+    their moments, Math. Mech. Complex Syst. 4 (nominal 2016), 407–422; published April 13,
+    2017. doi:10.2140/memocs.2016.4.407.
+
+
+
+
+                                                 5
+

@@ -1,0 +1,9 @@
+# Root initial source and reproduction checkpoint
+
+Target is precisely Hayman–Lingham Problem6.72, two global monotonicity questions for the omitted analytic arc of a support point of normalized schlicht S. Freshly downloaded arXivv2 PDF matches historical hash; printedp143/PDF144 visually inspected. Duren1981 printed352,353,355 visually inspected and pp352–355 text read. His general theorem gives a single analytic omitted arc with increasing modulus, Schiffer sign Qdw²>0, nonzeroL(f²)/simplepoleatinfinity, and unique incoming trajectory. These match the candidate. Duren's proven point-evaluation and derivative-evaluation special cases are not the arbitrary coefficient functional here.
+
+Original56author exactcontrols and10frozen publichashchecks reproduced, and old23auditcontrols reproduced with JSON equality. These do not establish the infinite analytic result. Current independent analytic, quantitative, source families preserve early independence; no acceptance/novelty conclusion yet.
+
+ETH fresh binary hash differs from the originalmanifest. Its generatedcover prints today'sdownload date and PDFcreationdate is fresh. Current root/independent source downloads agree on dc2fea90c784fdedba74fa99a2225754e413368855fb94e87960e628b2ea7ec0,17295781bytes. Do not falsely report oldbinaryhash verified; pagecontent will be independentlychecked. RawsourcePDF/text/images stay in ignoredcache and will not be republished.
+
+Exactcandidate:epsilon=10^-24, allglobalmaximizers ofRe[a2+i epsilon(a4−3a3)]. Criticalsuccesscriterion is proving that the explicit regulartrajectory agrees with actualomittedslit throughout the testedsegment, rather than treating a formaltrajectory as sufficient for extremality. Errorbounds must leave signedImZ opposite at1,7/4; signedangle reversaland unsignedinteriorzero mustbothbe on actualarc. Boundary/continuation andcomplexinverseTaylorremainders remain under freshreview.
