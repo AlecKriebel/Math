@@ -199,12 +199,12 @@ def worker(root, pin, work):
             return strict_json(proc.stdout)
 
         author = run('original_packet/original/verify.py')
-        require(author == {'status': 'PASS_EXACT_CERTIFICATE', 'problem_id': 30003634,
+        author_expected = {'status': 'PASS_EXACT_CERTIFICATE', 'problem_id': 30003634,
                 'n': 1, 'm': 3, 'derived_level': 3, 'word_length': 104,
                 'goeritz_dimension': 48, 'goeritz_inertia': [23,25,0],
                 'signature': -2, 'additional_controls': 286,
-                'scope': 'Finite certificate replay; topology theorem and source hypotheses require mathematical review.'},
-                'Original exact certificate changed')
+                'scope': 'Finite certificate replay; topology theorem and source hypotheses require mathematical review.'}
+        equivalent(author, author_expected, 'original_author')
         controls = {}
         for family,script in [('goeritz_family','independent_goeritz.py'),
                               ('meyer_algebra_family','reproduce.py')]:

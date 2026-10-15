@@ -2,6 +2,7 @@
 from datetime import datetime, timezone
 import hashlib
 import json
+import re
 from pathlib import Path
 import subprocess
 ROOT = Path(__file__).resolve().parents[1]
@@ -95,6 +96,13 @@ def explicit_tree(parent, replacements):
                               check=True, capture_output=True).stdout.decode('ascii').strip()
     return rebuild(parent, updates)
 
+def valid_tracker_range(value):
+    if type(value) is not str:
+        return False
+    match = re.fullmatch(r"'Math Puzzles'!A([1-9][0-9]*):D\1", value)
+    return match is not None and int(match[1]) >= 2
+
+
 def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=None):
     """Fail on stale/cross-target local receipts before downstream writes."""
     def need(ok, label):
@@ -154,6 +162,9 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
              and tracker.get('merge_commit') == merged and tracker.get('accepted_freeze_sha256') == pin
              and tracker.get('doi') == publication['doi'] and tracker.get('zenodo_record_id') == ident,
              'tracker target/head/freeze/DOI')
+        need(valid_tracker_range(tracker.get('updated_range')), 'tracker exact destination/columns/single data row')
+        readback = read('TRACKER_READBACK.json')
+        need(readback.get('range') == tracker['updated_range'], 'tracker exact returned/readback A1 range')
         need(tracker.get('spreadsheet_id') == '1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
              and tracker.get('gid') == 1254632077 and tracker.get('tab_title') == 'Math Puzzles'
              and len(tracker['row']) == 4 and tracker['row'][2] == 'https://doi.org/'+publication['doi']

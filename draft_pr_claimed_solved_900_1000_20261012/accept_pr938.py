@@ -21,8 +21,24 @@ def safe(n):
  return type(n) is str and '\\' not in n and '\0' not in n and not PurePosixPath(n).is_absolute() and PurePosixPath(n).as_posix()==n and all(s not in ('','.','..') for s in n.split('/'))
 def rest(raw):
  lines=raw.splitlines(keepends=True);hits=[s for s in lines if b'| 30003634 /' in s];need(len(hits)==1,'Ambiguous target row');return b''.join(s for s in lines if s!=hits[0]),hits[0]
+def validate_review_sequence(specs):
+ need(type(specs) is list and len(specs)>=2,'At least two NEW review rounds required')
+ for expected,spec in enumerate(specs,1):
+  number,pin=spec.split(':')
+  need(number.isdigit() and int(number)==expected and re.fullmatch('[0-9a-f]{64}',pin) is not None,'Complete consecutive ordered review history starting at01 required')
+def validate_review_inventory(mapping):
+ records=mapping['files'];allowed=mapping['explicit_public_allowlist']
+ mandatory={'RESULT.json','FULL_AUDIT.md','RESEARCH_LOG.md','AUTHENTICATION_START.json','AUTHENTICATION_END.json','COLD_REPLAY.json'}
+ need(type(records) is dict and bool(records) and mandatory<=set(records),'Missing authenticated decisive verdict or mandatory review evidence')
+ need(type(allowed) is list and len(allowed)==len(set(allowed)) and set(allowed)==set(records) and 'MANIFEST.json' not in records,'Review inventory not explicit/self-excluded')
+ return records
+def authenticate_review_records(folder,mapping):
+ records=validate_review_inventory(mapping)
+ for n,r in records.items():need(safe(n) and fp(folder/n)==r,'Review payload drift')
+ return records
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--freeze',required=True);ap.add_argument('--review',action='append',required=True,help='ROUND:EXTERNALLY_REPORTED_MANIFEST_SHA256');args=ap.parse_args()
+ validate_review_sequence(args.review)
  need(not (A/'ACCEPTANCE.json').exists(),'Existing acceptance; inspect instead of overwriting')
  need(re.fullmatch('[0-9a-f]{64}',args.freeze) is not None,'External freeze pin required');need(fp(D/'PREPUBLICATION_FREEZE.json')['sha256']==args.freeze,'Freeze drift')
  freeze=load(D/'PREPUBLICATION_FREEZE.json');need(freeze['pr']==938 and freeze['problem_id']==KEY and freeze['original_pr_head']==HEAD,'Wrong freeze target')
@@ -45,9 +61,7 @@ def main():
  reviews=[];prior_ids=set();last_completion=None
  for spec in args.review:
   number,pin=spec.split(':');need(number.isdigit() and re.fullmatch('[0-9a-f]{64}',pin) is not None,'Malformed external review pin')
-  folder=A/'reviews'/('full_package_'+number.zfill(2));need(fp(folder/'MANIFEST.json')['sha256']==pin,'Review seal mismatch');mapping=load(folder/'MANIFEST.json');records=mapping['files'];allowed=mapping['explicit_public_allowlist']
-  need(type(records) is dict and len(allowed)==len(set(allowed)) and set(allowed)==set(records) and 'MANIFEST.json' not in records,'Review inventory not explicit/self-excluded')
-  for n,r in records.items():need(safe(n) and fp(folder/n)==r,'Review payload drift')
+  folder=A/'reviews'/('full_package_'+number.zfill(2));need(fp(folder/'MANIFEST.json')['sha256']==pin,'Review seal mismatch');mapping=load(folder/'MANIFEST.json');records=authenticate_review_records(folder,mapping)
   result=load(folder/'RESULT.json');need(result['pr']==938 and result['problem_id']==KEY and result['original_pr_head']==HEAD,'Cross-target review')
   need(result['clean_context'] is True and result['full_reproducer_completed'] is True,'Fresh context/full reproduction absent')
   start=datetime.fromisoformat(result['started_utc']);end=datetime.fromisoformat(result['completed_utc']);need(start<end and (last_completion is None or last_completion<start),'Reviews not sequential and new');last_completion=end

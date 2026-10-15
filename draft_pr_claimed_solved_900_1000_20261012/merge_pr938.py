@@ -35,7 +35,13 @@ def view():
     return json.loads(run(['gh', 'pr', 'view', '938', '--repo',
                           'AlecKriebel/Math', '--json',
                           'number,state,isDraft,headRefOid,headRefName,url,'
-                          'mergeCommit,mergedAt,mergeable,mergeStateStatus']))
+                          'mergeCommit,mergedAt,mergeable,mergeStateStatus,body']))
+
+
+def require_reviewed_description(pr, freeze):
+    require(type(pr.get('body')) is str and
+            hashlib.sha256(pr['body'].encode()).hexdigest() ==
+            freeze['pr_description_sha256'], 'Reviewed live PR description changed')
 
 
 def main():
@@ -68,6 +74,7 @@ def main():
         expected_head = addendum['integrated_head']
     pr = view()
     require(pr['headRefOid'] == expected_head, 'Live PR head changed')
+    require_reviewed_description(pr, freeze)
     snapshot = json.loads((A / 'ORIGINAL_SNAPSHOT.json').read_text())
     require(snapshot['head'] == HEAD and len(snapshot['files']) == 44,
             'Wrong original packet scope')
