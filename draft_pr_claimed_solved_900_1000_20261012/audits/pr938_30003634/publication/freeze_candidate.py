@@ -109,7 +109,7 @@ def main():
               'priority': 'Every finite derived depth outside integral smoothF1; prior general signature/quasimorphism tools explicitly credited, including Kawasaki etal2025Lemma7.12. Bounded primary search established no complete predecessor; no firstness/current-openness or new general group lemma claim.',
               'acceptance': 'REVIEWABLE_ALL_DEPTH_CANDIDATE_PENDING_NEW_SEQUENTIAL_FULL_PACKAGE_REVIEWS',
               'candidate_editing_stops_until_review_findings': True}
-    helpers=['accept_pr938.py','merge_pr938.py','run_pr938_zenodo.py','append_pr938_tracker.py','update_pr938_publication_ledger.py']
+    helpers=['accept_pr938.py','merge_pr938.py','run_pr938_zenodo.py','append_pr938_tracker.py','update_pr938_publication_ledger.py','finalize_pr938_and_gate_next.py']
     freeze['future_helpers']={n:fp(ROOT/'draft_pr_claimed_solved_900_1000_20261012'/n) for n in helpers}
     freeze['pr_description_sha256']=hashlib.sha256(live_description['body'].encode()).hexdigest()
     (P/'PREPUBLICATION_FREEZE.json').write_text(json.dumps(freeze, indent=2)+'\n')

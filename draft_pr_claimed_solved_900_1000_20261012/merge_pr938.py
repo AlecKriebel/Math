@@ -35,7 +35,12 @@ def view():
     return json.loads(run(['gh', 'pr', 'view', '938', '--repo',
                           'AlecKriebel/Math', '--json',
                           'number,state,isDraft,headRefOid,headRefName,url,'
-                          'mergeCommit,mergedAt,mergeable,mergeStateStatus,body']))
+                          'mergeCommit,mergedAt,mergeable,mergeStateStatus,body,baseRefName']))
+
+
+def require_main_destination(pr):
+    require(pr.get('baseRefName') == 'main',
+            'Reviewed merge destination must remain exactly main')
 
 
 def require_reviewed_description(pr, freeze):
@@ -57,6 +62,14 @@ def main():
     require(hashlib.sha256(freeze_bytes).hexdigest() ==
             accepted['freeze_sha256'], 'Accepted freeze changed')
     freeze = json.loads(freeze_bytes)
+    require(freeze['future_helpers'] == accepted['future_helpers'],
+            'Accepted operational helper inventory changed')
+    for name, record in freeze['future_helpers'].items():
+        path = P / name
+        require(path.is_file() and not path.is_symlink() and
+                len(path.read_bytes()) == record['bytes'] and
+                hashlib.sha256(path.read_bytes()).hexdigest() == record['sha256'],
+                'Reviewed operational helper changed: ' + name)
     for name, record in freeze['files'].items():
         path = pub / name
         require(path.is_file() and not path.is_symlink(), 'Nonregular frozen file')
@@ -73,6 +86,7 @@ def main():
                 'Integration review not accepted')
         expected_head = addendum['integrated_head']
     pr = view()
+    require_main_destination(pr)
     require(pr['headRefOid'] == expected_head, 'Live PR head changed')
     require_reviewed_description(pr, freeze)
     snapshot = json.loads((A / 'ORIGINAL_SNAPSHOT.json').read_text())
@@ -121,10 +135,14 @@ def main():
                                     'stdout': action.stdout, 'stderr': action.stderr})
         pr = view()
         save('PR_MERGE_ACTION_READBACK.json', pr)
+        require_main_destination(pr)
         require(pr['state'] == 'MERGED' and pr['headRefOid'] == expected_head,
                 'Merge not confirmed; inspect recorded action and readback before proceeding')
     sha = pr['mergeCommit']['oid']
     run(['git', 'fetch', '--no-write-fetch-head', 'origin', sha])
+    remote_main = run(['git', 'ls-remote', 'origin', 'refs/heads/main']).split()[0]
+    run(['git', 'fetch', '--no-write-fetch-head', 'origin', remote_main])
+    run(['git', 'merge-base', '--is-ancestor', sha, remote_main])
     for name, pin in snapshot['files'].items():
         require(hashlib.sha256(rawblob(sha, name)).hexdigest() == pin,
                 'Merged source differs from reviewed original: ' + name)
@@ -148,6 +166,7 @@ def main():
     save('MERGED_PACKET_INTEGRITY.json', {
         'utc': datetime.now(timezone.utc).isoformat(), 'merge_commit': sha,
         'original_head': HEAD, 'merged_head': expected_head,
+        'merged_base': 'main', 'merge_commit_on_observed_remote_main': remote_main,
         'all_44_original_files_byte_identical': True,
         'all_other_main_queue_bytes_preserved': True,
         'original_attempts': '1/5', 'shared_checkout_index_head_untouched': True})

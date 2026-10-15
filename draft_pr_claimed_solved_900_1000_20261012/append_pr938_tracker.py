@@ -41,6 +41,12 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
     need(pin == accepted.get('freeze_sha256') and freeze['original_pr_head'] == head
          and freeze['pr'] == 938 and freeze['problem_id'] == '30003634'
          and freeze['files'] == accepted['files'], 'accepted frozen target')
+    need(freeze['future_helpers'] == accepted['future_helpers'], 'accepted operational helper inventory')
+    for name, record in freeze['future_helpers'].items():
+        helper = Path(__file__).resolve().parent / name
+        need(helper.is_file() and not helper.is_symlink() and helper.stat().st_size == record['bytes']
+             and hashlib.sha256(helper.read_bytes()).hexdigest() == record['sha256'],
+             'reviewed operational helper changed')
     live_head = head
     if (a/'ACCEPTANCE_INTEGRATION_ADDENDUM.json').exists():
         integration = read('ACCEPTANCE_INTEGRATION_ADDENDUM.json')
@@ -48,7 +54,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
              'integration acceptance')
         live_head = integration['integrated_head']
     need(merge.get('number') == 938 and merge.get('state') == 'MERGED'
-         and merge.get('headRefOid') == live_head, 'merged PR/head')
+         and merge.get('headRefOid') == live_head and merge.get('baseRefName') == 'main', 'merged PR/head/main destination')
     merged = merge['mergeCommit']['oid']
     ident = publication.get('id')
     need(type(ident) is int and ident > 0 and publication.get('state') == 'published'
@@ -57,8 +63,20 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
          'published ID/DOI/record')
     intent = read('publication/ZENODO_PUBLISH_INTENT.json')
     need(intent.get('action') == 'publish' and intent.get('pr') == 938
-         and intent['accepted_freeze_sha256'] == pin and intent['merged_commit'] == merged,
+         and intent['accepted_freeze_sha256'] == pin and intent['merged_commit'] == merged and intent.get('merged_base') == 'main',
          'publication intent/accepted freeze/merge')
+    destination = intent.get('destination_readback', {})
+    need(type(destination) is dict, 'main destination evidence object')
+    fresh = destination.get('actual_PR_readback', {})
+    need(type(fresh) is dict, 'actual main destination readback object')
+    need(destination.get('baseRefName') == 'main' and destination.get('merge_commit') == merged
+         and destination.get('merge_commit_is_ancestor_of_observed_main') is True
+         and type(destination.get('observed_remote_main')) is str
+         and re.fullmatch('[0-9a-f]{40}', destination['observed_remote_main']) is not None
+         and fresh.get('number') == 938 and fresh.get('state') == 'MERGED'
+         and fresh.get('headRefOid') == live_head and fresh.get('baseRefName') == 'main'
+         and fresh.get('mergeCommit') == {'oid': merged},
+         'actual main destination readback/merge ancestry linkage')
     descriptor_raw = (a/'publication/zenodo-deposit.json').read_bytes()
     need(hashlib.sha256(descriptor_raw).hexdigest() == intent['descriptor_sha256']
          == freeze['files']['zenodo-deposit.json']['sha256'], 'exact descriptor')
@@ -81,7 +99,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
         need(tracker.get('confirmed') is True and tracker.get('readback_matches') is True
              and tracker.get('pr') == 938 and tracker.get('problem_id') == '30003634'
              and tracker.get('original_pr_head') == head and tracker.get('merged_head') == live_head
-             and tracker.get('merge_commit') == merged and tracker.get('accepted_freeze_sha256') == pin
+             and tracker.get('merge_commit') == merged and tracker.get('merged_base') == 'main' and tracker.get('accepted_freeze_sha256') == pin
              and tracker.get('doi') == publication['doi'] and tracker.get('zenodo_record_id') == ident,
              'tracker target/head/freeze/DOI')
         need(valid_tracker_range(tracker.get('updated_range')), 'tracker exact destination/columns/single data row')
@@ -97,7 +115,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
         event = native['published_event']
         need(event.get('id') == '30003634' and event.get('pr') == 938
              and event.get('doi') == publication['doi'] and event.get('original_pr_head') == head
-             and event.get('accepted_freeze_sha256') == pin and event.get('merged_commit') == merged
+             and event.get('accepted_freeze_sha256') == pin and event.get('merged_commit') == merged and event.get('merged_base') == 'main'
              and event.get('zenodo_record_id') == ident
              and event['evidence']['tracker_range'] == tracker['updated_range'],
              'native target/head/freeze/DOI/tracker')
@@ -157,7 +175,7 @@ def main():
         raise RuntimeError('Appended publication row failed exact readback')
     receipt={'utc':datetime.now(timezone.utc).isoformat(),'confirmed':True,
              'pr':938,'problem_id':'30003634','original_pr_head':acceptance['original_pr_head'],
-             'merged_head':merge['headRefOid'],'merge_commit':merge['mergeCommit']['oid'],
+             'merged_head':merge['headRefOid'],'merge_commit':merge['mergeCommit']['oid'],'merged_base':'main',
              'accepted_freeze_sha256':acceptance['freeze_sha256'],'zenodo_record_id':publication['id'],
              'spreadsheet_id':SID,'gid':1254632077,'tab_title':target['title'],
              'updated_range':updated_range,'doi':doi,'row':row,

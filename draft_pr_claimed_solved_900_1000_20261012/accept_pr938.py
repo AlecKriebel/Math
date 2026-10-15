@@ -7,7 +7,7 @@ P=Path(__file__).resolve().parent;ROOT=P.parent;A=P/'audits/pr938_30003634';D=A/
 HEAD='2b3ea2de7a9a9ea4fa8cba9a34cbdb01063bda3b'
 KEY='30003634';PREFIX='unsolved_math_prioritization/attempts/'+KEY+'/'
 QUEUE='unsolved_math_prioritization/QUEUE.md'
-HELPERS=['accept_pr938.py','merge_pr938.py','run_pr938_zenodo.py','append_pr938_tracker.py','update_pr938_publication_ledger.py']
+HELPERS=['accept_pr938.py','merge_pr938.py','run_pr938_zenodo.py','append_pr938_tracker.py','update_pr938_publication_ledger.py','finalize_pr938_and_gate_next.py']
 def need(ok,label):
  if not ok:raise RuntimeError(label)
 def sha(b):return hashlib.sha256(b).hexdigest()

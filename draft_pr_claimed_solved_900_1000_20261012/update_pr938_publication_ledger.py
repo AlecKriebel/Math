@@ -119,6 +119,12 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
     need(pin == accepted.get('freeze_sha256') and freeze['original_pr_head'] == head
          and freeze['pr'] == 938 and freeze['problem_id'] == '30003634'
          and freeze['files'] == accepted['files'], 'accepted frozen target')
+    need(freeze['future_helpers'] == accepted['future_helpers'], 'accepted operational helper inventory')
+    for name, record in freeze['future_helpers'].items():
+        helper = Path(__file__).resolve().parent / name
+        need(helper.is_file() and not helper.is_symlink() and helper.stat().st_size == record['bytes']
+             and hashlib.sha256(helper.read_bytes()).hexdigest() == record['sha256'],
+             'reviewed operational helper changed')
     live_head = head
     if (a/'ACCEPTANCE_INTEGRATION_ADDENDUM.json').exists():
         integration = read('ACCEPTANCE_INTEGRATION_ADDENDUM.json')
@@ -126,7 +132,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
              'integration acceptance')
         live_head = integration['integrated_head']
     need(merge.get('number') == 938 and merge.get('state') == 'MERGED'
-         and merge.get('headRefOid') == live_head, 'merged PR/head')
+         and merge.get('headRefOid') == live_head and merge.get('baseRefName') == 'main', 'merged PR/head/main destination')
     merged = merge['mergeCommit']['oid']
     ident = publication.get('id')
     need(type(ident) is int and ident > 0 and publication.get('state') == 'published'
@@ -135,8 +141,20 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
          'published ID/DOI/record')
     intent = read('publication/ZENODO_PUBLISH_INTENT.json')
     need(intent.get('action') == 'publish' and intent.get('pr') == 938
-         and intent['accepted_freeze_sha256'] == pin and intent['merged_commit'] == merged,
+         and intent['accepted_freeze_sha256'] == pin and intent['merged_commit'] == merged and intent.get('merged_base') == 'main',
          'publication intent/accepted freeze/merge')
+    destination = intent.get('destination_readback', {})
+    need(type(destination) is dict, 'main destination evidence object')
+    fresh = destination.get('actual_PR_readback', {})
+    need(type(fresh) is dict, 'actual main destination readback object')
+    need(destination.get('baseRefName') == 'main' and destination.get('merge_commit') == merged
+         and destination.get('merge_commit_is_ancestor_of_observed_main') is True
+         and type(destination.get('observed_remote_main')) is str
+         and re.fullmatch('[0-9a-f]{40}', destination['observed_remote_main']) is not None
+         and fresh.get('number') == 938 and fresh.get('state') == 'MERGED'
+         and fresh.get('headRefOid') == live_head and fresh.get('baseRefName') == 'main'
+         and fresh.get('mergeCommit') == {'oid': merged},
+         'actual main destination readback/merge ancestry linkage')
     descriptor_raw = (a/'publication/zenodo-deposit.json').read_bytes()
     need(hashlib.sha256(descriptor_raw).hexdigest() == intent['descriptor_sha256']
          == freeze['files']['zenodo-deposit.json']['sha256'], 'exact descriptor')
@@ -159,7 +177,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
         need(tracker.get('confirmed') is True and tracker.get('readback_matches') is True
              and tracker.get('pr') == 938 and tracker.get('problem_id') == '30003634'
              and tracker.get('original_pr_head') == head and tracker.get('merged_head') == live_head
-             and tracker.get('merge_commit') == merged and tracker.get('accepted_freeze_sha256') == pin
+             and tracker.get('merge_commit') == merged and tracker.get('merged_base') == 'main' and tracker.get('accepted_freeze_sha256') == pin
              and tracker.get('doi') == publication['doi'] and tracker.get('zenodo_record_id') == ident,
              'tracker target/head/freeze/DOI')
         need(valid_tracker_range(tracker.get('updated_range')), 'tracker exact destination/columns/single data row')
@@ -175,7 +193,7 @@ def verify_receipt_links(a, publication, merge, accepted, tracker=None, native=N
         event = native['published_event']
         need(event.get('id') == '30003634' and event.get('pr') == 938
              and event.get('doi') == publication['doi'] and event.get('original_pr_head') == head
-             and event.get('accepted_freeze_sha256') == pin and event.get('merged_commit') == merged
+             and event.get('accepted_freeze_sha256') == pin and event.get('merged_commit') == merged and event.get('merged_base') == 'main'
              and event.get('zenodo_record_id') == ident
              and event['evidence']['tracker_range'] == tracker['updated_range'],
              'native target/head/freeze/DOI/tracker')
@@ -206,6 +224,7 @@ def main():
     for attempt in range(1, 7):
         parent = run(['git', 'ls-remote', 'origin', 'refs/heads/main']).split()[0]
         run(['git', 'fetch', '--no-write-fetch-head', 'origin', parent])
+        run(['git', 'merge-base', '--is-ancestor', merge['mergeCommit']['oid'], parent])
         catalogue = json.loads(blob(parent, 'unsolved_math_prioritization/catalog.json'))
         target = next((x for x in catalogue if str(x['id']) == KEY))
         if target.get('present') is not True or target.get('holds') != []:
@@ -244,7 +263,7 @@ def main():
         if prior.get('doi'):
             if not prior['doi'] == publication['doi']:
                 raise RuntimeError("Publication ledger guard: prior['doi'] == publication['doi']")
-        event = {**prior, 'at': datetime.now(timezone.utc).isoformat(), 'id': KEY, 'status': 'preprint_published', 'note': note, 'doi': publication['doi'], 'pr': 938, 'event': 'audited_imported_candidate_publication', 'event_id': EVENT_ID, 'statement_hash': source['statement_hash'], 'review_hash': source['review_hash'], 'verified_candidate_approaches': 2, 'turn_count_status': 'original_observed_one_plus_one_genuinely_recorded_strengthening', 'original_total_attempt_count_known': False, 'proof_search_turns_added_by_audit': 1, 'turn_limit': 5, 'candidate_turn': 2, 'new_mechanism_native_receipt_sha256': hashlib.sha256((AUDIT/'strengthening/unsolved_math_prioritization/attempts/30003634/NATIVE_TURN_RECEIPT.json').read_bytes()).hexdigest(), 'original_pr_head': accepted['original_pr_head'], 'accepted_freeze_sha256': accepted['freeze_sha256'], 'merged_commit': merge['mergeCommit']['oid'], 'zenodo_record_id': publication['id'], 'evidence': {'accepted_artifacts': EFFORT.relative_to(ROOT).as_posix() + '/audits/pr938_30003634/ACCEPTANCE.json', 'zenodo_record': publication['record_url'], 'tracker_range': tracker['updated_range'], 'source_free_archive_sha256': publication['files'][1]['sha256'], 'priority_limit': 'First priority unverified and not asserted', 'original_candidate_turns': 'original observed1/5 preserved; one new complete mechanism, combined known2/5; genuine isolated queue.py turn receipt and original-history absence disclosed'}}
+        event = {**prior, 'at': datetime.now(timezone.utc).isoformat(), 'id': KEY, 'status': 'preprint_published', 'note': note, 'doi': publication['doi'], 'pr': 938, 'event': 'audited_imported_candidate_publication', 'event_id': EVENT_ID, 'statement_hash': source['statement_hash'], 'review_hash': source['review_hash'], 'verified_candidate_approaches': 2, 'turn_count_status': 'original_observed_one_plus_one_genuinely_recorded_strengthening', 'original_total_attempt_count_known': False, 'proof_search_turns_added_by_audit': 1, 'turn_limit': 5, 'candidate_turn': 2, 'new_mechanism_native_receipt_sha256': hashlib.sha256((AUDIT/'strengthening/unsolved_math_prioritization/attempts/30003634/NATIVE_TURN_RECEIPT.json').read_bytes()).hexdigest(), 'original_pr_head': accepted['original_pr_head'], 'accepted_freeze_sha256': accepted['freeze_sha256'], 'merged_commit': merge['mergeCommit']['oid'], 'merged_base': 'main', 'zenodo_record_id': publication['id'], 'evidence': {'accepted_artifacts': EFFORT.relative_to(ROOT).as_posix() + '/audits/pr938_30003634/ACCEPTANCE.json', 'zenodo_record': publication['record_url'], 'tracker_range': tracker['updated_range'], 'source_free_archive_sha256': publication['files'][1]['sha256'], 'priority_limit': 'First priority unverified and not asserted', 'original_candidate_turns': 'original observed1/5 preserved; one new complete mechanism, combined known2/5; genuine isolated queue.py turn receipt and original-history absence disclosed'}}
         if 'turns_used' in prior and (type(prior['turns_used']) is not int or prior['turns_used'] > 2):
             raise RuntimeError('Newer target proof counter requires reconciliation')
         if 'turns_used' in prior and prior['turns_used'] != 2:
