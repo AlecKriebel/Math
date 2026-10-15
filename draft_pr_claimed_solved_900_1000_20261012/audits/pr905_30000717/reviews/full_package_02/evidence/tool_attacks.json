@@ -1,0 +1,358 @@
+{
+  "status": "PASS",
+  "utc": "2026-10-13T05:22:22.891774+00:00",
+  "baseline_modes": [
+    {
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"problem_id\": 30000717,\n  \"payload_files\": 84,\n  \"pdf_verified\": true,\n  \"replayed_suites\": [\n    {\n      \"script\": \"original_packet/verify_publication.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"original_packet/mutation_tests.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/proof_family/check_exact.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/computation_family/checks/exact_controls.py\",\n      \"verdict\": \"PASS_INDEPENDENT_FINITE_EXACT_CONTROLS\",\n      \"returncode\": 0\n    }\n  ],\n  \"distributed_files_unchanged\": true,\n  \"scope\": \"Supporting exact controls and byte consistency; universal nonexistence proved in note.\"\n}\n",
+      "stderr": "",
+      "mode": "normal",
+      "environment_override": {
+        "PYTHONOPTIMIZE": "2"
+      }
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"problem_id\": 30000717,\n  \"payload_files\": 84,\n  \"pdf_verified\": true,\n  \"replayed_suites\": [\n    {\n      \"script\": \"original_packet/verify_publication.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"original_packet/mutation_tests.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/proof_family/check_exact.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/computation_family/checks/exact_controls.py\",\n      \"verdict\": \"PASS_INDEPENDENT_FINITE_EXACT_CONTROLS\",\n      \"returncode\": 0\n    }\n  ],\n  \"distributed_files_unchanged\": true,\n  \"scope\": \"Supporting exact controls and byte consistency; universal nonexistence proved in note.\"\n}\n",
+      "stderr": "",
+      "mode": "-O",
+      "environment_override": {}
+    },
+    {
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"problem_id\": 30000717,\n  \"payload_files\": 84,\n  \"pdf_verified\": true,\n  \"replayed_suites\": [\n    {\n      \"script\": \"original_packet/verify_publication.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"original_packet/mutation_tests.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/proof_family/check_exact.py\",\n      \"verdict\": \"PASS\",\n      \"returncode\": 0\n    },\n    {\n      \"script\": \"reviews/computation_family/checks/exact_controls.py\",\n      \"verdict\": \"PASS_INDEPENDENT_FINITE_EXACT_CONTROLS\",\n      \"returncode\": 0\n    }\n  ],\n  \"distributed_files_unchanged\": true,\n  \"scope\": \"Supporting exact controls and byte consistency; universal nonexistence proved in note.\"\n}\n",
+      "stderr": "",
+      "mode": "-OO",
+      "environment_override": {}
+    }
+  ],
+  "fresh_rejected_mutations": 28,
+  "cases": [
+    {
+      "case": "Payload byte corruption",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Byte-count mismatch: note.tex\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Missing original proof",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted executable file",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Listed file symlink",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Symlink forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/3_normal/requirements.txt\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted directory symlink",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Symlink forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/4_normal/source-link\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted FIFO",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Special filesystem entry forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/5_normal/private_fifo\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Wrong release identity even with supplied new manifest hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Wrong release identity\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Floating-point manifest byte count",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Byte-count mismatch: note.tex\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Traversal path in trusted-rehashed manifest",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Original proof changed and outer record rehashed",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Original proof anchor mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Original manifest changed and outer record rehashed",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Original manifest anchor mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Fresh proof checker false sextic coefficient despite recomputed outer hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Replay failed: check_exact.py\nTraceback (most recent call last):\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-z3l51lv4/package/reviews/proof_family/check_exact.py\", line 198, in <module>\n    check(\"substitution a=x^2,b=y^2,c=z^2\", {(2*a, 2*b, 2*c): q for (a,b,c), q in Fabc.items()} == R)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-z3l51lv4/package/reviews/proof_family/check_exact.py\", line 25, in check\n    raise RuntimeError(\"FAILED: \" + label)\nRuntimeError: FAILED: substitution a=x^2,b=y^2,c=z^2\n\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Fresh computation checker false determinant despite recomputed outer hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Replay failed: exact_controls.py\nTraceback (most recent call last):\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-gu3niipw/package/reviews/computation_family/checks/exact_controls.py\", line 151, in <module>\n    require(det==Q(-64),'Cubic determinant exactly -64 via Fraction elimination')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-gu3niipw/package/reviews/computation_family/checks/exact_controls.py\", line 15, in require\n    raise RuntimeError(label)\nRuntimeError: Cubic determinant exactly -64 via Fraction elimination\n\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Separate PDF corrupted",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: PDF mismatch\n",
+        "mode": "normal",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Payload byte corruption",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Byte-count mismatch: note.tex\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Missing original proof",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted executable file",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Listed file symlink",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Symlink forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/17_O/requirements.txt\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted directory symlink",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Symlink forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/18_O/source-link\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Unlisted FIFO",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Special filesystem entry forbidden: /Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr905_30000717/reviews/full_package_02/tmp/fresh_tools_fwnu8z4i/19_O/private_fifo\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Wrong release identity even with supplied new manifest hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Wrong release identity\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Floating-point manifest byte count",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Byte-count mismatch: note.tex\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Traversal path in trusted-rehashed manifest",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Payload file-set mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Original proof changed and outer record rehashed",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Original proof anchor mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Original manifest changed and outer record rehashed",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Original manifest anchor mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Fresh proof checker false sextic coefficient despite recomputed outer hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Replay failed: check_exact.py\nTraceback (most recent call last):\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-ycuwhhqu/package/reviews/proof_family/check_exact.py\", line 198, in <module>\n    check(\"substitution a=x^2,b=y^2,c=z^2\", {(2*a, 2*b, 2*c): q for (a,b,c), q in Fabc.items()} == R)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-ycuwhhqu/package/reviews/proof_family/check_exact.py\", line 25, in check\n    raise RuntimeError(\"FAILED: \" + label)\nRuntimeError: FAILED: substitution a=x^2,b=y^2,c=z^2\n\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Fresh computation checker false determinant despite recomputed outer hash",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: Replay failed: exact_controls.py\nTraceback (most recent call last):\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-goasttds/package/reviews/computation_family/checks/exact_controls.py\", line 151, in <module>\n    require(det==Q(-64),'Cubic determinant exactly -64 via Fraction elimination')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/robinson-publication-goasttds/package/reviews/computation_family/checks/exact_controls.py\", line 15, in require\n    raise RuntimeError(label)\nRuntimeError: Cubic determinant exactly -64 via Fraction elimination\n\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    },
+    {
+      "case": "Separate PDF corrupted",
+      "rejected": true,
+      "record": {
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "FAIL: PDF mismatch\n",
+        "mode": "-O",
+        "environment_override": {}
+      }
+    }
+  ],
+  "authenticity_boundary": {
+    "external_pin_rejects": {
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "FAIL: Outer manifest anchor mismatch\n",
+      "mode": "normal",
+      "environment_override": {}
+    },
+    "self_computed_pin_passes": {
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"problem_id\": 30000717,\n  \"payload_files\": 84,\n  \"pdf_verified\": false,\n  \"replayed_suites\": [],\n  \"distributed_files_unchanged\": true,\n  \"scope\": \"Supporting exact controls and byte consistency; universal nonexistence proved in note.\"\n}\n",
+      "stderr": "",
+      "mode": "normal",
+      "environment_override": {}
+    },
+    "interpretation": "Expected documented limit; only trusted external release digests bind descriptions. Integrity verification is not mathematical prose certification."
+  },
+  "raw_assert_checker_optimization_boundary": "Supported wrapper strips PYTHONOPTIMIZE and uses -I without -O for mathematical children; standalone historical optimized execution is explicitly unsupported."
+}

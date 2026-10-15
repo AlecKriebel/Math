@@ -1,0 +1,44 @@
+{
+  "status": "PASS_BASELINES_AND_REJECT_ALL_NEGATIVE_CONTROLS",
+  "good": [
+    {
+      "optimized": false,
+      "exit_code": 0,
+      "checks": 33512
+    },
+    {
+      "optimized": true,
+      "exit_code": 0,
+      "checks": 33512
+    }
+  ],
+  "negative_controls": [
+    {
+      "mutation": "wrong_sign",
+      "optimized": false,
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"<TEMP>/wrong_sign/verify.py\", line 56, in <module>\n    ck('double_right_star',star(y,b)==(-2*m,0))\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<TEMP>/wrong_sign/verify.py\", line 10, in ck\n    if not b:raise RuntimeError(g)\n             ^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: double_right_star\n"
+    },
+    {
+      "mutation": "wrong_sign",
+      "optimized": true,
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"<TEMP>/wrong_sign/verify.py\", line 56, in <module>\n    ck('double_right_star',star(y,b)==(-2*m,0))\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<TEMP>/wrong_sign/verify.py\", line 10, in ck\n    if not b:raise RuntimeError(g)\n             ^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: double_right_star\n"
+    },
+    {
+      "mutation": "wrong_index_kernel",
+      "optimized": false,
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"<TEMP>/wrong_index_kernel/verify.py\", line 72, in <module>\n    ck('exact_finite_indices',(idx1,idx2)==expected)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<TEMP>/wrong_index_kernel/verify.py\", line 10, in ck\n    if not b:raise RuntimeError(g)\n             ^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: exact_finite_indices\n"
+    },
+    {
+      "mutation": "wrong_index_kernel",
+      "optimized": true,
+      "exit_code": 1,
+      "stderr": "Traceback (most recent call last):\n  File \"<TEMP>/wrong_index_kernel/verify.py\", line 72, in <module>\n    ck('exact_finite_indices',(idx1,idx2)==expected)\n    ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<TEMP>/wrong_index_kernel/verify.py\", line 10, in ck\n    if not b:raise RuntimeError(g)\n             ^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: exact_finite_indices\n"
+    }
+  ],
+  "verifier_sha256": "7b0a3fcca175deaebd21aa7e610dfac014f639c3b5056314714557a81fdf662a",
+  "manuscript_sha256": "5f79354ac67c87704ab2a4117c11b9677565a78ec299030e37898a07698c84f7",
+  "limitation": "Finite and symbolic diagnostics support the written universal proof; finite tests do not prove infinitude or priority."
+}

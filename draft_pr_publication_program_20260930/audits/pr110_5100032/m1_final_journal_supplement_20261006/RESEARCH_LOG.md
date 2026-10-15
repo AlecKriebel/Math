@@ -1,0 +1,1 @@
+2026-10-06T13:31:34.493229+00:00 — User supplied complete-looking journal PDF; actual11-page metadata matches required title/DOI. Private source pinned; full body and priority comparison pending. Workflow30%, publication0%.

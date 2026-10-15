@@ -1,0 +1,387 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An explicit joint Laplace transform for Brownian first-visit cell lengths on a circle},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\T}{\mathbb T}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\ind}{\mathbf 1}
+\title{An explicit joint Laplace transform\\for Brownian first-visit cell lengths on a circle}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{October 7, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a complete analytic-transform answer to Georgakopoulos's
+question about the lengths of the sets first visited by independent
+Brownian particles on a circle, with uniform random or equally spaced
+starting points. For every finite number of particles, the joint
+Laplace transform is an absolutely convergent series whose coefficients
+are finite sums of ordinary integrals of explicit interval-exit kernels.
+The integration regions are specified linear inequalities in cumulative
+physical hitting times. The outer series has a uniform factorial
+remainder bound and uniquely determines the probability measure.
+The result also applies to arbitrary fixed distinct starting points.
+The construction uses classical heat kernels, strong Markov iteration,
+and bounded-support moments. Earlier competing-walk painting results
+are credited and distinguished. No compact density, efficient numerical
+algorithm, or absolute historical priority is asserted.
+\end{abstract}
+
+\section{The question and the model}
+Georgakopoulos's question on printed p.~1452 of Oberwolfach Report
+23/2018 asks for the joint lengths of first-visit cells of $k$ independent
+Brownian particles started uniformly at random or at equally spaced
+points of $S^1$ \cite{Georgakopoulos}. The report belongs to the 2018
+volume and was published on April 12, 2019. We answer the finite-$k$
+distribution question by an explicit transform law; no named density or
+large-$k$ limit is imposed in that question.
+
+Normalize the circle to $\T=\R/\mathbb Z$, with Lebesgue measure one.
+Let $k\geq1$ and let $W_i$ be independent Brownian motions with generator
+$\tfrac12 d^2/dx^2$, starting at distinct labeled points $p_i$.
+The particles continue moving independently through all encounters,
+seeds, and previously visited territory. Put
+\begin{equation}\label{lengths}
+ T_i(x)=\inf\{t\geq0:W_i(t)=x\},\qquad
+ I(x)=\min\operatorname*{arg\,min}_{1\leq i\leq k}T_i(x),\qquad
+ L_i=\int_{\T}\ind_{\{I(x)=i\}}\,dx.
+\end{equation}
+We justify measurability and the irrelevance of ties below.
+For circumference $c>0$, the lengths are $cL_i$, so replace each
+Laplace variable $\theta_i$ by $c\theta_i$. A common positive diffusivity
+change rescales all clocks equally and leaves ownership unchanged.
+
+\section{Explicit deterministic coefficients}
+For $0<\alpha<\ell$ and $t>0$, define
+\begin{align}
+ f_0(t;\alpha,\ell)
+ &=\frac{\pi}{\ell^2}\sum_{n=1}^{\infty}
+ n\sin\frac{n\pi\alpha}{\ell}
+       e^{-n^2\pi^2t/(2\ell^2)},\label{flux0}\\
+ f_1(t;\alpha,\ell)
+ &=\frac{\pi}{\ell^2}\sum_{n=1}^{\infty}
+ (-1)^{n+1}n\sin\frac{n\pi\alpha}{\ell}
+       e^{-n^2\pi^2t/(2\ell^2)}.\label{flux1}
+\end{align}
+These are the nonnegative densities of interval exit at $0$ and $\ell$,
+respectively. The series are absolutely convergent at each $t>0$.
+They are summed before any improper integration near $t=0$; no
+termwise integration of the signed Fourier series is required.
+
+For a nonempty finite set $A\subset\T$ and $z\notin A$, lift the component
+of $\T\setminus A$ containing $z$ to $(a,b)\subset\R$, and represent
+$z$ by $\widetilde z\in(a,b)$. Set $\ell=b-a$, $\alpha=\widetilde z-a$,
+and, for $q\in A$, define
+\begin{equation}\label{kernel}
+ K_A(t;z,q)=\ind_{\{a\bmod1=q\}}f_0(t;\alpha,\ell)
+            +\ind_{\{b\bmod1=q\}}f_1(t;\alpha,\ell).
+\end{equation}
+Integer changes of lift do not change this formula. For a singleton
+$A=\{q\}$, both endpoints represent $q$, $\ell=1$, and the kernel is
+$f_0+f_1$. Previously visited targets are not absorbing.
+
+Fix $m\geq1$ distinct query points $x=(x_1,\ldots,x_m)$, none a seed.
+Write $S_m$ for the permutations of $\{1,\ldots,m\}$. For $\pi\in S_m$
+and particle $i$, let
+\[
+ A_r^\pi=\{x_{\pi(r)},\ldots,x_{\pi(m)}\},\qquad
+ z_{i,0}=p_i,\quad z_{i,r-1}=x_{\pi(r-1)}\quad(r\geq2).
+\]
+For $u_i=(u_{i1},\ldots,u_{im})\in(0,\infty)^m$, set
+\begin{equation}\label{density}
+ D_i^\pi(u_i;x,p_i)=\prod_{r=1}^m
+ K_{A_r^\pi}(u_{ir};z_{i,r-1},x_{\pi(r)}).
+\end{equation}
+For $\boldsymbol\pi=(\pi_1,\ldots,\pi_k)\in S_m^k$, reconstruct the
+physical hitting times, rather than comparing the separate increments:
+\begin{equation}\label{clock}
+ h_{ij}(u,\boldsymbol\pi)=\sum_{r=1}^{\pi_i^{-1}(j)}u_{ir}.
+\end{equation}
+For a label vector $a=(a_1,\ldots,a_m)\in\{1,\ldots,k\}^m$, put
+\begin{align}
+ \mathcal C_a(\boldsymbol\pi)
+ &=\{u>0:h_{a_j,j}(u,\boldsymbol\pi)<h_{ij}(u,\boldsymbol\pi)
+               \text{ for every }j\text{ and }i\ne a_j\},\label{cone}\\
+ Q_a(x;p)
+ &=\sum_{\boldsymbol\pi\in S_m^k}
+   \int_{\mathcal C_a(\boldsymbol\pi)}
+   \prod_{i=1}^kD_i^{\pi_i}(u_i;x,p_i)
+   \prod_{i=1}^k\prod_{r=1}^mdu_{ir}.\label{ownership}
+\end{align}
+Thus $Q_a$ is specified by $(m!)^k$ nonnegative, $km$-dimensional
+integrals of the explicit scalar series, over strict linear inequalities
+with integer coefficients. Impossible orders have zero factors.
+
+For $\theta_i\geq0$, let $\theta_*=\max_i\theta_i$, define
+$M_0(\theta;p)=1$, and put
+\begin{equation}\label{moments}
+ M_m(\theta;p)=\int_{\T^m}
+ \sum_{a\in\{1,\ldots,k\}^m}
+ \left(\prod_{j=1}^m\theta_{a_j}\right)Q_a(x;p)
+ \,dx_1\cdots dx_m\qquad(m\geq1).
+\end{equation}
+Assign arbitrary bounded values on the excluded query configurations;
+they have zero Lebesgue measure. All coefficient definitions are
+deterministic. In particular, they contain no unknown Brownian hitting
+probability, conditional law, or integral-equation solution.
+
+\begin{theorem}\label{main}
+For every finite $k\geq1$ and every distinct seed vector $p$,
+$L=(L_1,\ldots,L_k)$ is well defined almost surely, lies in the simplex
+$\{l_i\geq0:\sum_i l_i=1\}$, and has the joint Laplace transform
+\begin{equation}\label{transform}
+ \mathcal L_p(\theta)=\E_p e^{-\sum_i\theta_iL_i}
+       =\sum_{m=0}^{\infty}\frac{(-1)^m}{m!}M_m(\theta;p).
+\end{equation}
+The series is absolutely convergent, $0\leq M_m\leq\theta_*^m$, and,
+for every $N\geq0$,
+\begin{equation}\label{remainder}
+ \left|\mathcal L_p(\theta)-\sum_{m=0}^{N}
+                   \frac{(-1)^m}{m!}M_m(\theta;p)\right|
+       \leq\frac{\theta_*^{N+1}}{(N+1)!}.
+\end{equation}
+The coefficients uniquely determine the entire joint probability
+measure. For equally spaced seeds use $p_i=(i-1)/k$. For independent
+uniform seeds, the answer is
+\begin{equation}\label{uniform}
+ \mathcal L_{\mathrm{unif}}(\theta)
+ =\sum_{m=0}^{\infty}\frac{(-1)^m}{m!}
+                    \int_{\T^k}M_m(\theta;p)\,dp,
+\end{equation}
+with the same bound \eqref{remainder}.
+\end{theorem}
+
+\section{Proof}
+\begin{lemma}\label{exit}
+The kernels in \eqref{flux0}--\eqref{kernel} are the next-target
+exit-time/place densities, and
+\begin{equation}\label{normalization}
+ \int_0^\infty f_0\,dt=1-\alpha/\ell,\qquad
+ \int_0^\infty f_1\,dt=\alpha/\ell,\qquad
+ \sum_{q\in A}\int_0^\infty K_A(t;z,q)\,dt=1.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The classical Dirichlet heat kernel, obtained from the interval sine
+basis and space--time scaling, is
+\begin{equation}\label{heat}
+ H(t;\alpha,\beta)=\frac2\ell\sum_{n\geq1}
+ \sin\frac{n\pi\alpha}{\ell}\sin\frac{n\pi\beta}{\ell}
+ e^{-n^2\pi^2t/(2\ell^2)}.
+\end{equation}
+See also Lalley's Exercise~6(C) \cite{Lalley} for the unit interval.
+If $\tau$ is the interval exit time, stopping $B_t^2-t$ at
+$\tau\wedge t$ bounds $\E(\tau\wedge t)$ uniformly, since the stopped
+position stays in $[0,\ell]$. Hence $\tau<\infty$ almost surely.
+Optional stopping for the bounded stopped coordinate gives exit
+probabilities $1-\alpha/\ell$ and $\alpha/\ell$.
+
+The Markov property therefore gives
+\[
+ \Prob_\alpha(\tau>t,B_\tau=0)
+    =\int_0^\ell H(t;\alpha,\beta)(1-\beta/\ell)\,d\beta.
+\]
+For $t>0$, locally uniform convergence permits differentiation.
+Use $H_t=H_{\beta\beta}/2$, integrate twice by parts, and use the
+Dirichlet boundary values. The negative derivative is
+$\tfrac12H_\beta(t;\alpha,0)=f_0(t;\alpha,\ell)$.
+With weight $\beta/\ell$ it is
+$-\tfrac12H_\beta(t;\alpha,\ell)=f_1(t;\alpha,\ell)$.
+This proves nonnegativity, the density interpretation, and the first
+two identities in \eqref{normalization}, without improper Fourier
+interchanges. Circle continuity identifies the next target with the
+exit endpoint of its lifted component. Summing both endpoints,
+including their identification for a singleton, proves the last identity.
+\end{proof}
+
+For comparison, the familiar interval-exit Laplace transforms are
+\begin{equation}\label{exitlaplace}
+ \int_0^\infty e^{-st}(f_0,f_1)\,dt
+ =\left(\frac{\sinh((\ell-\alpha)\sqrt{2s})}
+                   {\sinh(\ell\sqrt{2s})},
+        \frac{\sinh(\alpha\sqrt{2s})}
+                   {\sinh(\ell\sqrt{2s})}\right)\quad(s>0).
+\end{equation}
+These follow from $v''/2=sv$ with the corresponding endpoint data;
+see, for example, Ernst--Shepp \cite{ErnstShepp}. They are normalization
+checks, not new interval formulas.
+
+\begin{lemma}\label{finite}
+$D_i^\pi$ is the joint density of the order $\pi$ and elapsed
+increments between successive newly visited queries for particle $i$.
+Moreover,
+\[
+ \sum_{\pi\in S_m}\int_{(0,\infty)^m}D_i^\pi(u_i)\,du_i=1,
+ \quad Q_a(x;p)=\Prob_p(I(x_1)=a_1,\ldots,I(x_m)=a_m),
+ \quad \sum_aQ_a(x;p)=1.
+\]
+\end{lemma}
+\begin{proof}
+Stop a single walker when it first reaches the finite query set, remove
+that reached target, and repeat with the remaining set. At each step
+the current point lies outside the remaining targets. These are finite
+stopping times by Lemma~\ref{exit}. Distinct queries cannot be reached
+simultaneously by a continuous path. The strong Markov property
+\cite[Theorem~2.16]{MoertersPeres} gives exactly the product
+\eqref{density}; repeated normalization in \eqref{normalization} gives
+its total mass. This argument tracks the same physical walker, which
+may cross already visited queries and other particles' territory.
+
+Independence gives the product of the $k$ ordered densities.
+Equation~\eqref{clock} reconstructs each physical first-hitting time,
+so the owner event is exactly \eqref{cone}. A fixed query's individual
+hitting-time distribution is atomless by the singleton kernel.
+Independent walkers thus have no tie at a fixed query, almost surely.
+The finite union over queries is still null; equivalently the equality
+boundaries are proper hyperplanes of zero measure for these densities.
+Integrating and summing all orders proves the assertions about $Q_a$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+On continuous-path space, the visited set up to a fixed time $t$ is
+compact. Its distance from $x$ is the infimum of the distances from
+positions at rational times in $[0,t]$, together with the position at
+$t$. Hence $(\text{path},x)\mapsto T_i(x)$ is jointly measurable.
+For each nonseed $x$, every particle reaches it in finite time and the
+independent hitting times are atomless. Fubini shows that, almost
+surely, locations with any infinite hitting time or an earliest tie
+have measure zero. Thus \eqref{lengths} defines a measurable partition
+up to a null set and $\sum_iL_i=1$. This is not an assertion that ties
+are absent simultaneously at every location.
+
+Put $Z=\sum_i\theta_iL_i=\int_\T\theta_{I(x)}\,dx$, so
+$0\leq Z\leq\theta_*$. Tonelli and Lemma~\ref{finite} yield
+$\E_p Z^m=M_m(\theta;p)$ and $0\leq M_m\leq\theta_*^m$.
+The exponential series is absolutely dominated by $e^{\theta_*}$;
+termwise expectation proves \eqref{transform}. Taylor's theorem for
+$e^{-z}$ on $z\geq0$ bounds the degree-$N$ remainder by
+$z^{N+1}/(N+1)!$, giving \eqref{remainder}.
+
+The homogeneous moment polynomials give all mixed moments, or these
+can be recovered by differentiation of the transform at zero, justified
+by bounded support. Polynomials are dense in continuous functions on
+the compact simplex by Stone--Weierstrass. Consequently its finite
+Borel measures are uniquely determined by these moments.
+The remainder and absolute bounds are uniform in distinct $p$.
+Coincident independent-uniform seeds have measure zero, so integration
+in $p$ and interchange with the series prove \eqref{uniform}.
+Equally spaced starts are already a fixed-$p$ instance.
+\end{proof}
+
+A random rotation of equally spaced seeds leaves lengths unchanged.
+If seeds instead receive labels after circular ordering, integrate the
+same fixed-$p$ transform against that ordered seed law. Formula
+\eqref{uniform} uses independent uniform labels.
+For $k=1$ the transform is $e^{-\theta_1}$. If every $\theta_i=t$,
+then $M_m=t^m$ and the transform is $e^{-t}$. Uniform starts are
+exchangeable; equally spaced starts have cyclic and dihedral symmetry.
+Both give $\E L_i=1/k$; full permutation exchangeability for equally
+spaced labels is not asserted.
+
+\section{Attribution, priority and verification}
+First-arrival painting is an established model. Gomes J\'unior et al.
+\cite{Gomes} treat a two-walker periodic lattice and a one-point
+scaling probability. Miller \cite{Miller} studies ownership correlations
+and asymptotic volume variance on transient graph families.
+Chatterjee--Nabahi--Terlov \cite{Chatterjee} analyze expected interfaces
+on a discrete cycle. Baccara's joint real-line competitive-range limit
+\cite[Section~6, Proposition~8]{Baccara} remains a Brownian functional
+characterization; Si \cite{Si} studies strategic painting payoffs,
+including a reflected-Brownian interval limit. These are relevant
+predecessors with different observables or regimes.
+
+Moment-based transforms and exit-increment constructions are classical;
+see Kac's product-moment framework as reviewed by Fitzsimmons--Pitman
+\cite{FitzsimmonsPitman} and the multitime single-walker span laws of
+R\'egnier et al. \cite{Regnier}. The reduction here makes every
+finite-query ownership probability explicit while preserving each
+walker's correlated first-hitting times, then determines the joint
+circle volume law. No novelty is claimed for the model, interval
+kernels, strong Markov property, moment expansion, or moment determinacy.
+
+Our bounded primary-source audit of October 7, 2026 did not identify
+an earlier complete characterization of this finite-$k$ circle law,
+or a general explicit result directly supplying all its coefficients.
+The full Gomes 1996 article and Dicker's related higher-dimensional
+thesis \cite{Dicker} were inaccessible; only the former's publisher abstract and
+later primary discussions, and the latter's primary index, were
+available. Direct Zenodo registry searches also failed. These
+limitations, search records, and theorem-scope comparisons are retained
+in the supplement. No absolute priority, exhaustive absence, or
+independent-discovery claim is made.
+
+The supplied diagnostics reproduce exact finite-chain order, clock,
+and moment identities and compare scalar exit fluxes by independent
+spectral and reflected-Gaussian formulas. They test supporting
+calculations; they are not a Brownian limit proof or a certificate of
+numerical quadrature. The proof above establishes the Brownian result.
+The outer bound \eqref{remainder} does not bound numerical errors in
+the coefficient integrals or a truncation of their inner kernel series.
+A compact density, named distribution, and efficient evaluator remain
+possible refinements.
+
+\paragraph{AI and review disclosure.}
+AI tools were used extensively in developing, drafting, reproducing,
+and adversarially verifying this work. Independent AI reviews are not
+conventional human peer review. This preprint is unrefereed and has not
+undergone conventional human peer review.
+
+\begin{thebibliography}{99}
+\bibitem{Georgakopoulos}
+A. Georgakopoulos, Voronoi-like decomposition of $S^1$ with randomness,
+in \emph{Enumerative Combinatorics}, Oberwolfach Report 23/2018,
+\emph{Oberwolfach Reports} 15 (2018), no.~2, 1381--1464, item on p.~1452.
+Published April 12, 2019. \href{https://doi.org/10.4171/OWR/2018/23}{doi:10.4171/OWR/2018/23}.
+\bibitem{Lalley}
+S. Lalley, \emph{Brownian Motion}, course notes, Exercise~6(A)--(C).
+\url{https://galton.uchicago.edu/~lalley/Courses/312/BrownianMotion312.pdf}.
+\bibitem{MoertersPeres}
+P. M\"orters and Y. Peres, \emph{Brownian Motion}, Cambridge University
+Press, 2010, Theorem~2.16, pp.~43--44.
+\url{https://www.mi.uni-koeln.de/~moerters/book/book.pdf}.
+\bibitem{ErnstShepp}
+P. Ernst and L. Shepp, On the time for Brownian motion to visit every
+point on a circle, \emph{J. Statist. Plann. Inference} 171 (2016), 130--134.
+\href{https://doi.org/10.1016/j.jspi.2015.10.010}{doi:10.1016/j.jspi.2015.10.010}.
+\bibitem{Gomes}
+S.R. Gomes J\'unior, L.S. Lucena, L.R. da Silva and H.J. Hilhorst,
+Coloring of a one-dimensional lattice by two independent random walkers,
+\emph{Physica A} 225 (1996), 81--88.
+\href{https://doi.org/10.1016/0378-4371(95)00424-6}{doi:10.1016/0378-4371(95)00424-6}.
+\bibitem{Miller}
+J. Miller, Painting a graph with competing random walks,
+\emph{Ann. Probab.} 41 (2013), 636--670.
+\href{https://doi.org/10.1214/11-AOP713}{doi:10.1214/11-AOP713}.
+\bibitem{Chatterjee}
+S. Chatterjee, N. Nabahi and G. Terlov, Interface between competing
+random walks on a cycle, 2026. \url{https://arxiv.org/abs/2608.21312v1}.
+\bibitem{Baccara}
+M. Baccara, On the range of competing random walks, 2026.
+\url{https://arxiv.org/abs/2607.02406v1}.
+\bibitem{Si}
+I.M. Si, Strategic geometry of competing first-passage random walks, 2026.
+\url{https://arxiv.org/abs/2608.24837v1}.
+\bibitem{Dicker}
+L. Dicker, Coloring a $d\geq3$ dimensional lattice with two independent
+random walks, master's thesis, 2006. Title and year from the primary
+UPenn thesis index; full text was unavailable during the audit.
+\url{https://www2.math.upenn.edu/~pemantle/papers/Papers.html}.
+\bibitem{FitzsimmonsPitman}
+P.J. Fitzsimmons and J. Pitman, Kac's moment formula and the Feynman--Kac
+formula for additive functionals of a Markov process,
+\emph{Stochastic Process. Appl.} 79 (1999), 117--134.
+\href{https://doi.org/10.1016/S0304-4149(98)00081-7}{doi:10.1016/S0304-4149(98)00081-7}.
+\bibitem{Regnier}
+L. R\'egnier, M. Dolgushev, S. Redner and O. B\'enichou,
+Complete visitation statistics of one-dimensional random walks,
+\emph{Phys. Rev. E} 105 (2022), 064104.
+\href{https://doi.org/10.1103/PhysRevE.105.064104}{doi:\nolinkurl{10.1103/PhysRevE.105.064104}}.
+\end{thebibliography}
+\end{document}

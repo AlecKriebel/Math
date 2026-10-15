@@ -1,0 +1,22 @@
+{
+  "review": "whole_package_1",
+  "remaining_findings": 1,
+  "findings": [
+    {
+      "id": "WP1-001",
+      "severity": "LOW",
+      "status": "OPEN",
+      "category": "verification-count wording",
+      "path": "prepared_packet/PUBLICATION.md",
+      "line": 18,
+      "affected_sha256": "9dfbb0f9620e6ac190aaffacadea83a56e604be409a559fcb4f6d6acfa7ec462",
+      "source_path": "publication_package/ROOT_BUILD_DELIVERY.py",
+      "source_line": 33,
+      "source_sha256": "8fa34d7ae5dc688e2d81dcd272534ff188488fb493778b23a05afb37e23146f6",
+      "text": "mandatory evaluation of all 54 predicates",
+      "evidence": "guard_relation.py PATH_COUNTS=19+2+18=39 original static predicates; RUNTIME_COUNTS=24+2+28=54 actual evaluations per mode. Fresh clean normal/-O execution and per-label measurements reproduce both inventories.",
+      "action": "Change wording to \u201c54 mandatory evaluations of 39 preserved predicates\u201d in the builder PUBLICATION literal and delivered guide; regenerate actual affected delivery manifest/external custody and read back. Preserve this review and require a new whole-package reviewer for the changed/native final packet.",
+      "mathematical_effect": "None; actual guards and theorem unaffected."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+        raise DepositError("No saved draft for this manifest/environment; run stage first")
+    deposit = client.get(state["id"])
+    validate_record(deposit, state["id"])
+    if args.command == "inspect":
+        summary["metadata_normalizations"] = verify(deposit, metadata, files)
+        if deposit.get("submitted"):
+            return published_summary(summary, deposit, state, place, environment,
+                                     getattr(args, "check_doi", False))
+        summary.update({"id": state["id"], "state": "ready_to_publish",
+                        "url": deposit.get("links", {}).get("html")})
+        return summary
+    if args.confirm_id != state["id"]:
+        raise DepositError(f"Publishing requires --confirm-id {state['id']}")
+    summary["metadata_normalizations"] = verify(deposit, metadata, files)
+    if deposit.get("submitted"):
+        summary["already_published"] = True
+        return published_summary(summary, deposit, state, place, environment, True)
+    publish_error = None
+    try:
+        client.publish(state["id"])
+    except DepositError as exc:
+        publish_error = exc
+    # A POST may succeed remotely even if its response is lost. Never POST twice.
+    try:
+        published = client.get(state["id"])
+    except DepositError as exc:
+        detail = f"{publish_error}; " if publish_error else ""
+        raise DepositError(f"{detail}Publication outcome is unconfirmed: {exc}. "
+                           "Run inspect on this saved draft before any further publication action") from exc
+    validate_record(published, state["id"])
+    if not published["submitted"]:
+        detail = f"{publish_error}; " if publish_error else ""
+        raise DepositError(f"{detail}Zenodo has not confirmed publication. "
+                           "Run inspect on this saved draft; no publication retry was made")
+    try:
+        summary["metadata_normalizations"] = verify(published, metadata, files)
+    except DepositError as exc:
+        raise DepositError(f"Zenodo reports publication, but verification failed: {exc}. "
+                           "Inspect this record; do not create a replacement deposit") from exc
+    if publish_error:
+        summary["recovered_after_publish_error"] = True
+    return published_summary(summary, published, state, place, environment, True)
+

@@ -1,0 +1,13 @@
+# Primary implementation deduction: empty public draft PIDs
+
+This is a deduction from preserved primary implementation, not from the offline server's PID fixture. The initial and final source receipts bind the complete files in ignored `tmp/primary/`. The sources were downloaded by the preceding reviewer at 2026-10-14T04:27:19–20Z, and this reviewer independently re-read and hash-bound the relevant files. This does not establish an exact deployed server commit.
+
+1. Zenodo `invenio.cfg` lines 453–458 enables DataCite, sets prefix `10.5281`, DOI format `{prefix}/zenodo.{id}`, and OAI prefix `zenodo.org`; lines 485–488 select Zenodo's provider configuration.
+2. Zenodo `site/zenodo_rdm/providers.py` lines 177–214 installs DataCite with client `datacite`, and OAI provider `oai`. The inherited record configuration is copied, with DOI provider ordering `datacite`, `external`.
+3. Invenio `config.py` lines 590–608 requires both DOI and OAI. The manager's `_get_provider` selects the default provider when the provider name is absent (`manager.py` lines 25–33).
+4. The publication component reads initially empty draft/record maps and computes required missing schemes as `required_schemes - record_schemes - draft_schemes` (`components/pids.py` lines 180–185, 211–223). For this public initial draft, that set is `{doi,oai}`. It passes that set to `create_all`, reserves the resulting identifiers, and writes them to `record.pids` (lines 224–240). The restriction exception does not apply because the exact draft access is public.
+5. `manager.py` lines 207–225 creates every missing required scheme without requiring an already supplied identifier. The configured generators derive `10.5281/zenodo.23356540` (`providers/datacite.py` lines 48–80, 161–164) and `oai:zenodo.org:23356540` (`providers/oai.py` lines 31–36).
+
+Thus a separate client-side reserve request is not a prerequisite under this implementation. Identifier generation and server-side reservation happen in publication. External registration is asynchronous after transaction commit (`components/pids.py` lines 242–244); a reserved/generated identifier alone does not establish publication or DOI resolution. The adapter correctly requires the published state plus exact DOI/OAI fields and verified files, and delegates external DOI resolution and final receipt construction to the unchanged kit.
+
+Parent-bound deployed read-only calibration independently supports the same final DOI/OAI representation on its already accepted own prior record. This reviewer neither queried that record nor treats the source deduction as an executed PR623 publication. The own draft read-only check confirms zero files and no assigned DOI; its publication remains unexecuted.

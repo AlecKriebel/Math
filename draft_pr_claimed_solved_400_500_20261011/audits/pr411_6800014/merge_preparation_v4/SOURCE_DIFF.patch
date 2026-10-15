@@ -1,0 +1,12 @@
+--- accepted_v3/pr411_admin.py
++++ v4/pr411_admin.py
+@@ -707,7 +707,8 @@
+         appended = gws_receipt(case, sheet['append_intent'], sheet['append_native'], sheet['append_response'], 'append', params, fresh=False)
+         original_append = document(case, sheet['append_intent'])
+         expected_payload = {'majorDimension': 'ROWS', 'values': [row]}
+-        need(original_append.get('payload') == expected_payload and original_append['intent'].get('payload_sha256') == digest(encoded(expected_payload)),
++        need(encoded(original_append.get('payload')) == encoded(expected_payload)
++             and original_append['intent'].get('payload_sha256') == digest((json.dumps(expected_payload, sort_keys=True, indent=2, ensure_ascii=False) + '\n').encode()),
+              'actual append intent did not bind exact four cells')
+         updates = appended.get('updates', {})
+         need(appended.get('spreadsheetId') == SHEET and updates.get('spreadsheetId') == SHEET

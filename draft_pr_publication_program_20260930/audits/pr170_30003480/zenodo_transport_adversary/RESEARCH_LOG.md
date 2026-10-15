@@ -1,0 +1,16 @@
+# Exact Zenodo description transport adversary
+
+- 2026-10-12 13:46:49 UTC — Started the bounded independent audit. The claim under test is that the only newly accepted submitted-description serialization is the complete frozen HTML description with exactly its two paragraph-text `n>=3` and `n>=4` occurrences replaced by `n&gt;=3` and `n&gt;=4`. Original metadata/file and draft identity/state checks must remain active. Estimated completion: 10%.
+- 2026-10-12 13:50:00 UTC — Read the candidate, frozen metadata, representation diagnostic, original `verify`, `run`, `local_state`, deposit manifest, and relevant publication gate. No credentials, private state, network calls, Git operations, candidate edits, or original-kit edits were performed. The new comparator checks complete-string equality and delegates to the original comparator; existing normalizations are inactive for this supplied HTML and supplied creator affiliation. A synthetic offline transport gate will be used only in memory because the real transport gate does not yet exist. Estimated completion: 30%.
+- 2026-10-12 13:51:21 UTC — Pinned all consumed external inputs before feedback. The ordinary run passed 106 offline controls, including original-kit runtime execution against owned state/network sentinels. Exact text equality restricts the new description path to the two frozen replacements; an independent HTML parser confirms decoded text and paragraph structure preservation. Estimated completion: 80%.
+- 2026-10-12 13:52:00 UTC — Optimized Python passed the same 106 controls. Wrote substantive independent findings and exact input hashes in `REVIEW.md` before informing the parent. No necessary fix found for this precise allowance. Remaining work: cross-mode equivalence, explicit publication allowlist, final identities and 0444 sealing. Estimated completion: 95%.
+
+## Scope and boundaries
+
+This audit concerns one frozen serialization allowance. It does not reopen mathematics, priority, package design, operational closure, remote state freshness, or publication authorization. The fixture diagnostic is evidence of a local API representation, not a fresh remote observation. Any fake publication method in controls is an in-memory sentinel and cannot reach Zenodo.
+
+## Independent hypothesis and falsifiable checks
+
+For the pinned inputs, both raw and exactly escaped descriptions should pass original/guarded verification as applicable. Partial escaping, double escaping, alternate entities, altered tags/attributes/content, changed creators/keywords/related identifiers, and mismatching remote file lists/sizes/checksums should fail guarded verification. Original runtime state/ID validation, exact manifest path/hash, kit hashes, guard self-identity, and explicit draft confirmation should prevent any synthetic publish sentinel on invalid controls. All checks must survive Python `-O`.
+
+- 2026-10-12T13:54:30.431706+00:00 — Cross-mode control outcomes and semantic checks agree exactly (95 rejections, 11 acceptance/baseline controls per mode). Wrote explicit own-publication allowlist excluding private bodies, verdict, and final seal inventory. No input changes, necessary fixes, or external/remote/Git mutations occurred. Narrow audit complete; estimated completion: 100%. All allowlisted final artifacts will be sealed to mode 0444.

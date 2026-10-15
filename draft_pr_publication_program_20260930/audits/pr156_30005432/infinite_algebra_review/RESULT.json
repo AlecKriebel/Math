@@ -1,0 +1,70 @@
+{
+  "audit": "independent_infinite_algebra",
+  "problem_id": 30005432,
+  "repository": "AlecKriebel/Math",
+  "pull_request": 156,
+  "original_submission_head": "aec31742f3f26c5b1e533404da57539d17dc94a1",
+  "completed_at_utc": "2026-10-12 05:51:19 UTC",
+  "completion_estimate_percent": 100,
+  "mathematical_gate": "PASS_FOR_SUPPLIED_PROPERTY_S_DEFINITION",
+  "blocking_mathematical_issues": [],
+  "strongest_verified_result": {
+    "brace": "Z x Z/4 with coordinatewise addition; (n,c) circle (m,d) = (n+epsilon(c)m,c+d+2cd mod4); epsilon = (1,1,-1,-1)",
+    "validity": "Universal integer coefficient identities and finite component group proof; valid skew left brace of abelian type",
+    "witness": [0, 1],
+    "witness_indices": [2, 2],
+    "additive_double": [0, 2],
+    "double_indices": ["infinite", "infinite"],
+    "double_right_fixed_subgroup": "{0} x Z/4",
+    "infinite_index_certificate": "Pairwise distinct additive cosets represented by (j,0) for all integers j; equality iff j=k",
+    "full_s_set": "Z x {0,1}",
+    "ideal_failure": "Not additively closed; also not lambda invariant",
+    "two_sided": false
+  },
+  "optional_formulas_verified": {
+    "ker_lambda": "Z x {0}",
+    "global_lambda_fixed_set": "{0} x {0,2}",
+    "annihilator": "{(0,0)} under the stated ker(lambda)/global-fixed definition",
+    "B_star_squared": "2Z x {0,2}",
+    "additive_generator_map_zero_fiber_contains": "Z x {0}",
+    "multiplicative_subgroup_generated_by_r_x": "Z x {0,1}"
+  },
+  "verification": {
+    "reproduce": "python3 run_controls.py",
+    "independent_checks_per_mode": 33516,
+    "modes": ["normal", "-O"],
+    "category_coverage_equal": true,
+    "mutants_rejected_each_mode": ["noncharacter_epsilon", "wrong_component", "wrong_star", "two_sided_claim"],
+    "universal_integer_controls": "Coefficient vectors for three independent integer variables",
+    "component_controls": "Exhaustive residues 0,1,2,3",
+    "supplemental_triple_integer_bounds": [-2, 2],
+    "supplemental_large_integer_magnitude": "10^100",
+    "finite_quotient_integer_moduli": [2, 3, 4, 5, 7, 8, 11],
+    "finite_quotient_warning": "Every element has property (s) in finite quotients; no infinite claim is inferred from these controls"
+  },
+  "nonblocking_issues": [
+    {
+      "issue": "Original verifier silently disables all checks under python -O",
+      "location": "Original verify.py, def ck(g,b):assert b,g;C[g]+=1",
+      "mechanism": "Optimization strips assertion expressions while category counters and PASS output remain",
+      "negative_control": "In-memory epsilon(3)=+1 mutation fails normally and passes under -O with 33512 reported checks",
+      "effect_on_mathematical_verdict": "None: written proof and independent explicit-exception controls establish validity",
+      "recommended_fix": "Use explicit if-not checks raising exceptions"
+    }
+  ],
+  "independence": {
+    "initial_assessment_preserved_before_optional_access": true,
+    "initial_assessment_sha256": "d5efa0d33e7e3fd5a79c2f408aa2b416f02251e617f248c1aab096bf08e272b0",
+    "historical_or_sibling_reviews_read": false,
+    "original_verifier_and_reconciliation_read_after_initial_assessment": true,
+    "external_communication": false,
+    "git_pr_publication_mutation": false
+  },
+  "remaining_boundary": {
+    "mathematical_gap_for_exact_counterexample": "None under supplied definition",
+    "source_fidelity_gate": "Not cleared by this algebra-only audit",
+    "published_source_context_or_theorem_validity": "Not independently authenticated; only construction-specific reconciliation formulas checked",
+    "novelty_priority_gate": "Not assessed",
+    "publication_readiness": "No conclusion"
+  }
+}

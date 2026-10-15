@@ -1,0 +1,46 @@
+[
+  {
+    "label": "wrong_modular_root",
+    "private_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/private_sources/spin_certificate_adversary/targeted_mutants_attempt2/wrong_modular_root.py",
+    "sha256": "e1aafe603c36f867787dff1ce16356bfba5e605be537631b18730b09caf88cef",
+    "exact_single_replacement": {
+      "old": "GENERATOR = 3",
+      "new": "GENERATOR = 1"
+    },
+    "expected_exit": 1,
+    "expected_guard_message": "NTT generator checks failed"
+  },
+  {
+    "label": "wrong_fft_root",
+    "private_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/private_sources/spin_certificate_adversary/targeted_mutants_attempt2/wrong_fft_root.py",
+    "sha256": "9695a0f8a49c27b9d6af8bc13bc9990832d51d03fb95407219614e0f2ad25b8d",
+    "exact_single_replacement": {
+      "old": "roots.append((r, i))",
+      "new": "roots.append((r, i + self.R // 10 if k == 0 else i))"
+    },
+    "expected_exit": 1,
+    "expected_guard_message": "FFT imaginary enclosure failure"
+  },
+  {
+    "label": "suppressed_fft_error",
+    "private_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/private_sources/spin_certificate_adversary/targeted_mutants_attempt2/suppressed_fft_error.py",
+    "sha256": "95d32c4f0951025e4ba0bdf2e983419d09c3cda3bd45ce9bbbf1fb56f9ff5026",
+    "exact_single_replacement": {
+      "old": "outputs = fft_centers(inputs, roots, R)",
+      "new": "error = 0\n    outputs = fft_centers(inputs, roots, R)"
+    },
+    "expected_exit": 1,
+    "expected_guard_message": "FFT imaginary enclosure failure"
+  },
+  {
+    "label": "sampling_replaces_cell_means",
+    "private_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_400_500_20261011/audits/pr445_30002737/private_sources/spin_certificate_adversary/targeted_mutants_attempt2/sampling_replaces_cell_means.py",
+    "sha256": "096f8b834b526d7792ea3bd1016be42ef35d6a83839aab68ec8f6b0763a91c7b",
+    "exact_single_replacement": {
+      "old": "sl, su = fixed.sinc(k, cells, pi)",
+      "new": "sl, su = R, R"
+    },
+    "expected_exit": 0,
+    "expected_guard_message": null
+  }
+]

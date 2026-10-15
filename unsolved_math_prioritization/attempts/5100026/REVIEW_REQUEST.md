@@ -1,0 +1,11 @@
+# Reproof validation scope and audit-record convention
+
+The research classification is already_solved / credited existing-result alternative reproof. Accepted mathematical review binds original proof SHA-256 `77afb7626fd4685b9ce7537aa2de3141df8bf087c5eff0698bb1f7834bc0ad7c` for the explicit least-even domain. Accepted priority review identifies the complete matching Ferudun proof and bounded archive chronology. Those scientific receipts are distinct from exact package-byte review and native publication acceptance.
+
+The package-validation scope is: all 60 attempt paths plus the single own author QUEUE row and their original/absent preimages; unchanged mathematical Sections 2–5 and four original checker programs/receipts; exact preservation of the 25-file historical packet and its 14/24/6 manifest entries; no reuse of an old review verdict for changed prose; source literal even versus adopted even least N≥4; original focus/tangents/full lines/arithmetic mean; every phase/star, strict ellipse and separate circle; the false odd-repeat extension and absence of a universal centroid sign; exact v11 title; attribution, actual archive-file association and first-visibility/causal/priority limits.
+
+The 13 later evidence files are byte-exact report/acceptance exports, not a new complete verification bundle. EVIDENCE_LOCATIONS maps omitted checkers, receipts and source metadata; primary bodies and local runtime dependencies are disclosed, not silently presumed portable. The intended complete owned public audit location on MAIN is separate from this author selection.
+
+OpenAI Codex (AI) was used extensively for research, drafting, computation and adversarial checking of this reproof packet. It is an unrefereed AI-assisted mathematical draft. Independent AI audits are not human peer review; human peer review has not been performed.
+
+This packet embeds no self-certified review verdict for its own repaired bytes and grants no execution authority. Consult the dated receipts in the [repository audit folder](https://github.com/AlecKriebel/Math/tree/main/draft_pr_descending_audit_20261002/audits/pr259_5100026/initial_review_20261012/) for package-specific independent review and actual native publication acceptance. Those are separate records from the accepted mathematical and priority evidence.

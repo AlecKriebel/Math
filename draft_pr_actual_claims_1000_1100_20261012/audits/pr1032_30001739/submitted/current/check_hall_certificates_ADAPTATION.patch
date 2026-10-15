@@ -1,0 +1,16 @@
+--- a/check_hall_certificates.py
++++ b/check_hall_certificates.py
+@@ -40,12 +40,6 @@
+     if not (seen == expected and len(seen) == 15):
+         raise RuntimeError('Diagnostic invariant failed')
+     out = {'all_15_partitions_covered': True, 'all_have_a_ladder_side': True, 'all_Hall_singleton_obstructions_verified': True, 'multiplicity_computed': False, 'certificates': records}
+-    Path(__file__).with_name('HALL_CERTIFICATES.json').write_text(json.dumps(out, indent=2) + '\n')
+-    lines = ['# Noninduction Hall certificates', '', 'All segments are on the trivial cuspidal line. Write A=[0,2], B=[1,4], C=[3,3], D=[2,5], E=[4,6]. Each row has a ladder side, so LM Proposition 5.20 applies. The indicated vertex belongs to X for the directed LC condition and has no neighbor in Y. A singleton Hall obstruction proves that LC condition false. All 15 unordered nontrivial partitions are listed.', '', '| Partition | Ladder side(s) | Failing LC | Isolated X vertex | Y |', '|---|---|---|---|---|']
+-    for z in records:
+-        lines.append('| ' + ' | '.join([str(z['partition'][0]) + ' / ' + str(z['partition'][1]), ', '.join(z['ladder_sides']), 'LC(' + ', '.join(z['failed_LC']) + ')', '(' + ', '.join(z['isolated_X_vertex']) + ')', str(z['Y'])]) + ' |')
+-    lines += ['', 'Here X_(m,n)={(u,v):u in m,v in n,u≺v}; Y_(m,n)={(u,v):u−1≺v}. A Y vertex (u2,v2) can match X vertex (u1,v1) only if u1=u2 and v2≺v1, or v1=v2 and u1≺u2. The shift u−1 subtracts one from both endpoints. The relation [a,b]≺[c,d] means a<c≤b+1 and b<d.', '', 'The original matching implementation and this independent set-based checker use different implementations of ≺. Neither program evaluates an invariant-functional space. The certificate proves noninduction only after applying the exact representation-theoretic interfaces described in the proof.']
+-    Path(__file__).parents[1].joinpath('authored/HALL_CERTIFICATES.md').write_text('\n'.join(lines) + '\n')
+-    print(json.dumps({k: v for k, v in out.items() if k != 'certificates'}, indent=2))
++    print(json.dumps(out, indent=2, sort_keys=True))
+ if __name__ == '__main__':
+     main()

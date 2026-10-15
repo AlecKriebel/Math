@@ -1,0 +1,15 @@
+# Exact hypotheses and review gates
+
+PR462, problem30005528 / OWR-13750333-009. Original eligible head3d5701d67e18745715d384c3db3fbee588b42a98. Source freeze12 files; selected QUEUE exactly claimed_solved,1/5,blank DOI. Verification work consumes zero new original proof-search attempts.
+
+The target is Felipe Gonçalves's Question1 on printed p1254 of OWR22/2023: exhibit an infinite compact topological alphabet, ordered-pair tiles and continuous positive size such that every periodic legal sequence has strictly greater average than the infimum over every legal sequence. The source uses the initial-left-endpoint plus N-right-endpoints, divided by N, with limsup. The question does not explicitly require a periodic competitor; the draft supplies densely many and an attained minimum.
+
+Treat the claimed result as a hypothesis. Independent gates must check (1) original printed target/admissibility and scope, (2) every legal word rather than a preferred orbit subset, (3) all-period exclusion rather than finite-search evidence, (4) exact computation/provenance/negative controls, (5) priority after the mathematical gates, (6) fresh whole-result adversary, and if retained claimed_solved (7) submission note/package and repeated NEW complete-package adversaries, (8) production upload/exact DOI append/accepted-head merge. No final claim/priority/publication acceptance currently exists.
+
+Construction hypothesis: cylinder S1×[0,1], F(z,t)=(exp(2pi i(sqrt2+t))z,t), size1+t, legal tiles graph(F). Alleged conclusions: compact connected alphabet/closed relation/homeomorphism; all word averages1+t; attained bottom minimum1; no periodic or eventually periodic minimizer; dense periodic starting points and periodic infimum1 not attained; explicit rational approximants and positive bounded-period gap.
+
+Boundary checks: signs and irrationality, circle excludes z=0, endpoints, one-sided tile versus symbol versus score periodicity, exact N+1/N normalization, invertibility for eventual periods, rational alpha/constant cost/symmetrized tiles as invalid alternatives, unbounded periods despite compactness, no arbitrary distance-packing realization. Related 2025 Conjecture4 and structured block relation are outside this target.
+
+Current falsifiable issue: optimized author assertions vanish; historical controls must reject silently accepted mutations and optimized failure must not be relabeled PASS. Preserve original sources, record exact normal replay and optimized failure, and require an explicit-guard current verification layer if publishing. Finite checks do not establish an infinite theorem or novelty.
+
+Approach families remain distinct: primary admissibility; dynamical/invariant-cost/topological mechanism; exact integer/surd/Pell reproduction and guard adversary. Root independently checks the original page and universal formulas. Priority is pending; standard irrational rotations alone are not an exhaustive historical audit. No packing result, first solver, novelty or human-peer-review claim is accepted.

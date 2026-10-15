@@ -21,3 +21,7 @@ The only queue proposal changes rank 821 Status to claimed_solved, Turns to 1/5,
 ## 2026-10-06 13:32 UTC: refreshed publication baseline
 
 Publication preparation resumed from main commit c40562362d60cce52a3128fa17313ad729f0d835. Read-only target branch and all-state PR searches still returned no existing submission, and the target queue row remained queued at 0/5. The three-cell proposal was applied to this current queue, preserving every intervening unrelated update. The mathematical result, three frozen ZIPs, and both review verdicts remain unchanged. Completion estimate for the scoped proof and review package remains 100%, subject to ordinary mathematical scrutiny; repository publication and exact remote replay are separate verification steps.
+
+## 2026-10-15T03:05:58.211722+00:00 — finite quantitative preprint preparation and package repairs (55%)
+
+Independent geometry and trace reviews accepted the full negative answer; bounded priority audit established the qualitative route as an assembled classical corollary. Four-page note credits this relationship and leaves exact historical priority unclaimed. A new exact certificate strengthens the round bound to <321/500. Original42 files and three archives are preserved. Fresh final package R1 found no mathematical defect but required current control-CLI and published builder-layout repairs; both current entry points are now updated with explicit reproducible commands. Fresh final reviews remain required before merge/publication. Original1/5 effort unchanged; no additional central proof search.

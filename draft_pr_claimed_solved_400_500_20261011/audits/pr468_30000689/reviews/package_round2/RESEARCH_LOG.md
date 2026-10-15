@@ -1,0 +1,11 @@
+# Fresh full-package adversarial review, round 2
+
+2026-10-12T05:03:11.869441+00:00 — checkpoint 1, estimated completion 8%. Read exact target and entire manuscript independently; recorded all candidate file hashes. No candidate writes, publication operations, or external communication. Earlier review verdicts not consulted.
+
+2026-10-12T05:05:40.235855+00:00 — checkpoint 2, estimated completion 47%. Independently reconstructed universal proof; inspected all eight rendered manuscript pages and all primary critical locators, including the full NW Section 5. Saved INITIAL_VERDICT before earlier review reports. No blocking mathematical gap found; priority remains uncertified; package integrity and reproduction remain.
+
+2026-10-12T05:10:36.589101+00:00 — checkpoint 3, estimated completion 83%. ZIP CRC/membership/payload binding all pass (67 members, 66 payload hashes); 15 historical files and 24 manifest references unchanged. Canonical metadata equals deposit/archive, pure load_manifest contract accepts PDF/ZIP. Six extracted-archive reproduction runs byte-identical under Python 3.14.6. Nine actual computational faults reject in both modes, seven integrity/path faults reject in both modes. Benign in-root symlink acceptance noted as optional robustness/wording observation, not counted as rejection. Earlier reports read only after initial verdict; no discrepancy with reconstructed proof found.
+
+2026-10-12T05:17:15.850598+00:00 — checkpoint 4, estimated completion 100% of the bounded round-2 full-package review (not a correctness/novelty confidence percentage). Final detailed report saved: PASS for unchanged frozen round2; no required corrections; optional natural-quotient wording and ineffective direct-symlink check recorded with exact locations. In-root symlink acceptance accurately kept separate from 32 rejected adverse executions. Final readback confirms all 73 candidate files and all 7 frozen entries unchanged. No candidate/Git/PR/QUEUE/deposit/tracker or external messaging operations. Future edited bytes require another fresh reviewer.
+
+2026-10-12T05:17:56.299033+00:00 — final source-access note, completion 100%. Nevo publisher record and author v3 establish the checked bibliography/numbered target; the original journal PDF URL returned404. Report records that direct-render limitation explicitly. Candidate bytes remain unchanged.
