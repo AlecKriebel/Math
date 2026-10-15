@@ -247,3 +247,8 @@ All four principal primary PDFs (OWR, Chen–Wanv2, Artebani–Dolgachev, Illman
 ## 2026-10-15T07:32:09.661805+00:00 — PR #838 complete (100%; shard estimate 50%)
 
 Merged accepted head 71e3a9bf6c161ae423e87b5998f286dd38629cc0 via 1985004b293abf6d22f6788f7e4e65f185777cf8 after two successive fresh CLEAR package reviews. Published exact reviewed PDF and ZIP to production https://doi.org/10.5281/zenodo.23387753; exact metadata, no normalizations, DOI HTTP 200. GWS CLI uniquely appended/read back 'Math Puzzles'!A100:D100. Publication annotation 2f6aa7a8a4c2456c335be24d64ba9c071d599944 preserves all 143 protected accepted files and ten core files; actual 148 Git blobs verified. Original effort 3/5 unchanged. Strong planar antecedent credit and source/priority qualifications remain. Continue ascending with metadata-only gates; exclude all statuses other than exact claimed_solved.
+
+
+## 2026-10-15T07:47:29.682470+00:00 — PR872 mathematical acceptance (25%; shard52%)
+
+Five independent audit families integrated with57 hash-verified public files including manifests. Original n>=3 fixed-alphabet all-length property(T) proof accepted mathematically, subject to read established inputs. Priority still pending; ESI2024 proposed same broad spectral program and Ashcroft2023 already handles all lengths in ordinary Gromov model, both mandatory credits. Historical wrapper limits require a new complete safe publication entry point. All nonclaimed_solved PRs839–871 skipped via metadata only. No central proof search added to1/5.
