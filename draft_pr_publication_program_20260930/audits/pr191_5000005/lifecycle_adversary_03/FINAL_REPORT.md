@@ -1,0 +1,60 @@
+# PR191 terminal03 independent operational review — REPAIR_REQUIRED
+
+UTC: 2026-10-15T06:16:29.036428+00:00
+Completion estimate: 100% of review of the supplied frozen revision. Operational promotion remains blocked by required repairs. This is no scientific re-review and supplies no publication, priority, DOI, tracker, ready, merge, or next-intake authority.
+
+The sealed independent plan predates all implementation reads. Current input is exactly lifecycle_controls_preparation_03 FINAL_SEAL SHA256 93d882058e6696b71db930f152cb6ef18dbf77784e7189a29cfaefd8a0d89896; common module SHA256 f55b3590debf98cf69b061c2f1488e2323e71325766e2a3d34bebf4c0db9a32e. The separate inert Root handoff source SHA256 is 01b6a878354d2c6271e98cdfa1e69817894ec8c61b4248fd1bccf4cd4792e670. All supplied proposal manifest hashes and0444 modes match. Exact inputs are recorded in INPUT_BINDINGS.json.
+
+## Verdict and strongest evidence
+
+REPAIR_REQUIRED. Independent probes reproduced six unexpected acceptances representing four mandatory defects. The54 probes record48 satisfied invariants and six counterexamples. Counts are evidence inventory, never a proof or reviewer count. The author harness was neither inspected nor executed; its bytes were hashed for frozen-input integrity. The author report was read only after independent counterexamples were already reproduced.
+
+The crucial attacks retain the real gate(), publication(), validate_tracker(), observe_tracker(), integration_accept(), and factual_accept() functions. Only service observations/native APIs are injected. The exact Root DRAFT is cloned and readied in memory with explicitly synthetic operational authority. No real Root gate or clearance is written. The gate is separately validated against exact copied approved inputs and remains unchanged during the prepared-commit attacks. No attacker rewrites trusted Root semantic approval. The native model supplies actual content-addressed trees/commits, actual first-parent trees, exact selected maps/full deltas, a current MAIN ref and readbacks; it does not import a production native helper.
+
+## R1 [P1] — prepared science/control identities lack gate-approved identity checks
+
+Reproductions: M02_unapproved_packet_in_prepared_commit_rejected and M03_unapproved_case_proof_in_commit_rejected. Both unexpectedly accepted through full integration_accept(). Starting from a positive full-scope prepared merge, replace only the packet TeX in the native Git tree, compute its truthful new byte/SHA/blob pin, recompute the selected-map fingerprint, and create a matching two-parent commit plus preparation receipt. The actual local trusted gate, approved packet files, current proof, pending50 and native95 stay unchanged. All other constraints remain valid. integration_accept() emits PR_merged=true acceptance. A separate attack changes the gate-pinned CASE current proof while native proof stays exact; it also accepts.
+
+Mechanism: lifecycle_common.py lines382–405 validate the prepared commit, its self-consistent selected map, exact path set, true parent and delta. Lines355–359 independently constrain native contents. Nothing compares every selected immutable CASE/package identity to g.public_case_pins, g.payloads and other mandatory trusted bindings. The scientific body readbacks at lines461–463 compare to the attacker-selected receipt pins, not the unchanged approved gate pins. The immutable scope binds names, not an independently approved complete content map. Gate validation of local approved files cannot establish that the prepared Git tree contains those same files.
+
+Required repair: derive an independent expected identity for every governed selected immutable CASE/package/control/support member from the trusted gate and exact mandatory bindings, and check the prepared tree/map against it before acceptance and again wherever the original merge is revalidated. Include PDF/TeX/ZIP/metadata, case current proof, all safe immutable carry-forward members, runtime/control authorities, reviews and other protected bindings. Derive mutable members from independently validated snapshots; do not merely compare a candidate map with its own commit fingerprint. Add re-fingerprinted attacks across materially different path classes and downstream factual revalidation.
+
+## R2 [P1] — factual acceptance can certify40/24 and192 over an invalid actual postimage
+
+Reproduction: F01_invalid_factual_counts_cursor_rejected unexpectedly accepted through full factual_accept(). This probe begins with an actually accepted legitimate original model merge and exact approved science. The factual commit contains correct independently derived native100, exact required factual path set, true actual parent, correct full delta, selected identities and marker. Its programme JSON nevertheless contains39 completed/23 published and prematurely live cursor192 with advance_to_next_PR_authorized_now=true. Its case JSON says95/unmerged and its workflow says NOT_COMPLETE. The acceptance function emits40/24 completion and subsequent192 authorization.
+
+Mechanism: lines478–483 independently validate native100 and original native95 and check actual current identities, but do not parse and independently validate programme, case, workflow, pointer/manifest companion and other factual declarations against the authorized40/24 postimage. A self-consistent selected map does not imply those JSON/prose facts are correct. The safe normalize() builder itself produces cursor191/no-next-intake in both phases (our A01 controls pass), but acceptance does not enforce its output.
+
+Required repair: bind or independently derive the entire authorized factual postimage for every selected mutable declaration from the exact accepted baseline, actual merge/publication/tracker evidence and one immutable generation. Verify actual committed contents, exact40/24 membership/census,191 live cursor and false advance flag, current case/workflow status, aliases and truthful prose before factual acceptance. Keep192 authorization solely in the actual acceptance receipt until the next own checkpoint. Recheck stale/current-MAIN retries against the same authorized postimage rather than a producer-supplied replacement map.
+
+## R3 [P2] — only a digest marker is checked in the immutable commit message
+
+Reproduction: M04_unapproved_commit_message_rejected unexpectedly accepted through full integration_accept(). An otherwise exact legitimate tree/parent/map receives a commit message asserting firstness, novelty, complete solution, human review and certified priority, plus the exact marker. Acceptance succeeds.
+
+Mechanism: line386 only counts one selected-map marker line. The independently known expected stage message is not required. This permits directly contradictory scientific/publication assertions in the accepted immutable public commit.
+
+Required repair: validate the exact complete expected message for each merge/factual stage, including the actual DOI and one fingerprint line. Preserve the trusted qualified credited scope. Test arbitrary extra/prefix/suffix scientific claims and a correct map marker.
+
+## R4 [P2] — syntactically valid future factual times are accepted as actual facts
+
+Reproductions: N06_future_factual_timestamp_rejected and N07_current_native_future_facts_rejected unexpectedly accepted. Using unchanged actual publication/tracker fixture observations dated2026, a generation receipt and all50 correctly rederived native files with factual publication UTC2099 are accepted by both expected_native_receipt() and the complete current_native() byte consumer. The original16 and scientific fields remain unchanged. This is an operational factual-time defect, independent of science.
+
+Mechanism: lines285–296 validate ISO UTC syntax/value and stage ordering; line344 checks receipt time is no earlier than its self-declared transformation. There is no upper bound against actual observation time or lower bound against the accepted factual receipts. Two future timestamps can satisfy all these relations. FINAL_AUDIT_REPORT.md overstates this as generation-time checks.
+
+Required repair: bind generation factual times to trusted actual stage evidence and constrain them to its lawful time interval, including rejection of future actual-fact receipts under a defined clock/tolerance policy. Validate publication generation occurs after accepted publication/tracker facts and merge generation after accepted merge evidence. Retain immutable legitimate times on retry. Do not infer actual timing solely from two mutually consistent producer-supplied timestamps.
+
+## Verified bounded safeguards
+
+The independent controls validate the exact ready gate clone and reject the actual DRAFT status, changed original head, unresolved Root assertions, duplicate science-review identity, non-PASS operational clearance, runtime-hash drift, outstanding repairs and one-byte current-proof drift. Default external context rejects. Common/adapters and Root preparator import without fixture writes; no entrypoint or Root main is executed.
+
+Publication probes check exact environment, files, DOI, gate, fresh observed identity and staged ID; a lost publish response is recovered by inspection with exactly one modeled publish POST. Tracker probes exercise one RAW append, two own/full-sheet observations, later DOI duplicates, changed foreign rows, lost append response and no second RAW append. Public tracker output contains no synthetic foreign row bodies; full/private fixture observations are excluded from the safe allowlist.
+
+The independent native50 oracle agrees with legitimate derivation, preserves all16 originals and the explicit scientific/priority/AI policy flags, and rejects rehashed science changes. Native-map protection is materially stronger than prepared CASE/package-map protection. True-parent mismatch, hidden foreign full-tree delta and concurrent selected-path change reject; unrelated foreign descendant additions pass. Both programme normalizations retain cursor191, false current advance and archived historical operational aliases with current clean status. These positive controls strengthen the specificity of the counterexamples; they do not establish whole-package PASS.
+
+## Root handoff and external limits
+
+prepare_root_publication_clearance.py was read in full and imported inertly in the fixture; its main was never executed. By source inspection it requires separately authored Root terminal03 PASS authentication, hashes exact review/proposal bindings, refuses existing canonical/runtime/authority outputs, installs exact nine source pins and only then prepares actual authority from the DRAFT. Actual auth03/clearance/gate are absent, and this REPAIR_REQUIRED verdict must prevent that handoff. A repaired generation needs its own fresh exact authentication, pins and independent review; terminal03 must not inherit a later verdict.
+
+No production API/process/helper, Git/index/ref/branch/checkout mutation, external-person communication, actual publication/DOI/tracker/metadata/ready/merge action or real authority creation occurred. Transitive native helper correctness, real service behavior, production adoption and races after the final observed service/MAIN snapshot are not certified. Publication DOI-resolution statuses are recorded; these probes do not certify live external resolver propagation. The underlying science approvals, proof/currentv4, publication_packetv1, pending50, original head and historical claimed_solved2/5 remain unchanged. No novelty/firstness/history/open-problem independence certification is added.
+
+All terminal public artifacts are explicitly enumerated in PUBLIC_SAFE_ALLOWLIST.json and sealed0444. offline_fixture is deliberately excluded. Reproduction uses the pinned independent_probes.py with bytecode disabled and writes only under this reviewer-owned folder. Its synthetic outcomes are counterexamples, never actual production receipts. The exact remaining gap is global repair and a fresh independent review of the repaired operational revision.
