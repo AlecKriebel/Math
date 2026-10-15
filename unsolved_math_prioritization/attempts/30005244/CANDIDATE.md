@@ -4,7 +4,7 @@ This original analytical derivation remains valid under the explicit voxel-volum
 
 The static interval is Costabel--Dauge--Nedaiasl's established result. Cubic consistency, compact approximation, continuum poles, ball perturbation and center-value dependence have substantial prior literature. No first-priority or new general spectral principle claim is made. A named 2022/2023 dynamic manuscript remains unavailable, and Rahola's full paper and one forward-citing thesis were not fully read. The credited exact-model proof is independently verified within those explicit limits.
 
-The entire original 31-file submission, including its original version of this file and historical reviews/readiness claims, is preserved byte-for-byte under history/original_submission_20261015. Those reviews retain their original input bindings. The preprint has completed the required sequential manuscript reviews and is published at https://doi.org/10.5281/zenodo.23390551. The verified publication/tracker receipts and FINAL_ACCEPTANCE.json record this administrative release update; native merge remains pending exact readback.
+The entire original 31-file submission, including its original version of this file and historical reviews/readiness claims, is preserved byte-for-byte under history/original_submission_20261015. Those reviews retain their original input bindings. The preprint has completed the required sequential manuscript reviews and is published at https://doi.org/10.5281/zenodo.23390551. The verified publication/tracker receipts and FINAL_ACCEPTANCE.json record this administrative release update; native merge was subsequently verified at 4abf30daa991860a275b3d25745159852757ad35; see MERGE_RECEIPT.json.
 
 ---
 

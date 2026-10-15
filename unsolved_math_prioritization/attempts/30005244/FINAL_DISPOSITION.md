@@ -6,4 +6,4 @@ Established static lattice, cubic consistency, abstract spectral, continuum pole
 
 The full analytical manuscript and package completed the required sequential independent AI-assisted adversarial reviews and global fixes. FINAL_ACCEPTANCE.json binds the exact final files and findings. AI tools were used extensively; the preprint is unrefereed and has no asserted external human peer review or proof-assistant certification.
 
-Preprint and verification package: https://doi.org/10.5281/zenodo.23390551. Exact metadata and both files were verified. The Google Workspace tracker was appended once and all four cells read back at 'Math Puzzles'!A105:D105. Native merge is pending exact scientific readback.
+Preprint and verification package: https://doi.org/10.5281/zenodo.23390551. Exact metadata and both files were verified. The Google Workspace tracker was appended once and all four cells read back at 'Math Puzzles'!A105:D105. Native merge is verified at 4abf30daa991860a275b3d25745159852757ad35; see MERGE_RECEIPT.json.
