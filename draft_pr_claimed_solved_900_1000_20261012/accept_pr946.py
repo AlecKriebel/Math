@@ -374,8 +374,88 @@ def validate_review_sequence(specs):
              'canonical consecutive complete externally pinned review sequence')
 
 
-def review_check(specs, freeze, freeze_pin, context, expected):
+def existing_numbered_review_folders():
+    """List every canonical-prefix review entry without following ancestor links."""
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_NONBLOCK
+    descriptor = os.open(ROOT, flags)
+    try:
+        for part in (A / 'reviews').relative_to(ROOT).parts:
+            child = os.open(part, flags, dir_fd=descriptor)
+            os.close(descriptor)
+            descriptor = child
+        names = set()
+        with os.scandir(descriptor) as entries:
+            for entry in entries:
+                if entry.name.casefold().startswith('full_package_'):
+                    need(stat.S_ISDIR(entry.stat(follow_symlinks=False).st_mode),
+                         'numbered review entry must be a real directory')
+                    names.add(entry.name)
+        return names
+    finally:
+        os.close(descriptor)
+
+
+def require_complete_review_history(specs):
     validate_review_sequence(specs)
+    expected = {'full_package_' + item.split(':', 1)[0] for item in specs}
+    need(existing_numbered_review_folders() == expected,
+         'supplied reviews must account for every numbered review, including unfinished or adverse rounds')
+
+
+def required_record(record, fields, label):
+    """Require every documented field and its exact type; additional fields survive."""
+    need(type(record) is dict and set(fields) <= set(record), label + ' mandatory keys')
+    for name, kind in fields.items():
+        need(type(record[name]) is kind, label + ' field type: ' + name)
+
+
+def result_schema(result):
+    required_record(result, {
+        'pr': int, 'problem_id': str, 'original_pr_head': str,
+        'reviewer_agent_id': str, 'clean_context': bool, 'full_reproducer_completed': bool,
+        'started_utc': str, 'completed_utc': str, 'candidate_revision': int,
+        'candidate_pins': dict, 'inspected_helper_hashes': dict,
+        'required_issues': list, 'optional_issues': list, 'clean_for_preprint': bool,
+        'strongest_verified_theorem': str, 'prior_issue_resolution': dict,
+    }, 'review RESULT')
+    need('mathematical_remaining_gap_for_stated_theorem' in result,
+         'review RESULT explicit mathematical gap field')
+    gap = result['mathematical_remaining_gap_for_stated_theorem']
+    need(gap is None or (type(gap) is str and bool(gap.strip())), 'review mathematical gap schema')
+    need(result['candidate_revision'] >= 1 and bool(result['strongest_verified_theorem'].strip()),
+         'review positive revision and nonempty theorem')
+    pins = result['candidate_pins']
+    need(set(pins) == {'freeze', 'manifest', 'pdf'} and all(
+        type(value) is str and re.fullmatch('[0-9a-f]{64}', value) is not None
+        for value in pins.values()), 'review exact candidate pins schema')
+    resolutions = result['prior_issue_resolution']
+    need(all(type(key) is str and key and type(value) is dict
+             and type(value.get('verified')) is bool for key, value in resolutions.items()),
+         'review explicit issue resolution schema')
+
+
+def authentication_schema(auth):
+    required_record(auth, {
+        'status': str, 'utc': str, 'original_pr_head': str, 'freeze_sha256': str,
+        'package_manifest_sha256': str, 'future_helpers': dict, 'candidate_files': dict,
+        'payloads': int, 'archive_members': int, 'originals': dict,
+    }, 'review authentication')
+
+
+def cold_schema(cold):
+    required_record(cold, {
+        'status': str, 'utc': str, 'cold_extraction': bool, 'typed_float_policy_verified': bool,
+        'historical_strict_failure_preserved': bool, 'package_manifest_sha256': str,
+        'externally_pinned_verifier_sha256': str, 'normalized_fields_ignored': list,
+        'modes': list,
+    }, 'review COLD')
+    for mode in cold['modes']:
+        required_record(mode, {'mode': str, 'observed_outer_optimization': int,
+                              'returncode': int, 'receipt': dict}, 'review COLD mode')
+
+
+def review_check(specs, freeze, freeze_pin, context, expected):
+    require_complete_review_history(specs)
     results = []
     prior_ids = set()
     last_end = None
@@ -406,6 +486,7 @@ def review_check(specs, freeze, freeze_pin, context, expected):
             else:
                 need(any(c.isalpha() for c in captured[name].decode()), 'audit/log has no text')
         result = strict_json(captured['RESULT.json'])
+        result_schema(result)
         need(type(result.get('pr')) is int and result['pr'] == PR
              and result.get('problem_id') == KEY and result.get('original_pr_head') == HEAD
              and result.get('clean_context') is True and result.get('full_reproducer_completed') is True,
@@ -417,15 +498,16 @@ def review_check(specs, freeze, freeze_pin, context, expected):
         start, end = utc(result['started_utc']), utc(result['completed_utc'])
         need(start < end and (last_end is None or last_end < start), 'nonsequential review chronology')
         last_end = end
+        revision = result.get('candidate_revision')
+        need(type(revision) is int and revision >= 1, 'explicit positive candidate revision required')
         pins = result['candidate_pins']
         review_base = D
         review_freeze = freeze
         if pins['freeze'] != freeze_pin:
-            revision = result['candidate_revision']
-            need(type(revision) is int and revision >= 1, 'prior candidate revision')
             review_base = D / 'reviewed_candidates' / ('candidate' + str(revision).zfill(2))
             review_freeze = freeze_check(read_regular(review_base / 'FREEZE.json'), pins['freeze'],
                                          context, review_base, historical=True)
+        need(revision == review_freeze['revision_candidate'], 'review candidate revision differs from its exact freeze')
         need(pins['manifest'] == review_freeze['package_manifest_sha256']
              and pins['pdf'] == review_freeze['files']['research_note.pdf']['sha256']
              and exact(result['inspected_helper_hashes'], review_freeze['future_helpers']),
@@ -434,6 +516,7 @@ def review_check(specs, freeze, freeze_pin, context, expected):
         times = []
         for name in ['AUTHENTICATION_START.json', 'AUTHENTICATION_END.json']:
             auth = strict_json(captured[name])
+            authentication_schema(auth)
             need(auth.get('status') == 'PASS' and auth.get('original_pr_head') == HEAD
                  and auth.get('freeze_sha256') == pins['freeze']
                  and auth.get('package_manifest_sha256') == pins['manifest']
@@ -452,12 +535,14 @@ def review_check(specs, freeze, freeze_pin, context, expected):
             times.append(utc(auth['utc']))
         need(start <= times[0] <= times[1] <= end, 'authentication outside review interval')
         cold = strict_json(captured['COLD_REPLAY.json'])
+        cold_schema(cold)
         need(cold.get('status') == 'PASS' and cold.get('cold_extraction') is True
              and cold.get('typed_float_policy_verified') is True
              and cold.get('historical_strict_failure_preserved') is True
              and cold.get('package_manifest_sha256') == pins['manifest']
              and cold.get('externally_pinned_verifier_sha256') == review_freeze['files'][review_freeze['archive_layout']['verifier']]['sha256']
-             and exact(cold.get('normalized_fields_ignored', []), review_freeze.get('replay_normalization_ignored', []))
+             and type(cold.get('normalized_fields_ignored')) is list
+             and exact(cold['normalized_fields_ignored'], review_freeze['replay_normalization_ignored'])
              and times[0] <= utc(cold['utc']) <= times[1], 'cold replay pins/typed comparison/history/chronology')
         modes = cold.get('modes')
         need(type(modes) is list and len(modes) == 4, 'four actual outer replay modes')
@@ -491,6 +576,7 @@ def review_check(specs, freeze, freeze_pin, context, expected):
     resolutions = result.get('prior_issue_resolution', {})
     need(all(type(resolutions.get(i)) is dict and resolutions[i].get('verified') is True for i in prior_ids),
          'every prior required and optional issue needs verified resolution')
+    require_complete_review_history(specs)
     return results, result
 
 
@@ -579,6 +665,7 @@ def accept(args, context):
     reviews, latest = review_check(args.review, freeze, args.freeze, context, originals)
     # Review-chain authentication must not substitute for a fresh final gate.
     pr, parent, source, _ = premerge_gate(freeze, require_draft=True)
+    require_complete_review_history(args.review)
     value = {'utc': utc_now(), 'accepted': True, 'pr': PR, 'problem_id': KEY,
              'original_pr_head': HEAD, 'live_gate_status': 'claimed_solved',
              'original_declared_turns': '4/5', 'native_turns_used_to_record': 4,
@@ -1215,7 +1302,7 @@ def finalize(args, context):
                   'priority_families', 'publication_disposition', 'priority_status',
                   'full_package_reviews', 'active_candidate_revision', 'active_freeze_sha256',
                   'active_package_manifest_sha256', 'new_priority_research_positive_turns',
-                  'known_effort_positive_turns', 'new_mechanism_status']:
+                  'known_effort_positive_turns', 'new_mechanism_status', 'portable_release_tooling']:
         state.pop(field, None)
     if selected is not None:
         state.update(active_pr=selected['number'], active_problem_id=selected['problem_id'],
@@ -1223,6 +1310,7 @@ def finalize(args, context):
                      phase=f"PR{selected['number']}_exact_claimed_solved_status_only_gate_passed")
     else:
         state['next_pr'] = None
+    state['publication'] = '_'.join('PR' + str(number) for number in state['published_prs']) + '_published_tracker_native_ledgers_verified'
     state['shard_completion_estimate_percent'] = 100 * len(state['completed_prs']) / len(state['eligible_prs'])
     if not already:
         with (P / 'README.md').open('a') as out:
