@@ -1,0 +1,11 @@
+# Exact source gate
+
+Numeric30003084 / OWR-14222-012, rank256. The full pinned dataset statement/background and null separate prior report were read. Exact-ID and Wiseman/Wilson all-state PR searches, branch search, committed-main attempt-path history and available local all-ref title search found no prior campaign attempt. The related-target group file has no entry. Source retrieval is not a proof turn.
+
+The full OWR14/2016 PDF was downloaded and printed p.694 visually inspected. Szemberg's contribution states the real Wiseman–Wilson theorem and defines determined as the unique curve of that degree through the required number of points. Problem3 asks whether the theorem holds over the complex projective plane. The neighboring Problem2 asks for counts and Problem4 concerns higher degrees over the reals; they are not this target.
+
+The complete published Czapliński et al., *On the Sylvester–Gallai theorem for conics*, Rend.Sem.Mat.Univ.Padova136(2016),191–203, was read. Theorem1.4 and Remark1.5 on p.193 explicitly allow singular/reducible conics. Problem4.4 on p.201 repeats the complex question. The finite-field example there is not a complex counterexample. Five points with four collinear do not determine a conic uniquely and cannot satisfy the required ordinary-conic conclusion.
+
+The complete Boys–Valculescu–de Zeeuw arXiv1511.03588v3 manuscript was recovered. Its definitions and real-field hypotheses were checked; its result is about R², not a solution over C. It credits earlier methods and uses elliptic-curve group laws for real examples. The imported 2022 DOI attribution is not used as evidence for a complex theorem; the actual identified paper is the2016 SIAM Journal on Discrete Mathematics article. Limited current primary-source searches did not locate a general complex resolution. This is not an exhaustive priority search.
+
+Exact target: every finite P in P²(C) not contained in any degree-two curve should contain five distinct points whose degree-two homogeneous evaluation matrix has rank5 and whose unique conic contains no other P point. Reducible conics and all projective points remain included. A negative certificate must show rank6 for the whole set and check every five-subset; a positive special case does not settle the general target.
