@@ -130,6 +130,22 @@ def advancing(ref):
  return real(ref)
 q.h.remote_oid=advancing
 reject('fresh_main_advanced_at_final_dispatch_guard',lambda:q.integration(True));need(q.push_count==0 and not(q.a/'INTEGRATION_PUSH_INTENT.json').exists(),'stale main pushed')
+# Independently advance the advertised PR head only at the final pre-push read.
+q=F();q.init_git();q.final_gate('integration');real=q.h.remote_oid;head_count=[0]
+def advancing_head(ref):
+ if ref=='refs/heads/'+q.h.BRANCH:
+  head_count[0]+=1
+  if head_count[0]>=3:return 'e'*40
+ return real(ref)
+q.h.remote_oid=advancing_head
+reject('fresh_PR_head_advanced_at_final_dispatch_guard',lambda:q.integration(True));need(q.push_count==0 and not(q.a/'INTEGRATION_PUSH_INTENT.json').exists(),'unreviewed head pushed')
+q=F();q.init_git();(q.a/'INTEGRATION_PUSH_INTENT.json').write_text('{malformed stale dispatch marker')
+reject('malformed_sticky_push_intent_blocks_before_payload_or_dispatch',lambda:q.integration(True));need(q.push_count==0,'malformed intent dispatched')
+q=F();q.init_git();(q.repo/'.git/shallow').write_text(q.base+'\n')
+def shallow_context():
+ with q.h.isolated_objects(q.root/'unused-shallow-objects'):pass
+reject('shallow_repository_blocks_before_isolated_object_creation',shallow_context)
+
 # Unapproved transport and shallow repository exit before any object mutation.
 q=F();q.init_git();reject('Git_writes_require_isolation',lambda:q.h.git('hash-object','-w','--stdin',input=b'x'))
 for value in ['file:///tmp/remote.git','https://github.com/Other/Math.git','https://github.com/AlecKriebel/Math.git\nhttps://evil.invalid/repo']:
