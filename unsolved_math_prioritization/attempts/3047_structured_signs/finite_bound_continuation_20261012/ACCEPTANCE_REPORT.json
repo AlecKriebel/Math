@@ -1,0 +1,103 @@
+{
+  "verdict": "ACCEPT",
+  "accepted_theorem": {
+    "families": [
+      "all ternary digit sign assignments",
+      "all base-four digit sign assignments"
+    ],
+    "coefficient_only_obstruction_upper_bound": 150994944,
+    "sharp": false,
+    "target_total_coefficient_alphabet": [
+      -1,
+      0,
+      1
+    ],
+    "original_unrestricted_independent_sign_problem": "OPEN",
+    "combined_search_endpoints": {
+      "ternary": 59,
+      "base_four": 77
+    },
+    "endpoints_are_claimed_sharp_coefficient_only_thresholds": false
+  },
+  "analytic_constants": {
+    "inflation": "2^-32768",
+    "unknown_tail_strict_upper_bound": "2^-73717",
+    "ternary_strict_margin_lower_bound": "2^-31318",
+    "base_four_strict_margin_lower_bound": "2^-31780",
+    "ternary_K_max": 44,
+    "ternary_S_max": 711,
+    "base_four_K_max": 33,
+    "base_four_S_max": 902,
+    "maximum_radius_denominator": 2048,
+    "number_of_radii": 21
+  },
+  "independent_checks": {
+    "normal_O_OO_byte_identical": true,
+    "exact_inflation_all_radii": true,
+    "all_replay_source_changes_accounted_for": true,
+    "complete_certificates_compared_byte_for_byte": true,
+    "uniform_margin_preserves_every_old_pruning_decision": true,
+    "fresh_sanitized_replays": {
+      "verdict": "PASS",
+      "compiler_flags": [
+        "-O2",
+        "-std=c++17",
+        "-fsanitize=undefined",
+        "-fno-sanitize-recover=all"
+      ],
+      "fresh_ternary_replay_all_60_frontier_files_byte_match": true,
+      "fresh_base_four_replay_complete_tree_byte_matches": true,
+      "fresh_replay_logs_byte_match": true,
+      "sanitizer_errors": 0,
+      "expected_base_four_progress_lines": 11
+    },
+    "negative_parameter_controls": [
+      {
+        "rejected": true,
+        "reason": "Cutoff does not meet the stated uniform tail threshold.",
+        "tested_change": "Cutoff 150994943, one below the stated sufficient threshold."
+      },
+      {
+        "rejected": true,
+        "reason": "Inflation is not certified below every strict margin.",
+        "tested_change": "Inflation exponent 10000."
+      },
+      {
+        "rejected": true,
+        "reason": "The proven unknown-tail bound is not below inflation.",
+        "tested_change": "Inflation exponent 80000."
+      },
+      {
+        "rejected": true,
+        "reason": "Cutoff does not meet the stated uniform tail threshold.",
+        "tested_change": "Maximum radius denominator 4096 without increasing the cutoff."
+      }
+    ],
+    "negative_control_scope": "These reject values outside the stated sufficient certification, not necessarily false mathematical conclusions."
+  },
+  "scope_limits": [
+    "No sharpness claim for 150994944.",
+    "Search exhaustions at 59 and 77 keep their original combined-test interpretation.",
+    "No obstruction for arbitrary independent original factor signs.",
+    "No novelty or priority claim.",
+    "Historical computational claims are retained; editorial preparation did not rerun the exhaustive searches."
+  ],
+  "public_proof": "FINITE_COEFFICIENT_OBSTRUCTIONS.md",
+  "public_review": "REVIEW_FINITE_COEFFICIENT_OBSTRUCTIONS.md",
+  "review_kind": "Historical independent AI-assisted mathematical and computational audit; not external human peer review or proof-assistant certification.",
+  "publication_scope": "Prose proof and full substantive audit; no executable programs or raw state certificates are distributed.",
+  "complete_search_results": {
+    "ternary_state_count": 831371,
+    "base_four_state_count": 11151089,
+    "ternary_complete_frontier_levels": 60,
+    "ternary_last_nonempty_level": 58,
+    "ternary_first_empty_level": 59,
+    "base_four_last_nonempty_level": 76,
+    "base_four_first_empty_level": 77
+  },
+  "prior_mathematical_dependencies_unchanged": [
+    "general-zero proof and audit",
+    "full-ternary proof and audit",
+    "full-base-four proof and audit"
+  ]
+}
