@@ -35,10 +35,12 @@ def main():
             assert actual == expected, (name, actual, expected)
             records.append({"case": name, "status": "PASS", "zip_sha256": actual})
 
-        for name, relative, reason in (
-                ("cache_payload", ".cache/control.md", "Excluded source"),
+        forbidden = (".cache", "sources", "scratch", "qa", ".secrets")
+        direct = [(f"direct_{i}", f"{part}/control.md", "Excluded source")
+                  for i, part in enumerate(forbidden)]
+        for name, relative, reason in [*direct,
                 ("private_payload", "control.private.md", "Invalid or duplicate source"),
-                ("traversal_payload", "../control.md", "Invalid relative path")):
+                ("traversal_payload", "../control.md", "Invalid relative path")]:
             dest = checkout(name)
             snap = dest / "ORIGINAL_SNAPSHOT.json"
             obj = json.loads(snap.read_text())
@@ -50,6 +52,29 @@ def main():
             proc = run(dest)
             assert proc.returncode != 0 and reason in proc.stderr, proc.stderr
             records.append({"case": name, "status": "REJECTED_AS_REQUIRED"})
+
+        for i, part in enumerate(forbidden):
+            for reverse in (False, True):
+                name = f"internal_alias_{i}_{int(reverse)}"
+                dest = checkout(name)
+                data = b"benign internal-alias exclusion control\n"
+                real = dest / "original" / (part if reverse else "allowed")
+                real.mkdir()
+                (real / "control.md").write_bytes(data)
+                alias = dest / "original" / ("allowed_alias" if reverse else part)
+                alias.symlink_to(real.resolve(), target_is_directory=True)
+                relative = alias.relative_to(dest / "original").as_posix() + "/control.md"
+                snap = dest / "ORIGINAL_SNAPSHOT.json"
+                obj = json.loads(snap.read_text())
+                obj["files"].append({"path": relative, "size": len(data),
+                                     "sha256": hashlib.sha256(data).hexdigest()})
+                snap.write_text(json.dumps(obj))
+                proc = run(dest)
+                assert proc.returncode != 0 and "Excluded source" in proc.stderr, proc.stderr
+                records.append({"case": name, "forbidden_component": part,
+                                "direction": "allowed_alias_to_forbidden_real" if reverse
+                                             else "forbidden_alias_to_allowed_real",
+                                "status": "REJECTED_AS_REQUIRED"})
 
         dest = checkout("parent_symlink_escape")
         shutil.rmtree(dest / "root_reproduction")

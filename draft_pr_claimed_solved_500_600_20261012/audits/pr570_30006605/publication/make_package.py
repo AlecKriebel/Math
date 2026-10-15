@@ -18,13 +18,15 @@ def main():
         safe_path(name)
         if name in files or path.is_symlink() or ".private" in path.name:
             raise RuntimeError(f"Invalid or duplicate source: {name}")
-        # Exclude material inside this audit, independent of checkout ancestry.
-        # Resolving first also prevents a parent-directory symlink escaping it.
+        # Checkout ancestors are irrelevant, but both source spellings matter:
+        # resolving an internal alias must not erase an excluded directory.
         try:
-            relative = path.resolve().relative_to(AUDIT)
+            relative = path.relative_to(AUDIT)
+            resolved = path.resolve().relative_to(AUDIT)
         except ValueError as exc:
             raise RuntimeError(f"Source escapes the audit: {name}") from exc
-        if any(part in (".cache", "sources", "scratch", "qa", ".secrets") for part in relative.parts):
+        components = (*relative.parts, *resolved.parts, *safe_path(name).parts)
+        if any(part in (".cache", "sources", "scratch", "qa", ".secrets") for part in components):
             raise RuntimeError(f"Excluded source: {name}")
         files[name] = path.read_bytes()
 
