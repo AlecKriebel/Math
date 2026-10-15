@@ -20,6 +20,7 @@ sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 blob=lambda raw:hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()
 
 assert not (D/'CLASSIFICATION_REPAIR_RECEIPT.json').exists(), 'Reconcile a recorded operation; never repeat blindly'
+assert not (D/'CLASSIFICATION_REPAIR_REQUEST.json').exists(), 'A prior attempt exists; reconcile it read-only before any further action'
 accept=json.loads((D/'ROOT_FINAL_CREDIT_PACKET_ACCEPTANCE.json').read_text())
 assert accept['status']=='PASS' and accept['native_mutations_cleared'] is True
 assert sha(D/'PROPOSED_CURRENT_PACKET_MANIFEST.json')==accept['packet_manifest_sha256']

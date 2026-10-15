@@ -17,8 +17,11 @@ human peer review. It is not a new preprint or Zenodo deposit.
 
 Homs's contribution with Kuznetsova in OWR55/2022, printed3146–3149,
 DOI10.4171/OWR/2022/55, defines unrestricted colored concentration models.
-Proposition3 assumes I(G,n)nonzero and I(G,n+1)=0. Its second bullet
-asserts WMLT=n if a positive-definite matrix has statistics in V(I(G,n));
+Proposition3 assumes the ideal hypothesis
+
+    I(G,n+1)=0,    I(G,n) nonzero.                        (1)
+
+Its second bullet asserts WMLT=n if a positive-definite matrix has statistics in V(I(G,n));
 both full numerical scenarios also assert MLT=n+1. Conjecture4 refers
 back to the two cases. A numerical error in these assertions is distinct
 from the bare claim that one of their two algebraic mechanisms holds.
