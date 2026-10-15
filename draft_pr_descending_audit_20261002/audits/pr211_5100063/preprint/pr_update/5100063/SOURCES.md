@@ -35,3 +35,6 @@ Focused searches for k904 and outer inversive area products recovered the source
 ## Descending publication audit2026-10-15
 
 Current bounded primary-source priority ledgers distinguish v10 k808,a, v11 k904,a, classical AST/KLS/Chavez-Caliz methods, original-vertex triangular/general products, and access limitations. No first-proof or current-world-open claim. See revisedPROOF.md§9 and portable verification priority reports. Do not propagate the unused printed Stachel auxiliary dn(u+2jK)=(-1)^j dn(u) typo: dn has real period2K. Canonical parametrization used here was independently checked.
+
+
+The current source_record.json is a qualified assessment wrapper. Its exact historical upstream record, including erroneous2021/source-status triage, is preserved in history/original_submission_20261015/. The full arXiv-record title includes OfN-Periodics; the pinned PDF heading is shorter. Both refer to the same pinnedv11.

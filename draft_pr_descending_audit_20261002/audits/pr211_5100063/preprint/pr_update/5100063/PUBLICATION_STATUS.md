@@ -1,3 +1,9 @@
+> Dated prepublication assessment snapshot, 15October2026. This file records the
+> preparation stage represented in this archive. Version-bound final reviews and
+> actual publication/tracker/merge receipts are recorded alongside PR#211 in the
+> repository case audit. A later native release replaces this status with verified
+> administrative facts; the deposited proof and controls remain unchanged.
+
 # Current disposition: k904,a
 
 Mathematical and exact-source acceptance PASS after three fresh independent mathematical/source families and isolated byte-identical reproduction of all five core programs. Two further independent priority audits integrated: no exact prior general proof verified in the audited primary corpus; historical novelty remains undetermined. Author turn1/5; target queue status claimed_solved unchanged.

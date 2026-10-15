@@ -35,8 +35,8 @@ def main():
             and p.name != 'CURRENT_PACKET_MANIFEST.json']
     save(native/'CURRENT_PACKET_MANIFEST.json', dict(schema='pr211-reconciled-packet-v1', self_excluded=True,
         source_head='9d7b623203b525386da3d9d91548c79e7445a11c', files=rows))
-    selected = [BASE/n for n in ['manuscript.tex', 'manuscript.pdf', 'metadata.json', 'README.md', 'build_bundle.py']]
-    for folder in ['verification', 'pr_update']:
+    selected = [BASE/n for n in ['manuscript.tex', 'manuscript.pdf', 'metadata.json', 'README.md', 'build_bundle.py', 'REVIEW01_RESOLUTION.json', 'NATIVE_RELEASE_PLAN.json']]
+    for folder in ['verification', 'pr_update', 'manuscript_reviews']:
         for path in sorted((BASE/folder).rglob('*')):
             if path.is_symlink() or set(path.relative_to(BASE).parts) & FORBIDDEN:
                 raise ValueError('Unsafe selected payload: '+str(path))
@@ -65,7 +65,7 @@ def main():
         source_manifest=pin(BASE/'SOURCE_MANIFEST.json',BASE),
         submission_files=[pin(BASE/'manuscript.pdf',BASE),pin(archive,BASE)],
         manuscript_source=pin(BASE/'manuscript.tex',BASE),metadata=pin(BASE/'metadata.json',BASE),
-        source_archive_entries=len(selected), whole_package_review_clearance=False))
+        source_archive_entries=len(selected), clearance_record_role="This manifest binds prepublication bytes; later case FINAL_CLEARANCE.json binds approvals and the same bytes. No self-certification."))
     save(BASE/'deposit.json', dict(metadata=json.loads((BASE/'metadata.json').read_text()),
         files=[dict(path='manuscript.pdf',name='k904a-outer-focal-inverse-areas.pdf'),
                dict(path=archive.name,name=archive.name)]))
