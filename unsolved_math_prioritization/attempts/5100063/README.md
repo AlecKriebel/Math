@@ -9,3 +9,5 @@ The research note, exact planned metadata and portable verification archive acco
 Current source_record.json, WIP.md and prior_imported_report.json explicitly distinguish the current qualified assessment from historical imports. Historical branch identifiers in metadata.json are labeled historical; the full original records remain byte exact in the archive.
 
 Verified preprint and source/verification archive: https://doi.org/10.5281/zenodo.23394004. The required sequential whole-manuscript/package reviews and global repairs are complete. Exact Google Workspace all-four-cell readback: 'Math Puzzles'!A109:D109. FINAL_ACCEPTANCE.json and PUBLICATION_RECEIPT.json bind the actual release; native merge events are recorded separately in the case audit and GitHubPR#211.
+
+Native merge subsequently verified at ec6c938f1b734610ba37c21beaf10ec24cdd077c. MERGE_RECEIPT.json records the actual accepted head, DOI/tracker and merge event. This current native outcome supersedes dated preparation-stage records.

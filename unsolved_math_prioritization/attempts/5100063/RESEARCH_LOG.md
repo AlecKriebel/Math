@@ -15,3 +15,5 @@ The proof re-establishes the outer-locus and analytic identities and does not tr
 Mathematical/source and bounded priority gates accepted with qualifications. Preserved all19 original files exactly; reconciled current header/README/metadata/status and explicit repetition/credit/source limitations. Fresh full-package review loops pending. No external deposit or merge.
 
 2026-10-15T11:41:03.768691+00:00 — case95%: fresh sequential manuscript reviews/global repairs completed, exact preprint published at https://doi.org/10.5281/zenodo.23394004, GWS all4cells verified 'Math Puzzles'!A109:D109. Native scientific readback/merge event remains to be recorded separately. Author1/5 and19 originals retained.
+
+2026-10-15T11:44:48.612397+00:00 — case100%: actual native science/original archive/PDF/ZIP readbacks and merge verified. DOI https://doi.org/10.5281/zenodo.23394004, exact GWS row 'Math Puzzles'!A109:D109. Entire descending goal remains active/incomplete.

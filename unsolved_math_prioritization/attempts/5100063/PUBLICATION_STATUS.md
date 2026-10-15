@@ -7,3 +7,5 @@ Three independent mathematical/source families, isolated reproductions, two inde
 Extensive AI tools were used; this is an unrefereed preprint, without independent human peer review or formal proof-assistant verification. FINAL_ACCEPTANCE.json binds the review clearances and exact submitted files. Dated preparation records remain immutable provenance, while this file states the actual published result. Native merge events are recorded separately by the GitHub PR and case PR_MERGED receipt; no merge event is invented here.
 
 Preprint and source/verification archive: https://doi.org/10.5281/zenodo.23394004. Exact metadata and both files verified; single GWS append and every cell read back at 'Math Puzzles'!A109:D109.
+
+Native merge subsequently verified at ec6c938f1b734610ba37c21beaf10ec24cdd077c. MERGE_RECEIPT.json records the actual accepted head, DOI/tracker and merge event. This current native outcome supersedes dated preparation-stage records.
