@@ -82,8 +82,19 @@ discovery timestamp.
 layout, not from the extracted flat archive. It selects explicit authored files,
 checks all seals and the snapshot, and writes a deterministic ZIP. Its path
 guards examine lexical, resolved and archive paths relative to this audit;
-unrelated external checkout ancestors named cache/scratch are allowed. Sources
+unrelated external checkout ancestors named cache/scratch are allowed. Literal
+parent segments in the lexical audit-relative source path are rejected before
+selection, even if resolution would stay inside the audit. Sources
 outside the audit, leaf symlinks, duplicates, traversal and audit-relative
 `.cache`, `sources`, `scratch`, `qa`, `.secrets` and `.private` components are
-rejected. `MANIFEST.json` inventories all other archive members; the outer
+rejected case-insensitively, including resolved ancestor aliases on a
+case-insensitive filesystem. `MANIFEST.json` inventories all other archive members; the outer
 manifest does not self-hash. Public deposit hashes supply its external binding.
+
+The first fresh full-package review found a missing lexical source-alias guard
+(F01) and then an exclusion bypass through uppercase directory aliases (F02).
+Both guards were repaired; real copied-process regressions now reject the
+lexical alias and all six case-alias redirects. The current ZIP was regenerated.
+The historical ZIP was not alleged to contain unsafe members; the findings
+concerned the source-selection contract. The mathematical paper, metadata and
+all18 originals were unchanged.

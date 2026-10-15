@@ -25,3 +25,20 @@ review notes remain historical evidence, including their former pending status.
    family's10false-formula controls are comparisons, not process mutations.
 8. Extensive AI use/internal AI adversarial reviews, unrefereed status, no human
    peer review and no proof-assistant certification must remain explicit.
+9. NEWpackage01 F01: lexical parent segments in a producer source path were not
+   rejected even when the resolved path stayed in the audit. The literal-path
+   guard is now explicit. Real copied producer controls confirm before-acceptance
+   and after-rejection, while unrelated external cache/scratch ancestor layouts
+   remain portable. This was a producer-contract finding, not corruption of the
+   clean historical archive. Paper, metadata and18 originals did not change;
+   current wrappers/inventories/ZIP were regenerated before NEWpackage02.
+10. The first review's later sealed F02 addendum identifies a real case-alias
+    source-exclusion bypass on this case-insensitive filesystem. All lexical,
+    resolved and archive-relative components are now case-folded for exclusions.
+    Six unchanged-producer copied processes accepted equivalent uppercase
+    directory redirects before the repair and reject them afterward. No raw or
+    private bytes were selected in these tests. The old24-output seal remains
+    unchanged, with the addendum separately and aggregately sealed. The final
+    repaired freeze is supplied to the second reviewer before its package audit;
+    its early source/math work remains independent. No paper/metadata/original
+    change was needed. Both F01 and F02 are current corrected producer contracts.

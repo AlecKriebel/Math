@@ -27,7 +27,9 @@ def main():
             resolved = path.resolve().relative_to(AUDIT)
         except ValueError as exc:
             raise RuntimeError(f"Source escapes the audit: {name}") from exc
-        components = (*relative.parts, *resolved.parts, *safe_path(name).parts)
+        safe_path(relative.as_posix())
+        components = tuple(part.casefold() for part in
+                           (*relative.parts, *resolved.parts, *safe_path(name).parts))
         if any(part in (".cache", "sources", "scratch", "qa", ".secrets")
                or ".private" in part for part in components):
             raise RuntimeError(f"Excluded source: {name}")
