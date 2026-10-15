@@ -444,14 +444,17 @@ def build_publication(inputs, doi, now):
         'Run the original verifier from its own attempt directory. For the complete supplement, extract '
         '`real_schlicht_verification.zip` to an empty directory and run `python3 -B verify_package.py --replay`; '
         'see the included README for dependencies and optional uncertified numerical replay.\n').encode()
-    files['PUBLICATION_LOG.md'] = (f'# Publication checkpoint\n\n{now}: DOI {doi}; accepted qualitative '
+    confirmed_utc = parse_json(inputs['receipt_bytes'][0])['verified_utc']
+    files['PUBLICATION_LOG.md'] = (f'# Publication checkpoint\n\n{now}: integration preparation for DOI {doi}; '
+                                  f'publication confirmed at {confirmed_utc}; accepted qualitative '
                                   'claim only; original 24-file attempt unchanged; extensiveness of AI use and '
                                   'unrefereed status disclosed; historical priority source gaps retained. '
                                   'Completion estimate: 100% of this scoped publication package, not of the '
                                   'unresolved quantitative or historical-priority questions.\n').encode()
     files['PUBLICATION.json'] = json_bytes({'schema': 'pr662-published-qualitative-note-v1', 'pr': PR,
         'problem_id': PROBLEM, 'historical_candidate_commit': ORIGINAL, 'doi': doi, 'doi_url': 'https://doi.org/' + doi,
-        'published_utc': now, 'claim_scope': parse_json(inputs['files']['CLAIM_SCOPE.json']),
+        'publication_confirmed_utc': confirmed_utc, 'integration_prepared_utc': now,
+        'claim_scope': parse_json(inputs['files']['CLAIM_SCOPE.json']),
         'native_attempt': PREFIX.rstrip('/'), 'native_files': 24, 'native_all_bytes_preserved': True,
         'acceptance_report_paths_are_relative_to_audit_root': A.relative_to(REPO).as_posix(),
         'copied_whole_package_report_files': sorted(inputs['review_files']), 'publication_validation': inputs['validation']})
