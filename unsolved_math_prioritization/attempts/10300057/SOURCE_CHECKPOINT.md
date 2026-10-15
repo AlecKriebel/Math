@@ -1,0 +1,11 @@
+# Source and prior-attempt gate
+
+Calegari's 2002 problem list, Question13.4 on printed p30, is the exact target. Its setting is taut codimension-one foliations of hyperbolic 3-manifolds and isotopy-orbit geometric convergence that exists after finite covering but not before it. The question is not the adjacent Godbillon–Vey, branching-norm or cubical-norm question.
+
+The source's Definition1.1 defines tautness by a transverse circle meeting every leaf. Section13.2 defines the foliated Gromov seminorm by transverse real singular chains and credits *The Gromov norm and foliations*. The full v2 of that paper, reflecting its published version, was read at the relevant definitions and semicontinuity theorem. Theorem3.1.2 explicitly interprets convergence as convergence of tangent plane fields and gives norm(limit)>=limsup norm(sequence). A following prose sentence uses the opposite semicontinuity label, so only the displayed inequality will be used. Theorem3.1.2 is not a claim about Godbillon–Vey continuity.
+
+Question13.4 does not itself impose coorientation or explicitly restrict to closed manifolds. These extra hypotheses must be recorded if needed for a partial argument. The requested cover can be nonregular. A sequence of arbitrary isotopies upstairs is not automatically deck-equivariant, and convergence of the limiting invariant distribution does not assert equivariance of each isotopy.
+
+The complete pinned UnsolvedMath statement and source-only prior report were read from revision37e53eabe540fb458758e198be61634bd02ee008. The upstream report offers no example or proof. Exact-ID/title PR searches, branch search, committed main-path history and available all-ref local commit-title search found no earlier Alec/campaign attempt; the related-target groups have no exact match. Imported third-party triage is credited, not treated as a prior campaign attempt.
+
+Limited current primary-source searches located the original problem and its referenced norm/branching obstructions, but no verified resolution. This is not an exhaustive status or novelty certification. Primary PDF hashes and locations are pinned; complete PDFs, extracted text, renderings and imported records stay outside the public artifact directory.
