@@ -150,7 +150,10 @@ def action_lock(name):
 
 
 def git(*args, input=None):
-    return subprocess.check_output(['git', *args], cwd=REPO, input=input, stderr=subprocess.PIPE)
+    # The shared repository has concurrent users and a known failed-GC log.
+    # Object preparation/fetch must not start opportunistic maintenance.
+    return subprocess.check_output(['git', '-c', 'gc.auto=0', '-c', 'maintenance.auto=false', *args],
+                                   cwd=REPO, input=input, stderr=subprocess.PIPE)
 
 
 def fetch_main():

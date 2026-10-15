@@ -17,7 +17,8 @@ HERE = Path(__file__).absolute().parent
 A = HERE.parents[1]
 module = types.ModuleType('_pr662_proposed_tree_control')
 module.__file__ = str(A / 'prepare_integration.py')
-exec(compile((A / 'prepare_integration.py').read_bytes(), module.__file__, 'exec'), module.__dict__)
+helper_source = (A / 'prepare_integration.py').read_bytes()
+exec(compile(helper_source, module.__file__, 'exec'), module.__dict__)
 original, snapshot, snapshot_bytes = module.load_snapshot()
 files = {name: module.regular_bytes(A / 'publication' / name) for name in module.PUB_NAMES}
 members, binding = module.archive_binding(files['real_schlicht_verification.zip'], original, files, snapshot_bytes)
@@ -30,7 +31,7 @@ publication = module.build_publication(inputs, '10.5281/zenodo.999999999', modul
 with tempfile.TemporaryDirectory(prefix='actual-proposed-tree-', dir=HERE / 'tmp') as temporary:
     report = module.capture_replay(inputs, temporary, publication)
 output = {'status': 'PASS', 'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-          'helper_sha256': hashlib.sha256((A / 'prepare_integration.py').read_bytes()).hexdigest(),
+          'helper_sha256': hashlib.sha256(helper_source).hexdigest(),
           'publication_snapshot_pins': {name: {'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
                                         for name, data in files.items()},
           'archive_binding': binding, 'actual_proposed_tree_replay': report,

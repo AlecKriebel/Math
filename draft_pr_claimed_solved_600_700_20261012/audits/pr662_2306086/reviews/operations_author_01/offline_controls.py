@@ -31,14 +31,18 @@ TMP = HERE / 'tmp'
 TMP.mkdir(exist_ok=True)
 
 
-def source_module(path, name):
+def source_module(path, name, data=None):
     module = types.ModuleType(name); module.__file__ = str(path)
-    exec(compile(path.read_bytes(), str(path), 'exec'), module.__dict__)
+    exec(compile(path.read_bytes() if data is None else data, str(path), 'exec'), module.__dict__)
     return module
 
 
-M = source_module(AUDIT / 'prepare_integration.py', '_offline_integration')
-T = source_module(AUDIT / 'record_tracker.py', '_offline_tracker')
+SOURCE_INPUTS = {name: (AUDIT / name).read_bytes() for name in
+                 ('prepare_integration.py', 'record_tracker.py', 'ACCEPTED_PR_DESCRIPTION.template.md')}
+M = source_module(AUDIT / 'prepare_integration.py', '_offline_integration', SOURCE_INPUTS['prepare_integration.py'])
+T = source_module(AUDIT / 'record_tracker.py', '_offline_tracker', SOURCE_INPUTS['record_tracker.py'])
+if T.INTEGRATION_HELPER_SHA256 != hashlib.sha256(SOURCE_INPUTS['prepare_integration.py']).hexdigest():
+    raise ValueError('integration source changed while author controls initialized')
 ORIGINAL, SNAPSHOT, SNAPSHOT_BYTES = M.load_snapshot()
 DOI = '10.5281/zenodo.999999999'
 checks = []
@@ -475,8 +479,7 @@ def main():
     mode = 'optimized' if sys.flags.optimize else 'normal'
     report = {'status': 'PASS', 'utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'mode': mode,
-        'checks': len(checks), 'source_sha256': {name: hashlib.sha256((AUDIT / name).read_bytes()).hexdigest()
-            for name in ('prepare_integration.py', 'record_tracker.py', 'ACCEPTED_PR_DESCRIPTION.template.md')},
+        'checks': len(checks), 'source_sha256': {name: hashlib.sha256(data).hexdigest() for name, data in SOURCE_INPUTS.items()},
         'no_live_api_or_network_calls': True, 'no_external_mutations': True,
         'native24_read_only': True, 'integration_lifecycle_service_and_replay_doubles_explicit': True,
         'actual_proposed_tree_replay_is_separate_required_control': True, 'results': checks}
