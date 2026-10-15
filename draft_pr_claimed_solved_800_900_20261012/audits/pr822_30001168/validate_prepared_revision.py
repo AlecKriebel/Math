@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Independent readback of exact prepared Git bytes and non-target queue scope."""
+import argparse
 import datetime
 import hashlib
 import json
@@ -20,8 +21,13 @@ def git(*args):
 
 
 def main():
-    receipt = json.loads((HERE / 'PREPARED_PR_REVISION_RECEIPT_R1.json').read_bytes())
-    mapping = json.loads((HERE / 'PREPARED_PR_MAPPING_R1.json').read_bytes())
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--label', default='R1')
+    args = parser.parse_args()
+    if not args.label.isalnum():
+        raise RuntimeError('unsafe label')
+    receipt = json.loads((HERE / ('PREPARED_PR_REVISION_RECEIPT_' + args.label + '.json')).read_bytes())
+    mapping = json.loads((HERE / ('PREPARED_PR_MAPPING_' + args.label + '.json')).read_bytes())
     commit, base = receipt['prepared_commit'], receipt['main_base']
     prefix = 'unsolved_math_prioritization/attempts/30001168/'
     raw = git('ls-tree', '-r', '-z', commit, '--', prefix)
@@ -56,7 +62,7 @@ def main():
            'mapped_files_byte_exact': len(rows), 'non_target_queue_bytes_unchanged': True,
            'foreign_tree_unchanged_vs_main': True, 'changed_paths': len(names),
            'read_only_validation': True}
-    (HERE / 'PREPARED_GIT_BYTES_VALIDATION.json').write_text(json.dumps(out, indent=2) + '\n')
+    (HERE / ('PREPARED_GIT_BYTES_VALIDATION_' + args.label + '.json')).write_text(json.dumps(out, indent=2) + '\n')
     print(json.dumps(out))
 
 
