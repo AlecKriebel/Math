@@ -46,7 +46,7 @@ def main():
  bq=git('show',base+':'+Q);hq=git('show',head+':'+Q);aq=git('show',actual+':'+Q);before=selected(bq);after=selected(hq)
  need(bq.replace(before,b'__SELECTED_ROW__')==hq.replace(after,b'__SELECTED_ROW__'),'other accepted queue bytes changed')
  bc,ac=before.rstrip(b'\r\n').split(b'|'),after.rstrip(b'\r\n').split(b'|');need(len(bc)==len(ac) and [i for i,(x,y)in enumerate(zip(bc,ac))if x!=y]==[8,9,11],'queue exact three cells')
- need(bc[8].strip()==b'queued' and bc[9].strip()==b'0/5' and ac[8].strip()==b'claimed_solved' and ac[9].strip()==b'5/5' and r['doi'].encode() in ac[11],'queue status/turn/DOI')
+ need(bc[8].strip()==b'queued' and bc[9].strip()==b'0/5' and ac[8].strip()==b'claimed_solved' and ac[9].strip()==b'1/5' and r['doi'].encode() in ac[11],'queue status/turn/DOI')
  need(selected(aq)==after,'actual merge selected row differs')
  report={'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'PASS','pr':681,'problem_id':'30003703','accepted_head':head,'actual_commit':actual,'main_base':base,'original_head':original,'all_23_native_bytes_blobs_modes_exact':True,'publication_files':len(pub),'all_publication_bytes_and_modes_exact':True,'accepted_changed_paths':len(changed),'accepted_target_queue_changed_cells':['Status','Turns','Findings'],'selected_actual_queue_row':after.decode().rstrip(),'whole_actual_tree_equals_accepted':git('rev-parse',actual+'^{tree}')==git('rev-parse',head+'^{tree}'),'live_pr':live,'no_shared_index_checkout_refs_or_objects_written':True,'isolated_fetch_for_actual_merge_only':args.merge}
  output=A/('ROOT_ACTUAL_MERGE_TREE_CHECK.json'if args.merge else'ROOT_PUSHED_TREE_CHECK.json')
