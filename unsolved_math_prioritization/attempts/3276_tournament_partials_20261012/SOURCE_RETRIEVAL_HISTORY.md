@@ -1,0 +1,49 @@
+# Public scholarly metadata: source retrieval history
+
+Public scholarly document identities and retrieval/inspection history only. Third-party documents and extracted source text are not distributed. A successful response or checksum is not a proof audit.
+
+- recovery_notice: Verified reconstruction of historical source-inspection metadata against retained original record hashes. Retrieval, stored_pdf, inspection and prior-capture-match fields describe the historical 12 October 2026 inspection, completed before 13:04 UTC. No fresh retrieval or source-proof reading occurred during recovery. Only the restored Georgakopoulos–Spruessel PDF was freshly checked for local byte identity; current availability of other PDFs is not asserted. Failed non-PDF response hashes are intentionally omitted.
+- records / 1 / id: 2009_georgakopoulos_spruessel
+- records / 1 / url: https://arxiv.org/pdf/0904.1967v2
+- records / 1 / retrieved_at: 2026-10-12T12:56:49.892186+00:00
+- records / 1 / status: 200
+- records / 1 / final_url: https://arxiv.org/pdf/0904.1967v2
+- records / 1 / content_type: application/pdf
+- records / 1 / bytes: 142691
+- records / 1 / sha256: 37c70064ec08aba920ed480061d68328341e61a0ddb2738a7100fb0d75660279
+- records / 1 / stored_pdf: true
+- records / 2 / id: 2019_aikin_bland
+- records / 2 / url: https://ajc.maths.uq.edu.au/pdf/73/ajc_v73_p071.pdf
+- records / 2 / retrieved_at: 2026-10-12T12:56:56.471721+00:00
+- records / 2 / status: 200
+- records / 2 / final_url: https://ajc.maths.uq.edu.au/pdf/73/ajc_v73_p071.pdf
+- records / 2 / content_type: application/pdf
+- records / 2 / bytes: 156319
+- records / 2 / sha256: 157b26853d7e0b687cf9c2b399b697a8007e68fe9eaa321d7ff3fc2c45c664f3
+- records / 2 / stored_pdf: true
+- records / 3 / id: 2017_bousquet_lochet_thomasse
+- records / 3 / url: https://arxiv.org/pdf/1703.08123
+- records / 3 / retrieved_at: 2026-10-12T12:57:04.003902+00:00
+- records / 3 / status: 200
+- records / 3 / final_url: https://arxiv.org/pdf/1703.08123
+- records / 3 / content_type: application/pdf
+- records / 3 / bytes: 82131
+- records / 3 / sha256: fe7d4c57cb1ebe82f752b45b383891359c3a2dbce4779e52e07d434ea8cc6fb1
+- records / 3 / stored_pdf: true
+- records / 4 / id: 2024_yuster
+- records / 4 / url: https://arxiv.org/pdf/2404.03752
+- records / 4 / retrieved_at: 2026-10-12T12:57:10.204484+00:00
+- records / 4 / status: 200
+- records / 4 / final_url: https://arxiv.org/pdf/2404.03752
+- records / 4 / content_type: application/pdf
+- records / 4 / bytes: 364327
+- records / 4 / sha256: e3ee9915efc3ce3906448d9f90713c075d9fb79a1dc04c62ff786687238f939e
+- records / 4 / stored_pdf: true
+- records / 5 / id: 2021_rainbow_kernel
+- records / 5 / url: https://www.degruyterbrill.com/document/doi/10.1515/math-2021-0019/pdf
+- records / 5 / retrieved_at: 2026-10-12T12:57:16.395099+00:00
+- records / 5 / status: 202
+- records / 5 / final_url: https://www.degruyterbrill.com/document/doi/10.1515/math-2021-0019/pdf
+- records / 5 / content_type: text/html; charset=UTF-8
+- records / 5 / stored_pdf: false
+- records / 5 / non_pdf_response_identity_omitted: true
