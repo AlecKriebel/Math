@@ -1,0 +1,27 @@
+{
+  "recorded_at_utc": "2026-10-12T22:07:47.673228+00:00",
+  "review_state": "REPAIR_PENDING",
+  "criteria_sha256": "f5ac7192f2250682141f7684a27aaa8d2d488f9f2327664ce5c072ffb86fe62b",
+  "initial_code_sha256": "0448e24b442aa2024497d7428dc2f2a272606990706fffd568b213a55a4a3d2c",
+  "review_progress_percent": 30,
+  "new_proof_search_attempts": 0,
+  "remote_mutations": 0,
+  "findings": [
+    {
+      "id": "OPS-1",
+      "status": "root repair accepted, replacement pending",
+      "claim": "The initial helper never verifies checkpoint commit is an ancestor of remote main; branch=\"main\" inside a JSON checkpoint does not prove publication."
+    },
+    {
+      "id": "OPS-2",
+      "status": "root repair accepted, replacement pending",
+      "claim": "Nonforced ref update is not an expected-old-head compare-and-swap; an ancestor reset after the initial head check can still accept the proposed commit."
+    },
+    {
+      "id": "OPS-3",
+      "status": "root repair accepted, replacement pending",
+      "claim": "Initial helper verifies blob payload but not the returned tree or commit parent before reference mutation; its post-mutation compare can only detect damage afterward."
+    }
+  ],
+  "tests_status": "Isolated harness prepared but not run; root requested pause until revised helper."
+}

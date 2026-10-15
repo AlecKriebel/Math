@@ -1,0 +1,24 @@
+# Publication and tracker receipt audit
+
+Completed UTC: 2026-10-07T06:49:37.882427+00:00. Assigned operational audit completion: 100%, not a probability of theorem truth or a new mathematical certification.
+
+**Pass: the production publication, DOI, public files, review gates and tracker receipts are mutually consistent. No outstanding public-download check remains.** This reviewer audited existing nonsecret receipts, verifier code and current local identities; made no network/API requests, publication or tracker writes; and changed no candidate, source, manifest or inventory file.
+
+The unchanged inventory SHA256 is `e714734bfb93d8d43da0d3568a199f933b1bce2421424b88a899cb928f5c4511` and manifest SHA256 is `147fef9701c050c493eb954f6a42874583965ace1db3c500ad54a8d4058d96b7`. Both exact complete-package gate reports still have their approved identities: reviewer one `569bd0a966d314e8f49cac13568996d1984f5d3a113b131e39b69661e75ed0ba`; new fresh reviewer two `4143972ca76836d1fabcdced8a15b141216955d9b38f31ef6e367e5ab43de7a4`. Both scopes name this same inventory, manifest and four payloads. Reviewer one completed at 06:20 UTC and fresh reviewer two at 06:36 UTC, before publication at 06:43 UTC. Earlier conditional reviews were not used as gates.
+
+Stage, prepublication inspect, publish and postpublication inspect all identify the same **production record 23205305** and the exact intended title/file set. Published receipts confirm assigned DOI [10.5281/zenodo.23205305](https://doi.org/10.5281/zenodo.23205305), published state and separate DOI resolution HTTP 200 to [the record](https://zenodo.org/records/23205305). Reading the repository tool's actual `verify` and publish/inspect branches confirms that it checks every supplied manifest metadata field, file names, remote MD5 checksums and sizes before issuing these summaries. The only reported normalization is omitted creator affiliation becoming null; author and ORCID are retained. The summarized receipt does not reproduce the full remote metadata body, so this is strict-tool receipt evidence rather than an independent network reread of all metadata.
+
+The public-download receipt completed at 06:47:01 UTC. I checked its verifier identity against the current helper, reconstructed its credential-free GET-only record/file checking, and independently rehashed all current local payloads. The helper compares the public title, creator/ORCID and publication date, requires exactly the four files, checks API checksum/size, then hashes the actual downloaded binary bytes. All public and local sizes, MD5 and SHA256 values equal the frozen inventory:
+
+| File | Bytes | SHA256 |
+|---|---:|---|
+| paper.pdf | 77528 | `f9883f8164b3edf703d31c30a10b8262f4fb489d0b62a742e9f23eb365c92641` |
+| height-repair.pdf | 99812 | `0e5071e973ef55885eab898d22a9ec37756357cd2b2816e2d693aa17c2b37ada` |
+| source.zip | 24611 | `06303be5a8f68d503856346a726bbb0a8b6d396632c75b963c8544862ce0c75e` |
+| verification.zip | 186177 | `38ac4ea5b1919f3273ad24cf5818590db3a00c9543281a6114b329e7277ceb95` |
+
+The earlier HTTP 406 was resolved through the observed API content-negotiation requirement: `Accept: application/json` on the `/api/` file-content endpoint. The verifier retains its truthful user agent, has no credentials/cookies, uses only GET, and establishes binary identity through the hashes. Its receipt deliberately leaves DOI checking to the distinct publication/inspect receipts; this is consistent, not a missing DOI check.
+
+Tracker metadata resolves spreadsheet `1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20`, numeric sheet `1254632077` to **Math Puzzles**. The scanned headers are exactly `Original Problem`, `Solution Chat URL`, `DOI`, `Notes`; the preappend duplicate count is zero. After confirmed publication, the request uses RAW and INSERT_ROWS. The append response reports one row/four cells at **`'Math Puzzles'!A52:D52`**, and independent readback of that range equals the exact requested row, including DOI in **C52**. The genuinely unknown optional chat URL is blank. Notes retain attribution, variable-size/dimension scope, two AI review gates, and the absence of conventional human peer review/formal verification; no operational receipt is substituted for mathematical evidence. This establishes the recorded preappend duplicate check and exact inserted row, not a perpetual guarantee against later spreadsheet edits.
+
+Exact SHA256 identities of all audited receipts, both gate scopes, the publication tool and public verifier, plus rehashed payload identities and check results, are preserved in [publication_receipt_audit_scope.json](publication_receipt_audit_scope.json). The immutable payloads remain the versions reviewed; operational records and final review reports remain outside those already-frozen archives as documented. No substantive operational discrepancy was identified.

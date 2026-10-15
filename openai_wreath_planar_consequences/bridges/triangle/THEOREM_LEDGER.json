@@ -1,0 +1,156 @@
+{
+  "scope": "Only the dimension-two triangle subcase; not full AIM1.32 resolution.",
+  "checkpoint_utc": "2026-10-07T03:50:30.915955+00:00",
+  "claims": [
+    {
+      "id": "B-LB2",
+      "statement": "Every real Schwartz g on R^2 with ghat(0)=1, ghat>=0, and g<=0 for |x|>=1 has g(0)>=2/sqrt(3).",
+      "status": "independently proved; fresh adversarial review pending",
+      "dependencies": [
+        "Schwartz Poisson summation",
+        "exact triangular-lattice norm and covolume"
+      ],
+      "proof": "BRIDGE_PROOF.md: Poisson lower bounds",
+      "checks": "check_exact_lattice.py; exact_lattice_receipt.json",
+      "boundary_cases": [
+        "minimum length1 sign boundary",
+        "all nonzero lattice vectors",
+        "absolute convergence"
+      ],
+      "remaining_gap": "None in written deduction; no fresh adversarial reviewer yet."
+    },
+    {
+      "id": "B-LB3",
+      "statement": "Every real Schwartz F on R^2 x R^2 feasible on exact Ctriangle with Fhat(0,0)=1 and Fhat>=0 has F(0,0)>=4/3.",
+      "status": "independently proved; fresh adversarial review pending",
+      "dependencies": [
+        "Schwartz Poisson summation in4dimensions",
+        "product lattice covolume",
+        "triangle sign-set support"
+      ],
+      "proof": "BRIDGE_PROOF.md: Poisson lower bounds",
+      "checks": "check_exact_lattice.py; exact_lattice_receipt.json",
+      "boundary_cases": [
+        "zero first or second coordinate",
+        "coincident nonzero points",
+        "opposite lattice vectors",
+        "norm1 edges",
+        "origin excluded"
+      ],
+      "remaining_gap": "None in written deduction; no fresh adversarial reviewer yet."
+    },
+    {
+      "id": "B-PRODUCT",
+      "statement": "For every integer n>=1, the exact triangle Schwartz infimum P_n satisfies P_n<=L_n^2.",
+      "status": "independently reconstructed with repaired bookkeeping; fresh adversarial review pending",
+      "dependencies": [
+        "compact theta-prime primal-dual equality in cube graphs",
+        "Schwartz/continuous comparison for closed sign sets",
+        "compact product measure projection",
+        "explicit periodic two-point kernels"
+      ],
+      "proof": "BRIDGE_PROOF.md: Product-program audit and repairs; DUALITY_AUDIT.md",
+      "attribution": [
+        "Cohn-de Laat-Salmon arXiv2206.15373v1 Proposition4.7",
+        "de Laat-Vallentin corrected arXiv1311.3789v3 Section5.1 Lemma10"
+      ],
+      "boundary_cases": [
+        "square axes",
+        "distinct nonedge qualification",
+        "diagonal-indicator continuous approximation",
+        "exact threshold1 convention",
+        "correct squared normalization volume",
+        "infima need not attained"
+      ],
+      "remaining_gap": "No substantive bridge gap identified; fresh adversarial reviewer must assess reconstruction."
+    },
+    {
+      "id": "B-ELEMENTARY-UB",
+      "statement": "L_2<=4/pi and consequently P_2<=16/pi^2.",
+      "status": "independently proved; fresh adversarial review pending",
+      "dependencies": [
+        "explicit Gaussian Fourier transform",
+        "B-PRODUCT"
+      ],
+      "proof": "BRIDGE_PROOF.md: Independent baseline",
+      "checks": "check_exact_lattice.py Gaussian coefficient controls",
+      "remaining_gap": "Not a sharp upper bound."
+    },
+    {
+      "id": "B-TARGET-CONDITIONAL",
+      "statement": "If a validated admissible planar g has g(0)=2/sqrt(3), then L_2=2/sqrt(3) and P_2=4/3.",
+      "status": "conditional",
+      "dependencies": [
+        "B-LB2",
+        "B-LB3",
+        "B-PRODUCT",
+        "unvalidated sharp two-point upper certificate"
+      ],
+      "proof": "BRIDGE_PROOF.md: Consequence conditional on sharp input",
+      "remaining_gap": "The central sharp planar upper certificate has not been validated by this family."
+    },
+    {
+      "id": "B-SATURATION",
+      "statement": "Any admissible g attaining 2/sqrt(3) vanishes on all nonzero Lambda vectors, and ghat vanishes on all nonzero Lambda-dual vectors. Radial interior primal roots and all positive Fourier roots have radial derivative zero.",
+      "status": "independently proved necessary condition",
+      "dependencies": [
+        "equality in two absolutely convergent Poisson inequalities",
+        "sign constraints",
+        "differentiability"
+      ],
+      "proof": "BRIDGE_PROOF.md: Saturation checks",
+      "boundary_cases": [
+        "primal radius1 root need not have zero derivative",
+        "not an existence theorem"
+      ],
+      "remaining_gap": "A necessary condition cannot prove a sharp certificate exists."
+    }
+  ],
+  "routes": [
+    {
+      "family": "Poisson/lattice",
+      "mechanism": "Exact dual lattice comb supplies lower objectives.",
+      "status": "complete written deductions; fresh review pending",
+      "evidence": [
+        "BRIDGE_PROOF.md",
+        "exact_lattice_receipt.json"
+      ],
+      "gap": "No upper certificate."
+    },
+    {
+      "family": "compact product/duality",
+      "mechanism": "Project positive-definite product measures, average near-optimal dual kernel, pass continuous value to Schwartz.",
+      "status": "reconstructed; printed factors repaired",
+      "evidence": [
+        "BRIDGE_PROOF.md",
+        "DUALITY_AUDIT.md"
+      ],
+      "gap": "Fresh adversarial review pending; cannot replace sharp one-point input."
+    },
+    {
+      "family": "geometric replacement",
+      "mechanism": "Try replacing sharp Fourier certificate with known optimal planar packing density.",
+      "status": "blocked",
+      "evidence": [
+        "BRIDGE_PROOF.md replacement-route discussion"
+      ],
+      "gap": "Geometric packing optimality does not furnish the stronger analytic primal upper certificate; route transfers central difficulty."
+    },
+    {
+      "family": "elementary Gaussian",
+      "mechanism": "Global Fourier and sign proof for polynomial times Gaussian.",
+      "status": "rigorous nonsharp baseline",
+      "evidence": [
+        "BRIDGE_PROOF.md",
+        "check_exact_lattice.py"
+      ],
+      "gap": "Upper L2=4/pi is greater than2/sqrt(3)."
+    }
+  ],
+  "completion_estimates": {
+    "TargetB_exact_equality": 25,
+    "triangle_bridge_validation": 85,
+    "publication_package": 5
+  },
+  "estimate_note": "Subjective progress estimates, not theorem truth probabilities; this family did not audit the imported certificate."
+}

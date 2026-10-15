@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "dependency_environment_outside_package": "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/root_reproduction/.cache/venv/bin/python",
+  "TMPDIR": "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/reviews/package_preflight01/.cache/tmp",
+  "os_network_denial": true,
+  "full_unmodified_json_comparison": true,
+  "records": [
+    {
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/root_reproduction/.cache/venv/bin/python",
+        "-B",
+        "-c",
+        "import socket,json,sympy,mpmath; s=socket.socket();\ntry: s.connect(('1.1.1.1',443)); result={'network_denied':False}\nexcept OSError as e: result={'network_denied':True,'errno':e.errno,'error':str(e)}\nprint(json.dumps(dict(result,sympy=sympy.__version__,mpmath=mpmath.__version__)))"
+      ],
+      "returncode": 0,
+      "seconds": 0.23198413848876953,
+      "stdout": "{\"network_denied\": true, \"errno\": 1, \"error\": \"[Errno 1] Operation not permitted\", \"sympy\": \"1.14.0\", \"mpmath\": \"1.3.0\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/sandbox-exec",
+        "-p",
+        "(version 1) (allow default) (deny network*)",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/root_reproduction/.cache/venv/bin/python",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/reviews/package_preflight01/.cache/extracted/run_all.py"
+      ],
+      "returncode": 0,
+      "seconds": 5.811184883117676,
+      "stdout": "{\"job\": \"original/unsolved_math_prioritization/attempts/30001232/author/verify_intersections.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"original/unsolved_math_prioritization/attempts/30001232/author/verify_formulas.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"original/unsolved_math_prioritization/attempts/30001232/audit/independent_checks.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"original/unsolved_math_prioritization/attempts/30001232/verify_release.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"original/unsolved_math_prioritization/attempts/30001232/test_integrity.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"reviews/geometry01/geometry_controls.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"reviews/pencil01/fresh_controls.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"verify_original_snapshot.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"job\": \"test_snapshot_gate.py\", \"status\": \"PASS\", \"normalized_fields\": []}\n{\"status\": \"PASS\", \"outer_payloads_verified\": 101, \"nested_entries_verified\": 83, \"nested_seals\": 7, \"original_inputs_verified\": 18, \"strict_original_gate\": \"PASS\", \"replayed_jobs\": 9, \"network_access_required\": false, \"frozen_payloads_unchanged\": true, \"limits\": \"Finite controls supplement the universal proof and credited classical geometry; not priority, authenticity, human peer review or formal certification.\"}\n",
+      "stderr": ""
+    }
+  ]
+}

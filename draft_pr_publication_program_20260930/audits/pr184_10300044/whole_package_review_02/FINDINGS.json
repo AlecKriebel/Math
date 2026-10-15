@@ -1,0 +1,51 @@
+{
+  "UTC": "2026-10-14T04:42:25.003991+00:00",
+  "overall_verdict": "REPAIR_REQUIRED",
+  "mathematical_verdict": "PASS_WITH_ACCEPTED_CLASSICAL_THEOREM_INPUTS",
+  "mandatory_findings": [
+    {
+      "id": "R02-F1",
+      "priority": "P2",
+      "classification": "current publication source-gap attribution accuracy",
+      "disposition": "REPAIR_REQUIRED",
+      "locations": [
+        {
+          "path": "publication_package_v1/supplement/README.md",
+          "line": 35
+        },
+        {
+          "path": "publication_package_v1/verification-package.zip",
+          "member": "README.md",
+          "line": 35
+        },
+        {
+          "path": "integration_preparation/native_template_pending_01/exact_verification/README.md",
+          "line": 35
+        }
+      ],
+      "incorrect": "Mather--Moussu--Tsuboi 1981",
+      "correct": "Mizutani--Morita--Tsuboi 1981",
+      "verified_authors": [
+        "Tadayoshi Mizutani",
+        "Shigeyuki Morita",
+        "Takashi Tsuboi"
+      ],
+      "publisher_metadata_URL": "https://annals.math.princeton.edu/1981/113-3/p04",
+      "DOI": "10.2307/2006995",
+      "metadata_read_depth": "Entire 29-line returned publisher article landing-page metadata; no abstract available and no article-body read claimed.",
+      "actual_article": "The Godbillon-Vey classes of codimension one foliations which are almost without holonomy, Annals of Mathematics 113(3) (1981), 515\u2013527",
+      "corroborating_archived_own_records": [
+        "supplement/audit_history/priority_suspension_literature/ADDENDUM_90_PERCENT_SCOPE.md:11",
+        "supplement/audit_history/priority_suspension_literature/FINAL_REPORT.md:40",
+        "supplement/audit_history/priority_suspension_literature/SOURCE_VERSION_SCOPE_LEDGER.json:158"
+      ],
+      "effect": "Misidentifies a concrete unread priority-source gap in current public-facing documentation. Does not alter mathematical proof, actual absence of the source-body read, or user authorization for a credited classical-consequence note. The archived records already use the correct attribution.",
+      "required_repair": [
+        "Replace the wrong author trio in current supplement README and matching proposed-native exact_verification README; preserve the explicit unread-body qualification.",
+        "Regenerate supplement SHA256SUMS.json, verification-package.zip and exact outer REVIEW_PACKET_MANIFEST.json bindings. Propagate byte-identical corrected payload and manifest into proposed native exact_verification, and regenerate CURRENT_TEMPLATE.json bindings.",
+        "Run the next NEW independent whole-package reviewer on the repaired exact bytes, as required by the successive review process. No theorem/PDF change is indicated by this finding."
+      ]
+    }
+  ],
+  "mandatory_mathematical_repairs": []
+}

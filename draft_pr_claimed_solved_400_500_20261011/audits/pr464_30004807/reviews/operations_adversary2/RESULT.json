@@ -1,0 +1,70 @@
+{
+  "identity": "operations_adversary2",
+  "round": 2,
+  "completed_at_utc": "2026-10-12T14:40:03.256367+00:00",
+  "verdict": "REQUEST_CHANGES",
+  "blocking_issue_count": 1,
+  "required_correction_count": 2,
+  "pr": 464,
+  "problem_id": "30004807",
+  "original_pr_head": "97b2ed225574ca61bd03cb8db021a533e04938dc",
+  "scope": "Fresh full operations review only; no mathematical, priority, human peer or full-paper acceptance. Current reviewed builder requires two repairs.",
+  "report_path": "reviews/operations_adversary2/REPORT.md",
+  "report_sha256": "ba1e15104d223638911683319b31c10ce195e7df2846ebb8c5037f8fe01f2968",
+  "helpers": {
+    "operations/common.py": "ba508397f2999c90f1d6e8bc1ef327f4258cc3a6e9acb4a7fe255051506a74ac",
+    "operations/zenodo_pr464.py": "f9bf46bb315cb62687504a261ef007f5b94e1ac3812137ff6af1866a09b50995",
+    "operations/register_pr464_tracker.py": "6454154cc7a24fac9e5b85a0147ddfccc58e3db4f72b5f855c39ef0080e70d44",
+    "operations/integrate_pr464_publication.py": "1f5629b7aea5c6de4dda3b67655540c9fae0a434130b872f485a662388f2ba5b"
+  },
+  "builder_path": "build_preprint_package.py",
+  "builder_sha256": "960c364c3b3dc10ecc6570f7069ea11150f90f8859f810872837a68161869074",
+  "zenodo_kit_path": "zenodo_deposit_tool/zenodo.py",
+  "zenodo_kit_sha256": "a91f961bcabadb15f92bb738c3194f0277cd47f1f87167ac8db8eb7c4fd3b9ca",
+  "input_manifest_path": "PACKAGE_REVIEW_INPUT_2.json",
+  "input_manifest_sha256": "6354507a17d9eca504e5db085621b645fc4afb9cd00291e74ee0e5a145c8a352",
+  "original_source_capture_files_verified": 13,
+  "available_internal_references_verified": 11,
+  "unattested_standalone_author_manifest_acknowledged": true,
+  "actual_candidate_files_verified": 8,
+  "actual_zip_entries_verified": 181,
+  "actual_install_targets_verified": 185,
+  "actual_absent_gate_probes_passed": 6,
+  "independent_expectations": 160,
+  "independent_expectations_holding": 154,
+  "independent_unsafe_expectations_failed": 6,
+  "preparer_controls_replayed": 158,
+  "parent_builder_path_guards_replayed": 23,
+  "all_normal_optimized_results_byte_identical": true,
+  "real_external_calls": 0,
+  "reviewed_sources_or_package_mutated": false,
+  "production_operations_performed": false,
+  "four_helpers_have_no_new_demonstrated_defect_within_reviewed_scope": true,
+  "issues": [
+    {
+      "id": "R1",
+      "severity": "blocking",
+      "file": "build_preprint_package.py",
+      "mechanism": "Unchecked generated-output symlinks overwrite unrelated local targets before rejection, or without rejection.",
+      "independent_failed_cases": [
+        "builder_write_boundary_SHA256SUMS.json",
+        "builder_write_boundary_regular_zas_bianchi_verification_v1.zip",
+        "builder_write_boundary_ARCHIVE_RECEIPT.json",
+        "builder_write_boundary_deposit.json",
+        "builder_write_boundary_BRANCH_INSTALL_PLAN.json"
+      ]
+    },
+    {
+      "id": "R2",
+      "severity": "required",
+      "file": "build_preprint_package.py",
+      "mechanism": "Existing immutable freeze is rejected after changing current manifest, ZIP, archive receipt and install plan bytes.",
+      "independent_failed_cases": [
+        "builder_write_boundary_existing_freeze"
+      ]
+    }
+  ],
+  "new_fresh_operations_adversary_required_after_repairs": true,
+  "paper_publication_ready_authority": false,
+  "concurrency_limit": "No global atomic multi-runner or hostile-filesystem race guarantee; durable guards and nonforced updates are bounded safeguards."
+}

@@ -1,0 +1,9 @@
+# Independent whole-package adversarial review 02
+
+2026-10-13T06:24:30.848115+00:00 — Start; assigned review 0% complete. Input package frozen. No prior review opinions, stored reproduction outcomes, or priority opinions read before first seal. First file-name inventory search was overbroad and truncated; no contents of prior verdicts read. All output stays here. No Git, external communication, tab changes, or delegation.
+
+2026-10-13T06:26:15.981072+00:00 — First independent proof/source assessment sealed; assigned review 25% complete. Mathematical theorem verified by exact deduction; no prior outcomes read. Remaining artifact, control, visual, priority, and metadata audit.
+
+2026-10-13T06:31:55.202285+00:00 — Assigned review 70% complete. All30 actual ordinary/-O controls matched4PASS/26FAIL; outputs and commands hashed. All61ZIPmembers match directory+manifest exactly, no duplicates, CRCerrors or unexpected bodies; outside/archive source identical. Full3pagepaper visual inspection clean. Independent primary Smale1987p83–85, Pavesic2018p75–76, Pavesic2019p109–111 read at actual bodies, with relevant pages visually verified; strict/open/discriminant distinction supports citations. Archived priority reports calibrated without novelty guarantee. Remaining final source-depth ledger/seal checks and optional prepared-native consistency.
+
+2026-10-13T06:40:04.928936+00:00 — Assigned review100% complete. No actionable findings for frozenv2. All77archived local hashreferences and14/11/13allowlists authenticate. Optional104file native template binds and four sampled script replays PASS on own copies. Title/ORCID/metadata/AI/unrefereed and fivePDFexternal links agree. Final report/read ledger complete; preparing exact safeinventory/finalseal. Historical global novelty remains unestablished as disclosed; campaign counts/casepercent unchanged.

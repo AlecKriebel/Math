@@ -1,0 +1,394 @@
+{
+  "generated_utc": "2026-10-12T21:54:31.053528+00:00",
+  "change_scope": "Replace assert tests by explicit if-not/raise checks; AST unparse reformats code.",
+  "proof_search_turns_added": 0,
+  "frozen_original_bytes_edited": false,
+  "source_assertions_replaced": 82,
+  "remaining_assertions": 0,
+  "scripts": [
+    {
+      "path": "contributor_checks/check_character_data.py",
+      "source_sha256": "54d33d4eb4ab307a74b69b99a57a425ac53a97e44986a72630801e16b2f0728c",
+      "repaired_sha256": "70137337365d8de1ddabf81594c5f020af9622015005085dd37fd97bd75acf42",
+      "replaced_assert_count": 18,
+      "replaced_assertions": [
+        {
+          "source_line": 29,
+          "test_ast": "Compare(left=Call(func=Attribute(value=BinOp(left=BinOp(left=Name(id='X', ctx=Load()), op=Mult(), right=Name(id='W', ctx=Load())), op=Mult(), right=Attribute(value=Name(id='X', ctx=Load()), attr='T', ctx=Load())), attr='applyfunc', ctx=Load()), args=[Attribute(value=Name(id='s', ctx=Load()), attr='simplify', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[BinOp(left=Constant(value=120), op=Mult(), right=Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='eye', ctx=Load()), args=[Constant(value=9)], keywords=[]))])"
+        },
+        {
+          "source_line": 30,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Call(func=Name(id='int', ctx=Load()), args=[Subscript(value=Name(id='X', ctx=Load()), slice=Tuple(elts=[Name(id='i', ctx=Load()), Constant(value=0)], ctx=Load()), ctx=Load())], keywords=[]), op=Pow(), right=Constant(value=2)), generators=[comprehension(target=Name(id='i', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=9)], keywords=[]), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 32,
+          "test_ast": "Compare(left=Call(func=Name(id='list', ctx=Load()), args=[Call(func=Attribute(value=Name(id='fs', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[]), ops=[Eq()], comparators=[List(elts=[Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1)), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=1), Constant(value=1), Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1))], ctx=Load())])"
+        },
+        {
+          "source_line": 36,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=BoolOp(op=And(), values=[Attribute(value=Name(id='x', ctx=Load()), attr='is_integer', ctx=Load()), Compare(left=Name(id='x', ctx=Load()), ops=[GtE()], comparators=[Constant(value=0)])]), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='D', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 38,
+          "test_ast": "Compare(left=Name(id='C', ctx=Load()), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='s', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=8), Constant(value=4), Constant(value=4), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=4), Constant(value=4), Constant(value=2), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=4), Constant(value=2), Constant(value=4), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=0), Constant(value=0), Constant(value=2)], ctx=Load())], ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 41,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Name(id='P', ctx=Load()), slice=Tuple(elts=[Name(id='i', ctx=Load()), Constant(value=0)], ctx=Load()), ctx=Load()), generators=[comprehension(target=Name(id='i', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)], keywords=[]), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=24), Constant(value=16), Constant(value=16), Constant(value=8)], ctx=Load())])"
+        },
+        {
+          "source_line": 42,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='P', ctx=Load()), slice=Tuple(elts=[Name(id='i', ctx=Load()), Name(id='j', ctx=Load())], ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]), generators=[comprehension(target=Name(id='i', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)], keywords=[]), ifs=[], is_async=0), comprehension(target=Tuple(elts=[Name(id='j', ctx=Store()), Name(id='o', ctx=Store())], ctx=Store()), iter=Call(func=Name(id='enumerate', ctx=Load()), args=[Name(id='orders', ctx=Load())], keywords=[]), ifs=[Compare(left=BinOp(left=Name(id='o', ctx=Load()), op=Mod(), right=Constant(value=2)), ops=[Eq()], comparators=[Constant(value=0)])], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 43,
+          "test_ast": "Compare(left=Subscript(value=Name(id='P', ctx=Load()), slice=Tuple(elts=[Constant(value=3), Slice()], ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Subscript(value=Name(id='chars', ctx=Load()), slice=Constant(value='four_plus'), ctx=Load()), op=Add(), right=Subscript(value=Name(id='chars', ctx=Load()), slice=Constant(value='four_minus'), ctx=Load()))])"
+        },
+        {
+          "source_line": 49,
+          "test_ast": "Compare(left=Subscript(value=Name(id='d', ctx=Load()), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Name(id='d', ctx=Load()), slice=Constant(value=2), ctx=Load())])"
+        },
+        {
+          "source_line": 51,
+          "test_ast": "Compare(left=Name(id='F2vectors', ctx=Load()), ops=[Eq()], comparators=[List(elts=[List(elts=[Constant(value=8), Constant(value=4), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=8), Constant(value=6), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=0), Constant(value=2)], ctx=Load())], ctx=Load())])"
+        },
+        {
+          "source_line": 53,
+          "test_ast": "Compare(left=Call(func=Name(id='list', ctx=Load()), args=[BinOp(left=BinOp(left=Constant(value=4), op=Mult(), right=Name(id='V1', ctx=Load())), op=Add(), right=BinOp(left=Constant(value=4), op=Mult(), right=Name(id='V5', ctx=Load())))], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Name(id='F2vectors', ctx=Load()), slice=Constant(value=0), ctx=Load())])"
+        },
+        {
+          "source_line": 54,
+          "test_ast": "Compare(left=Call(func=Name(id='list', ctx=Load()), args=[BinOp(left=BinOp(left=Constant(value=2), op=Mult(), right=Name(id='V1', ctx=Load())), op=Add(), right=BinOp(left=Constant(value=6), op=Mult(), right=Name(id='V5', ctx=Load())))], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Name(id='F2vectors', ctx=Load()), slice=Constant(value=1), ctx=Load())])"
+        },
+        {
+          "source_line": 55,
+          "test_ast": "Compare(left=Call(func=Name(id='list', ctx=Load()), args=[BinOp(left=Constant(value=2), op=Mult(), right=Name(id='V4', ctx=Load()))], keywords=[]), ops=[Eq()], comparators=[Subscript(value=Name(id='F2vectors', ctx=Load()), slice=Constant(value=2), ctx=Load())])"
+        },
+        {
+          "source_line": 57,
+          "test_ast": "Compare(left=BinOp(left=BinOp(left=BinOp(left=Constant(value=1), op=Mult(), right=Constant(value=24)), op=Add(), right=BinOp(left=Constant(value=2), op=Mult(), right=Constant(value=32))), op=Add(), right=BinOp(left=Constant(value=4), op=Mult(), right=Constant(value=8))), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 60,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Call(func=Name(id='list', ctx=Load()), args=[Name(id='c', ctx=Load())], keywords=[]), slice=Constant(value=6), ctx=Load()), generators=[comprehension(target=Name(id='c', ctx=Store()), iter=Name(id='fused_coeffs', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=0), Constant(value=0), Constant(value=1)], ctx=Load())])"
+        },
+        {
+          "source_line": 61,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Call(func=Name(id='list', ctx=Load()), args=[Name(id='c', ctx=Load())], keywords=[]), slice=Constant(value=1), ctx=Load()), generators=[comprehension(target=Name(id='c', ctx=Store()), iter=Name(id='fused_coeffs', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=0), Constant(value=1), Constant(value=0)], ctx=Load())])"
+        },
+        {
+          "source_line": 64,
+          "test_ast": "BoolOp(op=And(), values=[BinOp(left=Name(id='a', ctx=Load()), op=Mod(), right=Constant(value=2)), BinOp(left=Name(id='b', ctx=Load()), op=Mod(), right=Constant(value=2))])"
+        },
+        {
+          "source_line": 66,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='hs2', ctx=Load()), args=[UnaryOp(op=USub(), operand=Constant(value=1)), UnaryOp(op=USub(), operand=Constant(value=3))], keywords=[]), ops=[Eq()], comparators=[Constant(value=1)]), Compare(left=Call(func=Name(id='hs2', ctx=Load()), args=[UnaryOp(op=USub(), operand=Constant(value=1)), UnaryOp(op=USub(), operand=Constant(value=1))], keywords=[]), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=1))])])"
+        }
+      ]
+    },
+    {
+      "path": "independent_audit/independent_audit.py",
+      "source_sha256": "abda3d5ad47582e21fb321bc92081f0360bfac25e94284f720ccf592da1b103c",
+      "repaired_sha256": "93a8c71dbba6b3dc76b38fc370efdfc19dcd65b49d7242158dd3675b6a3160cd",
+      "replaced_assert_count": 47,
+      "replaced_assertions": [
+        {
+          "source_line": 41,
+          "test_ast": "Compare(left=Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Name(id='q1', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Name(id='m1', ctx=Load())])"
+        },
+        {
+          "source_line": 44,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='q_to_m', ctx=Load())], keywords=[]), ops=[LtE()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 45,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='q_to_m', ctx=Load())], keywords=[]), ops=[Eq(), Eq()], comparators=[Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[Call(func=Attribute(value=Name(id='q_to_m', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[])], keywords=[]), Constant(value=120)])"
+        },
+        {
+          "source_line": 47,
+          "test_ast": "Compare(left=Call(func=Name(id='set', ctx=Load()), args=[Call(func=Attribute(value=Name(id='q_to_m', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Name(id='SL5', ctx=Load())])"
+        },
+        {
+          "source_line": 49,
+          "test_ast": "Compare(left=Call(func=Name(id='sm', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='mul', ctx=Load()), args=[Name(id='t', ctx=Load()), Name(id='t', ctx=Load())], keywords=[]), generators=[comprehension(target=Name(id='t', ctx=Store()), iter=Name(id='q', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Name(id='o', ctx=Load())])"
+        },
+        {
+          "source_line": 50,
+          "test_ast": "Compare(left=Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Call(func=Name(id='qm', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='r', ctx=Load())], keywords=[]), ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='mm5', ctx=Load()), args=[Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Name(id='r', ctx=Load()), ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 59,
+          "test_ast": "Compare(left=Subscript(value=Name(id='u', ctx=Load()), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])"
+        },
+        {
+          "source_line": 62,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Name(id='v', ctx=Load()), op=Mult(), right=Name(id='v', ctx=Load())), generators=[comprehension(target=Name(id='v', ctx=Store()), iter=Call(func=Attribute(value=Name(id='cm', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[]), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 63,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='symcube', ctx=Load()), args=[Call(func=Name(id='qm', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='q', ctx=Load())], keywords=[])], keywords=[]), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='q_to_m', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=120))])"
+        },
+        {
+          "source_line": 65,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Subscript(value=Name(id='cp', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), op=Mult(), right=Subscript(value=Name(id='cm', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load())), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='q_to_m', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=0)])"
+        },
+        {
+          "source_line": 66,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Subscript(value=Name(id='cp', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), op=Pow(), right=Constant(value=2)), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='q_to_m', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 68,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='psi', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Subscript(value=Name(id='cp', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), op=Add(), right=Subscript(value=Name(id='cm', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()))]), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='q_to_m', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 69,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Subscript(value=Name(id='psi', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), op=Mult(), right=Subscript(value=Name(id='cm', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load())), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='q_to_m', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 86,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='Q8s', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=5)])"
+        },
+        {
+          "source_line": 91,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[Call(func=Attribute(value=Name(id='paction', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)])"
+        },
+        {
+          "source_line": 92,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=BinOp(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='a', ctx=Load()), ops=[Gt()], comparators=[Name(id='b', ctx=Load())]), generators=[comprehension(target=Tuple(elts=[Name(id='i', ctx=Store()), Name(id='a', ctx=Store())], ctx=Store()), iter=Call(func=Name(id='enumerate', ctx=Load()), args=[Subscript(value=Name(id='paction', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load())], keywords=[]), ifs=[], is_async=0), comprehension(target=Name(id='b', ctx=Store()), iter=Subscript(value=Subscript(value=Name(id='paction', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load()), slice=Slice(lower=BinOp(left=Name(id='i', ctx=Load()), op=Add(), right=Constant(value=1))), ctx=Load()), ifs=[], is_async=0)])], keywords=[]), op=Mod(), right=Constant(value=2)), ops=[Eq()], comparators=[Constant(value=0)]), generators=[comprehension(target=Name(id='g', ctx=Store()), iter=Name(id='SL5', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 93,
+          "test_ast": "Compare(left=SetComp(elt=Name(id='g', ctx=Load()), generators=[comprehension(target=Name(id='g', ctx=Store()), iter=Name(id='SL5', ctx=Load()), ifs=[Compare(left=Subscript(value=Name(id='paction', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Call(func=Name(id='tuple', ctx=Load()), args=[Call(func=Name(id='range', ctx=Load()), args=[Constant(value=5)], keywords=[])], keywords=[])])], is_async=0)]), ops=[Eq()], comparators=[Set(elts=[Name(id='me', ctx=Load()), Name(id='zm', ctx=Load())])])"
+        },
+        {
+          "source_line": 94,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='cp', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Name(id='i', ctx=Load()), ops=[Eq()], comparators=[Name(id='v', ctx=Load())]), generators=[comprehension(target=Tuple(elts=[Name(id='i', ctx=Store()), Name(id='v', ctx=Store())], ctx=Store()), iter=Call(func=Name(id='enumerate', ctx=Load()), args=[Subscript(value=Name(id='paction', ctx=Load()), slice=Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), ctx=Load())], keywords=[]), ifs=[], is_async=0)])], keywords=[]), op=Sub(), right=Constant(value=1))]), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='qo', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 108,
+          "test_ast": "Compare(left=Call(func=Name(id='sm', ctx=Load()), args=[GeneratorExp(elt=Call(func=Name(id='mul', ctx=Load()), args=[Subscript(value=Subscript(value=Name(id='chars', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), slice=Name(id='i', ctx=Load()), ctx=Load()), Subscript(value=Subscript(value=Name(id='chars', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), slice=Name(id='j', ctx=Load()), ctx=Load())], keywords=[]), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='qo', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Tuple(elts=[Call(func=Name(id='Q', ctx=Load()), args=[IfExp(test=Compare(left=Name(id='i', ctx=Load()), ops=[Eq()], comparators=[Name(id='j', ctx=Load())]), body=Constant(value=120), orelse=Constant(value=0))], keywords=[]), Call(func=Name(id='Q', ctx=Load()), args=[Constant(value=0)], keywords=[])], ctx=Load())])"
+        },
+        {
+          "source_line": 111,
+          "test_ast": "Compare(left=Subscript(value=Name(id='value', ctx=Load()), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)])"
+        },
+        {
+          "source_line": 113,
+          "test_ast": "Compare(left=Name(id='indicators', ctx=Load()), ops=[Eq()], comparators=[List(elts=[Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1)), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=1), Constant(value=1), Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1))], ctx=Load())])"
+        },
+        {
+          "source_line": 114,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Call(func=Name(id='int', ctx=Load()), args=[Subscript(value=Name(id='x', ctx=Load()), slice=Constant(value=0), ctx=Load())], keywords=[]), op=Pow(), right=Constant(value=2)), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Subscript(value=Name(id='chars', ctx=Load()), slice=Name(id='qe', ctx=Load()), ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 126,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='H', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)])"
+        },
+        {
+          "source_line": 148,
+          "test_ast": "Compare(left=Call(func=Name(id='frank', ctx=Load()), args=[Name(id='H', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=4)])"
+        },
+        {
+          "source_line": 152,
+          "test_ast": "Compare(left=Call(func=Name(id='frank', ctx=Load()), args=[Name(id='T', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=16)])"
+        },
+        {
+          "source_line": 160,
+          "test_ast": "Compare(left=Call(func=Name(id='rank2', ctx=Load()), args=[Name(id='U', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=8)])"
+        },
+        {
+          "source_line": 170,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[Call(func=Attribute(value=Name(id='perms', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[])], keywords=[])], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)])"
+        },
+        {
+          "source_line": 171,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=BinOp(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='p', ctx=Load()), slice=Name(id='i', ctx=Load()), ctx=Load()), ops=[Gt()], comparators=[Subscript(value=Name(id='p', ctx=Load()), slice=Name(id='j', ctx=Load()), ctx=Load())]), generators=[comprehension(target=Name(id='i', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[Constant(value=5)], keywords=[]), ifs=[], is_async=0), comprehension(target=Name(id='j', ctx=Store()), iter=Call(func=Name(id='range', ctx=Load()), args=[BinOp(left=Name(id='i', ctx=Load()), op=Add(), right=Constant(value=1)), Constant(value=5)], keywords=[]), ifs=[], is_async=0)])], keywords=[]), op=Mod(), right=Constant(value=2)), ops=[Eq()], comparators=[Constant(value=0)]), generators=[comprehension(target=Name(id='p', ctx=Store()), iter=Call(func=Attribute(value=Name(id='perms', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[]), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 176,
+          "test_ast": "Compare(left=Call(func=Name(id='rank2', ctx=Load()), args=[Name(id='S', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=16)])"
+        },
+        {
+          "source_line": 183,
+          "test_ast": "Compare(left=Name(id='Cartan', ctx=Load()), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=4), Constant(value=2), Constant(value=2), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=2), Constant(value=2), Constant(value=1), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=2), Constant(value=1), Constant(value=2), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=0), Constant(value=0), Constant(value=1)], ctx=Load())], ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 191,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='entries', ctx=Load())], keywords=[]), ops=[Eq(), Eq()], comparators=[Call(func=Name(id='len', ctx=Load()), args=[Call(func=Name(id='set', ctx=Load()), args=[GeneratorExp(elt=Subscript(value=Name(id='x', ctx=Load()), slice=Constant(value=0), ctx=Load()), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='entries', ctx=Load()), ifs=[], is_async=0)])], keywords=[])], keywords=[]), Constant(value=60)])"
+        },
+        {
+          "source_line": 197,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Attribute(value=Name(id='c', ctx=Load()), attr='denominator', ctx=Load()), op=Mod(), right=Constant(value=2)), generators=[comprehension(target=Name(id='c', ctx=Store()), iter=Call(func=Attribute(value=Name(id='ej', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[]), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 200,
+          "test_ast": "Compare(left=Name(id='squared', ctx=Load()), ops=[Eq()], comparators=[Name(id='ej', ctx=Load())])"
+        },
+        {
+          "source_line": 205,
+          "test_ast": "Compare(left=Subscript(value=Name(id='char', ctx=Load()), slice=Name(id='ae', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Name(id='rank', ctx=Load())])"
+        },
+        {
+          "source_line": 217,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Name(id='r', ctx=Load()), slice=Constant(value='rank_F2'), ctx=Load()), generators=[comprehension(target=Name(id='r', ctx=Store()), iter=Name(id='idempotent_report', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=12), Constant(value=16), Constant(value=4)], ctx=Load())])"
+        },
+        {
+          "source_line": 218,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Name(id='r', ctx=Load()), slice=Constant(value='top_ranks_1_N_S'), ctx=Load()), generators=[comprehension(target=Name(id='r', ctx=Store()), iter=Name(id='idempotent_report', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[List(elts=[Constant(value=1), Constant(value=0), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=1), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=0), Constant(value=1)], ctx=Load())], ctx=Load())])"
+        },
+        {
+          "source_line": 222,
+          "test_ast": "Compare(left=Name(id='F2C', ctx=Load()), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=4), Constant(value=2), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=4), Constant(value=3), Constant(value=0)], ctx=Load()), List(elts=[Constant(value=0), Constant(value=0), Constant(value=1)], ctx=Load())], ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 229,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='section', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)])"
+        },
+        {
+          "source_line": 246,
+          "test_ast": "Compare(left=Call(func=Name(id='gamul', ctx=Load()), args=[Name(id='e', ctx=Load()), Name(id='e', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Name(id='e', ctx=Load())])"
+        },
+        {
+          "source_line": 249,
+          "test_ast": "Compare(left=Name(id='dim', ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Constant(value=2), op=Mult(), right=Name(id='trank', ctx=Load()))])"
+        },
+        {
+          "source_line": 251,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Name(id='x', ctx=Load()), slice=Constant(value='dimension'), ctx=Load()), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='central_projectives', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=24), Constant(value=32), Constant(value=8)], ctx=Load())])"
+        },
+        {
+          "source_line": 252,
+          "test_ast": "Compare(left=ListComp(elt=Subscript(value=Name(id='x', ctx=Load()), slice=Constant(value='central_z_minus_1_rank'), ctx=Load()), generators=[comprehension(target=Name(id='x', ctx=Store()), iter=Name(id='central_projectives', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[List(elts=[Constant(value=12), Constant(value=16), Constant(value=4)], ctx=Load())])"
+        },
+        {
+          "source_line": 263,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=BinOp(left=Name(id='v', ctx=Load()), op=Mult(), right=Name(id='v', ctx=Load())), generators=[comprehension(target=Name(id='v', ctx=Store()), iter=Call(func=Attribute(value=Name(id='chi5', ctx=Load()), attr='values', ctx=Load()), args=[], keywords=[]), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 264,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='chi5', ctx=Load()), slice=Subscript(value=Name(id='q_to_m', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[Subscript(value=Dict(keys=[Constant(value=1), Constant(value=2), Constant(value=3), Constant(value=4), Constant(value=5), Constant(value=6), Constant(value=10)], values=[Constant(value=5), Constant(value=5), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=1), Constant(value=0), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=0)]), slice=Subscript(value=Name(id='qo', ctx=Load()), slice=Name(id='q', ctx=Load()), ctx=Load()), ctx=Load())]), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='qo', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 265,
+          "test_ast": "Compare(left=BinOp(left=Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=5), UnaryOp(op=USub(), operand=Constant(value=1)), Constant(value=0)], ctx=Load())], ctx=Load())], keywords=[]), op=Mult(), right=Call(func=Attribute(value=Name(id='smallB', ctx=Load()), attr='inv', ctx=Load()), args=[], keywords=[])), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=1), Constant(value=1), Constant(value=0)], ctx=Load())], ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 266,
+          "test_ast": "Compare(left=BinOp(left=Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=4), Constant(value=1), UnaryOp(op=USub(), operand=Constant(value=1))], ctx=Load())], ctx=Load())], keywords=[]), op=Mult(), right=Call(func=Attribute(value=Name(id='smallB', ctx=Load()), attr='inv', ctx=Load()), args=[], keywords=[])), ops=[Eq()], comparators=[Call(func=Attribute(value=Name(id='sp', ctx=Load()), attr='Matrix', ctx=Load()), args=[List(elts=[List(elts=[Constant(value=0), Constant(value=0), Constant(value=1)], ctx=Load())], ctx=Load())], keywords=[])])"
+        },
+        {
+          "source_line": 269,
+          "test_ast": "Compare(left=Name(id='proof_hash', ctx=Load()), ops=[Eq()], comparators=[Constant(value='3ceab2f387baa3d61c15805cdde7d8154c8350e2b3b4bf2ce187ec53b99ec299')])"
+        }
+      ]
+    },
+    {
+      "path": "verify_controls.py",
+      "source_sha256": "0186a658510cb20ef520c9f99e79d2ab32b761b5f481418c7748ac22bf8b475f",
+      "repaired_sha256": "04a8cc2a7d1af2425632859bbf52c9b98c19649e449930d2197d7f4302efaa95",
+      "replaced_assert_count": 2,
+      "replaced_assertions": [
+        {
+          "source_line": 23,
+          "test_ast": "Compare(left=BinOp(left=Name(id='n', ctx=Load()), op=Mod(), right=Constant(value=2)), ops=[Eq()], comparators=[Constant(value=1)])"
+        },
+        {
+          "source_line": 32,
+          "test_ast": "Compare(left=Name(id='r', ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Name(id='p', ctx=Load()), op=Sub(), right=Constant(value=1))])"
+        }
+      ]
+    },
+    {
+      "path": "verify_counterexample.py",
+      "source_sha256": "f62cb52a0ef383d585cb035e16d364cf4959a9d55e19c3ee585b9f2390ee7637",
+      "repaired_sha256": "9c31ef4175d5e8468796ceee814a65385c3dff2bc29490d4b6077c089b3bc112",
+      "replaced_assert_count": 15,
+      "replaced_assertions": [
+        {
+          "source_line": 42,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='G', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 45,
+          "test_ast": "Compare(left=Call(func=Name(id='qmul', ctx=Load()), args=[Name(id='q', ctx=Load()), Tuple(elts=[Subscript(value=Name(id='q', ctx=Load()), slice=Constant(value=0), ctx=Load()), Call(func=Name(id='N', ctx=Load()), args=[Subscript(value=Name(id='q', ctx=Load()), slice=Constant(value=1), ctx=Load())], keywords=[]), Call(func=Name(id='N', ctx=Load()), args=[Subscript(value=Name(id='q', ctx=Load()), slice=Constant(value=2), ctx=Load())], keywords=[]), Call(func=Name(id='N', ctx=Load()), args=[Subscript(value=Name(id='q', ctx=Load()), slice=Constant(value=3), ctx=Load())], keywords=[])], ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Name(id='e', ctx=Load())])"
+        },
+        {
+          "source_line": 46,
+          "test_ast": "Compare(left=Call(func=Name(id='qmul', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='r', ctx=Load())], keywords=[]), ops=[In()], comparators=[Name(id='G', ctx=Load())])"
+        },
+        {
+          "source_line": 57,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Subscript(value=Name(id='y', ctx=Load()), slice=Constant(value=1), ctx=Load()), ops=[Eq()], comparators=[Constant(value=0)]), Compare(left=Attribute(value=Subscript(value=Name(id='y', ctx=Load()), slice=Constant(value=0), ctx=Load()), attr='denominator', ctx=Load()), ops=[Eq()], comparators=[Constant(value=1)])])"
+        },
+        {
+          "source_line": 62,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Name(id='norm', ctx=Load()), ops=[Eq()], comparators=[Constant(value=120)]), Compare(left=Name(id='fs', ctx=Load()), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=120))])])"
+        },
+        {
+          "source_line": 63,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Constant(value=1), generators=[comprehension(target=Name(id='q', ctx=Store()), iter=Name(id='G', ctx=Load()), ifs=[Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Call(func=Name(id='qmul', ctx=Load()), args=[Name(id='q', ctx=Load()), Name(id='r', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Call(func=Name(id='qmul', ctx=Load()), args=[Name(id='r', ctx=Load()), Name(id='q', ctx=Load())], keywords=[])]), generators=[comprehension(target=Name(id='r', ctx=Store()), iter=Name(id='G', ctx=Load()), ifs=[], is_async=0)])], keywords=[])], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[Constant(value=2)])"
+        },
+        {
+          "source_line": 65,
+          "test_ast": "Compare(left=Name(id='rows', ctx=Load()), ops=[Eq()], comparators=[Dict(keys=[Constant(value=1), Constant(value=2), Constant(value=3), Constant(value=4), Constant(value=5), Constant(value=6), Constant(value=10)], values=[List(elts=[Constant(value=4)], ctx=Load()), List(elts=[UnaryOp(op=USub(), operand=Constant(value=4))], ctx=Load()), List(elts=[Constant(value=1)], ctx=Load()), List(elts=[Constant(value=0)], ctx=Load()), List(elts=[UnaryOp(op=USub(), operand=Constant(value=1))], ctx=Load()), List(elts=[UnaryOp(op=USub(), operand=Constant(value=1))], ctx=Load()), List(elts=[Constant(value=1)], ctx=Load())])])"
+        },
+        {
+          "source_line": 84,
+          "test_ast": "Call(func=Name(id='all', ctx=Load()), args=[GeneratorExp(elt=Compare(left=Subscript(value=Name(id='psi', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load()), ops=[Eq()], comparators=[BinOp(left=Subscript(value=Name(id='chi_plus', ctx=Load()), slice=Subscript(value=Name(id='orders', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load()), ctx=Load()), op=Add(), right=Subscript(value=Name(id='chi_minus', ctx=Load()), slice=Subscript(value=Name(id='orders', ctx=Load()), slice=Name(id='g', ctx=Load()), ctx=Load()), ctx=Load()))]), generators=[comprehension(target=Name(id='g', ctx=Store()), iter=Name(id='G', ctx=Load()), ifs=[], is_async=0)])], keywords=[])"
+        },
+        {
+          "source_line": 86,
+          "test_ast": "Compare(left=Name(id='inner', ctx=Load()), ops=[Eq()], comparators=[Constant(value=120)])"
+        },
+        {
+          "source_line": 87,
+          "test_ast": "Compare(left=Call(func=Name(id='sum', ctx=Load()), args=[GeneratorExp(elt=Subscript(value=Name(id='chi_minus', ctx=Load()), slice=Call(func=Name(id='order', ctx=Load()), args=[Call(func=Name(id='mul', ctx=Load()), args=[Name(id='g', ctx=Load()), Name(id='g', ctx=Load())], keywords=[])], keywords=[]), ctx=Load()), generators=[comprehension(target=Name(id='g', ctx=Store()), iter=Name(id='G', ctx=Load()), ifs=[], is_async=0)])], keywords=[]), ops=[Eq()], comparators=[UnaryOp(op=USub(), operand=Constant(value=120))])"
+        },
+        {
+          "source_line": 90,
+          "test_ast": "Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='cosets', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)])"
+        },
+        {
+          "source_line": 114,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='G', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=60)]), Compare(left=Name(id='span', ctx=Load()), ops=[Eq()], comparators=[Constant(value=16)])])"
+        },
+        {
+          "source_line": 118,
+          "test_ast": "BoolOp(op=And(), values=[Compare(left=Call(func=Name(id='len', ctx=Load()), args=[Name(id='V4', ctx=Load())], keywords=[]), ops=[Eq()], comparators=[Constant(value=4)]), Compare(left=SetComp(elt=Subscript(value=Name(id='g', ctx=Load()), slice=Constant(value=0), ctx=Load()), generators=[comprehension(target=Name(id='g', ctx=Store()), iter=Name(id='V4', ctx=Load()), ifs=[], is_async=0)]), ops=[Eq()], comparators=[Call(func=Name(id='set', ctx=Load()), args=[Call(func=Name(id='range', ctx=Load()), args=[Constant(value=4)], keywords=[])], keywords=[])])])"
+        },
+        {
+          "source_line": 130,
+          "test_ast": "Compare(left=Name(id='got', ctx=Load()), ops=[Eq()], comparators=[Name(id='target', ctx=Load())])"
+        },
+        {
+          "source_line": 133,
+          "test_ast": "Compare(left=BinOp(left=BinOp(left=Constant(value=24), op=Add(), right=BinOp(left=Constant(value=2), op=Mult(), right=Constant(value=32))), op=Add(), right=BinOp(left=Constant(value=4), op=Mult(), right=Constant(value=8))), ops=[Eq()], comparators=[Constant(value=120)])"
+        }
+      ]
+    }
+  ],
+  "frozen_noncode_inputs": {
+    "COUNTEREXAMPLE.md": "3ceab2f387baa3d61c15805cdde7d8154c8350e2b3b4bf2ce187ec53b99ec299",
+    "MANIFEST.json": "be96257bf14427a05a7dd7e9e2c93ee8a9ec1d328c9096c84cc97b2addd948a1",
+    "PUBLICATION.md": "958c6249afeaabd3a38a2257127fa49e214e2200187605fce49890703f733d62",
+    "README.md": "3f39196acdd6c705e03b6a04d4cc8e05f9764244ed45a63fee6a17c79ab30b4a",
+    "RESEARCH_LOG.md": "a9c1366f139bbe64435890bb613cca68ab53fb809d18324fa807939ca9a62b4d",
+    "SOURCE_GATE.md": "83d1d4626977618305710987afda2b59ff0fad960e05561ceb75cbb798b70bae",
+    "contributor_checks/CHECK_REPORT.md": "cd583791df19bf9547f4477eb53a8d3d9ee267bb87f3945c1c4e49e36ba6f857",
+    "contributor_checks/character_checks.json": "a8895e55031a737f1d03a9ac93949d4f92b155b2f752d040bc95aa1d071f4da8",
+    "control_results.json": "c76c56d93836dbf6d176e26c90cf4a74cb30cb4c8e45b8a864ce7de671c4b4d9",
+    "counterexample_results.json": "b5ab00d75e02cfcbab2b6debe51664b7a47f0611e9694e365553597c08d24dd9",
+    "independent_audit/INDEPENDENT_AUDIT.md": "d46159a2cbebfbfd0458f045204515afe0a1e21c0e56cd9fd9639061ef17310b",
+    "independent_audit/PORTABILITY.md": "f5496a926d843641e1befb7a9145bbb3dd964d4cd9d7a5b87bcca41efe6bb7ed",
+    "independent_audit/PORTABILITY_REVIEW.md": "ef2cc6e89971248b56b4d8a9021a944699f782820d305235037d7118f1605b7e",
+    "independent_audit/a5_idempotents.json": "542a889b70431860bfa7d17548ce4b408a9e1e03e563fb6e9b527097f5fd5411",
+    "independent_audit/independent_results.json": "4521b94894aad5bda948b519d5506f335ffd3e72492aa0b872b6fc3811fba487",
+    "status.json": "ef19e760360bf90e5259e05a16329b896e3e61dc1511aad8672c85eac9fa2873",
+    "turn_01.md": "c1bcf4da60b8a1d9349e0d390c861800a2c5d39d4f384ab6a487c85b76851915",
+    "turn_02.md": "cd0c7cafaa99748f1a170140e6eae73798ec9f3c04f71cc8fcc5ab91e4ac4590",
+    "turn_03.md": "2646c3e115184d1a841379f930e1c67d9e6bd7a18d4d7b2811febec321ca84de",
+    "turn_04.md": "7fa2b1d0fbdb8daac8b933ea36b745fc9c046acfda83c1988dc0979f601f0011",
+    "turn_05.md": "51e639befed20a5fcc0dc2e33b26240b9a95aad3bb13d5b4ce93b8b1664a4558",
+    "verification.json": "7dab31a80fb60a017204ab17ed331c2a41f89ac2eaf8de911e0c5ab0ca830eb4"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "pr": 445,
+  "problem_id": 30002737,
+  "frozen_head": "3242c84e06db7e99012c7fe581adde5c3f89fc89",
+  "reviewer": "/root/pr445_reproduction",
+  "family": "independent_reproduction_and_integrity",
+  "verdict": "verification_repair_required_no_central_mathematical_gap_found_in_this_family",
+  "review_complete": true,
+  "completion_percent": 100,
+  "original_proof_search_attempts": 0,
+  "blocking_findings": 1,
+  "required_repairs": 1,
+  "central_mathematical_gaps": 0,
+  "scope": "Portable finite-control and integrity evidence; mathematical consistency checked against exact formulas and cited inputs; no one-dimensional resolution or novelty certification",
+  "findings": [
+    {
+      "id": "R1",
+      "kind": "verification_reliability",
+      "blocking_for": "promotion_of_executable_PASS_and_integrity_evidence_as_reliable_under_supported_Python_environment",
+      "central_mathematical_gap": false,
+      "summary": "Controlling assertions are removed by inherited PYTHONOPTIMIZE=1, allowing materially wrong geometry, moments, physical counts, flow calculations, manifest hashes and saved replay results to receive unconditional success records",
+      "source_locations": [
+        {
+          "path": "author/checks/verify_counterexample.py",
+          "lines": [26, 27, 28, 61, 74, 76, 85, 92, 93, 96]
+        },
+        {
+          "path": "audit/independent_controls.py",
+          "lines": [13, 20, 26, 37, 48, 50, 61, 93, 100, 113, 118, 119, 120, 121]
+        }
+      ],
+      "assertion_nodes": {
+        "author": 9,
+        "independent": 12
+      },
+      "actual_negative_runs": 20,
+      "normal_negative_runs_rejected": 10,
+      "optimized_negative_runs_rejected": 1,
+      "optimized_negative_runs_falsely_succeeded": 9,
+      "missing_input_result": "Missing saved results while manifest-listed raises FileNotFoundError in both modes; retained as failure, not success",
+      "evidence": [
+        "records/reproduction_summary.json",
+        "records/author_bad_marker_optimized.json",
+        "records/author_bad_mean_weights_optimized.json",
+        "records/independent_manifest_hash_mismatch_optimized.json",
+        "records/independent_replay_result_mismatch_optimized.json",
+        "records/independent_missing_expected_results_normal.json",
+        "records/independent_missing_expected_results_optimized.json"
+      ]
+    }
+  ],
+  "repair_items": [
+    {
+      "id": "RR1",
+      "finding_id": "R1",
+      "summary": "Preserve frozen sources; add a documented runner using explicit exceptions or explicitly reject optimized execution before issuing success; pin and protect the child interpreter and validate negative mutants in both environment modes",
+      "reasonable_repair_demonstration": "exact_controls.py and run_exact_controls.py use explicit exceptions, pass both baseline modes and reject all ten new mutant-mode subprocess runs",
+      "acceptance": "Wrong geometry, moments, flow, hash and replay result must produce nonzero exit without a success record in both normal and optimized environments"
+    }
+  ],
+  "reproduction": {
+    "baseline_runs": 4,
+    "baseline_output_byte_identical": 4,
+    "python_version": "3.14.6",
+    "source_script_dependencies": "Python standard library; advertised Python 3.10 or later is consistent with int.bit_count",
+    "frozen_receipt_files_verified": 12,
+    "frozen_remote_blobs_verified": 12,
+    "frozen_originals_unchanged": true,
+    "primary_pdf_historical_hashes_matched": 3,
+    "catalogue_request_http_status": 429,
+    "catalogue_live_statement_obtained": false
+  },
+  "new_exact_controls": {
+    "translated_local_geometry_cases": 256,
+    "motif_pair_moment_identities": 2704,
+    "weighted_moment_identities": 169,
+    "product_observable_moment_identities": 169,
+    "density": "3",
+    "autocorrelation_at_zero": "3",
+    "bragg_at_zero": "9",
+    "floor_bin_suspension_checks": 3007,
+    "planar_section_checks": 289,
+    "suspension_cocycle_checks": 3249,
+    "baseline_modes_passed": 2,
+    "negative_subprocess_runs": 10,
+    "negative_subprocess_runs_rejected": 10,
+    "infinite_RS_theorem_proved_by_finite_checks": false
+  },
+  "remaining_limits": [
+    "Finite checks supplement but do not prove the infinite RS theorem or hull ergodicity",
+    "Current catalogue request failed; primary source scope was checked directly",
+    "Missing historical cached records and excluded manuscript were not replayed",
+    "No novelty, exhaustive historical search, outside review or one-dimensional resolution is certified"
+  ],
+  "external_contact_performed": false,
+  "remote_mutation_performed": false,
+  "report": "REPORT.md",
+  "public_manifest": "PUBLIC_FILES.json"
+}

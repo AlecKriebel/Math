@@ -1,0 +1,7 @@
+# Independent control development record
+
+2026-10-15T03:41:12.115367+00:00 — Initial control run completed the exhaustive rectangle loop and then failed the transformed-event assertion at trial 37, u=4, v=501/100, k=5. Inspection found that the random later spatial values could duplicate an initial spatial coordinate (u=4). This is a Poisson-null input explicitly excluded by the proof. Under repeated values, strict-LIS minimal endpoints and strictly-nearest-right replacement need not agree; this failure does not falsify an almost-sure statement on distinct-coordinate PPPs. The fixture now excludes all five initial coordinates from subsequent events. The correction changes no mathematical hypothesis. The finite permutation tests already use all-distinct values.
+
+Added a further control for coordinatewise crossing starting configurations, random intermediate coalescence-stage states, and common lower-coordinate jumps. It is a deterministic pathwise finite control, not a simulated proof of strong Markov.
+
+Final fixture hardening: excluded any starting spatial coordinate from all later crossing-configuration event samples and added strict-order assertions after every update. Added a fully rational lower bound for the source mean-bound contradiction using a factorial-series upper bound for e and exp(-z)>=1-z. This removes reliance on floating-point evaluation for the counterexample.

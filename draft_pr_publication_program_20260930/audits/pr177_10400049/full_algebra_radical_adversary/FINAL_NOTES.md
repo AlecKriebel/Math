@@ -1,0 +1,11 @@
+# Final packaging note
+
+The sealed FIRST_ASSESSMENT.md and FIRST_MANIFEST.json are preserved without amendment. Their exact identities are in FIRST_SEAL_RECEIPT.json. No mathematical revision follows from packaging.
+
+Mathematical result: the finite-order characteristic-zero counterexample survives this independent full-algebra/character/radical audit. The strongest verified result is a nonempty actual-link zero set with g in its vanishing ideal and outside the radical of g(4g-1)V. The polynomial restriction and kernel argument are proofs for the whole invariant algebra. The seven exact control families and eight detected mutations are finite reproducibility diagnostics. The separate linking-number ideal, positive-characteristic and homogeneous/completed repairs are unproved here; historical priority is unassessed. The case remains 15%, not accepted.
+
+Source-coverage precision: local reading/rendering covered the complete printed pp.398 and 422 (PDF indices 25 and 49). The web tool also displayed incidental excerpts from front matter i-iv, printed pp.403, 405, 409, 420, 421, 423 and 424 while opening the PDF and finding the target phrases. Those incidental excerpts were visible, but their complete pages were not read or rendered. The full acquired PDF body has 200 pages; it was not read throughout. No author-archive body or other third-party source was acquired. This clarifies the first assessment's statement about not reading the rest of the full PDF; it is not a claim that no incidental out-of-section text was visible.
+
+Public package boundary: the exact PUBLIC_ALLOWLIST.json contains only this audit's own code, proof, notes and clean metadata. It excludes private_sources/ohtsuki.pdf and its page-text/page-image derivatives. No raw network headers, raw stderr, or third-party excerpt bodies are retained among public-eligible files. The private source derivatives remain locally for checkability.
+
+Final audit completion estimate: 100% for the assigned mathematics review and artifact sealing. Overall case completion estimate: 15%, not accepted. This is not a priority, publication or mainline-integration verdict. No Git/index/ref/checkout, PR, tracker or publication state was modified. No people were contacted. UTC sealing timestamps are in the manifests and receipts.

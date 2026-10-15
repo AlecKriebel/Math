@@ -1,0 +1,68 @@
+{
+  "utc": "2026-10-13T22:55:47.099475+00:00",
+  "status": "ISSUES_FOUND",
+  "review_family": "package_01",
+  "mathematical_verdict": "PASS_COMPLETE_SCOPED_THEOREM",
+  "eligible_framing": "EXPOSITORY_COROLLARY_ONLY",
+  "actionable_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1,
+    "P3": 0
+  },
+  "issues": [
+    {
+      "id": "PKG-01",
+      "priority": "P2",
+      "title": "Exclude the raw third-party Farb extraction from the authored-only archive",
+      "primary_location": {
+        "path": "publication/evidence/metric_01/sources/farb_printed_24_25.txt",
+        "line_start": 1,
+        "line_end": 100
+      },
+      "supporting_locations": [
+        {
+          "path": "publication/SUPPLEMENT.md",
+          "line_start": 63,
+          "line_end": 63
+        },
+        {
+          "path": "publication/evidence/AUDIT_COPY_MANIFEST.json",
+          "line_start": 3,
+          "line_end": 4
+        },
+        {
+          "path": "publication/evidence/AUDIT_COPY_MANIFEST.json",
+          "line_start": 98,
+          "line_end": 102
+        },
+        {
+          "path": "publication/PACKAGE_MANIFEST.json",
+          "line_start": 115,
+          "line_end": 118
+        },
+        {
+          "path": "prepare_package.py",
+          "line_start": 38,
+          "line_end": 46
+        }
+      ],
+      "evidence": {
+        "bytes": 6310,
+        "sha256": "98acdd2674601eacd8247675cafbc8bb63bddf311a6ed51ccb48fa4f8e29e7f4",
+        "word_count": 1075,
+        "exact_fresh_pdftotext_reconstruction_match": true,
+        "included_zip_entry": "teichmuller_original_ball_paths_v1/evidence/metric_01/sources/farb_printed_24_25.txt"
+      },
+      "impact": "The distributable artifact contains verbatim complete printed pages24-25, including irrelevant surrounding problems, while the supplement declares raw third-party text excluded and the copy manifest classifies the file as an authored record. This contradicts the adopted package scope and source/license representation. The mathematical proof is unaffected.",
+      "required_repair": "Omit this raw text file from publication/evidence and the ZIP. Preserve the frozen original metric review and its historical pins; retain only authored source identities, locators and written discussion. Filter this extracted-text path out of package preparation, regenerate AUDIT_COPY_MANIFEST and PACKAGE_MANIFEST from the actual included set, rebuild the deterministic ZIP and current integrity receipt, and record the intentional omission/stage mapping. Do not rewrite frozen past audit pins to pretend the file was never reviewed.",
+      "verification": "On the repaired candidate verify the extraction is absent, all remaining authored copies/originals stay byte-identical, current manifests match the new included set, safe ZIP/CRC/deterministic rebuild succeed, and initial/final pins for the new review match."
+    }
+  ],
+  "all_three_current_pdf_pages_viewed": true,
+  "primary_source_page_images_viewed": 27,
+  "no_candidate_mutation": true,
+  "immutable_publication_clearance": false,
+  "repair_and_new_review_required": true,
+  "review_completion_percent": 100
+}

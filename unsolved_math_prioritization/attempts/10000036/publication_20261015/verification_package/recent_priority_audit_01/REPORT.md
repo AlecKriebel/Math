@@ -1,0 +1,51 @@
+# Recent literature and priority audit: PR 838 / problem 10000036
+
+Audit date: 15 October 2026 UTC (14 October in America/Los_Angeles).
+
+**Decision: the bounded modern search located no exact prior resolution. Priority and the claim that the question remained open in October 2026 remain unverified.** This is a literature-status audit, not another proof attempt or a first-resolution certificate. It does not supersede the independent classical-antecedent audit.
+
+The candidate is frozen at `ed2de7249953ba0c1afad253adca9b820d7297c5`; its proof SHA-256 is `c31b7a1cd6a3af04807b20d58f23d79f9d07cf4eb87df26187498f3260f9891d`, freshly matched. The complete queue descriptor, its prior report, the source manifest, and the entire candidate proof were read. Original effort remains 3/5. No central proof search was performed. No communication with researchers or other project chats, Git/index/branch mutation, queue mutation, publication, or service action occurred.
+
+## Exact test and evidential standard
+
+The core target is a nearest-neighbor **bond** law on some lattice `Z^d`, invariant under its full automorphism group, with almost-sure percolation, ordinary single-edge finite energy, and quenched internal bond critical probability `p_c(X)=1`. Ordinary finite energy means that each edge has both states with strictly positive conditional probability almost surely, given the other output edges. It does not demand a common positive bound. The candidate additionally claims every `d>=2`, translation mixing, and a unique infinite cluster.
+
+A priority refutation would require an earlier primary source proving this full target, or a checkable implication from a clearly identified earlier theorem or construction. A later source calling the exact question open would provide dated status evidence, not proof of universal absence of a solution. A negative keyword search, a citation count, and a related result are insufficient individually or together to prove priority.
+
+## Historical question and current-search boundary
+
+The pinned [BHS arXiv v1](https://arxiv.org/abs/math/9906002v1), Section 1, asks the target as Question 1.1 and specifies strict-positive conditional probabilities. The pinned [Benjamini–Tassion v1](https://arxiv.org/abs/1505.06069v1), Section 1.2, repeats the question and the same convention. Its PDF page 3 was visually checked. [The Saint-Flour notes](https://arquivo.pt/noFrame/replay/20201231041548id_/http://www.wisdom.weizmann.ac.il/~itai/stflouraug24.pdf), page 61, contain Open Problem 8.15. These establish historical formulation; none is contemporary evidence that the question was still open in 2026.
+
+The search used 74 exact query strings in 19 search batches, official arXiv metadata and current PDFs, author/institutional pages, and a bounded OpenAlex discovery-only citation census. `SEARCH_LEDGER.json` records the query strings and date; `RETRIEVAL_RECEIPTS.json` records byte hashes and access results; `READING_RECEIPTS.json` states exactly what was inspected. Search-result dates were not treated as publication dates. Results were pooled by the search tool, so a batch does not support claims about exhaustive results for any individual query.
+
+The OpenAlex census returned 7 BHS records, 11 BT records, and 1 Pete–Timár record, before deduplicating preprint/final copies. The separate BT arXiv work record returned zero citing records. Those are index observations, not total citation counts. A BHS DOI guessed initially resolved to a different paper and was rejected. The correct DOI, `10.1063/1.533187`, was obtained from official arXiv metadata and the census rerun.
+
+## Distinct recent families checked
+
+**Expansion and fixed noise.** [Pete–Timár, arXiv:2011.01377v2](https://arxiv.org/abs/2011.01377v2), Theorem 2, concerns the 4-regular tree and failure of anchored expansion after constant-density insertion and deletion noise. The statement and its finite-energy discussion on PDF page 2 were visually checked, and Section 4’s construction and estimates on PDF pages 5–7 were checked. It does not supply the lattice/internal-threshold-one statement. Its discussion uses uniform-tolerance terminology; that cannot alter the explicit ordinary-energy convention in BHS/BT. Its observed later citation, [Hutchcroft v2](https://arxiv.org/abs/2002.02916v2), page 6, cites it for dependent-percolation counterexamples to an exponential-tail extension, not as a resolution of this lattice question.
+
+**Sprinkling descendants.** The observed BT forward family includes [GFF critical parameters](https://arxiv.org/abs/2002.07735v3), [Gaussian sharpness](https://arxiv.org/abs/2105.05219v2), [strong percolation via disconnection](https://arxiv.org/abs/2308.07920v1), [supercritical percolation on polynomial-growth graphs](https://arxiv.org/abs/2107.06326v3), [FK-Ising slabs](https://arxiv.org/abs/2312.06831v2), [Voronoi sharpness](https://arxiv.org/abs/2311.00555v2), and [max-linear random environments](https://arxiv.org/abs/1804.06102v3). Their abstracts, selected main statements, and detected relevant citation/energy contexts concern other models, quantitative gluing, or geometry. No exact resolution was located within those scopes. The [2020 Severo thesis](https://archive-ouverte.unige.ch/unige:149805) was recovered from the official page's public `citation_pdf_url` after an obsolete guessed attachment route failed; its relevant text is consistent with its GFF work.
+
+**Unions of forests.** [Archer–Nachmias–Shalev–Tang v1](https://arxiv.org/abs/2311.09183v1), Theorem 1.1, proves connectivity and transience for a union of an everywhere-percolating lattice subgraph and an independent thinned WUSF in dimension at least three. This develops BT's separate sprinkling/general-union direction. It is not a finite-energy perturbation with the target internal critical probability.
+
+**Cutsets and deterministic geometry.** [Easo–Severo–Tassion v2](https://arxiv.org/abs/2412.04539v2), Theorems 1–2 and Section 2, use a uniform-in-vertex threshold `p_c^*` and uniform transience; Section 2 explicitly distinguishes `p_c^*` from ordinary `p_c`. [Bassil's October 2026 preprint](https://arxiv.org/abs/2610.08261v1) addresses vertex cutsets and a site-percolation gap for deterministic vertex-transitive graphs. Neither result applies to an arbitrary sample solely because its law is invariant. No obstruction to the candidate follows from the checked statements.
+
+**Recent factors and cluster structure.** [Csóka–Mester–Pete v1](https://arxiv.org/abs/2512.07740v1) concerns quantitative indistinguishability of non-hyperfinite FIID clusters, chiefly on nonamenable Cayley graphs. [El Alami–Pete–Timár v1](https://arxiv.org/abs/2512.18435v1) develops branch-moving methods for cluster indistinguishability. The checked introductions, main statements, and relevant contexts do not assert the exact construction or an obstruction to mixing examples on `Z^d`.
+
+**Other 2026 finite-energy models.** [Hilário–Sá–Sanchis–Teixeira's published stretched-lattice paper](https://doi.org/10.1007/s00440-026-01470-4), Theorem 1.1 and Remark 5, gives a nontrivial phase transition and discusses finite energy for an equivalent random-environment bond formulation. This is not a theorem about a percolating output graph having internal threshold one. The distinction between a model's parameter threshold and the internal Bernoulli threshold of a fixed realization is essential here.
+
+`COVERAGE_MATRIX.csv` makes the tested target coordinates explicit. “Not stated in checked scope” is a reading limitation, not a claim about every line of a paper.
+
+## Credit, wording, and unresolved gaps
+
+The source question should be credited to **Benjamini, Häggström, and Schramm (1999 preprint / 2000 publication)**, with Benjamini's later notes and Benjamini–Tassion's restatement identified separately. Full automorphism invariance is already part of BHS's question. The all-dimension input should credit Timár's established one-ended FIID-tree theorem; a factor's translation mixing is a standard consequence of its iid input, and should not by itself be promoted as a separate discovery. The candidate also supplies a direct uniqueness argument; this audit does not certify novelty for that consequence.
+
+Recommended conservative manuscript wording:
+
+> We give an explicit construction for the ordinary, nonuniform finite-energy formulation of the question of Benjamini, Häggström, and Schramm. The construction combines established one-ended invariant spanning-tree results with a perturbation kernel. We make no priority claim. A bounded literature review through 14 October 2026 located no exact prior resolution; this does not establish that the conclusion or the kernel is new. The relationship to Häggström–Mester's earlier site construction requires explicit comparison. No uniform finite-energy assertion is made.
+
+Recommended status language is **“mathematically reviewed candidate for the stated ordinary-energy target; literature priority unresolved.”** Do not replace this with “first solution,” “new theorem,” “longstanding open problem solved,” or “still open as of October 2026” on the strength of this audit. Do not describe the law as failing uniform finite energy unless that separate assertion is proved.
+
+The exact remaining gap is historical priority, including possible implicit consequences of older constructions and sources not indexed or not recovered here. This family did not examine the independent classical family's conclusions. BT's published final PDF and Timár's published final body were not obtained in this family; publisher search snippets are not a substitute. The original pinned arXiv versions are the basis for the corresponding content checks. Pete's author page was observed to include December 2025 papers, while Tassion's nominal current publication PDF is substantively stale at 2020. Neither author-page check certifies present completeness. Private or unpublished work outside public primary sources remains inaccessible, and no outside input was requested or prepared.
+
+The bounded audit is complete; the discovery/priority question remains unresolved. No publication or status mutation is recommended solely from negative search evidence.

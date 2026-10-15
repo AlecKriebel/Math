@@ -1,0 +1,450 @@
+           Output-sensitive sparse factorization over ﬁnite ﬁelds
+                         from dense factorization
+                                               Alec Kriebel
+                                       ORCID: 0009-0001-9320-500X
+
+                                            October 6, 2026
+
+
+                                                 Abstract
+         We give a deterministic reduction for complete factorization of a sparse univariate polyno-
+      mial over an explicitly represented ﬁnite ﬁeld. Its cost is polynomial in the term count, binary
+      exponent length, ﬁeld encoding, and total degree of the distinct densely returned factors, in-
+      cluding arbitrary binary multiplicities. The reduction maintains a sparse numerator and a dense
+      denominator during characteristic-p descent. The numerator degree shrinks by p, while the de-
+      nominator degree grows by at most the original radical degree per step. Classical logarithmic
+      derivatives, Padé reconstruction, residue multiplicity arguments and Cartier sections supply the
+      individual tools. We also detail the established dense factorization and irreducible construction
+      reductions of Berlekamp and Shoup. Substitution of OpenAI’s prime-ﬁeld theorem gives uniform
+      deterministic polynomial bit complexity, without GRH, randomness or an integer-factorization
+      oracle. That input requires the companion general cyclotomic Hecke zero-free theorem; this
+      paper neither reproves its breakthrough nor claims formal veriﬁcation.
+
+
+1    Problem, provenance and exact model
+Represent p in binary, put L = dlog2 pe, and supply h ∈ Fp [T ] monic of degree m ≥ 1. Primality
+of p and irreducibility of h are promises, or may be checked deterministically. The ﬁeld K =
+Fp [T ]/(h) has power basis 1, t, . . . , tm−1 ; every coordinate is a canonical residue with L bits. A
+nonzero polynomial f ∈ K[X] of degree n is a dense list. Complete factorization returns its leading
+coeﬃcient c and distinct monic irreducibles gi with positive binary multiplicities ei , such that
+        ∏
+f = c i giei . Constants have an empty list. Zero has no such ﬁnite unique factorization and is
+rejected. The ﬁeld and coeﬃcient input uses O((n + 2)mL) bits; output coeﬃcients including the
+leading coeﬃcient use O((n + 1)mL) and multiplicities O(n log(n + 1)) bits.
+     For construction, a positive degree d may be supplied in binary, but the requested dense output
+has (d+1)m coeﬃcient slots. Polynomial in d is polynomial in this output size, and is not polynomial
+in log d. No practical eﬃciency is inferred from a ﬁxed polynomial exponent. A dense-input
+convention cannot be inferred from a ﬁeld cardinality alone; the supplied deﬁning polynomial is
+part of the input.
+     Berlekamp’s reduction from general ﬁnite ﬁelds to split prime-ﬁeld polynomials is already public
+[9]. Shoup’s construction reduction is public in Theorems 3.1 and 4.1 of [10]. The particular degree-
+md lift below also occurs in Algorithm 2 and Theorem 4.1 of Rai [11]. The newly supplied input
+is OpenAI’s prime-ﬁeld theorem [12]. We attribute that breakthrough to its source. Consolidating
+its implications does not independently solve the base deterministic factorization problem or invent
+these reductions.
+
+
+                                                     1
+                                                            ∑
+     Our additional problem has sparse input f = ti=1 ai X ni , with distinct nonnegative binary
+exponents, nonzero coeﬃcients, N = max ni and b = max(1, dlog2 (N + 1)e). Its input size is
+                                          ∑
+O((m + 1)L + t(mL + b)). Write D = i deg gi for the unweighted degree of its distinct output
+factors. Dense factor coeﬃcients use O((D + 1)mL) bits, and binary multiplicities O(Db) bits. The
+output degree D, rather than the possibly exponential N , governs the following reduction. It is
+not a polynomial bound in sparse output term count, nor an algorithm for ﬁnding only a small
+common divisor.
+     Padé numerator/denominator reconstruction is classical [1, Section 8]; partial radicals from
+logarithmic derivatives occur explicitly in [2, Section 6.3]. Our known-factor multiplicity procedure
+is a constructive form of Mattarei’s residue argument [3, Theorem 2], with related repeated-root
+coding results [4]. The Cartier pull-out identity is also established [5, Proposition 1.9]. The point of
+the new reduction is the repeated sparse/dense representation and its degree bound, which handles
+all multiplicities. The inspected sparse factoring algorithms depend on numeric total input degree
+[6]; large-characteristic lacunary power algorithms [7] and characteristic-p partial-radical bounds [2]
+have diﬀerent scopes. We make no assertion of being ﬁrst. The characteristic-p residue descent itself
+is established as well: Lecerf’s algorithms use dense coeﬃcient vectors and numeric input-degree
+bounds [8, Sections 2.1–2.2]. We instead implement that descent through a compressed rational
+representation with the degree invariant below.
+
+
+2     Complete sparse factorization
+Let DF denote complete dense factorization over the represented K. This section is a reduction
+theorem independent of how that oracle is implemented.
+Theorem 1 (Sparse reduction). For every nonzero sparse input in the above model, complete
+factorization reduces deterministically to at most 2b calls to DF, each of degree at most (b + 1)D,
+with polynomial nonoracle bit cost in t, b, D, m, L. No condition on the multiplicities is required.
+With the direct prime-Frobenius reduction below, this uses at most 2b(b+1)D prime-ﬁeld calls, each
+degree at most (b + 1)D. Constants and monomials are handled without these calls.
+
+2.1   Exact multiplicity of a known factor
+Let g 6= X be a known monic irreducible of degree δ. Its formal root α in E = K[Z]/(g) is nonzero.
+Separability of g identiﬁes its multiplicity with the order at Y = 0 of
+                                            ∑
+                          f (α(1 + Y )) =       wi (1 + Y )ni ,            wi = ai αni .
+                                            i
+
+Keep the integer exponents; reducing them modulo the order of α would destroy multiplicity
+                                                                ∑
+information. At each node group n = pq + r, giving F (Y ) = r (1 + Y )r Hr (Y p ). Recursively
+compute each child’s initial order νr and nonzero leading coeﬃcient cr . Put v = min νr and
+                                                  ∑
+                                       P (Y ) =           cr (1 + Y )r .
+                                                  νr =v
+                                                           ( )
+If s residues are active, s ≤ p and the matrix [ rj ]0≤j<s is invertible: its determinant is the
+                                                   ∏
+Vandermonde in the distinct residues divided by j<s j!. Thus the ﬁrst nonzero coeﬃcient Pj has
+j < s ≤ p. Inactive terms start at order at least p(v + 1), so the parent initial term is (pv + j, Pj ).
+A single monomial has order zero. Induction proves the procedure and gives the useful bound
+
+                              multiplicity of g in f        (mod p) ≤ t − 1.                        (1)
+
+                                                     2
+This is inherited residue structure [3], not a new multiplicity/sparsity theorem. For g = X, the
+answer is min ni .
+    Use an explicit postorder stack. There are at most b exponent-digit levels and t(b + 1) occupied
+nodes; the sum of squared support sizes is at most t2 (b + 1). Compute binomial columns by their
+recurrence, using only denominators j < p, and inspect at most s coeﬃcients, never all p residues.
+Initial powering takes O(tb) multiplications in E; remaining arithmetic takes O(t2 (b + 1)) additions
+and prime-scalar multiplications there. Since E has δ coordinates over K, a conservative bound is
+O((t + t2 )(b + 1)δ 2 ) operations in K, plus polynomial integer work. Its prime-coordinate dimension
+is mδ.
+
+2.2   Recovering visible factors by an exact identity
+Assume U (0) 6= 0. Write the reduced rational function U 0 /U = P/G, where G is monic and
+deg P < deg G. Factoring formally over K shows that G is exactly the squarefree product of
+factors whose multiplicities are not divisible by p. In particular G(0) 6= 0.
+    For B = 1, 2, 4, . . ., compute the ﬁrst 2B Taylor coeﬃcients of U 0 /U at zero. Formal series
+division uses only coeﬃcients of U through index 2B, read directly from the sparse list. Solve the
+B constraints (Q · series)j = 0, B ≤ j < 2B, with Q0 = 1 and deg Q ≤ B. The augmented matrix
+has B rows and B + 1 columns over K. Let A be the ﬁrst B coeﬃcients of the product. Accept
+only after checking the exact sparse identity
+                                                U 0 Q = U A.                                     (2)
+Each side has at most t(B + 1) terms before combining equal exponents. Cancel gcd(A, Q) and
+make the denominator monic.
+   For B ≥ deg G, a solution exists. Every solution represents P/G: AG − P Q vanishes to order
+2B and has degree less than 2B. Thus acceptance occurs by B ≤ 2 max(1, deg G); a vanishing
+preﬁx alone never certiﬁes acceptance. If U 0 = 0, the answer is G = 1. Factor only this dense
+G and compute each returned factor’s exact multiplicity by the preceding procedure. This is the
+deterministic univariate specialization of classical reconstruction [1].
+
+2.3   Characteristic-p descent without sparse division
+Strip X a , where a = min ni , and record its multiplicity separately. Maintain a polynomial F = U/V
+with U sparse, V dense, V | U , and U (0)V (0) 6= 0. Initially U = f /X a and V = 1. Use the visible
+factors of U and dense factorization of V to form
+                                 ∏                                 ∏
+                          AU =       g eU (g) mod p ,       AV =       g eV (g) mod p .
+                                 g                                 g
+
+Here eU , eV are exact multiplicities. There are unique polynomials, including scalar roots, such
+that U = AU HUp , V = AV HVp . The dense polynomial HV is found by exact division and coeﬃcient
+inverse Frobenius. Since eU (g) ≥ eV (g),
+                  eH (g) = beU (g)/pc − beV (g)/pc ≥ 0,            H = HU /HV ∈ K[X].
+Its radical is contained in that of F . This does not assert that each multiplicity of F is simply
+ﬂoor-divided: carries may occur.
+                                    ∑          ∑
+    Deﬁne the constant section C0 ( cn X n ) = cpn Y n and let σ be coeﬃcient Frobenius, leaving
+the indeterminate ﬁxed. The classical pull-out identity [5] gives
+                                       C0 (U ) = C0 (AU )σ(HU ).
+
+                                                        3
+Because AU (0) 6= 0, set
+
+                      Unew = σ −1 C0 (U ),   W = σ −1 C0 (AU ),   Vnew = W HV .
+
+Then H = Unew /Vnew is a polynomial and Vnew | Unew . Both constant terms remain nonzero. The
+new numerator has at most t terms and degree at most bdeg U/pc. Inverse Frobenius must act on
+both sections.
+    Let DF be the radical degree of F and v = deg V . The radical degree DU of U = F V is at most
+DF + v. Consequently
+
+                deg Vnew ≤ (deg AU + deg V )/p
+                           ≤ ((p − 1)(DF + v) + v)/p = v + (1 − 1/p)DF ≤ v + DF .                (3)
+
+Also (1) gives deg AU ≤ min(p − 1, t − 1)DU . Thus forming AU densely has polynomial cost in
+t, DU , even when p is binary-large. Radical containment implies DF ≤ D throughout, so after k
+descents deg V ≤ kD. Numerator degree, rather than degree of F , proves termination after at most
+b descents. A constant numerator forces a constant denominator.
+    The identity F = (AU /AV )H p gives
+
+                           eF (g) = (eU (g) mod p − eV (g) mod p) + peH (g).
+
+At level k add pk times the signed residue diﬀerence to the factor ledger. Telescoping yields the
+exact nonnegative ﬁnal multiplicities. Intermediate factors can be absent from the original input
+and must cancel. For example, in F2 , U = X 3 + X 2 + 1 gives W = X + 1 despite X + 1 ∤ U . Signed
+bookkeeping removes it at the following level. Use the original leading coeﬃcient for the ﬁnal unit.
+
+2.4   Pseudocode and bit accounting
+The preceding procedures give the following complete deterministic algorithm:
+
+  1. Normalize the sparse list, reject zero, strip X a , set V = 1, the integer weight w = 1, and an
+     empty signed factor ledger.
+
+  2. While the numerator is nonconstant, recover its visible denominator by (2), factor it densely,
+     and ﬁnd exact multiplicities. Factor V densely. Construct AU , AV , HV as above.
+
+  3. Add w(eU mod p − eV mod p) for each occurring factor. Replace the numerator and denom-
+     inator by
+                          U ← σ −1 C0 (U ),     V ← σ −1 C0 (AU )HV ,
+      and replace w by pw. Continue step 2.
+
+  4. Combine equal factors, delete zero entries, restore (X, a) and the original leading coeﬃcient.
+     Check original-input valuations and the weighted degree if an independent certiﬁcate is de-
+     sired.
+
+     At level k < b, the two dense calls have degrees at most (k+1)D and kD. Their total degree over
+all levels is O(b2 D). Padé matrices have dimensions at most 2 max(1, (b+1)D) by that number plus
+one; a ﬁrst known-factor quotient has dimension δ ≤ (b + 1)D over K. Each coordinate always has
+L bits. The largest residue product degree is at most (t − 1)(b + 1)D. Multiplicities have O(b) bits;
+signed weights, including the ﬁnal unused weight, have O(b + L + log(b + 1)) bits; coeﬃcient inverse
+Frobenius uses exponent pm−1 with O(mL) bits. Schoolbook polynomial arithmetic, elimination,
+
+                                                   4
+binary powering and exponent sorting are all polynomial in these displayed dimensions. With
+M = 1 + t + b + D + m + L, a deliberately loose nonoracle bound O(M 24 ) bits covers them and the
+represented-ﬁeld reductions below. Their prime calls contribute at most 2b(b + 1)D P ((b + 1)D, L).
+This proves the theorem without a loop of numeric length p or N .
+    An independently checkable output certiﬁcate veriﬁes distinct monic irreducibles, their exact
+                                            ∑
+multiplicities in the original sparse input, ei deg gi = N , and its leading coeﬃcient. Divisibility
+and this degree equality prove the claimed factorization. It must not expand giei when ei is binary-
+large.
+
+
+3     Explicit reduction for complete factorization
+Let P (u, L) be a nondecreasing bit-cost bound for a deterministic complete factorization algorithm
+PF over Fp on degree at most u.
+
+Theorem 2 (Established reduction with explicit oracle accounting). There is a uniform deter-
+ministic reduction for complete factorization in the above representation with polynomial nonoracle
+overhead in n, m, L. The trace version uses at most mn calls to PF, each of degree at most n, with
+sum of queried degrees at most mn2 . An alternative uses at most n calls and sum of degrees at most
+n2 . Neither version enumerates the ﬁeld or uses an integer-factorization or primitive-root oracle.
+
+3.1   Fixed algebras and trace separation
+First suppose f is monic squarefree of degree u. If it has s irreducible components, the Chinese
+remainder theorem gives
+                                           ∏
+                                           s                      ∑
+                        A = K[X]/(f ) ≃         Fpmua ,               ua = u,   s ≤ u.
+                                          a=1                     a
+
+With q = pm , q-Frobenius is K-linear. Its ﬁxed algebra Bq = ker(Frobq − I) is K s . Form its u × u
+matrix and compute a kernel basis b1 , . . . , bs by exact elimination. For 0 ≤ j < m form
+
+                                                ∑
+                                                m−1
+                                                              k
+                                        cij =         (tj bi )p ∈ A.
+                                                k=0
+
+Each component of bi belongs to K, so each component of cij is TrK/Fp (tj bi (a)) ∈ Fp . This is a
+quotient-algebra power computation, not a coeﬃcientwise trace on arbitrary elements of A.
+                            ∑        pk is nonzero and has degree pm−1 < pm , so trace is nonzero,
+    The trace polynomial m−1  k=0 Y
+including when p | m. For every δ 6= 0, multiplication by δ is bijective; therefore y 7→ Tr(δy) is
+nonzero. Some power-basis coordinate y = tj detects it. Two diﬀerent coordinate maps on Bq = K s
+diﬀer on some bi ; hence some cij separates every pair of components. Using just Tr(bi ) would not
+justify this claim: Tr(1) can vanish.
+    If c has component values a1 , . . . , as ∈ Fp , its monic minimal polynomial, over either K or Fp ,
+is exactly                                             ∏
+                                       µc (Z) =              (Z − a).
+                                                a∈{a1 ,...,as }
+
+A polynomial annihilates c precisely when it vanishes at each coordinate; this proves the formula,
+squarefreeness and degree at most s. Find µc by the ﬁrst dependence among 1, c, . . . , cs in the u-
+dimensional K-space A. Its coeﬃcients lie in the canonical Fp and can be converted after checking
+
+
+                                                       5
+the other basis coordinates vanish. Factor µc with PF. The returned factors are distinct linear
+polynomials and give its occurring values. Reﬁne each current factor block g by gcd(g, c − a) for
+those values a. These gcds partition its component support. After all ms coordinates no block
+contains two components, so every block is irreducible.
+
+3.2   Independent prime-Frobenius variant
+The p-power map is Fp -linear, generally not K-linear. On the um-dimensional space with basis
+tj X i , form Frobp − I as an um × um matrix over Fp . Its kernel Bp is Fsp , because the p-ﬁxed
+elements of every ﬁnite ﬁeld component are exactly Fp . A basis of Bp separates all coordinate
+pairs. For each of its s basis vectors compute the ﬁrst power relation over Fp and apply the same
+minimal-polynomial factorization and gcd reﬁnements. This proves correctness independently of
+the trace pairing and uses only s prime calls.
+     For one squarefree input, the trace version uses at most ms3 gcds and the direct version at most
+s3 . A ﬁrst-dependence system has u rows over K, or um rows over Fp , and at most s + 1 columns.
+A loose count for the trace version is O(m2 u5 (L + 1)) operations in K. For the direct variant one
+may bound the cost by
+
+               O(mu3 L + u5 ) operations in K,     O(m3 u3 + mu4 ) operations in Fp .
+
+These counts include powering, exact elimination, dependence tracking, root-product checks and
+gcds. The prime calls add at most msP (s, L) or sP (s, L) bits respectively. Coeﬃcients remain
+canonical ﬁeld coordinates; no coeﬃcient-height growth occurs in elimination. Schoolbook arith-
+metic and polynomial extended Euclid bound a K operation by O(m2 (L + 1)3 ) bits, so these are
+uniform bit-polynomial reductions. The reference program’s simple repeated dependence solves ﬁt
+within the looser polynomial bounds; operation counters are not a runtime guarantee.
+
+3.3   Multiplicity and inseparability
+Normalize f by its leading coeﬃcient. The standard squarefree procedure sets C = gcd(f, f 0 ),
+W = f /C, and i = 1. While W 6= 1, set Y = gcd(W, C), emit (W/Y, i) if nonconstant, then set
+W = Y , C = C/Y , and increment i. If C 6= 1 after this loop, its remaining multiplicities are
+                                               ∑
+divisible by p; its derivative is zero. For C = ck X k its unique pth root is
+                                              ∑ pm−1
+                                         H=        cpj   Xj.
+                                               j
+          m
+Indeed ap = a in K. Recurse on H and multiply the returned multiplicities by p. Copying
+coeﬃcients works only when m = 1.
+    To check this procedure, ﬁx a factor of multiplicity e. If p ∤ e, it initially occurs once in W
+and e − 1 times in C, and is emitted at step i = e. If p | e, it remains wholly in C and passes
+to recursion with multiplicity e/p. This proves the result by induction. The emitted squarefree
+products have disjoint irreducible supports and sum of degrees at most n. Recursive input degrees
+sum to at most 2n. All gcd loops have polynomial cost; coeﬃcient-root exponents have O(mL) bits,
+not pm−1 iterations. Summing the squarefree call bounds gives exactly the bounds in the theorem.
+The argument covers p = 2, m = 1 and wholly inseparable inputs.
+                                          j                               j
+    For checking h, compute successive T p mod h, check the gcd with T p − T for every j ≤ bm/2c,
+             m
+and check T p = T mod h. A reducible degree-m polynomial has an irreducible factor of degree at
+most m/2, so the gcds detect it, also with repeated factors. This uses m binary modular powers
+and no integer factorization.
+
+                                                   6
+4    Prescribed-degree construction
+Shoup [10, Theorem 3.1] gives a deterministic reduction from constructing an irreducible degree-N
+polynomial over Fp to PF, with polynomial overhead in N, L. Theorem 4.1 gives the analogous
+arbitrary-base implication. For clarity an alternative known lift is as follows. Construct H ∈
+Fp [X] irreducible of degree N = md, factor it over K by the preceding theorem, and take the
+lexicographically ﬁrst factor. The p-Frobenius orbit of a root has size N . pm -Frobenius acts by
+adding m modulo N , so every orbit has size N/ gcd(N, m) = d. Every factor therefore has degree
+d and multiplicity one. This proves the lift without ﬁnding an isomorphism or primitive root. It is
+the same lift as Rai’s Algorithm 2 [11]. For d = 1 return X; for m = 1 direct prime construction
+suﬃces. The extension is the explicit quotient K[X]/(g) for the output g.
+    The supplementary construction audit makes Shoup’s oracle use explicit: trial division factors
+the numeric output degree N ; each prime-power construction has prime-ﬁeld algebra dimension
+at most N 2 ; oracle polynomial degrees are at most N 2 , and there are O(N L log(N + 1)) calls.
+The coeﬃcient slots always have L bits. The bound includes p-power Artin–Schreier towers, odd
+prime-power binomials and the special 2-power cases. It never factors p − 1. Trial division of N
+is permitted by dense output size and is not an integer-factorization oracle on arbitrary binary
+inputs. The 2-power exception cannot be omitted: over F3 ,
+
+                             X 4 + 1 = (X 2 + X + 2)(X 2 + 2X + 2),
+
+although −1 is nonsquare. The supplied construction uses the quadratic extension in that case, fol-
+lowing the established binomial criterion. Factoring H over K has input size O(dm2 L), polynomial
+in the original ﬁeld and dense degree-d output sizes. Thus the whole construction is bit-polynomial
+whenever P is polynomial.
+
+
+5    Upstream input and resulting scope
+Corollary 3 (Consequence of OpenAI’s prime-ﬁeld theorem). Using [12, Theorem 1.1], complete
+factorization over the represented K, on either dense input or sparse input with the dense factor
+output speciﬁed above, and degree-d irreducible construction are uniform deterministic algorithms
+with bit complexity polynomial in their respective input/output sizes. They require no GRH, ran-
+domness, integer-factorization oracle or primitive-root oracle.
+                                                                      12
+Proof. Substitute the cited prime-ﬁeld bound P (u, L) = O(((u+1)L)10 ) into the established dense
+reductions and Theorem 1. Every oracle degree, number of calls and nonoracle representation is
+bounded by a ﬁxed polynomial in the corresponding dense or sparse input/output parameters stated
+above.
+
+    This is a consequence of the cited proof, not an independent proof of its analytic or geometric
+breakthrough. Family 142’s Theorem 1.2 is an auxiliary-prime reduction with numeric prime-size
+parameter E. Its unconditional Theorem 1.1 imports family 029’s Theorem 1.2 [13]: all ﬁnite-
+order Hecke L-functions over every cyclotomic ﬁeld containing µ12 are zero-free in <s > 1 − 10−6 ,
+with the principal pole permitted. The applications use F = Q(µ12q ) and the cyclic extension
+F (p1/q )/F . Abelian zeta factorization and the smoothed explicit formula produce auxiliary primes
+ℓ ≤ cB 20000000 , where B = 20 + (n + 1)(L + 1). A Dirichlet-only theorem does not suﬃce.
+    We inspected the actual manuscripts at the pinned repository commit
+                           adc7f1241b42e322a6451854ab7e4b4c146bf78a.
+
+
+                                                7
+The audit covers source hashes, the required theta, reﬂection, Poisson and Mellin arguments, and
+the algebraic norm, divisor and splitting proof. Separate automated adversarial audits found no
+substantive gap in those inspected dependencies. Limited ﬁnite checks of auxiliary tables, local
+Gauss/Euler identities and exact exponent margins are supplied; they do not prove an analytic
+zero-free theorem. The huge prime-ﬁeld branch was not executed. Family 003’s actual Lean scope is
+Dirichlet and Eisenstein-ﬁeld Hecke nonvanishing; it does not cover the needed varying cyclotomic
+input. No relevant Lean build was reproduced here and this follow-on is not claimed formally
+veriﬁed.
+    For optional ﬁxed-r extraction, factor the dense polynomial X r − a and return its linear-factor
+roots. Complexity is polynomial in numeric r, m, L, hence in m, L for each ﬁxed r. No polynomial-
+in-log r claim follows. This is merely a factoring consequence; quadratic nonresidue and square-root
+consequences already in the release are not relabeled as new results.
+
+
+6    Reproduction, limitations and disclosure
+The supplement contains exact reduction pseudocode, source/dependency ledgers, proof-node au-
+dits and standard-library Python implementations. The bundled prime oracle enumerates Fp only
+in bounded small examples; its O(p) cost is not polynomial in log p and cannot substantiate prime-
+ﬁeld derandomization. Independent trial-division comparison checks 377 small monic inputs; a
+second implementation cross-checks 346 cases. Examples cover characteristic two, nontrivial in-
+verse coeﬃcient Frobenius, repeated factors, m = 1, constants and rejected zero/oracle errors. The
+manuscript makes no assertion of practical eﬃciency or ﬁrst priority. The sparse implementation
+additionally compares 960 small monic inputs with dense factorization and checks huge binary expo-
+nents, signed cancellations and nontrivial extension coeﬃcients. Separate independent prototypes
+check the multiplicity and full-descent reductions. These are ﬁnite checks, not universal complexity
+tests. The supplemental priority audit separates the inherited individual mechanisms from the
+sparse/dense degree invariant and compares exact primary statements. The earlier dense-only re-
+search record was withheld from Zenodo as inherited; the present theorem adds the all-multiplicity
+sparse output bound. No claim about general arithmetic circuits, sparse-only output size or poly-
+nomial cost in binary prescribed construction degree is made.
+    AI tools were used extensively in research, drafting and veriﬁcation. Automated adversarial
+reviews are not conventional human peer review or refereeing; this work has not undergone such
+review. Alec Kriebel is the sole listed author; no aﬃliation or outside endorsement is asserted.
+Upstream AI-produced mathematical work is attributed to OpenAI as supplied by its manuscript-
+speciﬁc citation information.
+
+
+References
+ [1] E. Kaltofen, Greatest common divisors of polynomials given by straight-line programs, J. ACM
+     35 (1988), 231–264. Author-hosted primary text.
+
+ [2] P. Dutta, N. Saxena and A. Sinhababu, Discovering the roots: uniform closure results for
+     algebraic classes under factoring, J. ACM 69 (2022), article 18; arXiv:1710.03214 (2017).
+     doi:10.1145/3510359.
+
+ [3] S. Mattarei, Root multiplicities and number of nonzero coeﬃcients of a polynomial,
+     J. Algebra Appl. 6 (2007), 469–475; arXiv:math/0512239 (2005), inspected v2 (2006).
+     doi:10.1142/S0219498807002338.
+
+                                                 8
+ [4] J. L. Massey, D. J. Costello Jr. and J. Justesen, Polynomial weights and code constructions,
+     IEEE Trans. Inform. Theory 19 (1973), 101–110. Primary author archive.
+
+ [5] E. Rowland and R. Yassawi, Automatic congruences for diagonals of rational functions, J.
+     Théor. Nombres Bordeaux 27 (2015), 245–288; arXiv:1310.8635 (2013). doi:10.5802/jtnb.901.
+
+ [6] A. Demin and J. van der Hoeven, Factoring sparse polynomials fast, J. Complexity 88 (2025),
+     101934; arXiv:2312.17380 (2023). Author-hosted ﬁnal text.
+
+ [7] M. Giesbrecht and D. S. Roche, Detecting lacunary perfect powers and comput-
+     ing their roots, J. Symbolic Comput. 46 (2011), 1242–1259; arXiv:0901.1848 (2009).
+     doi:10.1016/j.jsc.2011.08.006.
+
+ [8] G. Lecerf, Fast separable factorization and applications, Appl. Algebra Engrg. Comm. Comput.
+     19 (2008), 135–160; author version (2007). doi:10.1007/s00200-008-0062-4.
+
+ [9] E. R. Berlekamp, Factoring polynomials over large ﬁnite ﬁelds, Mathematics of Computation
+     24 (1970), 713–735. doi:10.1090/S0025-5718-1970-0276200-X.
+
+[10] V. Shoup, New algorithms for ﬁnding irreducible polynomials over ﬁnite ﬁelds, Mathematics
+     of Computation 54 (1990), 435–447; preliminary version, FOCS 1988. Author-hosted primary
+     text.
+
+[11] S. S. Rai, Pseudo-deterministic construction of irreducible polynomials over ﬁnite ﬁelds, ECCC
+     TR24-147 (October 4, 2024), arXiv:2410.04071 (October 5, 2024). Versioned public record.
+
+[12] OpenAI, Deterministic Polynomial Factorization over Prime Fields, OpenAI Math Release
+     preprint (October 4, 2026), Manuscript-speciﬁc citation supplied by the source. Pinned
+     manuscript.
+
+[13] OpenAI, Primitive roots for every admissible integer base, OpenAI Math Release preprint
+     (October 4, 2026), Manuscript-speciﬁc citation supplied by the source. Pinned manuscript.
+
+
+
+
+                                                9
+

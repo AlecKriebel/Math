@@ -1,0 +1,99 @@
+--- frozen/check_independent.py
++++ hardened/check_independent.py
+@@ -5,6 +5,11 @@
+ from itertools import combinations
+ from collections import Counter
+ import json, random
++
++def require(condition, message):
++    if not condition:
++        raise RuntimeError("Finite control failed: " + str(message))
++
+ 
+ def subsets(x, proper=False):
+  x=sorted(x)
+@@ -39,7 +44,7 @@
+  out=0
+  while target:
+   i=target.bit_length()-1
+-  assert i in b,'No chain filling'
++  require((i in b), 'No chain filling')
+   target^=b[i][0];out^=b[i][1]
+  return [j for j in range(len(columns)) if (out>>j)&1]
+ def fill(k,z,degree,avoid):
+@@ -90,9 +95,9 @@
+    if s&t:continue
+    for x in B(s):
+     for y in B(t):
+-     assert not x&y
+-     assert x in newk or x==M
+-     assert y in newk or y==M
++     require((not x&y), 'original line 93: not x&y')
++     require((x in newk or x==M), 'original line 94: x in newk or x==M')
++     require((y in newk or y==M), 'original line 95: y in newk or y==M')
+      cell=tuple(sorted((tuple(sorted(x)),tuple(sorted(y)))))
+      if cell in omega:omega.remove(cell)
+      else:omega.add(cell)
+@@ -103,14 +108,14 @@
+     c=(e,y)
+     if c in bd:bd.remove(c)
+     else:bd.add(c)
+- assert not bd
++ require((not bd), 'original line 106: not bd')
+  paired={frozenset(t if frozenset(s)==M else s) for s,t in omega if frozenset(s)==M or frozenset(t)==M}
+- assert paired==set(boundary(a))
++ require((paired==set(boundary(a))), 'original line 108: paired==set(boundary(a))')
+  crossings=0
+  for s,t in omega:
+   u=sorted(s+t)
+   crossings+=tuple(u[::2]) in (s,t)
+- assert crossings%2==1
++ require((crossings%2==1), 'original line 113: crossings%2==1')
+  return {'cells':len(omega),'moment_curve_pairing_mod2':crossings%2}
+ 
+ def main():
+@@ -133,33 +138,33 @@
+   oldT={f for f in k if f<=a|b and len(f)<=3}
+   newT={f for f in nk if f<=a|b and len(f)<=3}
+   support=frozenset().union(*oldT)
+-  assert set().union(*k)-support
++  require((set().union(*k)-support), 'original line 136: set().union(*k)-support')
+   # Check the cone and induced-complement homology hypotheses, including endpoint moves.
+   for rho in oldT&newT:
+    W=support-rho
+    kw={f for f in k if f<=W}
+-   assert any(all(f|{v} in kw for f in kw) for v in W)
++   require((any(all(f|{v} in kw for f in kw) for v in W)), 'original line 141: any(all(f|{v} in kw for f in kw) for v in W)')
+    complement={f for f in k if not f&W and len(f)<=3}
+-   assert betti01(complement)==[0,0]
++   require((betti01(complement)==[0,0]), 'original line 143: betti01(complement)==[0,0]')
+    complements+=1
+   om=missing(k);nm=missing(nk)
+   for M in om&nm:
+    common+=1
+-   assert not M<=support
+-   assert not a<=M
+-   assert all(not a<=e for e in boundary(M))
++   require((not M<=support), 'original line 148: not M<=support')
++   require((not a<=M), 'original line 149: not a<=M')
++   require((all(not a<=e for e in boundary(M))), 'original line 150: all(not a<=e for e in boundary(M))')
+   for M in nm-om:
+    if M in k:
+-    assert p==q==2 and M==a and b in om
+-    assert {f for f in nk if len(f)<=3}|{M}=={f for f in k if len(f)<=3}|{b}
++    require((p==q==2 and M==a and b in om), 'original line 153: p==q==2 and M==a and b in om')
++    require(({f for f in nk if len(f)<=3}|{M}=={f for f in k if len(f)<=3}|{b}), 'original line 154: {f for f in nk if len(f)<=3}|{M}=={f for f in k if len(f)<=3}|{b}')
+     new2+=1
+    else:
+-    assert p==3 and q==1 and b<=M and len(M-(a|b))==1
++    require((p==3 and q==1 and b<=M and len(M-(a|b))==1), 'original line 157: p==3 and q==1 and b<=M and len(M-(a|b))==1')
+     v=next(iter(M-(a|b)))
+     rec=witness(k,nk,a,b,v);records.append(rec);new1+=1
+   facets=nf
+- assert all(counts[p] for p in range(5)),counts
+- assert new1 and new2 and common
++ require((all(counts[p] for p in range(5))), counts)
++ require((new1 and new2 and common), 'original line 162: new1 and new2 and common')
+  print(json.dumps({'seed':49830000689,'transitions':100,'moves_by_p':dict(sorted(counts.items())),
+   'complement_checks':complements,'persistent_missing_triangle_checks':common,
+   'new_missing_p2_q2_checks':new2,'new_missing_p3_q1_witnesses':new1,

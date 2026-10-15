@@ -1,33 +1,16 @@
-# Invariant finite-energy percolation with internal threshold one
+# Finite-energy lattice percolation with internal critical probability one
 
-Problem **10000036 / AMR-099-0036**, rank 875. This package presents an affirmative proof under the source question's **ordinary, nonuniform finite-energy convention**, accepted without mathematical correction by two independent written AI audits.
+For problem10000036 / AMR-099-0036, the five-page [research note](publication_20261015/preprint/output/pdf/note.pdf) gives an affirmative construction for the historical ordinary finite-energy bond question in every d>=2. The law has full lattice-automorphism invariance, translation mixing, a unique infinite component, and quenched internal bond/site critical probabilities one. It uses established one-ended spanning-tree inputs and a maximum finite-past rule suppressing every bypass of late tree cuts.
 
-## Exact accepted result
+The construction develops Haggstrom-Mester's published summable tree-flip mechanism. The note also supplies the planar bounded-cutset deduction for their exact fixed-phase midpoint projection. This is a source-consequence deduction, not a located previously printed solution. No wholly new planar mechanism, verified first priority, certified novelty, or worldwide current-open status is claimed. The [priority statement](publication_20261015/preprint/CURRENT_PRIORITY.md) records exact credit, chronology and source/version limits. No uniform energy bound or failure of all uniform marginal bounds is asserted.
 
-For every integer **d ≥ 2**, there is a bond-percolation law on nearest-neighbor **Z^d** which is invariant under every lattice graph automorphism, mixing under translations, and gives both states of every edge strictly positive conditional probability given all other output edge states. Almost surely the resulting graph X has exactly one infinite component C and its quenched internal Bernoulli bond thresholds satisfy **p_c(X) = p_c(C) = 1**. The manuscript's additional internal site-thinning conclusion is also accepted. Finite components are permitted.
+[Editable source](publication_20261015/preprint/note.tex), [verification ZIP](publication_20261015/preprint/verification.zip), [portable guide](publication_20261015/preprint/README.md), and [current dated metadata](CURRENT_PUBLICATION.json) accompany the note. OpenAI tools were used extensively in solving, proof development, drafting, coding and adversarial verification. This is unrefereed, without completed external human peer review or formal proof-assistant verification. Automated checks authenticate bytes and archive relationships, not the infinite mathematical proof or priority.
 
-The proof uses Timár's established [one-ended factor-of-iid spanning-tree theorem](https://doi.org/10.1214/19-ECP274). Tree-dependent insertion and deletion rates leave eventual singleton boundaries along every original tree ray. These boundaries survive in X, while every independent thinning with p < 1 must retain infinitely many distinct prescribed edges to percolate. The conditional-expectation argument establishes ordinary finite energy after the hidden tree is forgotten. Häggström–Mester's [summable-flip construction](https://doi.org/10.1214/ECP.v14-1446) is expressly credited as a close antecedent.
+All27 original files and all 3 original evidence archives remain byte-identical in [the complete frozen source](publication_20261015/verification_package/source/README.md). At this level24 original files retain their bytes; README.md, RESEARCH_LOG.md and PUBLICATION_MANIFEST.json are current wrappers. The original complete wrappers are preserved inside the portable package. Original PUBLICATION_ACCEPTANCE.json, PUBLICATION_METADATA.json and PUBLICATION_TEST_RESULTS.json remain dated historical records; CURRENT_PUBLICATION.json and the external final acceptance govern the current package.
 
-## Proof and review
+Before running downloaded code, independently obtain the SHA-256 pins from the repository's final external acceptance receipt at draft_pr_claimed_solved_800_900_20261012/audits/pr838_10000036/FINAL_PREPRINT_ACCEPTANCE.json and verify the startup file's bytes. From this directory substitute the externally trusted outer-manifest digest for PIN:
 
-- [Unchanged author proof](author/PROOF.md), [three-approach record](author/APPROACHES.md), [review guide](author/AUDIT_GUIDE.md), and [historical author status](author/STATUS.md)
-- [First independent audit](independent_audit/AUDIT.md) and [separate acceptance](independent_audit/ACCEPTANCE.md)
-- [Second independent adversarial audit](second_independent_review/SECOND_ADVERSARIAL_AUDIT.md) and [separate acceptance](second_independent_review/SECOND_ACCEPTANCE_REPORT.md)
-- [Publication acceptance](PUBLICATION_ACCEPTANCE.json), [static test results](PUBLICATION_TEST_RESULTS.json), and [exact publication inventory](PUBLICATION_MANIFEST.json)
-- [Author public-source metadata](author/SOURCES.json), [first source checks](independent_audit/SOURCE_VERIFICATION.json), [second source checks](second_independent_review/SECOND_SOURCE_VERIFICATION.json), and [public dataset verification metadata](second_independent_review/SECOND_INPUT_VERIFICATION.json)
+    python3 -I -S -B verify_publication.py PIN --full
+    python3 -I -S -B -O verify_publication.py PIN --full
 
-No mathematical correction or derivative proof was required. The author and both review freezes, their ZIPs, and external manifests are preserved byte-for-byte. Historical pending-review and not-yet-published statements inside them describe their freeze time; the later separate acceptances and this publication wrapper record the subsequent disposition without replacing those historical bytes.
-
-## Scope and status limits
-
-No uniform finite-energy conclusion is asserted. Neither finitary coding, finite dependence, positive association, nor a claim that every vertex percolates follows from this package. The existence theorem for the input tree is an explicitly cited external dependency, not re-proved here.
-
-Mathematical acceptance is not a verified novelty, priority, first-solution, live catalog status, journal-acceptance, human-peer-review, or proof-assistant claim. Bounded literature searches found no exact prior resolution but cannot establish its absence. The queue status is **claimed_solved**, with **3/5** substantive approaches used; no new approach was added in review or publication.
-
-## Byte and publication boundary
-
-The three archives contain fifteen regular Markdown/JSON data members in total and no executable mathematical checker. Publication preparation checked fixed external archive and manifest pins, exact inventories, every member, strict UTF-8/JSON formats, and the bindings between the unchanged author proof and both acceptances. Twenty-one corruption and safety controls rejected the expected bad inputs in each of isolated normal and optimized Python modes. These are static byte/safety checks; they do not prove the mathematics.
-
-Only authored mathematical proof/audit/acceptance text and public verification metadata are included. Source PDFs, extracts, images, raw dataset records, private sources, personal data, private coordination material, and private checker fingerprints are excluded. Public citation links, source titles and status, retrieval/inspection history, and source/dataset hashes and sizes are retained where already recorded.
-
-Only the current queue row's Status, Turns and Findings cells change. All unrelated queue content, notes, and chat links are preserved. This is a draft review package with no CI-pass claim; exact remote verification is a separate post-publication check.
+The verifier binds the complete closed tree, metadata/PDF/ZIP copies and all frozen original evidence, then calls the portable checks. The guide documents independent startup trust and deterministic rebuilding. Raw primary publications, source extracts, renders, full input corpora and private credentials are excluded. The canonical production deposit manifest is in this shard's audit/preprint folder; no deposit or spreadsheet action is performed by these verification commands.

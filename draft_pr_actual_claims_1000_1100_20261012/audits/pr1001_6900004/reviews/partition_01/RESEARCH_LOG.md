@@ -1,0 +1,15 @@
+# Independent partition review research log
+
+Target: PR #1001, pinned head `f333d06cc161b1b8ae8422bf413ed1ffae31e614`.
+
+This review audits the full literal theorem for simple graphs on one fixed labeled vertex set, full Cartesian placements including collisions, and connected components of coordinate-sign-preserving fiber-equivalence classes. It does not certify priority or resolve the original source's cross-graph interpretation.
+
+## Checkpoints
+
+- **2026-10-12 20:38 PDT (2026-10-13 03:38 UTC), 20% complete.** Read the pinned report and current status/acceptance, but no historical `AUDIT.md` or other reviewer findings. Confirmed from Karpenkov 2018 Definitions 1.1–1.3 and Doray–Karpenkov–Schepers Definitions 2.1/2.6 that the full base includes collisions, nonedges have zero stress coordinates, undirected stresses are symmetric, and strata are connected components of fiber-equivalence classes. Source Problem 4 leaves cross-graph sameness unspecified.
+- **2026-10-12 20:40 PDT (2026-10-13 03:40 UTC), 55% complete.** Independently derived incidence-matrix factorization for every collinear placement with no collapsed graph edge. The stress kernel is a positive diagonal transport of a fixed graph cycle space within a fixed edge-order chamber. This verifies both endpoint equivalence and the entire continuous path. Found no mathematical gap in the witness. Identified sharp failure of extensions to dimension zero, multigraphs, collision-free restricted bases, and abstract equivalence; these are excluded by the target theorem.
+
+Next: implement an independent exact-rational matrix/kernel checker; test every graph and every absent/present edge through five vertices, selected dimensions/orientations, cyclic witnesses with no dimension jump, and mutation controls. Then write the derivation and final verdict.
+
+- **2026-10-12 20:43 PDT (2026-10-13 03:43 UTC), 95% complete.** Independent exact-rational implementation passed 1,099 graph cases, 5,325 nonedge witnesses, and 71,280 transport/singleton case checks. Negative controls rejected the inverse-ratio formula and transport through a collapsed graph edge. Reconstructed an invertible ambient linear map between the full stratifications for the nonisomorphic four-vertex path and star; 24 exact boundary checks passed. This is a concrete reason why the literal theorem does not settle arbitrary ambient or abstract equivalence.
+- **2026-10-12 20:43 PDT (2026-10-13 03:43 UTC), 100% complete for this literal-theorem review.** Confirmed the reviewed report snapshot equals its pinned Git blob; wrote independent derivation, all boundary/counterexample attempts, exact check output and provenance manifest. No gap found in the theorem. Priority remains outside this review. Original-problem interpretation remains unverified; no unqualified solution or novelty certification follows from this review. Shared PR authored files, Git state, GitHub, deposits, and contacts were not modified. Parent may checkpoint/publish these audit artifacts within the authorized workflow.

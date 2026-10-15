@@ -1,0 +1,11 @@
+# Research log
+
+2026-10-14T03:14:00.235645+00:00 — 5% complete. Initialized independent full-source radial-angle priority audit. Verified supplied SHA-256 identities and page counts; source content will be recorded before earlier audit reports are read. Working only in this review folder on main; publication and git operations reserved to parent.
+
+2026-10-14T03:15:48.241759+00:00 — 45% complete. Completed full DLS and Zhang–Ma text and full-page visual coverage. Recorded independent theorem/proof scope and half-line/angle derivations in SOURCE_INDEPENDENT.md before earlier reports. Main finding: both classifications concern exact |beta|=pi/4 at the finite tip; neither yields a nonmonotone slit. Next: compare original problem and frozen/current candidate, then adversarial exact checks.
+
+2026-10-14T03:19:02.163827+00:00 — 60% complete. Compared exact HL6.72 and both candidate versions. Adversarial source check found unexcluded Zhang–Ma p600 finite nonzero branch with P(omega)=P(u0) and double zero of P-P(u0). Recorded a correction; source theorem is treated as published claim with a printed-proof gap, not disproved. Candidate lies in DLS Thm3 finite coefficient class, so its tip is strictly below the equality hypothesis. Next: exact symbolic scope/orientation/degree checks and final bounded verdict.
+
+2026-10-14T03:25:51.358462+00:00 — 90% complete. All exact algebra, local-source-gap witness, sign margins, discriminant and radius checks pass. Root independently inspected source proof pages and agreed to keep the Zhang–Ma missing branch scoped as a printed elimination gap. Detailed REPORT.md, SOURCE_IDENTITY.json and VERDICT.json written; no old review consulted. Final remaining task: integrity seal and authored-output/cache boundary check.
+
+2026-10-14T03:26:30.888934+00:00 — 100% complete toward this assigned full-source priority comparison. Complete article/visual coverage, exact source/candidate derivations, bounded verdict and receipts are delivered. Authored outputs sealed; ignored .cache excludes source OCR/images and private snapshots. The complete literature-priority program is not claimed complete: the unread 2014 commentary and other root-level sources remain. No canonical/remote/branch/index changes, external communication, release or push performed by this review family.

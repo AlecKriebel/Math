@@ -1,0 +1,189 @@
+# Research log
+
+## 2026-10-13T03:26:46+00:00 — initial checkpoint — 0% complete
+
+- A new persistent goal supersedes the prior status-only pass after direct
+  user authorization to inspect every PR's actual asserted outcome.
+- Scope remains PRs #1000 through #1100 in ascending order.
+- PR bodies and artifacts can now be read to determine actual claim status.
+  Full-resolution assertions enter rigorous mathematical and priority review.
+- No result has yet been accepted, rejected, merged, closed, or published.
+- Start with pinned PR #1000 and its exact original target; preserve queue
+  statuses as evidence of bookkeeping, not as a substitute for claim review.
+
+## 2026-10-13T03:32:43.730442+00:00 — claim-intake checkpoint — 5% of program complete
+
+- Pinned all 101 PR bodies and claim/scope files; no head changes since the earlier pass. Actual authored outcomes diverge from all-queued bookkeeping.
+- Root screened #1000–#1023 in ascending order: prior results, explicitly partial work, and retained source/interpretation holds; none claims a new unqualified full original-target solution. Preserve complete literal and companion subclaims explicitly, rather than declaring those mathematics false. An independent reviewer is checking #1000–#1015.
+- PR #1024 asserts a complete negative answer to the unrestricted local-action fibre-product question, shared with introductory target30001112. Its head and all27 delivered files are pinned. Mathematical acceptance, priority, preprint, and publication are pending. PR #1025 is another asserted complete result awaiting the ascending pass.
+- Root reproduced30 finite checks/mutations across normal/-O/-OO: all expected positives and negative rejections. These do not prove formal-series, cohomology or functor assertions.
+- Two independent adversarial families are separately re-deriving the formal-series/restriction argument and the naturality/functor/source-scope argument, without reliance on the historical acceptance.
+- Original EMS2008 question, arXiv2011 definitions/question, and AIF2009 conjugacy are being retrieved and inspected directly. No publication has been authorized by an audit verdict yet, and no PR action or tracker write has occurred.
+
+## 2026-10-13T03:38:58.563226+00:00 — scope correction checkpoint — 5% complete
+
+- Fresh independent primary-source review recommends including #1001 for its complete literal equality theorem, despite the draft's retained unqualified interpretation hold. The published source defines full fixed-label partitions and provides no written alternative equivalence relation. Root conservatively admits this full literal claim for math/priority review and returns ascending publication cursor to #1001. The provisional exclusion is preserved as history and superseded for this PR.
+- #1024 fresh mathematical families A/B both found no mathematical or source-scope gap, with full written derivations. Root also matched all30 finite execution outputs/exit codes byte-for-byte to delivered contracts. Independent priority review is now active. No result is promoted to publication readiness, and no publication occurs ahead of #1001.
+- #1001's whole44-file pinned delivery was acquired; its universal proof is under a fresh independent adversarial review. Exact full fixed-label equality must be distinguished from arbitrary ambient/abstract/generic comparisons throughout any publication.
+
+## 2026-10-13T03:46:08.999295+00:00 — mathematical checkpoint — 7% of program complete
+
+- #1001's precise full literal theorem passed fresh independent adversarial review. Priority and manuscript/package review remain required. #1024's full negative theorem separately passed both independent math families and is in priority review. No result has been published or merged.
+- Independent actual-claim intake is now covering all remaining PRs; complete literal and bundled subclaims are flagged rather than excluded by stale statuses or lack of a novelty guarantee.
+- Third-party source PDFs remain local research inputs; metadata pins are preserved outside ignored raw-source folders.
+
+## 2026-10-13T03:56:17.358285+00:00 — Complete actual-claim intake (program estimate 7%)
+
+All 101 pinned PRs screened independently against actual authored assertions. Fifteen definite complete-result candidates and four source-scope reconciliation candidates are recorded in CLAIM_REGISTRY.json. This is claim intake, not truth or novelty certification. Current ascending cursor remains #1001; #1024 passed independent mathematics and bounded priority with a required prior-credit correction. #1001 draft PDF rendered and all three pages visually inspected; layout readable with no clipping. Its priority audit remains in progress. Dedicated source-scope reviews for #1023/#1034 and #1047/#1080 dispatched. No PR state changes, publication or tracker append yet.
+
+## 2026-10-13T04:00:36.141882+00:00 — #1001 priority and package checkpoint (program estimate 8%)
+
+Independent priority audit completed: 54 queries, 17 source/version records, known detector and collinear invariance explicitly credited; no exact earlier reconstruction located, with final KSS/handbook and non-exhaustiveness limitations preserved. Adopted version-specific published/preprint citations globally in current manuscript, supplement and metadata. New portable verification runner passed 9 baseline executions and 18 actual defective-source mutations. Finite diagnostics are distinguished from universal proof and historic UID1000 permission controls. Preparing fresh whole-package adversarial review; immutable upload gate remains closed.
+
+## 2026-10-13T04:01:34.189321+00:00 — Source-scope reconciliation complete (program estimate 8%)
+
+Adopted primary-source-backed eligibility decisions: #1023 excluded because published original question requires two free actions and authored result uses one nonfree action; #1034 admitted for its complete counterexample to an original spanning clause and degree-seven existence claim, preserving other parameter gaps; #1047 admitted for explicitly interpreted uniform ordinary-rank negative target; #1080 admitted for separately explicit fixed-genus boundedness clause, preserving essential/nonidentity twist convention and unresolved exact maximum. Registry now contains 18 complete-result candidates and 83 partial/prior exclusions, with source quantifier and bundled-scope limits retained. Claim intake does not certify mathematical truth or novelty.
+
+## 2026-10-13T04:11:53.946633+00:00 — Fresh package loop and next-candidate preparation (program estimate 8%)
+
+#1001 first fresh whole-package review independently rederived theorem, checked source/credit/metadata/archive and 27 executions, plus 102,604 singleton, 31,484 forest and 30 path/star boundary cases. It found one P3 navigation issue; repaired by adding a portable evidence index and original stage/raw receipts while preserving every historical record. Runner comparisons additionally hardened to recursive exact JSON types and all 27 executions rerun successfully. Corrected archive pinned and sent to a NEW fresh adversarial reviewer. #1024 five-page draft now explicitly credits AIF Proposition6.1 plus Proposition4.1, cites thesis question, retains unrestricted/prorepresentable-component boundary; compiled without warnings after one line-wrap repair and all five pages rendered/visually inspected. Publication supplement/kit and fresh package loop still required. #1025 full 35-file pinned snapshot acquired; independent proximity/bit and ring/hull/oracle mathematical families dispatched without historical audit conclusions. No immutable publication, tracker write, PR ready/merge or closure yet.
+
+## 2026-10-13T04:19:28.498562+00:00 — #1001 second fresh review and documentation repair (program estimate 8%)
+
+Second new reviewer independently passed mathematics, source scope, prior credit, all 27 executions, archive, metadata, navigation repair and visual PDF. It found one P3 execution-prerequisite documentation issue: unchanged checker uses POSIX os.getuid(). Added Python3.10+ on POSIX/macOS/Linux condition to current README, supplement, runner help and metadata, preserving math/code logic, PDF and historical records. No further execution rerun for a documentation-only change; next fresh review will audit final proposal. No immutable publication or PR disposition yet.
+
+## 2026-10-13T04:25:02.682275+00:00 — #1025 mathematical promotion checkpoint (program estimate 10%)
+
+Read full candidate proof and both fresh independent derivations; root independent deductions are in ROOT_MATH_AUDIT.md. No mathematical blocker in polynomial binary-input optimization, actual closed hull, facet bounds or strong separation/membership. FamilyA independently supplied uniform oracle numerator/denominator bounds and GLS rational-bit route; familyB checked exact ring-family closures and actual GLS unbounded-oracle interface. Optional paper clarity improvements retained: at least one nearby optimum and explicit bit-control bound. Independent priority dispatched without historical priority conclusions. First immutable-publication cursor remains #1001, awaiting third fresh review after two documentation repairs.
+
+## 2026-10-13T04:34:54.352119+00:00 — #1001 published after clean fresh review (program estimate 10%)
+
+Third NEW reviewer independently passed proof, all 27 executions, source scope/credit, strict JSON controls, 90-entry input archive, historical pins, 38 navigation links and PDF QA with ZERO actionable concerns. Added unchanged final review and acceptance state only; final109-entry archive checked byte-for-byte, 52 historical and17 final-review counterparts preserved, 44 links verified. Final PDF SHA d1820035901020691f091c92a6cf0f78bc8a270413f72727a68b2abb341cf475; archive SHA d17c7c5c46d407ac618ae6200f6e78db2c54c91c1b503fc050efd0338e967a79. Repository Zenodo tool staged, inspected and published exact metadata and two verified files as record23331540, DOI 10.5281/zenodo.23331540, with HTTP200 DOI resolution. No metadata normalization. Tracker append/read-back and exact-head PR promotion/merge follow. Original sealed stage files remain unchanged; current acceptance is the precise literal theorem, not unwritten/ambient comparison variants.
+
+## 2026-10-13T04:37:40.406909+00:00 — #1001 complete; cursor advances to #1024 (program estimate 14%)
+
+Verified published DOI 10.5281/zenodo.23331540 and exact metadata/files through repository kit, HTTP200 DOI resolution, Workspace CLI exact RAW append to requested gid1254632077 in row72, and exact read-back. Updated PR description to accepted precise scope, DOI, verification and AI/unrefereed disclosures; marked ready and merged with exact-head guard. Read-back confirms MERGED at original audited head f333d06cc161b1b8ae8422bf413ed1ffae31e614, merge commit a83366113b9bc75fe56d76a230de37c4f135d738. No release, outreach, original sealed-stage edits or shared checkout/index mutation. Goal remains ACTIVE. All 101 assertions screened; 18 admitted exact complete-result claims, 83 partial/prior exclusions. Next ascending candidate #1024: math and bounded priority passed, five-page draft and supplement exist; portable kit, metadata and fresh package loops still required. #1025 math passed, independent priority running with required classical-lineage credit corrections; no paper or disposition yet.
+
+## 2026-10-13T04:45:57.362528+00:00 — #1025 bounded priority report received (program estimate 14%)
+
+Independent priority reviewer froze REPORT.md and machine-readable evidence after72queries/19PDFretrievals. It reports no earlier full exact claim in inspected bodies and recommends an explicitly assembled consequence with worldwide priority unverified. Required new-paper credit: Cook–Gerards–Schrijver–Tardos1986 mixed-integer proximity, Takamatsu–Hara–Murota2004 hybrid partial minimization, Murota2002/2003 ring/scaling lineage. Full root adoption and global new-paper corrections remain pending; no #1025 publication/PR disposition. Raw source bodies remain ignored. Ascending cursor is #1024; #1001 fully complete.
+
+## 2026-10-13T05:00:27.945019+00:00 — #1024 portable package checkpoint (program estimate 16%)
+
+The unrestricted negative theorem and all mandatory prior-credit corrections are adopted in the five-page research note and exact metadata. New portable kit passed39executions (9baselines,12actual-source faults,18runtime faults), complete output/exit contract exact in normal/-O/-OO. All11independent arithmetic predicates preserved by explicit-guard adaptation. Original27submittedfiles remain byte-identical. Public evidence index maps historical stages and omits third-party source bodies. Current PDF compiled without warnings; all5pages rendered/visually inspected. Fresh whole-package reviewer follows; no immutable upload, tracker append or #1024 PR action yet.
+
+## 2026-10-13T05:02:28.646450+00:00 — #1025 root priority adoption (program estimate16%)
+
+Root read full final priority report and primary central antecedent bodies. Adopted mixed proximity(CGST1986), hybrid partial minimization(THM2004) and n²ring lineage(Murota2002/2003) as mandatory global paper credit. No inspected exact full prior solution identified; worldwide priority remains unverified. New manuscript to frame explicit rational binary-input application using classical algorithms, preserving separate subtree conjecture and no strongly-poly/compact-formulation claim. #1024 fresh package round1 is running; publication cursor remains1024.
+
+## 2026-10-13T05:17:03.253465+00:00 — #1024 first package review clean; next fresh loop (program estimate16%)
+
+New independent reviewer rederived theorem and primary source scope, verified27Gitpins,108entrydeterministicarchive, all5PDFpages and39exactexecutions. Additional three outer-mode39replays, nine damaged-package controls, strictJSON challenges, cubic/quartic and finite-H1 boundary checks passed; ZERO actionable issues. Preserved unchanged authored review/receipts and added explicit current gate; NEWsecondreview follows. #1025sixpagepaper and portable24casekit are now complete candidate materials, independently reviewing; no publication ahead of1024. #1031all29authoredfiles pinned for next mathematical audit, not yet accepted.
+
+## 2026-10-13T05:26:34.851711+00:00 — next-candidate mathematical checkpoint (program estimate18%)
+
+#1031 root reconstruction and3baseline/45certificatefault symbolic replay passed, with source universal scope independently inspected; fresh geometry and SOS/lift families pending. #1024 NEWsecondpackage review active after firstzeroissuePASS. #1025 firstfreshpackage reviewer found one P3 citation-label correction (GLS10.2.7 is a problem, not a named theorem); exact rational SFM interface is sound. Preserve currentinputs until reviewer freezes, then globally repair citation/PDF and assign NEWreviewer. No immutable publication/PR action beyond completed1001.
+
+## 2026-10-13T05:38:53.593981+00:00 — #1024 final clean acceptance (program estimate19%)
+
+Two NEWindependentwholepackage reviews each ZEROactionable. Second reviewer rederivedfulltheorem,39cases+39extractedreplay,33forcedguards+27malformedpackagecontrols,27Gitpins,whole-moduleASTreversal andall5PDFpages. Appendedunchangedfinalreview andadministrativeacceptanceonly; mathematicalTeX/PDF/checkers/metadataunchanged. Final154entryarchive/pins/links/CRCchecked; originaldraftheadstillunchangedOPEN. FullyreadyforpreprintandZenodo; productionuploadfollows.
+
+## 2026-10-13T05:40:20.481446+00:00 — #1025 repairs applied; #1031 mathematics clean (program estimate19%)
+
+First1025freshwholepackage reviewer independently passed mathematics and24direct+24extractedcases,29guardcontrols and28modelFourier-Motzkin checks across3modes. Exactly2P3repairs: GLS10.2.7citationlabel and explicitB=1 forEempty. Both globallyapplied incurrentTeX/PDF; currentmetadata/checkers and35submittedfilesunchanged. All6newPDFpages compiledwarning-free/rendered/viewed, originalreviewpreservedunchanged. NEWsecondreview follows. #1031 fresh geometry andSOS/liftfamilies both completedclean; rootreadfullreconstructions/sourcequantifiers andwillpromotecombinedmathematics topriorityaudit. #1024acceptedafter2cleanfreshrounds; productionZenodostagingactive.
+
+## 2026-10-13T05:51:44.229273+00:00 — #1024 workflow complete; cursor#1025 (program estimate22%)
+
+Published exacttwoverifiedfiles with repositoryZenodokit asrecord23333046/DOI10.5281/zenodo.23333046; HTTP200resolved. APIuseddocumenteddescriptionU2019-to-ASCIIapostropheserializationonly; allothermetadatafields/filehashesverified. WorkspaceCLIatomicRAWappend/readbackexact row75 onrequestedgid1254632077. PRdescription/titleupdatedscopedacceptance+DOI/credits/AI/history, readythenmergedexacthead37b4b2f; mergecommit41b95511c92f7c0584238ea964c3cc4728b77bf0. Originalstageandimmutablepublishedfilesunchanged. GoalACTIVE,2of18admittedresultsfullycomplete. Next1025after2P3fixes awaitsNEWsecondreview;1031fullmathpassed/independentpriorityactive. Other83excludedassertionsnotprocessed. State fields normalized to the existing *_prs/list schema after detecting newly introduced aliases; service receipts and accepted outcomes are unchanged.
+
+## 2026-10-13T06:02:54.281963+00:00 — PR1025 clean final package; 24% overall
+
+Second NEW independent whole-package reviewer rederived all universal steps and exact GLS interfaces, independently checked both P3 repairs and original Git provenance, 24 portable runs and fresh exact controls, primary source credit and all six PDF pages; zero actionable issues including P3. Root read entire report and appended 21 unchanged authored records, preserving all reviewed mathematical/PDF/checker/metadata bytes. Final deterministic ZIP has217entries SHA b9615bb11e2bd963d270c55bfaec02a9e40bb3738249f99dda8a38c43da7c847. All35originalGitfiles, current relative links, reviewcopy pins, completeinventory/CRC and exact unchanged draft head passed. Ready for the authorized production publish, tracker and merge steps. Previous goal turn made concrete progress: PR1024 publication/tracker/merge and PR1025 repairs/new review plus PR1031 mathematical acceptance.
+
+## 2026-10-13T06:05:25.122528+00:00 — PR1031 priority completed, paper preparation; 24% overall
+
+Independent84-query/25primary-PDFaudit located no fulltargetresolution but exactpriorcomponents. Adopt9mandatory global credits/scopefixes, including Vrana–Levay2009tensor-to-wedge lemma, standardfermionicprojectorbody, Wirtinger/Kahlerface, theta/momentframework, Sanyal–Rostalski earlierHarvey–Lawsonequivalence and Fawzi2019/2021decisiveno-lift. Nearby BSV/BKM quadratics actinSym2(exterior), nottargetorientedmassball. Worldwidepriority/currentopenness unestablished. Rootreadentire report; prepare properlycreditedpaperthenNEWwholepackageloops. PR1025 creation405unconfirmed; twoaccountGETs503, no retryorDOI/tracker/mergeclaim. Continue independentwork, reconcilebeforeanycreationretry. PR1032all44filespinned andtwofreshdistinctfamiliesaudit analyticperiods and Langlands/Hall/originalscope independently.
+
+## 2026-10-13T21:48:32.681672+00:00 — PR1031 complete candidate and NEWreview; 26% overall
+
+Prepared6-pagecompleteuniversalnegativepaper, all9requiredpriorcredit/scopefixes globally inpaper/PDF/SUPP/README/metadata. Exactstandalone48runs passed3baseline+45actualCERTIFICATEfaults normal/O/OO completebytes/exits/recursiveidentity; originals unchanged; noUIDharness. All29originalGitblobs, links and104entrydeterministicZIP inventory/CRC verified, SHA18e7a23e07b8c1b3a1b44034c1533d37400f00480f821927bc2e6adbbe75c67a. All6pagescompiledwarningfreeandrootviewed. NEWfreshindependentwholepackageadversary01 assigned; candidatefrozenpendingreport. PR1025 frozenready pendingZenodoaccountreconciliation; nocreationretry, publication/DOI/tracker/merge claimed. PR1032 freshanalytic andLanglandsfamilies active; finaldispositionsremainascending.
+
+## 2026-10-13T21:54:21.612326+00:00 — PR1025 published, tracked and merged; 28% overall
+
+ProductionZenodo recovered afterearlier405creation/503accountfailures: readonlyexacttitleandcreationwindow200responsesbothnohits, thenstagedrecord23352246. Exactlocalmetadata/fileschecked, onlydocumenteddescriptionapostropheserializer normalizeracceptedwithlocalmetadataunchanged. PublishedDOI10.5281/zenodo.23352246resolvedHTTP200; trackerRAWrow80exactreadbackverified. PRbody/titleupdatedwithcreditedscope/unrefereedextensiveAI andhistoricalstagepreservation;readyandmergedexactauditedhead7769e6872c3d2f4267706dc2400be3519186cf3d at2026-10-13T21:53:04Z,mergecommit76442c93c473547ceadc26baec9b9bb044fc748c. Frozen79130-bytePDFSHAfb72c689ca300042ca6a30856415e337fb776a47fa6c17f76f1b7d77d2d1a1da,413267-byte217-entryZIPSHAb9615bb11e2bd963d270c55bfaec02a9e40bb3738249f99dda8a38c43da7c847unchanged. CompletionrequirementsevidencedbyFINAL_OUTCOME andreceipts. Cursor1031; NEWwholepackagereview01active. PR1032 analyticfamilycompletedwithsource-supportedproof,nonglobalacceptance; rootreadentirereport+independentderivationandreplayeddependency-free40scalar/30orderchecksfull28956bytes inthree modes. Langlandsfamilyhandlewasnotliveaftercontextchange, existingtaskresumedfrompreservedcheckpoint andconfirmedrunning; no duplicate reviewer spawned.
+
+## 2026-10-13T22:05:24.824836+00:00 — PR1031 repaired candidate / fresh review 02; PR1032 priority audit; 30% overall
+
+Root read the entire frozen first package report/verdict. Mathematics, all original Git bytes, archive, primary interfaces and six pages passed; two P3 prose issues required repair. The portable negative suite directly changes six coordinate and nine schema/metadata certificate families and rejects before projector/minor verification; unchanged baselines check those full identities. Corrected the overbroad supplement claim and copied edited current README, supplement, evidence index and metadata to normal word/number spacing. Metadata/deposit synchronized; paper/PDF/arithmetic bytes unchanged. Preserved 29 unchanged authored first-review records, excluding raw bodies, render images, caches and duplicate extracted input. Repaired candidate has 135 entries, 446002 bytes, SHA d0c41fad32886f48cf87cb6f981836ccce9610bbe778af4fcf3999d0055f4d70; links, inventory/CRC, metadata equality and mathematical-byte pins pass. NEW second independent whole-package reviewer assigned; candidate frozen, not yet ready/published. PR1032 combined complete scoped mathematics passed root plus independent analytic and Langlands families, including all original math calculations in a dedicated ignored pinned-library runtime. NEW independent in-depth priority adversary assigned, with explicit Luo–Zha full-text/translated-or-dual-equivalence gap and current source comparisons. Final dispositions remain ascending. PR1025 completed immutable publication, tracker row80 and audited-head merge in this goal turn; goal remains active for the whole range.
+
+## 2026-10-13T22:11:07.848211+00:00 — PR1033 full claim acquired and distinct fresh math families; 30% overall
+
+Pinned all eight authored Git files of PR1033/problem11000026 at head6322305d37b8131f034a1b4c3c5e861e4b04844f, open draft confirmed. Root read full proof and independently derived the exact-original-closed-ball4c retreat bound, all zero/small/equal-radius and nonunique-geodesic cases, actual path parameterization/length and intrinsic-distance implication. Recorded the remaining source condition explicitly. Fresh general-metric and exact Teichmuller/source families assigned independently. Root inspected primary Lenzhen–Rafi Theorem C, uniform topology notation and Theorem17 non-strict inequality, and original Farb Question3.5. Source family checks deeper published proof interfaces and exact half-log normalization; metric family verifies sharpness and false weaker-assumption controls. PR1031 second fresh package review continues with one preliminary surviving spacing issue; candidate remains frozen. PR1032 priority comparison continues, including an older five-segment negative GL(F) distinction antecedent with different degree/subgroup; Luo–Zha full-text comparison remains unresolved and is not waved through. Previous goal turn completed PR1025 publication/tracker/merge and advanced the next two full workflows, so it is classified as progress.
+
+## 2026-10-13T22:24:43.592400+00:00: publication review and independent audits checkpoint
+
+#1031 round02 found only one P3 spacing defect; repaired, copied36 unchanged authored review records, regenerated173-entry ZIP SHA36c47c91076759bce5d162e53812dc481b66ac7b6ea05bc231d65efd5709e730; mathPDF/code/metadata unchanged. NEW whole-package round03 active. #1032 full frozen priority audit read;110 files verified, known Luo–Zha comparison pending lawful complete body. #1033 full root/two-family mathematical acceptance recorded with all8 actualGitfiles/tree verified; NEW independent priority audit active. #1034 two mathematically distinct families underway; degree7 family just completed, root fullreport read remains pending. No additional immutable publication or disposition. Best-guess overall completion:31%.
+
+## 2026-10-13T22:29:50.294953+00:00: combined PR1034 mathematics and PR1037 independent families
+
+#1034 root read all3 mainproofs/4supportlemmas/fullfreshreports andderivations, viewed10 criticalprimarypages, reproduced4 fresh arithmetic runs withoutalteringfrozenreviews. All19 actualGitfiles/fulltree match. Fullnegative spanningclause andexactscopedkernelclaims accepted; freshpriorityactive; residualorders3–6/higherclassification explicit. #1037 all10actualoriginalfiles acquired atliveunchangeddrafthead, fullrootproofread andindependentinitialderivation preserved; twofresh source/Gaussian andinvariant/quotientfamiliesactive. #1031 round03 provisionalP3 diagnosticspacing undercurrentreview; candidateleftfrozen pendingfullfinalreport. No furtherpublication or disposition. Best-guess overall completion32%.
+
+## 2026-10-13T22:55:30.976731+00:00: mathematical/priority/package checkpoint
+
+#1031 round03fullreport read, soleP3two diagnosticstringsfixed withASTequalityexceptliterals, root48portableexecutionsPASS;212-entry684576-bytecandidate SHA7189ec3fe29ef22d24bae3b6acadf5fa27bda196a5340098440aa240590d3f7d, NEWround04active. #1033 three-pageexpositorypapercompiledwarningfree/allpagesviewed;metadata/supportallcreditframing applied,58-entry201814-byteZIP SHA0ec9d589631f5c645fb3130eb453cd1324b4c628cdd1e254446ce08a218ce9a7, NEWpackage01active. #1034 priorityread/adoptedapplication-only.HMpriorM2/BarNatancredit/retrievalgaps retained. #1037 completeallnmathaccepted/fullreportsread,priorityactive. #1041 completecoNPmathaccepted/fullreportsread/all11Gitfiles/frozenfamiliesverified;priorityactive. Ninecandidatesmathverified,threepublishedmerged,all101intakecomplete. No additionalZenodo/GWS/merge action. Best-guess overallcompletion36%.
+
+## 2026-10-13T23:03:23.807180+00:00: terminal clean 1031 review and 1037 exact match
+
+1031 fourth NEW full review CLEAN zero P0–P3; root full report read, unchanged terminal evidence appended and final integrity/seal passed. Authorized production deposit staged and exact inspected; publication requested. 1037 current priority report fully adopted with exact contemporary match and qualified chronology, no precedence/independence assertion. 1033 first fresh package review found one P2 raw third-party text inclusion; delegated exact repair in its own folder, new review pending afterward. Nine full math audits complete; three prior results published/merged. Best-guess shard completion: 37%.
+
+## 2026-10-13T23:06:08.882626+00:00: fourth accepted publication complete
+
+1031 complete DOI 10.5281/zenodo.23353160, tracker row81, actual exact-head merge 9182035ca5205514a32f003007fbe5c8100e4855. Cursor1032 retains critical public-fulltext priority comparison pending; independent work continues1033 repair/new review,1034 attributed paper prep,1037 exact-match framing,1041 priority,1047 two fresh math/source families. All101 assertions screened,18 full candidates,83 exclusions unchanged; nine combined mathematics accepted. Best-guess overall completion:39%.
+
+## 2026-10-13T23:10:36.407962+00:00: preprint and intake checkpoint
+
+1033 repaired candidate pins/inventory/all54authoredcopies independently verified by root; NEWwholepackage02assigned. 1041 freshpriority fullreportadopted and all14input/13outputpins rehashed; attributedpaperprep assigned, genericreal-demand isolation credited to EFL2018. 1037 credited contemporary-match proofprep assigned. 1047 root sourcefullpage and complete familyproofs checked, two NEWbasis/sourcefamilies pending. Own checkpoint filter now keeps temporary raw/render/extracted review files private on disk and omits them from currentpublicsnapshot via isolatedindex; immutabledepositedarchives unaffected and historicalpinmeaning preserved. Best-guess shard completion:39%.
+
+## 2026-10-13T23:15:38.697072+00:00: tenth combined mathematical audit accepted
+
+1047 root/twofreshfamilies complete, scopequalified uniformsamegroundordinaryrank; priority pending. 1052 full8file tree acquired unchangedhead andtwofreshtransfer/primaryencodingfamiliesassigned. Four earlieracceptedresults published/trackerverified/merged. Best-guess overall completion:40%.
+
+## 2026-10-13T23:21:33.718689+00:00: final clean 1033 and three new full reviews
+
+1033 NEWsecondwholepackage CLEAN fullyrootread and finaladministrative seal/integrity complete; ready expositorypreprint heldafter1032criticalfulltextprioritycomparison. Current13page1034/12page1037/9page1041papers andsupportkits prepared; fullreportsrootread and threeNEWwholeadversarialreviewers assigned. Root wholepaper/PDF inspections continueinparallel. Originalandhistoricalbytes preserved. 1047 freshpriority underway;1052 cyclicfamily complete rootfullreportsstillpending,primaryfamilyunderway. Fourpublishedandmerged,tencombinedmathverified. Overallcompletion40%.
+
+## 2026-10-14T03:26:33.552812+00:00 — #1047 bounded priority audit adopted (overall 40%)
+
+All 27 authored/frozen output pins verified. Preparing a credited elementary obstruction; no originality or worldwide-open certificate. #1032 remains priority-held; no later publication authorized ahead of its disposition.
+
+## 2026-10-14T03:33:34.597386+00:00 — checkpoint
+
+Overall42%. #1052 combined scoped mathematics accepted,11 mathverifiedtotal; primary reconstruction and fresh root replay passed. #1064 original9 acquired exacthead for two independent families. #1034/1037/1041 editorial repairs frozen, new review loops in progress; publication cursor remains1032.
+
+## 2026-10-14T03:39:30.029932+00:00 — repaired preprint inputs verified (overall42%)
+
+#1034 root156current/515immutable/19originals/149ZIP; #1037 root131current/104immutable/104copies/128ZIP; #1041 root139current/338immutable/95copies/125tar members, all independently reassembled exact bytes. All13/12/9 refreshed pages individually read. Each changed edition requires a NEW whole review, preserving all earlier reports. #1047 paper preparation underway; #1052 priority underway; #1064 fresh two math families underway; #1071 nine originals acquired. No later Zenodo/GWS/merge ahead of #1032. Checkpoint will use isolated temporary Git index and own-folder paths only.
+
+## 2026-10-14T03:47:48.566535+00:00 — #1064 combined math acceptance (overall44%, candidate60%)
+
+Both complete reports/frozen derivations and actual9Git bodies verified. Root unmodified entropy checker exit0 full mathematicalJSONequal, UTC-only difference; originalsource2pages andARp12 individually read. Complete Frobenius upper theorem accepted, n1caveat/classicalmethod/lowercredit retained. Priority nowpending. #1041 review02 found a clean-extraction verifier defect; awaiting its full terminal report before boundedrepair andfreshNEW3.
+
+## 2026-10-14T03:53:55.022046+00:00 — #1052 bounded priority audit adopted (overall44%, candidate70%)
+
+Full report/verdict read; all26 frozen authored output pins rehashed.64queries/sourcebody/earliertranslation-and-lifting antecedents compared. Eligible as credited cyclic corollary of AFWSintegerhardness, withbothencodings andconditionalP=NP scoped; exactcyclichistoricalpriority unknown. No firstness/independence certificate. Preprint preparationnext, no publicationahead1032.
+
+## 2026-10-14T03:59:46.417937+00:00 — NEWwhole02 root adoptions (overall44%)
+
+#1034 and#1037 fullreports/terminalverdicts read; zeroP0–P3, outputpins rehashed31/67. Terminaladministrativesealpending, no laterpublicationahead1032. #1041 fullreportread and64 outputpinsverified; soleP2 is documented clean verifier requiring intentionallyexcluded externalwrapper. Mathematical/source/ninepagechecks clean, repairrequiredfollowedNEWwhole03. OldfirstCLEANverdictandallstagesremainimmutable.
+
+## 2026-10-14T04:08:34.817565+00:00 — #1071 complete scoped math acceptance (overall46%,candidate60%)
+
+Rootfullbothreports/derivations/canonicalbridge/sourcecoarseconvergence read;9actualGit andfamilyoutputsverified;exactcopiedrootcheckerexit0wholemathematicalJSONequalUTC-onlydifference. BothfamiliesfoundNTUv1eq27false strongerlittle-o, independentlyrecoveredneededall-H convergence. CurrentROOT_SOURCEqualificationadopted, futurepaperallfields mustavoidexactcoefficientendorsement. Fullalln/allT/lowerboundeveryestimatoraccepted, prioritypending.
+
+2026-10-14T04:23:49.109680+00:00 — Root rehashed758repair1041 outputs/224current/2488protected baseline files, independently rebuilt210-membertar and actually passed clean default-build-default and optimized verification; fresh whole03 assigned. Root fully read1052four-page TeX/all4visualpages, rehashed348inputs91outputs59exactcopies, independently rebuilt83-memberZIP and ran all five clean stdlibcommands; fresh whole01 assigned. Root adopted1064priority31outputs after full source implication read, credited corollary framing only and new preparation assigned. Root adopted1080both full families12+28 outputs/all6actualGit, original questionpage and primaryinterfaceprooftext, fresh unchangedreviewchecker reproductions;14mathaccepted,48% program. #1047secondwhole and#1071priority started. #1034/#1037terminaladminonly inprogress. Ascendingserviceshold#1032unchanged.
+
+2026-10-14T04:58:30.882403+00:00 — Root adopted and independently rebuilt final1034(194ZIP) and1037(177ZIP), preserving all paper/PDF/metadata bytes and prior stage records; current auditroot FINAL_SEAL/INTEGRITY readytrue/unpublished, servicesheld1032. Root adopted1047whole02zero31outputs and1041whole03zero304outputs; terminaladminparents pending. Root1052P3notes repair verified30outputs1179current134candidate1122protected99copies91historical pin resolutions, five clean stdlibcommands125ZIP exact; NEWwhole02 assigned. Root1064five-page prep verified170inputs103outputs72copies97ZIP plusall5pages andfourstdcommands; firstfreshwhole reviewed math/source/repro but2P3alias/manifestguards,17outputpins rootadopted and boundedrepair assigned. Root1071prio fullreport/comparison20pins adopted, primaryjournal-formattedNTUp3/7/13/14 actuallyviewed andnewdatedsourceaddendum added; attributedproofpaperprepared. Root1080prio fullreport/CTcorollary14pins/sourceinterfaces andactualcontrolJSON reproduced; crediteddeductionpreparerassigned. Root1085mathfull2reports24+17pins/6actualGit/sourceAIMvisual/2normalexactcheckers passed,15mathverified; freshpriorityassigned.1094freshhead acquired8originals/twoindependentfamiliesassigned.56%overall. Lastsuccessfulisolatedpush6a1fec109652ebcd8735012fda7d3a1b65df7969; no laterZenodo/GWS/mergeaheadcursor.
+
+2026-10-14T05:05:46.393610+00:00 — Disk pressure: removed only two completed PR1037 disposable Python runtimes after exact per-file/symlink custody in DISPOSABLE_RUNTIME_CLEANUP_20261014.json. No source/proof/PDF/checker/receipt/package mutation. Historical runtime pins retain captured-stage meaning. Overall completion 56%.
+
+2026-10-14T05:25:47.977546+00:00 — Checkpoint58%: mathematics accepted for16/18 candidates; ROOT terminal seals now ready for1033/1034/1037/1041/1047, unpublished and held after1032. Fully adopted1052 whole02 zero findings; terminal administration pending root read. Fully adopted1064 whole02 oneP3 and independently reproduced descriptor hardlink overwrite normal/-O before boundedrepair02. Fully read1071/1080 paper sources/reports/code and actually viewed all7 pages each;1071 root overwrite and reviewer CFF/bootstrap defects pending repair/full review,1080 root upload-metadata/alias checks in progress. Adopted1085 complete priority/derivations with22 source bodies rehashed and144+12 guard replay; HHRV prior corollary and EM mechanism credit mandatory, new credited edition active. ROOT1094 fullmath accepted with42 sealed reviewer outputs,8 actualGit blobs and copied normal checks matching.1097 acquired/attached8 files, two distinct math families active. Repeated disk pressure addressed only by recorded removal of161 derivative source PNGs of alreadysealed1034/1037 (35,722,552 bytes); original primary PDFs/text/proofs/current publication payloads unchanged, historical pixel/runtime pins retain captured-stage meanings. Last push bccae94a06d7dfed94d0bb59d6d96ebac14d9f22,4562 own paths, shared mainHEAD/index unchanged. No service disposition ahead of1032.

@@ -1,0 +1,144 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={An elementary obstruction to same-ground-set matroid-rank approximation},pdfauthor={Alec Kriebel},pdfsubject={Credited unrefereed research note},pdfkeywords={submodular function, matroid rank, cardinality, expository proof}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\emptysetv}{\varnothing}
+\title{An elementary obstruction to same-ground-set matroid-rank approximation}
+\author{Alec Kriebel\\Independent researcher\\\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Version 1.0, 14 October 2026\\\small UNREFEREED; authored text and code licensed CC BY 4.0}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a self-contained elementary obstruction to the displayed formulation of V\'egh's matroid-rank approximation question. A constant is interpreted conventionally as independent of the finite ground-set size; the source does not separately print that quantifier. For normalized nonnegative monotone submodular functions, approximation is by one ordinary unscaled matroid rank on the same ground set, with both comparisons $r/\alpha\le f\le\alpha r$. The classical function $f(S)=\sqrt{|S|}$ forces $\alpha\ge n^{1/6}$, and its exact optimum over all matroids is $\min_{1\le R\le n,\ R\in\mathbb Z}\max\{\sqrt R,\sqrt n/R\}$. A rational cardinality family on $m^2$ elements forces $\alpha^2+\alpha\ge m$. The functions and their uniform-rank decompositions are classical. Historical attribution of the exact one-rank argument remains unresolved in the bounded source review; no novelty or priority claim is made.
+\end{abstract}
+
+\section{The precise formulation}
+For a finite set $V$, let $\mathcal F(V)$ consist of maps $f:2^V\to\mathbb R_{\ge0}$ such that $f(\emptysetv)=0$, $f(\{i\})=1$ for all $i\in V$, $f$ is monotone, and
+\[
+ f(A)+f(C)\ge f(A\cup C)+f(A\cap C)\qquad(A,C\subseteq V).
+\]
+An ordinary matroid $M=(V,\mathcal I)$ has rank
+$r_M(S)=\max\{|I|:I\subseteq S,\ I\in\mathcal I\}$.
+The uniform interpretation of the question is the assertion
+\begin{equation}\label{eq:target}
+ \exists\alpha>0\ \forall\text{ finite }V\ \forall f\in\mathcal F(V)\
+ \exists M\text{ on }V\ \forall S\subseteq V:\quad
+ \frac{r_M(S)}\alpha\le f(S)\le\alpha r_M(S).
+\end{equation}
+The approximant in \eqref{eq:target} is an ordinary unscaled rank on the original $V$. No additional restriction on the input function is imposed.
+
+V\'egh's complete contribution \cite{vegh}, printed p.~2946, displays the denominator $\alpha$ on the left and the same-$V$ rank class. Its word ``constant'' does not separately quantify over $V$; \eqref{eq:target} makes the conventional dimension-independent interpretation explicit. The sentence naming the rank uses $f$ while the display uses $r$; we use $r$ consistently. This note addresses that displayed interpretation, without asserting an unprinted alternative intention or current worldwide open status.
+
+For fixed $|V|=n\ge1$, the hypotheses imply $1\le f(S)\le |S|$ for nonempty $S$: monotonicity gives the lower bound, and diminishing returns bounds each marginal by its singleton value. Thus the free rank $r(S)=|S|$ with $\alpha=n$ works for every input in fixed dimension. This supports the uniform reading, but does not add a printed source quantifier. For $V=\emptysetv$, both functions are zero and every positive factor works.
+
+\section{Square-root cardinality}
+Concave cardinality functions are classical; Balcan--Harvey \cite[Section~5, Proposition~1]{bh} attribute their submodularity to Lov\'asz's 1983 survey, p.~251. That original survey body was not independently read in the source review. We prove the needed property directly.
+
+\begin{theorem}\label{thm:sqrt}
+For every integer $n\ge1$, $f_n(S)=\sqrt{|S|}$ on $[n]$ belongs to $\mathcal F([n])$. If any ordinary matroid rank $r$ on $[n]$ and any real $\alpha>0$ satisfy both comparisons in \eqref{eq:target} for this input on every subset, then $\alpha\ge n^{1/6}$. Consequently \eqref{eq:target} is false.
+\end{theorem}
+\begin{proof}
+Nonnegativity, monotonicity and normalization follow immediately. For $k\ge0$ the increments
+\[
+ d_k=\sqrt{k+1}-\sqrt k=\frac1{\sqrt{k+1}+\sqrt k}
+\]
+are nonincreasing. Given $A,C$, put $t=|A\cap C|$, $a=|A\setminus C|$, and $c=|C\setminus A|$. Then
+\[
+ f_n(A)-f_n(A\cap C)=\sum_{j=0}^{a-1}d_{t+j}
+ \ge\sum_{j=0}^{a-1}d_{t+c+j}
+ =f_n(A\cup C)-f_n(C).
+\]
+Empty sums are zero, so this proves submodularity for every pair, including all containments and empty sets.
+
+At each singleton, $1\le\alpha r(\{i\})$. Since its rank is zero or one, every element is a nonloop and $\alpha\ge1$. Hence $R=r([n])$ is an integer in $[1,n]$. Choose a basis $B$; then $|B|=r(B)=R$. The lower comparison at $B$ and the upper comparison at $[n]$ give
+\[
+ \frac R\alpha\le\sqrt R\quad\Longrightarrow\quad R\le\alpha^2,
+ \qquad \sqrt n\le\alpha R\le\alpha^3.
+\]
+All divided quantities are positive. Thus $\alpha\ge n^{1/6}$. The basis may depend on the proposed matroid because the inequalities hold on every subset. For any proposed constant $\alpha>0$, choose an integer $n>\max\{1,\alpha^6\}$; this contradicts the bound. This choice also supplies noninteger-valued inputs if those are required by the source wording.
+\end{proof}
+
+\begin{proposition}\label{prop:optimum}
+For every integer $n\ge1$, the smallest factor for $f_n$ among all ordinary matroids on $[n]$ is
+\begin{equation}\label{eq:optimum}
+ \min_{\substack{1\le R\le n\\R\in\mathbb Z}}
+ \max\left\{\sqrt R,\frac{\sqrt n}{R}\right\}.
+\end{equation}
+For each fixed integer total rank $R$, the uniform matroid $U_{R,n}$ attains the displayed maximum. For $n=m^3$, $R=m$ attains $n^{1/6}$ for every integer $m\ge1$.
+\end{proposition}
+\begin{proof}
+Loops cannot satisfy the upper singleton comparison. For every loopless matroid of rank $R$, a basis and the full set force respectively $\alpha\ge\sqrt R$ and $\alpha\ge\sqrt n/R$.
+For $U_{R,n}$, $r(S)=\min\{|S|,R\}$. On a nonempty set of size $k\le R$, the ratios $r/f_n$ and $f_n/r$ are $\sqrt k$ and $1/\sqrt k$. For $R\le k\le n$ they are $R/\sqrt k$ and $\sqrt k/R$. Their combined maximum is exactly $\max\{\sqrt R,\sqrt n/R\}$, since $\sqrt R\ge1$. The empty-set comparisons are both zero. Thus the lower bound holds for every matroid of rank $R$ and is attained by a uniform one; minimizing over the finite set of integer ranks proves \eqref{eq:optimum}. At $n=m^3$, both terms for $R=m$ equal $\sqrt m=n^{1/6}$, which Theorem~\ref{thm:sqrt} makes optimal.
+\end{proof}
+This sharpness concerns only the square-root family. Equality with $n^{1/6}$ is not asserted at every $n$ (for example, $n=2$ has optimum $\sqrt2$), nor is any optimal exponent over all inputs asserted. At $n=1$ the optimum is one.
+
+\section{A rational cardinality family}
+\begin{theorem}\label{thm:rational}
+Let $m\ge1$ be an integer and $|V|=m^2$. Set
+\[
+ g_m(\emptysetv)=0,\qquad g_m(S)=1+\frac{|S|-1}{m}\quad(S\ne\emptysetv).
+\]
+Then $g_m\in\mathcal F(V)$ and is rational-valued. Every ordinary same-$V$ rank satisfying both comparisons with factor $\alpha>0$ obeys
+\begin{equation}\label{eq:rational}
+ \alpha^2+\alpha\ge m,\qquad
+ \alpha\ge\frac{\sqrt{1+4m}-1}{2},\qquad
+ \alpha\ge\sqrt{m/2}=\frac{|V|^{1/4}}{\sqrt2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+The increments by cardinality are one followed by $1/m$, all nonnegative and nonincreasing. The all-pairs increment argument in Theorem~\ref{thm:sqrt} proves submodularity; the other properties follow from the definition. Equivalently, with $u(S)=\min\{|S|,1\}$,
+\begin{equation}\label{eq:rank-sum}
+ g_m(S)=(1-1/m)u(S)+(1/m)|S|.
+\end{equation}
+This is a nonnegative combination of two classical uniform ranks, not a new function class or representation.
+
+Singletons again give $\alpha\ge1$ and integer $R=r(V)\ge1$. For a basis of size $R$, the lower comparison yields
+\[
+ \frac R\alpha\le\frac{m+R-1}{m},\qquad
+ m\le\alpha+\frac{\alpha(m-1)}R.
+\]
+The full-set upper comparison gives
+\[
+ m+1-\frac1m\le\alpha R,\qquad R\ge\frac m\alpha.
+\]
+Since $m-1\ge0$ and $m,R,\alpha$ are positive,
+\[
+ m\le\alpha+\frac{\alpha(m-1)}R
+ \le\alpha+\frac{\alpha^2(m-1)}m\le\alpha+\alpha^2.
+\]
+The positive quadratic root gives the second bound in \eqref{eq:rational}. Since $\alpha\ge1$, $\alpha+\alpha^2\le2\alpha^2$ gives the third. No division by $m-\alpha$ occurs. At $m=1$ the function is free rank on one element; the necessary bounds are compatible but weaker than its optimum one. The empty set gives $0\le0\le0$. Taking $m\ge2$ ensures noninteger values, if that restriction is adopted.
+\end{proof}
+
+\section{Attribution and scope of the exposition}
+Devanur--Dughmi--Schwartz--Sharma--Singh \cite[Appendix~D, Lemma~D.1]{ddsss} give the prior uniform-rank decomposition. The statement uses integer values; its elementary finite-difference mechanism also applies to real values. To state the correct coefficients directly, let $h(0)=0$ have nonincreasing nonnegative increments $d_i=h(i)-h(i-1)$ for $1\le i\le n$. Set $c_i=d_i-d_{i+1}$ for $i<n$, and $c_n=d_n$. Then
+\begin{equation}\label{eq:decomposition}
+ h(k)=\sum_{i=1}^n c_i\min\{k,i\},\qquad c_i\ge0.
+\end{equation}
+The $k$th increment of the right side is $\sum_{i=k}^n c_i=d_k$, and both sides start at zero. If $h(1)=1$, then $\sum_i c_i=1$. This direct difference identity avoids the printed coefficient and indexing slips in that lemma (for $n\ge2$, $c_1=2h(1)-h(2)$). Both families here belong to this classical class; \eqref{eq:rank-sum} is its two-rank specialization. At $n=1$, \eqref{eq:decomposition} simply has $c_1=d_1$.
+
+Goemans--Harvey--Iwata--Mirrokni \cite{ghim,ghimfull} study approximation with a polynomial query budget. Their actual structural output is root-linear, $\sqrt{\sum_{i\in S}a_i}$ with nonnegative coordinates, which includes square-root cardinality. Their oracle lower bound uses matroid ranks as inputs. For any such input $f=r_M$, choosing that same rank gives an exact existential approximant; query indistinguishability alone therefore cannot imply the obstruction proved here. Their approximant is not required to be an ordinary matroid rank. This distinction acknowledges both their structural output and the mechanism of their lower bound.
+
+An expanded copied-element representation is also a different domain. Schrijver \cite[Section~44.6b]{schrijver} presents the integer-polymatroid block construction and credits Helgason. For this rational family, take $m-1$ disjoint rank-one uniform layers and one free layer, with $m$ copies of each original element in total. The rank of all copies of a subset $S$ is $(m-1)\min\{|S|,1\}\allowbreak+|S|\allowbreak=m g_m(S)$. Dividing by $m$ represents $g_m$ exactly on unions of copy blocks. That expanded matroid is not one ordinary rank on the original $V$. Helgason's original body was not independently read in the source review.
+
+The bounded primary-body review dated 13 October 2026 does not determine historical priority of the exact one-rank argument or of the generic concave-cardinality one-rank envelope. No new-function, new-decomposition, firstness, independent-discovery, intellectual-priority, or exhaustive literature claim is made. The original Lov\'asz and Helgason bodies, an unpublished GHIM citation, and some further citation-chain consequences remain unverified. These source limits are not premises of the elementary proofs.
+
+\paragraph{Verification and disclosure.}
+This is an unrefereed research note by Alec Kriebel, the sole named author. Extensive AI assistance was used in solving, mathematical verification, source comparison, coding and writing. Dated AI audit stages and their exact frozen inputs are identified in the accompanying support package's \texttt{REVIEW\_HISTORY.json} and evidence index. They are not human refereeing, journal acceptance, or formal proof certification. The original nine-file edition contains no executable; accompanying exact finite checks are newly authored audit evidence and supplement, rather than establish, the infinite proofs. The authored exposition and code are licensed \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; third-party source bodies are not redistributed.
+
+\begin{thebibliography}{9}
+\small
+\bibitem{vegh} L. V\'egh, Open problem: Approximating submodular functions by matroid rank functions, in \emph{Combinatorial Optimization}, Oberwolfach Report 53/2021, p.~2946. \href{https://doi.org/10.4171/OWR/2021/53}{doi:10.4171/OWR/2021/53}. Complete contribution: PDF p.~54.
+\bibitem{bh} M.-F. Balcan and N. J. A. Harvey, Submodular Functions: Learnability, Structure, and Optimization, \emph{SIAM J. Comput.} 47(3) (2018), 703--754. \href{https://doi.org/10.1137/120888909}{doi:10.1137/120888909}. Section~5, Proposition~1; classical attribution to Lov\'asz (1983), p.~251, reported through this source.
+\bibitem{ddsss} N. R. Devanur, S. Dughmi, R. Schwartz, A. Sharma and M. Singh, On the Approximation of Submodular Functions, \href{https://arxiv.org/abs/1304.4948}{arXiv:1304.4948v1}, submitted 17 April 2013. Appendix~D, Lemma~D.1. Retrieved title-block date: 29 October 2018, not a new submission date.
+\bibitem{ghim} M. X. Goemans, N. J. A. Harvey, S. Iwata and V. Mirrokni, Approximating Submodular Functions Everywhere, \emph{SODA 2009}, 535--544. \href{https://www.cs.ubc.ca/~nickhar/papers/SubmodularEverywhere/SubmodularEverywhere.pdf}{Author-hosted conference body}. Problem~1, Figure~1 and Sections~3--6.
+\bibitem{ghimfull} The same authors, \emph{Approximating Submodular Functions Everywhere}, \href{https://www.cs.ubc.ca/~nickhar/papers/SubmodularEverywhere/SubmodularEverywhereFull.pdf}{author-listed 2010 full-version draft}. Problem~1 and Sections~3--6.
+\bibitem{schrijver} A. Schrijver, \emph{Combinatorial Optimization: Polyhedra and Efficiency}, Springer, 2003, Section~44.6b, p.~776. Block expansion credited there to T. Helgason (1974); the original Helgason body was not independently inspected.
+\end{thebibliography}
+\end{document}

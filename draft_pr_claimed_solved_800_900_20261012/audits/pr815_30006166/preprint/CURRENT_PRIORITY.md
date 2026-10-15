@@ -1,0 +1,9 @@
+# Current priority and attribution assessment
+
+Audit completed October 13, 2026 America/Los_Angeles (October 14 UTC). The original whole-space Question 3 in Iyer's joint contribution with Shinko, Oberwolfach Report 2/2025, is the target. Fresh independent families and a root lane found no exact predecessor or immediately applicable broader theorem in their stated corpus. This is bounded evidence, not a historical-first or worldwide current-openness certificate.
+
+The generic profinite-height ingredient is an explicit specialization of DMT Proposition 3.2, Definition A.3 and Proposition A.7, already in July 2025 v1. Earlier Doucha extension perturbation and Akin–Glasner–Weiss conditional lifting are also credited. Iyer–Shinko's baseline is published in 2025 under DOI 10.4171/GGD/896. All four credits are reflected in the current paper and upload metadata. The CJMST finite-rank, compatible-metric and lamp-group inputs are explicitly credited.
+
+The separate substantive deduction combines finite-width lamp slabs with the exact compatible metric union and a finite exhaustion of the full exceptional integer-height preimage. A hyperfinite quotient alone does not establish this deduction. Almost-finiteness sources supply nonnested finite partitions; the newer groupoid paper expressly claims no Borel hyperfiniteness consequence. The tempting GMRS plus generic-coloring shortcut does not establish its required joint diameter/color bounds; single-variable subexponential sufficiency is still a conjecture. Quantitative source comparison is recorded in the archived priority addendum.
+
+Complete reports, query ledgers, primary-source hashes, version authentication and exact inspection scopes are in `audits/priority/` of the verification archive. No earlier review or original proof bytes were rewritten. No outside researcher was contacted. AI review is not human refereeing or formal verification.

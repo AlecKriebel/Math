@@ -1,0 +1,14 @@
+{
+  "status": "EXPECTED_DIAGNOSTIC_FAILURE",
+  "mp_digits": 80,
+  "approximate_lambda": "0.76415094339622641509433962264150943396226415094339622641509433962264150946950387",
+  "lambda_error_against_exact_four_period_value": "3.554160454841793319162219e-74",
+  "spurious_negative_d": "-4.651123485303694365704965e-74",
+  "fictitious_radius": "8.106635337093499399267299e+36",
+  "S0": "3.6",
+  "direct_signed_area_at_fictitious_circle_point": "3.6",
+  "normalized_area_formula_residual": "0.4390243902439024390243902",
+  "original_bad_branch": "if d<0: add sqrt(-2F/d) as an exact zero-circle point",
+  "why_it_is_not_a_counterexample": "The computed lambda is merely an approximate closure parameter, while exact least-period four has d=0. Its O(1e-74) closure/parameter error is amplified by a fictitious M of size O(1e37). The theorem assumes exact closure, and no true exceptional circle exists for N=4.",
+  "correction": "Use the exact algebraic N4 classification d=0; in finite diagnostics do not classify tiny sign noise near that known boundary as a genuine star regime. The corrected independent controls separate |d|<1e-45 from d<-1e-45 and use ordinary finite M in the N4 boundary control."
+}

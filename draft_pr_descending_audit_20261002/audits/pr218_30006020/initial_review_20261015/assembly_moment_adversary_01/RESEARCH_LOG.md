@@ -1,0 +1,6 @@
+# Independent assembly and moment audit
+
+- 2026-10-15T06:14:16.712345+00:00 — Started independent derivation from frozen CANDIDATE.md only. Completion estimate: 0%. No inherited review or sibling conclusions read.
+- 2026-10-15T06:16:33.989140+00:00 — Sealed independent derivation covering normalization, repeated sizes, analytic branches, uniform residual ratios, PPP law, arbitrarily slow q, moment bounds, and conditional transfer. No analytic defect found; external geometric hypotheses explicitly separated. Completion estimate: 80%.
+- 2026-10-15T06:19:14.413677+00:00 — Fresh exact checks all passed: 422 assembly factorial selectors, including 261 repeated-size selectors, and 1,225 prefactor ratios. Nonvalidated coefficient diagnostics through n=4096 agree with constants. Completion estimate: 95%.
+- 2026-10-15T06:19:14.413677+00:00 — Completed REPORT.md and safe authored-file inventory. Strongest verified result: ideal-model analytic theorem and conditional transfer. Exact remaining cross-family gap: source verification of G1-G5. No blocking analytic defect found. Completion estimate toward assigned analytic audit: 100% (not a claim that the overall geometric/priority audit is complete).

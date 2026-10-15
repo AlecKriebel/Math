@@ -1,0 +1,10 @@
+# Independent checkpoint 1
+UTC: 2026-10-12T06:00:50.957476+00:00
+
+Estimate: 35% of assigned audit. No sibling priority reports read. Primary full PDFs retrieved: GV1511.03171v3, JKVV2001.10967v1, CFT2210.08598v1/v2, published CFT2025, OWR2023, published SV2018 and 1705.06958v3, Bachiller1407.5224v1, CSV1806.01127v2. Version-history HTML separately retrieved.
+
+Verified historical ingredients: Bachiller Prop2.4(iii), p=2, explicitly lists c circle d=c+d+2cd on C4 with V4 multiplicative group. SV2018 Def3.35 and Cor3.36/3.37 give general skew-brace semidirect product; JKVV2020 preceding Cor4.8 restates it. GV2016 Example1.4 gives direct additive / semidirect multiplicative braces from groups, but its action source A is trivial as a brace and therefore does not yield high-bit C4/V4 character directly. CFT2022v1 Example3.6 and CFT2025 Example3.8 credit Bachiller. The old CFT versions formulate (s), two-sided positive case, and inability to establish the general assertion. The adjacent displayed f-map defect is outside this priority family's novelty conclusion.
+
+No pre-cutoff exact infinite Z x C4 example or negative answer has yet been identified. CSV2018 Theorem5.8 gives cyclic multiplicative/infinite-dihedral additive brace; group directions and additive torsion distinguish it from the candidate. Infinite matrix-radical examples are two-sided. A new independent search lead is Nishant2021 Extensions and Well's type exact sequence, Example1 on Z x C; full primary source retrieval is in progress. The JKVV published 20-page body remains an access issue: arXiv has one 15-page version, and VUB labels its download accepted author manuscript. Need not equate them without comparing bytes/body.
+
+A current exact EulerSolve example surfaced independently via broad property(s) search, dated11Oct2026, after the supplied PR30Sep2026 cutoff. Search snippet and direct opened page disagree on version1.1 vs1.0/DOI; chronology must be authenticated and cannot be inferred from search indexing alone. It is current corroboration, not pre-cutoff evidence. No external contact occurred.
