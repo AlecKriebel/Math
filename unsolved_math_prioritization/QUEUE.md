@@ -1051,7 +1051,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1040 | 2681 / KP-1.22 | Kirby Problem 1.22 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1041 | 2689 / KP-1.30 | Kirby Problem 1.30 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1042 | 2719 / KP-1.60 | Kirby Problem 1.60 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1043 | 2776 / KP-2.28 | Kirby Problem 2.28 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1043 | 2776 / KP-2.28 | Kirby Problem 2.28 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Partial results audited; general type-preserving RAAG embedding question unresolved. Free-group Schottky construction; support/ambient-join criterion and scoped C5, cycle-diagonal, free-target and cover/restriction obstructions. Original seven-file edition preserved; separate always-active stdout verifier and scope clarification accepted. No novelty claim. See [source-free audited packet](attempts/2776/README.md). |  |
 | 1044 | 2794 / KP-2.46 | Kirby Problem 2.46 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1045 | 2843 / KP-3.45 | Kirby Problem 3.45 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1046 | 2845 / KP-3.47 | Kirby Problem 3.47 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |

@@ -1,0 +1,137 @@
+--- original/verify_exact.py
++++ corrected/verify_exact.py
+@@ -2,12 +2,18 @@
+ """Source-free exact checks for the authored KP-2.28 partial report.
+ Python 3 standard library only. This is a finite check, not the general proof.
+ """
+-import hashlib
++import argparse
+ import itertools
+ import json
+ from collections import deque
+ from fractions import Fraction as F
+ from pathlib import Path
++
++
++def require(condition, description):
++    """Verification conditions must remain active under python -O and -OO."""
++    if not condition:
++        raise AssertionError("Verification failed: " + description)
+ 
+ 
+ def connected(mask, adj):
+@@ -67,7 +73,7 @@
+                    for v in range(n)]
+             in_join = contained_in_join_masks(gamma)
+             for mask in range(1, 1 << n):
+-                assert cds(mask, lam) == (mask not in in_join)
++                require(cds(mask, lam) == (mask not in in_join), 'cds(mask, lam) == (mask not in in_join)')
+                 subsets += 1
+             graphs += 1
+     return {"labelled_graphs": graphs, "nonempty_supports": subsets,
+@@ -81,13 +87,13 @@
+         lam = [(1 << ((i - 1) % n)) | (1 << ((i + 1) % n))
+                for i in range(n)]
+         support = ((1 << n) - 1) ^ (1 << 1) ^ (1 << 2)
+-        assert cds(support, lam)
++        require(cds(support, lam), 'cds(support, lam)')
+         for m in range(n, 4*n + 1):
+             tree = [(1 << (i-1) if i else 0) |
+                     (1 << (i+1) if i+1 < m else 0) for i in range(m)]
+             lifted = sum(1 << i for i in range(m) if i % n not in {1, 2})
+-            assert lifted & 1 and lifted & (1 << 3)
+-            assert not connected(lifted, tree)
++            require(lifted & 1 and lifted & (1 << 3), 'lifted & 1 and lifted & (1 << 3)')
++            require(not connected(lifted, tree), 'not connected(lifted, tree)')
+             cases += 1
+         if n == 5:
+             examples.append({"cycle_order": n, "path_vertices": n,
+@@ -123,7 +129,7 @@
+             if other not in seen:
+                 seen.add(other)
+                 q.append(other)
+-    assert target in seen and minimum == 12
++    require(target in seen and minimum == 12, 'target in seen and minimum == 12')
+     blockers = []
+     for i, letter in enumerate(target):
+         for distance in range(1, len(target)):
+@@ -133,9 +139,9 @@
+                                   for k in range(1, distance))
+                 # RAAG inverse-pair cancellation requires every intervening
+                 # letter to commute; equal generators do not commute as moves.
+-                assert any(x.lower() != letter.lower() and not commutes(letter, x) for x in between)
++                require(any(x.lower() != letter.lower() and not commutes(letter, x) for x in between), 'any(x.lower() != letter.lower() and not commutes(letter, x) for x in between)')
+                 blockers.append([i, j, between])
+-    assert set(target.lower()) == set('abcd')
++    require(set(target.lower()) == set('abcd'), "set(target.lower()) == set('abcd')")
+     return {"commutation_cancellation_rotation_states": len(seen),
+             "minimum_cyclic_length": minimum,
+             "cyclically_reduced_word": target,
+@@ -158,17 +164,17 @@
+ def schottky_check():
+     base = ((34, 21), (21, 13))
+     ainv = inv(base)
+-    assert base[0][0]*base[1][1] - base[0][1]*base[1][0] == 1
++    require(base[0][0]*base[1][1] - base[0][1]*base[1][0] == 1, 'base[0][0]*base[1][1] - base[0][1]*base[1][0] == 1')
+     plus = [F(3, 2), F(7, 4)]
+     minus = [-F(3, 4), -F(1, 2)]
+     plus_image = sorted(mob(base, x) for x in minus)
+     minus_image = sorted(mob(ainv, x) for x in plus)
+-    assert plus[0] < plus_image[0] < plus_image[1] < plus[1]
+-    assert minus[0] < minus_image[0] < minus_image[1] < minus[1]
++    require(plus[0] < plus_image[0] < plus_image[1] < plus[1], 'plus[0] < plus_image[0] < plus_image[1] < plus[1]')
++    require(minus[0] < minus_image[0] < minus_image[1] < minus[1], 'minus[0] < minus_image[0] < minus_image[1] < minus[1]')
+     # The pole of each map lies in its excluded interval, justifying
+     # the entire complementary projective-interval image calculation.
+-    assert minus[0] < -F(13, 21) < minus[1]
+-    assert plus[0] < F(34, 21) < plus[1]
++    require(minus[0] < -F(13, 21) < minus[1], 'minus[0] < -F(13, 21) < minus[1]')
++    require(plus[0] < F(34, 21) < plus[1], 'plus[0] < F(34, 21) < plus[1]')
+     generators = []
+     for i in range(3):
+         l = 10*i
+@@ -180,7 +186,7 @@
+         nonlocal tested, min_abs_trace
+         if word and (len(word) == 1 or (word[-1]+3) % 6 != word[0]):
+             trace = abs(product[0][0] + product[1][1])
+-            assert trace > 2
++            require(trace > 2, 'trace > 2')
+             min_abs_trace = trace if min_abs_trace is None else min(min_abs_trace, trace)
+             tested += 1
+         if len(word) == 5:
+@@ -204,23 +210,30 @@
+     cliques = [m for m in range(1, 1 << n)
+                if all(((m ^ (1 << i)) & ~lam[i]) == 0
+                       for i in range(n) if m >> i & 1)]
+-    assert len(minimal) == 5 and all(m.bit_count() == 3 for m in minimal)
++    require(len(minimal) == 5 and all(m.bit_count() == 3 for m in minimal), 'len(minimal) == 5 and all(m.bit_count() == 3 for m in minimal)')
+     for k in cliques:
+-        assert any(not k & m for m in minimal)
++        require(any(not k & m for m in minimal), 'any(not k & m for m in minimal)')
+     return {"minimal_supports": [[i for i in range(n) if m >> i & 1] for m in minimal],
+             "nonempty_cliques": len(cliques), "clique_transversals": 0}
+ 
+ 
+ def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--output", default="-",
++                        help="JSON destination, or - for stdout (the default)")
++    args = parser.parse_args()
+     results = {"problem_id": 2776, "all_checks_passed": True,
+                "graph_criterion": graph_check(), "cycle_cover_obstruction": cycle_checks(),
+                "free_quotient_obstruction": cyclic_reduction_check(),
+                "explicit_free_embedding": schottky_check(),
+                "c5_local_gadget_obstruction": c5_transversal_check(),
+                "finite_cover_obstruction": "Proved in the report; not computationally tested."}
+-    output = Path(__file__).with_name('VERIFICATION_RESULTS.json')
+-    output.write_text(json.dumps(results, indent=2) + '\n')
+-    print(json.dumps({k: v for k, v in results.items() if k not in {'free_quotient_obstruction'}}, indent=2))
++    payload = json.dumps(results, indent=2) + '\n'
++    if args.output == '-':
++        print(payload, end='')
++    else:
++        Path(args.output).write_text(payload)
++        print(json.dumps({'all_checks_passed': True, 'output': args.output}))
+ 
+ 
+ if __name__ == '__main__':
