@@ -233,3 +233,7 @@ Operational events: REST quota reached0/reset07:52:49UTC before REST closure ran
 ## 2026-10-16T07:39:41.523078+00:00 — PR778 claimed-only intake; two distinct mathematical families active
 
 Fresh exact open draft c9a87710414d1d4ac5f21e84a81a7d3d40d4d094 is claimed_solved1/5. All32originals131443bytes preserved. Full selected statement181bytes and prior{} read from SQLite mode=ro; statement220b900750d7fa3d7062a4aa1879d1b178ea11c5247cf7a28436feb39071820a/canonical review51710cccfe6bcd44ff5a8bd2b663db2387edbf19169806cfc0c1855f24822377 match catalog. Intake wrapper-hash error corrected before fresh agents or sealed review, with source bytes unchanged. Root candidate-proof/witness and source-definition hypotheses saved before historical audit/review opinions. Independent exact combinatorial and geometric/source-realization families now challenge four-axiom witness vs switch-once/fibration and separately normalized polygonal scope. No math/priority verdict, paper, deposit, row or PR action. PR15%; shard51%.
+
+## 2026-10-16T07:57:12.564189+00:00 — PR778 mathematical gate
+
+Two independent mathematical families and root replication pass the literal four-axiom counterexample; complete original wrapper passes four runtime modes. Preserve the proper fibration theorem attribution and normalized-input boundary; no novelty certified. Final journal definitions and priority are next. PR50%; shard54%.
