@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 from finalize_native_acceptance_api import REPO, NATIVE, run, encode, replace_root_member, replace_array_record
 from graphql_scoped_commit import Remote, get_pr, head_oid
-from graphql_scoped_commit import commit_updates
+from remote_scoped_commit import commit_updates
 
 
 def append_event(raw, event):

@@ -18,7 +18,8 @@ for name in ['intake', 'root-receipts', 'verification_recipes']:
             assert not p.is_symlink() and p.stat().st_nlink == 1
             updates[p.relative_to(R).as_posix()] = p.read_bytes()
 for entry in plan.get('sealed_packets', []):
-    folder = T / entry['folder']
+    folder = (D if entry.get('program_root') else T) / entry['folder']
+    assert folder.resolve().is_relative_to(D) and not folder.is_symlink()
     manifest = entry.get('manifest', 'MANIFEST.json')
     assert hashlib.sha256((folder / manifest).read_bytes()).hexdigest() == entry['manifest_sha256']
     assert hashlib.sha256((folder / entry['checker']).read_bytes()).hexdigest() == entry['checker_sha256']
@@ -41,6 +42,10 @@ for name in plan.get('case_files', []):
     p = T.parent / name
     assert p.resolve().is_relative_to(T.parent) and not p.is_symlink() and p.is_file() and p.stat().st_nlink == 1
     updates[p.relative_to(R).as_posix()] = p.read_bytes()
+for name in plan.get('program_files', []):
+    p = D / name
+    assert p.resolve().is_relative_to(D) and not p.is_symlink() and p.is_file() and p.stat().st_nlink == 1
+    updates[p.relative_to(R).as_posix()] = p.read_bytes()
 now = datetime.datetime.now(datetime.timezone.utc).isoformat()
 entry = '\n## ' + now + ' — ' + plan['heading'] + '\n\n' + plan['notes'] + '\n\nCase ' + str(plan['case_percent']) + '%; shard ' + str(plan['shard_percent']) + '%.\n'
 for attempt in range(3):
@@ -52,6 +57,17 @@ for attempt in range(3):
     state = json.loads(remote.read(D.name + '/STATE.json'))
     assert len(state['processed']) == 11 and state['current_pr'] == 799
     state.update(updated_at=now, current_stage=plan['heading'], overall_completion_estimate_percent=plan['shard_percent'])
+    if plan.get('complete_shard'):
+        final = json.loads((M / 'COMPLETION.json').read_text())
+        assert final['pr'] == 799 and final['pr_process_completion_percent'] == 100
+        assert json.loads((M / 'ROOT_FINAL_RECONCILIATION.json').read_text())['remaining_exact_claimed_solved'] == []
+        assert json.loads((M / 'ROOT_FINAL_DELIVERY.json').read_text())['result'] == 'PASS'
+        state['processed'].append(final)
+        assert [x['pr'] for x in state['processed']] == state['eligible_order']
+        state.update(status='complete', current_pr=None, final_reconciliation_complete=True,
+                     remaining_exact_claimed_solved=[], merged_count=9, closed_priority_count=3,
+                     skipped_count=89, overall_completion_estimate_percent=100)
+        u[D.name + '/RESULTS.md'] = (M / 'FINAL_RESULTS.md').read_text()
     u[D.name + '/STATE.json'] = json.dumps(state, indent=2) + '\n'
     log = remote.read(D.name + '/checkpoint_receipts.jsonl')
     for name in plan.get('previous_receipts', []):
