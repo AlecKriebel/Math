@@ -1,0 +1,16 @@
+# Acceptance binding repair, family02
+
+The sealed custody_checkpoint_01 family remains byte-identical. It was never given actual Root source adoption and no real phase/backend/API action occurred. This note records a discovered operational defect, not a scientific result or Root approval.
+
+The fresh independent reviewer demonstrated47 structural/pure controls and six additional acceptance-continuity witnesses under both ordinary and optimized Python. V1 accepted internally consistent truncated, extended and changed-non-QUEUE maps; missing receipt fields were not bound; and beginning protected-row continuity at a supplied bad receipt baseline could accept bad→bad despite original-checkpoint good→bad failing. Exact source/report pins are preserved in SOURCE_FORMAT_REFERENCES.json, with references to the unchanged reviewer artifacts.
+
+Family02 makes the following bounded repair:
+
+- Require exact v2 receipt/map record schemas, evidence scope, original HEAD, prepared sole parent, native SHA fields, complete selected count and exact complete prepared path set. Every non-QUEUE accepted byte/native pin equals the independently regenerated prepared expected pin.
+- Authenticate receipted MAIN's native commit-to-tree identity and original-checkpoint ancestry. Reconcile original checkpoint→receipted MAIN using the full prepared expected map, thereby retaining every protected native target and the exact own BASE123 row. Compare the independently derived complete map and QUEUE acknowledgement to the supplied receipt materials, then verify every selected identity at the native receipted tree.
+- Revalidate subsequent fresh MAIN from that independently reconstructed complete map, requiring authenticated receipt-baseline ancestry. Supplied receipt maps never establish protection or completeness.
+- Use custody_checkpoint_02 consistently for OWN, source manifest/artifacts, adoption-interface source locations and pointer generation directory. Keep canonical original custody/adoption and the future Root source-adoption filename/schema unchanged; no future Root receipt pin is baked in.
+
+The new pure controls explicitly reject all six v1 witness families, every missing acceptance field, extra fields, incorrect evidence scope/parent/HEAD/count/types, native commit/tree/ancestry drift and forged continuity/map data. Existing custody guards remain.167 controls pass under both ordinary and optimized Python. Filesystem tests remain bounded synthetic fixtures under this new folder; no real phase/backend/API, ref, PR, MAIN, global-five or pointer action occurred. During unsealed migration a broad text replacement accidentally added the repair-note filename to VIEWS; the existing five-view guard caught it, and the source was corrected before either passing report or seal.
+
+Source repair preparation is100%. Independent fresh family02 adversarial review and complete Root source review/adoption remain mandatory before execution. Scientific/source/priority/publication clearance and whole-package event count remain false/zero;48completed32published,last205,cursor206,advancefalse. Atomicity and create-only generation recovery limits remain as documented in CHECKPOINT_CONTRACT.md.
