@@ -1,0 +1,3 @@
+# Additional PR195 predecessor comparisons
+
+2026-10-15T12:25:53.669406+00:00 — 100% of the bounded two-example comparison; PR195 publication workflow estimate75%. Root identified that maximum low-degree ranks suffice to exclude two known nine-factor examples without computing full gins. Primary equations checked, exact coefficients/ranks/minors reconstructed and both certificates replayed read-only. Generic cutoff10 and zero earlier third-truncation kernels follow. No new independent-review count, historical firstness, full gin, publication or merge claim. This extends dated prior evidence; second NEW whole-package adversary must inspect it.

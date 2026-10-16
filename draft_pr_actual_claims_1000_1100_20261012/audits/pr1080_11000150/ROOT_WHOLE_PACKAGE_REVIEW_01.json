@@ -1,0 +1,39 @@
+{
+  "utc": "2026-10-14T05:50:13.731131+00:00",
+  "status": "ADOPT_FULL_WHOLE01_ONE_P2_ONE_P3_REPAIR_REQUIRED",
+  "pr": 1080,
+  "head": "64b252b199f2692eef2545656190c14bcaf63889",
+  "full_report_and_verdict_read": true,
+  "root_prior_full_paper_source_and_all_7_pages_review": "ROOT_PREPRINT_REVIEW_01.json",
+  "root_independent_actual_reproductions": "root_reproduction/preprint_adoption01.py; invalid native manifest and protected TeX hardlink overwrite independently reproduced on disposable copies",
+  "rehash_counts": {
+    "INPUT_PINS.json": 289,
+    "OUTPUT_PINS.json": 17
+  },
+  "review_output_pins_sha256": "06d3afd2ad92ce07658c3727959279d3ff870f8633ed208b30e509a1f7ff8b02",
+  "terminal_seal_sha256": "8dfc4c28e89148072fd8887657d15002a574c3ddab7c7e859ab301c9fad4a45d",
+  "findings": [
+    {
+      "id": "PACKAGE01-P2-ZENODO-MANIFEST",
+      "severity": "P2",
+      "path": "preprint_v1_0/deposit_metadata.json",
+      "trigger": "Repository Zenodo local check of custom object exits1: exact metadata/files wrapper absent",
+      "repair": "Retain custom research metadata separately; provide fully reviewed native API metadata and metadata/files manifest naming exact PDF/ZIP; bind all forms and run native local check and clean interfaces."
+    },
+    {
+      "id": "PACKAGE01-P3-ARCHIVE-OUTPUT-ALIASES",
+      "severity": "P3",
+      "path": "preprint_v1_0/verification_kit/build_archive.py",
+      "line": 18,
+      "trigger": "Outside hardlink or ancestor alias to allowlisted TeX truncates it and returns PASS; resolving an outside leaf symlink defeats its rejection guard",
+      "repair": "Preflight unresolved symlinks and existing samefile/inode aliases to protected kit and delivery files before writes; preserve inputs on rejection; test normal and optimized modes; reseal repaired package without changing proof/PDF/history."
+    }
+  ],
+  "mathematics_accepted_in_qualified_credited_scope": true,
+  "whole_reviews_completed": 1,
+  "minimum_whole_reviews": 2,
+  "new_full_review_required_after_repair": true,
+  "publication_ready": false,
+  "published": false,
+  "ordered_hold_pr": 1032
+}

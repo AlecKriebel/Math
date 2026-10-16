@@ -1,0 +1,11 @@
+# Dated audit evidence and frozen inputs
+
+Start with root/authority in the following copied records (paths are relative to this evidence directory): ROOT_MATH_AUDIT.md, ROOT_MATH_ACCEPTANCE.json, ROOT_PRIORITY_ADOPTION.json, and root_reproduction/ROOT_FINITE_REPRODUCTION.json. The mathematical acceptance and later bounded priority adoption are different dated stages; the old pending-priority field in ROOT_MATH_ACCEPTANCE.json is retained as history.
+
+The exact nine-file original edition is submitted/. It is historical October 9, 2026 content at head 56b3a35182e5cb04b05e41f5017e47caf50582c1, preserved in full. Historical acceptance labels apply only to their own scope and are never premises of a proof. The credited v1.0 paper adds the subsequently required attribution without changing those originals.
+
+Fresh independent stages are reviews/basis_family_01, reviews/source_scope_01, and reviews/priority_01. Read REPORT.md plus the independent derivation/comparison in each. The first mathematical family binds actual Git objects. source_scope_01/frozen/ and priority_01/frozen/ provide preserved input snapshots; their input/output pin manifests bind each stage. Each stage's receipts/outputs are historical evidence, not execution of the original edition, which had no executable. Root reproduction is the dated new-checker run, not an omitted-code replay.
+
+Original review scripts are copied exactly for inspection. Some have absolute original output paths and must not be run from an extracted package. Use ../scripts/check_mathematics.py via the package README instead; its portable adaptation and fresh run are explicitly identified.
+
+EVIDENCE_COPY_MAP.json in the package root maps every copied record to its source audit-relative path and SHA-256. The outer preparation INPUT_PINS.json privately protects all local inputs and is deliberately not in the distributable archive. It includes identities of locally retained third-party source materials; no third-party body is redistributed. The selected authored records retain their original source locators. Missing original source-chain bodies and bounded historical attribution remain unknown, not excluded.

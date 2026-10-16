@@ -1,0 +1,3 @@
+# PR191 lifecycle controls generation03 research log
+
+2026-10-15T06:03:49.290621+00:00 —100% preparation for independent code review; wider programme active. Started new03 after authoritative independent02 REPAIR_REQUIRED;01/02 retained immutable. Implemented full deterministic pending→95→100 native-byte derivation and immutable prepared-native verification, live191 cursor until actual factual acceptance, exact/fresh external observations, and Root-required operational clearance/alias retirement. Read full authoritative02 report;292 focused offline assertions pass, including exact unsafe02 reproducers and practical counterchecks. No production/shared/Git/network changes. Final freeze awaits NEW independent lifecycle adversary03.

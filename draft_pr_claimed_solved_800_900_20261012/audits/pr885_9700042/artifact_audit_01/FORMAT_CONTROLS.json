@@ -1,0 +1,156 @@
+{
+  "all_match_read_code": true,
+  "boundary": "Root authenticate is a pinned-payload replay integrity helper, not a full typed schema or a strict all-filesystem-entry validator. External assigned-head authentication separately pins the manifest bytes and regular-entry inventory.",
+  "controls": [
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "unchanged",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": false,
+      "case": "bad_sha256_pin",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Authentication failed: C4_AUTHOR_CLARIFICATION_1.md"
+    },
+    {
+      "accepted": false,
+      "case": "bad_git_blob_pin",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Authentication failed: C4_AUTHOR_CLARIFICATION_1.md"
+    },
+    {
+      "accepted": false,
+      "case": "bad_byte_count_pin",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Authentication failed: C4_AUTHOR_CLARIFICATION_1.md"
+    },
+    {
+      "accepted": false,
+      "case": "inventory_wrong_container_type",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Unexpected or missing packet paths"
+    },
+    {
+      "accepted": false,
+      "case": "inventory_path_wrong_type",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Unexpected or missing packet paths"
+    },
+    {
+      "accepted": false,
+      "case": "missing_file",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Unexpected or missing packet paths"
+    },
+    {
+      "accepted": false,
+      "case": "extra_regular_file",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Unexpected or missing packet paths"
+    },
+    {
+      "accepted": false,
+      "case": "altered_proof",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Authentication failed: TURN_C4_BK_POISSON_REVISED.md"
+    },
+    {
+      "accepted": false,
+      "case": "listed_payload_symlink",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Symbolic link is not a packet file"
+    },
+    {
+      "accepted": false,
+      "case": "expected_file_replaced_by_directory",
+      "exception_type": "RuntimeError",
+      "expected_behavior_from_read_code": false,
+      "matches_expected": true,
+      "message_normalized": "Unexpected or missing packet paths"
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "extra_empty_directory",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "extra_dangling_symlink",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "extra_fifo_not_read",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "manifest_itself_symlink",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 30,
+      "case": "duplicate_payload_record",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "duplicate_json_key_last_wins",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "unvalidated_accepted_revision_metadata",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "unvalidated_turn_count_metadata",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    },
+    {
+      "accepted": true,
+      "authenticated_payload_records": 29,
+      "case": "manifest_whitespace_only_change",
+      "expected_behavior_from_read_code": true,
+      "matches_expected": true
+    }
+  ]
+}

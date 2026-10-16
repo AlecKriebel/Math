@@ -1,0 +1,249 @@
+{
+  "review": "FIRST_NEW_EXTENSIVE_ADVERSARIAL_WHOLE_PACKAGE",
+  "candidate_revision": 1,
+  "pr": 919,
+  "problem_id": "30002555",
+  "original_pr_head": "704685791ec0053dc0a52590fdef49ed4aae61d9",
+  "original_proof_sha256": "78be2da0b8831461e0268eb230cf47273a629a81a9dc2db997234f9fb5036464",
+  "original_publication_manifest_sha256": "a7f24f30d76ca7e53da932dfc1f19deac67f13a675742175274e30ca767832f8",
+  "freeze_sha256": "416e87c09e37e7cc8ef5e03fe7a725f4300ba6e9c362b1ea4ba920ba6b80ecf1",
+  "frozen_files": {
+    "note.tex": {
+      "bytes": 12144,
+      "sha256": "11066769d89ecd3bcf01f811eb1b3e7082b92c85d6d3be6f3400a669910db664"
+    },
+    "output/pdf/note.pdf": {
+      "bytes": 59838,
+      "sha256": "c0e15a340ebce9733248be2fb12678064e976921707d9b4bdf9be82b6479f86d"
+    },
+    "rotational-veech-source-verification-v1.0.zip": {
+      "bytes": 335499,
+      "sha256": "5ee644529e25b3ef47e39680a362bff8af2bb6d7d3739643a4280071586afb68"
+    },
+    "README.md": {
+      "bytes": 5542,
+      "sha256": "e437b29e67e8941dd0b9c08332ca6bb3936c5a859754ee9a785dae381b326b94"
+    },
+    "requirements.txt": {
+      "bytes": 158,
+      "sha256": "522e9ef135b316222cbbe6113a65c49c361cfa9be552c93c91fa34624e8ed891"
+    },
+    "verify_package.py": {
+      "bytes": 12506,
+      "sha256": "33c1c901f9266da5cbb69c6cc2286d58e4b0fa30631bf4678f698d19ed97ed4b"
+    },
+    "run_checked.py": {
+      "bytes": 734,
+      "sha256": "0ea8a3680c26979ed70ff61e70e1873d31924e6acaa3c0b03fc9ef3c03182502"
+    },
+    "zenodo-deposit.json": {
+      "bytes": 6535,
+      "sha256": "9bd025478221aec7498b6c300df6063243d25bd9997e773fc1837171561c9a28"
+    },
+    "build_package.py": {
+      "bytes": 5471,
+      "sha256": "9204463a43cbec44bbacf658848b388863d4be4c34411f0786529f0c1f41d333"
+    },
+    "package_guard_challenges.py": {
+      "bytes": 10599,
+      "sha256": "0566d45a89c8477a0a8cca47e3a6fe321ccacf3c106d977eee0446b3e2240269"
+    },
+    "replay_all_modes.py": {
+      "bytes": 1747,
+      "sha256": "5723043f3e13f73db8202567e33cef0ca053d7341e83b5140717da7100d117cb"
+    },
+    "freeze_candidate.py": {
+      "bytes": 7425,
+      "sha256": "5e2a60cbdc19f8185aa5e6080c28a8e09d654b1903e7d61a435bf90968ff09ee"
+    },
+    "copy_guard_challenge.py": {
+      "bytes": 4687,
+      "sha256": "12aa8058866b63bfb1b6605a814af21a9f9d241f70ff219a318d47397f71b54f"
+    },
+    "prepare_metadata.py": {
+      "bytes": 6287,
+      "sha256": "827d8faa8a9356b3db2bf2fc664ece61976ab06649505f9d685f58e9a6c1ad99"
+    }
+  },
+  "archive_sha256": "5ee644529e25b3ef47e39680a362bff8af2bb6d7d3739643a4280071586afb68",
+  "package_manifest_sha256": "e2b2f091451dddc4e69032d05ba94b46fddaf49bd9e610f61a43692cb2ffc487",
+  "pdf_sha256": "c0e15a340ebce9733248be2fb12678064e976921707d9b4bdf9be82b6479f86d",
+  "candidate_archive_members": 129,
+  "candidate_archive_payloads": 128,
+  "preserved_candidate_path": "/Users/alec/Documents/Math/draft_pr_claimed_solved_900_1000_20261012/audits/pr919_30002555/publication/reviewed_candidates/candidate01",
+  "completed_utc": "2026-10-15T06:07:54.813555+00:00",
+  "status": "CHANGES_REQUIRED_PACKAGE_AND_FUTURE_WORKFLOW_ONLY",
+  "mathematical_status": "PASS_AS_EXPLICITLY_ATTRIBUTED_APPLICATION",
+  "clean_for_preprint": false,
+  "mathematically_clean_for_attributed_preprint": true,
+  "required_issues": [
+    {
+      "id": "R1",
+      "severity": "workflow_blocker",
+      "path": "reviewed_helpers/merge_pr919.py",
+      "line": 43,
+      "finding": "Expected disposition is obsolete and differs from authenticated current/frozen PUBLICATION_DISPOSITION value. Helper deterministically stops before an otherwise valid accepted-candidate merge.",
+      "expected_current_value": "PREPARE_EXPLICITLY_ATTRIBUTED_APPLICATION_NOTE",
+      "fix": "Align disposition gate with intended current framing while retaining exact acceptance/freeze/head checks; refresh helper preparation pins."
+    },
+    {
+      "id": "R2",
+      "severity": "public_prerequisite_omission",
+      "paths": [
+        "README.md",
+        "requirements.txt",
+        "zenodo-deposit.json"
+      ],
+      "finding": "Python>=3.10+stdlib prerequisites omit POSIX dependence: full entrypoint reaches unconditional os.O_NOFOLLOW and leading-slash canonical root checker in HARDENED_VERIFY.py; native Windows is unsupported.",
+      "actual_Windows_execution": false,
+      "fix": "Document POSIX/macOS/Linux plus O_NOFOLLOW support, explicitly distinguishing actual macOS execution from untested systems; or implement and test Windows support if desired. Rebuild and re-anchor modified public package/metadata/freeze."
+    }
+  ],
+  "optional_issues": [
+    {
+      "id": "O1",
+      "finding": "RMV Question0.2 is broader, with nested genus/end spaces and additional group classes, rather than literally the same restatement.",
+      "fix": "Use broader formulation containing the all-nonplanar X_infinity=X subcase in note/README/metadata/PR prose."
+    },
+    {
+      "id": "O2",
+      "finding": "Later tracker/ledger/finalizer helpers rely on trusted sequencing and receipt placement rather than explicitly checking every cross-receipt PR/head/freeze/DOI linkage. No wrong-target action observed or executed.",
+      "fix": "Add explicit identity/DOI equality links before downstream writes if strengthening operational guards."
+    }
+  ],
+  "mathematical_remaining_gap_for_stated_theorem": null,
+  "strongest_verified_theorem": "For an infinite-genus Riemann surface with finitely many n>=3 ends all accumulated by genus, Aut_hol(S) is finite; every translation structure on that same underlying surface has finite full SO(2) affine derivative preimage and finite Gamma(S) intersect SO(2). Therefore A=(1/5)[[3,-4],[4,3]], an infinite-order norm-preserving rotation, cannot even belong to the Veech group for X={0,2/3,1}.",
+  "exact_claim_assumptions": [
+    "connected orientable second-countable boundaryless underlying surface",
+    "infinite genus",
+    "exactly three ambient ends, all nonplanar",
+    "actual S retained across conformal and topological arguments",
+    "full prescribed matrix Veech group",
+    "finite included cone points extend complex structure; omitted points not adjoined; infinite-angle completion points not surface points"
+  ],
+  "excluded_extra_assumptions": [
+    "flat completeness",
+    "finite area",
+    "trivial derivative kernel",
+    "splitting/faithful lift of derivative image",
+    "individual end fixation",
+    "finite number of cones"
+  ],
+  "priority_scope_assessment": {
+    "complete_prior_corollary": "APV arXiv2007.01982v1 July4,2020 Lemmas4.1/4.2, retained in MathAnn381(2021)p477, supplies full bridge using complete Poincare metric on same S.",
+    "explicit_translation_theorem": "ARSVWv1Theorem1.6(2023),v2Theorem1.8(2026).",
+    "earlier_literal_named_question_negative_answer_established": false,
+    "firstness_certified_or_claimed": false,
+    "current_openness_certified_or_claimed": false,
+    "new_general_finiteness_claim": false,
+    "attributed_application_framing_acceptable": true,
+    "historical_remaining_gap": "Whether an earlier primary text literally drew this negative answer or printed an infinite rotation witness. Bounded absence is not firstness.",
+    "no_extra_novelty_threshold_imposed": true,
+    "boundary_limits": [
+      "n1/n2 not excluded",
+      "finite rotations not excluded",
+      "abstract cyclic groups with another nonorthogonal generator not excluded",
+      "Jacobs-ladder lattice/finite-area/classification questions not resolved"
+    ]
+  },
+  "executed_validations": {
+    "start_actual_Git_authentication": true,
+    "all14_frozen_files": true,
+    "closed_archive_129_members_128_payloads": true,
+    "all27_originals_disk_Git_archive": true,
+    "full_replay_modes": [
+      "normal",
+      "O",
+      "OO",
+      "inherited_PYTHONOPTIMIZE_2"
+    ],
+    "full_strict_JSON_identical": true,
+    "current_structural_mutation_rejections": 140,
+    "current_positive_integrity_controls": 4,
+    "active_false_assertions": 4,
+    "copied_code_corruptions_rejected_before_execution": 4,
+    "additional_independent_rejections": 68,
+    "ambient_end_permutation_cases": 719,
+    "exact_fast_power_exponents": [
+      17,
+      113,
+      1009,
+      3001
+    ],
+    "independent_universal_infinite_order_argument": "finite-order eigenvalues imply trace6/5 rational algebraic integer contradiction",
+    "nonsplit_extension_control": "C4->C2",
+    "PDF_pages_actually_inspected": 3,
+    "independent_compile": "Tectonic",
+    "all3_recompiled_page_pixels_identical": true,
+    "primary_source_pages_actually_viewed": 19,
+    "all19_archived_Python_files_read": true,
+    "all6_preparation_guard_scripts_read": true,
+    "five_future_helpers_read_only": true,
+    "full_reproducer": "REPRODUCTION_RECEIPT.json",
+    "end_authentication": "AUTHENTICATION_END.json",
+    "full_reproducer_completed": true,
+    "final_endpoint_authentication_after_seal_verifier_and_full_reproducer": true,
+    "shared_index_hash_equal_start_end": true,
+    "current_candidate01_full_reproducer_completed_utc": "2026-10-15T06:07:22.879496+00:00",
+    "seal_verifier_provisional_manifest_pass": true
+  },
+  "validation_limits": [
+    "Foundational uniformization and surface classification imported, not re-proved from axioms.",
+    "No formal proof-assistant or independent human review.",
+    "Primary bodies mostly reused from explicitly identified shared private cache; actual relevant pages inspected.",
+    "No exhaustive priority search or historical download date authentication.",
+    "POSIX/macOS execution only; no actual Windows or Linux execution.",
+    "Hash/control checks do not prove universal mathematics or first priority.",
+    "Future helpers were reviewed statically and never used for writes.",
+    "No protection against concurrent local attacker or trusted-interpreter substitution claimed."
+  ],
+  "future_helpers_inspected": {
+    "merge_pr919.py": {
+      "bytes": 7823,
+      "sha256": "ef2a559c796d483cdb321dafa41a05ebdf4fcd9b862b8b746dd490fd0acc843f",
+      "checkpoint_commit": "d11a272cdbef412d1919a8e275439c618ae79f65",
+      "repository_path": "draft_pr_claimed_solved_900_1000_20261012/merge_pr919.py",
+      "source_bytes_equal_Git_object": true,
+      "review_copy": "reviewed_helpers/merge_pr919.py"
+    },
+    "run_pr919_zenodo.py": {
+      "bytes": 3846,
+      "sha256": "dea2ef191700359930ac4c119fd08baf4bc6cbd1d34e84441714b846174113f9",
+      "checkpoint_commit": "d11a272cdbef412d1919a8e275439c618ae79f65",
+      "repository_path": "draft_pr_claimed_solved_900_1000_20261012/run_pr919_zenodo.py",
+      "source_bytes_equal_Git_object": true,
+      "review_copy": "reviewed_helpers/run_pr919_zenodo.py"
+    },
+    "append_pr919_tracker.py": {
+      "bytes": 5316,
+      "sha256": "60714de45f6016e5f7294d26ab95a730dec8c452a50dcb7615d1420c1b39edb9",
+      "checkpoint_commit": "d11a272cdbef412d1919a8e275439c618ae79f65",
+      "repository_path": "draft_pr_claimed_solved_900_1000_20261012/append_pr919_tracker.py",
+      "source_bytes_equal_Git_object": true,
+      "review_copy": "reviewed_helpers/append_pr919_tracker.py"
+    },
+    "update_pr919_publication_ledger.py": {
+      "bytes": 12916,
+      "sha256": "b791463148965bcd4200b03fec133235afe0a98b7f4912ce6c4c46d60331198d",
+      "checkpoint_commit": "d11a272cdbef412d1919a8e275439c618ae79f65",
+      "repository_path": "draft_pr_claimed_solved_900_1000_20261012/update_pr919_publication_ledger.py",
+      "source_bytes_equal_Git_object": true,
+      "review_copy": "reviewed_helpers/update_pr919_publication_ledger.py"
+    },
+    "finalize_pr919_and_gate_next.py": {
+      "bytes": 12385,
+      "sha256": "598e840ecf314855a774e484a26cdd7cf42faad330e49534417ebbc93b341d3f",
+      "checkpoint_commit": "d11a272cdbef412d1919a8e275439c618ae79f65",
+      "repository_path": "draft_pr_claimed_solved_900_1000_20261012/finalize_pr919_and_gate_next.py",
+      "source_bytes_equal_Git_object": true,
+      "review_copy": "reviewed_helpers/finalize_pr919_and_gate_next.py"
+    }
+  },
+  "original_author_turns": "1/5",
+  "author_proof_search_turns_added": 0,
+  "external_individual_communication": false,
+  "other_shard_contact": false,
+  "PR_merge_publication_tracker_mutations": false,
+  "shared_checkout_index_branch_mutated_by_this_reviewer": false,
+  "prior_whole_package_verdicts_used_as_premises": false
+}

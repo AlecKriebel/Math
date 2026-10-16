@@ -1,0 +1,99 @@
+# PR421 author-packet operation
+
+Prepared on 2026-10-12. No live plan or remote write was executed in preparing this helper. The root researcher controls candidate approval, the live read-only plan, and any later `--apply` invocation.
+
+`update_draft_pr421.py` uses the GitHub Git-data API through existing `gh` authentication. It does not access or print authentication values. It is specific to `AlecKriebel/Math`, draft PR421, and `research/20001515-explicit-cubulation`. It never modifies a checkout, index, QUEUE, PR title/body/comments, main, merge state, or release.
+
+## Manifest and commands
+
+All local paths are relative to this case folder (`audits/pr421_20001515`), and each remote path must be strictly below `unsolved_math_prioritization/attempts/20001515/`. The manifest is a positive allowlist, not a directory scan:
+
+```json
+{
+  "schema_version": 1,
+  "expected_head": "d5bf8b5a25cabb177433338fae60af52ebfecf1c",
+  "expected_branch": "research/20001515-explicit-cubulation",
+  "entries": [
+    {
+      "local_path": "global_candidate/author_packet/ATTEMPT_1.md",
+      "remote_path": "unsolved_math_prioritization/attempts/20001515/ATTEMPT_1.md",
+      "sha256": "c022afdfe003d0692a032cee48855ddf712de22953b358b895c485215875d8a6"
+    }
+  ]
+}
+```
+
+Run from any directory. The current root candidate is `global_candidate/packet-update-manifest.json`; the command below is documentation and has not been executed:
+
+```sh
+python3 -B operations/update_draft_pr421.py \
+  --manifest global_candidate/packet-update-manifest.json \
+  --expected-head d5bf8b5a25cabb177433338fae60af52ebfecf1c \
+  --expected-branch research/20001515-explicit-cubulation \
+  --run-id root-reviewed-plan-01
+```
+
+The example assumes the case folder as the shell working directory. Without `--apply`, the helper makes only GET requests. To execute an approved candidate later, use the same explicit bindings, a fresh run-id, and `--apply`. Every run writes private journals and receipts under `private_sources/operations/runs/<run-id>/`. Existing run directories are rejected.
+
+The helper uses the root-confirmed checkout identity, `Alec Kriebel <me@aleckriebel.com>`, for both new author and committer. A fresh UTC date and exact commit specification are durably recorded before any object creation. Candidate bytes remain pinned in memory after their complete hash check.
+
+## Gates and mutation order
+
+Before opening even the candidate manifest, the helper reads fresh PR421 metadata and its branch ref. It requires OPEN, draft, the exact expected SHA, branch, and repository. It reads QUEUE at that exact head, derives column positions from its header, locates one exact `20001515` row, and requires `Status == claimed_solved`.
+
+It then validates every manifest entry and opens every component without following symlinks. All candidates must be regular files confined to this case; traversal, duplicate paths, private/runtime/credential paths, and recognizable authentication secrets are rejected. Every SHA-256 must match before any POST. Existing directories, symlinks or submodules cannot be replaced, and candidate paths cannot traverse a non-directory ancestor.
+
+The v5 helper uses only nonrecursive Git-tree GETs. It reads the base root and existing directories on candidate-modified paths, and validates each complete tree object's bytes against its Git SHA. It copies every immediate entry exactly, changes only approved candidate files or directory SHAs propagated from those files, and computes the root SHA bottom-up. Untouched sibling blobs, submodules, symlinks, and entire subtrees remain opaque entries with exactly their original mode, type and SHA. Existing file modes and empty trees are preserved. Candidate file/directory conflicts are rejected before object writes.
+
+The durable plan contains `merkle_overlay`, recording each modified directory's base SHA, complete base entries, complete expected entries and expected SHA. The resulting root hash binds the entire tree under Git's content-addressed object identity, including preserved opaque subtrees. This establishes preservation without enumerating their leaves or reading unrelated research bodies. A recursive response may be truncated: the helper never requests it. A truncated or malformed nonrecursive object still stops safely before any mutation.
+
+Tree creation remains one `base_tree` overlay POST. Before commit/ref publication, the helper verifies the expected root SHA, reads and hashes the expected modified-directory objects, and follows each candidate's ancestry from that root to its exact mode/type/blob SHA. Actual-head candidate readback and GET-only recovery use the same targeted nonrecursive descent. The helper computes Git blob, tree, and unsigned commit identities locally. If GitHub serializes an object differently, it stops unless the exact expected object can be verified by read-only access.
+
+The second administrative gate precedes blob creation. Before every POST or PATCH, a journal intent is appended and fsync'd. An exclusive durable source-head claim prevents a new run-id from blindly repeating uncertain writes at the same old head. The order is blobs, tree, commit, a durable created-commit record, complete parent/tree verification, a third fresh administrative gate, and one non-force PATCH.
+
+The last read is a precondition, not an atomic compare-and-swap supplied by GitHub: `force:false` rejects a concurrent branch advance to a sibling commit. A concurrent force rollback by another actor is outside this protection. The root should maintain exclusive control of this draft branch during the operation.
+
+## Recovery and actual-head receipt
+
+No failed/unconfirmed write is automatically retried. Object response loss is reconciled by GET of the expected content-addressed object. Ref response loss is reconciled by fresh PR/ref readback and, if needed, a GitHub comparison proving that the created commit is an ancestor of the actual head. If that proof fails, the helper stops uncertain. A published ancestor establishes historical publication evidence. Current-packet verification additionally requires every exact candidate byte binding at the actual head, current OPEN and draft state, and the exact `claimed_solved` QUEUE status. A final PR/ref read checks that the head did not change while the candidate bytes were read.
+
+Actual-head readback first obtains PR/ref/ancestor metadata and fetches the exact actual SHA's QUEUE. It parses the header-derived Status and rechecks PR/ref scope before any candidate tree or body verification. If state, branch, draft, ref consistency or Status is out of scope, it returns administrative drift evidence immediately: `candidate_verification: skipped_administrative_drift`, `candidate_present_at_actual_head: null`, and per-file `checked_at_actual_head: false` with actual hashes/modes/presence left null. These files are unchecked; they are not labeled changed. In reconciliation, reconstruction and verification of the historical created commit's candidate trees is deferred through a callback until this administrative gate passes.
+
+If publication is observed but any current-packet condition fails, the apply run durably records `publication_observed: true`, `current_packet_verified: false`, the actual readback and drift reasons in its journal and receipt, then raises `PacketDrift` and exits nonzero. It never retries the mutation. A drift receipt uses `result: published_current_packet_drift`; only a passing current packet uses `published_current_packet_verified`.
+
+After process interruption, the root can inspect the existing journal using only reads:
+
+```sh
+python3 -B operations/update_draft_pr421.py --reconcile --run-id ROOT_RUN_ID
+```
+
+Reconciliation never resumes writes. On current-packet drift it emits structured historical publication evidence with `current_packet_verified: false`, raises `PacketDrift`, and exits nonzero. Its passing result is `current_packet_verified_by_read_only_reconciliation`. It does not rewrite the original journal/receipt. A journal without a ref intent reports that no ref intent was recorded; it does not grant permission to retry objects. Do not remove source-head claims or start another apply against the same head without an independently checked disposition of the earlier run. A partial/unreadable journal stops reconciliation.
+
+The receipt binds manifest SHA-256, every local/remote file pair and SHA-256/Git blob SHA/mode, the Merkle overlay proof, exact parent/tree/created commit metadata, actual PR head and branch, OPEN/draft readback values, the header-derived QUEUE row, and candidate hashes/modes read from the actual head. That actual head is the source for the subsequent whole-package adversarial review.
+
+## Existing-commit resume
+
+Root reports that the original run `root-reviewed-packet-apply-20261012t2350` created the exact predicted commit `2e85a0b10c3793ed1d46726b50efac5a6306b707`, parent `d5bf8b5a25cabb177433338fae60af52ebfecf1c`, tree `f2649daec6286218bf44b8279bb5d7475b334957`, and original author/committer date `2026-10-12T23:49:15Z`, then stopped before a ref intent. The API's JSON message omitted the submitted message's single final newline, while the Git object SHA matched. `verify_commit` now accepts the exact submitted message or omission of exactly that one final newline, only with the exact predicted object SHA, parent/tree/attribution and complete Merkle proof already verified. Any other message difference still fails.
+
+The dedicated resume route starts with the source-head administrative gate before reading journal or candidate bytes. It loads the original durable apply plan, requires one commit intent and zero ref intents/PATCH intents, verifies the existing source-head claim without deleting it, and binds the original journal SHA-256 to the new run-id. It requires current local manifest/files/Merkle proof to equal the original pins; reconstructs the original deterministic commit specification using its original date; and GET-verifies the already-created commit, complete Merkle tree, and every candidate blob's exact bytes. It creates no blobs, trees or commits.
+
+Root's read-only resume plan uses a fresh run-id. This example is documentation; this agent has not executed it:
+
+```sh
+python3 -B operations/update_draft_pr421.py \
+  --resume-existing-commit root-reviewed-packet-apply-20261012t2350 \
+  --manifest global_candidate/packet-update-manifest.json \
+  --expected-head d5bf8b5a25cabb177433338fae60af52ebfecf1c \
+  --expected-branch research/20001515-explicit-cubulation \
+  --run-id root-reviewed-resume-plan-01
+```
+
+Only root's later explicit `--apply`, after reviewing the exact resume plan, may move the ref. It uses another fresh run-id and durably creates an exclusive `runs/resume_claims/<original-run-id>.json` binding the original journal hash, new run-id and existing commit. It fsyncs the resume journal, records the existing commit before the ref intent, verifies that the original journal has not changed, and rechecks the fresh source-head administrative gate. It then makes exactly one non-force PATCH to the existing commit and uses the shared administrative-first current-head readback. No POST is available in this phase. The old source-head claim remains intact.
+
+If the ref outcome is uncertain, do not invoke resume apply again, ordinary apply, or delete either claim. A fresh apply against the same original run is blocked by the exclusive resume claim, including when an uncertain response left the old ref unchanged. Inspect the **new resume run-id** using `--reconcile`; this performs GET-only recovery and retains the original journal hash binding. That recovery never authorizes or retries a mutation. A drifted current scope is reported with unchecked candidate bindings before candidate reads.
+
+## Offline evidence
+
+The private fixture driver is `private_sources/operations/test_fake_api.py`. It uses a separate recursive Git-tree serializer and a fake API that distinguishes recursive and nonrecursive responses. Its oversized fixture preserves an opaque 40,000-file subtree, while recursive traversal truncates at 34,680 entries; successful apply/recovery uses no recursive endpoint or opaque subtree/body read. It rejects malformed/truncated nonrecursive objects before writes. Post-publication Status, closure, readiness and branch-drift fixtures throw on any candidate tree/body GET, and verify that both apply and recovery instead stop with truthful history and unchecked bindings. A successful readback's request-order check also requires the actual-head QUEUE before candidate trees/bodies. Resume fixtures preserve Git object bytes/SHA while normalizing the JSON message, reject other message changes and original ref intents, enforce zero resume POSTs/one PATCH, recover a lost response through GETs, block a second resume after uncertainty, and enforce scope before local reads and after publication. Their public result records distinguish original-fixture setup writes from resume-phase POST/PATCH counts. Run normal and optimized modes with `python3 -B` and `python3 -B -O`, respectively. Public JSON results bind the helper SHA-256. There are no bare assertions in security gates or the driver. No fixture, simulated journal, runtime directory, or private source is on the public output allowlist.
+
+Earlier preparation is preserved under `history/preparation_v1_20261012T232846Z/` (helper SHA-256 `3526d36e6f9e99629c56126e1d34c2a05ed682a68db6d357ae733e1c44d8bea3`), `history/preparation_v2_20261012T233419Z/` (helper SHA-256 `025a6583d6e6e8cc92f49fc74b04c69c02bb8e4a49829946f055bcb333b6cd51`), `history/preparation_v3_20261012T234006Z/` (helper SHA-256 `2c4bb9263af9df1b41323bbf5553646b0ea3665c33b89499724091c48f99cbae`), and `history/preparation_v4_20261012T234506Z/` (helper SHA-256 `0bca205f2e0aa4d84ec585a8da5a1cbd24c10d041c25d2a047b1a6bd04c6bffc`), each with seven original public artifacts. Those versions are historical evidence and must not be executed. The current top-level v5 helper and current hash-bound receipts supersede them.

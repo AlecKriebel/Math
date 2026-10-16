@@ -58,7 +58,7 @@ pinned upstream hashes before writing an archive. Rebuild after any change
 to an included input, then freeze and review the actual resulting bytes.
 
 ```sh
-python3 publication/build_upload_kit.py
+python3 publication/build_upload_kit.py --license cc-by-4.0 --license-confirmed
 ```
 
 The generated build receipt records the archive hash, input hashes, and the
@@ -66,24 +66,24 @@ separately downloaded PDF hash. The PDF build and visual inspection evidence
 is maintained by the root researcher; archive generation does not assert
 visual inspection, mathematical validity, or complete-package review.
 
-## License decision still pending
+## Confirmed license
 
-**CC BY 4.0 is a proposal, not a settled license or publication clearance.**
-The human user's concrete choice between CC BY 4.0 and CC BY-SA 4.0 is
-pending. The current metadata field `cc-by-4.0` is provisional. Do not stage
-or publish until this choice has been resolved and propagated through the
-metadata and archive. After a confirmed decision, rebuild with the exact
-chosen SPDX-style metadata identifier and a resolved status:
+The human user selected the less restrictive of the two proposed licenses
+on 7 October 2026: **Creative Commons Attribution 4.0 International
+(CC BY 4.0)**, https://creativecommons.org/licenses/by/4.0/.
+Original project material is licensed under CC BY 4.0. The metadata field
+`cc-by-4.0` records that confirmed choice. The unchanged included OpenAI
+material retains its Apache 2.0 license and original attribution.
+Rebuild the archive with the confirmed decision recorded:
 
 ```sh
 python3 publication/build_upload_kit.py --license cc-by-4.0 --license-confirmed
 ```
 
-Use `cc-by-sa-4.0` instead if that is the user's actual choice. The flag
-records an already received decision; it does not create authorization.
-The archive's `LICENSES.md` separates the selected/proposed license for
-original material from the unchanged Apache-2.0 upstream exception. No
-third-party Roydor or arXiv PDF, extracted text, or rendered page is included.
+The flag records the received human decision. The archive's `LICENSES.md`
+separates the selected license for original material from the unchanged
+Apache-2.0 upstream exception. No third-party Roydor or arXiv PDF, extracted
+text, or rendered page is included.
 
 ## Validation and publication status
 
@@ -95,10 +95,9 @@ reproduced, and this follow-on theorem is not represented as formalized.
 The finite exact computations test specific mechanisms; they do not prove
 the infinite-dimensional theorem by sampling.
 
-This README describes an intended package. It does not certify completion
-of the required fresh whole-package review cycles or license decision, and
-it is not a Zenodo publication receipt. The root research log and exact
-versioned review records govern those gates. A reserved DOI is not evidence
+This README describes an intended package. It is not a Zenodo publication
+receipt. The root research log and exact versioned review records govern
+those gates. A reserved DOI is not evidence
 of publication. Production publication must use the repository tool's
 separate check, stage, inspect, verified-ID publish and DOI-inspect steps.
 The authorized tracker append follows only a confirmed public record.

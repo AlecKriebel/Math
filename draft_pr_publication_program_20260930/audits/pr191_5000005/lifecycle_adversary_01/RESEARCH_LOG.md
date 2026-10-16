@@ -1,0 +1,7 @@
+# PR191 lifecycle adversary research log
+
+- 2026-10-15 05:21:43 UTC — Independent acceptance/threat-model plan written before reading proposal code, author audit, or self-test judgments; plan and digest sealed read-only. Audit estimate 10%. Awaiting explicit terminal/frozen proposal signal. No live effects or Git actions performed.
+
+- 2026-10-15 05:29:36–05:36:28 UTC (bounded interval; recorded retrospectively at terminal checkpoint) — Frozen input verified against Root terminal seal; independent source trace and initial 27 offline probes completed, before reading author selftest/audit judgments. Confirmed mutable selected-map pruning gap in integration/factual acceptance and postappend DOI-duplicate acceptance; positive current-MAIN drift rejection, original-head parents, unknown-outcome stopping and stale-generation retries reproduced. Audit estimate 70%; report and extended guards pending. No live effects.
+
+- 2026-10-15T05:36:28.061850+00:00 — Terminal independent proposal01 audit checkpoint:39 offline probes completed with zero unexpected harness failures; REPAIR_REQUIRED for exact selected-map/diff bindings, postwrite full-sheet DOI uniqueness, and retiring completed native text's pending-merge alias. Review-body semantic trust and external dependency limits explicitly recorded. Frozen proposal untouched; no production or Git actions. Assigned audit completion estimate100%; production acceptance remains blocked on repairs and new frozen-generation verification.

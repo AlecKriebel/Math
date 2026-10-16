@@ -1,0 +1,1 @@
+Candidate01 is reconstructed from final candidate02 by replacing only README.md and PACKAGE_MANIFEST.json with these preserved bytes. All other 206 payloads are unchanged and authenticated by this preserved manifest. Candidate01 four actual outer modes 0/1/2/2 and all nine negative controls passed before the text-only replacement. No family or original file changed.

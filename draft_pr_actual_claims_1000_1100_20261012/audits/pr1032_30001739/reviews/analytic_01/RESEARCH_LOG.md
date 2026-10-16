@@ -1,0 +1,7 @@
+# Independent analytic review log
+
+- 2026-10-13T06:05:12.413973+00:00 — 10% complete. Read only current PROOF.md, MODEL.json and SUBMITTED_PINS.json; historical audit reports and new combinatorial family remain unread. Verified all 44 snapshot hashes. Fresh primary PDFs acquired from Numdam, author-hosted Columbia scan and arXiv v3. Raw source material is confined to sources/raw. Goal: verify all analytic dependencies and rederive constraints, with a falsifiable CLEAN or gap verdict.
+
+- 2026-10-13T06:10:07.589955+00:00 — 70% complete. Independent derivation checkpoint written before reading historical reports. Fresh source equations inspected visually and through full relevant text/OCR. Complete-basis, chamber, reverse-N kernel, regular nested transport and odd-cycle argument independently rederived. Delivered checker bodies inspected before execution; ran finite diagnostics only with outputs isolated in this review. No UID/permission harness executed; no shared Git/index edits.
+
+- 2026-10-13T06:14:48.751791+00:00 — 100% complete toward assigned analytic verification. Historical audit reports consulted only after the independent derivation checkpoint; their verdict labels were not used as evidence. Directly checked additional epsilon-unit and LM statement interfaces. CLEAN assigned-family verdict recorded with full derivation, universal deduction and exact noncertified scopes. Both SymPy replay failures recorded; independent dependency-free normal/-O/-OO checks pass and match all 40 submitted scalar orders/limits. No analytic repair required.

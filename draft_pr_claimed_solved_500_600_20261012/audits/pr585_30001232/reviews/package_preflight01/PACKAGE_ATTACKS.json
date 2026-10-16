@@ -1,0 +1,257 @@
+{
+  "producer_rebuild": {
+    "status": "PASS",
+    "bytes_identical_zip": true,
+    "sha256": "bee5276046e4b00698f73bcee22b2c91c4085393bec1dc55caa139538d341690",
+    "unrelated_cache_scratch_ancestor_allowed": true,
+    "os_network_denied": true,
+    "summary": {
+      "zip_sha256": "bee5276046e4b00698f73bcee22b2c91c4085393bec1dc55caa139538d341690",
+      "zip_bytes": 195776,
+      "archive_members": 102,
+      "outer_payloads": 101,
+      "nested_entries": 83,
+      "nested_seals": 7,
+      "original_inputs": 18,
+      "pdf_sha256": "8f50f329fac5b30ffea3d98f82e36ec71af0d3d5df44e38a21f992eb45aa4c48",
+      "producer_sha256": "4a8b9b4b0fce6ecc2bd3f0595801e62f5214e7532e8b41567be4a852b3af9dd1"
+    }
+  },
+  "guard_source_sha256": "4a8b9b4b0fce6ecc2bd3f0595801e62f5214e7532e8b41567be4a852b3af9dd1",
+  "exact_nested_add_AST_used_without_body_changes": true,
+  "source_guard_cases": [
+    {
+      "case": "allowed_source",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": false,
+      "rejected": false,
+      "expectation_met": true,
+      "result": "accepted"
+    },
+    {
+      "case": "excluded_source_.cache",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": ".cache/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "excluded_source_sources",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "sources/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "excluded_source_scratch",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "scratch/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "excluded_source_qa",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "qa/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "excluded_source_.secrets",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": ".secrets/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "excluded_source_contains.private.data",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "contains.private.data/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "unsafe_archive_../probe",
+      "archive_name": "../probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: '../probe'"
+    },
+    {
+      "case": "unsafe_archive_/probe",
+      "archive_name": "/probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: '/probe'"
+    },
+    {
+      "case": "unsafe_archive_a/../probe",
+      "archive_name": "a/../probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: 'a/../probe'"
+    },
+    {
+      "case": "unsafe_archive_a//probe",
+      "archive_name": "a//probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: 'a//probe'"
+    },
+    {
+      "case": "unsafe_archive_./probe",
+      "archive_name": "./probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: './probe'"
+    },
+    {
+      "case": "unsafe_archive_a\\probe",
+      "archive_name": "a\\probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: 'a\\\\probe'"
+    },
+    {
+      "case": "unsafe_archive_C:probe",
+      "archive_name": "C:probe",
+      "source_relative_lexical": "CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid relative path: 'C:probe'"
+    },
+    {
+      "case": "leaf_symlink",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "probe_link",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid or duplicate source: probe.txt"
+    },
+    {
+      "case": "escape_source",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "/Users/alec/Documents/Math/draft_pr_claimed_solved_500_600_20261012/audits/pr585_30001232/reviews/package_preflight01/.cache/outside_producer.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Source escapes the audit: probe.txt"
+    },
+    {
+      "case": "symlink_escape",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "through_link",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Invalid or duplicate source: probe.txt"
+    },
+    {
+      "case": "resolved_excluded_source",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "source_alias/probe.txt",
+      "expected_reject": true,
+      "rejected": true,
+      "expectation_met": true,
+      "result": "Excluded source: probe.txt"
+    },
+    {
+      "case": "lexical_parent_alias_inside_audit",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "ordinary_alias/../CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": false,
+      "expectation_met": false,
+      "result": "accepted"
+    },
+    {
+      "case": "duplicate_archive_path",
+      "rejected": true,
+      "expected_reject": true,
+      "expectation_met": true
+    }
+  ],
+  "source_guard_expectation_failures": [
+    {
+      "case": "lexical_parent_alias_inside_audit",
+      "archive_name": "probe.txt",
+      "source_relative_lexical": "ordinary_alias/../CURRENT_CORRECTIONS.md",
+      "expected_reject": true,
+      "rejected": false,
+      "expectation_met": false,
+      "result": "accepted"
+    }
+  ],
+  "actual_package_mutations": [
+    {
+      "case": "changed_payload",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "RuntimeError: Outer payload mismatch: CURRENT_CORRECTIONS.md",
+      "completed_jobs_before_rejection": 0
+    },
+    {
+      "case": "missing_payload",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "RuntimeError: Outer payload inventory mismatch",
+      "completed_jobs_before_rejection": 0
+    },
+    {
+      "case": "extra_payload",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "RuntimeError: Outer payload inventory mismatch",
+      "completed_jobs_before_rejection": 0
+    },
+    {
+      "case": "symlink_payload",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "RuntimeError: Unexpected symlink: EXTRA_LINK",
+      "completed_jobs_before_rejection": 0
+    },
+    {
+      "case": "changed_original_resealed_snapshot_and_outer",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "ValueError: Original snapshot binding differs",
+      "completed_jobs_before_rejection": 0
+    },
+    {
+      "case": "changed_expected_job_result_resealed_outer",
+      "actual_process_rejected": true,
+      "returncode": 1,
+      "reason": "RuntimeError: Complete JSON mismatch: verify_original_snapshot.py",
+      "completed_jobs_before_rejection": 7
+    }
+  ],
+  "tests_do_not_establish_authenticity": true
+}

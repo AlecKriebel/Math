@@ -1,0 +1,9 @@
+# Dated P3 release wording repair stage
+
+2026-10-14T03:14:57.761058+00:00 — P3_RELEASE_WORDING_01 replaced present-tense pending/draft release prose in the paper, README, supplement and both equal metadata descriptions with stable dated AI-review history and frozen-input navigation. Extensive AI assistance, unrefereed status, no human/journal/formal certification, exact same-theorem Ferudun credit and qualified chronology, inherited credits, priority unknowns and every mathematical paragraph remain intact.
+
+The original ten-file edition, old preparation log/report, original/family/root review records and whole-review01 source bytes remain unchanged. Whole-review01 authored outputs and pins are copied byte-for-byte under evidence/whole_20261013/package_01; raw/private/extracted/render/tmp/cache/full third-party bodies are excluded. Its one-P3 verdict remains historical and does not approve changed bytes. Historical current build/state/manifest/archive/index copies are preserved under history/preparation_20261013_01. REVIEW_HISTORY.json distinguishes those stages explicitly.
+
+BUILD_RECEIPT.json records the new saved-source compile, disk PDF export and all-page visual check. EVIDENCE_INDEX.json records authored source-copy pins. The current manifest and external ARCHIVE_PIN.json describe the current ZIP. External zenodo-deposit.json contains exactly the current metadata object and the two upload file paths, and is excluded from the ZIP to avoid an archive self-reference. These local files are no evidence of an external submission, deposit, DOI, release or publication.
+
+Assigned repair completion is recorded in repairs/package01/REPAIR_LOG.md outside this supportkit. CURRENT_REVIEW_STATE.json remains PENDING_NEW_WHOLE_02 with publication_ready=false and all_issues_resolved=false until a new full artifact review. This repair is not an independent mathematical review or terminal clearance.

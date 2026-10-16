@@ -1,0 +1,94 @@
+{
+  "utc": "2026-10-14T05:30:19.938789+00:00",
+  "pr": 1071,
+  "problem_id": 30002170,
+  "review_round": 1,
+  "kind": "NEW_FULL_WHOLE_PACKAGE_ADVERSARIAL_REVIEW",
+  "status": "MATHEMATICS_PASS_PACKAGE_REPAIRS_REQUIRED",
+  "mathematical_theorem_passes": true,
+  "mathematical_scope": "Every fixed H in (1/4,1), independent centered standard equal-H fBm, both complete uniform grids, every T>0 and integer n>=1, every L2 observation-measurable estimator, canonical iterated integral; explicit positive H-only RMS rate bound.",
+  "finding_counts": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0,
+    "P3": 3
+  },
+  "findings": [
+    {
+      "id": "P3-01",
+      "priority": "P3",
+      "title": "Output interfaces can overwrite frozen inputs through descendants or aliases",
+      "paths": [
+        "NEWpreprint_v1_0/scripts/build_archive.py:11",
+        "NEWpreprint_v1_0/scripts/check.py:36",
+        "NEWpreprint_v1_0/scripts/check.py:39",
+        "NEWpreprint_v1_0/scripts/check.py:46",
+        "NEWpreprint_v1_0/scripts/check.py:50",
+        "NEWpreprint_v1_0/scripts/build_pdf.py:7",
+        "NEWpreprint_v1_0/scripts/build_pdf.py:9",
+        "NEWpreprint_v1_0/scripts/build_pdf.py:12"
+      ],
+      "verified_frozen_input_mutations_on_disposable_copies": 14,
+      "ordinary_and_optimized": true,
+      "required_repair": "Preflight all intended generated paths, including subprocess outputs, before any mkdir/write/compile against protected paths, resolved aliases and existing inode aliases. Keep output policy and no-input-mutation promise consistent."
+    },
+    {
+      "id": "P3-02",
+      "priority": "P3",
+      "title": "Manifest bootstrap skips its own file-kind preflight",
+      "paths": [
+        "NEWpreprint_v1_0/scripts/verify_package.py:14",
+        "NEWpreprint_v1_0/scripts/build_archive.py:9"
+      ],
+      "default_verify_and_builder_accept_identical_manifest_symlink": true,
+      "strict_external_verify_rejects_same_fault": true,
+      "ordinary_and_optimized": true,
+      "required_repair": "Preflight PACKAGE_MANIFEST.json as a regular non-symlink before parsing and consistently enforce the declared member/ancestor policy. Preserve absent external bindings clean success and strict present bindings rejection."
+    },
+    {
+      "id": "P3-03",
+      "priority": "P3",
+      "title": "CFF 1.2.0 root type unpublished is invalid",
+      "paths": [
+        "NEWpreprint_v1_0/CITATION.cff:12"
+      ],
+      "official_schema_root_enum": [
+        "dataset",
+        "software"
+      ],
+      "current_root_value": "unpublished",
+      "required_repair": "Use schema-valid support software CFF with a scholarly preferred citation, or replace optional CFF by an appropriate citation artifact. Keep author/title/ORCID/version/date and qualified scope consistent; do not misclassify the paper."
+    }
+  ],
+  "priority": {
+    "historical_theorem": "UNKNOWN",
+    "method": "UNKNOWN",
+    "full_novelty": "UNKNOWN",
+    "worldwide_current_open_status": "UNKNOWN",
+    "framing": "Qualified attributed witness proof; Brownian/smooth priors and Fourier/Gaussian antecedents credited."
+  },
+  "actual_git_originals_verified": 9,
+  "preparation_inputs_verified": 204,
+  "preparation_outputs_verified": 92,
+  "source_equal_selected_copies": 50,
+  "frozen_all_audit_inputs_unchanged": 439,
+  "current_seven_pdf_pages_actually_viewed": true,
+  "actual_builtin_and_standalone_compile_pass": true,
+  "clean_pdf_byte_identical": true,
+  "independent_closed_archive_byte_identical": true,
+  "documented_positive_commands": 11,
+  "additional_package_control_commands": 54,
+  "additional_root_rejection_default_commands": 10,
+  "new_independent_math_guards": "100 signed noncommuting PSD cases; 210 exact Wick monomials; 27 rational pairings; 54 sampled correction cases; 7 sampled tail checks; five mechanism faults rejected in normal/-O, exact polynomial norms and traces.",
+  "publication_ready": false,
+  "issues_resolved": false,
+  "fresh_whole_review_01_complete": true,
+  "minimum_fresh_whole_reviews_required": 2,
+  "new_whole_review_after_repair_required": true,
+  "service_hold": "Preceding PR1032 priority cursor",
+  "candidate_or_prior_records_modified": false,
+  "git_or_service_mutation": false,
+  "external_contact": false,
+  "report": "REPORT.md",
+  "execution_completion_percent": 100
+}

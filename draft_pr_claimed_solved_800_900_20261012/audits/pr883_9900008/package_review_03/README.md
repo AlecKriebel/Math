@@ -1,0 +1,7 @@
+# Independent whole-package review 03
+
+REPORT.md and DECISION.json govern this completed review of the exact r2 seal. PUBLIC_MANIFEST.json is a closed, explicit allowlist; it grants no recursive permission. All private source bodies, raw command/web receipts, disposable inputs and the stopped broad filename-only probe are excluded.
+
+The three authored scripts use the standard library. Read them before executing. From this review directory, `python3 -I -S -B review_checks.py` authenticates the sealed input, runs actual normal/optimized current verifications/builds and bounded mutations; it writes only review-owned receipts and temporary copies. It requires the declared sibling sealed package, source evidence and read-only local Git objects. `python3 -I -S -B evidence_checks.py` checks amendments, public bytes, local primary editions, prepared objects and exact diagnostics. `python3 -I -S -B format_controls.py` emits small in-memory format checks for already authenticated/read current modules. Add `-O` before the script path for optimized checks. These are repository audit artifacts, not standalone publication entrypoints. The candidate's separate README gives its portable commands.
+
+Execution receipts identify raw stdout hashes separately from normalized public command/result metadata. Raw receipts stay under private/. Generated page images and candidate copies were removed only after inspection. No candidate/source input was changed. No Git mutation, remote action, other-PR inspection, outreach, deposit or DOI occurred.

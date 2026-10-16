@@ -1,0 +1,7 @@
+# Exact source identity
+
+2026-10-12T22:30:57.432796+00:00: Root independently retrieved the March10,2026 AIM archive capture via default TLS.25734 bytes,SHA2569dfa1624c5743d114c671ea69201a9ea46fe577e707239e245cc7f22b30b8121. The displayed Problem5.2 and embedded record 0df1011a6fa8a3c46e2c977b7e12c66f,revision 6-d5a22eda9ed96ccdc8327e2e9395bb3e, agree with the canonical dataset's exact automorphism a→a,b→ab,c→bcb and geometric CAT(0) cube action question; attributed to Rylee Lyman. Attached known CAT(0)-space action is weaker than cubulation.
+
+The official workshop report was successfully read through web PDF retrieval,p2, and has the distinct b→aba example with a candidate3D cubulation. Direct default-TLS PDF download returned403; it is not treated as successful. Live AIM has hostname-certificate failure. The2024 archive request timed out; neither a failed request nor saved author verdict certifies current content. One actual archived capture is sufficient to independently verify the target's original wording. This does not establish current unresolved status or novelty; extensive priority audit remains later.
+
+Sources: https://web.archive.org/web/20260310215532id_/http://www.aimpl.org/freebycyclic/5/ ; https://aimath.org/pastworkshops/freebycyclicrep.pdf (p2). Foreign HTML/corpus/PDF bytes remain private. Root read exact target and complete prior report; no new proof-search turn. Completion15% of selected disposition,75% batch.

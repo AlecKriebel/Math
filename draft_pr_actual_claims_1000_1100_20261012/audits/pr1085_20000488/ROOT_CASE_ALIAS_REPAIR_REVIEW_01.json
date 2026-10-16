@@ -1,0 +1,245 @@
+{
+  "utc": "2026-10-16T04:37:39.482734+00:00",
+  "status": "ADOPT_BOUNDED_CASE_ALIAS_REPAIR_PENDING_NEW_COMPLETE_WHOLE03",
+  "full_report_complete_code_prose_diff_read": true,
+  "counts_rehashed": {
+    "outputs": 34,
+    "baseline": 463,
+    "changes": 7,
+    "unchanged": 456,
+    "current_candidate": 179,
+    "exact_copies": 124,
+    "historical_rows": 4109,
+    "closed_zip_members": 155
+  },
+  "independent_actual_commands": [
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "verify_package.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "c8da374d5818f31b05cadf5cb2e943bea10c9ee6a8ccbe9bac135227b4fe1f20",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "check_math.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "8949059ebec38389afe5c287f51174a4140e63892946f90031e1cdd2a8f8aa4b",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/archive-normal.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "5d0f02877ee0e049560772c98675b892d3220e5db1161f56656f7811de0aaa13",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0/verify_package.py",
+        "--require-deposit"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "a5fc295f95640c4fe9087c4b25087cb6a3a80eb8ea6718f87d7e027451493dfd",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-verify_package.py-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/verify_package.py\", line 262, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/verify_package.py\", line 258, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "check_math.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-check_math.py-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-build_archive.py-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-build_pdf.py-normal"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_pdf.py\", line 14, in main\n    safe_output(out)\n    ~~~~~~~~~~~^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "verify_package.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "c8da374d5818f31b05cadf5cb2e943bea10c9ee6a8ccbe9bac135227b4fe1f20",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "check_math.py"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "8949059ebec38389afe5c287f51174a4140e63892946f90031e1cdd2a8f8aa4b",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/archive-optimized.zip"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "5d0f02877ee0e049560772c98675b892d3220e5db1161f56656f7811de0aaa13",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0/verify_package.py",
+        "--require-deposit"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "a5fc295f95640c4fe9087c4b25087cb6a3a80eb8ea6718f87d7e027451493dfd",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "verify_package.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-verify_package.py-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/verify_package.py\", line 262, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/verify_package.py\", line 258, in main\n    safe_output(args.output, [args.deposit] if args.deposit else [])\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "check_math.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-check_math.py-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/check_math.py\", line 101, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/check_math.py\", line 95, in main\n    if args.output: safe_output(args.output)\n                    ~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "build_archive.py",
+        "--output",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-build_archive.py-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_archive.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_archive.py\", line 26, in main\n    out = safe_output(args.output)\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "-O",
+        "build_pdf.py",
+        "--out-dir",
+        "/private/tmp/root1085-case-repair-219i9h6w/KIT/missing/deeper/forbidden-build_pdf.py-optimized"
+      ],
+      "expected_success": false,
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_pdf.py\", line 39, in <module>\n    main()\n    ~~~~^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/build_pdf.py\", line 14, in main\n    safe_output(out)\n    ~~~~~~~~~~~^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 84, in safe_output\n    require((ancestor_stat.st_dev, ancestor_stat.st_ino) != root_identity,\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            \"output must be outside physical kit directory\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/tmp/root1085-case-repair-219i9h6w/kit/kit_common.py\", line 11, in require\n    raise ValueError(message)\nValueError: output must be outside physical kit directory\n"
+    },
+    {
+      "argv": [
+        "python3",
+        "-B",
+        "/Users/alec/Documents/Math/zenodo_deposit_tool/zenodo.py",
+        "check",
+        "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1085_20000488/preprint_v1_0/zenodo-deposit.json"
+      ],
+      "expected_success": true,
+      "exit_code": 0,
+      "stdout_sha256": "529262c2e3ef502b6d495214299d11a4f6acd99687f441bd4740f54509e69e02",
+      "stderr": ""
+    }
+  ],
+  "independent_closed_zip_byte_equal": true,
+  "paper_TeX_math_native_bibliographic_metadata_unchanged": true,
+  "no_new_compile_render": true,
+  "whole_reviews_completed": 2,
+  "minimum_whole_reviews": 2,
+  "new_complete_whole03_required": true,
+  "publication_ready": false,
+  "published": false,
+  "services_held_after_pr": 1032
+}

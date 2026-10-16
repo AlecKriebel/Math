@@ -1,0 +1,16 @@
+{
+  "utc": "2026-10-14T04:50:54.295545+00:00",
+  "argv": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "scripts/verify_package.py",
+    "--bindings",
+    "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/_tmp/corrupt_binding.json",
+    "--archive",
+    "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/PR1071_preprint_v1_0_support.zip"
+  ],
+  "cwd": "/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/_tmp/clean",
+  "returncode": 1,
+  "expected_returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/_tmp/clean/scripts/verify_package.py\", line 47, in <module>\n    print(json.dumps(verify(bindings=a.bindings,archive=a.archive,require_bindings=a.require_bindings),indent=2))\n                     ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/_tmp/clean/scripts/verify_package.py\", line 33, in verify\n    b=json.loads(selected.read_text());pdf=root/b['pdf']['filename'];require(pdf.is_file() and sha(pdf)==b['pdf']['sha256'] and pdf.stat().st_size==b['pdf']['bytes'],'Upload PDF binding mismatch.')\n                                                                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/draft_pr_actual_claims_1000_1100_20261012/audits/pr1071_30002170/NEWpreprint_v1_0/_tmp/clean/scripts/verify_package.py\", line 7, in require\n    if not ok:raise RuntimeError(message)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Upload PDF binding mismatch.\n"
+}

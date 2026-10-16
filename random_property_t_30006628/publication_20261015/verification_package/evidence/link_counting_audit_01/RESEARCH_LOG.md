@@ -1,0 +1,7 @@
+# Link-counting audit log
+
+- 2026-10-15 UTC, initial checkpoint, 25%: froze independence note after reading candidate proof and source manifest only. Reconstructed oriented-corner kernel, degree cancellation, tensor spectrum, and inverse-fixed deletion. No mathematical defect identified yet; finite diagnostics and endpoint asymptotics remain.
+
+- 2026-10-15T07:42:20.545481+00:00, checkpoint, 80%: independent direct enumeration passed all 47,816 ordered kernel entries across 21 cases and 129,434 cyclic relators; all residues, mixed inversion, unequal factors, 26,932 endpoint row-class checks, and 13 full-spectrum comparisons. Exact integer endpoint/deletion formulas checked against direct counts; 120 higher-length diagnostic rows computed. Normal and optimized runs agree byte for byte; four deliberately corrupted-kernel runs fail for the intended reason. Remaining work: consolidate the analytical uniform endpoint-error proof and scope decision.
+
+- 2026-10-15T07:45:19.149821+00:00, final checkpoint, 100%: completed analytical corner/deletion/error/degree/compression/tensor review and final report. No blocking issues in assigned scope; no inherited verdicts or checker read. Preserved source head/hash and original 1/5 proof effort; this was completed-proof verification only. No git mutations, queue edits, external contacts, or novelty certification. Public allowlist sealed after this entry.
