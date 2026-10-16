@@ -10,7 +10,9 @@ from collections import Counter
 from datetime import datetime,timezone
 from pathlib import Path,PurePosixPath
 P=Path(__file__).resolve().parent;ROOT=P.parent
-FIELDS='number state isDraft headRefOid headRefName baseRefName url'
+SCALARS='number state isDraft headRefOid headRefName baseRefName baseRefOid url'
+FIELDS=SCALARS+' baseRef{target{oid}}'
+META_KEYS=SCALARS.split()+['currentBaseRefOid']
 def need(ok,label):
  if not ok:raise RuntimeError(label)
 def run(args):return subprocess.run(args,cwd=ROOT,check=True,capture_output=True,text=True,timeout=60).stdout
@@ -28,17 +30,24 @@ def graphql(query,variables=None):
  reply=strict_json(run(args));need(type(reply) is dict and not reply.get('errors'),'GraphQL read incomplete');return reply['data']['repository']
 def safe(path):
  return type(path) is str and bool(path) and '\\' not in path and '\0' not in path and not PurePosixPath(path).is_absolute() and PurePosixPath(path).as_posix()==path and all(x not in ('','.','..') for x in path.split('/'))
+def normalize_metadata(node):
+ if node is None:return None
+ need(type(node) is dict,'PR metadata object')
+ base=node.get('baseRef');target=base.get('target') if type(base) is dict else None
+ live=target.get('oid') if type(target) is dict else None
+ return {**node,'currentBaseRefOid':live}
 def metadata():
- fields=' '.join(f'p{n}:pullRequest(number:{n}){{{FIELDS}}}' for n in range(900,1001));query='query { repository(owner:"AlecKriebel",name:"Math") {'+fields+'} }';repo=graphql(query);need(set(repo)=={f'p{n}' for n in range(900,1001)},'Metadata range differs');return {n:repo[f'p{n}'] for n in range(900,1001)}
+ fields=' '.join(f'p{n}:pullRequest(number:{n}){{{FIELDS}}}' for n in range(900,1001));query='query { repository(owner:"AlecKriebel",name:"Math") {'+fields+'} }';repo=graphql(query);need(set(repo)=={f'p{n}' for n in range(900,1001)},'Metadata range differs');return {n:normalize_metadata(repo[f'p{n}']) for n in range(900,1001)}
 def changed_paths(pr):
  need(type(pr.get('number')) is int and 900<=pr['number']<=1000,'Changed-head PR number')
+ need(type(pr.get('currentBaseRefOid')) is str and re.fullmatch('[0-9a-f]{40}',pr['currentBaseRefOid']) is not None,'Fresh immutable base context required')
  query='query($number:Int!,$cursor:String){repository(owner:"AlecKriebel",name:"Math"){pullRequest(number:$number){'+FIELDS+' changedFiles files(first:100,after:$cursor){nodes{path}pageInfo{hasNextPage endCursor}}}}}'
  paths=[];cursor=None;cursors=set();declared=None
  for page in range(30):
   variables={'number':pr['number']}
   if cursor is not None:variables['cursor']=cursor
-  node=graphql(query,variables).get('pullRequest')
-  need(type(node) is dict and all(type(node.get(k)) is type(pr.get(k)) and node.get(k)==pr.get(k) for k in FIELDS.split()),'Changed-file page PR metadata drift')
+  node=normalize_metadata(graphql(query,variables).get('pullRequest'))
+  need(type(node) is dict and all(type(node.get(k)) is type(pr.get(k)) and node.get(k)==pr.get(k) for k in META_KEYS),'Changed-file page PR metadata drift')
   count=node.get('changedFiles');need(type(count) is int and 1<=count<=3000 and (declared is None or count==declared),'Bounded stable complete changed-file count');declared=count
   conn=node.get('files');need(type(conn) is dict and type(conn.get('nodes')) is list and 1<=len(conn['nodes'])<=100,'Changed-file connection/count')
   for item in conn['nodes']:
@@ -63,15 +72,17 @@ def target_status(queue,key):
   if line.startswith('|') and len(cells)>9 and cells[2].strip().split(' / ',1)[0]==key:rows.append((line,cells))
  need(len(rows)==1,'Ambiguous/missing target QUEUE row '+key);line,cells=rows[0];return {'status':cells[8].strip(),'turns':cells[9].strip(),'queue_row_sha256':hashlib.sha256(line.encode()).hexdigest()}
 def current_identity(pr,initial):
- # Reuse the original identity only for the exact same immutable head.
- # Changed heads require current filename metadata, never mathematical bodies.
- if pr['headRefOid']==initial['headRefOid']:
+ # Head equality alone does not preserve a three-dot comparison's identity.
+ # Associated baseRefOid can stay fixed while main advances. Only a known
+ # matching LIVE baseRef.target.oid can authorize cached original identity.
+ need(type(pr.get('currentBaseRefOid')) is str and re.fullmatch('[0-9a-f]{40}',pr['currentBaseRefOid']) is not None,'Current base OID')
+ if pr['headRefOid']==initial['headRefOid'] and type(initial.get('currentBaseRefOid')) is str and re.fullmatch('[0-9a-f]{40}',initial['currentBaseRefOid']) is not None and initial['currentBaseRefOid']==pr['currentBaseRefOid']:
   keys=[str(x['id']) for x in initial['entries']]
-  method='initial_identity_at_exact_unchanged_head'
+  method='initial_identity_at_exact_unchanged_head_and_known_live_base'
  else:
   paths=changed_paths(pr)
   keys=sorted({match.group(1) for path in paths if (match:=re.fullmatch(r'unsolved_math_prioritization/attempts/([0-9]+)/.+',path))})
-  method='complete_GraphQL_filename_metadata_after_head_change'
+  method='complete_GraphQL_filename_metadata_without_matching_known_head_and_live_base'
  if len(keys)!=1 or re.fullmatch('[0-9]+',keys[0]) is None:
   return {'identity_method':method,'identity_reconciled':False,'candidate_problem_ids':keys}
  return {'identity_method':method,'identity_reconciled':True,'problem_id':keys[0]}
@@ -79,7 +90,7 @@ def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--receipt-name',required=True);args=ap.parse_args();need(re.fullmatch('[A-Za-z0-9_.-]+[.]json',args.receipt_name) is not None,'Receipt must be a simple JSON filename');out=P/args.receipt_name;need(not out.exists(),'Receipt exists; preserve prior snapshot and select a new name')
  started=datetime.now(timezone.utc).isoformat();old={r['number']:r for r in json.loads((P/'inventory.json').read_text())};need(set(range(900,1001))<=set(old),'Initial metadata inventory incomplete');first=metadata();rows=[];jobs=[]
  for number,pr in first.items():
-  need(pr is not None and pr['number']==number,'Missing numbered PR metadata');base={'pr':number,'original_metadata_head':pr['headRefOid'],'state':pr['state'],'isDraft':pr['isDraft'],'baseRefName':pr['baseRefName'],'math_or_source_or_artifact_read':False,'remote_mutation':False}
+  need(pr is not None and pr['number']==number,'Missing numbered PR metadata');base={'pr':number,'original_metadata_head':pr['headRefOid'],'state':pr['state'],'isDraft':pr['isDraft'],'baseRefName':pr['baseRefName'],'currentBaseRefOid':pr.get('currentBaseRefOid'),'math_or_source_or_artifact_read':False,'remote_mutation':False}
   if pr['state']!='OPEN' or pr['isDraft'] is not True:base['action']='SKIP_NOT_OPEN_DRAFT';rows.append(base);continue
   jobs.append((base,pr,old[number]))
  def inspect(job):
