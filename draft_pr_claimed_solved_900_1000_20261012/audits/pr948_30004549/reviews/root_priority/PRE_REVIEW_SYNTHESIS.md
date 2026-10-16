@@ -103,3 +103,13 @@ predecessors and disclose bounded priority. Original24 files, mathematical
 gate and native declared4/5/history-unknown/zero-new-response accounting
 remain unchanged. No merge, comment, preprint, Zenodo or tracker action has
 been taken for PR948.
+
+Primary bibliography followup at2026-10-16T07:47:51UTC clarifies the date:
+https://ems.press/journals/owr/articles/2654829 cites OberwolfachRep17(2020),
+no.4,1657--1691/Report33/2020 but states publication14September2021. The
+workshop itself was4--10October2020. A corpus2021 publication label therefore
+need not be wrong. Final context must distinguish report year and actual
+publication, rather than simply call2021 an error. This supplements the earlier
+shorthand and preserves all immutable source/family records. The initial root
+attempt at an unrelated article-number URL failed; only the verified2654829
+page and actual report support this clarification. Fresh falsifier notified.

@@ -67,3 +67,37 @@ the old5555-byte register survived intact and no query file was created.
 The extension below is saved only on a successful retry. Original24 files,
 sealed family payloads, mathematical gate and native4/5/history-unknown
 accounting are unchanged. Pending dispositions are not publication acceptance.
+
+Additional primary-date clarification,2026-10-16T07:47:51UTC:
+ROOT-PUBDATE-01 requires distinguishing the OWR report/bibliographic year2020
+and workshop4--10October2020 from the EMS release date14September2021.
+The official article https://ems.press/journals/owr/articles/2654829 explicitly
+supplies both. Thus a selected-corpus2021 label is not automatically a factual
+error: it may describe publication. Earlier shorthand about correcting2021
+must be read with this clarification; no sealed historical report is rewritten.
+Final paper should cite Report33/2020/OberwolfachRep17(2020), and may state
+published2021 when discussing chronology. Actual source title/content unchanged.
+
+Fresh whole-priority falsifier01 sealed2026-10-16T07:54:56.707844Z,
+manifest5bdbced0027b72e38bd1d13d1e4be8f1783268e88be7c07c40768a823b5725d4;
+root authenticated all20payloads before full-report intake07:56:00.443338Z.
+Its ALL_FINDINGS preserves37 inherited IDs plus9 new IDs (35 required,
+11 optional), including all table rows above and the date addendum. The new
+requirements below supplement rather than overwrite those records.
+
+| ID | Required final disposition | Current status |
+| --- | --- | --- |
+| PF01-R01 | Bounded no-verified-predecessor wording; weaker qualifying prior defeats priority irrespective of support/closeness | Root synthesis explicit; paper pending |
+| PF01-R02 | Full HT/CZ/structural credit; no unsupported real-closed/pluricanonical bridge | Root comparisons complete; paper pending |
+| PF01-R03 | Exact read/version/access limits, distinguish43 authenticated bodies from18 directly read PDF sources | Sealed source map/full report retained; final audit appendix pending |
+| PF01-R04 | Implement profile/provenance/credit requirements and complete new entire-package reviews before readiness | New profile engineering active; paper/full reviews still pending |
+| PF01-R05 | Report/workshop2020 versus actual publication14September2021 | Root addenda already implement wording correction; final paper pending |
+| PF01-R06 | Preserve ENOSPC/intake-order/manual-clock/corrected-time disclosures | All sealed limitations/logs preserved; final process appendix pending |
+| PF01-O01 | Earliest2008 question, rank2 versus3sections, nonclosed normalization, no common product metric | Accepted clarity improvements; paper pending |
+| PF01-O02 | Stronger historical completeness needs final bodies/forward citations and separate CZ calculation | No stronger claim; explicit gaps, no new central bridge/outreach |
+| PF01-O03 | Optional2012 single-form metric/GW context with author-upload caveat | Root/fresh comparisons record actual partial access; no claim full survey read |
+
+No priority blocker or central mathematical repair was established. The
+bounded review can end without claiming the universal historical gap solved.
+All actual paper/profile implementation and full publication reviews remain
+necessary. Declared4/5/native-unknown/zero-new-responses remains exact.
