@@ -806,7 +806,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 795 | 5300056 / AMR-052-0056 | Bounded Jacobian cocycles and absolute continuity | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 796 | 5300062 / AMR-052-0062 | Smoothness of exponential-family parameter hairs | 0.1004 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 797 | 30005418 / OWR-12697689-014 | Koszulness from the Kähler Package | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 798 | 30005453 / OWR-12697708-006 | Unique Equilibria for Subcritical Reinforcement on Infinite Graphs | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 798 | 30005453 / OWR-12697708-006 | Unique Equilibria for Subcritical Reinforcement on Infinite Graphs | 0.1003 | 5.5 | 3 | 2023 | claimed_solved | 4/5 |  | Literal nonnegative-equilibrium uniqueness is false (alternating 2/0 on Z). Audited complete candidate for corrected strictly positive equilibrium and a.s. coordinatewise convergence: countable bounded-degree simple graphs, 0<=alpha<1, bounded strictly positive rates (infimum may be zero), unit counts; positive-integer extension. Two independent AI reviews passed; exact v2 accepted, external specialist/novelty review pending. No uniform spatial convergence claim. See [audited candidate](attempts/30005453/README.md). |  |
 | 799 | 30005519 / OWR-13750332-001 | Real Subspaces in Zeros of Elementary Symmetric Polynomials | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 800 | 30005613 / OWR-14297736-021 | Dense Pure Point Spectrum on Quasi-Conical Domains | 0.1003 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 801 | 30005755 / OWR-14298157-005 | Canonical Decomposition Cones and TF Equivalence | 0.0994 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
