@@ -1,7 +1,7 @@
 # Scope and limitations
 
 ## Mathematical statement
-The result concerns only the literal ordinary integral Habiro coefficient ring and inverse limit of R[t] modulo ∏(t−q^j), standard sl_n invariant with common parameter q=v²=exp(h), and I1=1. The polynomial quotient proof needs no Taylor injectivity, localization of an inverse limit or differentiation of an infinite expansion. It excludes any integral homology sphere with nonzero Casson invariant. It gives no existence criterion at Casson zero. Omitting rank one still leaves the sizes2,3,4 obstruction18λ_C. Pole-permitting coefficient rings, rank-dependent reparameterizations and knot-color completions are different statements; no intended corrected conjecture is recovered here.
+The result concerns only the literal ordinary integral Habiro coefficient ring and inverse limit of R[t] modulo ∏(t−q^j), standard sl_n invariant with common parameter q=v²=exp(h), and I1=1. The polynomial quotient proof needs no Taylor injectivity, localization of an inverse limit or differentiation of an infinite expansion. It excludes any integral homology sphere with nonzero Casson invariant. It gives no existence criterion at Casson zero. Omitting the assigned size-one value (n=1) still leaves the sizes2,3,4 obstruction18λ_C. Pole-permitting coefficient rings, rank-dependent reparameterizations and knot-color completions are different statements; no intended corrected conjecture is recovered here.
 
 The cited published topology theorems are inputs, not independently reproved or proof-assistant certified. The finite checkers do not certify the source reading, topology, priority, whole paper or a host filesystem sandbox.
 
