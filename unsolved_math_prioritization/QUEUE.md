@@ -1079,7 +1079,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 1071 | 30004167 / OWR-16941-008 | Prismatic Cohomology from Topological Cyclic Homology | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 1071 | 30004167 / OWR-16941-008 | Prismatic Cohomology from Topological Cyclic Homology | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  | Shared primary-literature overlap / scope hold (30004167–30004168): HRW supplies the existing conditional affine multiplicative filtered comparison; exact completed-comodule Ext, twist and page conventions remain to verify. Global lci-special-fiber wording does not certify modern local hypotheses; p-flatness is sufficient, not necessary. Guo TP coefficients included. No new result or attempt; queued 0/5. [Scope audit](attempts/30004167/ACCEPTANCE.md). |  |
 | 1072 | 30004168 / OWR-16941-009 | Prismatic Cohomology of Local Complete Intersections | 0.0897 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 1073 | 30004409 / OWR-17471-016 | Motion Groups of Hopf-Tree Links | 0.0893 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 1074 | 6900004 / AMR-068-0004 | Configuration Spaces of Tensegrities — Problem 4 | 0.0893 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
