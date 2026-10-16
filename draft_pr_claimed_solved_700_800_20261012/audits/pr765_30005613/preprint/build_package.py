@@ -9,7 +9,9 @@ import datetime
 import io
 import json
 import hashlib
+import os
 import stat
+import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
@@ -224,19 +226,78 @@ def archive(files):
     return out.getvalue()
 
 
+def validate_outputs(output, names, closed_root=None, protected_pdf=None):
+    """Read-only batch preflight, including aliases and the inventory receipt."""
+    lexical = output.absolute()
+    targets = [lexical / safe_name(name) for name in names]
+    directories = {lexical}
+    for target in targets:
+        directories.update(target.parents)
+    # Inspect lexical ancestors before resolving; resolution alone hides links.
+    for directory in sorted(directories, key=lambda p: (len(p.parts), str(p))):
+        require(not directory.is_symlink(), 'Output ancestor symlink: ' + str(directory))
+        require(not directory.exists() or directory.is_dir(),
+                'Output parent is not a directory: ' + str(directory))
+    canonical = lexical.resolve()
+    closed = closed_root.resolve() if closed_root else None
+    protected_inodes = set()
+    if closed:
+        require(canonical != closed and closed not in canonical.parents,
+                'Output root lies inside closed input')
+        for path in closed.rglob('*'):
+            if path.is_file():
+                s = path.stat()
+                protected_inodes.add((s.st_dev, s.st_ino))
+    if protected_pdf:
+        s = protected_pdf.stat()
+        protected_inodes.add((s.st_dev, s.st_ino))
+    for target in targets:
+        require(not target.is_symlink(), 'Output destination symlink: ' + str(target))
+        resolved = target.resolve()
+        require(canonical in resolved.parents, 'Output escaped intended tree')
+        if closed:
+            require(resolved != closed and closed not in resolved.parents,
+                    'Output target lies inside closed input')
+        if target.exists():
+            s = target.stat()
+            require(stat.S_ISREG(s.st_mode), 'Output destination is not regular')
+            require(s.st_nlink == 1, 'Output destination has multiple hardlinks')
+            require((s.st_dev, s.st_ino) not in protected_inodes,
+                    'Output aliases a protected input file')
+    return canonical
+
+
+def atomic_write(destination, raw):
+    """Replace a pathname using a fresh inode; never truncate an existing one."""
+    fd, temporary = tempfile.mkstemp(prefix='.preprint-build-', dir=destination.parent)
+    try:
+        with os.fdopen(fd, 'wb') as stream:
+            stream.write(raw)
+        os.chmod(temporary, 0o644)
+        os.replace(temporary, destination)
+    finally:
+        if os.path.lexists(temporary):
+            os.unlink(temporary)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--output-dir', type=Path)
     ap.add_argument('--pdf', type=Path)
     args = ap.parse_args()
-    out = args.output_dir.resolve() if args.output_dir else ROOT
-    if (ROOT / 'MANIFEST.json').is_file():
+    output_arg = args.output_dir.absolute() if args.output_dir else ROOT
+    out = output_arg.resolve()
+    portable = (ROOT / 'MANIFEST.json').is_file()
+    closed_before = None
+    if portable:
         require(args.output_dir is not None and out != ROOT and ROOT not in out.parents,
                 'Portable rebuild output must be outside closed input tree')
-    pdf = regular(args.pdf.resolve() if args.pdf else ROOT / 'output/pdf/paper.pdf')
+    pdf_path = args.pdf.resolve() if args.pdf else ROOT / 'output/pdf/paper.pdf'
+    pdf = regular(pdf_path)
     require(pdf.startswith(b'%PDF-'), 'Missing PDF signature')
-    if (ROOT / 'MANIFEST.json').is_file():
+    if portable:
         payload = inventory(ROOT)
+        closed_before = payload
         rows = json.loads(payload['MANIFEST.json'])['files']
         names = set()
         for row in rows:
@@ -266,18 +327,25 @@ def main():
             'README.md': b'Upload only paper.pdf and source-and-verification.zip with the '
                          b'exact enclosed metadata. This outer ZIP is a convenience kit. '
                          b'See the source README for scope, credits, review limits and verification.\n'})}
-    out.mkdir(parents=True, exist_ok=True)
-    for name, raw in outputs.items():
-        dest = out / name
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        require(not dest.is_symlink(), 'Refusing output symlink')
-        if not dest.is_file() or regular(dest) != raw:
-            dest.write_bytes(raw)
     result = {
         'built_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'title': TITLE, 'version': '1.0', 'support_files': len(files),
         'files': [{'path': name, **identity(raw)} for name, raw in outputs.items()]}
-    (out / 'PACKAGE_INVENTORY.json').write_bytes(json_bytes(result))
+    outputs['PACKAGE_INVENTORY.json'] = json_bytes(result)
+    # Explicit PDF/output arguments are protected inputs in all modes. The
+    # argument-free authoring mode retains its already compiled PDF in place.
+    protect_pdf = pdf_path if portable or args.pdf or args.output_dir else None
+    out = validate_outputs(output_arg, outputs,
+                           ROOT if portable else None, protect_pdf)
+    out.mkdir(parents=True, exist_ok=True)
+    for name, raw in outputs.items():
+        dest = out / name
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if not dest.is_file() or regular(dest) != raw:
+            atomic_write(dest, raw)
+    if portable:
+        require(inventory(ROOT) == closed_before, 'Rebuild changed closed input')
+    require(regular(pdf_path) == pdf, 'Rebuild changed supplied PDF input')
     print(json.dumps(result, indent=2))
 
 

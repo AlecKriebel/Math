@@ -105,6 +105,14 @@ semantic file/metadata equality can be checked across different implementations.
 PACKAGE_INVENTORY.json is a dated output receipt, outside the source ZIP, and
 is not expected to have an identical build timestamp.
 
+Use an output path without existing symlinks in any ancestor. All seven output
+destinations, including the inventory receipt, are checked before any write.
+Existing destinations must be ordinary single-link regular files and must not
+alias a source file or the supplied external PDF. Keep that downloaded PDF
+outside the generated output paths. Every changed output is written through
+a fresh temporary regular file and atomic replacement. The complete source
+inventory/bytes and supplied PDF bytes are checked again afterward.
+
 Compile a copy of paper.tex with a standard LaTeX installation or Tectonic.
 The PDF uses standard packages. Compilation success, complete page renders
 and mathematical review are separate checks. A fresh compiler may embed another
