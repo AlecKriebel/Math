@@ -101,3 +101,16 @@ No priority blocker or central mathematical repair was established. The
 bounded review can end without claiming the universal historical gap solved.
 All actual paper/profile implementation and full publication reviews remain
 necessary. Declared4/5/native-unknown/zero-new-responses remains exact.
+
+R948-PROFILE-ROOT-01 (required, root code review before first package freeze):
+the first new strict driver checks case aliases only across full file paths,
+allowing aliases among directory ancestors or file-versus-directory names;
+the ZIP helper has the same implied-parent issue. This conflicts with its
+portable-path/no-case-alias promise. Reject aliases across combined file and
+directory/implied-parent names, including file-as-ancestor conflicts, and add
+actual negative controls. Original packet names do not exhibit this problem;
+no mathematical repair is involved. Implementation agent resumed in exclusive
+profile scope after its initial76-event completion; historical code/results
+must be preserved before fixes and all relevant tests rerun. Current status:
+pending corrected profile and independent full-package review. Inherited46
+findings remain individually tracked; this adds one required profile finding.

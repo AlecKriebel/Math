@@ -50,3 +50,6 @@ search/actual-reading/version/access bounds are in reviews/root_priority.
 Fresh priority_falsifier_01 is challenging the entire synthesis. Mathematical
 gate unchanged; preprint/profile/whole-package review remain required.
 Workflow35%; initial-shard77.9167%; no new author response or external action.
+
+
+2026-10-16T08:29:35.877010+00:00: Publication preparation55%; new profile ROOT01 fixed after root adversarial inspection,85 development events/0skips plus targeted root replay. Five-page note and227-file package prepared; nine sealed evidence families unchanged. Full-package reviews not yet begun. Workflows under construction, no publication acceptance.
