@@ -34,7 +34,11 @@ def safe_name(name):
 
 def regular(path):
     need(stat.S_ISREG(path.lstat().st_mode), "Nonregular input: " + str(path))
-    return path.read_bytes()
+    fd = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    with os.fdopen(fd, "rb") as stream:
+        need(stat.S_ISREG(os.fstat(stream.fileno()).st_mode),
+             "Nonregular opened input: " + str(path))
+        return stream.read()
 
 def inventory(root):
     need(not root.is_symlink() and root.is_dir(), "Source must be a directory")

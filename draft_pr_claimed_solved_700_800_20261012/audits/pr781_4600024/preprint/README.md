@@ -18,7 +18,7 @@ The two mathematical families have externally pinned manifests. A historical sym
 
 ## Reproduce
 
-Use Python3.12 or later with only its standard library. Extract this source ZIP to an owned empty directory. Keep the exact separately deposited PDF accessible. Replace PIN and PAPER_PDF below with the external manifest digest and the PDF path:
+Use Python3.12 or later on a POSIX platform (such as macOS or Linux), with only its standard library. Manifest, helper and PDF reads reject nonregular inputs before reading and use nonblocking, no-follow opens with descriptor validation. Extract this source ZIP to an owned empty directory. Keep the exact separately deposited PDF accessible. Replace PIN and PAPER_PDF below with the external manifest digest and the PDF path:
 
     python3 -B verify_bundle.py --expected-manifest-sha256 PIN --pdf PAPER_PDF
     python3 -B verify_bundle.py --expected-manifest-sha256 PIN --pdf PAPER_PDF --replay

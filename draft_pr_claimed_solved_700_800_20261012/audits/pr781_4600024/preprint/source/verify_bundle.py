@@ -1,12 +1,21 @@
 """Verify the externally pinned PR781 source and optional exact PDF; no writes."""
 from pathlib import Path
-import argparse, hashlib, json, subprocess, sys
+import argparse, hashlib, json, os, stat, subprocess, sys
 sys.dont_write_bytecode = True
 # The externally pinned manifest authenticates this verifier and its builder.
 # It is a release-integrity check, not a signature or formal proof.
 ROOT = Path(__file__).absolute().parent
 ORIGINAL = "audit/original/unsolved_math_prioritization/attempts/4600024"
 HEAD = "4a38c3ccc4cac918fb75fd4b97449f3ebd2e0f7f"
+
+def bootstrap_regular(path):
+    if not stat.S_ISREG(path.lstat().st_mode):
+        raise ValueError("Nonregular input: " + str(path))
+    fd = os.open(path, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    with os.fdopen(fd, "rb") as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            raise ValueError("Nonregular opened input: " + str(path))
+        return stream.read()
 
 def run(script, arguments, optimized):
     command = [sys.executable, "-I", "-B"] + (["-O"] if optimized else []) + [str(ROOT / script)] + arguments
@@ -19,7 +28,7 @@ def run(script, arguments, optimized):
 
 def verify(pin, pdf, replay):
     # Authenticate the helper before executing its module-level code.
-    manifest_raw = (ROOT / "MANIFEST.json").read_bytes()
+    manifest_raw = bootstrap_regular(ROOT / "MANIFEST.json")
     if hashlib.sha256(manifest_raw).hexdigest() != pin:
         raise ValueError("External source manifest pin mismatch")
     manifest = json.loads(manifest_raw)
@@ -27,9 +36,7 @@ def verify(pin, pdf, replay):
     if len(helper_rows) != 1:
         raise ValueError("Missing or repeated builder binding")
     helper = ROOT / "build_package.py"
-    if helper.is_symlink() or not helper.is_file():
-        raise ValueError("Nonregular builder")
-    helper_bytes = helper.read_bytes()
+    helper_bytes = bootstrap_regular(helper)
     row = helper_rows[0]
     if len(helper_bytes) != row["bytes"] or hashlib.sha256(helper_bytes).hexdigest() != row["sha256"]:
         raise ValueError("Builder binding differs")
@@ -66,7 +73,7 @@ def verify(pin, pdf, replay):
     binding = parse(files["PREPRINT_BINDINGS.json"])
     need(identity(files["paper.tex"]) == binding["paper.tex"], "TeX binding differs")
     if pdf:
-        need(identity(pdf.read_bytes()) == binding["paper.pdf"], "PDF binding differs")
+        need(identity(bootstrap_regular(pdf)) == binding["paper.pdf"], "PDF binding differs")
     checks = []
     if replay:
         fixed = [

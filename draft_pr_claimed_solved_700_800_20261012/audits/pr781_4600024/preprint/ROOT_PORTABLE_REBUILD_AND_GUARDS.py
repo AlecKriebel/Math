@@ -2,7 +2,7 @@
 from pathlib import Path
 import datetime, hashlib, io, json, os, shutil, subprocess, sys, tempfile, zipfile
 P = Path("/Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr781_4600024/tmp/preprint-workspace/preprint")
-PIN = "c893760f12971fd4a36e695996304885bb5a927d7fd8cb68cd99fea78808f66e"
+PIN = "51b58386f8733c0e58703cffd3641f6cec73538aba3c44be0077a465a945bf7a"
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def need(value, message):
     if not value: raise ValueError(message)
