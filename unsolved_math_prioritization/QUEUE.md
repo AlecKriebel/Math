@@ -961,7 +961,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 950 | 30005353 / OWR-12697684-032 | Homotopical versus Homological Cycle-Filling Complexity | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 951 | 30005481 / OWR-12697711-017 | Extendability of Operators Associated with Hook-Shaped Polynomials | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 952 | 30005600 / OWR-14297736-006 | Conformal Spinorial Eigenvalue Infimum on the Torus | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 953 | 30005737 / OWR-14298013-001 | Post-Lie Structures with Semisimple Target | 0.0941 | 5.5 | 3 | 2023 | claimed_solved | 1/5 |  | Finite-dimensional complex perfect nonsemisimple-source post-Lie nonexistence with a semisimple target, via a proved unimodular transverse-pair obstruction. Credits established post-Lie correspondence, Baues determinant method, integration and compact-form topology. Bounded priority audit; no firstness certificate. AI-assisted unrefereed note. [Paper and verification package](attempts/30005737/README.md) |  |
 | 954 | 5300048 / AMR-052-0048 | Accessibility of basin-boundary periodic points | 0.0937 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 955 | 5900026 / AMR-058-0026 | Soap Film on a Regular Octahedral Frame | 0.0935 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 956 | 30005926 / OWR-14298373-004 | Distance and Diameter Constants of High-Genus Triangulations | 0.0932 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |

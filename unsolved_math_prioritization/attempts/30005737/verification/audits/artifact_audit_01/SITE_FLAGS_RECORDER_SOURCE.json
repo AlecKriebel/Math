@@ -1,0 +1,4 @@
+{
+  "purpose": "Benign independent process-flag observation; no original-code change",
+  "source": "import sys,json,os\nwith open(os.environ['AUDIT_FLAGS_LOG'],'a') as f:f.write(json.dumps({'optimize':sys.flags.optimize,'flags':str(sys.flags),'argv':[os.path.basename(a) for a in sys.argv]})+'\\n')\n"
+}
