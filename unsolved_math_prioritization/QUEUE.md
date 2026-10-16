@@ -1064,7 +1064,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1053 | 2991 / KP-4.115 | Kirby Problem 4.115 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1054 | 30006624 / OWR-14299911-026 | Cartan-Hadamard Theorem without Uniform Local Medianity | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 1055 | 30006636 / OWR-14299913-005 | Extending Trisection Invariants to Four-Dimensional TQFTs | 0.0900 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
-| 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1056 | 3011 / KP-5.4 | Kirby Problem 5.4 | 0.0900 | 6.0 | 3 | unknown | exhausted | 5/5 |  | Audited partial results; compact-manifold ANR core unresolved. Canonical Alexander interpolation has linear arity amplification m/pi <= A_m <= 2m+1 for n >= 2; bounded-dimensional metrizable parameter extension proved, arbitrary metrizable extension unproved. Failure of this interpolation is not non-ANR, including in known n=2 case. Fragmentation conditional; stabilization projection and compact finite-dimensional exhaustion obstructed. Noncompact escaping twists credited to Edwards-Kirby. Corrections explicit; historical baseline reconstructed, not authenticated, and full rejected baseline omitted. See [public-only audited packet](attempts/3011/README.md). |  |
 | 1057 | 3023 / KP-5.16 | Kirby Problem 5.16 | 0.0900 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1058 | 3091 / OPG-59923 | Generalised Empty Hexagon Conjecture | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 1059 | 3422 / OPG-37293 | Sticky Cantor sets | 0.0900 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
