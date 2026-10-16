@@ -1,0 +1,5 @@
+# Deliberate public audit seal
+
+Sealed UTC: 2026-10-16T20:37:22.900508+00:00
+
+The explicit public allowlist is deliberately enumerated in sources/seal.py and MANIFEST.json. The manifest maps exactly those unique names to byte counts and SHA-256 digests, and excludes itself. Only authored reasoning, authored test/authentication/seal source, original-file hash/mode metadata and actual command receipts are public. private/, fixtures/ and tmp/ are excluded in their entirety, including copied candidate code/fixtures, mutation copies, hostile modules, caches and transient files. No downloaded primary body, extract or image, private source record or corpus content is included. The seal is an internally delivered checkable audit closure, not an external publication or acceptance decision. Authenticate the manifest against its externally delivered digest and verify every allowed byte before substantive intake. All malformed-input failures and the inaccurate unsampled progress-time label remain documented; no historical environment was simulated.
