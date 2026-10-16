@@ -1,0 +1,50 @@
+# Compact-group and arbitrary-action validation
+Reviewed candidate: PR 788, problem 30001522, original head 3412d5a074c3f3a03f75735a9ccf1755e172204a.
+
+Verdict: ACCEPT the mathematical theorem in the author's PROOF.md, with the precise fixed-space and continuous-action interpretation printed in the primary report. The original finite connected complex can be W=SU(3)/SO(3); its ranks are rk_T(W)=rk_2(W)=0 and rk_p(W)=1 for every odd prime. No present-day novelty or open-status conclusion is included.
+
+## Independence and source boundary
+INITIAL_POSITION.md was frozen before opening the author proof or historical audits. It already reconstructed the universal odd-order action, odd-primary arbitrary-action upper bound, and rational homotopy hypotheses, and explicitly identified the gap in a circle-orbit argument in the continuous category. After that freeze the author proof and historical reviews were read and compared. No current peer or root mathematical outcome was used.
+
+The primary Hanke contribution was read on printed pages 1912-1914, with p.1912 visually inspected. Its definitions optimize actual free actions on the fixed X. They do not optimize over homotopy equivalent or rationally equivalent replacements, do not say almost free, and do not restrict to isometric or smooth actions. The exact open target in the last paragraph of p.1912 is the persistent strict gap for one X satisfying the preceding homotopy hypotheses. The official EMS PDF was independently retrieved after the initial freeze and its byte hash agrees with the candidate's source metadata. SOURCE_RECEIPTS.json records both the MFO report copy and EMS copy, with read scopes.
+
+## Space and rational hypotheses
+From SO(3) -> SU(3) -> W and the usual low-degree homotopy of these groups, pi_1(W)=0 and pi_2(W)=Z/2. Hurewicz, orientability, integral duality, and universal coefficients give H_*(W;Z)=(Z,0,Z/2,0,0,Z). Rational Hurewicz produces a sphere map S^5 -> W nonzero in H_5(-;Q); it is a rational homology equivalence. Rational Whitehead applies because both spaces are simply connected and of finite type. Thus W_Q is S^5_Q and its rational homotopy is one-dimensional in degree 5. This satisfies both fundamental-group conditions and the finite total rational homotopy condition without replacing the space used for actions. W is a compact smooth homogeneous manifold, hence has a finite triangulation.
+
+The weaker rational-LES argument in the author proof would already establish finite-dimensionality even without computing the map on pi_3. It does not accidentally assume that map is zero. The sharpening to a rational sphere is correct.
+
+## Homogeneous actions and every odd prime
+For g in SU(3), left translation on SU(3)/SO(3) fixes a coset exactly when g is conjugate into SO(3). Every real determinant-one orthogonal 3-by-3 matrix has eigenvalue 1. Conversely, a unitary determinant-one matrix with eigenvalue 1 has spectrum (1,lambda,lambda^-1) and is unitarily, hence SU(3)-conjugate after a scalar adjustment of the conjugator, to a real rotation. Thus the eigenvalue condition is exact here.
+
+For D(z)=diag(z,z,z^-2), a nonidentity point with z not equal to -1 has no eigenvalue 1. A nontrivial n-th root can yield eigenvalue 1 only if n divides k or 2k. For odd n and 0<k<n neither is possible. For even n precisely k=n/2 has eigenvalue 1, and D(-1) itself belongs to SO(3). This proves simultaneously that every odd cyclic subgroup acts freely, the full circle acts only almost freely, and the even-prime construction fails. The determinant is identically 1; the circle homomorphism is injective. At p=3 the generator is scalar, but it is not in SO(3), and its eigenvalues contain no 1. There is no central-kernel exception.
+
+A rank-two elementary abelian subgroup of SU(3) itself is simultaneously diagonalizable and has an element on a coordinate-character kernel, hence an element with eigenvalue 1. This ambient-group observation alone does not bound arbitrary free actions. That distinction is respected by the separate argument below.
+
+## Arbitrary odd-primary actions
+For p odd, W is an F_p-homology sphere. Any E=(Z/p)^r acts trivially on the two nonzero cohomology groups because a p-group has no nontrivial homomorphism into F_p^*. In the two-row Borel spectral sequence only d_6 can be nonzero. If E had rank 2, the bottom associated-graded row would be
+R/(f), R=F_p[t_1,t_2] tensor Lambda(s_1,s_2), with f of total degree 6. Killing the exterior generators gives a surjection onto F_p[t_1,t_2]/(f_bar). If f_bar=0, the latter is infinite-dimensional. Otherwise f_bar has polynomial degree 3 and multiplication by it injects polynomial degree m-3 into degree m; the quotient dimension is 3 for every m>=3. Thus bottom-row classes survive in unbounded total degrees. No hidden extension can cancel a nonzero associated-graded piece.
+
+A free finite action makes W -> W/E a covering. For each point one chooses a chart disjoint from its other finitely many translates; its image is a manifold chart. Therefore W/E is a compact topological 5-manifold with cohomology zero above degree 5. The Borel map W_E -> W/E has contractible fiber EE, so W_E is homotopy equivalent to W/E. This contradicts the unbounded bottom row. Restriction to a rank-two subgroup excludes every r>=2. Combined with the explicit action, rk_p(W)=1 for each odd p, not merely for sufficiently large p.
+
+An independent dimension version was frozen initially: finite-dimensional quotient cohomology forces eventual degree-6 periodicity of H^*(BE;F_p), whereas its degree-n dimension is binomial(n+r-1,r-1), strictly increasing for r>=2. This matches the polynomial proof and provides a materially different way to expose a failed rank-two assertion.
+
+## Arbitrary continuous involutions and torus actions
+The author closes the initial circle-category gap by using the order-two subgroup of any torus. This avoids any theorem that the orbit of an arbitrary free circle action on a manifold is a manifold.
+
+Here is a fully checkable reconstruction of the characteristic number. The tangent isotropy module is Sym_0(R^3), since su(3)=so(3) direct sum i Sym_0(R^3). A rotation in the first two coordinates acts on this 5-dimensional module as a fixed line, a weight-one plane from the mixed terms with the third coordinate, and a weight-two plane from traceless terms in the rotating plane. The induced generator loop in SO(5) has class 1+2=1 mod 2. The boundary pi_2(W) -> pi_1(SO(3)) is an isomorphism. Pulling back the tangent bundle to a generator sphere yields the nontrivial clutching class and nonzero w_2. Thus w_2(W)=x, the generator of H^2(W;F_2).
+
+In 0 -> Z/2 -> Z/4 -> Z/2 -> 0, the map Hom(Z/2,Z/4) -> Hom(Z/2,Z/2) sends both allowed values 0 and 2 to zero. The connecting homomorphism Sq^1 is consequently nonzero on x. Since W is oriented, Sq^1 w_2=w_3, so w_3=y, the degree-three generator. Mod-two Poincare duality forces xy to be the nonzero degree-five class. Thus <w_2 w_3,[W]>=1. The independent Debray-Yu author PDF, printed pp.20-22, agrees, and p.21 was visually inspected to distinguish tangent w(W) from principal-bundle w(P); both are explicitly computed there.
+
+If an arbitrary continuous involution acted freely, its quotient q:W -> N would be an ordinary two-sheeted covering of closed topological 5-manifolds. Covering charts identify tangent microbundles, giving tau_W=q^*tau_N. Mod-two Thom classes and Steenrod squares then give w_i(W)=q^*w_i(N), with no smoothness, orientation, or local-linearity requirement on N. The mod-two pushforward is q_*[W]=2[N]=0, so every top-degree product of these pulled-back classes evaluates to zero. This contradicts the computed w_2 w_3 number.
+
+Therefore no continuous free involution exists, rk_2(W)=0, and restricting any hypothetical positive-rank free torus action to a subgroup C_2 proves rk_T(W)=0. This argument is categorical rather than a claim about a particular linear or homogeneous action.
+
+## Boundary checks and exact gap
+The odd-prime equality and zero toral rank hold for one fixed W. Only the finite subgroup varies with the prime. The integral obstruction is at 2, which remains a subgroup of every positive-rank torus even when large odd primes avoid all homology torsion. The report's asymptotic upper bound rk_p<=-chi^pi=1 is fully consistent. If toral rank were defined by almost-free actions or over rational homotopy replacements, this witness would not give the displayed strict gap: it has an almost-free circle action and rational type S^5.
+
+All mathematical claims of the submitted theorem pass this family review. The exact remaining scope limitations are priority/current literature status and formal proof-assistant verification; these are not asserted. The initial continuous-circle orbit route is marked unnecessary rather than promoted with an unsupported PD-space assertion.
+
+## Diagnostics and limits
+CHECKS.py independently checks the five exact tangent commutators, the loop parity and coefficient-reduction model, every nonidentity residue through cyclic order 257 (including composites and prime 3), and all binary cubic multiplication matrices over F_3,F_5,F_7 in selected degrees. It includes deliberately failing construction patterns, the zero transgression, even-loop parity, and a rank-one periodicity positive control. Its finite computations neither prove topology nor extrapolate to infinitely many primes. The proof above provides those universal implications.
+
+VERIFY.py rejects unlisted, missing, symlinked, or hash/length-altered authored files; verifies every selected original input against the immutable source inventory and actual bytes; executes only hash-verified CHECKS.py; and compares exact results. CONTROL_RESULTS.json records normal and optimized success plus nonvacuous byte-damage, unexpected-file, input-binding and result-consistency rejection controls. These controls test integrity, not truth of every mathematical theorem. An external digest of MANIFEST.json is still necessary to authenticate this packet as a whole.
