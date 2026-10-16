@@ -109,6 +109,47 @@ def verify(root=ROOT,bindings=None,archive=None,require_bindings=False):
     require(root04['publication_ready'] is False and root04['issues_resolved'] is False and root04['published'] is False and root04['services_held_after_pr']==1032, 'Root whole04 readiness/hold drift.')
     require(root04['output_pins_sha256']==sha(safe_path(root,'custody/reviews/package_04/OUTPUT_PINS.json')), 'Root whole04 output seal binding drift.')
 
+    # Current after-whole05 workflow only; all older status checks above retain dated scope.
+    after05=json.loads(safe_path(root,'TERMINAL_AFTER_WHOLE05_STATUS.json').read_text())
+    require(after05['state']=='TERMINAL_ADMIN_COMPLETE_PENDING_EXTERNAL_ROOT_FINAL_INTEGRITY' and after05['pr']==1071 and after05['head']=='fc37aa5169a0fe6adae0a254c9ee6c1531a2911f', 'Current terminal identity/state drift.')
+    require(after05['fresh_whole_package_reviews_completed']==5 and after05['minimum_fresh_reviews_required']==2 and after05['latest_complete_review_findings']=={'P0':0,'P1':0,'P2':0,'P3':0}, 'Current terminal five-review/zero-finding accounting drift.')
+    require(after05['new_complete_whole_review_currently_required'] is False and after05['terminal_administration_complete'] is True and after05['root_final_integrity_required'] is True and after05['root_final_integrity_adopted'] is False, 'New external ROOT final integrity must remain required and unadopted here.')
+    require(after05['publication_ready'] is False and after05['issues_resolved'] is False and after05['published'] is False and after05['services_held_after_pr']==1032, 'Current terminal administration cannot confer readiness or bypass hold.')
+    require(after05['latest_review']=='custody/reviews/package_05/VERDICT.json' and after05['root_review_adoption']=='custody/ROOT_WHOLE_PACKAGE_REVIEW_05.json' and after05['current_qualification']=='HISTORY_ORDER_QUALIFICATION.json', 'Current terminal provenance drift.')
+    require(after05['supersedes_workflow_only']==['STATUS.json','CURRENT_STATUS.json','TERMINAL_STATUS.json','CASE_ALIAS_REPAIR_STATUS.json','PORTABILITY_REPAIR_STATUS.json','HISTORY_ORDER_REPAIR_STATUS.json'], 'Dated workflow history scope drift.')
+    whole05=json.loads(safe_path(root,after05['latest_review']).read_text())
+    require(whole05['kind']=='NEW_COMPLETE_WHOLE_PACKAGE_ADVERSARIAL_REVIEW' and whole05['review_round']==5 and whole05['whole_reviews_completed']==5 and whole05['minimum_whole_reviews_required']==2 and whole05['full_review_complete'] is True and whole05['repair_only'] is False and whole05['finding_counts']=={'P0':0,'P1':0,'P2':0,'P3':0} and whole05['findings']==[], 'Latest complete whole05 evidence drift.')
+    require(whole05['root_terminal_adoption_required'] is True and whole05['publication_ready'] is False and whole05['issues_resolved'] is False and whole05['published'] is False and whole05['service_hold_pr']==1032, 'Whole05 evidence cannot confer readiness or bypass hold.')
+    root05=json.loads(safe_path(root,after05['root_review_adoption']).read_text())
+    require(root05['status']=='ROOT_ADOPT_COMPLETE_WHOLE05_ZERO_ACTIONABLE_PENDING_TERMINAL_ADMIN' and root05['whole_reviews_completed']==5 and root05['minimum_whole_reviews']==2 and root05['finding_counts']=={'P0':0,'P1':0,'P2':0,'P3':0} and root05['new_complete_whole_review_currently_required'] is False and root05['terminal_administration_and_root_final_integrity_required'] is True, 'ROOT complete whole05 adoption drift.')
+    require(root05['publication_ready'] is False and root05['issues_resolved'] is False and root05['published'] is False and root05['services_held_after_pr']==1032, 'ROOT whole05 cannot confer final readiness or bypass hold.')
+    require(root05['output_pins_sha256']==sha(safe_path(root,'custody/reviews/package_05/OUTPUT_PINS.json')) and root05['review_seal_sha256']==sha(safe_path(root,'custody/reviews/package_05/SEAL.json')), 'ROOT whole05 output/seal binding drift.')
+    authored_identities={'custody/reviews/package_05/REPORT.md': '5b842f13dad69158e982a3cf4bdc02b2550f48885a39817764e9276a1ab776a8', 'custody/reviews/package_05/INDEPENDENT_DERIVATION.md': 'dbe50b00797a3067bb3b4c49376e8e323ce4f3e1d82175508cc1e847ab03b993', 'custody/reviews/package_05/VERDICT.json': 'd15954499717d268a5fdcb1adc8a09490553c0ace71b2bf9c064ae3c97954d5a', 'custody/reviews/package_05/SOURCE_READ_LEDGER.json': '8b6544155a670f0246dbe79d63a5884b08cb99c87126eacf0929bd8274717ca3', 'custody/reviews/package_05/INPUT_FREEZE.json': '1e868a692a6afb72378f9921e61d00b8894b35ea317c33648e3b4b7d45c89fc5', 'custody/reviews/package_05/OUTPUT_PINS.json': '249dd1a0a96022c99578057ae6d7a3ac2ad0d4b426b25d22f476e08d66ff3dcc', 'custody/reviews/package_05/SEAL.json': 'd954fc65dd8d16de886f8b3811f678b80e8a54df704e530ff41f791e69564d25', 'custody/reviews/package_05/CUSTODY_FULL_REPLAY.json': 'ae32a81567e44fc60e54e9b3f5c30ff01f2c3171bbc166c07e7f67f18f2f636a', 'custody/reviews/package_05/NEW_MATH_CONTROLS.json': '686e7663f5f293ce94d9b6964e758f12deada16964eb151875c0c09d2d243d58', 'custody/reviews/package_05/FULL_JSON_RUNTIME_COMPARISON.json': '82f097ee38c2a89f34398e75c235e943b8abb2c3d8bf64c1533e1e77fe4577fb', 'custody/reviews/package_05/INTERFACE_CONTROLS.json': '107401543266261472e2e180841bbbdd1fad5981bd0de35b0fb9f7d92bc2c7dd', 'custody/reviews/package_05/COMMAND_SUMMARY.json': '29f10bf19458279915fa04c8fb41148fde1c7719d8c6a0aef9b16566933a5cb5', 'custody/reviews/package_05/FAILED_UNRECORDED_ATTEMPTS.md': 'ec5c270392158100e758fe0a4747b3e2c9a53028bb1f91269574baa6dc0bec50', 'custody/reviews/package_05/VISUAL_REVIEW.json': '99ce2bc21c2c7f6122675693a39f7ee9e02f62c6b0c32312eebc193134f49a76', 'custody/ROOT_WHOLE_PACKAGE_REVIEW_05.json': '742266d8902816cb4efd60ec974fc3123a5c870a7da9ad400e0f6f564bde25f3', 'custody/ROOT_HISTORY_ORDER_REPAIR_REVIEW_01.json': '767c98448b9f5c44b72cabe73a9a10189625056075eb1b81ebd73d1933df3261'}
+    for name,expected_sha in authored_identities.items():
+        require(sha(safe_path(root,name))==expected_sha,'Sealed whole05 authored evidence identity drift: '+name)
+    decisions=json.loads(safe_path(root,'WHOLE05_DISTRIBUTION_DECISIONS.json').read_text())
+    inventory=json.loads(safe_path(root,'custody/reviews/package_05/OUTPUT_PINS.json').read_text())
+    require(decisions['inventory_regular_rows']==903 and decisions['inventory_symlink_rows']==3 and len(inventory['records'])==903 and len(inventory['symlink_fixtures'])==3, 'Whole05 distribution inventory accounting drift.')
+    require(decisions['source_inventory']=={'path':'reviews/package_05/OUTPUT_PINS.json','bytes':203200,'sha256':root05['output_pins_sha256']}, 'Whole05 source inventory binding drift.')
+    rows=decisions['records'];require(len(rows)==908 and len({r['original_path'] for r in rows})==908, 'Whole05 decisions must individually cover903 regular rows,3 links,inventory and seal.')
+    selected=set(authored_identities)-{'custody/ROOT_WHOLE_PACKAGE_REVIEW_05.json','custody/ROOT_HISTORY_ORDER_REPAIR_REVIEW_01.json'}
+    bypath={r['original_path']:r for r in rows}
+    for original in inventory['records']:
+        item=bypath['reviews/package_05/'+original['path']]
+        require(item['kind']=='regular' and {k:item[k] for k in ['bytes','sha256','mode','nlink']}=={k:original[k] for k in ['bytes','sha256','mode','nlink']} and bool(item['reason']), 'Whole05 regular decision identity drift.')
+        expected_selected='custody/reviews/package_05/'+original['path'] in selected
+        require(item['selected'] is expected_selected, 'Whole05 narrow distribution selection drift.')
+        if expected_selected:require(item['package_copy']=='custody/reviews/package_05/'+original['path'], 'Whole05 selected copy locator drift.')
+    for original in inventory['symlink_fixtures']:
+        item=bypath['reviews/package_05/'+original['path']]
+        require(item['kind']=='symlink' and item['target']==original['target'] and item['selected'] is False and bool(item['reason']) and 'sha256' not in item and 'bytes' not in item, 'Whole05 fixture links are target identities, not regular bodies.')
+    for name in ['OUTPUT_PINS.json','SEAL.json']:
+        item=bypath['reviews/package_05/'+name];q=safe_path(root,'custody/reviews/package_05/'+name)
+        require(item['kind']=='regular' and item['selected'] is True and item['sha256']==sha(q) and item['bytes']==q.stat().st_size and item['package_copy']=='custody/reviews/package_05/'+name and bool(item['reason']), 'Whole05 inventory/seal decision drift.')
+    allcopies=json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']
+    prior=json.loads(safe_path(root,'history/pre_terminal_after_whole05/INPUT_COPY_MAP.json').read_text())['copies']
+    require(len(prior)==153 and len(allcopies)==175 and allcopies[:153]==prior and hashlib.sha256(json.dumps(prior,sort_keys=True,separators=(',',':')).encode()).hexdigest()=='9d4ad45de1585ea79f24238484e6d317c4cb914c18f9216b14874b2d1bfd6974', 'All153 prior copy rows must retain exact values and order.')
+
     for r in json.loads(safe_path(root,'INPUT_COPY_MAP.json').read_text())['copies']:
         p=safe_path(root,r['package_copy']);require(sha(p)==r['sha256'] and p.stat().st_size==r['bytes'],'Custody copy mismatch: '+r['package_copy'])
     selected=bindings if bindings is not None else root/'UPLOAD_BINDINGS.json'
