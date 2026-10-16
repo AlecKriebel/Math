@@ -1,0 +1,3 @@
+# Preinstallation log-recovery counterexample
+
+The actual original run used the then-current authenticated proposal07d at operations_engineering_04/PROPOSED_accept_pr952.py, before any revision or installation. ACTUAL.launch/stdout/stderr preserve that real observation. AUTHENTICATED_PROPOSAL07D.py preserves those exact source bytes independently of later engineering changes. To repeat after that path changes, copy probe_log_recovery.py to an owned fresh fixture folder, change only its source read path to this exact copy and its output-fixture path to your own folder; keep the external SHA and all flow/inert boundaries unchanged. No later execution of that adaptation is claimed by the original launch.

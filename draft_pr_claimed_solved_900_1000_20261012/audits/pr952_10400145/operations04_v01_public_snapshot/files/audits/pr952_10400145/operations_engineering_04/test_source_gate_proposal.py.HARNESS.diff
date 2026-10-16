@@ -1,0 +1,16 @@
+--- operations_engineering_03/test_source_gate_installed.py
++++ operations_engineering_04/test_source_gate_proposal.py
+@@ -7,11 +7,11 @@
+ if not (sys.flags.isolated and sys.flags.no_site and sys.dont_write_bytecode):raise SystemExit('Use -I -S -B')
+ import argparse,copy,hashlib,json,sqlite3,tempfile
+ from pathlib import Path
+-OWN=Path(__file__).resolve().parent;P=OWN.parents[2];A=P/'audits/pr952_10400145';CORE=P/'accept_pr952.py'
++OWN=Path(__file__).resolve().parent;P=OWN.parents[2];A=P/'audits/pr952_10400145';CORE=OWN/'PROPOSED_accept_pr952.py'
+ def sha(b):return hashlib.sha256(b).hexdigest()
+ p=argparse.ArgumentParser();p.add_argument('--core-sha256',required=True);a=p.parse_args();raw=CORE.read_bytes()
+ if sha(raw)!=a.core_sha256:raise SystemExit('external core pin mismatch')
+-n={'__name__':'_inert_real_source_gate_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=0),n)
++n={'__name__':'_inert_real_source_gate_','__file__':str(CORE)};exec(compile(raw,str(CORE),'exec',dont_inherit=True,optimize=sys.flags.optimize),n)
+ private=(A/'source_record_private.txt').read_bytes()
+ if sha(private)!=n['PRIVATE']:raise SystemExit('private source pinned identity mismatch')
+ original=json.loads(private);problem=original['problem'];prior=original['prior_research']
