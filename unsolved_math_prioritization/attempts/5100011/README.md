@@ -1,5 +1,5 @@
 # 5100011 / k203,a: an attributed original-side pedal proof
-Published and tracked; original-HEAD-safe merge pending.
+Original-HEAD-safe merge accepted; factual completion pending.
 
 Research note: [10.5281/zenodo.23414057](https://doi.org/10.5281/zenodo.23414057). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI use; unrefereed; no conventional human peer review or formal proof-assistant certification.
 
