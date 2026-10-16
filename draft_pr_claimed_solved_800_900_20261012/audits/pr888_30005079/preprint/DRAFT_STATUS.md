@@ -1,0 +1,3 @@
+# Preprint draft status
+
+The note.tex at this checkpoint is a draft source, with its complete theorem newly audited in focused families and its new resultant presentation awaiting an independent note review. The mathematical target is supported by3 independently frozen families; full priority audit, finalized PDF/metadata, exact portable archive, actual final-package executions and two new successive same-core whole-package clearances remain pending. No PR acceptance, merge, DOI or publication is asserted. The original effort remains1/5; extensive AI use and unrefereed status are disclosed in the draft.
