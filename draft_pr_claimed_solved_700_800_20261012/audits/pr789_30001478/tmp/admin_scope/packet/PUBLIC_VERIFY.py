@@ -10,7 +10,7 @@ import argparse, copy, datetime, hashlib, json, sys, urllib.parse, urllib.reques
 from pathlib import Path
 sys.dont_write_bytecode = True
 T = Path(__file__).resolve().parents[2]
-MF = "50baca75de83bb4959f52b88762b020a65181428d200dffc4f343db8e026f9de"
+MF = "b20f39f39a33b18822cff51850f8b5b220e139af4d7badec23a7f5a7e17805aa"
 
 def need(value, reason):
     if not value:

@@ -12,7 +12,7 @@ from unittest.mock import patch
 sys.dont_write_bytecode = True
 T = Path(__file__).resolve().parents[2]
 SCRATCH = Path(__file__).resolve().parents[1] / "scratch" / "driver_controls"
-MF = "50baca75de83bb4959f52b88762b020a65181428d200dffc4f343db8e026f9de"
+MF = "b20f39f39a33b18822cff51850f8b5b220e139af4d7badec23a7f5a7e17805aa"
 HEAD = "aa44dec3baf8c1cd179cf8b55f32be95c74ee81a"
 
 
@@ -180,14 +180,16 @@ def execute(driver):
     # the same gate with T restored so completed-review custody is exercised.
     terminal = T / "FINAL_READINESS.json"
     if terminal.exists():
+        expects_pass = json.loads(terminal.read_text()).get("result") == "PASS"
+        name = "actual_terminal_gate_read_only" if expects_pass else "actual_pending_gate_rejected_read_only"
         ns["T"] = T
         try:
             env["gate"]()
-            cases.append({"case": "actual_terminal_gate_read_only", "accepted": True,
-                          "expected": True, "control_pass": True})
+            cases.append({"case": name, "accepted": True,
+                          "expected": expects_pass, "control_pass": expects_pass})
         except Exception as e:
-            cases.append({"case": "actual_terminal_gate_read_only", "accepted": False,
-                          "expected": True, "control_pass": False,
+            cases.append({"case": name, "accepted": False,
+                          "expected": expects_pass, "control_pass": not expects_pass,
                           "error": type(e).__name__ + ": " + str(e)})
         ns["T"] = runroot
 
