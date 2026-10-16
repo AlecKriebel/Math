@@ -19,12 +19,14 @@ for name in ['intake', 'root-receipts', 'verification_recipes']:
             updates[p.relative_to(R).as_posix()] = p.read_bytes()
 for entry in plan.get('sealed_packets', []):
     folder = T / entry['folder']
-    assert hashlib.sha256((folder / 'MANIFEST.json').read_bytes()).hexdigest() == entry['manifest_sha256']
+    manifest = entry.get('manifest', 'MANIFEST.json')
+    assert hashlib.sha256((folder / manifest).read_bytes()).hexdigest() == entry['manifest_sha256']
     assert hashlib.sha256((folder / entry['checker']).read_bytes()).hexdigest() == entry['checker_sha256']
-    rows = json.loads((folder / 'MANIFEST.json').read_text())['files']
+    document = json.loads((folder / manifest).read_text())
+    rows = document.get('authored_files', document.get('files'))
     if isinstance(rows, dict):
-        rows = [dict(path=n, **v) for n,v in rows.items()]
-    paths = {x['path'] for x in rows} | {'MANIFEST.json', entry['checker']}
+        rows = [dict(path=n, **({'sha256':v} if isinstance(v,str) else v)) for n,v in rows.items()]
+    paths = {x.get('path', x.get('name')) for x in rows} | {manifest, entry['checker']} | set(entry.get('extra_files', []))
     assert len(paths) == entry['files']
     for name in paths:
         assert not Path(name).is_absolute() and all(x not in ('', '.', '..') for x in name.split('/')) and '\\' not in name
