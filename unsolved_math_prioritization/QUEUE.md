@@ -849,7 +849,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 838 | 30002054 / OWR-11786-002 | Additivity of Triangulation Complexity under Connected Sum | 0.0979 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 839 | 30002218 / OWR-12175-007 | Perturbation Stability of Jiang–Su Absorption for $C^*$-Algebras | 0.0979 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 840 | 30002288 / OWR-12336-004 | Representation and Limits of Fractional Infinity Eigenfunctions | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 841 | 30002364 / OWR-12495-004 | Lefschetz-Class Properties Under CM Reduction | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 841 | 30002364 / OWR-12495-004 | Lefschetz-Class Properties Under CM Reduction | 0.0977 | 5.5 | 3 | 2013 | already_solved | 5/5 |  | 2026-10-16T19:24:35.833231+00:00 — PR#799 closed without merge after mathematical PASS and two independently checked priority routes. Agugliaro2024v1/final2026 (DOI10.4171/DM/1057), with a written all-powers Hodge corollary, already implies the full original negative answer; independently Ribet1980/Milne2001/AFV2024 give a simple-threefold predecessor on its square. Valid eightfold preserved; exact-eightfold firstness and earliest historical recognition unestablished. No proof-failure or plagiarism claim. |  |
 | 842 | 30002439 / OWR-12725-016 | Height Counts for Closed Projective Immersions | 0.0977 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 843 | 30002618 / OWR-13102-007 | Monodromy Exactness for Isocrystals on Semistable Curves | 0.0975 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 844 | 10300026 / AMR-102-0026 | Leaf spaces and transverse structures — Question 8.3 | 0.0975 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
