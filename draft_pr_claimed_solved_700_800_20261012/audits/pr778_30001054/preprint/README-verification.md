@@ -26,7 +26,7 @@ The whole-package review receipts are maintained in the repository's PR778 audit
 
 ## Offline reproduction
 
-Use Python 3.12 or later, standard library only. Unzip the archive into an empty directory. Run inside that directory:
+Use Python 3.12 or later, standard library only, on a POSIX system supporting symlinks and FIFOs (for example macOS or Linux). The physical custody controls exercise those filesystem features. Unzip the archive into an empty directory. Run inside that directory:
 
     python3 -B verify_bundle.py --pdf /absolute/path/to/paper.pdf
     python3 -B -O verify_bundle.py --pdf /absolute/path/to/paper.pdf
