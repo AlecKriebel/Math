@@ -8,6 +8,6 @@ PR204 server creation is 2026-10-01T05:28:14Z. Ferudun centered-record creation 
 
 Original metadata/log reports one substantive author turn and original QUEUE1/5; actual model/reasoning effort and historical runtime flags are unknown. Two audit families verified the universal Jacobi mechanism after exposure. Independent direct geometry proves all N3/N4 but its general route remains partial; independent physical evidence covers63 shape/winding configurations and378 phase/direction orbits. Root’s pre-candidate flag route is uncompleted and supplies no additional proof.
 
-Current final note: https://doi.org/10.5281/zenodo.23421134. Published and tracked; actual original-HEAD-safe merge and factual acceptance pending.
+Current final note: https://doi.org/10.5281/zenodo.23421134. Published, tracked and actual original-HEAD-safe merge accepted; factual acceptance pending.
 
 Original SOURCES.md is preserved in the custody archive. Its earlier negative search is historical and did not locate the exact Ferudun result now credited. The accepted Root priority record is ROOT_PRIORITY_AND_EDITORIAL_GATE_01.json (SHA256 a905da81ebee5d670065659d4a92ff267c8327ab3ae78efac00353feff88bfbe). No current-openness or exhaustive-priority certificate is inferred.

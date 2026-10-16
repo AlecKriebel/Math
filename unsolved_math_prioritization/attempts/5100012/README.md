@@ -1,6 +1,6 @@
 # 5100012 / k203,b: attributed centered-pedal research note
 
-Published and tracked; actual original-HEAD-safe merge and factual acceptance pending.
+Published, tracked and actual original-HEAD-safe merge accepted; factual acceptance pending.
 
 Research note: [10.5281/zenodo.23421134](https://doi.org/10.5281/zenodo.23421134). Alec Kriebel, ORCID0009-0001-9320-500X. Extensive AI use; unrefereed; no conventional human peer review or proof-assistant certification. No outside person was contacted on behalf of this research.
 
