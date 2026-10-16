@@ -1,6 +1,7 @@
 """Validate the frozen verification tree without running scientific code."""
 from pathlib import Path
-import hashlib,json
+import hashlib,json,sys
+if not __debug__ or sys.flags.optimize:raise RuntimeError('Optimized Python cannot verify assertions')
 ROOT=Path(__file__).resolve().parent
 def verify():
  m=ROOT/'MANIFEST.json';data=json.loads(m.read_text());paths=set()
