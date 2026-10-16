@@ -72,6 +72,7 @@ def target_status(queue,key):
   if line.startswith('|') and len(cells)>9 and cells[2].strip().split(' / ',1)[0]==key:rows.append((line,cells))
  need(len(rows)==1,'Ambiguous/missing target QUEUE row '+key);line,cells=rows[0];return {'status':cells[8].strip(),'turns':cells[9].strip(),'queue_row_sha256':hashlib.sha256(line.encode()).hexdigest()}
 def current_identity(pr,initial):
+ legacy_binding={}
  # Head equality alone does not preserve a three-dot comparison's identity.
  # Associated baseRefOid can stay fixed while main advances. Only a known
  # matching LIVE baseRef.target.oid can authorize cached original identity.
@@ -83,9 +84,22 @@ def current_identity(pr,initial):
   paths=changed_paths(pr)
   keys=sorted({match.group(1) for path in paths if (match:=re.fullmatch(r'unsolved_math_prioritization/attempts/([0-9]+)/.+',path))})
   method='complete_GraphQL_filename_metadata_without_matching_known_head_and_live_base'
+  # Legacy packages use one top-level effort directory rather than attempts/id.
+  # Reuse no cached status: require the exact unchanged submitted head, one
+  # cached target ID/row fingerprint, complete current filename scope, matching
+  # numeric root suffix, then independently reauthenticate the fresh row below.
+  seeds=initial.get('entries')
+  if not keys and pr['headRefOid']==initial.get('headRefOid') and type(seeds) is list and len(seeds)==1 and type(seeds[0]) is dict:
+   seed=seeds[0];seed_id=str(seed.get('id'));seed_hash=seed.get('pr_head_queue_row_sha256')
+   nonqueue=[name for name in paths if name!='unsolved_math_prioritization/QUEUE.md'];roots={name.split('/',1)[0] for name in nonqueue}
+   if type(seed.get('id')) in (str,int) and re.fullmatch('[0-9]+',seed_id) and type(seed_hash) is str and re.fullmatch('[0-9a-f]{64}',seed_hash) and len(roots)==1 and 'unsolved_math_prioritization/QUEUE.md' in paths:
+    root=next(iter(roots));match=re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*_([0-9]+)',root)
+    if match and match.group(1)==seed_id and all(name.startswith(root+'/') for name in nonqueue):
+     keys=[seed_id];method='complete_current_legacy_root_filenames_plus_exact_original_head_ID_and_fresh_row_binding'
+     legacy_binding={'legacy_root':root,'legacy_complete_path_count':len(paths),'bound_seed_queue_row_sha256':seed_hash}
  if len(keys)!=1 or re.fullmatch('[0-9]+',keys[0]) is None:
   return {'identity_method':method,'identity_reconciled':False,'candidate_problem_ids':keys}
- return {'identity_method':method,'identity_reconciled':True,'problem_id':keys[0]}
+ return {'identity_method':method,'identity_reconciled':True,'problem_id':keys[0],**legacy_binding}
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--receipt-name',required=True);args=ap.parse_args();need(re.fullmatch('[A-Za-z0-9_.-]+[.]json',args.receipt_name) is not None,'Receipt must be a simple JSON filename');out=P/args.receipt_name;need(not out.exists(),'Receipt exists; preserve prior snapshot and select a new name')
  started=datetime.now(timezone.utc).isoformat();old={r['number']:r for r in json.loads((P/'inventory.json').read_text())};need(set(range(900,1001))<=set(old),'Initial metadata inventory incomplete');first=metadata();rows=[];jobs=[]
@@ -98,7 +112,9 @@ def main():
   try:
    record.update(current_identity(pr,initial))
    if not record['identity_reconciled']:record['action']='UNRESOLVED_IDENTITY';return record
-   key=record['problem_id'];head=record['original_metadata_head'];queue=immutable_queue(head);record.update(**target_status(queue,key));record['action']='ELIGIBLE_REQUIRES_PROCESSING' if record['status']=='claimed_solved' else 'SKIP_STATUS_ONLY'
+   key=record['problem_id'];head=record['original_metadata_head'];queue=immutable_queue(head);record.update(**target_status(queue,key))
+   if 'bound_seed_queue_row_sha256' in record:need(record['queue_row_sha256']==record['bound_seed_queue_row_sha256'],'Legacy same-head original target row fingerprint differs')
+   record['action']='ELIGIBLE_REQUIRES_PROCESSING' if record['status']=='claimed_solved' else 'SKIP_STATUS_ONLY'
   except Exception as error:record.update(action='UNRESOLVED_READ',read_error=str(error),completion_scope_clear=False)
   return record
  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:rows.extend(pool.map(inspect,jobs))
