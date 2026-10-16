@@ -1057,7 +1057,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1046 | 2845 / KP-3.47 | Kirby Problem 3.47 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1047 | 2945 / KP-4.69 | Kirby Problem 4.69 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1048 | 2956 / KP-4.80 | Kirby Problem 4.80 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 1049 | 2960 / KP-4.84 | Kirby Problem 4.84 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 1049 | 2960 / KP-4.84 | Kirby Problem 4.84 | 0.0900 | 5.5 | 3 | unknown | unsolved | 5/5 |  | Partial results accepted unchanged after independent audit; the full smooth finite-subgroup realization problem remains unresolved. Standard product-and-factor-swap subgroup theorem, linear torus realizations, conditional rational/complement criteria, metric splitting criterion, and fixed-point rank obstructions. Full smooth kernels and nonstandard complements remain uncontrolled. Separate optimization-safe checker patch retained; original eight optimized false passes and read-only output failure disclosed. Illman full text uninspected; no novelty claim. See [source-free audited packet](attempts/2960/README.md). |  |
 | 1050 | 2970 / KP-4.94 | Kirby Problem 4.94 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1051 | 2974 / KP-4.98 | Kirby Problem 4.98 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1052 | 2980 / KP-4.104 | Kirby Problem 4.104 | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
