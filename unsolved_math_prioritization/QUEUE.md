@@ -1075,7 +1075,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 1064 | 7200057 / AMR-071-0057 | For each arrangement of points in which the rectilinear crossing number is minimized, is the number of halving lines maximized | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1065 | 9500005 / AMR-094-0005 | Convergence of synchronous reflected-Brownian couplings | 0.0900 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 1066 | 9500007 / AMR-094-0007 | Are shy couplings necessarily rigid? | 0.0900 | 5.5 | 4 | unknown | queued | 0/5 |  |  |  |
-| 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 1067 | 30003846 / OWR-16167-016 | Finiteness and Rigidity of Fast Bump Groups | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  | Prior proof verified conditionally: Golan, arXiv:2607.10961v1 (July 2026 preprint), connected classification plus independently accepted decomposition under restricted permutational wreath products (finite support; nonfaithful indexing action allowed). Scope hold: original wreath terminology undefined; regular-only/faithful-only exclusions not certified. No new attempt; no novelty or journal-acceptance claim. [Audit](attempts/30003846/ACCEPTANCE.md). |  |
 | 1068 | 30003937 / OWR-16414-001 | Convergence of Dynamic Monge–Kantorovich Systems | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1069 | 30003946 / OWR-16415-008 | Equality of Variationally Minimizing Maps | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 1070 | 30004018 / OWR-16635-003 | Socle Filtrations from Duflo–Serganova Kernels | 0.0900 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
