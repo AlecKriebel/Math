@@ -1,0 +1,57 @@
+--- a/local_knot_genus_30004818/authored/SOURCE_AND_SCOPE_REPORT.md
++++ b/local_knot_genus_30004818/authored/SOURCE_AND_SCOPE_REPORT.md
+@@ -48,4 +48,4 @@
+ 
+ ## Status discipline
+ 
+-The retrieved sources support the statement that the full question remains unresolved in the checked primary literature, most explicitly in March 2026. Search non-detection is not proof that no later solution exists. The campaign has one substantive author approach so far; the source check, normalization, and any review do not add author turns. Approach 1 is in APPROACH_01_FINITE_IMAGE_COVERING.md. Raw downloaded papers are retained separately and are not publication material.
++The retrieved sources support the statement that the full question remains unresolved in the checked primary literature, most explicitly in March 2026. Search non-detection is not proof that no later solution exists. This source report was prepared after the first substantive author approach. The later AUTHOR_COMPLETION_REPORT.md and AUTHORED_MANIFEST.json record five completed author approaches; the source check, normalization, and mathematical review do not add author turns. Approach 1 is in APPROACH_01_FINITE_IMAGE_COVERING.md. Raw downloaded papers are retained separately and are not publication material.
+--- a/local_knot_genus_30004818/authored/APPROACH_05_COBORDISM_NORM_AND_FLOER_BOUNDS.md
++++ b/local_knot_genus_30004818/authored/APPROACH_05_COBORDISM_NORM_AND_FLOER_BOUNDS.md
+@@ -14,7 +14,7 @@
+ 
+ ### Local-knot propagation through a surface
+ 
+-If S is an embedded oriented cobordism from local knots K_0 to K_1, choose an embedded arc on S joining its two boundary components. A product neighborhood of that arc allows insertion of a knotted arc representing any classical J. Replacing the straight strip by the corresponding knotted strip ties J into both ends. This gives a cobordism of the same genus from K_0#J to K_1#J. It changes the single connected surface itself; it does not require the disjoint spectator annulus whose absence blocked approach 3.
++If S is an embedded oriented cobordism from local knots K_0 to K_1, choose a properly embedded arc on S joining its incoming and outgoing boundaries. An oriented tubular neighborhood of the arc is D³×[0,1], with endpoint three-balls in the two boundary levels and with S meeting it in a straight diameter of D³ times [0,1]. Replace that diameter by a fixed long-knot arc representing J, unchanged near its endpoints, and take the product with [0,1]. The new embedded strip agrees with the old one near its two vertical attaching edges, so it glues to the rest of S. The endpoint oriented ball coordinates give the same J at both ends. This produces a same-genus cobordism K_0#J→K_1#J. It modifies one connected surface and does not assume the existence of a disjoint spectator annulus or of disjoint independently chosen bounding surfaces.
+ 
+ It follows that:
+ 
+@@ -42,7 +42,7 @@
+ 
+ ### Published inputs
+ 
+-We use the usual nonvanishing of hat Heegaard Floer homology for a closed oriented three-manifold, its conjugation symmetry, the connected-sum filtration formula, and Hedden–Raoux's relative adjunction inequality (Theorem 1). Conjugation symmetry is Theorem 2.4 of Ozsváth–Szabó, Holomorphic disks and three-manifold invariants: properties and applications. Hedden–Raoux's Proposition 2.6 records the τ connected-sum formula. These results are invoked, not reproved.
++Work over F₂. We use nonvanishing of hat Heegaard Floer homology for a closed oriented three-manifold, its conjugation symmetry, the connected-sum filtration formula, and Hedden–Raoux's relative adjunction inequality (Theorem 1; the explicit Seifert-cap normalization is Theorem 4.1). An explicit nonvanishing reference is Alishahi–Lipshitz, Bordered Floer homology and incompressible surfaces, Theorem 1.2. This supplies a nonzero Spinᶜ summand, not nonvanishing of every summand. Conjugation symmetry is Theorem 2.4 of Ozsváth–Szabó, Holomorphic disks and three-manifold invariants: properties and applications. Hedden–Raoux's Proposition 2.6 and Remark 2.7 record the τ connected-sum formula and its Seifert-surface normalization. These results are invoked, not reproved.
+ 
+ ### The local filtered-complex calculation
+ 
+@@ -55,9 +55,9 @@
+ 
+ ### Keeping the absolute homology correction
+ 
+-Let F be any genus-g bounding surface in M×I. Puncture and tube it as above to form a genus-g cobordism S from a local unknot U to K. Cap the two boundaries with the chosen local Seifert surfaces to obtain a class A∈H₂(M×I;Z). We do NOT assume A=0. Approach 4 gives only zero intersection form, so A²=0.
++Let F be any genus-g bounding surface in M×I. Puncture and tube it as above to form a genus-g cobordism S from a local unknot U to K. With the chosen local disk D_U and local Seifert surface S_K, use the cap class A=[D_U+S−S_K]∈H₂(M×I;Z). We do NOT assume A=0. Approach 4 gives only zero intersection form, so A²=0.
+ 
+-The product cobordism induces the identity on HFhat(M,s). Apply the relative adjunction inequality using the pulled-back Spinᶜ structure and α. With the local normalization this gives
++The product cobordism induces the identity on HFhat(M,s) with the standard product basepoint path. If a different basepoint-transport path is retained, its map is still an isomorphism; set β to the nonzero image of α, and the same local τ calculation applies to β. Apply the relative adjunction inequality using the pulled-back Spinᶜ structure and these nonzero classes. With the local normalization this gives
+ 
+     ⟨c₁(s),A⟩ + 2τ(K) ≤ 2g.
+ 
+@@ -65,7 +65,7 @@
+ 
+     −⟨c₁(s),A⟩ + 2τ(K) ≤ 2g.
+ 
+-Adding these two inequalities yields τ(K)≤g. Reverse the surface cobordism to run from K to U and repeat the argument. Its τ difference is −τ(K), and conjugation again removes its Chern pairing. Hence −τ(K)≤g as well. Therefore |τ(K)|≤g for every admissible F. Taking the minimum proves the bound. ∎
++Adding these two inequalities yields τ(K)≤g. Reverse the surface cobordism by setting R(x,t)=(x,1−t) and taking the oriented surface −R(S), whose boundary is −K at the incoming end and U at the outgoing end. Apply the same argument to this K→U cobordism in the usual oriented product, with its own cap class. Its τ difference is −τ(K), and conjugation again removes its Chern pairing. Hence −τ(K)≤g as well. Therefore |τ(K)|≤g for every admissible F. Taking the minimum proves the bound. ∎
+ 
+ The conjugation step is important. An unqualified application of a displayed τ slice-genus bound can hide a Seifert-surface/homology-class normalization. Here the cap class is retained until its contribution is explicitly canceled.
+ 
+@@ -97,6 +97,7 @@
+ 
+ ## Public references
+ 
++- A. Alishahi and R. Lipshitz, Bordered Floer homology and incompressible surfaces, Theorem 1.2. https://doi.org/10.5802/aif.3276 ; https://www.numdam.org/item/10.5802/aif.3276.pdf .
+ - M. Hedden and K. Raoux, Knot Floer homology and relative adjunction inequalities, Theorem 1 and Proposition 2.6. https://arxiv.org/abs/2009.05462 ; https://doi.org/10.1007/s00029-022-00810-1 .
+ - P. Ozsváth and Z. Szabó, Holomorphic disks and three-manifold invariants: properties and applications, Theorem 2.4. https://annals.math.princeton.edu/wp-content/uploads/annals-v159-n3-p04.pdf .
+ - A. N. Miller, Amphichiral knots with large 4-genus, Theorem 1.1 and Corollary 1.2. Bulletin of the London Mathematical Society 54 (2022), 624–634. https://doi.org/10.1112/blms.12588 ; https://arxiv.org/abs/2011.09346 .
