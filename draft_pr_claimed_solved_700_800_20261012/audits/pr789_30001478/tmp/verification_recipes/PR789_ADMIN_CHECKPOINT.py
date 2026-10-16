@@ -20,10 +20,14 @@ for folder in [T/"whole_preprint_round03",T/"whole_preprint_round04",T/"admin_sc
   p=folder/rel;assert p.relative_to(folder).as_posix()==rel and p.is_file()and not p.is_symlink()and p.stat().st_nlink==1
   assert all(not parent.is_symlink()for parent in p.parents if parent==folder or folder in parent.parents)
   updates[p.relative_to(R).as_posix()]=p.read_bytes()
-pins={"DRIVER_CONTROLS.py":"3ff99091083bca1e8c2beb54238865d86cd4fefcb0c42da9f83278aff49cb88d","PUBLIC_VERIFY.py":"101928f4a7217437e9085c1f9e3a2c87938fa683a35670d1c9d8ad5b9e65669f","MERGE_SCOPE.py":"175d1ead75b4de1eafa3b44ce45b86d618074a290f890ab377e72adfc43cdfff","TRACKER_VERIFY.py":"1df0acfdfe81ead0a824de028392f95e6455a685bf9222fab713512fbd2697e6","KNOWN_DRAFT_REPAIR_CONTROLS.py":"917eb3eb201f8bd6ba628f8e93d738c1c7a447d3aa42de42ac3e571286c19cb5"}
+pins={"DRIVER_CONTROLS.py":"3ff99091083bca1e8c2beb54238865d86cd4fefcb0c42da9f83278aff49cb88d","PUBLIC_VERIFY.py":"101928f4a7217437e9085c1f9e3a2c87938fa683a35670d1c9d8ad5b9e65669f","MERGE_SCOPE.py":"175d1ead75b4de1eafa3b44ce45b86d618074a290f890ab377e72adfc43cdfff","TRACKER_VERIFY.py":"ce10be213b614cad6a4de85ea500d8935c17c5f8238cbe8b912d33d06d57276e","KNOWN_DRAFT_REPAIR_CONTROLS.py":"917eb3eb201f8bd6ba628f8e93d738c1c7a447d3aa42de42ac3e571286c19cb5"}
 import hashlib
 for n,pin in pins.items():
  p=T/"admin_scope/packet"/n;assert hashlib.sha256(p.read_bytes()).hexdigest()==pin;updates[p.relative_to(R).as_posix()]=p.read_bytes()
+if(T/"admin_scope/packet/MANIFEST.json").exists():
+ finalpins=json.loads((M/"ADMIN_EXPECTED_PINS.json").read_text());p=T/"admin_scope/REPLAY_PACKET_CONTROLS.py"
+ assert not p.is_symlink()and p.stat().st_nlink==1 and hashlib.sha256(p.read_bytes()).hexdigest()==finalpins["runner_sha256"]
+ updates[p.relative_to(R).as_posix()]=p.read_bytes()
 now=datetime.datetime.now(datetime.timezone.utc).isoformat();entry="\n## "+now+" — "+plan["heading"]+"\n\n"+plan["notes"]+"\n\nCase "+str(plan["case_percent"])+"%; shard "+str(plan["shard_percent"])+"%.\n"
 for retry in range(3):
  r=Remote(head_oid());u=dict(updates)

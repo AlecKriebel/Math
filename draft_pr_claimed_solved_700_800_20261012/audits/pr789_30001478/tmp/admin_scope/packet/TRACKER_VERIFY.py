@@ -13,6 +13,14 @@ OWN = Path(__file__).resolve().parents[1]
 def need(value, message):
     if not value: raise RuntimeError(message)
 
+def clean_cli_result(returncode, stderr):
+    # Observed with the private override and status0. This announces backend
+    # selection only; no credential/config contents are inspected or retained.
+    # Accept no other diagnostic, extra line, or nonzero process result.
+    need(type(returncode) is int and returncode == 0
+         and stderr in ("", "Using keyring backend: keyring\n"),
+         "Read-only GWS did not return the exact successful diagnostic shape")
+
 def canonical_range(value):
     need(isinstance(value, str) and "!" in value, "Named exact four-cell range required")
     sheet, cells = value.rsplit("!", 1)
@@ -56,6 +64,16 @@ def controls():
     response = copy.deepcopy(good); response["range"] = "OtherSheet!A1:D1"; test("wrong_returned_sheet", response, False)
     response = copy.deepcopy(good); response["range"] = "Sheet1!A1:E1"; test("range_spans_extra_cell", response, False)
     response = copy.deepcopy(good); response["range"] = "'Sheet1'!$A$1:$D$1"; test("same_exact_range_standard_A1_quoting", response, True)
+    for name, status, stderr, expected in [
+            ("empty_success_diagnostic", 0, "", True),
+            ("exact_observed_keyring_selection_diagnostic", 0, "Using keyring backend: keyring\n", True),
+            ("nonzero_exit_with_backend_diagnostic", 1, "Using keyring backend: keyring\n", False),
+            ("different_backend_diagnostic", 0, "Using keyring backend: changed\n", False),
+            ("extra_diagnostic_line", 0, "Using keyring backend: keyring\nextra\n", False),
+            ("boolean_process_status", False, "", False)]:
+        try: clean_cli_result(status, stderr); accepted = True
+        except RuntimeError: accepted = False
+        cases.append({"case": name, "accepted": accepted, "control_pass": accepted == expected})
     need(all(c["control_pass"] for c in cases), "Tracker parser control failed")
     return cases
 
@@ -79,7 +97,7 @@ def main():
         env = os.environ.copy(); env["GOOGLE_WORKSPACE_CLI_CONFIG_DIR"] = str(a.config_dir)
         command = [str(a.gws_bin), "sheets", "+read", "--spreadsheet", a.spreadsheet, "--range", a.range]
         run = subprocess.run(command, env=env, capture_output=True, text=True, timeout=90)
-        need(run.returncode == 0 and not run.stderr, "Read-only GWS did not return a clean successful response")
+        clean_cli_result(run.returncode, run.stderr)
         try: response = json.loads(run.stdout)
         except ValueError: raise RuntimeError("Read-only GWS response was not JSON") from None
         cell_receipts = compare(response, wanted, a.range)
@@ -87,7 +105,8 @@ def main():
                       requested_range=a.range, returned_range=response.get("range"),
                       exact_requested_and_returned_four_cell_range=True,
                       exact_row_sha256=hashlib.sha256(json.dumps(wanted, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest(),
-                      cells=cell_receipts, read_only_GWS_private_override_used=True)
+                      cells=cell_receipts, read_only_GWS_private_override_used=True,
+                      exact_known_backend_selection_diagnostic_accepted=bool(run.stderr))
     raw = json.dumps(result, indent=2)+"\n"
     if a.out:
         need(a.out.resolve().is_relative_to(OWN), "Output outside owned admin area")
