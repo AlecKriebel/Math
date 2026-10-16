@@ -1,6 +1,6 @@
 {
   "schema": "pr948-inherited-finding-dispositions-v1",
-  "utc": "2026-10-16T08:27:07.930382+00:00",
+  "utc": "2026-10-16T08:51:16.917662+00:00",
   "pr": 948,
   "problem_id": "30004549",
   "original_pr_head": "be4313efafa1af5962394e07d8a4debff2e94d92",
@@ -519,11 +519,44 @@
         "profile/history/pre_root01/SNAPSHOT_MANIFEST.json",
         "audit/root/ROOT_PROFILE_ROOT01_REPLAY.json"
       ]
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-01",
+      "classification": "required",
+      "implementation_status": "specified_candidate_change_requires_engineering_and_fresh_review_verification",
+      "disposition": "Historical review evidence must authenticate archived base/evidence/<repo-relative-key> snapshots, never reread a mutated living register as the old candidate. Missing or tampered snapshots reject. Current candidate still verifies current live evidence. The full fix/review loop must remain reproducible, while raw private snapshots stay excluded from public archives/commit lists.",
+      "evidence": [
+        "audit/root/ROOT_WORKFLOW_PRE_FREEZE_FINDINGS.json",
+        "external repository publication/workflow corrected code, remediation and regression receipts must be verified",
+        "external entire-package reviewers must independently verify this boundary before acceptance"
+      ]
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-02",
+      "classification": "required",
+      "implementation_status": "specified_candidate_change_requires_engineering_and_fresh_review_verification",
+      "disposition": "Next-target identity may reuse the initial ID only at the exact unchanged immutable head. Changed heads require complete current changed-filename metadata deriving exactly one numeric attempt ID, followed only by that immutable QUEUE status. Retargeted unsolved cases skip, ambiguous identity fails closed; no excluded mathematics is read.",
+      "evidence": [
+        "audit/root/ROOT_WORKFLOW_PRE_FREEZE_FINDINGS.json",
+        "external repository publication/workflow corrected code, remediation and regression receipts must be verified",
+        "external entire-package reviewers must independently verify this boundary before acceptance"
+      ]
+    },
+    {
+      "id": "R948-WORKFLOW-ROOT-03",
+      "classification": "required",
+      "implementation_status": "specified_candidate_change_requires_engineering_and_fresh_review_verification",
+      "disposition": "Native baseline requires strict key absence, not merely a null value from state.get. An explicit target:null entry rejects for reconciliation and is never reported absent; true absence remains the positive control and known publication events require exact readback.",
+      "evidence": [
+        "audit/root/ROOT_WORKFLOW_PRE_FREEZE_FINDINGS.json",
+        "external repository publication/workflow corrected code, remediation and regression receipts must be verified",
+        "external entire-package reviewers must independently verify this boundary before acceptance"
+      ]
     }
   ],
-  "count": 47,
-  "required": 36,
+  "count": 50,
+  "required": 39,
   "optional": 11,
   "scientific_approval": false,
-  "acceptance_condition": "This is an implementation map for fresh complete-package reviewers. External whole-package reviews and acceptance must verify every entry; no future approval is self-certified here. Disclosed access/history gaps remain gaps, resolved as publication claims by exact restriction rather than fabricated evidence."
+  "acceptance_condition": "All50 entries are candidate implementation requirements for fresh complete-package reviewers. New workflow items require actual corrected code and regression evidence; no engineering or future whole-package approval is self-certified by this map. External reviews/acceptance must verify every required AND optional entry; disclosed source/history gaps remain gaps."
 }

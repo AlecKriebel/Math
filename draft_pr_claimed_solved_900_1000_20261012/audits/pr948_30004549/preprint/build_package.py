@@ -136,7 +136,7 @@ def main():
         'ROOT_PRIORITY_FALSIFIER_01_AUTHENTICATION.json',
         'ROOT_PRE_PACKAGE_SOURCE_CONTINUITY_06.json',
         'ROOT_PROFILE_ROOT01_AUTHENTICATION.json','ROOT_PROFILE_ROOT01_REPLAY.json',
-        'PUBLICATION_FINDINGS_REGISTER.md',
+        'PUBLICATION_FINDINGS_REGISTER.md','ROOT_WORKFLOW_PRE_FREEZE_FINDINGS.json',
     ]
     for name in rootfiles:
         add('audit/root/'+name,A/name)
