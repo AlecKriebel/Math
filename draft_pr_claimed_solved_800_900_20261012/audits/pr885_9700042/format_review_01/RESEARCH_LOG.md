@@ -91,3 +91,5 @@ Required next steps: fix physical-alias containment, freeze/review the delta, re
   "v2_physical_alias_containment_defect_open": true
 }
 ```
+
+2026-10-16T04:30:34.638662+00:00 — 70% complete. After explicit restored-capacity authorization, actual written V4 was pinned (41629 bytes, SHA8832a44a53f0df4867cb8196d725209dd7ac5944c82b4f296b7514155fe72e6c). Fresh minimal exact30-source fixture and independent index 798dab320e333bbb09ff2e7664676335a5aecf0f1937551656fc3c7702f6207f authenticated in normal/O CLI processes. Twenty real CLI cases passed; every process completed package authentication exactly once and had zero Popen, all containment builds rejected with no ZIP and zero stderr. Originals and fixture unchanged. V3 narrower residual and V4 indexed-directory mechanism reviewed/tested in memory; wider Data-root case helper-only. New safe V4 report/decision/receipts and pending supplementary summaries saved. Actual full current candidate, default replay and outside exact build remain pending; no final whole-package CLEAR. No Git, archival execution or outside writes.
