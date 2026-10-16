@@ -1,0 +1,159 @@
+{
+  "checked_utc": "2026-10-16T05:24:17.743080+00:00",
+  "status": "PASS",
+  "physical_baselines": 1,
+  "negative_controls": 19,
+  "outer_flags": [
+    "-O",
+    "-B"
+  ],
+  "environment_PYTHONOPTIMIZE": "2",
+  "source_zip": {
+    "bytes": 335220,
+    "sha256": "92f69921ea53b0415c7c924666454d63676b08af640023567ad1c552efe58d6d"
+  },
+  "all_closed_inputs_unchanged": true,
+  "cases": [
+    {
+      "case": "unmodified_physical_baseline",
+      "expected_rejection": false,
+      "rejected": false,
+      "exit": 0,
+      "diagnostic": null
+    },
+    {
+      "case": "duplicate_manifest",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Duplicate/self bundle path"
+    },
+    {
+      "case": "unsafe_parent_path",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Unsafe path: ../escape"
+    },
+    {
+      "case": "unsafe_absolute_path",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Unsafe path: /escape"
+    },
+    {
+      "case": "self_manifest_row",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Duplicate/self bundle path"
+    },
+    {
+      "case": "changed_paper",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Bundle content mismatch: paper.tex"
+    },
+    {
+      "case": "extra_file",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Bundle inventory mismatch"
+    },
+    {
+      "case": "missing_file",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Bundle inventory mismatch"
+    },
+    {
+      "case": "symlink",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Symlink in source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr765_30005613/preprint/tmp/attack-fixture/extra-link"
+    },
+    {
+      "case": "fifo",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Nonregular source: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr765_30005613/preprint/tmp/attack-fixture/extra-fifo"
+    },
+    {
+      "case": "empty_directory",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Unexpected empty directory: /Users/alec/Documents/Math/draft_pr_claimed_solved_700_800_20261012/audits/pr765_30005613/preprint/tmp/attack-fixture"
+    },
+    {
+      "case": "metadata_changed_outer_manifest_repaired",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Metadata differs"
+    },
+    {
+      "case": "original_changed_outer_manifest_repaired",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Original bytes differ"
+    },
+    {
+      "case": "review_changed_outer_manifest_repaired",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Review bytes differ"
+    },
+    {
+      "case": "review_manifest_changed_outer_manifest_repaired",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Review manifest pin differs"
+    },
+    {
+      "case": "priority_overclaim_outer_manifest_repaired",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Wrong priority scope"
+    },
+    {
+      "case": "wrong_downloaded_pdf",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: PDF binding differs"
+    },
+    {
+      "case": "rebuild_wrong_pdf",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Rebuild PDF differs from original binding"
+    },
+    {
+      "case": "rebuild_internal_output",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Portable rebuild output must be outside closed input tree"
+    },
+    {
+      "case": "rebuild_changed_closed_paper",
+      "expected_rejection": true,
+      "rejected": true,
+      "exit": 1,
+      "diagnostic": "ValueError: Closed rebuild input changed: paper.tex"
+    }
+  ],
+  "scope": "Physical integrity guards, not a mathematical proof certificate."
+}
