@@ -37,6 +37,10 @@ for name in plan.get('other_safe_files', []) + ['CHECKPOINT_PLAN.json']:
     p = T / name
     assert p.resolve().is_relative_to(T) and not p.is_symlink() and p.is_file() and p.stat().st_nlink == 1
     updates[p.relative_to(R).as_posix()] = p.read_bytes()
+for name in plan.get('case_files', []):
+    p = T.parent / name
+    assert p.resolve().is_relative_to(T.parent) and not p.is_symlink() and p.is_file() and p.stat().st_nlink == 1
+    updates[p.relative_to(R).as_posix()] = p.read_bytes()
 now = datetime.datetime.now(datetime.timezone.utc).isoformat()
 entry = '\n## ' + now + ' — ' + plan['heading'] + '\n\n' + plan['notes'] + '\n\nCase ' + str(plan['case_percent']) + '%; shard ' + str(plan['shard_percent']) + '%.\n'
 for attempt in range(3):
